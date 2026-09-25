@@ -36,6 +36,7 @@ import "./question-surfaces.css";
 import "./result-details.css";
 import "./micro-details.css";
 import "./domain-surfaces.css";
+import "./result-final.css";
 import { ChapterRibbon } from "./components/ChapterRibbon.jsx";
 import { ChapterObject } from "./components/ChapterObject.jsx";
 
@@ -96,6 +97,7 @@ export default function App() {
   const [draft, setDraft] = useState(null);
   const [note, setNote] = useState("");
   const [otherText, setOtherText] = useState("");
+  const [contextBinding, setContextBinding] = useState({});
   const [mapOpen, setMapOpen] = useState(false);
   const [howOpen, setHowOpen] = useState(false);
   const [reviewOpen, setReviewOpen] = useState(false);
@@ -210,9 +212,10 @@ export default function App() {
         ).length
       : 0;
     const changed =
-      before !== value ||
+      JSON.stringify(before ?? null) !== JSON.stringify(value ?? null) ||
       (meta.note || "") !== (state.notes?.[currentQuestion.id] || "") ||
-      (meta.otherText || "") !== (state.other?.[currentQuestion.id] || "");
+      (meta.otherText || "") !== (state.other?.[currentQuestion.id] || "") ||
+      JSON.stringify(meta.bindings || {}) !== JSON.stringify(state.bindings?.[currentQuestion.id] || {});
     if (
       context &&
       changed &&
@@ -245,6 +248,7 @@ export default function App() {
       const result = Engine.setAnswer(next, currentQuestion.id, value, {
         otherText: meta.otherText,
         note: meta.note,
+        bindings: meta.bindings,
       });
       if (result && typeof result === "object") Object.assign(next, result);
     } catch {
@@ -379,6 +383,7 @@ export default function App() {
       setDraft(state.answers?.[currentQuestion.id] || null);
       setNote(state.notes?.[currentQuestion.id] || "");
       setOtherText(state.other?.[currentQuestion.id] || "");
+      setContextBinding(state.bindings?.[currentQuestion.id] || {});
     }
   }, [screen, currentQuestion?.id]);
 
@@ -388,7 +393,7 @@ export default function App() {
         <AmbientWorld
           scene={screen}
           chapter={currentChapter?.id || 1}
-          pulseKey={`${screen}-${currentQuestion?.id || ""}-${draft || ""}`}
+          pulseKey={`${screen}-${currentQuestion?.id || ""}-${Array.isArray(draft) ? draft.join("+") : draft || ""}`}
         />
         <Header
           state={state}
@@ -451,6 +456,8 @@ export default function App() {
               setNote={setNote}
               otherText={otherText}
               setOtherText={setOtherText}
+              contextBinding={contextBinding}
+              setContextBinding={setContextBinding}
               onContinue={commit}
               onBack={state.cursor > 0 ? back : null}
               onSkip={commit}
@@ -470,6 +477,7 @@ export default function App() {
               onReview={() => setReviewOpen(true)}
               onReset={() => setResetOpen(true)}
               onReviewClaim={reviewClaim}
+              storageOK={storageOK}
               error={saveError}
             />
           )}
@@ -512,7 +520,7 @@ export default function App() {
   );
 }
 
-function Header({
+export function Header({
   state,
   storageOK,
   onHome,
@@ -582,7 +590,7 @@ function Header({
   );
 }
 
-function Landing({ state, onBegin, onHow }) {
+export function Landing({ state, onBegin, onHow, journey }) {
   const hasProgress =
     state.started && Object.keys(state.answers || {}).length > 0;
   return (
@@ -594,15 +602,15 @@ function Landing({ state, onBegin, onHow }) {
     >
       <section className="landing-hero">
         <div className="hero-copy">
-          <span className="eyebrow">Your lore. My favorite subject.</span>
+          <span className="eyebrow">You have tells. Genii is taking notes.</span>
           <h1>
             Let’s get
             <br />
             <em>oddly specific.</em>
           </h1>
           <p className="hero-promise">
-            The group-chat you. The 1 a.m. you. The “I'm fine” you. Let's get to
-            know the whole situation.
+            How you leave the house, handle a weird text, or turn a small plan into a whole production.
+            Give Genii a few real scenes. See which version of you turns up.
           </p>
           <div className="hero-actions">
             <button
@@ -614,7 +622,7 @@ function Landing({ state, onBegin, onHow }) {
               <ArrowRight size={19} />
             </button>
             {hasProgress && (
-              <span className="resume-count">Your place is saved here</span>
+              <span className="resume-count">Your answers are waiting in this browser</span>
             )}
           </div>
         </div>
@@ -642,7 +650,7 @@ function Landing({ state, onBegin, onHow }) {
           </span>
         </div>
       </section>
-      <ChapterJourney />
+      <ChapterJourney {...journey} />
       <section className="landing-foot">
         <button type="button" className="how-button" onClick={onHow}>
           <span className="how-mark">
@@ -651,7 +659,7 @@ function Landing({ state, onBegin, onHow }) {
           <span>
             <strong>How this stays thoughtful</strong>
             <small>
-              Your answers stay on this device. Notes are never scored.
+            Your answers stay on this device. Notes stay yours and are never scored.
             </small>
           </span>
           <ArrowRight size={16} />
@@ -665,38 +673,38 @@ function Landing({ state, onBegin, onHow }) {
     </motion.main>
   );
 }
-function ChapterJourney() {
+function ChapterJourney({ maxQuestions = 52, profileQuestions = 44, chapterCount = Survey.CHAPTERS.length } = {}) {
   return (
     <section className="chapter-journey" aria-label="Conversation details">
       <div className="journey-intro">
-        <strong>Bring the real version of you.</strong>
-        <small>Get to know your patterns. Find small habits that fit.</small>
+        <strong>Bring the oddly specific version of you.</strong>
+        <small>Different scenes can pull different answers out of the same person.</small>
       </div>
       <div className="journey-fact">
-        <b>64</b>
-        <span>specific scenes</span>
+        <b>{maxQuestions} max</b>
+        <span>Up to {profileQuestions} scenes about you, then 8 fresh checks. Some follow-ups unlock from your answers.</span>
       </div>
       <div className="journey-fact">
-        <b>8</b>
-        <span>chapters to wander through</span>
+        <b>{chapterCount}</b>
+        <span>chapters. Take them at your pace.</span>
       </div>
       <div className="journey-fact">
         <b>Other or Skip</b>
-        <span>keeps the answer honest</span>
+        <span>No option fits? Say so.</span>
       </div>
       <div className="journey-fact">
         <b>Save</b>
-        <span>then resume whenever you like</span>
+        <span>then pick up whenever you like</span>
       </div>
     </section>
   );
 }
-function Interlude({ chapter, state, route, onContinue, onSave }) {
+export function Interlude({ chapter, state, route, onContinue, onSave, countOverride }) {
   const heading = useRef(null);
   useEffect(() => {
     heading.current?.focus({ preventScroll: true });
   }, [chapter.id]);
-  const count = Survey.chapterCount?.(state, chapter.id) || {};
+  const count = countOverride || Survey.chapterCount?.(state, chapter.id) || {};
   const dots =
     count.total || route.filter((q) => q.chapter === chapter.id).length;
   return (
@@ -712,13 +720,13 @@ function Interlude({ chapter, state, route, onContinue, onSave }) {
           scene="chapter"
           mood={chapter.id % 2 ? "attentive" : "curious"}
           bubble={
-            chapter.id === 5
-              ? "The inside voice gets a turn."
-              : chapter.id === 6
-                ? "Even your water bottle has a subplot."
-                : chapter.id === 7
-                  ? "Usual you. This-week you. Both count."
-                  : "Okay, there’s more to this story."
+            chapter.id === 9
+              ? "My guesses are filed. The next scenes get to answer back."
+              : chapter.id === 4
+                ? "Same choice, different person: a whole new subplot."
+                : chapter.id === 5
+                  ? "Good advice can still arrive wearing the wrong shoes."
+                  : "New scene, same curious little detective."
           }
         />
       </div>
@@ -733,7 +741,7 @@ function Interlude({ chapter, state, route, onContinue, onSave }) {
         <p>{chapter.subtitle}</p>
         <div className="interlude-progress">
           <span>
-            <b>{count.resolved || 0}</b> scenes resolved in this chapter
+            <b>{count.resolved || 0}</b> scenes filed in this chapter
           </span>
           <div>
             {Array.from({ length: dots }, (_, i) => (
@@ -764,7 +772,7 @@ function Interlude({ chapter, state, route, onContinue, onSave }) {
     </motion.main>
   );
 }
-function QuizView({
+export function QuizView({
   q,
   chapter,
   state,
@@ -775,6 +783,8 @@ function QuizView({
   setNote,
   otherText,
   setOtherText,
+  contextBinding,
+  setContextBinding,
   onContinue,
   onBack,
   onSkip,
@@ -782,6 +792,7 @@ function QuizView({
   storageOK,
   error,
   onMap,
+  chapters,
 }) {
   const chapterQs = route.filter((item) => item.chapter === chapter?.id);
   const chapterResolved = resolved(chapterQs, state);
@@ -797,7 +808,7 @@ function QuizView({
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.22 }}
     >
-      <ChapterRibbon current={chapter?.id} onOpen={onMap} />
+      <ChapterRibbon current={chapter?.id} onOpen={onMap} chapters={chapters} />
       <div className="quiz-topline">
         <div>
           <span className="eyebrow">{chapter?.title || "Your route"}</span>
@@ -822,6 +833,8 @@ function QuizView({
           setNote={setNote}
           otherText={otherText}
           setOtherText={setOtherText}
+          contextBinding={contextBinding}
+          setContextBinding={setContextBinding}
           onContinue={onContinue}
           onBack={onBack}
           onSkip={onSkip}
@@ -839,17 +852,15 @@ function QuizView({
                   : "curious"
             }
             compact
-            reactionKey={draft ? `${q.id}-${draft}` : undefined}
+            reactionKey={draft ? `${q.id}-${Array.isArray(draft) ? draft.join("+") : draft}` : undefined}
             bubble={
               q.test
-                ? "No peeking. I sealed the envelope."
-                : chapter?.id === 5
-                  ? "Quiet on the outside can still be loud inside."
-                  : chapter?.id === 6
-                    ? "Your body would like to join the conversation."
-                    : chapter?.id === 7
-                      ? "Your actual week. No highlight reel needed."
-                      : "The honest answer is the interesting one."
+                ? "My guess is already saved. No changing it now."
+                : chapter?.id === 4
+                  ? "It matters who you have in mind."
+                  : chapter?.id === 5
+                    ? "What you can do and what you want to do may differ."
+                    : "Pick the scene that fits. Perfect answers are suspicious."
             }
             chapter={chapter?.id}
             progress={
@@ -857,18 +868,18 @@ function QuizView({
             }
           />
           <div className="guide-copy">
-            <span className="eyebrow">A little more of the story</span>
+            <span className="eyebrow">A clue from this chapter</span>
             <p>
               <b>{totalResolved}</b> of {route.length} scenes explored
             </p>
-            <small>Pick what fits. “Other” and Skip are always welcome.</small>
+            <small>Choose what fits your scene. Skip if the answer is not yours.</small>
           </div>
         </aside>
       </div>
     </motion.main>
   );
 }
-function Gateway({ state, trainingDone, onSeal, onSave, onReview, error }) {
+export function Gateway({ state, trainingDone, onSeal, onSave, onReview, error }) {
   const heading = useRef(null);
   useEffect(() => {
     heading.current?.focus({ preventScroll: true });
@@ -888,7 +899,7 @@ function Gateway({ state, trainingDone, onSeal, onSave, onReview, error }) {
         </span>
       </div>
       <div className="gateway-copy">
-        <span className="eyebrow">The first reading is ready</span>
+        <span className="eyebrow">A sealed hunch, then eight fresh scenes</span>
         <h1 ref={heading} tabIndex="-1">
           One last
           <br />
@@ -896,14 +907,14 @@ function Gateway({ state, trainingDone, onSeal, onSave, onReview, error }) {
         </h1>
         <p>
           {practice
-            ? "You have seen these checks before. This attempt is practice, with the same careful reading rules."
-            : "Genii will seal eight guesses now. You will meet new situations afterward, and the reading will stay frozen while you answer."}
+            ? "You’ve met this little proving ground before. This run is practice; the careful reading rules stay the same."
+            : "The portrait is drafted. Genii will file its guesses before you meet eight fresh scenes; those answers check the guesses without rewriting the portrait."}
         </p>
         <div className="freeze-note">
-          <b>What gets frozen?</b>
-          <span>
-            Your evidence, context facts, and predictions. Test answers are
-            read-only after Continue. Thin evidence can abstain.
+            <b>The portrait stays put</b>
+            <span>
+            Next, Genii seals your portrait and its guesses before showing the final scenes.
+            It can pass when there is not enough to go on. Each final answer locks when you submit it.
           </span>
         </div>
         {error && (
@@ -918,7 +929,7 @@ function Gateway({ state, trainingDone, onSeal, onSave, onReview, error }) {
             onClick={onSeal}
             disabled={!trainingDone}
           >
-            Seal guesses and continue <ArrowRight size={19} />
+            File guesses and meet the scenes <ArrowRight size={19} />
           </button>
           <button
             type="button"
@@ -936,8 +947,7 @@ function Gateway({ state, trainingDone, onSeal, onSave, onReview, error }) {
           </button>
         </div>
         <small className="boundary-note">
-          These are internally authored checks, not proof of scientific
-          accuracy.
+          These checks compare a few choices. They are clues, not proof.
         </small>
       </div>
     </motion.main>

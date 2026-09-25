@@ -21,16 +21,16 @@ const icons = [
   Sparkles,
 ];
 
-export function ChapterRibbon({ current, onOpen }) {
+export function ChapterRibbon({ current, onOpen, chapters = CHAPTERS }) {
   return (
     <button
       type="button"
       className="chapter-ribbon"
       onClick={onOpen}
-      aria-label={`Chapter map. ${CHAPTERS.find((c) => c.id === current)?.title || "Your conversation"}`}
+      aria-label={`Chapter map. ${chapters.find((c) => c.id === current)?.title || "Your conversation"}`}
     >
-      {CHAPTERS.map((chapter, index) => {
-        const Icon = icons[index];
+      {chapters.map((chapter, index) => {
+        const Icon = icons[index] || Sparkles;
         return (
           <span
             key={chapter.id}

@@ -1,0 +1,14 @@
+.dp-toolbar { max-width:1320px; margin:auto; padding:20px 28px; display:flex; flex-wrap:wrap; align-items:center; gap:18px; border-bottom:1px solid #ddd5e8; }
+.dp-toolbar>a { color:#6843b7; font-size:12px; text-decoration:none; }
+.dp-toolbar>strong { font-size:14px; margin-right:auto; }
+.dp-toolbar small { display:block; margin-top:3px; font:9px ui-monospace,monospace; text-transform:uppercase; color:#696172; }
+.dp-toolbar label { display:flex; flex-direction:column; gap:5px; font-size:10px; color:#696172; }
+.dp-toolbar select { min-height:35px; padding:5px 8px; border:1px solid #ddd5e8; background:white; color:#2b2439; border-radius:4px; font:12px Satoshi,sans-serif; }
+.dp-toolbar .df-secondary { min-height:35px; padding:8px; font-size:11px!important; }
+.dp-notice { font-size:11px; line-height:1.6; text-align:center; padding:12px 24px; margin:0; background:#f4effb; color:#5a5264; }
+@media(max-width:600px) { .dp-toolbar {padding:15px 18px;gap:12px;} .dp-toolbar>strong {width:55%;} .dp-toolbar label {flex:1;} .dp-toolbar select {width:100%;} }
+@media(max-width:600px) {
+  .dp-toolbar>a { flex:0 0 38%; }
+  .dp-toolbar>strong { flex:1 0 55%; width:auto; }
+  .dp-toolbar label { flex:1 1 28%; min-width:85px; }
+}

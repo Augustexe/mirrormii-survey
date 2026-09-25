@@ -1,0 +1,10 @@
+/* Local export dialog only; all survey graphics use the approved styles. */
+.df-export-dialog { max-width: min(600px, calc(100vw - 40px)); max-height: 85vh; overflow: auto; border: 1px solid #bcb0cd; padding: clamp(24px, 5vw, 40px); color: #282133; background: #fff; font-family: inherit; }
+.df-export-dialog::backdrop { background: #20132a88; backdrop-filter: blur(5px); }
+.df-export-dialog h2 { font-size: 32px; letter-spacing: -.04em; margin: 24px 0 12px; }
+.df-export-dialog p { line-height: 1.65; }
+.df-export-dialog details { margin-top: 24px; }
+.df-export-dialog summary { cursor: pointer; padding: 12px 0; }
+.df-export-dialog textarea { width: 100%; min-height: 180px; margin-top: 12px; border: 1px solid #bcb0cd; padding: 12px; font: 12px/1.5 monospace; }
+
+.df-export-dialog {border-radius:24px;}

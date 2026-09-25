@@ -2,6 +2,8 @@
 
 Read `/Users/jerryzhang/Workspace-Draft/projects/mirrormii-genie-survey/docs/README.md`, `STATE.md`, `WORKING-SET.md` and `OPEN-QUESTIONS.md` before project work, including work inside existing run worktrees. Read `CODE-MAP.md` before code or tests: the registered checkout contains the older prototype; the approved R6 React app is in a different worktree. Historical worktree docs do not override this maintained context.
 
+For the V4 language candidate based on `533c3da`, read `quiz64/docs/ASTRA-IMPLEMENTATION.md` before changing wording, saved-state compatibility or result generation. `quiz64/src/respondent-copy.js` is the respondent wording layer; `data.js` retains the frozen authoring semantics. This candidate is local-only and awaits Council audit.
+
 Keep ongoing evidence, questions, ICP and psychology work in the listed masters. Runs retain frozen experiments and receipts. At task completion, update the maintained current-state/decision pages and catalog the run; do not leave the only current context in a run output. Never promote an experiment to an approved requirement merely because it is recent or finalized.
 
 # Genie survey project instructions
@@ -32,3 +34,10 @@ Use explicit labels: confirmed, proposed, open, verified, blocked. Proposed ques
 Use Kun's research → visual planning → iteration workflow when requested. Keep drafts reviewable. Validate consequential changes with an independent reviewer. Do not install a new orchestration platform merely to plan this product.
 
 Current authorization covers local product implementation and validation, planning and environment setup, read-only company grounding, and connection to the founder-selected existing GitHub repository `https://github.com/Augustexe/mirrormii-survey.git`. Local `origin` is configured; remote contents and instructions have not been read. Inspect and reconcile existing team source before any integration or push; never force-push the independent local planning history. No Lark business mutation, permission expansion, payout, external message, or public launch is implied by this brief. Once the founder authorizes a concrete action, carry it through without repeated permission questions.
+
+## Maintaining this file
+
+Keep this file for knowledge useful to almost every future agent session in this project.
+Do not repeat what the codebase already shows; point to the authoritative file or command instead.
+Prefer rewriting or pruning existing entries over appending new ones.
+When updating this file, preserve this bar for all agents and keep entries concise.

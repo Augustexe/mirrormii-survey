@@ -21,6 +21,7 @@ import "./living-world.css";
 import "./result-details.css";
 import "./micro-details.css";
 import "./domain-surfaces.css";
+import "./result-final.css";
 
 function Preview() {
   const [fixture, setFixture] = useState("complete");

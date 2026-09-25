@@ -1,0 +1,5 @@
+import React, { useState } from 'react';
+export function AppInvitation() {
+  const [open,setOpen]=useState(false);
+  return <section className="dossier-app-invitation dossier-section" aria-labelledby="app-invitation-title"><span className="dossier-kicker">Keep the character. Continue the story.</span><h2 id="app-invitation-title">One conversation is a good opening scene.</h2><p>If this made you curious about Genii, meet the app next. Your reading stays here while you decide.</p><button className="dossier-button dossier-button--primary" onClick={()=>setOpen(!open)} aria-expanded={open}>Meet Genii in the app <span aria-hidden="true">↗</span></button><small>App handoff preview</small>{open && <div className="dossier-app-invitation__preview" role="status"><strong>The next chapter goes here.</strong><p>The app link is being connected. Nothing has been sent, uploaded, or signed up for.</p><p>For now, keep your character card or see whether a friend recognizes your title.</p></div>}</section>;
+}
