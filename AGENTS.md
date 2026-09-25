@@ -1,6 +1,6 @@
-## Shared current context — required startup
+## Shared current context - required startup
 
-Read `/Users/jerryzhang/Workspace-Draft/projects/mirrormii-genie-survey/project/context/README.md`, `CURRENT.md`, `WORKING-SET.md` and `OPEN-QUESTIONS.md` before project work, including work inside existing run worktrees. Read `CODE-MAP.md` before code or tests: the registered checkout contains the older prototype; the approved R6 React app is in a different worktree. Historical worktree docs do not override this maintained context.
+Read `/Users/jerryzhang/Workspace-Draft/projects/mirrormii-genie-survey/docs/README.md`, `STATE.md`, `WORKING-SET.md` and `OPEN-QUESTIONS.md` before project work, including work inside existing run worktrees. Read `CODE-MAP.md` before code or tests: the registered checkout contains the older prototype; the approved R6 React app is in a different worktree. Historical worktree docs do not override this maintained context.
 
 Keep ongoing evidence, questions, ICP and psychology work in the listed masters. Runs retain frozen experiments and receipts. At task completion, update the maintained current-state/decision pages and catalog the run; do not leave the only current context in a run output. Never promote an experiment to an approved requirement merely because it is recent or finalized.
 
@@ -10,16 +10,16 @@ This is the canonical source for project `mirrormii-genie-survey`. The user auth
 
 ## Begin here
 
-- In Jerry's central workspace, read `/Users/jerryzhang/Workspace-Draft/AGENTS.md`, `system/build-spec.json`, the wrapper `../AGENTS.md`, and this file. Outside that workspace, follow this repository's instructions without inventing or requiring Jerry's local paths.
+- Inside Jerry's central workspace, the root contract and this project entry are already loaded before this file; do not re-route to them from here. Outside that workspace, follow this repository's own instructions without requiring Jerry's local paths.
 - Read `docs/DECISIONS.md`, then the sections of `docs/PRODUCT-SPEC.md` relevant to the task.
 - Keep execution pinned to this project. General MirrorMii keywords add company context; they do not move source edits to another project.
-- In the central workspace, allocate a unique run with `python3 /Users/jerryzhang/Workspace-Draft/system/bin/workspace.py new-run mirrormii-genie-survey codex "Task"`. Use its scratch/output/logs and finalize output for a receipt. Source edits are permitted when the task intends them; `--cwd project` is only for those edits.
+- In the central workspace, allocate a unique run with `python3 /Users/jerryzhang/Workspace-Draft/system/bin/workspace.py new-run mirrormii-genie-survey codex "Task" --packet PACKET-ID`. Use its scratch/output/logs and finalize output for a receipt. Source edits are permitted when the task intends them; `--cwd project` is only for those edits.
 - Execute CLIs through `/Users/jerryzhang/Workspace-Draft/system/bin/dev COMMAND` from the allocated cwd to select the managed toolchain. `dev --project mirrormii-genie-survey COMMAND` changes cwd to source and is for intended source work. Read `docs/CLI-ACCESS.md` before diagnosing setup/auth failures: distinguish PATH, native login presence, verified remote access, and sandbox restrictions.
 
 ## Authority
 
 - Founder decisions in this project govern the proposed survey, not all existing MirrorMii products.
-- MirrorMii OS Base and MirrorMii Marketing OS Wiki own current company truth. Read a fresh bounded packet through existing authorized services/native Lark authentication before making company claims. Source coordinates are in `context/source-map.json`.
+- MirrorMii OS Base and MirrorMii Marketing OS Wiki own current company truth. Read a fresh bounded packet through existing authorized services/native Lark authentication before making company claims. Source coordinates are in `docs/source-map.json`.
 - If unavailable, mark company grounding pending. Never substitute local legacy Work OS, archives, imported histories, or stale snapshots.
 - Canon media is `/Users/jerryzhang/Workspace-Draft/assets/Genomii AI.library`. Select by Eagle item ID, metadata, folder membership, descriptions, and rights. Do not infer master identity from filename or fabricate a replacement Genie. The founder will provide visual direction.
 - Git owns the proposed spec, schemas, code, and technical decisions. Lark will be the operational home for survey business records as requested; exact storage/authentication architecture is open.

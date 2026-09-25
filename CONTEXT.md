@@ -1,3 +1,3 @@
-# Project context
+# Moved
 
-Start with [context/README.md](context/README.md), then [CURRENT.md](context/CURRENT.md). The evidence vocabulary is maintained in [GLOSSARY.md](context/GLOSSARY.md).
+Read [projects/mirrormii-genie-survey/docs/README.md](docs/README.md).
