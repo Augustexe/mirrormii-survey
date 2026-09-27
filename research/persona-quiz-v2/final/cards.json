@@ -99,7 +99,7 @@
               "tags": [
                 {
                   "id": "T02A",
-                  "s": 2
+                  "s": 1
                 }
               ],
               "emotion": "cringe"
@@ -113,10 +113,20 @@
                 }
               ],
               "emotion": "sting"
+            },
+            {
+              "t": "Lawyer. \"Okay, but have we heard THEIR side?\"",
+              "tags": [
+                {
+                  "id": "T08A",
+                  "s": 1
+                }
+              ],
+              "emotion": "delight"
             }
           ],
           "feel": "recognition",
-          "mask": "looks like a group chat meme; measures circle size (T04: Close Friends list vs Mayor of every group chat), how much contact you need to see (T02), and, slightly, running things by structure (T24A)",
+          "mask": "looks like a group chat meme; measures circle size (T04: Close Friends list vs Mayor of every group chat), how much contact you need to see (T02, slight on both sides), and, slightly, running things by structure (T24A) and giving the accused a hearing (T08A)",
           "ae": [
             "A",
             "B"
@@ -271,59 +281,6 @@
           "teen": true
         },
         {
-          "id": "C1-3",
-          "type": "feeling",
-          "sally": [],
-          "follows": "C1-2",
-          "prompt": "They said \"swap passcodes.\" Your gut said…",
-          "privacy": "normal",
-          "options": [
-            {
-              "t": "Warm. Cute that they want in.",
-              "axes": {},
-              "tags": [],
-              "emotion": "warmth"
-            },
-            {
-              "t": "Suspicious. Wait, why now? What happened?",
-              "axes": {},
-              "tags": [],
-              "emotion": "worry"
-            },
-            {
-              "t": "Trapped. Saying no now would look guilty.",
-              "axes": {},
-              "tags": [],
-              "emotion": "tension"
-            },
-            {
-              "t": "Cringe. We are not those people.",
-              "axes": {},
-              "tags": [],
-              "emotion": "cringe"
-            },
-            {
-              "t": "Nosy. Ooh, what's on THEIR phone?",
-              "axes": {},
-              "tags": [],
-              "emotion": "curiosity"
-            }
-          ],
-          "feel": "tension",
-          "mask": "looks like a vibe check; logs the emotion under the passcode choice (emotion only, no profile evidence), so 'said yes but felt trapped' can surface as a split",
-          "ae": [
-            "E"
-          ],
-          "chapter": 1,
-          "grade": "emotion",
-          "weight": 0,
-          "exits": [
-            "skip",
-            "not_my_life"
-          ],
-          "teen": true
-        },
-        {
           "id": "C1-4",
           "type": "real",
           "sally": [
@@ -349,7 +306,7 @@
               "tags": [
                 {
                   "id": "T03B",
-                  "s": 1
+                  "s": 2
                 }
               ],
               "emotion": "relief"
@@ -368,17 +325,21 @@
             {
               "t": "Notes app. A whole essay nobody will ever read.",
               "axes": {},
-              "tags": [],
+              "tags": [
+                {
+                  "id": "T03B",
+                  "s": 1
+                }
+              ],
               "emotion": "relief"
             },
             {
               "t": "Nowhere. Stared at the ceiling till 3am. Told no one.",
-              "axes": {},
-              "tags": []
+              "circumstance": true
             }
           ],
           "feel": "recognition",
-          "mask": "looks like a late-night habit; measures whether an AI counts as a real confidant (T03) and whether you wait to be reached (T02B). Tag-only, like Sally's Q44: no axis",
+          "mask": "looks like a late-night habit; measures whether an AI counts as a real confidant or your own raw words do (T03: the voice note and the Notes-app essay are the no-AI routes) and whether you wait to be reached (T02B). Tag-only, like Sally's Q44: no axis. 'Nowhere' is a circumstance: nothing went anywhere, so there is no choice to score",
           "ae": [
             "A",
             "B",
@@ -400,7 +361,7 @@
               "tags": [
                 {
                   "id": "T03B",
-                  "s": 1
+                  "s": 2
                 }
               ]
             }
@@ -435,10 +396,14 @@
               "emotion": "delight"
             },
             {
-              "t": "Always, plus alerts for when each of them gets home.",
+              "t": "Share it with my top three. Everyone else can guess.",
               "tags": [
                 {
                   "id": "T01A",
+                  "s": 1
+                },
+                {
+                  "id": "T04A",
                   "s": 1
                 }
               ],
@@ -455,7 +420,7 @@
               "emotion": "worry"
             },
             {
-              "t": "Tap \"While Using.\" Never open the app again.",
+              "t": "Freeze my dot at home. Technically sharing.",
               "tags": [
                 {
                   "id": "T01B",
@@ -463,14 +428,10 @@
                 }
               ],
               "emotion": "cringe"
-            },
-            {
-              "t": "Already on. My family's map tracks everyone.",
-              "circumstance": true
             }
           ],
           "feel": "curiosity",
-          "mask": "looks like an app permission popup; measures whether you let your people see where you are, always on, or keep your dot to yourself (T01, Sally Q42 reframed to location with your close people)",
+          "mask": "looks like an app permission popup; measures whether you let your people see where you are, always on, or keep your dot to yourself (T01, Sally Q42 reframed to location with your close people), and, slightly, a tiny inner circle (T04A)",
           "ae": [
             "A",
             "B"
@@ -487,7 +448,7 @@
               ]
             },
             "b": {
-              "t": "\"While Using,\" then never opens it.",
+              "t": "Freezes {their} dot at home. Technically sharing.",
               "tags": [
                 {
                   "id": "T01B",
@@ -504,6 +465,148 @@
             "not_my_life"
           ],
           "teen": true
+        },
+        {
+          "id": "C1-6",
+          "type": "this_or_that",
+          "sally": [
+            "Q26"
+          ],
+          "prompt": "You and an old close friend haven't texted in four months. Nobody's mad. You still love them.",
+          "privacy": "normal",
+          "options": [
+            {
+              "t": "Send a random pic, no hello. Like we never stopped.",
+              "tags": [
+                {
+                  "id": "T02A",
+                  "s": 2
+                }
+              ],
+              "emotion": "warmth"
+            },
+            {
+              "t": "Wait for them. The last text was mine.",
+              "tags": [
+                {
+                  "id": "T02B",
+                  "s": 2
+                }
+              ],
+              "emotion": "sting"
+            }
+          ],
+          "feel": "sting",
+          "mask": "looks like a friendship hot take; measures whether a quiet friendship still feels safe or needs the other person to reach out first (T02). Options are moves (text like no time passed, or wait for their text), not feelings, so they no longer restate C1-11's golden answers",
+          "ae": [
+            "B",
+            "E"
+          ],
+          "friend": {
+            "prompt": "{name} and an old close friend haven't texted in four months. What does {name} do?",
+            "a": {
+              "t": "Sends a random pic, no hello, like they never stopped.",
+              "tags": [
+                {
+                  "id": "T02A",
+                  "s": 2
+                }
+              ]
+            },
+            "b": {
+              "t": "Waits. The last text was {name}'s.",
+              "tags": [
+                {
+                  "id": "T02B",
+                  "s": 2
+                }
+              ]
+            }
+          },
+          "chapter": 1,
+          "grade": "believe",
+          "weight": 0.45,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "teen": true,
+          "round": "ch1-r1"
+        },
+        {
+          "id": "C1-8",
+          "type": "this_or_that",
+          "sally": [
+            "Q43"
+          ],
+          "prompt": "You owe someone a real apology. You know exactly what you mean. AI could word it way better.",
+          "privacy": "normal",
+          "options": [
+            {
+              "t": "Let AI fix it. Add one typo so it sounds like me.",
+              "tags": [
+                {
+                  "id": "T03A",
+                  "s": 2
+                }
+              ],
+              "emotion": "relief"
+            },
+            {
+              "t": "Send my own version. It took 40 minutes and says sorry six times.",
+              "tags": [
+                {
+                  "id": "T03B",
+                  "s": 2
+                },
+                {
+                  "id": "T05B",
+                  "s": 1
+                }
+              ],
+              "emotion": "cringe"
+            }
+          ],
+          "feel": "tension",
+          "mask": "looks like a tech opinion; measures whether sincerity lives in the intent and follow-through or in your own raw words (T03); the long own-words apology is also slight love-in-words evidence (T05B, library Q43 trigger)",
+          "ae": [
+            "A",
+            "B"
+          ],
+          "friend": {
+            "prompt": "{name} owes someone a real apology. AI could word it better. What does {name} send?",
+            "a": {
+              "t": "The AI version, plus one fake typo.",
+              "tags": [
+                {
+                  "id": "T03A",
+                  "s": 2
+                }
+              ]
+            },
+            "b": {
+              "t": "{Their} own version. 40 minutes, six sorries.",
+              "tags": [
+                {
+                  "id": "T03B",
+                  "s": 2
+                },
+                {
+                  "id": "T05B",
+                  "s": 1
+                }
+              ]
+            }
+          },
+          "chapter": 1,
+          "grade": "believe",
+          "weight": 0.45,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "teen": true,
+          "round": "ch1-r1"
         },
         {
           "id": "C1-7",
@@ -571,138 +674,105 @@
           "round": "ch1-r1"
         },
         {
-          "id": "C1-6",
-          "type": "this_or_that",
-          "sally": [
-            "Q26"
-          ],
-          "prompt": "You and an old close friend haven't texted in four months. Nobody's mad. You still love them.",
+          "id": "C1-11",
+          "type": "real",
+          "sally": [],
+          "prompt": "Think of the last time a message that mattered showed \"Read\" and no reply.",
           "privacy": "normal",
           "options": [
             {
-              "t": "Totally fine. I also didn't text for four months.",
+              "t": "Forgot about it. They'd answer eventually.",
+              "axes": {},
               "tags": [
                 {
                   "id": "T02A",
-                  "s": 2
-                }
-              ],
-              "emotion": "warmth"
-            },
-            {
-              "t": "Kind of stings. Someone should've texted. Them.",
-              "tags": [
-                {
-                  "id": "T02B",
-                  "s": 2
-                }
-              ],
-              "emotion": "sting"
-            }
-          ],
-          "feel": "sting",
-          "mask": "looks like a friendship hot take; measures whether a quiet friendship still feels safe or needs someone to reach out (T02)",
-          "ae": [
-            "B",
-            "E"
-          ],
-          "friend": {
-            "prompt": "{name} and an old close friend haven't texted in four months. How does {name} feel?",
-            "a": {
-              "t": "Fine. {name} didn't text either.",
-              "tags": [
-                {
-                  "id": "T02A",
-                  "s": 2
-                }
-              ]
-            },
-            "b": {
-              "t": "It stings. Someone should've texted.",
-              "tags": [
-                {
-                  "id": "T02B",
-                  "s": 2
-                }
-              ]
-            }
-          },
-          "chapter": 1,
-          "grade": "believe",
-          "weight": 0.45,
-          "exits": [
-            "skip",
-            "not_my_life"
-          ],
-          "teen": true,
-          "round": "ch1-r1"
-        },
-        {
-          "id": "C1-8",
-          "type": "this_or_that",
-          "sally": [
-            "Q43"
-          ],
-          "prompt": "You owe someone a real apology. You know exactly what you mean. AI could word it way better.",
-          "privacy": "normal",
-          "options": [
-            {
-              "t": "Let AI fix it. Add one typo so it sounds like me.",
-              "tags": [
-                {
-                  "id": "T03A",
                   "s": 2
                 }
               ],
               "emotion": "relief"
             },
             {
-              "t": "Send my own version. It took 40 minutes and says sorry six times.",
+              "t": "Kept checking if they'd been online since.",
+              "axes": {},
               "tags": [
                 {
-                  "id": "T03B",
-                  "s": 2
+                  "id": "T02B",
+                  "s": 1
+                }
+              ],
+              "emotion": "worry"
+            },
+            {
+              "t": "Reread my message like it was evidence.",
+              "axes": {},
+              "tags": [
+                {
+                  "id": "T02B",
+                  "s": 1
                 }
               ],
               "emotion": "cringe"
-            }
-          ],
-          "feel": "tension",
-          "mask": "looks like a tech opinion; measures whether sincerity lives in the intent and follow-through or in your own raw words (T03)",
-          "ae": [
-            "A",
-            "B"
-          ],
-          "friend": {
-            "prompt": "{name} owes someone a real apology. AI could word it better. What does {name} send?",
-            "a": {
-              "t": "The AI version, plus one fake typo.",
+            },
+            {
+              "t": "Handed my best friend my phone: \"Write the follow-up. Make it chill.\"",
+              "axes": {},
               "tags": [
                 {
-                  "id": "T03A",
+                  "id": "T01A",
+                  "s": 1
+                }
+              ],
+              "emotion": "delight"
+            },
+            {
+              "t": "Turned off my own read receipts. Forever.",
+              "axes": {},
+              "tags": [
+                {
+                  "id": "T01B",
+                  "s": 1
+                }
+              ],
+              "emotion": "irritation"
+            }
+          ],
+          "feel": "sting",
+          "mask": "looks like a texting moment; measures whether silence after a message that mattered feels fine or needs checking (T02, did-grade) and, slightly, how open your phone is to your people: hand it to a friend to write the follow-up (T01A) or lock down what others can see (T01B). Golden card (BRIEF.md golden set), the three golden options unchanged",
+          "ae": [
+            "A",
+            "B",
+            "E"
+          ],
+          "friend": {
+            "prompt": "Last time a message that mattered to {name} showed \"Read\" and got no reply, {they}...",
+            "a": {
+              "t": "Forgot about it. A reply would come eventually.",
+              "tags": [
+                {
+                  "id": "T02A",
                   "s": 2
                 }
               ]
             },
             "b": {
-              "t": "{Their} own version. 40 minutes, six sorries.",
+              "t": "Kept checking when the other person was last online.",
               "tags": [
                 {
-                  "id": "T03B",
-                  "s": 2
+                  "id": "T02B",
+                  "s": 1
                 }
               ]
             }
           },
           "chapter": 1,
-          "grade": "believe",
-          "weight": 0.45,
+          "grade": "did",
+          "weight": 0.8,
           "exits": [
             "skip",
-            "not_my_life"
+            "not_my_life",
+            "no_recent"
           ],
-          "teen": true,
-          "round": "ch1-r1"
+          "teen": true
         }
       ]
     },
@@ -829,11 +899,20 @@
                 {
                   "id": "T06A",
                   "s": 2
+                },
+                {
+                  "id": "T05A",
+                  "s": 1
                 }
               ]
             },
             {
               "t": "Admitted it was over my budget in the chat. Took three drafts.",
+              "circumstance": true,
+              "emotion": "cringe"
+            },
+            {
+              "t": "Paid my share. Home by 9. Completely peopled out.",
               "axes": {},
               "tags": [
                 {
@@ -843,37 +922,19 @@
               ]
             },
             {
-              "t": "Showed up for the cheap part. Skipped the expensive part.",
-              "axes": {},
-              "tags": [
-                {
-                  "id": "T06B",
-                  "s": 1
-                }
-              ]
-            },
-            {
               "t": "Invented a clash. Sent a very long, very sweet message instead.",
               "axes": {},
               "tags": [
                 {
                   "id": "T05B",
-                  "s": 1
-                },
-                {
-                  "id": "T06B",
-                  "s": 1
+                  "s": 2
                 }
               ],
               "emotion": "guilt"
-            },
-            {
-              "t": "Couldn't go. The money just wasn't there.",
-              "circumstance": true
             }
           ],
           "feel": "guilt",
-          "mask": "looks like a money story; measures stretching for your people versus guarding your own limits (T06). Capacity card: scores no R2 by design. Being broke has its own circumstance exit, so it never reads as low energy",
+          "mask": "looks like a money story; measures stretching for your people versus guarding your own energy (T06) and showing up in deeds versus in words (T05: going and paying, or the long sweet message instead). Capacity card: scores no R2 by design. Money limits never score (T06B never: not having the money): admitting it was over budget is the circumstance option; T06B comes only from the paid-then-home-by-9 line (paying first shows the limit is energy, not money)",
           "ae": [
             "A",
             "B",
@@ -888,11 +949,15 @@
                 {
                   "id": "T06A",
                   "s": 2
+                },
+                {
+                  "id": "T05A",
+                  "s": 1
                 }
               ]
             },
             "b": {
-              "t": "Admitted it was over budget, after three drafts.",
+              "t": "Paid {their} share, then was home by 9. Peopled out.",
               "axes": {},
               "tags": [
                 {
@@ -1040,6 +1105,10 @@
                 {
                   "id": "T05B",
                   "s": 1
+                },
+                {
+                  "id": "T03B",
+                  "s": 1
                 }
               ]
             },
@@ -1085,7 +1154,7 @@
             }
           ],
           "feel": "warmth",
-          "mask": "looks like breakup first aid; measures love shown in deeds versus in words (T05) and a small versus a big circle (T04)",
+          "mask": "looks like breakup first aid; measures love shown in deeds versus in words (T05) and a small versus a big circle (T04); the unedited voice note is also slight own-words evidence (T03B, library call 'You'd rather send a voice note than let anything tidy up what you meant')",
           "ae": [
             "A",
             "B"
@@ -1154,7 +1223,7 @@
               "emotion": "guilt"
             },
             {
-              "t": "\"I'm fading. Can we do this properly tomorrow?\"",
+              "t": "\"They're the WORST. Love you. Sleeping.\" Phone goes across the room.",
               "axes": {},
               "tags": [
                 {
@@ -1275,13 +1344,12 @@
             },
             {
               "t": "Laughed along, then felt weird about it all day.",
-              "axes": {},
-              "tags": [],
+              "circumstance": true,
               "emotion": "guilt"
             }
           ],
           "feel": "cringe",
-          "mask": "looks like a drama recap; measures whether you say the hard thing to a friend in the wrong or hold them first (R2, did-grade tie breaker). Looking after the hurt person feeds T08B, not R2; laughing along scores nothing",
+          "mask": "looks like a drama recap; measures whether you say the hard thing to a friend in the wrong or hold them first (R2, did-grade tie breaker). Looking after the hurt person feeds T08B, not R2; laughing along is a circumstance (swept along in the moment, not a stance): it scores nothing and is logged with its guilt",
           "ae": [
             "A",
             "B",
@@ -1398,21 +1466,17 @@
               ]
             },
             {
-              "t": "\"You're a disaster.\" Then send it anyway.",
+              "t": "Lend them my old laptop. \"One crumb in the keys and it's war.\"",
               "axes": {},
               "tags": [
                 {
                   "id": "T05A",
                   "s": 2
-                },
-                {
-                  "id": "T06A",
-                  "s": 1
                 }
               ]
             },
             {
-              "t": "Send part of it as a gift. Only what I can lose.",
+              "t": "Start a laptop fund in the group chat. Put in first.",
               "axes": {},
               "tags": [
                 {
@@ -1437,7 +1501,7 @@
             }
           ],
           "feel": "worry",
-          "mask": "looks like a money favor; measures stretching for your people (T06), keeping things square (T12) and love by roast plus deed (T05)",
+          "mask": "looks like a money favor; measures stretching for your people (T06: send it, or rally the group and go first), keeping things square (T12) and love by roast plus deed (T05A: lending your own laptop with a threat). Four different moves, no amounts ladder",
           "ae": [
             "A",
             "B",
@@ -1479,14 +1543,12 @@
         {
           "id": "C2-8",
           "type": "role",
-          "sally": [
-            "Q30"
-          ],
-          "prompt": "Your friend's dramatic new haircut is... not working. They spin around: \"Be honest. Love it?\" In your group, you're the...",
+          "sally": [],
+          "prompt": "The whole group got invited to a party Saturday. Except one friend. They just asked the chat: \"anything fun this weekend?\" In your group, you're the...",
           "privacy": "normal",
           "options": [
             {
-              "t": "Critic: \"Honestly? Not your best. Grow it out.\"",
+              "t": "Truth-teller: \"There's a party. You're not on the list. Sorry.\"",
               "axes": {
                 "R2": 2
               },
@@ -1495,10 +1557,11 @@
                   "id": "T07A",
                   "s": 2
                 }
-              ]
+              ],
+              "emotion": "tension"
             },
             {
-              "t": "Stylist: \"The back works. The front, not yet.\"",
+              "t": "Leaker: Forwards them the invite. \"Just thought you should know.\"",
               "axes": {
                 "R2": 1
               },
@@ -1507,22 +1570,25 @@
                   "id": "T07A",
                   "s": 1
                 }
-              ]
+              ],
+              "emotion": "cringe"
             },
             {
-              "t": "Hype machine: \"ICONIC.\" They will never doubt it.",
+              "t": "Cover story: \"Dead weekend, sadly.\" Then posts zero stories all night.",
               "axes": {
                 "R2": -2
               },
-              "tags": [
-                {
-                  "id": "T07B",
-                  "s": 1
-                }
-              ]
+              "emotion": "guilt"
             },
             {
-              "t": "Diplomat: \"Okay, but the shoes, though.\"",
+              "t": "Smuggler: \"Come with me. Act like you were invited.\"",
+              "axes": {
+                "R2": 1
+              },
+              "emotion": "delight"
+            },
+            {
+              "t": "Plan B: \"Eh, some party. Their loss. Mini golf Saturday, loser pays.\"",
               "axes": {
                 "R2": -1
               },
@@ -1532,31 +1598,20 @@
                   "s": 1
                 }
               ],
-              "emotion": "cringe"
-            },
-            {
-              "t": "Mirror: \"Do you love it? Then I love it.\"",
-              "axes": {
-                "R2": -1
-              },
-              "tags": [
-                {
-                  "id": "T07B",
-                  "s": 1
-                }
-              ]
+              "emotion": "warmth"
             }
           ],
-          "feel": "cringe",
-          "mask": "looks like a style moment; measures saying the hard truth when asked versus holding the person first (R2) and delivery (T07). Reframed from Sally Q30 (a friend's body) to a new look, and the friend asks, so Direct is never unsolicited critique",
+          "feel": "tension",
+          "mask": "looks like group chat drama; measures saying the hard thing to a friend now versus protecting them first (R2) and plain versus cushioned delivery (T07). Hard news about the friend's place in the group, not their work, look or story, so it no longer repeats C2-1 or C3-12 ('your friend's thing isn't good'). The cover story is a kind lie, so it scores Soft but no T07B (T07B never: dishonest). Round 2: no hint-and-change-the-subject line and no tell-them-later-over-food line, so the answer set no longer mirrors C2-1 and C2-5. The smuggler says the exclusion out loud and overrides it (R2 +1, no tag); Plan B breaks the news now but wraps it in a consolation plan (R2 -1, T07B s1)",
           "ae": [
             "A",
-            "B"
+            "B",
+            "E"
           ],
           "friend": {
-            "prompt": "{name}'s friend has a dramatic new haircut that isn't working. They ask: \"Be honest. Love it?\" {name} is the...",
+            "prompt": "{name}'s whole group got invited to a party. One friend didn't, and asks the chat what's on this weekend. {name} is the...",
             "a": {
-              "t": "Critic: \"Not your best. Grow it out.\"",
+              "t": "Truth-teller: \"There's a party. You're not on the list.\"",
               "axes": {
                 "R2": 2
               },
@@ -1568,16 +1623,11 @@
               ]
             },
             "b": {
-              "t": "Hype machine: \"ICONIC.\"",
+              "t": "Cover story: \"Dead weekend, sadly.\"",
               "axes": {
                 "R2": -2
               },
-              "tags": [
-                {
-                  "id": "T07B",
-                  "s": 1
-                }
-              ]
+              "tags": []
             }
           },
           "chapter": 2,
@@ -1764,84 +1814,6 @@
           "teen": true
         },
         {
-          "id": "C3-8",
-          "type": "pick_two",
-          "sally": [
-            "Q10"
-          ],
-          "prompt": "A friend's toddler falls asleep on you mid-party. Nobody can move you for an hour. Pick the two thoughts closest to yours.",
-          "privacy": "locked18",
-          "options": [
-            {
-              "t": "I want one. My parents would be unbearable grandparents.",
-              "tags": [
-                {
-                  "id": "T11A",
-                  "s": 1
-                }
-              ],
-              "emotion": "longing"
-            },
-            {
-              "t": "I already have names picked out.",
-              "tags": [
-                {
-                  "id": "T11A",
-                  "s": 1
-                }
-              ]
-            },
-            {
-              "t": "Someday. After I can keep a plant alive.",
-              "tags": [
-                {
-                  "id": "T11A",
-                  "s": 1
-                }
-              ]
-            },
-            {
-              "t": "Cute. Also, I get to hand them back.",
-              "tags": [
-                {
-                  "id": "T11B",
-                  "s": 1
-                }
-              ],
-              "emotion": "relief"
-            },
-            {
-              "t": "Is a dog basically the same thing? Asking for me.",
-              "tags": [
-                {
-                  "id": "T11B",
-                  "s": 1
-                }
-              ]
-            },
-            {
-              "t": "I'd want this, but my life can't fit it now.",
-              "circumstance": true,
-              "emotion": "longing"
-            }
-          ],
-          "feel": "longing",
-          "mask": "looks like a sweet party moment; measures how you feel about being a parent someday (Sally Q10), with a circumstance line for want-but-can't",
-          "ae": [
-            "D",
-            "E"
-          ],
-          "chapter": 3,
-          "grade": "believe",
-          "weight": 0.45,
-          "exits": [
-            "skip",
-            "not_my_life"
-          ],
-          "pick": 2,
-          "teen": false
-        },
-        {
           "id": "C3-3",
           "type": "scenario",
           "sally": [
@@ -1889,7 +1861,7 @@
               "emotion": "warmth"
             },
             {
-              "t": "Whatever I can cover this month. Money's tight right now.",
+              "t": "Whatever I can cover that month. Some months that's not half.",
               "circumstance": true,
               "emotion": "worry"
             }
@@ -2029,49 +2001,6 @@
           "teen": true
         },
         {
-          "id": "C3-6",
-          "type": "feeling",
-          "sally": [],
-          "follows": "C3-5",
-          "prompt": "Back then, under all that, the feeling was...",
-          "privacy": "normal",
-          "options": [
-            {
-              "t": "Irritation. Why is this happening again?",
-              "emotion": "irritation"
-            },
-            {
-              "t": "Guilt. Maybe I'm the annoying one.",
-              "emotion": "guilt"
-            },
-            {
-              "t": "Worry that saying it would break something.",
-              "emotion": "worry"
-            },
-            {
-              "t": "Resentment. I'd been keeping quiet score.",
-              "emotion": "resentment"
-            },
-            {
-              "t": "Relief once it was sorted, or over.",
-              "emotion": "relief"
-            }
-          ],
-          "feel": "recognition",
-          "mask": "looks like a mood check; records the emotion behind the repair-or-leave move for the research record and sting lines",
-          "ae": [
-            "E"
-          ],
-          "chapter": 3,
-          "grade": "emotion",
-          "weight": 0,
-          "exits": [
-            "skip",
-            "not_my_life"
-          ],
-          "teen": true
-        },
-        {
           "id": "C3-7",
           "type": "scenario",
           "sally": [
@@ -2138,56 +2067,137 @@
           "teen": true
         },
         {
+          "id": "C3-8",
+          "type": "pick_two",
+          "sally": [
+            "Q10"
+          ],
+          "prompt": "A friend's toddler falls asleep on you mid-party. Nobody can move you for an hour. Pick the two thoughts closest to yours.",
+          "privacy": "locked18",
+          "options": [
+            {
+              "t": "I want one. My parents would be unbearable grandparents.",
+              "tags": [
+                {
+                  "id": "T11A",
+                  "s": 2
+                }
+              ],
+              "emotion": "longing"
+            },
+            {
+              "t": "I already have names picked out.",
+              "tags": [
+                {
+                  "id": "T11A",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Someday. After I can keep a plant alive.",
+              "tags": [
+                {
+                  "id": "T11A",
+                  "s": 1
+                }
+              ]
+            },
+            {
+              "t": "Cute. Anyway, my life plan has zero car seats.",
+              "tags": [
+                {
+                  "id": "T11B",
+                  "s": 2
+                }
+              ],
+              "emotion": "relief"
+            },
+            {
+              "t": "Is a dog basically the same thing? Asking for me.",
+              "tags": [
+                {
+                  "id": "T11B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "I'd want this, but my life can't fit it now.",
+              "circumstance": true,
+              "emotion": "longing"
+            }
+          ],
+          "feel": "longing",
+          "mask": "looks like a sweet party moment; measures how you feel about being a parent someday (Sally Q10, T11): the plain want and the plain no carry s2, the maybe-later line s1, with a circumstance line for want-but-can't",
+          "ae": [
+            "D",
+            "E"
+          ],
+          "chapter": 3,
+          "grade": "believe",
+          "weight": 0.45,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "pick": 2,
+          "teen": false
+        },
+        {
           "id": "C3-12",
           "type": "real",
           "sally": [],
-          "prompt": "Your person has one party story they tell every time. The bear gets bigger each round. Last time they started it, you...",
+          "prompt": "Your person's last joke about you that landed a little too hard, in front of everyone. Your singing, your cooking, your middle school photos. What did you do?",
           "privacy": "normal",
           "options": [
             {
-              "t": "Told them on the ride home: 'We need to retire the bear.'",
+              "t": "Said it right there: 'Okay, that one actually hurt.'",
               "axes": {
                 "R2": 2
-              }
+              },
+              "emotion": "sting"
             },
             {
-              "t": "Heckled it in front of everyone: 'It was a raccoon.'",
+              "t": "Roasted them right back, twice as hard. Now we're even.",
               "axes": {
                 "R2": 1
               },
               "emotion": "delight"
             },
             {
-              "t": "Jumped in and told it with them, only faster.",
+              "t": "Went quiet until they asked what was wrong.",
               "axes": {
                 "R2": -1
-              }
+              },
+              "emotion": "resentment"
             },
             {
-              "t": "Laughed like it was the first time. Look how happy they are.",
+              "t": "Laughed it off. They meant well, and they were having fun.",
               "axes": {
                 "R2": -2
               },
               "emotion": "warmth"
             }
           ],
-          "feel": "cringe",
-          "mask": "looks like a party-story roast; measures R2 outside chapter 2: saying the awkward truth to your person versus protecting their moment",
+          "feel": "sting",
+          "mask": "looks like a roast story; measures R2 on a real card outside chapter 2: saying the hurt out loud to your person versus protecting their moment. You are the target here, so it does not repeat the 'your friend's thing isn't good' cards (C2-1, C2-8, C2-10)",
           "ae": [
             "A",
-            "B"
+            "B",
+            "E"
           ],
           "friend": {
-            "prompt": "{name}'s person tells the same party story every time, and it stopped landing months ago. {name}...",
+            "prompt": "{name}'s person makes a joke about {name} in front of everyone, and it stings. {name}...",
             "a": {
-              "t": "Says it on the ride home: 'Retire the bear.'",
+              "t": "Says it right there: 'Okay, that one hurt.'",
               "axes": {
                 "R2": 2
               },
               "tags": []
             },
             "b": {
-              "t": "Laughs like it's the first time, every time.",
+              "t": "Laughs it off. They meant well.",
               "axes": {
                 "R2": -2
               },
@@ -2240,7 +2250,7 @@
               "emotion": "guilt"
             },
             {
-              "t": "Take it. My parents are already packing to be daycare.",
+              "t": "Take it. The mood board was always more their dream.",
               "axes": {
                 "L2": 1
               },
@@ -2248,18 +2258,18 @@
                 {
                   "id": "T16A",
                   "s": 1
+                },
+                {
+                  "id": "T11B",
+                  "s": 1
                 }
-              ]
+              ],
+              "emotion": "relief"
             },
             {
               "t": "Depends. Whichever one we'd regret more.",
               "tags": [],
               "depends": true
-            },
-            {
-              "t": "Money decides this one. The paycheck wins.",
-              "circumstance": true,
-              "emotion": "worry"
             }
           ],
           "flip": {
@@ -2271,7 +2281,7 @@
             ]
           },
           "feel": "tension",
-          "mask": "looks like a timing puzzle; measures whether a wanted family plan bends for a career win (Sally Q11), with L2 as slight evidence",
+          "mask": "looks like a timing puzzle; measures whether a wanted family plan bends for a career win (Sally Q11, T11A), with L2 as slight evidence and a slight T11B line for the player whose kid plan was never really theirs",
           "ae": [
             "C",
             "D"
@@ -2299,7 +2309,7 @@
           "privacy": "normal",
           "options": [
             {
-              "t": "We can do nothing together for hours and it's perfect.",
+              "t": "If they're free, I'm suddenly free too.",
               "axes": {
                 "R1": 1
               },
@@ -2323,13 +2333,10 @@
               ]
             },
             {
-              "t": "If they're free, I'm suddenly free too.",
-              "axes": {
-                "R1": 1
-              },
+              "t": "We take turns paying. I always know whose turn it is.",
               "tags": [
                 {
-                  "id": "T09A",
+                  "id": "T12A",
                   "s": 1
                 }
               ]
@@ -2359,20 +2366,17 @@
               ]
             },
             {
-              "t": "A weekend apart feels like a treat, not a problem.",
-              "axes": {
-                "R1": -1
-              },
+              "t": "Whoever just got paid covers food. That's the whole system.",
               "tags": [
                 {
-                  "id": "T09B",
+                  "id": "T12B",
                   "s": 1
                 }
               ]
             }
           ],
           "feel": "recognition",
-          "mask": "looks like cute relationship habits; measures R1, most free time shared versus close with your own time and interests kept (Sally Q05)",
+          "mask": "looks like cute relationship habits; measures R1, most free time shared versus close with your own time and interests kept (Sally Q05), plus one slight line each for keeping exact turns (T12A) and whoever has more pays (T12B)",
           "ae": [
             "B",
             "D"
@@ -2565,10 +2569,6 @@
                 }
               ],
               "emotion": "guilt"
-            },
-            {
-              "t": "Money said no, so that was that.",
-              "circumstance": true
             }
           ],
           "feel": "guilt",
@@ -2612,67 +2612,83 @@
           "teen": true
         },
         {
-          "id": "C4-2",
-          "type": "this_or_that",
-          "sally": [
-            "Q13"
-          ],
-          "prompt": "Housewarming tour. Your friend pats the kitchen island: 'I worked so hard for this.' Their parents covered the down payment.",
-          "teenPrompt": "Your friend's parents paid for a private coach all year. They made the team and say, 'I earned this spot.'",
+          "id": "C4-8",
+          "type": "pick_two",
+          "sally": [],
+          "prompt": "Money memes that might be about you. Which two are painfully accurate?",
           "privacy": "normal",
           "options": [
             {
-              "t": "'You earned it!' I say, and mean it.",
-              "axes": {},
+              "t": "I have a savings goal with a name.",
+              "axes": {
+                "L1": 1
+              },
               "tags": [
                 {
-                  "id": "T15A",
-                  "s": 2
+                  "id": "T13B",
+                  "s": 1
                 }
-              ],
-              "emotion": "warmth"
+              ]
             },
             {
-              "t": "Must be nice. Somebody had to say it.",
-              "axes": {},
+              "t": "I've booked something before checking my balance.",
+              "axes": {
+                "L1": -1
+              },
               "tags": [
                 {
-                  "id": "T15B",
-                  "s": 2
+                  "id": "T13A",
+                  "s": 1
                 }
-              ],
-              "emotion": "irritation"
-            }
-          ],
-          "feel": "tension",
-          "mask": "looks like a hot take on a friend; measures whether you credit the effort or name the family head start (Sally Q13, T15)",
-          "ae": [
-            "B",
-            "C"
-          ],
-          "friend": {
-            "prompt": "A friend whose parents helped a lot says 'I worked so hard for this.' What does {name} think?",
-            "a": {
-              "t": "'You earned it!' And means it.",
+              ]
+            },
+            {
+              "t": "I've watched a 'broke to six figures' video. Twice. Took notes.",
               "axes": {},
               "tags": [
                 {
                   "id": "T15A",
-                  "s": 2
+                  "s": 1
                 }
               ]
             },
-            "b": {
-              "t": "Must be nice.",
+            {
+              "t": "Everything under $20 counts as basically free.",
               "axes": {},
               "tags": [
                 {
-                  "id": "T15B",
-                  "s": 2
+                  "id": "T24B",
+                  "s": 1
+                }
+              ]
+            },
+            {
+              "t": "I could tell you what I spent on boba last month.",
+              "axes": {},
+              "tags": [
+                {
+                  "id": "T24A",
+                  "s": 1
+                }
+              ]
+            },
+            {
+              "t": "My fun money is gone by the 10th. Somehow.",
+              "axes": {},
+              "tags": [
+                {
+                  "id": "T24B",
+                  "s": 1
                 }
               ]
             }
-          },
+          ],
+          "feel": "recognition",
+          "mask": "looks like a money meme list; measures save versus leap (L1, T13), believing effort pays (T15A) and track versus feel (T24), each slight. Fix pass round 2 dropped the head-start line (C4-2 and C4-7 already carry T15B) so the hot take is not asked twice in three cards",
+          "ae": [
+            "A",
+            "D"
+          ],
           "chapter": 4,
           "grade": "believe",
           "weight": 0.45,
@@ -2680,8 +2696,8 @@
             "skip",
             "not_my_life"
           ],
-          "teen": true,
-          "round": "ch4-r1"
+          "pick": 2,
+          "teen": true
         },
         {
           "id": "C4-4",
@@ -2754,6 +2770,78 @@
           "round": "ch4-r1"
         },
         {
+          "id": "C4-2",
+          "type": "this_or_that",
+          "sally": [
+            "Q13"
+          ],
+          "prompt": "Housewarming tour. Your friend pats the kitchen island: 'I worked so hard for this.' Their parents covered the down payment.",
+          "teenPrompt": "Your friend's parents paid for a private coach all year. They made the team and say, 'I earned this spot.'",
+          "privacy": "normal",
+          "options": [
+            {
+              "t": "'You earned it!' I say, and mean it.",
+              "axes": {},
+              "tags": [
+                {
+                  "id": "T15A",
+                  "s": 3
+                }
+              ],
+              "emotion": "warmth"
+            },
+            {
+              "t": "Must be nice. Somebody had to say it.",
+              "axes": {},
+              "tags": [
+                {
+                  "id": "T15B",
+                  "s": 3
+                }
+              ],
+              "emotion": "irritation"
+            }
+          ],
+          "feel": "tension",
+          "mask": "looks like a hot take on a friend; measures whether you credit the effort or name the family head start (Sally Q13, T15). Strength 3 both sides: this is the one card that asks Q13 head on",
+          "ae": [
+            "B",
+            "C"
+          ],
+          "friend": {
+            "prompt": "A friend whose parents helped a lot says 'I worked so hard for this.' What does {name} think?",
+            "a": {
+              "t": "'You earned it!' And means it.",
+              "axes": {},
+              "tags": [
+                {
+                  "id": "T15A",
+                  "s": 3
+                }
+              ]
+            },
+            "b": {
+              "t": "Must be nice.",
+              "axes": {},
+              "tags": [
+                {
+                  "id": "T15B",
+                  "s": 3
+                }
+              ]
+            }
+          },
+          "chapter": 4,
+          "grade": "believe",
+          "weight": 0.45,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "teen": true,
+          "round": "ch4-r1"
+        },
+        {
           "id": "C4-3",
           "type": "this_or_that",
           "sally": [
@@ -2774,7 +2862,7 @@
               "emotion": "delight"
             },
             {
-              "t": "The other pair. Nobody looks at my feet anyway.",
+              "t": "The other pair. The 11 videos were the fun part.",
               "axes": {},
               "tags": [
                 {
@@ -2830,12 +2918,12 @@
           "sally": [
             "Q16"
           ],
-          "prompt": "Your group of four runs a weekend pop-up and makes $400. Same hours each. Kai's glitter phone charms sold most of it.",
-          "teenPrompt": "Your group of four runs a bake sale table and makes $120. Same hours each. Kai's brownies sold most of it.",
+          "prompt": "Your team's fundraiser wraps. You pick the MVP, and $100 comes with it. Kai raised the most with one post to 40k followers. Remy raised almost as much, door to door.",
+          "teenPrompt": "Your club's fundraiser wraps. You pick the MVP, and a $50 gift card comes with it. Kai raised the most with one post to 4k followers. Remy raised almost as much, door to door.",
           "privacy": "normal",
           "options": [
             {
-              "t": "Bigger cut for Kai. Talent gets paid.",
+              "t": "Kai. Most raised wins. Those followers didn't build themselves.",
               "axes": {},
               "tags": [
                 {
@@ -2845,26 +2933,22 @@
               ]
             },
             {
-              "t": "Four equal piles. Kai gets bragging rights.",
+              "t": "Remy. Kai posted once. The followers did the rest.",
               "axes": {},
               "tags": [
                 {
                   "id": "T15B",
-                  "s": 1
-                },
-                {
-                  "id": "T12B",
-                  "s": 1
+                  "s": 2
                 }
               ]
             },
             {
-              "t": "Equal piles, then I slip Kai $20 of mine. Shh.",
+              "t": "Whoever's broke this month gets it. Kai will survive.",
               "axes": {},
               "tags": [
                 {
-                  "id": "T15A",
-                  "s": 1
+                  "id": "T12B",
+                  "s": 2
                 }
               ],
               "emotion": "warmth"
@@ -2875,25 +2959,19 @@
                 "L3": 1
               },
               "tags": []
-            },
-            {
-              "t": "Skip the split. Team dinner, all of it.",
-              "axes": {},
-              "tags": [],
-              "emotion": "delight"
             }
           ],
           "feel": "tension",
-          "mask": "looks like splitting cash; measures crediting results versus shared effort (Sally Q16, T15, slight T12B), with a fair-process exit (L3)",
+          "mask": "looks like picking an MVP; measures crediting the result (T15A) versus spotting the head start behind it (T15B), with an award by need (T12B) and a fair-process exit (L3). Sally Q16 reframed in fix pass round 2 (reward the result or look at what made it) so it no longer reads as splitting money and never repeats C3-3's equal-versus-proportional split",
           "ae": [
             "A",
             "B",
             "C"
           ],
           "friend": {
-            "prompt": "{name}'s group of four made $400. Kai's phone charms sold most of it. How does {name} split it?",
+            "prompt": "{name} picks the fundraiser MVP. Kai raised the most with one post to 40k followers. Remy raised almost as much, door to door. Who gets it?",
             "a": {
-              "t": "Bigger cut for Kai.",
+              "t": "Kai. Most raised wins.",
               "axes": {},
               "tags": [
                 {
@@ -2903,16 +2981,12 @@
               ]
             },
             "b": {
-              "t": "Four equal piles.",
+              "t": "Remy. The followers did Kai's work.",
               "axes": {},
               "tags": [
                 {
                   "id": "T15B",
-                  "s": 1
-                },
-                {
-                  "id": "T12B",
-                  "s": 1
+                  "s": 2
                 }
               ]
             }
@@ -2924,94 +2998,6 @@
             "skip",
             "not_my_life"
           ],
-          "teen": true
-        },
-        {
-          "id": "C4-8",
-          "type": "pick_two",
-          "sally": [],
-          "prompt": "If your bank app could talk, which two would it bring up first?",
-          "privacy": "normal",
-          "options": [
-            {
-              "t": "I have a savings goal with a name.",
-              "axes": {
-                "L1": 1
-              },
-              "tags": [
-                {
-                  "id": "T13B",
-                  "s": 1
-                }
-              ]
-            },
-            {
-              "t": "I've booked something before checking my balance.",
-              "axes": {
-                "L1": -1
-              },
-              "tags": [
-                {
-                  "id": "T13A",
-                  "s": 1
-                }
-              ]
-            },
-            {
-              "t": "I own the fancy version of one boring thing.",
-              "axes": {},
-              "tags": [
-                {
-                  "id": "T14A",
-                  "s": 1
-                }
-              ]
-            },
-            {
-              "t": "I've bragged about a dupe for a full week.",
-              "axes": {},
-              "tags": [
-                {
-                  "id": "T14B",
-                  "s": 1
-                }
-              ]
-            },
-            {
-              "t": "I could tell you what I spent on boba last month.",
-              "axes": {},
-              "tags": [
-                {
-                  "id": "T24A",
-                  "s": 1
-                }
-              ]
-            },
-            {
-              "t": "My fun money is gone by the 10th. Somehow.",
-              "axes": {},
-              "tags": [
-                {
-                  "id": "T24B",
-                  "s": 1
-                }
-              ]
-            }
-          ],
-          "feel": "recognition",
-          "mask": "looks like a money meme list; measures save versus leap (L1, T13), treat versus trim (T14) and track versus feel (T24), each slight",
-          "ae": [
-            "A",
-            "D"
-          ],
-          "chapter": 4,
-          "grade": "believe",
-          "weight": 0.45,
-          "exits": [
-            "skip",
-            "not_my_life"
-          ],
-          "pick": 2,
           "teen": true
         }
       ]
@@ -3103,58 +3089,77 @@
         {
           "id": "C5-2",
           "type": "this_or_that",
-          "sally": [
-            "Q17"
-          ],
-          "prompt": "Two job offers, both cover the basics. One pays a lot more and bores you stiff. One pays less and you'd love it.",
-          "teenPrompt": "Two part-time jobs, both fit your schedule. One pays way more and bores you stiff. One pays less and you'd love it.",
+          "sally": [],
+          "prompt": "Your boss lets you pick your next assignment. One you've done five times and could do half-asleep. Or one nobody on the team has ever tried.",
+          "teenPrompt": "Next year you get one elective. The sequel to the class you aced, same teacher. Or a brand-new one nobody at school has taken yet.",
           "privacy": "normal",
           "options": [
             {
-              "t": "The boring one. My fun starts after 6pm.",
+              "t": "The one I could do half-asleep. Surprises are for birthdays.",
               "axes": {
                 "L1": 2
               },
-              "tags": [],
+              "tags": [
+                {
+                  "id": "T22B",
+                  "s": 2
+                }
+              ],
+              "emotion": "relief",
               "circumstance": false
             },
             {
-              "t": "The one I love. Smaller paycheck, happier Mondays.",
+              "t": "The brand-new one. Day one, I'm googling everything.",
               "axes": {
                 "L1": -2
               },
-              "tags": [],
+              "tags": [
+                {
+                  "id": "T22A",
+                  "s": 2
+                }
+              ],
+              "emotion": "delight",
               "circumstance": false
             },
             {
-              "t": "Whichever pays. Right now that's not a choice.",
+              "t": "The safe one. One bad review or grade and I'm done.",
               "axes": {},
               "tags": [],
-              "emotion": "worry",
               "circumstance": true
             }
           ],
-          "feel": "tension",
-          "mask": "looks like a dream-job debate; measures security first versus following the pull (L1)",
+          "feel": "curiosity",
+          "mask": "looks like picking your next assignment or class; measures the sure thing versus the untried (L1) with a new-versus-familiar read (T22). Rewritten in the fix pass so it no longer repeats C5-6's safe-pay-versus-passion fork",
           "ae": [
             "C",
             "D"
           ],
           "friend": {
-            "prompt": "Two jobs: one pays a lot more and bores {name} stiff, one pays less and {they} would love it. {name} picks…",
+            "prompt": "{name} can pick the next assignment: one {they} could do half-asleep, or one nobody has tried. {name} picks…",
             "a": {
-              "t": "The one that pays more.",
+              "t": "The one {they} could do half-asleep.",
               "axes": {
                 "L1": 2
               },
-              "tags": []
+              "tags": [
+                {
+                  "id": "T22B",
+                  "s": 2
+                }
+              ]
             },
             "b": {
-              "t": "The one {they} would love.",
+              "t": "The brand-new one nobody has tried.",
               "axes": {
                 "L1": -2
               },
-              "tags": []
+              "tags": [
+                {
+                  "id": "T22A",
+                  "s": 2
+                }
+              ]
             }
           },
           "chapter": 5,
@@ -3262,17 +3267,11 @@
               "circumstance": false
             },
             {
-              "t": "Say yes. Complain about it all year.",
+              "t": "Counteroffer: every other Saturday off. Rehearsed it in the mirror.",
               "axes": {
                 "L2": 1
               },
-              "tags": [
-                {
-                  "id": "T16A",
-                  "s": 1
-                }
-              ],
-              "emotion": "resentment",
+              "tags": [],
               "circumstance": false
             },
             {
@@ -3301,12 +3300,6 @@
                 }
               ],
               "circumstance": false
-            },
-            {
-              "t": "Yes. Saying no isn't really my call here.",
-              "axes": {},
-              "tags": [],
-              "circumstance": true
             }
           ],
           "feel": "pride",
@@ -3361,7 +3354,7 @@
           "privacy": "normal",
           "options": [
             {
-              "t": "Pulled up a chair and made it my problem too.",
+              "t": "Did their part while they watched. Faster that way.",
               "axes": {},
               "tags": [
                 {
@@ -3369,7 +3362,6 @@
                   "s": 2
                 }
               ],
-              "emotion": "warmth",
               "circumstance": false
             },
             {
@@ -3385,7 +3377,7 @@
               "circumstance": false
             },
             {
-              "t": "'Got a thing tonight.' The thing: my couch. Offered the morning.",
+              "t": "'Got a thing tonight.' The thing: my couch.",
               "axes": {},
               "tags": [
                 {
@@ -3409,7 +3401,7 @@
               "circumstance": false
             },
             {
-              "t": "Stayed. Leaving first isn't really allowed where I am.",
+              "t": "Stayed. Where I am, nobody leaves first.",
               "axes": {},
               "tags": [],
               "circumstance": true
@@ -3434,7 +3426,7 @@
               ]
             },
             "b": {
-              "t": "Offers to help in the morning instead.",
+              "t": "Claims a plan tonight. The plan is the couch.",
               "axes": {},
               "tags": [
                 {
@@ -3588,14 +3580,15 @@
           "id": "C5-6",
           "type": "scenario",
           "sally": [
-            "Q19"
+            "Q19",
+            "Q17"
           ],
-          "prompt": "Your own thing (art, reselling, a channel) just had its best month ever. Same week, a steady full-time job says 'you're hired.' Your savings could carry you a few months.",
-          "teenPrompt": "Your own thing (art, reselling, a channel) just had its best month ever. Same week, a steady weekend job says 'you're hired.' You saved all summer.",
+          "prompt": "Your own thing (art, reselling, a channel) just had its best month ever. Growing it for real would take all your savings.",
+          "teenPrompt": "Your own thing (art, reselling, a channel) just had its best month ever. Growing it for real would take everything you saved this summer.",
           "privacy": "normal",
           "options": [
             {
-              "t": "Go all in on my thing. Tell my parents later.",
+              "t": "Put every cent in. Tell my parents after.",
               "axes": {
                 "L1": -2
               },
@@ -3609,20 +3602,7 @@
               "circumstance": false
             },
             {
-              "t": "Both. Job by day, my thing till 2am, sleep is a rumor.",
-              "axes": {
-                "L1": 1
-              },
-              "tags": [
-                {
-                  "id": "T13B",
-                  "s": 2
-                }
-              ],
-              "circumstance": false
-            },
-            {
-              "t": "Take the job. Brave is a next-year problem.",
+              "t": "Grow it with what it earns. Savings stay put.",
               "axes": {
                 "L1": 2
               },
@@ -3632,28 +3612,43 @@
                   "s": 2
                 }
               ],
-              "emotion": "longing",
+              "emotion": "relief",
               "circumstance": false
             },
             {
-              "t": "The job. Other people are counting on that money.",
-              "axes": {},
+              "t": "Pick up a steady part-time job to fund it.",
+              "axes": {
+                "L1": 1
+              },
+              "tags": [
+                {
+                  "id": "T13B",
+                  "s": 1
+                }
+              ],
+              "circumstance": false
+            },
+            {
+              "t": "Launch preorders. Let the fans pay for round two.",
+              "axes": {
+                "L1": -1
+              },
               "tags": [],
-              "emotion": "worry",
-              "circumstance": true
+              "emotion": "hope",
+              "circumstance": false
             }
           ],
           "feel": "longing",
-          "mask": "looks like a career fork; measures the safety net versus the leap (L1, T13)",
+          "mask": "looks like a side-hustle fork; measures betting your savings on your own thing versus keeping the cushion (L1, T13, Sally Q19). The part-time job line keeps Sally Q17 A (steady pay funds the interest). Fix pass round 2 took the job offer out so chapter 5 no longer has three work offers in five cards, and dropped the money circumstance",
           "ae": [
             "A",
             "C",
             "D"
           ],
           "friend": {
-            "prompt": "Same week: {name}'s side thing has its best month ever and a steady job says 'you're hired.' {name}…",
+            "prompt": "{name}'s own thing just had its best month ever. Growing it would take all {name}'s savings. {name}…",
             "a": {
-              "t": "Goes all in on the side thing.",
+              "t": "Puts every cent in.",
               "axes": {
                 "L1": -2
               },
@@ -3665,9 +3660,9 @@
               ]
             },
             "b": {
-              "t": "Takes the job, runs the side thing at night.",
+              "t": "Grows it with what it earns. Savings stay put.",
               "axes": {
-                "L1": 1
+                "L1": 2
               },
               "tags": [
                 {
@@ -3704,6 +3699,10 @@
                 {
                   "id": "T17B",
                   "s": 2
+                },
+                {
+                  "id": "T16B",
+                  "s": 1
                 }
               ],
               "circumstance": false
@@ -3740,6 +3739,10 @@
                 {
                   "id": "T17A",
                   "s": 1
+                },
+                {
+                  "id": "T16A",
+                  "s": 1
                 }
               ],
               "emotion": "envy",
@@ -3747,7 +3750,7 @@
             }
           ],
           "feel": "envy",
-          "mask": "looks like a scroll moment; measures how much other people's milestones set your own clock (L2, T17)",
+          "mask": "looks like a scroll moment; measures how much other people's milestones set your own clock (L2, T17), with a slight read on whether visible wins matter to you (T16: shrugging it off versus muting it out of envy)",
           "ae": [
             "A",
             "E"
@@ -3763,6 +3766,10 @@
                 {
                   "id": "T17B",
                   "s": 2
+                },
+                {
+                  "id": "T16B",
+                  "s": 1
                 }
               ]
             },
@@ -3964,73 +3971,49 @@
           "teen": true
         },
         {
-          "id": "C6-3",
+          "id": "C6-9",
           "type": "this_or_that",
           "sally": [
-            "Q04"
+            "Q09"
           ],
-          "prompt": "Your cousin quit a big career to stay home with the baby. Their partner works now. Grandma is still recovering from the news. Your own home, someday?",
-          "teenPrompt": "Your friend's parent quit a big job to run the house and now wins every bake sale. The other parent runs the business. Your own home, someday?",
-          "privacy": "normal",
+          "prompt": "You and your person: six years, a shared dog, a joint Costco card. Your aunt asks, 'So when's the wedding?'",
+          "privacy": "locked18",
           "options": [
             {
-              "t": "Same energy. Mine could run that way too.",
+              "t": "Soon. Vows out loud, and Grandma crying in row one.",
               "axes": {
-                "R3": -2
+                "R3": 2
               },
               "tags": [
                 {
-                  "id": "T20B",
+                  "id": "T21A",
                   "s": 2
                 }
               ]
             },
             {
-              "t": "Love it for them. Mine would run classic.",
+              "t": "Never needed one. The dog is our marriage certificate.",
               "axes": {
-                "R3": 1
+                "R3": -2
               },
               "tags": [
                 {
-                  "id": "T20A",
-                  "s": 3
+                  "id": "T21B",
+                  "s": 2
+                },
+                {
+                  "id": "T11B",
+                  "s": 1
                 }
               ]
             }
           ],
-          "feel": "recognition",
-          "mask": "looks like an opinion on another family; measures whether the new script is fine for others but not for you (R3, T20A split)",
+          "feel": "tension",
+          "mask": "looks like a nosy-aunt moment; measures whether commitment needs the classic ritual to count (R3, T21, T11B slight)",
           "ae": [
             "B",
             "D"
           ],
-          "friend": {
-            "prompt": "{name}'s cousin quits a big career to stay home with the baby. Would {name} run a home that way?",
-            "a": {
-              "t": "Yes, same energy.",
-              "axes": {
-                "R3": -2
-              },
-              "tags": [
-                {
-                  "id": "T20B",
-                  "s": 2
-                }
-              ]
-            },
-            "b": {
-              "t": "Love it for them, classic for {name}.",
-              "axes": {
-                "R3": 1
-              },
-              "tags": [
-                {
-                  "id": "T20A",
-                  "s": 3
-                }
-              ]
-            }
-          },
           "chapter": 6,
           "grade": "believe",
           "weight": 0.45,
@@ -4038,7 +4021,7 @@
             "skip",
             "not_my_life"
           ],
-          "teen": true,
+          "teen": false,
           "round": "ch6-r1"
         },
         {
@@ -4117,49 +4100,73 @@
           "round": "ch6-r1"
         },
         {
-          "id": "C6-9",
+          "id": "C6-3",
           "type": "this_or_that",
           "sally": [
-            "Q09"
+            "Q04"
           ],
-          "prompt": "You and your person: six years, a shared dog, a joint Costco card. Your aunt asks, 'So when's the wedding?'",
-          "privacy": "locked18",
+          "prompt": "Your cousin quit a big career to stay home with the baby. Their partner works now. Grandma is still recovering from the news. Your own home, someday?",
+          "teenPrompt": "Your friend's parent quit a big job to run the house and now wins every bake sale. The other parent runs the business. Your own home, someday?",
+          "privacy": "normal",
           "options": [
             {
-              "t": "Soon. Vows out loud, and Grandma crying in row one.",
-              "axes": {
-                "R3": 2
-              },
-              "tags": [
-                {
-                  "id": "T21A",
-                  "s": 2
-                }
-              ]
-            },
-            {
-              "t": "Never needed one. The dog is our marriage certificate.",
+              "t": "Same energy. Mine could run that way too.",
               "axes": {
                 "R3": -2
               },
               "tags": [
                 {
-                  "id": "T21B",
+                  "id": "T20B",
                   "s": 2
-                },
+                }
+              ]
+            },
+            {
+              "t": "Love it for them. Mine would run classic.",
+              "axes": {
+                "R3": 1
+              },
+              "tags": [
                 {
-                  "id": "T11B",
-                  "s": 1
+                  "id": "T20A",
+                  "s": 3
                 }
               ]
             }
           ],
-          "feel": "tension",
-          "mask": "looks like a nosy-aunt moment; measures whether commitment needs the classic ritual to count (R3, T21, T11B slight)",
+          "feel": "recognition",
+          "mask": "looks like an opinion on another family; measures whether the new script is fine for others but not for you (R3, T20A split)",
           "ae": [
             "B",
             "D"
           ],
+          "friend": {
+            "prompt": "{name}'s cousin quits a big career to stay home with the baby. Would {name} run a home that way?",
+            "a": {
+              "t": "Yes, same energy.",
+              "axes": {
+                "R3": -2
+              },
+              "tags": [
+                {
+                  "id": "T20B",
+                  "s": 2
+                }
+              ]
+            },
+            "b": {
+              "t": "Love it for them, classic for {name}.",
+              "axes": {
+                "R3": 1
+              },
+              "tags": [
+                {
+                  "id": "T20A",
+                  "s": 3
+                }
+              ]
+            }
+          },
           "chapter": 6,
           "grade": "believe",
           "weight": 0.45,
@@ -4167,7 +4174,7 @@
             "skip",
             "not_my_life"
           ],
-          "teen": false,
+          "teen": true,
           "round": "ch6-r1"
         },
         {
@@ -4259,57 +4266,83 @@
           "teen": true
         },
         {
-          "id": "C6-5",
-          "type": "feeling",
+          "id": "C6-11",
+          "type": "role",
           "sally": [],
-          "follows": "C6-4",
-          "prompt": "When the family asked who'd help, what hit you first?",
-          "privacy": "normal",
+          "prompt": "Big family wedding. 300 guests, an open bar, a toast that's on page six. You're the one…",
+          "privacy": "locked18",
           "options": [
             {
-              "t": "Guilt, for even hesitating.",
-              "axes": {},
-              "tags": [],
-              "emotion": "guilt"
+              "t": "Leading the family dance. I've known the steps since I was five.",
+              "tags": [
+                {
+                  "id": "T21A",
+                  "s": 2
+                }
+              ],
+              "emotion": "delight"
             },
             {
-              "t": "Worry. About them, not the schedule.",
-              "axes": {},
-              "tags": [],
-              "emotion": "worry"
+              "t": "Doing open-bar math. That's a whole used car.",
+              "tags": [
+                {
+                  "id": "T21B",
+                  "s": 2
+                }
+              ]
             },
             {
-              "t": "A tiny voice asking, 'Why is it always me?'",
-              "axes": {},
-              "tags": [],
-              "emotion": "resentment"
+              "t": "Cornering the grandparents: 'Okay, 50 years. What's the trick?'",
+              "tags": [
+                {
+                  "id": "T21A",
+                  "s": 1
+                }
+              ]
             },
             {
-              "t": "Warmth. This is what family is for.",
-              "axes": {},
-              "tags": [],
-              "emotion": "warmth"
+              "t": "Timing the toast. We're on page four of six.",
+              "tags": [
+                {
+                  "id": "T21B",
+                  "s": 1
+                }
+              ]
             },
             {
-              "t": "Relief that I'm not an only child.",
-              "axes": {},
-              "tags": [],
-              "emotion": "relief"
+              "t": "Herding three generations into one photo. Twice.",
+              "tags": [
+                {
+                  "id": "T21A",
+                  "s": 1
+                }
+              ]
+            },
+            {
+              "t": "Running the kids' table. Great at it. Zero plans for my own.",
+              "tags": [
+                {
+                  "id": "T11B",
+                  "s": 1
+                }
+              ],
+              "emotion": "delight"
             }
           ],
-          "feel": "guilt",
-          "mask": "looks like a check-in; measures the emotion under family duty (research record and tag copy only, no profile evidence)",
+          "feel": "recognition",
+          "mask": "looks like a wedding-guest cast list; measures whether a wedding is a family ritual worth the fuss or money better spent elsewhere (T21, 18+ only), with a no-kids line (T11B slight, the evidence judge's third T11B source). Fix pass round 2 made it behaviour in someone else's wedding so it no longer restates C6-7's own-celebration lines, and placed it four cards from C6-9 and C6-7",
           "ae": [
-            "E"
+            "B",
+            "D"
           ],
           "chapter": 6,
-          "grade": "emotion",
-          "weight": 0,
+          "grade": "believe",
+          "weight": 0.45,
           "exits": [
             "skip",
             "not_my_life"
           ],
-          "teen": true
+          "teen": false
         },
         {
           "id": "C6-2",
@@ -4371,7 +4404,7 @@
               ]
             },
             {
-              "t": "Went with theirs. Their money, their rules.",
+              "t": "Went with theirs. They were paying for it.",
               "circumstance": true
             }
           ],
@@ -4433,13 +4466,7 @@
               "t": "Run it like home: nobody sits till the dishes are done.",
               "axes": {
                 "R3": 2
-              },
-              "tags": [
-                {
-                  "id": "T20A",
-                  "s": 2
-                }
-              ]
+              }
             },
             {
               "t": "Split by what we each hate least. I'll take trash.",
@@ -4471,10 +4498,22 @@
                   "s": 1
                 }
               ]
+            },
+            {
+              "t": "Do my half the way I was raised. Their half, their call.",
+              "axes": {
+                "R3": 1
+              },
+              "tags": [
+                {
+                  "id": "T20A",
+                  "s": 3
+                }
+              ]
             }
           ],
           "feel": "cringe",
-          "mask": "looks like a chore standoff; measures whether a home runs on the inherited script or one you write from scratch (R3, T20)",
+          "mask": "looks like a chore standoff; measures whether a home runs on the inherited script or one you write from scratch (R3, T20). Plain classic scores R3 only; T20A comes only from the mixed line (my half classic, theirs their call)",
           "ae": [
             "A",
             "D"
@@ -4486,12 +4525,7 @@
               "axes": {
                 "R3": 2
               },
-              "tags": [
-                {
-                  "id": "T20A",
-                  "s": 2
-                }
-              ]
+              "tags": []
             },
             "b": {
               "t": "Splits chores by what each of them hates least.",
@@ -4522,11 +4556,11 @@
             "Q23"
           ],
           "prompt": "Your parents want you to keep helping an adult sibling who never quite gets it together. In that story, you're the…",
-          "teenPrompt": "Your sibling keeps needing a rescue: homework, chores, excuses. Your parents say, 'Help them, they're family.' In that story, you're the…",
+          "teenPrompt": "Your sibling keeps needing a rescue: homework, chores, cash. Your parents say, 'Help them, they're family.' In that story, you're the…",
           "privacy": "normal",
           "options": [
             {
-              "t": "Safety net. I cover them, every single time.",
+              "t": "Bank. Open 24/7. No questions, no lecture.",
               "tags": [
                 {
                   "id": "T18A",
@@ -4563,7 +4597,7 @@
               ]
             },
             {
-              "t": "Ghost. Suddenly busy whenever they call.",
+              "t": "Landlord. I help. Rent is my dishes for a week.",
               "tags": [
                 {
                   "id": "T18B",
@@ -4590,7 +4624,7 @@
           "friend": {
             "prompt": "{name}'s sibling keeps needing a rescue, and the parents say 'help, you're family.' {name} is the…",
             "a": {
-              "t": "Safety net, every single time.",
+              "t": "Bank. Open 24/7, no questions.",
               "tags": [
                 {
                   "id": "T18A",
@@ -4635,10 +4669,6 @@
                 {
                   "id": "T21A",
                   "s": 1
-                },
-                {
-                  "id": "T20A",
-                  "s": 1
                 }
               ]
             },
@@ -4649,22 +4679,17 @@
               },
               "tags": [
                 {
-                  "id": "T20A",
+                  "id": "T21A",
                   "s": 1
                 }
               ]
             },
             {
-              "t": "Something from my grandparents: a ring, a dish, a song.",
+              "t": "Something handed down: a ring, a dish, a song.",
               "axes": {
                 "R3": 1
               },
-              "tags": [
-                {
-                  "id": "T20A",
-                  "s": 1
-                }
-              ]
+              "tags": []
             },
             {
               "t": "Ten people max. The best dinner of our lives.",
@@ -4712,7 +4737,7 @@
             }
           ],
           "feel": "longing",
-          "mask": "looks like party planning; measures whether a big life moment should follow the ritual or your own design (R3, T20; T21 scores for 18+ players only, per the library rule that locked18 tags fire only from 18+ play)",
+          "mask": "looks like party planning; measures whether a big life moment should follow the ritual or your own design (R3, T20B; plain classic picks score R3 only, never T20A; T21 scores for 18+ players only, per the library rule that locked18 tags fire only from 18+ play)",
           "ae": [
             "D"
           ],
@@ -4837,7 +4862,7 @@
           "sally": [
             "Q47"
           ],
-          "prompt": "Your last truly free afternoon. Nothing planned, nobody needing you. Where did it actually go?",
+          "prompt": "Your last truly free afternoon. Nothing planned, nothing due. Where did it actually go?",
           "privacy": "normal",
           "options": [
             {
@@ -4871,12 +4896,23 @@
               ]
             },
             {
+              "t": "Gave my family two hours of errands. Then phone off, door shut.",
+              "axes": {},
+              "tags": [
+                {
+                  "id": "T18B",
+                  "s": 1
+                }
+              ],
+              "emotion": "relief"
+            },
+            {
               "t": "Got pulled into a shift or family stuff. Not really free.",
               "circumstance": true
             }
           ],
           "feel": "recognition",
-          "mask": "looks like a free-afternoon recap; measures whether free time goes to your own thing or to helping with someone else's (Sally Q47, T23 only)",
+          "mask": "looks like a free-afternoon recap; measures whether free time goes to your own thing or to helping with someone else's (Sally Q47, T23 only); the fix pass adds a capped family-help line as T18B's third card (help given, with a stop time)",
           "ae": [
             "A",
             "D"
@@ -5125,7 +5161,7 @@
               "tags": [
                 {
                   "id": "T22A",
-                  "s": 2
+                  "s": 3
                 }
               ],
               "emotion": "delight"
@@ -5138,7 +5174,7 @@
               "tags": [
                 {
                   "id": "T22B",
-                  "s": 2
+                  "s": 3
                 }
               ],
               "emotion": "warmth"
@@ -5157,7 +5193,7 @@
               "depends": true
             },
             {
-              "t": "Can't right now. Money or family keeps me here.",
+              "t": "Can't this year. Too many people need me here.",
               "circumstance": true
             }
           ],
@@ -5186,7 +5222,7 @@
               "tags": [
                 {
                   "id": "T22A",
-                  "s": 2
+                  "s": 3
                 }
               ]
             },
@@ -5198,7 +5234,7 @@
               "tags": [
                 {
                   "id": "T22B",
-                  "s": 2
+                  "s": 3
                 }
               ]
             }
@@ -5357,18 +5393,25 @@
             {
               "t": "Give them my ticket too. Watch their stories from bed.",
               "axes": {},
-              "tags": [],
+              "tags": [
+                {
+                  "id": "T06A",
+                  "s": 1
+                }
+              ],
               "emotion": "longing"
             },
             {
               "t": "Stall until one of them says 'it's fine, take them.'",
-              "axes": {},
+              "axes": {
+                "R2": -1
+              },
               "tags": [],
               "emotion": "guilt"
             }
           ],
           "feel": "tension",
-          "mask": "looks like concert logistics; measures L3: keep the queue order or go by who needs it more right now (Sally Q40 as an everyday last-spot card)",
+          "mask": "looks like concert logistics; measures L3: keep the queue order or go by who needs it more right now (Sally Q40 as an everyday last-spot card). Giving away your own ticket is generosity at your own cost (T06A slight); stalling until someone backs out avoids saying the hard no (R2 soft, slight)",
           "ae": [
             "A",
             "B",
@@ -5458,7 +5501,7 @@
               ]
             },
             {
-              "t": "Someone says 'I need hands' and I'm already putting on shoes.",
+              "t": "I've volunteered the whole group for something. Twice.",
               "axes": {},
               "tags": [
                 {
@@ -5468,7 +5511,7 @@
               ]
             },
             {
-              "t": "Weekends are booked. Me, my project, do not disturb.",
+              "t": "I'll repost any good cause. From my pottery class.",
               "axes": {},
               "tags": [
                 {
@@ -5498,11 +5541,11 @@
           "id": "C7-10",
           "type": "scenario",
           "sally": [],
-          "prompt": "Last week your squad's fourth rage-quit mid-match and cost you the win. Today they message: 'my bad, can I get back in?'",
+          "prompt": "Your friend has flaked on the last four hangouts. Now they've booked an escape room for six: 'Deposit's paid. Send me $25.'",
           "privacy": "normal",
           "options": [
             {
-              "t": "Send the invite. Everyone gets one bad night.",
+              "t": "Send the $25 right now. Everyone gets a comeback era.",
               "axes": {},
               "tags": [
                 {
@@ -5513,18 +5556,7 @@
               "emotion": "warmth"
             },
             {
-              "t": "Let them in. Bring up the rage-quit every single round.",
-              "axes": {},
-              "tags": [
-                {
-                  "id": "T08B",
-                  "s": 1
-                }
-              ],
-              "emotion": "delight"
-            },
-            {
-              "t": "Find a new fourth. Once was enough.",
+              "t": "Pay at the door. If there is a door.",
               "axes": {},
               "tags": [
                 {
@@ -5532,25 +5564,40 @@
                   "s": 2
                 }
               ],
-              "emotion": "irritation"
+              "emotion": "delight"
             },
             {
-              "t": "Reply 'lol maybe' and hope they forget.",
+              "t": "Offer them a ride there. Like old times.",
               "axes": {},
-              "tags": [],
-              "emotion": "cringe"
+              "tags": [
+                {
+                  "id": "T08A",
+                  "s": 1
+                }
+              ],
+              "emotion": "hope"
+            },
+            {
+              "t": "Say I'm in. Keep my other plan for that night alive.",
+              "axes": {},
+              "tags": [
+                {
+                  "id": "T08B",
+                  "s": 1
+                }
+              ]
             }
           ],
-          "feel": "irritation",
-          "mask": "looks like squad drama; measures T08: a second chance for someone who let the team down (library NEW ch7 trigger; gives T08 its second card)",
+          "feel": "hope",
+          "mask": "looks like escape-room logistics; measures T08: trusting that someone has changed versus waiting for proof. Rewritten in the fix pass so it no longer repeats C2-3's let-them-back-in setup; still T08's ch7 card. Fix pass round 2: four distinct moves (pay now, pay at the door, give them a ride, keep a backup plan) instead of two stances at two strengths",
           "ae": [
             "A",
             "B"
           ],
           "friend": {
-            "prompt": "{name}'s squad mate rage-quit last week and now asks to get back in. {name}...",
+            "prompt": "{name}'s friend has flaked on the last four hangouts, then books an escape room and asks for $25 upfront. {name}...",
             "a": {
-              "t": "Sends the invite. Everyone gets one bad night",
+              "t": "Sends the $25 right away",
               "axes": {},
               "tags": [
                 {
@@ -5560,7 +5607,7 @@
               ]
             },
             "b": {
-              "t": "Finds a new fourth. Once was enough",
+              "t": "Pays at the door, if it happens",
               "axes": {},
               "tags": [
                 {
@@ -5587,11 +5634,11 @@
       "id": "C2-10",
       "type": "sealed",
       "sally": [],
-      "prompt": "Your friend's new crush still has their ex as their lock screen. Your friend beams: \"So?? What do you all think?\"",
+      "prompt": "Your food arrives. You asked for no cilantro. It is mostly cilantro. The server, beaming: \"How is everything?\"",
       "privacy": "normal",
       "options": [
         {
-          "t": "\"Honestly? We need to talk about the lock screen.\"",
+          "t": "\"Small problem: I asked for no cilantro. Could you swap it?\"",
           "axes": {
             "R2": 2
           },
@@ -5600,22 +5647,18 @@
               "id": "T07A",
               "s": 2
             }
-          ]
+          ],
+          "emotion": "tension"
         },
         {
-          "t": "\"They seem sweet! You look so happy.\"",
+          "t": "\"Perfect, thanks!\" Then pick out every leaf for twenty minutes.",
           "axes": {
             "R2": -2
           },
-          "tags": [
-            {
-              "id": "T07B",
-              "s": 1
-            }
-          ]
+          "emotion": "cringe"
         },
         {
-          "t": "Smile now. Bring up the lock screen later, just the two of you.",
+          "t": "\"The fries are amazing! The rest is, um, a lot of cilantro?\"",
           "axes": {
             "R2": -1
           },
@@ -5624,10 +5667,11 @@
               "id": "T07B",
               "s": 2
             }
-          ]
+          ],
+          "emotion": "warmth"
         },
         {
-          "t": "Make a joke about it that's clearly not a joke.",
+          "t": "Hold up a sprig: \"I think the cilantro snuck in.\"",
           "axes": {
             "R2": 1
           },
@@ -5636,14 +5680,16 @@
               "id": "T07A",
               "s": 1
             }
-          ]
+          ],
+          "emotion": "delight"
         }
       ],
-      "feel": "tension",
-      "mask": "finale sealed check on R2 and T07: a new situation (the crush, not the friend's own work or look); Genii's guess comes from the R2 score and the T07 pair",
+      "feel": "cringe",
+      "mask": "finale sealed check on R2 and T07: a stranger, not a friend (a wrong order and a hopeful server), so it repeats neither C3-12 (your person's joke hurt) nor C7-10 (a friend who flakes), which plays right before it; Genii's guess comes from the R2 score and the T07 pair. Option 0 is the Direct guess; the cushioned line compliments first and asks, with no jab (T07B never: passive-aggressive); the kind lie scores Soft but no T07B",
       "ae": [
         "A",
-        "B"
+        "B",
+        "E"
       ],
       "chapter": 2,
       "grade": "none",
@@ -5754,12 +5800,7 @@
           "axes": {
             "R3": 2
           },
-          "tags": [
-            {
-              "id": "T20A",
-              "s": 2
-            }
-          ]
+          "tags": []
         },
         {
           "t": "Yes! Karaoke room, takeout, everyone in pajamas.",
@@ -5793,13 +5834,13 @@
           "tags": [
             {
               "id": "T20A",
-              "s": 1
+              "s": 2
             }
           ]
         }
       ],
       "feel": "delight",
-      "mask": "looks like holiday planning; measures whether tradition is the point or a starting draft (R3, T20); teen-safe R3 check, served in the finale (slot 3), not in chapter 6",
+      "mask": "looks like holiday planning; measures whether tradition is the point or a starting draft (R3, T20). Plain classic scores R3 only; T20A sits on 'Do both', the mixed move (their new thing, my classic dinner); teen-safe R3 check, served in the finale (slot 3), not in chapter 6",
       "ae": [
         "A",
         "D"
@@ -5907,7 +5948,7 @@
       "privacy": "normal",
       "options": [
         {
-          "t": "Make the 10 slides. The brief is the brief.",
+          "t": "Make the 10 slides. Done by Tuesday, font size 32.",
           "axes": {
             "L3": 2
           },
@@ -5932,7 +5973,9 @@
         },
         {
           "t": "Make both. Submit whichever one actually gets finished.",
-          "axes": {},
+          "axes": {
+            "L3": -1
+          },
           "tags": []
         },
         {
@@ -6081,7 +6124,7 @@
           ]
         },
         {
-          "t": "Come for an hour, then head back to bed.",
+          "t": "Show up at noon, once the heavy stuff is done. Bring pizza.",
           "axes": {},
           "tags": [
             {
@@ -6091,7 +6134,7 @@
           ]
         },
         {
-          "t": "Send snacks for the helpers and a very warm text. From bed.",
+          "t": "Send two friends who owe me one. Cheer them on by text.",
           "axes": {},
           "tags": [
             {

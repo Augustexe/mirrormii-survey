@@ -7,12 +7,13 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { kit, lib, cardById, runCards, buildProfile, buildResult, freezePredictions, checkSealed, buildFriendDeck, promptFor, CONFIG } from "./score.mjs";
+import { kit, lib, cardById, runCards, buildProfile, buildResult, freezePredictions, checkSealed, buildFriendDeck, promptFor, CONFIG, rankTags, twistOrder, cardLink, friendMapping } from "./score.mjs";
 
 const DIR = path.dirname(fileURLToPath(import.meta.url));
 const AXES = ["R1", "R2", "R3", "L1", "L2", "L3"];
 const TAGS = new Set(lib.tags.map((t) => t.id));
 const TAG = Object.fromEntries(lib.tags.map((t) => [t.id, t]));
+const FRIEND = JSON.parse(fs.readFileSync(path.join(DIR, "friend.json"), "utf8"));
 const TYPES = new Set(["scenario", "real", "this_or_that", "role", "pick_two", "feeling", "sealed"]);
 const WEIGHT = { real: 0.8, scenario: 0.55, this_or_that: 0.45, role: 0.45, pick_two: 0.45, feeling: 0, sealed: 0 };
 const chapterCards = kit.chapters.flatMap((c) => c.cards);
@@ -119,6 +120,28 @@ test("every tag and axis is reachable by at least 2 cards (adult and teen runs)"
   assert.ok(noReal.length <= 30, "at least 20 of 50 tags have a real-card trigger");
 });
 
+// DATA TEST (fix pass 2026-09-26, open item 1). Fails until the card agents unstick the thin tags; do not weaken it.
+// A tag that cannot reach tagFire from 2+ run cards can never fire for anybody. Maximum support per card = best
+// option strength x card weight (pick_two: best two picks), the same measure as check-src.cjs. Adult run: all 50 tags;
+// teen run: every tag except locked18 (a teen loses C3-8, C3-9, C6-9 and C6-11).
+test("every tag can fire: maximum support from the run cards >= tagFire from at least 2 cards (adult and teen)", () => {
+  const stuck = [];
+  for (const [label, setup] of [["adult", ADULT.setup], ["teen", TEEN.setup]]) {
+    const run = runCards(setup);
+    for (const tag of lib.tags) {
+      if (label === "teen" && tag.locked18) continue;
+      let max = 0, cards = 0;
+      for (const c of run) {
+        const v = c.options.map((o) => ((o.tags || []).find((x) => x.id === tag.id) || { s: 0 }).s).sort((a, b) => b - a);
+        const best = (c.type === "pick_two" ? v[0] + (v[1] || 0) : v[0]) * c.weight;
+        if (best > 0) { max += best; cards++; }
+      }
+      if (max < CONFIG.tagFire - 1e-9 || cards < CONFIG.tagMinCards) stuck.push(`${label} ${tag.id} max ${max.toFixed(2)} from ${cards}`);
+    }
+  }
+  assert.deepEqual(stuck, [], `${stuck.length} tag checks cannot fire:\n  ${stuck.join("\n  ")}`);
+});
+
 // ------------------------------------------------------------ run order
 function checkOrder(run, label) {
   for (let i = 1; i < run.length; i++) {
@@ -146,6 +169,16 @@ test("run order: no neighbours on the same axis or tag pair, types rotate, round
   assert.ok(early >= reals.length / 2, `${early} of ${reals.length} real cards in the first two thirds`);
 });
 
+// DATA TEST (fix pass 2026-09-26, open item 7). C1-3, C3-6 and C6-5 were cut; the 18+ role card C6-11 was added so T21
+// can fire. Ruling: the adult chapter run is 56 to 61 cards (69 at most with the 8-card finale), and the teen run, which
+// skips the locked18 cards, is at most 60.
+test("run length: adult chapter run is 56 to 61 cards, teen at most 60", () => {
+  const n = runCards(ADULT.setup).length;
+  assert.ok(n >= 56 && n <= 61, `adult chapter run is ${n} cards (want 56 to 61)`);
+  const t = runCards(TEEN.setup).length;
+  assert.ok(t <= 60, `teen chapter run is ${t} cards (want at most 60)`);
+});
+
 test("finale covers all six axes plus common tags", () => {
   const covered = new Set(kit.finale.flatMap((c) => c.checks.axes));
   for (const ax of AXES) assert.ok(covered.has(ax), `finale checks ${ax}`);
@@ -170,15 +203,17 @@ test("no em dash anywhere in the kit", () => {
 test("teen run skips locked18 cards, uses teen prompts, never scores locked18 tags", () => {
   const run = runCards(TEEN.setup);
   assert.ok(run.every((c) => c.privacy !== "locked18"));
-  for (const id of ["C3-8", "C3-9", "C6-9"]) assert.ok(!run.some((c) => c.id === id), `${id} not in teen run`);
-  assert.equal(runCards(ADULT.setup).length - run.length, 3);
+  const locked = chapterCards.filter((c) => c.privacy === "locked18").map((c) => c.id);
+  assert.deepEqual(locked, ["C3-8", "C3-9", "C6-9", "C6-11"], "the 18+ cards");
+  for (const id of locked) assert.ok(!run.some((c) => c.id === id), `${id} not in teen run`);
+  assert.equal(runCards(ADULT.setup).length - run.length, 4);
   assert.equal(promptFor(cardById["C1-2"], TEEN.setup), cardById["C1-2"].teenPrompt);
   assert.equal(promptFor(cardById["C1-2"], ADULT.setup), cardById["C1-2"].prompt);
   // C6-7 is teen-visible but carries T21 (locked18): a teen profile must never hold it.
-  const a = { ...TEEN, "C6-7": [0, 3], "C6-3": 1, "C6-1": 0, "C6-9": 0, "C3-8": [0, 1] };
+  const a = { ...TEEN, "C6-7": [0, 3], "C6-3": 1, "C6-1": 0, "C6-9": 0, "C6-11": 0, "C3-8": [0, 1] };
   const p = buildProfile(a);
   assert.ok(!Object.keys(p.tags).some((id) => TAG[id].locked18), "no locked18 tag in a teen profile");
-  assert.ok(p.warnings.some((w) => w.includes("C6-9")), "C6-9 answer ignored for a teen");
+  for (const id of ["C6-9", "C6-11", "C3-8"]) assert.ok(p.warnings.some((w) => w.includes(id)), `${id} answer ignored for a teen`);
 });
 
 test("C3-9 plays only after a T11A pick on C3-8", () => {
@@ -244,6 +279,113 @@ test("split: believe one way, did the other, becomes the plot twist", () => {
   assert.equal(s.did.grade, "did");
   const r = buildResult(p);
   assert.match(r.plotTwist.line, /^You'd say: .* Last time, you did: /);
+  assert.equal(s.twistOk, true, "axis splits always qualify for the twist");
+});
+
+// ------------------------------------------------------------ plot twist restriction (open item 4)
+const believeCards = () => runCards(ADULT.setup).filter((c) => c.grade === "believe" && !c.gateRule);
+const actCards = () => runCards(ADULT.setup).filter((c) => (c.grade === "did" || c.grade === "would") && !c.gateRule);
+const ans1 = (c, i) => (c.type === "pick_two" ? [i] : i);
+// First believe/act option couple with opposite sides of one tag pair and no axis in common, filtered by link.
+function tagSplitFixture(linked) {
+  for (const b of believeCards()) for (const a of actCards()) {
+    if (!!cardLink(b.id, a.id) !== linked) continue;
+    for (const [i, ob] of b.options.entries()) for (const [j, oa] of a.options.entries()) {
+      if (Object.keys(ob.axes || {}).some((k) => (oa.axes || {})[k])) continue;
+      const t = (ob.tags || []).find((x) => (oa.tags || []).some((y) => y.id === TAG[x.id].pair));
+      if (!t) continue;
+      const p = buildProfile({ ...ADULT, [b.id]: ans1(b, i), [a.id]: ans1(a, j) });
+      const s = p.splits.find((x) => x.dim === t.id.slice(0, 3));
+      if (s) return { b, a, p, s };
+    }
+  }
+  return null;
+}
+
+test("plot twist: a tag-pair split joins two cards only when they share a Sally question or chapter", () => {
+  const off = tagSplitFixture(false);
+  assert.ok(off, "fixture: an unlinked believe/act tag-pair split exists in the run");
+  assert.equal(off.s.kind, "tag pair");
+  assert.equal(off.s.twistOk, false, `${off.b.id} and ${off.a.id} share no Sally question or chapter`);
+  assert.equal(off.s.link, null);
+  assert.equal(buildResult(off.p).plotTwist, null, `no plot twist from ${off.b.id} + ${off.a.id}`);
+
+  const on = tagSplitFixture(true);
+  assert.ok(on, "fixture: a linked believe/act tag-pair split exists in the run");
+  assert.equal(on.s.twistOk, true);
+  assert.equal(on.s.link, cardLink(on.b.id, on.a.id));
+  assert.match(on.s.link, /^(sally Q\d+|chapter \d)$/);
+  const tw = buildResult(on.p).plotTwist;
+  assert.ok(tw && tw.dim === on.s.dim, `twist from the linked couple ${on.b.id} + ${on.a.id}`);
+  assert.equal(tw.said.card, on.b.id);
+  assert.equal(tw.did.card, on.a.id);
+
+  // Every twist on a real run respects the rule.
+  const ex = buildProfile(JSON.parse(fs.readFileSync(path.join(DIR, "sim-example", "answers.json"), "utf8")));
+  for (const s of ex.splits.filter((x) => x.twistOk && x.kind === "tag pair")) assert.ok(cardLink(s.said.card, s.did.card), `${s.dim}: quoted cards are linked`);
+});
+
+test("plot twist order: eligible first, then a real card, then axis over tag pair, then strength", () => {
+  const sp = (dim, kind, grade, strength, twistOk = true) => ({ dim, kind, strength, twistOk, did: { grade } });
+  const order = (xs) => [...xs].sort(twistOrder).map((x) => x.dim);
+  // Axis beats a stronger tag pair at the same grade.
+  assert.deepEqual(order([sp("T05", "tag pair", "did", 2.0), sp("R2", "axis", "did", 0.5)]), ["R2", "T05"]);
+  // A real (did) card still beats an axis split acted on a scenario.
+  assert.deepEqual(order([sp("R2", "axis", "would", 2.0), sp("T05", "tag pair", "did", 0.5)]), ["T05", "R2"]);
+  // An unlinked tag pair never leads, whatever its strength or grade.
+  assert.deepEqual(order([sp("T05", "tag pair", "did", 3.0, false), sp("L1", "axis", "would", 0.4)]), ["L1", "T05"]);
+  // Same kind and grade: stronger first.
+  assert.deepEqual(order([sp("L1", "axis", "did", 0.6), sp("L2", "axis", "did", 1.2)]), ["L2", "L1"]);
+});
+
+// ------------------------------------------------------------ shown-tag ranking (open item 1, scorer part)
+test("tag ranking: strong tags first by net, the rest by coverage share, then net", () => {
+  const raw = { T01A: { net: 3.4, share: 0.6 }, T02A: { net: 3.1, share: 1.0 }, T03A: { net: 2.95, share: 0.7 }, T04A: { net: 2.3, share: 1.0 }, T05A: { net: 2.5, share: 1.0 }, T06A: { net: 2.9, share: 0.95 } };
+  const tags = Object.fromEntries(Object.keys(raw).map((id) => [id, { cards: 2 }]));
+  assert.deepEqual(rankTags(Object.keys(raw), raw, tags, CONFIG), ["T01A", "T02A", "T05A", "T04A", "T06A", "T03A"]);
+  assert.deepEqual(rankTags(Object.keys(raw), raw, tags, { ...CONFIG, tagRank: "net" }), ["T01A", "T02A", "T03A", "T06A", "T05A", "T04A"]);
+  // Deterministic ties: more cards, then id.
+  const tied = { T07A: { net: 2.5, share: 0.8 }, T08A: { net: 2.5, share: 0.8 }, T09A: { net: 2.5, share: 0.8 } };
+  assert.deepEqual(rankTags(["T09A", "T07A", "T08A"], tied, { T07A: { cards: 2 }, T08A: { cards: 3 }, T09A: { cards: 2 } }, CONFIG), ["T08A", "T07A", "T09A"]);
+});
+
+test("tag ranking: share = net / the most the answered cards could give; exits, circumstance and depends excluded", () => {
+  const answers = JSON.parse(fs.readFileSync(path.join(DIR, "sim-example", "answers.json"), "utf8"));
+  const p = buildProfile(answers);
+  // Independent recomputation of the denominator.
+  const scoring = runCards(answers.setup).map((c) => [c, answers[c.id]]).filter(([c, v]) => v !== undefined && typeof v !== "string" && c.weight)
+    .filter(([c, v]) => (Array.isArray(v) ? v : [v]).some((i) => !c.options[i].circumstance && !c.options[i].depends));
+  for (const [id, t] of Object.entries(p.tags)) {
+    let possible = 0;
+    for (const [c] of scoring) {
+      const ms = answers._ms[c.id];
+      const w = c.weight * (ms !== undefined && ms < CONFIG.rushedMs ? CONFIG.rushedFactor : 1);
+      const v = c.options.map((o) => Math.max(0, (o.tags || []).reduce((s, x) => s + (x.id === id ? x.s : x.id === TAG[id].pair ? -x.s : 0), 0))).sort((a, b) => b - a);
+      possible += w * (c.type === "pick_two" ? v[0] + (v[1] || 0) : v[0]);
+    }
+    assert.ok(Math.abs(t.possible - possible) < 0.002, `${id}: possible ${t.possible} vs ${possible}`);
+    if (possible) assert.ok(Math.abs(t.share - t.net / possible) < 0.002, `${id}: share`);
+    if (t.fired) assert.ok(t.share <= 1.0005, `${id}: a fired tag's share is at most 1`);
+  }
+  // Shown order follows the ranking: strong by net, then the rest by share, then net.
+  const sh = p.shownTags.map((id) => p.tags[id]);
+  for (let i = 1; i < sh.length; i++) {
+    const a = sh[i - 1], b = sh[i];
+    if (a.strong !== b.strong) assert.ok(a.strong, "strong tags come first");
+    else if (a.strong) assert.ok(a.net >= b.net, "strong tags by net");
+    else assert.ok(a.share > b.share || (a.share === b.share && a.net >= b.net), "other tags by share, then net");
+  }
+  // A circumstance pick leaves the card out of the denominator; an exit does too.
+  const card = runCards(ADULT.setup).find((c) => c.options.some((o) => o.circumstance) && c.options.some((o) => (o.tags || []).length));
+  const ci = card.options.findIndex((o) => o.circumstance);
+  const tagId = card.options.find((o) => (o.tags || []).length).tags[0].id;
+  const other = runCards(ADULT.setup).find((c) => c.id !== card.id && c.options.some((o) => (o.tags || []).some((x) => x.id === tagId)));
+  const oi = other.options.findIndex((o) => (o.tags || []).some((x) => x.id === tagId));
+  const withCirc = buildProfile({ ...ADULT, [card.id]: ci, [other.id]: ans1(other, oi) });
+  const withExit = buildProfile({ ...ADULT, [card.id]: "skip", [other.id]: ans1(other, oi) });
+  const withAnswer = buildProfile({ ...ADULT, [card.id]: ci === 0 ? 1 : 0, [other.id]: ans1(other, oi) });
+  assert.equal(withCirc.tags[tagId].possible, withExit.tags[tagId].possible, `${card.id} circumstance pick is not in ${tagId}'s denominator`);
+  assert.ok(withAnswer.tags[tagId].possible > withCirc.tags[tagId].possible, `${card.id} answered normally does count`);
 });
 
 test("tags: 2 separate cards, 1 not rushed, net over threshold, pair subtracts, max 5", () => {
@@ -269,11 +411,14 @@ test("tags: 2 separate cards, 1 not rushed, net over threshold, pair subtracts, 
 });
 
 test("research record: depends picks with flip answers, emotions, feelings", () => {
-  const p = buildProfile({ ...ADULT, "C7-3": 3, "C7-3.flip": 1, "C1-2": 0, "C1-3": 2 });
+  // C1-3 (the feeling card after C1-2) was cut; C2-6 is the feeling card after C2-5, option 3 "Guilty...".
+  const p = buildProfile({ ...ADULT, "C7-3": 3, "C7-3.flip": 1, "C1-2": 0, "C2-5": 1, "C2-6": 3 });
+  assert.ok(cardById["C7-3"].options[3].depends && cardById["C2-6"].follows === "C2-5", "fixture cards");
   assert.deepEqual(p.research.depends, [{ card: "C7-3", said: cardById["C7-3"].options[3].t, flip: cardById["C7-3"].flip.options[1] }]);
-  assert.ok(p.emotions.some((e) => e.emotion === "warmth"));
-  assert.equal(p.feelings[0].follows, "C1-2");
-  assert.equal(p.feelings[0].feeling, "tension");
+  assert.ok(p.emotions.some((e) => e.emotion === "warmth" && e.from.some((f) => f.startsWith("C1-2:"))));
+  assert.equal(p.feelings.length, 1);
+  assert.equal(p.feelings[0].follows, "C2-5");
+  assert.equal(p.feelings[0].feeling, "guilt");
 });
 
 test("sealed: passes on flex or unfinished axes; check scores exact and side", () => {
@@ -338,6 +483,8 @@ test("friend deck: 12 level 2 cards, never private or rushed; 12 tag cards with 
       assert.notEqual(c.id, "C2-1", "rushed card excluded");
       assert.ok(["a", "b"].includes(c.answer));
     }
+    const levels = FRIEND.relationships.options.find((o) => o.id === rel).cardLevels;
+    for (const c of d.level2.cards) assert.ok(levels.includes(FRIEND.level2.cards[c.id].level), `${rel}: ${c.id} level allowed`);
     if (rel === "friendOrCoworker") assert.ok(!d.level2.cards.some((c) => ["C1-2", "C3-3", "C3-1", "C3-2", "C3-4", "C3-5", "C3-12"].includes(c.id)), "no love or couple cards for a friend or coworker");
     if (!d.level3.skipped) {
       assert.equal(d.level3.cards.length, 12);
@@ -348,6 +495,37 @@ test("friend deck: 12 level 2 cards, never private or rushed; 12 tag cards with 
       for (const c of d.level3.cards) assert.ok(!("sting" in c), "tag cards show name and heart only");
     }
     if (rel !== "bestie") assert.equal(d.level4, null);
+  }
+});
+
+// friend.json level2.cards is a snapshot of the chapter files. If a card's options or friend field change, recompute it
+// (level2.answerMapping; /private/tmp/claude-501/quiz-v2-tools/friend-snapshot.mjs does it) so it never goes stale.
+test("friend game: level 2 snapshot matches the cards; primary lists are clean", () => {
+  const L2 = FRIEND.level2;
+  const friendCards = chapterCards.filter((c) => c.friend);
+  assert.deepEqual(Object.keys(L2.cards).sort(), friendCards.map((c) => c.id).sort(), "one snapshot per card with a friend field");
+  for (const c of friendCards) {
+    const s = L2.cards[c.id];
+    const sides = [c.friend.a, c.friend.b];
+    assert.deepEqual([...s.axes].sort(), [...new Set(sides.flatMap((x) => Object.keys(x.axes || {})))].sort(), `${c.id}: axes`);
+    assert.deepEqual([...s.pairs].sort(), [...new Set(sides.flatMap((x) => (x.tags || []).map((t) => t.id.slice(0, 3))))].sort(), `${c.id}: pairs`);
+    assert.deepEqual(s.sally, c.sally || [], `${c.id}: sally`);
+    assert.equal(s.type, c.type, `${c.id}: type`);
+    assert.deepEqual(s.answerMap, c.options.map((o, i) => (o.circumstance || o.depends ? null : friendMapping(c, [i]))), `${c.id}: answerMap`);
+    assert.ok(["everyday", "love", "couple"].includes(s.level), `${c.id}: level`);
+  }
+  const backup = L2.backupOrder;
+  assert.deepEqual([...backup].sort(), friendCards.map((c) => c.id).sort(), "backupOrder holds every friend card once");
+  for (const [k, list] of Object.entries(L2.primary).filter(([, v]) => Array.isArray(v))) {
+    assert.equal(list.length, 12, `${k}: 12 primary cards`);
+    const info = list.map((id) => L2.cards[id]);
+    assert.ok(info.every(Boolean), `${k}: every primary card has a friend field`);
+    const pairs = info.flatMap((x) => x.pairs);
+    assert.equal(new Set(pairs).size, pairs.length, `${k}: no tag pair twice`);
+    assert.ok(pairs.length >= 12, `${k}: 12 different pairs`);
+    assert.deepEqual([...new Set(info.flatMap((x) => x.axes))].sort(), [...AXES].sort(), `${k}: all six axes`);
+    assert.ok(new Set(info.map((x) => x.chapter)).size >= 6, `${k}: 6 or more chapters`);
+    for (let i = 1; i < info.length; i++) assert.notEqual(info[i].chapter, info[i - 1].chapter, `${k}: ${list[i - 1]} and ${list[i]} share a chapter`);
   }
 });
 

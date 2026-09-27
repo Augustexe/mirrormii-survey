@@ -33,19 +33,18 @@
       "prompt": "Your most recent \"wait, this costs HOW much?\" plan from a friend. A birthday dinner, a concert, a trip.",
       "privacy": "normal",
       "options": [
-        {"t": "Went, paid, and ate instant noodles for a week.", "axes": {}, "tags": [{"id": "T06A", "s": 2}]},
-        {"t": "Admitted it was over my budget in the chat. Took three drafts.", "axes": {}, "tags": [{"id": "T06B", "s": 2}]},
-        {"t": "Showed up for the cheap part. Skipped the expensive part.", "axes": {}, "tags": [{"id": "T06B", "s": 1}]},
-        {"t": "Invented a clash. Sent a very long, very sweet message instead.", "axes": {}, "tags": [{"id": "T05B", "s": 1}, {"id": "T06B", "s": 1}], "emotion": "guilt"},
-        {"t": "Couldn't go. The money just wasn't there.", "circumstance": true}
+        {"t": "Went, paid, and ate instant noodles for a week.", "axes": {}, "tags": [{"id": "T06A", "s": 2}, {"id": "T05A", "s": 1}]},
+        {"t": "Admitted it was over my budget in the chat. Took three drafts.", "circumstance": true, "emotion": "cringe"},
+        {"t": "Paid my share. Home by 9. Completely peopled out.", "axes": {}, "tags": [{"id": "T06B", "s": 2}]},
+        {"t": "Invented a clash. Sent a very long, very sweet message instead.", "axes": {}, "tags": [{"id": "T05B", "s": 2}], "emotion": "guilt"}
       ],
       "feel": "guilt",
-      "mask": "looks like a money story; measures stretching for your people versus guarding your own limits (T06). Capacity card: scores no R2 by design. Being broke has its own circumstance exit, so it never reads as low energy",
+      "mask": "looks like a money story; measures stretching for your people versus guarding your own energy (T06) and showing up in deeds versus in words (T05: going and paying, or the long sweet message instead). Capacity card: scores no R2 by design. Money limits never score (T06B never: not having the money): admitting it was over budget is the circumstance option; T06B comes only from the paid-then-home-by-9 line (paying first shows the limit is energy, not money)",
       "ae": ["A", "B", "C"],
       "friend": {
         "prompt": "Last time a friend's plan cost way more than {name} wanted to spend, {they}...",
-        "a": {"t": "Went, paid, and lived on noodles after.", "axes": {}, "tags": [{"id": "T06A", "s": 2}]},
-        "b": {"t": "Admitted it was over budget, after three drafts.", "axes": {}, "tags": [{"id": "T06B", "s": 2}]}
+        "a": {"t": "Went, paid, and lived on noodles after.", "axes": {}, "tags": [{"id": "T06A", "s": 2}, {"id": "T05A", "s": 1}]},
+        "b": {"t": "Paid {their} share, then was home by 9. Peopled out.", "axes": {}, "tags": [{"id": "T06B", "s": 2}]}
       }
     },
     {
@@ -79,14 +78,14 @@
       "privacy": "normal",
       "options": [
         {"t": "Show up with snacks: \"Honestly, they were mid anyway.\"", "axes": {}, "tags": [{"id": "T05A", "s": 1}]},
-        {"t": "Send a voice note listing why they're amazing. Numbered.", "axes": {}, "tags": [{"id": "T05B", "s": 1}]},
+        {"t": "Send a voice note listing why they're amazing. Numbered.", "axes": {}, "tags": [{"id": "T05B", "s": 1}, {"id": "T03B", "s": 1}]},
         {"t": "Rally the whole group out tonight. Nobody sits home.", "axes": {}, "tags": [{"id": "T04B", "s": 1}]},
         {"t": "Just us two, their couch, their comfort show.", "axes": {}, "tags": [{"id": "T04A", "s": 1}]},
         {"t": "Make them a playlist with a note on every song.", "axes": {}, "tags": [{"id": "T05B", "s": 1}]},
         {"t": "Block the ex on their phone for them. With permission. Mostly.", "axes": {}, "tags": [{"id": "T05A", "s": 1}]}
       ],
       "feel": "warmth",
-      "mask": "looks like breakup first aid; measures love shown in deeds versus in words (T05) and a small versus a big circle (T04)",
+      "mask": "looks like breakup first aid; measures love shown in deeds versus in words (T05) and a small versus a big circle (T04); the unedited voice note is also slight own-words evidence (T03B, library call 'You'd rather send a voice note than let anything tidy up what you meant')",
       "ae": ["A", "B"],
       "friend": {
         "prompt": "{name}'s friend just got dumped out of nowhere. {name}...",
@@ -103,7 +102,7 @@
       "options": [
         {"t": "Sit straight up and call. Sleep is canceled.", "axes": {}, "tags": [{"id": "T06A", "s": 2}]},
         {"t": "Pretend I'm asleep. Text them first thing at 7am.", "axes": {}, "tags": [{"id": "T06B", "s": 2}], "emotion": "guilt"},
-        {"t": "\"I'm fading. Can we do this properly tomorrow?\"", "axes": {}, "tags": [{"id": "T06B", "s": 2}]},
+        {"t": "\"They're the WORST. Love you. Sleeping.\" Phone goes across the room.", "axes": {}, "tags": [{"id": "T06B", "s": 2}]},
         {"t": "Call, put them on speaker, \"mhm\" until one of us sleeps.", "axes": {}, "tags": [{"id": "T06A", "s": 1}]},
         {"t": "Start a group call. Tag in a second friend.", "axes": {}, "tags": [{"id": "T06B", "s": 1}]}
       ],
@@ -127,10 +126,10 @@
         {"t": "Took them for bubble tea first. Brought it up on the walk back.", "axes": {"R2": -1}, "tags": [{"id": "T07B", "s": 2}]},
         {"t": "Made sure my friend was okay. Never mentioned the thing.", "axes": {"R2": -2}, "tags": []},
         {"t": "Said nothing to my friend. Checked on the other person.", "axes": {}, "tags": [{"id": "T08B", "s": 1}]},
-        {"t": "Laughed along, then felt weird about it all day.", "axes": {}, "tags": [], "emotion": "guilt"}
+        {"t": "Laughed along, then felt weird about it all day.", "circumstance": true, "emotion": "guilt"}
       ],
       "feel": "cringe",
-      "mask": "looks like a drama recap; measures whether you say the hard thing to a friend in the wrong or hold them first (R2, did-grade tie breaker). Looking after the hurt person feeds T08B, not R2; laughing along scores nothing",
+      "mask": "looks like a drama recap; measures whether you say the hard thing to a friend in the wrong or hold them first (R2, did-grade tie breaker). Looking after the hurt person feeds T08B, not R2; laughing along is a circumstance (swept along in the moment, not a stance): it scores nothing and is logged with its guilt",
       "ae": ["A", "B", "E"],
       "friend": {
         "prompt": "Last time a friend of {name}'s was clearly in the wrong with someone, {they}...",
@@ -165,13 +164,13 @@
       "privacy": "normal",
       "options": [
         {"t": "Send it tonight. Sort out paying back whenever.", "axes": {}, "tags": [{"id": "T06A", "s": 2}]},
-        {"t": "\"You're a disaster.\" Then send it anyway.", "axes": {}, "tags": [{"id": "T05A", "s": 2}, {"id": "T06A", "s": 1}]},
-        {"t": "Send part of it as a gift. Only what I can lose.", "axes": {}, "tags": [{"id": "T06A", "s": 1}]},
+        {"t": "Lend them my old laptop. \"One crumb in the keys and it's war.\"", "axes": {}, "tags": [{"id": "T05A", "s": 2}]},
+        {"t": "Start a laptop fund in the group chat. Put in first.", "axes": {}, "tags": [{"id": "T06A", "s": 1}]},
         {"t": "Agree on a payback date first. Set a reminder titled \"OWED\".", "axes": {}, "tags": [{"id": "T12A", "s": 2}]},
         {"t": "Can't. Having it isn't the same as having it spare.", "circumstance": true}
       ],
       "feel": "worry",
-      "mask": "looks like a money favor; measures stretching for your people (T06), keeping things square (T12) and love by roast plus deed (T05)",
+      "mask": "looks like a money favor; measures stretching for your people (T06: send it, or rally the group and go first), keeping things square (T12) and love by roast plus deed (T05A: lending your own laptop with a threat). Four different moves, no amounts ladder",
       "ae": ["A", "B", "C", "D"],
       "friend": {
         "prompt": "{name}'s close friend needs money fast and can't say when they'll pay it back. {name}...",
@@ -182,40 +181,40 @@
     {
       "id": "C2-8",
       "type": "role",
-      "sally": ["Q30"],
-      "prompt": "Your friend's dramatic new haircut is... not working. They spin around: \"Be honest. Love it?\" In your group, you're the...",
+      "sally": [],
+      "prompt": "The whole group got invited to a party Saturday. Except one friend. They just asked the chat: \"anything fun this weekend?\" In your group, you're the...",
       "privacy": "normal",
       "options": [
-        {"t": "Critic: \"Honestly? Not your best. Grow it out.\"", "axes": {"R2": 2}, "tags": [{"id": "T07A", "s": 2}]},
-        {"t": "Stylist: \"The back works. The front, not yet.\"", "axes": {"R2": 1}, "tags": [{"id": "T07A", "s": 1}]},
-        {"t": "Hype machine: \"ICONIC.\" They will never doubt it.", "axes": {"R2": -2}, "tags": [{"id": "T07B", "s": 1}]},
-        {"t": "Diplomat: \"Okay, but the shoes, though.\"", "axes": {"R2": -1}, "tags": [{"id": "T07B", "s": 1}], "emotion": "cringe"},
-        {"t": "Mirror: \"Do you love it? Then I love it.\"", "axes": {"R2": -1}, "tags": [{"id": "T07B", "s": 1}]}
+        {"t": "Truth-teller: \"There's a party. You're not on the list. Sorry.\"", "axes": {"R2": 2}, "tags": [{"id": "T07A", "s": 2}], "emotion": "tension"},
+        {"t": "Leaker: Forwards them the invite. \"Just thought you should know.\"", "axes": {"R2": 1}, "tags": [{"id": "T07A", "s": 1}], "emotion": "cringe"},
+        {"t": "Cover story: \"Dead weekend, sadly.\" Then posts zero stories all night.", "axes": {"R2": -2}, "emotion": "guilt"},
+        {"t": "Smuggler: \"Come with me. Act like you were invited.\"", "axes": {"R2": 1}, "emotion": "delight"},
+        {"t": "Plan B: \"Eh, some party. Their loss. Mini golf Saturday, loser pays.\"", "axes": {"R2": -1}, "tags": [{"id": "T07B", "s": 1}], "emotion": "warmth"}
       ],
-      "feel": "cringe",
-      "mask": "looks like a style moment; measures saying the hard truth when asked versus holding the person first (R2) and delivery (T07). Reframed from Sally Q30 (a friend's body) to a new look, and the friend asks, so Direct is never unsolicited critique",
-      "ae": ["A", "B"],
+      "feel": "tension",
+      "mask": "looks like group chat drama; measures saying the hard thing to a friend now versus protecting them first (R2) and plain versus cushioned delivery (T07). Hard news about the friend's place in the group, not their work, look or story, so it no longer repeats C2-1 or C3-12 ('your friend's thing isn't good'). The cover story is a kind lie, so it scores Soft but no T07B (T07B never: dishonest). Round 2: no hint-and-change-the-subject line and no tell-them-later-over-food line, so the answer set no longer mirrors C2-1 and C2-5. The smuggler says the exclusion out loud and overrides it (R2 +1, no tag); Plan B breaks the news now but wraps it in a consolation plan (R2 -1, T07B s1)",
+      "ae": ["A", "B", "E"],
       "friend": {
-        "prompt": "{name}'s friend has a dramatic new haircut that isn't working. They ask: \"Be honest. Love it?\" {name} is the...",
-        "a": {"t": "Critic: \"Not your best. Grow it out.\"", "axes": {"R2": 2}, "tags": [{"id": "T07A", "s": 2}]},
-        "b": {"t": "Hype machine: \"ICONIC.\"", "axes": {"R2": -2}, "tags": [{"id": "T07B", "s": 1}]}
+        "prompt": "{name}'s whole group got invited to a party. One friend didn't, and asks the chat what's on this weekend. {name} is the...",
+        "a": {"t": "Truth-teller: \"There's a party. You're not on the list.\"", "axes": {"R2": 2}, "tags": [{"id": "T07A", "s": 2}]},
+        "b": {"t": "Cover story: \"Dead weekend, sadly.\"", "axes": {"R2": -2}, "tags": []}
       }
     },
     {
       "id": "C2-10",
       "type": "sealed",
       "sally": [],
-      "prompt": "Your friend's new crush still has their ex as their lock screen. Your friend beams: \"So?? What do you all think?\"",
+      "prompt": "Your food arrives. You asked for no cilantro. It is mostly cilantro. The server, beaming: \"How is everything?\"",
       "privacy": "normal",
       "options": [
-        {"t": "\"Honestly? We need to talk about the lock screen.\"", "axes": {"R2": 2}, "tags": [{"id": "T07A", "s": 2}]},
-        {"t": "\"They seem sweet! You look so happy.\"", "axes": {"R2": -2}, "tags": [{"id": "T07B", "s": 1}]},
-        {"t": "Smile now. Bring up the lock screen later, just the two of you.", "axes": {"R2": -1}, "tags": [{"id": "T07B", "s": 2}]},
-        {"t": "Make a joke about it that's clearly not a joke.", "axes": {"R2": 1}, "tags": [{"id": "T07A", "s": 1}]}
+        {"t": "\"Small problem: I asked for no cilantro. Could you swap it?\"", "axes": {"R2": 2}, "tags": [{"id": "T07A", "s": 2}], "emotion": "tension"},
+        {"t": "\"Perfect, thanks!\" Then pick out every leaf for twenty minutes.", "axes": {"R2": -2}, "emotion": "cringe"},
+        {"t": "\"The fries are amazing! The rest is, um, a lot of cilantro?\"", "axes": {"R2": -1}, "tags": [{"id": "T07B", "s": 2}], "emotion": "warmth"},
+        {"t": "Hold up a sprig: \"I think the cilantro snuck in.\"", "axes": {"R2": 1}, "tags": [{"id": "T07A", "s": 1}], "emotion": "delight"}
       ],
-      "feel": "tension",
-      "mask": "finale sealed check on R2 and T07: a new situation (the crush, not the friend's own work or look); Genii's guess comes from the R2 score and the T07 pair",
-      "ae": ["A", "B"]
+      "feel": "cringe",
+      "mask": "finale sealed check on R2 and T07: a stranger, not a friend (a wrong order and a hopeful server), so it repeats neither C3-12 (your person's joke hurt) nor C7-10 (a friend who flakes), which plays right before it; Genii's guess comes from the R2 score and the T07 pair. Option 0 is the Direct guess; the cushioned line compliments first and asks, with no jab (T07B never: passive-aggressive); the kind lie scores Soft but no T07B",
+      "ae": ["A", "B", "E"]
     },
     {
       "id": "C2-11",
@@ -227,8 +226,8 @@
       "options": [
         {"t": "Show up, complain the whole way, take the heavy end.", "axes": {}, "tags": [{"id": "T05A", "s": 2}]},
         {"t": "Cancel the lazy morning. Stay till the last box.", "axes": {}, "tags": [{"id": "T06A", "s": 2}]},
-        {"t": "Come for an hour, then head back to bed.", "axes": {}, "tags": [{"id": "T06B", "s": 2}]},
-        {"t": "Send snacks for the helpers and a very warm text. From bed.", "axes": {}, "tags": [{"id": "T05B", "s": 1}, {"id": "T06B", "s": 1}]}
+        {"t": "Show up at noon, once the heavy stuff is done. Bring pizza.", "axes": {}, "tags": [{"id": "T06B", "s": 2}]},
+        {"t": "Send two friends who owe me one. Cheer them on by text.", "axes": {}, "tags": [{"id": "T05B", "s": 1}, {"id": "T06B", "s": 1}]}
       ],
       "feel": "delight",
       "mask": "finale sealed check on T05 and T06: a physical favor, not money or a late-night talk; Genii's guess comes from whichever of the two pairs is stronger",

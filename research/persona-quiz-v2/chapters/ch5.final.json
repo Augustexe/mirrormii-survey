@@ -25,22 +25,22 @@
     {
       "id": "C5-2",
       "type": "this_or_that",
-      "sally": ["Q17"],
-      "prompt": "Two job offers, both cover the basics. One pays a lot more and bores you stiff. One pays less and you'd love it.",
-      "teenPrompt": "Two part-time jobs, both fit your schedule. One pays way more and bores you stiff. One pays less and you'd love it.",
+      "sally": [],
+      "prompt": "Your boss lets you pick your next assignment. One you've done five times and could do half-asleep. Or one nobody on the team has ever tried.",
+      "teenPrompt": "Next year you get one elective. The sequel to the class you aced, same teacher. Or a brand-new one nobody at school has taken yet.",
       "privacy": "normal",
       "options": [
-        {"t": "The boring one. My fun starts after 6pm.", "axes": {"L1": 2}, "tags": [], "circumstance": false},
-        {"t": "The one I love. Smaller paycheck, happier Mondays.", "axes": {"L1": -2}, "tags": [], "circumstance": false},
-        {"t": "Whichever pays. Right now that's not a choice.", "axes": {}, "tags": [], "emotion": "worry", "circumstance": true}
+        {"t": "The one I could do half-asleep. Surprises are for birthdays.", "axes": {"L1": 2}, "tags": [{"id": "T22B", "s": 2}], "emotion": "relief", "circumstance": false},
+        {"t": "The brand-new one. Day one, I'm googling everything.", "axes": {"L1": -2}, "tags": [{"id": "T22A", "s": 2}], "emotion": "delight", "circumstance": false},
+        {"t": "The safe one. One bad review or grade and I'm done.", "axes": {}, "tags": [], "circumstance": true}
       ],
-      "feel": "tension",
-      "mask": "looks like a dream-job debate; measures security first versus following the pull (L1)",
+      "feel": "curiosity",
+      "mask": "looks like picking your next assignment or class; measures the sure thing versus the untried (L1) with a new-versus-familiar read (T22). Rewritten in the fix pass so it no longer repeats C5-6's safe-pay-versus-passion fork",
       "ae": ["C", "D"],
       "friend": {
-        "prompt": "Two jobs: one pays a lot more and bores {name} stiff, one pays less and {they} would love it. {name} picks…",
-        "a": {"t": "The one that pays more.", "axes": {"L1": 2}, "tags": []},
-        "b": {"t": "The one {they} would love.", "axes": {"L1": -2}, "tags": []}
+        "prompt": "{name} can pick the next assignment: one {they} could do half-asleep, or one nobody has tried. {name} picks…",
+        "a": {"t": "The one {they} could do half-asleep.", "axes": {"L1": 2}, "tags": [{"id": "T22B", "s": 2}]},
+        "b": {"t": "The brand-new one nobody has tried.", "axes": {"L1": -2}, "tags": [{"id": "T22A", "s": 2}]}
       }
     },
     {
@@ -71,10 +71,9 @@
       "privacy": "normal",
       "options": [
         {"t": "Yes. Already practicing the new title out loud.", "axes": {"L2": 2}, "tags": [{"id": "T16A", "s": 2}], "emotion": "pride", "circumstance": false},
-        {"t": "Say yes. Complain about it all year.", "axes": {"L2": 1}, "tags": [{"id": "T16A", "s": 1}], "emotion": "resentment", "circumstance": false},
+        {"t": "Counteroffer: every other Saturday off. Rehearsed it in the mirror.", "axes": {"L2": 1}, "tags": [], "circumstance": false},
         {"t": "Pass. Keep my Saturdays. Wonder 'what if' sometimes.", "axes": {"L2": -2}, "tags": [{"id": "T16B", "s": 2}], "emotion": "longing", "circumstance": false},
-        {"t": "Point them to the person who's wanted it for months.", "axes": {"L2": -1}, "tags": [{"id": "T16B", "s": 1}], "circumstance": false},
-        {"t": "Yes. Saying no isn't really my call here.", "axes": {}, "tags": [], "circumstance": true}
+        {"t": "Point them to the person who's wanted it for months.", "axes": {"L2": -1}, "tags": [{"id": "T16B", "s": 1}], "circumstance": false}
       ],
       "feel": "pride",
       "mask": "looks like a promotion or captaincy dilemma; measures visible wins versus time outside work or school (L2, T16)",
@@ -92,11 +91,11 @@
       "prompt": "Remember the last time your part was done (group project, shift, club thing) and someone asked you to stay and help with theirs? It could have waited till tomorrow.",
       "privacy": "normal",
       "options": [
-        {"t": "Pulled up a chair and made it my problem too.", "axes": {}, "tags": [{"id": "T06A", "s": 2}], "emotion": "warmth", "circumstance": false},
+        {"t": "Did their part while they watched. Faster that way.", "axes": {}, "tags": [{"id": "T06A", "s": 2}], "circumstance": false},
         {"t": "Said 'ten minutes.' Left three hours later.", "axes": {}, "tags": [{"id": "T06A", "s": 2}], "emotion": "resentment", "circumstance": false},
-        {"t": "'Got a thing tonight.' The thing: my couch. Offered the morning.", "axes": {}, "tags": [{"id": "T06B", "s": 2}], "emotion": "relief", "circumstance": false},
+        {"t": "'Got a thing tonight.' The thing: my couch.", "axes": {}, "tags": [{"id": "T06B", "s": 2}], "emotion": "relief", "circumstance": false},
         {"t": "Sent my notes and a 'you got this,' then logged off.", "axes": {}, "tags": [{"id": "T06B", "s": 1}], "emotion": "guilt", "circumstance": false},
-        {"t": "Stayed. Leaving first isn't really allowed where I am.", "axes": {}, "tags": [], "circumstance": true}
+        {"t": "Stayed. Where I am, nobody leaves first.", "axes": {}, "tags": [], "circumstance": true}
       ],
       "feel": "recognition",
       "mask": "looks like a work-ethic question; measures whether someone else's ask overrides your own limit (T06, capacity: tag only, never R2)",
@@ -104,7 +103,7 @@
       "friend": {
         "prompt": "{name}'s part is done. Someone asks {name} to stay and help with theirs, though it could wait. {name}…",
         "a": {"t": "Stays and helps.", "axes": {}, "tags": [{"id": "T06A", "s": 2}]},
-        "b": {"t": "Offers to help in the morning instead.", "axes": {}, "tags": [{"id": "T06B", "s": 2}]}
+        "b": {"t": "Claims a plan tonight. The plan is the couch.", "axes": {}, "tags": [{"id": "T06B", "s": 2}]}
       }
     },
     {
@@ -133,23 +132,23 @@
     {
       "id": "C5-6",
       "type": "scenario",
-      "sally": ["Q19"],
-      "prompt": "Your own thing (art, reselling, a channel) just had its best month ever. Same week, a steady full-time job says 'you're hired.' Your savings could carry you a few months.",
-      "teenPrompt": "Your own thing (art, reselling, a channel) just had its best month ever. Same week, a steady weekend job says 'you're hired.' You saved all summer.",
+      "sally": ["Q19", "Q17"],
+      "prompt": "Your own thing (art, reselling, a channel) just had its best month ever. Growing it for real would take all your savings.",
+      "teenPrompt": "Your own thing (art, reselling, a channel) just had its best month ever. Growing it for real would take everything you saved this summer.",
       "privacy": "normal",
       "options": [
-        {"t": "Go all in on my thing. Tell my parents later.", "axes": {"L1": -2}, "tags": [{"id": "T13A", "s": 2}], "emotion": "delight", "circumstance": false},
-        {"t": "Both. Job by day, my thing till 2am, sleep is a rumor.", "axes": {"L1": 1}, "tags": [{"id": "T13B", "s": 2}], "circumstance": false},
-        {"t": "Take the job. Brave is a next-year problem.", "axes": {"L1": 2}, "tags": [{"id": "T13B", "s": 2}], "emotion": "longing", "circumstance": false},
-        {"t": "The job. Other people are counting on that money.", "axes": {}, "tags": [], "emotion": "worry", "circumstance": true}
+        {"t": "Put every cent in. Tell my parents after.", "axes": {"L1": -2}, "tags": [{"id": "T13A", "s": 2}], "emotion": "delight", "circumstance": false},
+        {"t": "Grow it with what it earns. Savings stay put.", "axes": {"L1": 2}, "tags": [{"id": "T13B", "s": 2}], "emotion": "relief", "circumstance": false},
+        {"t": "Pick up a steady part-time job to fund it.", "axes": {"L1": 1}, "tags": [{"id": "T13B", "s": 1}], "circumstance": false},
+        {"t": "Launch preorders. Let the fans pay for round two.", "axes": {"L1": -1}, "tags": [], "emotion": "hope", "circumstance": false}
       ],
       "feel": "longing",
-      "mask": "looks like a career fork; measures the safety net versus the leap (L1, T13)",
+      "mask": "looks like a side-hustle fork; measures betting your savings on your own thing versus keeping the cushion (L1, T13, Sally Q19). The part-time job line keeps Sally Q17 A (steady pay funds the interest). Fix pass round 2 took the job offer out so chapter 5 no longer has three work offers in five cards, and dropped the money circumstance",
       "ae": ["A", "C", "D"],
       "friend": {
-        "prompt": "Same week: {name}'s side thing has its best month ever and a steady job says 'you're hired.' {name}…",
-        "a": {"t": "Goes all in on the side thing.", "axes": {"L1": -2}, "tags": [{"id": "T13A", "s": 2}]},
-        "b": {"t": "Takes the job, runs the side thing at night.", "axes": {"L1": 1}, "tags": [{"id": "T13B", "s": 2}]}
+        "prompt": "{name}'s own thing just had its best month ever. Growing it would take all {name}'s savings. {name}…",
+        "a": {"t": "Puts every cent in.", "axes": {"L1": -2}, "tags": [{"id": "T13A", "s": 2}]},
+        "b": {"t": "Grows it with what it earns. Savings stay put.", "axes": {"L1": 2}, "tags": [{"id": "T13B", "s": 2}]}
       }
     },
     {
@@ -159,17 +158,17 @@
       "prompt": "The last time someone your age had big news: dream school, dream job, the big move. Maybe a parent forwarded it. No caption.",
       "privacy": "normal",
       "options": [
-        {"t": "Double-tapped. Forgot it by the next video.", "axes": {"L2": -1}, "tags": [{"id": "T17B", "s": 2}], "circumstance": false},
+        {"t": "Double-tapped. Forgot it by the next video.", "axes": {"L2": -1}, "tags": [{"id": "T17B", "s": 2}, {"id": "T16B", "s": 1}], "circumstance": false},
         {"t": "Opened my notes app and started a plan.", "axes": {"L2": 1}, "tags": [{"id": "T17A", "s": 2}], "circumstance": false},
         {"t": "Sent it to a friend: 'wait, are we behind?'", "axes": {}, "tags": [{"id": "T17A", "s": 1}], "emotion": "worry", "circumstance": false},
-        {"t": "Muted them for a week. Not today.", "axes": {}, "tags": [{"id": "T17A", "s": 1}], "emotion": "envy", "circumstance": false}
+        {"t": "Muted them for a week. Not today.", "axes": {}, "tags": [{"id": "T17A", "s": 1}, {"id": "T16A", "s": 1}], "emotion": "envy", "circumstance": false}
       ],
       "feel": "envy",
-      "mask": "looks like a scroll moment; measures how much other people's milestones set your own clock (L2, T17)",
+      "mask": "looks like a scroll moment; measures how much other people's milestones set your own clock (L2, T17), with a slight read on whether visible wins matter to you (T16: shrugging it off versus muting it out of envy)",
       "ae": ["A", "E"],
       "friend": {
         "prompt": "Someone {name}'s age posts huge news: dream job, dream school. What would {they} do?",
-        "a": {"t": "Double-tap and forget it by the next video.", "axes": {"L2": -1}, "tags": [{"id": "T17B", "s": 2}]},
+        "a": {"t": "Double-tap and forget it by the next video.", "axes": {"L2": -1}, "tags": [{"id": "T17B", "s": 2}, {"id": "T16B", "s": 1}]},
         "b": {"t": "Quietly start a plan.", "axes": {"L2": 1}, "tags": [{"id": "T17A", "s": 2}]}
       }
     },

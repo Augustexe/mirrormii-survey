@@ -15,13 +15,13 @@
       "../library/tags.json"
     ],
     "chapters": {
-      "ch1.final.json": "2026-09-26 19:57",
-      "ch2.final.json": "2026-09-26 19:58",
-      "ch3.final.json": "2026-09-26 19:57",
-      "ch4.final.json": "2026-09-26 19:57",
-      "ch5.final.json": "2026-09-26 19:59",
-      "ch6.final.json": "2026-09-26 19:58",
-      "ch7.final.json": "2026-09-26 19:57"
+      "ch1.final.json": "2026-09-26 23:11",
+      "ch2.final.json": "2026-09-26 23:11",
+      "ch3.final.json": "2026-09-26 23:11",
+      "ch4.final.json": "2026-09-26 23:14",
+      "ch5.final.json": "2026-09-26 23:15",
+      "ch6.final.json": "2026-09-26 23:16",
+      "ch7.final.json": "2026-09-26 23:15"
     },
     "note": "Level 2 reads each card's `friend` field from the chapter files. level2.cards is a snapshot computed from the chapter files listed here; if a chapter changes, recompute it with level2.answerMapping (the rule is authoritative, the snapshot is a convenience)."
   },
@@ -124,7 +124,7 @@
         "zh": "朋友／同事",
         "zhStatus": "edited from Sally's 男生好朋友／同事 (gender neutral)",
         "sub": "Everyday stuff only. No love or relationship questions.",
-        "level1Set": "friend",
+        "level1Set": "everyday",
         "level2Primary": "friend",
         "cardLevels": [
           "everyday"
@@ -360,7 +360,8 @@
       "Each option carries its pole (+1 is the first pole in types.json, -1 the second). A pick matches when its pole equals the sign of the owner's axis.",
       "Flex axis (owner has the Flex badge): either pick counts as a hit. Unfinished axis (owner never finished it): either pick counts as a hit, and the result says so.",
       "The six picks build the guessed type: R1 x R2 x R3 gives the relationship half-name, L1 x L2 x L3 the life half-name (types.json). The friend sees the guessed type after question 6.",
-      "Score = hits out of 6, shown as {x}/6 on both result pages."
+      "Score = hits out of 6, shown as {x}/6 on both result pages.",
+      "Wording sets (relationships.options[].level1Set): partner and crush get `friend`, friend or coworker gets `everyday` (the `friend` set with an R1 question that has no love or family framing), bestie gets `bestie`."
     ],
     "guessedTypeLine": {
       "t": "Your guess for {name}: {guessedType}",
@@ -394,6 +395,132 @@
               "label": "Me",
               "t": "Needs {their} own space, however close. Makes the big calls solo.",
               "zh": "我派：再親近也需要自己的空間，人生大事自己拍板。"
+            }
+          ]
+        },
+        {
+          "axis": "R2",
+          "prompt": "A friend of {name}'s messes up and needs to hear it. {name}…",
+          "zh": "朋友做錯事、需要聽真話時，{name}通常會？",
+          "zhStatus": "edited: Sally's F2 mixed directness with being exhausted (the R2 issue in the brief); now directness only",
+          "zhSally": "朋友做錯事、或她自己累到不行時，{名字}通常會？",
+          "options": [
+            {
+              "pole": 1,
+              "label": "Direct",
+              "t": "Says it straight, same day: \"That wasn't okay.\"",
+              "zh": "直給：當天就直說「這樣不對」。",
+              "zhSally": "直給：有話直說，接不住也會直接講。"
+            },
+            {
+              "pole": -1,
+              "label": "Soft",
+              "t": "Holds them first. The hard truth comes later, gently.",
+              "zh": "先接住：先顧對方的情緒，真話晚一點、溫柔地說。",
+              "zhSally": "先接住：先顧你的情緒，真話晚一點再說。"
+            }
+          ]
+        },
+        {
+          "axis": "R3",
+          "prompt": "Holidays, home, how a house should run: {name} leans…",
+          "zh": "說到節日、家和一個家該怎麼運作，{name}更偏向？",
+          "zhStatus": "edited: Sally asked about marriage; the brief needs R3 answerable by teens",
+          "zhSally": "說到結婚、分工、家庭的樣子，{名字}更偏向？",
+          "options": [
+            {
+              "pole": 1,
+              "label": "Classic",
+              "t": "Traditions. Same dishes, same rituals, every single year.",
+              "zh": "老派：傳統的樣子對{they}有意義。"
+            },
+            {
+              "pole": -1,
+              "label": "Own",
+              "t": "{Their} own script. No template required.",
+              "zh": "新派：劇本自己寫，不照範本走。"
+            }
+          ]
+        },
+        {
+          "axis": "L1",
+          "prompt": "When money meets a big chance, {name} is more…",
+          "zh": "面對錢和機會，{name}更像？",
+          "zhStatus": "sally, tokens only",
+          "options": [
+            {
+              "pole": 1,
+              "label": "Steady",
+              "t": "Builds the safety net first. Then maybe jumps.",
+              "zh": "穩：先存好底氣，再談冒險。"
+            },
+            {
+              "pole": -1,
+              "label": "Venture",
+              "t": "Jumps. Would rather regret doing it than skipping it.",
+              "zh": "闖：寧願後悔做過，也不要後悔沒做。"
+            }
+          ]
+        },
+        {
+          "axis": "L2",
+          "prompt": "Wins, goals, life progress: {name} is…",
+          "zh": "說到成就和人生進度，{name}是？",
+          "zhStatus": "sally, tokens only",
+          "options": [
+            {
+              "pole": 1,
+              "label": "Push",
+              "t": "Chasing wins people can see, and a clear direction, soon.",
+              "zh": "衝：想要被看見的成績，也想早點確定方向。"
+            },
+            {
+              "pole": -1,
+              "label": "Easy",
+              "t": "On {their} own clock. Other people's timelines don't count.",
+              "zh": "鬆：按自己的節奏來，不跟別人的時間表比。"
+            }
+          ]
+        },
+        {
+          "axis": "L3",
+          "prompt": "When a rule and someone's real need clash, {name} sides with…",
+          "zh": "規則和人情衝突時，{name}更常站哪邊？",
+          "zhStatus": "sally, tokens only",
+          "options": [
+            {
+              "pole": 1,
+              "label": "Rules",
+              "t": "The rule. The same process for everyone is what's fair.",
+              "zh": "規：流程和次序比較公平。"
+            },
+            {
+              "pole": -1,
+              "label": "Context",
+              "t": "The person. People made the rule, so it can bend.",
+              "zh": "情：規則是人訂的，應該看情況和需要。"
+            }
+          ]
+        }
+      ],
+      "everyday": [
+        {
+          "axis": "R1",
+          "prompt": "With friends and group plans, {name} is more…",
+          "zh": "和朋友、揪團這種事，{name}更像哪一種？",
+          "zhStatus": "new: coworker-safe R1 for friend or coworker (spec open item 9); no love or family framing",
+          "options": [
+            {
+              "pole": 1,
+              "label": "We",
+              "t": "Lots of together time. Big plans get made as a group.",
+              "zh": "我們派：想要很多相處時間，大事喜歡大家一起決定。"
+            },
+            {
+              "pole": -1,
+              "label": "Me",
+              "t": "Needs {their} own space, however close. Makes {their} own calls.",
+              "zh": "我派：再熟也需要自己的空間，自己的事自己拍板。"
             }
           ]
         },
@@ -709,6 +836,7 @@
       "C2-9",
       "C3-3",
       "C1-6",
+      "C1-11",
       "C2-7",
       "C2-3",
       "C7-5",
@@ -796,6 +924,7 @@
           "a",
           "b",
           null,
+          null,
           null
         ]
       },
@@ -838,7 +967,7 @@
           "a",
           "b",
           null,
-          null,
+          "b",
           null
         ]
       },
@@ -858,22 +987,6 @@
           "a",
           "a",
           "b",
-          "b",
-          null
-        ]
-      },
-      "C1-7": {
-        "chapter": 1,
-        "type": "this_or_that",
-        "sally": [],
-        "axes": [],
-        "pairs": [
-          "T04"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
           "b"
         ]
       },
@@ -902,13 +1015,47 @@
         ],
         "axes": [],
         "pairs": [
-          "T03"
+          "T03",
+          "T05"
         ],
         "level": "everyday",
         "teenOk": true,
         "answerMap": [
           "a",
           "b"
+        ]
+      },
+      "C1-7": {
+        "chapter": 1,
+        "type": "this_or_that",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T04"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C1-11": {
+        "chapter": 1,
+        "type": "real",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T02"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          null,
+          null
         ]
       },
       "C2-1": {
@@ -940,14 +1087,14 @@
         ],
         "axes": [],
         "pairs": [
-          "T06"
+          "T06",
+          "T05"
         ],
         "level": "everyday",
         "teenOk": true,
         "answerMap": [
           "a",
-          "b",
-          "b",
+          null,
           "b",
           null
         ]
@@ -1048,7 +1195,7 @@
         "teenOk": true,
         "answerMap": [
           "a",
-          "a",
+          null,
           "a",
           "b",
           null
@@ -1057,9 +1204,7 @@
       "C2-8": {
         "chapter": 2,
         "type": "role",
-        "sally": [
-          "Q30"
-        ],
+        "sally": [],
         "axes": [
           "R2"
         ],
@@ -1072,7 +1217,7 @@
           "a",
           "a",
           "b",
-          "b",
+          "a",
           "b"
         ]
       },
@@ -1130,8 +1275,7 @@
           "a",
           "b",
           null
-        ],
-        "teenNote": "Teen version is a day out on allowance; the friend prompt says moving in together."
+        ]
       },
       "C3-5": {
         "chapter": 3,
@@ -1187,10 +1331,10 @@
         "answerMap": [
           "a",
           "b",
-          "a",
+          null,
           "b",
           "a",
-          "b"
+          null
         ]
       },
       "C4-1": {
@@ -1230,25 +1374,7 @@
           "a",
           "b",
           "b",
-          "a",
-          null
-        ]
-      },
-      "C4-2": {
-        "chapter": 4,
-        "type": "this_or_that",
-        "sally": [
-          "Q13"
-        ],
-        "axes": [],
-        "pairs": [
-          "T15"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b"
+          "a"
         ]
       },
       "C4-4": {
@@ -1260,6 +1386,23 @@
         "axes": [],
         "pairs": [
           "T23"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C4-2": {
+        "chapter": 4,
+        "type": "this_or_that",
+        "sally": [
+          "Q13"
+        ],
+        "axes": [],
+        "pairs": [
+          "T15"
         ],
         "level": "everyday",
         "teenOk": true,
@@ -1293,7 +1436,6 @@
         ],
         "axes": [],
         "pairs": [
-          "T12",
           "T15"
         ],
         "level": "everyday",
@@ -1301,7 +1443,6 @@
         "answerMap": [
           "a",
           "b",
-          "a",
           null,
           null
         ]
@@ -1326,13 +1467,13 @@
       "C5-2": {
         "chapter": 5,
         "type": "this_or_that",
-        "sally": [
-          "Q17"
-        ],
+        "sally": [],
         "axes": [
           "L1"
         ],
-        "pairs": [],
+        "pairs": [
+          "T22"
+        ],
         "level": "everyday",
         "teenOk": true,
         "answerMap": [
@@ -1374,8 +1515,7 @@
           "a",
           "a",
           "b",
-          "b",
-          null
+          "b"
         ]
       },
       "C5-5": {
@@ -1425,7 +1565,8 @@
         "chapter": 5,
         "type": "scenario",
         "sally": [
-          "Q19"
+          "Q19",
+          "Q17"
         ],
         "axes": [
           "L1"
@@ -1439,7 +1580,7 @@
           "a",
           "b",
           "b",
-          null
+          "a"
         ]
       },
       "C5-7": {
@@ -1452,7 +1593,8 @@
           "L2"
         ],
         "pairs": [
-          "T17"
+          "T17",
+          "T16"
         ],
         "level": "everyday",
         "teenOk": true,
@@ -1485,6 +1627,23 @@
           null
         ]
       },
+      "C6-10": {
+        "chapter": 6,
+        "type": "this_or_that",
+        "sally": [],
+        "axes": [
+          "L3"
+        ],
+        "pairs": [
+          "T25"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
       "C6-3": {
         "chapter": 6,
         "type": "this_or_that",
@@ -1496,23 +1655,6 @@
         ],
         "pairs": [
           "T20"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b"
-        ]
-      },
-      "C6-10": {
-        "chapter": 6,
-        "type": "this_or_that",
-        "sally": [],
-        "axes": [
-          "L3"
-        ],
-        "pairs": [
-          "T25"
         ],
         "level": "everyday",
         "teenOk": true,
@@ -1581,9 +1723,9 @@
           "a",
           "b",
           "b",
-          "b"
-        ],
-        "teenNote": "Teen version is parents away for a weekend; the friend prompt says moving in with someone."
+          "b",
+          "a"
+        ]
       },
       "C6-8": {
         "chapter": 6,
@@ -1642,6 +1784,7 @@
         "answerMap": [
           "a",
           "b",
+          null,
           null,
           null
         ]
@@ -1764,8 +1907,8 @@
         "answerMap": [
           "a",
           "b",
-          "b",
-          null
+          "a",
+          "b"
         ]
       }
     },
@@ -1846,7 +1989,7 @@
       "optional": true,
       "skipLabel": "Skip",
       "guardLine": "Jokes only. Every line here is Genii-approved.",
-      "show": "6 of the 12 lines: every line whose tag or its pair is one of the owner's shown tags (up to 3, strongest tags first), then random others; love-tied lines only if love tags are on. Shuffled.",
+      "show": "6 of the 13 lines: every line whose tag or its pair is one of the owner's shown tags (up to 3, strongest tags first), then random others; love-tied lines only if love tags are on. Shuffled.",
       "rules": "Every line roasts a move, never the person: never looks, body, weight, health or diagnoses. The owner can hide any roast from their page with one tap.",
       "roasts": [
         {
@@ -1908,6 +2051,11 @@
           "id": "R12",
           "tag": "T22B",
           "t": "Has ordered the exact same thing at our spot since the day we met."
+        },
+        {
+          "id": "R13",
+          "tag": "T14B",
+          "t": "Bragged about a $12 dupe for a full week. Unprompted."
         }
       ]
     },

@@ -1,7 +1,7 @@
 // Synthetic respondents for the persona quiz v2 scorer. Plain Node, no dependencies.
 //   node sim.mjs          -> tunes thresholds on a grid, checks the shipped CONFIG, prints a report,
 //                            writes SIM-REPORT.md and sim-example/ (one worked respondent)
-//   node sim.mjs --quick  -> smaller population, no report files (used by tests)
+//   node sim.mjs --quick  -> same population, shipped CONFIG only: no grid, no report files (used by tests)
 // Groups: uniform random clickers; consistent respondents (hidden axis and tag positions, 20% noise);
 // skippers (consistent, but skip or exit on 25% of cards; 20% of the consistent population);
 // speed-tappers (consistent first half, rushed and mostly random second half). 30% of every group is teen.
@@ -14,6 +14,10 @@ const DIR = path.dirname(fileURLToPath(import.meta.url));
 const QUICK = process.argv.includes("--quick");
 const AXES = ["R1", "R2", "R3", "L1", "L2", "L3"];
 const PAIRS = [...new Set(lib.tags.map((t) => t.id.slice(0, 3)))];
+const TAGDEF = Object.fromEntries(lib.tags.map((t) => [t.id, t]));
+// Coverage bands: every tag should fire for some consistent respondent; flag tags that fire for almost nobody or
+// almost everybody, and a tag random clickers get too often.
+const COVER = { rareUnder: 0.01, commonOver: 0.6, randomTopOver: 0.35 };
 
 function rng(seed) {
   let s = seed >>> 0 || 1;
@@ -94,8 +98,14 @@ function evaluate(pop, cfg, detail = false) {
   const g = {};
   for (const r of pop) {
     const p = buildProfile(r.answers, cfg);
-    const G = (g[r.kind] ||= { n: 0, shown: [], fired: [], strong: [], zero: 0, over8: 0, tagMatch: [], tagMatchClear: [], axisAcc: [], axisAccClear: [], flex: [], unfinished: [], pole: Object.fromEntries(AXES.map((a) => [a, 0])), exact: 0, called: 0, side: 0, sideOf: 0, passes: 0, rushedOnly: 0, tagCounts: {} });
+    const G = (g[r.kind] ||= { n: 0, adults: 0, shown: [], fired: [], strong: [], zero: 0, over8: 0, tagMatch: [], tagMatchClear: [], axisAcc: [], axisAccClear: [], flex: [], unfinished: [], pole: Object.fromEntries(AXES.map((a) => [a, 0])), exact: 0, called: 0, side: 0, sideOf: 0, passes: 0, rushedOnly: 0, tagCounts: {}, fireN: {}, showN: {}, chapters: [], twist: 0, twistPair: 0 });
     G.n++;
+    if (!r.teen) G.adults++;
+    for (const id of p.firedTags) G.fireN[id] = (G.fireN[id] || 0) + 1;
+    for (const id of p.shownTags) G.showN[id] = (G.showN[id] || 0) + 1;
+    G.chapters.push(new Set(p.shownTags.map((id) => TAGDEF[id].chapter)).size);
+    const tw = p.splits.find((s) => s.twistOk);
+    if (tw) { G.twist++; if (tw.kind === "tag pair") G.twistPair++; }
     G.shown.push(p.shownTags.length);
     G.fired.push(p.firedTags.length);
     G.strong.push(p.strongTags.length);
@@ -137,14 +147,31 @@ function evaluate(pop, cfg, detail = false) {
       poleShare: Object.fromEntries(AXES.map((a) => [a, G.pole[a] / G.n])),
       exactRate: G.called ? G.exact / G.called : 0, sideRate: G.sideOf ? G.side / G.sideOf : 0, passRate: G.passes / (G.n * kit.finale.length),
       rushedOnlyTags: G.rushedOnly,
+      // Per-tag fire and show rates. Locked18 tags are rated over adults only (teens can never get them).
+      fireRate: Object.fromEntries(lib.tags.map((t) => [t.id, (G.fireN[t.id] || 0) / ((t.locked18 ? G.adults : G.n) || 1)])),
+      showRate: Object.fromEntries(lib.tags.map((t) => [t.id, (G.showN[t.id] || 0) / ((t.locked18 ? G.adults : G.n) || 1)])),
+      chaptersMean: mean(G.chapters),
+      twistRate: G.twist / G.n, twistPairRate: G.twistPair / G.n,
     };
   }
   return out;
 }
 
+function coverage(ev) {
+  const c = ev.consistent;
+  const never = lib.tags.filter((t) => !c.fireRate[t.id]).map((t) => t.id);
+  const rare = lib.tags.filter((t) => c.fireRate[t.id] > 0 && c.fireRate[t.id] < COVER.rareUnder).map((t) => t.id);
+  const common = lib.tags.filter((t) => c.fireRate[t.id] > COVER.commonOver).map((t) => t.id);
+  const top = lib.tags.map((t) => [t.id, ev.random.fireRate[t.id]]).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))[0];
+  return { fired: lib.tags.length - never.length, of: lib.tags.length, never, rare, common, randomTop: top[0], randomTopRate: top[1] };
+}
+
+// Keys in targets() that are reported but are not pass/fail.
+const INFO = new Set(["poleMax", "tagsFired", "randomTopTagRate", "flaggedRare", "flaggedCommon", "flaggedRandomTop"]);
 function targets(ev) {
   const c = ev.consistent;
   const poleMax = Math.max(...AXES.map((a) => Math.max(c.poleShare[a], 1 - c.poleShare[a])));
+  const cov = coverage(ev);
   return {
     randomStrongUnder1_5: ev.random.strongMean < 1.5,
     consistent3to5: c.in3to5 >= 0.7 && c.shownMean >= 3 && c.shownMean <= 5,
@@ -153,13 +180,20 @@ function targets(ev) {
     consistentNoZero: c.zero === 0,
     noneOver8: c.over8 === 0,
     sealedAbove25: c.exactRate >= 0.35,
+    allTagsReachable: cov.never.length === 0, // all 50 tags fire for at least one consistent respondent (locked18: adults)
     poleMax,
+    tagsFired: cov.fired,
+    randomTopTagRate: cov.randomTopRate,
+    flaggedRare: cov.rare.length,
+    flaggedCommon: cov.common.length,
+    flaggedRandomTop: cov.randomTopRate > COVER.randomTopOver,
   };
 }
-const passes = (t) => Object.entries(t).filter(([k]) => k !== "poleMax").every(([, v]) => v);
+const passes = (t) => Object.entries(t).filter(([k]) => !INFO.has(k)).every(([, v]) => v);
 
 // ---------------------------------------------------------------- run
-const sizes = QUICK ? { random: 120, consistent: 200, speed: 40 } : { random: 400, consistent: 800, speed: 120 };
+// --quick keeps the full population (the coverage target needs it; one evaluation takes well under a second).
+const sizes = { random: 400, consistent: 800, speed: 120 };
 const pop = population(sizes);
 const t0 = Date.now();
 
@@ -175,6 +209,9 @@ if (!QUICK) {
 }
 const shipped = evaluate(pop, CONFIG, true);
 const shippedT = targets(shipped);
+const shippedCov = coverage(shipped);
+const byNet = evaluate(pop, { ...CONFIG, tagRank: "net" }); // the pre fix-pass ranking, for comparison
+const spread = (e) => { const r = Object.values(e.showRate); return { distinct: r.filter((x) => x > 0).length, top: Math.max(...r) }; };
 const ms = Date.now() - t0;
 
 const fmt = (e) => `tags shown ${e.shownMean.toFixed(2)} (fired ${e.firedMean.toFixed(2)}, strong ${e.strongMean.toFixed(2)}), 3-5 tags ${pct(e.in3to5)}, zero-tag ${e.zero}, tag sign match ${pct(e.tagMatch)} (clear ${pct(e.tagMatchClear)}), axis recovery ${pct(e.axisAcc)} (clear ${pct(e.axisAccClear)}), flex ${pct(e.flexRate)}, unfinished ${pct(e.unfinishedRate)}, sealed exact ${pct(e.exactRate)} / side ${pct(e.sideRate)} / pass ${pct(e.passRate)}`;
@@ -184,19 +221,26 @@ lines.push(`shipped CONFIG: tagFire ${CONFIG.tagFire}, tagStrong ${CONFIG.tagStr
 for (const k of ["random", "consistent", "skipper", "speed"]) if (shipped[k]) lines.push(`${k.padEnd(10)} ${fmt(shipped[k])}`);
 lines.push(`pole share (consistent, % first pole): ${AXES.map((a) => `${a} ${pct(shipped.consistent.poleShare[a])}`).join(", ")}`);
 lines.push(`pole share (random clickers, card bias check): ${AXES.map((a) => `${a} ${pct(shipped.random.poleShare[a])}`).join(", ")}`);
-lines.push(`targets: ${Object.entries(shippedT).map(([k, v]) => `${k}=${typeof v === "number" ? pct(v) : v ? "PASS" : "FAIL"}`).join(", ")}`);
+const tv = (k, v) => (k === "tagsFired" ? `${v}/${lib.tags.length}` : k === "flaggedRare" || k === "flaggedCommon" ? `${v}` : k === "flaggedRandomTop" ? (v ? "YES" : "no") : typeof v === "number" ? pct(v) : v ? "PASS" : "FAIL");
+lines.push(`targets: ${Object.entries(shippedT).map(([k, v]) => `${k}=${tv(k, v)}`).join(", ")}`);
+lines.push(`tag coverage (consistent): ${shippedCov.fired} of ${shippedCov.of} tags ever fire${shippedCov.never.length ? `; never: ${shippedCov.never.join(" ")}` : ""}`);
+lines.push(`  under ${pct(COVER.rareUnder)}: ${shippedCov.rare.join(" ") || "none"}; over ${pct(COVER.commonOver)}: ${shippedCov.common.join(" ") || "none"}`);
+lines.push(`  random clickers' most-fired tag: ${shippedCov.randomTop} ${pct(shippedCov.randomTopRate)}${shippedCov.randomTopRate > COVER.randomTopOver ? " (FLAG: over " + pct(COVER.randomTopOver) + ")" : ""}`);
+lines.push(`ranking (consistent): share ranking: ${spread(shipped.consistent).distinct} distinct tags shown, most-shown ${pct(spread(shipped.consistent).top)}, ${shipped.consistent.chaptersMean.toFixed(2)} chapters, match ${pct(shipped.consistent.tagMatch)}; net ranking: ${spread(byNet.consistent).distinct} distinct, most-shown ${pct(spread(byNet.consistent).top)}, ${byNet.consistent.chaptersMean.toFixed(2)} chapters, match ${pct(byNet.consistent.tagMatch)}`);
+lines.push(`plot twist (consistent): ${pct(shipped.consistent.twistRate)} get one (${pct(shipped.consistent.twistPairRate)} from a linked tag pair)`);
 lines.push(`speed-tapper tags evidenced only by rushed taps: ${shipped.speed.rushedOnlyTags}`);
 lines.push(`scored ${grid.length + 1} configs in ${ms} ms`);
 console.log(lines.join("\n"));
 
 if (!QUICK) {
   const okGrid = grid.filter((x) => x.ok);
-  console.log(`grid: ${okGrid.length} of ${grid.length} configs meet every target`);
+  const okBase = grid.filter((x) => passes({ ...x.t, allTagsReachable: true }));
+  console.log(`grid: ${okGrid.length} of ${grid.length} configs meet every target (${okBase.length} meet every target except tag coverage)`);
   // A worked example: the first consistent adult with a split, at least 3 tags and a typical sealed score (50 to 75% exact).
   let ex = null;
   for (const r of pop.filter((x) => x.kind === "consistent" && !x.teen)) {
     const p = buildProfile(r.answers);
-    if (!p.splits.length || p.shownTags.length < 3 || p.type.unfinished.length) continue;
+    if (!p.splits.some((s) => s.twistOk) || p.shownTags.length < 3 || p.type.unfinished.length) continue;
     const c = checkSealed(freezePredictions(p), r.sealed);
     if (c.exactRate !== null && c.exactRate >= 0.5 && c.exactRate <= 0.75) { ex = { r, p }; break; }
   }
@@ -211,7 +255,7 @@ if (!QUICK) {
   fs.writeFileSync(path.join(exDir, "result.json"), JSON.stringify(res, null, 2) + "\n");
   fs.writeFileSync(path.join(exDir, "sealed-results.json"), JSON.stringify(chk, null, 2) + "\n");
 
-  const row = (x) => `| ${x.tagFire} | ${x.tagStrong} | ${x.flexBand} | ${x.ev.random.strongMean.toFixed(2)} | ${x.ev.random.shownMean.toFixed(2)} | ${x.ev.consistent.shownMean.toFixed(2)} | ${pct(x.ev.consistent.in3to5)} | ${x.ev.consistent.zero} | ${pct(x.ev.consistent.tagMatch)} | ${pct(x.ev.consistent.exactRate)} | ${pct(x.ev.consistent.passRate)} | ${pct(x.t.poleMax)} | ${x.ok ? "yes" : "no"} |`;
+  const row = (x) => `| ${x.tagFire} | ${x.tagStrong} | ${x.flexBand} | ${x.ev.random.strongMean.toFixed(2)} | ${x.ev.random.shownMean.toFixed(2)} | ${x.ev.consistent.shownMean.toFixed(2)} | ${pct(x.ev.consistent.in3to5)} | ${x.ev.consistent.zero} | ${pct(x.ev.consistent.tagMatch)} | ${x.t.tagsFired} | ${pct(x.ev.consistent.exactRate)} | ${pct(x.ev.consistent.passRate)} | ${pct(x.t.poleMax)} | ${x.ok ? "yes" : "no"} |`;
   const tbl = (e) => `| ${e.n} | ${e.shownMean.toFixed(2)} | ${e.firedMean.toFixed(2)} | ${e.strongMean.toFixed(2)} | ${pct(e.in3to5)} | ${e.zero} | ${pct(e.tagMatch)} | ${pct(e.axisAcc)} | ${pct(e.flexRate)} | ${pct(e.unfinishedRate)} | ${pct(e.exactRate)} | ${pct(e.sideRate)} | ${pct(e.passRate)} |`;
   const md = `# Simulation report (persona quiz v2)
 
@@ -232,7 +276,9 @@ Generated by \`node sim.mjs\` on the assembled kit (\`cards.json\`: ${kit.chapte
 | tagFire | ${CONFIG.tagFire} | net weighted support (tag minus its pair) needed to fire |
 | tagStrong | ${CONFIG.tagStrong} | net support that marks a fired tag strong |
 | flexBand | ${CONFIG.flexBand} | normalized axis score below this is Flex |
+| tagRank | ${CONFIG.tagRank} | shown-tag order: strong tags first by net, then the other fired tags by coverage share (net / the most the player's answered cards could give that tag), then net |
 | splitMin | ${CONFIG.splitMin} | weighted evidence each side needs for a split |
+| twistPairLink | ${CONFIG.twistPairLink.join(", ")} | a tag-pair split becomes the plot twist only when its two quoted cards share one of these; axis splits always qualify |
 | rushed | under ${CONFIG.rushedMs} ms counts at ${CONFIG.rushedFactor} | brief |
 
 ## Results with the shipped thresholds
@@ -261,16 +307,38 @@ Speed-tappers: tags shown whose only supporting evidence was rushed taps: ${ship
 | no consistent respondent gets 0 tags | ${shipped.consistent.zero}: ${shippedT.consistentNoZero ? "pass" : "FAIL"} |
 | nobody is shown more than 8 (the page caps at 5) | ${shippedT.noneOver8 ? "pass" : "FAIL"}; before the cap, consistent respondents fire ${shipped.consistent.firedMean.toFixed(1)} on average (max ${shipped.consistent.firedMax}), random clickers ${shipped.random.firedMean.toFixed(1)} |
 | sealed exact clearly above 25% (consistent) | ${pct(shipped.consistent.exactRate)}: ${shippedT.sealedAbove25 ? "pass" : "FAIL"} |
+| all ${lib.tags.length} tags reachable in sim (fire for at least one consistent respondent; locked18 tags: adults) | ${shippedCov.fired} of ${shippedCov.of}${shippedCov.never.length ? ` (never: ${shippedCov.never.join(", ")})` : ""}: ${shippedT.allTagsReachable ? "pass" : "FAIL"} |
+
+## Tag coverage
+
+Share of consistent respondents (${shipped.consistent.n}) for whom each tag fires and is shown. Locked18 tags are rated over adults only. Flags (reported, not pass/fail): fires for under ${pct(COVER.rareUnder)} ("rare") or over ${pct(COVER.commonOver)} ("common").
+
+| tag | name | chapter | fires | shown | random fires | flag |
+|---|---|---|---|---|---|---|
+${lib.tags.map((t) => { const f = shipped.consistent.fireRate[t.id]; const flag = !f ? "NEVER" : f < COVER.rareUnder ? "rare" : f > COVER.commonOver ? "common" : ""; return `| ${t.id}${t.locked18 ? " (18+)" : ""} | ${t.name} | ${t.chapter} | ${pct(f)} | ${pct(shipped.consistent.showRate[t.id])} | ${pct(shipped.random.fireRate[t.id])} | ${flag} |`; }).join("\n")}
+
+${shippedCov.fired} of ${shippedCov.of} tags fire at least once. Rare: ${shippedCov.rare.join(", ") || "none"}. Common: ${shippedCov.common.join(", ") || "none"}. Random clickers' most-fired tag: ${TAGDEF[shippedCov.randomTop].name} (${shippedCov.randomTop}) at ${pct(shippedCov.randomTopRate)}${shippedCov.randomTopRate > COVER.randomTopOver ? `: FLAG, over ${pct(COVER.randomTopOver)}` : ` (flag line ${pct(COVER.randomTopOver)})`}.
+
+## Shown-tag ranking
+
+Strong tags (net at least tagStrong) show first by net. The remaining fired tags are ranked by coverage share: net support divided by the most net support the cards this player actually answered (not skipped, exited, circumstance or "depends") could have given that tag, then by net. The chapter-spread swap still runs. Comparison on the same consistent respondents:
+
+| ranking | tags shown | chapters covered | shown tags match hidden | distinct tags ever shown | most-shown tag |
+|---|---|---|---|---|---|
+| share (shipped) | ${shipped.consistent.shownMean.toFixed(2)} | ${shipped.consistent.chaptersMean.toFixed(2)} | ${pct(shipped.consistent.tagMatch)} | ${spread(shipped.consistent).distinct} | ${pct(spread(shipped.consistent).top)} |
+| net only (before) | ${byNet.consistent.shownMean.toFixed(2)} | ${byNet.consistent.chaptersMean.toFixed(2)} | ${pct(byNet.consistent.tagMatch)} | ${spread(byNet.consistent).distinct} | ${pct(spread(byNet.consistent).top)} |
+
+Plot twist: ${pct(shipped.consistent.twistRate)} of consistent respondents get one, ${pct(shipped.consistent.twistPairRate)} from a tag-pair split whose quoted cards share a Sally question or chapter; every other twist is an axis split.
 
 ## Tuning grid
 
 Every combination was scored on the same population. "ok" means every target above passes.
 
-| tagFire | tagStrong | flexBand | random strong | random shown | consistent shown | consistent 3 to 5 | consistent 0 tags | tag match | sealed exact | sealed pass | max pole | ok |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| tagFire | tagStrong | flexBand | random strong | random shown | consistent shown | consistent 3 to 5 | consistent 0 tags | tag match | tags that fire | sealed exact | sealed pass | max pole | ok |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 ${grid.map(row).join("\n")}
 
-${okGrid.length} of ${grid.length} combinations meet every target. Why the shipped values:
+${okGrid.length} of ${grid.length} combinations meet every target; ${okBase.length} meet every target except "all tags reachable" (coverage depends on the cards more than on the thresholds). Why the shipped values:
 
 - **tagFire ${CONFIG.tagFire}**: the highest fire threshold that keeps consistent respondents in 3 to 5 tags. Lower values (1.5 to 2.0) also pass but show random clickers 3.4 to 4.7 tags; higher values (2.75 and up) push consistent respondents under 3 and leave some with none. Support comes in steps (0.45, 0.55 or 0.80 times strength 1 to 3), so the grid moves in jumps.
 - **tagStrong ${CONFIG.tagStrong}**: random clickers average well under 1.5 strong tags (the brief's bar) while consistent respondents average about 3.

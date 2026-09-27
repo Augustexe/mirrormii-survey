@@ -2,6 +2,7 @@
   "chapter": 4,
   "title": "Money and treats",
   "intro": "Money talk. No judgment. Okay, a little judgment.",
+  "order": ["C4-1", "C4-5", "C4-8", "C4-4", "C4-2", "C4-3", "C4-7"],
   "cards": [
     {
       "id": "C4-1",
@@ -34,8 +35,7 @@
         {"t": "Bought it on the spot. A new look is half the fun.", "axes": {}, "tags": [{"id": "T14A", "s": 2}], "emotion": "delight"},
         {"t": "Cleared out a few old ones first, then bought it.", "axes": {}, "tags": [{"id": "T14B", "s": 2}]},
         {"t": "Left it in my cart for a week. The feeling passed.", "axes": {}, "tags": [{"id": "T14B", "s": 1}], "emotion": "pride"},
-        {"t": "Bought it, then hid the bag for a few days.", "axes": {}, "tags": [{"id": "T14A", "s": 1}], "emotion": "guilt"},
-        {"t": "Money said no, so that was that.", "circumstance": true}
+        {"t": "Bought it, then hid the bag for a few days.", "axes": {}, "tags": [{"id": "T14A", "s": 1}], "emotion": "guilt"}
       ],
       "feel": "guilt",
       "mask": "looks like a shopping confession; measures whether a full collection limits a new treat (Sally Q36, T14, did-grade)",
@@ -54,16 +54,16 @@
       "teenPrompt": "Your friend's parents paid for a private coach all year. They made the team and say, 'I earned this spot.'",
       "privacy": "normal",
       "options": [
-        {"t": "'You earned it!' I say, and mean it.", "axes": {}, "tags": [{"id": "T15A", "s": 2}], "emotion": "warmth"},
-        {"t": "Must be nice. Somebody had to say it.", "axes": {}, "tags": [{"id": "T15B", "s": 2}], "emotion": "irritation"}
+        {"t": "'You earned it!' I say, and mean it.", "axes": {}, "tags": [{"id": "T15A", "s": 3}], "emotion": "warmth"},
+        {"t": "Must be nice. Somebody had to say it.", "axes": {}, "tags": [{"id": "T15B", "s": 3}], "emotion": "irritation"}
       ],
       "feel": "tension",
-      "mask": "looks like a hot take on a friend; measures whether you credit the effort or name the family head start (Sally Q13, T15)",
+      "mask": "looks like a hot take on a friend; measures whether you credit the effort or name the family head start (Sally Q13, T15). Strength 3 both sides: this is the one card that asks Q13 head on",
       "ae": ["B", "C"],
       "friend": {
         "prompt": "A friend whose parents helped a lot says 'I worked so hard for this.' What does {name} think?",
-        "a": {"t": "'You earned it!' And means it.", "axes": {}, "tags": [{"id": "T15A", "s": 2}]},
-        "b": {"t": "Must be nice.", "axes": {}, "tags": [{"id": "T15B", "s": 2}]}
+        "a": {"t": "'You earned it!' And means it.", "axes": {}, "tags": [{"id": "T15A", "s": 3}]},
+        "b": {"t": "Must be nice.", "axes": {}, "tags": [{"id": "T15B", "s": 3}]}
       }
     },
     {
@@ -93,7 +93,7 @@
       "privacy": "normal",
       "options": [
         {"t": "Buy them. I've already worn them in my head.", "axes": {}, "tags": [{"id": "T14A", "s": 2}], "emotion": "delight"},
-        {"t": "The other pair. Nobody looks at my feet anyway.", "axes": {}, "tags": [{"id": "T14B", "s": 2}], "emotion": "pride"}
+        {"t": "The other pair. The 11 videos were the fun part.", "axes": {}, "tags": [{"id": "T14B", "s": 2}], "emotion": "pride"}
       ],
       "feel": "longing",
       "mask": "looks like a shopping choice; measures paying for the version you love versus the one that does the same job (Sally Q34, T14)",
@@ -108,41 +108,40 @@
       "id": "C4-7",
       "type": "scenario",
       "sally": ["Q16"],
-      "prompt": "Your group of four runs a weekend pop-up and makes $400. Same hours each. Kai's glitter phone charms sold most of it.",
-      "teenPrompt": "Your group of four runs a bake sale table and makes $120. Same hours each. Kai's brownies sold most of it.",
+      "prompt": "Your team's fundraiser wraps. You pick the MVP, and $100 comes with it. Kai raised the most with one post to 40k followers. Remy raised almost as much, door to door.",
+      "teenPrompt": "Your club's fundraiser wraps. You pick the MVP, and a $50 gift card comes with it. Kai raised the most with one post to 4k followers. Remy raised almost as much, door to door.",
       "privacy": "normal",
       "options": [
-        {"t": "Bigger cut for Kai. Talent gets paid.", "axes": {}, "tags": [{"id": "T15A", "s": 2}]},
-        {"t": "Four equal piles. Kai gets bragging rights.", "axes": {}, "tags": [{"id": "T15B", "s": 1}, {"id": "T12B", "s": 1}]},
-        {"t": "Equal piles, then I slip Kai $20 of mine. Shh.", "axes": {}, "tags": [{"id": "T15A", "s": 1}], "emotion": "warmth"},
-        {"t": "Put it to a vote. Majority wins, even if I sulk.", "axes": {"L3": 1}, "tags": []},
-        {"t": "Skip the split. Team dinner, all of it.", "axes": {}, "tags": [], "emotion": "delight"}
+        {"t": "Kai. Most raised wins. Those followers didn't build themselves.", "axes": {}, "tags": [{"id": "T15A", "s": 2}]},
+        {"t": "Remy. Kai posted once. The followers did the rest.", "axes": {}, "tags": [{"id": "T15B", "s": 2}]},
+        {"t": "Whoever's broke this month gets it. Kai will survive.", "axes": {}, "tags": [{"id": "T12B", "s": 2}], "emotion": "warmth"},
+        {"t": "Put it to a vote. Majority wins, even if I sulk.", "axes": {"L3": 1}, "tags": []}
       ],
       "feel": "tension",
-      "mask": "looks like splitting cash; measures crediting results versus shared effort (Sally Q16, T15, slight T12B), with a fair-process exit (L3)",
+      "mask": "looks like picking an MVP; measures crediting the result (T15A) versus spotting the head start behind it (T15B), with an award by need (T12B) and a fair-process exit (L3). Sally Q16 reframed in fix pass round 2 (reward the result or look at what made it) so it no longer reads as splitting money and never repeats C3-3's equal-versus-proportional split",
       "ae": ["A", "B", "C"],
       "friend": {
-        "prompt": "{name}'s group of four made $400. Kai's phone charms sold most of it. How does {name} split it?",
-        "a": {"t": "Bigger cut for Kai.", "axes": {}, "tags": [{"id": "T15A", "s": 2}]},
-        "b": {"t": "Four equal piles.", "axes": {}, "tags": [{"id": "T15B", "s": 1}, {"id": "T12B", "s": 1}]}
+        "prompt": "{name} picks the fundraiser MVP. Kai raised the most with one post to 40k followers. Remy raised almost as much, door to door. Who gets it?",
+        "a": {"t": "Kai. Most raised wins.", "axes": {}, "tags": [{"id": "T15A", "s": 2}]},
+        "b": {"t": "Remy. The followers did Kai's work.", "axes": {}, "tags": [{"id": "T15B", "s": 2}]}
       }
     },
     {
       "id": "C4-8",
       "type": "pick_two",
       "sally": [],
-      "prompt": "If your bank app could talk, which two would it bring up first?",
+      "prompt": "Money memes that might be about you. Which two are painfully accurate?",
       "privacy": "normal",
       "options": [
         {"t": "I have a savings goal with a name.", "axes": {"L1": 1}, "tags": [{"id": "T13B", "s": 1}]},
         {"t": "I've booked something before checking my balance.", "axes": {"L1": -1}, "tags": [{"id": "T13A", "s": 1}]},
-        {"t": "I own the fancy version of one boring thing.", "axes": {}, "tags": [{"id": "T14A", "s": 1}]},
-        {"t": "I've bragged about a dupe for a full week.", "axes": {}, "tags": [{"id": "T14B", "s": 1}]},
+        {"t": "I've watched a 'broke to six figures' video. Twice. Took notes.", "axes": {}, "tags": [{"id": "T15A", "s": 1}]},
+        {"t": "Everything under $20 counts as basically free.", "axes": {}, "tags": [{"id": "T24B", "s": 1}]},
         {"t": "I could tell you what I spent on boba last month.", "axes": {}, "tags": [{"id": "T24A", "s": 1}]},
         {"t": "My fun money is gone by the 10th. Somehow.", "axes": {}, "tags": [{"id": "T24B", "s": 1}]}
       ],
       "feel": "recognition",
-      "mask": "looks like a money meme list; measures save versus leap (L1, T13), treat versus trim (T14) and track versus feel (T24), each slight",
+      "mask": "looks like a money meme list; measures save versus leap (L1, T13), believing effort pays (T15A) and track versus feel (T24), each slight. Fix pass round 2 dropped the head-start line (C4-2 and C4-7 already carry T15B) so the hot take is not asked twice in three cards",
       "ae": ["A", "D"]
     },
     {

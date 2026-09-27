@@ -76,3 +76,20 @@ Rule for conflicts: the evidence auditor wins on scoring, Theo plus the audience
 
 ## Verification (node, same checks as the writers)
 The file parses; ids are unique; every tag id exists in tags.json; axis ids are valid with values from -2 to 2; each card has 2 to 6 options; every option is 14 words or fewer; every prompt is 32 words or fewer; there are no em dashes. I also checked by script that no two cards of the same type are adjacent, no two neighbours share an axis or tag pair, each option has at most 2 axes and 3 tags, and each flip has 3 conditions. Result: PASS.
+
+## Fix pass 2026-09-26
+
+- **C7-10 (rewritten, open item 2):** it repeated C2-3 (someone who let the group down asks back in). It is now: "Your friend has flaked on the last four hangouts. Now they've booked an escape room for six: 'Deposit's paid. Send me $25.'" This is not a let-them-back-in moment. It asks whether you trust that someone has changed. T08A: send the $25 now (s2), write it in my calendar in pen (s1). T08B: pay at the door (s2), ask to see the booking email first (s1). T08A support from this card stays at 1.10, and T08B's at 1.10. The options follow T08's never lines: no one is naive or vindictive. The old no-evidence option C7-10.3 is gone (open item 6). The friend field was rewritten.
+- **C7-3 (T22, open item 1):** "Go. Pack tonight" and "Stay. My people, my spots" rise from s2 to s3 on T22A / T22B. A year away from a good life is the core Q46 trigger, so it is strong evidence. The friend sides match. With C5-2 as the new third card, T22A and T22B each go from 1.55 to 3.00.
+- **C7-6 (T18B third card, open item 1):** it adds "Gave my family two hours of errands. Kept the rest for me." (T18B s1: help given, with a stop time). The prompt now says "Nothing planned, nothing due" instead of "nobody needing you", so a family ask can happen. T18B goes from 2.00 to 2.80.
+- **C7-7 (no-evidence options, open item 6):** "Give them my ticket too. Watch their stories from bed." gets T06A s1, for generosity at your own cost. "Stall until one of them says 'it's fine, take them.'" gets R2 -1: it avoids saying the hard no. Neither neighbour (C7-2, C7-9) carries T06 or R2.
+- **C7-S1 (sealed, open item 6):** "Make both. Submit whichever one actually gets finished." gets L3 -1: the situation decides, not the brief. It is not L2, because the finale neighbour C5-S1 is an L2 card.
+- **C7-S2 (open item 10):** unchanged. The T22 cards (C5-2 assignment, C7-3 city, C7-9 restaurant and comfort show) do not use the go-to spot that knows your order. The T22B call swap is the library agent's job.
+
+## Fix pass round 2
+
+- **C7-10 (flow high ladder, evidence fix 5, writing):** it had four options but only two stances, and "Big vote of confidence" read as sarcasm. Now there are four distinct moves: "Send the $25 right now. Everyone gets a comeback era." (T08A s2, kept), "Pay at the door. If there is a door." (T08B s2, kept), "Offer them a ride there. Like old times." (T08A s1: invests in them showing up), "Say I'm in. Keep my other plan for that night alive." (T08B s1: commits but hedges). The flow judge's screenshot line was not used, because "screenshot" is already the run's banned repeat. T08A stays at 2.65 and T08B at 3.00. The border into the finale (C7-10 T08 to C2-10 R2/T07) stays clean.
+- **C7-9 (flow medium, the C7-6 twin):** the two T23 lines restated C7-6. They are now "I've volunteered the whole group for something. Twice." (T23A s1) and "I'll repost any good cause. From my pottery class." (T23B s1). T23B stays at 2.50.
+- **C7-6 option 3 (writing, optional):** now "Gave my family two hours of errands. Then phone off, door shut." (T18B s1, same behavior).
+- **C7-3 circumstance (flow, money-says-no fatigue):** "Money or family keeps me here." became "Can't this year. Too many people need me here."
+- **C7-S1 option 0 (flow low):** "The brief is the brief" repeated C6-10's "Rule's a rule". It is now "Make the 10 slides. Done by Tuesday, font size 32." (L3 +2, T25A s2, unchanged).

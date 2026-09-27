@@ -99,7 +99,7 @@
       "sally": [
         "Q47"
       ],
-      "prompt": "Your last truly free afternoon. Nothing planned, nobody needing you. Where did it actually go?",
+      "prompt": "Your last truly free afternoon. Nothing planned, nothing due. Where did it actually go?",
       "privacy": "normal",
       "options": [
         {
@@ -133,12 +133,23 @@
           ]
         },
         {
+          "t": "Gave my family two hours of errands. Then phone off, door shut.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T18B",
+              "s": 1
+            }
+          ],
+          "emotion": "relief"
+        },
+        {
           "t": "Got pulled into a shift or family stuff. Not really free.",
           "circumstance": true
         }
       ],
       "feel": "recognition",
-      "mask": "looks like a free-afternoon recap; measures whether free time goes to your own thing or to helping with someone else's (Sally Q47, T23 only)",
+      "mask": "looks like a free-afternoon recap; measures whether free time goes to your own thing or to helping with someone else's (Sally Q47, T23 only); the fix pass adds a capped family-help line as T18B's third card (help given, with a stop time)",
       "ae": [
         "A",
         "D"
@@ -361,7 +372,7 @@
           "tags": [
             {
               "id": "T22A",
-              "s": 2
+              "s": 3
             }
           ],
           "emotion": "delight"
@@ -374,7 +385,7 @@
           "tags": [
             {
               "id": "T22B",
-              "s": 2
+              "s": 3
             }
           ],
           "emotion": "warmth"
@@ -392,7 +403,7 @@
           "tags": []
         },
         {
-          "t": "Can't right now. Money or family keeps me here.",
+          "t": "Can't this year. Too many people need me here.",
           "circumstance": true
         }
       ],
@@ -421,7 +432,7 @@
           "tags": [
             {
               "id": "T22A",
-              "s": 2
+              "s": 3
             }
           ]
         },
@@ -433,7 +444,7 @@
           "tags": [
             {
               "id": "T22B",
-              "s": 2
+              "s": 3
             }
           ]
         }
@@ -576,18 +587,25 @@
         {
           "t": "Give them my ticket too. Watch their stories from bed.",
           "axes": {},
-          "tags": [],
+          "tags": [
+            {
+              "id": "T06A",
+              "s": 1
+            }
+          ],
           "emotion": "longing"
         },
         {
           "t": "Stall until one of them says 'it's fine, take them.'",
-          "axes": {},
+          "axes": {
+            "R2": -1
+          },
           "tags": [],
           "emotion": "guilt"
         }
       ],
       "feel": "tension",
-      "mask": "looks like concert logistics; measures L3: keep the queue order or go by who needs it more right now (Sally Q40 as an everyday last-spot card)",
+      "mask": "looks like concert logistics; measures L3: keep the queue order or go by who needs it more right now (Sally Q40 as an everyday last-spot card). Giving away your own ticket is generosity at your own cost (T06A slight); stalling until someone backs out avoids saying the hard no (R2 soft, slight)",
       "ae": [
         "A",
         "B",
@@ -669,7 +687,7 @@
           ]
         },
         {
-          "t": "Someone says 'I need hands' and I'm already putting on shoes.",
+          "t": "I've volunteered the whole group for something. Twice.",
           "axes": {},
           "tags": [
             {
@@ -679,7 +697,7 @@
           ]
         },
         {
-          "t": "Weekends are booked. Me, my project, do not disturb.",
+          "t": "I'll repost any good cause. From my pottery class.",
           "axes": {},
           "tags": [
             {
@@ -700,11 +718,11 @@
       "id": "C7-10",
       "type": "scenario",
       "sally": [],
-      "prompt": "Last week your squad's fourth rage-quit mid-match and cost you the win. Today they message: 'my bad, can I get back in?'",
+      "prompt": "Your friend has flaked on the last four hangouts. Now they've booked an escape room for six: 'Deposit's paid. Send me $25.'",
       "privacy": "normal",
       "options": [
         {
-          "t": "Send the invite. Everyone gets one bad night.",
+          "t": "Send the $25 right now. Everyone gets a comeback era.",
           "axes": {},
           "tags": [
             {
@@ -715,18 +733,7 @@
           "emotion": "warmth"
         },
         {
-          "t": "Let them in. Bring up the rage-quit every single round.",
-          "axes": {},
-          "tags": [
-            {
-              "id": "T08B",
-              "s": 1
-            }
-          ],
-          "emotion": "delight"
-        },
-        {
-          "t": "Find a new fourth. Once was enough.",
+          "t": "Pay at the door. If there is a door.",
           "axes": {},
           "tags": [
             {
@@ -734,25 +741,40 @@
               "s": 2
             }
           ],
-          "emotion": "irritation"
+          "emotion": "delight"
         },
         {
-          "t": "Reply 'lol maybe' and hope they forget.",
+          "t": "Offer them a ride there. Like old times.",
           "axes": {},
-          "tags": [],
-          "emotion": "cringe"
+          "tags": [
+            {
+              "id": "T08A",
+              "s": 1
+            }
+          ],
+          "emotion": "hope"
+        },
+        {
+          "t": "Say I'm in. Keep my other plan for that night alive.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T08B",
+              "s": 1
+            }
+          ]
         }
       ],
-      "feel": "irritation",
-      "mask": "looks like squad drama; measures T08: a second chance for someone who let the team down (library NEW ch7 trigger; gives T08 its second card)",
+      "feel": "hope",
+      "mask": "looks like escape-room logistics; measures T08: trusting that someone has changed versus waiting for proof. Rewritten in the fix pass so it no longer repeats C2-3's let-them-back-in setup; still T08's ch7 card. Fix pass round 2: four distinct moves (pay now, pay at the door, give them a ride, keep a backup plan) instead of two stances at two strengths",
       "ae": [
         "A",
         "B"
       ],
       "friend": {
-        "prompt": "{name}'s squad mate rage-quit last week and now asks to get back in. {name}...",
+        "prompt": "{name}'s friend has flaked on the last four hangouts, then books an escape room and asks for $25 upfront. {name}...",
         "a": {
-          "t": "Sends the invite. Everyone gets one bad night",
+          "t": "Sends the $25 right away",
           "axes": {},
           "tags": [
             {
@@ -762,7 +784,7 @@
           ]
         },
         "b": {
-          "t": "Finds a new fourth. Once was enough",
+          "t": "Pays at the door, if it happens",
           "axes": {},
           "tags": [
             {
@@ -781,7 +803,7 @@
       "privacy": "normal",
       "options": [
         {
-          "t": "Make the 10 slides. The brief is the brief.",
+          "t": "Make the 10 slides. Done by Tuesday, font size 32.",
           "axes": {
             "L3": 2
           },
@@ -806,7 +828,9 @@
         },
         {
           "t": "Make both. Submit whichever one actually gets finished.",
-          "axes": {},
+          "axes": {
+            "L3": -1
+          },
           "tags": []
         },
         {

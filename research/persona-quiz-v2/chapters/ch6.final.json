@@ -31,24 +31,18 @@
       }
     },
     {
-      "id": "C6-3",
+      "id": "C6-9",
       "type": "this_or_that",
-      "sally": ["Q04"],
-      "prompt": "Your cousin quit a big career to stay home with the baby. Their partner works now. Grandma is still recovering from the news. Your own home, someday?",
-      "teenPrompt": "Your friend's parent quit a big job to run the house and now wins every bake sale. The other parent runs the business. Your own home, someday?",
-      "privacy": "normal",
+      "sally": ["Q09"],
+      "prompt": "You and your person: six years, a shared dog, a joint Costco card. Your aunt asks, 'So when's the wedding?'",
+      "privacy": "locked18",
       "options": [
-        {"t": "Same energy. Mine could run that way too.", "axes": {"R3": -2}, "tags": [{"id": "T20B", "s": 2}]},
-        {"t": "Love it for them. Mine would run classic.", "axes": {"R3": 1}, "tags": [{"id": "T20A", "s": 3}]}
+        {"t": "Soon. Vows out loud, and Grandma crying in row one.", "axes": {"R3": 2}, "tags": [{"id": "T21A", "s": 2}]},
+        {"t": "Never needed one. The dog is our marriage certificate.", "axes": {"R3": -2}, "tags": [{"id": "T21B", "s": 2}, {"id": "T11B", "s": 1}]}
       ],
-      "feel": "recognition",
-      "mask": "looks like an opinion on another family; measures whether the new script is fine for others but not for you (R3, T20A split)",
-      "ae": ["B", "D"],
-      "friend": {
-        "prompt": "{name}'s cousin quits a big career to stay home with the baby. Would {name} run a home that way?",
-        "a": {"t": "Yes, same energy.", "axes": {"R3": -2}, "tags": [{"id": "T20B", "s": 2}]},
-        "b": {"t": "Love it for them, classic for {name}.", "axes": {"R3": 1}, "tags": [{"id": "T20A", "s": 3}]}
-      }
+      "feel": "tension",
+      "mask": "looks like a nosy-aunt moment; measures whether commitment needs the classic ritual to count (R3, T21, T11B slight)",
+      "ae": ["B", "D"]
     },
     {
       "id": "C6-10",
@@ -70,18 +64,24 @@
       }
     },
     {
-      "id": "C6-9",
+      "id": "C6-3",
       "type": "this_or_that",
-      "sally": ["Q09"],
-      "prompt": "You and your person: six years, a shared dog, a joint Costco card. Your aunt asks, 'So when's the wedding?'",
-      "privacy": "locked18",
+      "sally": ["Q04"],
+      "prompt": "Your cousin quit a big career to stay home with the baby. Their partner works now. Grandma is still recovering from the news. Your own home, someday?",
+      "teenPrompt": "Your friend's parent quit a big job to run the house and now wins every bake sale. The other parent runs the business. Your own home, someday?",
+      "privacy": "normal",
       "options": [
-        {"t": "Soon. Vows out loud, and Grandma crying in row one.", "axes": {"R3": 2}, "tags": [{"id": "T21A", "s": 2}]},
-        {"t": "Never needed one. The dog is our marriage certificate.", "axes": {"R3": -2}, "tags": [{"id": "T21B", "s": 2}, {"id": "T11B", "s": 1}]}
+        {"t": "Same energy. Mine could run that way too.", "axes": {"R3": -2}, "tags": [{"id": "T20B", "s": 2}]},
+        {"t": "Love it for them. Mine would run classic.", "axes": {"R3": 1}, "tags": [{"id": "T20A", "s": 3}]}
       ],
-      "feel": "tension",
-      "mask": "looks like a nosy-aunt moment; measures whether commitment needs the classic ritual to count (R3, T21, T11B slight)",
-      "ae": ["B", "D"]
+      "feel": "recognition",
+      "mask": "looks like an opinion on another family; measures whether the new script is fine for others but not for you (R3, T20A split)",
+      "ae": ["B", "D"],
+      "friend": {
+        "prompt": "{name}'s cousin quits a big career to stay home with the baby. Would {name} run a home that way?",
+        "a": {"t": "Yes, same energy.", "axes": {"R3": -2}, "tags": [{"id": "T20B", "s": 2}]},
+        "b": {"t": "Love it for them, classic for {name}.", "axes": {"R3": 1}, "tags": [{"id": "T20A", "s": 3}]}
+      }
     },
     {
       "id": "C6-4",
@@ -107,22 +107,22 @@
       }
     },
     {
-      "id": "C6-5",
-      "type": "feeling",
+      "id": "C6-11",
+      "type": "role",
       "sally": [],
-      "follows": "C6-4",
-      "prompt": "When the family asked who'd help, what hit you first?",
-      "privacy": "normal",
+      "prompt": "Big family wedding. 300 guests, an open bar, a toast that's on page six. You're the one…",
+      "privacy": "locked18",
       "options": [
-        {"t": "Guilt, for even hesitating.", "axes": {}, "tags": [], "emotion": "guilt"},
-        {"t": "Worry. About them, not the schedule.", "axes": {}, "tags": [], "emotion": "worry"},
-        {"t": "A tiny voice asking, 'Why is it always me?'", "axes": {}, "tags": [], "emotion": "resentment"},
-        {"t": "Warmth. This is what family is for.", "axes": {}, "tags": [], "emotion": "warmth"},
-        {"t": "Relief that I'm not an only child.", "axes": {}, "tags": [], "emotion": "relief"}
+        {"t": "Leading the family dance. I've known the steps since I was five.", "tags": [{"id": "T21A", "s": 2}], "emotion": "delight"},
+        {"t": "Doing open-bar math. That's a whole used car.", "tags": [{"id": "T21B", "s": 2}]},
+        {"t": "Cornering the grandparents: 'Okay, 50 years. What's the trick?'", "tags": [{"id": "T21A", "s": 1}]},
+        {"t": "Timing the toast. We're on page four of six.", "tags": [{"id": "T21B", "s": 1}]},
+        {"t": "Herding three generations into one photo. Twice.", "tags": [{"id": "T21A", "s": 1}]},
+        {"t": "Running the kids' table. Great at it. Zero plans for my own.", "tags": [{"id": "T11B", "s": 1}], "emotion": "delight"}
       ],
-      "feel": "guilt",
-      "mask": "looks like a check-in; measures the emotion under family duty (research record and tag copy only, no profile evidence)",
-      "ae": ["E"]
+      "feel": "recognition",
+      "mask": "looks like a wedding-guest cast list; measures whether a wedding is a family ritual worth the fuss or money better spent elsewhere (T21, 18+ only), with a no-kids line (T11B slight, the evidence judge's third T11B source). Fix pass round 2 made it behaviour in someone else's wedding so it no longer restates C6-7's own-celebration lines, and placed it four cards from C6-9 and C6-7",
+      "ae": ["B", "D"]
     },
     {
       "id": "C6-2",
@@ -135,7 +135,7 @@
         {"t": "Sent a sibling or an aunt in first to soften them up.", "axes": {"R1": 1}, "tags": [{"id": "T19B", "s": 2}]},
         {"t": "Dropped it. Peace at home was worth more.", "axes": {"R1": 2}, "tags": [{"id": "T19B", "s": 2}], "emotion": "relief"},
         {"t": "Said I'd 'think about it.' Waited till they forgot, then did it.", "axes": {"R1": -1}, "tags": [{"id": "T19A", "s": 2}]},
-        {"t": "Went with theirs. Their money, their rules.", "circumstance": true}
+        {"t": "Went with theirs. They were paying for it.", "circumstance": true}
       ],
       "feel": "tension",
       "mask": "looks like a family argument story; measures whether your big calls are made together or by you (R1, T19)",
@@ -154,17 +154,18 @@
       "teenPrompt": "Your parents are away for the weekend. You and your sibling are in charge. By Saturday the sink is full and the trash smells.",
       "privacy": "normal",
       "options": [
-        {"t": "Run it like home: nobody sits till the dishes are done.", "axes": {"R3": 2}, "tags": [{"id": "T20A", "s": 2}]},
+        {"t": "Run it like home: nobody sits till the dishes are done.", "axes": {"R3": 2}},
         {"t": "Split by what we each hate least. I'll take trash.", "axes": {"R3": -2}, "tags": [{"id": "T20B", "s": 2}]},
         {"t": "Make a chore wheel. Spin it every Sunday. No appeals.", "axes": {"R3": -1, "L3": 1}},
-        {"t": "Bribe them with snacks to do all of it.", "axes": {"R3": -1}, "tags": [{"id": "T20B", "s": 1}]}
+        {"t": "Bribe them with snacks to do all of it.", "axes": {"R3": -1}, "tags": [{"id": "T20B", "s": 1}]},
+        {"t": "Do my half the way I was raised. Their half, their call.", "axes": {"R3": 1}, "tags": [{"id": "T20A", "s": 3}]}
       ],
       "feel": "cringe",
-      "mask": "looks like a chore standoff; measures whether a home runs on the inherited script or one you write from scratch (R3, T20)",
+      "mask": "looks like a chore standoff; measures whether a home runs on the inherited script or one you write from scratch (R3, T20). Plain classic scores R3 only; T20A comes only from the mixed line (my half classic, theirs their call)",
       "ae": ["A", "D"],
       "friend": {
         "prompt": "{name} moves in with someone. The sink is full and nobody moves. What does {name} do?",
-        "a": {"t": "Runs it like home: nobody sits till the dishes are done.", "axes": {"R3": 2}, "tags": [{"id": "T20A", "s": 2}]},
+        "a": {"t": "Runs it like home: nobody sits till the dishes are done.", "axes": {"R3": 2}, "tags": []},
         "b": {"t": "Splits chores by what each of them hates least.", "axes": {"R3": -2}, "tags": [{"id": "T20B", "s": 2}]}
       }
     },
@@ -173,14 +174,14 @@
       "type": "role",
       "sally": ["Q23"],
       "prompt": "Your parents want you to keep helping an adult sibling who never quite gets it together. In that story, you're the…",
-      "teenPrompt": "Your sibling keeps needing a rescue: homework, chores, excuses. Your parents say, 'Help them, they're family.' In that story, you're the…",
+      "teenPrompt": "Your sibling keeps needing a rescue: homework, chores, cash. Your parents say, 'Help them, they're family.' In that story, you're the…",
       "privacy": "normal",
       "options": [
-        {"t": "Safety net. I cover them, every single time.", "tags": [{"id": "T18A", "s": 3}]},
+        {"t": "Bank. Open 24/7. No questions, no lecture.", "tags": [{"id": "T18A", "s": 3}]},
         {"t": "Deadline. 'Last time' comes with an actual date.", "tags": [{"id": "T18B", "s": 2}]},
         {"t": "Grumbler. I help, then vent about it all week.", "tags": [{"id": "T18A", "s": 1}], "emotion": "resentment"},
         {"t": "Secret sponsor. I help, and nobody else knows.", "tags": [{"id": "T18A", "s": 2}]},
-        {"t": "Ghost. Suddenly busy whenever they call.", "tags": [{"id": "T18B", "s": 1}]},
+        {"t": "Landlord. I help. Rent is my dishes for a week.", "tags": [{"id": "T18B", "s": 1}]},
         {"t": "Referee. I tell my parents to stop asking me. They don't.", "tags": [{"id": "T18B", "s": 1}]}
       ],
       "feel": "recognition",
@@ -188,7 +189,7 @@
       "ae": ["A", "B"],
       "friend": {
         "prompt": "{name}'s sibling keeps needing a rescue, and the parents say 'help, you're family.' {name} is the…",
-        "a": {"t": "Safety net, every single time.", "tags": [{"id": "T18A", "s": 3}]},
+        "a": {"t": "Bank. Open 24/7, no questions.", "tags": [{"id": "T18A", "s": 3}]},
         "b": {"t": "Deadline. 'Last time' comes with an actual date.", "tags": [{"id": "T18B", "s": 2}]}
       }
     },
@@ -199,15 +200,15 @@
       "prompt": "Someday, your big celebration: a wedding, or whatever your version is. Your budget, your call. Pick the two that must happen.",
       "privacy": "normal",
       "options": [
-        {"t": "Every relative there, even the ones I can't name.", "axes": {"R3": 1}, "tags": [{"id": "T21A", "s": 1}, {"id": "T20A", "s": 1}]},
-        {"t": "Every ritual, in order, even the ones nobody can explain.", "axes": {"R3": 1}, "tags": [{"id": "T20A", "s": 1}]},
-        {"t": "Something from my grandparents: a ring, a dish, a song.", "axes": {"R3": 1}, "tags": [{"id": "T20A", "s": 1}]},
+        {"t": "Every relative there, even the ones I can't name.", "axes": {"R3": 1}, "tags": [{"id": "T21A", "s": 1}]},
+        {"t": "Every ritual, in order, even the ones nobody can explain.", "axes": {"R3": 1}, "tags": [{"id": "T21A", "s": 1}]},
+        {"t": "Something handed down: a ring, a dish, a song.", "axes": {"R3": 1}, "tags": []},
         {"t": "Ten people max. The best dinner of our lives.", "axes": {"R3": -1}, "tags": [{"id": "T21B", "s": 1}, {"id": "T20B", "s": 1}]},
         {"t": "Most of the money goes to a trip or a home.", "axes": {"R3": -1}, "tags": [{"id": "T21B", "s": 1}, {"id": "T20B", "s": 1}]},
         {"t": "Something nobody's done: a hike, a game night, a beach.", "axes": {"R3": -1}, "tags": [{"id": "T20B", "s": 1}]}
       ],
       "feel": "longing",
-      "mask": "looks like party planning; measures whether a big life moment should follow the ritual or your own design (R3, T20; T21 scores for 18+ players only, per the library rule that locked18 tags fire only from 18+ play)",
+      "mask": "looks like party planning; measures whether a big life moment should follow the ritual or your own design (R3, T20B; plain classic picks score R3 only, never T20A; T21 scores for 18+ players only, per the library rule that locked18 tags fire only from 18+ play)",
       "ae": ["D"]
     },
     {
@@ -217,13 +218,13 @@
       "prompt": "The big family holiday. Someone suggests skipping the usual dinner this year and doing something totally different.",
       "privacy": "normal",
       "options": [
-        {"t": "Absolutely not. Same dishes, same seats, same fight.", "axes": {"R3": 2}, "tags": [{"id": "T20A", "s": 2}]},
+        {"t": "Absolutely not. Same dishes, same seats, same fight.", "axes": {"R3": 2}, "tags": []},
         {"t": "Yes! Karaoke room, takeout, everyone in pajamas.", "axes": {"R3": -2}, "tags": [{"id": "T20B", "s": 2}]},
         {"t": "Keep the one dish that matters. Reinvent the rest.", "axes": {"R3": -1}, "tags": [{"id": "T20B", "s": 1}]},
-        {"t": "Do both: classic dinner first, the new thing after.", "axes": {"R3": 1}, "tags": [{"id": "T20A", "s": 1}]}
+        {"t": "Do both: classic dinner first, the new thing after.", "axes": {"R3": 1}, "tags": [{"id": "T20A", "s": 2}]}
       ],
       "feel": "delight",
-      "mask": "looks like holiday planning; measures whether tradition is the point or a starting draft (R3, T20); teen-safe R3 check, served in the finale (slot 3), not in chapter 6",
+      "mask": "looks like holiday planning; measures whether tradition is the point or a starting draft (R3, T20). Plain classic scores R3 only; T20A sits on 'Do both', the mixed move (their new thing, my classic dinner); teen-safe R3 check, served in the finale (slot 3), not in chapter 6",
       "ae": ["A", "D"]
     }
   ]

@@ -38,7 +38,14 @@ export const CONFIG = {
   tagMinCards: 2, // separate cards that must support a tag
   maxTags: 5,
   minChapters: 3, // shown tags come from at least this many chapters where possible
+  // Shown-tag ranking. "share": strong tags (net >= tagStrong) first by net, then the other fired tags by coverage
+  // share (net / the most net support the cards this player answered could have given the tag), then by net.
+  // "net": every fired tag by net (the pre fix-pass ranking, kept for sim comparison).
+  tagRank: "share",
   splitMin: 0.4, // both believe and did/would evidence must reach this (weighted) to call a split
+  // Plot twist: an axis split always qualifies. A tag-pair split qualifies only when the quoted believe card and the
+  // quoted did/would card share one of these ("sally" question, "chapter"), so a twist never joins unrelated situations.
+  twistPairLink: ["sally", "chapter"],
   sealedPairScale: 1.2, // tag-pair net support that counts as a full-strength profile position for sealed guesses
   sealedTagWeight: 0.6, // tag evidence weight relative to axis evidence in sealed guesses
 };
@@ -127,6 +134,7 @@ export function buildProfile(answers, cfg = {}) {
   const feelings = [];
   const research = { circumstance: [], notMyLife: [], noRecent: [], skipped: [], unanswered: [], depends: [], rushed: [], gatedOut: [], ms: answers._ms || {} };
   const answered = {};
+  const scoringCards = []; // { card, w, picks } for every answer that can carry evidence (the coverage-share denominator)
 
   for (const card of scored) {
     if (!gateOpen(card, answers)) {
@@ -141,6 +149,7 @@ export function buildProfile(answers, cfg = {}) {
     if (a.kind === "no_recent") { research.noRecent.push(card.id); continue; }
     if (a.rushed) research.rushed.push({ card: card.id, ms: a.ms });
     const w = card.weight * (a.rushed ? C.rushedFactor : 1);
+    if (w && a.picks.some((i) => !card.options[i].circumstance && !card.options[i].depends)) scoringCards.push({ card, w });
     for (const i of a.picks) {
       const o = card.options[i];
       if (o.emotion) emotions.push({ emotion: o.emotion, card: card.id, said: o.t, rushed: a.rushed });
@@ -195,6 +204,7 @@ export function buildProfile(answers, cfg = {}) {
   // Tags
   const sup = (id) => (tagEv[id] || []).reduce((s, e) => s + e.sup, 0);
   const tags = {};
+  const raw = {}; // unrounded net and share, used for ranking
   for (const t of lib.tags) {
     if (teen && t.locked18) continue;
     const ev = tagEv[t.id] || [];
@@ -204,15 +214,18 @@ export function buildProfile(answers, cfg = {}) {
     const calm = new Set(ev.filter((e) => !e.rushed).map((e) => e.card));
     const fired = cards.size >= C.tagMinCards && calm.size >= 1 && net >= C.tagFire;
     if (!ev.length && !sup(t.pair)) continue;
+    const possible = scoringCards.reduce((s, x) => s + x.w * cardTagMax(x.card, t.id), 0);
+    const share = possible > 0 ? net / possible : 0;
+    raw[t.id] = { net, share };
     tags[t.id] = {
-      name: t.name, pair: t.pair, chapter: t.chapter, support: round(support), net: round(net), cards: cards.size, calmCards: calm.size,
+      name: t.name, pair: t.pair, chapter: t.chapter, support: round(support), net: round(net), possible: round(possible), share: round(share),
+      cards: cards.size, calmCards: calm.size,
       fired, strong: fired && net >= C.tagStrong, leaning: false,
       floorOk: cards.size >= C.tagMinCards && calm.size >= 1 && net >= C.tagFloor,
       evidence: ev.map(({ card, said, s, w, grade, rushed, chapter }) => ({ card, chapter, said, s, w: round(w), grade, rushed })),
     };
   }
-  const fired = Object.entries(tags).filter(([, t]) => t.fired)
-    .sort((a, b) => b[1].net - a[1].net || b[1].cards - a[1].cards || a[0].localeCompare(b[0]));
+  const fired = rankTags(Object.keys(tags).filter((id) => tags[id].fired), raw, tags, C).map((id) => [id, tags[id]]);
   let shown = pickSpread(fired.map(([id]) => id), tags, C);
   if (!shown.length) {
     const floor = Object.entries(tags).filter(([, t]) => t.floorOk).sort((a, b) => b[1].net - a[1].net)[0];
@@ -228,18 +241,31 @@ export function buildProfile(answers, cfg = {}) {
   };
   for (const ax of AXES) for (const e of axisEv[ax]) addDim(ax, e, e.w * e.v);
   for (const [id, ev] of Object.entries(tagEv)) for (const e of ev) addDim(pairOf(id), e, e.sup * pairSign(id));
+  // A split qualifies for the plot twist (twistOk) when it is an axis split, or a tag-pair split whose quoted believe
+  // card and quoted did/would card share a Sally question or a chapter (CONFIG.twistPairLink). For a tag pair, the
+  // quoted cards are the strongest linked couple (a did card first, as for axes); with no linked couple the split is
+  // kept for research with twistOk false.
+  const bySize = (a, b) => Math.abs(b.signed) - Math.abs(a.signed) || a.order - b.order;
   const splits = [];
   for (const [dim, d] of Object.entries(dims)) {
     if (Math.abs(d.believe) < C.splitMin || Math.abs(d.act) < C.splitMin || sign(d.believe) === sign(d.act)) continue;
-    const said = d.believeEv.filter((e) => sign(e.signed) === sign(d.believe)).sort((a, b) => Math.abs(b.signed) - Math.abs(a.signed))[0];
-    const acts = d.actEv.filter((e) => sign(e.signed) === sign(d.act));
-    const did = acts.filter((e) => e.grade === "did").sort((a, b) => Math.abs(b.signed) - Math.abs(a.signed))[0] || acts.sort((a, b) => Math.abs(b.signed) - Math.abs(a.signed))[0];
+    const says = d.believeEv.filter((e) => sign(e.signed) === sign(d.believe)).sort(bySize);
+    const acts = d.actEv.filter((e) => sign(e.signed) === sign(d.act)).sort((a, b) => (b.grade === "did") - (a.grade === "did") || bySize(a, b));
+    const kind = AXES.includes(dim) ? "axis" : "tag pair";
+    let said = says[0], did = acts[0], twistOk = true, link = null;
+    if (kind === "tag pair") {
+      twistOk = false;
+      for (const act of acts) {
+        const hit = says.map((b) => [b, cardLink(b.card, act.card, C)]).find(([, l]) => l);
+        if (hit) { [said, link] = hit; did = act; twistOk = true; break; }
+      }
+    }
     splits.push({
-      dim, kind: AXES.includes(dim) ? "axis" : "tag pair", believe: round(d.believe), act: round(d.act), strength: round(Math.min(Math.abs(d.believe), Math.abs(d.act))),
+      dim, kind, believe: round(d.believe), act: round(d.act), strength: round(Math.min(Math.abs(d.believe), Math.abs(d.act))), twistOk, link,
       said: { card: said.card, text: said.said }, did: { card: did.card, text: did.said, grade: did.grade },
     });
   }
-  splits.sort((a, b) => (b.did.grade === "did") - (a.did.grade === "did") || b.strength - a.strength);
+  splits.sort(twistOrder);
 
   const emoCount = {};
   for (const e of emotions) emoCount[e.emotion] = (emoCount[e.emotion] || 0) + 1;
@@ -264,7 +290,54 @@ export function buildProfile(answers, cfg = {}) {
   };
 }
 
-// Up to maxTags, strongest first, from at least minChapters chapters where possible.
+// Most net support (tag strength minus pair strength, before the card weight) one answer to this card can give a tag.
+// pick_two counts its best two picks. Never below 0.
+const tagMaxCache = new Map();
+export function cardTagMax(card, tagId) {
+  const key = `${card.id}|${tagId}`;
+  if (tagMaxCache.has(key)) return tagMaxCache.get(key);
+  const pair = TAG[tagId] ? TAG[tagId].pair : null;
+  const vals = card.options.map((o) => (o.tags || []).reduce((s, t) => s + (t.id === tagId ? t.s : t.id === pair ? -t.s : 0), 0))
+    .map((v) => Math.max(0, v)).sort((a, b) => b - a);
+  const m = card.type === "pick_two" ? (vals[0] || 0) + (vals[1] || 0) : vals[0] || 0;
+  tagMaxCache.set(key, m);
+  return m;
+}
+
+// Split order; the first twistOk split is the plot twist. Twist-eligible first; then a real (did) card on the acted
+// side; then axis before tag pair; then strength; then dim id.
+export function twistOrder(a, b) {
+  return b.twistOk - a.twistOk || (b.did.grade === "did") - (a.did.grade === "did") ||
+    (a.kind === "axis" ? 0 : 1) - (b.kind === "axis" ? 0 : 1) || b.strength - a.strength || a.dim.localeCompare(b.dim);
+}
+
+// Do two cards share a Sally question or a chapter (per CONFIG.twistPairLink)? Returns the link or null.
+export function cardLink(idA, idB, C = CONFIG) {
+  const a = cardById[idA], b = cardById[idB];
+  if (!a || !b || idA === idB) return null;
+  if (C.twistPairLink.includes("sally")) {
+    const q = (a.sally || []).find((x) => (b.sally || []).includes(x));
+    if (q) return `sally ${q}`;
+  }
+  if (C.twistPairLink.includes("chapter") && typeof a.chapter === "number" && a.chapter === b.chapter) return `chapter ${a.chapter}`;
+  return null;
+}
+
+// Fired-tag ranking (CONFIG.tagRank). "share": strong tags first by net; the rest by coverage share, then net.
+// "net": all by net. Ties: more cards, then tag id, so the order is deterministic.
+export function rankTags(ids, raw, tags, C = CONFIG) {
+  const strong = (id) => raw[id].net >= C.tagStrong;
+  const tie = (a, b) => tags[b].cards - tags[a].cards || a.localeCompare(b);
+  return [...ids].sort((a, b) => {
+    if (C.tagRank === "net") return raw[b].net - raw[a].net || tie(a, b);
+    if (strong(a) !== strong(b)) return strong(b) - strong(a);
+    if (strong(a)) return raw[b].net - raw[a].net || tie(a, b);
+    return raw[b].share - raw[a].share || raw[b].net - raw[a].net || tie(a, b);
+  });
+}
+
+// Up to maxTags in rank order (ids arrive ranked), from at least minChapters chapters where possible. A swap drops the
+// lowest-ranked tag from a chapter that has two and adds the best-ranked tag from a new chapter. Output keeps rank order.
 function pickSpread(ids, tags, C) {
   const picked = ids.slice(0, C.maxTags);
   const chapters = () => new Set(picked.map((id) => tags[id].chapter));
@@ -281,7 +354,7 @@ function pickSpread(ids, tags, C) {
     else if (picked.length >= C.maxTags) break;
     picked.push(add);
   }
-  return picked.sort((a, b) => tags[b].net - tags[a].net);
+  return picked.sort((a, b) => ids.indexOf(a) - ids.indexOf(b));
 }
 
 export function typeOf(axes) {
@@ -317,7 +390,7 @@ export function buildResult(p) {
       if (c && calls.length < 3 && !calls.some((x) => x.line === c)) calls.push({ line: c, fromTag: id });
     }
   }
-  const s = p.splits[0];
+  const s = p.splits.find((x) => x.twistOk);
   const plotTwist = s ? {
     line: s.did.grade === "did" ? `You'd say: ‘${s.said.text}’ Last time, you did: ‘${s.did.text}’` : `You'd say: ‘${s.said.text}’ Put on the spot, you'd go with: ‘${s.did.text}’`,
     dim: s.dim, said: s.said, did: s.did,

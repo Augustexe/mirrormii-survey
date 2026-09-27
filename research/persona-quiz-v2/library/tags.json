@@ -4,7 +4,7 @@
   "rules": {
     "pairs": "Every tag has exactly one opposite (pair). Support for a tag counts against its pair. The pair is the decoy card in friend game Level 3.",
     "firing": "A tag fires with support from at least 2 separate cards, at least 1 not rushed, and net support (minus its pair) above the simulation threshold. Circumstance, Not my life, No recent example and Skip never count. Up to 5 shown, strongest first, from at least 3 chapters where possible.",
-    "triggers": "Trigger strings name the Sally question (Qnn), the chapter, the situation and the answer direction that evidences the tag. 'reframed' means Sally's premise was replaced per the brief; 'NEW' is a card this library needs that Sally did not have; '(slight)' means strength 1 at most. Card authors map these to option-level tags.",
+    "triggers": "Each trigger string names the card id and card type ('golden' marks a golden card), then in parentheses the Sally question it answers when there is one (Qnn; 'reframed' means Sally's premise was replaced per the brief; '18+' marks a locked18 card), then the situation, and after the arrow the behavior (the option or options) that evidences the tag. '(slight)' means strength 1. The strings describe the evidence; the scored values live on the card options in chapters/*.final.json, and the strings are synced from the cards after card edits.",
     "stingAndHeart": "Sting is owner only. Name and heart are shareable.",
     "locked18": "Marriage and kids tags. Never shown to players under 18. friendGame defaultOff: they enter the friend game card pool (true, opposite or decoy) only if the owner opts in, per Sally.",
     "loveTag": "Love tags (loveTag true) appear in friend game Level 3 only when the owner sends to a partner or bestie, or to a crush when the owner opts in; never for a friend or coworker (Sally's friend-version relationship table, pairs 1 and 2, extended to the new love pair T10).",
@@ -32,14 +32,14 @@
       "heart": "Letting you all the way in is how I feel safe.",
       "calls": [
         "You know at least one person's passcode by heart.",
-        "Your location is shared with someone right now, and you forgot it was on.",
-        "If your person asked for your phone tonight, you'd hand it over unlocked."
+        "Someone else's face or fingerprint can unlock your phone.",
+        "You've let someone scroll your camera roll without checking what's in it first."
       ],
       "never": "Controlling, jealous or lacking boundaries.",
       "triggers": [
-        "Q41 ch1: your person suggests swapping passcodes, nothing has happened → yes, it feels natural",
-        "Q42 reframed ch1: a find-my-friends app wants your location → share it with your close people, always on",
-        "Q05 ch3: how you spend time with your person → most free time together, sharing the whole day (slight)"
+        "C1-2 scenario (Q41): your person asks to swap passcodes, nothing's wrong → type yours into their phone on the spot, or point out you already swapped",
+        "C1-5 scenario (Q42 reframed): the friend group's live map app wants your location → Always, or share with your top three",
+        "C1-11 golden real: a message that mattered got 'Read', no reply → handed your best friend your phone to scroll the chat (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -57,14 +57,14 @@
       "heart": "My privacy doesn't owe anyone an explanation.",
       "calls": [
         "You tilt your screen away even when it's just a meme.",
-        "Your location sharing is off, and has been since you found the setting.",
+        "When you show someone a photo, you never let go of the phone.",
         "You'd rather explain a text than let someone scroll to find it."
       ],
       "never": "Secretive, hiding something or untrustworthy.",
       "triggers": [
-        "Q41 ch1: passcode swap → keep your own, ask directly if something's bothering you",
-        "Q42 reframed ch1: an app wants contacts, photos or location to work better → deny it and use the worse version",
-        "NEW ch1: a friend grabs your phone to show everyone a photo → take it back before they swipe"
+        "C1-2 scenario (Q41): passcode swap → keep yours ('Nothing to hide. Still no.'), trade photos but never DMs, or laugh and change the subject",
+        "C1-5 scenario (Q42 reframed): the map app wants your location → 'While Using' and never open it, or allow it then revoke it at 2am",
+        "C1-11 golden real: 'Read', no reply → turned off your own read receipts (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -83,13 +83,13 @@
       "calls": [
         "You have unread messages right now from someone you'd drop everything for.",
         "Your next reply will start with 'omg sorry, just saw this', a week late.",
-        "You'll see an old friend after a year and pick up mid-sentence."
+        "You've reacted to a message with one emoji and called that a reply."
       ],
       "never": "Cold, careless or a bad friend.",
       "triggers": [
-        "Q26 ch1: you and a close friend haven't talked in months → when you meet it'll be natural, no need to prove it",
-        "Golden real card ch1: last time a message that mattered showed 'Read' and no reply → forgot about it, they'd answer eventually",
-        "NEW ch1: a group chat hits 99+ unread → mute it, skim the highlights days later"
+        "C1-11 golden real: last time a message that mattered showed 'Read' and no reply → forgot about it, they'd answer eventually",
+        "C1-6 this_or_that (Q26): an old close friend and you haven't texted in four months → totally fine, you didn't text either",
+        "C1-1 role: in the 99+ unread group chat you're the Ghost, reads everything and still shows up (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -106,14 +106,15 @@
       "heart": "Wanting to be thought of isn't embarrassing.",
       "calls": [
         "You've typed 'hey', deleted it and put the phone down at least once this week.",
-        "You can tell who texted first in every friendship you have.",
+        "A 'k.' with a period has ruined at least one of your afternoons.",
         "A streak breaking would bother you more than you'd admit."
       ],
       "never": "Needy, clingy or insecure. No attachment-style labels.",
       "triggers": [
-        "Q26 ch1: months without contact → you need some reaching out to feel the friendship is looked after",
-        "Golden real card ch1: 'Read' and no reply → kept checking if they'd been online, or reread your message like evidence",
-        "Q05 ch3: time with your person → most free time together, sharing the daily stuff (slight)"
+        "C1-4 real (Q44): something ate at you after midnight → posted a sad song on your story and waited to see who'd ask",
+        "C1-6 this_or_that (Q26): four months without texting → it stings, someone should've texted (them)",
+        "C1-11 golden real: 'Read', no reply → kept checking if they'd been online, or reread your message like evidence (slight)",
+        "C1-1 role: in the group chat you're the Scorekeeper who knows who didn't react (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -129,15 +130,14 @@
       "sting": "You might have told an AI more about your feelings than your friends.",
       "heart": "Feeling understood counts, wherever it comes from.",
       "calls": [
-        "Your last hard message was drafted with a little help.",
-        "You've asked an AI 'am I overreacting?' about a real person.",
+        "You've asked an AI who was right in an argument, then shown your friend the answer.",
+        "You've said 'thank you' to an AI and meant it.",
         "You'll ask Genii a follow-up question about this result."
       ],
       "never": "Lonely, antisocial or replacing real people.",
       "triggers": [
-        "Q43 ch1: an AI helps you word an apology you mean → still sincere, the follow-through is what counts",
-        "Q44 ch1: an AI chat makes you feel understood → that has real value, even if it isn't a person",
-        "NEW ch1: 1am, something is bugging you → type it to an AI before any friend"
+        "C1-4 real (Q44): something ate at you after midnight → typed it all out to an AI first",
+        "C1-8 this_or_that (Q43): a real apology AI could word better → let AI fix it, add one typo"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -154,14 +154,14 @@
       "heart": "My messy real words are the truest version of me.",
       "calls": [
         "You can tell when a friend's message was written by an AI, and it bugs you.",
-        "Your apologies come with at least one typo and zero templates.",
-        "You'd rather send a voice note than let anything tidy up what you meant."
+        "You've fought autocorrect over one word three times, and won.",
+        "Your group chat can tell it's you without seeing the name."
       ],
       "never": "Anti-tech, old-fashioned or judgmental.",
       "triggers": [
-        "Q43 ch1: AI-polished apology → with people who matter, use your own words",
-        "Q44 ch1: an AI chat that gets you → useful, but not part of your inner circle",
-        "NEW ch1: a friend's heartfelt birthday text is obviously AI → it stings a little"
+        "C1-4 real (Q44): after midnight → voice-noted your closest person, or wrote it in your notes app",
+        "C1-8 this_or_that (Q43): the apology → send your own version, 40 minutes and six sorries",
+        "C2-4 pick_two: a friend just got dumped → a voice note listing why they're amazing (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -177,15 +177,16 @@
       "sting": "You're not cold. New people just wait about a year for the warm version.",
       "heart": "The ones I choose always know it.",
       "calls": [
-        "Your top three people have been the same since you were a kid.",
+        "The people in your phone's favorites have been the same for years.",
         "You're in fewer group chats than anyone you know, and you like it.",
-        "A new friend has to earn the inside jokes, and you'll know when they have."
+        "A new friend has to earn a nickname from you, and it takes a while."
       ],
       "never": "Cold, snobby, antisocial or exclusive.",
       "triggers": [
-        "NEW ch1 role card: in the group chat you're the one who DMs your two people instead of posting",
-        "NEW ch1 pick_two: 'My Close Friends list is tiny' or 'Only one group chat really matters'",
-        "NEW ch2 scenario: your birthday, a big party or dinner for four → dinner for four"
+        "C1-1 role: in the group chat you're the Courier who screenshots it all to two favorites",
+        "C1-7 this_or_that: a four-minute party acquaintance sends a follow request → leave it pending forever",
+        "C1-5 scenario (Q42 reframed): the map app → share your location with your top three only (slight)",
+        "C2-4 pick_two: a friend just got dumped → just you two, their couch, their comfort show (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -201,15 +202,16 @@
       "sting": "You know everyone. Fewer people really know you.",
       "heart": "Nobody stays a stranger for long around me.",
       "calls": [
-        "You'll add someone you met tonight to a group chat by tomorrow.",
+        "You know your friends' coworkers by name, and you've never met a single one.",
         "You've introduced two friends who now hang out without you.",
         "Your birthday comments look like a class reunion."
       ],
       "never": "Fake, shallow or a people-pleaser.",
       "triggers": [
-        "NEW ch1 role card: in the group chat you're the one who adds new people and starts the plans",
-        "NEW ch1 pick_two: 'I'm in more group chats than I can count'",
-        "NEW ch2 scenario: your birthday → the bigger the better, bring anyone"
+        "C1-1 role: in the group chat you're the Recruiter: 'Everyone, this is Sam.'",
+        "C1-7 this_or_that: the four-minute follow request → accept and follow back",
+        "C7-6 real (Q47): your last free afternoon → texted around until a group plan happened (slight)",
+        "C2-4 pick_two: a friend just got dumped → rally the whole group out tonight (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -225,15 +227,15 @@
       "sting": "You'll tell them they were wrong. Then you'll pick up their 2am call.",
       "heart": "My words are armor. My actions are the soft part.",
       "calls": [
-        "You've said 'this is so dumb' while helping with the dumb thing.",
+        "You've fixed a friend's problem and changed the subject before they could say thanks.",
         "Your version of comfort sounds like 'get in the car'.",
         "You'll deny caring and still remember their exam date."
       ],
       "never": "Mean, rude or harsh.",
       "triggers": [
-        "Q25 ch2: a close friend clearly hurt someone → tell them plainly it was wrong",
-        "Q15 ch2: a close friend needs money, payback unclear → lend what you can, sort the date later",
-        "NEW ch2 scenario: your friend just got dumped → show up with snacks and 'they were mid anyway'"
+        "C2-9 scenario (Q15): a close friend's laptop died before a deadline, they need $300 → lend your old laptop with a crumb warning",
+        "C2-2 real (Q28): a friend's plan cost way over budget → went, paid, ate noodles for a week (slight)",
+        "C2-4 pick_two: a friend just got dumped → snacks and 'they were mid anyway', or block the ex for them (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -250,14 +252,14 @@
       "heart": "If I feel it, you're going to read it.",
       "calls": [
         "Your birthday posts need a 'see more' button.",
-        "You have a Notes-app draft of something you'll never send.",
-        "You'll send a voice note longer than three minutes this week."
+        "You've teared up reading your own message before sending it.",
+        "Your friends have saved at least one of your messages to reread on bad days."
       ],
       "never": "All talk, fake or performative.",
       "triggers": [
-        "NEW ch2 scenario: your friend just got dumped → send a long, careful voice note that night",
-        "NEW ch2 pick_two: 'I tell my friends I love them a lot' or 'My birthday posts need a see more button'",
-        "Q43 ch1: AI-polished apology → your own words, however long it takes (slight)"
+        "C2-2 real (Q28): a friend's plan cost way over budget → invented a clash, sent a long sweet message instead",
+        "C1-8 this_or_that (Q43): the apology → your own version, six sorries (slight)",
+        "C2-4 pick_two: a friend just got dumped → a numbered voice note of why they're amazing, or a playlist with a note on every song (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -273,15 +275,18 @@
       "sting": "One ask from a friend and your budget rules vanish. They only ever apply to you.",
       "heart": "Breaking my own rules for my people? No regrets.",
       "calls": [
-        "You've paid for a friend's ticket and 'forgot' to ask for it back.",
+        "You've given up your charger, your seat or your last slice this week.",
         "Your friends know you're the easiest yes in the chat.",
         "Your 'no' to a friend has a very short shelf life."
       ],
       "never": "A pushover, naive or bad with money.",
       "triggers": [
-        "Q15 ch2: a close friend needs a loan, payback unclear → lend what you can, sort the date later",
-        "Q28 ch2: a friend's celebration is over your comfortable budget → go anyway, cut back after (capacity: tag only, not R2)",
-        "Q18 ch5: a teammate or coworker asks you to stay for a non-urgent fix → stay tonight"
+        "C2-2 real (Q28): a friend's plan cost way over budget → went, paid, ate instant noodles for a week (capacity: tag only, not R2)",
+        "C5-5 real (Q18): your part was done and someone asked you to stay and help → pulled up a chair, or said 'ten minutes' and left three hours later",
+        "C2-7 golden scenario (Q27): 11:48pm, your best friend's third drama night this week → sit up and call, or 'mhm' on speaker till someone sleeps (capacity: tag only, not R2)",
+        "C2-9 scenario (Q15): a friend needs $300, payback unclear → send it tonight, or start a group laptop fund",
+        "C4-1 scenario (Q33): $200 found in a jacket → dinner for your people (slight)",
+        "C7-7 scenario (Q40): one spare ticket → give them yours too and watch their stories from bed (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -297,16 +302,15 @@
       "sting": "Your kindness has a daily cap. When it's gone, it's gone.",
       "heart": "I charge myself first, so I have more to give.",
       "calls": [
-        "You've said 'can we do this tomorrow?' and meant it as an act of love.",
-        "Your phone goes on Do Not Disturb at the same time every night.",
+        "You've let a call ring out, then texted 'what's up?' ten seconds later.",
+        "Your weekend has at least one nap in it that nobody is allowed to move.",
         "After a big social weekend, you'll need a whole day of nobody."
       ],
-      "never": "Selfish, cold or uncaring.",
+      "never": "Selfish, cold or uncaring. Not having the money.",
       "triggers": [
-        "Q27 ch2: third night of a friend venting the same problem, you're wiped → say tonight you can't, offer another time (capacity: tag only, not R2)",
-        "Q28 ch2: celebration over budget → say so honestly, celebrate them another way",
-        "Q18 ch5: asked to stay late for a non-urgent fix → offer first thing tomorrow",
-        "Golden 11:48pm card ch2: 'are you up? I need to talk' → pretend you're asleep, text them first thing at 7am"
+        "C2-2 real (Q28): a friend's plan cost way over budget → went, but left early, social battery done (capacity: tag only, not R2)",
+        "C5-5 real (Q18): asked to stay and help when your part was done → 'got a thing tonight' and offered the morning, or sent notes and logged off",
+        "C2-7 golden scenario (Q27): 11:48pm, third drama night → pretend you're asleep and text at 7am, ask to do it properly tomorrow, or tag in a second friend (capacity: tag only, not R2)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -328,9 +332,9 @@
       ],
       "never": "Rude, harsh or tactless.",
       "triggers": [
-        "Q37 ch2: a hopeful friend shows you something that isn't good yet (song, pitch, practice run) → name the fix now",
-        "Q30 reframed ch2: a friend's new haircut or outfit you don't love, they ask → tell them it's not their best",
-        "Q25 ch2: a friend hurt someone → say it was wrong, even if they feel you're not on their side"
+        "C2-5 real (Q25): a friend was clearly in the wrong with someone → told them straight it was wrong",
+        "C2-1 scenario (Q37): a hopeful friend's contest song isn't good → 'the chorus needs work, want notes?', or suggest entering the other song",
+        "C2-8 role: the group's party left one friend out, they ask the chat → Truth-teller: 'You're not on the list', or Leaker who screenshots the invite"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -346,15 +350,15 @@
       "sting": "You wrap the truth in so much sugar that some people only taste the sugar.",
       "heart": "I say it softly so you can actually hear it.",
       "calls": [
-        "You've said 'honestly, it's so close!' about something that was not close.",
+        "You've said 'it's so close!' about something that was not close.",
         "You'll call the haircut 'so you' and slip them your stylist's number next month.",
         "You've let a friend 'figure it out on their own', with a nudge from you."
       ],
       "never": "Fake, passive-aggressive or dishonest.",
       "triggers": [
-        "Q37 ch2: hopeful friend, rough work → praise what works today, give the notes later",
-        "Q30 reframed ch2: a friend's new look you don't love → compliment one part, steer them later",
-        "NEW ch2 this_or_that: 'the truth, gently, later' over 'the truth, now'"
+        "C2-5 real (Q25): a friend was in the wrong → bubble tea first, brought it up on the walk back",
+        "C2-1 scenario (Q37): the song that isn't good → rave about the verse and mumble about the chorus, or call it a hit",
+        "C2-8 role: the left-out friend asks the chat → Hinter ('some people MIGHT be doing something?') or Plan B, tacos and a confession (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -372,13 +376,13 @@
       "calls": [
         "You've unmuted someone everyone else is still mad at.",
         "You'll defend the villain's backstory in any show you watch.",
-        "When the group votes to let someone back in, you're the first yes."
+        "You've given an ex-friend a second chance and told nobody."
       ],
       "never": "Naive, a doormat or excusing harm.",
       "triggers": [
-        "Q39 ch2: someone who hurt a friend apologized, made it right and changed, and wants back in the group → let them back slowly, with some ground rules",
-        "NEW ch2 this_or_that: 'people can change' over 'people show you who they are'",
-        "NEW ch7 scenario: a player who rage-quit on your squad wants back in → give them another run"
+        "C2-3 scenario (Q39): the person who started a rumor about your friend apologized and wants back in the chat → add them back with a meme, or one watched group hangout first",
+        "C7-10 scenario: a friend who flaked on four hangouts books an escape room, 'send me $25' → send it now, or write it in your calendar in pen",
+        "C1-1 role: in the group chat you're the Lawyer: 'have we heard THEIR side?' (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -394,15 +398,15 @@
       "sting": "You forgive, technically. Your screenshots folder disagrees.",
       "heart": "I look after the person who got hurt first.",
       "calls": [
-        "You remember exactly what was said, and you have it saved.",
+        "You've brought up something from three years ago, and you had the date.",
         "You'll be polite to someone you haven't forgiven, and they'll never know.",
         "When someone has 'changed', you wait for proof number three."
       ],
       "never": "Vindictive, petty or holding grudges as a flaw.",
       "triggers": [
-        "Q39 ch2: someone who hurt a friend wants back in → it's up to the person they hurt, go slow",
-        "NEW ch2 this_or_that: 'people show you who they are' over 'people can change'",
-        "NEW ch7 scenario: the rage-quitter wants back on the squad → find a new fourth"
+        "C2-3 scenario (Q39): the rumor-starter wants back in → DM your friend 'say the word and I decline', or say yes and keep the screenshots",
+        "C7-10 scenario: the four-time flaker wants $25 upfront → pay at the door, if there is a door, or ask to see the booking email",
+        "C2-5 real (Q25): a friend was in the wrong → said nothing to them, checked on the other person (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -418,15 +422,15 @@
       "sting": "You say you're independent. You still want to be in every part of their day.",
       "heart": "I love all the way, and I know where the door is.",
       "calls": [
-        "You've sent your person a photo of your lunch that needed no caption.",
-        "Your weekend plans default to 'us' before anyone asks.",
+        "Your person's name is the first one your phone suggests.",
+        "You've said 'we're watching this show' when only one of you is.",
         "You know your person's order at four different places."
       ],
       "never": "Clingy, codependent or 'boy-crazy'/'girl-crazy'. No gendered read.",
       "triggers": [
-        "Q05 ch3: how you want to spend time with your person (crush, partner or best friend) → most free time together, sharing the daily stuff",
-        "Q06 ch3: your person secretly flirts with someone else for months, nothing physical → the closeness that was only yours got broken",
-        "NEW ch3 scenario: your person has a free Saturday → it's already ours"
+        "C3-2 real: the last party you and your person walked into together → stuck together all night, or left early together",
+        "C3-7 scenario (Q06, intimate): your person's months of secret late-night chats → the secrets hurt most, that closeness was ours (or envy)",
+        "C3-4 pick_two (Q05): a normal week with your person → 'if they're free, I'm free', or they get a play-by-play of your day (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -443,15 +447,15 @@
       "sting": "You're not unromantic. You just won't hand over the steering wheel.",
       "heart": "I'm me first. Then I'm someone's someone.",
       "calls": [
-        "You keep one night a week that's just yours, even in love.",
+        "You've taken a trip without your person and loved every minute.",
         "Your person has friends you've never met, and that's fine by you.",
         "You'll say 'I miss you' and still not cancel your plans."
       ],
       "never": "Cold, commitment-shy or avoidant.",
       "triggers": [
-        "Q05 ch3: time with your person → close, but each keeps regular alone time and their own friends",
-        "Q06 ch3: secret flirting → the lying and the broken deal matter most; you set the lines together",
-        "NEW ch3 scenario: your person's free Saturday → you both already have plans, see each other Sunday"
+        "C3-2 real: the last party with your person → split up at the door and swapped gossip at the end, or introduced them around and left them by the chips",
+        "C3-7 scenario (Q06, intimate): the secret chats → the months of lying hurt most, or that you never set rules",
+        "C3-4 pick_two (Q05): a normal week → some nights offline, no questions, or a hobby they'll never try (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -468,16 +472,14 @@
       "sting": "You'll fix what's broken, including things that aren't yours to fix.",
       "heart": "I don't quit on people I chose.",
       "calls": [
-        "You've suggested 'a system' to end a fight that keeps coming back.",
-        "You'll stay in a friendship, duo or project long after others would have logged off.",
+        "You've had the same argument twice and brought a new idea to round three.",
+        "You've fixed a friendship with one 'can we talk?' text.",
         "Your answer to 'this isn't working' is 'okay, what if we try this'."
       ],
       "never": "A doormat, or stuck in something bad.",
       "triggers": [
-        "Q08 ch3: months of small clashes over habits, no one's fault, both willing → agree on specific changes, give it time",
-        "NEW ch3 real card: last time your person kept doing the same annoying thing → sat down and made a deal",
-        "NEW ch2 scenario: your best friend keeps canceling plans → talk it out, set a new plan (cut from the run; no card carries it)",
-        "NEW ch5 this_or_that (C5-10): group project partner starts at 2am the night before → make a shared doc with early deadlines"
+        "C3-5 real (Q08): someone close kept grating on you for weeks → sat them down and made a deal (or joked until they got it, or did their dishes and mentioned it)",
+        "C5-10 this_or_that: a group project partner starts at 2am the night before → make a shared doc with early deadlines"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -495,15 +497,13 @@
       "heart": "Leaving kindly is still kind.",
       "calls": [
         "You've quietly left a group chat and felt lighter.",
-        "You'll end something without making anyone the villain.",
+        "You've unfollowed someone and wished them well in the same minute.",
         "Most of your exes, ex-friends and ex-teammates still like you."
       ],
       "never": "Cold, flaky or commitment-shy.",
       "triggers": [
-        "Q08 ch3: months of small friction, no one at fault → it's okay to end it just for not fitting",
-        "NEW ch3 real card: last time a crush, friendship or partner kept grating → let it fade, no drama",
-        "NEW ch2 scenario: best friend keeps canceling → stop making plans, let them come to you (cut from the run; no card carries it)",
-        "NEW ch5 this_or_that (C5-10): group project partner starts at 2am the night before → ask to switch partners, no drama"
+        "C3-5 real (Q08): weeks of small friction → let it fade with fewer plans, or ended it with a kind text rewritten eleven times",
+        "C5-10 this_or_that: the 2am project partner → ask to switch partners, no drama"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -520,15 +520,14 @@
       "sting": "You want kids. You've also already worked out who'll give up the most, and it's you.",
       "heart": "I want it, and I want to be held up while I do it.",
       "calls": [
-        "You've already named at least one future kid.",
+        "You've caught yourself rating playgrounds on a walk.",
         "You'd read the parental leave policy before the salary.",
         "You've mentally assigned the night feeds, and you took most of them."
       ],
       "never": "Baby-crazy, or judging people without kids.",
       "triggers": [
-        "Q10 18+ ch3: right now, how you feel about being a parent someday → it's something you want",
-        "Q11 18+ ch3 (only if Q10 is yes): kids planned and a big career chance in the same two years → slow the career, keep the family plan",
-        "NEW 18+ ch3 pick_two: 'I already have names picked out'"
+        "C3-9 scenario (Q11, 18+, only after a T11A pick on C3-8): kids penciled in, then the dream job calls → turn it down, the mood board stays on schedule",
+        "C3-8 pick_two (Q10, 18+): a friend's toddler asleep on you → 'I want one', 'I already have names picked out', or 'someday, after a plant'"
       ],
       "locked18": true,
       "friendGame": "defaultOff",
@@ -544,15 +543,15 @@
       "sting": "You don't dislike kids. You just really like your life as it is.",
       "heart": "My life is already whole.",
       "calls": [
-        "You're the favorite at every kids' party, and you still leave by 8pm.",
+        "You're some kid's favorite adult, and you still sleep in on Saturdays.",
         "Your 'someday' fund is a travel fund.",
-        "You've been asked 'so when are you having kids?' and your answer gets smoother every time."
+        "You've said 'I love kids' and 'not for me' in the same sentence."
       ],
       "never": "Hating kids, selfish or missing something.",
       "triggers": [
-        "Q10 18+ ch3: parenthood → my ideal life doesn't have to include raising kids",
-        "Q09 18+ ch6: a stable relationship can be whole without marriage (slight)",
-        "NEW 18+ ch3 pick_two: 'My someday fund is a travel fund'"
+        "C3-8 pick_two (Q10, 18+): the sleeping toddler → 'my five-year plan has zero car seats', or 'is a dog basically the same thing?'",
+        "C3-9 scenario (Q11, 18+): kids penciled in vs the dream job → take it, the mood board was more their dream (slight)",
+        "C6-9 this_or_that (Q09, 18+): six years together, 'when's the wedding?' → never needed one (slight)"
       ],
       "locked18": true,
       "friendGame": "defaultOff",
@@ -568,15 +567,15 @@
       "sting": "Love is love and a tab is a tab. Your biggest fear is owing someone.",
       "heart": "Owing no one is my kind of freedom.",
       "calls": [
-        "You've sent a payment request for $3.50 and felt good about it.",
+        "You've pulled out the calculator app at a group dinner, and nobody was surprised.",
         "You'll offer to split before the bill even lands.",
-        "You remember who paid last time, every time."
+        "You and one friend have a running tab, and only you know the total."
       ],
       "never": "Stingy, cheap or transactional.",
       "triggers": [
-        "Q14 ch3: you live with your person, one earns twice as much → split shared costs 50/50",
-        "Q15 ch2: a friend needs a loan, payback unclear → agree on paying it back first, then decide",
-        "NEW ch4 scenario: group dinner, one friend only had fries → everyone pays for exactly what they ordered"
+        "C2-9 scenario (Q15): a friend needs $300, payback unclear → agree on a payback date first, reminder titled 'OWED'",
+        "C3-3 scenario (Q14): you move in with a person who earns twice as much → 50/50, or an itemized payment request for everything",
+        "C3-4 pick_two (Q05): a normal week with your person → you take turns paying and always know whose turn it is (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -592,15 +591,15 @@
       "sting": "To you, fair isn't paying the same. It's straining the same.",
       "heart": "Fair is about what it costs you, not the number on the bill.",
       "calls": [
-        "You've quietly covered a friend's share because they were between jobs.",
-        "You'll suggest the cheaper place when one friend is broke, and never say why.",
+        "You've paid more toward a shared gift because you had more that month.",
+        "You'll suggest the cheaper place when one friend is short on cash, and never say why.",
         "An 'even split' when someone only had water makes you twitch."
       ],
       "never": "Freeloading, or resenting people who earn more.",
       "triggers": [
-        "Q14 ch3: income gap at home → split shared costs by income, so it weighs the same on both",
-        "Q16 ch4: team profit, same hours, different results → keep a big equal share for everyone who carried it",
-        "NEW ch4 scenario: group trip, one friend is broke this month → the ones with more cover more"
+        "C3-3 scenario (Q14): the income gap at home → split by what each has, so it pinches the same, or one shared pot",
+        "C4-7 scenario (Q16): the pop-up made $400 → biggest pile to whoever's broke this week, four equal piles, or a team dinner",
+        "C3-4 pick_two (Q05): a normal week → whoever just got paid covers food (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -616,15 +615,15 @@
       "sting": "You call it a calculated risk. You did the math afterward.",
       "heart": "My best stories start with 'okay, this is a bad idea, but'.",
       "calls": [
-        "You've pulled on a banner you swore you'd skip.",
+        "You've spent a refund before it even hit your account.",
         "Your savings have a plan, and the plan is 'something big'.",
-        "You'd say yes to a trip booked for next week."
+        "You've said 'you only live once' at a checkout this year."
       ],
       "never": "Reckless, irresponsible or a gambling problem.",
       "triggers": [
-        "Q33 ch4: emergency fund done, extra money to spend freely → put a big part into the trip or thing you've waited for",
-        "Q19 ch5: six months of savings, a steady job or a shot at your own thing → go all in for six months",
-        "Golden banner card ch4: limited banner, 48 hours, $30 of fun money → pull, all of it, tonight (slight)"
+        "C4-1 scenario (Q33): $200 found in an old jacket → concert tickets, tonight",
+        "C5-6 scenario (Q19, Q17): your own thing's best month and a job offer the same week → go all in on your thing",
+        "C4-8 pick_two: money memes → 'I've booked something before checking my balance' (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -640,15 +639,15 @@
       "sting": "You've saved for a rainy day so long, you forgot sunny days are allowed.",
       "heart": "Being ready is how I relax.",
       "calls": [
-        "You have a savings account with a name like 'DO NOT TOUCH'.",
-        "You'll wait for the rerun banner. It always comes back.",
-        "You've checked your balance before saying yes to dinner."
+        "You have money set aside that you pretend doesn't exist.",
+        "You've packed snacks from home to skip paying stadium prices.",
+        "You've let a gift card sit for months because spending it felt like losing it."
       ],
       "never": "Boring, scared or cheap.",
       "triggers": [
-        "Q33 ch4: extra free money → save it, so future you has more choices",
-        "Q19 ch5: savings and a shot at your own thing → keep the steady job, test the idea on the side",
-        "Golden banner card ch4 → wait for the rerun (slight)"
+        "C4-1 scenario (Q33): $200 found → straight into savings",
+        "C5-6 scenario (Q19, Q17): your thing vs a steady job → take the job, or both with your thing till 2am",
+        "C4-8 pick_two: money memes → 'I have a savings goal with a name' (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -666,13 +665,13 @@
       "calls": [
         "You've bought the nicer version and called it an investment.",
         "Your game character has a better wardrobe than most people.",
-        "There's something in your cart right now that you'll check out by Friday."
+        "You know the exact date your favorite brand drops its next thing."
       ],
       "never": "Vain, materialistic or shallow.",
       "triggers": [
-        "Q34 ch4: the version you love (brand, design, the paid skin) costs clearly more, still in budget → get the one you love",
-        "Q36 ch4: closet or collection already full, you spot a new one you love → budget allows, so buy it",
-        "Q29 ch7: an hour a day on how you or your setup look → keep it, it's worth the time"
+        "C4-5 real (Q36): wanted one more of something you own plenty of → bought it on the spot, or bought it and hid the bag",
+        "C4-3 this_or_that (Q34): the sneakers you love cost $80 more, still in budget → buy them",
+        "C7-2 role (Q29): the ride is 10 minutes out → full fit check in every mirror, or the outfit planned on Tuesday"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -694,9 +693,9 @@
       ],
       "never": "Cheap, joyless or judging how others spend.",
       "triggers": [
-        "Q34 ch4: pricier favorite → get the one that works the same, spend the difference elsewhere",
-        "Q36 ch4: full closet, new favorite → clear out old ones before anything new",
-        "Q29 ch7: the daily hour on looks → cut it down, spend the time on something else"
+        "C4-5 real (Q36): one more of something you own plenty of → cleared out old ones first, or left it in the cart till the feeling passed",
+        "C4-3 this_or_that (Q34): the pricier sneakers → the other pair, nobody looks at your feet",
+        "C7-2 role (Q29): the ride is 10 minutes out → ready in six minutes, hoodie, keys, done"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -712,15 +711,15 @@
       "sting": "You believe effort gets noticed. You quietly wish everyone worked as hard as you.",
       "heart": "I don't complain, but I remember every bit I gave.",
       "calls": [
-        "You've carried a group project and said nothing. Mostly nothing.",
+        "You've turned down help just so you could say you did it alone.",
         "You'd rather earn the rank than buy the boost.",
         "You'll respect someone who grinds more than someone who got lucky."
       ],
       "never": "Looking down on people who struggle, or a political stance.",
       "triggers": [
-        "Q13 ch4: a friend bought a place with family help and says they worked hard too → their effort still counts",
-        "Q16 ch4: team profit, same hours, different results → split mostly by clear contribution, gaps are fine",
-        "NEW ch5 scenario (replaces Q02): a classmate or coworker lands a great spot through a parent's friend → good for them, now they have to deliver (cut from the run; no card carries it)"
+        "C4-2 this_or_that (Q13): a friend whose parents covered the down payment says 'I worked so hard' → 'You earned it!' and mean it",
+        "C4-7 scenario (Q16): the $400 pop-up, Kai's charms sold most → bigger cut for Kai",
+        "C4-8 pick_two: money memes → 'hustle stories get me off the couch' (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -736,15 +735,15 @@
       "sting": "You can spot who had family help from across the room. The effort story doesn't fool you.",
       "heart": "I see what other people miss.",
       "calls": [
-        "You've thought 'but who paid for it?' at least once this month.",
+        "You've read a 'how I made it at 22' post and gone straight to the comments.",
         "You'll clock the family-money energy in a reality show within one episode.",
         "You'd rather hear 'I got lucky' than 'I just worked hard'."
       ],
       "never": "Envious, bitter or resentful.",
       "triggers": [
-        "Q13 ch4: friend's family-funded home → name the family start too, not only the effort",
-        "Q16 ch4: team profit → keep more of it equal, results depend on more than effort",
-        "NEW ch5 scenario (replaces Q02): the spot landed through a parent's friend → must be nice, and say so (cut from the run; no card carries it)"
+        "C4-2 this_or_that (Q13): the family-funded 'I worked so hard' → must be nice, somebody had to say it",
+        "C4-7 scenario (Q16): the $400 pop-up → four equal piles, Kai gets bragging rights",
+        "C4-8 pick_two: money memes → a big win? first question: 'who do they know?' (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -760,15 +759,16 @@
       "sting": "You say it's just a job. You're quietly keeping score of every win.",
       "heart": "Wanting to build something big isn't too much.",
       "calls": [
-        "You've pictured your name on something people use.",
-        "You'll say yes to the bigger role, even if it eats your weekends.",
+        "You have a folder of wins: kind emails, certificates, one legendary grade.",
+        "You've grabbed the hardest part of a project so your name would be on it.",
         "You check the leaderboard even in games you 'play casually'."
       ],
       "never": "Arrogant, greedy or a workaholic.",
       "triggers": [
-        "Q45 ch5: five years from now → proud, visible results in one field",
-        "Q20 ch5: the next three years → more hours for the promotion and bigger role",
-        "NEW ch5 scenario (teen costume: club or team): you're offered captain, with a lot more work → take it"
+        "C5-4 scenario (Q20): the promotion costs every Saturday for a year → yes, already practicing the title",
+        "C5-7 real (Q48): someone your age had big news → muted them for a week (slight)",
+        "C3-9 scenario (Q11, 18+): the dream job vs the baby plan → take it (slight)",
+        "C5-9 pick_two (Q45): five years on, what you'd overhear → 'made a thing strangers use', or 'richer than everyone who doubted them' (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -790,9 +790,9 @@
       ],
       "never": "Lazy, unmotivated or unambitious.",
       "triggers": [
-        "Q45 ch5: five years from now → an easy life, days and people that feel right",
-        "Q20 ch5: the next three years → keep the current role, keep your time outside it",
-        "NEW ch5 scenario: offered captain with extra hours → pass, stay a regular member"
+        "C5-4 scenario (Q20): the promotion that eats Saturdays → pass and keep them, or point them to the person who wanted it",
+        "C5-7 real (Q48): someone your age had big news → double-tapped and forgot it (slight)",
+        "C5-9 pick_two (Q45): five years on → 'always down for a 2am food run', or 'somehow always on vacation' (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -808,15 +808,15 @@
       "sting": "Friends your age settle down and you say you're fine. You've already started a plan.",
       "heart": "Wanting solid ground is how I take care of myself.",
       "calls": [
-        "You have a rough five-year timeline, even if you won't show anyone.",
-        "A friend's big announcement sent you straight into planning mode.",
+        "You've made a pros and cons list for something most people would just decide.",
+        "You've set yourself a deadline nobody asked for.",
         "You relax the moment something is booked, signed or decided."
       ],
       "never": "Anxious, insecure or 'behind'.",
       "triggers": [
-        "Q48 ch5: at your age, people around you are settling down → want to lock in a few long-term directions soon",
-        "NEW ch5 this_or_that: 'where do you see yourself in five years?' → you have an actual answer",
-        "Q45 ch5: five years from now → visible results (slight)"
+        "C5-7 real (Q48): someone your age had big news → opened your notes app and started a plan (or 'wait, are we behind?', or muted them)",
+        "C5-1 this_or_that: Genii can spoil your whole future → spoil it, you'd sleep better",
+        "C5-9 pick_two (Q45): five years on → 'has a ten-year plan, laminated' (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -833,14 +833,14 @@
       "heart": "My timeline is mine to write.",
       "calls": [
         "When someone asks 'so what's the plan?', you change the subject.",
-        "You've switched majors, jobs or mains before, and you'd do it again.",
-        "Your five-year plan is 'see what happens', said with confidence."
+        "You've said yes to something new with zero idea where it leads.",
+        "You're fine with 'I don't know yet' as a full answer."
       ],
       "never": "Lost, flaky or directionless.",
       "triggers": [
-        "Q48 ch5: people your age settling down → keep room to explore, no need to follow their timeline",
-        "NEW ch5 this_or_that: 'five years from now?' → no idea, and that's exciting",
-        "Q46 ch7: a year in an unfamiliar city → go see (slight)"
+        "C5-7 real (Q48): someone your age had big news → double-tapped, forgot it by the next video",
+        "C5-1 this_or_that: spoil your future → don't you dare, finding out is the fun part",
+        "C5-9 pick_two (Q45): five years on → 'changed plans four times, happier every time' (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -857,14 +857,13 @@
       "heart": "When my people need someone, I want it to be me.",
       "calls": [
         "You're the one the family calls when the wifi breaks.",
-        "You've moved your own plans for a family thing and never mentioned it.",
-        "You'll cover a sibling or send money home before you treat yourself."
+        "You've answered a family call during a date, a class or a movie.",
+        "In your family, 'can someone...' means you."
       ],
       "never": "A martyr, guilt-tripped or unable to say no.",
       "triggers": [
-        "Q22 ch6: a parent needs long-term care, siblings could help, moving back costs you at work → take on more yourself, sort the rest later",
-        "Q23 ch6: your parents want you to keep supporting an adult sibling → family backs each other up long-term",
-        "NEW ch6 scenario (teen costume): your little sibling's project is due tomorrow, so is yours → do theirs first"
+        "C6-4 scenario (Q22): a parent needs daily help for six months → 'I've got it' before anyone answers (or wait, then fill the gaps)",
+        "C6-8 role (Q23): your parents want you to keep helping an adult sibling → Safety net or Secret sponsor (or the Grumbler who helps and vents)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -880,15 +879,15 @@
       "sting": "You'll help. You'll also send the calendar invite for when it stops.",
       "heart": "Helping someone stand on their own is still love.",
       "calls": [
-        "You've said 'this time I'll help, next time you do it' and meant it.",
-        "Your version of care comes with a plan and a deadline.",
-        "You'll find the right professional before you'd move back home."
+        "You've told someone in your family 'I can do Tuesday, not every Tuesday.'",
+        "You've set a limit with your family, kindly, and kept it.",
+        "You've sent a family member a how-to video instead of doing it for them."
       ],
       "never": "Cold, stingy or not caring about family.",
       "triggers": [
-        "Q22 ch6: parent needs care → organize siblings and professional care, keep your job",
-        "Q23 ch6: supporting an adult sibling → help can have an end date, they need their own footing",
-        "NEW ch6 scenario (teen costume): a sibling asks you to do their homework again → help once, then make them do it"
+        "C6-4 scenario (Q22): the parent who needs daily help → start a sibling shift calendar, or pitch a hired caregiver",
+        "C6-8 role (Q23): the adult sibling → Deadline, 'last time' with an actual date (or Ghost, or Referee)",
+        "C7-6 real (Q47): your last free afternoon → two hours of family errands, the rest for you (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -904,15 +903,14 @@
       "sting": "You love your family. Your family doesn't get to pick your life.",
       "heart": "Loving them and obeying them are two different things.",
       "calls": [
-        "You've made a big decision and told your family afterward.",
+        "You've gone against the family vote and still made it home for dinner that week.",
         "You'll listen to every opinion at dinner and still do your plan.",
         "You call home every week, from a city they didn't want you in."
       ],
       "never": "Rebellious, ungrateful or not close to family.",
       "triggers": [
-        "Q24 ch6: you want to move cities, your parents disagree, no one needs you home → hear them out, then decide the timing yourself",
-        "Q21 ch6: parents offer a down payment if you buy near them → only if the place fits your own plan",
-        "NEW ch6 scenario (teen costume): your family wants you in a club or subject you don't want → explain, then pick your own"
+        "C6-2 real (Q24): your family's last big 'absolutely not' to a plan → did it anyway and told them after, or said you'd think about it and did it later",
+        "C6-6 scenario (Q21): your parents help with a place if it's a ten-minute walk from theirs → counter with a 20-minute drive, or say no and find your own"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -929,14 +927,13 @@
       "heart": "My family is part of my 'we', and I like it that way.",
       "calls": [
         "Your family knows your plans before your friends do.",
-        "You'll push back something you want if it keeps the peace at home.",
+        "You've let a parent pick the restaurant you didn't want, just to keep the night easy.",
         "You've asked 'what do you think?' about something you'd already decided."
       ],
       "never": "A pushover, dependent or unable to decide.",
       "triggers": [
-        "Q24 ch6: moving cities, parents disagree → take time to get everyone on board, delay if needed",
-        "Q21 ch6: down payment if you buy near them → accept, family help comes with family hopes",
-        "NEW ch6 scenario (teen costume): the family's club or subject pick → go along with it, try it for a year"
+        "C6-2 real (Q24): the family's 'absolutely not' → sent a sibling or aunt in first to soften them, or dropped it for peace at home",
+        "C6-6 scenario (Q21): help with a place ten minutes from theirs → deal, free help and dinners nearby"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -952,15 +949,14 @@
       "sting": "Other people can split things however they like. In your own home, you want the classic version.",
       "heart": "I can hold new ideas and old wishes at the same time.",
       "calls": [
-        "You'll defend any couple's setup and still picture a classic one for yourself.",
+        "You'll say 'whatever works for you two' and mean it. Yours will be traditional.",
         "Your future home already has a very specific holiday routine.",
         "You'd say roles don't matter, then feel odd when yours get swapped."
       ],
       "never": "A hypocrite or old-fashioned.",
       "triggers": [
-        "Q01 ch6: two equally capable people setting up a home → start from what each wants and is good at (believe)",
-        "Q04 ch6: a couple swaps who works and who stays home with the kids → fine for them, but you'd want the classic setup yourself (required with Q01)",
-        "NEW ch6 scenario (teen-safe): holidays in your future home → keep every one of your family's traditions exactly"
+        "C6-3 this_or_that (Q04): your cousin quit a career to stay home, their partner works → love it for them, yours would run classic",
+        "C6-1 scenario (Q01): week one sharing a place, the sink is full → do your half the way your family does, theirs is their call"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -977,14 +973,14 @@
       "heart": "No script is the gift I gave myself.",
       "calls": [
         "Your future home will have at least one tradition you invented.",
-        "You'll split chores by who hates what least, not by who 'should'.",
-        "You've skipped a family tradition and started your own."
+        "You'd cook every night if it meant never vacuuming again.",
+        "You've made up a holiday that only your friends celebrate."
       ],
       "never": "Anti-tradition or disrespectful to family.",
       "triggers": [
-        "Q01 ch6: setting up a home → start from what each wants and is good at",
-        "Q04 ch6: the swapped setup → as natural as the classic one, for others and for you",
-        "NEW ch6 scenario (teen-safe): holidays in your future home → keep one or two, invent the rest"
+        "C6-1 scenario (Q01): week one sharing a place → split by what each of you hates least, or bribe them with snacks",
+        "C6-3 this_or_that (Q04): the cousin's swapped setup → same energy, yours could run that way",
+        "C6-7 pick_two (Q12): your big celebration → ten people max, the money to a trip or home, or something nobody's done (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -1002,13 +998,13 @@
       "calls": [
         "You've already decided who sits at the family table.",
         "Your wedding board is older than any actual relationship.",
-        "You'd add 30 guests to keep one relative happy."
+        "You've told a relative 'you'll get an invite' before there was anyone to marry."
       ],
       "never": "Old-fashioned, marriage-obsessed or controlled by parents.",
       "triggers": [
-        "Q09 18+ ch6: the relationship is solid and practical things are sorted → marriage still matters, as a promise or a ritual",
-        "Q12 18+ ch6: your own wedding budget → a full celebration with everyone there (or 'both')",
-        "Q24 ch6: parents disagree with your plan → take time to get them on board (slight)"
+        "C6-11 role (18+): a 300-guest family wedding → taking notes, yours gets every relative (or asking the grandparents' secret, or herding cousins into the photo)",
+        "C6-9 this_or_that (Q09, 18+): six years together, 'when's the wedding?' → soon, vows out loud",
+        "C6-7 pick_two (Q12): your big celebration → every relative there (slight)"
       ],
       "locked18": true,
       "friendGame": "defaultOff",
@@ -1024,14 +1020,15 @@
       "sting": "You're not against marriage. You just don't think love needs a stamp.",
       "heart": "My love doesn't need proof.",
       "calls": [
-        "Your dream wedding is a courthouse and a really good dinner.",
-        "You'd rather put wedding money toward a trip or a home.",
-        "When someone asks 'so when's the wedding?', you've got a line ready."
+        "Your idea of a proposal is 'wanna keep doing this?'",
+        "You'd rather celebrate an anniversary than plan a wedding.",
+        "You've been a wedding guest and thought 'lovely, not for me.'"
       ],
       "never": "Anti-commitment, or against marriage for others.",
       "triggers": [
-        "Q09 18+ ch6: a good relationship → whole without getting married",
-        "Q12 18+ ch6: wedding budget → a simple ceremony, the money goes to a home, travel or the future"
+        "C6-9 this_or_that (Q09, 18+): 'when's the wedding?' → never needed one, the dog is the certificate",
+        "C6-11 role (18+): the 300-guest wedding → pricing the open bar in plane tickets, or 'ours is ten minutes, then tacos'",
+        "C6-7 pick_two (Q12): your big celebration → ten people max, or most of the money to a trip or home (slight)"
       ],
       "locked18": true,
       "friendGame": "defaultOff",
@@ -1047,15 +1044,15 @@
       "sting": "You love everything here. You're more scared of only ever seeing here.",
       "heart": "Going far is how I see myself clearly.",
       "calls": [
-        "You have a city you'd move to tomorrow if someone paid.",
+        "You've learned 'thank you' in a language you don't speak yet.",
         "You'll order the thing on the menu you can't pronounce.",
-        "You've looked up a year-abroad program just to see."
+        "You've checked flight prices somewhere far away at 1am, just to see."
       ],
       "never": "Restless, unstable or running away.",
       "triggers": [
-        "Q46 ch7: a chance to live a year in an unfamiliar city, your life here is good → go see",
-        "NEW ch7 scenario: your favorite restaurant or a place you've never tried → the new place",
-        "NEW ch7 this_or_that: 'a brand new game' over 'replay my favorite'"
+        "C7-3 scenario (Q46): a year in a city you've never seen, life here is good → go, pack tonight",
+        "C5-2 this_or_that: pick your next assignment → the brand-new one nobody has tried",
+        "C7-9 pick_two: your roast → 'picks the restaurant none of us has tried' (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -1071,15 +1068,15 @@
       "sting": "You say you're open to new things. You've had the same order for three years.",
       "heart": "I don't need new. I need mine.",
       "calls": [
-        "You'll rewatch a comfort show tonight instead of starting a new one.",
-        "Your favorite place starts making your order when you walk in.",
-        "You'd turn down a year abroad to keep your weekly thing."
+        "Your top song of the year was also your top song last year.",
+        "Your alarm has been the same sound for years.",
+        "You've been to the same vacation spot enough times to have a favorite bench."
       ],
       "never": "Boring, closed-minded or afraid of change.",
       "triggers": [
-        "Q46 ch7: a year in an unfamiliar city → stay and go deeper into the life and people you have",
-        "NEW ch7 scenario: favorite restaurant or a new place → the favorite, same order",
-        "NEW ch7 this_or_that: 'replay my favorite' over 'a brand new game'"
+        "C7-3 scenario (Q46): the year in a new city → stay, your people and your Thursday thing",
+        "C5-2 this_or_that: pick your next assignment → the one you could do half-asleep",
+        "C7-9 pick_two: your roast → 'comfort show on its fifth rewatch' (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -1092,18 +1089,19 @@
       "chapter": 7,
       "name": "Team healer, IRL",
       "zh": "志工心",
-      "sting": "You want to make the world better. On your own to-do list, you're always last.",
+      "sting": "You want to make the world better. You'll say yes to one more good cause before you say yes to a nap.",
       "heart": "I love the world, and I'm practicing loving me too.",
       "calls": [
-        "In every team game, you end up playing healer.",
-        "You've signed up to help at something and dragged a friend along.",
-        "You'll pay a bit more for the version that helps someone."
+        "You've walked a stranger to where they were going instead of pointing.",
+        "You've turned your birthday into a fundraiser, or thought hard about it.",
+        "You know where the nearest donation bin is without looking it up."
       ],
       "never": "A martyr, or morally better than anyone.",
       "triggers": [
-        "Q47 ch7: free time, your hobby or a project that really helps people → the project",
-        "Q35 reframed ch4: your usual pick or a version that helps someone (secondhand, small maker, a friend's shop) for 30% more → pay the difference when you can",
-        "NEW ch7 role card: in any team game you're the healer who keeps everyone alive"
+        "C7-6 real (Q47): your last free afternoon → roped into a friend's bake sale, and loved it",
+        "C4-4 this_or_that (Q35 reframed): a $10 plant or $25 from a neighbor funding the shelter → the neighbor's",
+        "C7-2 role (Q29): getting ready to go out → fixing everyone else's hair and collars (slight)",
+        "C7-9 pick_two: your roast → 'someone says I need hands and I'm already putting on shoes' (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -1119,15 +1117,15 @@
       "sting": "You'll give a good cause a like. Your Saturdays are already taken.",
       "heart": "My own growth is a contribution too.",
       "calls": [
-        "Your free time already has a plan, and it's a skill you're leveling.",
-        "You've said no to a good cause to protect your one free evening.",
+        "You've passed the volunteer sign-up sheet along without writing your name.",
+        "Your hobby has a progress tracker, and you check it more than your messages.",
         "You'd pick the class over the charity run."
       ],
       "never": "Selfish or uncaring.",
       "triggers": [
-        "Q47 ch7: free time → your own hobby and growth first",
-        "Q35 reframed ch4: the pricier version that helps someone → budget first, not every buy needs a cause",
-        "NEW ch7 role card: in any team game you're the one grinding your own build"
+        "C7-6 real (Q47): your last free afternoon → went deep on your own thing, game, sketch, gym, guitar",
+        "C4-4 this_or_that (Q35 reframed): the plant → the $10 one (slight)",
+        "C7-9 pick_two: your roast → 'weekends are booked: me, my project' (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -1144,14 +1142,16 @@
       "heart": "Tracking is how I take myself seriously.",
       "calls": [
         "You have a budget app, and you've opened it this week.",
-        "Your shared calendar invites have locations, notes and a backup time.",
-        "You've kept a streak alive at 11:58pm."
+        "You've made a packing list for a one-night trip.",
+        "Somewhere on your phone is a list of your other lists."
       ],
       "never": "Obsessive, controlling or uptight.",
       "triggers": [
-        "Q32 reframed ch7: you want your money or your week under control → track it and read the trend",
-        "Q31 reframed ch7: this month's fun money → set a number and log every spend",
-        "NEW ch7 pick_two: 'I have a streak I'd protect with my life'"
+        "C7-5 scenario (Q31, Q32 reframed): Sunday night before a packed week → color-code the whole week, or copy last week's unchecked boxes again",
+        "C1-1 role: in the group chat you're the Planner who makes the poll (slight)",
+        "C4-8 pick_two: money memes → 'I could tell you what I spent on boba last month' (slight)",
+        "C7-2 role (Q29): getting ready to go out → wearing the outfit planned on Tuesday (slight)",
+        "C7-9 pick_two: your roast → 'knows their screen time down to the minute' (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -1167,15 +1167,16 @@
       "sting": "You trust the feeling over the numbers. Sometimes a little too much.",
       "heart": "Feeling good is my whole system.",
       "calls": [
-        "You check your bank balance by feel.",
-        "Your calendar is more of a suggestion.",
+        "You've found a subscription you forgot you were paying for.",
+        "You've shown up to something on the wrong day, and laughed.",
         "You've started five habit trackers and finished zero, happily."
       ],
       "never": "Irresponsible, lazy or chaotic.",
       "triggers": [
-        "Q32 reframed ch7: getting your money or week under control → skip the tracking, adjust by how it feels",
-        "Q31 reframed ch7: this month's fun money → no set number, spend when it feels right",
-        "Q33 ch4: extra free money → spend a big part on an experience (slight)"
+        "C7-5 scenario (Q31, Q32 reframed): Sunday night before a packed week → nothing, Monday you is capable, or ask the group chat",
+        "C4-8 pick_two: money memes → 'my fun money is gone by the 10th' (slight)",
+        "C7-2 role (Q29): the ride is 10 minutes out → still in the shower (slight)",
+        "C7-9 pick_two: your roast → 'my calendar is mostly vibes and sticky notes' (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -1191,15 +1192,16 @@
       "sting": "You trust the process, because you don't trust people to wing it.",
       "heart": "Fair isn't cold to me. It's safe.",
       "calls": [
-        "You're the one who explains the rules at game night, booklet open.",
+        "You've actually read the terms and conditions on something.",
         "You'll tell someone they cut the line, politely.",
-        "You've followed a group project rubric line by line."
+        "You've waited for the walk signal on a completely empty street."
       ],
       "never": "Rigid, controlling or a snitch.",
       "triggers": [
-        "Q38 reframed ch7: a house or game rule is clearly annoying in one odd case, and it's not your call → follow it, ask whoever runs it for an exception",
-        "Q40 reframed ch7: one spot left (last ticket, last slot); one friend waited longest, another needs it more → whoever was first in line",
-        "Q02 reframed ch7: a friend bends a game rule to win → call it, the rules are the rules"
+        "C7-4 real (Q38 reframed): the last rule that made zero sense for you → asked whoever's in charge for an exception, or followed it and moved on",
+        "C7-1 scenario (Q02 reframed): a friend wins Uno with an illegal stack → pull up the official rules",
+        "C7-7 scenario (Q40 reframed): one spare ticket, one friend asked first, one is having an awful month → first to ask gets it",
+        "C6-10 this_or_that: nobody eats till everyone's at the table, the cousin is 40 minutes late → wait (slight)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -1217,13 +1219,14 @@
       "calls": [
         "You've let someone ahead of you in line because they looked stressed.",
         "Your house rules have exceptions, and you remember all of them.",
-        "At game night, you'll allow a do-over for the new player."
+        "You've let a kid win and made it look real."
       ],
       "never": "A rule-breaker, unreliable or unfair.",
       "triggers": [
-        "Q38 reframed ch7: an annoying rule in an odd case → handle it flexibly within what you can own, explain after",
-        "Q40 reframed ch7: last spot → whoever needs it more right now",
-        "Q02 reframed ch7: a friend bends a game rule → let it go if it made the game more fun"
+        "C7-4 real (Q38 reframed): the rule that made zero sense → worked around it quietly, or did it your way with a speech ready",
+        "C7-1 scenario (Q02 reframed): the illegal Uno stack → let it slide, they haven't won all night, or draw six happily",
+        "C7-7 scenario (Q40 reframed): one spare ticket → the friend having the awful month",
+        "C6-10 this_or_that: the late cousin → eat, save them a plate (slight)"
       ],
       "locked18": false,
       "friendGame": "open",

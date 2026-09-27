@@ -2,8 +2,8 @@
   "chapter": 3,
   "title": "Love and your person",
   "intro": "Your person can be a crush, a partner or your closest friend. I just want the gossip.",
-  "order": ["C3-1", "C3-2", "C3-8", "C3-3", "C3-5", "C3-6", "C3-7", "C3-12", "C3-9", "C3-4"],
-  "teenOrder": ["C3-1", "C3-2", "C3-3", "C3-5", "C3-6", "C3-7", "C3-12", "C3-4"],
+  "order": ["C3-1", "C3-2", "C3-3", "C3-5", "C3-7", "C3-8", "C3-12", "C3-9", "C3-4"],
+  "teenOrder": ["C3-1", "C3-2", "C3-3", "C3-5", "C3-7", "C3-12", "C3-4"],
   "finale": ["C3-10"],
   "cards": [
     {
@@ -55,15 +55,15 @@
       "prompt": "A friend's toddler falls asleep on you mid-party. Nobody can move you for an hour. Pick the two thoughts closest to yours.",
       "privacy": "locked18",
       "options": [
-        {"t": "I want one. My parents would be unbearable grandparents.", "tags": [{"id": "T11A", "s": 1}], "emotion": "longing"},
-        {"t": "I already have names picked out.", "tags": [{"id": "T11A", "s": 1}]},
+        {"t": "I want one. My parents would be unbearable grandparents.", "tags": [{"id": "T11A", "s": 2}], "emotion": "longing"},
+        {"t": "I already have names picked out.", "tags": [{"id": "T11A", "s": 2}]},
         {"t": "Someday. After I can keep a plant alive.", "tags": [{"id": "T11A", "s": 1}]},
-        {"t": "Cute. Also, I get to hand them back.", "tags": [{"id": "T11B", "s": 1}], "emotion": "relief"},
-        {"t": "Is a dog basically the same thing? Asking for me.", "tags": [{"id": "T11B", "s": 1}]},
+        {"t": "Cute. Anyway, my life plan has zero car seats.", "tags": [{"id": "T11B", "s": 2}], "emotion": "relief"},
+        {"t": "Is a dog basically the same thing? Asking for me.", "tags": [{"id": "T11B", "s": 2}]},
         {"t": "I'd want this, but my life can't fit it now.", "circumstance": true, "emotion": "longing"}
       ],
       "feel": "longing",
-      "mask": "looks like a sweet party moment; measures how you feel about being a parent someday (Sally Q10), with a circumstance line for want-but-can't",
+      "mask": "looks like a sweet party moment; measures how you feel about being a parent someday (Sally Q10, T11): the plain want and the plain no carry s2, the maybe-later line s1, with a circumstance line for want-but-can't",
       "ae": ["D", "E"]
     },
     {
@@ -78,7 +78,7 @@
         {"t": "By what each of us has, so it pinches us the same.", "tags": [{"id": "T12B", "s": 2}]},
         {"t": "Payment request for every single thing. Itemized.", "tags": [{"id": "T12A", "s": 1}]},
         {"t": "One shared pot. Neither of us checks the balance.", "tags": [{"id": "T12B", "s": 1}], "emotion": "warmth"},
-        {"t": "Whatever I can cover this month. Money's tight right now.", "circumstance": true, "emotion": "worry"}
+        {"t": "Whatever I can cover that month. Some months that's not half.", "circumstance": true, "emotion": "worry"}
       ],
       "feel": "tension",
       "mask": "looks like bill logistics; measures whether fair means the same amount (T12A) or the same weight on each person (T12B)",
@@ -112,24 +112,6 @@
       }
     },
     {
-      "id": "C3-6",
-      "type": "feeling",
-      "sally": [],
-      "follows": "C3-5",
-      "prompt": "Back then, under all that, the feeling was...",
-      "privacy": "normal",
-      "options": [
-        {"t": "Irritation. Why is this happening again?", "emotion": "irritation"},
-        {"t": "Guilt. Maybe I'm the annoying one.", "emotion": "guilt"},
-        {"t": "Worry that saying it would break something.", "emotion": "worry"},
-        {"t": "Resentment. I'd been keeping quiet score.", "emotion": "resentment"},
-        {"t": "Relief once it was sorted, or over.", "emotion": "relief"}
-      ],
-      "feel": "recognition",
-      "mask": "looks like a mood check; records the emotion behind the repair-or-leave move for the research record and sting lines",
-      "ae": ["E"]
-    },
-    {
       "id": "C3-7",
       "type": "scenario",
       "sally": ["Q06"],
@@ -150,21 +132,21 @@
       "id": "C3-12",
       "type": "real",
       "sally": [],
-      "prompt": "Your person has one party story they tell every time. The bear gets bigger each round. Last time they started it, you...",
+      "prompt": "Your person's last joke about you that landed a little too hard, in front of everyone. Your singing, your cooking, your middle school photos. What did you do?",
       "privacy": "normal",
       "options": [
-        {"t": "Told them on the ride home: 'We need to retire the bear.'", "axes": {"R2": 2}},
-        {"t": "Heckled it in front of everyone: 'It was a raccoon.'", "axes": {"R2": 1}, "emotion": "delight"},
-        {"t": "Jumped in and told it with them, only faster.", "axes": {"R2": -1}},
-        {"t": "Laughed like it was the first time. Look how happy they are.", "axes": {"R2": -2}, "emotion": "warmth"}
+        {"t": "Said it right there: 'Okay, that one actually hurt.'", "axes": {"R2": 2}, "emotion": "sting"},
+        {"t": "Roasted them right back, twice as hard. Now we're even.", "axes": {"R2": 1}, "emotion": "delight"},
+        {"t": "Went quiet until they asked what was wrong.", "axes": {"R2": -1}, "emotion": "resentment"},
+        {"t": "Laughed it off. They meant well, and they were having fun.", "axes": {"R2": -2}, "emotion": "warmth"}
       ],
-      "feel": "cringe",
-      "mask": "looks like a party-story roast; measures R2 outside chapter 2: saying the awkward truth to your person versus protecting their moment",
-      "ae": ["A", "B"],
+      "feel": "sting",
+      "mask": "looks like a roast story; measures R2 on a real card outside chapter 2: saying the hurt out loud to your person versus protecting their moment. You are the target here, so it does not repeat the 'your friend's thing isn't good' cards (C2-1, C2-8, C2-10)",
+      "ae": ["A", "B", "E"],
       "friend": {
-        "prompt": "{name}'s person tells the same party story every time, and it stopped landing months ago. {name}...",
-        "a": {"t": "Says it on the ride home: 'Retire the bear.'", "axes": {"R2": 2}, "tags": []},
-        "b": {"t": "Laughs like it's the first time, every time.", "axes": {"R2": -2}, "tags": []}
+        "prompt": "{name}'s person makes a joke about {name} in front of everyone, and it stings. {name}...",
+        "a": {"t": "Says it right there: 'Okay, that one hurt.'", "axes": {"R2": 2}, "tags": []},
+        "b": {"t": "Laughs it off. They meant well.", "axes": {"R2": -2}, "tags": []}
       }
     },
     {
@@ -177,16 +159,15 @@
       "options": [
         {"t": "Turn it down. The mood board stays on schedule.", "axes": {"L2": -1}, "tags": [{"id": "T11A", "s": 2}]},
         {"t": "Take it. We push the baby plan back a year.", "axes": {"L2": 1}, "tags": [{"id": "T16A", "s": 1}], "emotion": "guilt"},
-        {"t": "Take it. My parents are already packing to be daycare.", "axes": {"L2": 1}, "tags": [{"id": "T16A", "s": 1}]},
-        {"t": "Depends. Whichever one we'd regret more.", "tags": []},
-        {"t": "Money decides this one. The paycheck wins.", "circumstance": true, "emotion": "worry"}
+        {"t": "Take it. The mood board was always more their dream.", "axes": {"L2": 1}, "tags": [{"id": "T16A", "s": 1}, {"id": "T11B", "s": 1}], "emotion": "relief"},
+        {"t": "Depends. Whichever one we'd regret more.", "tags": []}
       ],
       "flip": {
         "prompt": "What would flip you?",
         "options": ["The job won't come around again.", "My person's career needs the room too.", "My parents can help with the baby."]
       },
       "feel": "tension",
-      "mask": "looks like a timing puzzle; measures whether a wanted family plan bends for a career win (Sally Q11), with L2 as slight evidence",
+      "mask": "looks like a timing puzzle; measures whether a wanted family plan bends for a career win (Sally Q11, T11A), with L2 as slight evidence and a slight T11B line for the player whose kid plan was never really theirs",
       "ae": ["C", "D"]
     },
     {
@@ -196,15 +177,15 @@
       "prompt": "You and your person, on a normal week. Pick the two lines most like you.",
       "privacy": "normal",
       "options": [
-        {"t": "We can do nothing together for hours and it's perfect.", "axes": {"R1": 1}, "tags": [{"id": "T09A", "s": 1}]},
-        {"t": "Some nights I'm offline, and they know not to ask.", "axes": {"R1": -1}, "tags": [{"id": "T09B", "s": 1}]},
         {"t": "If they're free, I'm suddenly free too.", "axes": {"R1": 1}, "tags": [{"id": "T09A", "s": 1}]},
+        {"t": "Some nights I'm offline, and they know not to ask.", "axes": {"R1": -1}, "tags": [{"id": "T09B", "s": 1}]},
+        {"t": "We take turns paying. I always know whose turn it is.", "tags": [{"id": "T12A", "s": 1}]},
         {"t": "I have a hobby they've never tried and never will.", "axes": {"R1": -1}, "tags": [{"id": "T09B", "s": 1}]},
         {"t": "They get a play-by-play of my day. Photos of lunch included.", "axes": {"R1": 1}, "tags": [{"id": "T09A", "s": 1}]},
-        {"t": "A weekend apart feels like a treat, not a problem.", "axes": {"R1": -1}, "tags": [{"id": "T09B", "s": 1}]}
+        {"t": "Whoever just got paid covers food. That's the whole system.", "tags": [{"id": "T12B", "s": 1}]}
       ],
       "feel": "recognition",
-      "mask": "looks like cute relationship habits; measures R1, most free time shared versus close with your own time and interests kept (Sally Q05)",
+      "mask": "looks like cute relationship habits; measures R1, most free time shared versus close with your own time and interests kept (Sally Q05), plus one slight line each for keeping exact turns (T12A) and whoever has more pays (T12B)",
       "ae": ["B", "D"],
       "friend": {
         "prompt": "On a normal week with a partner or closest friend, {name} would rather...",
