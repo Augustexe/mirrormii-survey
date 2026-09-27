@@ -32,6 +32,7 @@ For MirrorMii company, product, customer or marketing facts, use the governed La
 
 ## Changes
 
+- 2026-09-26: questions/PERSONA-TAGS-V1.md created (proposed): Sally's 41 paired persona tags mapped onto our tags (16 work with the blind-test kit), English drafts, combined result, static friend game. Source saved in research/sally-values-2026-09-26.
 - 2026-09-26: research/blind-test-kit created: 45-card blind prediction test run by a Claude Code agent through lavish-axi, deterministic scorer with sealed sha256, prediction register, handoff prompt.
 - 2026-09-26: questions/RUN-SPEC-LEDGER.md created: the single page of current, proposed and outdated survey rulings. Check it before any survey work.
 - 2026-09-26: questions/GAUNTLET-SPEC-V1.md created (proposed) from the question gauntlet (6 voice writers, 5 judges): gates, rubric, formula, human pilot targets, results, rewrite rules 10 to 21. Raw data and winners.json in research/gauntlet-2026-09-26.

@@ -36,6 +36,8 @@ People **finish**, get a **personality prediction** that feels accurate and fun,
 
 ## Proposed, not yet ruled
 
+- Persona tags (Sally's paired library, 41 meme-style tags with sting and 💛 lines) as the named layer of the result, plus her friend game ("Do you really know me?") on a static page via link fragments ([PERSONA-TAGS-V1](PERSONA-TAGS-V1.md)).
+
 - Prediction register: title like a zodiac name, three short paragraphs from strongest tags, emotions and one split, "Genii's calls", "What people miss about you" (research/blind-test-kit/PREDICTION-REGISTER.md). In test on Jerry's run.
 
 - Voices: ship Be kind, Make it fun (default) and Call me out; cut Cozy quest and the Oracle ([GAUNTLET-SPEC-V1](GAUNTLET-SPEC-V1.md)).
