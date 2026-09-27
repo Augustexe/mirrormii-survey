@@ -5,6 +5,7 @@ Project ID: `mirrormii-genie-survey`. This page routes to the owning documents a
 ## Start here
 
 - [Live project state](docs/STATE.md)
+- [Run spec ledger: current vs outdated rulings](docs/questions/RUN-SPEC-LEDGER.md)
 
 - [Local wiki](docs/README.md)
 - [Project instructions](AGENTS.md)
@@ -31,6 +32,7 @@ For MirrorMii company, product, customer or marketing facts, use the governed La
 
 ## Changes
 
+- 2026-09-26: questions/RUN-SPEC-LEDGER.md created: the single page of current, proposed and outdated survey rulings. Check it before any survey work.
 - 2026-09-26: questions/GAUNTLET-SPEC-V1.md created (proposed) from the question gauntlet (6 voice writers, 5 judges): gates, rubric, formula, human pilot targets, results, rewrite rules 10 to 21. Raw data and winners.json in research/gauntlet-2026-09-26.
 - 2026-09-26: questions/PILOT-VOICES-V1.md created (proposed): seven pilot items written in Be kind, Make it fun and Call me out with identical levels, voice rules, two candidate voices (The Lab, The Oracle).
 - 2026-09-26: pilot/ test build created: 32 tag dimensions from Sally's research (32 stances, 14 masked scenes, 8 sealed checks), scoring engine, tests (7 pass), persona runs, swap test. Evidence breakdown generated to docs/questions/PILOT-BANK-V1.md. Preview config "genii-tag-pilot" (port 8790).
