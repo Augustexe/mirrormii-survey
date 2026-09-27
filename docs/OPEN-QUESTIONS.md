@@ -12,6 +12,7 @@ The integration and redesign are explicitly authorized and implemented in the ac
 - Outdated repository `Augustexe/mirrormii-survey`: public since 2026-09-18 with an older GitHub Pages site. Delete, archive or keep is Jerry's call; only the mistaken branch was removed.
 - Source home: merge the live `codex/final-survey-dossier` branch into the project checkout and retire the workbench worktree (see [STATE.md](STATE.md)).
 - App handoff destination: still a placeholder; needs a verified URL and promise.
+- Spec V3 (2026-09-26): six decisions for Jerry in [SURVEY-SPEC-V3.md](SURVEY-SPEC-V3.md) section 9 (A to E tags, need_voice axis, emotional signature, five new questions, North American voice pass, pair mode).
 - Market model: monetisation model, sourced cozy-gamer and gacha figures, and the App Store Glow Score contradiction ([MARKET-MODEL.md](MARKET-MODEL.md)).
 
 ## Earlier question ledger (historical implementation-status statements)

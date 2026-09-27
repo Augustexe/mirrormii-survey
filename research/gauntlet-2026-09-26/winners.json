@@ -1,0 +1,4007 @@
+{
+  "version": "gauntlet-2026-09-26",
+  "createdBy": "lead synthesizer",
+  "basis": "pilot/bank.js genii-tag-pilot-v1 + 5 added tags; writer and judge files in this folder",
+  "levelNote": "scene options listed in bank.js order with levels; null = none/other on this tag",
+  "scoring": "weighted = 0.25 recognition + 0.20 honest + 0.15 clarity + 0.15 funny + 0.15 share + 0.10 emotion, per judge then averaged over Jasmine, Jordan, Riley, Theo",
+  "entries": [
+    {
+      "dim": "closeness_style",
+      "voice": "kind",
+      "quick": {
+        "prompt": "With your closest person, the ideal is…",
+        "a": "Lots of time together, sharing the whole day.",
+        "b": "Close, and we each keep time of our own."
+      },
+      "scene": {
+        "prompt": "Think of your last free day with nothing planned. How much went to your closest person?",
+        "feel": "recognition",
+        "options": [
+          {
+            "t": "Almost all of it. That was the plan.",
+            "level": -2
+          },
+          {
+            "t": "A good chunk, then some time to myself.",
+            "level": -1
+          },
+          {
+            "t": "One check-in text. The rest was mine.",
+            "level": 1
+          },
+          {
+            "t": "Mostly on my own. We caught up later.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "kind, verbatim; own weighted score 3.46; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Togetherness",
+        "B": "Own orbit"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "closeness_style",
+      "voice": "fun",
+      "quick": {
+        "prompt": "With your closest person, the dream setup is…",
+        "a": "Together most of the time, even for errands.",
+        "b": "Close, but with real time on my own."
+      },
+      "scene": {
+        "prompt": "Your last free weekend day with nothing planned. How much went to your closest person?",
+        "feel": "recognition",
+        "options": [
+          {
+            "t": "Nearly all of it. Even the grocery run.",
+            "level": -2
+          },
+          {
+            "t": "Spent the afternoon together, then went solo.",
+            "level": -1
+          },
+          {
+            "t": "Texted them a few memes. The rest was mine.",
+            "level": 1
+          },
+          {
+            "t": "Kept it for me. We caught up later.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "fun, verbatim; own weighted score 4.4; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Togetherness",
+        "B": "Own orbit"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "closeness_style",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Your closest person. Be honest, how much of your free time do you want with them?",
+        "a": "Most of it. Errands included.",
+        "b": "Some of it. I need real solo time."
+      },
+      "scene": {
+        "prompt": "Last time you had a free day, nothing planned. How much went to your closest person?",
+        "feel": "recognition",
+        "options": [
+          {
+            "t": "All of it. Planned it that way.",
+            "level": -2
+          },
+          {
+            "t": "Most of it, then some solo couch time.",
+            "level": -1
+          },
+          {
+            "t": "Sent one check-in text. The rest was mine.",
+            "level": 1
+          },
+          {
+            "t": "Kept it for me. They got next weekend.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "callout, edited by synthesizer; own weighted score 4.1; evidence gate FAIL as written, fixed here",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Togetherness",
+        "B": "Own orbit"
+      },
+      "edits": [
+        "quick B rewritten: callout \"Plenty, and I keep real solo time.\" failed rule 2 (both poles claimed lots of shared time); new B restores own time and space",
+        "scene -1: \"then I needed my couch\" -> \"then some solo couch time\" (Theo: \"needed\" made the closest person sound like a drain, rule 3)"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "betrayal_line",
+      "voice": "kind",
+      "quick": {
+        "prompt": "Your person got secretly close to someone. Nothing physical, but they share what used to be yours. What hurts most?",
+        "teenPrompt": "Your best friend got secretly close to someone else and shares what used to be yours. What hurts most?",
+        "a": "That closeness itself. It used to be ours.",
+        "b": "The hiding. We never agreed that was okay."
+      },
+      "scene": {},
+      "source": "kind, verbatim; own weighted score 3.26; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Emotional closeness is the line",
+        "B": "Broken agreements are the line"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "betrayal_line",
+      "voice": "fun",
+      "quick": {
+        "prompt": "Your person secretly started telling someone else the stuff they only told you. Nothing physical. What hurts most?",
+        "teenPrompt": "Your best friend secretly started telling someone else the stuff they only told you. What hurts most?",
+        "a": "Losing the late-night talks. Those were ours.",
+        "b": "Hiding it. We never agreed to secrets."
+      },
+      "scene": {},
+      "source": "fun (grafted from scenario), edited by synthesizer; own weighted score 4.02; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Emotional closeness is the line",
+        "B": "Broken agreements are the line"
+      },
+      "edits": [
+        "quick A grafted from scenario (top-scored line on this tag, 4 of 4 judge votes); prompt, teen prompt and B are fun's own"
+      ],
+      "rejudge": false
+    },
+    {
+      "dim": "betrayal_line",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Your person got secretly close to someone else. Nothing physical. They share what used to be yours. Worst part?",
+        "teenPrompt": "Your best friend got secretly close to someone else. They share what used to be yours. Worst part?",
+        "a": "Losing the closeness. Those talks were ours.",
+        "b": "Hiding it. We never agreed to secrets."
+      },
+      "scene": {},
+      "source": "callout, verbatim; own weighted score 3.74; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Emotional closeness is the line",
+        "B": "Broken agreements are the line"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "commitment_pace",
+      "voice": "kind",
+      "quick": {
+        "prompt": "You like and respect each other and talked it all through. Nothing official yet. Getting physical is…",
+        "a": "Fine with me. It doesn't need a label first.",
+        "b": "Something I'd rather save for once it's official."
+      },
+      "scene": {},
+      "source": "kind, verbatim; own weighted score 2.75; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Closeness can come first",
+        "B": "Commitment comes first"
+      },
+      "audience": "18+ only",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "commitment_pace",
+      "voice": "fun",
+      "quick": {
+        "prompt": "Mutual attraction, lots of respect, everything talked through, nothing official yet. Getting physical is…",
+        "a": "Fine by me. No label required.",
+        "b": "Worth waiting on until there's a label."
+      },
+      "scene": {},
+      "source": "fun, verbatim; own weighted score 3.34; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Closeness can come first",
+        "B": "Commitment comes first"
+      },
+      "audience": "18+ only",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "commitment_pace",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Mutual attraction, real respect, the big talk done, nothing official yet. Getting physical is…",
+        "a": "Fine by me. No title required.",
+        "b": "Waiting until it's official. Title first."
+      },
+      "scene": {},
+      "source": "callout, verbatim; own weighted score 3.42; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Closeness can come first",
+        "B": "Commitment comes first"
+      },
+      "audience": "18+ only",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "phone_privacy",
+      "voice": "kind",
+      "quick": {
+        "prompt": "Your closest person suggests you both share phone passcodes. Nothing's wrong, it's just an idea.",
+        "a": "Sure. That feels natural to me.",
+        "b": "I'd keep mine. If something's up, just ask."
+      },
+      "scene": {},
+      "source": "kind, verbatim; own weighted score 3.22; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Open phones",
+        "B": "Private phones"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "phone_privacy",
+      "voice": "fun",
+      "quick": {
+        "prompt": "Your closest person suggests swapping phone passcodes. Nothing's wrong, it's just an idea.",
+        "a": "Sure. Here's mine, what's yours?",
+        "b": "Keeping mine. Just ask me if something's up."
+      },
+      "scene": {},
+      "source": "fun (grafted from oracle), edited by synthesizer; own weighted score 4.14; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Open phones",
+        "B": "Private phones"
+      },
+      "edits": [
+        "quick A: \"Mine's my birthday anyway.\" -> oracle's \"Here's mine, what's yours?\" (rule 3: only A had the joke; Theo)"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "phone_privacy",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Your closest person wants to swap phone passcodes. No drama, just an idea. You say…",
+        "a": "Sure. Mine's my birthday anyway.",
+        "b": "Keeping mine. Ask me anything instead."
+      },
+      "scene": {},
+      "source": "callout, verbatim; own weighted score 4.19; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Open phones",
+        "B": "Private phones"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "who_pays",
+      "voice": "kind",
+      "quick": {
+        "prompt": "First date or first hangout. The bill arrives.",
+        "a": "Whoever did the asking pays. That feels right.",
+        "b": "We split it. Easy and even from the start."
+      },
+      "scene": {},
+      "source": "kind, edited by synthesizer; own weighted score 3.09; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Whoever asked pays",
+        "B": "Split from the start"
+      },
+      "edits": [
+        "quick A: \"It's a nice gesture.\" -> \"That feels right.\" (rule 3: \"nice gesture\" grades A as the nicer person; Theo)"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "who_pays",
+      "voice": "fun",
+      "quick": {
+        "prompt": "First date or first hangout. The bill lands on the table.",
+        "a": "Whoever asked pays. That's the deal.",
+        "b": "Split it. Nobody owes anybody."
+      },
+      "scene": {},
+      "source": "fun, verbatim; own weighted score 3.89; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Whoever asked pays",
+        "B": "Split from the start"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "who_pays",
+      "voice": "callout",
+      "quick": {
+        "prompt": "First date or first hangout. The bill lands on the table. Who pays?",
+        "a": "Whoever asked pays. The invite comes with the bill.",
+        "b": "Split it. Nobody owes anybody anything."
+      },
+      "scene": {},
+      "source": "callout, verbatim; own weighted score 4.16; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Whoever asked pays",
+        "B": "Split from the start"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "standards",
+      "voice": "kind",
+      "quick": {
+        "prompt": "Someone great does one small thing that gives you the ick.",
+        "a": "Trust it. The ick is usually right.",
+        "b": "Let it go. Everyone has something."
+      },
+      "scene": {},
+      "source": "kind, verbatim; own weighted score 3.64; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Trust the ick",
+        "B": "Look past small things"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "standards",
+      "voice": "fun",
+      "quick": {
+        "prompt": "Someone great does one tiny thing that gives you the ick.",
+        "a": "Trusting the ick. It's never been wrong.",
+        "b": "Letting it go. Everyone has one weird thing."
+      },
+      "scene": {},
+      "source": "fun, verbatim; own weighted score 4.08; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Trust the ick",
+        "B": "Look past small things"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "standards",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Someone great does one tiny cringe thing.",
+        "a": "Trust the ick. It knows things.",
+        "b": "Overlook it. One weird habit isn't the whole person."
+      },
+      "scene": {},
+      "source": "callout, edited by synthesizer; own weighted score 4.56; evidence gate FAIL as written, fixed here",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Trust the ick",
+        "B": "Look past small things"
+      },
+      "edits": [
+        "prompt: removed \"Like clapping when the plane lands.\" (rule 3: a harmless example makes trusting the ick look petty)"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "support_capacity",
+      "voice": "kind",
+      "quick": {
+        "prompt": "A friend needs you tonight, and you're exhausted. A good friend…",
+        "a": "Shows up anyway.",
+        "b": "Says so, and picks another night."
+      },
+      "scene": {
+        "prompt": "Think of the last time a friend needed a long talk or favor while you were exhausted. What happened?",
+        "feel": "guilt",
+        "options": [
+          {
+            "t": "Showed up and stayed as long as they needed.",
+            "level": -2
+          },
+          {
+            "t": "Made time, but kept it on the short side.",
+            "level": -1
+          },
+          {
+            "t": "Answered the next day and felt bad about it.",
+            "level": 1,
+            "emotion": "guilt"
+          },
+          {
+            "t": "Said \"not tonight\" and offered another day.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "kind, verbatim; own weighted score 3.59; evidence gate pass",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "Show up anyway",
+        "B": "Say so and reschedule"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "support_capacity",
+      "voice": "fun",
+      "quick": {
+        "prompt": "A friend needs you tonight and you're exhausted. A good friend…",
+        "a": "shows up anyway. Sleep can wait.",
+        "b": "texts \"can't tonight, tomorrow?\" and means it."
+      },
+      "scene": {
+        "prompt": "Last time a friend wanted a long talk or a favor and you were exhausted. What happened?",
+        "feel": "guilt",
+        "options": [
+          {
+            "t": "Showed up and stayed till 2am.",
+            "level": -2
+          },
+          {
+            "t": "Gave them one hour, then said goodnight.",
+            "level": -1
+          },
+          {
+            "t": "Replied the next morning. Felt bad about it.",
+            "level": 1,
+            "emotion": "guilt"
+          },
+          {
+            "t": "Texted \"can't tonight, tomorrow?\"",
+            "level": 2
+          }
+        ]
+      },
+      "source": "fun, verbatim; own weighted score 4.54; evidence gate pass",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "Show up anyway",
+        "B": "Say so and reschedule"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "support_capacity",
+      "voice": "callout",
+      "quick": {
+        "prompt": "A friend needs you tonight. You're completely wiped. A good friend…",
+        "a": "Shows up anyway. Sleep can wait.",
+        "b": "Tells them, then picks another night."
+      },
+      "scene": {
+        "prompt": "Last time a friend needed you and you were wiped. What did you actually do?",
+        "feel": "guilt",
+        "options": [
+          {
+            "t": "Stayed till 2am. Again.",
+            "level": -2
+          },
+          {
+            "t": "Went, but checked the clock the whole time.",
+            "level": -1
+          },
+          {
+            "t": "Replied the next day. Felt guilty all night.",
+            "level": 1,
+            "emotion": "guilt"
+          },
+          {
+            "t": "Texted \"can't tonight, tomorrow?\" Then slept.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "callout (grafted from fun), edited by synthesizer; own weighted score 4.7; evidence gate pass",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "Show up anyway",
+        "B": "Say so and reschedule"
+      },
+      "edits": [
+        "quick A: \"Yawns quietly.\" -> \"Sleep can wait.\" (worst line for Jordan, Riley and Theo; filler, reads as an adult doing a bit). Words from fun and scenario"
+      ],
+      "rejudge": false
+    },
+    {
+      "dim": "contact_needs",
+      "voice": "kind",
+      "quick": {
+        "prompt": "You and a friend haven't talked in a couple of months. Nobody's upset.",
+        "a": "That's fine. We'll pick right back up.",
+        "b": "It matters to me that someone reaches out."
+      },
+      "scene": {
+        "prompt": "Think of the last time a friend went quiet for a few weeks. What went through your head?",
+        "feel": "sting",
+        "options": [
+          {
+            "t": "Didn't notice until they popped back up.",
+            "level": -2
+          },
+          {
+            "t": "Noticed, figured they were busy, and moved on.",
+            "level": -1
+          },
+          {
+            "t": "Checked their posts to make sure they were okay.",
+            "level": 1,
+            "emotion": "worry"
+          },
+          {
+            "t": "Wondered, quietly, if they still liked me.",
+            "level": 2,
+            "emotion": "sting"
+          }
+        ]
+      },
+      "source": "kind, verbatim; own weighted score 3.81; evidence gate pass",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "Low contact is fine",
+        "B": "I need people to reach out"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "contact_needs",
+      "voice": "fun",
+      "quick": {
+        "prompt": "You and a friend haven't talked in two months. Nobody's mad.",
+        "a": "Totally fine. We'll pick right back up.",
+        "b": "Stings a bit. I'd want someone to text."
+      },
+      "scene": {
+        "prompt": "Last time a friend went quiet for a few weeks. What actually went on in your head?",
+        "feel": "sting",
+        "options": [
+          {
+            "t": "Didn't notice until they texted out of nowhere.",
+            "level": -2
+          },
+          {
+            "t": "Figured they were busy and moved on.",
+            "level": -1
+          },
+          {
+            "t": "Checked their stories to make sure they were okay.",
+            "level": 1,
+            "emotion": "worry"
+          },
+          {
+            "t": "Wondered if they were mad at me.",
+            "level": 2,
+            "emotion": "sting"
+          }
+        ]
+      },
+      "source": "fun, verbatim; own weighted score 4.22; evidence gate pass",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "Low contact is fine",
+        "B": "I need people to reach out"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "contact_needs",
+      "voice": "callout",
+      "quick": {
+        "prompt": "You and a friend haven't talked in two months. Nobody's mad. Be honest…",
+        "a": "Fine. We'll pick up mid-sentence.",
+        "b": "Stings a bit. Someone should reach out."
+      },
+      "scene": {
+        "prompt": "Last time a friend went quiet for weeks. What actually went on in your head?",
+        "feel": "sting",
+        "options": [
+          {
+            "t": "Didn't notice till they texted again. Oops.",
+            "level": -2
+          },
+          {
+            "t": "Noticed. Figured they were busy. Moved on.",
+            "level": -1
+          },
+          {
+            "t": "Checked their stories. Twice. They were alive.",
+            "level": 1,
+            "emotion": "worry"
+          },
+          {
+            "t": "Felt it. Wondered if they still like me.",
+            "level": 2,
+            "emotion": "sting"
+          }
+        ]
+      },
+      "source": "callout, verbatim; own weighted score 4.76; evidence gate pass",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "Low contact is fine",
+        "B": "I need people to reach out"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "friend_did_harm",
+      "voice": "kind",
+      "quick": {
+        "prompt": "A close friend clearly hurt someone. The facts are pretty settled. What do you do first?",
+        "a": "Be there for them, then talk about owning it.",
+        "b": "Tell them it wasn't okay, even if they get upset."
+      },
+      "scene": {
+        "prompt": "Think of the last time a friend was pretty clearly wrong in group drama. What did you do?",
+        "feel": "tension",
+        "options": [
+          {
+            "t": "Backed them up in public, talked privately later.",
+            "level": -2
+          },
+          {
+            "t": "Stayed neutral and let it blow over.",
+            "level": -1
+          },
+          {
+            "t": "Told them privately that they'd messed up.",
+            "level": 1
+          },
+          {
+            "t": "Said it in the group chat, kindly but clearly.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "kind, verbatim; own weighted score 3.54; evidence gate pass",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "Steady them first",
+        "B": "Call it first"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "friend_did_harm",
+      "voice": "fun",
+      "quick": {
+        "prompt": "A close friend clearly hurt someone. The facts are settled. Your first move?",
+        "a": "Have their back first, then talk about owning it.",
+        "b": "Tell them it wasn't okay, even if they're mad."
+      },
+      "scene": {
+        "prompt": "Last time a friend was clearly in the wrong in some group drama. What did you do?",
+        "feel": "tension",
+        "options": [
+          {
+            "t": "Backed them in public, talked to them privately later.",
+            "level": -2
+          },
+          {
+            "t": "Stayed quiet and let it blow over.",
+            "level": -1
+          },
+          {
+            "t": "DMed them: \"hey, that wasn't great.\"",
+            "level": 1
+          },
+          {
+            "t": "Said it in the group chat, nicely but clearly.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "fun, verbatim; own weighted score 4.42; evidence gate pass",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "Steady them first",
+        "B": "Call it first"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "friend_did_harm",
+      "voice": "callout",
+      "quick": {
+        "prompt": "A close friend clearly hurt someone. The facts are settled. Your first move?",
+        "a": "Support them first. The owning-it talk comes later.",
+        "b": "Say it wasn't okay. Even if they take it badly."
+      },
+      "scene": {
+        "prompt": "Last time a friend was clearly in the wrong in group drama. What did you do?",
+        "feel": "tension",
+        "options": [
+          {
+            "t": "Backed them in public. Had the talk in private.",
+            "level": -2
+          },
+          {
+            "t": "Stayed neutral. Waited for it to blow over.",
+            "level": -1
+          },
+          {
+            "t": "Told them privately, \"yeah, you messed up.\"",
+            "level": 1
+          },
+          {
+            "t": "Said it in the group chat. Kindly. Clearly.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "callout, verbatim; own weighted score 4.19; evidence gate pass",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "Steady them first",
+        "B": "Call it first"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "celebration_budget",
+      "voice": "kind",
+      "quick": {
+        "prompt": "Friends plan a birthday trip that's over your comfortable budget, but doable.",
+        "a": "Go, and cut back somewhere else. It's worth it.",
+        "b": "Say my budget and celebrate a cheaper way."
+      },
+      "scene": {
+        "prompt": "Think of the last time friends planned something above your budget. What did you do?",
+        "feel": "guilt",
+        "options": [
+          {
+            "t": "Went, paid, and quietly cut back for a week.",
+            "level": -2
+          },
+          {
+            "t": "Joined, but skipped the pricier parts without saying why.",
+            "level": -1
+          },
+          {
+            "t": "Said my budget and suggested a cheaper version.",
+            "level": 2
+          },
+          {
+            "t": "Sat this one out and made it up later.",
+            "level": 1
+          }
+        ]
+      },
+      "source": "kind, verbatim; own weighted score 3.7; evidence gate pass",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "Stretch for the moment",
+        "B": "Say the budget"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "celebration_budget",
+      "voice": "fun",
+      "quick": {
+        "prompt": "Friends plan a birthday trip that's over your budget, but doable.",
+        "a": "Going. I'll cut back somewhere else after.",
+        "b": "Saying my budget and pitching a cheaper plan."
+      },
+      "scene": {
+        "prompt": "Last time friends planned something above your budget. What did you do?",
+        "feel": "guilt",
+        "options": [
+          {
+            "t": "Went, paid, and ate instant noodles for a week.",
+            "level": -2
+          },
+          {
+            "t": "Joined, but skipped the pricey parts. Didn't say why.",
+            "level": -1
+          },
+          {
+            "t": "Told everyone my budget and pitched a cheaper plan.",
+            "level": 2
+          },
+          {
+            "t": "Skipped it, then made it up to them later.",
+            "level": 1
+          }
+        ]
+      },
+      "source": "fun, edited by synthesizer; own weighted score 4.65; evidence gate FAIL as written, fixed here",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "Stretch for the moment",
+        "B": "Say the budget"
+      },
+      "edits": [
+        "scene -1: \"the pricey dinner\" -> \"the pricey parts\" (rule 2, the plan may not include a dinner)",
+        "scene +1: \"took the birthday person to lunch\" -> \"made it up to them later\" (rule 2, the scene is any above-budget plan)"
+      ],
+      "rejudge": false
+    },
+    {
+      "dim": "celebration_budget",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Friends plan a birthday trip. It's over your budget, but doable.",
+        "a": "Going. I'll cut back somewhere later.",
+        "b": "Saying my budget. Pitching a cheaper plan."
+      },
+      "scene": {
+        "prompt": "Last time friends planned something above your budget. What did you do?",
+        "feel": "guilt",
+        "options": [
+          {
+            "t": "Said yes, paid, ate rice all week.",
+            "level": -2
+          },
+          {
+            "t": "Went, but skipped the pricey parts. No explanation.",
+            "level": -1
+          },
+          {
+            "t": "Told them my budget. Pitched a cheaper version.",
+            "level": 2
+          },
+          {
+            "t": "Skipped it. Made it up to them later.",
+            "level": 1
+          }
+        ]
+      },
+      "source": "callout, verbatim; own weighted score 4.63; evidence gate pass",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "Stretch for the moment",
+        "B": "Say the budget"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "feedback_style",
+      "voice": "kind",
+      "quick": {
+        "prompt": "A friend shows you their practice run for something big. It's not there yet, and they're already shaken.",
+        "a": "Name the main problem now, plus a fix.",
+        "b": "Build them up first. The hard part can wait."
+      },
+      "scene": {
+        "prompt": "Think of the last time a friend asked your honest opinion on something they made. What did you say?",
+        "feel": "cringe",
+        "options": [
+          {
+            "t": "Told them the truth, right up front.",
+            "level": -2
+          },
+          {
+            "t": "Started with one nice thing, then the truth.",
+            "level": -1
+          },
+          {
+            "t": "Mostly nice things, with a little of the truth.",
+            "level": 1
+          },
+          {
+            "t": "Said \"I love it!\" and let it be.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "kind, edited by synthesizer; own weighted score 3.6; evidence gate FAIL as written, fixed here",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "Straight to the fix",
+        "B": "Warm first, fix later"
+      },
+      "edits": [
+        "scene -2: \"Gave the honest answer\" -> \"Told them the truth\" (rule 4, \"honest\" is on this tag's never-list)",
+        "scene +1: \"Kept it mostly kind\" -> \"Mostly nice things\" (rule 4, \"kind\" is on the never-list and flatters the soft pole)"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "feedback_style",
+      "voice": "fun",
+      "quick": {
+        "prompt": "A friend asks about their practice run for something big. It's not there yet, and they're rattled.",
+        "a": "Name the main problem now, plus a fix.",
+        "b": "Hype them up first. The notes can wait."
+      },
+      "scene": {
+        "prompt": "Last time a friend asked what you honestly thought of something they made or planned. What did you say?",
+        "feel": "cringe",
+        "options": [
+          {
+            "t": "Told them the truth in the first sentence.",
+            "level": -2
+          },
+          {
+            "t": "Opened with one nice thing, then the truth.",
+            "level": -1
+          },
+          {
+            "t": "Mostly compliments. The truth got one quick mention.",
+            "level": 1
+          },
+          {
+            "t": "Said \"I love it!\" and changed the subject.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "fun, verbatim; own weighted score 4.56; evidence gate pass",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "Straight to the fix",
+        "B": "Warm first, fix later"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "feedback_style",
+      "voice": "callout",
+      "quick": {
+        "prompt": "A friend's practice run for something big isn't there yet. They're already rattled. You…",
+        "a": "Name the main problem now. With a fix.",
+        "b": "Hype them up first. The hard part can wait."
+      },
+      "scene": {
+        "prompt": "Last time a friend asked what you honestly thought of something they made. What did you say?",
+        "feel": "cringe",
+        "options": [
+          {
+            "t": "Gave the truth in the first sentence.",
+            "level": -2
+          },
+          {
+            "t": "Opened with one compliment, then the truth.",
+            "level": -1
+          },
+          {
+            "t": "Stuck to nice stuff. Slipped in one tiny note.",
+            "level": 1
+          },
+          {
+            "t": "Said \"I love it!\" and changed the subject.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "callout, verbatim; own weighted score 4.6; evidence gate pass",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "Straight to the fix",
+        "B": "Warm first, fix later"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "second_chances",
+      "voice": "kind",
+      "quick": {
+        "prompt": "Someone in your group hurt a person, owned it, made it right, and changed. They want back in.",
+        "a": "Let them back in slowly, step by step.",
+        "b": "Go with whatever the person they hurt wants."
+      },
+      "scene": {},
+      "source": "kind, verbatim; own weighted score 3.21; evidence gate pass",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "They can earn their way back",
+        "B": "The hurt person decides"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "second_chances",
+      "voice": "fun",
+      "quick": {
+        "prompt": "Someone in your group hurt a person, owned it, fixed it, and really changed. They want back in.",
+        "a": "Let them back in slowly, with some ground rules.",
+        "b": "Check with the person they hurt. Their call first."
+      },
+      "scene": {},
+      "source": "fun, verbatim; own weighted score 3.67; evidence gate pass",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "They can earn their way back",
+        "B": "The hurt person decides"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "second_chances",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Someone in your group hurt a person, owned it, fixed it, actually changed. They want back in.",
+        "a": "Let them back in slowly. Small hangouts first.",
+        "b": "Ask the person they hurt. Their call comes first."
+      },
+      "scene": {},
+      "source": "callout, verbatim; own weighted score 4.06; evidence gate pass",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "They can earn their way back",
+        "B": "The hurt person decides"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "strings_attached",
+      "voice": "kind",
+      "quick": {
+        "prompt": "Your parents offer to help with rent, as long as you live closer to them.",
+        "teenPrompt": "Your parents offer a later curfew, as long as you share your location.",
+        "a": "Makes sense. Family help comes with family expectations.",
+        "b": "Only if it fits my plans. Otherwise I'll wait."
+      },
+      "scene": {},
+      "source": "kind, edited by synthesizer; own weighted score 3.32; evidence gate pass",
+      "gate": "pass",
+      "domain": "family",
+      "poles": {
+        "A": "Help comes with family terms",
+        "B": "Only on my terms"
+      },
+      "edits": [
+        "quick A: \"Fair deal.\" -> \"Makes sense.\" (rule 3: \"fair\" pre-grades A; Theo)"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "strings_attached",
+      "voice": "fun",
+      "quick": {
+        "prompt": "Your parents offer to help with rent, as long as you move closer to them.",
+        "teenPrompt": "Your parents offer a later curfew, as long as you share your location.",
+        "a": "Deal. Family help comes with family rules.",
+        "b": "Only if it already fits my plans."
+      },
+      "scene": {},
+      "source": "fun, verbatim; own weighted score 3.77; evidence gate pass",
+      "gate": "pass",
+      "domain": "family",
+      "poles": {
+        "A": "Help comes with family terms",
+        "B": "Only on my terms"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "strings_attached",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Your parents offer to help with rent, if you move closer to them.",
+        "teenPrompt": "Your parents offer a later curfew, if you share your location.",
+        "a": "Take the deal. Family help comes with family terms.",
+        "b": "Only if it fits my plans. Otherwise, I'll wait."
+      },
+      "scene": {},
+      "source": "callout, verbatim; own weighted score 3.74; evidence gate pass",
+      "gate": "pass",
+      "domain": "family",
+      "poles": {
+        "A": "Help comes with family terms",
+        "B": "Only on my terms"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "family_vs_own_call",
+      "voice": "kind",
+      "quick": {
+        "prompt": "You want a big change: new city, school or job. Your family isn't on board, but nothing needs you home.",
+        "a": "Keep talking until they're on board, even if I wait.",
+        "b": "Hear them out, then decide on my own timeline."
+      },
+      "scene": {
+        "prompt": "Think of the last time your family pushed back on a decision of yours. What happened next?",
+        "feel": "guilt",
+        "options": [
+          {
+            "t": "Changed my plan. Peace at home mattered more.",
+            "level": -2
+          },
+          {
+            "t": "Found a middle ground we could all live with.",
+            "level": -1
+          },
+          {
+            "t": "Went ahead, and explained my reasons at length.",
+            "level": 1
+          },
+          {
+            "t": "Did it, and told them after.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "kind, verbatim; own weighted score 3.59; evidence gate pass",
+      "gate": "pass",
+      "domain": "family",
+      "poles": {
+        "A": "Bring family along first",
+        "B": "My call after listening"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "family_vs_own_call",
+      "voice": "fun",
+      "quick": {
+        "prompt": "You want a big move: new city, school or job. Your family isn't on board. Nobody needs you home.",
+        "a": "Keep talking until they're on board, even if I wait.",
+        "b": "Hear them out, then go on my timeline."
+      },
+      "scene": {
+        "prompt": "Last time your family pushed back on a decision of yours, big or small. What happened next?",
+        "feel": "guilt",
+        "options": [
+          {
+            "t": "Changed my plan. Peace at home won.",
+            "level": -2
+          },
+          {
+            "t": "Met them halfway so everyone could live with it.",
+            "level": -1
+          },
+          {
+            "t": "Did it anyway, after a lot of explaining.",
+            "level": 1
+          },
+          {
+            "t": "Went ahead and told them after.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "fun, verbatim; own weighted score 4.15; evidence gate pass",
+      "gate": "pass",
+      "domain": "family",
+      "poles": {
+        "A": "Bring family along first",
+        "B": "My call after listening"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "family_vs_own_call",
+      "voice": "callout",
+      "quick": {
+        "prompt": "You want a big move: new city, school or job. Family isn't on board. Nothing needs you home.",
+        "a": "Keep talking until they're on board. Even if I wait.",
+        "b": "Hear them out. Then decide on my timeline."
+      },
+      "scene": {
+        "prompt": "Last time your family pushed back on your plans, big or small. What happened next?",
+        "feel": "guilt",
+        "options": [
+          {
+            "t": "Changed the plan. Kept the peace at dinner.",
+            "level": -2
+          },
+          {
+            "t": "Met them halfway. Everyone could live with it.",
+            "level": -1
+          },
+          {
+            "t": "Went ahead anyway, and explained. A lot.",
+            "level": 1
+          },
+          {
+            "t": "Did it. Told them after. Braced for it.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "callout, edited by synthesizer; own weighted score 4.4; evidence gate pass",
+      "gate": "pass",
+      "domain": "family",
+      "poles": {
+        "A": "Bring family along first",
+        "B": "My call after listening"
+      },
+      "edits": [
+        "scene +2: \"Oops.\" -> \"Braced for it.\" (worst line for Jasmine, Jordan and Riley; Riley: \"Oops\" makes it the fun rebel answer, rule 3)"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "family_safety_net",
+      "voice": "kind",
+      "quick": {
+        "prompt": "Your parents want you to keep supporting a grown sibling who's not in crisis, just not independent yet.",
+        "teenPrompt": "Your parents want you to keep covering for a sibling who keeps skipping chores.",
+        "a": "Family carries each other. Fairness can wait.",
+        "b": "Help, with an end date. They'll find their feet."
+      },
+      "scene": {},
+      "source": "kind, verbatim; own weighted score 3.32; evidence gate pass",
+      "gate": "pass",
+      "domain": "family",
+      "poles": {
+        "A": "Family carries each other",
+        "B": "Help with an end date"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "family_safety_net",
+      "voice": "fun",
+      "quick": {
+        "prompt": "Your parents want you to keep supporting a grown sibling. No crisis, they're just not on their own yet.",
+        "teenPrompt": "Your parents want you to keep covering for a sibling who keeps skipping chores.",
+        "a": "Keep helping. We'll sort out fair later.",
+        "b": "Help until a set date, then they're on their own."
+      },
+      "scene": {},
+      "source": "fun, verbatim; own weighted score 3.74; evidence gate pass",
+      "gate": "pass",
+      "domain": "family",
+      "poles": {
+        "A": "Family carries each other",
+        "B": "Help with an end date"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "family_safety_net",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Your parents want you to keep supporting a grown sibling. No crisis, they're just not independent yet.",
+        "teenPrompt": "Your parents want you to keep covering for a sibling who keeps skipping chores.",
+        "a": "Carry them. We'll do the fairness math later.",
+        "b": "Help until a set date. Then they're on their own."
+      },
+      "scene": {},
+      "source": "callout, verbatim; own weighted score 3.95; evidence gate pass",
+      "gate": "pass",
+      "domain": "family",
+      "poles": {
+        "A": "Family carries each other",
+        "B": "Help with an end date"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "caregiving",
+      "voice": "kind",
+      "quick": {
+        "prompt": "A family member needs long-term care. Siblings and money could help, but moving home would hurt your work or school.",
+        "a": "Be there in person. Everything else can adjust.",
+        "b": "Organize family and paid help, and keep my life going."
+      },
+      "scene": {},
+      "source": "kind, verbatim; own weighted score 3.47; evidence gate pass",
+      "gate": "pass",
+      "domain": "family",
+      "poles": {
+        "A": "Be there in person",
+        "B": "Organize the help"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "caregiving",
+      "voice": "fun",
+      "quick": {
+        "prompt": "A family member needs long-term care. Moving home would hurt your work or school. Siblings and money could help.",
+        "a": "Be there in person. The rest can wait.",
+        "b": "Line up family and paid help. Keep my life going."
+      },
+      "scene": {},
+      "source": "fun, verbatim; own weighted score 3.47; evidence gate pass",
+      "gate": "pass",
+      "domain": "family",
+      "poles": {
+        "A": "Be there in person",
+        "B": "Organize the help"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "caregiving",
+      "voice": "callout",
+      "quick": {
+        "prompt": "A family member needs long-term care. Money and siblings can help. Moving home would hurt your work or school.",
+        "a": "Move home. Everything else will adjust.",
+        "b": "Organize the help. Keep my own life running."
+      },
+      "scene": {},
+      "source": "callout, verbatim; own weighted score 3.56; evidence gate pass",
+      "gate": "pass",
+      "domain": "family",
+      "poles": {
+        "A": "Be there in person",
+        "B": "Organize the help"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "fairness_rule",
+      "voice": "kind",
+      "quick": {
+        "prompt": "Two people share costs. One earns about twice as much. Fair is…",
+        "a": "Splitting it evenly.",
+        "b": "The higher earner paying more."
+      },
+      "scene": {
+        "prompt": "Think of the last shared bill: dinner, a trip, a group gift. How did the split actually go?",
+        "feel": "tension",
+        "options": [
+          {
+            "t": "Divided it evenly. Clean and easy.",
+            "level": -2
+          },
+          {
+            "t": "Split it evenly, and quietly noticed I'd ordered less.",
+            "level": -1,
+            "emotion": "resentment"
+          },
+          {
+            "t": "Whoever had more that month covered more.",
+            "level": 2
+          },
+          {
+            "t": "Covered it myself and didn't bring it up.",
+            "level": null
+          }
+        ]
+      },
+      "source": "kind, verbatim; own weighted score 3.7; evidence gate pass",
+      "gate": "pass",
+      "domain": "money",
+      "poles": {
+        "A": "Fair means equal",
+        "B": "Fair means proportional"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "fairness_rule",
+      "voice": "fun",
+      "quick": {
+        "prompt": "Two people share costs. One earns about twice as much. Fair is…",
+        "a": "splitting it right down the middle.",
+        "b": "the bigger paycheck paying a bigger share."
+      },
+      "scene": {
+        "prompt": "Think of the last shared bill: dinner, a trip, a group gift. How did the split actually go?",
+        "feel": "tension",
+        "options": [
+          {
+            "t": "Split it evenly. Easy.",
+            "level": -2
+          },
+          {
+            "t": "Even split. I'd only ordered a salad.",
+            "level": -1,
+            "emotion": "resentment"
+          },
+          {
+            "t": "Whoever was doing better that month paid more.",
+            "level": 2
+          },
+          {
+            "t": "Covered it myself and never brought it up.",
+            "level": null
+          }
+        ]
+      },
+      "source": "fun, verbatim; own weighted score 4.6; evidence gate pass",
+      "gate": "pass",
+      "domain": "money",
+      "poles": {
+        "A": "Fair means equal",
+        "B": "Fair means proportional"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "fairness_rule",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Two people share costs. One earns about twice as much. Fair is…",
+        "a": "Split it evenly. Easy math.",
+        "b": "Scale it. The higher earner pays more."
+      },
+      "scene": {
+        "prompt": "Last time the bill hit the table: dinner, a trip, a group gift. What happened?",
+        "feel": "tension",
+        "options": [
+          {
+            "t": "Split it down the middle. No debate.",
+            "level": -2
+          },
+          {
+            "t": "Agreed to even. Still annoyed about my salad.",
+            "level": -1,
+            "emotion": "resentment"
+          },
+          {
+            "t": "Whoever had more that month paid more.",
+            "level": 2
+          },
+          {
+            "t": "Paid it all. Acted like it was nothing.",
+            "level": null
+          }
+        ]
+      },
+      "source": "callout, verbatim; own weighted score 4.85; evidence gate pass",
+      "gate": "pass",
+      "domain": "money",
+      "poles": {
+        "A": "Fair means equal",
+        "B": "Fair means proportional"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "lending",
+      "voice": "kind",
+      "quick": {
+        "prompt": "A close friend urgently needs money you can spare, but losing it would sting. Payback is uncertain.",
+        "a": "Give what I can afford to lose. Talk payback later.",
+        "b": "Agree on a payback plan first, then decide."
+      },
+      "scene": {
+        "prompt": "Think of the last time someone asked you to lend or cover money. What did you do?",
+        "feel": "guilt",
+        "options": [
+          {
+            "t": "Sent it and never mentioned paying back.",
+            "level": -2
+          },
+          {
+            "t": "Lent it with a vague \"whenever works.\"",
+            "level": -1
+          },
+          {
+            "t": "Agreed, with a clear \"back by the 15th?\"",
+            "level": 1
+          },
+          {
+            "t": "Said \"not this time,\" gently.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "kind, edited by synthesizer; own weighted score 3.7; evidence gate FAIL as written, fixed here",
+      "gate": "pass",
+      "domain": "money",
+      "poles": {
+        "A": "Help first",
+        "B": "Terms first"
+      },
+      "edits": [
+        "quick A: \"no payback talk\" -> \"Talk payback later\" (rule 2, bank A is \"don't lead with the payback date\", not \"never\")"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "lending",
+      "voice": "fun",
+      "quick": {
+        "prompt": "A close friend urgently needs money you can spare, but losing it would sting. Payback date unknown.",
+        "a": "Send what I can afford to lose. Payback talk later.",
+        "b": "Get the payback plan clear first, then decide."
+      },
+      "scene": {
+        "prompt": "Last time someone asked you to lend or cover money. What did you do?",
+        "feel": "guilt",
+        "options": [
+          {
+            "t": "Paid it. Never brought up getting it back.",
+            "level": -2
+          },
+          {
+            "t": "Handed it over with a vague \"whenever.\"",
+            "level": -1
+          },
+          {
+            "t": "Sent it with \"can you pay me by the 15th?\"",
+            "level": 1
+          },
+          {
+            "t": "Said \"not this time.\"",
+            "level": 2
+          }
+        ]
+      },
+      "source": "fun, edited by synthesizer; own weighted score 4.03; evidence gate FAIL as written, fixed here",
+      "gate": "pass",
+      "domain": "money",
+      "poles": {
+        "A": "Help first",
+        "B": "Terms first"
+      },
+      "edits": [
+        "quick A: \"No payback talk\" -> \"Payback talk later\" (rule 2)"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "lending",
+      "voice": "callout",
+      "quick": {
+        "prompt": "A close friend urgently needs money. Losing it would sting. Payback date? Unknown.",
+        "a": "Send what I can lose. Payback talk can wait.",
+        "b": "Get a payback plan first. Then decide."
+      },
+      "scene": {
+        "prompt": "Last time someone asked you to lend or cover money. What did you actually do?",
+        "feel": "guilt",
+        "options": [
+          {
+            "t": "Sent it. Never said the words \"pay back.\"",
+            "level": -2
+          },
+          {
+            "t": "Covered it with a vague \"whenever.\"",
+            "level": -1
+          },
+          {
+            "t": "Asked \"by the 15th?\" and then sent it.",
+            "level": 1
+          },
+          {
+            "t": "Said \"not this time.\" Awkward, but done.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "callout, edited by synthesizer; own weighted score 4.65; evidence gate FAIL as written, fixed here",
+      "gate": "pass",
+      "domain": "money",
+      "poles": {
+        "A": "Help first",
+        "B": "Terms first"
+      },
+      "edits": [
+        "quick A: \"Skip the payback talk\" -> \"Payback talk can wait\" (rule 2; wording is the evidence auditor's suggested fix)"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "effort_vs_start",
+      "voice": "kind",
+      "quick": {
+        "prompt": "A friend bought a home with help from their parents. They say they worked hard too.",
+        "a": "They did. Help doesn't erase the effort.",
+        "b": "True, but the head start deserves saying out loud."
+      },
+      "scene": {},
+      "source": "kind, verbatim; own weighted score 3.25; evidence gate pass",
+      "gate": "pass",
+      "domain": "money",
+      "poles": {
+        "A": "Credit the effort",
+        "B": "Name the head start"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "effort_vs_start",
+      "voice": "fun",
+      "quick": {
+        "prompt": "A friend bought a home with help from their parents. They say they worked hard for it too.",
+        "a": "They did. Help doesn't cancel the hustle.",
+        "b": "Sure, but say the head start out loud."
+      },
+      "scene": {},
+      "source": "fun, verbatim; own weighted score 3.88; evidence gate pass",
+      "gate": "pass",
+      "domain": "money",
+      "poles": {
+        "A": "Credit the effort",
+        "B": "Name the head start"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "effort_vs_start",
+      "voice": "callout",
+      "quick": {
+        "prompt": "A friend bought a home with help from their parents. They say they worked hard too.",
+        "a": "Believe them. Help doesn't erase the work.",
+        "b": "Sure, but say the head start out loud."
+      },
+      "scene": {},
+      "source": "callout, verbatim; own weighted score 3.69; evidence gate pass",
+      "gate": "pass",
+      "domain": "money",
+      "poles": {
+        "A": "Credit the effort",
+        "B": "Name the head start"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "time_horizon",
+      "voice": "kind",
+      "quick": {
+        "prompt": "An unexpected $300 lands. The best use is…",
+        "a": "Something I'll remember this month.",
+        "b": "Savings, or something I'll need later."
+      },
+      "scene": {
+        "prompt": "Think of the last bit of surprise money: a refund, birthday cash, a bonus. Where did most of it go?",
+        "feel": "delight",
+        "options": [
+          {
+            "t": "Spent it on a plan or treat within a week.",
+            "level": -2
+          },
+          {
+            "t": "Had some fun, and set the rest aside.",
+            "level": -1
+          },
+          {
+            "t": "Saved most, and kept a little for a treat.",
+            "level": 1
+          },
+          {
+            "t": "Put it all toward bills or savings.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "kind, verbatim; own weighted score 3.36; evidence gate pass",
+      "gate": "pass",
+      "domain": "money",
+      "poles": {
+        "A": "Now",
+        "B": "Later"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "time_horizon",
+      "voice": "fun",
+      "quick": {
+        "prompt": "A surprise $300 lands in your account. Best use?",
+        "a": "Something fun I'll remember this month.",
+        "b": "Savings, or something I'll need later."
+      },
+      "scene": {
+        "prompt": "Last time surprise money showed up: a refund, birthday cash, a bonus. Where did most of it go?",
+        "feel": "delight",
+        "options": [
+          {
+            "t": "Gone within a week, on something fun.",
+            "level": -2
+          },
+          {
+            "t": "Had some fun, set the rest aside.",
+            "level": -1
+          },
+          {
+            "t": "Saved most, bought one small treat.",
+            "level": 1
+          },
+          {
+            "t": "Put it in savings or bills. Barely noticed.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "fun, verbatim; own weighted score 4.17; evidence gate pass",
+      "gate": "pass",
+      "domain": "money",
+      "poles": {
+        "A": "Now",
+        "B": "Later"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "time_horizon",
+      "voice": "callout",
+      "quick": {
+        "prompt": "A surprise $300 lands in your account. Best use?",
+        "a": "Spend it on something I'll remember.",
+        "b": "Save it. Future me says thanks."
+      },
+      "scene": {
+        "prompt": "Last time surprise money showed up: a refund, birthday cash, a bonus. Where did most of it go?",
+        "feel": "delight",
+        "options": [
+          {
+            "t": "Spent it all within a week. Worth it.",
+            "level": -2
+          },
+          {
+            "t": "Had some fun, stashed the rest.",
+            "level": -1
+          },
+          {
+            "t": "Saved most. Bought one small treat.",
+            "level": 1
+          },
+          {
+            "t": "Put it in savings or bills. Barely felt it.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "callout, verbatim; own weighted score 4.27; evidence gate pass",
+      "gate": "pass",
+      "domain": "money",
+      "poles": {
+        "A": "Now",
+        "B": "Later"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "favorite_premium",
+      "voice": "kind",
+      "quick": {
+        "prompt": "Two versions do the same job. You love one; it costs a lot more but fits your budget.",
+        "a": "Get the one I love. The feeling's worth it.",
+        "b": "Buy the cheaper one. Use the difference elsewhere."
+      },
+      "scene": {
+        "prompt": "Think of the last time you chose between a pricier favorite and a cheaper one. What did you get?",
+        "feel": "delight",
+        "options": [
+          {
+            "t": "Got the favorite, and I'm glad I did.",
+            "level": -2
+          },
+          {
+            "t": "Bought the favorite after a week of thinking.",
+            "level": -1
+          },
+          {
+            "t": "Chose the cheaper one, and still think about the other.",
+            "level": 1,
+            "emotion": "longing"
+          },
+          {
+            "t": "Picked the cheaper one without a second thought.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "kind, verbatim; own weighted score 3.52; evidence gate pass",
+      "gate": "pass",
+      "domain": "money",
+      "poles": {
+        "A": "Pay for the one I love",
+        "B": "Keep the difference"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "favorite_premium",
+      "voice": "fun",
+      "quick": {
+        "prompt": "Two versions do the same job. You love one; it costs way more but fits your budget.",
+        "a": "Getting the one I love. The feeling counts.",
+        "b": "Buying the cheaper one and keeping the difference."
+      },
+      "scene": {
+        "prompt": "Last time you chose between a pricier favorite and a cheaper equivalent. What did you get?",
+        "feel": "delight",
+        "options": [
+          {
+            "t": "Got the favorite. Zero regrets.",
+            "level": -2
+          },
+          {
+            "t": "Bought the favorite after a week in my cart.",
+            "level": -1
+          },
+          {
+            "t": "Chose the cheaper one. Still think about the other.",
+            "level": 1,
+            "emotion": "longing"
+          },
+          {
+            "t": "Grabbed the cheaper one without a second thought.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "fun, verbatim; own weighted score 4.74; evidence gate pass",
+      "gate": "pass",
+      "domain": "money",
+      "poles": {
+        "A": "Pay for the one I love",
+        "B": "Keep the difference"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "favorite_premium",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Two versions do the same job. You love one. It costs way more, but fits your budget.",
+        "a": "Get the one I love. The feeling counts.",
+        "b": "Grab the cheaper one. Keep the difference."
+      },
+      "scene": {
+        "prompt": "Last time you picked between a pricier favorite and a cheaper version. What did you get?",
+        "feel": "delight",
+        "options": [
+          {
+            "t": "Got the favorite. Zero regrets.",
+            "level": -2
+          },
+          {
+            "t": "Stared at it for a week. Then got the favorite.",
+            "level": -1
+          },
+          {
+            "t": "Bought the cheaper one. Still think about the other.",
+            "level": 1,
+            "emotion": "longing"
+          },
+          {
+            "t": "Chose cheaper. Didn't think twice.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "callout, verbatim; own weighted score 4.57; evidence gate pass",
+      "gate": "pass",
+      "domain": "money",
+      "poles": {
+        "A": "Pay for the one I love",
+        "B": "Keep the difference"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "pay_or_passion",
+      "voice": "kind",
+      "quick": {
+        "prompt": "Two options both cover your needs. One pays more but bores you; the other pays less but you'd enjoy it.",
+        "teenPrompt": "Two part-time jobs. One pays more but bores you; the other pays less but you'd enjoy it.",
+        "a": "Take the money, and enjoy life outside it.",
+        "b": "Choose the one I'd enjoy, and live leaner."
+      },
+      "scene": {},
+      "source": "kind, verbatim; own weighted score 3.34; evidence gate pass",
+      "gate": "pass",
+      "domain": "work",
+      "poles": {
+        "A": "Pay first",
+        "B": "Interest first"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "pay_or_passion",
+      "voice": "fun",
+      "quick": {
+        "prompt": "Two options both cover your needs. One pays more but bores you. The other pays less but you'd enjoy it.",
+        "teenPrompt": "Two part-time jobs. One pays more but bores you. The other pays less but you'd enjoy it.",
+        "a": "Grab the money. Enjoy life outside of it.",
+        "b": "Pick the one I'd enjoy, and live leaner."
+      },
+      "scene": {},
+      "source": "fun, verbatim; own weighted score 3.59; evidence gate pass",
+      "gate": "pass",
+      "domain": "work",
+      "poles": {
+        "A": "Pay first",
+        "B": "Interest first"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "pay_or_passion",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Two options both cover your needs. One pays more but bores you. The other pays less, but you'd enjoy it.",
+        "teenPrompt": "Two part-time jobs. One pays more but bores you. The other pays less, but you'd enjoy it.",
+        "a": "Take the money. Have fun after hours.",
+        "b": "Pick the one I'd enjoy. Live a bit leaner."
+      },
+      "scene": {},
+      "source": "callout (grafted from scenario), edited by synthesizer; own weighted score 3.62; evidence gate pass",
+      "gate": "pass",
+      "domain": "work",
+      "poles": {
+        "A": "Pay first",
+        "B": "Interest first"
+      },
+      "edits": [
+        "prompt, teen prompt and B: \"is fun\" / \"Pick the fun one\" -> \"you'd enjoy it\" / \"the one I'd enjoy\" (rule 2 drift from enjoy to fun, and rule 3: \"fun\" makes B the cool pick; Jasmine flagged it). B is scenario's line"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "risk_style",
+      "voice": "kind",
+      "quick": {
+        "prompt": "You have six months of savings. A risky thing you really want shows up beside your steady option.",
+        "a": "Stay steady, and try the new thing on the side.",
+        "b": "Give it six real months, even if savings shrink."
+      },
+      "scene": {
+        "prompt": "Think of the last new thing you really wanted to start, like a project or club. How did you begin?",
+        "feel": "hope",
+        "options": [
+          {
+            "t": "Dipped a toe in and kept everything else the same.",
+            "level": -2
+          },
+          {
+            "t": "Started small, then went bigger once it worked.",
+            "level": -1
+          },
+          {
+            "t": "Jumped in and figured it out as I went.",
+            "level": 2
+          },
+          {
+            "t": "Still planning it, honestly.",
+            "level": null
+          }
+        ]
+      },
+      "source": "kind, verbatim; own weighted score 3.36; evidence gate pass",
+      "gate": "pass",
+      "domain": "work",
+      "poles": {
+        "A": "Test it on the side",
+        "B": "Go all in"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "risk_style",
+      "voice": "fun",
+      "quick": {
+        "prompt": "You have six months of savings. A risky thing you really want shows up next to your steady option.",
+        "a": "Stay steady, test the new thing on weekends.",
+        "b": "Give it six real months, even if savings shrink."
+      },
+      "scene": {
+        "prompt": "The last new thing you really wanted to try: a project, a club, a side hustle. How did you start?",
+        "feel": "hope",
+        "options": [
+          {
+            "t": "Tested it on weekends. Changed nothing else.",
+            "level": -2
+          },
+          {
+            "t": "Started small, then went bigger once it worked.",
+            "level": -1
+          },
+          {
+            "t": "Jumped in. Googled everything along the way.",
+            "level": 2
+          },
+          {
+            "t": "Still planning it. The notes app is full.",
+            "level": null
+          }
+        ]
+      },
+      "source": "fun, verbatim; own weighted score 4.65; evidence gate pass",
+      "gate": "pass",
+      "domain": "work",
+      "poles": {
+        "A": "Test it on the side",
+        "B": "Go all in"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "risk_style",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Six months of cushion. A risky thing you really want shows up next to your steady option.",
+        "a": "Keep the steady thing. Test the new one on weekends.",
+        "b": "Give it six real months. Cushion might shrink."
+      },
+      "scene": {
+        "prompt": "Last time you really wanted to start something new: a project, club, side hustle. How did you start?",
+        "feel": "hope",
+        "options": [
+          {
+            "t": "Dipped a toe in. Changed nothing else.",
+            "level": -2
+          },
+          {
+            "t": "Started small. Scaled up once it worked.",
+            "level": -1
+          },
+          {
+            "t": "Jumped in. Googled things as I went.",
+            "level": 2
+          },
+          {
+            "t": "Still planning it. The notes app is full.",
+            "level": null
+          }
+        ]
+      },
+      "source": "callout, verbatim; own weighted score 4.65; evidence gate pass",
+      "gate": "pass",
+      "domain": "work",
+      "poles": {
+        "A": "Test it on the side",
+        "B": "Go all in"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "success_meaning",
+      "voice": "kind",
+      "quick": {
+        "prompt": "Five years from now, you'd rather hear…",
+        "a": "\"You built something people know about.\"",
+        "b": "\"Your life looks exactly how you wanted.\""
+      },
+      "scene": {
+        "prompt": "Think of the last time you were offered more responsibility: a lead role, captain, organizer. What did you do?",
+        "feel": "pride",
+        "options": [
+          {
+            "t": "Said yes before they finished asking.",
+            "level": -2
+          },
+          {
+            "t": "Took it, and asked what could come off my plate.",
+            "level": -1
+          },
+          {
+            "t": "Asked for time to think, then said no.",
+            "level": 1
+          },
+          {
+            "t": "Declined right away. I like my life as is.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "kind, verbatim; own weighted score 3.49; evidence gate pass",
+      "gate": "pass",
+      "domain": "work",
+      "poles": {
+        "A": "Something to point at",
+        "B": "A life that feels right"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "success_meaning",
+      "voice": "fun",
+      "quick": {
+        "prompt": "Five years from now, you'd rather hear…",
+        "a": "\"You built something people know about.\"",
+        "b": "\"Your life looks exactly how you wanted.\""
+      },
+      "scene": {
+        "prompt": "Last time you were offered more responsibility: lead role, extra project, captain, organizer. What did you do?",
+        "feel": "pride",
+        "options": [
+          {
+            "t": "Said yes before they finished asking.",
+            "level": -2
+          },
+          {
+            "t": "Took it, and asked what I could drop.",
+            "level": -1
+          },
+          {
+            "t": "Asked for a day, then said no.",
+            "level": 1
+          },
+          {
+            "t": "Passed right away. I like my life as is.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "fun, edited by synthesizer; own weighted score 4.2; evidence gate pass",
+      "gate": "pass",
+      "domain": "work",
+      "poles": {
+        "A": "Something to point at",
+        "B": "A life that feels right"
+      },
+      "edits": [
+        "quick A: \"Wait, you made that? I've heard of it!\" -> bank line (rule 3: only A carried a joke; Theo flagged one-pole jokes). Scene is fun's own"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "success_meaning",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Five years from now. Which compliment would you screenshot?",
+        "a": "\"You built something people know about.\"",
+        "b": "\"Your life looks exactly how you wanted.\""
+      },
+      "scene": {
+        "prompt": "Last time you were offered more responsibility: lead role, extra project, captain, organizer. What did you do?",
+        "feel": "pride",
+        "options": [
+          {
+            "t": "Took it before they finished asking.",
+            "level": -2
+          },
+          {
+            "t": "Said yes, but traded something off my plate.",
+            "level": -1
+          },
+          {
+            "t": "Asked for a day. Then said no.",
+            "level": 1
+          },
+          {
+            "t": "Turned it down right away. My life's big enough.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "callout, verbatim; own weighted score 4.39; evidence gate pass",
+      "gate": "pass",
+      "domain": "work",
+      "poles": {
+        "A": "Something to point at",
+        "B": "A life that feels right"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "stay_late",
+      "voice": "kind",
+      "quick": {
+        "prompt": "Your part is done. Someone asks you to stay late for something that could wait until tomorrow.",
+        "a": "Stay. Covering for each other matters.",
+        "b": "Say I have plans, and offer help tomorrow."
+      },
+      "scene": {},
+      "source": "kind, verbatim; own weighted score 3.49; evidence gate pass",
+      "gate": "pass",
+      "domain": "work",
+      "poles": {
+        "A": "Cover for the team",
+        "B": "Protect my evening"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "stay_late",
+      "voice": "fun",
+      "quick": {
+        "prompt": "Your part's done. Someone asks you to stay late on something that could wait till tomorrow.",
+        "a": "Stay. We cover for each other here.",
+        "b": "Mention my plans and offer help tomorrow morning."
+      },
+      "scene": {},
+      "source": "fun, verbatim; own weighted score 3.61; evidence gate pass",
+      "gate": "pass",
+      "domain": "work",
+      "poles": {
+        "A": "Cover for the team",
+        "B": "Protect my evening"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "stay_late",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Your part's done. Someone asks you to stay late on something that could wait till tomorrow.",
+        "a": "Stick around. We cover for each other.",
+        "b": "Say I have plans. Offer help tomorrow."
+      },
+      "scene": {},
+      "source": "callout, verbatim; own weighted score 3.69; evidence gate pass",
+      "gate": "pass",
+      "domain": "work",
+      "poles": {
+        "A": "Cover for the team",
+        "B": "Protect my evening"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "ai_apology",
+      "voice": "kind",
+      "quick": {
+        "prompt": "Someone used AI to help word an apology to you. They meant it and followed through.",
+        "a": "Still sincere. Meaning it and changing is what counts.",
+        "b": "For something big, I want their own words."
+      },
+      "scene": {},
+      "source": "kind, verbatim; own weighted score 3.38; evidence gate pass",
+      "gate": "pass",
+      "domain": "online",
+      "poles": {
+        "A": "Meaning counts",
+        "B": "Own words count"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "ai_apology",
+      "voice": "fun",
+      "quick": {
+        "prompt": "Someone used AI to help word an apology to you. They meant it and actually changed.",
+        "a": "Still counts. Meaning it and changing is what matters.",
+        "b": "For something big, I want their own clumsy words."
+      },
+      "scene": {},
+      "source": "fun, verbatim; own weighted score 4.2; evidence gate pass",
+      "gate": "pass",
+      "domain": "online",
+      "poles": {
+        "A": "Meaning counts",
+        "B": "Own words count"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "ai_apology",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Someone used AI to word their apology to you. They meant it and actually changed.",
+        "a": "Count it. Meaning it and changing is what matters.",
+        "b": "Want their own words. At least for big stuff."
+      },
+      "scene": {},
+      "source": "callout, verbatim; own weighted score 3.64; evidence gate pass",
+      "gate": "pass",
+      "domain": "online",
+      "poles": {
+        "A": "Meaning counts",
+        "B": "Own words count"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "ai_companion",
+      "voice": "kind",
+      "quick": {
+        "prompt": "An AI companion helps someone feel understood. They still have real friends and a full life.",
+        "a": "That comfort can be real, even from an AI.",
+        "b": "Helpful, sure, but not a close relationship."
+      },
+      "scene": {},
+      "source": "kind, verbatim; own weighted score 3.44; evidence gate pass",
+      "gate": "pass",
+      "domain": "online",
+      "poles": {
+        "A": "Can be real comfort",
+        "B": "Useful, not intimate"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "ai_companion",
+      "voice": "fun",
+      "quick": {
+        "prompt": "An AI companion makes someone feel understood. They also have real friends and a full life.",
+        "a": "That comfort's real, even if it's not a person.",
+        "b": "Useful, sure. But not a close relationship."
+      },
+      "scene": {},
+      "source": "fun, verbatim; own weighted score 3.59; evidence gate pass",
+      "gate": "pass",
+      "domain": "online",
+      "poles": {
+        "A": "Can be real comfort",
+        "B": "Useful, not intimate"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "ai_companion",
+      "voice": "callout",
+      "quick": {
+        "prompt": "An AI companion makes someone feel understood. They still have real friends and a life.",
+        "a": "Call it real comfort, person or not.",
+        "b": "Useful, sure. Just not someone's inner circle."
+      },
+      "scene": {},
+      "source": "callout, verbatim; own weighted score 3.63; evidence gate pass",
+      "gate": "pass",
+      "domain": "online",
+      "poles": {
+        "A": "Can be real comfort",
+        "B": "Useful, not intimate"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "posting_person",
+      "voice": "kind",
+      "quick": {
+        "prompt": "You're happy with someone new, a partner or a new best friend. Posting them is…",
+        "a": "Obvious. I'm proud of them.",
+        "b": "Not my thing. I keep that part offline."
+      },
+      "scene": {},
+      "source": "kind, verbatim; own weighted score 3.52; evidence gate pass",
+      "gate": "pass",
+      "domain": "online",
+      "poles": {
+        "A": "Post them",
+        "B": "Keep it offline"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "posting_person",
+      "voice": "fun",
+      "quick": {
+        "prompt": "You're happy with someone new, a partner or a new best friend. Posting them is…",
+        "a": "Obvious. They're going on my story.",
+        "b": "Not my thing. My feed isn't for that."
+      },
+      "scene": {},
+      "source": "fun, verbatim; own weighted score 4.1; evidence gate pass",
+      "gate": "pass",
+      "domain": "online",
+      "poles": {
+        "A": "Post them",
+        "B": "Keep it offline"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "posting_person",
+      "voice": "callout",
+      "quick": {
+        "prompt": "You're happy with someone new: a partner or a new best friend. Posting them is…",
+        "a": "Obvious. They're going on my story tonight.",
+        "b": "Not my thing. My feed is mostly food pics."
+      },
+      "scene": {},
+      "source": "callout, verbatim; own weighted score 4.56; evidence gate pass",
+      "gate": "pass",
+      "domain": "online",
+      "poles": {
+        "A": "Post them",
+        "B": "Keep it offline"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "explore_or_root",
+      "voice": "kind",
+      "quick": {
+        "prompt": "You could live somewhere new for a year. Life is good now, and the risks are manageable.",
+        "a": "Go. Not knowing is part of the fun.",
+        "b": "Stay, and go deeper with what I have."
+      },
+      "scene": {
+        "prompt": "Think of the last time you could try something unfamiliar that took effort: a trip, class, or group. What happened?",
+        "feel": "hope",
+        "options": [
+          {
+            "t": "Went for it, with no research.",
+            "level": -2
+          },
+          {
+            "t": "Said yes after reading up a lot.",
+            "level": -1
+          },
+          {
+            "t": "Thought about it, then stuck with what I know.",
+            "level": 1
+          },
+          {
+            "t": "Passed on it. I like my usual.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "kind, verbatim; own weighted score 3.55; evidence gate pass",
+      "gate": "pass",
+      "domain": "me",
+      "poles": {
+        "A": "Go see",
+        "B": "Deepen where I am"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "explore_or_root",
+      "voice": "fun",
+      "quick": {
+        "prompt": "You could live somewhere new for a year. Life's good here and the risks are manageable.",
+        "a": "Going. The not-knowing is the fun part.",
+        "b": "Staying, and going deeper with what I've got."
+      },
+      "scene": {
+        "prompt": "Last time you could try something unfamiliar that took real effort: a trip, a class, a new group. What happened?",
+        "feel": "hope",
+        "options": [
+          {
+            "t": "Went for it. Zero research.",
+            "level": -2
+          },
+          {
+            "t": "Signed up after a lot of Googling.",
+            "level": -1
+          },
+          {
+            "t": "Thought about it, then stuck with what I know.",
+            "level": 1
+          },
+          {
+            "t": "Passed. I like my usual.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "fun, verbatim; own weighted score 4.3; evidence gate pass",
+      "gate": "pass",
+      "domain": "me",
+      "poles": {
+        "A": "Go see",
+        "B": "Deepen where I am"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "explore_or_root",
+      "voice": "callout",
+      "quick": {
+        "prompt": "You could live somewhere new for a year. Life's good now, and the risks are manageable.",
+        "a": "Go. The unknown is the point.",
+        "b": "Stay. Go deeper with my people and places."
+      },
+      "scene": {
+        "prompt": "Last time you could try something unfamiliar that took effort: a trip, a class, a group. What happened?",
+        "feel": "hope",
+        "options": [
+          {
+            "t": "Went for it. Zero research.",
+            "level": -2
+          },
+          {
+            "t": "Read every review first, then went.",
+            "level": -1
+          },
+          {
+            "t": "Thought about it. Stuck with what I know.",
+            "level": 1
+          },
+          {
+            "t": "Passed. My usual is my usual for a reason.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "callout, edited by synthesizer; own weighted score 4.31; evidence gate FAIL as written, fixed here",
+      "gate": "pass",
+      "domain": "me",
+      "poles": {
+        "A": "Go see",
+        "B": "Deepen where I am"
+      },
+      "edits": [
+        "quick A: \"Not knowing anyone is the point\" -> bank meaning \"The unknown is the point\" (rule 2, novelty had become wanting to be alone)"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "life_timeline",
+      "voice": "kind",
+      "quick": {
+        "prompt": "People your age are locking things in: careers, partners, cities.",
+        "teenPrompt": "People your age are locking things in: majors, paths, friend groups.",
+        "a": "Lock in a few directions. Milestones calm me.",
+        "b": "Keep exploring. I'll lock things in later."
+      },
+      "scene": {},
+      "source": "kind, edited by synthesizer; own weighted score 3.44; evidence gate pass",
+      "gate": "pass",
+      "domain": "me",
+      "poles": {
+        "A": "Lock in a direction",
+        "B": "My own pace"
+      },
+      "edits": [
+        "quick B: \"Their timeline isn't mine.\" -> \"I'll lock things in later.\" (rule 3: every writer kept the caption-style line Theo called the Instagram answer). Original kept in alt for Jerry"
+      ],
+      "alt": {
+        "b": "Keep exploring. Their timeline isn't mine."
+      },
+      "rejudge": true
+    },
+    {
+      "dim": "life_timeline",
+      "voice": "fun",
+      "quick": {
+        "prompt": "People your age are locking things in: careers, partners, cities.",
+        "teenPrompt": "People your age are locking things in: majors, paths, friend groups.",
+        "a": "Setting a few long-term goals. Milestones calm me down.",
+        "b": "Exploring longer. I'll pick my lane later."
+      },
+      "scene": {},
+      "source": "fun, edited by synthesizer; own weighted score 3.51; evidence gate pass",
+      "gate": "pass",
+      "domain": "me",
+      "poles": {
+        "A": "Lock in a direction",
+        "B": "My own pace"
+      },
+      "edits": [
+        "quick B: \"Their timeline isn't mine.\" -> \"I'll pick my lane later.\" (rule 3, cool-answer line). Original kept in alt"
+      ],
+      "alt": {
+        "b": "Exploring longer. Their timeline isn't mine."
+      },
+      "rejudge": true
+    },
+    {
+      "dim": "life_timeline",
+      "voice": "callout",
+      "quick": {
+        "prompt": "People your age are locking things in: careers, partners, cities.",
+        "teenPrompt": "People your age are locking things in: majors, paths, friend groups.",
+        "a": "Lock in a few. Milestones calm me down.",
+        "b": "Keep exploring. The big stuff can wait."
+      },
+      "scene": {},
+      "source": "callout, edited by synthesizer; own weighted score 3.59; evidence gate pass",
+      "gate": "pass",
+      "domain": "me",
+      "poles": {
+        "A": "Lock in a direction",
+        "B": "My own pace"
+      },
+      "edits": [
+        "quick B: \"Their timeline isn't mine.\" -> \"The big stuff can wait.\" (rule 3, cool-answer line). Original kept in alt"
+      ],
+      "alt": {
+        "b": "Keep exploring. Their timeline isn't mine."
+      },
+      "rejudge": true
+    },
+    {
+      "dim": "self_or_others",
+      "voice": "kind",
+      "quick": {
+        "prompt": "Free time for one big thing: your own hobby and growth, or a volunteer project helping people.",
+        "a": "My own thing. I'd grow from it.",
+        "b": "The project. I'd love helping out."
+      },
+      "scene": {},
+      "source": "kind, verbatim; own weighted score 3.36; evidence gate pass",
+      "gate": "pass",
+      "domain": "me",
+      "poles": {
+        "A": "Invest in me",
+        "B": "Invest in others"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "self_or_others",
+      "voice": "fun",
+      "quick": {
+        "prompt": "Free time for one big thing: your own hobby and growth, or a volunteer project helping people.",
+        "a": "My own thing. That hobby's been waiting.",
+        "b": "The volunteer project. They need the hands."
+      },
+      "scene": {},
+      "source": "fun, verbatim; own weighted score 4.13; evidence gate pass",
+      "gate": "pass",
+      "domain": "me",
+      "poles": {
+        "A": "Invest in me",
+        "B": "Invest in others"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "self_or_others",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Free time for one big thing: your own hobby and growth, or a volunteer project that helps people.",
+        "a": "My own hobby. It's waited long enough.",
+        "b": "The volunteer project. They need the hands."
+      },
+      "scene": {},
+      "source": "callout (grafted from fun), edited by synthesizer; own weighted score 2.84; evidence gate pass",
+      "gate": "pass",
+      "domain": "me",
+      "poles": {
+        "A": "Invest in me",
+        "B": "Invest in others"
+      },
+      "edits": [
+        "A and B: callout's plain \"Pick my own hobby, first.\" / \"Join the project that helps people.\" scored 2.84 and let helping read as the good-person pick; grafted fun's balanced pair (both poles get one true detail), A lightly edited"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "looking_put_together",
+      "voice": "kind",
+      "quick": {
+        "prompt": "Your look-good routine takes an hour a day. It makes you happy, and nobody requires it.",
+        "a": "Worth it. Looking good feels good.",
+        "b": "Simplify it, and use the hour elsewhere."
+      },
+      "scene": {},
+      "source": "kind, verbatim; own weighted score 3.35; evidence gate pass",
+      "gate": "pass",
+      "domain": "me",
+      "poles": {
+        "A": "Worth the time",
+        "B": "Keep it simple"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "looking_put_together",
+      "voice": "fun",
+      "quick": {
+        "prompt": "Your look-good routine takes an hour a day. It makes you happy and nobody requires it.",
+        "a": "Worth it. Good hair day, good day.",
+        "b": "Cutting it down. That's an extra hour back."
+      },
+      "scene": {},
+      "source": "fun, verbatim; own weighted score 4.17; evidence gate pass",
+      "gate": "pass",
+      "domain": "me",
+      "poles": {
+        "A": "Worth the time",
+        "B": "Keep it simple"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "looking_put_together",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Your look-good routine takes an hour a day. It makes you happy. Nobody requires it.",
+        "a": "Keep it. Looking good feels good.",
+        "b": "Cut it down. Spend the hour elsewhere."
+      },
+      "scene": {},
+      "source": "callout, verbatim; own weighted score 3.52; evidence gate pass",
+      "gate": "pass",
+      "domain": "me",
+      "poles": {
+        "A": "Worth the time",
+        "B": "Keep it simple"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "repair_or_release",
+      "voice": "kind",
+      "quick": {
+        "prompt": "A friendship starts drifting, with no big fight. What do you do?",
+        "a": "Talk it through and try to fix it.",
+        "b": "Let it fade. Not every friendship lasts."
+      },
+      "scene": {
+        "prompt": "Think of the last friendship or group chat that went quiet on your side. What happened?",
+        "feel": "tension",
+        "options": [
+          {
+            "t": "Said something, and we talked it out.",
+            "level": -2
+          },
+          {
+            "t": "Dropped hints and hoped it sorted itself out.",
+            "level": -1
+          },
+          {
+            "t": "Let it fade on its own.",
+            "level": 1
+          },
+          {
+            "t": "Left or muted it and didn't look back.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "kind, edited by synthesizer; own weighted score 3.56; evidence gate pass",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "Work it out",
+        "B": "Let it go"
+      },
+      "edits": [
+        "quick prompt: \"keeps leaving you drained\" removed (rule 3: a draining friendship makes letting go the obvious right answer)"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "repair_or_release",
+      "voice": "fun",
+      "quick": {
+        "prompt": "A friendship starts drifting and something feels a little off. Your move?",
+        "a": "Talking it out, even if it's awkward.",
+        "b": "Letting it fade. Not every friendship lasts."
+      },
+      "scene": {
+        "prompt": "Think of the last friendship or group chat that went quiet on your side. What did you actually do?",
+        "feel": "tension",
+        "options": [
+          {
+            "t": "Said something, and we talked it out.",
+            "level": -2
+          },
+          {
+            "t": "Dropped hints and hoped it sorted itself out.",
+            "level": -1
+          },
+          {
+            "t": "Let it fade. My replies got slower and slower.",
+            "level": 1
+          },
+          {
+            "t": "Left or muted the chat. Never looked back.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "fun, edited by synthesizer; own weighted score 4.69; evidence gate pass",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "Work it out",
+        "B": "Let it go"
+      },
+      "edits": [
+        "quick prompt: \"The better move is…\" -> \"Your move?\" (rules 2 and 3: asks for the right answer instead of their own preference)"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "repair_or_release",
+      "voice": "callout",
+      "quick": {
+        "prompt": "A friendship is slowly going quiet, and part of that is you. Your move?",
+        "a": "Reach out. Say the awkward thing.",
+        "b": "Let it fade. Some friendships run their course."
+      },
+      "scene": {
+        "prompt": "Last time a friendship or group chat went quiet on your side. What did you do?",
+        "feel": "tension",
+        "options": [
+          {
+            "t": "Said something. We talked it all out.",
+            "level": -2
+          },
+          {
+            "t": "Dropped hints. Hoped it would fix itself.",
+            "level": -1
+          },
+          {
+            "t": "Let it fade. My replies got slower and slower.",
+            "level": 1
+          },
+          {
+            "t": "Left or muted it. Never looked back.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "callout (grafted from fun), edited by synthesizer; own weighted score 4.32; evidence gate pass",
+      "gate": "pass",
+      "domain": "friends",
+      "poles": {
+        "A": "Work it out",
+        "B": "Let it go"
+      },
+      "edits": [
+        "scene +1 grafted from fun (\"Let it fade. Didn't fight it.\" -> the true detail every judge quoted)"
+      ],
+      "rejudge": false
+    },
+    {
+      "dim": "home_split",
+      "voice": "kind",
+      "quick": {
+        "prompt": "You share a home with someone. The best way to divide chores is…",
+        "a": "Each of us takes the chores we like.",
+        "b": "Everything split evenly, chore by chore."
+      },
+      "scene": {},
+      "source": "kind, verbatim; own weighted score 3.26; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Split by what each person likes",
+        "B": "Split every chore evenly"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "home_split",
+      "voice": "fun",
+      "quick": {
+        "prompt": "You share a place with someone. The chores need dividing. Best system?",
+        "a": "By preference. Someone actually likes vacuuming.",
+        "b": "Evenly. We take turns on every chore."
+      },
+      "scene": {},
+      "source": "fun, verbatim; own weighted score 4.36; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Split by what each person likes",
+        "B": "Split every chore evenly"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "home_split",
+      "voice": "callout",
+      "quick": {
+        "prompt": "You share a home with someone. Chores get split…",
+        "a": "By what we each like. I'll take laundry.",
+        "b": "Evenly. Every chore, bathroom included."
+      },
+      "scene": {},
+      "source": "callout, verbatim; own weighted score 4.33; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Split by what each person likes",
+        "B": "Split every chore evenly"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "marriage_meaning",
+      "voice": "kind",
+      "quick": {
+        "prompt": "Picturing your future, marriage is…",
+        "a": "Something that really matters to me.",
+        "b": "Optional. Life can be great without it."
+      },
+      "scene": {},
+      "source": "kind, verbatim; own weighted score 3.1; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Marriage matters to me",
+        "B": "Great without it"
+      },
+      "audience": "18+ only",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "marriage_meaning",
+      "voice": "fun",
+      "quick": {
+        "prompt": "Picture your long-term future with someone you love. Getting married is…",
+        "a": "Important to me. I want it official.",
+        "b": "Optional. We'd be great without it."
+      },
+      "scene": {},
+      "source": "fun, edited by synthesizer; own weighted score 3.7; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Marriage matters to me",
+        "B": "Great without it"
+      },
+      "audience": "18+ only",
+      "edits": [
+        "quick B: \"without the paperwork\" -> \"without it\" (rule 3: \"paperwork\" frames marriage as admin and tilts toward B)"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "marriage_meaning",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Picture a long future with someone you love. Marriage is…",
+        "a": "Matters to me. I want us married.",
+        "b": "Optional. We'd be great without it."
+      },
+      "scene": {},
+      "source": "callout, edited by synthesizer; own weighted score 3.31; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Marriage matters to me",
+        "B": "Great without it"
+      },
+      "audience": "18+ only",
+      "edits": [
+        "quick A: \"I want the wedding vows\" -> \"I want us married\" (rule 2: vows are the wedding, which is a separate tag; Jasmine flagged it)"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "kids_someday",
+      "voice": "kind",
+      "quick": {
+        "prompt": "Picturing your future, having kids is…",
+        "a": "Something I want someday.",
+        "b": "Maybe not part of my ideal life."
+      },
+      "scene": {},
+      "source": "kind, verbatim; own weighted score 3.21; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "I want that someday",
+        "B": "My ideal life might not include kids"
+      },
+      "audience": "18+ only",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "kids_someday",
+      "voice": "fun",
+      "quick": {
+        "prompt": "Picture your life fifteen years from now. Kids are…",
+        "a": "Something I want someday.",
+        "b": "Not a must. My ideal life might skip them."
+      },
+      "scene": {},
+      "source": "fun, verbatim; own weighted score 3.32; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "I want that someday",
+        "B": "My ideal life might not include kids"
+      },
+      "audience": "18+ only",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "kids_someday",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Kids someday. Where are you, honestly?",
+        "a": "Want that someday. It's on my list.",
+        "b": "Might not. My ideal life may skip kids."
+      },
+      "scene": {},
+      "source": "callout, edited by synthesizer; own weighted score 3.47; evidence gate pass",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "I want that someday",
+        "B": "My ideal life might not include kids"
+      },
+      "audience": "18+ only",
+      "edits": [
+        "quick A: \"It's in the plan\" -> \"It's on my list\" (rule 2: \"in the plan\" is more certain than \"want someday\")",
+        "quick B: cut from 10 words with a repeated idea to 8 (rule 8)"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "wedding_budget",
+      "voice": "kind",
+      "quick": {
+        "prompt": "If you ever have a wedding, you'd rather…",
+        "a": "Throw the big celebration, everyone invited.",
+        "b": "Keep it small and save the money."
+      },
+      "scene": {},
+      "source": "kind, verbatim; own weighted score 3.14; evidence gate pass",
+      "gate": "pass",
+      "domain": "money",
+      "poles": {
+        "A": "The big celebration",
+        "B": "Small, and keep the money"
+      },
+      "audience": "18+ only",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "wedding_budget",
+      "voice": "fun",
+      "quick": {
+        "prompt": "If you got married, the wedding would be…",
+        "a": "Big party. Full dance floor.",
+        "b": "Small, and we keep the money."
+      },
+      "scene": {},
+      "source": "fun, edited by synthesizer; own weighted score 3.91; evidence gate FAIL as written, fixed here",
+      "gate": "pass",
+      "domain": "money",
+      "poles": {
+        "A": "The big celebration",
+        "B": "Small, and keep the money"
+      },
+      "audience": "18+ only",
+      "edits": [
+        "quick A: \"Everyone I love, one dance floor.\" -> \"Full dance floor.\" (rule 3: \"everyone I love\" made the small wedding read as leaving people out)"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "wedding_budget",
+      "voice": "callout",
+      "quick": {
+        "prompt": "Say you plan a wedding someday. Where does the money go?",
+        "a": "Throw the big celebration. Full dance floor.",
+        "b": "Keep it small. Save the rest."
+      },
+      "scene": {},
+      "source": "callout, verbatim; own weighted score 3.64; evidence gate pass",
+      "gate": "pass",
+      "domain": "money",
+      "poles": {
+        "A": "The big celebration",
+        "B": "Small, and keep the money"
+      },
+      "audience": "18+ only",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "betrayal_line",
+      "voice": "scenario",
+      "quick": {
+        "prompt": "Nothing physical, but your person secretly tells someone else what used to be just yours. What hurts most?",
+        "teenPrompt": "Your best friend secretly tells someone else the stuff they used to only tell you. What hurts most?",
+        "a": "Losing the late-night talks. Those were ours.",
+        "b": "Hiding it. We never agreed to that."
+      },
+      "scene": {},
+      "source": "scenario, edited by synthesizer; own weighted score 4.36; evidence gate pass; candidate voice clearly won: scenario (4 of 4 judge votes; weighted 4.36 vs best production 4.03)",
+      "gate": "pass",
+      "domain": "love",
+      "poles": {
+        "A": "Emotional closeness is the line",
+        "B": "Broken agreements are the line"
+      },
+      "edits": [
+        "quick B: \"Sneaking around.\" -> \"Hiding it.\" (Jordan and Riley: \"sneaking\" is more loaded than A, rule 3)"
+      ],
+      "rejudge": true
+    },
+    {
+      "dim": "explore_or_root",
+      "voice": "scenario",
+      "quick": {
+        "prompt": "You could live somewhere new for a year. Life now is good and the risks are manageable.",
+        "a": "Going. The unknown is the whole point.",
+        "b": "Staying, and going deeper with what I've got."
+      },
+      "scene": {
+        "prompt": "Last time you could try something unfamiliar that took real effort: a trip, a class, a new group. What happened?",
+        "feel": "hope",
+        "options": [
+          {
+            "t": "Went for it with zero research.",
+            "level": -2
+          },
+          {
+            "t": "Signed up after reading every single review.",
+            "level": -1
+          },
+          {
+            "t": "Thought about it, then stuck with what I know.",
+            "level": 1
+          },
+          {
+            "t": "Skipped it. I like my usual.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "scenario, verbatim; own weighted score 4.47; evidence gate pass; candidate voice clearly won: scenario (3 of 4 judge votes; weighted 4.47 vs best production 4.30, callout failed the gate)",
+      "gate": "pass",
+      "domain": "me",
+      "poles": {
+        "A": "Go see",
+        "B": "Deepen where I am"
+      },
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H01",
+      "voice": "kind",
+      "predicts": "support_capacity",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "A friend asks for help moving on Saturday, your only free day. What do you say?",
+        "options": [
+          {
+            "t": "\"I'm in.\"",
+            "level": -2
+          },
+          {
+            "t": "\"I can do the morning.\"",
+            "level": -1
+          },
+          {
+            "t": "\"Can't help, but borrow my car.\"",
+            "level": 1
+          },
+          {
+            "t": "\"Sorry, can't this time. Good luck!\"",
+            "level": 2
+          }
+        ]
+      },
+      "source": "kind, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H01",
+      "voice": "fun",
+      "predicts": "support_capacity",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "\"Anyone free to help me move Saturday?\" It's your only free day. First reply?",
+        "options": [
+          {
+            "t": "\"I'm in. Bring pizza.\"",
+            "level": -2
+          },
+          {
+            "t": "\"I can do the morning.\"",
+            "level": -1
+          },
+          {
+            "t": "\"Take my car! Can't lift though.\"",
+            "level": 1
+          },
+          {
+            "t": "\"Can't this time, good luck!\"",
+            "level": 2
+          }
+        ]
+      },
+      "source": "fun, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H01",
+      "voice": "callout",
+      "predicts": "support_capacity",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "\"Anyone free to help me move Saturday?\" Your only free day. The chat goes quiet.",
+        "options": [
+          {
+            "t": "\"I'm in.\" RIP my back.",
+            "level": -2
+          },
+          {
+            "t": "\"Mornings work. I'm gone by noon.\"",
+            "level": -1
+          },
+          {
+            "t": "\"Take my car!\" I'll cheer from home.",
+            "level": 1
+          },
+          {
+            "t": "\"Can't this time. Good luck!\"",
+            "level": 2
+          }
+        ]
+      },
+      "source": "callout, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H02",
+      "voice": "kind",
+      "predicts": "fairness_rule",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "A group trip house costs $1,200. One room is much bigger than the rest. What do you suggest?",
+        "options": [
+          {
+            "t": "Divide it evenly. Keep it simple.",
+            "level": -2
+          },
+          {
+            "t": "Split evenly, and the big room treats dinner.",
+            "level": -1
+          },
+          {
+            "t": "Ask the big room to pay a bit more.",
+            "level": 1
+          },
+          {
+            "t": "Price each room by its size.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "kind, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H02",
+      "voice": "fun",
+      "predicts": "fairness_rule",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "The group trip house costs $1,200. One room is way bigger than the rest. What do you pitch?",
+        "options": [
+          {
+            "t": "Split it evenly. Keep it simple.",
+            "level": -2
+          },
+          {
+            "t": "Even split, and the big room buys dinner.",
+            "level": -1
+          },
+          {
+            "t": "Big room pays a little more.",
+            "level": 1
+          },
+          {
+            "t": "Price every room by size.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "fun, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H02",
+      "voice": "callout",
+      "predicts": "fairness_rule",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "Group trip house: $1,200. One room is way bigger than the rest. What do you propose?",
+        "options": [
+          {
+            "t": "Split it evenly. Nobody needs a spreadsheet.",
+            "level": -2
+          },
+          {
+            "t": "Even, but the big room buys dinner.",
+            "level": -1
+          },
+          {
+            "t": "Charge the big room a little extra.",
+            "level": 1
+          },
+          {
+            "t": "Price every room by size.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "callout, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H03",
+      "voice": "kind",
+      "predicts": "closeness_style",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "Your closest person suggests spending all of Sunday together. You'd planned a day to yourself.",
+        "options": [
+          {
+            "t": "Move my plan. Sunday is theirs.",
+            "level": -2
+          },
+          {
+            "t": "Spend half the day together, half alone.",
+            "level": -1
+          },
+          {
+            "t": "Keep my plan, and offer the evening.",
+            "level": 1
+          },
+          {
+            "t": "Stay with my solo day. Maybe next Sunday.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "kind, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H03",
+      "voice": "fun",
+      "predicts": "closeness_style",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "Your closest person wants to spend all Sunday together. You'd planned a solo day.",
+        "options": [
+          {
+            "t": "Moving my plan. Sunday's theirs.",
+            "level": -2
+          },
+          {
+            "t": "Half the day together, half mine.",
+            "level": -1
+          },
+          {
+            "t": "Keeping my plan, offering them the evening.",
+            "level": 1
+          },
+          {
+            "t": "Sticking with my solo day. Another Sunday.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "fun, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H03",
+      "voice": "callout",
+      "predicts": "closeness_style",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "Your closest person wants all of Sunday together. You'd planned a solo day.",
+        "options": [
+          {
+            "t": "Move my solo day. Sunday's theirs.",
+            "level": -2
+          },
+          {
+            "t": "Give them half. Keep the other half.",
+            "level": -1
+          },
+          {
+            "t": "Keep my plan. They get the evening.",
+            "level": 1
+          },
+          {
+            "t": "Stick to my solo day. Next Sunday's theirs.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "callout, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H04",
+      "voice": "kind",
+      "predicts": "time_horizon",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "A favorite artist announces a surprise show this week. Tickets are $180. Your budget is okay, not loose.",
+        "options": [
+          {
+            "t": "Bought them before the announcement ended.",
+            "level": -2
+          },
+          {
+            "t": "Checked my budget twice, then bought.",
+            "level": -1
+          },
+          {
+            "t": "Waited to see resale prices.",
+            "level": 1
+          },
+          {
+            "t": "Passed. I'll catch the next tour.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "kind, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H04",
+      "voice": "fun",
+      "predicts": "time_horizon",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "Your favorite artist drops a surprise show this week. Tickets are $180. Budget's fine, not loose.",
+        "options": [
+          {
+            "t": "Bought before the announcement finished loading.",
+            "level": -2
+          },
+          {
+            "t": "Checked my budget twice, then bought.",
+            "level": -1
+          },
+          {
+            "t": "Waiting for resale prices to drop.",
+            "level": 1
+          },
+          {
+            "t": "Passing. I'll catch the next tour.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "fun, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H04",
+      "voice": "callout",
+      "predicts": "time_horizon",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "Favorite artist, surprise show this week. Tickets are $180. Budget's fine, not loose.",
+        "options": [
+          {
+            "t": "Bought them mid-announcement.",
+            "level": -2
+          },
+          {
+            "t": "Checked my budget twice. Then bought.",
+            "level": -1
+          },
+          {
+            "t": "Waiting on resale prices.",
+            "level": 1
+          },
+          {
+            "t": "Passing. I'll catch the next tour.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "callout, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H05",
+      "voice": "kind",
+      "predicts": "feedback_style",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "A friend shows you a haircut they got an hour ago. It isn't great.",
+        "options": [
+          {
+            "t": "\"Honestly, not your best. Here's a fix.\"",
+            "level": -2
+          },
+          {
+            "t": "\"The color's great. Give the cut a week.\"",
+            "level": -1
+          },
+          {
+            "t": "\"It'll grow on me!\"",
+            "level": 1
+          },
+          {
+            "t": "\"I love it!\"",
+            "level": 2
+          }
+        ]
+      },
+      "source": "kind, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H05",
+      "voice": "fun",
+      "predicts": "feedback_style",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "A friend shows you the haircut they got an hour ago. It's not great.",
+        "options": [
+          {
+            "t": "\"Honestly? Not your best. Here's a fix.\"",
+            "level": -2
+          },
+          {
+            "t": "\"Love the color. The cut needs a week.\"",
+            "level": -1
+          },
+          {
+            "t": "\"It'll grow on me!\"",
+            "level": 1
+          },
+          {
+            "t": "\"Obsessed.\"",
+            "level": 2
+          }
+        ]
+      },
+      "source": "fun, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H05",
+      "voice": "callout",
+      "predicts": "feedback_style",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "A friend shows you the haircut they got an hour ago. It's not great.",
+        "options": [
+          {
+            "t": "\"Honestly? Not your best. Here's a fix.\"",
+            "level": -2
+          },
+          {
+            "t": "\"The color's great. The cut needs a week.\"",
+            "level": -1
+          },
+          {
+            "t": "\"It'll grow on me!\"",
+            "level": 1
+          },
+          {
+            "t": "\"Obsessed.\"",
+            "level": 2
+          }
+        ]
+      },
+      "source": "callout, edited by synthesizer; evidence gate FAIL as written, fixed here; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [
+        "+1 and +2: removed \"It won't.\" and \"Said it with a straight face.\" (rule 3: only the B side was marked as fibbing)"
+      ],
+      "rejudge": false
+    },
+    {
+      "dim": "H06",
+      "voice": "kind",
+      "predicts": "success_meaning",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "You're offered the lead on a group project: more credit, more work, and it overlaps a trip.",
+        "options": [
+          {
+            "t": "Take the lead. The trip can move.",
+            "level": -2
+          },
+          {
+            "t": "Accept, and shorten the trip.",
+            "level": -1
+          },
+          {
+            "t": "Ask for a smaller role.",
+            "level": 1
+          },
+          {
+            "t": "Pass, and go on the trip.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "kind, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H06",
+      "voice": "fun",
+      "predicts": "success_meaning",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "You're offered the lead on a group project: more credit, more work, and it overlaps a trip.",
+        "options": [
+          {
+            "t": "Taking the lead. The trip can move.",
+            "level": -2
+          },
+          {
+            "t": "Saying yes and cutting the trip short.",
+            "level": -1
+          },
+          {
+            "t": "Asking for a smaller role instead.",
+            "level": 1
+          },
+          {
+            "t": "Passing. I'm going on the trip.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "fun, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H06",
+      "voice": "callout",
+      "predicts": "success_meaning",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "You're offered the lead on a group project. More credit, more work, and it overlaps a trip.",
+        "options": [
+          {
+            "t": "Take the lead. The trip can move.",
+            "level": -2
+          },
+          {
+            "t": "Lead it, and cut the trip short.",
+            "level": -1
+          },
+          {
+            "t": "Ask for a smaller role instead.",
+            "level": 1
+          },
+          {
+            "t": "Pass. Already packed for the trip.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "callout, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H07",
+      "voice": "kind",
+      "predicts": "friend_did_harm",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "A friend brags about ghosting someone who was really kind to them.",
+        "options": [
+          {
+            "t": "Laugh along, then bring it up gently later.",
+            "level": -2
+          },
+          {
+            "t": "Change the subject.",
+            "level": -1
+          },
+          {
+            "t": "\"That's a little harsh, no?\"",
+            "level": 1
+          },
+          {
+            "t": "\"That wasn't kind. You should message them.\"",
+            "level": 2
+          }
+        ]
+      },
+      "source": "kind, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H07",
+      "voice": "fun",
+      "predicts": "friend_did_harm",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "A friend brags about ghosting someone who was really kind to them.",
+        "options": [
+          {
+            "t": "Laughing along, then bringing it up gently later.",
+            "level": -2
+          },
+          {
+            "t": "Changing the subject fast.",
+            "level": -1
+          },
+          {
+            "t": "\"That's kind of harsh, no?\"",
+            "level": 1
+          },
+          {
+            "t": "\"Not cool. You should message them.\"",
+            "level": 2
+          }
+        ]
+      },
+      "source": "fun, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H07",
+      "voice": "callout",
+      "predicts": "friend_did_harm",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "A friend brags about ghosting someone who was really kind to them.",
+        "options": [
+          {
+            "t": "Laugh along now. Bring it up later, gently.",
+            "level": -2
+          },
+          {
+            "t": "Change the subject. Fast.",
+            "level": -1
+          },
+          {
+            "t": "\"That's kind of harsh, no?\"",
+            "level": 1
+          },
+          {
+            "t": "\"Not cool. You should message them.\"",
+            "level": 2
+          }
+        ]
+      },
+      "source": "callout, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false
+    },
+    {
+      "dim": "H08",
+      "voice": "kind",
+      "predicts": "explore_or_root",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "You get a free weekend and a free train ticket to anywhere you've never been.",
+        "options": [
+          {
+            "t": "Pick a random city and go.",
+            "level": -2
+          },
+          {
+            "t": "Go, after a night of planning.",
+            "level": -1
+          },
+          {
+            "t": "Save it for somewhere familiar.",
+            "level": 1
+          },
+          {
+            "t": "Give the ticket away and enjoy being home.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "kind, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false,
+      "flag": "bank-level flaw: +1 \"somewhere familiar\" contradicts a ticket \"anywhere you've never been\". Kept as passed; Sally to fix the sealed item (see spec section e)."
+    },
+    {
+      "dim": "H08",
+      "voice": "fun",
+      "predicts": "explore_or_root",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "A free weekend, plus a free train ticket anywhere you've never been.",
+        "options": [
+          {
+            "t": "Picking a random city and going.",
+            "level": -2
+          },
+          {
+            "t": "Going, after a night of planning.",
+            "level": -1
+          },
+          {
+            "t": "Saving it for somewhere I know.",
+            "level": 1
+          },
+          {
+            "t": "Giving the ticket away. Home's great.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "fun, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false,
+      "flag": "bank-level flaw: +1 \"somewhere familiar\" contradicts a ticket \"anywhere you've never been\". Kept as passed; Sally to fix the sealed item (see spec section e)."
+    },
+    {
+      "dim": "H08",
+      "voice": "callout",
+      "predicts": "explore_or_root",
+      "quick": {},
+      "scene": {},
+      "sealed": {
+        "prompt": "Free weekend, plus a free train ticket to anywhere you've never been.",
+        "options": [
+          {
+            "t": "Pick a random city. Go.",
+            "level": -2
+          },
+          {
+            "t": "Plan all night, then go.",
+            "level": -1
+          },
+          {
+            "t": "Save it for a place I know.",
+            "level": 1
+          },
+          {
+            "t": "Give it away. Enjoy my own couch.",
+            "level": 2
+          }
+        ]
+      },
+      "source": "callout, verbatim; evidence gate pass; sealed items were not persona-scored",
+      "gate": "pass",
+      "edits": [],
+      "rejudge": false,
+      "flag": "bank-level flaw: +1 \"somewhere familiar\" contradicts a ticket \"anywhere you've never been\". Kept as passed; Sally to fix the sealed item (see spec section e)."
+    }
+  ]
+}

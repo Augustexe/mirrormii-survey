@@ -2,7 +2,7 @@
 
 ## Active implementation - 2026-09-21
 
-The routed personality-game survey and dossier are live on GitHub Pages since 2026-09-23. Start with [STATE.md](STATE.md) and [CODE-MAP.md](CODE-MAP.md). Synthetic segment and market research: [MARKET-MODEL.md](MARKET-MODEL.md). Earlier implementation-status paragraphs below are historical checkpoints, superseded by CURRENT.
+The routed personality-game survey and dossier are live on GitHub Pages since 2026-09-23. Start with [STATE.md](STATE.md) and [CODE-MAP.md](CODE-MAP.md). Synthetic segment and market research: [MARKET-MODEL.md](MARKET-MODEL.md). Proposed next bank and parsing rules (2026-09-26): [SURVEY-SPEC-V3.md](SURVEY-SPEC-V3.md). Earlier implementation-status paragraphs below are historical checkpoints, superseded by CURRENT.
 
 
 ## Active implementation — 2026-09-21
