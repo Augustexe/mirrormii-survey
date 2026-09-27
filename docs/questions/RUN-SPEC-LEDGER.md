@@ -19,6 +19,13 @@ People **finish**, get a **personality prediction** that feels accurate and fun,
 
 | Area | Ruling | Date |
 |---|---|---|
+| Governing architecture | Sally v2 (research/sally-v2-2026-09-26): 64 types from 6 axes, up to 5 paired tags, friend game (guess type, guess choices, guess tags, bestie sting level), hidden research record | 2026-09-26 |
+| Evidence layer | Every answer option is tagged directly: axis values and persona tags, with grade weights, circumstance and exits. No topic scores | 2026-09-26 |
+| Persona quiz V2 build | research/persona-quiz-v2 (BRIEF.md is the build spec); run wf_a800d5eb-cdf; spec lands in docs/questions/PERSONA-QUIZ-SPEC-V2.md | 2026-09-26 |
+
+
+| Area | Ruling | Date |
+|---|---|---|
 | Product | Web game on GitHub Pages later; a marketing tool; collects no health data | 2026-09-24/26 |
 | Result | A **personality prediction**, not an essay: predicted personality and common traits, in a fun manner; shows emotions; predicts how they'd act in specific situations; mostly qualitative, light evidence. Jerry decides when it is good enough for a visual; the visual (Genii and Miia, generated) comes after | 2026-09-26 |
 | Tags | Built from Sally's research (research/sally-values-2026-09-26); 5 levels (strongly A, leaning A, depends, leaning B, strongly B); 37 tags in 7 areas ([PILOT-BANK-V1](PILOT-BANK-V1.md) plus 5 added in [GAUNTLET-SPEC-V1](GAUNTLET-SPEC-V1.md)) | 2026-09-26 |
@@ -58,6 +65,9 @@ People **finish**, get a **personality prediction** that feels accurate and fun,
 | An LLM "article" (essay) as the result | The personality prediction described above |
 | A sectioned result ("Genii's read", "You're the one who", labelled sections) | Rejected by Jerry as robotic; replaced by the prediction register |
 | One static test page as the first test | The lavish-axi agent kit (faster, no build) |
+| Blind-test kit v1 (45 topic-scored cards) and its register | Failed test 1 (0/6 sealed exact, 2/5 overall, repeated and ladder answers); replaced by persona quiz V2 |
+| pilot/ build (32 topic tags, plain copy) and PILOT-BANK-V1 / PILOT-VOICES-V1 | Superseded by persona quiz V2 |
+| Topic-scored tags (dimensions) as the result layer | Persona tags and Sally's 6 axes, tagged per answer |
 | Lark Base as the pilot store | SQLite |
 | Prolific pass thresholds as the gate for the visual | Jerry's own judgment; panel metrics stay for the later pilot |
 | Women 18 to 34 as the survey's core audience; women-framed debate topics | Gender neutral questions and hooks |
