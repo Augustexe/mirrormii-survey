@@ -1,0 +1,1852 @@
+{
+  "version": "persona-quiz-v2",
+  "setup": {
+    "age": "adult",
+    "closest": "friend",
+    "pronoun": "he",
+    "name": "Jordan"
+  },
+  "config": {
+    "rushedMs": 1500,
+    "rushedFactor": 0.3,
+    "minAxisCards": 2,
+    "flexBand": 0.12,
+    "tagFire": 2.25,
+    "tagStrong": 3,
+    "tagFloor": 1.25,
+    "tagMinCards": 2,
+    "maxTags": 5,
+    "minChapters": 3,
+    "splitMin": 0.4,
+    "sealedPairScale": 1.2,
+    "sealedTagWeight": 0.6
+  },
+  "counts": {
+    "run": 62,
+    "answered": 60,
+    "skipped": 0,
+    "notMyLife": 1,
+    "noRecent": 0,
+    "unanswered": 0,
+    "rushed": 2,
+    "circumstance": 0
+  },
+  "axes": {
+    "R1": {
+      "score": -5.5,
+      "norm": -0.764,
+      "cards": 5,
+      "pole": -1,
+      "poleName": "Me",
+      "line": "You love hard and keep your own door. Close still means space.",
+      "flex": false,
+      "unfinished": false,
+      "decidedBy": "score",
+      "evidence": [
+        {
+          "card": "C1-2",
+          "said": "Keep mine. \"Nothing to hide. Still no.\"",
+          "v": -2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C3-2",
+          "said": "Introduced them to everyone. Then abandoned them by the chips.",
+          "v": -1,
+          "w": 0.8,
+          "grade": "did",
+          "rushed": false
+        },
+        {
+          "card": "C3-4",
+          "said": "Some nights I'm offline, and they know not to ask.",
+          "v": -1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C3-4",
+          "said": "I have a hobby they've never tried and never will.",
+          "v": -1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C6-6",
+          "said": "Say no. I'll find my own place, even if later.",
+          "v": -2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C6-2",
+          "said": "Did it anyway. Told them after it went fine.",
+          "v": -2,
+          "w": 0.8,
+          "grade": "did",
+          "rushed": false
+        }
+      ]
+    },
+    "R2": {
+      "score": 3.95,
+      "norm": 0.76,
+      "cards": 4,
+      "pole": 1,
+      "poleName": "Direct",
+      "line": "You say the hard thing to their face, because that's respect.",
+      "flex": false,
+      "unfinished": false,
+      "decidedBy": "score",
+      "evidence": [
+        {
+          "card": "C2-1",
+          "said": "\"The chorus needs work. Want notes before midnight?\"",
+          "v": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C2-5",
+          "said": "Told them straight it was wrong. Left on read for two days.",
+          "v": 2,
+          "w": 0.8,
+          "grade": "did",
+          "rushed": false
+        },
+        {
+          "card": "C2-8",
+          "said": "Stylist: \"The back works. The front, not yet.\"",
+          "v": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C3-12",
+          "said": "Heckled it in front of everyone: 'It was a raccoon.'",
+          "v": 1,
+          "w": 0.8,
+          "grade": "did",
+          "rushed": false
+        }
+      ]
+    },
+    "R3": {
+      "score": 3.82,
+      "norm": 0.739,
+      "cards": 5,
+      "pole": 1,
+      "poleName": "Classic",
+      "line": "Traditions, rituals and how a home should run feel like home to you.",
+      "flex": false,
+      "unfinished": false,
+      "decidedBy": "score",
+      "evidence": [
+        {
+          "card": "C3-1",
+          "said": "Skip the talk. Book the meet-my-family dinner for Sunday.",
+          "v": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C6-3",
+          "said": "Love it for them. Mine would run classic.",
+          "v": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C6-9",
+          "said": "Soon. Vows out loud, and Grandma crying in row one.",
+          "v": 2,
+          "w": 0.135,
+          "grade": "believe",
+          "rushed": true
+        },
+        {
+          "card": "C6-1",
+          "said": "Run it like home: nobody sits till the dishes are done.",
+          "v": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C6-7",
+          "said": "Every relative there, even the ones I can't name.",
+          "v": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C6-7",
+          "said": "Something from my grandparents: a ring, a dish, a song.",
+          "v": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        }
+      ]
+    },
+    "L1": {
+      "score": 1.75,
+      "norm": 0.343,
+      "cards": 5,
+      "pole": 1,
+      "poleName": "Steady",
+      "line": "Security first. Your leaps come with a safety net.",
+      "flex": false,
+      "unfinished": false,
+      "decidedBy": "score",
+      "evidence": [
+        {
+          "card": "C4-1",
+          "said": "Straight into savings. Future me says thanks.",
+          "v": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C4-8",
+          "said": "I have a savings goal with a name.",
+          "v": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C5-2",
+          "said": "The one I love. Smaller paycheck, happier Mondays.",
+          "v": -2,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C5-6",
+          "said": "Both. Job by day, my thing till 2am, sleep is a rumor.",
+          "v": 1,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C7-3",
+          "said": "Stalk the city on Street View for three nights first.",
+          "v": 1,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        }
+      ]
+    },
+    "L2": {
+      "score": 3.25,
+      "norm": 0.602,
+      "cards": 4,
+      "pole": 1,
+      "poleName": "Push",
+      "line": "You want visible wins and a clear direction, sooner rather than later.",
+      "flex": false,
+      "unfinished": false,
+      "decidedBy": "score",
+      "evidence": [
+        {
+          "card": "C5-1",
+          "said": "Spoil it. I'd sleep so much better knowing.",
+          "v": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C5-4",
+          "said": "Yes. Already practicing the new title out loud.",
+          "v": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C5-9",
+          "said": "Made a thing strangers use every day.",
+          "v": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C5-9",
+          "said": "Richer than everyone who doubted them.",
+          "v": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C5-7",
+          "said": "Opened my notes app and started a plan.",
+          "v": 1,
+          "w": 0.8,
+          "grade": "did",
+          "rushed": false
+        }
+      ]
+    },
+    "L3": {
+      "score": 3.27,
+      "norm": 0.803,
+      "cards": 4,
+      "pole": 1,
+      "poleName": "Rules",
+      "line": "A fair process keeps everyone safe. A rule is a rule.",
+      "flex": false,
+      "unfinished": false,
+      "decidedBy": "score",
+      "evidence": [
+        {
+          "card": "C6-10",
+          "said": "Wait. Rule's a rule, even for cold dumplings.",
+          "v": 2,
+          "w": 0.135,
+          "grade": "believe",
+          "rushed": true
+        },
+        {
+          "card": "C7-1",
+          "said": "Pull up the official rules. Read them out loud.",
+          "v": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C7-4",
+          "said": "Followed it, rolled my eyes, moved on.",
+          "v": 1,
+          "w": 0.8,
+          "grade": "did",
+          "rushed": false
+        },
+        {
+          "card": "C7-7",
+          "said": "First to ask gets it. That was the deal.",
+          "v": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        }
+      ]
+    }
+  },
+  "type": {
+    "name": "Old-School Final Boss × Color-Coded Overachiever",
+    "code": "Me·Direct·Classic | Steady·Push·Rules",
+    "relationship": {
+      "code": "Me·Direct·Classic",
+      "R1": -1,
+      "R2": 1,
+      "R3": 1,
+      "name": "Old-School Final Boss",
+      "zh": "老派硬核",
+      "desc": "You believe in the classic way to love and live, but nobody, ever, makes your decisions for you.",
+      "sting": "You want old-school love without handing over any of the control.",
+      "heart": "I can want tradition and freedom. Both. At once."
+    },
+    "life": {
+      "code": "Steady·Push·Rules",
+      "L1": 1,
+      "L2": 1,
+      "L3": 1,
+      "name": "Color-Coded Overachiever",
+      "zh": "步步為營野心家",
+      "desc": "You want big wins, and every step toward them is planned, checked and done by the book.",
+      "sting": "Your plan is flawless. You just keep not pressing start.",
+      "heart": "Slow, maybe. But every step I take counts."
+    },
+    "flex": [],
+    "unfinished": []
+  },
+  "tags": {
+    "T01A": {
+      "name": "Here, scroll my phone",
+      "pair": "T01B",
+      "chapter": 1,
+      "support": 0,
+      "net": -2.2,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T01B": {
+      "name": "My passcode, my dignity",
+      "pair": "T01A",
+      "chapter": 1,
+      "support": 2.2,
+      "net": 2.2,
+      "cards": 2,
+      "calmCards": 2,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": true,
+      "evidence": [
+        {
+          "card": "C1-2",
+          "chapter": 1,
+          "said": "Keep mine. \"Nothing to hide. Still no.\"",
+          "s": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C1-5",
+          "chapter": 1,
+          "said": "Tap \"While Using.\" Never open the app again.",
+          "s": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        }
+      ]
+    },
+    "T02A": {
+      "name": "Leaves you on read, still loves you",
+      "pair": "T02B",
+      "chapter": 1,
+      "support": 0.9,
+      "net": 0.9,
+      "cards": 1,
+      "calmCards": 1,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": [
+        {
+          "card": "C1-6",
+          "chapter": 1,
+          "said": "Totally fine. I also didn't text for four months.",
+          "s": 2,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        }
+      ]
+    },
+    "T02B": {
+      "name": "Waiting for you to text first",
+      "pair": "T02A",
+      "chapter": 1,
+      "support": 0,
+      "net": -0.9,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T03A": {
+      "name": "Tells the AI first",
+      "pair": "T03B",
+      "chapter": 1,
+      "support": 0,
+      "net": -0.9,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T03B": {
+      "name": "Typos and all, my own words",
+      "pair": "T03A",
+      "chapter": 1,
+      "support": 0.9,
+      "net": 0.9,
+      "cards": 1,
+      "calmCards": 1,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": [
+        {
+          "card": "C1-8",
+          "chapter": 1,
+          "said": "Send my own version. It took 40 minutes and says sorry six times.",
+          "s": 2,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        }
+      ]
+    },
+    "T04A": {
+      "name": "Close Friends list: 4",
+      "pair": "T04B",
+      "chapter": 1,
+      "support": 0,
+      "net": -2.25,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T04B": {
+      "name": "Mayor of every group chat",
+      "pair": "T04A",
+      "chapter": 1,
+      "support": 2.25,
+      "net": 2.25,
+      "cards": 3,
+      "calmCards": 3,
+      "fired": true,
+      "strong": false,
+      "leaning": false,
+      "floorOk": true,
+      "evidence": [
+        {
+          "card": "C1-1",
+          "chapter": 1,
+          "said": "Recruiter. \"Everyone, this is Sam. Be nice.\"",
+          "s": 2,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C1-7",
+          "chapter": 1,
+          "said": "Accept and follow back. We're basically friends now.",
+          "s": 2,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C2-4",
+          "chapter": 2,
+          "said": "Rally the whole group out tonight. Nobody sits home.",
+          "s": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        }
+      ]
+    },
+    "T05A": {
+      "name": "Rolls eyes, grabs keys",
+      "pair": "T05B",
+      "chapter": 2,
+      "support": 0.45,
+      "net": 0.45,
+      "cards": 1,
+      "calmCards": 1,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": [
+        {
+          "card": "C2-4",
+          "chapter": 2,
+          "said": "Show up with snacks: \"Honestly, they were mid anyway.\"",
+          "s": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        }
+      ]
+    },
+    "T05B": {
+      "name": "Writes the birthday paragraph",
+      "pair": "T05A",
+      "chapter": 2,
+      "support": 0,
+      "net": -0.45,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T06A": {
+      "name": "Yes first, bank app later",
+      "pair": "T06B",
+      "chapter": 2,
+      "support": 0,
+      "net": -3.5,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T06B": {
+      "name": "Limited-edition energy",
+      "pair": "T06A",
+      "chapter": 2,
+      "support": 3.5,
+      "net": 3.5,
+      "cards": 3,
+      "calmCards": 3,
+      "fired": true,
+      "strong": true,
+      "leaning": false,
+      "floorOk": true,
+      "evidence": [
+        {
+          "card": "C2-2",
+          "chapter": 2,
+          "said": "Admitted it was over my budget in the chat. Took three drafts.",
+          "s": 2,
+          "w": 0.8,
+          "grade": "did",
+          "rushed": false
+        },
+        {
+          "card": "C2-7",
+          "chapter": 2,
+          "said": "\"I'm fading. Can we do this properly tomorrow?\"",
+          "s": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C5-5",
+          "chapter": 5,
+          "said": "Sent my notes and a 'you got this,' then logged off.",
+          "s": 1,
+          "w": 0.8,
+          "grade": "did",
+          "rushed": false
+        }
+      ]
+    },
+    "T07A": {
+      "name": "The honest review nobody asked for",
+      "pair": "T07B",
+      "chapter": 2,
+      "support": 3.15,
+      "net": 3.15,
+      "cards": 3,
+      "calmCards": 3,
+      "fired": true,
+      "strong": true,
+      "leaning": false,
+      "floorOk": true,
+      "evidence": [
+        {
+          "card": "C2-1",
+          "chapter": 2,
+          "said": "\"The chorus needs work. Want notes before midnight?\"",
+          "s": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C2-5",
+          "chapter": 2,
+          "said": "Told them straight it was wrong. Left on read for two days.",
+          "s": 2,
+          "w": 0.8,
+          "grade": "did",
+          "rushed": false
+        },
+        {
+          "card": "C2-8",
+          "chapter": 2,
+          "said": "Stylist: \"The back works. The front, not yet.\"",
+          "s": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        }
+      ]
+    },
+    "T07B": {
+      "name": "Compliment sandwich chef",
+      "pair": "T07A",
+      "chapter": 2,
+      "support": 0,
+      "net": -3.15,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T08A": {
+      "name": "Redemption arc believer",
+      "pair": "T08B",
+      "chapter": 2,
+      "support": 0,
+      "net": -1.1,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T08B": {
+      "name": "Keeps the receipts",
+      "pair": "T08A",
+      "chapter": 2,
+      "support": 1.1,
+      "net": 1.1,
+      "cards": 1,
+      "calmCards": 1,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": [
+        {
+          "card": "C2-3",
+          "chapter": 2,
+          "said": "DM my friend: \"Say the word and I hit decline.\"",
+          "s": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        }
+      ]
+    },
+    "T09A": {
+      "name": "Head over heels, eyes open",
+      "pair": "T09B",
+      "chapter": 3,
+      "support": 0,
+      "net": -2.8,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T09B": {
+      "name": "Dating, not merging",
+      "pair": "T09A",
+      "chapter": 3,
+      "support": 2.8,
+      "net": 2.8,
+      "cards": 3,
+      "calmCards": 3,
+      "fired": true,
+      "strong": false,
+      "leaning": false,
+      "floorOk": true,
+      "evidence": [
+        {
+          "card": "C3-2",
+          "chapter": 3,
+          "said": "Introduced them to everyone. Then abandoned them by the chips.",
+          "s": 1,
+          "w": 0.8,
+          "grade": "did",
+          "rushed": false
+        },
+        {
+          "card": "C3-7",
+          "chapter": 3,
+          "said": "The months. How many times did they look me in the eye?",
+          "s": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C3-4",
+          "chapter": 3,
+          "said": "Some nights I'm offline, and they know not to ask.",
+          "s": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C3-4",
+          "chapter": 3,
+          "said": "I have a hobby they've never tried and never will.",
+          "s": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        }
+      ]
+    },
+    "T10A": {
+      "name": "Relationship mechanic",
+      "pair": "T10B",
+      "chapter": 3,
+      "support": 2.5,
+      "net": 2.5,
+      "cards": 2,
+      "calmCards": 2,
+      "fired": true,
+      "strong": false,
+      "leaning": false,
+      "floorOk": true,
+      "evidence": [
+        {
+          "card": "C3-5",
+          "chapter": 3,
+          "said": "Sat them down and made an actual deal.",
+          "s": 2,
+          "w": 0.8,
+          "grade": "did",
+          "rushed": false
+        },
+        {
+          "card": "C5-10",
+          "chapter": 5,
+          "said": "Make a shared doc with deadlines a day early. Secretly.",
+          "s": 2,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        }
+      ]
+    },
+    "T10B": {
+      "name": "Knows when to log off",
+      "pair": "T10A",
+      "chapter": 3,
+      "support": 0,
+      "net": -2.5,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T11A": {
+      "name": "Future parent, with terms",
+      "pair": "T11B",
+      "chapter": 3,
+      "support": 0,
+      "net": -0.9,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T11B": {
+      "name": "Full life, no kids required",
+      "pair": "T11A",
+      "chapter": 3,
+      "support": 0.9,
+      "net": 0.9,
+      "cards": 1,
+      "calmCards": 1,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": [
+        {
+          "card": "C3-8",
+          "chapter": 3,
+          "said": "Cute. Also, I get to hand them back.",
+          "s": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C3-8",
+          "chapter": 3,
+          "said": "Is a dog basically the same thing? Asking for me.",
+          "s": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        }
+      ]
+    },
+    "T12A": {
+      "name": "Splits it to the cent",
+      "pair": "T12B",
+      "chapter": 4,
+      "support": 2.2,
+      "net": 2.2,
+      "cards": 2,
+      "calmCards": 2,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": true,
+      "evidence": [
+        {
+          "card": "C2-9",
+          "chapter": 2,
+          "said": "Agree on a payback date first. Set a reminder titled \"OWED\".",
+          "s": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C3-3",
+          "chapter": 3,
+          "said": "50/50. I'll just buy the cheaper version of everything.",
+          "s": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        }
+      ]
+    },
+    "T12B": {
+      "name": "Splits by who can afford it",
+      "pair": "T12A",
+      "chapter": 4,
+      "support": 0,
+      "net": -2.2,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T13A": {
+      "name": "Books it, figures it out later",
+      "pair": "T13B",
+      "chapter": 4,
+      "support": 0,
+      "net": -2.65,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T13B": {
+      "name": "Rainy-day fund devotee",
+      "pair": "T13A",
+      "chapter": 4,
+      "support": 2.65,
+      "net": 2.65,
+      "cards": 3,
+      "calmCards": 3,
+      "fired": true,
+      "strong": false,
+      "leaning": false,
+      "floorOk": true,
+      "evidence": [
+        {
+          "card": "C4-1",
+          "chapter": 4,
+          "said": "Straight into savings. Future me says thanks.",
+          "s": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C4-8",
+          "chapter": 4,
+          "said": "I have a savings goal with a name.",
+          "s": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C5-6",
+          "chapter": 5,
+          "said": "Both. Job by day, my thing till 2am, sleep is a rumor.",
+          "s": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        }
+      ]
+    },
+    "T14A": {
+      "name": "Skips the dupe",
+      "pair": "T14B",
+      "chapter": 4,
+      "support": 0,
+      "net": -2.6,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T14B": {
+      "name": "Minimalist on purpose",
+      "pair": "T14A",
+      "chapter": 4,
+      "support": 2.6,
+      "net": 2.6,
+      "cards": 3,
+      "calmCards": 3,
+      "fired": true,
+      "strong": false,
+      "leaning": false,
+      "floorOk": true,
+      "evidence": [
+        {
+          "card": "C4-5",
+          "chapter": 4,
+          "said": "Left it in my cart for a week. The feeling passed.",
+          "s": 1,
+          "w": 0.8,
+          "grade": "did",
+          "rushed": false
+        },
+        {
+          "card": "C4-3",
+          "chapter": 4,
+          "said": "The other pair. Nobody looks at my feet anyway.",
+          "s": 2,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C7-2",
+          "chapter": 7,
+          "said": "Ready in six minutes. Hoodie, keys, done.",
+          "s": 2,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        }
+      ]
+    },
+    "T15A": {
+      "name": "Earned, not given",
+      "pair": "T15B",
+      "chapter": 4,
+      "support": 2,
+      "net": 2,
+      "cards": 2,
+      "calmCards": 2,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": true,
+      "evidence": [
+        {
+          "card": "C4-2",
+          "chapter": 4,
+          "said": "'You earned it!' I say, and mean it.",
+          "s": 2,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C4-7",
+          "chapter": 4,
+          "said": "Bigger cut for Kai. Talent gets paid.",
+          "s": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        }
+      ]
+    },
+    "T15B": {
+      "name": "Head-start detector",
+      "pair": "T15A",
+      "chapter": 4,
+      "support": 0,
+      "net": -2,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T16A": {
+      "name": "Building the trophy shelf",
+      "pair": "T16B",
+      "chapter": 5,
+      "support": 2,
+      "net": 2,
+      "cards": 2,
+      "calmCards": 2,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": true,
+      "evidence": [
+        {
+          "card": "C5-4",
+          "chapter": 5,
+          "said": "Yes. Already practicing the new title out loud.",
+          "s": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C5-9",
+          "chapter": 5,
+          "said": "Made a thing strangers use every day.",
+          "s": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C5-9",
+          "chapter": 5,
+          "said": "Richer than everyone who doubted them.",
+          "s": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        }
+      ]
+    },
+    "T16B": {
+      "name": "Clocks out on the dot",
+      "pair": "T16A",
+      "chapter": 5,
+      "support": 0,
+      "net": -2,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T17A": {
+      "name": "Needs a save point",
+      "pair": "T17B",
+      "chapter": 5,
+      "support": 2.5,
+      "net": 2.5,
+      "cards": 2,
+      "calmCards": 2,
+      "fired": true,
+      "strong": false,
+      "leaning": false,
+      "floorOk": true,
+      "evidence": [
+        {
+          "card": "C5-1",
+          "chapter": 5,
+          "said": "Spoil it. I'd sleep so much better knowing.",
+          "s": 2,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C5-7",
+          "chapter": 5,
+          "said": "Opened my notes app and started a plan.",
+          "s": 2,
+          "w": 0.8,
+          "grade": "did",
+          "rushed": false
+        }
+      ]
+    },
+    "T17B": {
+      "name": "Still loading, and that's fine",
+      "pair": "T17A",
+      "chapter": 5,
+      "support": 0,
+      "net": -2.5,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T18A": {
+      "name": "Family's backup battery",
+      "pair": "T18B",
+      "chapter": 6,
+      "support": 0,
+      "net": -2,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T18B": {
+      "name": "Helps, with an end date",
+      "pair": "T18A",
+      "chapter": 6,
+      "support": 2,
+      "net": 2,
+      "cards": 2,
+      "calmCards": 2,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": true,
+      "evidence": [
+        {
+          "card": "C6-4",
+          "chapter": 6,
+          "said": "Start a shift calendar. Watch who 'forgets' to accept.",
+          "s": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C6-8",
+          "chapter": 6,
+          "said": "Deadline. 'Last time' comes with an actual date.",
+          "s": 2,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        }
+      ]
+    },
+    "T19A": {
+      "name": "Moves out, still calls on Sundays",
+      "pair": "T19B",
+      "chapter": 6,
+      "support": 3.5,
+      "net": 3.5,
+      "cards": 2,
+      "calmCards": 2,
+      "fired": true,
+      "strong": true,
+      "leaning": false,
+      "floorOk": true,
+      "evidence": [
+        {
+          "card": "C6-6",
+          "chapter": 6,
+          "said": "Say no. I'll find my own place, even if later.",
+          "s": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C6-2",
+          "chapter": 6,
+          "said": "Did it anyway. Told them after it went fine.",
+          "s": 3,
+          "w": 0.8,
+          "grade": "did",
+          "rushed": false
+        }
+      ]
+    },
+    "T19B": {
+      "name": "Runs it by the family group chat",
+      "pair": "T19A",
+      "chapter": 6,
+      "support": 0,
+      "net": -3.5,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T20A": {
+      "name": "Modern for you, classic for me",
+      "pair": "T20B",
+      "chapter": 6,
+      "support": 3.35,
+      "net": 3.35,
+      "cards": 3,
+      "calmCards": 3,
+      "fired": true,
+      "strong": true,
+      "leaning": false,
+      "floorOk": true,
+      "evidence": [
+        {
+          "card": "C6-3",
+          "chapter": 6,
+          "said": "Love it for them. Mine would run classic.",
+          "s": 3,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C6-1",
+          "chapter": 6,
+          "said": "Run it like home: nobody sits till the dishes are done.",
+          "s": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C6-7",
+          "chapter": 6,
+          "said": "Every relative there, even the ones I can't name.",
+          "s": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C6-7",
+          "chapter": 6,
+          "said": "Something from my grandparents: a ring, a dish, a song.",
+          "s": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        }
+      ]
+    },
+    "T20B": {
+      "name": "Writes my own house rules",
+      "pair": "T20A",
+      "chapter": 6,
+      "support": 0,
+      "net": -3.35,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T21A": {
+      "name": "The wedding's for the family",
+      "pair": "T21B",
+      "chapter": 6,
+      "support": 0.72,
+      "net": 0.72,
+      "cards": 2,
+      "calmCards": 1,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": [
+        {
+          "card": "C6-9",
+          "chapter": 6,
+          "said": "Soon. Vows out loud, and Grandma crying in row one.",
+          "s": 2,
+          "w": 0.135,
+          "grade": "believe",
+          "rushed": true
+        },
+        {
+          "card": "C6-7",
+          "chapter": 6,
+          "said": "Every relative there, even the ones I can't name.",
+          "s": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        }
+      ]
+    },
+    "T21B": {
+      "name": "Love without the paperwork",
+      "pair": "T21A",
+      "chapter": 6,
+      "support": 0,
+      "net": -0.72,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T23A": {
+      "name": "Team healer, IRL",
+      "pair": "T23B",
+      "chapter": 7,
+      "support": 0,
+      "net": -2.5,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T23B": {
+      "name": "Booked solid, all me",
+      "pair": "T23A",
+      "chapter": 7,
+      "support": 2.5,
+      "net": 2.5,
+      "cards": 3,
+      "calmCards": 3,
+      "fired": true,
+      "strong": false,
+      "leaning": false,
+      "floorOk": true,
+      "evidence": [
+        {
+          "card": "C4-4",
+          "chapter": 4,
+          "said": "The $10 one. The plant can't tell the difference.",
+          "s": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C7-6",
+          "chapter": 7,
+          "said": "Went deep on my own thing. Game, sketch, gym, guitar.",
+          "s": 2,
+          "w": 0.8,
+          "grade": "did",
+          "rushed": false
+        },
+        {
+          "card": "C7-9",
+          "chapter": 7,
+          "said": "Weekends are booked. Me, my project, do not disturb.",
+          "s": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        }
+      ]
+    },
+    "T24A": {
+      "name": "There's a spreadsheet for that",
+      "pair": "T24B",
+      "chapter": 7,
+      "support": 2,
+      "net": 2,
+      "cards": 3,
+      "calmCards": 3,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": true,
+      "evidence": [
+        {
+          "card": "C4-8",
+          "chapter": 4,
+          "said": "I could tell you what I spent on boba last month.",
+          "s": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C7-5",
+          "chapter": 7,
+          "said": "Color-code the whole week. Backup times included.",
+          "s": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C7-9",
+          "chapter": 7,
+          "said": "I know my screen time down to the minute.",
+          "s": 1,
+          "w": 0.45,
+          "grade": "believe",
+          "rushed": false
+        }
+      ]
+    },
+    "T24B": {
+      "name": "Eyeballs everything",
+      "pair": "T24A",
+      "chapter": 7,
+      "support": 0,
+      "net": -2,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    },
+    "T25A": {
+      "name": "Actually read the rulebook",
+      "pair": "T25B",
+      "chapter": 7,
+      "support": 3.135,
+      "net": 3.135,
+      "cards": 4,
+      "calmCards": 3,
+      "fired": true,
+      "strong": true,
+      "leaning": false,
+      "floorOk": true,
+      "evidence": [
+        {
+          "card": "C6-10",
+          "chapter": 6,
+          "said": "Wait. Rule's a rule, even for cold dumplings.",
+          "s": 1,
+          "w": 0.135,
+          "grade": "believe",
+          "rushed": true
+        },
+        {
+          "card": "C7-1",
+          "chapter": 7,
+          "said": "Pull up the official rules. Read them out loud.",
+          "s": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C7-4",
+          "chapter": 7,
+          "said": "Followed it, rolled my eyes, moved on.",
+          "s": 1,
+          "w": 0.8,
+          "grade": "did",
+          "rushed": false
+        },
+        {
+          "card": "C7-7",
+          "chapter": 7,
+          "said": "First to ask gets it. That was the deal.",
+          "s": 2,
+          "w": 0.55,
+          "grade": "would",
+          "rushed": false
+        }
+      ]
+    },
+    "T25B": {
+      "name": "Bends rules for good reasons",
+      "pair": "T25A",
+      "chapter": 7,
+      "support": 0,
+      "net": -3.135,
+      "cards": 0,
+      "calmCards": 0,
+      "fired": false,
+      "strong": false,
+      "leaning": false,
+      "floorOk": false,
+      "evidence": []
+    }
+  },
+  "firedTags": [
+    "T06B",
+    "T19A",
+    "T20A",
+    "T07A",
+    "T25A",
+    "T09B",
+    "T13B",
+    "T14B",
+    "T23B",
+    "T10A",
+    "T17A",
+    "T04B"
+  ],
+  "shownTags": [
+    "T06B",
+    "T19A",
+    "T20A",
+    "T07A",
+    "T25A"
+  ],
+  "strongTags": [
+    "T06B",
+    "T19A",
+    "T20A",
+    "T07A",
+    "T25A"
+  ],
+  "splits": [
+    {
+      "dim": "L1",
+      "kind": "axis",
+      "believe": -0.45,
+      "act": 2.2,
+      "strength": 0.45,
+      "said": {
+        "card": "C5-2",
+        "text": "The one I love. Smaller paycheck, happier Mondays."
+      },
+      "did": {
+        "card": "C4-1",
+        "text": "Straight into savings. Future me says thanks.",
+        "grade": "would"
+      }
+    }
+  ],
+  "emotions": [
+    {
+      "emotion": "pride",
+      "times": 5,
+      "from": [
+        "C3-1: Skip the talk. Book the meet-my-family dinner for Sunday.",
+        "C4-5: Left it in my cart for a week. The feeling passed.",
+        "C4-3: The other pair. Nobody looks at my feet anyway.",
+        "C5-4: Yes. Already practicing the new title out loud.",
+        "C6-2: Did it anyway. Told them after it went fine."
+      ]
+    },
+    {
+      "emotion": "irritation",
+      "times": 4,
+      "from": [
+        "C2-6: Angry, on the other person's behalf.",
+        "C3-6: Irritation. Why is this happening again?",
+        "C7-1: Pull up the official rules. Read them out loud.",
+        "C7-4: Followed it, rolled my eyes, moved on."
+      ]
+    },
+    {
+      "emotion": "delight",
+      "times": 3,
+      "from": [
+        "C1-1: Recruiter. \"Everyone, this is Sam. Be nice.\"",
+        "C1-7: Accept and follow back. We're basically friends now.",
+        "C3-12: Heckled it in front of everyone: 'It was a raccoon.'"
+      ]
+    },
+    {
+      "emotion": "cringe",
+      "times": 3,
+      "from": [
+        "C1-3: Cringe. We are not those people.",
+        "C1-5: Tap \"While Using.\" Never open the app again.",
+        "C1-8: Send my own version. It took 40 minutes and says sorry six times."
+      ]
+    },
+    {
+      "emotion": "relief",
+      "times": 3,
+      "from": [
+        "C3-8: Cute. Also, I get to hand them back.",
+        "C4-1: Straight into savings. Future me says thanks.",
+        "C5-1: Spoil it. I'd sleep so much better knowing."
+      ]
+    },
+    {
+      "emotion": "warmth",
+      "times": 2,
+      "from": [
+        "C1-6: Totally fine. I also didn't text for four months.",
+        "C4-2: 'You earned it!' I say, and mean it."
+      ]
+    },
+    {
+      "emotion": "worry",
+      "times": 2,
+      "from": [
+        "C5-8: Pressure. Suddenly my own plans felt slow.",
+        "C6-5: Worry. About them, not the schedule."
+      ]
+    },
+    {
+      "emotion": "resentment",
+      "times": 1,
+      "from": [
+        "C3-7: The months. How many times did they look me in the eye?"
+      ]
+    },
+    {
+      "emotion": "guilt",
+      "times": 1,
+      "from": [
+        "C5-5: Sent my notes and a 'you got this,' then logged off."
+      ]
+    }
+  ],
+  "feelings": [
+    {
+      "card": "C1-3",
+      "follows": "C1-2",
+      "followsSaid": "Keep mine. \"Nothing to hide. Still no.\"",
+      "feeling": "cringe",
+      "said": "Cringe. We are not those people."
+    },
+    {
+      "card": "C2-6",
+      "follows": "C2-5",
+      "followsSaid": "Told them straight it was wrong. Left on read for two days.",
+      "feeling": "irritation",
+      "said": "Angry, on the other person's behalf."
+    },
+    {
+      "card": "C3-6",
+      "follows": "C3-5",
+      "followsSaid": "Sat them down and made an actual deal.",
+      "feeling": "irritation",
+      "said": "Irritation. Why is this happening again?"
+    },
+    {
+      "card": "C5-8",
+      "follows": "C5-7",
+      "followsSaid": "Opened my notes app and started a plan.",
+      "feeling": "worry",
+      "said": "Pressure. Suddenly my own plans felt slow."
+    },
+    {
+      "card": "C6-5",
+      "follows": "C6-4",
+      "followsSaid": "Start a shift calendar. Watch who 'forgets' to accept.",
+      "feeling": "worry",
+      "said": "Worry. About them, not the schedule."
+    }
+  ],
+  "research": {
+    "circumstance": [],
+    "notMyLife": [
+      "C7-10"
+    ],
+    "noRecent": [],
+    "skipped": [],
+    "unanswered": [],
+    "depends": [],
+    "rushed": [
+      {
+        "card": "C6-10",
+        "ms": 1100
+      },
+      {
+        "card": "C6-9",
+        "ms": 1100
+      }
+    ],
+    "gatedOut": [
+      "C3-9"
+    ],
+    "ms": {
+      "C1-1": 5679,
+      "C1-2": 6158,
+      "C1-3": 2600,
+      "C1-4": 11444,
+      "C1-5": 7595,
+      "C1-7": 4518,
+      "C1-6": 4871,
+      "C1-8": 2724,
+      "C2-1": 5511,
+      "C2-2": 10110,
+      "C2-3": 6469,
+      "C2-4": 6948,
+      "C2-7": 7427,
+      "C2-5": 12554,
+      "C2-6": 2600,
+      "C2-9": 8864,
+      "C2-8": 5343,
+      "C3-1": 5822,
+      "C3-2": 10609,
+      "C3-8": 6780,
+      "C3-3": 7259,
+      "C3-5": 12442,
+      "C3-6": 2600,
+      "C3-7": 8696,
+      "C3-12": 9275,
+      "C3-4": 5654,
+      "C4-1": 6133,
+      "C4-5": 11108,
+      "C4-2": 2637,
+      "C4-4": 2990,
+      "C4-3": 3343,
+      "C4-7": 8528,
+      "C4-8": 9007,
+      "C5-1": 4402,
+      "C5-2": 4755,
+      "C5-10": 2608,
+      "C5-4": 6923,
+      "C5-5": 12218,
+      "C5-9": 7881,
+      "C5-6": 8360,
+      "C5-7": 9051,
+      "C5-8": 2600,
+      "C6-6": 5797,
+      "C6-3": 2932,
+      "C6-10": 1100,
+      "C6-9": 1100,
+      "C6-4": 7713,
+      "C6-5": 2600,
+      "C6-2": 13939,
+      "C6-1": 9150,
+      "C6-8": 5629,
+      "C6-7": 6108,
+      "C7-1": 6587,
+      "C7-6": 11994,
+      "C7-5": 7545,
+      "C7-4": 13216,
+      "C7-3": 8503,
+      "C7-2": 8982,
+      "C7-7": 5461,
+      "C7-9": 5940,
+      "C7-10": 6419
+    }
+  },
+  "warnings": []
+}

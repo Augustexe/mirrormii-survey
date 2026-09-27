@@ -1,0 +1,411 @@
+{
+  "version": "persona-quiz-v2",
+  "relationship": "bestie",
+  "toggles": {
+    "loveTags": true,
+    "marriageKidsTags": false,
+    "stingLines": true
+  },
+  "owner": {
+    "type": "Open-Book Golden Retriever × Chill Personified",
+    "code": "We·Soft·Own | Steady·Easy·Context",
+    "pronoun": "she"
+  },
+  "level1": [
+    {
+      "axis": "R1",
+      "prompt": "Jasmine with a crush or a partner is…",
+      "options": [
+        {
+          "pole": 1,
+          "label": "We",
+          "t": "Clingy mode: wants to see them daily and share every detail."
+        },
+        {
+          "pole": -1,
+          "label": "Me",
+          "t": "Solo mode: loves hard, still guards solo nights and bestie nights."
+        }
+      ],
+      "truth": 1,
+      "truthLabel": "We",
+      "acceptEither": false,
+      "why": null
+    },
+    {
+      "axis": "R2",
+      "prompt": "You show Jasmine the angry text you're about to send. Bad idea. Jasmine…",
+      "options": [
+        {
+          "pole": 1,
+          "label": "Direct",
+          "t": "\"Absolutely not. Hand me your phone.\""
+        },
+        {
+          "pole": -1,
+          "label": "Soft",
+          "t": "\"I get why you're mad.\" Holds you first, talks you down later."
+        }
+      ],
+      "truth": -1,
+      "truthLabel": "Soft",
+      "acceptEither": false,
+      "why": null
+    },
+    {
+      "axis": "R3",
+      "prompt": "Picture Jasmine's future home on a big holiday. It's…",
+      "options": [
+        {
+          "pole": 1,
+          "label": "Classic",
+          "t": "The classic: rituals, the family table, parents at ease."
+        },
+        {
+          "pole": -1,
+          "label": "Own",
+          "t": "A remix: her own rituals, her own rules, no template."
+        }
+      ],
+      "truth": -1,
+      "truthLabel": "Own",
+      "acceptEither": false,
+      "why": null
+    },
+    {
+      "axis": "L1",
+      "prompt": "Jasmine gets a surprise bonus. By Friday…",
+      "options": [
+        {
+          "pole": 1,
+          "label": "Steady",
+          "t": "It's in savings. Safety first."
+        },
+        {
+          "pole": -1,
+          "label": "Venture",
+          "t": "A flight is booked. Life is short."
+        }
+      ],
+      "truth": 1,
+      "truthLabel": "Steady",
+      "acceptEither": false,
+      "why": null
+    },
+    {
+      "axis": "L2",
+      "prompt": "Talking plans and life progress, Jasmine is…",
+      "options": [
+        {
+          "pole": 1,
+          "label": "Push",
+          "t": "Ambitious: wants real wins and a direction, soon."
+        },
+        {
+          "pole": -1,
+          "label": "Easy",
+          "t": "Unbothered: who gets promoted or married when is not her business."
+        }
+      ],
+      "truth": -1,
+      "truthLabel": "Easy",
+      "acceptEither": false,
+      "why": null
+    },
+    {
+      "axis": "L3",
+      "prompt": "Lines, house rules, what's fair: Jasmine is…",
+      "options": [
+        {
+          "pole": 1,
+          "label": "Rules",
+          "t": "Rulebook: the same rules for everyone is the only fair way."
+        },
+        {
+          "pole": -1,
+          "label": "Context",
+          "t": "Case by case: rules are fixed, people aren't."
+        }
+      ],
+      "truth": -1,
+      "truthLabel": "Context",
+      "acceptEither": false,
+      "why": null
+    }
+  ],
+  "level2": {
+    "skipped": false,
+    "cards": [
+      {
+        "id": "C1-6",
+        "chapter": 1,
+        "prompt": "Jasmine and an old close friend haven't texted in four months. How does Jasmine feel?",
+        "a": "Fine. Jasmine didn't text either.",
+        "b": "It stings. Someone should've texted.",
+        "answer": "b",
+        "ownerSaid": "Kind of stings. Someone should've texted. Them.",
+        "weight": 0.45
+      },
+      {
+        "id": "C7-3",
+        "chapter": 7,
+        "prompt": "Jasmine is offered a year in a brand-new city. Life here is good. Jasmine...",
+        "a": "Goes. Packs tonight",
+        "b": "Stays. The people and routines are here",
+        "answer": "b",
+        "ownerSaid": "Stay. My people, my spots, my Thursday thing.",
+        "weight": 0.55
+      },
+      {
+        "id": "C2-5",
+        "chapter": 2,
+        "prompt": "Last time a friend of Jasmine's was clearly in the wrong with someone, she...",
+        "a": "Told the friend straight that it was wrong.",
+        "b": "Took the friend for bubble tea first, raised it later.",
+        "answer": "b",
+        "ownerSaid": "Took them for bubble tea first. Brought it up on the walk back.",
+        "weight": 0.8
+      },
+      {
+        "id": "C3-4",
+        "chapter": 3,
+        "prompt": "On a normal week with a partner or closest friend, Jasmine would rather...",
+        "a": "Share every free evening and narrate the whole day.",
+        "b": "Keep some nights solo, no explaining needed.",
+        "answer": "a",
+        "ownerSaid": "We can do nothing together for hours and it's perfect. + They get a play-by-play of my day. Photos of lunch included.",
+        "weight": 0.45
+      },
+      {
+        "id": "C7-2",
+        "chapter": 7,
+        "prompt": "The crew is getting ready to go out, ride in 10 minutes. Jasmine is...",
+        "a": "Ready in six minutes, hoodie on",
+        "b": "Doing a full fit check in every mirror",
+        "answer": "a",
+        "ownerSaid": "Ready in six minutes. Hoodie, keys, done.",
+        "weight": 0.45
+      },
+      {
+        "id": "C6-8",
+        "chapter": 6,
+        "prompt": "Jasmine's sibling keeps needing a rescue, and the parents say 'help, you're family.' Jasmine is the…",
+        "a": "Safety net, every single time.",
+        "b": "Deadline. 'Last time' comes with an actual date.",
+        "answer": "a",
+        "ownerSaid": "Grumbler. I help, then vent about it all week.",
+        "weight": 0.45
+      },
+      {
+        "id": "C2-2",
+        "chapter": 2,
+        "prompt": "Last time a friend's plan cost way more than Jasmine wanted to spend, she...",
+        "a": "Went, paid, and lived on noodles after.",
+        "b": "Admitted it was over budget, after three drafts.",
+        "answer": "a",
+        "ownerSaid": "Went, paid, and ate instant noodles for a week.",
+        "weight": 0.8
+      },
+      {
+        "id": "C3-5",
+        "chapter": 3,
+        "prompt": "Months of small clashes with someone close, nobody at fault. Jasmine would...",
+        "a": "Make a deal and give it time.",
+        "b": "Call it. Not a fit is reason enough.",
+        "answer": "a",
+        "ownerSaid": "Sat them down and made an actual deal.",
+        "weight": 0.8
+      },
+      {
+        "id": "C6-2",
+        "chapter": 6,
+        "prompt": "Jasmine's family says 'absolutely not' to a plan. What does Jasmine do?",
+        "a": "Sends a sibling or an aunt in first to soften them up.",
+        "b": "Says 'I'll think about it,' waits till they forget, does it.",
+        "answer": "a",
+        "ownerSaid": "Sent a sibling or an aunt in first to soften them up.",
+        "weight": 0.8
+      },
+      {
+        "id": "C7-1",
+        "chapter": 7,
+        "prompt": "Game night. A friend wins Uno with a stack that isn't in the official rules. Jasmine...",
+        "a": "Pulls up the official rules and reads them out",
+        "b": "Lets it slide. They haven't won all night",
+        "answer": "b",
+        "ownerSaid": "Let it slide. They haven't won a single round all night.",
+        "weight": 0.55
+      },
+      {
+        "id": "C5-7",
+        "chapter": 5,
+        "prompt": "Someone Jasmine's age posts huge news: dream job, dream school. What would she do?",
+        "a": "Double-tap and forget it by the next video.",
+        "b": "Quietly start a plan.",
+        "answer": "b",
+        "ownerSaid": "Sent it to a friend: 'wait, are we behind?'",
+        "weight": 0.8
+      },
+      {
+        "id": "C6-1",
+        "chapter": 6,
+        "prompt": "Jasmine moves in with someone. The sink is full and nobody moves. What does Jasmine do?",
+        "a": "Runs it like home: nobody sits till the dishes are done.",
+        "b": "Splits chores by what each of them hates least.",
+        "answer": "b",
+        "ownerSaid": "Split by what we each hate least. I'll take trash.",
+        "weight": 0.55
+      }
+    ]
+  },
+  "level3": {
+    "skipped": false,
+    "N": 5,
+    "pick": 5,
+    "prompt": "Which of these 12 are the real Jasmine? Pick 5.",
+    "fewTagsLine": null,
+    "cards": [
+      {
+        "id": "T07B",
+        "role": "true",
+        "name": "Compliment sandwich chef",
+        "heart": "I say it softly so you can actually hear it."
+      },
+      {
+        "id": "T10B",
+        "role": "opposite",
+        "name": "Knows when to log off",
+        "heart": "Leaving kindly is still kind."
+      },
+      {
+        "id": "T04A",
+        "role": "true",
+        "name": "Close Friends list: 4",
+        "heart": "The ones I choose always know it."
+      },
+      {
+        "id": "T07A",
+        "role": "opposite",
+        "name": "The honest review nobody asked for",
+        "heart": "I'd rather annoy you than lie to you."
+      },
+      {
+        "id": "T06B",
+        "role": "opposite",
+        "name": "Limited-edition energy",
+        "heart": "I charge myself first, so I have more to give."
+      },
+      {
+        "id": "T06A",
+        "role": "true",
+        "name": "Yes first, bank app later",
+        "heart": "Breaking my own rules for my people? No regrets."
+      },
+      {
+        "id": "T10A",
+        "role": "true",
+        "name": "Relationship mechanic",
+        "heart": "I don't quit on people I chose."
+      },
+      {
+        "id": "T14B",
+        "role": "decoy",
+        "name": "Minimalist on purpose",
+        "heart": "Less stuff, more room to breathe."
+      },
+      {
+        "id": "T09B",
+        "role": "opposite",
+        "name": "Dating, not merging",
+        "heart": "I'm me first. Then I'm someone's someone."
+      },
+      {
+        "id": "T04B",
+        "role": "opposite",
+        "name": "Mayor of every group chat",
+        "heart": "Nobody stays a stranger for long around me."
+      },
+      {
+        "id": "T01B",
+        "role": "decoy",
+        "name": "My passcode, my dignity",
+        "heart": "My privacy doesn't owe anyone an explanation."
+      },
+      {
+        "id": "T09A",
+        "role": "true",
+        "name": "Head over heels, eyes open",
+        "heart": "I love all the way, and I know where the door is."
+      }
+    ]
+  },
+  "level4": {
+    "enabled": true,
+    "stingPick": {
+      "prompt": "Which of these 4 lines would leave Jasmine speechless for three seconds?",
+      "lines": [
+        {
+          "tag": "T13A",
+          "t": "You call it a calculated risk. You did the math afterward.",
+          "true": false
+        },
+        {
+          "tag": "T06A",
+          "t": "One ask from a friend and your budget rules vanish. They only ever apply to you.",
+          "true": true
+        },
+        {
+          "tag": "T17A",
+          "t": "Friends your age settle down and you say you're fine. You've already started a plan.",
+          "true": false
+        },
+        {
+          "tag": "T05B",
+          "t": "You'll write them five paragraphs. Helping them move is a separate negotiation.",
+          "true": false
+        }
+      ]
+    },
+    "pickTheRoast": {
+      "prompt": "Pick the roast Jasmine would laugh at hardest.",
+      "lines": [
+        {
+          "id": "R07",
+          "tag": "T12A",
+          "t": "Sent me a payment request for $3.47. For fries. With a fries emoji.",
+          "ownersTag": false
+        },
+        {
+          "id": "R12",
+          "tag": "T22B",
+          "t": "Has ordered the exact same thing at our spot since the day we met.",
+          "ownersTag": false
+        },
+        {
+          "id": "R04",
+          "tag": "T06A",
+          "t": "Says 'I'm saving this month.' Pays for everyone's bubble tea anyway.",
+          "ownersTag": true
+        },
+        {
+          "id": "R03",
+          "tag": "T07A",
+          "t": "Asked for a quick opinion once. Got notes, bullet points and a follow-up.",
+          "ownersTag": "opposite"
+        },
+        {
+          "id": "R02",
+          "tag": "T04B",
+          "t": "Knows the barista's name, the barista's dog's name and its birthday.",
+          "ownersTag": "opposite"
+        },
+        {
+          "id": "R06",
+          "tag": "T09A",
+          "t": "Says 'we're keeping it casual.' Already knows their coffee order by heart.",
+          "ownersTag": true
+        }
+      ]
+    }
+  }
+}

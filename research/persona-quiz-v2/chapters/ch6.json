@@ -1,0 +1,226 @@
+{
+  "chapter": 6,
+  "title": "Family and home",
+  "intro": "Let's go home for a bit. Genii promises not to ask about your grades. Mostly.",
+  "cards": [
+    {
+      "id": "C6-1",
+      "type": "scenario",
+      "sally": ["Q01"],
+      "prompt": "Someday: week one in your own place with your person or a roommate. The sink is full, the trash smells, and you're both just staring at it.",
+      "privacy": "normal",
+      "options": [
+        {"t": "Copy my family's system. It worked for years.", "axes": {"R3": 2}, "tags": [{"id": "T20A", "s": 2}]},
+        {"t": "Split by what we each hate least. I'll take trash.", "axes": {"R3": -2}, "tags": [{"id": "T20B", "s": 2}]},
+        {"t": "Make a chore wheel and spin it every week.", "axes": {"R3": -1, "L3": 1}},
+        {"t": "Pay a cleaner, split the bill, never fight about it.", "axes": {"R3": -1}, "tags": [{"id": "T20B", "s": 1}]}
+      ],
+      "feel": "cringe",
+      "mask": "looks like a chore standoff; measures whether a home runs on the inherited script or one you write from scratch (R3, T20)",
+      "ae": ["A", "D"],
+      "friend": {
+        "prompt": "{name} moves in with someone. The sink is full and nobody moves. What does {name} do?",
+        "a": {"t": "Sets it up the way {name}'s family always did.", "axes": {"R3": 2}, "tags": [{"id": "T20A", "s": 2}]},
+        "b": {"t": "Splits chores by what each of them hates least.", "axes": {"R3": -2}, "tags": [{"id": "T20B", "s": 2}]}
+      }
+    },
+    {
+      "id": "C6-2",
+      "type": "real",
+      "sally": ["Q24"],
+      "prompt": "Think of the last time your family pushed back hard on a plan of yours: a trip, a school, a move, a haircut.",
+      "privacy": "normal",
+      "options": [
+        {"t": "Did it anyway. Told them after it went fine.", "axes": {"R1": -2}, "tags": [{"id": "T19A", "s": 2}], "emotion": "pride"},
+        {"t": "Talked it through, dinner after dinner, until they came around.", "axes": {"R1": 1}, "tags": [{"id": "T19B", "s": 2}]},
+        {"t": "Dropped it. Peace at home was worth more.", "axes": {"R1": 2}, "tags": [{"id": "T19B", "s": 2}], "emotion": "relief"},
+        {"t": "Heard them out, then picked my own timing.", "axes": {"R1": -1}, "tags": [{"id": "T19A", "s": 3}]},
+        {"t": "Went with theirs. Their money, their rules.", "circumstance": true}
+      ],
+      "feel": "tension",
+      "mask": "looks like a family argument story; measures whether your big calls are made together or by you (R1, T19)",
+      "ae": ["A", "B", "C"],
+      "friend": {
+        "prompt": "{name}'s family pushes back hard on a plan. What does {name} do?",
+        "a": {"t": "Talks it through until the family is on board.", "axes": {"R1": 1}, "tags": [{"id": "T19B", "s": 2}]},
+        "b": {"t": "Listens, then decides the timing alone.", "axes": {"R1": -1}, "tags": [{"id": "T19A", "s": 3}]}
+      }
+    },
+    {
+      "id": "C6-3",
+      "type": "this_or_that",
+      "sally": ["Q04"],
+      "prompt": "A couple you know swapped the expected setup: the one everyone assumed would stay home works, and the other raises the kids. For your own home?",
+      "privacy": "normal",
+      "options": [
+        {"t": "Same energy. I'd run mine that way too.", "axes": {"R3": -2}, "tags": [{"id": "T20B", "s": 2}]},
+        {"t": "Love it for them. Mine would run classic.", "axes": {"R3": 1}, "tags": [{"id": "T20A", "s": 3}]}
+      ],
+      "feel": "recognition",
+      "mask": "looks like an opinion on another family; measures whether the new script is fine for others but not for you (R3, T20A split)",
+      "ae": ["B", "D"],
+      "friend": {
+        "prompt": "A couple swaps who works and who stays home. Would {name} set up a home that way?",
+        "a": {"t": "Yes, same energy.", "axes": {"R3": -2}, "tags": [{"id": "T20B", "s": 2}]},
+        "b": {"t": "Love it for them, classic for {name}.", "axes": {"R3": 1}, "tags": [{"id": "T20A", "s": 3}]}
+      }
+    },
+    {
+      "id": "C6-4",
+      "type": "scenario",
+      "sally": ["Q22"],
+      "prompt": "A parent needs daily care for the next six months. Your siblings could help. Moving back home would cost you at work.",
+      "teenPrompt": "A grandparent moves in and needs daily help for a few months. Your family asks who can pitch in after school.",
+      "privacy": "normal",
+      "options": [
+        {"t": "Say 'I've got it' before anyone else can answer.", "tags": [{"id": "T18A", "s": 3}]},
+        {"t": "Start a shared calendar. Everyone takes shifts.", "tags": [{"id": "T18B", "s": 2}]},
+        {"t": "Look up outside help and pitch it at dinner.", "tags": [{"id": "T18B", "s": 2}]},
+        {"t": "Wait to see who steps up, then fill the gaps.", "tags": [{"id": "T18B", "s": 1}]},
+        {"t": "Nobody else can. It lands on me either way.", "circumstance": true}
+      ],
+      "feel": "worry",
+      "mask": "looks like a logistics problem; measures whether you carry family need yourself or build a shared system around it (T18)",
+      "ae": ["A", "B", "C"],
+      "friend": {
+        "prompt": "Someone in {name}'s family needs daily care for months. What does {name} do first?",
+        "a": {"t": "Says 'I've got it' before anyone else answers.", "tags": [{"id": "T18A", "s": 3}]},
+        "b": {"t": "Starts a shared schedule so everyone takes shifts.", "tags": [{"id": "T18B", "s": 2}]}
+      }
+    },
+    {
+      "id": "C6-5",
+      "type": "feeling",
+      "sally": ["Q22"],
+      "follows": "C6-4",
+      "prompt": "That care question. What showed up first?",
+      "privacy": "normal",
+      "options": [
+        {"t": "Guilt, for even hesitating.", "axes": {}, "tags": [], "emotion": "guilt"},
+        {"t": "Worry. About them, not the schedule.", "axes": {}, "tags": [], "emotion": "worry"},
+        {"t": "A tiny voice asking, 'Why is it always me?'", "axes": {}, "tags": [], "emotion": "resentment"},
+        {"t": "Warmth. This is what family is for.", "axes": {}, "tags": [], "emotion": "warmth"},
+        {"t": "Relief that I'm not an only child.", "axes": {}, "tags": [], "emotion": "relief"}
+      ],
+      "feel": "guilt",
+      "mask": "looks like a check-in; measures the emotion under family duty (research record and tag copy only, no profile evidence)",
+      "ae": ["E"]
+    },
+    {
+      "id": "C6-6",
+      "type": "scenario",
+      "sally": ["Q21"],
+      "prompt": "Your parents offer to help you get your own place. One catch: it has to be a ten-minute walk from theirs.",
+      "teenPrompt": "Someday, your parents offer to help pay for your first apartment. One catch: it has to be a ten-minute walk from theirs.",
+      "privacy": "normal",
+      "options": [
+        {"t": "Deal. Free help and home-cooked dinners nearby.", "axes": {"R1": 2}, "tags": [{"id": "T19B", "s": 2}], "emotion": "delight"},
+        {"t": "Only if that area was already on my list.", "axes": {"R1": -1}, "tags": [{"id": "T19A", "s": 2}]},
+        {"t": "Say no. I'll find my own place, even if later.", "axes": {"R1": -2}, "tags": [{"id": "T19A", "s": 2}]},
+        {"t": "Depends on how often 'nearby' means 'dropping by'.", "axes": {}, "tags": []},
+        {"t": "Couldn't do it without their help anyway.", "circumstance": true}
+      ],
+      "flip": {
+        "prompt": "What would flip you?",
+        "options": ["If they'd drop by without asking", "If the area works for my school or job", "If the help came with more strings later"]
+      },
+      "feel": "tension",
+      "mask": "looks like a housing perk; measures whether family help with family hopes feels like closeness or like a leash (R1, T19)",
+      "ae": ["A", "C", "D"],
+      "friend": {
+        "prompt": "{name}'s parents will help with a place, if it's a ten-minute walk from theirs. {name}…",
+        "a": {"t": "Takes it. Close to family is a bonus.", "axes": {"R1": 2}, "tags": [{"id": "T19B", "s": 2}]},
+        "b": {"t": "Says no unless the area fits {name}'s own plan.", "axes": {"R1": -1}, "tags": [{"id": "T19A", "s": 2}]}
+      }
+    },
+    {
+      "id": "C6-7",
+      "type": "pick_two",
+      "sally": ["Q12"],
+      "prompt": "Someday, your big celebration: a wedding, or whatever your version is. Your budget, your call. Pick the two that must happen.",
+      "privacy": "normal",
+      "options": [
+        {"t": "Every relative there, even the ones I can't name.", "axes": {"R3": 1}, "tags": [{"id": "T21A", "s": 1}]},
+        {"t": "The traditional ceremony, done properly, start to finish.", "axes": {"R3": 1}, "tags": [{"id": "T21A", "s": 1}]},
+        {"t": "Something from my grandparents: a ring, a dish, a song.", "axes": {"R3": 1}, "tags": [{"id": "T20A", "s": 1}]},
+        {"t": "Ten people max. The best dinner of our lives.", "axes": {"R3": -1}, "tags": [{"id": "T21B", "s": 1}]},
+        {"t": "Most of the money goes to a trip or a home.", "axes": {"R3": -1}, "tags": [{"id": "T21B", "s": 1}]},
+        {"t": "Something nobody's done: a hike, a game night, a beach.", "axes": {"R3": -1}, "tags": [{"id": "T20B", "s": 1}]}
+      ],
+      "feel": "longing",
+      "mask": "looks like party planning; measures whether a big life moment should follow the ritual or your own design (R3, T21, T20)",
+      "ae": ["D"]
+    },
+    {
+      "id": "C6-8",
+      "type": "role",
+      "sally": ["Q23"],
+      "prompt": "Your parents want you to keep helping an adult sibling who never quite gets it together. In that story, you're the…",
+      "teenPrompt": "Your sibling keeps needing a rescue: homework, chores, excuses. Your parents say, 'Help them, they're family.' In that story, you're the…",
+      "privacy": "normal",
+      "options": [
+        {"t": "Safety net. I cover them, every single time.", "tags": [{"id": "T18A", "s": 3}]},
+        {"t": "Coach. I help once, then they learn it.", "tags": [{"id": "T18B", "s": 2}]},
+        {"t": "Deadline. 'Last time' comes with an actual date.", "tags": [{"id": "T18B", "s": 2}]},
+        {"t": "Grumbler. I help, then vent about it all week.", "tags": [{"id": "T18A", "s": 1}], "emotion": "resentment"},
+        {"t": "Secret sponsor. I help, and nobody else knows.", "tags": [{"id": "T18A", "s": 2}]},
+        {"t": "Referee. I tell my parents it's their call, not mine.", "tags": [{"id": "T18B", "s": 1}]}
+      ],
+      "feel": "recognition",
+      "mask": "looks like a family cast list; measures whether your help to family is open-ended or has an end date (T18)",
+      "ae": ["A", "B"],
+      "friend": {
+        "prompt": "{name}'s sibling keeps needing a rescue, and the parents say 'help, you're family.' {name} is the…",
+        "a": {"t": "Safety net, every single time.", "tags": [{"id": "T18A", "s": 3}]},
+        "b": {"t": "Deadline. Helps, with an end date.", "tags": [{"id": "T18B", "s": 2}]}
+      }
+    },
+    {
+      "id": "C6-9",
+      "type": "this_or_that",
+      "sally": ["Q09"],
+      "prompt": "You and your person: solid, money sorted, plans shared. Does it still need a wedding to feel complete?",
+      "privacy": "locked18",
+      "options": [
+        {"t": "Yes. I want the vows, out loud, in front of people.", "axes": {"R3": 2}, "tags": [{"id": "T21A", "s": 2}]},
+        {"t": "No. What we have is already the whole thing.", "axes": {"R3": -2}, "tags": [{"id": "T21B", "s": 2}]}
+      ],
+      "feel": "tension",
+      "mask": "looks like a marriage hot take; measures whether commitment needs the classic ritual to count (R3, T21)",
+      "ae": ["B", "D"]
+    },
+    {
+      "id": "C6-S1",
+      "type": "sealed",
+      "sally": [],
+      "prompt": "The big family holiday. Someone suggests skipping the usual dinner this year and doing something totally different.",
+      "privacy": "normal",
+      "options": [
+        {"t": "Absolutely not. Same dishes, same seats, same fight.", "axes": {"R3": 2}, "tags": [{"id": "T20A", "s": 2}]},
+        {"t": "Yes! Hotpot on the roof, then a movie marathon.", "axes": {"R3": -2}, "tags": [{"id": "T20B", "s": 2}]},
+        {"t": "Keep the one dish that matters. Reinvent the rest.", "axes": {"R3": -1}, "tags": [{"id": "T20B", "s": 1}]},
+        {"t": "Do both: classic dinner first, the new thing after.", "axes": {"R3": 1}, "tags": [{"id": "T20A", "s": 1}]}
+      ],
+      "feel": "delight",
+      "mask": "looks like holiday planning; measures whether tradition is the point or a starting draft (R3, T20); teen-safe R3 check",
+      "ae": ["A", "D"]
+    },
+    {
+      "id": "C6-S2",
+      "type": "sealed",
+      "sally": [],
+      "prompt": "Your family starts a weekly Sunday dinner. Attendance is 'optional', said in a voice that means it isn't.",
+      "privacy": "normal",
+      "options": [
+        {"t": "Never miss one. I'm on dessert duty.", "axes": {"R1": 2}, "tags": [{"id": "T19B", "s": 1}]},
+        {"t": "Show up most weeks, gone by eight.", "axes": {"R1": -1}},
+        {"t": "Pitch once a month instead. Weekly is a lot.", "axes": {"R1": -1}, "tags": [{"id": "T19A", "s": 1}]},
+        {"t": "Show up and turn it into game night.", "axes": {"R1": 1, "R3": -1}},
+        {"t": "Skip it, but call a different relative each week.", "axes": {"R1": -1}, "tags": [{"id": "T19A", "s": 2}]}
+      ],
+      "feel": "recognition",
+      "mask": "looks like a dinner invite; measures how much shared family time feels like home versus a lot (R1, T19)",
+      "ae": ["A", "B"]
+    }
+  ]
+}

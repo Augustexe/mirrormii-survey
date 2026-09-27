@@ -1,0 +1,411 @@
+{
+  "version": "persona-quiz-v2",
+  "relationship": "bestie",
+  "toggles": {
+    "loveTags": true,
+    "marriageKidsTags": false,
+    "stingLines": true
+  },
+  "owner": {
+    "type": "Open-Book Golden Retriever × Vibes-Based Wanderer",
+    "code": "We·Soft·Own | Venture·Easy·Context",
+    "pronoun": "they"
+  },
+  "level1": [
+    {
+      "axis": "R1",
+      "prompt": "Riley with a crush or a partner is…",
+      "options": [
+        {
+          "pole": 1,
+          "label": "We",
+          "t": "Clingy mode: wants to see them daily and share every detail."
+        },
+        {
+          "pole": -1,
+          "label": "Me",
+          "t": "Solo mode: loves hard, still guards solo nights and bestie nights."
+        }
+      ],
+      "truth": 1,
+      "truthLabel": "We",
+      "acceptEither": false,
+      "why": null
+    },
+    {
+      "axis": "R2",
+      "prompt": "You show Riley the angry text you're about to send. Bad idea. Riley…",
+      "options": [
+        {
+          "pole": 1,
+          "label": "Direct",
+          "t": "\"Absolutely not. Hand me your phone.\""
+        },
+        {
+          "pole": -1,
+          "label": "Soft",
+          "t": "\"I get why you're mad.\" Holds you first, talks you down later."
+        }
+      ],
+      "truth": -1,
+      "truthLabel": "Soft",
+      "acceptEither": false,
+      "why": null
+    },
+    {
+      "axis": "R3",
+      "prompt": "Picture Riley's future home on a big holiday. It's…",
+      "options": [
+        {
+          "pole": 1,
+          "label": "Classic",
+          "t": "The classic: rituals, the family table, parents at ease."
+        },
+        {
+          "pole": -1,
+          "label": "Own",
+          "t": "A remix: their own rituals, their own rules, no template."
+        }
+      ],
+      "truth": -1,
+      "truthLabel": "Own",
+      "acceptEither": false,
+      "why": null
+    },
+    {
+      "axis": "L1",
+      "prompt": "Riley gets a surprise bonus. By Friday…",
+      "options": [
+        {
+          "pole": 1,
+          "label": "Steady",
+          "t": "It's in savings. Safety first."
+        },
+        {
+          "pole": -1,
+          "label": "Venture",
+          "t": "A flight is booked. Life is short."
+        }
+      ],
+      "truth": -1,
+      "truthLabel": "Venture",
+      "acceptEither": false,
+      "why": null
+    },
+    {
+      "axis": "L2",
+      "prompt": "Talking plans and life progress, Riley is…",
+      "options": [
+        {
+          "pole": 1,
+          "label": "Push",
+          "t": "Ambitious: wants real wins and a direction, soon."
+        },
+        {
+          "pole": -1,
+          "label": "Easy",
+          "t": "Unbothered: who gets promoted or married when is not their business."
+        }
+      ],
+      "truth": -1,
+      "truthLabel": "Easy",
+      "acceptEither": false,
+      "why": null
+    },
+    {
+      "axis": "L3",
+      "prompt": "Lines, house rules, what's fair: Riley is…",
+      "options": [
+        {
+          "pole": 1,
+          "label": "Rules",
+          "t": "Rulebook: the same rules for everyone is the only fair way."
+        },
+        {
+          "pole": -1,
+          "label": "Context",
+          "t": "Case by case: rules are fixed, people aren't."
+        }
+      ],
+      "truth": -1,
+      "truthLabel": "Context",
+      "acceptEither": false,
+      "why": null
+    }
+  ],
+  "level2": {
+    "skipped": false,
+    "cards": [
+      {
+        "id": "C1-6",
+        "chapter": 1,
+        "prompt": "Riley and an old close friend haven't texted in four months. How does Riley feel?",
+        "a": "Fine. Riley didn't text either.",
+        "b": "It stings. Someone should've texted.",
+        "answer": "b",
+        "ownerSaid": "Kind of stings. Someone should've texted. Them.",
+        "weight": 0.45
+      },
+      {
+        "id": "C4-1",
+        "chapter": 4,
+        "prompt": "Riley finds $200 in an old jacket. Where does it go?",
+        "a": "Concert tickets, tonight.",
+        "b": "Straight into savings.",
+        "answer": "a",
+        "ownerSaid": "Concert tickets. Tonight if possible.",
+        "weight": 0.55
+      },
+      {
+        "id": "C3-12",
+        "chapter": 3,
+        "prompt": "Riley's person tells the same party story every time, and it stopped landing months ago. Riley...",
+        "a": "Says it on the ride home: 'Retire the bear.'",
+        "b": "Laughs like it's the first time, every time.",
+        "answer": "b",
+        "ownerSaid": "Jumped in and told it with them, only faster.",
+        "weight": 0.8
+      },
+      {
+        "id": "C4-2",
+        "chapter": 4,
+        "prompt": "A friend whose parents helped a lot says 'I worked so hard for this.' What does Riley think?",
+        "a": "'You earned it!' And means it.",
+        "b": "Must be nice.",
+        "answer": "b",
+        "ownerSaid": "Must be nice. Somebody had to say it.",
+        "weight": 0.45
+      },
+      {
+        "id": "C3-4",
+        "chapter": 3,
+        "prompt": "On a normal week with a partner or closest friend, Riley would rather...",
+        "a": "Share every free evening and narrate the whole day.",
+        "b": "Keep some nights solo, no explaining needed.",
+        "answer": "a",
+        "ownerSaid": "If they're free, I'm suddenly free too. + They get a play-by-play of my day. Photos of lunch included.",
+        "weight": 0.45
+      },
+      {
+        "id": "C6-8",
+        "chapter": 6,
+        "prompt": "Riley's sibling keeps needing a rescue, and the parents say 'help, you're family.' Riley is the…",
+        "a": "Safety net, every single time.",
+        "b": "Deadline. 'Last time' comes with an actual date.",
+        "answer": "b",
+        "ownerSaid": "Ghost. Suddenly busy whenever they call.",
+        "weight": 0.45
+      },
+      {
+        "id": "C2-2",
+        "chapter": 2,
+        "prompt": "Last time a friend's plan cost way more than Riley wanted to spend, they...",
+        "a": "Went, paid, and lived on noodles after.",
+        "b": "Admitted it was over budget, after three drafts.",
+        "answer": "b",
+        "ownerSaid": "Invented a clash. Sent a very long, very sweet message instead.",
+        "weight": 0.8
+      },
+      {
+        "id": "C3-5",
+        "chapter": 3,
+        "prompt": "Months of small clashes with someone close, nobody at fault. Riley would...",
+        "a": "Make a deal and give it time.",
+        "b": "Call it. Not a fit is reason enough.",
+        "answer": "b",
+        "ownerSaid": "Let it fade. No fight, just fewer plans.",
+        "weight": 0.8
+      },
+      {
+        "id": "C6-2",
+        "chapter": 6,
+        "prompt": "Riley's family says 'absolutely not' to a plan. What does Riley do?",
+        "a": "Sends a sibling or an aunt in first to soften them up.",
+        "b": "Says 'I'll think about it,' waits till they forget, does it.",
+        "answer": "b",
+        "ownerSaid": "Said I'd 'think about it.' Waited till they forgot, then did it.",
+        "weight": 0.8
+      },
+      {
+        "id": "C7-1",
+        "chapter": 7,
+        "prompt": "Game night. A friend wins Uno with a stack that isn't in the official rules. Riley...",
+        "a": "Pulls up the official rules and reads them out",
+        "b": "Lets it slide. They haven't won all night",
+        "answer": "b",
+        "ownerSaid": "Draw six. Stacking is the best part of Uno.",
+        "weight": 0.55
+      },
+      {
+        "id": "C5-7",
+        "chapter": 5,
+        "prompt": "Someone Riley's age posts huge news: dream job, dream school. What would they do?",
+        "a": "Double-tap and forget it by the next video.",
+        "b": "Quietly start a plan.",
+        "answer": "a",
+        "ownerSaid": "Double-tapped. Forgot it by the next video.",
+        "weight": 0.8
+      },
+      {
+        "id": "C3-1",
+        "chapter": 3,
+        "prompt": "Someone Riley has talked to every day for three months asks, 'So... what are we?' Riley would...",
+        "a": "Make it official. Bio updated, family dinner booked.",
+        "b": "'Do we need a label? I like what this is.'",
+        "answer": "b",
+        "ownerSaid": "'Do we need a label? I like what this is.'",
+        "weight": 0.55
+      }
+    ]
+  },
+  "level3": {
+    "skipped": false,
+    "N": 5,
+    "pick": 5,
+    "prompt": "Which of these 12 are the real Riley? Pick 5.",
+    "fewTagsLine": null,
+    "cards": [
+      {
+        "id": "T17A",
+        "role": "opposite",
+        "name": "Needs a save point",
+        "heart": "Wanting solid ground is how I take care of myself."
+      },
+      {
+        "id": "T13A",
+        "role": "true",
+        "name": "Books it, figures it out later",
+        "heart": "My best stories start with 'okay, this is a bad idea, but'."
+      },
+      {
+        "id": "T25A",
+        "role": "opposite",
+        "name": "Actually read the rulebook",
+        "heart": "Fair isn't cold to me. It's safe."
+      },
+      {
+        "id": "T03A",
+        "role": "true",
+        "name": "Tells the AI first",
+        "heart": "Feeling understood counts, wherever it comes from."
+      },
+      {
+        "id": "T25B",
+        "role": "true",
+        "name": "Bends rules for good reasons",
+        "heart": "I look at the person, not the form."
+      },
+      {
+        "id": "T08B",
+        "role": "decoy",
+        "name": "Keeps the receipts",
+        "heart": "I look after the person who got hurt first."
+      },
+      {
+        "id": "T03B",
+        "role": "opposite",
+        "name": "Typos and all, my own words",
+        "heart": "My messy real words are the truest version of me."
+      },
+      {
+        "id": "T09B",
+        "role": "opposite",
+        "name": "Dating, not merging",
+        "heart": "I'm me first. Then I'm someone's someone."
+      },
+      {
+        "id": "T13B",
+        "role": "opposite",
+        "name": "Rainy-day fund devotee",
+        "heart": "Being ready is how I relax."
+      },
+      {
+        "id": "T09A",
+        "role": "true",
+        "name": "Head over heels, eyes open",
+        "heart": "I love all the way, and I know where the door is."
+      },
+      {
+        "id": "T17B",
+        "role": "true",
+        "name": "Still loading, and that's fine",
+        "heart": "My timeline is mine to write."
+      },
+      {
+        "id": "T04B",
+        "role": "decoy",
+        "name": "Mayor of every group chat",
+        "heart": "Nobody stays a stranger for long around me."
+      }
+    ]
+  },
+  "level4": {
+    "enabled": true,
+    "stingPick": {
+      "prompt": "Which of these 4 lines would leave Riley speechless for three seconds?",
+      "lines": [
+        {
+          "tag": "T14A",
+          "t": "You say it's just for you. You still notice exactly who noticed.",
+          "true": false
+        },
+        {
+          "tag": "T18A",
+          "t": "You're everyone's plan B. Your own plan A keeps moving to next month.",
+          "true": false
+        },
+        {
+          "tag": "T25B",
+          "t": "You think people made the rules, so the rules should bend for people.",
+          "true": true
+        },
+        {
+          "tag": "T12B",
+          "t": "To you, fair isn't paying the same. It's straining the same.",
+          "true": false
+        }
+      ]
+    },
+    "pickTheRoast": {
+      "prompt": "Pick the roast Riley would laugh at hardest.",
+      "lines": [
+        {
+          "id": "R07",
+          "tag": "T12A",
+          "t": "Sent me a payment request for $3.47. For fries. With a fries emoji.",
+          "ownersTag": false
+        },
+        {
+          "id": "R05",
+          "tag": "T08B",
+          "t": "Forgave everyone years ago. The screenshots folder did not.",
+          "ownersTag": false
+        },
+        {
+          "id": "R12",
+          "tag": "T22B",
+          "t": "Has ordered the exact same thing at our spot since the day we met.",
+          "ownersTag": false
+        },
+        {
+          "id": "R08",
+          "tag": "T13A",
+          "t": "Booked the flight first. Checked the bank app second. Maybe.",
+          "ownersTag": true
+        },
+        {
+          "id": "R06",
+          "tag": "T09A",
+          "t": "Says 'we're keeping it casual.' Already knows their coffee order by heart.",
+          "ownersTag": true
+        },
+        {
+          "id": "R11",
+          "tag": "T24A",
+          "t": "Made a spreadsheet for the group trip. It has tabs. Plural.",
+          "ownersTag": false
+        }
+      ]
+    }
+  }
+}

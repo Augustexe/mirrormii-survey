@@ -1,0 +1,1102 @@
+{
+  "judge": "jordan",
+  "persona": "SYN-17 Jordan, 25, Dallas, personal trainer, single, gym-tok, not a gamer",
+  "not_judged": {
+    "chapter": 1,
+    "file": "chapters/ch1.json",
+    "reason": "Read of ch1.json was denied by the session permission classifier; not retried per the denial. Needs a separate pass."
+  },
+  "cards": [
+    {
+      "id": "C2-1",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 4,
+        "emotion": 4,
+        "honest": 4,
+        "share": 4
+      },
+      "issue": "Golden-set energy, I'd screenshot this one. The fourth option is the only one I had to read twice. Humming your own chorus back at them reads like a flex or a diss, not a clear move.",
+      "fix": "Replace option 4 with: \"Ask 'what do YOU think of the chorus?' and wait.\" (R2 +1, T07A s1)",
+      "weakest": "Hum your own version of the chorus back at them."
+    },
+    {
+      "id": "C2-2",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 4,
+        "honest": 4,
+        "share": 3
+      },
+      "issue": "Real and specific. I've done the 'show up for the cheap part' move at a bday dinner. The budget-talk option is the grown-up answer and sounds a little too mature next to the noodles one. Also 'instant noodles' shows up again in C5-2.",
+      "fix": "Option 2 becomes: \"Said 'I'm broke-broke' in the chat and pitched tacos instead.\" Keep the noodles here and change them in C5-2.",
+      "weakest": "Told them it was over my budget. Suggested something cheaper."
+    },
+    {
+      "id": "C2-3",
+      "verdict": "fix",
+      "scores": {
+        "clarity": 4,
+        "funny": 3,
+        "recognition": 3,
+        "emotion": 3,
+        "honest": 3,
+        "share": 3
+      },
+      "issue": "Setup takes two reads (who spread what about whom). The 'your call, I'm with you' DM is the obviously good-person answer, so nobody who wants to look good picks anything else. Least funny card in the chapter.",
+      "fix": "Prompt: \"A year ago, Sam spread a rumor about your best friend. Sam apologized, made it right, and has honestly changed. Now Sam wants back in the group chat.\" Option 3 becomes: \"DM your friend: 'Say the word and I'll kick Sam myself.'\" (T08B s2)",
+      "weakest": "DM your friend: \"Your call. I'm with you either way.\""
+    },
+    {
+      "id": "C2-4",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 4,
+        "honest": 4,
+        "share": 4
+      },
+      "issue": "Love this. 'They were mid anyway' is exactly what I'd say. The 'plan their whole weekend' line is a little flat next to the snacks one, and it's the same deed energy twice.",
+      "fix": "Option 6 becomes: \"Drag them on a sunrise hike. Moping is canceled.\" (T05A s1)",
+      "weakest": "Say \"you'll be fine\" and plan their whole weekend."
+    },
+    {
+      "id": "C2-5",
+      "verdict": "fix",
+      "scores": {
+        "clarity": 4,
+        "funny": 3,
+        "recognition": 5,
+        "emotion": 4,
+        "honest": 5,
+        "share": 3
+      },
+      "issue": "Great real card, the 'laughed along then felt weird' option is painfully honest. But 'said nothing to them, checked on the other person' is scored as the softest R2 answer, and that's not holding your friend first, that's skipping your friend. It'll push avoiders onto the Soft pole for the wrong reason.",
+      "fix": "Keep the text, rescore option 3 to axes {} and tags [{\"id\":\"T08B\",\"s\":1}]. Or rewrite it as: \"Texted my friend 'you good?' and never brought it up.\" (R2 -2)",
+      "weakest": "Said nothing to them. Checked on the other person."
+    },
+    {
+      "id": "C2-6",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 3,
+        "recognition": 4,
+        "emotion": 4,
+        "honest": 5,
+        "share": 2
+      },
+      "issue": "Quick and honest. 'Part of me found it funny' is the one people will tap and feel called out by. Fine as is.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C2-7",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 5,
+        "honest": 5,
+        "share": 4
+      },
+      "issue": "I'm up at 5:30 for clients, so this one hurt. 'Third night this week' makes it real. The group-call option is a fun cheat move. Best card in the chapter for me.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C2-8",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 5,
+        "recognition": 5,
+        "emotion": 3,
+        "honest": 5,
+        "share": 5
+      },
+      "issue": "'Compliments the shoes. Says nothing about the hair.' is the funniest line in the whole run. Very shareable. Only knock: this is the third 'your friend made a bad thing, do you tell them' card in the chapter after the song, and C2-10 makes it four.",
+      "fix": "Keep. Fix the repetition by rewriting C2-10 (see there)."
+    },
+    {
+      "id": "C2-9",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 4,
+        "emotion": 4,
+        "honest": 4,
+        "share": 3
+      },
+      "issue": "Solid, distinct moves, and 'You're a disaster. Then send it anyway' is peak roast-love. It's the second 'friend needs your money' card in this chapter though, after C2-2, and money-for-friends comes back in C4-9 and C4-11.",
+      "fix": "Keep the card; cut C4-11 to relieve the money-for-friends pile-up. The circumstance line also repeats the 'already has a job' phrase: change it to \"I can't. I'm down to my last $40 myself.\"",
+      "weakest": "I can't. That money already has a job."
+    },
+    {
+      "id": "C2-10",
+      "verdict": "fix",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 4,
+        "emotion": 4,
+        "honest": 4,
+        "share": 3
+      },
+      "issue": "Fourth 'be honest about your friend's thing' card in one chapter (song, friend in the wrong, haircut, now the crush). By this point I know what the question is. Same axis, same shape, visible repeat.",
+      "fix": "New sealed situation, still R2, different target (their behavior toward you): \"Your friend is 25 minutes late. Again. You've been standing outside the whole time. They text 'omw!! 5 min'.\" Options: \"'This is the third time. It's not okay.'\" (R2 +2, T07A s2) / \"'No stress!' Then quietly grab a coffee.\" (R2 -2, T07B s1) / \"Say nothing now. Bring it up next week, kindly.\" (R2 -1, T07B s2) / \"Send a photo of my frozen face. No caption.\" (R2 +1, T07A s1)",
+      "weakest": "\"They seem sweet! You look so happy.\""
+    },
+    {
+      "id": "C2-11",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 5,
+        "recognition": 5,
+        "emotion": 3,
+        "honest": 5,
+        "share": 4
+      },
+      "issue": "'Show up, complain the whole way, take the heavy end' is literally me. Good physical-favor card. Note that moving/helping someone move shows up again in C7-6 and C7-9, so fix those, not this.",
+      "fix": "No change needed here."
+    },
+    {
+      "id": "C3-1",
+      "verdict": "fix",
+      "scores": {
+        "clarity": 4,
+        "funny": 3,
+        "recognition": 4,
+        "emotion": 4,
+        "honest": 4,
+        "share": 3
+      },
+      "issue": "Cute setup, 'mid-snack' is good. But they asked YOU, so answering 'Be my person?' back is awkward. And 'make it official, then invent our own rules for what that means' is vague and long. 'Why name it? We're just us.' also reads as the cool-guy answer next to the others.",
+      "fix": "Option 1: \"'Obviously. We're official. I'm changing my bio.'\" (R3 +1). Option 2: \"'Do we need a label? I like what this is.'\" (R3 -2). Option 3: \"'Official, sure. But no anniversaries and no couple pics.'\" (R3 -1).",
+      "weakest": "Make it official, then invent our own rules for what that means."
+    },
+    {
+      "id": "C3-2",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 3,
+        "honest": 5,
+        "share": 4
+      },
+      "issue": "'Basically one person with two phones' made me laugh. Real, recent, easy to answer even as a single guy with a best friend.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C3-3",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 3,
+        "recognition": 4,
+        "emotion": 3,
+        "honest": 4,
+        "share": 3
+      },
+      "issue": "The olive oil detail is good. I don't live with anyone, so 'Not my life' covers me. 'Keep it separate, I pay for mine' doesn't work for rent, you can't each pay for your own half of an apartment.",
+      "fix": "Option 3 becomes: \"Payment requests for everything. Even the olive oil.\" (T12A s1). Also 'Fair is fair' repeats in C4-11; keep it here only.",
+      "weakest": "Keep it separate. I pay for mine, they pay for theirs."
+    },
+    {
+      "id": "C3-4",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 3,
+        "honest": 5,
+        "share": 4
+      },
+      "issue": "'If they're free, I'm suddenly free too' is a great call-out line. My version of 'Tuesday nights are mine' is my 5am lift, and I still recognized it. Good.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C3-5",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 4,
+        "funny": 3,
+        "recognition": 5,
+        "emotion": 4,
+        "honest": 5,
+        "share": 3
+      },
+      "issue": "'Let it fade. No fight, just fewer plans.' is uncomfortably accurate for me and a lot of guys. Works for friends too, not just dating.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C3-6",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 2,
+        "recognition": 4,
+        "emotion": 4,
+        "honest": 5,
+        "share": 2
+      },
+      "issue": "'I'd been keeping quiet score' hits. Fine as a quick tap.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C3-7",
+      "verdict": "fix",
+      "scores": {
+        "clarity": 4,
+        "funny": 2,
+        "recognition": 4,
+        "emotion": 5,
+        "honest": 3,
+        "share": 3
+      },
+      "issue": "Emotionally sharp, but 'the hiding breaks the deal' is the answer anybody would give, so it's the safe cool answer. And it's scored as the independence tag, which makes no sense: being hurt by lying doesn't mean you want your own space.",
+      "fix": "Option 2 becomes: \"The months. How many times did they look me in the eye?\" (emotion resentment, tags [] or a trust tag, not T09B). Keep the envy line, it's the best one.",
+      "weakest": "The hiding. Months of it breaks the deal."
+    },
+    {
+      "id": "C3-8",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 5,
+        "recognition": 5,
+        "emotion": 4,
+        "honest": 5,
+        "share": 4
+      },
+      "issue": "'Is a dog basically the same thing? Asking for me.' Yes. Great card, keeps a heavy topic light.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C3-9",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 4,
+        "funny": 2,
+        "recognition": 3,
+        "emotion": 4,
+        "honest": 4,
+        "share": 2
+      },
+      "issue": "Only shown to the kids-yes crowd, fine. It's heavy and not funny, which is okay once in the locked block. Weakest line is the 'depends' one, but the flip saves it.",
+      "fix": "Optional: swap option 4 to \"Ask my person which one they'd regret more.\" and keep the flip on it.",
+      "weakest": "Depends which one can't wait."
+    },
+    {
+      "id": "C3-10",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 3,
+        "recognition": 4,
+        "emotion": 4,
+        "honest": 4,
+        "share": 3
+      },
+      "issue": "'Quietly look forward to the quiet' is great. 'Ask if there's anything like it closer to home' is a sneaky clingy tell, good. Train tickets reads European for a US player.",
+      "fix": "Option 1 becomes: \"Already pricing flights for every other weekend.\""
+    },
+    {
+      "id": "C3-11",
+      "verdict": "fix",
+      "scores": {
+        "clarity": 5,
+        "funny": 3,
+        "recognition": 4,
+        "emotion": 3,
+        "honest": 4,
+        "share": 3
+      },
+      "issue": "Fun sealed card, but the handmade-cards ritual is scored Classic (+1) when a ritual you two invented is literally writing your own script. The sealed guess will misfire for people who do their own cute thing.",
+      "fix": "Option 3 becomes: \"Chocolates and a card with a cheesy poem inside. The classics.\" (R3 +1). If you keep handmade cards, score it R3 -1.",
+      "weakest": "Swap handmade cards. Our little ritual, every year."
+    },
+    {
+      "id": "C4-1",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 4,
+        "emotion": 3,
+        "honest": 4,
+        "share": 4
+      },
+      "issue": "Golden set, distinct moves, circumstance line is funny. 'Future me says thanks' also appears in C5-S1, and 'future me' again in C5-6. Three times reads as a template.",
+      "fix": "Keep here; change the other two (see C5-S1 and C5-6).",
+      "weakest": "Straight into savings. Future me says thanks."
+    },
+    {
+      "id": "C4-2",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 4,
+        "honest": 4,
+        "share": 4
+      },
+      "issue": "Spicy in a good way, everyone knows this friend. Problem: C5-3 (parent golfs with the boss) is the same question with a new costume. Keep this one, cut that one, steal its best line.",
+      "fix": "Option B becomes: \"Must be nice. Somebody had to say it.\" (T15B s2), taken from C5-3.",
+      "weakest": "True. And the head start did a lot of lifting."
+    },
+    {
+      "id": "C4-3",
+      "verdict": "fix",
+      "scores": {
+        "clarity": 5,
+        "funny": 3,
+        "recognition": 5,
+        "emotion": 3,
+        "honest": 4,
+        "share": 3
+      },
+      "issue": "I'd buy the lifting shoes I love, easy recognition. But it's sneakers here and sneakers again two cards later in C4-5 (its friend version literally says sneakers). And '$80 already has plans' is the fourth 'money already has a job' line in the run.",
+      "fix": "Prompt: \"Two backpacks. Both sturdy, both last for years, both in budget. One is the one you love. It costs $80 more.\" Option B: \"The other one. Nobody's ever complimented a backpack.\"",
+      "weakest": "The other pair. That $80 already has plans."
+    },
+    {
+      "id": "C4-4",
+      "verdict": "fix",
+      "scores": {
+        "clarity": 5,
+        "funny": 2,
+        "recognition": 3,
+        "emotion": 2,
+        "honest": 2,
+        "share": 2
+      },
+      "issue": "Three dollars for shelter dogs? Nobody picks the $10 plant without looking like a villain. That's a cool-answer fail. The stakes are too low to be a real choice.",
+      "fix": "Prompt: \"New phone case. $25 at the big store, or $35 for the same one from a brand that plants 10 trees per sale.\" Options: \"The tree one. My phone case has a backstory now.\" (T23A s2) / \"The $25 one. I'll pick my own causes, thanks.\" (T23B s2)",
+      "weakest": "The $10 one. I'll give to causes when I choose."
+    },
+    {
+      "id": "C4-5",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 4,
+        "honest": 5,
+        "share": 4
+      },
+      "issue": "'Bought it, then hid the bag for a few days' is the most honest line in this chapter. Keep, once C4-3 stops being sneakers.",
+      "fix": "Friend version: change 'plenty of sneakers' to 'plenty of hoodies' so the friend game doesn't echo C4-3."
+    },
+    {
+      "id": "C4-6",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 3,
+        "recognition": 4,
+        "emotion": 3,
+        "honest": 5,
+        "share": 2
+      },
+      "issue": "'Worry. I opened the bank app.' Good. Fast.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C4-7",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 4,
+        "funny": 3,
+        "recognition": 3,
+        "emotion": 3,
+        "honest": 4,
+        "share": 3
+      },
+      "issue": "Fine, distinct moves, 'quietly tip the idea person' is nice. Not very funny and it's another T15 card, the third with C4-2 and C5-3.",
+      "fix": "Keep once C5-3 is cut. Optional punch-up for option 1: \"Bigger cut for the idea person. Talent gets paid.\""
+    },
+    {
+      "id": "C4-8",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 5,
+        "recognition": 5,
+        "emotion": 3,
+        "honest": 5,
+        "share": 5
+      },
+      "issue": "Best list in the run. 'My fun money is gone by the 10th. Somehow.' and 'bragged about a dupe for a full week' are screenshot material.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C4-9",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 3,
+        "honest": 4,
+        "share": 4
+      },
+      "issue": "Roles are clear and funny, everybody knows the Calculator. With C4-11 also asking about covering the broke friend, this one should be the only one.",
+      "fix": "Keep; cut C4-11."
+    },
+    {
+      "id": "C4-10",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 3,
+        "funny": 3,
+        "recognition": 1,
+        "emotion": 2,
+        "honest": 4,
+        "share": 2
+      },
+      "issue": "Golden set, so I won't fight it, but real talk: I don't know what a banner is. I'd tap 'Not my life' and your sealed check on me is gone. Non-gamers need a costume.",
+      "fix": "Add a nonGamerPrompt: \"Your favorite brand drops a limited collab tonight. 48 hours only. You have $30 of fun money this month.\" Options: \"Buy it. Tonight.\" / \"Wait. It'll restock.\" / \"Skip it. That $30 already has a job.\" / \"Watch a friend's unboxing and live through them.\"",
+      "weakest": "Watch a friend pull and scream along for free."
+    },
+    {
+      "id": "C4-11",
+      "verdict": "cut",
+      "scores": {
+        "clarity": 5,
+        "funny": 2,
+        "recognition": 3,
+        "emotion": 3,
+        "honest": 3,
+        "share": 2
+      },
+      "issue": "Broke friend, who covers, fair is fair. I already answered this at dinner (C4-9), at the laptop (C2-9) and at rent (C3-3). This is exactly Jerry's 'answered the same type of question' complaint.",
+      "fix": "Cut. If a T12 sealed check is still needed, move it to the finale in a non-money setting: \"Group chore day at a shared place. One roommate has double shifts all week.\" Options: \"Same chores for everyone. Fair is fair.\" (T12A) / \"They get the light jobs this week.\" (T12B)",
+      "weakest": "Split it four ways anyway. Fair is fair."
+    },
+    {
+      "id": "C5-1",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 4,
+        "emotion": 4,
+        "honest": 4,
+        "share": 5
+      },
+      "issue": "Great opener. 'Spoil it. I'd sleep so much better knowing.' vs 'Don't you dare.' Everyone has an instant answer and wants to know their friend's.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C5-2",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 4,
+        "honest": 4,
+        "share": 3
+      },
+      "issue": "I took the lower-paying job I love (I'm a trainer), so I felt this. 'Instant noodles' is a repeat from C2-2.",
+      "fix": "Option 2 becomes: \"The one I love. Cheap groceries, happy heart.\"",
+      "weakest": "The one I love. Instant noodles, happy heart."
+    },
+    {
+      "id": "C5-3",
+      "verdict": "cut",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 4,
+        "emotion": 4,
+        "honest": 4,
+        "share": 4
+      },
+      "issue": "Funny on its own, but it's C4-2 again: someone got a family head start, do you credit them or call it. Two chapters apart, same tag, same shape. Visible repeat.",
+      "fix": "Cut. Move 'Must be nice. Somebody had to say it.' into C4-2 as option B. This keeps the round of three this_or_that intact if you drop in: \"Gym or couch after a brutal day?\" / \"Gym. Stress goes in the bar.\" (L2 +1) / \"Couch. The bar can wait.\" (L2 -1). Or any other quick L2 card that isn't health.",
+      "weakest": "Good for them. Now they actually have to deliver."
+    },
+    {
+      "id": "C5-4",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 4,
+        "honest": 5,
+        "share": 4
+      },
+      "issue": "'Yes before they finish the sentence.' That's me. 'My free time is not for sale' is the proud other side. Distinct and even.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C5-5",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 4,
+        "honest": 5,
+        "share": 4
+      },
+      "issue": "'Said ten minutes. Left three hours later.' Every coworker I have. Good real card.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C5-6",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 4,
+        "honest": 4,
+        "share": 4
+      },
+      "issue": "Clean fork, distinct moves. 'Future me can be the brave one' is the third future-me line in the run.",
+      "fix": "Option 4 becomes: \"Take the job. The idea can wait a year. Probably.\"",
+      "weakest": "Take the job. Future me can be the brave one."
+    },
+    {
+      "id": "C5-7",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 5,
+        "honest": 5,
+        "share": 4
+      },
+      "issue": "Gym-tok is nothing but people my age opening their own gyms. 'Muted them for a week. Not today.' is brutal and honest. Great.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C5-8",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 4,
+        "honest": 5,
+        "share": 3
+      },
+      "issue": "'Cringe at the caption, honestly.' Good range of feelings.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C5-9",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 3,
+        "recognition": 4,
+        "emotion": 4,
+        "honest": 4,
+        "share": 4
+      },
+      "issue": "Clear, aspirational, easy picks. 'Always has time for a long dinner' is a nice counterweight so the chill side isn't the loser answer.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C5-S1",
+      "verdict": "fix",
+      "scores": {
+        "clarity": 5,
+        "funny": 3,
+        "recognition": 4,
+        "emotion": 3,
+        "honest": 4,
+        "share": 3
+      },
+      "issue": "A surprise free afternoon here, then 'think of the last free afternoon' in C7-6, and 'Snacks... Zero guilt' shows up in both. Also 'Future me says thanks' again. I'd clock the repeat.",
+      "fix": "New situation: \"You finish a big project two days early. Nobody knows yet.\" Options: \"Start the next one. A head start is a head start.\" (L2 +2, T16A s1) / \"Tell my boss or teacher and ask for something bigger.\" (L2 +1, L1 -1) / \"Tell nobody. Two days of pure vibes.\" (L2 -2, T16B s1) / \"Use it to finally try the thing I keep talking about.\" (L2 -1, L1 -1)",
+      "weakest": "Nap. Snacks. Phone on silent. Zero guilt."
+    },
+    {
+      "id": "C5-S2",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 3,
+        "honest": 5,
+        "share": 4
+      },
+      "issue": "'Reread the wild one three times. Enroll in the safe one.' is so real it hurts. Keep.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C6-1",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 4,
+        "funny": 3,
+        "recognition": 4,
+        "emotion": 3,
+        "honest": 4,
+        "share": 3
+      },
+      "issue": "Relatable chore standoff, 'staring at it' is good. 'Someday:' at the front is clunky for adults already living with someone.",
+      "fix": "Prompt: \"Week one in a new place with your person or a roommate. The sink is full, the trash smells, and you're both just staring at it.\" Keep 'Someday' only in a teen version."
+    },
+    {
+      "id": "C6-2",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 3,
+        "recognition": 5,
+        "emotion": 4,
+        "honest": 5,
+        "share": 3
+      },
+      "issue": "'A haircut' in the list got a laugh. 'Did it anyway. Told them after it went fine.' is me. Circumstance line is right.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C6-3",
+      "verdict": "fix",
+      "scores": {
+        "clarity": 2,
+        "funny": 2,
+        "recognition": 3,
+        "emotion": 3,
+        "honest": 4,
+        "share": 3
+      },
+      "issue": "I read it three times. 'The one everyone assumed would stay home works' is so neutral it's a puzzle. The options are good; the setup is the problem.",
+      "fix": "Prompt: \"Your friend's family: their mom runs the business, their dad does pickups, lunches and parent night. For your own home someday?\" Options unchanged."
+    },
+    {
+      "id": "C6-4",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 4,
+        "funny": 2,
+        "recognition": 4,
+        "emotion": 5,
+        "honest": 4,
+        "share": 2
+      },
+      "issue": "Heavy, but the 'say I've got it before anyone else can answer' option is a real tell. Not funny, and it shouldn't be. One heavy card per chapter is fine.",
+      "fix": "No change needed.",
+      "weakest": "Wait to see who steps up, then fill the gaps."
+    },
+    {
+      "id": "C6-5",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 5,
+        "honest": 5,
+        "share": 3
+      },
+      "issue": "'A tiny voice asking, Why is it always me?' and 'Relief that I'm not an only child' are both great.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C6-6",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 4,
+        "emotion": 4,
+        "honest": 4,
+        "share": 4
+      },
+      "issue": "'Depends on how often nearby means dropping by' is funny and true, good flip options.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C6-7",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 4,
+        "emotion": 3,
+        "honest": 4,
+        "share": 4
+      },
+      "issue": "'Every relative there, even the ones I can't name' is great. But C6-9 asks about the wedding again two cards later.",
+      "fix": "Keep; move C6-9 (see there)."
+    },
+    {
+      "id": "C6-8",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 4,
+        "emotion": 4,
+        "honest": 5,
+        "share": 4
+      },
+      "issue": "Six clear roles, 'Grumbler. I help, then vent about it all week.' is the honest one everybody hides. Good.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C6-9",
+      "verdict": "fix",
+      "scores": {
+        "clarity": 5,
+        "funny": 2,
+        "recognition": 4,
+        "emotion": 4,
+        "honest": 4,
+        "share": 3
+      },
+      "issue": "Fine card, wrong spot. Wedding question two cards after the wedding pick-two. Reads as the same topic twice.",
+      "fix": "Move to chapter 3 after C3-10 (locked block), and punch up option A: \"Yes. Vows, out loud, and my grandma crying in row one.\""
+    },
+    {
+      "id": "C6-S1",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 5,
+        "recognition": 5,
+        "emotion": 4,
+        "honest": 5,
+        "share": 5
+      },
+      "issue": "'Same dishes, same seats, same fight.' Best line in the chapter. Totally shareable.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C6-S2",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 5,
+        "recognition": 5,
+        "emotion": 4,
+        "honest": 5,
+        "share": 4
+      },
+      "issue": "'Optional, said in a voice that means it isn't.' Every family ever. Distinct moves, great sealed card.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C7-1",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 5,
+        "recognition": 5,
+        "emotion": 4,
+        "honest": 5,
+        "share": 5
+      },
+      "issue": "Perfect opener. Uno stacking is a real war in every friend group. 'Draw six. Stacking is the best part of Uno.' vs reading the rules out loud. I'd send this to my group chat.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C7-2",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 2,
+        "honest": 5,
+        "share": 4
+      },
+      "issue": "'Ready in six minutes. Hoodie, keys, done.' is me every time. The Tuesday outfit line is a bit long and doubled-up.",
+      "fix": "Option 3 becomes: \"Wearing the outfit I planned on Tuesday.\"",
+      "weakest": "Wearing the outfit I planned on Tuesday. Accessories included."
+    },
+    {
+      "id": "C7-3",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 3,
+        "recognition": 5,
+        "emotion": 4,
+        "honest": 4,
+        "share": 3
+      },
+      "issue": "'My people, my spots, my Thursday thing.' My version is my gym and my clients, and I still felt it. Good card.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C7-4",
+      "verdict": "fix",
+      "scores": {
+        "clarity": 4,
+        "funny": 2,
+        "recognition": 4,
+        "emotion": 3,
+        "honest": 4,
+        "share": 2
+      },
+      "issue": "Too abstract. 'A house rule, a school policy, a store sign' doesn't bring a memory up. Options are fine but dry.",
+      "fix": "Prompt: \"Think of the last time a rule made zero sense for you. 'No outside drinks' when yours was just water. 'One per customer.' A curfew on the one night that mattered.\" Option 1: \"Asked for the manager. Politely. Twice.\" (L3 +2, T25A s2)",
+      "weakest": "Asked whoever runs it for an exception."
+    },
+    {
+      "id": "C7-5",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 3,
+        "honest": 5,
+        "share": 4
+      },
+      "issue": "'Monday me is very capable' and 'Ask the group chat what I'm doing this week' are both funny. The 'look back at last week' line is the dry one.",
+      "fix": "Option 2 becomes: \"Move every unchecked box from last week to this week.\" (T24A s2)",
+      "weakest": "Look back at last week to see what went wrong."
+    },
+    {
+      "id": "C7-6",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 3,
+        "recognition": 5,
+        "emotion": 3,
+        "honest": 5,
+        "share": 3
+      },
+      "issue": "Gym is in the list, thank you. Once C5-S1 is fixed it's the only free-afternoon card. 'Stayed horizontal. Snacks, shows, zero guilt.' keeps its zero guilt.",
+      "fix": "Option 2 becomes: \"Helped with someone else's thing. A bake sale, a shoot, a fundraiser.\" so moving doesn't show up for the third time.",
+      "weakest": "Caught up on work or homework I was behind on."
+    },
+    {
+      "id": "C7-7",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 4,
+        "emotion": 4,
+        "honest": 4,
+        "share": 4
+      },
+      "issue": "Good tension, coin flip on video is funny. Giving up your own ticket is the saint answer that dodges the choice.",
+      "fix": "Option 4 becomes: \"Give them both my ticket money. Watch the stories from my couch.\" (T06A s1, emotion guilt)",
+      "weakest": "Give up my own ticket so both of them go."
+    },
+    {
+      "id": "C7-8",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 3,
+        "recognition": 4,
+        "emotion": 4,
+        "honest": 5,
+        "share": 2
+      },
+      "issue": "Clean. 'Worry about what the group chat will say' is the real one.",
+      "fix": "No change needed."
+    },
+    {
+      "id": "C7-9",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 2,
+        "honest": 5,
+        "share": 4
+      },
+      "issue": "Good self-roast list. 'I'll give up a Saturday to help anyone move' is the third moving reference (C2-11, C7-6).",
+      "fix": "Option 5 becomes: \"I'm the one holding the donation jar at every event.\" (T23A s1)",
+      "weakest": "I'll give up a Saturday to help anyone move."
+    },
+    {
+      "id": "C7-S1",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 4,
+        "emotion": 3,
+        "honest": 4,
+        "share": 4
+      },
+      "issue": "'Hide the video link on slide 10' is great. I'm 25 and not in school, so a group project is a small stretch.",
+      "fix": "Add adultPrompt: \"Your boss asked for a 10-slide deck. Your idea would land way better as a 3-minute video.\""
+    },
+    {
+      "id": "C7-S2",
+      "verdict": "keep",
+      "scores": {
+        "clarity": 5,
+        "funny": 4,
+        "recognition": 5,
+        "emotion": 4,
+        "honest": 5,
+        "share": 4
+      },
+      "issue": "'Track down where the staff went and follow them.' Wholesome and funny. One problem sits in the library: T22B's calls repeat this prompt nearly word for word.",
+      "fix": "Keep the card; fix the T22B call (see library)."
+    }
+  ],
+  "library": [
+    {
+      "id": "We·Direct·Own / Trash-Talking Cuddle Bug",
+      "issue": "Great name, I'd post it. Sting lands.",
+      "fix": "No change."
+    },
+    {
+      "id": "We·Direct·Classic / Family CEO",
+      "issue": "Strong, shareable, sting is real.",
+      "fix": "No change."
+    },
+    {
+      "id": "We·Soft·Own / Open-Book Golden Retriever",
+      "issue": "Golden retriever is the right meme, but 'Open-Book' makes it long and clunky on a share card.",
+      "fix": "Name: \"Golden Retriever Energy\"."
+    },
+    {
+      "id": "We·Soft·Classic / Human Weighted Blanket",
+      "issue": "Funny and warm. Keep.",
+      "fix": "No change."
+    },
+    {
+      "id": "Me·Direct·Own / No-Filter Free Agent",
+      "issue": "Good. Sting 'you rarely let anyone that close' is sharp.",
+      "fix": "No change."
+    },
+    {
+      "id": "Me·Direct·Classic / Old-School Final Boss",
+      "issue": "Best name in the set. Works for non-gamers too.",
+      "fix": "No change."
+    },
+    {
+      "id": "Me·Soft·Own / Soft-Spoken Rebel",
+      "issue": "Fine, but a bit generic next to the others. Nobody screams when they get it.",
+      "fix": "Name: \"Quiet Menace, Politely\"."
+    },
+    {
+      "id": "Me·Soft·Classic / Do-Not-Disturb Homebody",
+      "issue": "Good. Clear and proud.",
+      "fix": "No change."
+    },
+    {
+      "id": "Steady·Push·Rules / Color-Coded Overachiever",
+      "issue": "Name is great, but the sting ('you keep not pressing start') describes a procrastinator, which contradicts Push. Wrong sting for this type.",
+      "fix": "Sting: \"Your five-year plan has a five-year plan. Rest isn't in either one.\""
+    },
+    {
+      "id": "Steady·Push·Context / Low-Key Tryhard",
+      "issue": "Love it. Slight roast, very shareable.",
+      "fix": "No change."
+    },
+    {
+      "id": "Steady·Easy·Rules / Slow-and-Steady Regular",
+      "issue": "Weakest name in the set. Sounds like a turtle. Nobody proudly shares 'Regular'.",
+      "fix": "Name: \"Same-Time-Tomorrow Legend\"."
+    },
+    {
+      "id": "Steady·Easy·Context / Chill Personified",
+      "issue": "Good. Sting 'nothing has been worth the grind yet' is excellent.",
+      "fix": "No change."
+    },
+    {
+      "id": "Venture·Push·Rules / Calculated Daredevil",
+      "issue": "Good.",
+      "fix": "No change."
+    },
+    {
+      "id": "Venture·Push·Context / Full-Send Trailblazer",
+      "issue": "Full send is pure gym-tok. I'd share this one day one.",
+      "fix": "No change."
+    },
+    {
+      "id": "Venture·Easy·Rules / Side-Quest Knight",
+      "issue": "Fun, readable even for non-gamers.",
+      "fix": "No change."
+    },
+    {
+      "id": "Venture·Easy·Context / Vibes-Based Wanderer",
+      "issue": "Good. Heart line 'I travel light, and I live true' is a little greeting-card.",
+      "fix": "Heart: \"No map. Still never lost for long.\""
+    },
+    {
+      "id": "T03A Tells the AI first",
+      "issue": "Sting hedges with 'might have', which kills the sting.",
+      "fix": "Sting: \"You've told an AI things your friends will never hear.\""
+    },
+    {
+      "id": "T09A Head over heels, eyes open",
+      "issue": "Not meme-y, reads like a romance novel back cover. Won't get shared.",
+      "fix": "Name: \"Clingy, Respectfully\"."
+    },
+    {
+      "id": "T13A Books it, figures it out later",
+      "issue": "Call 'pulled on a banner' loses non-gamers.",
+      "fix": "Call: \"You've bought the ticket before asking for the day off.\""
+    },
+    {
+      "id": "T13B Rainy-day fund devotee",
+      "issue": "Flat name.",
+      "fix": "Name: \"Emergency Fund Has an Emergency Fund\"."
+    },
+    {
+      "id": "T18B Helps, with an end date",
+      "issue": "Plain description, not a name.",
+      "fix": "Name: \"Here's the Tutorial, Good Luck\"."
+    },
+    {
+      "id": "T20A / T20B Modern for you, classic for me / Writes my own house rules",
+      "issue": "This pair is the R3 axis again. If someone is Classic or Own and also gets this tag, the result says the same thing twice, which the brief says to avoid.",
+      "fix": "Rename T20B to \"Invented a Holiday\" and give its evidence only to invented-ritual behaviors, not every Own answer."
+    },
+    {
+      "id": "T22B Same order, every time",
+      "issue": "Call 'Your favorite place starts making your order when you walk in' is basically the C7-S2 prompt. Genii predicting what I just told it feels lazy.",
+      "fix": "Call: \"You've defended a restaurant's worst dish because it's 'your' dish.\""
+    },
+    {
+      "id": "T25B Bends rules for good reasons",
+      "issue": "Self-flattering, sounds like a moral grade (the good-guy tag). Also near-identical to the Context pole line.",
+      "fix": "Name: \"Runs the Exceptions Desk\"."
+    },
+    {
+      "id": "T24A There's a spreadsheet for that",
+      "issue": "Hits me hard (macros, lifts). Sting 'even the fun things' is perfect.",
+      "fix": "No change."
+    },
+    {
+      "id": "T15A Earned, not given",
+      "issue": "Reads like a gym shirt. I'd share it. Heart line sounds a bit like holding a grudge.",
+      "fix": "Heart: \"I trust the reps. They always show up.\""
+    },
+    {
+      "id": "Tag-axis overlap (T07, T09, T13, T16, T25)",
+      "issue": "These pairs mirror R2, R1, L1, L2 and L3. A Full-Send Trailblazer who also gets 'Books it, figures it out later' is hearing the same thing twice.",
+      "fix": "Scoring rule: do not show a tag when it only restates the player's own pole on its matching axis; prefer tags from other pairs in the top 5."
+    }
+  ],
+  "overall": "Okay, honest take from a guy who runs on 5:30am lifts and not much gaming. Way better than I expected. I thought 'cozy personality quiz' meant soft questions about feelings, and instead I got Uno stacking wars, 'compliments the shoes, says nothing about the hair', the Sunday dinner that's 'optional', and 'my fun money is gone by the 10th, somehow'. Those are the ones I'd screenshot and send to my boys. The real-moment cards hit too: 'said ten minutes, left three hours later' and 'muted them for a week' are uncomfortably me. Where it lost me: repetition, the exact thing you said killed the last one. Chapter 2 asks me four times whether I'll be honest about a friend's thing (song, drama, haircut, crush). The 'who covers the broke friend' question shows up at the laptop, the rent, the dinner bill and the cabin. The family head-start question is asked twice (housewarming and the golf parent). Free afternoon twice, moving a couch three times, and the same phrases keep coming back: 'future me', 'zero guilt', 'instant noodles', 'that money already has a job', 'fair is fair'. Each one alone is fine, together it feels like a template. Two cards have a clear cool answer (the $3 shelter plant, the 'your call, I'm with you' DM) and C6-3 took me three reads. The gacha banner card means nothing to me, so give non-gamers a costume or you lose the sealed check on guys like me. Library: the type names are mostly strong (Old-School Final Boss, Full-Send Trailblazer, Low-Key Tryhard, Human Weighted Blanket), but Slow-and-Steady Regular is a turtle, and the Overachiever sting describes a procrastinator. Fix the repeats, cut C4-11 and C5-3, and I'd finish this and send it to my group chat. Coverage note: I could not read chapter 1 (ch1.json) in this session because the environment denied that read, so no chapter 1 card is judged here. Rerun a judge on ch1."
+}

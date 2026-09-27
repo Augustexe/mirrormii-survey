@@ -1,0 +1,1490 @@
+{
+  "version": "persona-quiz-v2",
+  "built": "2026-09-26",
+  "sources": [
+    "../library/types.json",
+    "../library/tags.json"
+  ],
+  "axes": [
+    {
+      "id": "R1",
+      "plus": "We",
+      "minus": "Me",
+      "zhPlus": "我們",
+      "zhMinus": "我",
+      "plusLine": "You recharge with your people. Close means shared.",
+      "minusLine": "You love hard and keep your own door. Close still means space."
+    },
+    {
+      "id": "R2",
+      "plus": "Direct",
+      "minus": "Soft",
+      "zhPlus": "直",
+      "zhMinus": "柔",
+      "plusLine": "You say the hard thing to their face, because that's respect.",
+      "minusLine": "You hold the person first. The hard part can wait for a gentler moment."
+    },
+    {
+      "id": "R3",
+      "plus": "Classic",
+      "minus": "Own",
+      "zhPlus": "舊",
+      "zhMinus": "新",
+      "plusLine": "Traditions, rituals and how a home should run feel like home to you.",
+      "minusLine": "You write your own script for love, home and holidays."
+    },
+    {
+      "id": "L1",
+      "plus": "Steady",
+      "minus": "Venture",
+      "zhPlus": "穩",
+      "zhMinus": "闖",
+      "plusLine": "Security first. Your leaps come with a safety net.",
+      "minusLine": "New city, new plan, new try. The unknown pulls you in."
+    },
+    {
+      "id": "L2",
+      "plus": "Push",
+      "minus": "Easy",
+      "zhPlus": "衝",
+      "zhMinus": "鬆",
+      "plusLine": "You want visible wins and a clear direction, sooner rather than later.",
+      "minusLine": "You run on your own clock. Other people's timelines are optional."
+    },
+    {
+      "id": "L3",
+      "plus": "Rules",
+      "minus": "Context",
+      "zhPlus": "規",
+      "zhMinus": "情",
+      "plusLine": "A fair process keeps everyone safe. A rule is a rule.",
+      "minusLine": "You read the room. Rules bend when a person needs them to."
+    }
+  ],
+  "relationship": [
+    {
+      "code": "We·Direct·Own",
+      "R1": 1,
+      "R2": 1,
+      "R3": -1,
+      "name": "Trash-Talking Cuddle Bug",
+      "zh": "嘴硬黏人精",
+      "desc": "You want your people close, always. You show it by roasting them, saying it straight and writing your own rules for love.",
+      "sting": "You call them annoying. Your real fear is the day they stop annoying you.",
+      "heart": "I'm clingy and I tell the truth. You get the full set."
+    },
+    {
+      "code": "We·Direct·Classic",
+      "R1": 1,
+      "R2": 1,
+      "R3": 1,
+      "name": "Family CEO",
+      "zh": "家族CEO",
+      "desc": "You're the hub of your people. You carry the load, make the call and keep the traditions running on time.",
+      "sting": "Everyone leans on you. Nobody has asked if you're tired.",
+      "heart": "I can carry it all, and I deserve to be carried too."
+    },
+    {
+      "code": "We·Soft·Own",
+      "R1": 1,
+      "R2": -1,
+      "R3": -1,
+      "name": "Open-Book Golden Retriever",
+      "zh": "全透明暖寶",
+      "desc": "You love out loud and in full view: warm, gentle, all in, and never by anyone else's rulebook.",
+      "sting": "You give so fast that you're running on empty before anyone notices.",
+      "heart": "I'd rather love too much than too carefully."
+    },
+    {
+      "code": "We·Soft·Classic",
+      "R1": 1,
+      "R2": -1,
+      "R3": 1,
+      "name": "Human Weighted Blanket",
+      "zh": "溫柔守家人",
+      "desc": "You keep everyone's feelings and every tradition safe: the birthday texts, the holiday dishes, the seat saved for whoever's late.",
+      "sting": "You check on everyone's feelings. Yours are always last on the list.",
+      "heart": "My softness is my strength."
+    },
+    {
+      "code": "Me·Direct·Own",
+      "R1": -1,
+      "R2": 1,
+      "R3": -1,
+      "name": "No-Filter Free Agent",
+      "zh": "清醒獨行俠",
+      "desc": "In any relationship you're yourself first. Boundaries said out loud, script written by you.",
+      "sting": "You rarely get hurt, because you rarely let anyone that close.",
+      "heart": "My clear head is how I keep myself safe."
+    },
+    {
+      "code": "Me·Direct·Classic",
+      "R1": -1,
+      "R2": 1,
+      "R3": 1,
+      "name": "Old-School Final Boss",
+      "zh": "老派硬核",
+      "desc": "You believe in the classic way to love and live, but nobody, ever, makes your decisions for you.",
+      "sting": "You want old-school love without handing over any of the control.",
+      "heart": "I can want tradition and freedom. Both. At once."
+    },
+    {
+      "code": "Me·Soft·Own",
+      "R1": -1,
+      "R2": -1,
+      "R3": -1,
+      "name": "Soft-Spoken Rebel",
+      "zh": "溫柔自由派",
+      "desc": "Gentle voice, iron line, and a life that follows no template anyone handed you.",
+      "sting": "Everyone thinks you're easygoing, right up until they step on your line.",
+      "heart": "Soft is not the same as a pushover."
+    },
+    {
+      "code": "Me·Soft·Classic",
+      "R1": -1,
+      "R2": -1,
+      "R3": 1,
+      "name": "Do-Not-Disturb Homebody",
+      "zh": "安靜老靈魂",
+      "desc": "You love the cozy, traditional kind of home, speak gently, and still need hours alone behind your own door.",
+      "sting": "You want a home. You want a door that locks even more.",
+      "heart": "Love with a little distance is still deep love."
+    }
+  ],
+  "life": [
+    {
+      "code": "Steady·Push·Rules",
+      "L1": 1,
+      "L2": 1,
+      "L3": 1,
+      "name": "Color-Coded Overachiever",
+      "zh": "步步為營野心家",
+      "desc": "You want big wins, and every step toward them is planned, checked and done by the book.",
+      "sting": "Your plan is flawless. You just keep not pressing start.",
+      "heart": "Slow, maybe. But every step I take counts."
+    },
+    {
+      "code": "Steady·Push·Context",
+      "L1": 1,
+      "L2": 1,
+      "L3": -1,
+      "name": "Low-Key Tryhard",
+      "zh": "低調野心家",
+      "desc": "You're climbing, and you know when to take the side road, but you never bet your safety net to get there.",
+      "sting": "You want to be seen, but you won't let go of safe long enough to be.",
+      "heart": "Quiet ambition is still ambition."
+    },
+    {
+      "code": "Steady·Easy·Rules",
+      "L1": 1,
+      "L2": -1,
+      "L3": 1,
+      "name": "Slow-and-Steady Regular",
+      "zh": "規律生活家",
+      "desc": "Your days run on routine and order, and you're in no rush to prove anything to anyone.",
+      "sting": "Your life is so steady that some nights you wonder if it's too steady.",
+      "heart": "I chose my ordinary days. I didn't settle for them."
+    },
+    {
+      "code": "Steady·Easy·Context",
+      "L1": 1,
+      "L2": -1,
+      "L3": -1,
+      "name": "Chill Personified",
+      "zh": "松弛感本人",
+      "desc": "You don't race anyone's timeline. You go with the flow, but you never blow the budget doing it.",
+      "sting": "You're not unambitious. Nothing has been worth the grind yet.",
+      "heart": "My life doesn't need a progress bar."
+    },
+    {
+      "code": "Venture·Push·Rules",
+      "L1": -1,
+      "L2": 1,
+      "L3": 1,
+      "name": "Calculated Daredevil",
+      "zh": "有計畫的冒險家",
+      "desc": "You jump, but only after you've scouted the landing, packed a plan B and read the fine print.",
+      "sting": "You say you love risk. Every leap you've taken had a backup plan.",
+      "heart": "Brave and careful. I get to be both."
+    },
+    {
+      "code": "Venture·Push·Context",
+      "L1": -1,
+      "L2": 1,
+      "L3": -1,
+      "name": "Full-Send Trailblazer",
+      "zh": "野生開拓者",
+      "desc": "You want something big and you'll trade certainty to get it. Rules are negotiable; the mission isn't.",
+      "sting": "You'd rather regret doing it. Sometimes the bill for that is steep.",
+      "heart": "Even if I lose, I get a great story."
+    },
+    {
+      "code": "Venture·Easy·Rules",
+      "L1": -1,
+      "L2": -1,
+      "L3": 1,
+      "name": "Side-Quest Knight",
+      "zh": "有底線的流浪者",
+      "desc": "You chase the new, skip the main quest, and still live by a personal code nobody can talk you out of.",
+      "sting": "You've gone far. You've rarely said where you're going.",
+      "heart": "Being on the road is my answer."
+    },
+    {
+      "code": "Venture·Easy·Context",
+      "L1": -1,
+      "L2": -1,
+      "L3": -1,
+      "name": "Vibes-Based Wanderer",
+      "zh": "隨風型旅人",
+      "desc": "You follow your curiosity wherever it goes. Rules and timelines are suggestions; the vibe decides.",
+      "sting": "Freedom is your superpower. It's also your favorite excuse.",
+      "heart": "I travel light, and I live true."
+    }
+  ],
+  "typeNameRule": "relationship name × life name",
+  "typeCodeRule": "relationship code | life code, e.g. We·Direct·Classic | Steady·Push·Rules",
+  "flex": {
+    "badge": "Flex",
+    "zh": "彈性",
+    "line": "You live on both sides of this one. Genii couldn't call it, and honestly, neither could you."
+  },
+  "unfinished": {
+    "line": "This side isn't finished yet. Two more cards and Genii can call it.",
+    "zh": "這一面還沒測完整"
+  },
+  "examples": [
+    "Trash-Talking Cuddle Bug × Low-Key Tryhard",
+    "Family CEO × Color-Coded Overachiever",
+    "Soft-Spoken Rebel × Vibes-Based Wanderer"
+  ],
+  "tagRules": {
+    "pairs": "Every tag has exactly one opposite (pair). Support for a tag counts against its pair. The pair is the decoy card in friend game Level 3.",
+    "firing": "A tag fires with support from at least 2 separate cards, at least 1 not rushed, and net support (minus its pair) above the simulation threshold. Circumstance, Not my life, No recent example and Skip never count. Up to 5 shown, strongest first, from at least 3 chapters where possible.",
+    "triggers": "Trigger strings name the Sally question (Qnn), the chapter, the situation and the answer direction that evidences the tag. 'reframed' means Sally's premise was replaced per the brief; 'NEW' is a card this library needs that Sally did not have; '(slight)' means strength 1 at most. Card authors map these to option-level tags.",
+    "stingAndHeart": "Sting is owner only. Name and heart are shareable.",
+    "locked18": "Marriage and kids tags. Never shown to players under 18. friendGame defaultOff: they enter the friend game card pool (true, opposite or decoy) only if the owner opts in, per Sally.",
+    "loveTag": "Love tags (loveTag true) appear in friend game Level 3 only when the owner sends to a partner or bestie, or to a crush when the owner opts in; never for a friend or coworker (Sally's friend-version relationship table, pairs 1 and 2, extended to the new love pair T10).",
+    "r2": "Cards tagged '(capacity: tag only, not R2)' feed T06 and must not score axis R2 (brief: known issue from Sally's simulations).",
+    "genderNeutral": "No he/she/媽/他/她 in names or lines; the friend game inserts the owner's pronouns.",
+    "dropped": "Q03 (a woman publicly choosing traditional roles) and Q07 (sex before commitment) feed no tag. Q02 is removed from T15 and rebuilt as an everyday rule card in T25."
+  },
+  "tagChapters": {
+    "1": "Your phone",
+    "2": "Friends",
+    "3": "Love and your person",
+    "4": "Money and treats",
+    "5": "Work, school and ambition",
+    "6": "Family and home",
+    "7": "Play, rules and you"
+  },
+  "tags": [
+    {
+      "id": "T01A",
+      "pair": "T01B",
+      "chapter": 1,
+      "name": "Here, scroll my phone",
+      "zh": "手機隨便看",
+      "sting": "You say you have nothing to hide. You're quietly hoping they have nothing to hide either.",
+      "heart": "Letting you all the way in is how I feel safe.",
+      "calls": [
+        "You know at least one person's passcode by heart.",
+        "Your location is shared with someone right now, and you forgot it was on.",
+        "If your person asked for your phone tonight, you'd hand it over unlocked."
+      ],
+      "never": "Controlling, jealous or lacking boundaries.",
+      "triggers": [
+        "Q41 ch1: your person suggests swapping passcodes, nothing has happened → yes, it feels natural",
+        "Q42 reframed ch1: a find-my-friends app wants your location → share it with your close people, always on",
+        "Q05 ch3: how you spend time with your person → most free time together, sharing the whole day (slight)"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "loveTag": true,
+      "origin": "Sally pair 2 (全透明戀人 / 密碼是我最後的尊嚴). A renamed: 全透明 duplicated the half-name 全透明暖寶 (Open-Book Golden Retriever). Q42 reframed from a data-hungry assistant to everyday app and location permissions.",
+      "zhStatus": "edited from Sally's 全透明戀人"
+    },
+    {
+      "id": "T01B",
+      "pair": "T01A",
+      "chapter": 1,
+      "name": "My passcode, my dignity",
+      "zh": "密碼是我最後的尊嚴",
+      "sting": "Your heart? Take it. Your phone? Absolutely not.",
+      "heart": "My privacy doesn't owe anyone an explanation.",
+      "calls": [
+        "You tilt your screen away even when it's just a meme.",
+        "Your location sharing is off, and has been since you found the setting.",
+        "You'd rather explain a text than let someone scroll to find it."
+      ],
+      "never": "Secretive, hiding something or untrustworthy.",
+      "triggers": [
+        "Q41 ch1: passcode swap → keep your own, ask directly if something's bothering you",
+        "Q42 reframed ch1: an app wants contacts, photos or location to work better → deny it and use the worse version",
+        "NEW ch1: a friend grabs your phone to show everyone a photo → take it back before they swipe"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "loveTag": true,
+      "origin": "Sally pair 2 (全透明戀人 / 密碼是我最後的尊嚴). A renamed: 全透明 duplicated the half-name 全透明暖寶 (Open-Book Golden Retriever). Q42 reframed from a data-hungry assistant to everyday app and location permissions.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T02A",
+      "pair": "T02B",
+      "chapter": 1,
+      "name": "Leaves you on read, still loves you",
+      "zh": "已讀不回但真心",
+      "sting": "Months of silence feel normal to you. The other person might think you drifted.",
+      "heart": "Missing you doesn't need a daily check-in.",
+      "calls": [
+        "You have unread messages right now from someone you'd drop everything for.",
+        "Your next reply will start with 'omg sorry, just saw this', a week late.",
+        "You'll see an old friend after a year and pick up mid-sentence."
+      ],
+      "never": "Cold, careless or a bad friend.",
+      "triggers": [
+        "Q26 ch1: you and a close friend haven't talked in months → when you meet it'll be natural, no need to prove it",
+        "Golden real card ch1: last time a message that mattered showed 'Read' and no reply → forgot about it, they'd answer eventually",
+        "NEW ch1: a group chat hits 99+ unread → mute it, skim the highlights days later"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 9 (已讀不回但真心 / 需要被主動的人). Clean pair kept; triggers rebuilt around phone behavior (Q26, the golden 'Read, no reply' card).",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T02B",
+      "pair": "T02A",
+      "chapter": 1,
+      "name": "Waiting for you to text first",
+      "zh": "需要被主動的人",
+      "sting": "You say 'whatever happens, happens.' Then you check when they were last online.",
+      "heart": "Wanting to be thought of isn't embarrassing.",
+      "calls": [
+        "You've typed 'hey', deleted it and put the phone down at least once this week.",
+        "You can tell who texted first in every friendship you have.",
+        "A streak breaking would bother you more than you'd admit."
+      ],
+      "never": "Needy, clingy or insecure. No attachment-style labels.",
+      "triggers": [
+        "Q26 ch1: months without contact → you need some reaching out to feel the friendship is looked after",
+        "Golden real card ch1: 'Read' and no reply → kept checking if they'd been online, or reread your message like evidence",
+        "Q05 ch3: time with your person → most free time together, sharing the daily stuff (slight)"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 9 (已讀不回但真心 / 需要被主動的人). Clean pair kept; triggers rebuilt around phone behavior (Q26, the golden 'Read, no reply' card).",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T03A",
+      "pair": "T03B",
+      "chapter": 1,
+      "name": "Tells the AI first",
+      "zh": "AI知己派",
+      "sting": "You might have told an AI more about your feelings than your friends.",
+      "heart": "Feeling understood counts, wherever it comes from.",
+      "calls": [
+        "Your last hard message was drafted with a little help.",
+        "You've asked an AI 'am I overreacting?' about a real person.",
+        "You'll ask Genii a follow-up question about this result."
+      ],
+      "never": "Lonely, antisocial or replacing real people.",
+      "triggers": [
+        "Q43 ch1: an AI helps you word an apology you mean → still sincere, the follow-through is what counts",
+        "Q44 ch1: an AI chat makes you feel understood → that has real value, even if it isn't a person",
+        "NEW ch1: 1am, something is bugging you → type it to an AI before any friend"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 21 (AI知己派 / 真人原話派). Clean pair kept; teen-safe as written.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T03B",
+      "pair": "T03A",
+      "chapter": 1,
+      "name": "Typos and all, my own words",
+      "zh": "真人原話派",
+      "sting": "You'd rather send the clumsy apology than the good one. Sometimes the clumsy one lands worse.",
+      "heart": "My messy real words are the truest version of me.",
+      "calls": [
+        "You can tell when a friend's message was written by an AI, and it bugs you.",
+        "Your apologies come with at least one typo and zero templates.",
+        "You'd rather send a voice note than let anything tidy up what you meant."
+      ],
+      "never": "Anti-tech, old-fashioned or judgmental.",
+      "triggers": [
+        "Q43 ch1: AI-polished apology → with people who matter, use your own words",
+        "Q44 ch1: an AI chat that gets you → useful, but not part of your inner circle",
+        "NEW ch1: a friend's heartfelt birthday text is obviously AI → it stings a little"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 21 (AI知己派 / 真人原話派). Clean pair kept; teen-safe as written.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T04A",
+      "pair": "T04B",
+      "chapter": 1,
+      "name": "Close Friends list: 4",
+      "zh": "挑人型溫暖",
+      "sting": "You're not cold. New people just wait about a year for the warm version.",
+      "heart": "The ones I choose always know it.",
+      "calls": [
+        "Your top three people have been the same since you were a kid.",
+        "You're in fewer group chats than anyone you know, and you like it.",
+        "A new friend has to earn the inside jokes, and you'll know when they have."
+      ],
+      "never": "Cold, snobby, antisocial or exclusive.",
+      "triggers": [
+        "NEW ch1 role card: in the group chat you're the one who DMs your two people instead of posting",
+        "NEW ch1 pick_two: 'My Close Friends list is tiny' or 'Only one group chat really matters'",
+        "NEW ch2 scenario: your birthday, a big party or dinner for four → dinner for four"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Rebuilt from Sally's 挑人型溫暖 (pair 7 B, which was not the opposite of 嘴硬心軟) plus the 'few but deep' meaning of 紮根型老靈魂. New clean opposite: broad warmth.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T04B",
+      "pair": "T04A",
+      "chapter": 1,
+      "name": "Mayor of every group chat",
+      "zh": "全服都是朋友",
+      "sting": "You know everyone. Fewer people really know you.",
+      "heart": "Nobody stays a stranger for long around me.",
+      "calls": [
+        "You'll add someone you met tonight to a group chat by tomorrow.",
+        "You've introduced two friends who now hang out without you.",
+        "Your birthday comments look like a class reunion."
+      ],
+      "never": "Fake, shallow or a people-pleaser.",
+      "triggers": [
+        "NEW ch1 role card: in the group chat you're the one who adds new people and starts the plans",
+        "NEW ch1 pick_two: 'I'm in more group chats than I can count'",
+        "NEW ch2 scenario: your birthday → the bigger the better, bring anyone"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Rebuilt from Sally's 挑人型溫暖 (pair 7 B, which was not the opposite of 嘴硬心軟) plus the 'few but deep' meaning of 紮根型老靈魂. New clean opposite: broad warmth.",
+      "zhStatus": "new draft (no Sally original)"
+    },
+    {
+      "id": "T05A",
+      "pair": "T05B",
+      "chapter": 2,
+      "name": "Rolls eyes, grabs keys",
+      "zh": "嘴硬心軟",
+      "sting": "You'll tell them they were wrong. Then you'll pick up their 2am call.",
+      "heart": "My words are armor. My actions are the soft part.",
+      "calls": [
+        "You've said 'this is so dumb' while helping with the dumb thing.",
+        "Your version of comfort sounds like 'get in the car'.",
+        "You'll deny caring and still remember their exam date."
+      ],
+      "never": "Mean, rude or harsh.",
+      "triggers": [
+        "Q25 ch2: a close friend clearly hurt someone → tell them plainly it was wrong",
+        "Q15 ch2: a close friend needs money, payback unclear → lend what you can, sort the date later",
+        "NEW ch2 scenario: your friend just got dumped → show up with snacks and 'they were mid anyway'"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally 嘴硬心軟 (pair 7 A) kept as A, renamed in English to avoid echoing the half-name Trash-Talking Cuddle Bug. Sally's pair 7 B was not an opposite; the new B is the other way to show love: in words rather than deeds.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T05B",
+      "pair": "T05A",
+      "chapter": 2,
+      "name": "Writes the birthday paragraph",
+      "zh": "長文告白派",
+      "sting": "You'll write them five paragraphs. Helping them move is a separate negotiation.",
+      "heart": "If I feel it, you're going to read it.",
+      "calls": [
+        "Your birthday posts need a 'see more' button.",
+        "You have a Notes-app draft of something you'll never send.",
+        "You'll send a voice note longer than three minutes this week."
+      ],
+      "never": "All talk, fake or performative.",
+      "triggers": [
+        "NEW ch2 scenario: your friend just got dumped → send a long, careful voice note that night",
+        "NEW ch2 pick_two: 'I tell my friends I love them a lot' or 'My birthday posts need a see more button'",
+        "Q43 ch1: AI-polished apology → your own words, however long it takes (slight)"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally 嘴硬心軟 (pair 7 A) kept as A, renamed in English to avoid echoing the half-name Trash-Talking Cuddle Bug. Sally's pair 7 B was not an opposite; the new B is the other way to show love: in words rather than deeds.",
+      "zhStatus": "new draft (no Sally original)"
+    },
+    {
+      "id": "T06A",
+      "pair": "T06B",
+      "chapter": 2,
+      "name": "Yes first, bank app later",
+      "zh": "人情VIP",
+      "sting": "One ask from a friend and your budget rules vanish. They only ever apply to you.",
+      "heart": "Breaking my own rules for my people? No regrets.",
+      "calls": [
+        "You've paid for a friend's ticket and 'forgot' to ask for it back.",
+        "Your friends know you're the easiest yes in the chat.",
+        "Your 'no' to a friend has a very short shelf life."
+      ],
+      "never": "A pushover, naive or bad with money.",
+      "triggers": [
+        "Q15 ch2: a close friend needs a loan, payback unclear → lend what you can, sort the date later",
+        "Q28 ch2: a friend's celebration is over your comfortable budget → go anyway, cut back after (capacity: tag only, not R2)",
+        "Q18 ch5: a teammate or coworker asks you to stay for a non-urgent fix → stay tonight"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 8 (人情VIP / 能量限量版). Clean pair kept. Per the brief, support-capacity cards (Q27, Q28) feed this pair and not axis R2.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T06B",
+      "pair": "T06A",
+      "chapter": 2,
+      "name": "Limited-edition energy",
+      "zh": "能量限量版",
+      "sting": "Your kindness has a daily cap. When it's gone, it's gone.",
+      "heart": "I charge myself first, so I have more to give.",
+      "calls": [
+        "You've said 'can we do this tomorrow?' and meant it as an act of love.",
+        "Your phone goes on Do Not Disturb at the same time every night.",
+        "After a big social weekend, you'll need a whole day of nobody."
+      ],
+      "never": "Selfish, cold or uncaring.",
+      "triggers": [
+        "Q27 ch2: third night of a friend venting the same problem, you're wiped → say tonight you can't, offer another time (capacity: tag only, not R2)",
+        "Q28 ch2: celebration over budget → say so honestly, celebrate them another way",
+        "Q18 ch5: asked to stay late for a non-urgent fix → offer first thing tomorrow",
+        "Golden 11:48pm card ch2: 'are you up? I need to talk' → pretend you're asleep, text them first thing at 7am"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 8 (人情VIP / 能量限量版). Clean pair kept. Per the brief, support-capacity cards (Q27, Q28) feed this pair and not axis R2.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T07A",
+      "pair": "T07B",
+      "chapter": 2,
+      "name": "The honest review nobody asked for",
+      "zh": "直球選手",
+      "sting": "You think the truth is respect. Some people just feel poked.",
+      "heart": "I'd rather annoy you than lie to you.",
+      "calls": [
+        "You've told someone about the spinach in their teeth, mid-conversation.",
+        "Your friends send you outfit photos when they want the real answer.",
+        "You'll say 'can I be honest?' and not wait for the yes."
+      ],
+      "never": "Rude, harsh or tactless.",
+      "triggers": [
+        "Q37 ch2: a hopeful friend shows you something that isn't good yet (song, pitch, practice run) → name the fix now",
+        "Q30 reframed ch2: a friend's new haircut or outfit you don't love, they ask → tell them it's not their best",
+        "Q25 ch2: a friend hurt someone → say it was wrong, even if they feel you're not on their side"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 19 (直球選手 / 溫柔刺客). Q30 reframed from a friend's body to a friend's new look you don't love (haircut, outfit, tattoo). Both poles deliver the truth; the pair is about delivery: plain and now, or wrapped and later.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T07B",
+      "pair": "T07A",
+      "chapter": 2,
+      "name": "Compliment sandwich chef",
+      "zh": "溫柔刺客",
+      "sting": "You wrap the truth in so much sugar that some people only taste the sugar.",
+      "heart": "I say it softly so you can actually hear it.",
+      "calls": [
+        "You've said 'honestly, it's so close!' about something that was not close.",
+        "You'll call the haircut 'so you' and slip them your stylist's number next month.",
+        "You've let a friend 'figure it out on their own', with a nudge from you."
+      ],
+      "never": "Fake, passive-aggressive or dishonest.",
+      "triggers": [
+        "Q37 ch2: hopeful friend, rough work → praise what works today, give the notes later",
+        "Q30 reframed ch2: a friend's new look you don't love → compliment one part, steer them later",
+        "NEW ch2 this_or_that: 'the truth, gently, later' over 'the truth, now'"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 19 (直球選手 / 溫柔刺客). Q30 reframed from a friend's body to a friend's new look you don't love (haircut, outfit, tattoo). Both poles deliver the truth; the pair is about delivery: plain and now, or wrapped and later.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T08A",
+      "pair": "T08B",
+      "chapter": 2,
+      "name": "Redemption arc believer",
+      "zh": "相信浪子回頭",
+      "sting": "You'd give a second chance to someone who hasn't finished asking for one.",
+      "heart": "I believe people can change, because I have.",
+      "calls": [
+        "You've unmuted someone everyone else is still mad at.",
+        "You'll defend the villain's backstory in any show you watch.",
+        "When the group votes to let someone back in, you're the first yes."
+      ],
+      "never": "Naive, a doormat or excusing harm.",
+      "triggers": [
+        "Q39 ch2: someone who hurt a friend apologized, made it right and changed, and wants back in the group → let them back slowly, with some ground rules",
+        "NEW ch2 this_or_that: 'people can change' over 'people show you who they are'",
+        "NEW ch7 scenario: a player who rage-quit on your squad wants back in → give them another run"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "New pair from Sally's Q39 (someone who caused harm and made amends rejoins a community), which fed no tag. Reframed to a friend group.",
+      "zhStatus": "new draft (no Sally original)"
+    },
+    {
+      "id": "T08B",
+      "pair": "T08A",
+      "chapter": 2,
+      "name": "Keeps the receipts",
+      "zh": "截圖都留著",
+      "sting": "You forgive, technically. Your screenshots folder disagrees.",
+      "heart": "I look after the person who got hurt first.",
+      "calls": [
+        "You remember exactly what was said, and you have it saved.",
+        "You'll be polite to someone you haven't forgiven, and they'll never know.",
+        "When someone has 'changed', you wait for proof number three."
+      ],
+      "never": "Vindictive, petty or holding grudges as a flaw.",
+      "triggers": [
+        "Q39 ch2: someone who hurt a friend wants back in → it's up to the person they hurt, go slow",
+        "NEW ch2 this_or_that: 'people show you who they are' over 'people can change'",
+        "NEW ch7 scenario: the rage-quitter wants back on the squad → find a new fourth"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "New pair from Sally's Q39 (someone who caused harm and made amends rejoins a community), which fed no tag. Reframed to a friend group.",
+      "zhStatus": "new draft (no Sally original)"
+    },
+    {
+      "id": "T09A",
+      "pair": "T09B",
+      "chapter": 3,
+      "name": "Head over heels, eyes open",
+      "zh": "有原則的戀愛腦",
+      "sting": "You say you're independent. You still want to be in every part of their day.",
+      "heart": "I love all the way, and I know where the door is.",
+      "calls": [
+        "You've sent your person a photo of your lunch that needed no caption.",
+        "Your weekend plans default to 'us' before anyone asks.",
+        "You know your person's order at four different places."
+      ],
+      "never": "Clingy, codependent or 'boy-crazy'/'girl-crazy'. No gendered read.",
+      "triggers": [
+        "Q05 ch3: how you want to spend time with your person (crush, partner or best friend) → most free time together, sharing the daily stuff",
+        "Q06 ch3: your person secretly flirts with someone else for months, nothing physical → the closeness that was only yours got broken",
+        "NEW ch3 scenario: your person has a free Saturday → it's already ours"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "loveTag": true,
+      "origin": "Sally pair 1 (有原則的戀愛腦 / 清醒戀愛派), de-gendered (他 removed). Q08 moved to its own pair (10) so each pair measures one thing: merged daily life versus keeping your own. B renamed in English; 'clear-eyed' echoed the half-name No-Filter Free Agent (清醒獨行俠).",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T09B",
+      "pair": "T09A",
+      "chapter": 3,
+      "name": "Dating, not merging",
+      "zh": "清醒戀愛派",
+      "sting": "You're not unromantic. You just won't hand over the steering wheel.",
+      "heart": "I'm me first. Then I'm someone's someone.",
+      "calls": [
+        "You keep one night a week that's just yours, even in love.",
+        "Your person has friends you've never met, and that's fine by you.",
+        "You'll say 'I miss you' and still not cancel your plans."
+      ],
+      "never": "Cold, commitment-shy or avoidant.",
+      "triggers": [
+        "Q05 ch3: time with your person → close, but each keeps regular alone time and their own friends",
+        "Q06 ch3: secret flirting → the lying and the broken deal matter most; you set the lines together",
+        "NEW ch3 scenario: your person's free Saturday → you both already have plans, see each other Sunday"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "loveTag": true,
+      "origin": "Sally pair 1 (有原則的戀愛腦 / 清醒戀愛派), de-gendered (他 removed). Q08 moved to its own pair (10) so each pair measures one thing: merged daily life versus keeping your own. B renamed in English; 'clear-eyed' echoed the half-name No-Filter Free Agent (清醒獨行俠).",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T10A",
+      "pair": "T10B",
+      "chapter": 3,
+      "name": "Relationship mechanic",
+      "zh": "關係修理工",
+      "sting": "You'll fix what's broken, including things that aren't yours to fix.",
+      "heart": "I don't quit on people I chose.",
+      "calls": [
+        "You've suggested 'a system' to end a fight that keeps coming back.",
+        "You'll stay in a friendship, duo or project long after others would have logged off.",
+        "Your answer to 'this isn't working' is 'okay, what if we try this'."
+      ],
+      "never": "A doormat, or stuck in something bad.",
+      "triggers": [
+        "Q08 ch3: months of small clashes over habits, no one's fault, both willing → agree on specific changes, give it time",
+        "NEW ch3 real card: last time your person kept doing the same annoying thing → sat down and made a deal",
+        "NEW ch2 scenario: your best friend keeps canceling plans → talk it out, set a new plan (cut from the run; no card carries it)",
+        "NEW ch5 this_or_that (C5-10): group project partner starts at 2am the night before → make a shared doc with early deadlines"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "loveTag": true,
+      "origin": "New pair split out of Sally pair 1 around Q08 (months of small friction, no one at fault: repair or release). Teen-safe: works for a crush, partner or best friend.",
+      "zhStatus": "new draft (no Sally original)"
+    },
+    {
+      "id": "T10B",
+      "pair": "T10A",
+      "chapter": 3,
+      "name": "Knows when to log off",
+      "zh": "好聚好散派",
+      "sting": "You leave before it gets messy. Sometimes that's before it gets good.",
+      "heart": "Leaving kindly is still kind.",
+      "calls": [
+        "You've quietly left a group chat and felt lighter.",
+        "You'll end something without making anyone the villain.",
+        "Most of your exes, ex-friends and ex-teammates still like you."
+      ],
+      "never": "Cold, flaky or commitment-shy.",
+      "triggers": [
+        "Q08 ch3: months of small friction, no one at fault → it's okay to end it just for not fitting",
+        "NEW ch3 real card: last time a crush, friendship or partner kept grating → let it fade, no drama",
+        "NEW ch2 scenario: best friend keeps canceling → stop making plans, let them come to you (cut from the run; no card carries it)",
+        "NEW ch5 this_or_that (C5-10): group project partner starts at 2am the night before → ask to switch partners, no drama"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "loveTag": true,
+      "origin": "New pair split out of Sally pair 1 around Q08 (months of small friction, no one at fault: repair or release). Teen-safe: works for a crush, partner or best friend.",
+      "zhStatus": "new draft (no Sally original)"
+    },
+    {
+      "id": "T11A",
+      "pair": "T11B",
+      "chapter": 3,
+      "name": "Future parent, with terms",
+      "zh": "想當爸媽，但有條件",
+      "sting": "You want kids. You've also already worked out who'll give up the most, and it's you.",
+      "heart": "I want it, and I want to be held up while I do it.",
+      "calls": [
+        "You've already named at least one future kid.",
+        "You'd read the parental leave policy before the salary.",
+        "You've mentally assigned the night feeds, and you took most of them."
+      ],
+      "never": "Baby-crazy, or judging people without kids.",
+      "triggers": [
+        "Q10 18+ ch3: right now, how you feel about being a parent someday → it's something you want",
+        "Q11 18+ ch3 (only if Q10 is yes): kids planned and a big career chance in the same two years → slow the career, keep the family plan",
+        "NEW 18+ ch3 pick_two: 'I already have names picked out'"
+      ],
+      "locked18": true,
+      "friendGame": "defaultOff",
+      "origin": "Sally pair 4 (想當媽，但有條件 / 人生不一定要有娃). 18+ block (Q10, Q11). De-gendered: 媽 became 爸媽.",
+      "zhStatus": "edited from Sally's 想當媽，但有條件"
+    },
+    {
+      "id": "T11B",
+      "pair": "T11A",
+      "chapter": 3,
+      "name": "Full life, no kids required",
+      "zh": "人生不一定要有娃",
+      "sting": "You don't dislike kids. You just really like your life as it is.",
+      "heart": "My life is already whole.",
+      "calls": [
+        "You're the favorite at every kids' party, and you still leave by 8pm.",
+        "Your 'someday' fund is a travel fund.",
+        "You've been asked 'so when are you having kids?' and your answer gets smoother every time."
+      ],
+      "never": "Hating kids, selfish or missing something.",
+      "triggers": [
+        "Q10 18+ ch3: parenthood → my ideal life doesn't have to include raising kids",
+        "Q09 18+ ch6: a stable relationship can be whole without marriage (slight)",
+        "NEW 18+ ch3 pick_two: 'My someday fund is a travel fund'"
+      ],
+      "locked18": true,
+      "friendGame": "defaultOff",
+      "origin": "Sally pair 4 (想當媽，但有條件 / 人生不一定要有娃). 18+ block (Q10, Q11). De-gendered: 媽 became 爸媽.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T12A",
+      "pair": "T12B",
+      "chapter": 4,
+      "name": "Splits it to the cent",
+      "zh": "AB制信徒",
+      "sting": "Love is love and a tab is a tab. Your biggest fear is owing someone.",
+      "heart": "Owing no one is my kind of freedom.",
+      "calls": [
+        "You've sent a payment request for $3.50 and felt good about it.",
+        "You'll offer to split before the bill even lands.",
+        "You remember who paid last time, every time."
+      ],
+      "never": "Stingy, cheap or transactional.",
+      "triggers": [
+        "Q14 ch3: you live with your person, one earns twice as much → split shared costs 50/50",
+        "Q15 ch2: a friend needs a loan, payback unclear → agree on paying it back first, then decide",
+        "NEW ch4 scenario: group dinner, one friend only had fries → everyone pays for exactly what they ordered"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 10 (AB制信徒 / 一樣痛才叫公平). Clean pair kept; A renamed in English to a behavior. Only one card per topic (Lessons: equal-vs-proportional appeared twice in test 1).",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T12B",
+      "pair": "T12A",
+      "chapter": 4,
+      "name": "Splits by who can afford it",
+      "zh": "一樣痛才叫公平",
+      "sting": "To you, fair isn't paying the same. It's straining the same.",
+      "heart": "Fair is about what it costs you, not the number on the bill.",
+      "calls": [
+        "You've quietly covered a friend's share because they were between jobs.",
+        "You'll suggest the cheaper place when one friend is broke, and never say why.",
+        "An 'even split' when someone only had water makes you twitch."
+      ],
+      "never": "Freeloading, or resenting people who earn more.",
+      "triggers": [
+        "Q14 ch3: income gap at home → split shared costs by income, so it weighs the same on both",
+        "Q16 ch4: team profit, same hours, different results → keep a big equal share for everyone who carried it",
+        "NEW ch4 scenario: group trip, one friend is broke this month → the ones with more cover more"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 10 (AB制信徒 / 一樣痛才叫公平). Clean pair kept; A renamed in English to a behavior. Only one card per topic (Lessons: equal-vs-proportional appeared twice in test 1).",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T13A",
+      "pair": "T13B",
+      "chapter": 4,
+      "name": "Books it, figures it out later",
+      "zh": "賭徒體質",
+      "sting": "You call it a calculated risk. You did the math afterward.",
+      "heart": "My best stories start with 'okay, this is a bad idea, but'.",
+      "calls": [
+        "You've pulled on a banner you swore you'd skip.",
+        "Your savings have a plan, and the plan is 'something big'.",
+        "You'd say yes to a trip booked for next week."
+      ],
+      "never": "Reckless, irresponsible or a gambling problem.",
+      "triggers": [
+        "Q33 ch4: emergency fund done, extra money to spend freely → put a big part into the trip or thing you've waited for",
+        "Q19 ch5: six months of savings, a steady job or a shot at your own thing → go all in for six months",
+        "Golden banner card ch4: limited banner, 48 hours, $30 of fun money → pull, all of it, tonight (slight)"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 13 (賭徒體質 / 穩字當頭). Lines rewritten: Sally's sting and heart duplicated the half-name Full-Send Trailblazer (野生開拓者). A renamed in English; never read as a gambling problem. Gacha costume welcome.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T13B",
+      "pair": "T13A",
+      "chapter": 4,
+      "name": "Rainy-day fund devotee",
+      "zh": "穩字當頭",
+      "sting": "You've saved for a rainy day so long, you forgot sunny days are allowed.",
+      "heart": "Being ready is how I relax.",
+      "calls": [
+        "You have a savings account with a name like 'DO NOT TOUCH'.",
+        "You'll wait for the rerun banner. It always comes back.",
+        "You've checked your balance before saying yes to dinner."
+      ],
+      "never": "Boring, scared or cheap.",
+      "triggers": [
+        "Q33 ch4: extra free money → save it, so future you has more choices",
+        "Q19 ch5: savings and a shot at your own thing → keep the steady job, test the idea on the side",
+        "Golden banner card ch4 → wait for the rerun (slight)"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 13 (賭徒體質 / 穩字當頭). Lines rewritten: Sally's sting and heart duplicated the half-name Full-Send Trailblazer (野生開拓者). A renamed in English; never read as a gambling problem. Gacha costume welcome.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T14A",
+      "pair": "T14B",
+      "chapter": 4,
+      "name": "Skips the dupe",
+      "zh": "取悅自己專業戶",
+      "sting": "You say it's just for you. You still notice exactly who noticed.",
+      "heart": "Making myself happy is real work too.",
+      "calls": [
+        "You've bought the nicer version and called it an investment.",
+        "Your game character has a better wardrobe than most people.",
+        "There's something in your cart right now that you'll check out by Friday."
+      ],
+      "never": "Vain, materialistic or shallow.",
+      "triggers": [
+        "Q34 ch4: the version you love (brand, design, the paid skin) costs clearly more, still in budget → get the one you love",
+        "Q36 ch4: closet or collection already full, you spot a new one you love → budget allows, so buy it",
+        "Q29 ch7: an hour a day on how you or your setup look → keep it, it's worth the time"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 17 (取悅自己專業戶 / 極簡清醒派). Clean pair kept; English names are our own. Game skins and setups count as costumes.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T14B",
+      "pair": "T14A",
+      "chapter": 4,
+      "name": "Minimalist on purpose",
+      "zh": "極簡清醒派",
+      "sting": "You saved the money and the time. What exactly are you saving them for?",
+      "heart": "Less stuff, more room to breathe.",
+      "calls": [
+        "You've unsubscribed from every store newsletter.",
+        "Your 'new' shirt is the same shirt in a second color.",
+        "You'll walk out of a store with nothing and feel great about it."
+      ],
+      "never": "Cheap, joyless or judging how others spend.",
+      "triggers": [
+        "Q34 ch4: pricier favorite → get the one that works the same, spend the difference elsewhere",
+        "Q36 ch4: full closet, new favorite → clear out old ones before anything new",
+        "Q29 ch7: the daily hour on looks → cut it down, spend the time on something else"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 17 (取悅自己專業戶 / 極簡清醒派). Clean pair kept; English names are our own. Game skins and setups count as costumes.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T15A",
+      "pair": "T15B",
+      "chapter": 4,
+      "name": "Earned, not given",
+      "zh": "努力信仰者",
+      "sting": "You believe effort gets noticed. You quietly wish everyone worked as hard as you.",
+      "heart": "I don't complain, but I remember every bit I gave.",
+      "calls": [
+        "You've carried a group project and said nothing. Mostly nothing.",
+        "You'd rather earn the rank than buy the boost.",
+        "You'll respect someone who grinds more than someone who got lucky."
+      ],
+      "never": "Looking down on people who struggle, or a political stance.",
+      "triggers": [
+        "Q13 ch4: a friend bought a place with family help and says they worked hard too → their effort still counts",
+        "Q16 ch4: team profit, same hours, different results → split mostly by clear contribution, gaps are fine",
+        "NEW ch5 scenario (replaces Q02): a classmate or coworker lands a great spot through a parent's friend → good for them, now they have to deliver (cut from the run; no card carries it)"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 11 (努力信仰者 / 起跑線偵測器). Q02 (gender-based startup funding) is cut here; its slot is rebuilt with an everyday school or work head-start card. Q13 and Q16 kept.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T15B",
+      "pair": "T15A",
+      "chapter": 4,
+      "name": "Head-start detector",
+      "zh": "起跑線偵測器",
+      "sting": "You can spot who had family help from across the room. The effort story doesn't fool you.",
+      "heart": "I see what other people miss.",
+      "calls": [
+        "You've thought 'but who paid for it?' at least once this month.",
+        "You'll clock the family-money energy in a reality show within one episode.",
+        "You'd rather hear 'I got lucky' than 'I just worked hard'."
+      ],
+      "never": "Envious, bitter or resentful.",
+      "triggers": [
+        "Q13 ch4: friend's family-funded home → name the family start too, not only the effort",
+        "Q16 ch4: team profit → keep more of it equal, results depend on more than effort",
+        "NEW ch5 scenario (replaces Q02): the spot landed through a parent's friend → must be nice, and say so (cut from the run; no card carries it)"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 11 (努力信仰者 / 起跑線偵測器). Q02 (gender-based startup funding) is cut here; its slot is rebuilt with an everyday school or work head-start card. Q13 and Q16 kept.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T16A",
+      "pair": "T16B",
+      "chapter": 5,
+      "name": "Building the trophy shelf",
+      "zh": "想被看見的成績派",
+      "sting": "You say it's just a job. You're quietly keeping score of every win.",
+      "heart": "Wanting to build something big isn't too much.",
+      "calls": [
+        "You've pictured your name on something people use.",
+        "You'll say yes to the bigger role, even if it eats your weekends.",
+        "You check the leaderboard even in games you 'play casually'."
+      ],
+      "never": "Arrogant, greedy or a workaholic.",
+      "triggers": [
+        "Q45 ch5: five years from now → proud, visible results in one field",
+        "Q20 ch5: the next three years → more hours for the promotion and bigger role",
+        "NEW ch5 scenario (teen costume: club or team): you're offered captain, with a lot more work → take it"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Reworks Sally pair 12. 野心藏在打卡背後 duplicated the half-name Low-Key Tryhard (低調野心家) word for word in its sting, and 進度條免疫 duplicated Chill Personified's heart. Rebuilt as a clean pair: visible wins versus a good life outside work or school. Names avoid the half-name Side-Quest Knight.",
+      "zhStatus": "new draft (Sally's was 野心藏在打卡背後)"
+    },
+    {
+      "id": "T16B",
+      "pair": "T16A",
+      "chapter": 5,
+      "name": "Clocks out on the dot",
+      "zh": "準時下線派",
+      "sting": "You've turned down a bigger role and slept like a baby. Some people are still confused.",
+      "heart": "A good life is the whole point, not the reward for later.",
+      "calls": [
+        "You'll leave on time today and not think about work or school once.",
+        "You've put more hours into a hobby than into your résumé.",
+        "The best part of your week happens after the bell."
+      ],
+      "never": "Lazy, unmotivated or unambitious.",
+      "triggers": [
+        "Q45 ch5: five years from now → an easy life, days and people that feel right",
+        "Q20 ch5: the next three years → keep the current role, keep your time outside it",
+        "NEW ch5 scenario: offered captain with extra hours → pass, stay a regular member"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Reworks Sally pair 12. 野心藏在打卡背後 duplicated the half-name Low-Key Tryhard (低調野心家) word for word in its sting, and 進度條免疫 duplicated Chill Personified's heart. Rebuilt as a clean pair: visible wins versus a good life outside work or school. Names avoid the half-name Side-Quest Knight.",
+      "zhStatus": "new draft (Sally's was 進度條免疫)"
+    },
+    {
+      "id": "T17A",
+      "pair": "T17B",
+      "chapter": 5,
+      "name": "Needs a save point",
+      "zh": "需要存檔點",
+      "sting": "Friends your age settle down and you say you're fine. You've already started a plan.",
+      "heart": "Wanting solid ground is how I take care of myself.",
+      "calls": [
+        "You have a rough five-year timeline, even if you won't show anyone.",
+        "A friend's big announcement sent you straight into planning mode.",
+        "You relax the moment something is booked, signed or decided."
+      ],
+      "never": "Anxious, insecure or 'behind'.",
+      "triggers": [
+        "Q48 ch5: at your age, people around you are settling down → want to lock in a few long-term directions soon",
+        "NEW ch5 this_or_that: 'where do you see yourself in five years?' → you have an actual answer",
+        "Q45 ch5: five years from now → visible results (slight)"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Reworks Sally pair 14 (進度條焦慮者 / 人生選項保留派). 'Anxiety' removed (diagnostic). Clean pair about timelines: lock in milestones soon versus keep options open. Q48 kept with 'at your age'.",
+      "zhStatus": "new draft (Sally's was 進度條焦慮者)"
+    },
+    {
+      "id": "T17B",
+      "pair": "T17A",
+      "chapter": 5,
+      "name": "Still loading, and that's fine",
+      "zh": "人生選項保留派",
+      "sting": "You're not against settling down. You just hate being rushed.",
+      "heart": "My timeline is mine to write.",
+      "calls": [
+        "When someone asks 'so what's the plan?', you change the subject.",
+        "You've switched majors, jobs or mains before, and you'd do it again.",
+        "Your five-year plan is 'see what happens', said with confidence."
+      ],
+      "never": "Lost, flaky or directionless.",
+      "triggers": [
+        "Q48 ch5: people your age settling down → keep room to explore, no need to follow their timeline",
+        "NEW ch5 this_or_that: 'five years from now?' → no idea, and that's exciting",
+        "Q46 ch7: a year in an unfamiliar city → go see (slight)"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Reworks Sally pair 14 (進度條焦慮者 / 人生選項保留派). 'Anxiety' removed (diagnostic). Clean pair about timelines: lock in milestones soon versus keep options open. Q48 kept with 'at your age'.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T18A",
+      "pair": "T18B",
+      "chapter": 6,
+      "name": "Family's backup battery",
+      "zh": "全家的備用電源",
+      "sting": "You're everyone's plan B. Your own plan A keeps moving to next month.",
+      "heart": "When my people need someone, I want it to be me.",
+      "calls": [
+        "You're the one the family calls when the wifi breaks.",
+        "You've moved your own plans for a family thing and never mentioned it.",
+        "You'll cover a sibling or send money home before you treat yourself."
+      ],
+      "never": "A martyr, guilt-tripped or unable to say no.",
+      "triggers": [
+        "Q22 ch6: a parent needs long-term care, siblings could help, moving back costs you at work → take on more yourself, sort the rest later",
+        "Q23 ch6: your parents want you to keep supporting an adult sibling → family backs each other up long-term",
+        "NEW ch6 scenario (teen costume): your little sibling's project is due tomorrow, so is yours → do theirs first"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 6 A (全家的備用電源) kept; lines rewritten because Sally's duplicated the half-name Family CEO. Sally's B (溫柔的叛逃者) was about decisions, not load, so it moves to pair 19 and a clean B is added: help with limits.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T18B",
+      "pair": "T18A",
+      "chapter": 6,
+      "name": "Helps, with an end date",
+      "zh": "幫忙有期限",
+      "sting": "You'll help. You'll also send the calendar invite for when it stops.",
+      "heart": "Helping someone stand on their own is still love.",
+      "calls": [
+        "You've said 'this time I'll help, next time you do it' and meant it.",
+        "Your version of care comes with a plan and a deadline.",
+        "You'll find the right professional before you'd move back home."
+      ],
+      "never": "Cold, stingy or not caring about family.",
+      "triggers": [
+        "Q22 ch6: parent needs care → organize siblings and professional care, keep your job",
+        "Q23 ch6: supporting an adult sibling → help can have an end date, they need their own footing",
+        "NEW ch6 scenario (teen costume): a sibling asks you to do their homework again → help once, then make them do it"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 6 A (全家的備用電源) kept; lines rewritten because Sally's duplicated the half-name Family CEO. Sally's B (溫柔的叛逃者) was about decisions, not load, so it moves to pair 19 and a clean B is added: help with limits.",
+      "zhStatus": "new draft (no Sally original)"
+    },
+    {
+      "id": "T19A",
+      "pair": "T19B",
+      "chapter": 6,
+      "name": "Moves out, still calls on Sundays",
+      "zh": "溫柔的叛逃者",
+      "sting": "You love your family. Your family doesn't get to pick your life.",
+      "heart": "Loving them and obeying them are two different things.",
+      "calls": [
+        "You've made a big decision and told your family afterward.",
+        "You'll listen to every opinion at dinner and still do your plan.",
+        "You call home every week, from a city they didn't want you in."
+      ],
+      "never": "Rebellious, ungrateful or not close to family.",
+      "triggers": [
+        "Q24 ch6: you want to move cities, your parents disagree, no one needs you home → hear them out, then decide the timing yourself",
+        "Q21 ch6: parents offer a down payment if you buy near them → only if the place fits your own plan",
+        "NEW ch6 scenario (teen costume): your family wants you in a club or subject you don't want → explain, then pick your own"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "New clean pair built around Sally's 溫柔的叛逃者 (pair 6 B): who decides your life, you or the family. English name avoids 'gentle', which echoes the half-names Soft-Spoken Rebel and Human Weighted Blanket.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T19B",
+      "pair": "T19A",
+      "chapter": 6,
+      "name": "Runs it by the family group chat",
+      "zh": "家人點頭才安心",
+      "sting": "Your big decisions need a family vote. You pretend they're just 'updates'.",
+      "heart": "My family is part of my 'we', and I like it that way.",
+      "calls": [
+        "Your family knows your plans before your friends do.",
+        "You'll push back something you want if it keeps the peace at home.",
+        "You've asked 'what do you think?' about something you'd already decided."
+      ],
+      "never": "A pushover, dependent or unable to decide.",
+      "triggers": [
+        "Q24 ch6: moving cities, parents disagree → take time to get everyone on board, delay if needed",
+        "Q21 ch6: down payment if you buy near them → accept, family help comes with family hopes",
+        "NEW ch6 scenario (teen costume): the family's club or subject pick → go along with it, try it for a year"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "New clean pair built around Sally's 溫柔的叛逃者 (pair 6 B): who decides your life, you or the family. English name avoids 'gentle', which echoes the half-names Soft-Spoken Rebel and Human Weighted Blanket.",
+      "zhStatus": "new draft (no Sally original)"
+    },
+    {
+      "id": "T20A",
+      "pair": "T20B",
+      "chapter": 6,
+      "name": "Modern for you, classic for me",
+      "zh": "嘴上新派，心裡傳統",
+      "sting": "Other people can split things however they like. In your own home, you want the classic version.",
+      "heart": "I can hold new ideas and old wishes at the same time.",
+      "calls": [
+        "You'll defend any couple's setup and still picture a classic one for yourself.",
+        "Your future home already has a very specific holiday routine.",
+        "You'd say roles don't matter, then feel odd when yours get swapped."
+      ],
+      "never": "A hypocrite or old-fashioned.",
+      "triggers": [
+        "Q01 ch6: two equally capable people setting up a home → start from what each wants and is good at (believe)",
+        "Q04 ch6: a couple swaps who works and who stays home with the kids → fine for them, but you'd want the classic setup yourself (required with Q01)",
+        "NEW ch6 scenario (teen-safe): holidays in your future home → keep every one of your family's traditions exactly"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 5 (嘴上新派，心裡傳統 / 說到做到的新派), de-gendered (他主外 and the man/woman split removed; Q04 becomes 'the setup swapped from the classic one'). Q03 (a woman publicly choosing traditional roles) is cut, so B is rebuilt on Q01, Q04 and a teen-safe holiday-traditions card. A needs both Q01 and Q04 (Sally's rule).",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T20B",
+      "pair": "T20A",
+      "chapter": 6,
+      "name": "Writes my own house rules",
+      "zh": "說到做到的新派",
+      "sting": "You have no opinion on how others live. You have lots of opinions on how you'll live.",
+      "heart": "No script is the gift I gave myself.",
+      "calls": [
+        "Your future home will have at least one tradition you invented.",
+        "You'll split chores by who hates what least, not by who 'should'.",
+        "You've skipped a family tradition and started your own."
+      ],
+      "never": "Anti-tradition or disrespectful to family.",
+      "triggers": [
+        "Q01 ch6: setting up a home → start from what each wants and is good at",
+        "Q04 ch6: the swapped setup → as natural as the classic one, for others and for you",
+        "NEW ch6 scenario (teen-safe): holidays in your future home → keep one or two, invent the rest"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 5 (嘴上新派，心裡傳統 / 說到做到的新派), de-gendered (他主外 and the man/woman split removed; Q04 becomes 'the setup swapped from the classic one'). Q03 (a woman publicly choosing traditional roles) is cut, so B is rebuilt on Q01, Q04 and a teen-safe holiday-traditions card. A needs both Q01 and Q04 (Sally's rule).",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T21A",
+      "pair": "T21B",
+      "chapter": 6,
+      "name": "The wedding's for the family",
+      "zh": "婚禮是辦給爸媽看的",
+      "sting": "You say you want the ceremony. You also want certain people to finally relax.",
+      "heart": "Thinking of my family is my own choice too.",
+      "calls": [
+        "You've already decided who sits at the family table.",
+        "Your wedding board is older than any actual relationship.",
+        "You'd add 30 guests to keep one relative happy."
+      ],
+      "never": "Old-fashioned, marriage-obsessed or controlled by parents.",
+      "triggers": [
+        "Q09 18+ ch6: the relationship is solid and practical things are sorted → marriage still matters, as a promise or a ritual",
+        "Q12 18+ ch6: your own wedding budget → a full celebration with everyone there (or 'both')",
+        "Q24 ch6: parents disagree with your plan → take time to get them on board (slight)"
+      ],
+      "locked18": true,
+      "friendGame": "defaultOff",
+      "origin": "Sally pair 3 (婚禮是辦給爸媽看的 / 不婚也完整). 18+ (marriage). Q09 and Q12 may run as teen-framed 'someday' cards, but these tags only fire from the 18+ versions.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T21B",
+      "pair": "T21A",
+      "chapter": 6,
+      "name": "Love without the paperwork",
+      "zh": "不婚也完整",
+      "sting": "You're not against marriage. You just don't think love needs a stamp.",
+      "heart": "My love doesn't need proof.",
+      "calls": [
+        "Your dream wedding is a courthouse and a really good dinner.",
+        "You'd rather put wedding money toward a trip or a home.",
+        "When someone asks 'so when's the wedding?', you've got a line ready."
+      ],
+      "never": "Anti-commitment, or against marriage for others.",
+      "triggers": [
+        "Q09 18+ ch6: a good relationship → whole without getting married",
+        "Q12 18+ ch6: wedding budget → a simple ceremony, the money goes to a home, travel or the future"
+      ],
+      "locked18": true,
+      "friendGame": "defaultOff",
+      "origin": "Sally pair 3 (婚禮是辦給爸媽看的 / 不婚也完整). 18+ (marriage). Q09 and Q12 may run as teen-framed 'someday' cards, but these tags only fire from the 18+ versions.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T22A",
+      "pair": "T22B",
+      "chapter": 7,
+      "name": "Always has a flight tab open",
+      "zh": "出走型靈魂",
+      "sting": "You love everything here. You're more scared of only ever seeing here.",
+      "heart": "Going far is how I see myself clearly.",
+      "calls": [
+        "You have a city you'd move to tomorrow if someone paid.",
+        "You'll order the thing on the menu you can't pronounce.",
+        "You've looked up a year-abroad program just to see."
+      ],
+      "never": "Restless, unstable or running away.",
+      "triggers": [
+        "Q46 ch7: a chance to live a year in an unfamiliar city, your life here is good → go see",
+        "NEW ch7 scenario: your favorite restaurant or a place you've never tried → the new place",
+        "NEW ch7 this_or_that: 'a brand new game' over 'replay my favorite'"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Reworks Sally pair 15 (出走型靈魂 / 紮根型老靈魂), which was not a clean pair (leaving home versus few deep friendships). B now means the familiar over the new; its 'few but deep' meaning moved to pair 4. 老靈魂 duplicated the half-name Do-Not-Disturb Homebody (安靜老靈魂), so B's zh is new.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T22B",
+      "pair": "T22A",
+      "chapter": 7,
+      "name": "Same order, every time",
+      "zh": "老位子老點單",
+      "sting": "You say you're open to new things. You've had the same order for three years.",
+      "heart": "I don't need new. I need mine.",
+      "calls": [
+        "You'll rewatch a comfort show tonight instead of starting a new one.",
+        "Your favorite place starts making your order when you walk in.",
+        "You'd turn down a year abroad to keep your weekly thing."
+      ],
+      "never": "Boring, closed-minded or afraid of change.",
+      "triggers": [
+        "Q46 ch7: a year in an unfamiliar city → stay and go deeper into the life and people you have",
+        "NEW ch7 scenario: favorite restaurant or a new place → the favorite, same order",
+        "NEW ch7 this_or_that: 'replay my favorite' over 'a brand new game'"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Reworks Sally pair 15 (出走型靈魂 / 紮根型老靈魂), which was not a clean pair (leaving home versus few deep friendships). B now means the familiar over the new; its 'few but deep' meaning moved to pair 4. 老靈魂 duplicated the half-name Do-Not-Disturb Homebody (安靜老靈魂), so B's zh is new.",
+      "zhStatus": "new draft (Sally's was 紮根型老靈魂)"
+    },
+    {
+      "id": "T23A",
+      "pair": "T23B",
+      "chapter": 7,
+      "name": "Team healer, IRL",
+      "zh": "志工心",
+      "sting": "You want to make the world better. On your own to-do list, you're always last.",
+      "heart": "I love the world, and I'm practicing loving me too.",
+      "calls": [
+        "In every team game, you end up playing healer.",
+        "You've signed up to help at something and dragged a friend along.",
+        "You'll pay a bit more for the version that helps someone."
+      ],
+      "never": "A martyr, or morally better than anyone.",
+      "triggers": [
+        "Q47 ch7: free time, your hobby or a project that really helps people → the project",
+        "Q35 reframed ch4: your usual pick or a version that helps someone (secondhand, small maker, a friend's shop) for 30% more → pay the difference when you can",
+        "NEW ch7 role card: in any team game you're the healer who keeps everyone alive"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Reworks Sally pair 16 (志工心 / 先愛自己派), not a clean pair (Q35 plus Q47 versus Q29 plus Q47). Rebuilt on one question: spare time and money for others or for your own growth. Q35 reframed from an eco public-good premium to an everyday 'the version that helps someone' (secondhand, small maker, a friend's shop), no public policy.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T23B",
+      "pair": "T23A",
+      "chapter": 7,
+      "name": "Booked solid, all me",
+      "zh": "先愛自己派",
+      "sting": "You'll give a good cause a like. Your Saturdays are already taken.",
+      "heart": "My own growth is a contribution too.",
+      "calls": [
+        "Your free time already has a plan, and it's a skill you're leveling.",
+        "You've said no to a good cause to protect your one free evening.",
+        "You'd pick the class over the charity run."
+      ],
+      "never": "Selfish or uncaring.",
+      "triggers": [
+        "Q47 ch7: free time → your own hobby and growth first",
+        "Q35 reframed ch4: the pricier version that helps someone → budget first, not every buy needs a cause",
+        "NEW ch7 role card: in any team game you're the one grinding your own build"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Reworks Sally pair 16 (志工心 / 先愛自己派), not a clean pair (Q35 plus Q47 versus Q29 plus Q47). Rebuilt on one question: spare time and money for others or for your own growth. Q35 reframed from an eco public-good premium to an everyday 'the version that helps someone' (secondhand, small maker, a friend's shop), no public policy.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T24A",
+      "pair": "T24B",
+      "chapter": 7,
+      "name": "There's a spreadsheet for that",
+      "zh": "萬物皆可表格",
+      "sting": "You need a chart to know if things are going well. Even the fun things.",
+      "heart": "Tracking is how I take myself seriously.",
+      "calls": [
+        "You have a budget app, and you've opened it this week.",
+        "Your shared calendar invites have locations, notes and a backup time.",
+        "You've kept a streak alive at 11:58pm."
+      ],
+      "never": "Obsessive, controlling or uptight.",
+      "triggers": [
+        "Q32 reframed ch7: you want your money or your week under control → track it and read the trend",
+        "Q31 reframed ch7: this month's fun money → set a number and log every spend",
+        "NEW ch7 pick_two: 'I have a streak I'd protect with my life'"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Reworks Sally pair 18 (人體數據控 / 快樂優先體). Health removed: Q31 and Q32 become track everything versus go by feel in daily life (budgets, calendars, streaks). A's zh replaced (人體 means body). B named to avoid the half-name Vibes-Based Wanderer.",
+      "zhStatus": "new draft (Sally's was 人體數據控)"
+    },
+    {
+      "id": "T24B",
+      "pair": "T24A",
+      "chapter": 7,
+      "name": "Eyeballs everything",
+      "zh": "快樂優先體",
+      "sting": "You trust the feeling over the numbers. Sometimes a little too much.",
+      "heart": "Feeling good is my whole system.",
+      "calls": [
+        "You check your bank balance by feel.",
+        "Your calendar is more of a suggestion.",
+        "You've started five habit trackers and finished zero, happily."
+      ],
+      "never": "Irresponsible, lazy or chaotic.",
+      "triggers": [
+        "Q32 reframed ch7: getting your money or week under control → skip the tracking, adjust by how it feels",
+        "Q31 reframed ch7: this month's fun money → no set number, spend when it feels right",
+        "Q33 ch4: extra free money → spend a big part on an experience (slight)"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Reworks Sally pair 18 (人體數據控 / 快樂優先體). Health removed: Q31 and Q32 become track everything versus go by feel in daily life (budgets, calendars, streaks). A's zh replaced (人體 means body). B named to avoid the half-name Vibes-Based Wanderer.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T25A",
+      "pair": "T25B",
+      "chapter": 7,
+      "name": "Actually read the rulebook",
+      "zh": "規則守門員",
+      "sting": "You trust the process, because you don't trust people to wing it.",
+      "heart": "Fair isn't cold to me. It's safe.",
+      "calls": [
+        "You're the one who explains the rules at game night, booklet open.",
+        "You'll tell someone they cut the line, politely.",
+        "You've followed a group project rubric line by line."
+      ],
+      "never": "Rigid, controlling or a snitch.",
+      "triggers": [
+        "Q38 reframed ch7: a house or game rule is clearly annoying in one odd case, and it's not your call → follow it, ask whoever runs it for an exception",
+        "Q40 reframed ch7: one spot left (last ticket, last slot); one friend waited longest, another needs it more → whoever was first in line",
+        "Q02 reframed ch7: a friend bends a game rule to win → call it, the rules are the rules"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 20 (規則守門員 / 情境主義者). Politics removed: Q02, Q38 and Q40 are rebuilt as everyday rules (game night, lines and queues, house rules, a friend bending a rule). Board-game costume welcome.",
+      "zhStatus": "Sally"
+    },
+    {
+      "id": "T25B",
+      "pair": "T25A",
+      "chapter": 7,
+      "name": "Bends rules for good reasons",
+      "zh": "情境主義者",
+      "sting": "You think people made the rules, so the rules should bend for people.",
+      "heart": "I look at the person, not the form.",
+      "calls": [
+        "You've let someone ahead of you in line because they looked stressed.",
+        "Your house rules have exceptions, and you remember all of them.",
+        "At game night, you'll allow a do-over for the new player."
+      ],
+      "never": "A rule-breaker, unreliable or unfair.",
+      "triggers": [
+        "Q38 reframed ch7: an annoying rule in an odd case → handle it flexibly within what you can own, explain after",
+        "Q40 reframed ch7: last spot → whoever needs it more right now",
+        "Q02 reframed ch7: a friend bends a game rule → let it go if it made the game more fun"
+      ],
+      "locked18": false,
+      "friendGame": "open",
+      "origin": "Sally pair 20 (規則守門員 / 情境主義者). Politics removed: Q02, Q38 and Q40 are rebuilt as everyday rules (game night, lines and queues, house rules, a friend bending a rule). Board-game costume welcome.",
+      "zhStatus": "Sally"
+    }
+  ]
+}

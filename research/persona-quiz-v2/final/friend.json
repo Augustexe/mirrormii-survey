@@ -1,0 +1,2201 @@
+{
+  "id": "persona-quiz-v2-friend-game",
+  "version": "v2-2026-09-26",
+  "title": "Do you really know me?",
+  "zhTitle": "你真的懂我嗎？",
+  "status": "Draft for the gauntlet. English first, gender neutral. zh is Sally's Chinese where it exists (zhStatus says how it was touched); zhSally keeps her original when the meaning had to change.",
+  "sources": {
+    "spec": "../BRIEF.md (Friend game section)",
+    "sally": [
+      "../../sally-v2-2026-09-26/v2-friend-version.md",
+      "../../sally-v2-2026-09-26/v2-bestie-version.md"
+    ],
+    "library": [
+      "../library/types.json",
+      "../library/tags.json"
+    ],
+    "chapters": {
+      "ch1.final.json": "2026-09-26 19:57",
+      "ch2.final.json": "2026-09-26 19:58",
+      "ch3.final.json": "2026-09-26 19:57",
+      "ch4.final.json": "2026-09-26 19:57",
+      "ch5.final.json": "2026-09-26 19:59",
+      "ch6.final.json": "2026-09-26 19:58",
+      "ch7.final.json": "2026-09-26 19:57"
+    },
+    "note": "Level 2 reads each card's `friend` field from the chapter files. level2.cards is a snapshot computed from the chapter files listed here; if a chapter changes, recompute it with level2.answerMapping (the rule is authoritative, the snapshot is a convenience)."
+  },
+  "rules": {
+    "noFreeText": "No typing anywhere in the friend game, for the owner or the friend. Sally's 'why did you guess this?' field became one-tap reason chips (level2.whyChips); her roast box became 'pick the roast' (level4.pickTheRoast). The friend label is picked, not typed (tokens.friend).",
+    "neverShown": "Cards with privacy intimate or locked18 never appear in any level. Sally's Q07 never appears in any version. Sting lines are owner only, except the bestie Level 4 sting pick, which the owner must switch on.",
+    "timing": "About 5 minutes (friend version, 3 levels) or 6 minutes (bestie, 4 levels), per Sally.",
+    "friendSeesOnly": "The friend sees their Level 1 score, optional counts for Levels 2 and 3 (never which ones), and the owner's type name if the owner shared it. Everything else is owner only.",
+    "noEmDash": "No em dash characters in any line."
+  },
+  "tokens": {
+    "{name}": "The owner's display name from their profile setting (not typed in this flow).",
+    "{they}": "Owner pronoun, subject. she / he / they. zh: 她 / 他 / TA.",
+    "{them}": "Owner pronoun, object. her / him / them. zh: 她 / 他 / TA.",
+    "{their}": "Owner pronoun, possessive. her / his / their. zh: 她的 / 他的 / TA的.",
+    "{They}": "Capitalized {they}, sentence start.",
+    "{Their}": "Capitalized {their}, sentence start.",
+    "{friend}": "The link label, picked by the owner when sending, never typed: the relationship word plus one of 12 preset emoji, e.g. 'Bestie 🐸' or 'Partner 🌙'. zh: 閨蜜 🐸, 另一半 🌙. If the platform later knows the friend's display name, use that. The friend is always 'they' in copy (their pronouns are not collected). zh uses TA for the friend.",
+    "{N}": "Number of the owner's tags in this link's Level 3 (1 to 5).",
+    "{x}": "Level 1 hits (0 to 6).",
+    "{y}": "Level 2 hits.",
+    "{z}": "Level 3 hits.",
+    "pronounTable": {
+      "she": {
+        "they": "she",
+        "them": "her",
+        "their": "her",
+        "They": "She",
+        "Their": "Her",
+        "zh": "她"
+      },
+      "he": {
+        "they": "he",
+        "them": "him",
+        "their": "his",
+        "They": "He",
+        "Their": "His",
+        "zh": "他"
+      },
+      "they": {
+        "they": "they",
+        "them": "them",
+        "their": "their",
+        "They": "They",
+        "Their": "Their",
+        "zh": "TA"
+      }
+    },
+    "grammarRule": "{they} is followed only by a modal (would, could, can, will, might), a past tense verb or 'd, never a present tense verb or 're, 've, 's, so the line reads right for she, he and they. Card authors: write '{name} has' instead of '{they} has'."
+  },
+  "relationships": {
+    "prompt": "Who are you sending this to?",
+    "zh": "TA是你的誰？",
+    "zhStatus": "edited from Sally's 他是你的誰 (gender neutral)",
+    "optionsNote": "One link per person. The owner picks the relationship and an emoji; that becomes {friend}.",
+    "options": [
+      {
+        "id": "partner",
+        "label": "Partner",
+        "zh": "另一半",
+        "zhStatus": "edited from Sally's 男朋友 (gender neutral)",
+        "sub": "The full game. Love questions included.",
+        "level1Set": "friend",
+        "level2Primary": "friend",
+        "cardLevels": [
+          "everyday",
+          "love",
+          "couple"
+        ],
+        "tagPairs": {
+          "open": "yes",
+          "love": "on by default, owner can switch off",
+          "marriageKids": "off by default, owner can opt in (owner 18+ only)"
+        },
+        "level4": false
+      },
+      {
+        "id": "crush",
+        "label": "Crush",
+        "zh": "曖昧對象",
+        "zhStatus": "sally",
+        "sub": "Nothing too heavy. Love tags stay hidden unless you turn them on.",
+        "level1Set": "friend",
+        "level2Primary": "friend",
+        "cardLevels": [
+          "everyday",
+          "love"
+        ],
+        "tagPairs": {
+          "open": "yes",
+          "love": "off by default, owner can opt in",
+          "marriageKids": "never"
+        },
+        "level4": false,
+        "why": "Sally: the crush version drops the rent split (Q14) and passcode (Q41) cards and shows love tags only when opted in."
+      },
+      {
+        "id": "friendOrCoworker",
+        "label": "Friend or coworker",
+        "zh": "朋友／同事",
+        "zhStatus": "edited from Sally's 男生好朋友／同事 (gender neutral)",
+        "sub": "Everyday stuff only. No love or relationship questions.",
+        "level1Set": "friend",
+        "level2Primary": "friend",
+        "cardLevels": [
+          "everyday"
+        ],
+        "tagPairs": {
+          "open": "yes",
+          "love": "never",
+          "marriageKids": "never"
+        },
+        "level4": false,
+        "why": "Sally: no partner cards and no love tags for a friend or coworker."
+      },
+      {
+        "id": "bestie",
+        "label": "Bestie",
+        "zh": "閨蜜",
+        "zhStatus": "sally",
+        "sub": "The full game, plus a bonus round: which line gets you.",
+        "level1Set": "bestie",
+        "level2Primary": "bestie",
+        "cardLevels": [
+          "everyday",
+          "love",
+          "couple"
+        ],
+        "tagPairs": {
+          "open": "yes",
+          "love": "on by default, owner can switch off",
+          "marriageKids": "off by default, owner can opt in (owner 18+ only)"
+        },
+        "level4": "only if the owner switches on sting lines (default off)"
+      }
+    ],
+    "cardLevels": {
+      "everyday": "Friends, money, school and work, family, play. Any relationship.",
+      "love": "About the owner's person or love life (a crush, partner or closest person). Partner, crush and bestie. Cards: C3-1, C3-2, C3-4, C3-5, C3-12.",
+      "couple": "Shared phones and a shared home with a partner. Partner and bestie only (Sally: the crush and friend versions drop Q14 and Q41; the bestie version keeps Q41). Cards: C1-2, C3-3.",
+      "never": "Privacy intimate or locked18 (C3-7, C3-8, C3-9, C6-9) and every card without a friend field (feeling, sealed, most pick_two). Never in any level."
+    },
+    "tagPairGroups": {
+      "love": {
+        "pairs": [
+          "T01",
+          "T09",
+          "T10"
+        ],
+        "note": "loveTag true in tags.json (Sally pairs 1 and 2, extended to T10)."
+      },
+      "marriageKids": {
+        "pairs": [
+          "T11",
+          "T21"
+        ],
+        "note": "locked18 and friendGame defaultOff in tags.json. Never for an owner under 18."
+      },
+      "open": {
+        "pairs": [
+          "T02",
+          "T03",
+          "T04",
+          "T05",
+          "T06",
+          "T07",
+          "T08",
+          "T12",
+          "T13",
+          "T14",
+          "T15",
+          "T16",
+          "T17",
+          "T18",
+          "T19",
+          "T20",
+          "T22",
+          "T23",
+          "T24",
+          "T25"
+        ]
+      }
+    },
+    "privacyToggles": [
+      {
+        "id": "loveTags",
+        "label": "Love tags in the tag round",
+        "zh": "戀愛標籤",
+        "zhStatus": "sally",
+        "default": {
+          "partner": true,
+          "crush": false,
+          "friendOrCoworker": null,
+          "bestie": true
+        },
+        "note": "null means not offered."
+      },
+      {
+        "id": "marriageKidsTags",
+        "label": "Marriage and kids tags in the tag round",
+        "zh": "婚育標籤",
+        "zhStatus": "sally",
+        "default": {
+          "partner": false,
+          "crush": null,
+          "friendOrCoworker": null,
+          "bestie": false
+        },
+        "note": "Hidden for owners under 18. If opted in, the friend taps an age band (Under 18 / 18+) before Level 3; under 18 swaps those cards for decoys."
+      },
+      {
+        "id": "stingLines",
+        "label": "Bonus round: let them guess which line stings",
+        "zh": "扎心句",
+        "zhStatus": "sally",
+        "default": {
+          "partner": null,
+          "crush": null,
+          "friendOrCoworker": null,
+          "bestie": false
+        },
+        "confirm": "Your bestie will see 4 sting lines. One is yours. They won't be told which, and only you see the answer."
+      },
+      {
+        "id": "showType",
+        "label": "Show them your real type after they play",
+        "zh": "開放分享型名",
+        "zhStatus": "edited from Sally's 她開放分享的型名",
+        "default": {
+          "partner": true,
+          "crush": true,
+          "friendOrCoworker": true,
+          "bestie": true
+        }
+      }
+    ],
+    "teenOwner": "Owner under 18: marriage and kids tags and every locked18 card are never offered; everything else follows the relationship. Level 2 swaps any card whose card table says teenOk false."
+  },
+  "invites": {
+    "note": "The owner picks one of three. No typing. A line with `requires` is swapped for its fallback when the condition is not met.",
+    "partner": [
+      {
+        "t": "I took a quiz that's a little too accurate. What type do you think I am?",
+        "zh": "我做了一個有點太準的測驗。你覺得在你眼裡，我是哪一型？",
+        "zhStatus": "sally"
+      },
+      {
+        "t": "Do I fall hard or keep my head? Guess wrong and we're talking about it.",
+        "zh": "你覺得我是戀愛腦還是清醒派？猜錯的話，我們要好好聊聊。",
+        "zhStatus": "sally"
+      },
+      {
+        "t": "I want to see me through your eyes. Five minutes. Dare you.",
+        "zh": "想知道我在你眼中是什麼樣子。5分鐘，敢不敢測？",
+        "zhStatus": "sally"
+      }
+    ],
+    "crush": [
+      {
+        "t": "Quick test: how much of me have you figured out so far?"
+      },
+      {
+        "t": "Genii gave me a very specific type. Bet you can't guess it."
+      },
+      {
+        "t": "Five minutes, a few guesses about me. No pressure. Some pressure."
+      }
+    ],
+    "friendOrCoworker": [
+      {
+        "t": "I took a quiz that's a little too accurate. What type do you think I am?",
+        "zh": "我做了一個有點太準的測驗。你覺得在你眼裡，我是哪一型？",
+        "zhStatus": "sally"
+      },
+      {
+        "t": "How well do you actually know me? Five minutes. Prove it."
+      },
+      {
+        "t": "Genii thinks it has me figured out. Does it match the me you know?"
+      }
+    ],
+    "bestie": [
+      {
+        "t": "Pop quiz, bestie. How well do you really know me? Wrong guesses buy the bubble tea.",
+        "zh": "死黨，考你一下。你覺得你有多懂我？猜錯請我喝奶茶。",
+        "zhStatus": "edited (姐妹 to 死黨, gender neutral)",
+        "zhSally": "姐妹，考你一下。你覺得你有多懂我？猜錯請我喝奶茶。"
+      },
+      {
+        "t": "One line in my result stings a little too much. Can you guess which?",
+        "zh": "我測出來的結果有點扎心，你猜得到是哪一句嗎？",
+        "zhStatus": "sally",
+        "requires": "stingLines on",
+        "fallback": {
+          "t": "You've seen my 2am face. Let's see if you know the rest."
+        }
+      },
+      {
+        "t": "I sent this to someone else too. Let's see who knows me better.",
+        "zh": "我也發給另一個人了，想看看你們誰更懂我。",
+        "zhStatus": "edited (他 to 另一個人)",
+        "zhSally": "我也發給他了，想看看你們誰更懂我。",
+        "requires": "the owner has sent at least one other link",
+        "fallback": {
+          "t": "Genii says I'm hard to read. Prove it wrong."
+        }
+      }
+    ]
+  },
+  "preGame": {
+    "friend": {
+      "t": "You're guessing {name}'s choices, not yours. There are no right answers, and the misses are usually the best part. Only {name} sees your answers.",
+      "zh": "你要猜的是{name}的選擇，不是你自己的。沒有標準答案，猜錯的地方往往最有意思。你的答案只有{name}看得到。",
+      "zhStatus": "sally, tokens only"
+    },
+    "bestie": {
+      "t": "You're guessing {name}'s choices, not yours. Today we find out how in sync you two really are. Only {name} sees your answers.",
+      "zh": "你要猜的是{name}的選擇，不是你自己的。你們之間的默契，今天來驗收。你的答案只有{name}看得到。",
+      "zhStatus": "edited (姐妹之間 to 你們之間)",
+      "zhSally": "你要猜的是{名字}的選擇，不是你自己的。姐妹之間的默契，今天來驗收。你的答案只有{名字}看得到。"
+    },
+    "cta": "Start guessing",
+    "useFor": {
+      "partner": "friend",
+      "crush": "friend",
+      "friendOrCoworker": "friend",
+      "bestie": "bestie"
+    }
+  },
+  "level1": {
+    "title": "Level 1: Guess the type",
+    "zh": "第一關：猜型",
+    "intro": "Six quick calls. Each one is a side of {name}.",
+    "rules": [
+      "6 either-or questions, one per axis, in this order: R1, R2, R3, L1, L2, L3. Option order is randomized per friend.",
+      "Each option carries its pole (+1 is the first pole in types.json, -1 the second). A pick matches when its pole equals the sign of the owner's axis.",
+      "Flex axis (owner has the Flex badge): either pick counts as a hit. Unfinished axis (owner never finished it): either pick counts as a hit, and the result says so.",
+      "The six picks build the guessed type: R1 x R2 x R3 gives the relationship half-name, L1 x L2 x L3 the life half-name (types.json). The friend sees the guessed type after question 6.",
+      "Score = hits out of 6, shown as {x}/6 on both result pages."
+    ],
+    "guessedTypeLine": {
+      "t": "Your guess for {name}: {guessedType}",
+      "zh": "你猜{they}是：{guessedType}",
+      "zhStatus": "sally, tokens only"
+    },
+    "flexLine": {
+      "t": "{name} lives on both sides of this one. Either guess counts.",
+      "zh": "這一面{they}兩邊都有。",
+      "zhStatus": "sally, tokens only"
+    },
+    "unfinishedLine": {
+      "t": "Genii hasn't called this side of {name} yet, so either guess counts."
+    },
+    "questions": {
+      "friend": [
+        {
+          "axis": "R1",
+          "prompt": "In love and with family, {name} is more…",
+          "zh": "在感情和家人面前，{name}更像哪一種？",
+          "zhStatus": "sally, tokens only",
+          "options": [
+            {
+              "pole": 1,
+              "label": "We",
+              "t": "Lots of together time. Big calls get made as a team.",
+              "zh": "我們派：想要很多陪伴，重要的事喜歡一起決定。"
+            },
+            {
+              "pole": -1,
+              "label": "Me",
+              "t": "Needs {their} own space, however close. Makes the big calls solo.",
+              "zh": "我派：再親近也需要自己的空間，人生大事自己拍板。"
+            }
+          ]
+        },
+        {
+          "axis": "R2",
+          "prompt": "A friend of {name}'s messes up and needs to hear it. {name}…",
+          "zh": "朋友做錯事、需要聽真話時，{name}通常會？",
+          "zhStatus": "edited: Sally's F2 mixed directness with being exhausted (the R2 issue in the brief); now directness only",
+          "zhSally": "朋友做錯事、或她自己累到不行時，{名字}通常會？",
+          "options": [
+            {
+              "pole": 1,
+              "label": "Direct",
+              "t": "Says it straight, same day: \"That wasn't okay.\"",
+              "zh": "直給：當天就直說「這樣不對」。",
+              "zhSally": "直給：有話直說，接不住也會直接講。"
+            },
+            {
+              "pole": -1,
+              "label": "Soft",
+              "t": "Holds them first. The hard truth comes later, gently.",
+              "zh": "先接住：先顧對方的情緒，真話晚一點、溫柔地說。",
+              "zhSally": "先接住：先顧你的情緒，真話晚一點再說。"
+            }
+          ]
+        },
+        {
+          "axis": "R3",
+          "prompt": "Holidays, home, how a house should run: {name} leans…",
+          "zh": "說到節日、家和一個家該怎麼運作，{name}更偏向？",
+          "zhStatus": "edited: Sally asked about marriage; the brief needs R3 answerable by teens",
+          "zhSally": "說到結婚、分工、家庭的樣子，{名字}更偏向？",
+          "options": [
+            {
+              "pole": 1,
+              "label": "Classic",
+              "t": "Traditions. Same dishes, same rituals, every single year.",
+              "zh": "老派：傳統的樣子對{they}有意義。"
+            },
+            {
+              "pole": -1,
+              "label": "Own",
+              "t": "{Their} own script. No template required.",
+              "zh": "新派：劇本自己寫，不照範本走。"
+            }
+          ]
+        },
+        {
+          "axis": "L1",
+          "prompt": "When money meets a big chance, {name} is more…",
+          "zh": "面對錢和機會，{name}更像？",
+          "zhStatus": "sally, tokens only",
+          "options": [
+            {
+              "pole": 1,
+              "label": "Steady",
+              "t": "Builds the safety net first. Then maybe jumps.",
+              "zh": "穩：先存好底氣，再談冒險。"
+            },
+            {
+              "pole": -1,
+              "label": "Venture",
+              "t": "Jumps. Would rather regret doing it than skipping it.",
+              "zh": "闖：寧願後悔做過，也不要後悔沒做。"
+            }
+          ]
+        },
+        {
+          "axis": "L2",
+          "prompt": "Wins, goals, life progress: {name} is…",
+          "zh": "說到成就和人生進度，{name}是？",
+          "zhStatus": "sally, tokens only",
+          "options": [
+            {
+              "pole": 1,
+              "label": "Push",
+              "t": "Chasing wins people can see, and a clear direction, soon.",
+              "zh": "衝：想要被看見的成績，也想早點確定方向。"
+            },
+            {
+              "pole": -1,
+              "label": "Easy",
+              "t": "On {their} own clock. Other people's timelines don't count.",
+              "zh": "鬆：按自己的節奏來，不跟別人的時間表比。"
+            }
+          ]
+        },
+        {
+          "axis": "L3",
+          "prompt": "When a rule and someone's real need clash, {name} sides with…",
+          "zh": "規則和人情衝突時，{name}更常站哪邊？",
+          "zhStatus": "sally, tokens only",
+          "options": [
+            {
+              "pole": 1,
+              "label": "Rules",
+              "t": "The rule. The same process for everyone is what's fair.",
+              "zh": "規：流程和次序比較公平。"
+            },
+            {
+              "pole": -1,
+              "label": "Context",
+              "t": "The person. People made the rule, so it can bend.",
+              "zh": "情：規則是人訂的，應該看情況和需要。"
+            }
+          ]
+        }
+      ],
+      "bestie": [
+        {
+          "axis": "R1",
+          "prompt": "{name} with a crush or a partner is…",
+          "zh": "談戀愛的{name}是哪種？",
+          "zhStatus": "sally prompt; options edited for gender neutral (他 to 對方, 姐妹 to 死黨)",
+          "options": [
+            {
+              "pole": 1,
+              "label": "We",
+              "t": "Clingy mode: wants to see them daily and share every detail.",
+              "zh": "黏人派：恨不得天天見面，什麼都要跟對方分享。",
+              "zhSally": "黏人派：恨不得天天見面，什麼都要跟他分享。"
+            },
+            {
+              "pole": -1,
+              "label": "Me",
+              "t": "Solo mode: loves hard, still guards solo nights and bestie nights.",
+              "zh": "獨立派：再愛也要有自己的時間，還要留時間給死黨。",
+              "zhSally": "獨立派：再愛也要有自己的時間，還要留時間給姐妹。"
+            }
+          ]
+        },
+        {
+          "axis": "R2",
+          "prompt": "You show {name} the angry text you're about to send. Bad idea. {name}…",
+          "zh": "你給{name}看一則正要發出去的氣話，明顯是壞主意。{name}會？",
+          "zhStatus": "new: Sally's bestie F2 measured being too tired to listen (capacity), which the brief moves to tags; this one is directness only",
+          "zhSally": "你半夜找{名字}哭訴，她已經累到不行，她會？",
+          "options": [
+            {
+              "pole": 1,
+              "label": "Direct",
+              "t": "\"Absolutely not. Hand me your phone.\"",
+              "zh": "直給：「不行。手機交出來。」"
+            },
+            {
+              "pole": -1,
+              "label": "Soft",
+              "t": "\"I get why you're mad.\" Holds you first, talks you down later.",
+              "zh": "先接住：「我懂你為什麼氣。」先陪你，晚點再勸。"
+            }
+          ]
+        },
+        {
+          "axis": "R3",
+          "prompt": "Picture {name}'s future home on a big holiday. It's…",
+          "zh": "聊到以後的家，{name}腦中的畫面比較像？",
+          "zhStatus": "edited: dropped 結婚 so teens can answer",
+          "zhSally": "聊到結婚和以後的家，{名字}腦中的畫面比較像？",
+          "options": [
+            {
+              "pole": 1,
+              "label": "Classic",
+              "t": "The classic: rituals, the family table, parents at ease.",
+              "zh": "老派：有儀式、有家的樣子，爸媽也會安心。"
+            },
+            {
+              "pole": -1,
+              "label": "Own",
+              "t": "A remix: {their} own rituals, {their} own rules, no template.",
+              "zh": "新派：怎麼過自己說了算，不照任何範本。",
+              "zhSally": "新派：怎麼過我們自己說了算，不照任何範本。"
+            }
+          ]
+        },
+        {
+          "axis": "L1",
+          "prompt": "{name} gets a surprise bonus. By Friday…",
+          "zh": "發了一筆獎金，{name}最可能？",
+          "zhStatus": "sally, tokens only",
+          "options": [
+            {
+              "pole": 1,
+              "label": "Steady",
+              "t": "It's in savings. Safety first.",
+              "zh": "先存起來，安全感最重要。"
+            },
+            {
+              "pole": -1,
+              "label": "Venture",
+              "t": "A flight is booked. Life is short.",
+              "zh": "訂機票，人生苦短。"
+            }
+          ]
+        },
+        {
+          "axis": "L2",
+          "prompt": "Talking plans and life progress, {name} is…",
+          "zh": "講到工作和人生進度，{name}是？",
+          "zhStatus": "sally, tokens only",
+          "options": [
+            {
+              "pole": 1,
+              "label": "Push",
+              "t": "Ambitious: wants real wins and a direction, soon.",
+              "zh": "有野心：想做出點成績，也想早點把方向定下來。"
+            },
+            {
+              "pole": -1,
+              "label": "Easy",
+              "t": "Unbothered: who gets promoted or married when is not {their} business.",
+              "zh": "很松弛：按自己的節奏走，別人幾歲結婚升職跟{they}無關。"
+            }
+          ]
+        },
+        {
+          "axis": "L3",
+          "prompt": "Lines, house rules, what's fair: {name} is…",
+          "zh": "排隊、規定、公平這種事，{name}比較像？",
+          "zhStatus": "sally, tokens only",
+          "options": [
+            {
+              "pole": 1,
+              "label": "Rules",
+              "t": "Rulebook: the same rules for everyone is the only fair way.",
+              "zh": "規則派：大家都照規矩來最公平。"
+            },
+            {
+              "pole": -1,
+              "label": "Context",
+              "t": "Case by case: rules are fixed, people aren't.",
+              "zh": "看情況派：規則是死的，人是活的。"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "level2": {
+    "title": "Level 2: Guess {name}'s choices",
+    "zh": "第二關：猜{they}的選擇",
+    "intro": "12 situations. Pick what {name} would really do, not what you would.",
+    "rules": [
+      "12 cards, each the card's `friend` field (third person, 2 options). Option order is randomized per friend.",
+      "The right answer is the side the owner's own answer maps to (answerMapping). A card enters the deck only when that side is clear."
+    ],
+    "answerMapping": {
+      "rule": "Build a signed vector for the owner's chosen option: each axis value as is; each tag as +strength for an A tag and -strength for a B tag, on its pair (T08A s2 is T08 +2). Do the same for friend side a and side b. Match score = dot product over the dimensions each side names. The owner's answer maps to the side with the higher positive score. Zero, a tie or negative on both means no clear side.",
+      "pickTwo": "Add the vectors of both picks first, then match.",
+      "snapshot": "level2.cards[id].answerMap lists the mapped side per owner option, in option order (null = no clear side, circumstance, or depends)."
+    },
+    "eligibility": {
+      "include": "The card has a `friend` field, its level is allowed for the relationship, and the owner's answer maps clearly to a or b.",
+      "exclude": [
+        "Owner skipped it, tapped 'Not my life' or 'No recent example'.",
+        "Owner picked a circumstance option (Sally's 只能這樣) or a 'depends' option (Sally's 兩邊都認同).",
+        "Owner's answer maps to no clear side (answerMap null).",
+        "Owner's answer was rushed (under 1.5 s). The friend should never be marked wrong on a tap the owner did not mean.",
+        "Card privacy intimate or locked18, or no friend field (feeling and sealed cards never appear).",
+        "Card level not allowed for this relationship (relationships.options[].cardLevels).",
+        "Owner under 18 and the card's teenOk is false (the friend prompt would describe a situation the owner never saw).",
+        "Owner never saw the card (gated or not reached)."
+      ]
+    },
+    "selection": [
+      "1. Start from the primary list for the relationship (primary.friend or primary.bestie), in order. Drop every card that fails eligibility.",
+      "2. Axis rescue: for each axis that a dropped primary card carried and that no remaining card covers, take the first eligible card in backupOrder that carries that axis and whose tag pairs are not already in the deck.",
+      "3. Fill: walk backupOrder and add each eligible card whose tag pairs are not already in the deck, until there are 12.",
+      "4. Still short: walk backupOrder again and allow a repeated tag pair (never the same card twice).",
+      "5. Still under 12: play what exists. Under 6 eligible cards: skip Level 2 and show level2.skippedLine.",
+      "Order: a replacement takes the slot of the card it replaced; rescue and fill cards go into the earliest empty slot. Then, if two neighbors share a chapter or a tag pair, move the later one down to the next slot that breaks the clash."
+    ],
+    "primary": {
+      "friend": [
+        "C2-1",
+        "C4-1",
+        "C1-6",
+        "C7-1",
+        "C3-4",
+        "C5-4",
+        "C6-1",
+        "C2-7",
+        "C1-2",
+        "C6-2",
+        "C7-5",
+        "C2-3"
+      ],
+      "bestie": [
+        "C1-6",
+        "C4-1",
+        "C2-5",
+        "C3-4",
+        "C7-2",
+        "C6-8",
+        "C2-2",
+        "C3-5",
+        "C6-2",
+        "C7-1",
+        "C5-7",
+        "C6-1"
+      ],
+      "why": "Both lists cover all six axes, 12 different tag pairs and at least 6 chapters, with no two neighbors from one chapter, so no pair or topic repeats (LESSONS-FROM-TEST-1: repetition). friend follows Sally's friend set (Q05, Q15/Q27 as one money-and-friends card, Q21/Q24 as one family card, Q25/Q37, Q33, Q41, Q45/Q20, Q46 swapped for everyday picks) with Q06 removed (intimate). bestie follows Sally's bestie set (Q05, Q08, Q23, Q24, Q25, Q26, Q28, Q29, Q33, plus Q48, Q02 and Q01 so every axis is covered); Q15, Q21 and Q36 moved to backup because they repeat a pair (T06, T19, T14)."
+    },
+    "backupOrder": [
+      "C1-1",
+      "C4-2",
+      "C1-8",
+      "C4-3",
+      "C5-4",
+      "C4-4",
+      "C7-3",
+      "C6-8",
+      "C5-10",
+      "C2-9",
+      "C3-3",
+      "C1-6",
+      "C2-7",
+      "C2-3",
+      "C7-5",
+      "C6-3",
+      "C3-1",
+      "C6-10",
+      "C7-7",
+      "C3-12",
+      "C2-8",
+      "C2-1",
+      "C2-5",
+      "C6-6",
+      "C1-2",
+      "C3-2",
+      "C3-4",
+      "C6-2",
+      "C5-6",
+      "C5-2",
+      "C4-1",
+      "C5-7",
+      "C5-1",
+      "C5-9",
+      "C7-1",
+      "C7-4",
+      "C6-1",
+      "C2-2",
+      "C5-5",
+      "C7-6",
+      "C6-4",
+      "C4-7",
+      "C4-5",
+      "C7-2",
+      "C2-4",
+      "C1-4",
+      "C1-5",
+      "C1-7",
+      "C7-10",
+      "C3-5"
+    ],
+    "backupWhy": "Sally's fixed backup order, extended to every card with a friend field. Unused tag pairs come first, then cards that rescue an axis, then everything else.",
+    "whyChips": {
+      "prompt": "Why that guess? (optional)",
+      "zh": "你為什麼這麼猜？（選填）",
+      "zhStatus": "sally prompt; her free-text field became one-tap chips",
+      "options": [
+        {
+          "id": "seen",
+          "t": "Seen {them} do it",
+          "zh": "親眼看過"
+        },
+        {
+          "id": "told",
+          "t": "{They} told me",
+          "zh": "{they}跟我說過"
+        },
+        {
+          "id": "gut",
+          "t": "Pure gut",
+          "zh": "直覺"
+        },
+        {
+          "id": "me",
+          "t": "It's what I'd do",
+          "zh": "換我也會這樣"
+        }
+      ],
+      "note": "One tap or none; never blocks Next. The owner sees the chip on the biggest-miss line. 'It's what I'd do' is logged as projection for the research record."
+    },
+    "skippedLine": {
+      "t": "{name} kept most of these to {them}self, so this round sits out. On to the tags."
+    },
+    "cards": {
+      "C1-1": {
+        "chapter": 1,
+        "type": "role",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T04"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          null,
+          "a",
+          "b",
+          null,
+          null
+        ]
+      },
+      "C1-2": {
+        "chapter": 1,
+        "type": "scenario",
+        "sally": [
+          "Q41"
+        ],
+        "axes": [
+          "R1"
+        ],
+        "pairs": [
+          "T01"
+        ],
+        "level": "couple",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b",
+          "b",
+          null
+        ]
+      },
+      "C1-4": {
+        "chapter": 1,
+        "type": "real",
+        "sally": [
+          "Q44"
+        ],
+        "axes": [],
+        "pairs": [
+          "T03"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          null,
+          null,
+          null
+        ]
+      },
+      "C1-5": {
+        "chapter": 1,
+        "type": "scenario",
+        "sally": [
+          "Q42"
+        ],
+        "axes": [],
+        "pairs": [
+          "T01"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b",
+          null
+        ]
+      },
+      "C1-7": {
+        "chapter": 1,
+        "type": "this_or_that",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T04"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C1-6": {
+        "chapter": 1,
+        "type": "this_or_that",
+        "sally": [
+          "Q26"
+        ],
+        "axes": [],
+        "pairs": [
+          "T02"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C1-8": {
+        "chapter": 1,
+        "type": "this_or_that",
+        "sally": [
+          "Q43"
+        ],
+        "axes": [],
+        "pairs": [
+          "T03"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C2-1": {
+        "chapter": 2,
+        "type": "scenario",
+        "sally": [
+          "Q37"
+        ],
+        "axes": [
+          "R2"
+        ],
+        "pairs": [
+          "T07"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          "a"
+        ]
+      },
+      "C2-2": {
+        "chapter": 2,
+        "type": "real",
+        "sally": [
+          "Q28"
+        ],
+        "axes": [],
+        "pairs": [
+          "T06"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          "b",
+          null
+        ]
+      },
+      "C2-3": {
+        "chapter": 2,
+        "type": "scenario",
+        "sally": [
+          "Q39"
+        ],
+        "axes": [],
+        "pairs": [
+          "T08"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b",
+          null
+        ]
+      },
+      "C2-4": {
+        "chapter": 2,
+        "type": "pick_two",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T05"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          null,
+          null,
+          "b",
+          "a"
+        ]
+      },
+      "C2-7": {
+        "chapter": 2,
+        "type": "scenario",
+        "sally": [
+          "Q27"
+        ],
+        "axes": [],
+        "pairs": [
+          "T06"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C2-5": {
+        "chapter": 2,
+        "type": "real",
+        "sally": [
+          "Q25"
+        ],
+        "axes": [
+          "R2"
+        ],
+        "pairs": [
+          "T07"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          null,
+          null
+        ]
+      },
+      "C2-9": {
+        "chapter": 2,
+        "type": "scenario",
+        "sally": [
+          "Q15"
+        ],
+        "axes": [],
+        "pairs": [
+          "T06",
+          "T12"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "a",
+          "a",
+          "b",
+          null
+        ]
+      },
+      "C2-8": {
+        "chapter": 2,
+        "type": "role",
+        "sally": [
+          "Q30"
+        ],
+        "axes": [
+          "R2"
+        ],
+        "pairs": [
+          "T07"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b",
+          "b"
+        ]
+      },
+      "C3-1": {
+        "chapter": 3,
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "R3"
+        ],
+        "pairs": [],
+        "level": "love",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          "a"
+        ]
+      },
+      "C3-2": {
+        "chapter": 3,
+        "type": "real",
+        "sally": [],
+        "axes": [
+          "R1"
+        ],
+        "pairs": [
+          "T09"
+        ],
+        "level": "love",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C3-3": {
+        "chapter": 3,
+        "type": "scenario",
+        "sally": [
+          "Q14"
+        ],
+        "axes": [],
+        "pairs": [
+          "T12"
+        ],
+        "level": "couple",
+        "teenOk": false,
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b",
+          null
+        ],
+        "teenNote": "Teen version is a day out on allowance; the friend prompt says moving in together."
+      },
+      "C3-5": {
+        "chapter": 3,
+        "type": "real",
+        "sally": [
+          "Q08"
+        ],
+        "axes": [],
+        "pairs": [
+          "T10"
+        ],
+        "level": "love",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          "a",
+          "a"
+        ]
+      },
+      "C3-12": {
+        "chapter": 3,
+        "type": "real",
+        "sally": [],
+        "axes": [
+          "R2"
+        ],
+        "pairs": [],
+        "level": "love",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C3-4": {
+        "chapter": 3,
+        "type": "pick_two",
+        "sally": [
+          "Q05"
+        ],
+        "axes": [
+          "R1"
+        ],
+        "pairs": [
+          "T09"
+        ],
+        "level": "love",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C4-1": {
+        "chapter": 4,
+        "type": "scenario",
+        "sally": [
+          "Q33"
+        ],
+        "axes": [
+          "L1"
+        ],
+        "pairs": [
+          "T13"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          null,
+          null
+        ]
+      },
+      "C4-5": {
+        "chapter": 4,
+        "type": "real",
+        "sally": [
+          "Q36"
+        ],
+        "axes": [],
+        "pairs": [
+          "T14"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          "a",
+          null
+        ]
+      },
+      "C4-2": {
+        "chapter": 4,
+        "type": "this_or_that",
+        "sally": [
+          "Q13"
+        ],
+        "axes": [],
+        "pairs": [
+          "T15"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C4-4": {
+        "chapter": 4,
+        "type": "this_or_that",
+        "sally": [
+          "Q35"
+        ],
+        "axes": [],
+        "pairs": [
+          "T23"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C4-3": {
+        "chapter": 4,
+        "type": "this_or_that",
+        "sally": [
+          "Q34"
+        ],
+        "axes": [],
+        "pairs": [
+          "T14"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C4-7": {
+        "chapter": 4,
+        "type": "scenario",
+        "sally": [
+          "Q16"
+        ],
+        "axes": [],
+        "pairs": [
+          "T12",
+          "T15"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          null,
+          null
+        ]
+      },
+      "C5-1": {
+        "chapter": 5,
+        "type": "this_or_that",
+        "sally": [],
+        "axes": [
+          "L2"
+        ],
+        "pairs": [
+          "T17"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C5-2": {
+        "chapter": 5,
+        "type": "this_or_that",
+        "sally": [
+          "Q17"
+        ],
+        "axes": [
+          "L1"
+        ],
+        "pairs": [],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          null
+        ]
+      },
+      "C5-10": {
+        "chapter": 5,
+        "type": "this_or_that",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T10"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C5-4": {
+        "chapter": 5,
+        "type": "scenario",
+        "sally": [
+          "Q20"
+        ],
+        "axes": [
+          "L2"
+        ],
+        "pairs": [
+          "T16"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b",
+          null
+        ]
+      },
+      "C5-5": {
+        "chapter": 5,
+        "type": "real",
+        "sally": [
+          "Q18"
+        ],
+        "axes": [],
+        "pairs": [
+          "T06"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b",
+          null
+        ]
+      },
+      "C5-9": {
+        "chapter": 5,
+        "type": "pick_two",
+        "sally": [
+          "Q45"
+        ],
+        "axes": [
+          "L2"
+        ],
+        "pairs": [
+          "T16"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C5-6": {
+        "chapter": 5,
+        "type": "scenario",
+        "sally": [
+          "Q19"
+        ],
+        "axes": [
+          "L1"
+        ],
+        "pairs": [
+          "T13"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          null
+        ]
+      },
+      "C5-7": {
+        "chapter": 5,
+        "type": "real",
+        "sally": [
+          "Q48"
+        ],
+        "axes": [
+          "L2"
+        ],
+        "pairs": [
+          "T17"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          "b"
+        ]
+      },
+      "C6-6": {
+        "chapter": 6,
+        "type": "scenario",
+        "sally": [
+          "Q21"
+        ],
+        "axes": [
+          "R1"
+        ],
+        "pairs": [
+          "T19"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          null,
+          null
+        ]
+      },
+      "C6-3": {
+        "chapter": 6,
+        "type": "this_or_that",
+        "sally": [
+          "Q04"
+        ],
+        "axes": [
+          "R3"
+        ],
+        "pairs": [
+          "T20"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C6-10": {
+        "chapter": 6,
+        "type": "this_or_that",
+        "sally": [],
+        "axes": [
+          "L3"
+        ],
+        "pairs": [
+          "T25"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C6-4": {
+        "chapter": 6,
+        "type": "scenario",
+        "sally": [
+          "Q22"
+        ],
+        "axes": [],
+        "pairs": [
+          "T18"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          "a",
+          null
+        ]
+      },
+      "C6-2": {
+        "chapter": 6,
+        "type": "real",
+        "sally": [
+          "Q24"
+        ],
+        "axes": [
+          "R1"
+        ],
+        "pairs": [
+          "T19"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "b",
+          "a",
+          "a",
+          "b",
+          null
+        ]
+      },
+      "C6-1": {
+        "chapter": 6,
+        "type": "scenario",
+        "sally": [
+          "Q01"
+        ],
+        "axes": [
+          "R3"
+        ],
+        "pairs": [
+          "T20"
+        ],
+        "level": "everyday",
+        "teenOk": false,
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          "b"
+        ],
+        "teenNote": "Teen version is parents away for a weekend; the friend prompt says moving in with someone."
+      },
+      "C6-8": {
+        "chapter": 6,
+        "type": "role",
+        "sally": [
+          "Q23"
+        ],
+        "axes": [],
+        "pairs": [
+          "T18"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C7-1": {
+        "chapter": 7,
+        "type": "scenario",
+        "sally": [
+          "Q02"
+        ],
+        "axes": [
+          "L3"
+        ],
+        "pairs": [
+          "T25"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C7-6": {
+        "chapter": 7,
+        "type": "real",
+        "sally": [
+          "Q47"
+        ],
+        "axes": [],
+        "pairs": [
+          "T23"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          null,
+          null
+        ]
+      },
+      "C7-5": {
+        "chapter": 7,
+        "type": "scenario",
+        "sally": [
+          "Q31",
+          "Q32"
+        ],
+        "axes": [],
+        "pairs": [
+          "T24"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C7-4": {
+        "chapter": 7,
+        "type": "real",
+        "sally": [
+          "Q38"
+        ],
+        "axes": [
+          "L3"
+        ],
+        "pairs": [
+          "T25"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C7-3": {
+        "chapter": 7,
+        "type": "scenario",
+        "sally": [
+          "Q46"
+        ],
+        "axes": [
+          "L1"
+        ],
+        "pairs": [
+          "T22"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          null,
+          null
+        ]
+      },
+      "C7-2": {
+        "chapter": 7,
+        "type": "role",
+        "sally": [
+          "Q29"
+        ],
+        "axes": [],
+        "pairs": [
+          "T14"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          null,
+          null
+        ]
+      },
+      "C7-7": {
+        "chapter": 7,
+        "type": "scenario",
+        "sally": [
+          "Q40"
+        ],
+        "axes": [
+          "L3"
+        ],
+        "pairs": [
+          "T25"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          null,
+          null
+        ]
+      },
+      "C7-10": {
+        "chapter": 7,
+        "type": "scenario",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T08"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          null
+        ]
+      }
+    },
+    "cardNotes": [
+      "C7-3 friend prompt said '{they}'ve never been to' (broke for she and he). Fixed in verification: 'a year in a brand-new city'.",
+      "C1-4 side b, C1-8 side b and C1-2 side b used raw pronouns for the owner. Fixed in verification: '{their} closest person', '{Their} own version', 'Keeps {their} own'.",
+      "C2-9 friend sides are not one pair (a T06A, b T12A). The mapping rule still works; the card counts as touching both T06 and T12 for the no-repeat rule.",
+      "C3-3 and C6-1 have teen versions the friend prompt does not describe, so they are marked teenOk false. A teen friend field ('{name}'s day out' / 'parents away for the weekend') would let them back in.",
+      "C3-12 mentions '{name}'s person', so it is a love card even though it measures R2."
+    ]
+  },
+  "level3": {
+    "title": "Level 3: Guess the tags",
+    "zh": "第三關：猜標籤",
+    "prompt": {
+      "friend": {
+        "t": "Which of these 12 sound most like {name}? Pick {N}.",
+        "zh": "這12張裡，哪幾張最像{name}？選{N}張。",
+        "zhStatus": "sally, tokens only"
+      },
+      "bestie": {
+        "t": "Which of these 12 are the real {name}? Pick {N}.",
+        "zh": "這12張裡，哪幾張是{name}本人？選{N}張。",
+        "zhStatus": "sally, tokens only"
+      }
+    },
+    "cardFace": "Tag name and heart line only. Never the sting, triggers or evidence.",
+    "deck": {
+      "allowedPairs": "Pairs allowed by the relationship (relationships.options[].tagPairs) and the owner's toggles. Owner under 18, or friend tapped Under 18: marriageKids pairs are never allowed.",
+      "true": "N = the owner's shown tags (up to 5, strongest first) whose pair is allowed. These are the true cards.",
+      "opposite": "N cards: the pair partner of each true card.",
+      "decoys": "12 - 2N cards drawn at random from allowed pairs the owner has no fired tag in (shown or not, per Sally: never a pair already hit): one card per pair, random side, never a pair already in the deck. Only if those run out does a fired-but-not-shown pair fill in, showing the side the owner did not fire.",
+      "shuffle": "All 12 shuffled; true cards never sit in fixed positions.",
+      "pick": "The friend must pick exactly N.",
+      "zeroN": "If N is 0 after filtering (every owner tag is in a pair this relationship hides), Level 3 is skipped with level3.skippedLine.",
+      "fewTags": "N of 1 or 2 means 8 or 10 decoys; show fewTagsLine before the round and on the owner's result."
+    },
+    "scoring": {
+      "trueHit": "Picked a true card: a hit ({z}), goes to 'They get you'.",
+      "opposite": "Picked an opposite card: no hit, goes to 'Who they think you are'.",
+      "missedTrue": "A true card not picked: goes to 'What they don't see'.",
+      "decoy": "Picked a decoy: no penalty, listed under 'Other sides they guessed'."
+    },
+    "fewTagsLine": {
+      "t": "{name} only has {N} tags, so this one is hard.",
+      "zh": "{they}的標籤少，猜中很不容易。",
+      "zhStatus": "sally, tokens only"
+    },
+    "skippedLine": {
+      "t": "{name}'s tags are private on this link, so this round sits out."
+    }
+  },
+  "level4": {
+    "availableFor": "bestie only, and only when the owner switched on sting lines (default off).",
+    "title": "Bonus round: which line gets {name}?",
+    "zh": "閨蜜限定：哪句最戳{they}？",
+    "zhStatus": "sally, tokens only",
+    "stingPick": {
+      "prompt": {
+        "t": "Which of these 4 lines would leave {name} speechless for three seconds?",
+        "zh": "這4句話裡，哪一句說中{name}、會讓{they}沉默三秒？",
+        "zhStatus": "sally, tokens only"
+      },
+      "deck": [
+        "1 true line: the sting of the owner's strongest shown tag whose pair is allowed on this link (skip to the next tag if the top one is hidden).",
+        "3 other lines: stings of tags from pairs the owner has no fired tag in (fired-but-not-shown pairs only as a fallback, and never a tag the owner fired), allowed on this link (love only if love tags are on; marriageKids only if opted in and everyone is 18+), at least 2 of them from a different chapter than the true line.",
+        "Shuffled. The friend picks 1. No penalty for a miss."
+      ],
+      "friendNeverSees": "Which line was true. The friend's result does not mention Level 4."
+    },
+    "pickTheRoast": {
+      "prompt": {
+        "t": "Pick the roast {name} would laugh at hardest.",
+        "zh": "選一句吐槽{name}，{they}看了會笑的那種。",
+        "zhStatus": "edited: Sally's free-text roast box became presets",
+        "zhSally": "用一句話吐槽{名字}，她看了會笑的那種。"
+      },
+      "optional": true,
+      "skipLabel": "Skip",
+      "guardLine": "Jokes only. Every line here is Genii-approved.",
+      "show": "6 of the 12 lines: every line whose tag or its pair is one of the owner's shown tags (up to 3, strongest tags first), then random others; love-tied lines only if love tags are on. Shuffled.",
+      "rules": "Every line roasts a move, never the person: never looks, body, weight, health or diagnoses. The owner can hide any roast from their page with one tap.",
+      "roasts": [
+        {
+          "id": "R01",
+          "tag": "T02A",
+          "t": "Answers texts on a three-to-five business day schedule. Still my favorite."
+        },
+        {
+          "id": "R02",
+          "tag": "T04B",
+          "t": "Knows the barista's name, the barista's dog's name and its birthday."
+        },
+        {
+          "id": "R03",
+          "tag": "T07A",
+          "t": "Asked for a quick opinion once. Got notes, bullet points and a follow-up."
+        },
+        {
+          "id": "R04",
+          "tag": "T06A",
+          "t": "Says 'I'm saving this month.' Pays for everyone's bubble tea anyway."
+        },
+        {
+          "id": "R05",
+          "tag": "T08B",
+          "t": "Forgave everyone years ago. The screenshots folder did not."
+        },
+        {
+          "id": "R06",
+          "tag": "T09A",
+          "t": "Says 'we're keeping it casual.' Already knows their coffee order by heart."
+        },
+        {
+          "id": "R07",
+          "tag": "T12A",
+          "t": "Sent me a payment request for $3.47. For fries. With a fries emoji."
+        },
+        {
+          "id": "R08",
+          "tag": "T13A",
+          "t": "Booked the flight first. Checked the bank app second. Maybe."
+        },
+        {
+          "id": "R09",
+          "tag": "T16A",
+          "t": "Calls it 'just a side project.' It has a logo and a five-year plan."
+        },
+        {
+          "id": "R10",
+          "tag": "T19B",
+          "t": "Can't pick a new phone case without a family vote."
+        },
+        {
+          "id": "R11",
+          "tag": "T24A",
+          "t": "Made a spreadsheet for the group trip. It has tabs. Plural."
+        },
+        {
+          "id": "R12",
+          "tag": "T22B",
+          "t": "Has ordered the exact same thing at our spot since the day we met."
+        }
+      ]
+    },
+    "results": {
+      "stingHit": {
+        "t": "{friend} picked the exact line that gets you. That's a bestie.",
+        "zh": "TA一眼就挑中戳你的那一句。這就是閨蜜。",
+        "zhStatus": "edited (她 to TA)"
+      },
+      "stingMiss": {
+        "t": "{friend} thought \"{pickedLine}\" would get you. It's actually \"{trueLine}\".",
+        "zh": "TA以為戳你的是『{pickedLine}』，其實是『{trueLine}』。",
+        "zhStatus": "edited (她 to TA)"
+      },
+      "roastHeader": "{friend}'s roast of you",
+      "roastOnTrueTag": "Called out, lovingly. That roast is one of your real tags: {tagName}.",
+      "roastOnOpposite": "{friend} roasted the you they imagine. Genii has you down as {trueTagName}.",
+      "roastOther": "Genii didn't flag this one. {friend} might know something Genii doesn't.",
+      "roastSkipped": "{friend} kept the roast to themselves. Merciful.",
+      "hide": "Hide this roast"
+    }
+  },
+  "results": {
+    "owner": {
+      "title": {
+        "t": "You, through {friend}'s eyes",
+        "zh": "{friend}眼中的你",
+        "zhStatus": "sally, tokens only"
+      },
+      "typeComparison": {
+        "t": "{friend} thinks you're {guessedType}. You're {trueType}. They read {x}/6 sides of you.",
+        "zh": "TA以為你是：{guessedType}　其實你是：{trueType}　TA看懂了你的 {x}/6 面。",
+        "zhStatus": "edited (他 to TA)",
+        "exact": {
+          "t": "{friend} guessed your exact type: {trueType}. 6/6."
+        },
+        "flexNote": "You're flex on {axisName}, so either guess counted."
+      },
+      "scoreBands": {
+        "friend": {
+          "0-1": {
+            "t": "The you in {friend}'s head and the real you are almost two different people. That's the fun part.",
+            "zh": "TA眼中的你，跟你本人幾乎是兩個人。這才是最有意思的地方。",
+            "zhStatus": "edited (他 to TA)"
+          },
+          "2-3": {
+            "t": "{friend} sees half of you. The other half is worth a talk tonight.",
+            "zh": "TA看到的是你的一半。另一半，值得今晚聊聊。",
+            "zhStatus": "edited (他 to TA)"
+          },
+          "4-5": {
+            "t": "{friend} gets most of you. The side or two they missed is the part you haven't shown them yet.",
+            "zh": "TA懂你大部分的樣子，剩下那一兩面，是你還沒給TA看的。",
+            "zhStatus": "edited (他 to TA)"
+          },
+          "6": {
+            "t": "{friend} sees right through you. Slightly scary.",
+            "zh": "TA把你看得很透，有點可怕。",
+            "zhStatus": "edited (他 to TA)"
+          }
+        },
+        "bestie": {
+          "0-1": {
+            "t": "{friend} pictures someone pretty different. Bubble tea is on you tonight. Talk it out.",
+            "zh": "TA眼中的你和本人差很多，今晚奶茶你請，好好聊聊。",
+            "zhStatus": "edited (她 to TA)"
+          },
+          "2-3": {
+            "t": "{friend} knows the you that shows up around them. The rest of you, they haven't met yet.",
+            "zh": "TA認識的是跟TA在一起時的你。其他時候的你，TA還沒見過。",
+            "zhStatus": "edited (她 to TA)"
+          },
+          "4-5": {
+            "t": "{friend} knows most of you. The rest, you're still keeping to yourself.",
+            "zh": "TA懂你大部分的樣子，剩下的，你還藏在心裡。",
+            "zhStatus": "edited (她 to TA)"
+          },
+          "6": {
+            "t": "Certified soul bestie. {friend} might know you better than you do.",
+            "zh": "認證靈魂閨蜜。TA可能比你還懂你。",
+            "zhStatus": "edited (姐妹 to 閨蜜, 她 to TA)",
+            "zhSally": "認證靈魂姐妹。她可能比你還懂你。"
+          }
+        },
+        "useFor": {
+          "partner": "friend",
+          "crush": "friend",
+          "friendOrCoworker": "friend",
+          "bestie": "bestie"
+        },
+        "basis": "Level 1 hits ({x}/6), as in Sally."
+      },
+      "zones": {
+        "getYou": {
+          "title": "They get you",
+          "zh": "TA看懂的你",
+          "zhStatus": "edited (他 to TA)",
+          "sub": "Every side {friend} called right, with the line you love about it.",
+          "axisItem": "{poleName}: {poleLine}",
+          "tagItem": "{tagName}: {heart}",
+          "empty": "Nothing matched this time. Plenty to talk about, then."
+        },
+        "dontSee": {
+          "title": "What they don't see",
+          "zh": "TA沒看見的你",
+          "zhStatus": "edited (他 to TA)",
+          "sub": "The tags {friend} missed, and the line that stings because it's true. Best screenshot on this page.",
+          "tagItem": "{tagName}: {sting}",
+          "empty": "They found every tag. Nothing slipped past {friend}."
+        },
+        "thinkYouAre": {
+          "title": "Who they think you are",
+          "zh": "TA以為的你",
+          "zhStatus": "edited (他 to TA)",
+          "item": {
+            "t": "{friend} thinks you're {oppositeTagName}. You're actually {trueTagName}.",
+            "zh": "TA以為你是{oppositeTagName}，其實你是{trueTagName}。",
+            "zhStatus": "edited from Sally's example"
+          },
+          "empty": "No mix-ups. {friend} didn't fall for a single opposite."
+        },
+        "otherGuesses": {
+          "title": "Other sides they guessed",
+          "zh": "TA猜的其他面向",
+          "zhStatus": "edited (她 to TA)",
+          "item": "{friend} also sees you as {decoyTagName}. Genii didn't pick that up. Maybe {friend} knows something.",
+          "note": "Decoy picks. No penalty."
+        },
+        "sources": "axis poleName and poleLine from types.json axes (plus/minus, plusLine/minusLine); tag name, heart and sting from tags.json. Stings stay owner only."
+      },
+      "level2Score": {
+        "t": "{friend} called {y} of your {total} choices."
+      },
+      "level3Score": {
+        "t": "{friend} spotted {z} of your {N} tags."
+      },
+      "biggestMiss": {
+        "title": "Biggest surprise",
+        "t": "{friend} bet on: \"{guessedText}\". You: \"{trueText}\".",
+        "zh": "TA以為你會「{guessedText}」，其實你是「{trueText}」。",
+        "zhStatus": "edited from Sally's example (他以為你會把錢存起來，你其實想拿去旅行)",
+        "reason": "Their reason: {whyChip}",
+        "none": "Zero misses. {friend} called every one. Slightly terrifying.",
+        "pickRule": "Among missed Level 2 cards: highest card weight (real 0.80, scenario 0.55, this_or_that, role and pick_two 0.45) times the owner's match score; x1.5 if the friend also missed that card's axis in Level 1; tie goes to the earlier card. Texts are the friend-side option texts (guessed side and the owner's side)."
+      },
+      "share": {
+        "screenshot": {
+          "t": "Screenshot for {friend}",
+          "zh": "截圖給TA看",
+          "zhStatus": "edited (他 to TA)",
+          "note": "Contains only the type comparison and the zones the owner ticks."
+        },
+        "sendAnother": {
+          "t": "Send to someone else and compare",
+          "zh": "再發給另一個人比比看",
+          "zhStatus": "sally"
+        }
+      }
+    },
+    "friend": {
+      "title": {
+        "t": "Do you know {name}?",
+        "zh": "你懂{name}嗎？",
+        "zhStatus": "sally, tokens only"
+      },
+      "score": {
+        "friend": {
+          "t": "You read {x}/6 sides of {name}. Everything you missed, {name} can see. Want to know which? Ask {them}.",
+          "zh": "你看懂了{they}的 {x}/6 面。你猜錯的地方，{they}都看到了。想知道是哪幾題，去問{they}。",
+          "zhStatus": "sally, tokens only"
+        },
+        "bestie": {
+          "t": "You read {x}/6 sides of {name}. Want to know which side you missed? Ask {them}.",
+          "zh": "你看懂了{name}的 {x}/6 面。想知道你漏掉了哪一面？去問{they}。",
+          "zhStatus": "sally, tokens only"
+        }
+      },
+      "counts": {
+        "t": "Choices called: {y}/{total}. Tags spotted: {z}/{N}.",
+        "note": "Counts only, never which ones. Level 4 is never shown to the friend."
+      },
+      "typeReveal": {
+        "t": "{name}'s real type: {trueType}",
+        "note": "Only when the owner's showType toggle is on."
+      },
+      "yourTurn": {
+        "friend": {
+          "t": "Your turn: see if {name} really knows you",
+          "zh": "換你測，看{they}懂不懂你",
+          "zhStatus": "sally, tokens only"
+        },
+        "bestie": {
+          "t": "Your turn: see if {name} knows you best too",
+          "zh": "換你測，看{they}是不是也最懂你",
+          "zhStatus": "sally, tokens only"
+        },
+        "loop": "Starts the friend's own quiz run. When they finish, their friend game link to {name} is pre-made with the same relationship, so {name} becomes the guesser."
+      }
+    }
+  },
+  "comparison": {
+    "bestieVsPartner": {
+      "title": {
+        "t": "Bestie vs partner",
+        "zh": "閨蜜 vs 另一半",
+        "zhStatus": "edited (他 to 另一半)"
+      },
+      "unlock": "At least one bestie link and one partner link have been played. With no partner link, a crush link can stand in (title then reads 'Bestie vs crush').",
+      "locked": "Send it to a bestie and a partner. When both have played, this opens.",
+      "basis": "Level 1 and Level 3 hits, as in Sally.",
+      "rows": [
+        {
+          "id": "whoWins",
+          "t": "When it comes to knowing you, {winner} is ahead of {other} by {n}.",
+          "zh": "在懂你這件事上，{winner}贏了{other}{n}格。",
+          "zhStatus": "sally, tokens only",
+          "tie": "Dead even. They each know a different you."
+        },
+        {
+          "id": "bothSee",
+          "t": "This side of you, you can't hide.",
+          "zh": "這一面，你藏不住。",
+          "zhStatus": "sally",
+          "items": "axes and tags both called right"
+        },
+        {
+          "id": "onlyBestie",
+          "t": "This side, you only show your bestie.",
+          "zh": "這一面，你只給閨蜜看。",
+          "zhStatus": "edited (姐妹 to 閨蜜)",
+          "items": "bestie right, partner wrong"
+        },
+        {
+          "id": "onlyPartner",
+          "t": "This side only comes out around {partner}.",
+          "zh": "這一面，你只在{partner}面前出現。",
+          "zhStatus": "edited (他 to {partner})",
+          "items": "partner right, bestie wrong"
+        },
+        {
+          "id": "neither",
+          "t": "This side, not even they know yet.",
+          "zh": "這一面，連他們都還不知道。",
+          "zhStatus": "sally",
+          "items": "tags both missed"
+        }
+      ],
+      "privacy": {
+        "t": "Only you can see this. Nobody gets notified.",
+        "zh": "這個畫面只有你看得到，不會通知任何人。",
+        "zhStatus": "edited from Sally's rule"
+      },
+      "share": "Share only the tiles you tick."
+    }
+  },
+  "ranking": {
+    "title": {
+      "t": "Who knows you best",
+      "zh": "誰最懂你",
+      "zhStatus": "sally"
+    },
+    "sub": "Only you can see this. Nobody gets notified.",
+    "unlock": "Two or more links played.",
+    "locked": "One down. Send it to one more person to start the ranking.",
+    "row": "{rank}. {friend}: {x}/6 sides, {z}/{N} tags",
+    "topBadge": {
+      "t": "Knows you best",
+      "zh": "最懂你"
+    },
+    "tie": "Tied. Genii calls it a draw.",
+    "last": "Still learning you.",
+    "sort": "By hit rate (Level 1 hits + Level 3 hits) / (6 + N for that link), as Sally ranks by Levels 1 and 3; the rate keeps links fair when a relationship hides some tags. Ties: more Level 2 hits, then whoever played first."
+  },
+  "notes": {
+    "choicesMade": [
+      "R2 in Level 1 measures directness only in both versions. Sally's friend F2 and bestie F2 asked about being exhausted, which the brief names as R2's known problem.",
+      "R3 in Level 1 uses holidays and home, not marriage, so a teen owner's friends can answer (brief: R3 measurable by teens).",
+      "Sally's optional 'why did you guess this?' text field became 4 one-tap chips; her bestie roast box became 'pick the roast' from 12 presets (brief: no free text).",
+      "The friend label is the relationship plus a preset emoji so nobody types a name.",
+      "Marriage and kids tags: opt-in only for partner and bestie. Sally allowed any recipient to see them if the owner opted in; 'friend or coworker' includes coworkers, so this build never offers them there or to a crush.",
+      "Level 2 skips rushed owner answers (under 1.5 s), so a friend is never marked wrong on a tap the owner did not mean (LESSONS-FROM-TEST-1: rushed taps).",
+      "Sally's primary sets repeated a pair (Q21 and Q24 both family vote T19; Q15 and Q27/Q28 both T06). Primaries here use 12 different pairs; the repeats are in backup.",
+      "Level 4 sting decoys come only from pairs the owner has no tag in, so exactly one line is true.",
+      "Roast lines cover 12 different pairs across all 7 chapters; one is love-tied (R06) and hides when love tags are off."
+    ],
+    "open": [
+      "Sally's crush version keeps love cards in Level 2 (Q05, Q06) but hides love tags in Level 3 unless opted in. Kept as is; say if a crush should see no love cards at all.",
+      "Bestie vs partner could also compare two besties or two partners. Built only as specified."
+    ]
+  }
+}
