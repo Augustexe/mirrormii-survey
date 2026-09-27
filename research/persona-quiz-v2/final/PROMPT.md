@@ -6,7 +6,10 @@ Paste everything below the line into a fresh Claude Code session started **insid
 rm -rf /private/tmp/genii-blind-test-2 && cp -r /Users/jerryzhang/Workspace-Draft/products/survey/research/persona-quiz-v2/final /private/tmp/genii-blind-test-2 && cd /private/tmp/genii-blind-test-2 && claude
 ```
 
-Starting there keeps the agent blind: the folder is outside the workspace, so no project memory or workspace notes about Jerry load. Before copying, make sure `final/` holds no `answers.json`, `profile.json` or `sealed-predictions.json` (the tests never write there).
+Starting there keeps the agent blind: the folder is outside the workspace, so no project memory or workspace notes about Jerry load. Before copying:
+
+- make sure the source `final/` is the fix-pass kit (branch `quiz-v2-fix-pass` merged, or copy from that worktree instead): `cards.json` has C1-11 and C6-11 and no C1-3, C3-6 or C6-5, and `node --test tests.mjs` there passes 27 of 27;
+- make sure `final/` holds no `answers.json`, `profile.json`, `sealed-predictions.json` or `friend-deck.json` (the tests never write there).
 
 ---
 
@@ -24,14 +27,14 @@ You are running blind test 2 of Genii, a free personality game. The person playi
 
 ## Card rules (every page)
 
-- **One card at a time**, in `cards.json` order, auto-advancing after the answer. A thin progress bar per chapter. No back button.
+- **One card at a time**, in `cards.json` order, auto-advancing after the answer. Each chapter's `cards` array is already the run order; do not reorder or shuffle. A thin progress bar per chapter. No back button.
 - Show `prompt`, or `teenPrompt` when setup says Under 18 and the card has one. Options in the given order, as tap buttons.
 - Under the options, small exit buttons from the card's `exits`: "Skip", "Not my life", and on real cards "No recent example".
-- `this_or_that` cards that share a `round` show as a "Quick round" (same card style, a small "1/3, 2/3, 3/3" counter).
+- `this_or_that` cards that share a `round` show as a "Quick round" (same card style, a small "1/3, 2/3, 3/3" counter). Count only the cards this player sees: for Under 18 the chapter 6 round loses its locked card and counts "1/2, 2/2".
 - `pick_two`: the player taps exactly 2, then the card advances.
 - An option with `depends: true` reveals the card's `flip` question ("What would flip you?") with its 3 presets plus Skip. Record the pick as `"<cardId>.flip": index`.
 - `feeling` cards already sit right after the card named in `follows`; show them as they come.
-- Cards with `privacy: "locked18"` show only when setup says 18+, with a small 🔒 18+ label. Card `C3-9` shows only if the `C3-8` picks include option 0, 1 or 2 (its `gateRule`).
+- Cards with `privacy: "locked18"` (C3-8, C3-9, C6-9, C6-11) show only when setup says 18+, with a small 🔒 18+ label. Card `C3-9` shows only if the `C3-8` picks include option 0, 1 or 2 (its `gateRule`: a pick that carries T11A). So an adult sees 61 or 60 chapter cards and a teen sees 57.
 - **Record milliseconds per card**: from the moment the card is on screen to the answering tap (for pick_two, the second tap; for a depends option, the option tap). Store them in `_ms`.
 - Style: clean, playful, violet accents, phone-friendly. The chapter title and intro open each chapter page as a title card with a Start button.
 

@@ -15,13 +15,13 @@
       "../library/tags.json"
     ],
     "chapters": {
-      "ch1.final.json": "2026-09-26 23:11",
-      "ch2.final.json": "2026-09-26 23:11",
-      "ch3.final.json": "2026-09-26 23:11",
-      "ch4.final.json": "2026-09-26 23:14",
-      "ch5.final.json": "2026-09-26 23:15",
-      "ch6.final.json": "2026-09-26 23:16",
-      "ch7.final.json": "2026-09-26 23:15"
+      "ch1.final.json": "2026-09-26 23:28",
+      "ch2.final.json": "2026-09-26 23:28",
+      "ch3.final.json": "2026-09-26 23:28",
+      "ch4.final.json": "2026-09-26 23:28",
+      "ch5.final.json": "2026-09-26 23:28",
+      "ch6.final.json": "2026-09-26 23:28",
+      "ch7.final.json": "2026-09-26 23:28"
     },
     "note": "Level 2 reads each card's `friend` field from the chapter files. level2.cards is a snapshot computed from the chapter files listed here; if a chapter changes, recompute it with level2.answerMapping (the rule is authoritative, the snapshot is a convenience)."
   },
@@ -1475,7 +1475,7 @@
           "T22"
         ],
         "level": "everyday",
-        "teenOk": true,
+        "teenOk": false,
         "answerMap": [
           "a",
           "b",
@@ -1510,7 +1510,7 @@
           "T16"
         ],
         "level": "everyday",
-        "teenOk": true,
+        "teenOk": false,
         "answerMap": [
           "a",
           "a",
@@ -2096,6 +2096,11 @@
       },
       "scoreBands": {
         "friend": {
+          "6": {
+            "t": "{friend} sees right through you. Slightly scary.",
+            "zh": "TA把你看得很透，有點可怕。",
+            "zhStatus": "edited (他 to TA)"
+          },
           "0-1": {
             "t": "The you in {friend}'s head and the real you are almost two different people. That's the fun part.",
             "zh": "TA眼中的你，跟你本人幾乎是兩個人。這才是最有意思的地方。",
@@ -2110,17 +2115,18 @@
             "t": "{friend} gets most of you. The side or two they missed is the part you haven't shown them yet.",
             "zh": "TA懂你大部分的樣子，剩下那一兩面，是你還沒給TA看的。",
             "zhStatus": "edited (他 to TA)"
-          },
-          "6": {
-            "t": "{friend} sees right through you. Slightly scary.",
-            "zh": "TA把你看得很透，有點可怕。",
-            "zhStatus": "edited (他 to TA)"
           }
         },
         "bestie": {
+          "6": {
+            "t": "Certified soul bestie. {friend} might know you better than you do.",
+            "zh": "認證靈魂閨蜜。TA可能比你還懂你。",
+            "zhStatus": "edited (姐妹 to 閨蜜, 她 to TA)",
+            "zhSally": "認證靈魂姐妹。她可能比你還懂你。"
+          },
           "0-1": {
-            "t": "{friend} pictures someone pretty different. Bubble tea is on you tonight. Talk it out.",
-            "zh": "TA眼中的你和本人差很多，今晚奶茶你請，好好聊聊。",
+            "t": "{friend} pictures someone pretty different. Bubble tea is on them tonight. Talk it out.",
+            "zh": "TA眼中的你和本人差很多，今晚奶茶TA請，好好聊聊。",
             "zhStatus": "edited (她 to TA)"
           },
           "2-3": {
@@ -2132,12 +2138,6 @@
             "t": "{friend} knows most of you. The rest, you're still keeping to yourself.",
             "zh": "TA懂你大部分的樣子，剩下的，你還藏在心裡。",
             "zhStatus": "edited (她 to TA)"
-          },
-          "6": {
-            "t": "Certified soul bestie. {friend} might know you better than you do.",
-            "zh": "認證靈魂閨蜜。TA可能比你還懂你。",
-            "zhStatus": "edited (姐妹 to 閨蜜, 她 to TA)",
-            "zhSally": "認證靈魂姐妹。她可能比你還懂你。"
           }
         },
         "useFor": {

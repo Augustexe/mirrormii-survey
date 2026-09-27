@@ -2,128 +2,449 @@
   "chapter": 4,
   "title": "Money and treats",
   "intro": "Money talk. No judgment. Okay, a little judgment.",
-  "order": ["C4-1", "C4-5", "C4-8", "C4-4", "C4-2", "C4-3", "C4-7"],
+  "order": [
+    "C4-1",
+    "C4-5",
+    "C4-8",
+    "C4-4",
+    "C4-2",
+    "C4-3",
+    "C4-7"
+  ],
   "cards": [
     {
       "id": "C4-1",
       "type": "scenario",
-      "sally": ["Q33"],
+      "sally": [
+        "Q33"
+      ],
       "prompt": "You find $200 in a jacket you haven't worn since last winter.",
       "privacy": "normal",
       "options": [
-        {"t": "Concert tickets. Tonight if possible.", "axes": {"L1": -2}, "tags": [{"id": "T13A", "s": 2}], "emotion": "delight"},
-        {"t": "Straight into savings. Future me says thanks.", "axes": {"L1": 2}, "tags": [{"id": "T13B", "s": 2}], "emotion": "relief"},
-        {"t": "Dinner for my people. Found money gets shared.", "axes": {}, "tags": [{"id": "T06A", "s": 1}], "emotion": "warmth"},
-        {"t": "It went to a bill. Romance is dead.", "circumstance": true}
+        {
+          "t": "Concert tickets. Tonight if possible.",
+          "axes": {
+            "L1": -2
+          },
+          "tags": [
+            {
+              "id": "T13A",
+              "s": 2
+            }
+          ],
+          "emotion": "delight"
+        },
+        {
+          "t": "Straight into savings. Future me says thanks.",
+          "axes": {
+            "L1": 2
+          },
+          "tags": [
+            {
+              "id": "T13B",
+              "s": 2
+            }
+          ],
+          "emotion": "relief"
+        },
+        {
+          "t": "Dinner for my people. Found money gets shared.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T06A",
+              "s": 1
+            }
+          ],
+          "emotion": "warmth"
+        },
+        {
+          "t": "It went to a bill. Romance is dead.",
+          "circumstance": true
+        }
       ],
       "feel": "delight",
       "mask": "looks like a lucky find; measures whether spare money becomes an experience now or a cushion for later (L1, T13), with slight generosity (T06A)",
-      "ae": ["A", "D"],
+      "ae": [
+        "A",
+        "D"
+      ],
       "friend": {
         "prompt": "{name} finds $200 in an old jacket. Where does it go?",
-        "a": {"t": "Concert tickets, tonight.", "axes": {"L1": -2}, "tags": [{"id": "T13A", "s": 2}]},
-        "b": {"t": "Straight into savings.", "axes": {"L1": 2}, "tags": [{"id": "T13B", "s": 2}]}
+        "a": {
+          "t": "Concert tickets, tonight.",
+          "axes": {
+            "L1": -2
+          },
+          "tags": [
+            {
+              "id": "T13A",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "Straight into savings.",
+          "axes": {
+            "L1": 2
+          },
+          "tags": [
+            {
+              "id": "T13B",
+              "s": 2
+            }
+          ]
+        }
       }
     },
     {
       "id": "C4-5",
       "type": "real",
-      "sally": ["Q36"],
+      "sally": [
+        "Q36"
+      ],
       "prompt": "Confession time. The last time you wanted one more of something you already own plenty of. Tote bags, figures, skins, mugs. What did you do?",
       "privacy": "normal",
       "options": [
-        {"t": "Bought it on the spot. A new look is half the fun.", "axes": {}, "tags": [{"id": "T14A", "s": 2}], "emotion": "delight"},
-        {"t": "Cleared out a few old ones first, then bought it.", "axes": {}, "tags": [{"id": "T14B", "s": 2}]},
-        {"t": "Left it in my cart for a week. The feeling passed.", "axes": {}, "tags": [{"id": "T14B", "s": 1}], "emotion": "pride"},
-        {"t": "Bought it, then hid the bag for a few days.", "axes": {}, "tags": [{"id": "T14A", "s": 1}], "emotion": "guilt"}
+        {
+          "t": "Bought it on the spot. There's always room for one more.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T14A",
+              "s": 2
+            }
+          ],
+          "emotion": "delight"
+        },
+        {
+          "t": "Cleared out a few old ones first, then bought it.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T14B",
+              "s": 2
+            }
+          ]
+        },
+        {
+          "t": "Left it in my cart for a week. The feeling passed.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T14B",
+              "s": 1
+            }
+          ],
+          "emotion": "pride"
+        },
+        {
+          "t": "Bought it, then hid the bag for a few days.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T14A",
+              "s": 1
+            }
+          ],
+          "emotion": "guilt"
+        }
       ],
       "feel": "guilt",
       "mask": "looks like a shopping confession; measures whether a full collection limits a new treat (Sally Q36, T14, did-grade)",
-      "ae": ["A", "D", "E"],
+      "ae": [
+        "A",
+        "D",
+        "E"
+      ],
       "friend": {
         "prompt": "{name} already owns plenty of tote bags and spots a new one to love. What happens?",
-        "a": {"t": "Buys it on the spot.", "axes": {}, "tags": [{"id": "T14A", "s": 2}]},
-        "b": {"t": "Clears out old ones first.", "axes": {}, "tags": [{"id": "T14B", "s": 2}]}
+        "a": {
+          "t": "Buys it on the spot.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T14A",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "Clears out old ones first.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T14B",
+              "s": 2
+            }
+          ]
+        }
       }
     },
     {
       "id": "C4-2",
       "type": "this_or_that",
-      "sally": ["Q13"],
+      "sally": [
+        "Q13"
+      ],
       "prompt": "Housewarming tour. Your friend pats the kitchen island: 'I worked so hard for this.' Their parents covered the down payment.",
       "teenPrompt": "Your friend's parents paid for a private coach all year. They made the team and say, 'I earned this spot.'",
       "privacy": "normal",
       "options": [
-        {"t": "'You earned it!' I say, and mean it.", "axes": {}, "tags": [{"id": "T15A", "s": 3}], "emotion": "warmth"},
-        {"t": "Must be nice. Somebody had to say it.", "axes": {}, "tags": [{"id": "T15B", "s": 3}], "emotion": "irritation"}
+        {
+          "t": "'You earned it!' I say, and mean it.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T15A",
+              "s": 3
+            }
+          ],
+          "emotion": "warmth"
+        },
+        {
+          "t": "Must be nice. Somebody had to say it.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T15B",
+              "s": 3
+            }
+          ],
+          "emotion": "irritation"
+        }
       ],
       "feel": "tension",
       "mask": "looks like a hot take on a friend; measures whether you credit the effort or name the family head start (Sally Q13, T15). Strength 3 both sides: this is the one card that asks Q13 head on",
-      "ae": ["B", "C"],
+      "ae": [
+        "B",
+        "C"
+      ],
       "friend": {
         "prompt": "A friend whose parents helped a lot says 'I worked so hard for this.' What does {name} think?",
-        "a": {"t": "'You earned it!' And means it.", "axes": {}, "tags": [{"id": "T15A", "s": 3}]},
-        "b": {"t": "Must be nice.", "axes": {}, "tags": [{"id": "T15B", "s": 3}]}
+        "a": {
+          "t": "'You earned it!' And means it.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T15A",
+              "s": 3
+            }
+          ]
+        },
+        "b": {
+          "t": "Must be nice.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T15B",
+              "s": 3
+            }
+          ]
+        }
       }
     },
     {
       "id": "C4-4",
       "type": "this_or_that",
-      "sally": ["Q35"],
+      "sally": [
+        "Q35"
+      ],
       "prompt": "A plant for your room. $10 at the big store, or $25 from a neighbor whose sales fund the animal shelter.",
       "privacy": "normal",
       "options": [
-        {"t": "The neighbor's. My plant has a backstory now.", "axes": {}, "tags": [{"id": "T23A", "s": 2}], "emotion": "warmth"},
-        {"t": "The $10 one. The plant can't tell the difference.", "axes": {}, "tags": [{"id": "T23B", "s": 1}]}
+        {
+          "t": "The neighbor's. My plant has a backstory now.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T23A",
+              "s": 2
+            }
+          ],
+          "emotion": "warmth"
+        },
+        {
+          "t": "The $10 one. The plant can't tell the difference.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T23B",
+              "s": 1
+            }
+          ]
+        }
       ],
       "feel": "tension",
       "mask": "looks like a price check; measures paying clearly more so a purchase helps someone versus budget first (Sally Q35 reframed, T23)",
-      "ae": ["A", "D"],
+      "ae": [
+        "A",
+        "D"
+      ],
       "friend": {
         "prompt": "{name} can buy a plant for $10, or for $25 from a neighbor raising money for the animal shelter. Which?",
-        "a": {"t": "The neighbor's plant.", "axes": {}, "tags": [{"id": "T23A", "s": 2}]},
-        "b": {"t": "The $10 one.", "axes": {}, "tags": [{"id": "T23B", "s": 1}]}
+        "a": {
+          "t": "The neighbor's plant.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T23A",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "The $10 one.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T23B",
+              "s": 1
+            }
+          ]
+        }
       }
     },
     {
       "id": "C4-3",
       "type": "this_or_that",
-      "sally": ["Q34"],
+      "sally": [
+        "Q34"
+      ],
       "prompt": "Two pairs of sneakers. Both comfy, both built to last, both in budget. The pair you love costs $80 more. You've watched 11 unboxing videos of it.",
       "privacy": "normal",
       "options": [
-        {"t": "Buy them. I've already worn them in my head.", "axes": {}, "tags": [{"id": "T14A", "s": 2}], "emotion": "delight"},
-        {"t": "The other pair. The 11 videos were the fun part.", "axes": {}, "tags": [{"id": "T14B", "s": 2}], "emotion": "pride"}
+        {
+          "t": "Buy them. I've already worn them in my head.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T14A",
+              "s": 2
+            }
+          ],
+          "emotion": "delight"
+        },
+        {
+          "t": "The other pair. The 11 videos were the fun part.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T14B",
+              "s": 2
+            }
+          ],
+          "emotion": "pride"
+        }
       ],
       "feel": "longing",
       "mask": "looks like a shopping choice; measures paying for the version you love versus the one that does the same job (Sally Q34, T14)",
-      "ae": ["A", "D"],
+      "ae": [
+        "A",
+        "D"
+      ],
       "friend": {
         "prompt": "{name} can afford either pair of sneakers. The favorite pair costs $80 more. Which one?",
-        "a": {"t": "The favorite pair.", "axes": {}, "tags": [{"id": "T14A", "s": 2}]},
-        "b": {"t": "The cheaper pair that does the same job.", "axes": {}, "tags": [{"id": "T14B", "s": 2}]}
+        "a": {
+          "t": "The favorite pair.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T14A",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "The cheaper pair that does the same job.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T14B",
+              "s": 2
+            }
+          ]
+        }
       }
     },
     {
       "id": "C4-7",
       "type": "scenario",
-      "sally": ["Q16"],
+      "sally": [
+        "Q16"
+      ],
       "prompt": "Your team's fundraiser wraps. You pick the MVP, and $100 comes with it. Kai raised the most with one post to 40k followers. Remy raised almost as much, door to door.",
       "teenPrompt": "Your club's fundraiser wraps. You pick the MVP, and a $50 gift card comes with it. Kai raised the most with one post to 4k followers. Remy raised almost as much, door to door.",
       "privacy": "normal",
       "options": [
-        {"t": "Kai. Most raised wins. Those followers didn't build themselves.", "axes": {}, "tags": [{"id": "T15A", "s": 2}]},
-        {"t": "Remy. Kai posted once. The followers did the rest.", "axes": {}, "tags": [{"id": "T15B", "s": 2}]},
-        {"t": "Whoever's broke this month gets it. Kai will survive.", "axes": {}, "tags": [{"id": "T12B", "s": 2}], "emotion": "warmth"},
-        {"t": "Put it to a vote. Majority wins, even if I sulk.", "axes": {"L3": 1}, "tags": []}
+        {
+          "t": "Kai. Most raised wins. Those followers didn't build themselves.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T15A",
+              "s": 2
+            }
+          ]
+        },
+        {
+          "t": "Remy. Kai posted once. The followers did the rest.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T15B",
+              "s": 2
+            }
+          ]
+        },
+        {
+          "t": "Whoever's broke this month gets it. Kai will survive.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T12B",
+              "s": 2
+            }
+          ],
+          "emotion": "warmth"
+        },
+        {
+          "t": "Put it to a vote. Majority wins, even if I sulk.",
+          "axes": {
+            "L3": 1
+          },
+          "tags": []
+        }
       ],
       "feel": "tension",
       "mask": "looks like picking an MVP; measures crediting the result (T15A) versus spotting the head start behind it (T15B), with an award by need (T12B) and a fair-process exit (L3). Sally Q16 reframed in fix pass round 2 (reward the result or look at what made it) so it no longer reads as splitting money and never repeats C3-3's equal-versus-proportional split",
-      "ae": ["A", "B", "C"],
+      "ae": [
+        "A",
+        "B",
+        "C"
+      ],
       "friend": {
         "prompt": "{name} picks the fundraiser MVP. Kai raised the most with one post to 40k followers. Remy raised almost as much, door to door. Who gets it?",
-        "a": {"t": "Kai. Most raised wins.", "axes": {}, "tags": [{"id": "T15A", "s": 2}]},
-        "b": {"t": "Remy. The followers did Kai's work.", "axes": {}, "tags": [{"id": "T15B", "s": 2}]}
+        "a": {
+          "t": "Kai. Most raised wins.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T15A",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "Remy. The followers did Kai's work.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T15B",
+              "s": 2
+            }
+          ]
+        }
       }
     },
     {
@@ -133,16 +454,77 @@
       "prompt": "Money memes that might be about you. Which two are painfully accurate?",
       "privacy": "normal",
       "options": [
-        {"t": "I have a savings goal with a name.", "axes": {"L1": 1}, "tags": [{"id": "T13B", "s": 1}]},
-        {"t": "I've booked something before checking my balance.", "axes": {"L1": -1}, "tags": [{"id": "T13A", "s": 1}]},
-        {"t": "I've watched a 'broke to six figures' video. Twice. Took notes.", "axes": {}, "tags": [{"id": "T15A", "s": 1}]},
-        {"t": "Everything under $20 counts as basically free.", "axes": {}, "tags": [{"id": "T24B", "s": 1}]},
-        {"t": "I could tell you what I spent on boba last month.", "axes": {}, "tags": [{"id": "T24A", "s": 1}]},
-        {"t": "My fun money is gone by the 10th. Somehow.", "axes": {}, "tags": [{"id": "T24B", "s": 1}]}
+        {
+          "t": "I have a savings goal with a name.",
+          "axes": {
+            "L1": 1
+          },
+          "tags": [
+            {
+              "id": "T13B",
+              "s": 1
+            }
+          ]
+        },
+        {
+          "t": "I've booked something before checking my balance.",
+          "axes": {
+            "L1": -1
+          },
+          "tags": [
+            {
+              "id": "T13A",
+              "s": 1
+            }
+          ]
+        },
+        {
+          "t": "I've watched a 'broke to six figures' video. Twice. Took notes.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T15A",
+              "s": 1
+            }
+          ]
+        },
+        {
+          "t": "Everything under $20 counts as basically free.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T24B",
+              "s": 1
+            }
+          ]
+        },
+        {
+          "t": "I could tell you what I spent on boba last month.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T24A",
+              "s": 1
+            }
+          ]
+        },
+        {
+          "t": "My fun money is gone by the 10th. Somehow.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T24B",
+              "s": 1
+            }
+          ]
+        }
       ],
       "feel": "recognition",
       "mask": "looks like a money meme list; measures save versus leap (L1, T13), believing effort pays (T15A) and track versus feel (T24), each slight. Fix pass round 2 dropped the head-start line (C4-2 and C4-7 already carry T15B) so the hot take is not asked twice in three cards",
-      "ae": ["A", "D"]
+      "ae": [
+        "A",
+        "D"
+      ]
     },
     {
       "id": "C4-10",
@@ -151,14 +533,58 @@
       "prompt": "A limited banner drops tonight. Your favorite character, 48 hours only. You have $30 of fun money this month.",
       "privacy": "normal",
       "options": [
-        {"t": "Pull. All of it. Tonight.", "axes": {"L1": -1}, "tags": [{"id": "T13A", "s": 1}]},
-        {"t": "Wait for the rerun. They always come back.", "axes": {}, "tags": [{"id": "T13B", "s": 1}]},
-        {"t": "Skip it. That $30 already has a job.", "axes": {"L1": 1}, "tags": [{"id": "T24A", "s": 1}]},
-        {"t": "Watch a friend pull and scream along for free.", "axes": {}, "tags": [{"id": "T14B", "s": 1}], "emotion": "delight"}
+        {
+          "t": "Pull. All of it. Tonight.",
+          "axes": {
+            "L1": -1
+          },
+          "tags": [
+            {
+              "id": "T13A",
+              "s": 1
+            }
+          ]
+        },
+        {
+          "t": "Wait for the rerun. They always come back.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T13B",
+              "s": 1
+            }
+          ]
+        },
+        {
+          "t": "Skip it. That $30 already has a job.",
+          "axes": {
+            "L1": 1
+          },
+          "tags": [
+            {
+              "id": "T24A",
+              "s": 1
+            }
+          ]
+        },
+        {
+          "t": "Watch a friend pull and scream along for free.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T14B",
+              "s": 1
+            }
+          ],
+          "emotion": "delight"
+        }
       ],
       "feel": "longing",
       "mask": "looks like gacha FOMO; checks the L1 and T13 read (leap now versus hold), with T24 and T14 as side guesses. Runs in the finale (slot 2 per the flow judge), not in this chapter.",
-      "ae": ["A", "D"]
+      "ae": [
+        "A",
+        "D"
+      ]
     }
   ]
 }

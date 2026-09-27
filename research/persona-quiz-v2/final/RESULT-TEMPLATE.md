@@ -12,13 +12,13 @@ Owner-only parts are marked **(only you)**. They never reach the share card or t
 2. **The two halves**: for each of `halves[]`, the half name as a subheading, its `desc`, then three small chips (one per axis) with the pole name. Tapping a chip shows its `line`. A flex chip carries the Flex badge.
 3. **What stings (only you)**: the two `stings`, relationship half first.
 4. **What you love about it**: the two `hearts`.
-5. **Your tags**: up to 5 from `tags[]`, strongest first. For each:
+5. **Your tags**: up to 5 from `tags[]`, in the order given. Strong tags come first, ordered by support. The rest follow by how much of their chance they took: net support divided by the most support the cards this player actually answered could have given that tag (skips, exits, circumstance and "depends" answers do not count toward that most). So a tag whose few cards the player answered all one way can outrank a tag with more support spread over many cards. The list is then swapped, where possible, so the tags come from at least 3 chapters. For each:
    - the tag `name`, with a small label: `strong`, `showing`, or `leaning` (leaning only appears when nothing else fired);
    - "You told Genii:" and up to 3 of the player's own answers from `youToldGenii` (real moments first, then scenarios, then quick picks), each in double quotes (quotes inside an answer become single quotes);
    - the `sting` **(only you)**;
    - the `heart`.
 6. **Genii's calls**: the three `calls[].line`, each on its own line starting with an arrow.
-7. **Plot twist** (only when `plotTwist` is not null) **(only you)**: `plotTwist.line`, which reads "You'd say: '...' Last time, you did: '...'" (or "Put on the spot, you'd go with" when the acted side is a scenario). It comes from a split: quick-pick (believe) answers point one way, real or scenario answers the other, on the same axis or tag pair.
+7. **Plot twist** (only when `plotTwist` is not null) **(only you)**: `plotTwist.line`, which reads "You'd say: '...' Last time, you did: '...'" (or "Put on the spot, you'd go with" when the acted side is a scenario). It comes from a split: quick-pick (believe) answers point one way, real or scenario answers the other, on the same axis or tag pair. An axis split can always be the twist. A tag-pair split can be the twist only when its two quoted cards share a Sally question or a chapter, so the twist never joins two unrelated situations (other tag-pair splits stay in the research record). Among the splits that qualify, one with a real card on the acted side wins, then an axis split before a tag-pair split, then the stronger split.
 8. **Genii's guesses** (the sealed checks; the page heading is "Genii's guesses"): `sealed-results.json` `line`, e.g. "Genii called 5 of 7 exactly (chance about 25%)." Under it, each sealed card: Genii's guess, the player's answer, hit or miss. A pass reads "Genii passed: you're flex here" (or "not enough evidence yet").
 9. **Share card** (see below) and the friend invite button.
 
@@ -36,83 +36,82 @@ No code, no badges, no plot twist, no sealed score.
 
 ## Worked example (synthetic)
 
-Respondent from `node sim.mjs` (`sim-example/`): a consistent adult with a hidden profile of R1 +0.41, R2 +0.53, R3 -0.20, L1 -0.28, L2 +0.35, L3 -0.58 and 20% answer noise. The page below is `sim-example/result.json` and `sim-example/sealed-results.json`, laid out as specified. Note the two misses against the hidden profile (L1 came out Steady, L2 came out Easy with a Flex badge): that is what 20% noise does, and it is why the Flex badge exists.
+Respondent from `node sim.mjs` (`sim-example/`): a consistent adult with a hidden profile of R1 +0.94, R2 -0.28, R3 -0.23, L1 +0.89, L2 -0.32, L3 +0.91 and 20% answer noise. The page below is `sim-example/result.json` and `sim-example/sealed-results.json`, laid out as specified. All six sides match the hidden profile and none is Flex, so there is no badge line under the code. The noise shows in the finale instead: both sealed misses are answers that go against the hidden profile (a Steady player pulling on the banner, an Easy player working at the gate), which Genii could not have called. The plot twist is an axis split (L3), so it qualifies without a shared chapter. The five tags come from chapters 1, 2, 4, 5 and 7.
 
 ---
 
-> **Trash-Talking Cuddle Bug × Chill Personified**
-> WE·DIRECT·OWN | STEADY·EASY·CONTEXT
-> Flex on Easy: *You live on both sides of this one. Genii couldn't call it, and honestly, neither could you.*
+> **Open-Book Golden Retriever × Slow-and-Steady Regular**
+> WE·SOFT·OWN | STEADY·EASY·RULES
 >
-> **Trash-Talking Cuddle Bug**
-> You want your people close, always. You show it by roasting them, saying it straight and writing your own rules for love.
-> `We` `Direct` `Own`
+> **Open-Book Golden Retriever**
+> You love out loud: warm, gentle, all in, and mostly by your own rulebook.
+> `We` `Soft` `Own`
 >
-> **Chill Personified**
-> You don't race anyone's timeline. You go with the flow, but you never blow the budget doing it.
-> `Steady` `Easy (Flex)` `Context`
+> **Slow-and-Steady Regular**
+> Your days run on routine and order, and you're in no rush to prove anything to anyone.
+> `Steady` `Easy` `Rules`
 >
 > **What stings** (only you)
-> - You call them annoying. Your real fear is the day they stop annoying you.
-> - You're not unambitious. Nothing has been worth the grind yet.
+> - You'll break any rule for your people, except the one where you tell them what hurt.
+> - Your life is so steady that some nights you wonder if it's too steady.
 >
 > **What you love about it**
-> - I'm clingy and I tell the truth. You get the full set.
-> - My life doesn't need a progress bar.
+> - I'd rather love too much than too carefully.
+> - I chose my ordinary days. I didn't settle for them.
 >
 > **Your tags**
 >
 > **Limited-edition energy** · strong
-> You told Genii: "Admitted it was over my budget in the chat. Took three drafts." · "'Got a thing tonight.' The thing: my couch. Offered the morning." · "Pretend I'm asleep. Text them first thing at 7am."
+> You told Genii: "Paid my share. Home by 9. Completely peopled out." · "'Got a thing tonight.' The thing: my couch." · "Pretend I'm asleep. Text them first thing at 7am."
 > Sting (only you): Your kindness has a daily cap. When it's gone, it's gone.
 > *I charge myself first, so I have more to give.*
 >
-> **Bends rules for good reasons** · strong
-> You told Genii: "Worked around it quietly. Nobody got hurt." · "The friend having the awful month. They need tonight." · "Draw six. Stacking is the best part of Uno."
-> Sting (only you): You think people made the rules, so the rules should bend for people.
-> *I look at the person, not the form.*
+> **Minimalist on purpose** · strong
+> You told Genii: "Cleared out a few old ones first, then bought it." · "The other pair. The 11 videos were the fun part." · "Ready in six minutes. Hoodie, keys, done."
+> Sting (only you): You saved the money and the time. What exactly are you saving them for?
+> *Less stuff, more room to breathe.*
 >
-> **The honest review nobody asked for** · strong
-> You told Genii: "Told them straight it was wrong. Left on read for two days." · "'The chorus needs work. Want notes before midnight?'" · "Critic: 'Honestly? Not your best. Grow it out.'"
-> Sting (only you): You think the truth is respect. Some people just feel poked.
-> *I'd rather annoy you than lie to you.*
+> **Actually read the rulebook** · strong
+> You told Genii: "Asked whoever's in charge, then went with their answer." · "Pull up the official rules. Read them out loud." · "First to ask gets it. That was the deal."
+> Sting (only you): You trust the process, because you don't trust people to wing it.
+> *Fair isn't cold to me. It's safe.*
 >
-> **Head over heels, eyes open** · strong
-> You told Genii: "Stuck together all night. Basically one person with two phones." · "Envy. Someone else got the good version of them." · "We can do nothing together for hours and it's perfect."
-> Sting (only you): You say you're independent. You still want to be in every part of their day.
-> *I love all the way, and I know where the door is.*
+> **Here, scroll my phone** · strong
+> You told Genii: "Handed my best friend my phone: 'Write the follow-up. Make it chill.'" · "Type mine into their phone before they finish the sentence." · "Always. Come find me. I'm the dot at 4%."
+> Sting (only you): You say you have nothing to hide. You're quietly hoping they have nothing to hide either.
+> *Letting you all the way in is how I feel safe.*
 >
-> **Team healer, IRL** · showing
-> You told Genii: "Got roped into a friend's bake sale. Honestly? Loved it." · "The neighbor's. My plant has a backstory now." · "Someone says 'I need hands' and I'm already putting on shoes."
-> Sting (only you): You want to make the world better. On your own to-do list, you're always last.
-> *I love the world, and I'm practicing loving me too.*
+> **Still loading, and that's fine** · showing
+> You told Genii: "Double-tapped. Forgot it by the next video." · "Don't you dare. Finding out is the fun part." · "Changed plans four times. Happier every time."
+> Sting (only you): You're not against settling down. You just hate being rushed.
+> *My timeline is mine to write.*
 >
 > **Genii's calls**
-> → You've said 'can we do this tomorrow?' and meant it as an act of love.
-> → You've let someone ahead of you in line because they looked stressed.
-> → You've told someone about the spinach in their teeth, mid-conversation.
+> → You've let a call ring out, then texted 'what's up?' ten seconds later.
+> → You've unsubscribed from every store newsletter.
+> → You've actually read the terms and conditions on something.
 >
 > **Plot twist** (only you)
-> You'd say: 'Let AI fix it. Add one typo so it sounds like me.' Last time, you did: 'Voice-noted my closest person. Four minutes, no summary.'
+> You'd say: ‘Eat. Save them a plate and send a photo.’ Last time, you did: ‘Asked whoever's in charge, then went with their answer.’
 >
-> **Genii called 5 of 7 exactly (chance about 25%).**
-> - Crush with the ex on the lock screen: Genii guessed "Honestly? We need to talk about the lock screen." You: "They seem sweet! You look so happy." Miss.
-> - The limited banner: "Wait for the rerun." Hit.
-> - The family holiday: "Karaoke room, takeout, everyone in pajamas." Hit.
-> - The delayed flight: Genii passed, you're flex here.
-> - Slides or video: "Make the video." Hit.
+> **Genii called 6 of 8 exactly (chance about 25%).**
+> - The cilantro plate: "'Perfect, thanks!' Then pick out every leaf for twenty minutes." Hit.
+> - The limited banner: Genii guessed "Skip it. That $30 already has a job." You: "Pull. All of it. Tonight." Miss.
+> - The family holiday: "Yes! Karaoke room, takeout, everyone in pajamas." Hit.
+> - The delayed flight: Genii guessed "Neck pillow on. Asleep at the gate." You: "Laptop out. Ahead on everything by boarding." Miss.
+> - Slides or video: "Make the 10 slides. Done by Tuesday, font size 32." Hit.
 > - Your person's three-month program: "Ask if there's anything like it closer to home." Hit.
-> - The couch at 8am: Genii guessed "Show up, complain the whole way, take the heavy end." You: "Come for an hour, then head back to bed." Miss.
-> - Your coffee spot closes: "Try a different place every day until one clicks." Hit.
+> - The couch at 8am: "Show up at noon, once the heavy stuff is done. Bring pizza." Hit.
+> - Your coffee spot closes: "Go to the closest one and order the exact same thing." Hit.
 
 **Share card**
 
-> **Trash-Talking Cuddle Bug × Chill Personified**
+> **Open-Book Golden Retriever × Slow-and-Steady Regular**
 > Limited-edition energy: *I charge myself first, so I have more to give.*
-> Bends rules for good reasons: *I look at the person, not the form.*
-> The honest review nobody asked for: *I'd rather annoy you than lie to you.*
-> Head over heels, eyes open: *I love all the way, and I know where the door is.*
-> Team healer, IRL: *I love the world, and I'm practicing loving me too.*
+> Minimalist on purpose: *Less stuff, more room to breathe.*
+> Actually read the rulebook: *Fair isn't cold to me. It's safe.*
+> Here, scroll my phone: *Letting you all the way in is how I feel safe.*
+> Still loading, and that's fine: *My timeline is mine to write.*
 >
 > [ Do you really know me? ]
 
@@ -120,4 +119,4 @@ Respondent from `node sim.mjs` (`sim-example/`): a consistent adult with a hidde
 
 ## The friend game from the same result
 
-`node score.mjs friend --rel bestie --stings on` builds `friend-deck.json` for this respondent: Level 1 is six either-or calls with the truth per axis (Flex on L2, so either answer counts there); Level 2 is 12 of their own cards rewritten in third person, with the side their answer maps to (skipped, rushed, circumstance, "depends", locked18 and intimate cards never appear); Level 3 is 12 tag cards (their 5 tags, the 5 opposites, 2 decoys), name and heart only; Level 4 is 4 sting lines (1 true) and 6 preset roasts. The friend never sees stings except in that opt-in bestie round.
+`node score.mjs friend --rel bestie --stings on` builds `friend-deck.json` for this respondent: Level 1 is six either-or calls with the truth per axis (no side is Flex here; a Flex or unfinished side would accept either answer), worded from the set that fits the relationship (a friend or coworker gets the everyday set, with no love or family wording); Level 2 is 12 of their own cards rewritten in third person, with the side their answer maps to (skipped, rushed, circumstance, "depends", locked18 and intimate cards never appear); Level 3 is 12 tag cards (their 5 tags, the 5 opposites, 2 decoys), name and heart only; Level 4 is 4 sting lines (1 true) and 6 of the 13 preset roasts. The friend never sees stings except in that opt-in bestie round.

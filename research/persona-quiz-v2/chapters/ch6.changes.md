@@ -127,3 +127,7 @@ C6-6, C6-3, C6-10, C6-9, C6-4, C6-5, C6-2, C6-1, C6-8, C6-7. C6-S1 moves to the 
 - **C6-2 circumstance:** "Their money, their rules." became "They were paying for it.", one fewer "money says no" line.
 
 Maximum support (adult): T21A 2.70, T21B 2.70, T11B 2.80 to 3.25, T20A 2.45 to 3.00, T18A 3.00, T18B 2.80.
+
+## Release check 2026-09-26
+- C6-3: prompt, teen prompt and friend prompt now describe a couple who swap roles every year; option 1 is "Love it for them. Mine will run the way I grew up." Evidence unchanged.
+- C6-11: prompt is now a 50th anniversary party, so adults no longer get three wedding cards in one chapter. Options and evidence unchanged.

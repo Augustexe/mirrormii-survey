@@ -139,11 +139,11 @@
       {
         "id": "C1-6",
         "chapter": 1,
-        "prompt": "Riley and an old close friend haven't texted in four months. How does Riley feel?",
-        "a": "Fine. Riley didn't text either.",
-        "b": "It stings. Someone should've texted.",
+        "prompt": "Riley and an old close friend haven't texted in four months. What does Riley do?",
+        "a": "Sends a random pic, no hello, like they never stopped.",
+        "b": "Waits. The last text was Riley's.",
         "answer": "b",
-        "ownerSaid": "Kind of stings. Someone should've texted. Them.",
+        "ownerSaid": "Like their story. Let them take it from there.",
         "weight": 0.45
       },
       {
@@ -159,11 +159,11 @@
       {
         "id": "C3-12",
         "chapter": 3,
-        "prompt": "Riley's person tells the same party story every time, and it stopped landing months ago. Riley...",
-        "a": "Says it on the ride home: 'Retire the bear.'",
-        "b": "Laughs like it's the first time, every time.",
+        "prompt": "Riley's person makes a joke about Riley in front of everyone, and it stings. Riley...",
+        "a": "Says it right there: 'Okay, that one hurt.'",
+        "b": "Laughs it off. They meant well.",
         "answer": "b",
-        "ownerSaid": "Jumped in and told it with them, only faster.",
+        "ownerSaid": "Went quiet until they asked what was wrong.",
         "weight": 0.8
       },
       {
@@ -190,21 +190,21 @@
         "id": "C6-8",
         "chapter": 6,
         "prompt": "Riley's sibling keeps needing a rescue, and the parents say 'help, you're family.' Riley is the…",
-        "a": "Safety net, every single time.",
+        "a": "Bank. Open 24/7, no questions.",
         "b": "Deadline. 'Last time' comes with an actual date.",
         "answer": "b",
-        "ownerSaid": "Ghost. Suddenly busy whenever they call.",
+        "ownerSaid": "Landlord. I help. Rent is my dishes for a week.",
         "weight": 0.45
       },
       {
-        "id": "C2-2",
-        "chapter": 2,
-        "prompt": "Last time a friend's plan cost way more than Riley wanted to spend, they...",
-        "a": "Went, paid, and lived on noodles after.",
-        "b": "Admitted it was over budget, after three drafts.",
-        "answer": "b",
-        "ownerSaid": "Invented a clash. Sent a very long, very sweet message instead.",
-        "weight": 0.8
+        "id": "C1-8",
+        "chapter": 1,
+        "prompt": "Riley owes someone a real apology. AI could word it better. What does Riley send?",
+        "a": "The AI version, plus one fake typo.",
+        "b": "Their own version. 40 minutes, six sorries.",
+        "answer": "a",
+        "ownerSaid": "Let AI fix it. Add one typo so it sounds like me.",
+        "weight": 0.45
       },
       {
         "id": "C3-5",
@@ -266,16 +266,16 @@
     "fewTagsLine": null,
     "cards": [
       {
-        "id": "T17A",
+        "id": "T22B",
         "role": "opposite",
-        "name": "Needs a save point",
-        "heart": "Wanting solid ground is how I take care of myself."
+        "name": "Same order, every time",
+        "heart": "I don't need new. I need mine."
       },
       {
-        "id": "T13A",
+        "id": "T01A",
         "role": "true",
-        "name": "Books it, figures it out later",
-        "heart": "My best stories start with 'okay, this is a bad idea, but'."
+        "name": "Here, scroll my phone",
+        "heart": "Letting you all the way in is how I feel safe."
       },
       {
         "id": "T25A",
@@ -284,10 +284,10 @@
         "heart": "Fair isn't cold to me. It's safe."
       },
       {
-        "id": "T03A",
+        "id": "T17B",
         "role": "true",
-        "name": "Tells the AI first",
-        "heart": "Feeling understood counts, wherever it comes from."
+        "name": "Still loading, and that's fine",
+        "heart": "My timeline is mine to write."
       },
       {
         "id": "T25B",
@@ -296,16 +296,16 @@
         "heart": "I look at the person, not the form."
       },
       {
-        "id": "T08B",
+        "id": "T05B",
         "role": "decoy",
-        "name": "Keeps the receipts",
-        "heart": "I look after the person who got hurt first."
+        "name": "Writes the birthday paragraph",
+        "heart": "If I feel it, you're going to read it."
       },
       {
-        "id": "T03B",
+        "id": "T17A",
         "role": "opposite",
-        "name": "Typos and all, my own words",
-        "heart": "My messy real words are the truest version of me."
+        "name": "Needs a save point",
+        "heart": "Wanting solid ground is how I take care of myself."
       },
       {
         "id": "T09B",
@@ -314,10 +314,10 @@
         "heart": "I'm me first. Then I'm someone's someone."
       },
       {
-        "id": "T13B",
+        "id": "T01B",
         "role": "opposite",
-        "name": "Rainy-day fund devotee",
-        "heart": "Being ready is how I relax."
+        "name": "My passcode, my dignity",
+        "heart": "My privacy doesn't owe anyone an explanation."
       },
       {
         "id": "T09A",
@@ -326,16 +326,16 @@
         "heart": "I love all the way, and I know where the door is."
       },
       {
-        "id": "T17B",
+        "id": "T22A",
         "role": "true",
-        "name": "Still loading, and that's fine",
-        "heart": "My timeline is mine to write."
+        "name": "Always has a flight tab open",
+        "heart": "Going far is how I see myself clearly."
       },
       {
-        "id": "T04B",
+        "id": "T18B",
         "role": "decoy",
-        "name": "Mayor of every group chat",
-        "heart": "Nobody stays a stranger for long around me."
+        "name": "Helps, with an end date",
+        "heart": "Helping someone stand on their own is still love."
       }
     ]
   },
@@ -345,24 +345,24 @@
       "prompt": "Which of these 4 lines would leave Riley speechless for three seconds?",
       "lines": [
         {
-          "tag": "T14A",
-          "t": "You say it's just for you. You still notice exactly who noticed.",
+          "tag": "T07B",
+          "t": "You wrap the truth in so much sugar that some people only taste the sugar.",
           "true": false
         },
         {
-          "tag": "T18A",
-          "t": "You're everyone's plan B. Your own plan A keeps moving to next month.",
+          "tag": "T16A",
+          "t": "You say it's just a job. You're quietly keeping score of every win.",
+          "true": false
+        },
+        {
+          "tag": "T14B",
+          "t": "You saved the money and the time. What exactly are you saving them for?",
           "true": false
         },
         {
           "tag": "T25B",
           "t": "You think people made the rules, so the rules should bend for people.",
           "true": true
-        },
-        {
-          "tag": "T12B",
-          "t": "To you, fair isn't paying the same. It's straining the same.",
-          "true": false
         }
       ]
     },
@@ -376,34 +376,34 @@
           "ownersTag": false
         },
         {
-          "id": "R05",
-          "tag": "T08B",
-          "t": "Forgave everyone years ago. The screenshots folder did not.",
+          "id": "R04",
+          "tag": "T06A",
+          "t": "Says 'I'm saving this month.' Pays for everyone's bubble tea anyway.",
+          "ownersTag": "fired, not shown"
+        },
+        {
+          "id": "R01",
+          "tag": "T02A",
+          "t": "Answers texts on a three-to-five business day schedule. Still my favorite.",
           "ownersTag": false
         },
         {
           "id": "R12",
           "tag": "T22B",
           "t": "Has ordered the exact same thing at our spot since the day we met.",
-          "ownersTag": false
+          "ownersTag": "opposite"
         },
         {
-          "id": "R08",
-          "tag": "T13A",
-          "t": "Booked the flight first. Checked the bank app second. Maybe.",
-          "ownersTag": true
+          "id": "R05",
+          "tag": "T08B",
+          "t": "Forgave everyone years ago. The screenshots folder did not.",
+          "ownersTag": false
         },
         {
           "id": "R06",
           "tag": "T09A",
           "t": "Says 'we're keeping it casual.' Already knows their coffee order by heart.",
           "ownersTag": true
-        },
-        {
-          "id": "R11",
-          "tag": "T24A",
-          "t": "Made a spreadsheet for the group trip. It has tabs. Plural.",
-          "ownersTag": false
         }
       ]
     }

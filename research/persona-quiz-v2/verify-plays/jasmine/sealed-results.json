@@ -3,24 +3,24 @@
   "rows": [
     {
       "id": "C2-10",
-      "predicted": 1,
-      "predictedText": "\"They seem sweet! You look so happy.\"",
+      "predicted": 2,
+      "predictedText": "\"The fries are amazing! The rest is, um, a lot of cilantro?\"",
       "answer": 2,
-      "answerText": "Smile now. Bring up the lock screen later, just the two of you.",
-      "status": "miss",
-      "exact": false,
+      "answerText": "\"The fries are amazing! The rest is, um, a lot of cilantro?\"",
+      "status": "hit",
+      "exact": true,
       "sideHit": true,
       "passWhy": null,
       "options": 4
     },
     {
       "id": "C4-10",
-      "predicted": 1,
-      "predictedText": "Wait for the rerun. They always come back.",
+      "predicted": 2,
+      "predictedText": "Skip it. That $30 already has a job.",
       "answer": 1,
       "answerText": "Wait for the rerun. They always come back.",
-      "status": "hit",
-      "exact": true,
+      "status": "miss",
+      "exact": false,
       "sideHit": null,
       "passWhy": null,
       "options": 4
@@ -31,10 +31,10 @@
       "predictedText": "Yes! Karaoke room, takeout, everyone in pajamas.",
       "answer": 2,
       "answerText": "Keep the one dish that matters. Reinvent the rest.",
-      "status": "miss",
+      "status": "pass",
       "exact": false,
       "sideHit": true,
-      "passWhy": null,
+      "passWhy": "R3 is flex",
       "options": 4
     },
     {
@@ -98,15 +98,15 @@
       "options": 4
     }
   ],
-  "called": 8,
+  "called": 7,
   "exact": 4,
-  "exactRate": 0.5,
+  "exactRate": 0.571,
   "exactChance": 0.25,
-  "side": 6,
-  "sideOf": 6,
+  "side": 5,
+  "sideOf": 5,
   "sideRate": 1,
   "sideChance": 0.5,
-  "passes": 0,
-  "line": "Genii called 4 of 8 exactly (chance about 25%).",
-  "sha256": "fedac1a680a39555b027ba7dbcdde313717c8a2f8222dc1d89584553663de1b4"
+  "passes": 1,
+  "line": "Genii called 4 of 7 exactly (chance about 25%).",
+  "sha256": "c7c40003fac98e0a6da104f9ae2f6a1b41a6f3b3af865f46a4711372e8f0b7b0"
 }

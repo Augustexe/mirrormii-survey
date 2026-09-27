@@ -7,8 +7,8 @@
     "stingLines": true
   },
   "owner": {
-    "type": "Open-Book Golden Retriever × Chill Personified",
-    "code": "We·Soft·Own | Steady·Easy·Context",
+    "type": "Human Weighted Blanket × Chill Personified",
+    "code": "We·Soft·Classic | Steady·Easy·Context",
     "pronoun": "she"
   },
   "level1": [
@@ -67,10 +67,10 @@
           "t": "A remix: her own rituals, her own rules, no template."
         }
       ],
-      "truth": -1,
-      "truthLabel": "Own",
-      "acceptEither": false,
-      "why": null
+      "truth": 1,
+      "truthLabel": "Classic",
+      "acceptEither": true,
+      "why": "flex"
     },
     {
       "axis": "L1",
@@ -139,11 +139,11 @@
       {
         "id": "C1-6",
         "chapter": 1,
-        "prompt": "Jasmine and an old close friend haven't texted in four months. How does Jasmine feel?",
-        "a": "Fine. Jasmine didn't text either.",
-        "b": "It stings. Someone should've texted.",
+        "prompt": "Jasmine and an old close friend haven't texted in four months. What does Jasmine do?",
+        "a": "Sends a random pic, no hello, like they never stopped.",
+        "b": "Waits. The last text was Jasmine's.",
         "answer": "b",
-        "ownerSaid": "Kind of stings. Someone should've texted. Them.",
+        "ownerSaid": "Like their story. Let them take it from there.",
         "weight": 0.45
       },
       {
@@ -173,7 +173,7 @@
         "a": "Share every free evening and narrate the whole day.",
         "b": "Keep some nights solo, no explaining needed.",
         "answer": "a",
-        "ownerSaid": "We can do nothing together for hours and it's perfect. + They get a play-by-play of my day. Photos of lunch included.",
+        "ownerSaid": "If they're free, I'm suddenly free too. + They get a play-by-play of my day. Photos of lunch included.",
         "weight": 0.45
       },
       {
@@ -190,7 +190,7 @@
         "id": "C6-8",
         "chapter": 6,
         "prompt": "Jasmine's sibling keeps needing a rescue, and the parents say 'help, you're family.' Jasmine is the…",
-        "a": "Safety net, every single time.",
+        "a": "Bank. Open 24/7, no questions.",
         "b": "Deadline. 'Last time' comes with an actual date.",
         "answer": "a",
         "ownerSaid": "Grumbler. I help, then vent about it all week.",
@@ -201,7 +201,7 @@
         "chapter": 2,
         "prompt": "Last time a friend's plan cost way more than Jasmine wanted to spend, she...",
         "a": "Went, paid, and lived on noodles after.",
-        "b": "Admitted it was over budget, after three drafts.",
+        "b": "Paid her share, then was home by 9. Peopled out.",
         "answer": "a",
         "ownerSaid": "Went, paid, and ate instant noodles for a week.",
         "weight": 0.8
@@ -266,40 +266,10 @@
     "fewTagsLine": null,
     "cards": [
       {
-        "id": "T07B",
-        "role": "true",
-        "name": "Compliment sandwich chef",
-        "heart": "I say it softly so you can actually hear it."
-      },
-      {
-        "id": "T10B",
+        "id": "T22A",
         "role": "opposite",
-        "name": "Knows when to log off",
-        "heart": "Leaving kindly is still kind."
-      },
-      {
-        "id": "T04A",
-        "role": "true",
-        "name": "Close Friends list: 4",
-        "heart": "The ones I choose always know it."
-      },
-      {
-        "id": "T07A",
-        "role": "opposite",
-        "name": "The honest review nobody asked for",
-        "heart": "I'd rather annoy you than lie to you."
-      },
-      {
-        "id": "T06B",
-        "role": "opposite",
-        "name": "Limited-edition energy",
-        "heart": "I charge myself first, so I have more to give."
-      },
-      {
-        "id": "T06A",
-        "role": "true",
-        "name": "Yes first, bank app later",
-        "heart": "Breaking my own rules for my people? No regrets."
+        "name": "Always has a flight tab open",
+        "heart": "Going far is how I see myself clearly."
       },
       {
         "id": "T10A",
@@ -308,34 +278,64 @@
         "heart": "I don't quit on people I chose."
       },
       {
+        "id": "T06B",
+        "role": "opposite",
+        "name": "Limited-edition energy",
+        "heart": "I charge myself first, so I have more to give."
+      },
+      {
+        "id": "T03B",
+        "role": "true",
+        "name": "Typos and all, my own words",
+        "heart": "My messy real words are the truest version of me."
+      },
+      {
+        "id": "T06A",
+        "role": "true",
+        "name": "Yes first, bank app later",
+        "heart": "Breaking my own rules for my people? No regrets."
+      },
+      {
         "id": "T14B",
         "role": "decoy",
         "name": "Minimalist on purpose",
         "heart": "Less stuff, more room to breathe."
       },
       {
-        "id": "T09B",
+        "id": "T03A",
         "role": "opposite",
-        "name": "Dating, not merging",
-        "heart": "I'm me first. Then I'm someone's someone."
+        "name": "Tells the AI first",
+        "heart": "Feeling understood counts, wherever it comes from."
       },
       {
-        "id": "T04B",
+        "id": "T07A",
         "role": "opposite",
-        "name": "Mayor of every group chat",
-        "heart": "Nobody stays a stranger for long around me."
+        "name": "The honest review nobody asked for",
+        "heart": "I'd rather annoy you than lie to you."
       },
       {
-        "id": "T01B",
-        "role": "decoy",
-        "name": "My passcode, my dignity",
-        "heart": "My privacy doesn't owe anyone an explanation."
+        "id": "T10B",
+        "role": "opposite",
+        "name": "Knows when to log off",
+        "heart": "Leaving kindly is still kind."
       },
       {
-        "id": "T09A",
+        "id": "T07B",
         "role": "true",
-        "name": "Head over heels, eyes open",
-        "heart": "I love all the way, and I know where the door is."
+        "name": "Compliment sandwich chef",
+        "heart": "I say it softly so you can actually hear it."
+      },
+      {
+        "id": "T22B",
+        "role": "true",
+        "name": "Same order, every time",
+        "heart": "I don't need new. I need mine."
+      },
+      {
+        "id": "T20B",
+        "role": "decoy",
+        "name": "Writes my own house rules",
+        "heart": "No script is the gift I gave myself."
       }
     ]
   },
@@ -345,8 +345,13 @@
       "prompt": "Which of these 4 lines would leave Jasmine speechless for three seconds?",
       "lines": [
         {
-          "tag": "T13A",
-          "t": "You call it a calculated risk. You did the math afterward.",
+          "tag": "T15B",
+          "t": "You can spot who had family help from across the room. The effort story doesn't fool you.",
+          "true": false
+        },
+        {
+          "tag": "T14A",
+          "t": "You say it's just for you. You still notice exactly who noticed.",
           "true": false
         },
         {
@@ -355,13 +360,8 @@
           "true": true
         },
         {
-          "tag": "T17A",
-          "t": "Friends your age settle down and you say you're fine. You've already started a plan.",
-          "true": false
-        },
-        {
-          "tag": "T05B",
-          "t": "You'll write them five paragraphs. Helping them move is a separate negotiation.",
+          "tag": "T05A",
+          "t": "You'll tell them they were wrong. Then you'll pick up their 2am call.",
           "true": false
         }
       ]
@@ -370,15 +370,21 @@
       "prompt": "Pick the roast Jasmine would laugh at hardest.",
       "lines": [
         {
-          "id": "R07",
-          "tag": "T12A",
-          "t": "Sent me a payment request for $3.47. For fries. With a fries emoji.",
+          "id": "R09",
+          "tag": "T16A",
+          "t": "Calls it 'just a side project.' It has a logo and a five-year plan.",
           "ownersTag": false
         },
         {
-          "id": "R12",
-          "tag": "T22B",
-          "t": "Has ordered the exact same thing at our spot since the day we met.",
+          "id": "R13",
+          "tag": "T14B",
+          "t": "Bragged about a $12 dupe for a full week. Unprompted.",
+          "ownersTag": false
+        },
+        {
+          "id": "R08",
+          "tag": "T13A",
+          "t": "Booked the flight first. Checked the bank app second. Maybe.",
           "ownersTag": false
         },
         {
@@ -394,15 +400,9 @@
           "ownersTag": "opposite"
         },
         {
-          "id": "R02",
-          "tag": "T04B",
-          "t": "Knows the barista's name, the barista's dog's name and its birthday.",
-          "ownersTag": "opposite"
-        },
-        {
-          "id": "R06",
-          "tag": "T09A",
-          "t": "Says 'we're keeping it casual.' Already knows their coffee order by heart.",
+          "id": "R12",
+          "tag": "T22B",
+          "t": "Has ordered the exact same thing at our spot since the day we met.",
           "ownersTag": true
         }
       ]

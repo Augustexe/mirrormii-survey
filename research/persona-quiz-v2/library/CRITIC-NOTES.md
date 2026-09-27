@@ -164,3 +164,11 @@ Rule for every new call (flow judge): a behavior no card offers, checkable in th
 ### final/friend.json Level 4
 
 - Added roast R13 (tag T14B, never T14A "Skips the dupe"): "Bragged about a $12 dupe for a full week. Unprompted." This brings back the judges' favorite dropped C4-8 line as a non-scoring preset. It roasts a move, not looks, body or health. The show rule now reads "6 of the 13 lines". score.mjs already takes the tied lines first, then random others, and slices to 6, so no scorer change is needed. The spec still says 12 in its friend-game Level 4 row ("6 of 12 preset lines", about line 271) and its roast comparison row (about line 315); the integrator should update both.
+
+## Release check 2026-09-26
+
+The release judge played the adult and teen runs and read every result line (verdict fix-then-ship). Applied by script (`quiz-v2-tools/apply-release.cjs`):
+- Blockers: C6-3 now a role-swap couple (the old setup read as a traditional home, so two options were the same answer; option 1 no longer names "classic"). C7-4 option 0 is "Asked whoever's in charge, then went with their answer." (asking for an exception is the Context side, not Rules).
+- Calls: T12B and T13A calls that described the opposite tag; T01A and T20A calls that replayed C1-2 and C6-3; T19A (teen-safe); T03A (predicted a feature the test lacks); T18B (vague); T25B and T25A (replayed the L3 coffee-line extra).
+- Lines: T15A heart (read as a sting), T17A sting (echoed C5-7), Open-Book Golden Retriever sting (clashed with Limited-edition energy).
+- Friend game: C5-4 and C5-2 teenOk false (their friend prompts describe the adult version); bestie 0 to 1 band now has the friend buying the bubble tea, matching the invite.

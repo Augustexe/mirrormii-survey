@@ -16,7 +16,7 @@
       "side": "relationship",
       "name": "Old-School Final Boss",
       "code": "Me·Direct·Classic",
-      "desc": "You believe in the classic way to love and live, but nobody, ever, makes your decisions for you.",
+      "desc": "You believe in the classic way to love and live, but the final call on your life is yours.",
       "axes": [
         {
           "axis": "R1",
@@ -45,7 +45,7 @@
       "side": "life",
       "name": "Color-Coded Overachiever",
       "code": "Steady·Push·Rules",
-      "desc": "You want big wins, and every step toward them is planned, checked and done by the book.",
+      "desc": "You want big wins, and you like the steps to them planned, checked and done by the book.",
       "axes": [
         {
           "axis": "L1",
@@ -73,40 +73,40 @@
   ],
   "stings": [
     "You want old-school love without handing over any of the control.",
-    "Your plan is flawless. You just keep not pressing start."
+    "You hit the goal and start the next list before you celebrate this one."
   ],
   "hearts": [
     "I can want tradition and freedom. Both. At once.",
-    "Slow, maybe. But every step I take counts."
+    "Big goals, small steps. Every one of them counts."
   ],
   "tags": [
     {
-      "id": "T06B",
-      "name": "Limited-edition energy",
+      "id": "T07A",
+      "name": "The honest review nobody asked for",
       "strength": "strong",
-      "heart": "I charge myself first, so I have more to give.",
-      "sting": "Your kindness has a daily cap. When it's gone, it's gone.",
+      "heart": "I'd rather annoy you than lie to you.",
+      "sting": "You think the truth is respect. Some people just feel poked.",
       "stingOwnerOnly": true,
       "youToldGenii": [
         {
-          "card": "C2-2",
+          "card": "C2-5",
           "chapter": 2,
-          "said": "Admitted it was over my budget in the chat. Took three drafts.",
+          "said": "Told them straight it was wrong. Left on read for two days.",
           "grade": "did",
           "rushed": false
         },
         {
-          "card": "C5-5",
-          "chapter": 5,
-          "said": "Sent my notes and a 'you got this,' then logged off.",
-          "grade": "did",
-          "rushed": false
-        },
-        {
-          "card": "C2-7",
+          "card": "C2-1",
           "chapter": 2,
-          "said": "\"I'm fading. Can we do this properly tomorrow?\"",
+          "said": "\"The chorus needs work. Want notes before midnight?\"",
           "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C2-8",
+          "chapter": 2,
+          "said": "Truth-teller: \"There's a party. You're not on the list. Sorry.\"",
+          "grade": "believe",
           "rushed": false
         }
       ],
@@ -136,70 +136,6 @@
         }
       ],
       "evidenceCards": 2
-    },
-    {
-      "id": "T20A",
-      "name": "Modern for you, classic for me",
-      "strength": "strong",
-      "heart": "I can hold new ideas and old wishes at the same time.",
-      "sting": "Other people can split things however they like. In your own home, you want the classic version.",
-      "stingOwnerOnly": true,
-      "youToldGenii": [
-        {
-          "card": "C6-1",
-          "chapter": 6,
-          "said": "Run it like home: nobody sits till the dishes are done.",
-          "grade": "would",
-          "rushed": false
-        },
-        {
-          "card": "C6-3",
-          "chapter": 6,
-          "said": "Love it for them. Mine would run classic.",
-          "grade": "believe",
-          "rushed": false
-        },
-        {
-          "card": "C6-7",
-          "chapter": 6,
-          "said": "Every relative there, even the ones I can't name.",
-          "grade": "believe",
-          "rushed": false
-        }
-      ],
-      "evidenceCards": 4
-    },
-    {
-      "id": "T07A",
-      "name": "The honest review nobody asked for",
-      "strength": "strong",
-      "heart": "I'd rather annoy you than lie to you.",
-      "sting": "You think the truth is respect. Some people just feel poked.",
-      "stingOwnerOnly": true,
-      "youToldGenii": [
-        {
-          "card": "C2-5",
-          "chapter": 2,
-          "said": "Told them straight it was wrong. Left on read for two days.",
-          "grade": "did",
-          "rushed": false
-        },
-        {
-          "card": "C2-1",
-          "chapter": 2,
-          "said": "\"The chorus needs work. Want notes before midnight?\"",
-          "grade": "would",
-          "rushed": false
-        },
-        {
-          "card": "C2-8",
-          "chapter": 2,
-          "said": "Stylist: \"The back works. The front, not yet.\"",
-          "grade": "believe",
-          "rushed": false
-        }
-      ],
-      "evidenceCards": 3
     },
     {
       "id": "T25A",
@@ -232,28 +168,78 @@
         }
       ],
       "evidenceCards": 4
+    },
+    {
+      "id": "T10A",
+      "name": "Relationship mechanic",
+      "strength": "showing",
+      "heart": "I don't quit on people I chose.",
+      "sting": "You'll fix what's broken, including things that aren't yours to fix.",
+      "stingOwnerOnly": true,
+      "youToldGenii": [
+        {
+          "card": "C3-5",
+          "chapter": 3,
+          "said": "Sat them down and made an actual deal.",
+          "grade": "did",
+          "rushed": false
+        },
+        {
+          "card": "C5-10",
+          "chapter": 5,
+          "said": "Make a shared doc with deadlines a day early. Secretly.",
+          "grade": "believe",
+          "rushed": false
+        }
+      ],
+      "evidenceCards": 2
+    },
+    {
+      "id": "T02A",
+      "name": "Leaves you on read, still loves you",
+      "strength": "showing",
+      "heart": "Missing you doesn't need a daily check-in.",
+      "sting": "Months of silence feel normal to you. The other person might think you drifted.",
+      "stingOwnerOnly": true,
+      "youToldGenii": [
+        {
+          "card": "C1-11",
+          "chapter": 1,
+          "said": "Forgot about it. They'd answer eventually.",
+          "grade": "did",
+          "rushed": false
+        },
+        {
+          "card": "C1-6",
+          "chapter": 1,
+          "said": "Send a random pic, no hello. Like we never stopped.",
+          "grade": "believe",
+          "rushed": false
+        }
+      ],
+      "evidenceCards": 2
     }
   ],
   "calls": [
     {
-      "line": "You've said 'can we do this tomorrow?' and meant it as an act of love.",
-      "fromTag": "T06B"
+      "line": "You've told someone about the spinach in their teeth, mid-conversation.",
+      "fromTag": "T07A"
     },
     {
-      "line": "You've made a big decision and told your family afterward.",
+      "line": "You've gone against the family vote and still made it home for dinner that week.",
       "fromTag": "T19A"
     },
     {
-      "line": "You'll defend any couple's setup and still picture a classic one for yourself.",
-      "fromTag": "T20A"
+      "line": "You've actually read the terms and conditions on something.",
+      "fromTag": "T25A"
     }
   ],
   "plotTwist": {
-    "line": "You'd say: ‘The one I love. Smaller paycheck, happier Mondays.’ Put on the spot, you'd go with: ‘Straight into savings. Future me says thanks.’",
+    "line": "You'd say: ‘The brand-new one. Day one, I'm googling everything.’ Put on the spot, you'd go with: ‘Straight into savings. Future me says thanks.’",
     "dim": "L1",
     "said": {
       "card": "C5-2",
-      "text": "The one I love. Smaller paycheck, happier Mondays."
+      "text": "The brand-new one. Day one, I'm googling everything."
     },
     "did": {
       "card": "C4-1",
@@ -266,24 +252,24 @@
     "typeName": "Old-School Final Boss × Color-Coded Overachiever",
     "tags": [
       {
-        "name": "Limited-edition energy",
-        "heart": "I charge myself first, so I have more to give."
+        "name": "The honest review nobody asked for",
+        "heart": "I'd rather annoy you than lie to you."
       },
       {
         "name": "Moves out, still calls on Sundays",
         "heart": "Loving them and obeying them are two different things."
       },
       {
-        "name": "Modern for you, classic for me",
-        "heart": "I can hold new ideas and old wishes at the same time."
-      },
-      {
-        "name": "The honest review nobody asked for",
-        "heart": "I'd rather annoy you than lie to you."
-      },
-      {
         "name": "Actually read the rulebook",
         "heart": "Fair isn't cold to me. It's safe."
+      },
+      {
+        "name": "Relationship mechanic",
+        "heart": "I don't quit on people I chose."
+      },
+      {
+        "name": "Leaves you on read, still loves you",
+        "heart": "Missing you doesn't need a daily check-in."
       }
     ],
     "invite": "Do you really know me?"

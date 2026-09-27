@@ -139,11 +139,11 @@
       {
         "id": "C1-6",
         "chapter": 1,
-        "prompt": "Jordan and an old close friend haven't texted in four months. How does Jordan feel?",
-        "a": "Fine. Jordan didn't text either.",
-        "b": "It stings. Someone should've texted.",
+        "prompt": "Jordan and an old close friend haven't texted in four months. What does Jordan do?",
+        "a": "Sends a random pic, no hello, like they never stopped.",
+        "b": "Waits. The last text was Jordan's.",
         "answer": "a",
-        "ownerSaid": "Totally fine. I also didn't text for four months.",
+        "ownerSaid": "Send a random pic, no hello. Like we never stopped.",
         "weight": 0.45
       },
       {
@@ -190,21 +190,21 @@
         "id": "C6-8",
         "chapter": 6,
         "prompt": "Jordan's sibling keeps needing a rescue, and the parents say 'help, you're family.' Jordan is the…",
-        "a": "Safety net, every single time.",
+        "a": "Bank. Open 24/7, no questions.",
         "b": "Deadline. 'Last time' comes with an actual date.",
         "answer": "b",
         "ownerSaid": "Deadline. 'Last time' comes with an actual date.",
         "weight": 0.45
       },
       {
-        "id": "C2-2",
-        "chapter": 2,
-        "prompt": "Last time a friend's plan cost way more than Jordan wanted to spend, he...",
-        "a": "Went, paid, and lived on noodles after.",
-        "b": "Admitted it was over budget, after three drafts.",
-        "answer": "b",
-        "ownerSaid": "Admitted it was over my budget in the chat. Took three drafts.",
-        "weight": 0.8
+        "id": "C1-1",
+        "chapter": 1,
+        "prompt": "In the main group chat, Jordan is the one who…",
+        "a": "Adds new people: \"Everyone, this is Sam.\"",
+        "b": "Screenshots it all to two favorites.",
+        "answer": "a",
+        "ownerSaid": "Recruiter. \"Everyone, this is Sam. Be nice.\"",
+        "weight": 0.45
       },
       {
         "id": "C3-5",
@@ -266,52 +266,16 @@
     "fewTagsLine": null,
     "cards": [
       {
-        "id": "T20B",
-        "role": "opposite",
-        "name": "Writes my own house rules",
-        "heart": "No script is the gift I gave myself."
-      },
-      {
-        "id": "T07A",
-        "role": "true",
-        "name": "The honest review nobody asked for",
-        "heart": "I'd rather annoy you than lie to you."
-      },
-      {
-        "id": "T06A",
-        "role": "opposite",
-        "name": "Yes first, bank app later",
-        "heart": "Breaking my own rules for my people? No regrets."
-      },
-      {
-        "id": "T25A",
-        "role": "true",
-        "name": "Actually read the rulebook",
-        "heart": "Fair isn't cold to me. It's safe."
-      },
-      {
-        "id": "T06B",
-        "role": "true",
-        "name": "Limited-edition energy",
-        "heart": "I charge myself first, so I have more to give."
-      },
-      {
-        "id": "T02B",
-        "role": "decoy",
-        "name": "Waiting for you to text first",
-        "heart": "Wanting to be thought of isn't embarrassing."
-      },
-      {
         "id": "T25B",
         "role": "opposite",
         "name": "Bends rules for good reasons",
         "heart": "I look at the person, not the form."
       },
       {
-        "id": "T19B",
-        "role": "opposite",
-        "name": "Runs it by the family group chat",
-        "heart": "My family is part of my 'we', and I like it that way."
+        "id": "T10A",
+        "role": "true",
+        "name": "Relationship mechanic",
+        "heart": "I don't quit on people I chose."
       },
       {
         "id": "T07B",
@@ -320,22 +284,58 @@
         "heart": "I say it softly so you can actually hear it."
       },
       {
+        "id": "T02A",
+        "role": "true",
+        "name": "Leaves you on read, still loves you",
+        "heart": "Missing you doesn't need a daily check-in."
+      },
+      {
+        "id": "T07A",
+        "role": "true",
+        "name": "The honest review nobody asked for",
+        "heart": "I'd rather annoy you than lie to you."
+      },
+      {
+        "id": "T08B",
+        "role": "decoy",
+        "name": "Keeps the receipts",
+        "heart": "I look after the person who got hurt first."
+      },
+      {
+        "id": "T02B",
+        "role": "opposite",
+        "name": "Waiting for you to text first",
+        "heart": "Wanting to be thought of isn't embarrassing."
+      },
+      {
+        "id": "T19B",
+        "role": "opposite",
+        "name": "Runs it by the family group chat",
+        "heart": "My family is part of my 'we', and I like it that way."
+      },
+      {
+        "id": "T10B",
+        "role": "opposite",
+        "name": "Knows when to log off",
+        "heart": "Leaving kindly is still kind."
+      },
+      {
         "id": "T19A",
         "role": "true",
         "name": "Moves out, still calls on Sundays",
         "heart": "Loving them and obeying them are two different things."
       },
       {
-        "id": "T20A",
+        "id": "T25A",
         "role": "true",
-        "name": "Modern for you, classic for me",
-        "heart": "I can hold new ideas and old wishes at the same time."
+        "name": "Actually read the rulebook",
+        "heart": "Fair isn't cold to me. It's safe."
       },
       {
-        "id": "T05B",
+        "id": "T22B",
         "role": "decoy",
-        "name": "Writes the birthday paragraph",
-        "heart": "If I feel it, you're going to read it."
+        "name": "Same order, every time",
+        "heart": "I don't need new. I need mine."
       }
     ]
   },
@@ -345,8 +345,8 @@
       "prompt": "Which of these 4 lines would leave Jordan speechless for three seconds?",
       "lines": [
         {
-          "tag": "T08A",
-          "t": "You'd give a second chance to someone who hasn't finished asking for one.",
+          "tag": "T16A",
+          "t": "You say it's just a job. You're quietly keeping score of every win.",
           "true": false
         },
         {
@@ -355,13 +355,13 @@
           "true": false
         },
         {
-          "tag": "T03B",
-          "t": "You'd rather send the clumsy apology than the good one. Sometimes the clumsy one lands worse.",
+          "tag": "T08B",
+          "t": "You forgive, technically. Your screenshots folder disagrees.",
           "true": false
         },
         {
-          "tag": "T06B",
-          "t": "Your kindness has a daily cap. When it's gone, it's gone.",
+          "tag": "T07A",
+          "t": "You think the truth is respect. Some people just feel poked.",
           "true": true
         }
       ]
@@ -370,27 +370,9 @@
       "prompt": "Pick the roast Jordan would laugh at hardest.",
       "lines": [
         {
-          "id": "R03",
-          "tag": "T07A",
-          "t": "Asked for a quick opinion once. Got notes, bullet points and a follow-up.",
-          "ownersTag": true
-        },
-        {
-          "id": "R10",
-          "tag": "T19B",
-          "t": "Can't pick a new phone case without a family vote.",
-          "ownersTag": "opposite"
-        },
-        {
-          "id": "R09",
-          "tag": "T16A",
-          "t": "Calls it 'just a side project.' It has a logo and a five-year plan.",
-          "ownersTag": false
-        },
-        {
-          "id": "R01",
-          "tag": "T02A",
-          "t": "Answers texts on a three-to-five business day schedule. Still my favorite.",
+          "id": "R07",
+          "tag": "T12A",
+          "t": "Sent me a payment request for $3.47. For fries. With a fries emoji.",
           "ownersTag": false
         },
         {
@@ -400,10 +382,28 @@
           "ownersTag": false
         },
         {
-          "id": "R04",
-          "tag": "T06A",
-          "t": "Says 'I'm saving this month.' Pays for everyone's bubble tea anyway.",
+          "id": "R01",
+          "tag": "T02A",
+          "t": "Answers texts on a three-to-five business day schedule. Still my favorite.",
+          "ownersTag": true
+        },
+        {
+          "id": "R10",
+          "tag": "T19B",
+          "t": "Can't pick a new phone case without a family vote.",
           "ownersTag": "opposite"
+        },
+        {
+          "id": "R06",
+          "tag": "T09A",
+          "t": "Says 'we're keeping it casual.' Already knows their coffee order by heart.",
+          "ownersTag": false
+        },
+        {
+          "id": "R03",
+          "tag": "T07A",
+          "t": "Asked for a quick opinion once. Got notes, bullet points and a follow-up.",
+          "ownersTag": true
         }
       ]
     }

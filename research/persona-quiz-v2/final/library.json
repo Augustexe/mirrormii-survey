@@ -92,7 +92,7 @@
       "name": "Open-Book Golden Retriever",
       "zh": "全透明暖寶",
       "desc": "You love out loud: warm, gentle, all in, and mostly by your own rulebook.",
-      "sting": "You give so fast that some weeks the tank hits empty before anyone thinks to ask.",
+      "sting": "You'll break any rule for your people, except the one where you tell them what hurt.",
       "heart": "I'd rather love too much than too carefully."
     },
     {
@@ -259,7 +259,7 @@
   ],
   "tagRules": {
     "pairs": "Every tag has exactly one opposite (pair). Support for a tag counts against its pair. The pair is the decoy card in friend game Level 3.",
-    "firing": "A tag fires with support from at least 2 separate cards, at least 1 not rushed, and net support (minus its pair) above the simulation threshold. Circumstance, Not my life, No recent example and Skip never count. Up to 5 shown, strongest first, from at least 3 chapters where possible.",
+    "firing": "A tag fires with support from at least 2 separate cards, at least 1 not rushed, and net support (minus its pair) above the simulation threshold. Circumstance, Not my life, No recent example and Skip never count. Up to 5 shown: strong tags first by net support, then the rest by coverage share (net support over what the player’s answered cards could give), from at least 3 chapters where possible.",
     "triggers": "Each trigger string names the card id and card type ('golden' marks a golden card), then in parentheses the Sally question it answers when there is one (Qnn; 'reframed' means Sally's premise was replaced per the brief; '18+' marks a locked18 card), then the situation, and after the arrow the behavior (the option or options) that evidences the tag. '(slight)' means strength 1. The strings describe the evidence; the scored values live on the card options in chapters/*.final.json, and the strings are synced from the cards after card edits.",
     "stingAndHeart": "Sting is owner only. Name and heart are shareable.",
     "locked18": "Marriage and kids tags. Never shown to players under 18. friendGame defaultOff: they enter the friend game card pool (true, opposite or decoy) only if the owner opts in, per Sally.",
@@ -287,7 +287,7 @@
       "sting": "You say you have nothing to hide. You're quietly hoping they have nothing to hide either.",
       "heart": "Letting you all the way in is how I feel safe.",
       "calls": [
-        "You know at least one person's passcode by heart.",
+        "You've handed someone your unlocked phone to pick the music. No hovering.",
         "Someone else's face or fingerprint can unlock your phone.",
         "You've let someone scroll your camera roll without checking what's in it first."
       ],
@@ -388,7 +388,7 @@
       "calls": [
         "You've asked an AI who was right in an argument, then shown your friend the answer.",
         "You've said 'thank you' to an AI and meant it.",
-        "You'll ask Genii a follow-up question about this result."
+        "You've asked an AI to explain a text someone sent you."
       ],
       "never": "Lonely, antisocial or replacing real people.",
       "triggers": [
@@ -564,9 +564,9 @@
       ],
       "never": "Selfish, cold or uncaring. Not having the money.",
       "triggers": [
-        "C2-2 real (Q28): a friend's plan cost way over budget → went, but left early, social battery done (capacity: tag only, not R2)",
-        "C5-5 real (Q18): asked to stay and help when your part was done → 'got a thing tonight' and offered the morning, or sent notes and logged off",
-        "C2-7 golden scenario (Q27): 11:48pm, third drama night → pretend you're asleep and text at 7am, ask to do it properly tomorrow, or tag in a second friend (capacity: tag only, not R2)"
+        "C2-2 real (Q28): a friend picks a plan way over budget → paid my share, home by 9, completely peopled out (capacity: tag only, not R2)",
+        "C5-5 real (Q18): asked to stay and help when your part was done → \"got a thing tonight\" (the couch), or sent notes and a \"you got this,\" then logged off (slight)",
+        "C2-7 golden scenario (Q27): 11:48pm, third drama night → pretend you are asleep and text at 7am, or \"love you, sleeping\" and the phone goes across the room, or heart the text and actually sleep (slight) (capacity: tag only, not R2)"
       ],
       "locked18": false,
       "friendGame": "open",
@@ -594,7 +594,7 @@
       ],
       "locked18": false,
       "friendGame": "open",
-      "origin": "Sally pair 19 (直球選手 / 溫柔刺客). Q30 reframed from a friend's body to a friend's new look you don't love (haircut, outfit, tattoo). Both poles deliver the truth; the pair is about delivery: plain and now, or wrapped and later.",
+      "origin": "Sally pair 19 (直球選手 / 溫柔刺客). Q30 (a friend’s body) was reframed to a friend’s new look, then dropped in the fix pass because it repeated C2-1’s pattern; the pair now lives on the song, party-invite, wrong-order and dumped-friend cards. Both poles deliver the truth; the pair is about delivery: plain and now, or wrapped and later.",
       "zhStatus": "Sally"
     },
     {
@@ -618,7 +618,7 @@
       ],
       "locked18": false,
       "friendGame": "open",
-      "origin": "Sally pair 19 (直球選手 / 溫柔刺客). Q30 reframed from a friend's body to a friend's new look you don't love (haircut, outfit, tattoo). Both poles deliver the truth; the pair is about delivery: plain and now, or wrapped and later.",
+      "origin": "Sally pair 19 (直球選手 / 溫柔刺客). Q30 (a friend’s body) was reframed to a friend’s new look, then dropped in the fix pass because it repeated C2-1’s pattern; the pair now lives on the song, party-invite, wrong-order and dumped-friend cards. Both poles deliver the truth; the pair is about delivery: plain and now, or wrapped and later.",
       "zhStatus": "Sally"
     },
     {
@@ -849,7 +849,7 @@
       "calls": [
         "You've paid more toward a shared gift because you had more that month.",
         "You'll suggest the cheaper place when one friend is short on cash, and never say why.",
-        "An 'even split' when someone only had water makes you twitch."
+        "You've said 'I've got this one, get the next when you can.'"
       ],
       "never": "Freeloading, or resenting people who earn more.",
       "triggers": [
@@ -872,7 +872,7 @@
       "heart": "My best stories start with 'okay, this is a bad idea, but'.",
       "calls": [
         "You've spent a refund before it even hit your account.",
-        "Your savings have a plan, and the plan is 'something big'.",
+        "You've booked the trip first and checked your calendar second.",
         "You've said 'you only live once' at a checkout this year."
       ],
       "never": "Reckless, irresponsible or a gambling problem.",
@@ -965,7 +965,7 @@
       "name": "Earned, not given",
       "zh": "努力信仰者",
       "sting": "You believe effort gets noticed. You quietly wish everyone worked as hard as you.",
-      "heart": "I don't complain, but I remember every bit I gave.",
+      "heart": "I like knowing I earned my spot.",
       "calls": [
         "You've turned down help just so you could say you did it alone.",
         "You'd rather earn the rank than buy the boost.",
@@ -1061,7 +1061,7 @@
       "chapter": 5,
       "name": "Needs a save point",
       "zh": "需要存檔點",
-      "sting": "Friends your age settle down and you say you're fine. You've already started a plan.",
+      "sting": "Friends your age settle down and you say you're fine. You've already checked the timeline twice.",
       "heart": "Wanting solid ground is how I take care of myself.",
       "calls": [
         "You've made a pros and cons list for something most people would just decide.",
@@ -1136,7 +1136,7 @@
       "heart": "Helping someone stand on their own is still love.",
       "calls": [
         "You've told someone in your family 'I can do Tuesday, not every Tuesday.'",
-        "You've set a limit with your family, kindly, and kept it.",
+        "You've told family 'not this weekend' and didn't explain why.",
         "You've sent a family member a how-to video instead of doing it for them."
       ],
       "never": "Cold, stingy or not caring about family.",
@@ -1161,7 +1161,7 @@
       "calls": [
         "You've gone against the family vote and still made it home for dinner that week.",
         "You'll listen to every opinion at dinner and still do your plan.",
-        "You call home every week, from a city they didn't want you in."
+        "You've ended a family debate with 'love you, still doing it.'"
       ],
       "never": "Rebellious, ungrateful or not close to family.",
       "triggers": [
@@ -1205,7 +1205,7 @@
       "sting": "Other people can split things however they like. In your own home, you want the classic version.",
       "heart": "I can hold new ideas and old wishes at the same time.",
       "calls": [
-        "You'll say 'whatever works for you two' and mean it. Yours will be traditional.",
+        "You still make the family recipe exactly as written, measurements and all.",
         "Your future home already has a very specific holiday routine.",
         "You'd say roles don't matter, then feel odd when yours get swapped."
       ],
@@ -1449,7 +1449,7 @@
       "heart": "Fair isn't cold to me. It's safe.",
       "calls": [
         "You've actually read the terms and conditions on something.",
-        "You'll tell someone they cut the line, politely.",
+        "You've quoted the actual rule in a board game argument.",
         "You've waited for the walk signal on a completely empty street."
       ],
       "never": "Rigid, controlling or a snitch.",
@@ -1473,7 +1473,7 @@
       "sting": "You think people made the rules, so the rules should bend for people.",
       "heart": "I look at the person, not the form.",
       "calls": [
-        "You've let someone ahead of you in line because they looked stressed.",
+        "You've said 'technically' and then done the nice thing anyway.",
         "Your house rules have exceptions, and you remember all of them.",
         "You've let a kid win and made it look real."
       ],

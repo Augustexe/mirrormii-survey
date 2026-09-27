@@ -16,12 +16,12 @@
       "side": "relationship",
       "name": "Open-Book Golden Retriever",
       "code": "We·Soft·Own",
-      "desc": "You love out loud and in full view: warm, gentle, all in, and never by anyone else's rulebook.",
+      "desc": "You love out loud: warm, gentle, all in, and mostly by your own rulebook.",
       "axes": [
         {
           "axis": "R1",
           "pole": "We",
-          "line": "You recharge with your people. Close means shared.",
+          "line": "Your people are your happy place. Close means shared.",
           "flex": false,
           "unfinished": false
         },
@@ -72,7 +72,7 @@
     }
   ],
   "stings": [
-    "You give so fast that you're running on empty before anyone notices.",
+    "You'll break any rule for your people, except the one where you tell them what hurt.",
     "Freedom is your superpower. It's also your favorite excuse."
   ],
   "hearts": [
@@ -145,6 +145,70 @@
       "evidenceCards": 4
     },
     {
+      "id": "T22A",
+      "name": "Always has a flight tab open",
+      "strength": "strong",
+      "heart": "Going far is how I see myself clearly.",
+      "sting": "You love everything here. You're more scared of only ever seeing here.",
+      "stingOwnerOnly": true,
+      "youToldGenii": [
+        {
+          "card": "C7-3",
+          "chapter": 7,
+          "said": "Go. Pack tonight, learn the bus map when I land.",
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C5-2",
+          "chapter": 5,
+          "said": "The brand-new one. Day one, I'm googling everything.",
+          "grade": "believe",
+          "rushed": false
+        },
+        {
+          "card": "C7-9",
+          "chapter": 7,
+          "said": "I pick the restaurant none of us has tried.",
+          "grade": "believe",
+          "rushed": false
+        }
+      ],
+      "evidenceCards": 3
+    },
+    {
+      "id": "T01A",
+      "name": "Here, scroll my phone",
+      "strength": "strong",
+      "heart": "Letting you all the way in is how I feel safe.",
+      "sting": "You say you have nothing to hide. You're quietly hoping they have nothing to hide either.",
+      "stingOwnerOnly": true,
+      "youToldGenii": [
+        {
+          "card": "C1-11",
+          "chapter": 1,
+          "said": "Handed my best friend my phone: \"Write the follow-up. Make it chill.\"",
+          "grade": "did",
+          "rushed": false
+        },
+        {
+          "card": "C1-2",
+          "chapter": 1,
+          "said": "Type mine into their phone before they finish the sentence.",
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C1-5",
+          "chapter": 1,
+          "said": "Always. Come find me. I'm the dot at 4%.",
+          "grade": "would",
+          "rushed": false
+        }
+      ],
+      "evidenceCards": 3
+    },
+    {
       "id": "T17B",
       "name": "Still loading, and that's fine",
       "strength": "showing",
@@ -175,85 +239,28 @@
         }
       ],
       "evidenceCards": 3
-    },
-    {
-      "id": "T13A",
-      "name": "Books it, figures it out later",
-      "strength": "showing",
-      "heart": "My best stories start with 'okay, this is a bad idea, but'.",
-      "sting": "You call it a calculated risk. You did the math afterward.",
-      "stingOwnerOnly": true,
-      "youToldGenii": [
-        {
-          "card": "C4-1",
-          "chapter": 4,
-          "said": "Concert tickets. Tonight if possible.",
-          "grade": "would",
-          "rushed": false
-        },
-        {
-          "card": "C5-6",
-          "chapter": 5,
-          "said": "Go all in on my thing. Tell my parents later.",
-          "grade": "would",
-          "rushed": false
-        },
-        {
-          "card": "C4-8",
-          "chapter": 4,
-          "said": "I've booked something before checking my balance.",
-          "grade": "believe",
-          "rushed": false
-        }
-      ],
-      "evidenceCards": 3
-    },
-    {
-      "id": "T03A",
-      "name": "Tells the AI first",
-      "strength": "showing",
-      "heart": "Feeling understood counts, wherever it comes from.",
-      "sting": "You might have told an AI more about your feelings than your friends.",
-      "stingOwnerOnly": true,
-      "youToldGenii": [
-        {
-          "card": "C1-4",
-          "chapter": 1,
-          "said": "Typed it all out to an AI. It asked good questions.",
-          "grade": "did",
-          "rushed": false
-        },
-        {
-          "card": "C1-8",
-          "chapter": 1,
-          "said": "Let AI fix it. Add one typo so it sounds like me.",
-          "grade": "believe",
-          "rushed": false
-        }
-      ],
-      "evidenceCards": 2
     }
   ],
   "calls": [
     {
-      "line": "You've let someone ahead of you in line because they looked stressed.",
+      "line": "You've said 'technically' and then done the nice thing anyway.",
       "fromTag": "T25B"
     },
     {
-      "line": "You've sent your person a photo of your lunch that needed no caption.",
+      "line": "Your person's name is the first one your phone suggests.",
       "fromTag": "T09A"
     },
     {
-      "line": "When someone asks 'so what's the plan?', you change the subject.",
-      "fromTag": "T17B"
+      "line": "You've learned 'thank you' in a language you don't speak yet.",
+      "fromTag": "T22A"
     }
   ],
   "plotTwist": {
-    "line": "You'd say: ‘Ghost. Suddenly busy whenever they call.’ Put on the spot, you'd go with: ‘Wait to see who steps up, then fill the gaps.’",
+    "line": "You'd say: ‘Landlord. I help. Rent is my dishes for a week.’ Put on the spot, you'd go with: ‘Wait to see who steps up, then fill the gaps.’",
     "dim": "T18",
     "said": {
       "card": "C6-8",
-      "text": "Ghost. Suddenly busy whenever they call."
+      "text": "Landlord. I help. Rent is my dishes for a week."
     },
     "did": {
       "card": "C6-4",
@@ -274,16 +281,16 @@
         "heart": "I love all the way, and I know where the door is."
       },
       {
+        "name": "Always has a flight tab open",
+        "heart": "Going far is how I see myself clearly."
+      },
+      {
+        "name": "Here, scroll my phone",
+        "heart": "Letting you all the way in is how I feel safe."
+      },
+      {
         "name": "Still loading, and that's fine",
         "heart": "My timeline is mine to write."
-      },
-      {
-        "name": "Books it, figures it out later",
-        "heart": "My best stories start with 'okay, this is a bad idea, but'."
-      },
-      {
-        "name": "Tells the AI first",
-        "heart": "Feeling understood counts, wherever it comes from."
       }
     ],
     "invite": "Do you really know me?"
