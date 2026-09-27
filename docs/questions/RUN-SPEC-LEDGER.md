@@ -28,12 +28,15 @@ People **finish**, get a **personality prediction** that feels accurate and fun,
 | Onboarding | Hybrid: a few routing taps, then scored opening scenes; email collected once there is a backend | 2026-09-26 |
 | Audience | Gender neutral questions; women are no longer the survey's core ICP (company ICP change in PRODUCT-TRUTH not yet made); teens 13 to 17 in scope | 2026-09-26 |
 | Internal team run | Tests the prediction's accuracy **and** the friend loop (teammates answer about each other) | 2026-09-26 |
+| First test method | A blind Claude Code agent runs the 45-card kit through lavish-axi pages, parses with `score.mjs`, seals guesses (sha256) before the sealed cards, writes the prediction, collects line-by-line verdicts. Kit: research/blind-test-kit. No static page or backend yet | 2026-09-26 |
 | AI generation | Deferred; a demo version first. Generation path to be decided with the team | 2026-09-26 |
 | Storage | SQLite for now, not Lark | 2026-09-26 |
-| Hosting | Internal first; published to GitHub Pages later so teammates take it themselves | 2026-09-26 |
+| Hosting | No backend for now. Internal first; published to GitHub Pages later so teammates take it themselves | 2026-09-26 |
 | Git | Work saved on local branch `survey/tag-pilot-2026-09-26` (commit 4dd09fa), not pushed | 2026-09-26 |
 
 ## Proposed, not yet ruled
+
+- Prediction register: title like a zodiac name, three short paragraphs from strongest tags, emotions and one split, "Genii's calls", "What people miss about you" (research/blind-test-kit/PREDICTION-REGISTER.md). In test on Jerry's run.
 
 - Voices: ship Be kind, Make it fun (default) and Call me out; cut Cozy quest and the Oracle ([GAUNTLET-SPEC-V1](GAUNTLET-SPEC-V1.md)).
 - Question types: scenario (about half a run), real "last time" moment (about a quarter, the anchors), hot take (only for believe-versus-did mirrors), sealed check, feeling follow-up, friend version.
@@ -51,6 +54,8 @@ People **finish**, get a **personality prediction** that feels accurate and fun,
 | 10-word hard cap and "no imagination" plainness (PILOT-VOICES-V1 rewrite) | Short and legible, but the situation carries the fun; about 12 words when the extra words add character |
 | Gauntlet winners.json as final copy | Reference only; the register is the golden set |
 | An LLM "article" (essay) as the result | The personality prediction described above |
+| A sectioned result ("Genii's read", "You're the one who", labelled sections) | Rejected by Jerry as robotic; replaced by the prediction register |
+| One static test page as the first test | The lavish-axi agent kit (faster, no build) |
 | Lark Base as the pilot store | SQLite |
 | Prolific pass thresholds as the gate for the visual | Jerry's own judgment; panel metrics stay for the later pilot |
 | Women 18 to 34 as the survey's core audience; women-framed debate topics | Gender neutral questions and hooks |
