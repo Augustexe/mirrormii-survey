@@ -259,6 +259,10 @@ const adult = await context("adult-desktop");
   await fp.getByRole("button", { name: /Your turn/ }).click();
   await fp.locator(".app-shell[data-screen='setup']").waitFor();
   check(flow, true, "Your turn starts the friend's own run");
+  await fp.getByRole("button", { name: /Under 13/ }).click();
+  await fp.locator(".app-shell[data-screen='blocked']").waitFor();
+  const afterBlock = await fp.evaluate(() => localStorage.getItem("genii.persona.v2.run"));
+  check(flow, afterBlock === null, "an under-13 stop after Your turn saves no run and no name", afterBlock);
   logChecks("friend-mobile", friend.log);
   await friend.ctx.close();
 
@@ -273,6 +277,22 @@ const adult = await context("adult-desktop");
   await page.getByRole("button", { name: /Back to my result/ }).click();
   const played = await page.locator(".fp-sent__row", { hasText: "Played" }).count();
   check(flow, played === 1, "the sent link shows as played");
+
+  // Two tabs: a second tab makes a link; the first tab follows it and never overwrites it.
+  const tab2 = await adult.ctx.newPage();
+  await tab2.goto(BASE);
+  await tab2.getByRole("button", { name: /See my result/ }).click();
+  await tab2.locator(".fp-rel", { hasText: "Crush" }).click();
+  await tab2.getByRole("button", { name: /Make their link/ }).click();
+  await tab2.locator(".fp-made input").waitFor();
+  await page.locator(".persona-broken", { hasText: "another tab" }).waitFor({ timeout: 5000 }).catch(() => {});
+  check(flow, (await page.locator(".persona-broken", { hasText: "another tab" }).count()) === 1, "the first tab notices the other tab's save");
+  await page.locator(".fp-rel", { hasText: "Partner" }).click();
+  await page.getByRole("button", { name: /Make their link/ }).click();
+  await page.locator(".fp-made input").waitFor();
+  const kept = await page.evaluate(() => JSON.parse(localStorage.getItem("genii.persona.v2.run")));
+  check(flow, kept.challenges.length === 3 && kept.friendResults.length === 1, "no link or reply is lost across two tabs", { links: kept.challenges.map((c) => c.rel), replies: kept.friendResults.length });
+  await tab2.close();
   logChecks(flow, adult.log);
 }
 
@@ -381,7 +401,12 @@ const adult = await context("adult-desktop");
     const text = await page.locator("main").innerText();
     check(flow, expect.test(text), `${name}: readable error`, text.split("\n").slice(0, 2).join(" | "));
     check(flow, !(await page.evaluate(() => typeof window.__xss !== "undefined")), `${name}: nothing executed`);
-    if (name === "garbage") await shot(page, "24-malformed-link-mobile");
+    if (name === "garbage") {
+      await shot(page, "24-malformed-link-mobile");
+      await page.reload();
+      await page.locator(".app-shell[data-screen='landing']").waitFor();
+      check(flow, (await page.evaluate(() => location.hash)) === "", "a bad link is cleared, so a reload lands on the start page");
+    }
   }
   check(flow, log.pageErrors.length === 0, "no page errors on malformed links", log.pageErrors);
   await m.ctx.close();
@@ -408,8 +433,8 @@ const adult = await context("adult-desktop");
   await page.getByRole("button", { name: /Play again from the start/ }).click();
   await page.getByRole("button", { name: /^Start again$/ }).click();
   await page.locator(".app-shell[data-screen='setup']").waitFor();
-  const afterRestart = await page.evaluate(() => JSON.parse(localStorage.getItem("genii.persona.v2.run")));
-  check(flow, afterRestart && Object.keys(afterRestart.answers).length === 0 && afterRestart.setup === null, "restart clears the run and returns to setup");
+  const afterRestart = await page.evaluate(() => localStorage.getItem("genii.persona.v2.run"));
+  check(flow, afterRestart === null, "restart clears the saved run and returns to setup", afterRestart && afterRestart.slice(0, 60));
   // Delete everything.
   await page.getByRole("button", { name: /More/ }).first().click();
   await page.getByRole("button", { name: /Delete my data/ }).click();

@@ -25,6 +25,7 @@ const now = () => (typeof performance !== "undefined" ? performance.now() : Date
 export function PersonaCard({ card, step, setup, onAnswer, busy = false, error = "" }) {
   const heading = useRef(null);
   const shownAt = useRef(now());
+  const timer = useRef(null);
   const reduced = useReducedMotion();
   const { reducedMotion } = useContext(MotionConfigContext);
   const still = reduced || reducedMotion === "always";
@@ -41,6 +42,8 @@ export function PersonaCard({ card, step, setup, onAnswer, busy = false, error =
     setChosen(null);
     heading.current?.focus({ preventScroll: true });
     window.scrollTo({ top: 0, behavior: "instant" });
+    // A tap answers after a short beat; leaving the card first (Save and leave, a dialog) cancels it.
+    return () => { clearTimeout(timer.current); timer.current = null; };
   }, [card.id]);
 
   const elapsed = () => Math.max(0, Math.round(now() - shownAt.current));
@@ -49,7 +52,7 @@ export function PersonaCard({ card, step, setup, onAnswer, busy = false, error =
     setChosen(value);
     const go = () => onAnswer(value, meta);
     if (still) go();
-    else setTimeout(go, 220);
+    else timer.current = setTimeout(go, 220);
   };
   const tap = (i) => {
     if (busy || chosen !== null) return;

@@ -229,3 +229,25 @@ test("an owner with no named tags (all rushed) still gets a working friend game 
   assert.equal(ownerView.x, 6);
   assert.equal(ownerView.level3Line, null);
 });
+
+test("the link cap never drops a played link or strands its reply; the save still restores", () => {
+  let s = owner;
+  const first = challenge(s, { rel: "bestie" }, "capchal000", 1);
+  s = first.state;
+  const parsed = Friend.parseChallenge(Friend.challengePayload(s, first.challenge));
+  const view = Friend.friendDeckView(parsed);
+  s = Friend.importReply(s, Friend.replyPayload(parsed, view, Friend.cleanGuesses(view, perfectGuesses(view))), { now: clock() }).state;
+  for (let i = 1; i <= 25; i++) s = challenge(s, { rel: "friendOrCoworker" }, `capchal${String(i).padStart(3, "0")}`, i).state;
+  assert.equal(s.challenges.length, 20);
+  assert.ok(s.challenges.some((c) => c.id === "capchal000"), "the played link survives the cap");
+  assert.equal(s.friendResults.length, 1);
+  assert.equal(Friend.ranking(s).rows.length, 1);
+  const back = restoreRun(Session.serialize(s));
+  assert.equal(back.friendResults.length, 1);
+  // A reply whose link is gone (older saves, or tampering) is dropped on restore instead of breaking the run.
+  const orphan = JSON.parse(Session.serialize(s));
+  orphan.friendResults.push({ ...orphan.friendResults[0], challengeId: "gonegone01" });
+  const healed = restoreRun(JSON.stringify(orphan));
+  assert.equal(healed.friendResults.length, 1);
+  assert.equal(Friend.ranking(healed).rows.length, 1);
+});

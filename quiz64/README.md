@@ -26,7 +26,7 @@ private window (the friend), finish, then open the reply link back in the first 
 
 ```sh
 cd research/persona-quiz-v2/final && node --test tests.mjs && node sim.mjs   # reference kit: 27 tests, sim report unchanged
-cd quiz64 && npm test                                                       # 123 tests (95 earlier + 28 persona)
+cd quiz64 && npm test                                                       # 124 tests (95 earlier + 29 persona)
 cd quiz64 && npm run build
 PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node qa/persona-browser-qa.mjs http://127.0.0.1:4188/   # needs the preview server
 ```

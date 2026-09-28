@@ -261,7 +261,8 @@ export function restore(raw, { validateExtras } = {}) {
   }
   if (pending.size) throw new PersonaError("corrupt", "This saved run has answers outside its route.");
   if (data.frozen !== null) {
-    if (currentStep(state).kind !== "lock" || !isObj(data.frozen) || typeof data.lockHash !== "string") throw new PersonaError("corrupt", "Bad lock.");
+    const frozenKeys = ["version", "predictions", "frozenAt", "profileSha256"];
+    if (currentStep(state).kind !== "lock" || !isObj(data.frozen) || typeof data.lockHash !== "string" || Object.keys(data.frozen).sort().join() !== [...frozenKeys].sort().join()) throw new PersonaError("corrupt", "Bad lock.");
     state = { ...state, frozen: data.frozen, lockHash: data.lockHash };
     const check = verifyLock(state);
     if (!check.ok) throw new PersonaError("tampered", "This run changed after Genii locked its guesses.");

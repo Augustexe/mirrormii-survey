@@ -92,7 +92,18 @@ export function createChallenge(state, input, { now = new Date().toISOString(), 
   resultFor(state);
   const ch = { id, ...normalizeChallenge(input, state.setup), seed: seed >>> 0, createdAt: now, sentBefore: state.challenges.length > 0 };
   challengeDeck(state, ch);
-  return { state: { ...state, challenges: [...state.challenges.filter((c) => c.id !== id), ch].slice(-MAX_CHALLENGES), updatedAt: now }, challenge: ch };
+  return { state: { ...capChallenges({ ...state, challenges: [...state.challenges.filter((c) => c.id !== id), ch] }), updatedAt: now }, challenge: ch };
+}
+
+// Keeps at most MAX_CHALLENGES links. Unplayed links go first, oldest first; a played link is only dropped when every
+// kept link has been played, and its reply goes with it, so no reply is ever left without its link.
+function capChallenges(state) {
+  const extra = state.challenges.length - MAX_CHALLENGES;
+  if (extra <= 0) return state;
+  const played = new Set(state.friendResults.map((r) => r.challengeId));
+  const drop = new Set(state.challenges.filter((c) => !played.has(c.id)).slice(0, extra).map((c) => c.id));
+  for (const c of state.challenges) if (drop.size < extra) drop.add(c.id);
+  return { ...state, challenges: state.challenges.filter((c) => !drop.has(c.id)), friendResults: state.friendResults.filter((r) => !drop.has(r.challengeId)) };
 }
 
 // The owner-side deck (with the truth). Rebuilt from the saved choices every time, never stored.
@@ -384,15 +395,22 @@ export function validateFriendData(state) {
     const keys = ["id", "rel", "love", "mk", "stings", "showType", "emoji", "invite", "name", "seed", "createdAt", "sentBefore"];
     if (!isObj(ch) || Object.keys(ch).some((k) => !keys.includes(k)) || typeof ch.id !== "string" || !/^[a-z0-9]{8,16}$/.test(ch.id) || ids.has(ch.id)) throw new PersonaError("corrupt", "Bad saved challenge.");
     const norm = normalizeChallenge(ch, state.setup);
-    if (["rel", "love", "mk", "stings", "showType", "emoji", "invite", "name"].some((k) => norm[k] !== ch[k]) || !Number.isInteger(ch.seed) || ch.seed < 0 || ch.seed > 0xffffffff) throw new PersonaError("corrupt", "Bad saved challenge.");
+    if (["rel", "love", "mk", "stings", "showType", "emoji", "invite", "name"].some((k) => norm[k] !== ch[k]) || !Number.isInteger(ch.seed) || ch.seed < 0 || ch.seed > 0xffffffff || typeof ch.createdAt !== "string" || typeof ch.sentBefore !== "boolean") throw new PersonaError("corrupt", "Bad saved challenge.");
     ids.add(ch.id);
   }
   if (state.challenges.length && !(state.frozen && Object.keys(state.finale).length === S.kit.finale.length)) throw new PersonaError("corrupt", "Challenges without a finished run.");
+  const replied = new Set();
+  const replies = [];
   for (const r of state.friendResults) {
-    if (!isObj(r) || !ids.has(r.challengeId) || typeof r.under18 !== "boolean" || typeof r.hideRoast !== "boolean") throw new PersonaError("corrupt", "Bad saved reply.");
+    if (!isObj(r) || typeof r.challengeId !== "string" || typeof r.under18 !== "boolean" || typeof r.hideRoast !== "boolean" || typeof r.receivedAt !== "string" || !isObj(r.guesses)) throw new PersonaError("corrupt", "Bad saved reply.");
+    if (!ids.has(r.challengeId)) continue; // its link is gone: drop the reply, keep the run
+    if (replied.has(r.challengeId)) throw new PersonaError("corrupt", "Two saved replies for one link.");
     const ch = state.challenges.find((c) => c.id === r.challengeId);
     checkAgainstDeck(challengeDeck(state, ch, { under18: r.under18 && ch.mk }), r.guesses);
+    replied.add(r.challengeId);
+    replies.push(r);
   }
+  state = { ...state, friendResults: replies };
   if (state.returnTo !== null) {
     if (!isObj(state.returnTo) || !REL_IDS.includes(state.returnTo.rel) || cleanName(state.returnTo.name) !== state.returnTo.name) throw new PersonaError("corrupt", "Bad saved return link.");
   }
@@ -477,7 +495,7 @@ export function ownerFriendView(state, challengeId) {
 
 // Owner only: every played link, best reader first (friend.json ranking).
 export function ranking(state) {
-  const rows = state.friendResults.map((entry) => {
+  const rows = state.friendResults.filter((entry) => state.challenges.some((c) => c.id === entry.challengeId)).map((entry) => {
     const ch = state.challenges.find((c) => c.id === entry.challengeId);
     const deck = challengeDeck(state, ch, { under18: entry.under18 && ch.mk });
     return { key: ch.id, friend: friendLabel(ch.rel, ch.emoji), playedAt: entry.receivedAt, score: S.scoreFriendGame(deck, entry.guesses) };

@@ -86,8 +86,11 @@ the biggest surprise with the friend's why-chip, the bestie round with a hide-ro
 ranking once two links are played.
 
 **Known MVP limit:** the answer key rides in the challenge link so the friend's device can show counts without a
-server. A friend who decodes the link by hand could read the owner's poles and the sides of the twelve Level 2 cards.
-Stings, answer texts and everything else stay out. Hiding the key needs a backend (see open items).
+server. A friend who decodes the link by hand could read the owner's poles (so the type, even with "show my type"
+off, which only removes the reveal line), the sides of the Level 2 cards, which tag cards are true and, with the
+bestie round on, which sting is the owner's. Sting text, answer texts and everything else stay out. Links are not
+signed: anyone holding one can replay it, and a new reply to a link replaces the old one. Hiding the key needs a
+backend (see open items).
 
 ## Storage
 
@@ -98,8 +101,11 @@ Stings, answer texts and everything else stay out. Hiding the key needs a backen
 | `genii.motion.v1` | Motion preference, written only when toggled |
 
 A save is replayed card by card through the same step machine before it is trusted; unknown fields, answers outside the
-route, a different kit, or a broken lock fail closed with "download the old save" and "clear it". "Delete my data" removes
-every `genii.*` key in the browser. "Play again from the start" clears the run after a confirm. Nothing is sent anywhere;
+route, a different kit, or a broken lock fail closed with "download the old save" and "clear it". A reply whose link
+is gone is dropped rather than breaking the run. Each tab only writes if storage still holds the run it last read, and
+follows saves made in other tabs, so a stale tab can't undo a lock or lose a reply. At most 20 links are kept;
+unplayed ones go first. "Delete my data" removes every `genii.*` key in the browser. "Play again from the start"
+removes the run after a confirm; nothing is saved again until the next setup (so an under-13 stop saves nothing). Nothing is sent anywhere;
 the build makes no network requests beyond its own files.
 
 ## Outside this MVP

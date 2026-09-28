@@ -18,7 +18,7 @@ export function loadRun(storage) {
   let raw = null;
   try { raw = storage.getItem(RUN_KEY); } catch { return { state: null, error: "unavailable", raw: null }; }
   if (raw === null) return { state: null, error: null, raw: null };
-  try { return { state: restoreRun(raw), error: null, raw: null }; }
+  try { return { state: restoreRun(raw), error: null, raw }; }
   catch (e) { return { state: null, error: e instanceof PersonaError ? e.code : "corrupt", message: e.message, raw }; }
 }
 

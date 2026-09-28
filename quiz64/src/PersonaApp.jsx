@@ -5,7 +5,7 @@ import * as Run from "./persona/session.js";
 import { KIT, CHAPTERS } from "./persona/kit.js";
 import * as Friend from "./persona/friend.js";
 import { readHash, linkFor, LinkError } from "./persona/links.js";
-import { loadRun, saveRun, loadFriendPlays, saveFriendPlay, deleteAllGeniiData, MOTION_KEY } from "./persona/store.js";
+import { loadRun, restoreRun, loadFriendPlays, saveFriendPlay, deleteAllGeniiData, MOTION_KEY } from "./persona/store.js";
 import { resultView } from "./persona/views.js";
 import { PersonaHeader, PersonaLanding, SetupView, BlockedView, PersonaInterlude, interludeFor, PersonaQuizView, LockView } from "./persona/PersonaScreens.jsx";
 import { PersonaResult } from "./persona/PersonaResult.jsx";
@@ -93,6 +93,13 @@ function PersonaAppInner() {
   const [busy, setBusy] = useState(false);
   const [cardKey, setCardKey] = useState(0);
   const [motionOn, setMotionOn] = useState(() => { try { return localStorage.getItem(MOTION_KEY) !== "off"; } catch { return true; } });
+  const [notice, setNotice] = useState("");
+  // Who a friend's "Your turn" should send a link back to. Held in memory until setup succeeds, so an under-13
+  // stop leaves nothing saved.
+  const [pendingReturn, setPendingReturn] = useState(null);
+  // The run exactly as this tab last read or wrote it. A write only goes through if storage still holds it,
+  // so a stale tab can never overwrite a newer run (a reply imported elsewhere, or a lock made in another tab).
+  const lastRaw = useRef(initial.raw);
 
   useEffect(() => { document.body.dataset.motion = motionOn ? "on" : "off"; }, [motionOn]);
   const changeMotion = (on) => {
@@ -100,12 +107,58 @@ function PersonaAppInner() {
     try { localStorage.setItem(MOTION_KEY, on ? "on" : "off"); } catch { /* preference only */ }
   };
 
-  const persist = useCallback((next) => {
-    setRun(next);
-    const s = storage();
-    setStorageOK(Boolean(s) && saveRun(s, next));
-    return next;
+  const adoptStored = useCallback((raw, message) => {
+    lastRaw.current = raw;
+    setFriendViewId(null);
+    if (raw === null) {
+      setRun(null);
+      setScreen((prev) => (["friend", "linkError", "blocked"].includes(prev) ? prev : "landing"));
+    } else {
+      try {
+        const next = restoreRun(raw);
+        setRun(next);
+        setScreen((prev) => (["friend", "linkError", "blocked", "landing"].includes(prev) ? prev : next.setup ? screenFor(next) : "landing"));
+      } catch (e) {
+        setRun(null);
+        setBroken({ message: e.message, raw });
+        setScreen("landing");
+      }
+    }
+    if (message) setNotice(message);
   }, []);
+
+  // Saves the run (or removes it for null). Returns the saved run, or null when another tab changed it first.
+  const persist = useCallback((next) => {
+    const s = storage();
+    if (!s) { setRun(next); setStorageOK(false); return next; }
+    let current = null;
+    try { current = s.getItem(Run.STORAGE_KEY); } catch { /* unreadable storage is handled by the write below */ }
+    if (current !== lastRaw.current) {
+      adoptStored(current, "This game changed in another tab, so Genii loaded the newest version. Nothing was lost.");
+      return null;
+    }
+    const raw = next ? Run.serialize(next) : null;
+    try {
+      if (raw === null) s.removeItem(Run.STORAGE_KEY); else s.setItem(Run.STORAGE_KEY, raw);
+      lastRaw.current = raw;
+      setStorageOK(true);
+    } catch { setStorageOK(false); }
+    setRun(next);
+    return next ?? true;
+  }, [adoptStored]);
+
+  // Another tab saved: follow it.
+  useEffect(() => {
+    const onStorage = (e) => {
+      if (e.key !== null && e.key !== Run.STORAGE_KEY) return;
+      let now = null;
+      try { now = localStorage.getItem(Run.STORAGE_KEY); } catch { return; }
+      if (now === lastRaw.current) return;
+      adoptStored(now, "This game changed in another tab, so Genii loaded the newest version.");
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, [adoptStored]);
 
   // Links: #play=... opens the friend game, #reply=... brings a friend's answers home.
   const openHash = useCallback((hash, current) => {
@@ -119,6 +172,7 @@ function PersonaAppInner() {
         setFriend({ ch, isOwnLink: Boolean(current && current.challenges.some((c) => c.id === ch.id)), play: saved || { payload: link.payload, under18: ch.mk ? null : false, stage: "intro", step: 0, guesses: EMPTY_GUESSES, updatedAt: nowISO() } });
         setScreen("friend");
       } catch (e) {
+        clearHash();
         setLinkError(e instanceof LinkError ? e.message : "This link couldn't be opened.");
         setScreen("linkError");
       }
@@ -128,8 +182,8 @@ function PersonaAppInner() {
       Friend.parseReply(link.payload);
       if (!current) throw new LinkError("unknown_challenge", "This reply is for a friend challenge made in another browser. Open it where you took the quiz.");
       const { state, challengeId } = Friend.importReply(current, link.payload, { now: nowISO() });
-      persist(state);
       clearHash();
+      if (!persist(state)) return true;
       setFriendViewId(challengeId);
       setScreen("friendResult");
     } catch (e) {
@@ -155,7 +209,7 @@ function PersonaAppInner() {
     try { return resultView(run); } catch (e) { return { error: e.message }; }
   }, [run, step]);
 
-  const goHome = () => { setDialog(null); setScreen("landing"); setError(""); if (friend) { setFriend(null); clearHash(); } window.scrollTo({ top: 0, behavior: "instant" }); };
+  const goHome = () => { setDialog(null); setScreen("landing"); setError(""); setFriend(null); clearHash(); window.scrollTo({ top: 0, behavior: "instant" }); };
   const begin = () => {
     setError("");
     if (!run || !run.setup) return setScreen("setup");
@@ -163,10 +217,17 @@ function PersonaAppInner() {
   };
   const startWithSetup = (setup) => {
     try {
-      const base = run && !run.setup ? run : Run.newRun({ now: nowISO() });
-      const next = persist(Run.startRun(base, setup, { now: nowISO() }));
+      const started = Run.startRun(Run.newRun({ now: nowISO() }), setup, { now: nowISO() });
+      const next = persist(pendingReturn ? { ...started, returnTo: pendingReturn } : started);
+      if (!next) return;
+      setPendingReturn(null);
       setScreen(screenFor(next));
     } catch (e) { setError(e.message); }
+  };
+  const under13 = () => {
+    setPendingReturn(null);
+    if (run && !run.setup) persist(null);
+    setScreen("blocked");
   };
   const answer = (value, meta) => {
     if (!run || busy) return;
@@ -174,6 +235,7 @@ function PersonaAppInner() {
     try {
       setBusy(true);
       const next = persist(Run.answerCard(run, before.card.id, value, { ...meta, now: nowISO() }));
+      if (!next) return;
       const after = Run.currentStep(next);
       setError("");
       if (after.kind === "lock") setScreen("lock");
@@ -189,13 +251,17 @@ function PersonaAppInner() {
     try { persist(Run.lockGuesses(run, { now: nowISO() })); setError(""); } catch (e) { setError(e.message); }
   };
   const restart = () => {
-    const next = persist({ ...Run.newRun({ now: nowISO() }), returnTo: run ? run.returnTo : null });
+    const keep = run ? run.returnTo : null;
+    if (!persist(null)) return;
+    setPendingReturn(keep);
     setFriendViewId(null);
-    setScreen(next.setup ? screenFor(next) : "setup");
+    setScreen("setup");
   };
   const deleteAll = () => {
     const s = storage();
     if (s) deleteAllGeniiData(s);
+    lastRaw.current = null;
+    setPendingReturn(null);
     setRun(null); setBroken(null); setFriend(null); setFriendViewId(null); clearHash(); setScreen("landing");
     setMotionOn(true);
   };
@@ -207,7 +273,7 @@ function PersonaAppInner() {
     if (type === "create") {
       try {
         const { state, challenge } = Friend.createChallenge(run, payload, { now: nowISO() });
-        persist(state);
+        if (!persist(state)) return { error: "This game changed in another tab. Genii loaded the newest version; try again." };
         return {
           label: Friend.friendLabel(challenge.rel, challenge.emoji),
           link: linkFor("play", Friend.challengePayload(state, challenge)),
@@ -221,7 +287,7 @@ function PersonaAppInner() {
       if (!link || link.kind !== "reply") return { error: "That isn't a reply link. It should contain #reply=." };
       try {
         const { state, challengeId } = Friend.importReply(run, link.payload, { now: nowISO() });
-        persist(state);
+        if (!persist(state)) return { error: "This game changed in another tab. Genii loaded the newest version; try again." };
         setFriendViewId(challengeId);
         setScreen("friendResult");
         return null;
@@ -249,12 +315,15 @@ function PersonaAppInner() {
   };
   const yourTurn = () => {
     const back = { name: friend.ch.name, rel: friend.ch.rel };
-    let next = run || Run.newRun({ now: nowISO() });
-    if (!next.returnTo) next = { ...next, returnTo: back };
-    next = persist(next);
     setFriend(null);
     clearHash();
-    setScreen(next.setup ? screenFor(next) : "setup");
+    if (run && run.setup) {
+      const next = run.returnTo ? run : persist({ ...run, returnTo: back });
+      if (next) setScreen(screenFor(next));
+      return;
+    }
+    setPendingReturn(back);
+    setScreen("setup");
   };
   const progress = useMemo(() => {
     if (!run || !run.setup) return {};
@@ -277,16 +346,22 @@ function PersonaAppInner() {
         <AmbientWorld scene={scene} chapter={step && typeof step.chapter === "number" ? step.chapter : 2} pulseKey={`${screen}-${step && step.card ? step.card.id : ""}`} />
         <PersonaHeader saved={run && screen !== "friend" ? Run.answeredCount(run) : 0} onHome={goHome} onMap={hasRun && screen !== "friend" ? () => setDialog("map") : null} onMore={() => setDialog("more")} motionOn={motionOn} setMotionOn={changeMotion} />
         {!storageOK && <div className="storage-banner" role="status">Saving isn't available in this browser. Keep this tab open to finish.</div>}
+        {notice && (
+          <div className="storage-banner persona-broken" role="status">
+            <p>{notice}</p>
+            <button type="button" className="button button--quiet" onClick={() => setNotice("")}>OK</button>
+          </div>
+        )}
         {broken && screen === "landing" && (
           <div className="storage-banner persona-broken" role="alert">
             <p>{broken.message} You can keep a copy of the old save, then start fresh.</p>
             <button type="button" className="button button--secondary" onClick={() => download(broken.raw || "", "genii-old-save.json")}>Download the old save</button>
-            <button type="button" className="button button--quiet" onClick={() => { const s = storage(); if (s) s.removeItem(Run.STORAGE_KEY); setBroken(null); }}>Clear it</button>
+            <button type="button" className="button button--quiet" onClick={() => { const s = storage(); if (s) s.removeItem(Run.STORAGE_KEY); lastRaw.current = null; setBroken(null); }}>Clear it</button>
           </div>
         )}
 
         {screen === "landing" && <PersonaLanding progress={!run || !run.setup ? null : step.kind === "result" ? "result" : "run"} onBegin={begin} onHow={() => setDialog("how")} />}
-        {screen === "setup" && <SetupView busy={busy} onBack={goHome} onUnder13={() => setScreen("blocked")} onDone={startWithSetup} />}
+        {screen === "setup" && <SetupView busy={busy} onBack={goHome} onUnder13={under13} onDone={startWithSetup} />}
         {screen === "blocked" && <BlockedView onHome={goHome} />}
         {screen === "interlude" && step && step.kind === "card" && (
           <PersonaInterlude chapter={interludeFor(step)} count={step.phase === "chapter" ? step.size : 0} onContinue={() => setScreen("card")} onSave={goHome} />

@@ -1,6 +1,6 @@
 {
   "base": "http://127.0.0.1:4188/",
-  "startedAt": "2026-09-28T02:40:24.675Z",
+  "startedAt": "2026-09-28T02:55:53.219Z",
   "flows": {
     "adult-desktop": {
       "checks": [
@@ -12,8 +12,8 @@
           "ok": true,
           "what": "the lock code on screen matches the stored lock hash, before any finale card",
           "detail": {
-            "lockCode": "3b7b 5b8c 8bf1 5138",
-            "stored": "3b7b5b8c8bf15138d6bf7864fdf252e138671c4685675bbe6c2d45bbbadaa362"
+            "lockCode": "2a1c 929c 7a76 d8ec",
+            "stored": "2a1c929c7a76d8ec0a2f6efd9dfdf5261277c6dd62a18e6edab0c30b133cce3f"
           }
         },
         {
@@ -128,7 +128,7 @@
       "result": {
         "code": "WE·SOFT·OWN | STEADY·EASY·RULES",
         "line": "Genii called 8 of 8 exactly (chance about 25%).",
-        "lockCode": "3b7b 5b8c 8bf1 5138"
+        "lockCode": "2a1c 929c 7a76 d8ec"
       }
     },
     "friend-loop": {
@@ -165,7 +165,7 @@
         {
           "ok": true,
           "what": "friend sees their score",
-          "detail": "You read 5/6 sides of Alex. Want to know which side you missed? Ask her."
+          "detail": "You read 1/6 sides of Alex. Want to know which side you missed? Ask her."
         },
         {
           "ok": true,
@@ -202,6 +202,11 @@
         },
         {
           "ok": true,
+          "what": "an under-13 stop after Your turn saves no run and no name",
+          "detail": null
+        },
+        {
+          "ok": true,
           "what": "owner view shows \"They get you\""
         },
         {
@@ -223,7 +228,7 @@
         {
           "ok": true,
           "what": "owner view compares the guessed type",
-          "detail": "Bestie 🦊 thinks you're Open-Book Golden Retriever × Chill Personified. You're Open-Book Golden Retriever × Slow-and-Steady Regular. They read 5/6 sides of you."
+          "detail": "Bestie 🦊 thinks you're Do-Not-Disturb Homebody × Full-Send Trailblazer. You're Open-Book Golden Retriever × Slow-and-Steady Regular. They read 1/6 sides of you."
         },
         {
           "ok": true,
@@ -232,6 +237,22 @@
         {
           "ok": true,
           "what": "the sent link shows as played"
+        },
+        {
+          "ok": true,
+          "what": "the first tab notices the other tab's save"
+        },
+        {
+          "ok": true,
+          "what": "no link or reply is lost across two tabs",
+          "detail": {
+            "links": [
+              "bestie",
+              "crush",
+              "partner"
+            ],
+            "replies": 1
+          }
         },
         {
           "ok": true,
@@ -258,7 +279,7 @@
           "what": "no link payload is ever sent in a request"
         }
       ],
-      "link": "http://127.0.0.1:4188/#play=eyJ2IjoxLCJrIjoicGVyc29uYS1xdWl6LXYyQDIwMjYtMDktMjYvMjAyNi0wOS0yNi92Mi0yMDI2LTA5LTI2IiwiaSI6InNuNGQ4czV4c3UiLCJyIjoiYmVzdGllIiwibiI6IkFsZXgiLCJwIjoic2hlIiwiZSI6MiwicyI6Mjk1ODQ5MjQwMywidyI6MCwibyI6WzEsMCwxLDFdLCJhIjpbWzEsMF0sWy0xLDBdLFstMSwwXSxbMSwwXSxbLTEsMF0sWzEsMF1dLCJiIjpbWyJDMS02IiwiYSJdLFsiQzQtMSIsImIiXSxbIkMyLTUiLCJiIl0sWyJDMy00IiwiYSJdLFsiQzctMiIsImIiXSxbIkM2LTgiLCJhIl0sWyJDMi0yIiwiYSJdLFsiQzMtNSIsImEiXSxbIkM2LTIiLCJhIl0sWyJDNy0xIiwiYSJdLFsiQzUtNyIsImIiXSxbIkM2LTEiLCJiIl1dLCJjIjp7Im4iOjUsImQiOlsiVDA2QiIsIlQwOUIiLCJUMDZBIiwiVDA5QSIsIlQxOEEiLCJUMjVCIiwiVDI1QSIsIlQxOEIiLCJUMTRBIiwiVDIwQiIsIlQxNEIiLCJUMTVBIl0sInQiOlsiVDA2QSIsIlQwOUEiLCJUMThBIiwiVDI1QSIsIlQxNEEiXX0sImQiOnsibCI6WyJUMjJCIiwiVDA3QSIsIlQwNkEiLCJUMTZBIl0sInQiOiJUMDZBIiwiciI6WyJSMDMiLCJSMTAiLCJSMDYiLCJSMDQiLCJSMDEiLCJSMDkiXX19.14e8776c"
+      "link": "http://127.0.0.1:4188/#play=eyJ2IjoxLCJrIjoicGVyc29uYS1xdWl6LXYyQDIwMjYtMDktMjYvMjAyNi0wOS0yNi92Mi0yMDI2LTA5LTI2IiwiaSI6InE0Y3kycmlrbmciLCJyIjoiYmVzdGllIiwibiI6IkFsZXgiLCJwIjoic2hlIiwiZSI6MiwicyI6NDA1NzM0MzE2MiwidyI6MCwibyI6WzEsMCwxLDFdLCJhIjpbWzEsMF0sWy0xLDBdLFstMSwwXSxbMSwwXSxbLTEsMF0sWzEsMF1dLCJiIjpbWyJDMS02IiwiYSJdLFsiQzQtMSIsImIiXSxbIkMyLTUiLCJiIl0sWyJDMy00IiwiYSJdLFsiQzctMiIsImIiXSxbIkM2LTgiLCJhIl0sWyJDMi0yIiwiYSJdLFsiQzMtNSIsImEiXSxbIkM2LTIiLCJhIl0sWyJDNy0xIiwiYSJdLFsiQzUtNyIsImIiXSxbIkM2LTEiLCJiIl1dLCJjIjp7Im4iOjUsImQiOlsiVDE4QSIsIlQxNEEiLCJUMDhBIiwiVDI1QSIsIlQwOUIiLCJUMjVCIiwiVDE0QiIsIlQwN0IiLCJUMDZBIiwiVDA5QSIsIlQxOEIiLCJUMDZCIl0sInQiOlsiVDE4QSIsIlQxNEEiLCJUMjVBIiwiVDA2QSIsIlQwOUEiXX0sImQiOnsibCI6WyJUMTdCIiwiVDE1QiIsIlQwNUEiLCJUMDZBIl0sInQiOiJUMDZBIiwiciI6WyJSMDYiLCJSMTIiLCJSMDMiLCJSMDQiLCJSMTAiLCJSMDIiXX19.648b8977"
     },
     "friend-mobile": {
       "checks": [
@@ -291,7 +312,7 @@
         "pageErrors": [],
         "console": [],
         "failed": [],
-        "requests": 11,
+        "requests": 12,
         "externalRequests": 0
       }
     },
@@ -342,8 +363,8 @@
           "ok": true,
           "what": "the lock code on screen matches the stored lock hash, before any finale card",
           "detail": {
-            "lockCode": "2ab7 46d8 4cdf 3322",
-            "stored": "2ab746d84cdf3322ea920eb959596abebfcfbef084878596e286bc0c08a0ad07"
+            "lockCode": "8695 39ad cc4a bfac",
+            "stored": "869539adcc4abface1df8188e6754ac044f77e7546aefd034c80c3f8ba37f354"
           }
         },
         {
@@ -420,8 +441,8 @@
           "ok": true,
           "what": "the lock code on screen matches the stored lock hash, before any finale card",
           "detail": {
-            "lockCode": "fec3 2083 61e1 7acd",
-            "stored": "fec3208361e17acd8d2bd04b93ef987c7c9d5fb622c02d1934fa5b9e08870586"
+            "lockCode": "edf9 fd1c 7331 a941",
+            "stored": "edf9fd1c7331a9417ed1198729a5a0795eacf1c59da5b88a816eb1f8daf8cd5c"
           }
         },
         {
@@ -498,6 +519,10 @@
         {
           "ok": true,
           "what": "garbage: nothing executed"
+        },
+        {
+          "ok": true,
+          "what": "a bad link is cleared, so a reload lands on the start page"
         },
         {
           "ok": true,
@@ -581,7 +606,7 @@
         "pageErrors": [],
         "console": [],
         "failed": [],
-        "requests": 101,
+        "requests": 119,
         "externalRequests": 0
       }
     },
@@ -602,7 +627,8 @@
         },
         {
           "ok": true,
-          "what": "restart clears the run and returns to setup"
+          "what": "restart clears the saved run and returns to setup",
+          "detail": null
         },
         {
           "ok": true,
@@ -687,16 +713,16 @@
     }
   },
   "failures": [],
-  "finishedAt": "2026-09-28T02:45:06.489Z",
+  "finishedAt": "2026-09-28T03:00:44.195Z",
   "passed": true,
   "counts": {
     "adult-desktop": "23/23",
-    "friend-loop": "26/26",
+    "friend-loop": "29/29",
     "friend-mobile": "5/5",
     "tamper": "2/2",
     "teen-mobile": "17/17",
     "extras": "10/10",
-    "malformed-links": "20/20",
+    "malformed-links": "21/21",
     "resume-delete": "10/10",
     "mobile-landing": "6/6"
   }
