@@ -32,6 +32,7 @@ For MirrorMii company, product, customer or marketing facts, use the governed La
 
 ## Changes
 
+- 2026-09-27: persona quiz V2 web MVP built in quiz64 (PersonaApp): full run, lock, result, share card and friend loop; scorer split into research/persona-quiz-v2/final/score-core.mjs. Contract quiz64/docs/PERSONA-MVP.md, evidence quiz64/docs/PERSONA-MVP-VERIFICATION.md. Local branch claude/survey-mvp-finish-20260927, not pushed.
 - 2026-09-26: questions/PERSONA-TAGS-V1.md created (proposed): Sally's 41 paired persona tags mapped onto our tags (16 work with the blind-test kit), English drafts, combined result, static friend game. Source saved in research/sally-values-2026-09-26.
 - 2026-09-26: research/blind-test-kit created: 45-card blind prediction test run by a Claude Code agent through lavish-axi, deterministic scorer with sealed sha256, prediction register, handoff prompt.
 - 2026-09-26: questions/RUN-SPEC-LEDGER.md created: the single page of current, proposed and outdated survey rulings. Check it before any survey work.

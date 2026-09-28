@@ -8,7 +8,7 @@ import {
   useInView,
 } from "motion/react";
 import { Sparkles } from "lucide-react";
-import { asset } from "../survey.js";
+import { asset } from "../assets.js";
 import { IdeaSpark } from "./IdeaSpark.jsx";
 
 const moods = {

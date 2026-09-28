@@ -20,8 +20,8 @@ const icons = [
   MoonStar,
   Sparkles,
 ];
-export function ChapterObject({ chapter = 1 }) {
-  const Icon = icons[chapter - 1] || Sparkles;
+export function ChapterObject({ chapter = 1, icon }) {
+  const Icon = icon || icons[chapter - 1] || Sparkles;
   return (
     <span className="chapter-object" aria-hidden="true">
       <JewelIcon kind={`chapter-${chapter}`} variant="chapter">

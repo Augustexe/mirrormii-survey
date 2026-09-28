@@ -3,7 +3,7 @@ title: Persona quiz spec V2, the single maintained spec for the Genii personalit
 status: proposed
 owner: jerry
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-27
 source_basis: research/persona-quiz-v2/BRIEF.md (governing spec, Jerry's rulings); research/sally-v2-2026-09-26/ (Sally's v2 system, 48 questions, friend and bestie versions, Chinese); research/persona-quiz-v2/LESSONS-FROM-TEST-1.md; research/persona-quiz-v2/final/ (cards.json, library.json, friend.json, score.mjs, sim.mjs, tests.mjs, SIM-REPORT.md, RESULT-TEMPLATE.md, VERIFY.md, PROMPT.md, README.md); research/persona-quiz-v2/library/ (types.json, tags.json, CRITIC-NOTES.md); research/persona-quiz-v2/judges/ (8 judge files); research/persona-quiz-v2/chapters/*.changes.md (build notes plus the "Fix pass" sections); the fix-pass judge reports (writing, evidence, flow, release), summarized in section 12. Counts were computed by a node script over final/ after the fix pass and the release judge's fixes on 2026-09-26; tests.mjs rerun the same day, 27 of 27 pass.
 supersedes: PERSONA-TAGS-V1.md for the persona layer (V1 mapped Sally's tags onto topic scores; V2 replaces topic scores with option-level evidence)
 ---
@@ -368,13 +368,15 @@ Release check: the release judge played the kit and ruled **fix then ship**, wit
 | 5 | Result contradictions (half lines versus tags; T20A on plain classic answers) | Closed. Library lines rewritten; T20A now comes only from the mixed "modern for you, classic for me" pattern. |
 | 6 | 8 options carried no evidence | Closed. 0 left: each is tagged or marked circumstance. |
 | 7 | Run length 70 with the finale (brief: 56 to 64) | Ruled. Three feeling cards cut; one 18+ card (C6-11) kept so T21 can fire. 61 adult chapter cards (69 with the finale), 57 teen (65). See section 6. |
-| 8 | No code scores a friend's guesses into the result screens; friend difficulty not simulated | Open by decision: build the friend scorer and simulate after blind test 2. |
+| 8 | No code scores a friend's guesses into the result screens; friend difficulty not simulated | Scorer built 2026-09-27: `score-core.mjs` `scoreFriendGame` (levels 1 to 4, zones, biggest surprise, bands) and `rankFriends`, used by the quiz64 web MVP. Friend difficulty is still not simulated (open by decision, after blind test 2). |
 | 9 | Level 1 for a coworker said "In love and with family" | Closed. `everyday` Level 1 set for friend or coworker. |
 | 10 | T22B's call repeated the C7-S2 finale prompt | Closed. Call replaced; round 2 swept every call for card echoes. |
 | 11 | T06B `never` lacked "Not having the money." | Closed. Added; money-pressure options are circumstance. |
 | 12 | Real-data checks: R2 split, type spread over 30 to 50 people, sting offense rate, legal check of names | Open by decision: after blind test 2. |
 
 Also noted: 19 of 50 tags have no real-card trigger; 9 tags get their support from only 2 cards; 5 of the 6 golden cards are in the run (the "1am, one more match?" card is not). The library still has stale prose the scorer does not read: T06B's `triggers` describe options the fix pass rewrote, T07's `origin` cites Q30, and `tagRules.firing` says "strongest first".
+
+**Web MVP (2026-09-27).** `score.mjs` is now a thin CLI over `score-core.mjs` (`createScorer({ kit, lib, friend })`, no I/O), and the quiz64 app imports the same core, so the browser and the kit share one scorer. After the split `tests.mjs` still passes 27 of 27 and `node sim.mjs` rewrites `SIM-REPORT.md` and `sim-example/` byte for byte. The app, its rules as built (one card at a time, no back button, a feeling card only after a picked moment, extras stop once a side has two cards, lock hash checked before scoring, fragment links for the friend game) and its limits: `quiz64/docs/PERSONA-MVP.md`. Verification: `quiz64/docs/PERSONA-MVP-VERIFICATION.md`.
 
 ## 13. How to run blind test 2
 

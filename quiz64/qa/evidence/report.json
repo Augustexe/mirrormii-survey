@@ -1,0 +1,703 @@
+{
+  "base": "http://127.0.0.1:4188/",
+  "startedAt": "2026-09-28T02:40:24.675Z",
+  "flows": {
+    "adult-desktop": {
+      "checks": [
+        {
+          "ok": true,
+          "what": "no guess is shown before the finale"
+        },
+        {
+          "ok": true,
+          "what": "the lock code on screen matches the stored lock hash, before any finale card",
+          "detail": {
+            "lockCode": "3b7b 5b8c 8bf1 5138",
+            "stored": "3b7b5b8c8bf15138d6bf7864fdf252e138671c4685675bbe6c2d45bbbadaa362"
+          }
+        },
+        {
+          "ok": true,
+          "what": "adult sees 60 or 61 chapter cards",
+          "detail": 61
+        },
+        {
+          "ok": true,
+          "what": "adult sees the 18+ cards"
+        },
+        {
+          "ok": true,
+          "what": "8 finale cards"
+        },
+        {
+          "ok": true,
+          "what": "every chapter opens with its title card",
+          "detail": [
+            "Your phone",
+            "Friends",
+            "Love and your person",
+            "Money and treats",
+            "Work, school and ambition",
+            "Family and home",
+            "Play, rules and you"
+          ]
+        },
+        {
+          "ok": true,
+          "what": "the depends follow-up was recorded",
+          "detail": 1
+        },
+        {
+          "ok": true,
+          "what": "result shows \"What stings\""
+        },
+        {
+          "ok": true,
+          "what": "result shows \"What you love about it\""
+        },
+        {
+          "ok": true,
+          "what": "result shows \"Your tags\""
+        },
+        {
+          "ok": true,
+          "what": "result shows \"Genii's calls\""
+        },
+        {
+          "ok": true,
+          "what": "result shows \"Genii's guesses\""
+        },
+        {
+          "ok": true,
+          "what": "result shows \"Do you really know me?\""
+        },
+        {
+          "ok": true,
+          "what": "finale scored against the lock",
+          "detail": "Genii called 8 of 8 exactly (chance about 25%)."
+        },
+        {
+          "ok": true,
+          "what": "no internal ids on the result page"
+        },
+        {
+          "ok": true,
+          "what": "no system words on the result page"
+        },
+        {
+          "ok": true,
+          "what": "calm answers were timed above the rushed threshold",
+          "detail": 0
+        },
+        {
+          "ok": true,
+          "what": "reload keeps the finished result"
+        },
+        {
+          "ok": true,
+          "what": "no page errors",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no console errors or warnings",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no requests leave the local origin",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no failed requests",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no link payload is ever sent in a request"
+        }
+      ],
+      "log": {
+        "pageErrors": [],
+        "console": [],
+        "failed": [],
+        "requests": 25,
+        "externalRequests": 0
+      },
+      "result": {
+        "code": "WE·SOFT·OWN | STEADY·EASY·RULES",
+        "line": "Genii called 8 of 8 exactly (chance about 25%).",
+        "lockCode": "3b7b 5b8c 8bf1 5138"
+      }
+    },
+    "friend-loop": {
+      "checks": [
+        {
+          "ok": true,
+          "what": "bestie offers the sting bonus round",
+          "detail": [
+            "Love tags in the tag round",
+            "Marriage and kids tags in the tag round",
+            "Bonus round: let them guess which line stings",
+            "Show them your real type after they play"
+          ]
+        },
+        {
+          "ok": true,
+          "what": "challenge link is a fragment payload",
+          "detail": 837
+        },
+        {
+          "ok": true,
+          "what": "challenge link is short enough to paste",
+          "detail": 837
+        },
+        {
+          "ok": true,
+          "what": "friend sees the owner's chosen name",
+          "detail": "Do you know Alex?"
+        },
+        {
+          "ok": true,
+          "what": "guessed type shown after question 6"
+        },
+        {
+          "ok": true,
+          "what": "friend sees their score",
+          "detail": "You read 5/6 sides of Alex. Want to know which side you missed? Ask her."
+        },
+        {
+          "ok": true,
+          "what": "friend sees counts only"
+        },
+        {
+          "ok": true,
+          "what": "friend's result shows none of the owner's stings"
+        },
+        {
+          "ok": true,
+          "what": "bestie round shows 4 sting lines",
+          "detail": 4
+        },
+        {
+          "ok": true,
+          "what": "no horizontal overflow on the friend result (mobile)"
+        },
+        {
+          "ok": true,
+          "what": "reply link is a fragment payload",
+          "detail": 533
+        },
+        {
+          "ok": true,
+          "what": "the friend's browser keeps only its friend-game progress",
+          "detail": [
+            "genii.persona.friend-play.v1"
+          ]
+        },
+        {
+          "ok": true,
+          "what": "Your turn starts the friend's own run"
+        },
+        {
+          "ok": true,
+          "what": "owner view shows \"They get you\""
+        },
+        {
+          "ok": true,
+          "what": "owner view shows \"What they don't see\""
+        },
+        {
+          "ok": true,
+          "what": "owner view shows \"Who they think you are\""
+        },
+        {
+          "ok": true,
+          "what": "owner view shows \"Only you see this page\""
+        },
+        {
+          "ok": true,
+          "what": "owner view shows \"Bonus round\""
+        },
+        {
+          "ok": true,
+          "what": "owner view compares the guessed type",
+          "detail": "Bestie 🦊 thinks you're Open-Book Golden Retriever × Chill Personified. You're Open-Book Golden Retriever × Slow-and-Steady Regular. They read 5/6 sides of you."
+        },
+        {
+          "ok": true,
+          "what": "the reply fragment is cleared after import"
+        },
+        {
+          "ok": true,
+          "what": "the sent link shows as played"
+        },
+        {
+          "ok": true,
+          "what": "no page errors",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no console errors or warnings",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no requests leave the local origin",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no failed requests",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no link payload is ever sent in a request"
+        }
+      ],
+      "link": "http://127.0.0.1:4188/#play=eyJ2IjoxLCJrIjoicGVyc29uYS1xdWl6LXYyQDIwMjYtMDktMjYvMjAyNi0wOS0yNi92Mi0yMDI2LTA5LTI2IiwiaSI6InNuNGQ4czV4c3UiLCJyIjoiYmVzdGllIiwibiI6IkFsZXgiLCJwIjoic2hlIiwiZSI6MiwicyI6Mjk1ODQ5MjQwMywidyI6MCwibyI6WzEsMCwxLDFdLCJhIjpbWzEsMF0sWy0xLDBdLFstMSwwXSxbMSwwXSxbLTEsMF0sWzEsMF1dLCJiIjpbWyJDMS02IiwiYSJdLFsiQzQtMSIsImIiXSxbIkMyLTUiLCJiIl0sWyJDMy00IiwiYSJdLFsiQzctMiIsImIiXSxbIkM2LTgiLCJhIl0sWyJDMi0yIiwiYSJdLFsiQzMtNSIsImEiXSxbIkM2LTIiLCJhIl0sWyJDNy0xIiwiYSJdLFsiQzUtNyIsImIiXSxbIkM2LTEiLCJiIl1dLCJjIjp7Im4iOjUsImQiOlsiVDA2QiIsIlQwOUIiLCJUMDZBIiwiVDA5QSIsIlQxOEEiLCJUMjVCIiwiVDI1QSIsIlQxOEIiLCJUMTRBIiwiVDIwQiIsIlQxNEIiLCJUMTVBIl0sInQiOlsiVDA2QSIsIlQwOUEiLCJUMThBIiwiVDI1QSIsIlQxNEEiXX0sImQiOnsibCI6WyJUMjJCIiwiVDA3QSIsIlQwNkEiLCJUMTZBIl0sInQiOiJUMDZBIiwiciI6WyJSMDMiLCJSMTAiLCJSMDYiLCJSMDQiLCJSMDEiLCJSMDkiXX19.14e8776c"
+    },
+    "friend-mobile": {
+      "checks": [
+        {
+          "ok": true,
+          "what": "no page errors",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no console errors or warnings",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no requests leave the local origin",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no failed requests",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no link payload is ever sent in a request"
+        }
+      ],
+      "log": {
+        "pageErrors": [],
+        "console": [],
+        "failed": [],
+        "requests": 11,
+        "externalRequests": 0
+      }
+    },
+    "tamper": {
+      "checks": [
+        {
+          "ok": true,
+          "what": "a save whose guesses changed after the lock is refused",
+          "detail": "This run changed after Genii locked its guesses. You can keep a copy of the old save, then start fresh."
+        },
+        {
+          "ok": true,
+          "what": "and the player can start fresh"
+        }
+      ],
+      "log": {
+        "pageErrors": [],
+        "console": [],
+        "failed": [],
+        "requests": 22,
+        "externalRequests": 0
+      }
+    },
+    "teen-mobile": {
+      "checks": [
+        {
+          "ok": true,
+          "what": "an answer can be reached with Tab"
+        },
+        {
+          "ok": true,
+          "what": "Enter answers the focused option"
+        },
+        {
+          "ok": true,
+          "what": "tap targets are at least 44px tall on mobile",
+          "detail": 44
+        },
+        {
+          "ok": true,
+          "what": "no horizontal overflow on a card (mobile)"
+        },
+        {
+          "ok": true,
+          "what": "no guess is shown before the finale"
+        },
+        {
+          "ok": true,
+          "what": "the lock code on screen matches the stored lock hash, before any finale card",
+          "detail": {
+            "lockCode": "2ab7 46d8 4cdf 3322",
+            "stored": "2ab746d84cdf3322ea920eb959596abebfcfbef084878596e286bc0c08a0ad07"
+          }
+        },
+        {
+          "ok": true,
+          "what": "no 18+ card is ever shown to a teen",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "teen sees at most 57 chapter cards",
+          "detail": 57
+        },
+        {
+          "ok": true,
+          "what": "teen versions of prompts were used",
+          "detail": 16
+        },
+        {
+          "ok": true,
+          "what": "no marriage or kids tag on a teen result"
+        },
+        {
+          "ok": true,
+          "what": "no horizontal overflow on the result (mobile)"
+        },
+        {
+          "ok": true,
+          "what": "a teen owner is never offered the marriage and kids switch",
+          "detail": [
+            "Love tags in the tag round",
+            "Show them your real type after they play"
+          ]
+        },
+        {
+          "ok": true,
+          "what": "no page errors",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no console errors or warnings",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no requests leave the local origin",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no failed requests",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no link payload is ever sent in a request"
+        }
+      ],
+      "log": {
+        "pageErrors": [],
+        "console": [],
+        "failed": [],
+        "requests": 12,
+        "externalRequests": 0
+      }
+    },
+    "extras": {
+      "checks": [
+        {
+          "ok": true,
+          "what": "no guess is shown before the finale"
+        },
+        {
+          "ok": true,
+          "what": "the lock code on screen matches the stored lock hash, before any finale card",
+          "detail": {
+            "lockCode": "fec3 2083 61e1 7acd",
+            "stored": "fec3208361e17acd8d2bd04b93ef987c7c9d5fb622c02d1934fa5b9e08870586"
+          }
+        },
+        {
+          "ok": true,
+          "what": "an unfinished side gets the extras title card",
+          "detail": [
+            "Your phone",
+            "Friends",
+            "Love and your person",
+            "Money and treats",
+            "Work, school and ambition",
+            "Family and home",
+            "Play, rules and you",
+            "Two more cards and Genii can call it"
+          ]
+        },
+        {
+          "ok": true,
+          "what": "only extras for the unfinished side, 1 or 2 of them",
+          "detail": [
+            "X-R1-1",
+            "X-R1-2"
+          ]
+        },
+        {
+          "ok": true,
+          "what": "the extras finished the side",
+          "detail": "WE·DIRECT·CLASSIC | VENTURE·PUSH·RULES"
+        },
+        {
+          "ok": true,
+          "what": "no page errors",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no console errors or warnings",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no requests leave the local origin",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no failed requests",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no link payload is ever sent in a request"
+        }
+      ],
+      "log": {
+        "pageErrors": [],
+        "console": [],
+        "failed": [],
+        "requests": 13,
+        "externalRequests": 0
+      }
+    },
+    "malformed-links": {
+      "checks": [
+        {
+          "ok": true,
+          "what": "owner has a saved challenge for the link tests"
+        },
+        {
+          "ok": true,
+          "what": "garbage: readable error",
+          "detail": "THAT LINK DIDN'T WORK | This link looks cut off or changed."
+        },
+        {
+          "ok": true,
+          "what": "garbage: nothing executed"
+        },
+        {
+          "ok": true,
+          "what": "bad-checksum: readable error",
+          "detail": "THAT LINK DIDN'T WORK | This link looks cut off or changed."
+        },
+        {
+          "ok": true,
+          "what": "bad-checksum: nothing executed"
+        },
+        {
+          "ok": true,
+          "what": "edited-real-link: readable error",
+          "detail": "THAT LINK DIDN'T WORK | This link looks cut off or changed."
+        },
+        {
+          "ok": true,
+          "what": "edited-real-link: nothing executed"
+        },
+        {
+          "ok": true,
+          "what": "script: readable error",
+          "detail": "THAT LINK DIDN'T WORK | This link looks cut off or changed."
+        },
+        {
+          "ok": true,
+          "what": "script: nothing executed"
+        },
+        {
+          "ok": true,
+          "what": "too-long: readable error",
+          "detail": "THAT LINK DIDN'T WORK | This link is too long to be a Genii link."
+        },
+        {
+          "ok": true,
+          "what": "too-long: nothing executed"
+        },
+        {
+          "ok": true,
+          "what": "other-kit: readable error",
+          "detail": "THAT LINK DIDN'T WORK | This link was made with a different version of Genii's cards. Ask for a fresh link."
+        },
+        {
+          "ok": true,
+          "what": "other-kit: nothing executed"
+        },
+        {
+          "ok": true,
+          "what": "html-name: readable error",
+          "detail": "THAT LINK DIDN'T WORK | This link looks cut off or changed."
+        },
+        {
+          "ok": true,
+          "what": "html-name: nothing executed"
+        },
+        {
+          "ok": true,
+          "what": "reply-elsewhere: readable error",
+          "detail": "THAT LINK DIDN'T WORK | This reply is for a friend challenge made in another browser. Open it where you took the quiz."
+        },
+        {
+          "ok": true,
+          "what": "reply-elsewhere: nothing executed"
+        },
+        {
+          "ok": true,
+          "what": "broken-reply: readable error",
+          "detail": "THAT LINK DIDN'T WORK | This link looks cut off or changed."
+        },
+        {
+          "ok": true,
+          "what": "broken-reply: nothing executed"
+        },
+        {
+          "ok": true,
+          "what": "no page errors on malformed links",
+          "detail": []
+        }
+      ],
+      "log": {
+        "pageErrors": [],
+        "console": [],
+        "failed": [],
+        "requests": 101,
+        "externalRequests": 0
+      }
+    },
+    "resume-delete": {
+      "checks": [
+        {
+          "ok": true,
+          "what": "reload resumes on the same card",
+          "detail": {
+            "expected": "You owe someone a real apology. You know exactly what you mean. AI could word it way better.",
+            "got": "You owe someone a real apology. You know exactly what you mean. AI could word it way better."
+          }
+        },
+        {
+          "ok": true,
+          "what": "five answers were saved",
+          "detail": 5
+        },
+        {
+          "ok": true,
+          "what": "restart clears the run and returns to setup"
+        },
+        {
+          "ok": true,
+          "what": "delete removes every genii key",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "landing starts fresh after delete"
+        },
+        {
+          "ok": true,
+          "what": "no page errors",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no console errors or warnings",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no requests leave the local origin",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no failed requests",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no link payload is ever sent in a request"
+        }
+      ],
+      "log": {
+        "pageErrors": [],
+        "console": [],
+        "failed": [],
+        "requests": 24,
+        "externalRequests": 0
+      }
+    },
+    "mobile-landing": {
+      "checks": [
+        {
+          "ok": true,
+          "what": "no horizontal overflow on the landing (mobile)"
+        },
+        {
+          "ok": true,
+          "what": "no page errors",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no console errors or warnings",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no requests leave the local origin",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no failed requests",
+          "detail": []
+        },
+        {
+          "ok": true,
+          "what": "no link payload is ever sent in a request"
+        }
+      ],
+      "log": {
+        "pageErrors": [],
+        "console": [],
+        "failed": [],
+        "requests": 11,
+        "externalRequests": 0
+      }
+    }
+  },
+  "failures": [],
+  "finishedAt": "2026-09-28T02:45:06.489Z",
+  "passed": true,
+  "counts": {
+    "adult-desktop": "23/23",
+    "friend-loop": "26/26",
+    "friend-mobile": "5/5",
+    "tamper": "2/2",
+    "teen-mobile": "17/17",
+    "extras": "10/10",
+    "malformed-links": "20/20",
+    "resume-delete": "10/10",
+    "mobile-landing": "6/6"
+  }
+}

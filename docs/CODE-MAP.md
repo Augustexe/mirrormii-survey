@@ -1,3 +1,19 @@
+# Persona quiz V2 web MVP, verified 2026-09-27
+
+Branch `claude/survey-mvp-finish-20260927` (worktree under `hall/data/jobs/mirrormii-genie-survey/20260928T014509Z-survey-mvp-02-ce97f3/scratch/worktree`), local only. `quiz64/src/main.jsx` mounts `PersonaApp.jsx`.
+
+| Concern | File |
+|---|---|
+| Scorer shared by the kit CLI, sim, kit tests and the web app | `research/persona-quiz-v2/final/score-core.mjs` (`score.mjs` is the Node wrapper) |
+| Kit binding and build-time strip of authoring fields | `quiz64/src/persona/kit.js`, `quiz64/kit-strip.mjs`, `quiz64/vite.config.js` |
+| Run state machine, lock, save and replay-validated restore | `quiz64/src/persona/session.js`, `store.js`, `sha256.js` |
+| Friend challenge and reply links, friend and owner views | `quiz64/src/persona/friend.js`, `links.js` |
+| Result and share projections | `quiz64/src/persona/views.js` |
+| Screens and styles | `quiz64/src/PersonaApp.jsx`, `quiz64/src/persona/*.jsx`, `persona.css` |
+| Tests and browser QA | `quiz64/tests/persona-*.test.mjs`, `quiz64/qa/persona-browser-qa.mjs` |
+
+Details: [quiz64/docs/PERSONA-MVP.md](../quiz64/docs/PERSONA-MVP.md). The sections below describe the live dossier build and older history.
+
 # Active source map, verified 2026-09-25
 
 This is the live GitHub Pages build ([STATE.md](STATE.md)). The worktree below is clean at `ebaac09`, tracks `publication/codex/final-survey-dossier` with nothing ahead or behind, and includes the Pages workflow `.github/workflows/deploy-pages.yml`. Its local `origin` still points at the outdated `Augustexe/mirrormii-survey`; push to `publication`. The path sits inside a workbench folder that is due to leave the workspace: move the code before that happens (proposal in STATE.md).

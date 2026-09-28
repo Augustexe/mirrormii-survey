@@ -3,7 +3,7 @@ title: Run spec ledger, what is current, proposed and outdated
 status: current
 owner: jerry
 created: 2026-09-26
-updated: 2026-09-26
+updated: 2026-09-27
 source_basis: Jerry's rulings in the 2026-09-26 session (survey spec, grill rounds, Sally's research, team transcript, gauntlet, internal-run grill round 1)
 ---
 
@@ -43,6 +43,7 @@ People **finish**, get a **personality prediction** that feels accurate and fun,
 
 ## Proposed, not yet ruled
 
+- Persona quiz V2 local web MVP (2026-09-27): the quiz64 shell plays the V2 kit end to end with the friend game over fragment links, scored by the kit's `score-core.mjs` ([quiz64/docs/PERSONA-MVP.md](../../quiz64/docs/PERSONA-MVP.md)). Built and verified locally on `claude/survey-mvp-finish-20260927`; not ruled, not deployed.
 - Persona tags (Sally's paired library, 41 meme-style tags with sting and 💛 lines) as the named layer of the result, plus her friend game ("Do you really know me?") on a static page via link fragments ([PERSONA-TAGS-V1](PERSONA-TAGS-V1.md)).
 
 - Prediction register: title like a zodiac name, three short paragraphs from strongest tags, emotions and one split, "Genii's calls", "What people miss about you" (research/blind-test-kit/PREDICTION-REGISTER.md). In test on Jerry's run.
