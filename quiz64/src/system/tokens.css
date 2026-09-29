@@ -17,9 +17,9 @@
   /* Phone sizes are the default; desktop (1024 and up) and xs (under 360) below. */
   --type-hero-size: 44px;      --type-hero-line: 46px;      --type-hero-weight: 600;      --type-hero-track: -0.025em;
   --type-display-size: 36px;   --type-display-line: 40px;   --type-display-weight: 600;   --type-display-track: -0.02em;
-  --type-prompt-s-size: 30px;  --type-prompt-s-line: 34px;  --type-prompt-s-weight: 560;  --type-prompt-s-track: -0.015em;
-  --type-prompt-m-size: 26px;  --type-prompt-m-line: 30px;  --type-prompt-m-weight: 560;  --type-prompt-m-track: -0.01em;
-  --type-prompt-l-size: 22px;  --type-prompt-l-line: 27px;  --type-prompt-l-weight: 540;  --type-prompt-l-track: -0.005em;
+  --type-prompt-s-size: 28px;  --type-prompt-s-line: 32px;  --type-prompt-s-weight: 560;  --type-prompt-s-track: -0.015em;
+  --type-prompt-m-size: 24px;  --type-prompt-m-line: 28px;  --type-prompt-m-weight: 560;  --type-prompt-m-track: -0.01em;
+  --type-prompt-l-size: 21px;  --type-prompt-l-line: 26px;  --type-prompt-l-weight: 540;  --type-prompt-l-track: -0.005em;
   --type-title-size: 22px;     --type-title-line: 28px;     --type-title-weight: 580;     --type-title-track: -0.01em;
   --type-genii-size: 15px;     --type-genii-line: 20px;     --type-genii-weight: 420;     --type-genii-track: 0em;
   --type-quote-size: 24px;     --type-quote-line: 31px;     --type-quote-weight: 460;     --type-quote-track: -0.01em;
@@ -157,7 +157,7 @@
   --s-12: 128px;
 
   --gutter: 16px;
-  --card-pad: 20px;
+  --card-pad: 18px;
   --answer-gap: 8px;
   --section-gap: 24px;
   --content-max: 1240px;
@@ -193,10 +193,15 @@
   --d-slow: 420ms;
   --d-scene: 700ms;
   --d-reveal: 1600ms;
+  --d-hold: 820ms;
   --d-reduced: 120ms;
   --e-out: cubic-bezier(0.2, 0.8, 0.2, 1);
   --e-in-out: cubic-bezier(0.65, 0, 0.35, 1);
   --e-in: cubic-bezier(0.4, 0, 1, 1);
+  /* Round 2 motion vocabulary (motion.css): springs as CSS easings, so a pick bounces like a haptic tap and glass
+     settles with one soft overshoot. Generated from the tap and settle springs; the JS springs mirror them. */
+  --e-spring: linear(0, 0.21 6%, 0.66 15%, 1.05 26%, 1.13 33%, 1.1 40%, 1.02 52%, 0.99 62%, 1);
+  --e-settle: linear(0, 0.14 8%, 0.52 20%, 0.86 34%, 1.02 48%, 1.04 58%, 1.01 74%, 1);
   --sparkle-bursts: 1;
 
   /* Decorative loops (always at least 6 s, except Genii's breath and the current-shard pulse) and fog timings */
@@ -239,9 +244,9 @@
 /* xs (under 360): prompt sizes one step down, gutter 12 */
 @media (max-width: 359.98px) {
   :root {
-    --type-prompt-s-size: 26px;  --type-prompt-s-line: 30px;
-    --type-prompt-m-size: 22px;  --type-prompt-m-line: 27px;
-    --type-prompt-l-size: 20px;  --type-prompt-l-line: 25px;
+    --type-prompt-s-size: 24px;  --type-prompt-s-line: 28px;
+    --type-prompt-m-size: 21px;  --type-prompt-m-line: 26px;
+    --type-prompt-l-size: 19px;  --type-prompt-l-line: 24px;
     --gutter: 12px;
   }
 }
@@ -269,6 +274,7 @@ html[data-theme="dusk"] {
   --d-slow: 525ms;
   --d-scene: 875ms;
   --d-reveal: 2000ms;
+  --d-hold: 1025ms;
   --sparkle-bursts: 0;
 }
 
@@ -282,6 +288,7 @@ html[data-theme="clear"] {
   --d-slow: 357ms;
   --d-scene: 595ms;
   --d-reveal: 1360ms;
+  --d-hold: 697ms;
   --sparkle-bursts: 0;
 }
 

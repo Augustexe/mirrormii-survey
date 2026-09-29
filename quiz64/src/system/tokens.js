@@ -13,9 +13,9 @@ const t = (face, phone, desktop, weight, track, extra = {}) => Object.freeze({ f
 export const type = Object.freeze({
   hero: t("display", [44, 46], [80, 80], 600, -0.025),
   display: t("display", [36, 40], [60, 62], 600, -0.02),
-  promptS: t("display", [30, 34], [40, 46], 560, -0.015, { maxChars: 70 }),
-  promptM: t("display", [26, 30], [34, 40], 560, -0.01, { maxChars: 120 }),
-  promptL: t("display", [22, 27], [28, 34], 540, -0.005, { maxChars: 170 }),
+  promptS: t("display", [28, 32], [40, 46], 560, -0.015, { maxChars: 70 }),
+  promptM: t("display", [24, 28], [34, 40], 560, -0.01, { maxChars: 120 }),
+  promptL: t("display", [21, 26], [28, 34], 540, -0.005, { maxChars: 170 }),
   title: t("display", [22, 28], [26, 32], 580, -0.01),
   genii: t("display", [15, 20], [17, 24], 420, 0, { italic: true }),
   quote: t("display", [24, 31], [30, 38], 460, -0.01, { italic: true }),
@@ -122,7 +122,7 @@ export const materials = Object.freeze({
 
 export const space = Object.freeze([4, 8, 12, 16, 20, 24, 32, 40, 56, 72, 96, 128]);
 export const layout = Object.freeze({
-  gutter: 16, gutterXs: 12, cardPad: 20, cardPadDesktop: 32, answerGap: 8, sectionGap: 24, sectionGapDesktop: 40,
+  gutter: 16, gutterXs: 12, cardPad: 18, cardPadDesktop: 32, answerGap: 8, sectionGap: 24, sectionGapDesktop: 40,
   contentMax: 1240, sheetMax: 560, headerH: 52, headerHDesktop: 64,
   breakpoints: Object.freeze({ xs: 360, tablet: 600, desktop: 1024, wide: 1440 }),
 });
@@ -136,7 +136,8 @@ export const elevation = Object.freeze({
 });
 
 // Durations in ms at the Day scale; use motionFor(theme) for the themed values.
-export const durations = Object.freeze({ instant: 90, quick: 160, base: 240, slow: 420, scene: 700, reveal: 1600, reduced: 120 });
+// hold: how long a picked answer stays on screen before the next card (round 2: the reply format's beat, on every format).
+export const durations = Object.freeze({ instant: 90, quick: 160, base: 240, slow: 420, scene: 700, reveal: 1600, hold: 820, reduced: 120 });
 // Decorative loop lengths and fog timings in ms (tokens.css --d-loop-*, --d-fog-*).
 export const loops = Object.freeze({ step: 60, decorDelay: 300, breath: 4800, pulse: 3000, bob: 6000, shimmer: 8000, orbit: 18000, wisp: 11000, fogRefill: 2500, fogPeek: 1500 });
 export const easings = Object.freeze({
@@ -147,6 +148,20 @@ export const easings = Object.freeze({
 export const springs = Object.freeze({
   tap: Object.freeze({ type: "spring", stiffness: 520, damping: 34 }),
   settle: Object.freeze({ type: "spring", stiffness: 180, damping: 24 }),
+  // Round 2: the pick bounce (a haptic-like overshoot) and the soft glass arrival; CSS mirrors: --e-spring, --e-settle.
+  pick: Object.freeze({ type: "spring", stiffness: 640, damping: 18 }),
+  glass: Object.freeze({ type: "spring", stiffness: 220, damping: 20 }),
+});
+
+// The answer beat, every format (round 2, section 23 ruling 3): press, pick (bounce, glow, check), the shard leaves the
+// answer for the mirror, the picked answer holds on screen, then the card leaves. Day ms; scale with motionFor(theme).
+export const beats = Object.freeze({
+  press: 90, // press feedback
+  bounce: 360, // the picked answer's bounce and glow bloom
+  launch: 120, // the shard lifts off the answer after the bounce starts
+  flight: 460, // answer to the header mirror (lands before the card leaves)
+  hold: 820, // the picked answer stays on screen (the reply's hold, now everywhere)
+  leave: 200, // the card's exit, the last part of the hold
 });
 export const choreography = Object.freeze({ headingRise: 8, stepMs: 60, maxSteps: 4, maxStagger: 280, contentReadyMs: 300, exitLift: 6, decorationMs: 700, loopMinMs: 6000 });
 
