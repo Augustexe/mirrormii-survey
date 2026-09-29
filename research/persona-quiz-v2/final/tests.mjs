@@ -268,6 +268,19 @@ test("no em dash anywhere in the kit", () => {
   }
 });
 
+// PRODUCT-TRUTH section 8 never-say list (the same list quiz64/qa/qa-checks.mjs scans on screen): no copy a player can
+// see in cards.json, library.json or friend.json uses it. Internal notes (origin, rules) are authoring records, not copy.
+test("never-say words: no player-facing copy in the kit, library or friend game", () => {
+  const NEVER = [/\bdiagnos/i, /\btreat(ment|ed|ing)?\b/i, /\bcure\b/i, /\bprevent/i, /clinically proven/i, /anti-aging/i, /skin age/i, /before and after/i, /\bstreak/i, /\bpredicts?\b/i, /\bDNA\b/, /genomic/i, /free forever/i];
+  const hits = [];
+  const walk = (o, where) => {
+    if (typeof o === "string") { for (const re of NEVER) { const m = o.match(re); if (m) hits.push(`${where}: "${m[0]}"`); } return; }
+    if (o && typeof o === "object") for (const [k, v] of Object.entries(o)) if (!["origin", "rules"].includes(k)) walk(v, `${where}.${k}`);
+  };
+  for (const f of ["cards.json", "library.json", "friend.json"]) walk(JSON.parse(fs.readFileSync(path.join(DIR, f), "utf8")), f);
+  assert.deepEqual(hits, []);
+});
+
 // ------------------------------------------------------------ no age (LAUNCH-SPEC section 22)
 test("no age logic: no card carries teen, teenPrompt or locked18; everyone gets the same pool", () => {
   for (const c of everyCard) {

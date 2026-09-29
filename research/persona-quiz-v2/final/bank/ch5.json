@@ -123,12 +123,6 @@
         "axes": {
           "L2": 2
         },
-        "tags": [
-          {
-            "id": "T17A",
-            "s": 1
-          }
-        ],
         "emotion": "envy"
       },
       {
@@ -142,25 +136,13 @@
         "axes": {
           "L2": -2
         },
-        "tags": [
-          {
-            "id": "T17B",
-            "s": 1
-          }
-        ],
         "emotion": "warmth"
       },
       {
         "t": "Shrug. Second place to a dog is still pretty good.",
         "axes": {
           "L2": -1
-        },
-        "tags": [
-          {
-            "id": "T17B",
-            "s": 1
-          }
-        ]
+        }
       }
     ],
     "heart": {
@@ -180,7 +162,7 @@
       "stakes": "your pride and your timeline",
       "device": "promoted-office-dog"
     },
-    "mask": "looks like office nonsense; measures letting someone else's jump set your clock versus keeping your own pace (L2, T17)",
+    "mask": "looks like an office joke; measures whether someone else's timeline sets your clock (L2)",
     "ae": [
       "A",
       "E"
@@ -194,25 +176,13 @@
         "t": "Updates {their} résumé tonight. Refuses to lose to a dog.",
         "axes": {
           "L2": 2
-        },
-        "tags": [
-          {
-            "id": "T17A",
-            "s": 1
-          }
-        ]
+        }
       },
       "b": {
         "t": "Happy for it. \"Honestly, a very good dog.\"",
         "axes": {
           "L2": -2
-        },
-        "tags": [
-          {
-            "id": "T17B",
-            "s": 1
-          }
-        ]
+        }
       }
     }
   },
@@ -221,7 +191,7 @@
     "type": "feeling",
     "chapter": 5,
     "follows": "C5-121",
-    "prompt": "The dog got your job. What landed first?",
+    "prompt": "Your new boss wags at you from the corner office. Gut reaction?",
     "options": [
       {
         "t": "Happy for it, truly."
@@ -240,13 +210,13 @@
       }
     ],
     "heart": {
-      "prompt": "The dog got the job you wanted. What did you feel first?",
+      "prompt": "Your new boss, the dog, wags at you from the corner office. What is your gut reaction?",
       "options": [
         "I am truly happy for it.",
-        "It stung a little. Why not me?",
-        "Relief came first. Let the dog run the meetings.",
-        "I felt strangely embarrassed.",
-        "It fired me up to go after the next one."
+        "It stings a little. Why not me?",
+        "Relief comes first. Let the dog run the meetings.",
+        "Strangely, I feel embarrassed.",
+        "It fires me up to go after the next one."
       ]
     },
     "fp": {
@@ -269,10 +239,10 @@
     "id": "C5-128",
     "type": "real",
     "chapter": 5,
-    "prompt": "The last free weekend you had with a big deadline hanging over it. What actually happened?",
+    "prompt": "The last time friends invited you out on a night you'd saved for your big project. What won?",
     "options": [
       {
-        "t": "Worked both days. Loved it, honestly.",
+        "t": "Stayed in and worked. Told them \"next time.\"",
         "axes": {
           "L2": 2
         },
@@ -281,11 +251,10 @@
             "id": "T16A",
             "s": 2
           }
-        ],
-        "emotion": "pride"
+        ]
       },
       {
-        "t": "Brought the laptop to a birthday dinner. Everyone noticed.",
+        "t": "Went, then left early to get back to it.",
         "axes": {
           "L2": 1
         },
@@ -294,11 +263,10 @@
             "id": "T16A",
             "s": 1
           }
-        ],
-        "emotion": "cringe"
+        ]
       },
       {
-        "t": "Didn't touch it. Future me handled it.",
+        "t": "Closed the place down with them.",
         "axes": {
           "L2": -2
         },
@@ -310,7 +278,7 @@
         ]
       },
       {
-        "t": "Told everyone I was working. Actually napped.",
+        "t": "Went. Felt guilty about the project all night.",
         "axes": {
           "L2": -1
         },
@@ -319,39 +287,38 @@
             "id": "T16B",
             "s": 1
           }
-        ],
-        "emotion": "guilt"
+        ]
       }
     ],
     "heart": {
-      "prompt": "Think of the last free weekend you had while a big deadline was coming. What actually happened?",
+      "prompt": "Think of the last time friends invited you out on a night you had saved for your big project. What won?",
       "options": [
-        "I worked both days, and honestly I enjoyed it.",
-        "My laptop came to a birthday dinner, and people noticed.",
-        "I did not touch it. Future me handled it.",
-        "I told people I was working, but I mostly rested."
+        "I stayed in and worked, and told them next time.",
+        "I went, then left early to get back to it.",
+        "Going out won, and I stayed until the place closed.",
+        "I went, and felt guilty about the project all night."
       ]
     },
     "fp": {
-      "trigger": "a free weekend with a deadline looming",
-      "setting": "your own weekend",
-      "ask": "work it or rest",
-      "who": "you, friends around",
-      "stakes": "rest versus getting ahead",
-      "device": "deadline-weekend"
+      "trigger": "friends invite you out on a night saved for work",
+      "setting": "an evening you had set aside to work",
+      "ask": "work or go out",
+      "who": "your friends",
+      "stakes": "visible progress versus a night out",
+      "device": "work-night-invite"
     },
-    "mask": "looks like a weekend confession; measures giving free time to the visible win versus logging off (L2, T16) from a thing actually done",
+    "mask": "looks like a social memory; measures trading free time for a win people can see (L2, T16) from a thing actually done",
     "ae": [
       "A",
-      "E"
+      "D"
     ],
     "privacy": "normal",
     "sq": "SQ-L2-1",
     "world": "everyday",
     "friend": {
-      "prompt": "{name}'s last free weekend, with a big deadline hanging over it. What did {name} actually do?",
+      "prompt": "The last time friends invited {name} out on a night {they} had saved for a big project. What won?",
       "a": {
-        "t": "Worked both days. Loved it, honestly.",
+        "t": "Stayed in and worked. Told them \"next time.\"",
         "axes": {
           "L2": 2
         },
@@ -363,7 +330,7 @@
         ]
       },
       "b": {
-        "t": "Didn't touch it. Future {name} handled it.",
+        "t": "Closed the place down with them.",
         "axes": {
           "L2": -2
         },
@@ -532,7 +499,7 @@
         "emotion": "worry"
       },
       {
-        "t": "No reply. Tell my friend, \"Maybe start looking.\" Nothing more.",
+        "t": "\"Sorry, wrong person!\" Then nudge my friend: update your résumé.",
         "axes": {
           "L3": -1
         },
@@ -556,7 +523,7 @@
         "\"I deleted it, promise.\" Next week, I act surprised.",
         "\"Wrong person. You may want to check who else got this.\"",
         "\"Wrong person.\" Then I call my friend on the way home.",
-        "No reply. I tell my friend to start looking, and nothing more."
+        "\"Sorry, wrong person.\" Then I tell my friend to update their résumé."
       ]
     },
     "fp": {
@@ -694,7 +661,7 @@
     "type": "this_or_that",
     "chapter": 5,
     "round": "ch5-r1",
-    "prompt": "A carrier owl lands between your desk and your closest friend's with one dream-job offer. Whoever feeds it first gets the job.",
+    "prompt": "A carrier owl lands between your desk and your closest friend's: one dream-job offer, seventy-hour weeks. Whoever feeds it first gets it.",
     "options": [
       {
         "t": "Feed the owl. I'm not apologizing at the party.",
@@ -707,7 +674,7 @@
         "emotion": "pride"
       },
       {
-        "t": "My friend feeds it. Losing to them beats watching them lose.",
+        "t": "My friend feeds it. I like my evenings, and my friend.",
         "tags": [
           {
             "id": "T16B",
@@ -718,10 +685,10 @@
       }
     ],
     "heart": {
-      "prompt": "A carrier owl lands between your desk and your closest friend's, carrying one offer for your dream job. Whoever feeds it first gets the job.",
+      "prompt": "A carrier owl lands between your desk and your closest friend's with one dream-job offer: seventy-hour weeks. Whoever feeds it first gets it.",
       "options": [
         "I feed the owl, and I will not apologize at the celebration.",
-        "They feed it. Losing to them is easier than watching them lose."
+        "They feed it. I like my evenings, and my friend."
       ]
     },
     "fp": {
@@ -738,7 +705,7 @@
       "B"
     ],
     "privacy": "normal",
-    "sq": "SQ-T16-2",
+    "sq": "SQ-T16-1",
     "world": "absurd",
     "friend": {
       "prompt": "An owl lands between {name} and {their} closest friend with one dream-job offer. First to feed it gets the job. What does {name} do?",
@@ -752,7 +719,7 @@
         ]
       },
       "b": {
-        "t": "Lets the friend feed it: \"Losing to them beats watching them lose.\"",
+        "t": "Lets the friend feed it: \"I like my evenings, and my friend.\"",
         "tags": [
           {
             "id": "T16B",
@@ -766,29 +733,40 @@
     "id": "C5-120",
     "type": "scenario",
     "chapter": 5,
-    "prompt": "Your best friend is moving to a tiny town across the ocean and bought you a one-way ticket too. It's refundable until tomorrow.",
+    "prompt": "Your company offers a full year's pay to anyone who quits this week. You like your job. Half your team is already clearing their desks.",
     "options": [
       {
-        "t": "Keeping it. Work hears on Monday.",
+        "t": "Take it. A paid year to find out what's next.",
         "axes": {
           "L1": -2
         },
-        "emotion": "delight"
+        "tags": [
+          {
+            "id": "T22A",
+            "s": 1
+          }
+        ]
       },
       {
-        "t": "Go, and keep paying rent back home, just in case.",
+        "t": "Take it, and start freelancing the same week.",
         "axes": {
           "L1": -1
         }
       },
       {
-        "t": "I finally have the life I built. Refund.",
+        "t": "Stay. Liking your job is rarer than a year's pay.",
         "axes": {
           "L1": 2
-        }
+        },
+        "tags": [
+          {
+            "id": "T22B",
+            "s": 1
+          }
+        ]
       },
       {
-        "t": "Refund it, but keep the confirmation email forever.",
+        "t": "Stay, and ask HR to call me if there's a second round.",
         "axes": {
           "L1": 1
         },
@@ -797,48 +775,60 @@
             "id": "T17B",
             "s": 1
           }
-        ],
-        "emotion": "longing"
+        ]
       }
     ],
     "heart": {
-      "prompt": "Your best friend is moving to a small town across the ocean and bought you a one-way ticket too. It is refundable until tomorrow.",
+      "prompt": "Your company offers a full year's pay to anyone who quits this week. You like your job, and half your team is already clearing their desks.",
       "options": [
-        "I keep it. Work hears about it on Monday.",
-        "I go, and I keep paying rent back home, just in case.",
-        "My life here is the one I built. I get the refund.",
-        "I refund it, but I keep the confirmation email forever."
+        "I take it: a paid year to find out what is next.",
+        "Freelancing starts the same week I take it.",
+        "I stay. Liking my job is rarer than a year's pay.",
+        "I stay, and ask to hear about any second round."
       ]
     },
     "fp": {
-      "trigger": "a friend buys you a one-way ticket abroad",
-      "setting": "a refundable ticket, deadline tomorrow",
-      "ask": "leap or stay",
-      "who": "your best friend",
-      "stakes": "the life you built versus a new one",
-      "device": "one-way-ticket"
+      "trigger": "a company offers a year's pay to quit",
+      "setting": "the office, half the team leaving",
+      "ask": "keep a job you like or take the paid leap",
+      "who": "your company and your team",
+      "stakes": "a good job versus a year of unknown",
+      "device": "quit-buyout"
     },
-    "mask": "looks like a travel surprise; measures security and the known versus risk and the new (L1)",
+    "mask": "looks like office news; measures security and the known versus risk and the new (L1)",
     "ae": [
       "A",
-      "D"
+      "D",
+      "E"
     ],
     "privacy": "normal",
     "sq": "SQ-L1-1",
     "world": "unusual",
     "friend": {
-      "prompt": "{name}'s best friend moves across the ocean and buys {them} a one-way ticket too. Refundable until tomorrow. What does {name} do?",
+      "prompt": "{name}'s company offers a year's pay to anyone who quits this week. {name} likes the job. What does {name} do?",
       "a": {
-        "t": "Refunds it. The life {name} built stays.",
+        "t": "Stays. Liking your job is rarer than a year's pay.",
         "axes": {
           "L1": 2
-        }
+        },
+        "tags": [
+          {
+            "id": "T22B",
+            "s": 1
+          }
+        ]
       },
       "b": {
-        "t": "Keeps it. Work hears on Monday.",
+        "t": "Takes it. A paid year to find out what's next.",
         "axes": {
           "L1": -2
-        }
+        },
+        "tags": [
+          {
+            "id": "T22A",
+            "s": 1
+          }
+        ]
       }
     }
   },
@@ -1270,7 +1260,7 @@
     "chapter": 5,
     "sq": "SQ-T17-2",
     "world": "everyday",
-    "prompt": "Decisions, this year. Tap everything that's true:",
+    "prompt": "This year's decisions. Which of these have you done? Tap them all.",
     "options": [
       {
         "t": "Booked something non-refundable just to stop deciding",
@@ -1314,7 +1304,7 @@
       }
     ],
     "heart": {
-      "prompt": "Think about decisions you have made this year. Choose everything that is true.",
+      "prompt": "Which of these have you done this year? Choose every one.",
       "options": [
         "I booked something non-refundable just to stop deciding.",
         "I said \"maybe\" to a plan in case something better came up.",

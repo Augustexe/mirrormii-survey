@@ -3,90 +3,87 @@
   "id": "C2-160",
   "type": "scenario",
   "chapter": 2,
-  "sq": "SQ-T02-1",
+  "sq": "SQ-T05-1",
   "world": "absurd",
-  "prompt": "Your best friend hibernates now. Every winter, gone. In March they text \"heyyy\" like nothing happened. It's March.",
+  "prompt": "Every word you say out loud now costs $5. Your best friend has the biggest presentation of their life in an hour, and they're shaking.",
   "options": [
    {
-    "t": "\"Heyyy\" right back. Spring is our season.",
+    "t": "$50 on ten perfect words. Worth every cent.",
     "tags": [
      {
-      "id": "T02A",
+      "id": "T05B",
       "s": 2
      }
-    ],
-    "emotion": "warmth"
+    ]
    },
    {
-    "t": "\"Welcome back. It was a long winter.\" Pointedly.",
+    "t": "Zero words. I drive them there and hold their coffee.",
     "tags": [
      {
-      "id": "T02B",
-      "s": 1
-     }
-    ],
-    "emotion": "irritation"
-   },
-   {
-    "t": "Take a week to answer. They took four months.",
-    "tags": [
-     {
-      "id": "T02B",
+      "id": "T05A",
       "s": 2
      }
-    ],
-    "emotion": "resentment"
+    ]
    },
    {
-    "t": "Honestly, I barely noticed. I go quiet all winter too.",
+    "t": "\"You've got this.\" Best $15 I'll ever spend.",
     "tags": [
      {
-      "id": "T02A",
+      "id": "T05B",
       "s": 1
      }
-    ],
-    "emotion": "cringe"
+    ]
+   },
+   {
+    "t": "One thumbs up, then I quietly fix their slides.",
+    "tags": [
+     {
+      "id": "T05A",
+      "s": 1
+     }
+    ]
    }
   ],
   "heart": {
-   "prompt": "Your best friend hibernates now. Every winter they disappear, and in March they text \"hey\" as if nothing happened. It is March.",
+   "prompt": "Every word you say out loud now costs $5. Your best friend has the most important presentation of their life in an hour, and they are shaking.",
    "options": [
-    "I reply right away. Spring is our season.",
-    "\"Welcome back. It was a long winter,\" I write, pointedly.",
-    "I take a week to answer. They took four months.",
-    "Honestly, I barely noticed. I go quiet all winter too."
+    "I spend $50 on ten perfect words. It is worth it.",
+    "I say nothing, drive them there and hold their coffee.",
+    "I say \"You've got this,\" and the $15 is well spent.",
+    "One thumbs up, and then I quietly fix their slides."
    ]
   },
   "fp": {
-   "trigger": "a friend resurfaces after months of silence",
-   "setting": "a text every March",
-   "ask": "pick right up or make them wait",
+   "trigger": "a best friend panics before a big presentation",
+   "setting": "a world where every spoken word costs $5",
+   "ask": "say it or do something",
    "who": "your best friend",
-   "stakes": "whether silence costs anything",
-   "device": "hibernating-friend"
+   "stakes": "how your support shows up",
+   "device": "priced-words"
   },
-  "mask": "looks like a cozy animal joke; measures whether long silence is fine or you notice who reaches out (T02)",
+  "mask": "looks like a money curse; measures showing love by doing versus by saying (T05)",
   "ae": [
    "A",
-   "E"
+   "B",
+   "D"
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "{name}'s best friend hibernates every winter and texts \"heyyy\" in March like nothing happened. What does {name} do?",
+   "prompt": "Every word {name} says now costs $5. {name}'s best friend is shaking before a huge presentation. What does {name} do?",
    "a": {
-    "t": "\"Heyyy\" right back. Spring is their season.",
+    "t": "Zero words. Drives them there and holds their coffee.",
     "tags": [
      {
-      "id": "T02A",
+      "id": "T05A",
       "s": 2
      }
     ]
    },
    "b": {
-    "t": "Takes a week to answer. The friend took four months.",
+    "t": "$50 on ten perfect words. Worth every cent.",
     "tags": [
      {
-      "id": "T02B",
+      "id": "T05B",
       "s": 2
      }
     ]
@@ -225,14 +222,14 @@
     "emotion": "delight"
    },
    {
-    "t": "\"Sunday house dinners, mandatory, and I'm in.\"",
+    "t": "\"Yes! House dinners every Sunday, mandatory.\"",
     "axes": {
      "R1": 1
     },
     "emotion": "warmth"
    },
    {
-    "t": "\"In, but my door gets a lock. And a sign.\"",
+    "t": "\"In for a year. Then I want my own place again.\"",
     "axes": {
      "R1": -1
     }
@@ -259,8 +256,8 @@
    ],
    "options": [
     "I am in, and I call the room next to the kitchen.",
-    "Only with a house dinner every Sunday. Then I am in.",
-    "I am in, but my door gets a lock.",
+    "Yes, and house dinners every Sunday are mandatory.",
+    "I am in for a year, then back to my own place.",
     "I love you all, and I will visit often."
    ]
   },
@@ -325,7 +322,7 @@
     ]
    },
    {
-    "t": "Say nothing. Wait by the exit with fries for after.",
+    "t": "Say nothing. Be waiting by the exit after.",
     "axes": {
      "R2": -2
     },
@@ -355,7 +352,7 @@
    "options": [
     "\"Don't. The answer is no.\" I take Jules aside and say it.",
     "I show Jules what the 8-ball said and let them decide.",
-    "I say nothing, and wait nearby with food for afterward.",
+    "I say nothing, and I wait near the exit for afterward.",
     "I gently suggest somewhere less public, and leave it there."
    ]
   },
@@ -390,7 +387,7 @@
     ]
    },
    "b": {
-    "t": "Says nothing. Waits by the exit with fries for after.",
+    "t": "Says nothing. Waits by the exit for after.",
     "axes": {
      "R2": -2
     },
@@ -466,7 +463,7 @@
     "One joke landed, I tell them, and I offer notes.",
     "I say the landlord joke works and the rest needs work.",
     "I suggest opening with the landlord joke, and leave it there.",
-    "I say it will go perfectly, then laugh the loudest."
+    "I tell them they will crush it, then laugh the loudest."
    ]
   },
   "fp": {
@@ -533,21 +530,21 @@
     "emotion": "pride"
    },
    {
-    "t": "\"The company's in stealth mode.\" Say nothing more.",
+    "t": "\"Three clients, one logo, zero office. That's progress.\"",
     "axes": {
      "L2": 1
     },
     "emotion": "cringe"
    },
    {
-    "t": "Laugh the loudest. Past me was adorable.",
+    "t": "Laugh along. It's coming, whenever it comes.",
     "axes": {
      "L2": -1
     },
     "emotion": "delight"
    },
    {
-    "t": "Drive home and start a business plan that night.",
+    "t": "Drive home and make a milestone chart that night.",
     "axes": {
      "L2": 2
     },
@@ -564,9 +561,9 @@
    "prompt": "Your friend group opens its old time capsule. Your note says, \"By now I will run my own company.\" You don't. Everyone is reading theirs aloud.",
    "options": [
     "I read it proudly and say it is still coming, slowly.",
-    "\"My company is in stealth mode,\" I say, and leave it there.",
-    "I laugh the hardest. My past self was sweet.",
-    "I drive home and start a business plan that night."
+    "\"Three clients, one logo, no office yet,\" I say. \"That is progress.\"",
+    "I laugh along. It will come, whenever it comes.",
+    "I drive home and make a milestone chart that night."
    ]
   },
   "fp": {
@@ -588,7 +585,7 @@
   "friend": {
    "prompt": "Time capsule day. {name}'s note: \"By now I'll run my own company.\" Not yet. Everyone reads aloud. What does {name} do?",
    "a": {
-    "t": "Drives home and starts a business plan that night.",
+    "t": "Drives home and makes a milestone chart that night.",
     "axes": {
      "L2": 2
     },
@@ -618,7 +615,7 @@
   "type": "feeling",
   "chapter": 2,
   "follows": "C2-121",
-  "prompt": "Reading that note out loud: what hit first?",
+  "prompt": "Your old note, read aloud, the whole group grinning. Which feeling won?",
   "options": [
    {
     "t": "Cringe. Past me was so sure.",
@@ -642,13 +639,13 @@
    }
   ],
   "heart": {
-   "prompt": "Reading that note out loud, what did you feel first?",
+   "prompt": "You read your old note aloud while the whole group grins. Which feeling wins?",
    "options": [
-    "I felt embarrassed. I sounded so certain.",
-    "It hurt. I really meant it.",
-    "I felt proud. My real life turned out better.",
-    "Relief came first. Nobody is holding me to it.",
-    "I felt wistful. I miss who I was then."
+    "I cringe. Past me sounded so certain.",
+    "It stings, because I really meant it.",
+    "Pride wins. My real life turned out better.",
+    "I feel relieved that nobody is holding me to it.",
+    "Longing wins. I miss who I was then."
    ]
   },
   "fp": {
@@ -671,7 +668,7 @@
   "id": "C2-41",
   "type": "reply",
   "chapter": 2,
-  "prompt": "Riley's building bans pets. Riley's dog Biscuit is very large.",
+  "prompt": "Riley's building bans pets. Riley's pig, Biscuit, is very large.",
   "thread": [
    {
     "from": "Riley",
@@ -679,7 +676,7 @@
    },
    {
     "from": "Riley",
-    "text": "if anyone asks, Biscuit is YOUR dog. just visiting. for like a year"
+    "text": "if anyone asks, Biscuit is YOUR pig. just visiting. for like a year"
    }
   ],
   "options": [
@@ -727,7 +724,7 @@
     "emotion": "guilt"
    },
    {
-    "t": "\"Only if Biscuit actually moves in. Bring the bowl.\"",
+    "t": "\"I won't lie. I'll just be very busy tomorrow.\"",
     "axes": {
      "L3": 1
     },
@@ -740,7 +737,7 @@
    }
   ],
   "heart": {
-   "prompt": "Riley's building does not allow pets. Riley's dog, Biscuit, is very large.",
+   "prompt": "Riley's building does not allow pets. Riley's pig, Biscuit, is very large.",
    "thread": [
     {
      "from": "Riley",
@@ -748,23 +745,23 @@
     },
     {
      "from": "Riley",
-     "text": "If anyone asks, Biscuit is your dog and is only visiting. For about a year."
+     "text": "If anyone asks, Biscuit is your pig and is only visiting. For about a year."
     }
    ],
    "options": [
     "I agree. Biscuit and I go way back.",
     "Once, yes. After that, Biscuit needs a real plan.",
     "I won't lie to a landlord. They need another way.",
-    "I say yes only if Biscuit really moves in with me."
+    "I will not lie, but I will be very busy tomorrow."
    ]
   },
   "fp": {
-   "trigger": "friend asks you to claim their dog",
+   "trigger": "friend asks you to claim their pig",
    "setting": "text thread, a no-pets building",
    "ask": "lie for them or refuse",
    "who": "friend and their landlord",
    "stakes": "their home versus your word",
-   "device": "fake dog owner"
+   "device": "fake pig owner"
   },
   "mask": "looks like a funny favor; measures whether the rule or the person wins (L3, T25)",
   "ae": [
@@ -775,7 +772,7 @@
   "sq": "SQ-L3-1",
   "world": "unusual",
   "friend": {
-   "prompt": "Riley's building bans pets. Before inspection: \"if anyone asks, Biscuit is YOUR dog. for like a year\" What does {name} reply?",
+   "prompt": "Riley's building bans pets. Before inspection: \"if anyone asks, Biscuit is YOUR pig. for like a year\" What does {name} reply?",
    "a": {
     "t": "\"Not lying to a landlord. Find another way.\"",
     "axes": {
@@ -813,10 +810,10 @@
   "chapter": 2,
   "sq": "SQ-T08-2",
   "world": "absurd",
-  "prompt": "Every grudge your friend holds becomes a stone they carry. The oldest: six years, from a roommate who read their diary aloud, then apologized. Where do you land?",
+  "prompt": "Your friend can now delete one memory a year. They deleted the time their sibling sold their guitar and lied about it. Now they're close again. Your take?",
   "options": [
    {
-    "t": "The apology was the whole point. Drop the stone.",
+    "t": "Best use of the year. Forgiven, forgotten, done.",
     "tags": [
      {
       "id": "T08A",
@@ -825,7 +822,7 @@
     ]
    },
    {
-    "t": "Forgiven, sure. The stone stays on the shelf.",
+    "t": "Fine, but I'd still lock up my guitar.",
     "tags": [
      {
       "id": "T08B",
@@ -834,17 +831,16 @@
     ]
    },
    {
-    "t": "Same. I'd have carved the date in.",
+    "t": "Never. That memory is how you learn who to trust.",
     "tags": [
      {
       "id": "T08B",
       "s": 2
      }
-    ],
-    "emotion": "delight"
+    ]
    },
    {
-    "t": "Mine would weigh nothing. I forget by accident.",
+    "t": "I wouldn't need the delete. I'd forget by summer.",
     "tags": [
      {
       "id": "T08A",
@@ -854,32 +850,33 @@
    }
   ],
   "heart": {
-   "prompt": "Every grudge your friend holds becomes a stone they carry. The oldest goes back six years, to a roommate who read their diary aloud, then apologized. Where do you land?",
+   "prompt": "Your friend can now delete one memory a year. They deleted the time their sibling sold their guitar and lied. Now the two are close again. Your take?",
    "options": [
-    "They should put it down. The apology was the point.",
-    "They can forgive and still keep the stone on a shelf.",
-    "I would do the same, and carve the date into it.",
-    "Mine would weigh nothing. I forget without trying."
+    "It was the best possible use: forgiven and forgotten.",
+    "That is fine, though I would still lock up my guitar.",
+    "I would keep that memory. It teaches you who to trust.",
+    "Without deleting anything, I would have forgotten it by summer."
    ]
   },
   "fp": {
-   "trigger": "a friend still carries a grudge from six years back",
-   "setting": "a world where grudges are stones",
-   "ask": "your take on keeping it",
-   "who": "a friend and an old roommate",
-   "stakes": "letting go versus keeping the record",
-   "device": "grudge-stone"
+   "trigger": "a friend erases the memory of a sibling's betrayal",
+   "setting": "a world where one memory a year can go",
+   "ask": "your take on forgetting",
+   "who": "a friend and their sibling",
+   "stakes": "trust versus a clean slate",
+   "device": "memory-delete"
   },
-  "mask": "looks like a fable; measures forgive-and-forget versus forgive-and-file (T08), shown by how you judge a friend's grudge",
+  "mask": "looks like a sci-fi perk; measures forgive-and-forget versus forgive-and-file (T08), shown by how you judge a friend's clean slate",
   "ae": [
    "A",
-   "E"
+   "C",
+   "D"
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "{name}'s friend has carried a grudge stone for six years, though the roommate apologized in year one. {name}'s first thought?",
+   "prompt": "{name}'s friend deleted the memory of their sibling selling their guitar and lying. They're close again. {name}'s take?",
    "a": {
-    "t": "\"Drop it. The apology was the whole point.\"",
+    "t": "Best use of the year. Forgiven, forgotten, done.",
     "tags": [
      {
       "id": "T08A",
@@ -888,7 +885,7 @@
     ]
    },
    "b": {
-    "t": "\"Respect. I'd have carved the date into it.\"",
+    "t": "Never delete that. It's how you learn who to trust.",
     "tags": [
      {
       "id": "T08B",
@@ -905,7 +902,7 @@
   "prompt": "Drive-through chapel, no party, no speeches, ever: that's how your closest friend just got married. They told everyone after. First thought?",
   "options": [
    {
-    "t": "Robbed. I've had that toast ready for years.",
+    "t": "Robbed. I've had a dance routine ready for years.",
     "axes": {
      "R3": 2
     },
@@ -931,7 +928,7 @@
     "emotion": "delight"
    },
    {
-    "t": "Fine. I'm still giving that toast, to their voicemail.",
+    "t": "Happy for them, but I'll mourn that party forever.",
     "axes": {
      "R3": 1
     },
@@ -959,10 +956,10 @@
   "heart": {
    "prompt": "Your closest friend just married at a drive-through chapel and told everyone afterward. There will be no party and no speeches. What do you think first?",
    "options": [
-    "I feel robbed. I have had a toast ready for years.",
-    "I love it. Weddings cost a lot for one day.",
-    "That is fine, but I will still record my toast for them.",
-    "I am a little jealous. That sounds perfect to me."
+    "I feel robbed. I wanted to celebrate them with everyone.",
+    "Weddings are overrated, I think. Eloping was the right call.",
+    "I am happy for them, but I will always miss that party.",
+    "I am a little jealous. A drive-through sounds right to me."
    ]
   },
   "fp": {
@@ -984,7 +981,7 @@
   "friend": {
    "prompt": "{name}'s closest friend married at a drive-through chapel, told everyone after. No party, no speeches, ever. {name}'s first thought?",
    "a": {
-    "t": "Robbed. I've had that toast ready for years.",
+    "t": "Robbed. Had a dance routine ready for years.",
     "axes": {
      "R3": 2
     },
@@ -1014,7 +1011,7 @@
   "type": "this_or_that",
   "chapter": 2,
   "round": "ch2-r125",
-  "prompt": "One ring of a brass bell and you appear beside your best friend. Anywhere. Instantly. You can break the bell today only.",
+  "prompt": "Your best friend now has a brass bell: one ring when they need you, and you appear. Even mid-nap. You can break it today only.",
   "options": [
    {
     "t": "Keep it. If it rings, I'm there. Pajamas and all.",
@@ -1044,9 +1041,9 @@
    }
   ],
   "heart": {
-   "prompt": "When your best friend rings a brass bell, you appear beside them, wherever they are. You can only break the bell today.",
+   "prompt": "Your best friend now has a brass bell. When they need you, one ring makes you appear beside them, even mid-nap. You can only break it today.",
    "options": [
-    "The bell stays whole. If it rings, I go, even in pajamas.",
+    "The bell stays whole. If it rings, I appear, even in pajamas.",
     "I break it today. Nobody should be able to summon me mid-shower."
    ]
   },
@@ -1209,7 +1206,7 @@
     }
    },
    {
-    "t": "Car camper. Doors locked, engine running. \"Nope.\"",
+    "t": "Door holder. Front door propped, one foot outside.",
     "axes": {
      "L1": 1
     }
@@ -1222,7 +1219,7 @@
     "I hold the flashlight and the exit map, and I count heads.",
     "I suggest splitting up, and I am already gone.",
     "I read the house rules on the fridge, twice.",
-    "Honestly, I am waiting in the car with the doors locked."
+    "The front door is mine to hold open, one foot outside."
    ]
   },
   "fp": {
@@ -1333,22 +1330,16 @@
   "prompt": "A sphinx blocks the road: your best friend gets one true line about you, or you both turn to stone. They say:",
   "options": [
    {
-    "t": "\"Cross a line with them and you'll hear it that second.\"",
+    "t": "\"Cross them and they tell you, right then.\"",
     "axes": {
      "R2": 2
     }
    },
    {
-    "t": "\"Says 'it's fine.' It's fine. It's filed.\"",
+    "t": "\"Smiles, says 'all good,' then goes quiet for a day.\"",
     "axes": {
      "R2": -1
-    },
-    "tags": [
-     {
-      "id": "T08B",
-      "s": 1
-     }
-    ]
+    }
    },
    {
     "t": "\"Lets things slide so long they forget them.\"",
@@ -1357,7 +1348,7 @@
     }
    },
    {
-    "t": "\"Calls you out, then buys the next round.\"",
+    "t": "\"Calls you out once, then never brings it up again.\"",
     "axes": {
      "R2": 1
     },
@@ -1372,10 +1363,10 @@
   "heart": {
    "prompt": "A sphinx stops you and your best friend. Your friend must describe you in one true sentence, or you both turn to stone. What do they say?",
    "options": [
-    "Cross a line with them, they say, and you hear it instantly.",
-    "They say it is fine, and they remember it.",
-    "They let things go for so long that they forget them.",
-    "They tell you directly, then buy the next round."
+    "Cross them, and they tell you right then.",
+    "They smile, say all is well, then go quiet for a day.",
+    "Things slide for so long that they forget them.",
+    "They call you out once, and never bring it up again."
    ]
   },
   "fp": {
@@ -1386,7 +1377,7 @@
    "stakes": "how you are seen when someone crosses you",
    "device": "sphinx"
   },
-  "mask": "looks like a riddle; measures naming it when someone crosses a line versus absorbing it (R2), and whether it gets filed (T08)",
+  "mask": "looks like a riddle; measures naming it when someone crosses a line versus absorbing it (R2)",
   "ae": [
    "A",
    "B"
@@ -1397,7 +1388,7 @@
   "friend": {
    "prompt": "A sphinx makes {name}'s best friend say one true line about {them}, or both turn to stone. Which line?",
    "a": {
-    "t": "\"Cross a line with {them} and you'll hear it that second.\"",
+    "t": "\"Cross {them} and {they} tell you, right then.\"",
     "axes": {
      "R2": 2
     }
@@ -1560,7 +1551,7 @@
    "prompt": "Have you heard what others say about a friend behind their back, and never told them?",
    "options": [
     "Yes. I kept it to myself, and I still do.",
-    "Yes. I hinted until they asked the right question.",
+    "I hinted until they asked the right question.",
     "No. I told them that night, names included.",
     "No. I told them, then told everyone that I had."
    ]
@@ -1908,7 +1899,7 @@
   "prompt": "A friend's last rough week. Tap everything you actually did:",
   "options": [
    {
-    "t": "Dropped off food or coffee without being asked",
+    "t": "Did one of their chores without being asked",
     "tags": [
      {
       "id": "T05A",
@@ -1962,9 +1953,9 @@
    }
   ],
   "heart": {
-   "prompt": "The last time a friend had a rough week, which of these did you do? Choose all that are true.",
+   "prompt": "The last time a friend had a rough week, which of these did you do? Select every one that is true.",
    "options": [
-    "I dropped off food or coffee without being asked.",
+    "I did one of their chores without being asked.",
     "I sent a long message about how much they matter to me.",
     "I stayed on the phone long past my bedtime.",
     "I muted their messages for one night to recharge.",

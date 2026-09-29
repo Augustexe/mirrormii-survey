@@ -5,56 +5,55 @@
     "axisFor": "R1",
     "sq": "SQ-R1-1",
     "world": "unusual",
-    "prompt": "Shared backyard, no fence: your sibling wants to buy the house next door. The auction is tomorrow, and they need your yes.",
+    "prompt": "Two years of saving for your first solo trip: three weeks, one backpack. Your sibling asks to come. They already requested the time off.",
     "options": [
       {
-        "t": "Do it, and let's rip out the hedge too.",
+        "t": "Two tickets, then. Solo was overrated anyway.",
         "axes": {
           "R1": 2
-        },
-        "emotion": "delight"
+        }
       },
       {
-        "t": "Yes, and we're building a fence. A nice one.",
+        "t": "Meet me for the last weekend. The rest is mine.",
         "axes": {
           "R1": -1
-        },
-        "emotion": "guilt"
+        }
       },
       {
-        "t": "\"Love you. Please buy the one down the street.\"",
+        "t": "No. I've waited two years to be alone out there.",
         "axes": {
           "R1": -2
         }
       },
       {
-        "t": "Yes. One yard, one grill, every weekend.",
+        "t": "Come, but I get one solo day a week.",
         "axes": {
           "R1": 1
         }
       }
     ],
     "heart": {
-      "prompt": "Your sibling wants to buy the house next door to yours, with a shared backyard and no fence. The auction is tomorrow, and they need your answer.",
+      "prompt": "You have saved for two years for your first solo trip, three weeks with one backpack. Your sibling asks to come along, and has already requested the time off.",
       "options": [
-        "Do it. Let us take out the hedge as well.",
-        "Yes, and we will put up a fence, a nice one.",
-        "I love you. Please buy the one down the street.",
-        "Yes. We will share one yard and one grill every weekend."
+        "Then we need two tickets. Solo was overrated anyway.",
+        "They can meet me for the last weekend. The rest is mine.",
+        "No. I have waited two years to be out there alone.",
+        "They can come, but I keep one day a week to myself."
       ]
     },
     "fp": {
-      "trigger": "a sibling wants to buy the house next door",
-      "setting": "neighboring houses, auction tomorrow",
-      "ask": "welcome them next door or not",
+      "trigger": "a sibling asks to join your long-planned solo trip",
+      "setting": "a three-week backpacking trip",
+      "ask": "share it or keep it solo",
       "who": "your sibling",
-      "stakes": "closeness versus your own space",
-      "device": "house-next-door"
+      "stakes": "closeness versus the trip you saved for",
+      "device": "solo-trip-crasher"
     },
-    "mask": "looks like a real estate favor; measures whether close means shared space or close with room of your own (R1)",
+    "mask": "looks like travel plans; measures whether close means shared everything or close with room of your own (R1)",
     "ae": [
       "A",
-      "B"
+      "B",
+      "D"
     ],
     "privacy": "normal"
   },
@@ -86,19 +85,19 @@
         }
       },
       {
-        "t": "My bad days are mine. I'd hide them better.",
+        "t": "Feel my moods, fine. My reasons stay mine.",
         "axes": {
           "R1": -1
         }
       },
       {
-        "t": "Finally, I'd know what's really going on with everyone.",
+        "t": "Finally, nobody could hide a bad day from me.",
         "axes": {
           "R1": 1
         }
       },
       {
-        "t": "I'd need a quiet cabin, far from everyone's feelings.",
+        "t": "I'd stop asking why anyone's down. The link says enough.",
         "axes": {
           "R1": -1
         }
@@ -109,10 +108,10 @@
       "options": [
         "Good. Nobody in this group has a bad day alone.",
         "Where is the off switch? I would ask today.",
-        "A daily call to check in, and we fix it together.",
-        "My bad days are mine. I would hide them better.",
-        "Finally, I would know what is really going on with everyone.",
-        "I would need a quiet cabin, far from everyone's feelings."
+        "I would start a daily check-in call so we fix it together.",
+        "They can feel my moods. My reasons stay mine.",
+        "Finally, nobody could hide a bad day from me.",
+        "I would stop asking why anyone is down. The link says enough."
       ]
     },
     "fp": {
@@ -275,10 +274,10 @@
     "axisFor": "R3",
     "sq": "SQ-T20-2",
     "world": "unusual",
-    "prompt": "Family rule for every move: the old bread box goes into the new home first. You're moving in with your person. They hate the bread box.",
+    "prompt": "Your new town's 200-year tradition: every newcomer rings the old bell at the fair, dressed as a lobster. You just moved in. The fair is Saturday.",
     "options": [
       {
-        "t": "Bread box first. Four generations, no exceptions.",
+        "t": "Full lobster, claws and all. Two centuries deserves it.",
         "axes": {
           "R3": 2
         },
@@ -290,7 +289,7 @@
         ]
       },
       {
-        "t": "Sneak it in second, after something that's ours.",
+        "t": "Ring the bell in my own costume. Close enough.",
         "axes": {
           "R3": -1
         },
@@ -299,11 +298,10 @@
             "id": "T20B",
             "s": 1
           }
-        ],
-        "emotion": "delight"
+        ]
       },
       {
-        "t": "Retire it. Our first thing will be a plant.",
+        "t": "Skip it. I'll start a newcomer tradition of my own.",
         "axes": {
           "R3": -2
         },
@@ -315,7 +313,7 @@
         ]
       },
       {
-        "t": "It goes in first, then lives in the closet.",
+        "t": "Lobster suit, bell rung, fastest exit in fair history.",
         "axes": {
           "R3": 1
         },
@@ -328,26 +326,27 @@
       }
     ],
     "heart": {
-      "prompt": "Your family's rule for every move: the old bread box enters the new home first. You are moving in with your person, who hates it.",
+      "prompt": "Your new town has a 200-year tradition: every newcomer rings the old bell at the fair, dressed as a lobster. You just moved in. The fair is Saturday.",
       "options": [
-        "The bread box goes first. Four generations have done it, no exceptions.",
-        "I bring it in second, after something that is ours.",
-        "I retire it. Our first thing will be a plant.",
-        "It goes in first, and then it lives in the closet."
+        "I wear the whole lobster suit. Two centuries deserves it.",
+        "My own costume goes on, and I ring the bell in that.",
+        "I skip it and start a newcomer tradition of my own.",
+        "Lobster suit on, bell rung, and then I leave quickly."
       ]
     },
     "fp": {
-      "trigger": "a family moving ritual meets a partner who hates it",
-      "setting": "moving day",
-      "ask": "keep the tradition or start your own",
-      "who": "your person and your family",
-      "stakes": "family ritual versus a home of your own",
-      "device": "bread-box"
+      "trigger": "a town tradition asks every newcomer to perform",
+      "setting": "a small-town fair and an old bell",
+      "ask": "follow the ritual or make your own",
+      "who": "your new neighbors",
+      "stakes": "belonging versus doing it your way",
+      "device": "lobster-bell"
     },
-    "mask": "looks like a moving-day joke; measures the classic family script versus your own traditions (R3, T20)",
+    "mask": "looks like a small-town joke; measures keeping traditions as they are versus remaking them (R3, T20)",
     "ae": [
       "A",
-      "D"
+      "D",
+      "E"
     ],
     "privacy": "normal"
   },
@@ -357,10 +356,10 @@
     "axisFor": "R3",
     "sq": "SQ-R3-2",
     "world": "absurd",
-    "prompt": "Plant one seed and a house grows overnight. Pick the seed: the classic family home, or the strange one you'd design together.",
+    "prompt": "A ring drops from the sky, engraved with both your names. Tradition says one of you kneels. Or you just swap it over breakfast.",
     "options": [
       {
-        "t": "The classic: fence, dining table, guest room for family.",
+        "t": "Someone kneels. Some scripts exist for a reason.",
         "axes": {
           "R3": 2
         },
@@ -369,11 +368,10 @@
             "id": "T20A",
             "s": 1
           }
-        ],
-        "emotion": "warmth"
+        ]
       },
       {
-        "t": "Ours. No dining table, a slide, a reading pit.",
+        "t": "Breakfast, pajamas, our own script.",
         "axes": {
           "R3": -2
         },
@@ -382,28 +380,28 @@
             "id": "T20B",
             "s": 1
           }
-        ],
-        "emotion": "delight"
+        ]
       }
     ],
     "heart": {
-      "prompt": "Plant one seed and a house grows overnight. You pick the seed: the classic family home, or an unusual one you design together.",
+      "prompt": "A ring falls from the sky, engraved with both your names. Tradition says one of you should kneel, or you could simply swap it over breakfast.",
       "options": [
-        "I want the classic: fence, dining table, guest room for family.",
-        "We design our own, with a slide and a reading pit."
+        "One of us kneels. Some scripts exist for a reason.",
+        "We swap it over breakfast, in pajamas, our own way."
       ]
     },
     "fp": {
-      "trigger": "a self-building house needs a blueprint",
-      "setting": "an empty lot, Genii's gift",
-      "ask": "the classic home or your own design",
-      "who": "you and whoever you live with",
-      "stakes": "the way homes run versus your own design",
-      "device": "self-building-house"
+      "trigger": "a ring arrives and the proposal script is yours to follow or skip",
+      "setting": "your home, a ring from the sky",
+      "ask": "the classic proposal or your own way",
+      "who": "you and your person",
+      "stakes": "the way couples always did it versus your own design",
+      "device": "sky-ring"
     },
-    "mask": "looks like a dream-house pick; measures running a home the way it has always been run versus your own design (R3, T20)",
+    "mask": "looks like a romantic surprise; measures running a couple the way it has always been done versus your own design (R3, T20)",
     "ae": [
-      "D"
+      "D",
+      "E"
     ],
     "privacy": "normal"
   },
@@ -483,52 +481,39 @@
     "axisFor": "L1",
     "sq": "SQ-L1-3",
     "world": "absurd",
-    "prompt": "Your piggy bank grew legs overnight. It wants to run off to the circus with all your savings. You can lock it in a drawer, for emergencies only.",
+    "prompt": "You're a pro cyclist who never took the training wheels off. Never fallen once. The final is tomorrow, and nobody has ever won with them.",
     "options": [
       {
-        "t": "Drawer. A locked-up cushion beats any circus.",
+        "t": "The wheels stay. I've never fallen, and won't start now.",
         "axes": {
           "L1": 2
-        },
-        "tags": [
-          {
-            "id": "T13B",
-            "s": 1
-          }
-        ],
-        "emotion": "relief"
+        }
       },
       {
-        "t": "Let it run. I'll follow it to the big top.",
+        "t": "Off tonight. I didn't come this far to play safe.",
         "axes": {
           "L1": -2
-        },
-        "tags": [
-          {
-            "id": "T13A",
-            "s": 1
-          }
-        ],
-        "emotion": "delight"
+        }
       }
     ],
     "heart": {
-      "prompt": "Your piggy bank grew legs overnight and wants to run away to the circus with all your savings. You could lock it in a drawer, for emergencies only.",
+      "prompt": "You are a professional cyclist who never took the training wheels off, and you have never fallen. The final is tomorrow, and nobody has ever won with them.",
       "options": [
-        "It goes in the drawer. A safe cushion beats any circus.",
-        "I let it run, and I follow it to the circus."
+        "The wheels stay. I have never fallen, and will not start now.",
+        "They come off tonight. I refuse to play it safe now."
       ]
     },
     "fp": {
-      "trigger": "your savings want to run away",
-      "setting": "a piggy bank with legs",
-      "ask": "lock the safety net or follow the adventure",
+      "trigger": "the backup that kept you safe may cost you the win",
+      "setting": "a bike race final",
+      "ask": "keep the backup or cut it",
       "who": "just you",
-      "stakes": "your whole cushion",
-      "device": "runaway-piggy-bank"
+      "stakes": "never falling versus ever winning",
+      "device": "training-wheels"
     },
-    "mask": "looks like a silly fable; measures keeping the safety net versus cutting it to go all in (L1, T13)",
+    "mask": "looks like a silly sports image; measures keeping the safety net versus cutting it to go all in (L1)",
     "ae": [
+      "B",
       "D"
     ],
     "privacy": "normal"
@@ -554,7 +539,7 @@
         ]
       },
       {
-        "t": "Sign, then introduce myself as an author. Everywhere.",
+        "t": "Sign, and grumble through every weekend till it's done.",
         "axes": {
           "L2": 1
         },
@@ -567,7 +552,7 @@
         "emotion": "pride"
       },
       {
-        "t": "Sign, and keep my Sundays free no matter what.",
+        "t": "Pass. I'll keep posting chapters when I feel like it.",
         "axes": {
           "L2": -1
         },
@@ -595,8 +580,8 @@
       "prompt": "A publisher found a story you posted online years ago. They offer a book deal with the manuscript due in six months: every evening and weekend until then.",
       "options": [
         "I sign tonight and tell my friends I am going into hiding.",
-        "I sign, then introduce myself as an author everywhere I go.",
-        "I sign, but my Sundays stay free no matter what.",
+        "I sign, and I grumble through every weekend until it is done.",
+        "No, but I will keep posting chapters when I feel like it.",
         "No. It was fun because nobody was waiting for it."
       ]
     },
@@ -695,10 +680,10 @@
     "axisFor": "L3",
     "sq": "SQ-L3-1",
     "world": "unusual",
-    "prompt": "House-sitting. The owner's one rule, underlined twice: the tortoise never leaves its pen. It's been staring at the garden for an hour.",
+    "prompt": "One sacred rule in your friend group: nobody dates anyone's ex. Your best friend just matched with yours, and asks you before going further.",
     "options": [
       {
-        "t": "Underlined twice means twice. The pen it is.",
+        "t": "The rule's the rule. It's why the group survives.",
         "axes": {
           "L3": 2
         },
@@ -710,7 +695,7 @@
         ]
       },
       {
-        "t": "Let it roam. Look at that face.",
+        "t": "Go for it. That rule was never meant for you two.",
         "axes": {
           "L3": -2
         },
@@ -719,11 +704,10 @@
             "id": "T25B",
             "s": 2
           }
-        ],
-        "emotion": "delight"
+        ]
       },
       {
-        "t": "Move the whole pen to the garden. Rule kept, technically.",
+        "t": "No, and I'll feel bad about it for a month.",
         "axes": {
           "L3": 1
         },
@@ -735,7 +719,7 @@
         ]
       },
       {
-        "t": "One slow lap of the garden. The owner never needs to know.",
+        "t": "Yes, as long as the others never find out.",
         "axes": {
           "L3": -1
         },
@@ -748,26 +732,28 @@
       }
     ],
     "heart": {
-      "prompt": "You are house-sitting, and the owner's one rule is underlined twice: the tortoise never leaves its pen. It has been staring at the garden for an hour.",
+      "prompt": "Your friend group has one sacred rule: nobody dates anyone's ex. Your best friend has just matched with yours, and asks you before going any further.",
       "options": [
-        "The rule is underlined twice, so the tortoise stays in its pen.",
-        "I let it roam. Look at that face.",
-        "I move the whole pen outside, so the rule technically holds.",
-        "It gets one slow lap. The owner never needs to know."
+        "The rule stands. It is why the group has lasted.",
+        "Go ahead. The rule was never meant for the two of you.",
+        "I say no, and I feel bad about it for a month.",
+        "Yes, as long as the group never hears about it."
       ]
     },
     "fp": {
-      "trigger": "a pet begs to break the owner's one rule",
-      "setting": "house-sitting",
-      "ask": "keep the rule or bend it",
-      "who": "the owner and their tortoise",
-      "stakes": "trust versus a small kindness",
-      "device": "house-sit-tortoise"
+      "trigger": "a best friend matches with your ex",
+      "setting": "a dating app and a friend group rule",
+      "ask": "hold the rule or bend it",
+      "who": "your best friend and your ex",
+      "stakes": "the group's rule versus your friend's chance",
+      "device": "ex-match-rule"
     },
-    "mask": "looks like a pet-sitting dilemma; measures the rule versus the situation in front of you (L3, T25)",
+    "mask": "looks like dating drama; measures the rule versus the person in front of you (L3, T25)",
     "ae": [
       "A",
-      "C"
+      "B",
+      "C",
+      "E"
     ],
     "privacy": "normal"
   },
@@ -777,10 +763,10 @@
     "axisFor": "L3",
     "sq": "SQ-L3-3",
     "world": "unusual",
-    "prompt": "Twenty minutes alone with a real dinosaur skeleton: velvet rope, \"Do not touch\" sign, zero guards. In your group, you're the...",
+    "prompt": "Escape room, eight minutes left. On a shelf: an envelope marked \"STAFF ONLY: ALL ANSWERS.\" The camera faces the wall. Your role in the crew?",
     "options": [
       {
-        "t": "Rope guardian: \"The sign says no. So, no.\"",
+        "t": "Envelope guard: \"We solve it or we lose it.\"",
         "axes": {
           "L3": 2
         },
@@ -792,7 +778,7 @@
         ]
       },
       {
-        "t": "Selfie artist. One hand on a rib. Just one.",
+        "t": "Opener. Read it all, escape in record time.",
         "axes": {
           "L3": -2
         },
@@ -804,13 +790,13 @@
         ]
       },
       {
-        "t": "The lookout, touching nothing, watching the hall for everyone.",
+        "t": "Solver who looks away while someone else peeks.",
         "axes": {
           "L3": -1
         }
       },
       {
-        "t": "Front-desk caller. \"Hi, nobody's watching the dinosaur.\"",
+        "t": "Snitch: \"Hey, staff? Your envelope's out.\"",
         "axes": {
           "L3": 1
         },
@@ -822,34 +808,35 @@
         ]
       },
       {
-        "t": "\"One pinky can't hurt a fossil.\" Tail negotiator.",
+        "t": "Negotiator: \"We only peek if we're truly stuck.\"",
         "axes": {
           "L3": -1
         }
       }
     ],
     "heart": {
-      "prompt": "Your group has twenty minutes alone with a real dinosaur skeleton. There is a velvet rope, a sign saying not to touch, and no guards. Which one are you?",
+      "prompt": "Your group is in an escape room, eight minutes left. A shelf holds an envelope marked staff only, with every answer. The camera faces the wall. Which one are you?",
       "options": [
-        "I guard the rope. The sign says no.",
-        "I take a photo with one hand on a rib.",
-        "I touch nothing, but I keep watch for the others.",
-        "I call the front desk to say nobody is watching.",
-        "One finger cannot hurt a fossil, I argue."
+        "I guard the envelope. We solve it ourselves or we lose.",
+        "I open it, read everything and get us out in record time.",
+        "Someone else can look. I keep solving and ask no questions.",
+        "The staff hear from me that their envelope is out.",
+        "We peek only if we are truly stuck, I argue."
       ]
     },
     "fp": {
-      "trigger": "an unguarded exhibit with a do-not-touch sign",
-      "setting": "museum hall, velvet rope",
-      "ask": "follow the sign when nobody checks",
+      "trigger": "an answer envelope nobody is watching",
+      "setting": "an escape room, final minutes",
+      "ask": "use the shortcut or play it straight",
       "who": "your friend group",
-      "stakes": "the rule versus a harmless thrill",
-      "device": "museum-rope"
+      "stakes": "the win versus the honest way",
+      "device": "staff-envelope"
     },
-    "mask": "looks like a museum field trip; measures following the process when nobody is checking (L3)",
+    "mask": "looks like a game night; measures following the process when nobody is checking (L3)",
     "ae": [
       "A",
-      "C"
+      "C",
+      "E"
     ],
     "privacy": "normal"
   }

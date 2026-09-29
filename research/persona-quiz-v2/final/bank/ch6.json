@@ -3,10 +3,10 @@
     "id": "C6-140",
     "type": "this_or_that",
     "chapter": 6,
-    "prompt": "You wake up as a cat, for one year. Your parent and your person both come to take you home. You pick.",
+    "prompt": "You wake up as a goldfish, for one year. Your parent and your person both show up to take your bowl home. You pick.",
     "options": [
       {
-        "t": "My parent, because the family I came from knows my windowsill.",
+        "t": "Back to my parent. They know which little castle I like.",
         "axes": {
           "R3": 2
         },
@@ -18,7 +18,7 @@
         ]
       },
       {
-        "t": "Home with my person. The family I'm building gets the cat.",
+        "t": "My person, since the family I'm building gets the fish.",
         "axes": {
           "R3": -2
         },
@@ -31,21 +31,21 @@
       }
     ],
     "heart": {
-      "prompt": "You wake up as a cat for one year. Your parent and your person both come to take you home, and you get to choose.",
+      "prompt": "You wake up as a goldfish for one year. Your parent and your person both come to take your bowl home, and you choose.",
       "options": [
-        "I go with my parent. They know my old windowsill.",
+        "I go with my parent. They know which little castle I like.",
         "My person takes me. I belong with the family I am building."
       ]
     },
     "fp": {
-      "trigger": "you become a cat and two homes want you",
-      "setting": "a year as a cat",
+      "trigger": "you become a goldfish and two homes want your bowl",
+      "setting": "a year as a goldfish",
       "ask": "whose home you go to first",
       "who": "your parent and your person",
       "stakes": "which bond comes first",
-      "device": "cat-year"
+      "device": "goldfish-year"
     },
-    "mask": "looks like a pet joke; measures the family you came from versus the one you are building (R3, T19)",
+    "mask": "looks like a pet joke; measures whether the family you came from or the family you chose comes first (R3, T19)",
     "ae": [
       "B",
       "D"
@@ -142,10 +142,10 @@
     "type": "pick_two",
     "chapter": 6,
     "pick": 2,
-    "prompt": "A home-makeover show bought the house you grew up in. They gut it on TV next week. Pick the two closest to you.",
+    "prompt": "A home-makeover show bought the house you grew up in. They gut it on TV next week, but your family gets one last day inside. Pick two.",
     "options": [
       {
-        "t": "Ask for the doorframe with our height marks. Unscrew it myself.",
+        "t": "Take the doorframe. Our height marks continue at my place.",
         "axes": {
           "R3": 2
         },
@@ -158,13 +158,13 @@
         "emotion": "longing"
       },
       {
-        "t": "Beg the host to leave my old room exactly as it was.",
+        "t": "Beg them to keep the porch where we hung holiday lights.",
         "axes": {
           "R3": 1
         }
       },
       {
-        "t": "Get the family there for one last dinner first.",
+        "t": "One last holiday dinner there, same seats as always.",
         "axes": {
           "R3": 1
         },
@@ -177,7 +177,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "Relieved. That wallpaper had it coming.",
+        "t": "Relieved. New house, new holiday traditions.",
         "axes": {
           "R3": -1
         },
@@ -203,21 +203,21 @@
         "emotion": "delight"
       },
       {
-        "t": "Shrug. Home is wherever my stuff is now.",
+        "t": "Shrug. I stopped doing the old holidays years ago.",
         "axes": {
           "R3": -2
         }
       }
     ],
     "heart": {
-      "prompt": "A home makeover show has bought the house you grew up in, and they will gut it on TV next week. Choose the two closest to you.",
+      "prompt": "A home makeover show bought the house you grew up in and will gut it on TV next week, but your family gets one last day inside. Choose two.",
       "options": [
-        "I unscrew the doorframe with our height marks myself.",
-        "I ask the host to leave my old room as it was.",
-        "I gather the family there for one last dinner first.",
-        "I feel relieved. That wallpaper had it coming.",
-        "We start a new tradition: watching the episode together, loudly.",
-        "I shrug. Home is wherever my things are now."
+        "I take the doorframe, and our height marks continue at my place.",
+        "I ask them to keep the porch where we hung holiday lights.",
+        "We have one last holiday dinner there, in our usual seats.",
+        "I feel relieved. A new house means new holiday traditions.",
+        "We start a new tradition: watching the episode together, and loudly.",
+        "I shrug. I stopped doing the old holidays years ago."
       ]
     },
     "fp": {
@@ -240,7 +240,7 @@
     "friend": {
       "prompt": "A makeover show bought the house {name} grew up in and will gut it on TV. Which line sounds most like {name}?",
       "a": {
-        "t": "Asks for the doorframe with the height marks.",
+        "t": "Takes the doorframe. The height marks continue at {their} place.",
         "axes": {
           "R3": 2
         },
@@ -252,7 +252,7 @@
         ]
       },
       "b": {
-        "t": "Shrugs. \"Home is wherever my stuff is now.\"",
+        "t": "Shrugs. \"I stopped doing the old holidays years ago.\"",
         "axes": {
           "R3": -2
         }
@@ -265,7 +265,7 @@
     "chapter": 6,
     "sq": "SQ-T07-1",
     "world": "unusual",
-    "prompt": "The couple asked for an honest toast. Their best friend delivers: \"I give it two years. Prove me wrong.\" Your verdict?",
+    "prompt": "The couple asked for an honest toast. Their best friend, meaning every word: \"I give it two years. Prove me wrong.\" Your verdict?",
     "options": [
       {
         "t": "They asked for honest. That was honest.",
@@ -305,7 +305,7 @@
         ]
       },
       {
-        "t": "Finally, a toast worth listening to.",
+        "t": "Good. The truth belongs in toasts too.",
         "axes": {
           "R2": 1
         },
@@ -319,12 +319,12 @@
       }
     ],
     "heart": {
-      "prompt": "The couple asked for an honest toast. Their best friend stands up and says, \"I give it two years. Prove me wrong.\" What is your verdict?",
+      "prompt": "The couple asked for an honest toast. Their best friend, meaning every word, says, \"I give it two years. Prove me wrong.\" What is your verdict?",
       "options": [
         "They asked for honesty, and they got it.",
         "True or not, that belongs in a private conversation, not a speech.",
-        "The message was fair, but it needed a softer way in.",
-        "At last, someone said something real in a toast."
+        "The message could stay, but it needed a softer way in.",
+        "Good. The truth belongs in a toast too."
       ]
     },
     "fp": {
@@ -375,20 +375,19 @@
     "chapter": 6,
     "sq": "SQ-T21-2",
     "world": "absurd",
-    "prompt": "Your friend is going to the Moon. The launch deck holds 900 guests, every relative included. They've invited exactly one: their person. Your take?",
+    "prompt": "Your town made your friend's anniversary an official holiday: parade, fireworks, day off. Your friend and their person plan to spend it alone, blinds down. Your take?",
     "options": [
       {
-        "t": "Their whole family should watch that rocket. Fill the deck.",
+        "t": "The whole town wants in. Open the blinds and wave.",
         "tags": [
           {
             "id": "T21A",
             "s": 2
           }
-        ],
-        "emotion": "sting"
+        ]
       },
       {
-        "t": "Right call. That moment belongs to the two of them.",
+        "t": "Right call. That day belongs to the two of them.",
         "axes": {
           "R1": -1
         },
@@ -400,7 +399,7 @@
         ]
       },
       {
-        "t": "I'd invite all 900 and cry through the countdown.",
+        "t": "In their place, I'd march at the front of the parade.",
         "axes": {
           "R1": 1
         },
@@ -409,11 +408,10 @@
             "id": "T21A",
             "s": 1
           }
-        ],
-        "emotion": "warmth"
+        ]
       },
       {
-        "t": "A quiet launch is still a huge day.",
+        "t": "A quiet anniversary is still a big day.",
         "tags": [
           {
             "id": "T21B",
@@ -423,33 +421,33 @@
       }
     ],
     "heart": {
-      "prompt": "Your friend is going to the Moon. The launch deck holds 900 guests, every relative included, and they have invited only their person. What is your take?",
+      "prompt": "Your town made your friend's anniversary a holiday, with a parade, fireworks and a day off. Your friend and their person will spend it alone, blinds down. Your take?",
       "options": [
-        "Their whole family should watch that rocket. They should fill the deck.",
-        "That moment belongs to the two of them, and I understand it.",
-        "I would invite all 900 and cry through the countdown.",
-        "A quiet launch is still a huge day."
+        "The whole town wants to celebrate. They should open the blinds.",
+        "That day belongs to the two of them, and they are right.",
+        "In their place, I would march at the front of the parade.",
+        "A quiet anniversary is still a big day."
       ]
     },
     "fp": {
-      "trigger": "a friend invites only their person to a huge moment",
-      "setting": "a Moon launch viewing deck",
+      "trigger": "a friend's anniversary becomes a town holiday",
+      "setting": "a parade outside drawn blinds",
       "ask": "everyone or just us",
       "who": "a friend and their person",
-      "stakes": "family belonging versus a private moment",
-      "device": "moon-launch-guests"
+      "stakes": "a public celebration versus a private day",
+      "device": "anniversary-holiday"
     },
-    "mask": "looks like a space joke; measures whether big moments belong to the whole family or a chosen few (T21), with shared versus apart (R1)",
+    "mask": "looks like a small-town joke; measures whether big moments belong to everyone or to just the two of you (T21), with shared versus apart (R1)",
     "ae": [
-      "A",
       "B",
+      "D",
       "E"
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "{name}'s friend is going to the Moon and invites only their person to the 900-seat launch deck. {name}'s first thought?",
+      "prompt": "The town made {name}'s friend's anniversary a holiday. The couple plans to spend it alone, blinds down. {name}'s take?",
       "a": {
-        "t": "\"I'd invite all 900 and cry through the countdown.\"",
+        "t": "\"In their place, I'd march at the front of the parade.\"",
         "axes": {
           "R1": 1
         },
@@ -461,7 +459,7 @@
         ]
       },
       "b": {
-        "t": "\"Right call. That moment belongs to the two of them.\"",
+        "t": "\"Right call. That day belongs to the two of them.\"",
         "axes": {
           "R1": -1
         },
@@ -480,7 +478,7 @@
     "chapter": 6,
     "sq": "SQ-T18-1",
     "world": "absurd",
-    "prompt": "Since your birthday, anything your family loses turns up in your mailbox. Week one: 23 calls. Your sibling's mailbox works too. Nobody calls them.",
+    "prompt": "Since your birthday, anything your family loses turns up in your mailbox. Week one: 23 lost things, 23 calls. Your sibling's mailbox works too. Nobody calls them.",
     "options": [
       {
         "t": "Return all 23 by Sunday. This is my calling now.",
@@ -524,11 +522,11 @@
       }
     ],
     "heart": {
-      "prompt": "Since your birthday, anything your family loses turns up in your mailbox. In the first week, you get 23 calls. Your sibling's mailbox works too, but nobody calls them.",
+      "prompt": "Since your birthday, anything your family loses turns up in your mailbox: 23 lost things and 23 calls in week one. Your sibling's mailbox works too, but nobody calls them.",
       "options": [
         "I return all 23 by Sunday. This feels like my job now.",
         "I return every one, then mention it at dinners for a year.",
-        "I forward half the calls to my sibling's mailbox.",
+        "I forward half the lost things to my sibling's mailbox.",
         "Sundays from two to four are mailbox hours. Lost keys can wait."
       ]
     },
@@ -575,103 +573,103 @@
     "chapter": 6,
     "sq": "SQ-L3-2",
     "world": "absurd",
-    "prompt": "One golden egg a year: that's what the goose in your family's yard lays. It only lets you near it. Four siblings are waiting.",
+    "prompt": "Family curse: every winter, one sibling spends a week as a pumpkin. It's your youngest sibling's turn, the same week they move into their first place.",
     "options": [
       {
-        "t": "Take turns, oldest first. One egg each, no exceptions.",
+        "t": "Their turn is their turn. Curses don't do exceptions.",
         "axes": {
           "L3": 2
         },
         "tags": [
           {
-            "id": "T12A",
-            "s": 2
+            "id": "T18B",
+            "s": 1
           }
         ]
       },
       {
-        "t": "This year's egg goes to whoever's rent is scariest.",
+        "t": "I'll be the pumpkin. Their big week matters more.",
         "axes": {
           "L3": -2
         },
         "tags": [
           {
-            "id": "T12B",
+            "id": "T18A",
             "s": 2
           }
         ]
       },
       {
-        "t": "Shave every egg five ways. Perfectly even, perfectly tiny.",
+        "t": "Their turn. I'll carry them up the new stairs myself.",
         "axes": {
           "L3": 1
         },
         "tags": [
           {
-            "id": "T12A",
+            "id": "T18A",
             "s": 1
           }
-        ],
-        "emotion": "delight"
+        ]
       },
       {
-        "t": "Rotate it, but whoever got a raise sits out.",
+        "t": "Whoever has the quietest week takes it. Not always me.",
         "axes": {
           "L3": -1
         },
         "tags": [
           {
-            "id": "T12B",
+            "id": "T18B",
             "s": 1
           }
         ]
       }
     ],
     "heart": {
-      "prompt": "A goose that lays one golden egg each year moves into your family's yard. It will only let you near it, and your four siblings are waiting.",
+      "prompt": "Your family has a curse: each winter, one sibling spends a week as a pumpkin. It is your youngest sibling's turn, the week they move into their first place.",
       "options": [
-        "We take turns, oldest first, one egg each, with no exceptions.",
-        "This year's egg goes to whoever is most worried about rent.",
-        "I shave each egg into five equal pieces, however tiny.",
-        "We rotate, but whoever got a raise this year sits out."
+        "It is their turn. The curse does not make exceptions.",
+        "I take the week instead. Their big week matters more.",
+        "It stays their turn. I carry them up the new stairs myself.",
+        "Whoever has the quietest week takes it. Often, that is not me."
       ]
     },
     "fp": {
-      "trigger": "a golden egg to share among siblings",
-      "setting": "family yard, a magic goose",
-      "ask": "equal shares or by need",
-      "who": "you and four siblings",
-      "stakes": "sibling fairness and who gets called needy",
-      "device": "golden-goose"
+      "trigger": "a family curse lands on a sibling's big week",
+      "setting": "winter, a family curse rotation",
+      "ask": "keep the turn order or swap by need",
+      "who": "you and your siblings",
+      "stakes": "fair turns versus a sibling's new job",
+      "device": "pumpkin-curse"
     },
-    "mask": "looks like a fairy-tale windfall; measures fair as the same share for everyone versus fair as what each sibling needs (L3, T12)",
+    "mask": "looks like a fairy-tale curse; measures fair as the same turn for everyone versus what each sibling needs (L3), and whether you are family's first call (T18)",
     "ae": [
       "A",
-      "B"
+      "B",
+      "E"
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "A golden-egg goose, one egg a year, only lets {name} near. Four siblings are waiting. What does {name} do?",
+      "prompt": "{name}'s family curse turns one sibling into a pumpkin each winter. It's the youngest's turn, the week they move out. What does {name} do?",
       "a": {
-        "t": "Takes turns, oldest first. One egg each, no exceptions.",
+        "t": "Their turn is their turn. Curses don't do exceptions.",
         "axes": {
           "L3": 2
         },
         "tags": [
           {
-            "id": "T12A",
-            "s": 2
+            "id": "T18B",
+            "s": 1
           }
         ]
       },
       "b": {
-        "t": "This year's egg goes to whoever's rent is scariest.",
+        "t": "Becomes the pumpkin so their big week goes fine.",
         "axes": {
           "L3": -2
         },
         "tags": [
           {
-            "id": "T12B",
+            "id": "T18A",
             "s": 2
           }
         ]
@@ -793,10 +791,10 @@
     "id": "C6-143",
     "type": "scenario",
     "chapter": 6,
-    "prompt": "One message over the whole city tomorrow: a skywriting pilot owes you that favor. Your person is standing right there while you decide.",
+    "prompt": "The local paper wants your love story on its front page Sunday, photos included. Your person already said yes. They need your answer tonight.",
     "options": [
       {
-        "t": "Both our names in a giant heart. Go big.",
+        "t": "Front page, big photo. Buy me twenty copies.",
         "axes": {
           "R3": 1
         },
@@ -805,11 +803,10 @@
             "id": "T21A",
             "s": 2
           }
-        ],
-        "emotion": "delight"
+        ]
       },
       {
-        "t": "Our names, then send the photo to both families.",
+        "t": "Yes, and I'm mailing a copy to both families.",
         "tags": [
           {
             "id": "T21A",
@@ -818,7 +815,7 @@
         ]
       },
       {
-        "t": "Initials only. The people who know, know.",
+        "t": "Yes to the story. My face stays out of it.",
         "tags": [
           {
             "id": "T21B",
@@ -827,7 +824,7 @@
         ]
       },
       {
-        "t": "Nothing about us. Something funny for strangers.",
+        "t": "No. Our story isn't news. It's ours.",
         "axes": {
           "R3": -1
         },
@@ -840,23 +837,23 @@
       }
     ],
     "heart": {
-      "prompt": "A skywriting pilot owes you a favor: one message over the whole city tomorrow. Your person is standing beside you while you decide.",
+      "prompt": "The local paper wants your love story on its front page on Sunday, with photos. Your person has already said yes, and the paper needs your answer tonight.",
       "options": [
-        "I write both our names inside a giant heart.",
-        "Our names go up, and I send the photo to both families.",
-        "I write only our initials. The people who know will know.",
-        "Nothing about us goes up. I write something funny for strangers."
+        "Front page and a big photo. I will buy twenty copies.",
+        "Yes, and I will mail a copy to both families.",
+        "The story can run, but my face stays out of it.",
+        "No. Our story is not news. It belongs to us."
       ]
     },
     "fp": {
-      "trigger": "a free skywritten message over the city",
-      "setting": "the sky over the city, your person beside you",
-      "ask": "declare it publicly or keep it private",
+      "trigger": "a newspaper wants your love story",
+      "setting": "the front page, photos included",
+      "ask": "go public or keep it yours",
       "who": "you and your person",
-      "stakes": "a public declaration versus a private love",
-      "device": "skywriting-favor"
+      "stakes": "a public yes versus a private love",
+      "device": "front-page-love"
     },
-    "mask": "looks like a romantic perk; measures whether love wants a big public yes (T21), with the classic script versus your own (R3)",
+    "mask": "looks like a local honor; measures whether love wants a big public yes (T21), with the classic script versus your own (R3)",
     "ae": [
       "A",
       "B",
@@ -872,16 +869,16 @@
     "type": "feeling",
     "chapter": 6,
     "follows": "C6-143",
-    "prompt": "Before you answered, what did you feel?",
+    "prompt": "Your love story, front page. Which feeling got there first?",
     "options": [
       {
         "t": "Giddy, against my will."
       },
       {
-        "t": "Exposed. The whole city?"
+        "t": "Exposed. The whole town?"
       },
       {
-        "t": "Worried what my person hoped for."
+        "t": "Worried what my person hoped I'd say."
       },
       {
         "t": "Proud, honestly."
@@ -891,24 +888,24 @@
       }
     ],
     "heart": {
-      "prompt": "Before you answered, what was the first thing you felt?",
+      "prompt": "Your love story could be on the front page. Which feeling came first?",
       "options": [
-        "I felt giddy, against my will.",
-        "I felt exposed, with the whole city watching.",
-        "I worried about what my person hoped for.",
-        "Quietly, I felt proud.",
-        "Strangely, I felt calm."
+        "I feel giddy, against my will.",
+        "I feel exposed. The whole town would read it.",
+        "I worry about what my person hoped I would say.",
+        "Quietly, I feel proud.",
+        "Strangely, I feel calm."
       ]
     },
     "fp": {
-      "trigger": "offered a message in the sky",
-      "setting": "right after the skywriting card",
+      "trigger": "a newspaper asks for your love story",
+      "setting": "right after the front-page card",
       "ask": "first feeling",
       "who": "you and your person",
       "stakes": "none, feeling only",
-      "device": "skywriting-favor"
+      "device": "front-page-love"
     },
-    "mask": "looks like a quick check-in; records the first feeling when a public declaration is on offer (emotion only)",
+    "mask": "looks like a quick check-in; records the first feeling when going public with love is on offer (emotion only)",
     "ae": [
       "E"
     ],
@@ -1150,7 +1147,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "\"Yes to the house. The menu gets one new dish a year.\"",
+        "t": "\"Yes to all of it. My friends come to dinner too.\"",
         "axes": {
           "R3": -1
         },
@@ -1201,9 +1198,9 @@
       ],
       "options": [
         "Every year. I am even keeping the old tablecloth with the stain.",
-        "Yes to the house, and I add one new dish each year.",
+        "Yes to all of it, and my friends join the dinner too.",
         "Someone else should take it. I will start our own tradition.",
-        "Same date, same menu. It will not end with me."
+        "Same date and same menu, always. It will not end with me."
       ]
     },
     "fp": {
@@ -1254,29 +1251,29 @@
     "chapter": 6,
     "sq": "SQ-L3-2",
     "world": "everyday",
-    "prompt": "Family under one roof, not enough beds. The most recent time, what did you actually do?",
+    "prompt": "Family under one roof, not enough beds. Last time it happened, who got the bed?",
     "options": [
       {
-        "t": "Strict rotation. One night in the bed each, me included.",
+        "t": "Strict order: whoever hadn't had one yet. Me included.",
         "axes": {
           "L3": 2
         }
       },
       {
-        "t": "Rock, paper, scissors. Won it fair, slept great.",
+        "t": "Rock, paper, scissors. Won it fair, ate it proudly.",
         "axes": {
           "L3": 1
         },
         "emotion": "pride"
       },
       {
-        "t": "Gave the bed to whoever drove the farthest.",
+        "t": "Gave it to whoever drove the farthest to get there.",
         "axes": {
           "L3": -1
         }
       },
       {
-        "t": "Gave the real bed to whoever had the roughest year.",
+        "t": "Gave it to whoever had the roughest year.",
         "axes": {
           "L3": -2
         },
@@ -1284,21 +1281,21 @@
       }
     ],
     "heart": {
-      "prompt": "Think of the most recent time your family stayed under one roof and there were not enough beds. What did you actually do?",
+      "prompt": "The most recent time your family stayed under one roof without enough beds, who got the bed?",
       "options": [
-        "We rotated strictly, one night in the bed each, me included.",
-        "We played rock, paper, scissors. I won fairly and slept well.",
-        "I gave the bed to whoever had driven the farthest.",
-        "I gave the real bed to whoever was having the hardest year."
+        "We went in strict order, and I waited my turn too.",
+        "We played rock, paper, scissors. I won fairly and ate it.",
+        "I gave it to whoever had driven the farthest to get there.",
+        "I gave it to whoever was having the hardest year."
       ]
     },
     "fp": {
-      "trigger": "not enough beds for a family stay",
-      "setting": "one house, the whole family",
-      "ask": "who gets the beds",
-      "who": "relatives sharing a roof",
-      "stakes": "the same chance for all versus who needs it most",
-      "device": "short-on-beds"
+      "trigger": "one last slice and five relatives",
+      "setting": "a family gathering, the famous pie",
+      "ask": "who gets the last slice",
+      "who": "relatives",
+      "stakes": "the same rule for all versus the one who needs it",
+      "device": "last-slice"
     },
     "mask": "looks like a family logistics story; measures fair as the same deal for everyone versus fair as what each person needs (L3), from a thing actually done",
     "ae": [
@@ -1308,15 +1305,15 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "The last time {name}'s family stayed under one roof with too few beds. What did {name} actually do?",
+      "prompt": "The last time {name}'s family stayed under one roof with too few beds. Who got the bed?",
       "a": {
-        "t": "Strict rotation. One night in the bed each.",
+        "t": "Strict order: whoever hadn't had one yet.",
         "axes": {
           "L3": 2
         }
       },
       "b": {
-        "t": "Gave the real bed to whoever had the roughest year.",
+        "t": "Gave it to whoever had the roughest year.",
         "axes": {
           "L3": -2
         }
@@ -1329,7 +1326,7 @@
     "chapter": 6,
     "sq": "SQ-T18-1",
     "world": "everyday",
-    "prompt": "\"Can you help me with something?\" The most recent time a relative asked, how did you answer?",
+    "prompt": "\"Can you help me with something this weekend?\" The last time a relative asked you for a big favor, how did you answer?",
     "options": [
       {
         "t": "Said yes before they finished the sentence.",
@@ -1370,10 +1367,10 @@
       }
     ],
     "heart": {
-      "prompt": "The most recent time someone in your family asked, \"Can you help me with something?\", what did you do?",
+      "prompt": "The last time a relative asked, \"Can you help me with something this weekend?\", how did you answer?",
       "options": [
         "I said yes before they had finished asking.",
-        "I asked what the something was, and wanted it spelled out.",
+        "I asked exactly what it was, and got the details in writing.",
         "I said yes for one Saturday, not every Saturday.",
         "Yes, and I claimed I was free when I was not."
       ]
@@ -1495,7 +1492,7 @@
     "id": "C6-147",
     "type": "bet",
     "chapter": 6,
-    "prompt": "Be honest: you've cut a price tag off before a family visit, so nobody would ask.",
+    "prompt": "Be honest: you've cut the price tag off something big before a family visit, so nobody would ask.",
     "options": [
       {
         "t": "What they don't see, they can't vote on.",
@@ -1508,7 +1505,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Cut it, then confessed the real price within an hour.",
+        "t": "Cut it, then caved and asked what they thought.",
         "tags": [
           {
             "id": "T19B",
@@ -1538,10 +1535,10 @@
       }
     ],
     "heart": {
-      "prompt": "Have you ever removed a price tag before a family visit, so nobody would ask about it?",
+      "prompt": "Have you ever removed the price tag from something big before a family visit, so nobody would ask about it?",
       "options": [
         "Yes. What they do not see, they cannot weigh in on.",
-        "Yes, and I told them the real price within an hour.",
+        "Yes, and then I gave in and asked what they thought.",
         "No. For something that big, I would ask them first.",
         "No. I tell them the price and let them react."
       ]
@@ -1564,7 +1561,7 @@
     "sq": "SQ-T19-1",
     "world": "everyday",
     "friend": {
-      "prompt": "Genii bets {name} has cut a price tag off before a family visit, so nobody would ask. Guilty or not?",
+      "prompt": "Genii bets {name} has cut the price tag off something big before a family visit, so nobody would ask. Guilty or not?",
       "a": {
         "t": "What they don't see, they can't vote on.",
         "tags": [
@@ -1589,7 +1586,7 @@
     "id": "C6-148",
     "type": "receipts",
     "chapter": 6,
-    "prompt": "At home, lately. Tap everything that's true:",
+    "prompt": "In your home these days: tap every line that's happened.",
     "options": [
       {
         "t": "Said \"in this house, we...\" and heard my parent's voice",
@@ -1639,7 +1636,7 @@
       }
     ],
     "heart": {
-      "prompt": "Think about how your home runs lately. Choose everything that is true.",
+      "prompt": "Which of these have happened in your home recently? Choose all that apply.",
       "options": [
         "I said \"in this house, we...\" and heard my parent's voice.",
         "I split the chores in a way my family would find strange.",

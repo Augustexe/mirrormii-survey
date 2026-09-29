@@ -38,7 +38,7 @@
     "emotion": "warmth"
    },
    {
-    "t": "No test. I lose track of who invited who anyway.",
+    "t": "No test. Whose turn is it? No idea. I invite anyway.",
     "tags": [
      {
       "id": "T02A",
@@ -53,7 +53,7 @@
     "Yes. It has been three months, and I am still counting.",
     "I tried, but after two weeks I invited them anyway.",
     "No. I invite whoever I miss, without testing anyone.",
-    "No. I lose track of who invited whom anyway."
+    "No. Whose turn is it? I never know, so I invite."
    ]
   },
   "fp": {
@@ -255,8 +255,8 @@
    "options": [
     "Yes. Three friends and my person can see it.",
     "Just one friend can, and nobody else.",
-    "I turned it on once, then off that same day.",
-    "No. Nobody sees my location, not even my person."
+    "I turned it on once and had it off by dinner.",
+    "No. Nobody sees my location, not even my person, who has asked."
    ]
   },
   "fp": {
@@ -328,7 +328,7 @@
     ]
    },
    {
-    "t": "Introduced two people who had never met",
+    "t": "Invited someone I'd just met to the next thing",
     "tags": [
      {
       "id": "T04B",
@@ -346,7 +346,7 @@
     ]
    },
    {
-    "t": "Stuck with people I already knew, on purpose",
+    "t": "Left before anyone new could start a conversation",
     "tags": [
      {
       "id": "T04A",
@@ -364,9 +364,9 @@
    "options": [
     "I talked to a stranger for twenty minutes or more.",
     "I swapped numbers with someone I had just met.",
-    "Two strangers met because I introduced them.",
+    "Someone I had just met got an invite to the next thing.",
     "I stayed with the person I came with, most of the night.",
-    "I stuck with the people I already knew, on purpose.",
+    "I left before anyone new could start a conversation.",
     "None of these happened."
    ]
   },
@@ -391,7 +391,7 @@
   "chapter": 1,
   "sq": "SQ-R2-2",
   "world": "everyday",
-  "prompt": "The last time someone scrolled their phone while you were telling them something. What did you actually do?",
+  "prompt": "The last time someone scrolled their phone while you were telling them something. How did you handle it?",
   "options": [
    {
     "t": "Said it: \"Hello? I'm right here.\"",
@@ -401,7 +401,7 @@
     "emotion": "irritation"
    },
    {
-    "t": "Stopped mid-sentence and waited till they looked up.",
+    "t": "Stopped mid-sentence: \"Take your time. I'll wait.\"",
     "axes": {
      "R2": 1
     }
@@ -421,10 +421,10 @@
    }
   ],
   "heart": {
-   "prompt": "The last time someone scrolled on their phone while you were telling them something, what did you do?",
+   "prompt": "The last time someone scrolled on their phone while you were telling them something, how did you handle it?",
    "options": [
     "\"Hello, I am right here,\" I said out loud.",
-    "I stopped mid-sentence and waited until they looked up.",
+    "I stopped mid-sentence and said, \"Take your time. I will wait.\"",
     "I picked up my own phone too.",
     "I kept talking as if I had not noticed."
    ]
@@ -444,7 +444,7 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "The last time someone scrolled their phone while {name} was talking. What did {name} actually do?",
+   "prompt": "The last time someone scrolled their phone while {name} was talking. How did {name} handle it?",
    "a": {
     "t": "Said it: \"Hello? I'm right here.\"",
     "axes": {
@@ -656,7 +656,7 @@
     "emotion": "relief"
    },
    {
-    "t": "Close the curtains. Unranked and thriving.",
+    "t": "Close the curtains. My life isn't a leaderboard.",
     "axes": {
      "L2": -2
     }
@@ -668,7 +668,7 @@
     "\"Seventh?\" I will be third by next summer.",
     "I study whoever is first, and I walk past again tomorrow.",
     "Seventh feels comfortable. Nobody expects much from seventh.",
-    "I close the curtains. I would rather not be ranked."
+    "I close the curtains. My life is not a leaderboard."
    ]
   },
   "fp": {
@@ -694,7 +694,7 @@
     }
    },
    "b": {
-    "t": "Closes the curtains. Unranked and thriving.",
+    "t": "Closes the curtains. Life isn't a leaderboard.",
     "axes": {
      "L2": -2
     }
@@ -707,7 +707,7 @@
   "chapter": 1,
   "sq": "SQ-L2-2",
   "world": "absurd",
-  "prompt": "Seventh out of nine. What hit you first?",
+  "prompt": "Your name, seventh, on a billboard the whole street can see. Your stomach's first verdict?",
   "follows": "C1-123",
   "options": [
    {
@@ -731,13 +731,13 @@
    }
   ],
   "heart": {
-   "prompt": "You came seventh out of nine. What did you feel first, before thinking?",
+   "prompt": "Your name sits seventh on a billboard the whole street can see. Which feeling arrives before any thought?",
    "options": [
-    "I felt envy, sharp and specific.",
-    "Relief came first. It could have been worse.",
-    "Strangely, I felt proud.",
-    "I worried that it would stay with me.",
-    "It barely touched me. I got on with my day."
+    "Envy comes first, sharp and specific.",
+    "Relief comes first. It could have been worse.",
+    "Strangely, I feel proud.",
+    "I worry that it will stay with me.",
+    "It barely touches me. I get on with my day."
    ]
   },
   "fp": {
@@ -853,69 +853,67 @@
   "chapter": 1,
   "sq": "SQ-L1-1",
   "world": "absurd",
-  "prompt": "Subway vending machine, one payment accepted: your phone, photos and chats included. It pays out an envelope marked \"life-changing.\"",
+  "prompt": "A new app called Probably Better has one button: swap your job, city and apartment for ones it picked, sight unseen. Your life right now is good.",
   "options": [
    {
-    "t": "Hand it over. Photos are the past; the envelope is the future.",
+    "t": "Press it. \"Probably better\" beats \"fine\" every time.",
     "axes": {
      "L1": -2
-    },
-    "emotion": "delight"
+    }
    },
    {
-    "t": "Keep my phone. Every chat I've ever had lives in it.",
+    "t": "Good took me years to build. Deleting the app.",
     "axes": {
      "L1": 2
-    },
-    "emotion": "pride"
+    }
    },
    {
-    "t": "Keep it, then walk past that machine every day for a year.",
+    "t": "No, and I spend a week wondering where I'd be.",
     "axes": {
      "L1": 1
-    },
-    "emotion": "longing"
+    }
    },
    {
-    "t": "Pay fast, before I talk myself out of the future.",
+    "t": "Press it, with my stomach in knots.",
     "axes": {
      "L1": -1
     }
    }
   ],
   "heart": {
-   "prompt": "A vending machine in the subway accepts only one payment: your phone, with all its photos and chats. It gives you an envelope labeled \"life-changing.\"",
+   "prompt": "A new app called Probably Better has one button: it swaps your job, your city and your apartment for ones it chooses, sight unseen. Your life right now is good.",
    "options": [
-    "Photos are the past, and the envelope is the future. I pay.",
-    "I keep my phone. Every conversation I have had is in it.",
-    "I keep it, and I think about that envelope all year.",
-    "I pay quickly, before I can talk myself out of it."
+    "Probably better beats fine, so I press it.",
+    "I delete the app. A good life took me years to build.",
+    "No, though I spend a week wondering where I would be.",
+    "Yes, I press it, with my stomach in knots."
    ]
   },
   "fp": {
-   "trigger": "a machine offers a mystery envelope for your phone",
-   "setting": "a subway vending machine",
-   "ask": "trade everything on your phone for the unknown",
+   "trigger": "an app offers to swap your whole life, sight unseen",
+   "setting": "your phone, a strange new app",
+   "ask": "trade a good life for an unknown better one",
    "who": "just you",
-   "stakes": "years of memories versus a life-changing unknown",
-   "device": "mystery-envelope-machine"
+   "stakes": "the life you built versus a gamble",
+   "device": "probably-better-app"
   },
-  "mask": "looks like a strange vending machine; measures keeping a sure good thing versus trading it for a great unknown (L1)",
+  "mask": "looks like a weird app; measures keeping a sure good thing versus trading it for a great unknown (L1)",
   "ae": [
    "A",
-   "D"
+   "D",
+   "E"
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "A subway machine trades one envelope marked \"life-changing\" for {name}'s phone, photos and chats included. What does {name} do?",
+   "prompt": "An app offers to swap {name}'s job, city and apartment for ones it picked, sight unseen. {name}'s life is good. What does {name} do?",
    "a": {
-    "t": "Keep my phone. Every chat I've ever had lives in it.",
+    "t": "Deletes it. A good life took years to build.",
     "axes": {
      "L1": 2
     }
    },
    "b": {
-    "t": "Pay it. Photos are the past. The envelope is the future.",
+    "t": "Presses it. \"Probably better\" beats \"fine.\"",
     "axes": {
      "L1": -2
     }
@@ -931,7 +929,7 @@
   "prompt": "Slid under your door: a note from the neighbor you've nodded at for two years. \"Want to be actual friends?\"",
   "options": [
    {
-    "t": "Knock tonight with snacks. Friendship starts now.",
+    "t": "Knock tonight. Friendship starts now.",
     "tags": [
      {
       "id": "T04B",
@@ -972,7 +970,7 @@
   "heart": {
    "prompt": "Someone slips a note under your door. It is from the neighbor you have nodded to for two years, asking if you want to be real friends.",
    "options": [
-    "Snacks in hand, I knock on their door that evening.",
+    "That evening I knock on their door. Friendship starts now.",
     "I invite them along next time I go out with friends.",
     "I write back yes, and keep it to chats in the hallway.",
     "I keep nodding and act as if the note never came."
@@ -995,7 +993,7 @@
   "friend": {
    "prompt": "A note under {name}'s door, from a neighbor {name} has nodded at for two years: \"Want to be actual friends?\" What does {name} do?",
    "a": {
-    "t": "Knocks tonight. Brings snacks. Friendship starts now.",
+    "t": "Knocks tonight. Friendship starts now.",
     "tags": [
      {
       "id": "T04B",
@@ -1151,19 +1149,19 @@
     "emotion": "delight"
    },
    {
-    "t": "\"Fine. Next town only. Just to see.\"",
+    "t": "\"Fine. I'm calling work from the road.\"",
     "axes": {
      "L1": -1
     }
    },
    {
-    "t": "\"Destination first, or I'm taking my exit.\"",
+    "t": "\"Taking my exit. Text me the destination tonight.\"",
     "axes": {
      "L1": 1
     }
    },
    {
-    "t": "\"Taking my exit. You don't plan my day.\"",
+    "t": "\"Taking my exit. Not driving 400 miles blind.\"",
     "axes": {
      "L1": 2
     },
@@ -1184,9 +1182,9 @@
    ],
    "options": [
     "I am skipping the exit, and work will hear something came up.",
-    "Fine, but I only go to the next town, just to see.",
-    "Tell me the destination first, or I take my exit.",
-    "I am taking my exit. You do not plan my day."
+    "Fine. I keep driving, and I call work from the road.",
+    "I take my exit, but I want the destination tonight.",
+    "I am taking my exit. I will not drive 400 miles blind."
    ]
   },
   "fp": {
@@ -1206,7 +1204,7 @@
   "friend": {
    "prompt": "Driving to work, {name}'s map app texts: \"skip your exit. keep driving. 400 miles.\" What does {name} do?",
    "a": {
-    "t": "Takes the exit. A phone doesn't plan {their} day.",
+    "t": "Takes the exit. Not driving 400 miles blind.",
     "axes": {
      "L1": 2
     }
@@ -1353,7 +1351,7 @@
     "emotion": "pride"
    },
    {
-    "t": "I'd borrow it before every big night out.",
+    "t": "Fair. I'd say it too, just not in front of the date.",
     "axes": {
      "R2": 1
     },
@@ -1366,7 +1364,7 @@
     "emotion": "delight"
    },
    {
-    "t": "Poor date. Some truths need a softer delivery.",
+    "t": "Poor friend, in front of their date. Softer next time.",
     "axes": {
      "R2": -1
     },
@@ -1394,9 +1392,9 @@
   "heart": {
    "prompt": "A flea-market mirror tells your friend, out loud, how they look. On date night it said \"Not that shirt,\" and their date heard. They keep it. Your view?",
    "options": [
-    "They should keep it. Better to hear it at home, honestly.",
-    "I would borrow it before every important night out.",
-    "I feel for the date. Some truths need a gentler delivery.",
+    "They should keep it. It is better to hear it at home.",
+    "I would say it too, just not in front of the date.",
+    "In front of their date? That needed to be softer.",
     "I would tape on a note: soften the blow first."
    ]
   },
@@ -1448,10 +1446,10 @@
   "chapter": 1,
   "sq": "SQ-T01-1",
   "world": "unusual",
-  "prompt": "At dinner, your friend's partner reads every notification on your friend's phone out loud. \"Ooh, your boss again.\" Your friend thinks it's sweet. First thought?",
+  "prompt": "Every Sunday, Dani and their person read each other's journals aloud. Every page, no skipping. Dani calls it the best hour of the week. Honest reaction?",
   "options": [
    {
-    "t": "Love that. Nothing on a phone is worth hiding at dinner.",
+    "t": "Journals, phones, passwords. Love has no locked drawers.",
     "axes": {
      "R1": 2
     },
@@ -1460,11 +1458,10 @@
       "id": "T01A",
       "s": 2
      }
-    ],
-    "emotion": "warmth"
+    ]
    },
    {
-    "t": "Cute. I'd mostly let my person do that too.",
+    "t": "Cute. I'd trade journals and maybe skip a page.",
     "axes": {
      "R1": 1
     },
@@ -1476,7 +1473,7 @@
     ]
    },
    {
-    "t": "Family texts, fine. Never the group chat.",
+    "t": "Sweet for them. My journal stays in the drawer.",
     "axes": {
      "R1": -1
     },
@@ -1488,7 +1485,7 @@
     ]
    },
    {
-    "t": "My notifications are mine, even with someone I love.",
+    "t": "My private pages stay private, even from my person.",
     "axes": {
      "R1": -2
     },
@@ -1497,37 +1494,37 @@
       "id": "T01B",
       "s": 2
      }
-    ],
-    "emotion": "cringe"
+    ]
    }
   ],
   "heart": {
-   "prompt": "At dinner, your friend's partner reads every notification on your friend's phone out loud, and your friend thinks it is sweet. What is your first thought?",
+   "prompt": "Every Sunday, Dani and their person read each other's journals aloud, every page, without skipping. Dani says it is the best hour of the week. What is your honest reaction?",
    "options": [
-    "I love that. Nothing on a phone needs hiding at dinner.",
-    "It is sweet. I would mostly let my person do it too.",
-    "Texts from family are fine, but never the group chat.",
-    "My notifications are mine, even with someone I love."
+    "Journals, phones, passwords: in love, I would keep no locked drawers.",
+    "It is sweet. I would trade journals, maybe skipping a page.",
+    "It suits them, but my journal would stay in the drawer.",
+    "My private pages stay private, even with the person I love."
    ]
   },
   "fp": {
-   "trigger": "a partner reads the friend's notifications aloud",
-   "setting": "the dinner table",
+   "trigger": "a couple reads each other's journals aloud every week",
+   "setting": "a friend's Sunday ritual",
    "ask": "sweet or too much",
-   "who": "a friend and their partner",
-   "stakes": "privacy inside a relationship",
-   "device": "notification-narrator"
+   "who": "a friend and their person",
+   "stakes": "privacy inside love",
+   "device": "journal-swap"
   },
-  "mask": "looks like dinner gossip; measures whether your phone is an open room or a locked diary with the people you love (T01, R1)",
+  "mask": "looks like couple gossip; measures whether your private life is an open room or a locked diary with the people you love (T01, R1)",
   "ae": [
    "B",
+   "C",
    "D"
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "A friend's partner reads every notification on the friend's phone aloud at dinner. The friend loves it. {name}'s first thought?",
+   "prompt": "Every Sunday, {name}'s friend and their person read each other's journals aloud, every page. {name}'s first thought?",
    "a": {
-    "t": "Love that. Nothing on a phone is worth hiding at dinner.",
+    "t": "Journals, phones, passwords. Love has no locked drawers.",
     "axes": {
      "R1": 2
     },
@@ -1539,7 +1536,7 @@
     ]
    },
    "b": {
-    "t": "Notifications are private, even with someone you love.",
+    "t": "Private pages stay private, even with someone you love.",
     "axes": {
      "R1": -2
     },
@@ -1716,7 +1713,7 @@
   "chapter": 1,
   "sq": "SQ-L3-2",
   "world": "unusual",
-  "prompt": "Flight canceled. 140 stranded strangers, one group chat, and the airline has 12 hotel vouchers. In there, you're the...",
+  "prompt": "Flight canceled. 140 stranded strangers, one airline desk, and 12 hotel vouchers. In that crowd, you're the...",
   "options": [
    {
     "t": "Line keeper: \"First twelve at the desk. That's how lines work.\"",
@@ -1737,7 +1734,7 @@
     }
    },
    {
-    "t": "Couch finder. Books an apartment for eight so the vouchers go further.",
+    "t": "Swapper: my own voucher goes to whoever flies out earliest.",
     "axes": {
      "L3": -1
     }
@@ -1750,18 +1747,18 @@
    }
   ],
   "heart": {
-   "prompt": "Your flight is canceled. The 140 stranded passengers start a group chat, and the airline has only 12 hotel vouchers. Which role do you take?",
+   "prompt": "Your flight is canceled. There are 140 stranded passengers, one airline desk and only 12 hotel vouchers. Which role do you take?",
    "options": [
     "The first twelve in line get them. That is how lines work.",
     "I suggest drawing names so everyone has the same chance.",
     "I persuade the desk to give a room to whoever is crying.",
-    "I book an apartment for eight, so the vouchers go further.",
+    "I give my own voucher to whoever flies out earliest.",
     "I say the family with the baby should get one first."
    ]
   },
   "fp": {
    "trigger": "12 hotel vouchers for 140 stranded passengers",
-   "setting": "a canceled flight and an airport group chat",
+   "setting": "an airport desk, a crowd of stranded strangers",
    "ask": "who deserves the rooms",
    "who": "140 strangers and an airline desk",
    "stakes": "a bed tonight and what fair means",
@@ -1774,7 +1771,7 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "Flight canceled: 140 stranded strangers, one group chat, 12 hotel vouchers. In there, {name} is the...",
+   "prompt": "Flight canceled: 140 stranded strangers, one airline desk, 12 hotel vouchers. In that crowd, {name} is the...",
    "a": {
     "t": "Line keeper: \"First twelve at the desk. That's how lines work.\"",
     "axes": {
@@ -1916,86 +1913,87 @@
   "id": "C1-163",
   "type": "eyes",
   "chapter": 1,
-  "sq": "SQ-T02-2",
+  "sq": "SQ-T04-2",
   "world": "unusual",
-  "prompt": "Your pen pal of ten years is moving to your city. They ask your best friend one thing: how do I stay close to them? The answer:",
+  "prompt": "Someone new wants into your friend group. Your best friend gives them one honest tip about you. Which one?",
   "options": [
    {
-    "t": "\"Write back fast. They notice who's waiting on whom.\"",
+    "t": "\"Give it a year. They don't hand out trust.\"",
     "tags": [
      {
-      "id": "T02B",
+      "id": "T04A",
       "s": 2
      }
     ]
    },
    {
-    "t": "\"Don't panic if they vanish for a season. They always resurface.\"",
+    "t": "\"Just show up. They'll adopt you by dessert.\"",
     "tags": [
      {
-      "id": "T02A",
+      "id": "T04B",
       "s": 2
      }
     ]
    },
    {
-    "t": "\"Invite them sometimes. They'll never admit they wanted you to.\"",
+    "t": "\"Three hangouts before you get the inside jokes.\"",
     "tags": [
      {
-      "id": "T02B",
+      "id": "T04A",
       "s": 1
      }
     ]
    },
    {
-    "t": "\"Just show up. They won't remember whose turn it was.\"",
+    "t": "\"They'll invite you to everything by next week.\"",
     "tags": [
      {
-      "id": "T02A",
+      "id": "T04B",
       "s": 1
      }
     ]
    }
   ],
   "heart": {
-   "prompt": "Your pen pal of ten years is moving to your city and asks your best friend how to stay close to you. What does your friend say?",
+   "prompt": "Someone new wants to join your friend group, and your best friend gives them one honest tip about you. What is it?",
    "options": [
-    "Write back quickly, they say. You notice who waits on whom.",
-    "You vanish for seasons, they say, but you always come back.",
-    "Invite you sometimes, they say. You will never admit you want it.",
-    "Just show up, they say. You lose track of turns."
+    "\"Give it a year. They do not hand out trust quickly.\"",
+    "\"Just show up. They will adopt you by dessert.\"",
+    "\"After three hangouts, you get the inside jokes.\"",
+    "\"By next week, they will invite you to everything.\""
    ]
   },
   "fp": {
-   "trigger": "a pen pal moves to your city",
-   "setting": "a question to your best friend",
-   "ask": "how to stay close to you",
-   "who": "a long-distance friend and your best friend",
-   "stakes": "who has to reach out first",
-   "device": "pen-pal-arrival"
+   "trigger": "someone new wants into your friend group",
+   "setting": "your best friend's honest tip about you",
+   "ask": "how open your circle is",
+   "who": "your best friend and a newcomer",
+   "stakes": "how quickly you let people in",
+   "device": "newcomer-tip"
   },
-  "mask": "looks like a friendship tip; measures whether you keep score of who reaches out (T02)",
+  "mask": "looks like friendship advice; measures whether new people have to earn their way in (T04)",
   "ae": [
-   "B",
+   "C",
+   "D",
    "E"
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "A pen pal is moving to {name}'s city and asks {name}'s best friend how to stay close. What's the advice?",
+   "prompt": "Someone new wants into {name}'s friend group. {name}'s best friend gives one honest tip. Which one?",
    "a": {
-    "t": "\"Don't panic if they vanish for a season. They resurface.\"",
+    "t": "\"Give it a year. They don't hand out trust.\"",
     "tags": [
      {
-      "id": "T02A",
+      "id": "T04A",
       "s": 2
      }
     ]
    },
    "b": {
-    "t": "\"Write back fast. They notice who's waiting on whom.\"",
+    "t": "\"Just show up. They'll adopt you by dessert.\"",
     "tags": [
      {
-      "id": "T02B",
+      "id": "T04B",
       "s": 2
      }
     ]

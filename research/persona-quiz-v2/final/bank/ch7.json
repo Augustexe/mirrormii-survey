@@ -243,7 +243,7 @@
     "emotion": "pride"
    },
    {
-    "t": "One Saturday, then suddenly I'm very busy.",
+    "t": "Yes, then quit by spring. Pastries aren't everything.",
     "tags": [
      {
       "id": "T23B",
@@ -267,7 +267,7 @@
    "options": [
     "I come every Saturday. I have already ordered a small hard hat.",
     "I say yes, and I share every brick I lay online.",
-    "I help for one Saturday, and then I become very busy.",
+    "I say yes, then quit by spring. Pastries are not everything.",
     "No. My Saturdays already belong to my own project."
    ]
   },
@@ -577,7 +577,7 @@
   "chapter": 7,
   "sq": "SQ-L3-1",
   "world": "unusual",
-  "prompt": "Charity poker night. You're teamed with your oldest friend for a trip for two. You just saw them slide an ace from their sleeve.",
+  "prompt": "Charity poker night: you and your oldest friend share one stack of chips for a trip for two. You just saw them slide an ace from their sleeve.",
   "options": [
    {
     "t": "Call it at the table. Trip or no trip.",
@@ -593,7 +593,7 @@
     ]
    },
    {
-    "t": "Tank our next hands till they get the hint.",
+    "t": "Quietly slide the ace back into the deck.",
     "axes": {
      "L3": 1,
      "R2": -1
@@ -634,10 +634,10 @@
    }
   ],
   "heart": {
-   "prompt": "At a charity poker night, you and your oldest friend play together for a trip for two. You just saw them slide an ace from their sleeve.",
+   "prompt": "At charity poker night, you and your oldest friend share one stack of chips, playing for a trip for two. You just saw them slide an ace from their sleeve.",
    "options": [
     "At the table, I say it, even if we lose the trip.",
-    "I play our next hands badly until they understand.",
+    "I quietly slide the ace back into the deck.",
     "I stay quiet. The money goes to charity either way.",
     "I say nothing and start planning the trip for two."
    ]
@@ -727,7 +727,7 @@
     ]
    },
    {
-    "t": "Track twelve key people. The other 28 can wing it.",
+    "t": "Trust my memory. It's never perfect, but it's close.",
     "tags": [
      {
       "id": "T24B",
@@ -743,7 +743,7 @@
     "I recite the guest list every night, out loud, in order.",
     "Surprise parties are a little chaotic anyway, so I improvise.",
     "I ask one friend to be my calendar for three weeks.",
-    "I track twelve key people. The rest can wing it."
+    "I trust my memory. It is never perfect, but it is close."
    ]
   },
   "fp": {
@@ -794,7 +794,7 @@
   "id": "C7-144",
   "type": "receipts",
   "chapter": 7,
-  "prompt": "Lists and plans, this month. Tap everything that's true:",
+  "prompt": "Your month in lists and plans. Tap all that apply:",
   "options": [
    {
     "t": "Made a packing list, even for one night away",
@@ -807,9 +807,6 @@
    },
    {
     "t": "Could say within $20 what I spent going out",
-    "axes": {
-     "L2": 1
-    },
     "tags": [
      {
       "id": "T24A",
@@ -828,9 +825,6 @@
    },
    {
     "t": "Showed up to a trip or event without reading the plan",
-    "axes": {
-     "L2": -1
-    },
     "tags": [
      {
       "id": "T24B",
@@ -853,7 +847,7 @@
    }
   ],
   "heart": {
-   "prompt": "Think about lists and plans this month. Choose everything that is true for you.",
+   "prompt": "Which of these happened this month? Choose all that apply.",
    "options": [
     "I made a packing list, even for one night away.",
     "I could say within $20 what I spent going out.",
@@ -917,7 +911,7 @@
     ]
    },
    {
-    "t": "\"Dana, you're closer. Noodles travel.\"",
+    "t": "\"Going, if nobody else claims it first.\"",
     "tags": [
      {
       "id": "T23B",
@@ -951,7 +945,7 @@
    "options": [
     "\"I am on my way. Enjoy your dinner.\"",
     "\"I will go. You owe me dinner.\"",
-    "\"Dana, you are closer. Your dinner can come with you.\"",
+    "\"If nobody else claims it first, I will go.\"",
     "\"I am off duty tonight. Someone else can fly there.\""
    ]
   },
@@ -1025,7 +1019,7 @@
     "emotion": "delight"
    },
    {
-    "t": "Sweet, but my family would ask what went wrong.",
+    "t": "Sweet, but I'd want us in one bed.",
     "axes": {
      "R3": 1
     },
@@ -1037,7 +1031,7 @@
     ]
    },
    {
-    "t": "Honestly smarter than most couples I know.",
+    "t": "Honestly, I get exactly why it works.",
     "axes": {
      "R3": -1
     },
@@ -1053,9 +1047,9 @@
    "prompt": "Ari and Noor have been married four years and sleep in separate bedrooms, by choice. They say it saved their marriage. What is your honest reaction?",
    "options": [
     "A couple shares a bed. That is the point.",
-    "That is brilliant. Nobody steals the blanket again.",
-    "It is sweet, but my family would ask what went wrong.",
-    "Honestly, it sounds smarter than most couples I know."
+    "I understand completely. Nobody steals the blanket again.",
+    "It is sweet, but I would want us in one bed.",
+    "Honestly, I can see exactly why it works for them."
    ]
   },
   "fp": {
@@ -1231,13 +1225,13 @@
     ]
    },
    {
-    "t": "Send me the setlist first. Then I'll answer.",
+    "t": "No, but I'll haul their amps all night.",
     "axes": {
      "L1": 1
     }
    },
    {
-    "t": "Only if they turn my amp way down.",
+    "t": "Tempted. Then I picture 200 faces. Pass.",
     "axes": {
      "L1": 1
     }
@@ -1267,8 +1261,8 @@
    "prompt": "Your friend's band lost its bass player an hour before a 200-person show. You have played bass twice, at parties, and they are begging. Pick your two first thoughts.",
    "options": [
     "Yes. I will learn the songs on the way there.",
-    "Send me the setlist first, then I will answer.",
-    "I will do it only if they turn my amp way down.",
+    "No, but I will carry their amps all night.",
+    "I am tempted, until I picture 200 faces. I pass.",
     "Worst case, it becomes a great story. I am in.",
     "No. I do not play what I have not practiced.",
     "I am already choosing what to wear on stage."
@@ -1319,17 +1313,17 @@
   "chapter": 7,
   "sq": "SQ-R1-3",
   "world": "absurd",
-  "prompt": "A perfect clone of you arrives in the mail. It can go to every hangout, party and group dinner in your place. Nobody could tell.",
+  "prompt": "A perfect clone of you arrives in the mail. It can go to every plan your friend group votes for, in your place. Nobody could tell.",
   "options": [
    {
-    "t": "No deal. I want to be at every single one.",
+    "t": "No deal. Every plan they pick, even the bad ones.",
     "axes": {
      "R1": 2
     },
     "emotion": "warmth"
    },
    {
-    "t": "Work stuff goes to the clone. My people get the real me.",
+    "t": "I go to most. The clone covers bowling night.",
     "axes": {
      "R1": 1
     }
@@ -1350,10 +1344,10 @@
    }
   ],
   "heart": {
-   "prompt": "A perfect clone of you arrives in the mail. It could go to every hangout, party and group dinner in your place, and nobody could tell.",
+   "prompt": "A perfect clone of you arrives in the mail. It could go to every plan your friend group votes for, in your place, and nobody could tell.",
    "options": [
-    "No, thank you. I want to be at every one of them.",
-    "The clone handles work. The people I love get the real me.",
+    "No, thanks. I go to every plan they pick, even bad ones.",
+    "I go to most of them. The clone covers bowling night.",
     "The clone takes the big group events. I keep the one-on-ones.",
     "The clone goes everywhere, and I stay home on my couch."
    ]
@@ -1376,7 +1370,7 @@
   "friend": {
    "prompt": "A mail-order clone could attend every hangout, party and group dinner for {name}. Nobody could tell. What does {name} do?",
    "a": {
-    "t": "No deal. \"I want to be at every single one.\"",
+    "t": "No deal. Every plan they pick, even the bad ones.",
     "axes": {
      "R1": 2
     }
@@ -1395,7 +1389,7 @@
   "chapter": 7,
   "follows": "C7-134",
   "world": "absurd",
-  "prompt": "Picture the clone laughing with your friends while you're home. First feeling?",
+  "prompt": "Your clone, in your usual seat, laughing at your friends' jokes. Honest feeling?",
   "options": [
    {
     "t": "A lot of relief, honestly.",
@@ -1419,13 +1413,13 @@
    }
   ],
   "heart": {
-   "prompt": "Picture the clone laughing with your friends while you are at home. What did you feel first?",
+   "prompt": "Your clone is in your usual seat, laughing at your friends' jokes. What do you honestly feel?",
    "options": [
-    "I felt relief, and quite a lot of it.",
-    "I was jealous of myself, somehow.",
-    "I felt guilty, as if I skipped something.",
-    "I worried that it is more fun than I am.",
-    "Delight came first, as if I got away with something."
+    "I feel relief, and quite a lot of it.",
+    "I am jealous of myself, somehow.",
+    "I feel guilty, as if I skipped something.",
+    "I worry that it is more fun than I am.",
+    "Delight comes first, as if I got away with something."
    ]
   },
   "fp": {
@@ -1568,7 +1562,7 @@
     ]
    },
    {
-    "t": "My friends' things, but only when they ask.",
+    "t": "Whatever my friends have broken, one by one.",
     "tags": [
      {
       "id": "T23A",
@@ -1586,7 +1580,7 @@
     ]
    },
    {
-    "t": "Nothing in public. Once people know, my weekends are gone.",
+    "t": "Fixes by appointment, weekdays only. Weekends are mine.",
     "tags": [
      {
       "id": "T23B",
@@ -1599,9 +1593,9 @@
    "prompt": "You wake up able to repair anything simply by touching it. Put these in order, the first thing you would do at the top.",
    "options": [
     "I fix every broken thing on the street, with a sign-up sheet.",
-    "My friends' things come first, but only when they ask.",
+    "My friends' broken things come first, one by one.",
     "I fix my old car first, then the rest of my things.",
-    "I fix nothing in public. Once people know, my weekends are gone."
+    "Fixes by appointment, on weekdays only. My weekends stay mine."
    ]
   },
   "fp": {
@@ -1839,7 +1833,7 @@
     "emotion": "irritation"
    },
    {
-    "t": "\"Traffic, or a nap?\" Joked, pointedly, twice.",
+    "t": "\"You owe me forty minutes. And a drink.\"",
     "axes": {
      "R2": 1
     }
@@ -1860,10 +1854,10 @@
    }
   ],
   "heart": {
-   "prompt": "Think of the most recent friend who arrived forty minutes late without warning. What did you actually do when they got there?",
+   "prompt": "Think of the most recent friend who arrived forty minutes late without warning. How did you greet them?",
    "options": [
     "I told them plainly that forty minutes was not okay.",
-    "I asked, \"Traffic, or a nap?\" pointedly, more than once.",
+    "\"You owe me forty minutes, and a drink,\" I told them.",
     "\"No worries,\" I said, and meant about half of it.",
     "I said nothing. I had already ordered them a drink."
    ]

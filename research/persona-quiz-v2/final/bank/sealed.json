@@ -5,54 +5,51 @@
     "primary": "R1",
     "sq": "SQ-R1-1",
     "world": "unusual",
-    "prompt": "Six days on a sleeper train with your best friend, one tiny shared cabin. The conductor mentions an empty solo cabin next door. $90.",
+    "prompt": "Co-owners, forever: your best friend wants to buy a small sailboat with you. Both names on the hull. Alternating weekends, shared repair bills.",
     "options": [
       {
-        "t": "Keep the tiny cabin. Six days of us, bunk to bunk.",
+        "t": "Yes, and we sail it together, every weekend.",
         "axes": {
           "R1": 2
-        },
-        "emotion": "warmth"
+        }
       },
       {
-        "t": "Buy it. Meals together, nights apart.",
+        "t": "Love you. Buy it yourself. I'll wave from the dock.",
         "axes": {
           "R1": -2
-        },
-        "emotion": "relief"
+        }
       },
       {
-        "t": "Buy it for reading. Still sleep in ours.",
+        "t": "Co-own it, but you'll mostly sail it. I visit.",
         "axes": {
           "R1": -1
         }
       },
       {
-        "t": "Keep ours. Spend the $90 on snacks for two.",
+        "t": "Yes. Alternate weekends, plus one sail together a month.",
         "axes": {
           "R1": 1
-        },
-        "emotion": "delight"
+        }
       }
     ],
     "heart": {
-      "prompt": "You and your best friend have six days on a sleeper train, sharing one tiny cabin. The conductor mentions an empty single cabin next door for $90.",
+      "prompt": "Your best friend wants to buy a small sailboat with you, forever: both names on the hull, alternating weekends and shared repair bills.",
       "options": [
-        "We keep our tiny cabin, six days side by side.",
-        "I take it. We share meals and sleep apart.",
-        "I take it to read in, and I still sleep in ours.",
-        "We keep ours, and I spend the $90 on snacks for two."
+        "Yes, and we sail it together every weekend.",
+        "They should buy it alone. I will wave from the dock.",
+        "I co-own it, but they mostly sail it and I visit.",
+        "Yes to alternating weekends, plus one sail together each month."
       ]
     },
     "fp": {
-      "trigger": "a solo cabin opens on a long train trip",
-      "setting": "six-day sleeper train",
-      "ask": "stay together or take your own room",
+      "trigger": "a best friend asks you to co-own a sailboat",
+      "setting": "a shared boat, both names on the hull",
+      "ask": "merge your weekends or keep your own",
       "who": "your best friend",
-      "stakes": "togetherness versus a door of your own",
-      "device": "sleeper-train"
+      "stakes": "a shared life versus your own schedule",
+      "device": "co-owned-sailboat"
     },
-    "mask": "looks like a travel perk; Genii's locked guess on close as shared space versus close with a door of your own (R1)",
+    "mask": "looks like a fun purchase; Genii's locked guess on close as shared everything versus close with your own life (R1)",
     "ae": [
       "A",
       "B"
@@ -65,7 +62,7 @@
     "primary": "R1",
     "sq": "SQ-R1-2",
     "world": "absurd",
-    "prompt": "New curse: every time something happens to you, a tiny rain cloud follows you until your person hears about it. You just got promoted.",
+    "prompt": "New curse: every time something happens to you, a tiny rain cloud follows you until your person hears about it. You just won a photo contest.",
     "options": [
       {
         "t": "Call them mid-drizzle. I'd have told them anyway.",
@@ -92,7 +89,7 @@
         ]
       },
       {
-        "t": "Tell them the headline only. A little drizzle, I can live with.",
+        "t": "Text them the headline. The full story can wait.",
         "axes": {
           "R1": -1
         }
@@ -105,11 +102,11 @@
       }
     ],
     "heart": {
-      "prompt": "A curse means that every time something happens to you, a small rain cloud follows you until your person hears about it. You have just been promoted.",
+      "prompt": "A curse means that every time something happens to you, a small rain cloud follows you until your person hears about it. You have just won a photo contest.",
       "options": [
         "I call them right away. I would have told them anyway.",
         "Some news is mine first. I stay damp for a week.",
-        "They get the headline only. A little rain is fine.",
+        "They get the headline by text. The full story can wait.",
         "I tell them, and then I insist on hearing their news too."
       ]
     },
@@ -192,10 +189,10 @@
     "primary": "R1",
     "sq": "SQ-T09-1",
     "world": "unusual",
-    "prompt": "Cast! Your person lands a year-long touring musical. The producer offers you a stagehand job on the same tour. Fourteen cities, one bus.",
+    "prompt": "You and your person share a birthday. They've already booked one joint party for 80 people: both names on the banner, every friend invited.",
     "options": [
       {
-        "t": "Their tour is my tour now. Signing.",
+        "t": "One banner, two names. Their friends are my friends.",
         "axes": {
           "R1": 2
         },
@@ -207,7 +204,7 @@
         ]
       },
       {
-        "t": "Stay home. Fly out for opening nights.",
+        "t": "Go to theirs, then take my own friends out later.",
         "axes": {
           "R1": -1
         },
@@ -219,7 +216,7 @@
         ]
       },
       {
-        "t": "My life here doesn't pause for a year. Staying.",
+        "t": "Two parties. My birthday stays my night.",
         "axes": {
           "R1": -2
         },
@@ -231,7 +228,7 @@
         ]
       },
       {
-        "t": "Sign, but keep my apartment back home.",
+        "t": "Joint party this year. Next year gets its own vote.",
         "axes": {
           "R1": 1
         },
@@ -244,23 +241,23 @@
       }
     ],
     "heart": {
-      "prompt": "Your person is cast in a touring musical for a year. The producer offers you a job as a stagehand on the same tour: fourteen cities, one bus.",
+      "prompt": "You and your person were born on the same day. They have already booked one joint party for 80 people, with both names on the banner and every friend invited.",
       "options": [
-        "Yes. Their tour becomes my tour.",
-        "I stay home and fly out for opening nights.",
-        "I stay. My life here does not pause for a year.",
-        "I sign, but I keep my apartment at home."
+        "One banner with both names sounds right. Their friends are mine.",
+        "I go to the joint party, then take my own friends out.",
+        "We have two parties. My birthday stays my own night.",
+        "A joint party this year, yes. Next year is its own question."
       ]
     },
     "fp": {
-      "trigger": "a job offer to follow your person on tour",
-      "setting": "touring musical, one bus",
-      "ask": "join their year or keep yours",
-      "who": "your person",
-      "stakes": "one shared life versus your own",
-      "device": "tour-bus"
+      "trigger": "your person books one joint party for your shared birthday",
+      "setting": "a party for 80 under one banner",
+      "ask": "merge the day or keep it yours",
+      "who": "your person and both friend groups",
+      "stakes": "one shared life versus a night of your own",
+      "device": "joint-birthday"
     },
-    "mask": "looks like a lucky job offer; Genii's locked guess on folding into their life versus keeping yours (R1, T09)",
+    "mask": "looks like party planning; Genii's locked guess on folding into their life versus keeping yours (R1, T09)",
     "ae": [
       "A",
       "B"
@@ -273,10 +270,10 @@
     "primary": "R2",
     "sq": "SQ-T07-2",
     "world": "unusual",
-    "prompt": "Work party, by the coats. You overhear the boss: your friend won't get the promotion they've already celebrated.",
+    "prompt": "Your friend's first music video went viral: 4,000 comments, most of them brutal. They hand you their phone: \"What are people saying?\"",
     "options": [
       {
-        "t": "Tell them tonight, word for word. Better from me.",
+        "t": "Read them the top ten, brutal ones included.",
         "axes": {
           "R2": 2
         },
@@ -285,11 +282,10 @@
             "id": "T07A",
             "s": 2
           }
-        ],
-        "emotion": "worry"
+        ]
       },
       {
-        "t": "Hint: \"Maybe don't order the new car yet?\"",
+        "t": "Read the nice ones, then add, \"Maybe skip the rest.\"",
         "axes": {
           "R2": -1
         },
@@ -301,7 +297,7 @@
         ]
       },
       {
-        "t": "Say nothing. Be there with snacks when it lands.",
+        "t": "\"All love!\" Then lock the phone.",
         "axes": {
           "R2": -2
         },
@@ -310,37 +306,37 @@
             "id": "T07B",
             "s": 2
           }
-        ],
-        "emotion": "guilt"
+        ]
       },
       {
-        "t": "Tell them tomorrow, gently, with a plan B ready.",
+        "t": "\"Rough ones outnumber nice ones. Want them tomorrow?\"",
         "axes": {
           "R2": 1
         }
       }
     ],
     "heart": {
-      "prompt": "At a work party, near the coats, you overhear the boss say your friend will not get the promotion they have already celebrated.",
+      "prompt": "Your friend's first music video went viral, with 4,000 comments, most of them brutal. They hand you their phone and ask what people are saying.",
       "options": [
-        "Tonight they hear it from me, exactly as I heard it.",
-        "I hint that they should not order the new car just yet.",
-        "I say nothing for now, and I am there when it happens.",
-        "I tell them tomorrow, gently, with a backup plan ready."
+        "I read them the top ten, the brutal ones included.",
+        "I read only the warm ones, and suggest skipping the rest.",
+        "\"It is all love,\" I say, and I lock the phone.",
+        "I say most are rough, and ask if they want them tomorrow."
       ]
     },
     "fp": {
-      "trigger": "overhearing the boss about your friend",
-      "setting": "work party, by the coat rack",
-      "ask": "tell them straight or shield them",
-      "who": "a friend at work and the boss",
-      "stakes": "their pride versus your source",
-      "device": "overheard-boss"
+      "trigger": "a friend's video goes viral with brutal comments",
+      "setting": "their phone in your hand",
+      "ask": "read them the truth or shield them",
+      "who": "a friend",
+      "stakes": "their pride versus the internet's verdict",
+      "device": "viral-comments"
     },
-    "mask": "looks like office gossip; Genii's locked guess on saying the hard thing now versus holding the person first (R2), with T07 as a side guess",
+    "mask": "looks like an internet moment; Genii's locked guess on saying the hard thing now versus holding the person first (R2), with T07 as a side guess",
     "ae": [
       "A",
-      "C"
+      "B",
+      "E"
     ],
     "privacy": "normal"
   },
@@ -378,7 +374,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Bring it up at the building meeting. Casually. Clearly.",
+        "t": "Knock tonight, calm: \"I always pay people back. Always.\"",
         "axes": {
           "R2": 1
         },
@@ -391,7 +387,7 @@
         "I knock right away: the parrot is wrong, and so are they.",
         "I slide an old receipt under their door, with no note.",
         "I spend weeks teaching the parrot a better phrase from my balcony.",
-        "At the next building meeting, I mention it, casually but clearly."
+        "Tonight I knock and say calmly that I always pay people back."
       ]
     },
     "fp": {
@@ -454,7 +450,7 @@
         ]
       },
       {
-        "t": "Ask the room to reread every clue. Slowly. Out loud.",
+        "t": "Tell the room: \"Something's off with these clues.\"",
         "axes": {
           "R2": 1
         },
@@ -467,7 +463,7 @@
         "I stand up: the host is the killer, and also the cheater.",
         "I take the host aside in the kitchen and say it quietly.",
         "They can win. It is their party and their prize.",
-        "I ask everyone to read every clue again, slowly and out loud."
+        "I tell the room that something is off with these clues."
       ]
     },
     "fp": {
@@ -491,10 +487,10 @@
     "primary": "R2",
     "sq": "SQ-R2-1",
     "world": "unusual",
-    "prompt": "You're secretly the critic reviewing your friend's restaurant opening. Nobody knows. The food is bland. Your review is due tomorrow.",
+    "prompt": "A single friend shows you a dating profile. It's your best friend's person, active an hour ago. Your best friend is booking them a surprise trip.",
     "options": [
       {
-        "t": "Honest review. Call them tonight so they hear it first.",
+        "t": "Screenshot, then call my best friend tonight.",
         "axes": {
           "R2": 2
         },
@@ -503,11 +499,10 @@
             "id": "T07A",
             "s": 2
           }
-        ],
-        "emotion": "worry"
+        ]
       },
       {
-        "t": "Tell them the soup needs salt. Nothing else.",
+        "t": "Casually ask my friend, \"You two ever talk about apps?\"",
         "axes": {
           "R2": -1
         },
@@ -519,7 +514,7 @@
         ]
       },
       {
-        "t": "Glowing review. Friendship outranks my byline.",
+        "t": "Say nothing. Not my relationship, not my news.",
         "axes": {
           "R2": -2
         },
@@ -528,37 +523,38 @@
             "id": "T07B",
             "s": 2
           }
-        ],
-        "emotion": "guilt"
+        ]
       },
       {
-        "t": "Honest review, no warning. They read it with everyone.",
+        "t": "Tonight, in person, screenshot in hand. Gently.",
         "axes": {
           "R2": 1
         }
       }
     ],
     "heart": {
-      "prompt": "You are secretly the critic reviewing your friend's restaurant opening, and nobody knows. The food is bland. Your review is due tomorrow.",
+      "prompt": "A single friend shows you a dating profile. It belongs to your best friend's person, active an hour ago. Your best friend is booking them a surprise trip.",
       "options": [
-        "I write it honestly and call them tonight, before it runs.",
-        "All they hear from me is that the soup needs salt.",
-        "I write a glowing review. Our friendship matters more than my byline.",
-        "I write it honestly, with no warning. They read it with everyone."
+        "I take a screenshot and call my best friend tonight.",
+        "Casually, I ask whether the two of them ever talk about apps.",
+        "I say nothing. It is not my relationship or my news.",
+        "Tonight I tell them in person, gently, screenshot in hand."
       ]
     },
     "fp": {
-      "trigger": "you secretly review a friend's restaurant",
-      "setting": "restaurant opening, critic's table",
-      "ask": "honest review or protect them",
-      "who": "a friend who owns the restaurant",
-      "stakes": "their big opening versus your honesty",
-      "device": "secret-food-critic"
+      "trigger": "your best friend's partner shows up active on a dating app",
+      "setting": "a friend's phone, a dating profile",
+      "ask": "tell now or protect them",
+      "who": "your best friend and their person",
+      "stakes": "their relationship versus being the messenger",
+      "device": "partner-dating-profile"
     },
-    "mask": "looks like an undercover job; Genii's locked guess on saying the hard truth now versus protecting the person first (R2, T07)",
+    "mask": "looks like relationship drama; Genii's locked guess on saying the hard truth now versus protecting the person first (R2, T07)",
     "ae": [
       "A",
-      "B"
+      "B",
+      "C",
+      "E"
     ],
     "privacy": "normal"
   },
@@ -652,10 +648,10 @@
     "primary": "R3",
     "sq": "SQ-T20-2",
     "world": "unusual",
-    "prompt": "Family rule, three generations running: a new job's first paycheck pays for a restaurant dinner for all 22 relatives. Yours just cleared.",
+    "prompt": "Ten years running: same cabin, same weekend, same broken karaoke machine. Two friends want a city trip instead. The vote's tied, and yours decides.",
     "options": [
       {
-        "t": "Book the long table. That's how it's done.",
+        "t": "Cabin. Ten years makes it sacred.",
         "axes": {
           "R3": 2
         },
@@ -664,11 +660,10 @@
             "id": "T20A",
             "s": 2
           }
-        ],
-        "emotion": "pride"
+        ]
       },
       {
-        "t": "Cook for all 22 at my place instead. New rule.",
+        "t": "City this year, cabin next. We alternate.",
         "axes": {
           "R3": -1
         },
@@ -680,7 +675,7 @@
         ]
       },
       {
-        "t": "Treat my friends instead. They got me the job.",
+        "t": "City. Ten years was a great run. Retire it.",
         "axes": {
           "R3": -2
         },
@@ -689,11 +684,10 @@
             "id": "T20B",
             "s": 2
           }
-        ],
-        "emotion": "guilt"
+        ]
       },
       {
-        "t": "Book it. A cheaper place than my cousin picked.",
+        "t": "Cabin, but I'm replacing that karaoke machine.",
         "axes": {
           "R3": 1
         },
@@ -702,31 +696,31 @@
             "id": "T20A",
             "s": 1
           }
-        ],
-        "emotion": "delight"
+        ]
       }
     ],
     "heart": {
-      "prompt": "Your family has a rule, three generations old: the first paycheck from a new job pays for a restaurant dinner for all 22 relatives. Yours has just arrived.",
+      "prompt": "For ten years your friends have taken the same cabin, same weekend, same broken karaoke machine. Two want a city trip instead. The vote is tied, and yours decides.",
       "options": [
-        "I book the long table. That is how it is done.",
-        "I cook for all 22 at home instead: a new rule.",
-        "I treat my friends instead. They helped me get the job.",
-        "Yes to the dinner, at a cheaper place than my cousin chose."
+        "I vote for the cabin. After ten years, it is sacred.",
+        "We alternate: the city this year, the cabin next.",
+        "I vote for the city. Ten years was a wonderful run.",
+        "The cabin gets my vote, but I am replacing the karaoke machine."
       ]
     },
     "fp": {
-      "trigger": "a new job's first paycheck owes the family a dinner",
-      "setting": "family custom, 22 relatives",
-      "ask": "keep the custom or make your own",
-      "who": "the whole extended family",
-      "stakes": "the family way versus your way, and your money",
-      "device": "first-paycheck-dinner"
+      "trigger": "a ten-year friend tradition faces a vote",
+      "setting": "the same cabin every year",
+      "ask": "keep the tradition or retire it",
+      "who": "your friend group",
+      "stakes": "a ritual versus something new",
+      "device": "cabin-tradition"
     },
-    "mask": "looks like a money moment; Genii's locked guess on keeping the family ritual versus remaking it (R3), with T20 as a side guess",
+    "mask": "looks like trip planning; Genii's locked guess on keeping a ritual versus remaking it (R3), with T20 as a side guess",
     "ae": [
       "A",
-      "D"
+      "D",
+      "E"
     ],
     "privacy": "normal"
   },
@@ -777,7 +771,7 @@
         ]
       },
       {
-        "t": "Whisper to my person: \"Not here. But properly, soon.\"",
+        "t": "Whisper: \"Not here. At the family dinner, properly.\"",
         "axes": {
           "R3": 1
         },
@@ -795,7 +789,7 @@
         "I kneel right there. It feels like a sign.",
         "We kiss, wave, and never mention it again.",
         "I tell the camera we do not need a stadium for that.",
-        "I whisper to my person: not here, but properly, and soon."
+        "I whisper: not here, but at the family dinner, properly."
       ]
     },
     "fp": {
@@ -822,7 +816,7 @@
     "prompt": "Month-long visit: your person's parent relabels every shelf in your home to match their own. Printed labels. Laminated.",
     "options": [
       {
-        "t": "Keep them. Honestly, the shelves have never looked better.",
+        "t": "Keep them. Their family's system has worked for decades.",
         "axes": {
           "R3": 2
         },
@@ -859,7 +853,7 @@
         ]
       },
       {
-        "t": "Keep the kitchen labels. The rest come down.",
+        "t": "Keep the kitchen ones. Their kitchen always ran better.",
         "axes": {
           "R3": 1
         },
@@ -874,10 +868,10 @@
     "heart": {
       "prompt": "Your person's parent stays with you for a month and relabels every shelf in your home to match their own. The labels are printed and laminated.",
       "options": [
-        "They stay. The shelves have honestly never looked better.",
+        "They stay. Their family's system has worked for decades.",
         "I peel one off each day, quietly, hoping nobody notices.",
         "I sit everyone down: this is our home, and our system.",
-        "I keep the kitchen labels and take the rest down."
+        "I keep the kitchen labels. Their kitchen always ran better."
       ]
     },
     "fp": {
@@ -901,7 +895,7 @@
     "primary": "L1",
     "sq": "SQ-L1-1",
     "world": "unusual",
-    "prompt": "Game show, final round: take $20,000 now, or answer one question for $100,000. The topic is one you know about half of.",
+    "prompt": "Game show, final round: walk away with $20,000, or answer one question for $100,000 and lose it all if wrong. The topic: one you half know.",
     "options": [
       {
         "t": "Take the $20,000. Wave. Leave. Frame the check.",
@@ -944,7 +938,7 @@
       }
     ],
     "heart": {
-      "prompt": "In the final round of a game show, you can take $20,000 now, or answer one question for $100,000. You know about half of the topic.",
+      "prompt": "In the final round of a game show, you can walk away with $20,000, or answer one question for $100,000 and lose everything if wrong. You half know the topic.",
       "options": [
         "I take the $20,000, leave, and frame the check.",
         "Half knowing is close enough to knowing. I play.",
@@ -1014,7 +1008,7 @@
         ]
       },
       {
-        "t": "Keep it unsigned under my pillow until next year.",
+        "t": "Leave it unsigned. I like not knowing what's next.",
         "axes": {
           "L1": -1
         },
@@ -1028,12 +1022,12 @@
       }
     ],
     "heart": {
-      "prompt": "A contract appears on your pillow: your job, home and people stay as they are for five years, guaranteed, no surprises. You may sign any part, anytime.",
+      "prompt": "A contract appears on your pillow: your job, home and people stay as they are for five years, guaranteed. You may sign any part, anytime.",
       "options": [
         "I sign. Five known good years beat any gamble.",
         "It gets torn up. I want the surprises, even the bad ones.",
         "I sign only the part about my home, not my work.",
-        "I keep it unsigned and decide next year."
+        "I leave it unsigned. I like not knowing what comes next."
       ]
     },
     "fp": {
@@ -1128,10 +1122,10 @@
     "primary": "L1",
     "sq": "SQ-L1-2",
     "world": "unusual",
-    "prompt": "Double your pay, starting Monday, sign by tonight. What's the job? The company won't say until you arrive.",
+    "prompt": "A friend of a friend invites you into a club with no name. Members can't say what it does. The invite expires tonight.",
     "options": [
       {
-        "t": "Sign and find out Monday like everyone else.",
+        "t": "I'm in. The best stories start exactly like this.",
         "axes": {
           "L1": -2
         },
@@ -1140,24 +1134,22 @@
             "id": "T22A",
             "s": 1
           }
-        ],
-        "emotion": "delight"
+        ]
       },
       {
-        "t": "Sign, then stake out their lobby all weekend.",
+        "t": "In, and my location goes to two friends first.",
         "axes": {
           "L1": -1
-        },
-        "emotion": "worry"
+        }
       },
       {
-        "t": "One hint, or I walk.",
+        "t": "Only if my friend comes along the first time.",
         "axes": {
           "L1": 1
         }
       },
       {
-        "t": "Pass. I don't sign what I can't read.",
+        "t": "Pass. I don't join what I can't describe.",
         "axes": {
           "L1": 2
         },
@@ -1170,26 +1162,27 @@
       }
     ],
     "heart": {
-      "prompt": "You are offered a job at double your pay, starting Monday. The company will not say what the job is until you arrive. You must sign tonight.",
+      "prompt": "A friend of a friend invites you to join a club with no name. Members cannot say what it does, and the invitation expires tonight.",
       "options": [
-        "I sign. I will find out on Monday.",
-        "I sign, then watch their lobby all weekend.",
-        "Without one hint, I walk away.",
-        "I say no. I do not sign what I cannot read."
+        "Yes. The best stories start exactly like this.",
+        "I join, and first I share my location with two friends.",
+        "Only if my friend comes with me the first time.",
+        "I pass. I do not join something I cannot describe."
       ]
     },
     "fp": {
-      "trigger": "a double-pay job with a secret role",
-      "setting": "a job offer, sign tonight",
-      "ask": "sign blind or wait for details",
-      "who": "a mystery employer",
-      "stakes": "double pay versus knowing what you are in for",
-      "device": "mystery-job"
+      "trigger": "an invitation to a secret club",
+      "setting": "a friend of a friend, invite expires tonight",
+      "ask": "step in blind or wait to know more",
+      "who": "a friend of a friend",
+      "stakes": "a great story versus walking in blind",
+      "device": "nameless-club"
     },
-    "mask": "looks like a too-good offer; Genii's locked guess on stepping in blind versus waiting to know more (L1, T22)",
+    "mask": "looks like a mystery invite; Genii's locked guess on stepping in blind versus waiting to know more (L1, T22)",
     "ae": [
       "A",
-      "D"
+      "D",
+      "E"
     ],
     "privacy": "normal"
   },
@@ -1199,10 +1192,10 @@
     "primary": "L2",
     "sq": "SQ-T17-1",
     "world": "unusual",
-    "prompt": "Mid-karaoke, a touring theater director hands you a card: a year-long role, answer before the song ends. Your band's first real gig is next month.",
+    "prompt": "Two weeks away next spring, booked by your best friend. They'll tell you everything now, or nothing until the airport. You choose.",
     "options": [
       {
-        "t": "\"Yes!\" before the chorus. A sure thing beats a maybe.",
+        "t": "Everything. Dates, city, hotel. I want a countdown.",
         "axes": {
           "L2": 2
         },
@@ -1214,7 +1207,7 @@
         ]
       },
       {
-        "t": "Yes, and I'll beg to play the gig first.",
+        "t": "Dates and city. Keep the hotel a surprise.",
         "axes": {
           "L2": 1
         },
@@ -1226,7 +1219,7 @@
         ]
       },
       {
-        "t": "Let the song end. If the offer dies, it dies.",
+        "t": "Just the dates, so I can pack. Nothing else.",
         "axes": {
           "L2": -1
         },
@@ -1238,7 +1231,7 @@
         ]
       },
       {
-        "t": "No. I want to see where the band goes.",
+        "t": "Nothing. Not even the dates. Just come get me.",
         "axes": {
           "L2": -2
         },
@@ -1251,25 +1244,26 @@
       }
     ],
     "heart": {
-      "prompt": "Mid-karaoke, a touring theater director offers you a year-long role, answer before the song ends. Your band's first real show is next month.",
+      "prompt": "Your best friend has booked you both a two-week trip next spring. They can tell you everything now, or nothing until the airport. You get to choose.",
       "options": [
-        "I say yes before the chorus. A sure thing beats a maybe.",
-        "I say yes, and I beg to play the show first.",
-        "I let the song end. If the offer dies, so be it.",
-        "No. I want to see where the band goes."
+        "Everything, please: dates, city and hotel, so I can count down.",
+        "The dates and the city, please. The hotel can be a surprise.",
+        "Only the dates, so I can pack. Nothing else.",
+        "Nothing, not even the dates. They can just come and get me."
       ]
     },
     "fp": {
-      "trigger": "sudden offer with a song-length deadline",
-      "setting": "karaoke bar",
-      "ask": "lock it in now or keep options open",
-      "who": "stranger with an offer, your band",
-      "stakes": "a sure thing versus an open door",
-      "device": "karaoke-offer"
+      "trigger": "a friend offers to reveal a booked trip or keep it secret",
+      "setting": "a surprise trip next spring",
+      "ask": "know it all now or keep the surprise",
+      "who": "your best friend",
+      "stakes": "certainty versus surprise",
+      "device": "surprise-trip"
     },
-    "mask": "looks like a lucky break; Genii's locked guess on locking things in versus keeping doors open (L2, T17)",
+    "mask": "looks like a trip surprise; Genii's locked guess on wanting it known and locked in versus keeping it open (L2, T17)",
     "ae": [
-      "A"
+      "D",
+      "E"
     ],
     "privacy": "normal"
   },
@@ -1278,69 +1272,56 @@
     "type": "sealed",
     "primary": "L2",
     "sq": "SQ-L2-2",
-    "world": "absurd",
-    "prompt": "Every time you finish something big, the hill in your backyard grows. It's been a hill for three years. The neighbors have noticed.",
+    "world": "unusual",
+    "prompt": "For years, an old classmate has hit every milestone just before you: job, apartment, first car. Your new job starts Monday. They just announced theirs.",
     "options": [
       {
-        "t": "Three big finishes by summer. It's becoming a mountain.",
+        "t": "Announce tonight, then start planning the next milestone.",
         "axes": {
           "L2": 2
-        },
-        "tags": [
-          {
-            "id": "T17A",
-            "s": 1
-          }
-        ],
-        "emotion": "envy"
+        }
       },
       {
-        "t": "I like the hill. You can picnic on a hill.",
+        "t": "Monday, like I planned. Their calendar isn't mine.",
         "axes": {
           "L2": -2
-        },
-        "tags": [
-          {
-            "id": "T17B",
-            "s": 1
-          }
-        ]
+        }
       },
       {
-        "t": "Finish one thing, just to watch it grow.",
+        "t": "Announce tonight, a little sooner than I'd planned.",
         "axes": {
           "L2": 1
-        },
-        "emotion": "cringe"
+        }
       },
       {
-        "t": "Plant flowers on it. It's doing fine.",
+        "t": "A little rattled, honestly. But Monday it is.",
         "axes": {
           "L2": -1
         }
       }
     ],
     "heart": {
-      "prompt": "Every time you finish something big, the hill in your backyard grows. It has been a hill for three years, and the neighbors have noticed.",
+      "prompt": "For years, an old classmate has reached every milestone just before you: job, apartment, first car. Your new job starts Monday. They just announced theirs.",
       "options": [
-        "I plan three big finishes by summer, and it becomes a mountain.",
-        "I like the hill. You can have a picnic on a hill.",
-        "I finish one thing, just to watch it grow.",
-        "Flowers go on it. It is doing fine."
+        "I announce mine tonight and start planning the next milestone.",
+        "I announce it on Monday, as planned. Their calendar is not mine.",
+        "I announce it tonight, a little sooner than I had planned.",
+        "Honestly, it rattles me a little. But Monday it is."
       ]
     },
     "fp": {
-      "trigger": "your backyard shows how much you have achieved",
-      "setting": "a hill that grows with every finish",
-      "ask": "push to grow it or enjoy the hill",
-      "who": "you and the neighbors",
-      "stakes": "visible progress versus your own pace",
-      "device": "achievement-mountain"
+      "trigger": "a rival keeps beating your milestones by a week",
+      "setting": "announcements, eight years running",
+      "ask": "race them or keep your own clock",
+      "who": "an old classmate",
+      "stakes": "your pace versus theirs",
+      "device": "milestone-rival"
     },
-    "mask": "looks like a garden fable; Genii's locked guess on pushing for visible progress versus your own pace (L2), with locking it in versus keeping it open (T17) as a side guess",
+    "mask": "looks like a rivalry story; Genii's locked guess on letting someone else's timeline set your clock (L2)",
     "ae": [
       "A",
-      "E"
+      "C",
+      "D"
     ],
     "privacy": "normal"
   },
@@ -1350,10 +1331,10 @@
     "primary": "L2",
     "sq": "SQ-L2-1",
     "world": "unusual",
-    "prompt": "Once, you lent a billionaire an umbrella. Now they'll fund your dream project, if you build it from their yacht: 14-hour days, for a year.",
+    "prompt": "Neighborhood garden contest, winner's photo in the paper. You're in second. First place means weeding every evening until August.",
     "options": [
       {
-        "t": "I'm packing tonight. Fourteen hours is just two sevens.",
+        "t": "Every evening, by headlamp if I have to. That photo's mine.",
         "axes": {
           "L2": 2
         },
@@ -1362,11 +1343,10 @@
             "id": "T16A",
             "s": 2
           }
-        ],
-        "emotion": "delight"
+        ]
       },
       {
-        "t": "My evenings are half of why I'm happy. Pass.",
+        "t": "Second place and my evenings back. Fine by me.",
         "axes": {
           "L2": -2
         },
@@ -1378,7 +1358,7 @@
         ]
       },
       {
-        "t": "Go, and count down every one of the 365 days.",
+        "t": "Weekends only. Second is fine, first is better.",
         "axes": {
           "L2": 1
         },
@@ -1390,7 +1370,7 @@
         ]
       },
       {
-        "t": "Pass. I'll build it on weekends, on my own clock.",
+        "t": "I garden when it's fun. The paper can pick someone else.",
         "axes": {
           "L2": -1
         },
@@ -1399,28 +1379,27 @@
             "id": "T16B",
             "s": 1
           }
-        ],
-        "emotion": "longing"
+        ]
       }
     ],
     "heart": {
-      "prompt": "A billionaire you once lent an umbrella to offers to fund your dream project, if you build it from their yacht, 14-hour days, for a year.",
+      "prompt": "In the neighborhood garden contest, the winner's photo runs in the paper. You are in second place, and first would mean weeding every evening until August.",
       "options": [
-        "I pack tonight. Fourteen-hour days do not scare me.",
-        "No. My evenings are much of why I am happy.",
-        "I go, and I count down every one of the days.",
-        "I pass, and build it on weekends, on my own schedule."
+        "Every evening I weed, by headlamp if needed. The photo is mine.",
+        "Second place, with my evenings back, suits me.",
+        "I weed on weekends only. Second is fine, but first is better.",
+        "I garden when it is fun. The paper can pick someone else."
       ]
     },
     "fp": {
-      "trigger": "a funder wants a year of 14-hour days",
-      "setting": "a billionaire's yacht",
-      "ask": "trade a year of free time for the dream",
-      "who": "a stranger with money",
-      "stakes": "your dream built fast versus your evenings",
-      "device": "yacht-offer"
+      "trigger": "first place in a public contest costs every evening",
+      "setting": "a neighborhood garden contest",
+      "ask": "trade your evenings for the win",
+      "who": "you and the neighbors",
+      "stakes": "free time versus a win in the paper",
+      "device": "garden-contest"
     },
-    "mask": "looks like a lucky break; Genii's locked guess on trading free time for a win people can see (L2, T16)",
+    "mask": "looks like a hobby contest; Genii's locked guess on trading free time for a win people can see (L2, T16)",
     "ae": [
       "A",
       "D"
@@ -1514,11 +1493,11 @@
     "type": "sealed",
     "primary": "L3",
     "sq": "SQ-L3-3",
-    "world": "absurd",
-    "prompt": "The line for the new coaster says four hours. The remote in your pocket freezes everyone but you.",
+    "world": "unusual",
+    "prompt": "Six months alone keeping a lighthouse. The rule: log the weather every three hours. You slept through one reading. Nobody will ever check.",
     "options": [
       {
-        "t": "Freeze, stroll to the front, unfreeze looking innocent.",
+        "t": "Fill in something sunny. Nobody reads old weather.",
         "axes": {
           "L3": -2
         },
@@ -1527,11 +1506,10 @@
             "id": "T25B",
             "s": 2
           }
-        ],
-        "emotion": "delight"
+        ]
       },
       {
-        "t": "Stay put. Frozen people still got here first.",
+        "t": "Write \"MISSED\" in the log. The log is the job.",
         "axes": {
           "L3": 2
         },
@@ -1543,7 +1521,7 @@
         ]
       },
       {
-        "t": "Freeze, but only to pass the family who cut earlier.",
+        "t": "Estimate it, no note. Close enough.",
         "axes": {
           "L3": -1
         },
@@ -1552,11 +1530,10 @@
             "id": "T25B",
             "s": 1
           }
-        ],
-        "emotion": "irritation"
+        ]
       },
       {
-        "t": "Check the park rules first. Is freezing even allowed?",
+        "t": "Write in an estimate, marked \"estimated.\"",
         "axes": {
           "L3": 1
         },
@@ -1565,31 +1542,30 @@
             "id": "T25A",
             "s": 1
           }
-        ],
-        "emotion": "cringe"
+        ]
       }
     ],
     "heart": {
-      "prompt": "The line for the new roller coaster is four hours long. The remote in your pocket freezes everyone except you.",
+      "prompt": "You are keeping a lighthouse alone for six months, and the rule is to log the weather every three hours. You slept through one reading, and nobody will ever check.",
       "options": [
-        "I freeze everyone, walk to the front, unfreeze them and act innocent.",
-        "Nobody gets frozen. The people ahead still arrived first.",
-        "I freeze everyone, but only to pass the family who cut earlier.",
-        "Before freezing anyone, I check whether the park rules allow it."
+        "Something sunny goes in the gap. Nobody reads old weather.",
+        "I write \"missed\" in the log. The log is the job.",
+        "I estimate it and add no note. That is close enough.",
+        "I write in an estimate and mark it as estimated."
       ]
     },
     "fp": {
-      "trigger": "freeze remote meets a four-hour line",
-      "setting": "theme park, a remote that freezes time",
-      "ask": "skip unseen or wait your turn",
-      "who": "strangers in line",
-      "stakes": "four hours versus the fair order",
-      "device": "freeze-remote"
+      "trigger": "a missed log entry that nobody will check",
+      "setting": "a lighthouse, six months alone",
+      "ask": "follow the process or take the shortcut",
+      "who": "just you",
+      "stakes": "an honest record versus a harmless gap",
+      "device": "lighthouse-log"
     },
-    "mask": "looks like a superpower daydream; Genii's locked guess on the fair order versus the sensible shortcut when nobody can see (L3), with T25 as a side guess",
+    "mask": "looks like a lonely job; Genii's locked guess on following the process when nobody is checking (L3), with T25 as a side guess",
     "ae": [
-      "A",
-      "C"
+      "C",
+      "D"
     ],
     "privacy": "normal"
   },
@@ -1599,10 +1575,10 @@
     "primary": "L3",
     "sq": "SQ-L3-1",
     "world": "unusual",
-    "prompt": "You run the ferry ramp: it closes at departure, no exceptions. It just closed. A runner gasps: their best friend's island wedding is tomorrow.",
+    "prompt": "Watch-party rule among your friends: spoil a finale, lose your seat forever. Your oldest friend just read the ending aloud from a headline. By accident.",
     "options": [
       {
-        "t": "Closed is closed. Next ferry's at dawn.",
+        "t": "Out. The rule doesn't check who's oldest.",
         "axes": {
           "L3": 2
         },
@@ -1614,7 +1590,7 @@
         ]
       },
       {
-        "t": "Drop the ramp. Thirty seconds won't sink anyone.",
+        "t": "We all agree it never happened. Seat stays.",
         "axes": {
           "L3": -2
         },
@@ -1626,14 +1602,13 @@
         ]
       },
       {
-        "t": "Say no, then call the island for a water taxi.",
+        "t": "Out, and I lobby to change the rule next season.",
         "axes": {
           "L3": 1
-        },
-        "emotion": "worry"
+        }
       },
       {
-        "t": "Let them on, and anyone else still running.",
+        "t": "One free pass. Next spoiler, anyone's out.",
         "axes": {
           "L3": -1
         },
@@ -1646,26 +1621,26 @@
       }
     ],
     "heart": {
-      "prompt": "You work the ferry ramp, and it closes at departure, no exceptions. It just closed. A passenger arrives out of breath for their best friend's island wedding tomorrow.",
+      "prompt": "Your friends' watch party has one rule: spoil a finale and you lose your seat forever. Your oldest friend just read the ending aloud from a headline, by accident.",
       "options": [
-        "Closed means closed. The next ferry leaves at dawn.",
-        "I lower the ramp. Thirty seconds will not hurt anyone.",
-        "I say no, then call ahead for a water taxi for them.",
-        "I let them on, and anyone else still running for it."
+        "They are out. The rule does not care who is oldest.",
+        "We all agree it never happened, and the seat stays.",
+        "They are out, and I lobby to change the rule next season.",
+        "This one gets a free pass. After that, anyone is out."
       ]
     },
     "fp": {
-      "trigger": "a late runner after the ferry ramp closed",
-      "setting": "a ferry dock, last boat to the island",
-      "ask": "hold the rule or lower the ramp",
-      "who": "a stranger in a hurry",
-      "stakes": "the rule versus the reason",
-      "device": "ferry-ramp"
+      "trigger": "your oldest friend breaks the watch party's one rule by accident",
+      "setting": "a friends' watch party on finale night",
+      "ask": "enforce the rule or let it slide",
+      "who": "your oldest friend and the group",
+      "stakes": "the rule versus a friend's mistake",
+      "device": "spoiler-rule"
     },
-    "mask": "looks like a dockside rush; Genii's locked guess on the rule versus the situation (L3), with T25 as a side guess",
+    "mask": "looks like TV-night drama; Genii's locked guess on the rule for everyone versus bending it for this person (L3, T25)",
     "ae": [
-      "C",
-      "A"
+      "B",
+      "E"
     ],
     "privacy": "normal"
   },
@@ -1675,10 +1650,10 @@
     "primary": "L3",
     "sq": "SQ-L3-1",
     "world": "absurd",
-    "prompt": "You guard a portal between worlds. Rule one: no pets. A traveler arrives, in tears, carrying a hamster with its own tiny passport.",
+    "prompt": "Superhero code, rule one: never use your powers for personal favors. Your best friend's new couch is wedged in their stairwell. You can lift trucks.",
     "options": [
       {
-        "t": "No pets. A passport doesn't make it a person.",
+        "t": "Code's the code. I'll call them some movers.",
         "axes": {
           "L3": 2
         },
@@ -1690,7 +1665,7 @@
         ]
       },
       {
-        "t": "Stamp the tiny passport. Welcome through.",
+        "t": "Lift it. The code is for strangers.",
         "axes": {
           "L3": -2
         },
@@ -1699,11 +1674,10 @@
             "id": "T25B",
             "s": 2
           }
-        ],
-        "emotion": "delight"
+        ]
       },
       {
-        "t": "Call my supervisor. This needs an official ruling.",
+        "t": "No powers. I'll push like a regular person.",
         "axes": {
           "L3": 1
         },
@@ -1715,7 +1689,7 @@
         ]
       },
       {
-        "t": "Let it through once. Write a hamster rule tomorrow.",
+        "t": "One tiny lift while nobody's looking.",
         "axes": {
           "L3": -1
         },
@@ -1728,26 +1702,27 @@
       }
     ],
     "heart": {
-      "prompt": "You guard a portal between worlds, and rule one is no pets. A traveler arrives in tears, carrying a hamster with its own tiny passport.",
+      "prompt": "The superhero code's first rule is never to use your powers for personal favors. Your best friend's new couch is wedged in their stairwell, and you can lift trucks.",
       "options": [
-        "No pets. A passport does not make it a person.",
-        "I stamp the tiny passport and welcome them through.",
-        "I call my supervisor. This needs an official ruling.",
-        "I let it through this once, and write a hamster rule tomorrow."
+        "The code is the code. I call them some movers.",
+        "I lift it. The code is meant for strangers.",
+        "I use no powers, and push it like anyone else would.",
+        "I give it one small lift while nobody is looking."
       ]
     },
     "fp": {
-      "trigger": "a pet with a passport meets a no-pets rule",
-      "setting": "a magic portal checkpoint",
-      "ask": "enforce the rule or wave it through",
-      "who": "a crying traveler and a hamster",
-      "stakes": "the rule versus this one case",
-      "device": "portal-hamster-passport"
+      "trigger": "a friend needs a favor your powers could do",
+      "setting": "a stairwell, a wedged couch, a hero's code",
+      "ask": "keep the code or bend it for a friend",
+      "who": "your best friend",
+      "stakes": "the code versus a friend's moving day",
+      "device": "hero-code"
     },
-    "mask": "looks like a fantasy checkpoint; Genii's locked guess on the rule for everyone versus bending it for this case (L3, T25)",
+    "mask": "looks like a superhero joke; Genii's locked guess on the rule for everyone versus bending it for this person (L3, T25)",
     "ae": [
-      "A",
-      "C"
+      "B",
+      "D",
+      "E"
     ],
     "privacy": "normal"
   },
@@ -1757,10 +1732,10 @@
     "primary": "L3",
     "sq": "SQ-L3-2",
     "world": "unusual",
-    "prompt": "Twelve minutes of comet tonight, one telescope on the roof, forty neighbors, and you hold the eyepiece schedule.",
+    "prompt": "Street talent show, $500 prize, and you're the only judge. Best act by far: a touring juggler. Second: a neighbor who needs the money for rent. Who wins?",
     "options": [
       {
-        "t": "Alphabetical, fifteen seconds each. Stopwatch in hand.",
+        "t": "Juggler wins. Best act is best act.",
         "axes": {
           "L3": 2
         },
@@ -1772,7 +1747,7 @@
         ]
       },
       {
-        "t": "The kid who's talked comets all year gets a full minute.",
+        "t": "The neighbor wins. Rent matters more than ribbons.",
         "axes": {
           "L3": -2
         },
@@ -1781,11 +1756,10 @@
             "id": "T25B",
             "s": 2
           }
-        ],
-        "emotion": "warmth"
+        ]
       },
       {
-        "t": "First up the stairs looks first. Run, neighbors.",
+        "t": "Juggler wins, and I quietly slip the neighbor $50.",
         "axes": {
           "L3": 1
         },
@@ -1794,11 +1768,10 @@
             "id": "T25A",
             "s": 1
           }
-        ],
-        "emotion": "delight"
+        ]
       },
       {
-        "t": "The neighbor moving away tomorrow goes first.",
+        "t": "Neighbor, by one point. I'll feel weird all week.",
         "axes": {
           "L3": -1
         },
@@ -1811,25 +1784,26 @@
       }
     ],
     "heart": {
-      "prompt": "A comet will be visible for twelve minutes tonight. There is one telescope on the roof and forty neighbors, and you are in charge of the schedule.",
+      "prompt": "You alone judge your street's talent show, with a $500 prize. A touring juggler was best by far. The runner-up, a neighbor, needs the money for rent.",
       "options": [
-        "I set alphabetical order, fifteen seconds each, on a stopwatch.",
-        "The child who has talked comets all year gets a full minute.",
-        "Whoever reaches the roof first looks first.",
-        "The neighbor who moves away tomorrow goes first."
+        "The juggler wins. The best act is the best act.",
+        "The neighbor wins. Rent matters more than ribbons.",
+        "The juggler wins, and I quietly give the neighbor $50.",
+        "By one point, the neighbor wins, and it feels strange all week."
       ]
     },
     "fp": {
-      "trigger": "one telescope, forty neighbors, twelve minutes",
-      "setting": "apartment rooftop, comet night",
-      "ask": "who looks first and for how long",
-      "who": "the whole building",
-      "stakes": "equal turns versus the one who needs it most",
-      "device": "comet-telescope"
+      "trigger": "the best act and the neighbor who needs the prize compete",
+      "setting": "a street talent show",
+      "ask": "judge by one standard or by who needs it",
+      "who": "a touring juggler and a neighbor",
+      "stakes": "fair judging versus a neighbor's big night",
+      "device": "talent-show-judge"
     },
-    "mask": "looks like a rooftop sky party; Genii's locked guess on equal shares versus more for whoever needs it (L3, T25)",
+    "mask": "looks like a block party; Genii's locked guess on the same standard for everyone versus more for whoever needs it (L3, T25)",
     "ae": [
       "A",
+      "B",
       "C"
     ],
     "privacy": "normal"

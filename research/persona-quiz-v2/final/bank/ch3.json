@@ -32,7 +32,7 @@
         "emotion": "relief"
       },
       {
-        "t": "Stay in, but cut a hole for one arm. My arm.",
+        "t": "Ask by day three. That's plenty of us.",
         "axes": {
           "R1": -1
         },
@@ -44,7 +44,7 @@
         ]
       },
       {
-        "t": "Stay in. Honestly, it's warmer than being apart.",
+        "t": "Stay in. We were basically one person already.",
         "axes": {
           "R1": 1
         },
@@ -62,8 +62,8 @@
       "options": [
         "Nobody is asking. We will learn to cook in it together.",
         "I ask on the first day. I need my own sleeves.",
-        "I stay in, but I cut one arm free.",
-        "We stay in it. Honestly, it is warmer than being apart."
+        "I ask by the third day. That is plenty of us.",
+        "We stay in it. We were nearly one person already."
       ]
     },
     "fp": {
@@ -209,7 +209,7 @@
     "chapter": 3,
     "follows": "C3-91",
     "world": "unusual",
-    "prompt": "Before either of you said another word: what was the first feeling?",
+    "prompt": "Two hours stuck, one real apology, doors still shut. What's rising in you?",
     "options": [
       {
         "t": "Relief, finally."
@@ -228,13 +228,13 @@
       }
     ],
     "heart": {
-      "prompt": "Before either of you said another word, what did you feel first?",
+      "prompt": "After two hours stuck and one real apology, the doors are still shut. What is rising in you?",
       "options": [
-        "I felt relief, finally.",
-        "I felt suspicious. Why now?",
-        "The old hurt came back, as fresh as ever.",
-        "I felt a little smug that it took them this long.",
-        "Honestly, I just wanted the doors to open."
+        "At last, I feel relief.",
+        "I feel suspicious. Why now?",
+        "The old hurt comes back, as fresh as ever.",
+        "I feel a little smug that it took them this long.",
+        "Honestly, I just want the doors to open."
       ]
     },
     "fp": {
@@ -517,7 +517,7 @@
         ]
       },
       {
-        "t": "Spend the $5 on two tacos and one more try.",
+        "t": "No machine. One long, honest dinner, however it ends.",
         "tags": [
           {
             "id": "T10A",
@@ -542,7 +542,7 @@
       "options": [
         "I pay, so neither of us has to have the talk.",
         "They get the real talk, in person. I walk past it.",
-        "I spend the five dollars on two tacos and one more try.",
+        "No machine. We have one long, honest dinner, however it ends.",
         "I buy one for them, and one for myself."
       ]
     },
@@ -621,7 +621,7 @@
         ]
       },
       {
-        "t": "Did anyone try to fix it before the books went back?",
+        "t": "Fine, but a two-minute talk at the door was owed.",
         "tags": [
           {
             "id": "T10A",
@@ -645,7 +645,7 @@
       "options": [
         "Three years deserves a real conversation, not a note.",
         "It is graceful, in a way. Clear and final, with no scene.",
-        "Did either of them try to fix it before the books went?",
+        "That is fine, but they owed a two-minute talk at the door.",
         "I envy it a little. My last ending was a four-hour talk."
       ]
     },
@@ -755,10 +755,10 @@
     "id": "C3-141",
     "type": "this_or_that",
     "chapter": 3,
-    "prompt": "Hardest Worker of the Year: your city unveils your statue the same night as your person's birthday dinner.",
+    "prompt": "Your city wants a statue of you in the main square. Catch: you pose every weekend for a year, and your person hates weekends apart.",
     "options": [
       {
-        "t": "I go to the statue and bring them cake after.",
+        "t": "Pose. A statue is forever. Weekends aren't.",
         "axes": {
           "L2": 2,
           "R1": -1
@@ -766,7 +766,7 @@
         "emotion": "pride"
       },
       {
-        "t": "The dinner. Pigeons can unveil it.",
+        "t": "Our weekends beat any bronze. No statue.",
         "axes": {
           "L2": -2,
           "R1": 1
@@ -775,19 +775,19 @@
       }
     ],
     "heart": {
-      "prompt": "Your city is unveiling a statue of you as its hardest worker of the year, on the same night as your person's birthday dinner.",
+      "prompt": "Your city wants a statue of you in the main square. You would pose every weekend for a year, and your person dislikes weekends apart.",
       "options": [
-        "I go to the ceremony and bring them cake afterward.",
-        "The dinner. The statue can be unveiled without me."
+        "I pose. A statue lasts forever, and weekends do not.",
+        "No statue. Our weekends matter more than any bronze."
       ]
     },
     "fp": {
-      "trigger": "a statue in your honor clashes with your person's birthday",
-      "setting": "city ceremony versus a birthday dinner",
-      "ask": "show up for the win or for them",
+      "trigger": "a statue in your honor needs a year of weekends",
+      "setting": "a sculptor's studio, the main square",
+      "ask": "trade your weekends for the statue",
       "who": "your person",
-      "stakes": "public recognition versus their night",
-      "device": "statue-unveiling"
+      "stakes": "public recognition versus your time together",
+      "device": "statue-posing"
     },
     "mask": "looks like a vanity fable; measures trading time with your person for a win people can see (L2, R1)",
     "ae": [
@@ -799,16 +799,16 @@
     "sq": "SQ-L2-1",
     "world": "absurd",
     "friend": {
-      "prompt": "{name}'s city unveils a statue of {them}: Hardest Worker of the Year. Same night as {their} person's birthday dinner. Which one is {name}?",
+      "prompt": "{name}'s city wants a statue of {them}, if {they} pose every weekend for a year. {their} person hates weekends apart. Which one is {name}?",
       "a": {
-        "t": "The statue. I'll bring them cake from the ceremony.",
+        "t": "Pose. A statue is forever. Weekends aren't.",
         "axes": {
           "L2": 2,
           "R1": -1
         }
       },
       "b": {
-        "t": "The dinner. The pigeons can unveil it.",
+        "t": "No statue. Their weekends beat any bronze.",
         "axes": {
           "L2": -2,
           "R1": 1
@@ -835,7 +835,7 @@
         ]
       },
       {
-        "t": "Said sorry first, just to end the round.",
+        "t": "Said sorry first. Some things matter more than winning.",
         "axes": {
           "R2": -1
         },
@@ -871,7 +871,7 @@
       "prompt": "The last time you had the same fight a third time with someone close, like a partner, roommate or friend, what did you do?",
       "options": [
         "I asked for a real conversation and brought a new idea.",
-        "I apologized first, mostly so it would stop.",
+        "I apologized first. Some things matter more than winning.",
         "I quietly started showing up less.",
         "That was the last round. I ended it."
       ]
@@ -1093,9 +1093,9 @@
       ],
       "options": [
         "Yes. It is practice for the real thing.",
-        "Yes to the goat. For me, the goat is the whole plan.",
-        "The goat first. We can talk about a child after that.",
-        "No goat and no baby. I like us easy to pack up."
+        "I want the goat. For me, the goat is the whole plan.",
+        "We get the goat first, and talk about a child after that.",
+        "I say no to both. I like us easy to pack up."
       ]
     },
     "fp": {
@@ -1164,9 +1164,9 @@
     "heart": {
       "prompt": "Have you already chosen a name for a child you do not have?",
       "options": [
-        "Yes, a first and middle name, and nobody can take it.",
-        "Yes, years ago, though I have stopped picturing it since.",
-        "No, but I have pictured the school pickups.",
+        "I have a first and middle name, and nobody can take it.",
+        "I picked one years ago, though I have stopped picturing it since.",
+        "Not yet, but I have pictured the school pickups.",
         "No. The life I picture has no kids and more sleep."
       ]
     },
@@ -1205,7 +1205,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "Solo hiker. Gone at dawn, back for pancakes.",
+        "t": "Car reader. An hour alone each day, with a book.",
         "axes": {
           "R1": -1
         },
@@ -1228,7 +1228,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Best friends with someone else's partner by Saturday.",
+        "t": "Joined another couple's card game. Solo. By choice.",
         "tags": [
           {
             "id": "T09B",
@@ -1250,9 +1250,9 @@
       "prompt": "Four couples share a rented cabin for a long weekend. By Sunday, which one are you?",
       "options": [
         "I did everything with my person, even the dishes.",
-        "I hiked alone at dawn and came back for breakfast.",
+        "I spent an hour alone in the car each day, reading.",
         "We ran couples' charades as a team, and we won.",
-        "Somehow I became close friends with someone else's partner.",
+        "I joined another couple's card game on my own, by choice.",
         "I stayed up late talking with others while my person slept."
       ]
     },
@@ -1287,7 +1287,7 @@
         ]
       },
       "b": {
-        "t": "Solo hiker. Gone at dawn, back for pancakes.",
+        "t": "Car reader. An hour alone each day, with a book.",
         "axes": {
           "R1": -1
         },
@@ -1304,12 +1304,12 @@
     "id": "C3-123",
     "type": "scenario",
     "chapter": 3,
-    "sq": "SQ-L2-2",
+    "sq": "SQ-L2-3",
     "world": "absurd",
     "prompt": "A progress bar floats over you and your person: 30%, one pixel a month. Beside it, a button: \"Skip to 80%.\" It skips everything in between.",
     "options": [
       {
-        "t": "Press it. I want the milestones, not the waiting.",
+        "t": "Press it. I need to see we're getting somewhere.",
         "axes": {
           "L2": 2
         }
@@ -1322,7 +1322,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "Tempted. I'd press it the next bad week.",
+        "t": "Leave it, but check the bar every morning.",
         "axes": {
           "L2": 1
         },
@@ -1339,9 +1339,9 @@
     "heart": {
       "prompt": "A progress bar floats above you and your person: 30 percent, one pixel a month. A button beside it says \"Skip to 80%.\" It would skip everything in between.",
       "options": [
-        "I press it. I want the milestones, not the waiting.",
-        "Never. The slow pixels are the best part.",
-        "Honestly, I would press it during the next bad week.",
+        "I press it. I need to see that we are getting somewhere.",
+        "I leave it. The slow pixels are the best part.",
+        "I leave it, but I check the bar every morning.",
         "A sticky note covers the bar. We will know when we know."
       ]
     },
@@ -1353,7 +1353,7 @@
       "stakes": "milestones versus the in-between",
       "device": "relationship-progress-bar"
     },
-    "mask": "looks like a video game glitch; measures pushing for visible progress versus your own pace (L2)",
+    "mask": "looks like a sci-fi romance; measures needing to see progress versus trusting the slow road (L2)",
     "ae": [
       "A",
       "D",
@@ -1363,13 +1363,13 @@
     "friend": {
       "prompt": "A progress bar floats over {name} and {their} person, with a button: \"Skip to 80%.\" What does {name} do?",
       "a": {
-        "t": "Presses it. Wants the milestones, not the waiting.",
+        "t": "Presses it. Needs to see they're getting somewhere.",
         "axes": {
           "L2": 2
         }
       },
       "b": {
-        "t": "Never. The slow pixels are the good part.",
+        "t": "Leaves it. The slow pixels are the good part.",
         "axes": {
           "L2": -2
         }
@@ -1557,7 +1557,7 @@
     "sq": "SQ-T09-1",
     "world": "everyday",
     "friend": {
-      "prompt": "{name}'s person recently had a weekend of plans without {name}. What did {name} actually do?",
+      "prompt": "{name}'s person recently had a weekend of plans without {name}. How did {name} spend it?",
       "a": {
         "t": "Tagged along for part of it anyway.",
         "axes": {
@@ -1588,7 +1588,7 @@
     "id": "C3-148",
     "type": "receipts",
     "chapter": 3,
-    "prompt": "You and your person, lately. Tap everything that's true:",
+    "prompt": "Love, lately: which of these happened this month? Tap every one.",
     "options": [
       {
         "t": "Said \"we\" about a plan before asking them",
@@ -1603,7 +1603,7 @@
         ]
       },
       {
-        "t": "Know their order at three different places",
+        "t": "Let them plan my whole weekend, and liked it",
         "tags": [
           {
             "id": "T09A",
@@ -1612,7 +1612,7 @@
         ]
       },
       {
-        "t": "Started a show only because they love it",
+        "t": "Canceled on a friend to stay in with them",
         "tags": [
           {
             "id": "T09A",
@@ -1647,11 +1647,11 @@
       }
     ],
     "heart": {
-      "prompt": "Tap everything that has been true for you and your person lately.",
+      "prompt": "Which of these have happened with your person this month? Choose every one that is true.",
       "options": [
         "I said \"we\" about a plan before asking them.",
-        "I know their order at three different places.",
-        "I started a show only because they love it.",
+        "I let them plan my whole weekend, and I liked it.",
+        "I canceled on a friend to stay in with them.",
         "I have a friend they have never met, and I like that.",
         "My plans stayed, even after I said \"I miss you.\"",
         "None of these are true."

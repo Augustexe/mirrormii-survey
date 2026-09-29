@@ -46,7 +46,7 @@ export const BANS = Object.freeze([
   { id: "gendered", re: /\b(he|she|him|her|his|hers|himself|herself|boyfriend|girlfriend|bf|gf|husband|wife|hubby|wifey|guy|guys|girl|girls|boy|boys|man|woman|men|women|dude|bro|lady|ladies|gentleman|gentlemen|king|queen)\b/i, why: "gendered word (use \"your person\", \"they\")" },
   { id: "grading", re: /\b(kind(?!\s+of\b)|kindness|brave|bravery|healthy|unhealthy|responsible|irresponsible|mature|immature|selfish|selfless)\b/i, why: "grading word" },
   { id: "age", re: /\b(teen|teens|teenager|teenagers|adult|adults|minor|minors|under ?18|over ?18|18\+|21\+|years? old|your age|underage|grown-?up)\b/i, why: "age reference" },
-  { id: "brand-never-say", re: /\b(streaks?|gacha|lottery|jackpot|predicts?|clinically|diagnose)\b/i, why: "brand never-say word (PRODUCT-TRUTH: no streaks, no gacha or lottery words, never \"predicts\")" },
+  { id: "brand-never-say", re: /\b(streaks?|gacha|lottery|jackpot|predicts?|clinically|diagnose|treat(?:ment|ed|ing)?|cures?|prevent\w*|dna|genomic|anti-aging|skin age|free forever)\b/i, why: "brand never-say word (PRODUCT-TRUTH section 8: no streaks, no gacha or lottery words, never \"predicts\", no treat, cure or prevent)" },
   { id: "genie-trope", re: /\b(genies?|lamps?|fairy god\w*|wizards?|wishing wells?|wish-grant\w*|grant(?:s|ed|ing)? (?:a |one |your |three )?wish(?:es)?|(?:a|one|three|your|the) wish(?:es)?|wished for)\b/i, why: "genie, lamp or wish-granting trope (Genii is a slime, never a genie: LAUNCH-SPEC section 23 ruling 2)" },
   { id: "health", re: /\b(diet|dieting|calories|weight loss|lose weight|therapy|therapist|diagnos\w*|medication|meds|depress\w*|anxiety disorder|adhd|autis\w*)\b/i, why: "health or diagnosis content" },
 ]);
