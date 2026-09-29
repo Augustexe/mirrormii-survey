@@ -43,8 +43,8 @@ export function GeniiForm({ evolution = 1, expression = "alert", size = "m", pul
     memory.last = e;
     const grew = from !== null && e - from > 0.004;
     if (grew) {
-      setBeat("chapter");
-      const id = setTimeout(() => setBeat(null), 1400);
+      setBeat(e >= 1 ? "complete" : "chapter");
+      const id = setTimeout(() => setBeat(null), 1500);
       if (!use3d) return () => clearTimeout(id);
     }
     if (!use3d) return undefined;
@@ -92,7 +92,9 @@ export function GeniiForm({ evolution = 1, expression = "alert", size = "m", pul
   const prevE = useRef(e);
   useEffect(() => {
     const rose = e - prevE.current > 0.004;
+    const landed = rose && e >= 1;
     prevE.current = e;
+    if (landed) setBeat("complete");
     memory.last = e;
     const view = viewRef.current;
     if (view) {
@@ -101,6 +103,11 @@ export function GeniiForm({ evolution = 1, expression = "alert", size = "m", pul
     }
   }, [e, expression]);
 
+  useEffect(() => {
+    if (beat !== "complete") return undefined;
+    const id = setTimeout(() => setBeat(null), 1500);
+    return () => clearTimeout(id);
+  }, [beat]);
   useEffect(() => { if (pulse && viewRef.current) viewRef.current.impulse("card"); }, [pulse]);
   useEffect(() => { if (react && viewRef.current) viewRef.current.react(); }, [react]);
 

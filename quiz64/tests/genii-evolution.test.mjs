@@ -71,10 +71,11 @@ test("formAt: each stage adds its part, in order, and full Genii has every part"
   assert.ok(f7.eyes > 0.5, "0.7: the eyes are open");
   assert.equal(f7.expressive, 0, "expressions wait for full Genii");
   const f1 = G.formAt(1);
-  for (const k of ["glass", "drop", "bead", "eyes", "expressive", "scale"]) assert.equal(f1[k], 1, k);
+  for (const k of ["glass", "drop", "bead", "eyes", "expressive", "scale", "clarity"]) assert.equal(f1[k], 1, k);
+  assert.ok(G.formAt(0.75).clarity < 0.05, "0.75 is still frosted: the glass clears only as Genii completes");
   assert.equal(f1.glow, 0);
   // Every weight is monotonic in evolution (the form never steps back as the player answers).
-  const keys = ["glass", "drop", "bead", "eyes", "expressive", "scale"];
+  const keys = ["glass", "drop", "bead", "eyes", "expressive", "scale", "clarity"];
   let last = G.formAt(0);
   for (let i = 1; i <= 100; i++) {
     const f = G.formAt(i / 100);

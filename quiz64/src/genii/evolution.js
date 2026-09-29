@@ -54,7 +54,8 @@ export function stageOf(evolution) {
 /**
  * The form weights at an evolution value, each 0..1:
  * glow (the orb's light, fades as the body forms), glass (the jelly material), drop (sphere to teardrop),
- * bead (the pearl at the tip), eyes (the two eyes), expressive (moods show on the face), scale (body size).
+ * bead (the pearl at the tip), eyes (the two eyes), expressive (moods show on the face), scale (body size),
+ * clarity (the glass clears from frosted to fully clear, with its glow, only as Genii completes).
  */
 export function formAt(evolution) {
   const e = clamp01(evolution);
@@ -66,6 +67,7 @@ export function formAt(evolution) {
     eyes: smoothstep(0.63, 0.73, e),
     expressive: smoothstep(0.86, 0.95, e),
     scale: lerp(0.66, 1, smoothstep(0, 0.36, e)),
+    clarity: smoothstep(0.8, 0.99, e),
   };
 }
 
@@ -77,7 +79,8 @@ export const BODY = Object.freeze({
   tilt: 0.1, // radians, lifts the right shoulder
   tip: Object.freeze(normalize([0.5, 0.866, 0])),
   tipA: 0.1, tipK1: 6,
-  tipB: 0.22, tipK2: 40,
+  tipB: 0.15, tipK2: 40,
+  neckA: 0.06, neckK: 220, // a thin pulled neck that carries the bead
   center: Object.freeze([0, -0.06, 0]),
   bead: 0.14, // bead radius
 });
@@ -87,8 +90,8 @@ function normalize(v) {
   return [v[0] / l, v[1] / l, v[2] / l];
 }
 
-/** Surface radius along unit direction d at teardrop weight `drop` (mirrors the GLSL in scene.js). */
-export function radiusAt(d, drop) {
+/** Surface radius along unit direction d at teardrop weight `drop` and neck weight `neck` (mirrors the GLSL in scene.js). */
+export function radiusAt(d, drop, neck = drop) {
   const ax = BODY.axes.map((a) => lerp(1, a, drop));
   const t = BODY.tilt * drop;
   const c = Math.cos(t), s = Math.sin(t);
@@ -97,23 +100,23 @@ export function radiusAt(d, drop) {
   const qz = d[2];
   const re = 1 / Math.hypot(qx / ax[0], qy / ax[1], qz / ax[2]);
   const k = Math.max(0, d[0] * BODY.tip[0] + d[1] * BODY.tip[1] + d[2] * BODY.tip[2]);
-  return re + drop * (BODY.tipA * Math.pow(k, BODY.tipK1) + BODY.tipB * Math.pow(k, BODY.tipK2));
+  return re + drop * (BODY.tipA * Math.pow(k, BODY.tipK1) + BODY.tipB * Math.pow(k, BODY.tipK2)) + neck * BODY.neckA * Math.pow(k, BODY.neckK);
 }
 
 /** Where the bead sits (body space) for a teardrop weight. */
-export function beadCenter(drop) {
-  const r = radiusAt(BODY.tip, drop);
-  const out = r + BODY.bead * 0.5;
+export function beadCenter(drop, neck = drop) {
+  const r = radiusAt(BODY.tip, drop, neck);
+  const out = r + BODY.bead * 0.55;
   return [BODY.tip[0] * out, BODY.tip[1] * out, BODY.tip[2] * out];
 }
 
 /** Silhouette outline in the view plane (z = 0 slice, which is the widest), as [x, y] points in body units. */
-export function silhouette(drop, samples = 180) {
+export function silhouette(drop, samples = 180, neck = drop) {
   const pts = [];
   for (let i = 0; i < samples; i++) {
     const a = (i / samples) * Math.PI * 2;
     const d = [Math.cos(a), Math.sin(a), 0];
-    const r = radiusAt(d, drop);
+    const r = radiusAt(d, drop, neck);
     pts.push([d[0] * r, d[1] * r]);
   }
   return pts;

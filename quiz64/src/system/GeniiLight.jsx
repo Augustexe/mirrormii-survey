@@ -79,7 +79,7 @@ export function GeniiLight({ mood = "listening", size = "xs", line = null, voice
       data-placement={placement}
       data-stage={evo === null ? "orb" : stageOf(evo)}
       data-formed={formed ? "true" : undefined}
-      style={form ? { "--gl-light": form.glow.toFixed(3) } : undefined}
+      style={form ? { "--gl-light": form.glow.toFixed(3), "--gl-clear": form.clarity.toFixed(3) } : undefined}
     >
       <span className="genii-light__orb" aria-hidden="true">
         <span className="genii-light__bloom" />

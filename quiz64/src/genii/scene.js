@@ -4,7 +4,8 @@
 // white eyes laid on the surface. The body is a sphere displaced in the vertex shader, so the same mesh morphs from the
 // orb to the droplet to Genii, wobbles like jelly and ripples on each answer.
 import {
-  NeutralToneMapping,
+  NoToneMapping,
+  PlaneGeometry,
   BackSide,
   Color,
   DoubleSide,
@@ -25,6 +26,7 @@ import {
   Vector3,
   WebGLRenderer,
 } from "three";
+import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment.js";
 import { BODY, beadCenter, clamp01, eyesFor, formAt, mixEyes, radiusAt, REACTIONS } from "./evolution.js";
 
 const VIEW_HALF = 1.5; // the canvas shows 1.5 body half-widths each way (the canvas is 150% of the orb box)
@@ -43,6 +45,7 @@ uniform vec3 uAxes;
 uniform vec3 uTip;
 uniform float uTilt;
 uniform vec4 uTipShape;
+uniform vec3 uNeck;
 float gRadius(vec3 d) {
   vec3 ax = mix(vec3(1.0), uAxes, uDrop);
   float t = uTilt * uDrop;
@@ -50,7 +53,7 @@ float gRadius(vec3 d) {
   vec3 q = vec3(c * d.x + s * d.y, -s * d.x + c * d.y, d.z);
   float re = 1.0 / length(q / ax);
   float k = max(dot(d, uTip), 0.0);
-  float r = re + uDrop * (uTipShape.x * pow(k, uTipShape.y) + uTipShape.z * pow(k, uTipShape.w));
+  float r = re + uDrop * (uTipShape.x * pow(k, uTipShape.y) + uTipShape.z * pow(k, uTipShape.w)) + uNeck.z * uNeck.x * pow(k, uNeck.y);
   float w = 0.5 * sin(dot(d, vec3(2.1, 1.3, 0.7)) * 2.0 + uTime * 1.7) + 0.5 * sin(dot(d, vec3(-1.2, 2.4, 1.1)) * 2.4 - uTime * 1.25);
   r += uWobble * w * (1.0 - 0.85 * pow(k, 5.0));
   float ang = acos(clamp(dot(d, normalize(vec3(-0.25, 0.05, 1.0))), -1.0, 1.0));
@@ -97,6 +100,7 @@ function surfaceUniforms() {
     uTip: { value: new Vector3(...BODY.tip) },
     uTilt: { value: BODY.tilt },
     uTipShape: { value: [BODY.tipA, BODY.tipK1, BODY.tipB, BODY.tipK2] },
+    uNeck: { value: new Vector3(BODY.neckA, BODY.neckK, 0) },
   };
 }
 
@@ -108,31 +112,69 @@ function bodyGeometry(segments) {
   return g;
 }
 
-// The environment Genii reflects: a soft lavender studio with a key softbox top left and a periwinkle rim, the light
-// of the canon renders.
+// The environment Genii reflects: three's PMREM room (soft white panels, the bright sweep of the canon renders) with
+// the canon's colored light added: a periwinkle wall on each side and a cyan floor bounce that feeds the bottom rim.
 function studioEnvironment(renderer) {
-  const scene = new Scene();
+  const room = new RoomEnvironment();
+  const glow = (hex, k) => new MeshBasicMaterial({ color: new Color(hex).multiplyScalar(k) });
+  const panel = (mat, w, h, pos, look) => {
+    const m = new Mesh(new PlaneGeometry(w, h), mat);
+    m.position.set(...pos);
+    m.lookAt(...look);
+    room.add(m);
+    return m;
+  };
+  const extra = [
+    panel(glow("#4f6fe6", 2.2), 6, 8, [-9, -1, 2], [0, 0, 0]),
+    panel(glow("#6d7ff0", 1.8), 6, 8, [9, 0, -2], [0, 0, 0]),
+    panel(glow("#7fd0ff", 3.2), 10, 6, [0, -9, 3], [0, 0, 0]),
+    panel(glow("#ffffff", 9), 5, 2.4, [-5, 7, 6], [0, 0, 0]),
+  ];
+  const pmrem = new PMREMGenerator(renderer);
+  // Blurred so the room's many small panels read as soft light on the glass, not as scattered window reflections.
+  const tex = pmrem.fromScene(room, 0.14).texture;
+  pmrem.dispose();
+  extra.forEach((m) => { m.geometry.dispose(); m.material.dispose(); });
+  room.dispose();
+  return tex;
+}
+
+// What the glass refracts: a soft lavender, periwinkle and sky field with a white bloom and faint glass shards, drawn
+// only into three's transmission pass (it never paints the page), so the body shows real refraction instead of the
+// empty white a transparent canvas would give it.
+function refractionBackdrop() {
   const mat = new ShaderMaterial({
-    side: BackSide,
     depthWrite: false,
-    vertexShader: "varying vec3 vDir; void main(){ vDir = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }",
+    vertexShader: "varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }",
     fragmentShader: `
-      varying vec3 vDir;
+      varying vec2 vUv;
+      float line(vec2 p, vec2 a, vec2 b) {
+        vec2 pa = p - a, ba = b - a;
+        float h = clamp(dot(pa, ba) / dot(ba, ba), 0.0, 1.0);
+        return 1.0 - smoothstep(0.0, 0.012, length(pa - ba * h));
+      }
       void main() {
-        vec3 d = normalize(vDir);
-        vec3 col = mix(vec3(0.03, 0.06, 0.34), vec3(0.16, 0.15, 0.5), smoothstep(-0.8, 0.9, d.y));
-        col += vec3(0.2, 0.34, 2.2) * smoothstep(0.3, 0.95, abs(d.x)) * (1.0 - smoothstep(0.2, 0.9, d.y));
-        col += vec3(1.4, 2.6, 4.0) * smoothstep(0.72, 0.97, dot(d, normalize(vec3(-0.1, -1.0, 0.2))));
-        col += vec3(9.0, 8.8, 9.4) * smoothstep(0.95, 0.985, dot(d, normalize(vec3(-0.55, 0.7, 0.45))));
+        vec2 p = vUv;
+        vec3 lav = vec3(0.7, 0.52, 1.0);
+        vec3 peri = vec3(0.3, 0.38, 0.98);
+        vec3 sky = vec3(0.22, 0.72, 1.0);
+        // The gradient spans about the body's own footprint, so the glass shows lavender high and sky blue low.
+        float g = clamp((p.y - 0.5) * 2.6 - (p.x - 0.5) * 0.9 + 0.5, 0.0, 1.0);
+        vec3 col = mix(sky, peri, smoothstep(0.1, 0.5, g));
+        col = mix(col, lav, smoothstep(0.55, 0.95, g));
+        col += vec3(0.45, 0.4, 0.55) * exp(-dot(p - vec2(0.42, 0.6), p - vec2(0.42, 0.6)) * 90.0);
+        col += vec3(0.2, 0.45, 0.6) * exp(-dot(p - vec2(0.5, 0.36), p - vec2(0.5, 0.36)) * 70.0);
+        float sh = line(p, vec2(0.34, 0.66), vec2(0.55, 0.45)) + line(p, vec2(0.55, 0.45), vec2(0.68, 0.58)) + line(p, vec2(0.42, 0.34), vec2(0.55, 0.45));
+        col += vec3(0.16) * sh;
         gl_FragColor = vec4(col, 1.0);
       }`,
   });
-  scene.add(new Mesh(new SphereGeometry(10, 48, 24), mat));
-  const pmrem = new PMREMGenerator(renderer);
-  const tex = pmrem.fromScene(scene, 0.02).texture;
-  pmrem.dispose();
-  mat.dispose();
-  return tex;
+  const mesh = new Mesh(new PlaneGeometry(5.2, 5.2), mat);
+  mesh.position.set(0, 0, -1.6);
+  mesh.renderOrder = -10;
+  // Draw only into the transmission render target: the main pass renders to the canvas (no render target).
+  mesh.onBeforeRender = (renderer) => { mat.colorWrite = renderer.getRenderTarget() !== null; };
+  return mesh;
 }
 
 // The heart: an opaque inner body the glass refracts, painted in the canon gradient (lavender top left, periwinkle
@@ -173,10 +215,10 @@ function shellMaterial(uniforms, envMap) {
     roughness: 0.03,
     metalness: 0,
     transmission: 1,
-    thickness: 0.05,
-    ior: 1.33,
-    attenuationColor: new Color("#8b80f0"),
-    attenuationDistance: 4,
+    thickness: 0.9,
+    ior: 1.38,
+    attenuationColor: new Color("#a69cf4"),
+    attenuationDistance: 3.2,
     iridescence: 0.55,
     iridescenceIOR: 1.3,
     iridescenceThicknessRange: [180, 520],
@@ -184,7 +226,7 @@ function shellMaterial(uniforms, envMap) {
     clearcoatRoughness: 0.04,
     specularIntensity: 1,
     envMap,
-    envMapIntensity: 1.15,
+    envMapIntensity: 0.32,
     emissive: new Color("#ffffff"),
     emissiveIntensity: 0,
   });
@@ -192,49 +234,79 @@ function shellMaterial(uniforms, envMap) {
   mat.userData.rim = { value: 0.7 };
   mat.userData.tint = { value: 1 };
   mat.userData.glowK = { value: 0 };
-  mat.userData.rimColor = { value: new Color("#3f5fe6") };
+  mat.userData.clear = { value: 0 };
+  mat.userData.flash = { value: 0 };
+  mat.userData.rimColor = { value: new Color("#2f56ee") };
   mat.onBeforeCompile = (shader) => {
-    Object.assign(shader.uniforms, uniforms, { uRim: mat.userData.rim, uRimColor: mat.userData.rimColor, uTint: mat.userData.tint, uGlowK: mat.userData.glowK });
+    Object.assign(shader.uniforms, uniforms, { uRim: mat.userData.rim, uRimColor: mat.userData.rimColor, uTint: mat.userData.tint, uGlowK: mat.userData.glowK, uClear: mat.userData.clear, uFlash: mat.userData.flash });
     shader.vertexShader = shader.vertexShader
       .replace("#include <common>", `#include <common>\n${SURFACE_GLSL}`)
       .replace("#include <beginnormal_vertex>", "vec3 gDir = normalize(position);\nvec3 gP = gSurface(gDir);\nvec3 objectNormal = gNormal(gDir, gP);")
       .replace("#include <begin_vertex>", "vec3 transformed = gP;\nvGPos = gP;")
       .replace("void main() {", "varying vec3 vGPos;\nvoid main() {");
     shader.fragmentShader = shader.fragmentShader
-      .replace("#include <common>", `#include <common>\nuniform float uRim;\nuniform vec3 uRimColor;\nuniform float uTint;\nuniform float uGlowK;\nvarying vec3 vGPos;\n${GRADIENT_GLSL}`)
+      .replace("#include <common>", `#include <common>\nuniform float uRim;\nuniform vec3 uRimColor;\nuniform float uTint;\nuniform float uGlowK;\nuniform float uClear;\nuniform float uFlash;\nvarying vec3 vGPos;\n${GRADIENT_GLSL}`)
       .replace("#include <emissivemap_fragment>", `#include <emissivemap_fragment>
         float gFacing = clamp(dot(normal, normalize(vViewPosition)), 0.0, 1.0);
         float gFres = 1.0 - gFacing;
         vec3 gBody = mix(gGradient(vGPos, gFacing), vec3(0.8, 0.76, 1.0), uGlowK * 0.75);
         // While Genii is still mostly light, the edge is soft like the orb's.
         diffuseColor.a *= mix(1.0, smoothstep(0.0, 0.75, gFacing), uGlowK);
-        diffuseColor.rgb = mix(diffuseColor.rgb, gBody * 0.3, uTint);
+        // The glass tint: three multiplies refracted light by the diffuse color, so this is the color the glass lends to
+        // what it refracts (the canon gradient, kept bright); the frosted stage also lights it directly.
+        diffuseColor.rgb = mix(vec3(1.0), min(gBody * 1.3, vec3(1.0)), 0.9);
+        // Toward the edge the glass is thicker to the eye: it filters to a saturated blue, as in the canon renders.
+        diffuseColor.rgb *= mix(vec3(1.0), vec3(0.12, 0.3, 1.0), smoothstep(0.65, 0.08, gFacing) * 0.95 * uRim);
         totalEmissiveRadiance += gBody * (0.8 + 0.32 * gFacing) * uTint;
         totalEmissiveRadiance += vec3(1.0, 0.97, 1.0) * pow(gFacing, 2.0) * uGlowK * 2.2;
         vec3 gV = normalize(vViewPosition);
         vec3 gR = reflect(-gV, normal);
         float gLow = smoothstep(0.3, -0.85, vGPos.y);
-        // Saturated rim, then a thin light line just inside the edge (brightest low and left), like the canon renders.
-        totalEmissiveRadiance += uRimColor * pow(gFres, 3.0) * uRim;
-        totalEmissiveRadiance += vec3(0.85, 0.93, 1.0) * exp(-((gFacing - 0.3) * (gFacing - 0.3)) / 0.0049) * (0.25 + 0.75 * max(gLow, smoothstep(0.1, -0.9, vGPos.x))) * uRim * 0.9;
-        totalEmissiveRadiance += vec3(1.0) * pow(gFres, 10.0) * uRim * 0.6;
-        // Light through the jelly pools low in the body.
-        totalEmissiveRadiance += vec3(0.55, 0.85, 1.0) * gLow * gFacing * 0.6 * uRim;
-        // Studio highlights: a broad soft window top left, a crisp glint in it, a small kick on the right.
-        // Painted-in studio light, placed like the canon: a window arc along the upper left, a light line low inside
-        // the edge, one crisp glint.
         vec2 gNd = normal.xy / max(length(normal.xy), 1e-4);
-        float gUL = smoothstep(0.45, 0.9, dot(gNd, normalize(vec2(-0.62, 0.78))));
-        float gArc = smoothstep(0.32, 0.4, gFacing) * (1.0 - smoothstep(0.52, 0.62, gFacing)) * gUL;
-        float gLowArc = smoothstep(0.1, 0.8, dot(gNd, normalize(vec2(-0.25, -1.0)))) * smoothstep(0.1, 0.16, gFacing) * (1.0 - smoothstep(0.26, 0.36, gFacing));
+        float gBottom = smoothstep(0.05, 0.85, dot(gNd, normalize(vec2(-0.2, -1.0))));
+        // Saturated blue rim all round, strongest low, where the glass is thickest to the eye.
+        totalEmissiveRadiance += uRimColor * pow(gFres, 2.0) * uRim * (0.35 + 0.35 * gBottom);
+        // The caustic: a bright cyan band hugging the bottom edge inside the glass, and a thin white fresnel edge.
+        float gCaustic = gBottom * smoothstep(0.04, 0.12, gFacing) * (1.0 - smoothstep(0.3, 0.48, gFacing));
+        totalEmissiveRadiance += vec3(0.12, 0.55, 1.0) * gCaustic * (0.7 + 0.5 * uClear) * uRim;
+        totalEmissiveRadiance += vec3(0.85, 0.93, 1.0) * exp(-((gFacing - 0.3) * (gFacing - 0.3)) / 0.0049) * (0.2 + 0.6 * smoothstep(0.1, -0.9, vGPos.x)) * uRim * 0.8;
+        totalEmissiveRadiance += vec3(1.0) * pow(gFres, 14.0) * uRim * (0.8 + 0.8 * uClear);
+        // Light through the jelly pools low in the body.
+        totalEmissiveRadiance += vec3(0.4, 0.75, 1.0) * gLow * gFacing * 0.18 * uRim;
+        // The specular sweep: a broad window arc along the upper left, a crisp glint in it, a small kick low right.
+        float gUL = smoothstep(0.3, 0.9, dot(gNd, normalize(vec2(-0.62, 0.78))));
+        float gArc = smoothstep(0.24, 0.34, gFacing) * (1.0 - smoothstep(0.6, 0.76, gFacing)) * gUL;
         vec3 gKey = normalize(vec3(-0.5, 0.72, 0.48));
         float gK = max(dot(gR, gKey), 0.0);
-        totalEmissiveRadiance += vec3(1.0) * (gArc * 0.7 + pow(gK, 300.0) * 1.6) * uRim + vec3(0.8, 0.95, 1.0) * gLowArc * 2.0 * uRim;
+        totalEmissiveRadiance += vec3(1.0) * (gArc * (0.22 + 0.28 * uClear) + pow(gK, 300.0) * 1.2) * uRim;
         float gK2 = max(dot(gR, normalize(vec3(0.75, -0.25, 0.6))), 0.0);
         totalEmissiveRadiance += vec3(0.9, 0.95, 1.0) * pow(gK2, 120.0) * 0.9 * uRim;
+        // Complete: the whole glass glows softly from inside, and flashes once as Genii lands.
+        totalEmissiveRadiance += vec3(0.82, 0.8, 1.0) * (pow(gFacing, 1.5) * 0.18 * uClear + (pow(gFres, 1.5) * 0.9 + 0.25) * uFlash);
 `);
   };
   mat.customProgramCacheKey = () => "genii-shell";
+  return mat;
+}
+
+// The bead: a clear glass pearl with a white heart, a blue rim and one hard highlight, like the canon's.
+function pearlMaterial(envMap) {
+  const mat = new MeshPhysicalMaterial({
+    color: new Color("#ffffff"), roughness: 0.02, metalness: 0, transmission: 0.6, thickness: 0.35, ior: 1.5,
+    attenuationColor: new Color("#d7d2ff"), attenuationDistance: 0.6, clearcoat: 1, clearcoatRoughness: 0.02,
+    envMap, envMapIntensity: 0.5,
+  });
+  mat.onBeforeCompile = (shader) => {
+    shader.fragmentShader = shader.fragmentShader.replace("#include <emissivemap_fragment>", `#include <emissivemap_fragment>
+      float pF = clamp(dot(normal, normalize(vViewPosition)), 0.0, 1.0);
+      vec3 pR = reflect(-normalize(vViewPosition), normal);
+      totalEmissiveRadiance += vec3(0.86, 0.86, 0.98) * pow(pF, 1.4) * 0.5 * (0.75 + 0.25 * smoothstep(-0.6, 0.6, dot(normal, normalize(vec3(-0.5, 0.6, 0.6)))));
+      totalEmissiveRadiance += vec3(0.15, 0.3, 1.0) * pow(1.0 - pF, 2.2) * 0.8;
+      totalEmissiveRadiance += vec3(1.0) * pow(max(dot(pR, normalize(vec3(-0.5, 0.72, 0.48))), 0.0), 400.0) * 3.0;
+      totalEmissiveRadiance += vec3(1.0) * pow(1.0 - pF, 10.0) * 0.8;
+    `);
+  };
+  mat.customProgramCacheKey = () => "genii-pearl";
   return mat;
 }
 
@@ -269,8 +341,9 @@ export function createGeniiView(canvas, { pixels = 120, quality = "high", onLost
   renderer.setSize(pixels, pixels, false);
   renderer.setClearColor(0x000000, 0);
   renderer.outputColorSpace = SRGBColorSpace;
-  renderer.toneMapping = NeutralToneMapping;
-  renderer.toneMappingExposure = 1.05;
+  // No tone curve: the canon's saturated blues and cyans must stay saturated (a filmic or neutral curve bleaches them
+  // toward white); highlights simply clip to white, as they do in the canon renders.
+  renderer.toneMapping = NoToneMapping;
 
   const env = studioEnvironment(renderer);
   const scene = new Scene();
@@ -290,17 +363,13 @@ export function createGeniiView(canvas, { pixels = 120, quality = "high", onLost
   const body = new Group();
   root.add(body);
   scene.add(root);
+  const backdrop = refractionBackdrop();
+  scene.add(backdrop);
   const heart = new Mesh(geo, heartMat);
   const shell = new Mesh(geo, shellMat);
   body.add(heart, shell);
 
-  const bead = new Mesh(
-    new SphereGeometry(BODY.bead, 48, 32),
-    new MeshPhysicalMaterial({
-      color: new Color("#a9a6d6"), emissive: new Color("#ffffff"), emissiveIntensity: 0.68, roughness: 0.25, metalness: 0, clearcoat: 1, clearcoatRoughness: 0.06,
-      envMap: env, envMapIntensity: 0.7, toneMapped: false,
-    }),
-  );
+  const bead = new Mesh(new SphereGeometry(BODY.bead, 48, 32), pearlMaterial(env));
   body.add(bead);
 
   const eyeMat = new MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, depthTest: false, depthWrite: false, side: DoubleSide, toneMapped: false });
@@ -313,8 +382,9 @@ export function createGeniiView(canvas, { pixels = 120, quality = "high", onLost
     expr: "alert", exprFrom: eyesFor("alert"), exprTo: eyesFor("alert"), exprT: 1, reaction: null, reactionUntil: 0, reactionIndex: 0,
     squash: 0, squashV: 0, ripple: 0, rippleT: 0, beadS: 0, beadV: 0,
     blink: 0, blinkAt: 2.5, blinkSeq: [], eyesSeen: false,
-    time: 0, last: 0, active: true, raf: 0, lastEyeKey: "", wantExpr: null,
+    time: 0, last: 0, active: true, raf: 0, lastEyeKey: "", wantExpr: null, flash: 0, prevShown: 0,
   };
+  st.prevShown = st.shown;
   st.beadS = formAt(st.shown).bead;
   st.eyesSeen = formAt(st.shown).eyes > 0.5;
 
@@ -394,8 +464,18 @@ export function createGeniiView(canvas, { pixels = 120, quality = "high", onLost
     heartMat.uniforms.uLight.value = 0.92 + 0.3 * f.glow;
     shellMat.emissiveIntensity = 0;
     shellMat.userData.glowK.value = f.glow;
-    shellMat.userData.tint.value = 1 - 0.55 * f.glow;
-    shellMat.transmission = 0.3 * f.glass;
+    // Frosted while Genii forms (0.75 reads slightly frosted), clear glass once complete.
+    shellMat.transmission = f.glass * (0.45 + 0.5 * f.clarity);
+    shellMat.roughness = 0.34 - 0.32 * f.clarity;
+    shellMat.userData.tint.value = (1 - 0.55 * f.glow) * (1 - 0.82 * f.clarity);
+    shellMat.userData.clear.value = f.clarity;
+    heartU.uInset.value = 0.985 - 0.4 * f.clarity;
+    heart.visible = f.clarity < 0.6;
+    for (const u of [shellU, heartU]) u.uNeck.value.z = f.bead;
+    if (!st.reduced && st.prevShown < 0.985 && st.shown >= 0.985) { st.flash = 1; st.squashV -= 2.6; st.ripple = 0.03; st.rippleT = 0; }
+    st.prevShown = st.shown;
+    st.flash *= Math.exp(-dt * 2.4);
+    shellMat.userData.flash.value = st.flash;
     shellMat.userData.rim.value = 0.15 + 0.85 * f.glass;
     shellMat.iridescence = 0.55 * f.glass;
 
@@ -407,7 +487,7 @@ export function createGeniiView(canvas, { pixels = 120, quality = "high", onLost
     root.rotation.y = st.reduced ? -0.12 : -0.12 + Math.sin(now * 0.45) * 0.1;
     root.rotation.x = st.reduced ? 0.04 : 0.04 + Math.sin(now * 0.37 + 1) * 0.035;
 
-    const bc = beadCenter(f.drop);
+    const bc = beadCenter(f.drop, f.bead);
     bead.position.set(bc[0], bc[1], bc[2]);
     bead.scale.setScalar(Math.max(0.0001, st.beadS));
     bead.visible = st.beadS > 0.01;
@@ -481,6 +561,8 @@ export function createGeniiView(canvas, { pixels = 120, quality = "high", onLost
       geo.dispose();
       shellMat.dispose();
       heartMat.dispose();
+      backdrop.geometry.dispose();
+      backdrop.material.dispose();
       bead.geometry.dispose();
       bead.material.dispose();
       eyeMat.dispose();

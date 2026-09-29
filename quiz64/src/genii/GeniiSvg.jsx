@@ -12,8 +12,8 @@ export function GeniiSvg({ evolution = 1, expression = "alert", className = "" }
   const ox = H + BODY.center[0] * S;
   const oy = H - BODY.center[1] * S;
   const k = f.scale;
-  const body = pathOf(silhouette(f.drop), S * k, ox, oy);
-  const bc = beadCenter(f.drop);
+  const body = pathOf(silhouette(f.drop, 360, f.bead), S * k, ox, oy);
+  const bc = beadCenter(f.drop, f.bead);
   const eyes = f.eyes > 0.01 ? eyesFor(expression) : [];
   const g = (id) => `${uid}-${id}`;
   return (
