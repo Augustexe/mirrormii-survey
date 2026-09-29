@@ -1,8 +1,11 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./PersonaApp.jsx";
-import { STORAGE_KEY } from "./persona/session.js";
-import { setThemeForVoice } from "./system/index.js";
+import "./system/layers.css";
+import { setThemeForVoice } from "./system/theme.js";
+import { Boot, BOOT_RUN_KEY as STORAGE_KEY } from "./Boot.jsx";
+
+// The game is a lazy chunk; Boot paints the landing first (see Boot.jsx).
+const App = lazy(() => import("./PersonaApp.jsx"));
 
 // Paint the saved run's light before the first frame, so a Heart to heart player never flashes through Day.
 try {
@@ -10,4 +13,4 @@ try {
   if (saved && saved.lobby && saved.lobby.voice) setThemeForVoice(saved.lobby.voice);
 } catch { /* no storage or an unreadable save: stay on Day */ }
 
-createRoot(document.getElementById("root")).render(<App />);
+createRoot(document.getElementById("root")).render(<Suspense fallback={<Boot />}><App /></Suspense>);

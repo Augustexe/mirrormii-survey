@@ -33,6 +33,9 @@
       animation-delay: var(--d-decor-delay);
     }
   }
+  body:not([data-motion="off"]) .mm-landing.is-settled :is(.mm-enter, .mm-decor) {
+    animation: none;
+  }
   @media (prefers-reduced-motion: reduce) {
     .mm-enter,
     .mm-decor {

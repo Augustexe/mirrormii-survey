@@ -346,8 +346,10 @@ h2[tabindex="-1"]:focus {
   }
 }
 
+/* Starts just above zero: Chrome never counts a text block that first paints at opacity 0 as the largest contentful
+   paint, which moved the landing's LCP to whenever the game chunk re-rendered it. Visually the same fade. */
 @keyframes mm-rise {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0.02; transform: translateY(8px); }
   to { opacity: 1; transform: none; }
 }
 @keyframes mm-sheet-up {

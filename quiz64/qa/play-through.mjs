@@ -72,6 +72,7 @@ await activate(page.locator(".mm-panel__go"));
 
 const lines = [];
 const log = [];
+let maxWebGL = 0;
 let cards = 0, finale = 0, interludes = 0, locked = false, stuck = 0, lastSig = "";
 for (let guard = 0; guard < 400; guard++) {
   await page.waitForTimeout(120);
@@ -83,6 +84,7 @@ for (let guard = 0; guard < 400; guard++) {
     await page.waitForSelector(".play", { timeout: 5000 });
     continue;
   }
+  maxWebGL = Math.max(maxWebGL, await page.locator('[data-part="shader"] canvas').count());
   if (await page.locator("main.lock").count()) {
     const lockBtn = page.getByRole("button", { name: /lock in genii/i });
     const playBtn = page.getByRole("button", { name: /play the final 8/i });
@@ -147,9 +149,12 @@ for (let i = 0; i < 40 && stories.length < 9; i++) {
   }
 }
 
+const timings = await page.evaluate(() => window.__playTimings || []);
+const sorted = [...timings].sort((a, b) => a - b);
+const tapToPrompt = sorted.length ? { median: sorted[Math.floor(sorted.length / 2)], p90: sorted[Math.floor(sorted.length * 0.9)] } : null;
 const repeats = lines.map((l, i) => (i && l && l === lines[i - 1] ? i : -1)).filter((i) => i >= 0);
 const distinct = new Set(lines.filter(Boolean)).size;
-const summary = { voice: VOICE, keys: KEYS, view: VIEW, cards, finale, interludes, locked, stories, distinctLines: distinct, backToBackRepeats: repeats.length, focusMisses, errors };
+const summary = { voice: VOICE, keys: KEYS, view: VIEW, cards, finale, interludes, locked, stories, distinctLines: distinct, backToBackRepeats: repeats.length, focusMisses, tapToPrompt, maxWebGL, errors };
 console.log(JSON.stringify(summary, null, 1));
 if (process.env.VERBOSE) for (const r of log) console.log(`${String(r.i).padStart(2)} ${r.phase.padEnd(7)} ${r.type.padEnd(12)} | ${r.line}`);
 await browser.close();

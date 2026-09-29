@@ -10,6 +10,7 @@ import { loadRun, restoreRun, loadFriendPlays, saveFriendPlay, deleteAllGeniiDat
 import { PersonaHeader, PersonaLanding, SetupView, LobbyView, PersonaInterlude, interludeFor, PersonaHowDialog, PersonaMoreDialog, ConfirmDialog, Toast } from "./persona/screens/index.js";
 import { PersonaQuizView, LockView, PersonaChapterMap, FriendGame, FriendResultsView } from "./persona/play/index.js";
 import { PersonaResult, resultView } from "./persona/reveal/index.js";
+import { bootIntent } from "./Boot.jsx";
 
 
 const storage = () => { try { return window.localStorage; } catch { return null; } };
@@ -86,6 +87,8 @@ function PersonaAppInner() {
   // The run exactly as this tab last read or wrote it. A write only goes through if storage still holds it,
   // so a stale tab can never overwrite a newer run (a reply imported elsewhere, or a lock made in another tab).
   const lastRaw = useRef(initial.raw);
+  // The boot chunk already drew the landing; the first landing here must not replay its entrance.
+  const [landingSettled, setLandingSettled] = useState(true);
 
   useEffect(() => { document.body.dataset.motion = motionOn ? "on" : "off"; }, [motionOn]);
   // The lobby voice sets the light for the whole run and the result (DESIGN-DIRECTION 3.4). The lobby screen
@@ -203,12 +206,21 @@ function PersonaAppInner() {
     try { return resultView(run); } catch (e) { return { error: e.message }; }
   }, [run, step]);
 
+  useEffect(() => { if (screen !== "landing") setLandingSettled(false); }, [screen]);
   const goHome = () => { setDialog(null); setScreen("landing"); setError(""); setFriend(null); clearHash(); window.scrollTo({ top: 0, behavior: "instant" }); };
   const begin = () => {
     setError("");
     if (!run || !run.setup) return setScreen("setup");
     setScreen(screenFor(run));
   };
+  // A tap on the boot landing (before this chunk loaded) is carried out now, once.
+  useEffect(() => {
+    if (bootIntent.begin && !window.location.hash) begin();
+    else if (bootIntent.how) setDialog("how");
+    bootIntent.begin = false;
+    bootIntent.how = false;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const startWithSetup = (setup) => {
     try {
       const started = Run.startRun(Run.newRun({ now: nowISO() }), setup, { now: nowISO() });
@@ -367,7 +379,7 @@ function PersonaAppInner() {
           )}
         </div>
 
-        {screen === "landing" && <PersonaLanding progress={!run || !run.setup ? null : step.kind === "result" ? "result" : "run"} onBegin={begin} onHow={() => setDialog("how")} seed={run ? run.runId : undefined} />}
+        {screen === "landing" && <PersonaLanding settled={landingSettled} progress={!run || !run.setup ? null : step.kind === "result" ? "result" : "run"} onBegin={begin} onHow={() => setDialog("how")} seed={run ? run.runId : undefined} />}
         {screen === "setup" && <SetupView busy={busy} onBack={goHome} onDone={startWithSetup} />}
         {screen === "lobby" && run && run.setup && !run.lobby && <LobbyView busy={busy} error={error} onBack={goHome} onDone={chooseLobby} />}
         {screen === "interlude" && step && step.kind === "card" && (

@@ -7,9 +7,10 @@ import { FogMirror } from "./FogMirror.jsx";
 /**
  * Landing (DESIGN-DIRECTION 5.1): kicker, a two-line hero with the reflection device on its second line, a two-line
  * promise, one primary action, and the fogged mirror you can wipe clear. Chips and "How this works" below the fold.
- * progress: null (new), "run" (answers waiting) or "result".
+ * progress: null (new), "run" (answers waiting) or "result". settled: already on screen (the boot landing drew it),
+ * so it does not play its entrance again when the game takes over.
  */
-export function PersonaLanding({ progress, onBegin, onHow, seed }) {
+export function PersonaLanding({ progress, onBegin, onHow, seed, settled = false }) {
   const L = LOBBY_COPY.landing;
   const label = progress === "result" ? "See my result" : progress === "run" ? "Pick up where I left off" : "Meet Genii";
   const stage = useRef(null);
@@ -30,7 +31,7 @@ export function PersonaLanding({ progress, onBegin, onHow, seed }) {
     return () => { window.removeEventListener("pointermove", onMove); cancelAnimationFrame(raf); };
   }, []);
   return (
-    <main className="mm-screen mm-landing" ref={stage}>
+    <main className={`mm-screen mm-landing${settled ? " is-settled" : ""}`} ref={stage}>
       <section className="mm-landing__hero">
         <div className="mm-landing__copy">
           <p className="mm-kicker mm-enter" style={{ "--step": 0 }}>{L.kicker}</p>
