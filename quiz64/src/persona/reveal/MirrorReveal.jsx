@@ -8,6 +8,7 @@ import { AppTablet, IslandScene, MirrorArch, Sigil, Sparkle, geometry } from "..
 import { tint, v } from "../../art/palette.js";
 import { GeniiLight, tokens } from "../../system/index.js";
 import { archBox, archClip, durationMs } from "./layout.js";
+import { splitInsight } from "../stories/story-data.js";
 
 const TAU = Math.PI * 2;
 const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
@@ -255,8 +256,10 @@ export function NamesScreen({ s, stage, active, reduced, wipe, onWiped, sparkles
   }, [active, wipe, reduced]);
   const settle = wipe && !reduced ? durationMs("reveal", 1600) * 0.28 / 1000 : 0;
   const clip = archClip(box);
+  // The plaque carries the finding's first sentence; the whole line waits on the findings screen.
+  const plaque = s.hook ? splitInsight(s.hook).belief : "";
   return (
-    <div className="rv-names" data-wipe={wiping ? "on" : "off"}>
+    <div className="rv-names" data-wipe={wiping ? "on" : "off"} data-plaque={plaque ? "true" : "false"}>
       <StandingMirror box={box} mirror={mirror} fog={0}>
         {/* Two panes, two characters (people warm, life cool), and a soft scrim behind each block of lettering so the
             names read while the glass stays glass around them. */}
@@ -279,8 +282,14 @@ export function NamesScreen({ s, stage, active, reduced, wipe, onWiped, sparkles
         <span className="sr-only">. </span>
         <Pane half={s.life} where="down" box={box} first={active && wipe ? settle + 0.12 : 0} sparkle={sparkles && active && wipe} />
       </h2>
-      <div className="rv-names__under" style={{ top: box.bottom + 30 }}>
-        {s.hook ? <p className="rv-names__hook rv-in">{s.hook}</p> : null}
+      {/* One line inside the frame: Genii's clearest finding, etched on a glass plaque at the foot of the lower pane,
+          so the screenshot carries the names and the read together. */}
+      {plaque ? (
+        <p className="rv-plaque" style={{ left: box.glassLeft + 10, width: box.glassW - 20, top: box.bottom - 22 }}>
+          <span className="rv-plaque__line">{plaque}</span>
+        </p>
+      ) : null}
+      <div className="rv-names__under" style={{ top: box.bottom + (plaque ? 86 : 26) }}>
         <p className="rv-names__sub rv-in">{s.sub}</p>
       </div>
     </div>

@@ -519,45 +519,38 @@ export function drawNamedMirror(ctx, { x, y, w, names, mirror, p, fog = 0 }) {
   return h;
 }
 
-// One trait for the card, centered: a chapter dot and the name, the heart line under it.
-function drawTrait(ctx, { cx, y, w, item, p, nameSize, lineSize }) {
-  const nm = fit(ctx, item.name, { face: "display", weight: 600, max: nameSize, min: nameSize * 0.72, width: w - nameSize, maxLines: 1 });
-  font(ctx, "display", 600, nm.size);
-  const text = nm.lines[0] || "";
-  const tw = ctx.measureText(text).width;
-  const r = nm.size * 0.2;
-  const gap = nm.size * 0.36;
-  const left = cx - (tw + r * 2 + gap) / 2;
-  ctx.beginPath();
-  ctx.arc(left + r, y + nm.size * 0.5, r, 0, Math.PI * 2);
-  ctx.fillStyle = tintOf(item.chapter);
+// One trait for the card: a glass pill with the chapter dot and the name, big enough to read at story size. Returns
+// the pill's width for layout.
+function pillWidth(ctx, name, size) {
+  font(ctx, "display", 600, size);
+  return ctx.measureText(name || "").width + size * 1.9;
+}
+function drawPill(ctx, { cx, y, item, p, size, maxW }) {
+  const nm = fit(ctx, item.name, { face: "display", weight: 600, max: size, min: size * 0.7, width: maxW - size * 1.9, maxLines: 1 });
+  const w = Math.min(maxW, pillWidth(ctx, nm.lines[0] || "", nm.size));
+  const h = nm.size * 1.9;
+  const x = cx - w / 2;
+  roundRect(ctx, x, y, w, h, h / 2);
+  ctx.fillStyle = p.dark ? rgba(N.ink, 0.1) : rgba(tokens.color.surfaceSolid, 0.85);
   ctx.fill();
-  ctx.strokeStyle = rgba(tokens.color.surfaceSolid, 0.9);
+  ctx.strokeStyle = p.dark ? rgba(N.ink, 0.42) : rgba(C.violetText, 0.3);
   ctx.lineWidth = 3;
   ctx.stroke();
-  lines(ctx, [text], left + r * 2 + gap, y + nm.size * 0.8, { lh: 0, color: p.ink });
-  let end = y + nm.size * 1.1;
-  if (item.line) {
-    const ln = fit(ctx, item.line, { face: "display", weight: 420, italic: true, max: lineSize, min: lineSize * 0.8, width: w, maxLines: 2 });
-    font(ctx, "display", 420, ln.size, true);
-    end = lines(ctx, ln.lines, cx, end + ln.size * 0.95, { lh: ln.size * 1.25, align: "center", color: p.ink2 }) - ln.size * 0.3;
-  }
-  return end;
-}
-
-function traitHeight(ctx, item, { w, nameSize, lineSize }) {
-  let hgt = nameSize * 1.1;
-  if (item.line) {
-    const ln = fit(ctx, item.line, { face: "display", weight: 420, italic: true, max: lineSize, min: lineSize * 0.8, width: w, maxLines: 2 });
-    hgt += ln.size * 0.65 + ln.lines.length * ln.size * 1.25 - ln.size * 0.3;
-  }
-  return hgt;
+  const r = nm.size * 0.22;
+  ctx.beginPath();
+  ctx.arc(x + nm.size * 0.62 + r, y + h / 2, r, 0, Math.PI * 2);
+  ctx.fillStyle = tintOf(item.chapter);
+  ctx.fill();
+  font(ctx, "display", 600, nm.size);
+  lines(ctx, nm.lines.slice(0, 1), x + nm.size * 0.62 + r * 2 + nm.size * 0.36, y + h / 2 + nm.size * 0.34, { lh: 0, color: p.ink });
+  return h;
 }
 
 // ---------------------------------------------------------------- the mirror card
 
 // The share card in either format and theme. `card` is the share projection (story-data.js buildStories().share).
-// The completed mirror with both names is the hero; at most two traits go under it (the rest stay on story 5).
+// Simplified for story size (VISUAL-JUDGE-CODEX-R2 screen 13): the completed mirror with both names, as large as the
+// card allows; two trait names as pills (their lines stay on the traits screen); the invite; the address.
 export const SHARE_TRAITS = 2;
 export function drawShareCard(ctx, card, { format = "story", theme = "night", lightTheme = "day", wordmarkImage = null } = {}) {
   const { w: W, h: H } = FORMATS[format] || FORMATS.story;
@@ -566,35 +559,42 @@ export function drawShareCard(ctx, card, { format = "story", theme = "night", li
   background(ctx, W, H, p);
   const names = card.names || [];
   const items = (card.tags || []).filter((t) => t && t.name).slice(0, SHARE_TRAITS);
-  const trait = (it) => ({ name: it.name, line: it.heartShort || it.heart, chapter: it.chapter });
   if (format === "post") {
-    drawWordmark(ctx, wordmarkImage, W / 2, 22, 170, p);
-    const aw = items.length ? 560 : 620;
-    const ay = 122;
+    drawWordmark(ctx, wordmarkImage, W / 2, 30, 170, p);
+    const aw = 560;
+    const ay = 110;
     const h = drawNamedMirror(ctx, { x: (W - aw) / 2, y: ay, w: aw, names, mirror: card.mirror, p });
-    const ty = ay + h + 54;
-    if (items.length === 1) drawTrait(ctx, { cx: W / 2, y: ty, w: 820, item: trait(items[0]), p, nameSize: 46, lineSize: 30 });
-    else items.forEach((it, i) => drawTrait(ctx, { cx: i ? 790 : 290, y: ty, w: 440, item: trait(it), p, nameSize: 42, lineSize: 27 }));
-    font(ctx, "display", 420, 46, true);
-    lines(ctx, [card.invite || ""], W / 2, H - 76, { lh: 0, align: "center", color: p.accent });
+    const ty = ay + h + 40;
+    if (items.length === 2) {
+      const size = 38;
+      const w0 = Math.min(480, pillWidth(ctx, items[0].name, size));
+      const w1 = Math.min(480, pillWidth(ctx, items[1].name, size));
+      const gap = 24;
+      const total = w0 + w1 + gap;
+      if (total <= W - 80) {
+        drawPill(ctx, { cx: (W - total) / 2 + w0 / 2, y: ty, item: items[0], p, size, maxW: 480 });
+        drawPill(ctx, { cx: (W + total) / 2 - w1 / 2, y: ty, item: items[1], p, size, maxW: 480 });
+      } else {
+        drawPill(ctx, { cx: W / 2, y: ty - 10, item: items[0], p, size: 34, maxW: W - 120 });
+        drawPill(ctx, { cx: W / 2, y: ty + 64, item: items[1], p, size: 34, maxW: W - 120 });
+      }
+    } else if (items.length === 1) drawPill(ctx, { cx: W / 2, y: ty, item: items[0], p, size: 40, maxW: W - 120 });
+    font(ctx, "display", 420, 48, true);
+    lines(ctx, [card.invite || ""], W / 2, H - 72, { lh: 0, align: "center", color: p.accent });
     font(ctx, "text", 600, 24);
-    lines(ctx, [card.url || ""], W / 2, H - 30, { lh: 0, align: "center", color: p.ink3 });
+    lines(ctx, [card.url || ""], W / 2, H - 28, { lh: 0, align: "center", color: p.ink3 });
     return;
   }
-  drawWordmark(ctx, wordmarkImage, W / 2, 62, 220, p);
-  // The mirror takes whatever the traits leave: measure the traits first, then size the arch to fit above them.
-  const TRAIT = { w: 880, nameSize: 58, lineSize: 36 };
-  const traitsH = items.reduce((sum, it) => sum + traitHeight(ctx, trait(it), TRAIT) + 30, 0);
-  const ay = 196;
-  const INVITE = 1800;
-  const aw = Math.round(Math.min(800, (INVITE - 90 - traitsH - 70 - ay) / 1.66));
+  drawWordmark(ctx, wordmarkImage, W / 2, 64, 220, p);
+  const aw = 780;
+  const ay = 168;
   const h = drawNamedMirror(ctx, { x: (W - aw) / 2, y: ay, w: aw, names, mirror: card.mirror, p });
-  let y = ay + h + 70;
-  for (const it of items) y = drawTrait(ctx, { cx: W / 2, y, item: trait(it), p, ...TRAIT }) + 30;
-  font(ctx, "display", 420, 54, true);
-  lines(ctx, [card.invite || ""], W / 2, INVITE, { lh: 0, align: "center", color: p.accent });
+  let y = ay + h + 44;
+  for (const it of items) y += drawPill(ctx, { cx: W / 2, y, item: it, p, size: 50, maxW: W - 140 }) + 22;
+  font(ctx, "display", 420, 58, true);
+  lines(ctx, [card.invite || ""], W / 2, 1800, { lh: 0, align: "center", color: p.accent });
   font(ctx, "text", 600, 28);
-  lines(ctx, [card.url || ""], W / 2, 1872, { lh: 0, align: "center", color: p.ink3 });
+  lines(ctx, [card.url || ""], W / 2, 1876, { lh: 0, align: "center", color: p.ink3 });
 }
 
 // ---------------------------------------------------------------- story-screen images
@@ -607,11 +607,27 @@ function drawStoryBody(ctx, spec, p, W, H) {
   switch (spec.id) {
     case "intro":
     case "names": {
-      const aw = spec.hook ? 740 : 760;
-      const h = drawNamedMirror(ctx, { x: (W - aw) / 2, y: 250, w: aw, names: spec.names || [], mirror: spec.mirror, p, fog: spec.id === "intro" ? 1 : 0 });
-      y = 250 + h + 100;
+      const aw = 800;
+      const top = 210;
+      const h = drawNamedMirror(ctx, { x: (W - aw) / 2, y: top, w: aw, names: spec.names || [], mirror: spec.mirror, p, fog: spec.id === "intro" ? 1 : 0 });
+      y = top + h + 60;
       if (spec.title) y = block(ctx, spec.title, W / 2, y, { face: "display", weight: 600, max: 80, min: 56, width, maxLines: 2, color: p.ink, align: "center", lh: 1.08 });
-      if (spec.hook) y = block(ctx, spec.hook, W / 2, y, { face: "display", weight: 560, max: 50, min: 40, width, maxLines: 3, color: p.ink, align: "center", lh: 1.24 }) + 40;
+      if (spec.hook) {
+        // The plaque on the frame's foot, as on the screen: the clearest finding's first sentence.
+        const first = String(spec.hook).split(/(?<=[.!?])\s+/)[0];
+        const fitted = fit(ctx, first, { face: "display", weight: 450, italic: true, max: 44, min: 34, width: aw - 120, maxLines: 3 });
+        const ph = fitted.lines.length * fitted.size * 1.28 + 56;
+        const py = top + h - 40;
+        roundRect(ctx, (W - aw + 40) / 2, py, aw - 40, ph, 36);
+        ctx.fillStyle = rgba(N.n800, 0.94);
+        ctx.fill();
+        ctx.strokeStyle = rgba(tokens.color.surfaceSolid, 0.75);
+        ctx.lineWidth = 3;
+        ctx.stroke();
+        font(ctx, "display", 450, fitted.size, true);
+        lines(ctx, fitted.lines, W / 2, py + 28 + fitted.size * 0.92, { lh: fitted.size * 1.28, align: "center", color: N.ink });
+        y = py + ph + 60;
+      }
       for (const l of spec.lines || []) block(ctx, l, W / 2, y, { face: "display", weight: 420, italic: true, max: 40, min: 32, width, maxLines: 2, color: p.ink2, align: "center" });
       return;
     }
@@ -619,8 +635,9 @@ function drawStoryBody(ctx, spec, p, W, H) {
       kicker(spec.kicker, 330);
       y = 420;
       for (const t of spec.tablets || []) {
-        const fitted = fit(ctx, t.line, { face: "display", weight: 560, max: 52, min: 40, width: width - 120, maxLines: 4 });
-        const bh = fitted.lines.length * fitted.size * 1.22 + 110;
+        const fitted = fit(ctx, t.line, { face: "display", weight: 560, max: 52, min: 40, width: width - 150, maxLines: 4 });
+        const body = t.body ? fit(ctx, t.body, { face: "text", weight: 450, max: 34, min: 28, width: width - 112, maxLines: 6 }) : null;
+        const bh = fitted.lines.length * fitted.size * 1.22 + (body ? body.lines.length * body.size * 1.4 + 30 : 0) + 110;
         ctx.fillStyle = p.glass;
         roundRect(ctx, X, y, width, bh, 56);
         ctx.fill();
@@ -628,18 +645,141 @@ function drawStoryBody(ctx, spec, p, W, H) {
         ctx.lineWidth = 2;
         ctx.stroke();
         if (t.mark && t.mark.kind === "sigil") drawSigil(ctx, t.mark.code, X + width - 100, y + 36, 56, p.accent);
-        if (t.mark && t.mark.kind === "chapter") { ctx.beginPath(); ctx.arc(X + width - 72, y + 64, 20, 0, Math.PI * 2); ctx.fillStyle = tintOf(t.mark.chapter); ctx.fill(); }
         font(ctx, "display", 560, fitted.size);
-        lines(ctx, fitted.lines, X + 56, y + 55 + fitted.size * 0.82, { lh: fitted.size * 1.22, color: p.ink });
+        let yy = lines(ctx, fitted.lines, X + 56, y + 55 + fitted.size * 0.82, { lh: fitted.size * 1.22, color: p.ink });
+        if (body) { font(ctx, "text", 450, body.size); lines(ctx, body.lines, X + 56, yy + 20 + body.size * 0.5, { lh: body.size * 1.4, color: p.ink2 }); }
         y += bh + 36;
       }
       return;
     }
     case "map": {
       kicker(spec.kicker, 300);
-      y = block(ctx, spec.title, W / 2, 340, { face: "display", weight: 600, max: 76, min: 56, width, maxLines: 2, color: p.ink, align: "center" });
-      drawFacet(ctx, spec.facet, W / 2, y + 470, 700, p, { labels: true });
-      for (const l of spec.lines || []) block(ctx, l, W / 2, y + 920, { face: "display", weight: 420, italic: true, max: 44, min: 34, width, maxLines: 3, color: p.ink2, align: "center" });
+      y = block(ctx, spec.title, W / 2, 340, { face: "display", weight: 600, max: 76, min: 56, width, maxLines: 2, color: p.ink, align: "center" }) + 70;
+      for (const g of spec.groups || []) {
+        tracked(ctx, g.label, X, y, { size: 26, color: p.ink3, track: 0.14 });
+        y += 40;
+        for (const r of g.rows) {
+          const lean = !r.flex && !r.unfinished;
+          const leadLeft = lean && r.side === "left";
+          const leadRight = lean && r.side === "right";
+          const pole = (value, lead, align, x) => {
+            if (lead) { font(ctx, "display", 600, 56); lines(ctx, [value], x, y + 50, { lh: 0, align, color: p.ink }); }
+            else tracked(ctx, value, x, y + 48, { size: 24, color: p.ink3, align, track: 0.12 });
+          };
+          pole(r.left, leadLeft, "left", X);
+          pole(r.right, leadRight, "right", X + width);
+          const ry = y + 76;
+          roundRect(ctx, X, ry, width, 34, 17);
+          ctx.fillStyle = rgba(N.ink, 0.12);
+          ctx.fill();
+          ctx.strokeStyle = rgba(N.ink, 0.3);
+          ctx.lineWidth = 2;
+          ctx.stroke();
+          const bx = X + (width * r.pos) / 100;
+          if (lean) {
+            const fx = Math.min(bx, X + width / 2);
+            const fw = Math.abs(bx - (X + width / 2));
+            roundRect(ctx, fx, ry + 8, Math.max(8, fw), 18, 9);
+            ctx.fillStyle = N.violet;
+            ctx.fill();
+          }
+          glow(ctx, bx, ry + 17, 60, N.violet, 0.6);
+          ctx.beginPath();
+          ctx.arc(bx, ry + 17, 26, 0, Math.PI * 2);
+          ctx.fillStyle = r.unfinished ? rgba(N.ink, 0.1) : N.ink;
+          ctx.fill();
+          y += 140;
+        }
+        y += 30;
+      }
+      return;
+    }
+    case "knows": {
+      kicker(spec.kicker, 280);
+      y = block(ctx, spec.title, W / 2, 320, { face: "display", weight: 600, max: 70, min: 52, width, maxLines: 2, color: p.ink, align: "center" }) + 60;
+      (spec.findings || []).forEach((f, i) => {
+        const top = i === 0;
+        const size = top ? 44 : 34;
+        const fitted = fit(ctx, f.line, { face: "display", weight: 560, max: size, min: size * 0.8, width: width - 170, maxLines: top ? 5 : 3 });
+        const bh = fitted.lines.length * fitted.size * 1.25 + 96;
+        roundRect(ctx, X, y, width, bh, 40);
+        ctx.fillStyle = rgba(N.ink, top ? 0.2 : 0.1);
+        ctx.fill();
+        ctx.strokeStyle = rgba(N.ink, top ? 0.6 : 0.25);
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        // The clarity cue: three rings, lit from the center out.
+        const gx = X + 70;
+        const gy = y + bh / 2;
+        [3, 2, 1].forEach((ring) => {
+          ctx.beginPath();
+          ctx.arc(gx, gy, 12 + ring * 11, 0, Math.PI * 2);
+          ctx.fillStyle = f.level >= ring ? rgba(N.ink, 0.25 + 0.2 * (3 - ring)) : rgba(N.ink, 0.06);
+          ctx.fill();
+        });
+        tracked(ctx, f.topic, X + 140, y + 52, { size: 22, color: p.ink2, track: 0.12 });
+        tracked(ctx, f.tier, X + width - 36, y + 52, { size: 20, color: p.ink, align: "right", track: 0.06 });
+        font(ctx, "display", 560, fitted.size);
+        lines(ctx, fitted.lines, X + 140, y + 70 + fitted.size * 0.9, { lh: fitted.size * 1.25, color: p.ink });
+        y += bh + 20;
+      });
+      return;
+    }
+    case "rooms": {
+      kicker(spec.kicker, 300);
+      y = block(ctx, spec.title, W / 2, 340, { face: "display", weight: 600, max: 72, min: 54, width, maxLines: 2, color: p.ink, align: "center" }) + 70;
+      for (const r of spec.rows || []) {
+        const fitted = fit(ctx, r.line, { face: "text", weight: 500, max: 36, min: 30, width: width - 200, maxLines: 4 });
+        const bh = fitted.lines.length * fitted.size * 1.35 + 120;
+        roundRect(ctx, X, y, width, bh, 48);
+        ctx.fillStyle = p.glass;
+        ctx.fill();
+        glow(ctx, X + 90, y + bh / 2, 90, tintOf(r.chapter), 0.9);
+        ctx.beginPath();
+        ctx.arc(X + 90, y + bh / 2, 40, 0, Math.PI * 2);
+        ctx.fillStyle = tintOf(r.chapter);
+        ctx.fill();
+        font(ctx, "display", 600, 46);
+        lines(ctx, [r.room], X + 180, y + 74, { lh: 0, color: p.ink });
+        font(ctx, "text", 500, fitted.size);
+        lines(ctx, fitted.lines, X + 180, y + 110 + fitted.size * 0.4, { lh: fitted.size * 1.35, color: p.ink2 });
+        y += bh + 26;
+      }
+      return;
+    }
+    case "calls": {
+      kicker(spec.kicker, 280);
+      if (spec.called > 0) {
+        font(ctx, "display", 600, 180);
+        const big = String(spec.exact);
+        const bw = ctx.measureText(big).width;
+        font(ctx, "display", 600, 72);
+        const tail = ` of ${spec.called}`;
+        const tw = ctx.measureText(tail).width;
+        const x0 = W / 2 - (bw + tw) / 2;
+        font(ctx, "display", 600, 180);
+        lines(ctx, [big], x0, 480, { lh: 0, color: p.ink });
+        font(ctx, "display", 600, 72);
+        lines(ctx, [tail], x0 + bw, 480, { lh: 0, color: p.ink });
+        font(ctx, "display", 420, 40, true);
+        lines(ctx, [spec.of || ""], W / 2, 548, { lh: 0, align: "center", color: p.ink2 });
+      }
+      y = block(ctx, spec.title, W / 2, 610, { face: "display", weight: 600, max: 62, min: 48, width, maxLines: 2, color: p.ink, align: "center" }) + 60;
+      const cw = (width - 30) / 2;
+      (spec.panes || []).forEach((pn, i) => {
+        const cx = X + (i % 2) * (cw + 30);
+        const cy = y + Math.floor(i / 2) * 170;
+        roundRect(ctx, cx, cy, cw, 150, 36);
+        ctx.fillStyle = pn.status === "hit" ? rgba(N.ink, 0.26) : rgba(N.ink, 0.08);
+        ctx.fill();
+        ctx.strokeStyle = rgba(N.ink, pn.status === "hit" ? 0.7 : 0.22);
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        const t = fit(ctx, pn.topic || "", { face: "text", weight: 600, max: 28, min: 22, width: cw - 48, maxLines: 2 });
+        font(ctx, "text", 600, t.size);
+        lines(ctx, t.lines, cx + 26, cy + 46, { lh: t.size * 1.2, color: p.ink });
+        tracked(ctx, pn.label, cx + 26, cy + 124, { size: 20, color: pn.status === "hit" ? p.ink : p.ink2, track: 0.08 });
+      });
       return;
     }
     case "traits": {

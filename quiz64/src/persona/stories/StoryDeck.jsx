@@ -1,9 +1,12 @@
-// The result as tap-through Stories on a 9:16 stage (DESIGN-DIRECTION 5.12). Phone: the stage is the whole screen.
-// Desktop: the stage stands in a night mirror room with the arrows outside it. Tap the right 70% (or the right arrow,
-// Space, PageDown) to go on, the left 30% (or the left arrow, PageUp) to go back; press and hold pauses the motion.
-// Story 1 is the exception: hold speeds the shards up and letting go assembles the mirror. Every screen is in the
-// markup from the first render (inactive ones hidden), so screen readers and the server render get the whole result.
-import React, { useCallback, useEffect, useRef, useState } from "react";
+// The result as tap-through Stories on a 9:16 stage (DESIGN-DIRECTION 5.12, round 2). Phone: the stage is the whole
+// screen. Desktop: the stage stands in a night mirror room with the arrows outside it. Tap the right 70% (or the right
+// arrow, Space, PageDown) to go on, the left 30% (or the left arrow, PageUp) to go back; tap a progress bar to jump;
+// press and hold pauses the motion. Story 1 is the exception: hold speeds the shards up and letting go assembles the
+// mirror. Screens change like a camera moving through the mirror room: the next one comes forward out of depth while
+// the last one passes the lens; one WebGL light (StageLight) runs behind all of them and eases to each screen's look.
+// Every screen is in the markup from the first render (inactive ones hidden), so screen readers and the server render
+// get the whole result. Reduced motion: a 120 ms crossfade and a still light.
+import React, { Suspense, lazy, useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Share } from "lucide-react";
 import { MirrorArch } from "../../art/index.js";
 import { GeniiLight, setThemeForVoice, useTheme } from "../../system/index.js";
@@ -17,6 +20,9 @@ import { useElementSize, useReduced } from "../reveal/layout.js";
 import "../reveal/reveal.css";
 
 export { GuessSheet };
+
+const StageLight = lazy(() => import("../reveal/StageLight.jsx"));
+const LEAVE_MS = 560;
 
 const FRIEND_SHEET_TITLE = "Send it to a friend";
 const INTERACTIVE = "button, a, input, textarea, select, label, summary, [role='dialog'], [role='radiogroup']";
@@ -35,6 +41,11 @@ export function StoryDeck({ stories, friends, onFriendAction, onRestart, onDownl
   const [status, setStatus] = useState("");
   const [format, setFormat] = useState("story");
   const [cardTheme, setCardTheme] = useState("night");
+  const [leaving, setLeaving] = useState(null);
+  const [dir, setDir] = useState("fwd");
+  const [tapped, setTapped] = useState(start > 1);
+  const [light, setLight] = useState(false);
+  const leaveTimer = useRef(0);
   const stageRef = useRef(null);
   const stage = useElementSize(stageRef);
   const held = useRef({ timer: 0, long: false });
@@ -45,10 +56,23 @@ export function StoryDeck({ stories, friends, onFriendAction, onRestart, onDownl
   useEffect(() => { setThemeForVoice(stories.voice); }, [stories.voice]);
   useEffect(() => { if (reduced && reveal !== "set") setReveal("set"); }, [reduced, reveal]);
 
+  const indexRef = useRef(index);
+  indexRef.current = index;
   const go = useCallback((i) => {
     setStatus("");
-    setIndex((cur) => Math.max(0, Math.min(n - 1, typeof i === "function" ? i(cur) : i)));
+    const cur = indexRef.current;
+    const nextIndex = Math.max(0, Math.min(n - 1, typeof i === "function" ? i(cur) : i));
+    if (nextIndex === cur) return;
+    indexRef.current = nextIndex;
+    setDir(nextIndex > cur ? "fwd" : "back");
+    setLeaving(cur);
+    clearTimeout(leaveTimer.current);
+    leaveTimer.current = setTimeout(() => setLeaving(null), LEAVE_MS);
+    setIndex(nextIndex);
   }, [n]);
+  useEffect(() => () => clearTimeout(leaveTimer.current), []);
+  // The WebGL light waits for the first paint, and only runs where motion is allowed or a still frame is wanted.
+  useEffect(() => { const id = setTimeout(() => setLight(true), 60); return () => clearTimeout(id); }, []);
 
   const assembled = useCallback(() => { setReveal("set"); setWipe(true); go(1); }, [go]);
   const next = useCallback(() => {
@@ -97,8 +121,10 @@ export function StoryDeck({ stories, friends, onFriendAction, onRestart, onDownl
     if (e.target.closest && e.target.closest(INTERACTIVE)) return;
     if (typeof window !== "undefined" && window.getSelection && String(window.getSelection())) return;
     const rect = e.currentTarget.getBoundingClientRect();
+    setTapped(true);
     if (e.clientX - rect.left < rect.width * 0.3) back(); else next();
   };
+  const jump = (i) => (e) => { e.stopPropagation(); setTapped(true); if (index === 0 && i > 0) setReveal("set"); setWipe(false); go(i); };
 
   const slide = slides[index];
   const deliver = async (shareIt) => {
@@ -158,9 +184,12 @@ export function StoryDeck({ stories, friends, onFriendAction, onRestart, onDownl
         <div className="rv-stage" ref={stageRef} data-look={slide.look} data-current={slide.id} data-scene={slide.look === "light" ? undefined : "night"}
           onPointerDown={onDown} onPointerUp={onUp} onPointerCancel={onUp}>
           <div className="rv-bg" aria-hidden="true"><i className="rv-bg__night" /><i className="rv-bg__light" /><i className="rv-bg__deep" /><i className="rv-bg__grain" /></div>
+          {light ? <Suspense fallback={null}><StageLight look={slide.look} id={slide.id} reduced={reduced} /></Suspense> : null}
           <div className="rv-top">
             <div className="rv-bars" aria-hidden="true">
-              {slides.map((s, i) => <i key={s.id} className={i < index ? "is-done" : i === index ? "is-now" : ""}><b /></i>)}
+              {slides.map((s, i) => (
+                <i key={s.id} className={i < index ? "is-done" : i === index ? "is-now" : ""} onClick={jump(i)}><b /></i>
+              ))}
             </div>
             <div className="rv-top__row">
               <span className="rv-brand"><GeniiLight mood={slide.id === "stings" ? "hush" : "sure"} size="xs" evolution={1} /> Genii</span>
@@ -172,14 +201,17 @@ export function StoryDeck({ stories, friends, onFriendAction, onRestart, onDownl
               )}
             </div>
           </div>
-          <div className="rv-slides" onClick={onTap}>
+          <div className="rv-slides" onClick={onTap} data-dir={dir}>
             {slides.map((s, i) => (
-              <section key={s.id} className={`rv-slide rv-slide--${s.id}${i === index ? " is-current" : ""}`} data-slide={i} data-story={s.id} data-look={s.look}
-                hidden={i !== index} aria-roledescription="slide" aria-label={`${i + 1} of ${n}`}>
+              <section key={s.id} className={`rv-slide rv-slide--${s.id}${i === index ? " is-current" : ""}${i === leaving && i !== index ? " is-leaving" : ""}`} data-slide={i} data-story={s.id} data-look={s.look}
+                hidden={i !== index && i !== leaving} aria-hidden={i !== index ? "true" : undefined} aria-roledescription="slide" aria-label={`${i + 1} of ${n}`}>
                 <StoryScreen slide={s} active={i === index} {...screenProps} />
               </section>
             ))}
           </div>
+          {!tapped && index > 0 && index < 3 && !wipe ? (
+            <span className="rv-taphint" aria-hidden="true"><ChevronRight size={18} strokeWidth={2} /> {UI_COPY.tap}</span>
+          ) : null}
         </div>
         <nav className="rv-arrows" aria-label="Screens">
           <button type="button" className="rv-arrow rv-arrow--back" onClick={back} disabled={index === 0} aria-label="Previous screen"><ChevronLeft size={22} strokeWidth={1.75} /></button>

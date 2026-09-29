@@ -1,6 +1,7 @@
-// The Reflection screens (DESIGN-DIRECTION 5.12, 7.4 package C): the facet reads leans the right way, reduced
-// motion shows the finished mirror with the names at once, the insight flips or degrades, story 9 has one primary
-// job, the stings screen only saves, and the guess sheet defrosts eight panes.
+// The Reflection screens (DESIGN-DIRECTION 5.12, 7.4 package C, round 2): the pairs and the facet read leans the right
+// way, reduced motion shows the finished mirror with the names at once, the insight flips or degrades, the app screen
+// has one primary job, the stings screen only saves, the guess sheet defrosts eight panes, the findings carry their
+// clarity gems, the rooms float on their islands, and the calls show the count once.
 import test from "node:test";
 import assert from "node:assert/strict";
 import React from "react";
@@ -85,7 +86,11 @@ test("the facet: leans point to the right pole, people above the waterline, flex
 
   const html = await render(view);
   const map = slideHtml(html, "map");
-  assert.ok(map.includes("Read it as a list") && map.includes("rv-maplist"), "the list is always in the DOM");
+  assert.equal((map.match(/class="rv-pair"/g) || []).length, 6, "six opposing pairs");
+  for (const r of rows) {
+    const lead = r.side === "right" ? r.right : r.left;
+    if (!r.flex && !r.unfinished) assert.ok(visible(map).includes(`${lead} over`), `${r.key} reads as a sentence`);
+  }
   assert.doesNotMatch(visible(map), /\d/);
 });
 
@@ -101,13 +106,15 @@ test("the insight flips at its sentence boundary and sits whole when it is one s
   assert.match(one, /rv-insight__echo/);
 });
 
-test("story 9 has one primary job; the stings sheet only saves; the guess sheet defrosts every pane", async () => {
+test("the app screen has one primary job; the stings sheet only saves; the guess sheet defrosts every pane", async () => {
   for (const voice of ["fun", "heart"]) {
     const view = await realView(voice);
     const html = await render(view);
     const app = slideHtml(html, "app");
     assert.equal((app.match(/class="rv-cta /g) || []).length, 1, `${voice}: one primary button`);
     assert.ok(visible(app).includes("Your data"));
+    assert.match(app, /class="rv-appscene"/, `${voice}: one large in-game moment`);
+    assert.ok(visible(app).includes("Get MirrorMii"));
     const share = slideHtml(html, "share");
     assert.match(share, /Your opposite: .+ and .+\. Know one\?/);
   }
@@ -130,4 +137,24 @@ test("the friend hero is the owner's arch under fog that clears to nothing", asy
   assert.match(full, /aria-hidden="true"/);
   const clear = renderToStaticMarkup(React.createElement(FriendMirrorHero, { ownerSeed: "abc123", fog: 0 }));
   assert.match(clear, /opacity:0\b/);
+});
+
+test("the findings, the rooms and the calls render their cues", async () => {
+  for (const voice of ["fun", "heart"]) {
+    const view = await realView(voice);
+    const html = await render(view);
+    const knows = slideHtml(html, "knows");
+    const n = view.slides.find((s) => s.id === "knows").findings.length;
+    assert.ok(n >= 5 && n <= 6, `${voice}: five or six findings`);
+    assert.equal((knows.match(/data-art="clarity-gem"/g) || []).length, n, `${voice}: one gem per finding`);
+    assert.equal((knows.match(/class="rv-find rv-find--top"/g) || []).length, 1, `${voice}: one clearest card`);
+    const rooms = view.slides.find((s) => s.id === "rooms");
+    if (rooms) assert.equal((slideHtml(html, "rooms").match(/data-art="island"/g) || []).length, rooms.rows.length, `${voice}: an island per room`);
+    const calls = slideHtml(html, "calls");
+    const c = view.slides.find((s) => s.id === "calls");
+    assert.equal((calls.match(/class="rv-call rv-call--/g) || []).length, c.rows.length);
+    assert.ok(visible(calls).includes(`${c.exact} of ${c.called}`));
+    const names = slideHtml(html, "names");
+    assert.match(names, /class="rv-plaque"/, `${voice}: the plaque sits inside the frame`);
+  }
 });
