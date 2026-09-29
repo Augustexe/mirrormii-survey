@@ -1,0 +1,487 @@
+[
+  {
+    "id": "S-110",
+    "type": "sealed",
+    "chapter": 5,
+    "primary": "L1",
+    "prompt": "A scroll unrolls on your pillow: Genii's five-year contract. Your job, home and people stay exactly as they are now. Good, guaranteed. No surprises either way.",
+    "options": [
+      { "t": "Sign it in pen. Five known-good years beat any gamble.", "axes": { "L1": 2 }, "tags": [{ "id": "T17A", "s": 2 }], "emotion": "relief" },
+      { "t": "Tear it up. I want the surprises, bad ones included.", "axes": { "L1": -2 }, "tags": [{ "id": "T17B", "s": 2 }], "emotion": "delight" },
+      { "t": "Sign only the home part. Leave the job wide open.", "axes": { "L1": 1 }, "tags": [{ "id": "T17A", "s": 1 }] },
+      { "t": "Keep it unsigned under my pillow. Decide next year.", "axes": { "L1": -1 }, "tags": [{ "id": "T17B", "s": 1 }], "emotion": "worry" }
+    ],
+    "heart": {
+      "prompt": "Genii leaves a contract on your pillow. If you sign, your job, home and people stay exactly as they are for five years. Good, guaranteed, with no surprises at all.",
+      "options": [
+        "I sign it. Five years I know are good are worth more than a gamble.",
+        "I tear it up. I want the surprises, even the bad ones.",
+        "I sign only the part about my home and leave my work open.",
+        "I keep it unsigned and decide next year."
+      ]
+    },
+    "fp": { "trigger": "a contract would freeze the next five years", "setting": "bedroom, magic scroll", "ask": "sign, tear or wait", "who": "you and Genii", "stakes": "guaranteed calm versus every surprise" },
+    "mask": "looks like a wish with a catch; Genii's locked guess on the known versus the new (L1), with locking it in versus keeping options open (T17) as a side guess",
+    "ae": ["A", "D"],
+    "privacy": "normal",
+    "checks": { "primary": "L1", "axes": ["L1"], "pairs": ["T17"] },
+    "sq": "SQ-T17-2",
+    "world": "absurd"
+  },
+  {
+    "id": "C6-110",
+    "type": "scenario",
+    "chapter": 6,
+    "prompt": "Genii makes you your family's official wish-granter. Week one: 23 wishes. Your sibling got granting powers too. Nobody has asked them.",
+    "options": [
+      { "t": "Grant all 23 by Sunday. That's what I'm here for.", "tags": [{ "id": "T18A", "s": 2 }], "emotion": "pride" },
+      { "t": "Grant them all. Mention it at every dinner for a year.", "tags": [{ "id": "T18A", "s": 1 }], "emotion": "resentment" },
+      { "t": "Forward half to my sibling. Their powers need exercise.", "tags": [{ "id": "T18B", "s": 2 }], "emotion": "irritation" },
+      { "t": "Post granting hours: Sundays, two to four. Urgent wishes wait too.", "tags": [{ "id": "T18B", "s": 2 }], "emotion": "guilt" }
+    ],
+    "heart": {
+      "prompt": "Imagine Genii makes you your family's wish-granter. In the first week they send you 23 wishes. Your sibling can grant wishes too, but nobody has asked them.",
+      "options": [
+        "I grant all 23 by Sunday. That is my role in this family.",
+        "I grant them all, and I bring it up at dinners for a long time.",
+        "I send half of them to my sibling to handle.",
+        "I set hours for wishes, Sundays from two to four, even for urgent ones."
+      ]
+    },
+    "fp": { "trigger": "family sends a pile of wishes", "setting": "magic wish-granting duty", "ask": "grant them all, share or set hours", "who": "whole family and an idle sibling", "stakes": "your weeks versus family feelings" },
+    "mask": "looks like a genie joke; measures being the family's first call versus helping on terms (T18)",
+    "ae": ["A", "B", "E"],
+    "privacy": "normal",
+    "sq": "SQ-T18-1",
+    "world": "absurd"
+  },
+  {
+    "id": "C6-111",
+    "type": "real",
+    "chapter": 6,
+    "prompt": "When a relative last asked for \"one small favor\" that kept quietly growing, what did you actually do?",
+    "options": [
+      { "t": "Kept saying yes. It's still growing. Family is family.", "tags": [{ "id": "T18A", "s": 2 }] },
+      { "t": "Did it all, then complained to everyone except them.", "tags": [{ "id": "T18A", "s": 1 }], "emotion": "resentment" },
+      { "t": "Helped, then named an end date out loud.", "tags": [{ "id": "T18B", "s": 2 }] },
+      { "t": "Said yes, then roped in a cousin to split it.", "tags": [{ "id": "T18B", "s": 1 }] },
+      { "t": "Said no. Felt guilty about it for a week.", "tags": [{ "id": "T18B", "s": 2 }], "emotion": "guilt" }
+    ],
+    "heart": {
+      "prompt": "Think of the last time a relative asked you for one small favor that kept growing. What did you actually do?",
+      "options": [
+        "I kept saying yes, and it is still growing. Family is family.",
+        "I did all of it, then complained to everyone except them.",
+        "I helped, and then I said out loud when it would end.",
+        "I said yes and asked a cousin to share it with me.",
+        "I said no, and felt guilty about it for a week."
+      ]
+    },
+    "fp": { "trigger": "a family favor that keeps growing", "setting": "real life, family", "ask": "keep helping or set a limit", "who": "a relative", "stakes": "your time versus family guilt" },
+    "mask": "looks like a family favor story; measures helping without end versus naming a limit (T18) from a thing actually done",
+    "ae": ["A", "B", "E"],
+    "privacy": "normal",
+    "sq": "SQ-T18-2",
+    "world": "everyday"
+  },
+  {
+    "id": "S-111",
+    "type": "sealed",
+    "chapter": 6,
+    "primary": "R3",
+    "prompt": "A dream program on the other side of the world accepts you. Before you've said yes, your family books a video call titled \"Discussion.\"",
+    "options": [
+      { "t": "Accept before the call. Join it to share the news.", "axes": { "R3": -2 }, "tags": [{ "id": "T19A", "s": 2 }], "emotion": "pride" },
+      { "t": "Join the call. If they say no, I stay.", "axes": { "R3": 2 }, "tags": [{ "id": "T19B", "s": 2 }], "emotion": "longing" },
+      { "t": "Hear everyone out. Then decide alone, that night.", "axes": { "R3": -1 }, "tags": [{ "id": "T19A", "s": 1 }] },
+      { "t": "Let them vote. Mine counts double.", "axes": { "R3": 1 }, "tags": [{ "id": "T19B", "s": 1 }], "emotion": "delight" }
+    ],
+    "heart": {
+      "prompt": "You are accepted into a dream program on the other side of the world. Before you have said yes, your family schedules a video call called \"Discussion.\"",
+      "options": [
+        "I accept before the call, then join it to share the news.",
+        "I join the call. If they say no, I stay.",
+        "I listen to everyone, then decide on my own that night.",
+        "I let them vote, but my vote counts twice."
+      ]
+    },
+    "fp": { "trigger": "family books a call about your acceptance", "setting": "video call, a program far away", "ask": "decide alone or give them a vote", "who": "the whole family", "stakes": "a dream versus family support" },
+    "mask": "looks like big news; Genii's locked guess on the family script versus writing your own (R3), with who gets a vote (T19) as a side guess",
+    "ae": ["A", "B"],
+    "privacy": "normal",
+    "checks": { "primary": "R3", "axes": ["R3"], "pairs": ["T19"] },
+    "sq": "SQ-T19-1",
+    "world": "unusual"
+  },
+  {
+    "id": "C5-110",
+    "type": "reply",
+    "chapter": 5,
+    "prompt": "You quit your job to open a food truck. You were telling the family Sunday. Your cousin posted it first.",
+    "thread": [
+      { "from": "Your parent", "text": "Your cousin just showed us. A FOOD TRUCK??" },
+      { "from": "Your parent", "text": "Absolutely not. Call me. Now." }
+    ],
+    "options": [
+      { "t": "\"Truck's bought. Free tacos for whoever stops yelling first.\"", "tags": [{ "id": "T19A", "s": 2 }], "emotion": "delight" },
+      { "t": "Heart the message. Keep painting the truck.", "tags": [{ "id": "T19A", "s": 1 }], "emotion": "irritation" },
+      { "t": "\"Calling now. Bringing the menu and a spreadsheet.\"", "tags": [{ "id": "T19B", "s": 1 }], "emotion": "worry" },
+      { "t": "\"Okay. The truck's on hold until we all talk.\"", "tags": [{ "id": "T19B", "s": 2 }], "emotion": "sting" },
+      { "t": "Ask my sibling to call them first. Soften the landing.", "tags": [{ "id": "T19B", "s": 1 }] }
+    ],
+    "heart": {
+      "prompt": "You left your job to open a food truck and planned to tell your family on Sunday. Your cousin posted about it first, and now your parent is texting you.",
+      "thread": [
+        { "from": "Your parent", "text": "Your cousin just showed us. A food truck?" },
+        { "from": "Your parent", "text": "Absolutely not. Please call me now." }
+      ],
+      "options": [
+        "\"The truck is already bought. There are free tacos for whoever calms down first.\"",
+        "I react with a heart and go back to painting the truck.",
+        "\"I am calling now, and I am bringing the menu and the numbers.\"",
+        "\"Okay. I will put the truck on hold until we all talk.\"",
+        "I ask my sibling to call them first and soften it."
+      ]
+    },
+    "fp": { "trigger": "family learns you quit from a cousin's post", "setting": "family text thread, new food truck", "ask": "stand firm, negotiate or pause", "who": "a parent, with a cousin and sibling around", "stakes": "a new venture versus family peace" },
+    "mask": "looks like a family blowup; measures going ahead anyway versus negotiating or pausing for family (T19)",
+    "ae": ["A", "B", "E"],
+    "privacy": "normal",
+    "sq": "SQ-T19-2",
+    "world": "unusual"
+  },
+  {
+    "id": "C6-112",
+    "type": "pick_two",
+    "chapter": 6,
+    "prompt": "You and your person inherit a lighthouse. It comes with the keeper's house rulebook, in use since 1726. Pick the two things you do first.",
+    "options": [
+      { "t": "Follow it to the letter. Bell at dawn included.", "axes": { "R3": 2 }, "tags": [{ "id": "T20A", "s": 2 }] },
+      { "t": "Keep the dinner rules. Those feel like a real home.", "axes": { "R3": 1 }, "tags": [{ "id": "T20A", "s": 1 }] },
+      { "t": "Ask the town how the old keeper ran things.", "axes": { "R3": 1 }, "tags": [{ "id": "T20A", "s": 1 }] },
+      { "t": "Frame it on the wall. Write our own underneath.", "axes": { "R3": -1 }, "tags": [{ "id": "T20B", "s": 1 }] },
+      { "t": "Split chores by who hates what least, not by page 12.", "axes": { "R3": -1 }, "tags": [{ "id": "T20B", "s": 1 }] },
+      { "t": "Use it as a doorstop. We'll invent our own way.", "axes": { "R3": -2 }, "tags": [{ "id": "T20B", "s": 2 }] }
+    ],
+    "heart": {
+      "prompt": "You and your person inherit a lighthouse. It comes with the keeper's household rulebook, used since 1726. Choose the two things you would do first.",
+      "options": [
+        "Follow it exactly, including the bell at dawn.",
+        "Keep the rules about dinner, because they make it feel like home.",
+        "Ask people in town how the old keeper ran the house.",
+        "Frame the rulebook and write our own rules beneath it.",
+        "Split the chores by what each of us minds least, not by the book.",
+        "Put the rulebook aside and find our own way."
+      ]
+    },
+    "fp": { "trigger": "an inherited home comes with an old rulebook", "setting": "lighthouse, moving in together", "ask": "follow, remix or ignore the rules", "who": "you and your person", "stakes": "how your home runs" },
+    "mask": "looks like a quirky inheritance; measures running a home the classic way versus inventing its rules (T20, R3)",
+    "ae": ["A", "B"],
+    "privacy": "normal",
+    "sq": "SQ-T20-1",
+    "world": "unusual"
+  },
+  {
+    "id": "C6-113",
+    "type": "this_or_that",
+    "chapter": 6,
+    "round": "w4-r110",
+    "prompt": "Genii's final offer: freeze every family tradition exactly as it is for 100 years, or wipe them all and start fresh.",
+    "options": [
+      { "t": "Freeze them. Yes, even the awkward toast.", "axes": { "R3": 1 }, "tags": [{ "id": "T20A", "s": 2 }], "emotion": "warmth" },
+      { "t": "Wipe them. Even the dish I grew up on.", "axes": { "R3": -1 }, "tags": [{ "id": "T20B", "s": 2 }], "emotion": "longing" }
+    ],
+    "heart": {
+      "prompt": "Genii gives you one choice: keep every family tradition exactly as it is for 100 years, or erase them all and begin again.",
+      "options": [
+        "I keep them all, even the awkward toast.",
+        "I erase them all, even the dish I grew up with."
+      ]
+    },
+    "fp": { "trigger": "offer to freeze or erase all traditions", "setting": "a genie's final offer", "ask": "keep them forever or start over", "who": "the whole family", "stakes": "the traditions you grew up with" },
+    "mask": "looks like a silly forever choice; measures keeping traditions versus remaking them (T20)",
+    "ae": ["A", "D"],
+    "privacy": "normal",
+    "sq": "SQ-T20-2",
+    "world": "absurd"
+  },
+  {
+    "id": "C3-110",
+    "type": "rank",
+    "chapter": 3,
+    "prompt": "A radio contest wins you one celebration of your commitment, fully paid. Rank the prize options, favorite first.",
+    "options": [
+      { "t": "A full wedding. 200 guests, a band, every relative.", "axes": { "R3": 2 }, "tags": [{ "id": "T21A", "s": 2 }] },
+      { "t": "Your names in skywriting over the city. Ex's building included.", "tags": [{ "id": "T21A", "s": 1 }] },
+      { "t": "Courthouse, two witnesses, a taco truck after.", "axes": { "R3": -1 }, "tags": [{ "id": "T21B", "s": 1 }] },
+      { "t": "No event at all. Cash it in for a year of rent.", "axes": { "R3": -2 }, "tags": [{ "id": "T21B", "s": 2 }] }
+    ],
+    "heart": {
+      "prompt": "You win a radio contest: one fully paid celebration of your commitment to your person. Put the prize options in order, starting with your favorite.",
+      "options": [
+        "A full wedding with 200 guests, a band and every relative.",
+        "Both your names written in the sky over the city, including over your ex's building.",
+        "A courthouse ceremony with two witnesses and a taco truck afterward.",
+        "No event. The prize becomes a year of rent instead."
+      ]
+    },
+    "fp": { "trigger": "a contest prize pays for a commitment celebration", "setting": "radio contest", "ask": "rank how to celebrate", "who": "you, your person, relatives, an ex", "stakes": "a public yes versus a private one" },
+    "mask": "looks like a prize menu; measures wanting the big public moment versus not needing it (T21, R3)",
+    "ae": ["D"],
+    "privacy": "intimate",
+    "sq": "SQ-T21-1",
+    "world": "unusual"
+  },
+  {
+    "id": "C3-111",
+    "type": "role",
+    "chapter": 3,
+    "prompt": "Your person's family starts a group chat called \"THE WEDDING.\" You're not engaged. It has 41 members. In there, you're the...",
+    "options": [
+      { "t": "Guest-list builder. \"Add the second cousins. And their neighbors.\"", "tags": [{ "id": "T21A", "s": 2 }] },
+      { "t": "Hype machine. Hearts every centerpiece idea within seconds.", "tags": [{ "id": "T21A", "s": 1 }] },
+      { "t": "Negotiator. \"Fifty guests. Each side picks twenty-five.\"", "tags": [{ "id": "T21A", "s": 1 }] },
+      { "t": "Bouncer. \"Just us two. Everyone else gets a postcard.\"", "tags": [{ "id": "T21B", "s": 2 }] },
+      { "t": "Escape artist. Quietly pricing two one-way tickets.", "tags": [{ "id": "T21B", "s": 2 }] },
+      { "t": "Editor. Removes 30 members. Nobody notices for a week.", "tags": [{ "id": "T21B", "s": 1 }] }
+    ],
+    "heart": {
+      "prompt": "Your person's family creates a group chat called \"The Wedding.\" You are not engaged, and it already has 41 members. In that chat, which one are you?",
+      "options": [
+        "The one adding more people, second cousins and their neighbors too.",
+        "The one reacting to every decoration idea right away.",
+        "The one proposing fifty guests, twenty-five from each side.",
+        "The one saying it will be just the two of us, with postcards for everyone else.",
+        "The one quietly looking at two one-way tickets.",
+        "The one who removes 30 members and waits to see if anyone notices."
+      ]
+    },
+    "fp": { "trigger": "family opens a wedding chat before any engagement", "setting": "41-member family group chat", "ask": "who gets to be there", "who": "your person's whole family", "stakes": "a day for everyone versus a day for two" },
+    "mask": "looks like family chat chaos; measures wanting everyone there versus keeping the big moment small (T21)",
+    "ae": ["A", "B"],
+    "privacy": "intimate",
+    "sq": "SQ-T21-2",
+    "world": "unusual"
+  },
+  {
+    "id": "C2-110",
+    "type": "eyes",
+    "chapter": 2,
+    "prompt": "A travel show picks you: 30 days, 30 countries. The producer asks your best friend what you're like. Which line do they use?",
+    "options": [
+      { "t": "Orders the one dish nobody can pronounce. Every single time.", "axes": { "L1": -1 }, "tags": [{ "id": "T22A", "s": 2 }] },
+      { "t": "Will ditch the crew to follow a local to a secret beach.", "axes": { "L1": -2 }, "tags": [{ "id": "T22A", "s": 1 }] },
+      { "t": "Finds a favorite cafe by day two. Goes back 28 times.", "axes": { "L1": 1 }, "tags": [{ "id": "T22B", "s": 2 }] },
+      { "t": "Packs snacks from home. Trusts nothing labeled \"surprise.\"", "axes": { "L1": 2 }, "tags": [{ "id": "T22B", "s": 1 }] }
+    ],
+    "heart": {
+      "prompt": "A travel show chooses you for 30 days in 30 countries. The producer asks your best friend what you are like. Which line would they use?",
+      "options": [
+        "They always order the dish nobody can pronounce.",
+        "They would leave the crew behind to follow a local to a hidden beach.",
+        "They find a favorite cafe by the second day and go back 28 times.",
+        "They pack snacks from home and do not trust anything called a surprise."
+      ]
+    },
+    "fp": { "trigger": "a travel show casts you", "setting": "30 countries in 30 days", "ask": "how a friend sums you up abroad", "who": "best friend and a producer", "stakes": "how you come across on camera" },
+    "mask": "looks like a casting call; measures reaching for the new versus the loved and known (T22, L1)",
+    "ae": ["A", "B"],
+    "privacy": "normal",
+    "sq": "SQ-T22-1",
+    "world": "unusual"
+  },
+  {
+    "id": "C7-110",
+    "type": "this_or_that",
+    "chapter": 7,
+    "round": "w4-r110",
+    "prompt": "Forever deal: the same perfect day on repeat, or random days that could be amazing or awful.",
+    "options": [
+      { "t": "The perfect day. I'll know every joke before it lands.", "axes": { "L1": 1 }, "tags": [{ "id": "T22B", "s": 2 }], "emotion": "relief" },
+      { "t": "Random days. Even the awful ones are new.", "axes": { "L1": -1 }, "tags": [{ "id": "T22A", "s": 2 }], "emotion": "delight" }
+    ],
+    "heart": {
+      "prompt": "You must choose, forever: the same perfect day on repeat, or random days that could turn out wonderful or terrible.",
+      "options": [
+        "The perfect day, even if I know every moment before it happens.",
+        "Random days, because even the bad ones would be new."
+      ]
+    },
+    "fp": { "trigger": "choose one kind of day forever", "setting": "impossible time loop", "ask": "repeat the perfect day or roll the dice", "who": "just you", "stakes": "comfort versus surprise for the rest of time" },
+    "mask": "looks like a time-loop riddle; measures routine as comfort versus the pull of the new (T22)",
+    "ae": ["A", "D"],
+    "privacy": "normal",
+    "sq": "SQ-T22-2",
+    "world": "absurd"
+  },
+  {
+    "id": "C2-111",
+    "type": "bet",
+    "chapter": 2,
+    "prompt": "Genii has a hunch: you've given up a whole free day for someone who could have asked anyone else.",
+    "options": [
+      { "t": "Guilty. And I'd drive over again next week.", "tags": [{ "id": "T23A", "s": 2 }], "emotion": "warmth" },
+      { "t": "Guilty. Complained the entire drive. Went anyway.", "tags": [{ "id": "T23A", "s": 1 }], "emotion": "resentment" },
+      { "t": "Guilty. Once. Now I guard my free days like treasure.", "tags": [{ "id": "T23B", "s": 1 }] },
+      { "t": "Never. I say \"I have plans.\" The plan is my couch.", "tags": [{ "id": "T23B", "s": 2 }], "emotion": "delight" },
+      { "t": "Nobody asks me for whole days.", "circumstance": true }
+    ],
+    "heart": {
+      "prompt": "Have you ever given up a whole free day for someone who could have asked someone else?",
+      "options": [
+        "Yes, and I would drive over again next week.",
+        "Yes. I complained the whole way there, and I went anyway.",
+        "Yes, once. Now I protect my free days carefully.",
+        "No. I tell people I have plans, and the plan is my couch.",
+        "People do not usually ask me for whole days."
+      ]
+    },
+    "fp": { "trigger": "someone needs your whole free day", "setting": "real life, a day off", "ask": "give the day or keep it", "who": "someone with other options", "stakes": "your rest versus being counted on" },
+    "mask": "looks like a confession; measures giving free time away versus keeping it (T23) from a thing actually done",
+    "ae": ["A", "E"],
+    "privacy": "normal",
+    "sq": "SQ-T23-1",
+    "world": "everyday"
+  },
+  {
+    "id": "C1-110",
+    "type": "scenario",
+    "chapter": 1,
+    "prompt": "Genii curses your phone: it buzzes whenever anyone nearby needs a hand. Muting it floats an \"unavailable\" badge over your head. Everyone can see it.",
+    "options": [
+      { "t": "Keep it on. Already jogging before the buzz ends.", "tags": [{ "id": "T23A", "s": 2 }], "emotion": "pride" },
+      { "t": "Answer every buzz. Keep a list of who owes me.", "tags": [{ "id": "T23A", "s": 1 }, { "id": "T08B", "s": 1 }], "emotion": "resentment" },
+      { "t": "Keep it on. Wait ten seconds. Someone closer might go.", "tags": [{ "id": "T23B", "s": 1 }], "emotion": "guilt" },
+      { "t": "Mute it. Wear the badge. My evenings are spoken for.", "tags": [{ "id": "T23B", "s": 2 }], "emotion": "cringe" }
+    ],
+    "heart": {
+      "prompt": "Genii puts a spell on your phone: it buzzes whenever anyone nearby needs help. If you mute it, a sign saying \"unavailable\" appears above you for everyone to see.",
+      "options": [
+        "I keep it on and I am already moving before it stops buzzing.",
+        "I answer every call for help and keep track of who owes me.",
+        "I keep it on, but I wait a few seconds in case someone closer goes.",
+        "I mute it and accept the sign. My evenings are already taken."
+      ]
+    },
+    "fp": { "trigger": "phone buzzes when anyone nearby needs help", "setting": "cursed phone, public badge", "ask": "run to help, wait or mute", "who": "strangers and neighbors", "stakes": "your evenings versus your reputation" },
+    "mask": "looks like a cursed-phone gag; measures moving first when hands are needed versus holding back (T23), with keeping score (T08B)",
+    "ae": ["A", "C", "E"],
+    "privacy": "normal",
+    "sq": "SQ-T23-2",
+    "world": "absurd"
+  },
+  {
+    "id": "C4-110",
+    "type": "receipts",
+    "chapter": 4,
+    "prompt": "Numbers check, this month. Tap everything that's true:",
+    "options": [
+      { "t": "Could say what I spent on fun, within five dollars", "tags": [{ "id": "T24A", "s": 2 }] },
+      { "t": "Made a spreadsheet for a trip, a party or a hobby", "tags": [{ "id": "T24A", "s": 2 }] },
+      { "t": "Kept a running list for something that isn't work or school", "tags": [{ "id": "T24A", "s": 1 }] },
+      { "t": "Knew my money was fine because it felt fine", "tags": [{ "id": "T24B", "s": 2 }] },
+      { "t": "Found a bill I'd completely forgotten existed", "tags": [{ "id": "T24B", "s": 1 }] },
+      { "t": "Bought something bigger on gut feeling, zero comparing", "tags": [{ "id": "T24B", "s": 1 }] },
+      { "t": "None of these", "none": true }
+    ],
+    "heart": {
+      "prompt": "Thinking about this month, choose everything that is true for you.",
+      "options": [
+        "I could say what I spent on fun, to within five dollars.",
+        "I made a spreadsheet for a trip, a party or a hobby.",
+        "I kept a running list for something outside work or school.",
+        "I knew my money was fine because it felt fine.",
+        "I found a bill I had forgotten about.",
+        "I bought something larger on instinct, without comparing options.",
+        "None of these."
+      ]
+    },
+    "fp": { "trigger": "a month of small money habits", "setting": "real life, this month", "ask": "tick what is true", "who": "just you", "stakes": "tracking versus trusting the feeling" },
+    "mask": "looks like a money check-in; measures running life by numbers versus by feel (T24) from things actually done",
+    "ae": ["A"],
+    "privacy": "normal",
+    "sq": "SQ-T24-1",
+    "world": "everyday"
+  },
+  {
+    "id": "C7-111",
+    "type": "others",
+    "chapter": 7,
+    "prompt": "Snowed into a mountain lodge with nine strangers for four days. One of them tapes a full group schedule to the fridge. First thought?",
+    "options": [
+      { "t": "Finally, someone's in charge. Signing up for dishes.", "tags": [{ "id": "T24A", "s": 2 }, { "id": "T17A", "s": 1 }], "emotion": "relief" },
+      { "t": "Grab the pen. Add a slot for snowball fights.", "tags": [{ "id": "T24A", "s": 1 }], "emotion": "delight" },
+      { "t": "Cute. I'll follow it until lunch, then freelance.", "tags": [{ "id": "T24B", "s": 1 }] },
+      { "t": "Nobody schedules my snow days. Napping through \"board games.\"", "tags": [{ "id": "T24B", "s": 2 }, { "id": "T17B", "s": 1 }], "emotion": "irritation" }
+    ],
+    "heart": {
+      "prompt": "You are snowed into a mountain lodge with nine strangers for four days. One of them puts a full group schedule on the fridge. What is your first thought?",
+      "options": [
+        "Good, someone is organizing this. I will sign up for dishes.",
+        "I take the pen and add time for snowball fights.",
+        "I will follow it until lunch and then do my own thing.",
+        "Nobody plans my snow days for me. I will sleep through board games."
+      ]
+    },
+    "fp": { "trigger": "a stranger posts a strict group schedule", "setting": "snowed-in mountain lodge", "ask": "join the plan or keep the day open", "who": "nine strangers", "stakes": "structure versus a free snow day" },
+    "mask": "looks like cabin-fever comedy; measures a plan as calm versus a plan as a cage (T24, T17)",
+    "ae": ["A", "C", "E"],
+    "privacy": "normal",
+    "sq": "SQ-T24-2",
+    "world": "unusual"
+  },
+  {
+    "id": "C7-112",
+    "type": "scenario",
+    "chapter": 7,
+    "prompt": "You referee a soccer final between two kitten teams. The tiniest kitten keeps carrying the ball in its mouth. The crowd adores it. The other bench does not.",
+    "options": [
+      { "t": "Yellow card. Tiny rules are still rules.", "axes": { "L3": 2 }, "tags": [{ "id": "T25A", "s": 2 }], "emotion": "cringe" },
+      { "t": "Warn it once, gently. Next time, it's a card.", "axes": { "L3": 1 }, "tags": [{ "id": "T25A", "s": 1 }] },
+      { "t": "Let it play. Nobody bought tickets for the rulebook.", "axes": { "L3": -2 }, "tags": [{ "id": "T25B", "s": 2 }], "emotion": "delight" },
+      { "t": "Allow it, but only while its team is losing.", "axes": { "L3": -1 }, "tags": [{ "id": "T25B", "s": 1 }] }
+    ],
+    "heart": {
+      "prompt": "You are the referee for a soccer final between two teams of kittens. The smallest kitten keeps carrying the ball in its mouth. The crowd loves it, and the other team's bench does not.",
+      "options": [
+        "I give a yellow card. A small player still follows the rules.",
+        "I give one gentle warning. The next time, it is a card.",
+        "I let it play. People came for the game, not the rulebook.",
+        "I allow it, but only while its team is behind."
+      ]
+    },
+    "fp": { "trigger": "the smallest player keeps breaking a rule", "setting": "kitten soccer final", "ask": "call it or let it slide", "who": "a tiny kitten, a crowd, the other bench", "stakes": "a fair match versus the crowd's favorite" },
+    "mask": "looks like a cute absurdity; measures a rule as a rule versus bending it for the player (T25, L3)",
+    "ae": ["A", "C"],
+    "privacy": "normal",
+    "sq": "SQ-T25-1",
+    "world": "absurd"
+  },
+  {
+    "id": "C5-111",
+    "type": "scenario",
+    "chapter": 5,
+    "prompt": "Blizzard. You run the only warm barn in town. The fair's 60 chocolate chip muffins booked it weeks ago. Now 60 cold chickens are at the door.",
+    "options": [
+      { "t": "Muffins stay. They booked. Chickens get blankets and my apologies.", "axes": { "L3": 2 }, "tags": [{ "id": "T25A", "s": 2 }], "emotion": "guilt" },
+      { "t": "Call the muffin baker. Nothing moves without permission.", "axes": { "L3": 1 }, "tags": [{ "id": "T25A", "s": 1 }], "emotion": "worry" },
+      { "t": "Chickens in. Muffins out in the snow. Tell the fair later.", "axes": { "L3": -2 }, "tags": [{ "id": "T25B", "s": 2 }] },
+      { "t": "Squeeze the chickens between the muffin trays. Hope for the best.", "axes": { "L3": -1 }, "tags": [{ "id": "T25B", "s": 1 }], "emotion": "delight" }
+    ],
+    "heart": {
+      "prompt": "There is a blizzard, and you run the only warm barn in town. The fair booked it weeks ago for 60 chocolate chip muffins. Now 60 cold chickens are at the door.",
+      "options": [
+        "The muffins stay because they booked first. The chickens get blankets and my apology.",
+        "I call the baker and move nothing until they agree.",
+        "The chickens come in, the muffins go out, and I tell the fair later.",
+        "I fit the chickens in between the muffin trays and hope it works."
+      ]
+    },
+    "fp": { "trigger": "the booked space is needed by someone in need", "setting": "only warm barn in a blizzard", "ask": "honor the booking or the need", "who": "a fair's muffins and 60 chickens", "stakes": "a promise kept versus cold chickens" },
+    "mask": "looks like pure nonsense; measures first-come fairness versus the right call for the case (T25, L3). The booking is the rule, the chickens are the need",
+    "ae": ["A", "C"],
+    "privacy": "normal",
+    "sq": "SQ-T25-2",
+    "world": "absurd"
+  }
+]

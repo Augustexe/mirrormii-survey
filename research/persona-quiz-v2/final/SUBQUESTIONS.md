@@ -135,6 +135,22 @@ Pole A is the first tag named. The pair's `never` lines still bind every card (s
 | SQ-T25-1 | Plays by the rules / Bends rules for people | In a game, is a rule a rule? | You referee a match between two teams of kittens, and the tiniest kitten keeps accidentally cheating. | At a charity board game tournament, your partner quietly offers to peek at the answer cards. | The last time someone bent the rules in a game you were playing. (real) |
 | SQ-T25-2 | Plays by the rules / Bends rules for people | Does fair mean first come, first served, or the right call for each case? | In a blizzard you run the only warm barn: 60 chickens need in, but 60 chocolate chip muffins for tomorrow's fair booked the space first. | Checking tickets at a sold-out show, you face a crying fan holding a ticket for last night. | The last time you were in line and someone asked to go ahead of you. (real) |
 
+## Pole audit (round 3, 2026-09-29)
+
+Every target's pole A and pole B were checked against the entry's pole A and pole B behavior. Secondary targets live only in the JSON (the tables above show the primary pair, which was right everywhere), so these rows are unchanged; the fixes are in `subquestions.json`. The world-1 to world-4 cards already scored in the fixed direction.
+
+| id | secondary | was | now | why |
+|---|---|---|---|---|
+| SQ-T22-2 | pole text | A text was "same good day" | A text = "random days" (T22A) | fixed before round 3 |
+| SQ-R3-3 | T19 | swapped | A = T19B Family gets a vote | fixed before round 3 |
+| SQ-L1-1 | T22 | A = T22A | A = T22B Same order, every time | keeping the good life you have is the known order, not the new thing |
+| SQ-L1-3 | T13 | A = T13A | A = T13B Saves first, spends later | keeping the backup is saving first |
+| SQ-T13-1 | L1 | A = + Steady | A = - Venture | spending found money now is the venture side; saving is steady |
+| SQ-T19-1 | R3 | A = + Classic | A = - Own | deciding alone is writing your own script (matches SQ-R3-3) |
+| SQ-T22-1 | L1 | A = + Steady | A = - Venture | picking what nobody has tried is the venture side |
+
+Loose, not swapped (use only when the option's behavior itself implies it): T04 on SQ-R1-3 and SQ-T03-2, T08 on SQ-R2-2, R1 on SQ-T04-1 and SQ-T21-2, T12 on SQ-T15-2 (reads as "exact accounting" on the merit side; the equal-shares side is also 50/50, so avoid tagging T12 there).
+
 ## Risk notes worth reading before writing
 
 - **SQ-R2-2**: Founder's jellyfish seed maps weakly on its own. Frame it explicitly: many small stings you quietly live with (Soft) versus three fights, then done (Direct). Options must say that out loud.
