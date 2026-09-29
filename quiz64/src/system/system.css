@@ -1,0 +1,577 @@
+/*
+ * System primitives (docs/DESIGN-DIRECTION.md section 4): base type and color, buttons, glass, sheets, toasts,
+ * progress dots, Genii's light (A-07) and the reflection type (A-22). Everything reads tokens; no color, font or
+ * duration literals live outside tokens.css.
+ */
+
+/* ---------- Base ---------- */
+html {
+  background: var(--c-canvas);
+  color: var(--c-ink);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--c-canvas);
+  color: var(--c-ink);
+  font-family: var(--font-text);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-text);
+}
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-variation-settings: var(--font-display-upright);
+  font-optical-sizing: auto;
+}
+:where(button, a, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--c-focus);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--c-focus-inner);
+}
+:where(button, a, summary, [tabindex]):focus:not(:focus-visible) {
+  outline: none;
+}
+h1[tabindex="-1"]:focus,
+h2[tabindex="-1"]:focus {
+  outline: none;
+  box-shadow: none;
+}
+.sr-only,
+.mm-sr {
+  position: absolute !important;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Type helpers ---------- */
+.mm-kicker {
+  display: block;
+  margin: 0;
+  font: var(--type-kicker);
+  letter-spacing: var(--type-kicker-track);
+  text-transform: uppercase;
+  color: var(--c-violet-text);
+}
+.mm-genii-line {
+  font: var(--type-genii);
+  font-variation-settings: var(--font-display-italic);
+  letter-spacing: var(--type-genii-track);
+  color: var(--c-ink-2);
+}
+
+/* ---------- Buttons ---------- */
+.mm-btn {
+  --btn-h: 56px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  min-block-size: var(--btn-h);
+  padding: 0 var(--s-6);
+  border: 0;
+  border-radius: var(--r-pill);
+  font: 650 17px / 1 var(--font-text);
+  letter-spacing: 0.005em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform var(--d-instant) var(--e-out), box-shadow var(--d-quick) var(--e-out), background-color var(--d-quick) var(--e-out), opacity var(--d-quick) var(--e-out);
+}
+.mm-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+.mm-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+.mm-btn svg {
+  flex: none;
+}
+.mm-btn--primary {
+  color: var(--c-on-deep);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 55%), var(--c-violet-strong);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32), var(--e2);
+}
+.mm-btn--primary:hover:not(:disabled) {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), var(--e3);
+}
+.mm-btn--glass {
+  color: var(--c-ink);
+  background: var(--tile-fill);
+  box-shadow: var(--e1);
+}
+.mm-btn--glass:hover:not(:disabled) {
+  box-shadow: var(--e1), var(--e2);
+}
+.mm-btn--danger {
+  color: var(--c-on-deep);
+  background: var(--c-danger);
+}
+.mm-btn--outline {
+  color: var(--c-violet-text);
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--c-violet-300);
+}
+.mm-btn--block {
+  inline-size: 100%;
+}
+.mm-btn--small {
+  --btn-h: 44px;
+  padding: 0 var(--s-5);
+  font: 600 15px / 1 var(--font-text);
+}
+.mm-text-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-1);
+  min-block-size: 44px;
+  padding: 0 var(--s-1);
+  border: 0;
+  background: none;
+  font: var(--type-small);
+  font-weight: 600;
+  letter-spacing: var(--type-small-track);
+  color: var(--c-ink-3);
+  cursor: pointer;
+  border-radius: var(--r-chip);
+}
+.mm-text-btn:hover {
+  color: var(--c-violet-text);
+}
+.mm-icon-btn {
+  display: inline-grid;
+  place-items: center;
+  inline-size: 44px;
+  block-size: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  color: var(--c-ink-2);
+  background: transparent;
+  cursor: pointer;
+  transition: background-color var(--d-quick) var(--e-out);
+}
+.mm-icon-btn:hover {
+  background: var(--c-violet-100);
+}
+
+/* ---------- Glass ---------- */
+.mm-glass {
+  position: relative;
+  background: var(--glass-fill);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-inset), var(--e3);
+}
+.mm-glass::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: var(--glass-rim-width);
+  border-radius: inherit;
+  background: var(--glass-rim);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  pointer-events: none;
+}
+.mm-tile {
+  background: var(--tile-fill);
+  border: 1px solid var(--tile-border);
+  box-shadow: var(--e1);
+}
+
+/* ---------- Progress dots (setup and lobby) ---------- */
+.mm-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin: 0;
+  padding: 0;
+}
+.mm-dots i {
+  display: block;
+  inline-size: 8px;
+  block-size: 8px;
+  border-radius: 50%;
+  background: var(--c-violet-300);
+  opacity: 0.45;
+  transition: inline-size var(--d-base) var(--e-out), opacity var(--d-base) var(--e-out), background-color var(--d-base) var(--e-out);
+}
+.mm-dots i[data-state="done"] {
+  opacity: 1;
+  background: var(--c-violet);
+}
+.mm-dots i[data-state="current"] {
+  inline-size: 22px;
+  border-radius: var(--r-pill);
+  opacity: 1;
+  background: var(--c-violet-strong);
+}
+
+/* ---------- Toast (5.0 errors and notices) ---------- */
+.mm-toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  inline-size: min(100% - 2 * var(--gutter), 560px);
+  margin: var(--s-3) auto 0;
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-answer);
+  color: var(--c-ink);
+}
+.mm-toast__glyph {
+  flex: none;
+  display: grid;
+  place-items: center;
+  inline-size: 32px;
+  block-size: 32px;
+  border-radius: var(--r-tile-s);
+  color: var(--c-violet);
+  background: var(--c-violet-100);
+}
+.mm-toast__body {
+  flex: 1;
+  min-inline-size: 0;
+}
+.mm-toast__body p {
+  margin: var(--s-1) 0 0;
+  font: var(--type-small);
+  color: var(--c-ink);
+}
+.mm-toast__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1) var(--s-4);
+  margin-block-start: var(--s-1);
+}
+.mm-toast__actions .mm-text-btn {
+  min-block-size: 36px;
+  color: var(--c-violet-text);
+}
+@media (prefers-reduced-motion: no-preference) {
+  body:not([data-motion="off"]) .mm-toast {
+    animation: mm-rise var(--d-base) var(--e-out) both;
+  }
+}
+
+/* ---------- Sheets and dialogs (5.16) ---------- */
+.mm-sheet {
+  position: fixed;
+  inset: auto 0 0;
+  inline-size: 100%;
+  max-inline-size: 100%;
+  max-block-size: 86svh;
+  margin: 0;
+  padding: var(--s-2) var(--s-6) calc(var(--s-6) + var(--safe-bottom));
+  border: 0;
+  border-radius: var(--r-sheet) var(--r-sheet) 0 0;
+  color: var(--c-ink);
+  background: var(--c-surface-solid);
+  box-shadow: var(--e3);
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.mm-sheet::backdrop {
+  background: var(--scrim);
+  -webkit-backdrop-filter: var(--scrim-blur);
+  backdrop-filter: var(--scrim-blur);
+}
+.mm-sheet[open] {
+  display: block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  body:not([data-motion="off"]) .mm-sheet[open] {
+    animation: mm-sheet-up var(--d-base) var(--e-out) both;
+  }
+}
+.mm-sheet__handle {
+  display: block;
+  inline-size: 40px;
+  block-size: 5px;
+  margin: 0 auto var(--s-3);
+  border-radius: var(--r-pill);
+  background: var(--c-line);
+}
+.mm-sheet__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-3);
+  margin-block-end: var(--s-4);
+}
+.mm-sheet__top h2 {
+  margin: var(--s-1) 0 0;
+  font: var(--type-title);
+  letter-spacing: var(--type-title-track);
+  color: var(--c-ink);
+}
+.mm-sheet__top .mm-icon-btn {
+  margin: calc(-1 * var(--s-1)) calc(-1 * var(--s-3)) 0 0;
+}
+@media (min-width: 600px) {
+  .mm-sheet {
+    inset: 0;
+    inline-size: min(560px, calc(100% - 2 * var(--s-7)));
+    max-block-size: min(86svh, 760px);
+    margin: auto;
+    padding: var(--s-6) var(--s-7) var(--s-7);
+    border-radius: var(--r-sheet);
+  }
+  .mm-sheet__handle {
+    display: none;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    body:not([data-motion="off"]) .mm-sheet[open] {
+      animation-name: mm-pop;
+    }
+  }
+}
+
+@keyframes mm-rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes mm-sheet-up {
+  from { transform: translateY(24px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+@keyframes mm-pop {
+  from { transform: translateY(10px) scale(0.98); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+/* ---------- Genii's light (A-07) ---------- */
+.genii-light {
+  --gl-size: 24px;
+  --gl-breath: var(--d-loop-breath);
+  --gl-glow: 0.6;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-3);
+  vertical-align: middle;
+  color: var(--c-ink-2);
+}
+.genii-light[data-size="xs"] { --gl-size: 24px; gap: var(--s-2); }
+.genii-light[data-size="s"] { --gl-size: 32px; }
+.genii-light[data-size="m"] { --gl-size: 72px; }
+.genii-light[data-size="l"] { --gl-size: 160px; }
+.genii-light[data-size="xl"] { --gl-size: 280px; }
+.genii-light[data-placement="below"] {
+  flex-direction: column;
+  text-align: center;
+}
+.genii-light[data-mood="thinking"] { --gl-breath: calc(var(--d-loop-breath) / 2); --gl-glow: 0.8; }
+.genii-light[data-mood="hush"] { --gl-breath: calc(var(--d-loop-breath) * 1.5); --gl-glow: 0.3; }
+.genii-light[data-mood="idle"] { --gl-breath: calc(var(--d-loop-breath) * 1.5); --gl-glow: 0.45; }
+.genii-light[data-mood="sure"] { --gl-glow: 0.95; }
+
+.genii-light__orb {
+  position: relative;
+  flex: none;
+  inline-size: var(--gl-size);
+  block-size: var(--gl-size);
+}
+.genii-light__bloom,
+.genii-light__core,
+.genii-light__glint,
+.genii-light__wisp,
+.genii-light__sparkles {
+  position: absolute;
+  pointer-events: none;
+}
+.genii-light__bloom {
+  inset: -55%;
+  border-radius: 50%;
+  background:
+    radial-gradient(closest-side, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 38%),
+    radial-gradient(closest-side, var(--c-violet-300), rgba(179, 170, 240, 0) 100%);
+  opacity: var(--gl-glow);
+}
+.genii-light__core {
+  /* A soft-edged light, not a ball: white heart, lavender halo, violet falloff to nothing. */
+  inset: 14%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 47% 45%, var(--c-surface-solid) 0 16%, var(--n-ink-2) 30%, rgba(128, 113, 228, 0.55) 48%, rgba(128, 113, 228, 0) 70%);
+}
+.genii-light[data-size="xs"] .genii-light__core,
+.genii-light[data-size="s"] .genii-light__core {
+  inset: 18%;
+  background: radial-gradient(circle at 44% 40%, var(--c-surface-solid) 0 22%, var(--n-ink-2) 52%, var(--c-violet) 100%);
+  box-shadow: 0 0 calc(var(--gl-size) * 0.3) rgba(255, 255, 255, 0.85), 0 0 calc(var(--gl-size) * 0.5) rgba(128, 113, 228, 0.55);
+}
+.genii-light__glint {
+  inset: 42% 46% 46% 42%;
+  border-radius: 50%;
+  background: var(--c-surface-solid);
+  filter: blur(calc(var(--gl-size) * 0.03));
+  opacity: 0.9;
+}
+.genii-light__wisp {
+  inset: -18%;
+  inline-size: 136%;
+  block-size: 136%;
+  overflow: visible;
+  opacity: calc(0.35 + var(--gl-glow) * 0.6);
+}
+.genii-light__sparkles {
+  inset: -30%;
+  color: var(--c-violet-300);
+}
+.genii-light__sparkle {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: calc(var(--gl-size) * 0.11);
+  block-size: calc(var(--gl-size) * 0.11);
+  margin: calc(var(--gl-size) * -0.055);
+  transform: rotate(calc(360deg * var(--i) / var(--n))) translateX(calc(var(--gl-size) * 0.78)) rotate(calc(-360deg * var(--i) / var(--n)));
+  opacity: 0.85;
+}
+.genii-light__sparkle:nth-child(2n) {
+  color: var(--c-surface-solid);
+  inline-size: calc(var(--gl-size) * 0.07);
+  block-size: calc(var(--gl-size) * 0.07);
+}
+.genii-light__sparkle svg {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+}
+.genii-light[data-mood="hush"] .genii-light__sparkles,
+.genii-light[data-mood="idle"] .genii-light__sparkles {
+  opacity: 0.35;
+}
+.genii-light[data-mood="hush"] .genii-light__core {
+  filter: saturate(0.7) brightness(0.92);
+}
+
+.genii-light__line {
+  min-inline-size: 0;
+  font: var(--type-genii);
+  font-variation-settings: var(--font-display-italic);
+  letter-spacing: var(--type-genii-track);
+  color: var(--c-ink-2);
+  text-wrap: pretty;
+}
+.genii-light[data-placement="below"] .genii-light__line {
+  max-inline-size: 22em;
+  text-wrap: balance;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body:not([data-motion="off"]) .genii-light__bloom {
+    animation: genii-breath var(--gl-breath) var(--e-in-out) infinite alternate;
+  }
+  body:not([data-motion="off"]) .genii-light[data-mood="listening"] .genii-light__orb {
+    animation: genii-lean calc(var(--d-loop-breath) * 2) var(--e-in-out) infinite alternate;
+  }
+  body:not([data-motion="off"]) .genii-light__wisp {
+    animation: genii-wisp var(--d-loop-wisp) linear infinite;
+  }
+  body:not([data-motion="off"]) .genii-light[data-mood="thinking"] .genii-light__wisp {
+    animation-duration: calc(var(--d-loop-wisp) / 3);
+  }
+  body:not([data-motion="off"]) .genii-light__curl--b {
+    animation: genii-curl var(--d-loop-bob) var(--e-in-out) infinite alternate;
+  }
+  body:not([data-motion="off"]) .genii-light__sparkles {
+    animation: genii-orbit var(--d-loop-orbit) linear infinite;
+  }
+  body:not([data-motion="off"]) .genii-light.is-pulse .genii-light__core {
+    animation: genii-pulse var(--d-slow) var(--e-out);
+  }
+  body:not([data-motion="off"]) .genii-light.is-pulse .genii-light__bloom {
+    animation: genii-flare var(--d-scene) var(--e-out);
+  }
+  body:not([data-motion="off"]) .genii-light[data-mood="sure"] .genii-light__core {
+    animation: genii-sure var(--d-scene) var(--e-out);
+  }
+}
+/* Pause every loop while the page is hidden (GeniiLight sets html[data-hidden] on visibilitychange). */
+html[data-hidden="true"] .genii-light *,
+html[data-hidden="true"] .genii-light__orb {
+  animation-play-state: paused !important;
+}
+
+@keyframes genii-breath {
+  from { transform: scale(0.9); opacity: calc(var(--gl-glow) * 0.75); }
+  to { transform: scale(1.08); opacity: var(--gl-glow); }
+}
+@keyframes genii-lean {
+  from { transform: translate(-3%, 1%); }
+  to { transform: translate(4%, -2%); }
+}
+@keyframes genii-wisp {
+  to { transform: rotate(360deg); }
+}
+@keyframes genii-curl {
+  from { opacity: 0.55; }
+  to { opacity: 1; }
+}
+@keyframes genii-orbit {
+  to { transform: rotate(360deg); }
+}
+@keyframes genii-pulse {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+@keyframes genii-flare {
+  0% { opacity: var(--gl-glow); transform: scale(1); }
+  35% { opacity: 1; transform: scale(1.25); }
+  100% { opacity: var(--gl-glow); transform: scale(1); }
+}
+@keyframes genii-sure {
+  0% { transform: scale(0.9); filter: brightness(1); }
+  50% { transform: scale(1.1); filter: brightness(1.25); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+
+/* ---------- Reflection type (A-22) ---------- */
+.reflect {
+  position: relative;
+  display: inline-block;
+}
+.reflect__mirror {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 100%;
+  display: block;
+  margin-block-start: -0.14em;
+  transform: scaleY(-1);
+  opacity: 0.14;
+  pointer-events: none;
+  user-select: none;
+  /* Mask in local space: the flipped glyph bottoms sit at the visual top and fade out downward (about 20 px). */
+  -webkit-mask-image: linear-gradient(to top, black, transparent 45%);
+  mask-image: linear-gradient(to top, black, transparent 45%);
+}
+
+@media (forced-colors: active) {
+  .genii-light__core { background: CanvasText; box-shadow: none; }
+  .genii-light__bloom, .genii-light__wisp, .genii-light__sparkles, .reflect__mirror { display: none; }
+  .mm-btn--primary { border: 2px solid ButtonText; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .mm-sheet::backdrop { -webkit-backdrop-filter: none; backdrop-filter: none; }
+}

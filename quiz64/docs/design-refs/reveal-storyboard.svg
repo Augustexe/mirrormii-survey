@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 700" width="1320" height="700" font-family="Figtree, system-ui, sans-serif">
+  <title>Final reveal storyboard: shards, the mirror, the fog, two names, the facet, the flip</title>
+  <defs>
+    <linearGradient id="night" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#171625"/><stop offset="1" stop-color="#2A2744"/></linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#FFFFFF"/><stop offset=".35" stop-color="#C9C2F6" stop-opacity=".9"/><stop offset="1" stop-color="#8071E4" stop-opacity="0"/></radialGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity=".22"/><stop offset=".5" stop-color="#988DEA" stop-opacity=".18"/><stop offset="1" stop-color="#5B8BEB" stop-opacity=".22"/></linearGradient>
+    <linearGradient id="fog" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E9E6FB" stop-opacity=".85"/><stop offset="1" stop-color="#C9C2F6" stop-opacity=".7"/></linearGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5A4ED6"/><stop offset="1" stop-color="#4A63D3"/></linearGradient>
+    <path id="arch" d="M20 250 V95 A70 70 0 0 1 160 95 V250 Z"/>
+  </defs>
+  <rect width="1320" height="700" fill="#FFFFFF"/>
+  <text x="24" y="36" font-size="20" font-weight="700" fill="#1E1B2E">Final reveal, story screens 1, 2, 4, 6 (phone, 9:16 frames)</text>
+
+  <!-- frame 1: shards orbit -->
+  <g transform="translate(24,60)">
+    <rect width="200" height="356" rx="22" fill="url(#night)"/>
+    <circle cx="100" cy="170" r="54" fill="url(#glow)"/>
+    <g fill="#8FB8F2"><path d="M40 90l10 3-3 12-8-5z"/><path d="M150 120l10 3-3 12-8-5z"/></g>
+    <g fill="#F4B8A0"><path d="M60 250l10 3-3 12-8-5z"/><path d="M140 240l10 3-3 12-8-5z"/></g>
+    <g fill="#F2A7C3"><path d="M30 180l10 3-3 12-8-5z"/></g>
+    <g fill="#F2D48A"><path d="M165 200l10 3-3 12-8-5z"/></g>
+    <g fill="#96D8C4"><path d="M95 80l10 3-3 12-8-5z"/></g>
+    <g fill="#C9B3F0"><path d="M110 280l10 3-3 12-8-5z"/></g>
+    <text x="100" y="316" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="17" fill="#F3F1FF">40 answers in.</text>
+    <text x="100" y="336" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="17" fill="#F3F1FF">Here's you.</text>
+    <text x="0" y="386" font-size="13" font-weight="700" fill="#1E1B2E">1. Your shards orbit Genii</text>
+    <text x="0" y="404" font-size="12" fill="#4A4560">One shard per answer, tinted</text>
+    <text x="0" y="420" font-size="12" fill="#4A4560">by chapter. Hold or tap.</text>
+  </g>
+
+  <!-- frame 2: assemble + fog -->
+  <g transform="translate(244,60)">
+    <rect width="200" height="356" rx="22" fill="url(#night)"/>
+    <g transform="translate(10,20)">
+      <use href="#arch" fill="url(#glass)" stroke="#C9C4EE" stroke-width="2"/>
+      <use href="#arch" fill="url(#fog)"/>
+      <g stroke="#FFFFFF" stroke-opacity=".35" fill="none"><path d="M20 140 L90 120 L160 150 M60 60 L90 120 L120 250 M20 200 L90 120"/></g>
+    </g>
+    <circle cx="100" cy="150" r="30" fill="url(#glow)" opacity=".7"/>
+    <text x="0" y="386" font-size="13" font-weight="700" fill="#1E1B2E">2. They fuse into a mirror</text>
+    <text x="0" y="404" font-size="12" fill="#4A4560">1.6 s, fogged over. Genii's</text>
+    <text x="0" y="420" font-size="12" fill="#4A4560">light moves behind the glass.</text>
+  </g>
+
+  <!-- frame 3: names -->
+  <g transform="translate(464,60)">
+    <rect width="200" height="356" rx="22" fill="url(#night)"/>
+    <g transform="translate(10,20)">
+      <use href="#arch" fill="url(#glass)" stroke="#C9C4EE" stroke-width="2"/>
+      <line x1="20" y1="172" x2="160" y2="172" stroke="#C9C4EE" stroke-width="2"/>
+      <text x="90" y="96" text-anchor="middle" font-size="9" letter-spacing="1.2" fill="#C9C4EE">WITH YOUR PEOPLE</text>
+      <text x="90" y="124" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="21" fill="#FFFFFF">Golden</text>
+      <text x="90" y="148" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="21" fill="#FFFFFF">Retriever</text>
+      <text x="90" y="196" text-anchor="middle" font-size="9" letter-spacing="1.2" fill="#C9C4EE">WITH YOUR LIFE</text>
+      <text x="90" y="226" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="21" fill="#FFFFFF">The Planner</text>
+      <text x="90" y="244" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="21" fill="#FFFFFF" opacity=".16" transform="translate(0,490) scale(1,-1)">The Planner</text>
+    </g>
+    <text x="100" y="330" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-style="italic" font-size="14" fill="#C9C4EE">Two sides. Both you.</text>
+    <text x="0" y="386" font-size="13" font-weight="700" fill="#1E1B2E">3. The fog clears: your names</text>
+    <text x="0" y="404" font-size="12" fill="#4A4560">Upper pane: people. Lower pane:</text>
+    <text x="0" y="420" font-size="12" fill="#4A4560">life. Each name has its sigil.</text>
+  </g>
+
+  <!-- frame 4: facet -->
+  <g transform="translate(684,60)">
+    <rect width="200" height="356" rx="22" fill="url(#night)"/>
+    <g transform="translate(100,170)">
+      <line x1="-80" y1="0" x2="80" y2="0" stroke="#C9C4EE" stroke-opacity=".35" stroke-dasharray="3 3"/>
+      <g stroke="#C9C4EE" stroke-opacity=".25"><line x1="0" y1="0" x2="0" y2="-78"/><line x1="0" y1="0" x2="68" y2="-39"/><line x1="0" y1="0" x2="-68" y2="-39"/><line x1="0" y1="0" x2="0" y2="78"/><line x1="0" y1="0" x2="68" y2="39"/><line x1="0" y1="0" x2="-68" y2="39"/></g>
+      <path d="M0 -70 L52 -30 L30 17 L0 44 L-60 35 L-40 -23 Z" fill="url(#brand)" fill-opacity=".85" stroke="#FFFFFF" stroke-opacity=".7"/>
+      <path d="M0 -70 L0 44 M52 -30 L-60 35 M30 17 L-40 -23" stroke="#FFFFFF" stroke-opacity=".3"/>
+      <g font-size="9" font-weight="700" fill="#F3F1FF" text-anchor="middle"><text x="0" y="-84">WE</text><text x="80" y="-44">SOFT</text><text x="-80" y="-44">OWN</text><text x="0" y="92">STEADY</text><text x="80" y="52">PUSH</text><text x="-80" y="52">RULES</text></g>
+    </g>
+    <text x="100" y="316" text-anchor="middle" font-size="11" fill="#C9C4EE">People above the waterline,</text>
+    <text x="100" y="332" text-anchor="middle" font-size="11" fill="#C9C4EE">life below. No numbers.</text>
+    <text x="0" y="386" font-size="13" font-weight="700" fill="#1E1B2E">4. Your facet (story 4)</text>
+    <text x="0" y="404" font-size="12" fill="#4A4560">A gem cut by your six leans.</text>
+    <text x="0" y="420" font-size="12" fill="#4A4560">Unique per player, shareable.</text>
+  </g>
+
+  <!-- frame 5: insight flip -->
+  <g transform="translate(904,60)">
+    <rect width="200" height="356" rx="22" fill="url(#brand)"/>
+    <text x="100" y="120" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="16" fill="#FFFFFF">You think of yourself</text>
+    <text x="100" y="140" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="16" fill="#FFFFFF">as a traditional soul.</text>
+    <line x1="24" y1="170" x2="176" y2="170" stroke="#FFFFFF" stroke-opacity=".6"/>
+    <g transform="translate(0,380) scale(1,-1)" opacity=".35"><text x="100" y="178" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="16" fill="#FFFFFF">you quietly rewrite the script.</text></g>
+    <text x="100" y="230" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-style="italic" font-size="16" fill="#FFFFFF">When it's your own life,</text>
+    <text x="100" y="250" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-style="italic" font-size="16" fill="#FFFFFF">you quietly rewrite</text>
+    <text x="100" y="270" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-style="italic" font-size="16" fill="#FFFFFF">the script.</text>
+    <text x="0" y="386" font-size="13" font-weight="700" fill="#1E1B2E">5. The other side (story 6)</text>
+    <text x="0" y="404" font-size="12" fill="#4A4560">Second half rises as a reflection,</text>
+    <text x="0" y="420" font-size="12" fill="#4A4560">then flips upright (700 ms).</text>
+  </g>
+
+  <!-- timeline -->
+  <g transform="translate(24,520)" font-size="12" fill="#4A4560">
+    <text x="0" y="0" font-size="14" font-weight="700" fill="#1E1B2E">Timing, story 1 to 2 (tap anywhere completes instantly; reduced motion: crossfade 200 ms)</text>
+    <rect x="0" y="16" width="1260" height="10" rx="5" fill="#ECE9FC"/>
+    <rect x="0" y="16" width="160" height="10" rx="5" fill="#C9C2F6"/><text x="0" y="46">0 to 300 ms: title visible</text>
+    <rect x="160" y="16" width="420" height="10" rx="0" fill="#988DEA"/><text x="180" y="46">tap: shards rush in, 1.6 s, staggered by chapter</text>
+    <rect x="580" y="16" width="260" height="10" fill="#6A5AD6"/><text x="600" y="46">fog wipe, 0.9 s, from center out</text>
+    <rect x="840" y="16" width="200" height="10" fill="#5646C0"/><text x="860" y="46">names settle, 0.5 s spring</text>
+    <text x="0" y="84">Total from tap to names readable: 3.0 s. Names text sits in the DOM from frame 0 (screen readers read it at once).</text>
+    <text x="0" y="104">Hold on story 1 = shards spin faster around Genii (anticipation), release = assemble.</text>
+  </g>
+</svg>

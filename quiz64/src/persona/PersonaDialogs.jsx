@@ -1,104 +1,106 @@
-import React, { useRef } from "react";
-import { ArrowLeft, Check, Download, Info, Lock, Map, Moon, RotateCcw, Sun, Trash2, X } from "lucide-react";
-import { useDialogFocus } from "../components/useDialogFocus.js";
+import React from "react";
+import { ArrowLeft, ArrowRight, Check, Download, Info, Lock, Map, RotateCcw, Trash2 } from "lucide-react";
+import { ChapterGlyph } from "../art/index.js";
+import { Sheet } from "../system/index.js";
 import { CHAPTERS } from "./kit.js";
 import { LOBBY_COPY } from "./lobby.js";
 
-function Dialog({ open, onClose, id, eyebrow, title, className = "", children }) {
-  const ref = useRef(null);
-  useDialogFocus(ref, open);
-  const close = () => { if (ref.current?.open) ref.current.close(); onClose(); };
-  return (
-    <dialog ref={ref} className={`map-dialog ${className}`} aria-labelledby={id}
-      onCancel={(e) => { e.preventDefault(); close(); }}
-      onClick={(e) => { if (e.target === ref.current) close(); }}>
-      <div className="dialog-top">
-        <div><span className="eyebrow">{eyebrow}</span><h2 id={id}>{title}</h2></div>
-        <button type="button" className="icon-button" onClick={close} aria-label={`Close ${title.toLowerCase()}`}><X size={20} /></button>
-      </div>
-      {typeof children === "function" ? children(close) : children}
-    </dialog>
-  );
-}
-
 // Read-only: the run moves forward card by card, so the map shows progress, not shortcuts.
+// Package B replaces this with the constellation sheet (DESIGN-DIRECTION 5.8); until then it wears the sheet styles.
 export function PersonaChapterMap({ open, onClose, progress }) {
   return (
-    <Dialog open={open} onClose={onClose} id="pmap-title" eyebrow="Your run" title="Chapter map">
-      <p className="dialog-lede">{LOBBY_COPY.mapLede}</p>
-      <div className="chapter-list">
+    <Sheet open={open} onClose={onClose} id="pmap-title" kicker="Your run" title="Chapter map" className="mm-map">
+      <p className="mm-sheet__lede">{LOBBY_COPY.mapLede}</p>
+      <ol className="mm-map__list">
         {[...CHAPTERS, { id: 8, title: "Finale", intro: "Eight new cards. Genii guesses first." }].map((ch) => {
           const p = progress[ch.id] || { done: 0, total: 0, open: true };
           const closed = p.open === false;
           const locked = closed || (p.total === 0 && ch.id !== 1);
+          const done = p.total && p.done >= p.total;
           return (
-            <div key={ch.id} className={`chapter-row ${locked ? "chapter-row--locked" : ""}`}>
-              <span className="chapter-emblem">{locked ? <Lock size={16} /> : p.total && p.done >= p.total ? <Check size={18} /> : <Map size={15} />}</span>
-              <span className="chapter-copy"><strong>{ch.title}</strong><small>{ch.intro}</small></span>
-              <span className="chapter-count">{closed ? LOBBY_COPY.mapClosed : p.total ? `${p.done} of ${p.total}` : ch.id === 8 ? LOBBY_COPY.mapFinale : "Up next"}</span>
-            </div>
+            <li key={ch.id} className={`mm-map__row${locked ? " is-locked" : ""}${done ? " is-done" : ""}`}>
+              <span className="mm-map__glyph" aria-hidden="true"><ChapterGlyph chapter={ch.id === 8 ? "finale" : ch.id} size={28} /></span>
+              <span className="mm-map__copy"><strong>{ch.title}</strong><small>{ch.intro}</small></span>
+              <span className="mm-map__count">
+                {closed ? <><Lock size={13} aria-hidden="true" /> {LOBBY_COPY.mapClosed}</> : done ? <><Check size={14} aria-hidden="true" /> {`${p.done} of ${p.total}`}</> : p.total ? `${p.done} of ${p.total}` : ch.id === 8 ? LOBBY_COPY.mapFinale : "Up next"}
+              </span>
+            </li>
           );
         })}
-      </div>
-    </Dialog>
+      </ol>
+    </Sheet>
   );
 }
 
 export function PersonaHowDialog({ open, onClose }) {
   return (
-    <Dialog open={open} onClose={onClose} id="phow-title" eyebrow="Small print, in human language" title="How this works" className="how-dialog">
-      <div className="how-copy">
-        <p>Genii is a personality game for fun and self-discovery. It isn't a scientific test, a diagnosis or a label for life.</p>
-        <div className="how-grid">
-          <div><b>Only taps</b><span>Every answer is a tap. Genii adds up what the answers you picked point to, with fixed rules. No AI writes your result.</span></div>
-          <div><b>Not your life?</b><span>Skip, “Not my life” and “No recent example” never count for or against you. Neither do answers about money or time you simply don't have.</span></div>
-          <div><b>Eight locked guesses</b><span>Before the finale, Genii locks one guess per card. You see how many it called at the end.</span></div>
-          <div><b>Stays here</b><span>Your answers stay in this browser. No account, no tracking. The friend game sends only what a friend needs to play, in the link you choose to share.</span></div>
-        </div>
-        <p className="how-boundary">Some lines on your result are only for you, like the ones that sting a little. Your share card and friend links never include them unless you turn on the bestie bonus round.</p>
+    <Sheet open={open} onClose={onClose} id="phow-title" kicker="Small print, in human language" title="How this works" className="mm-how-sheet">
+      <p className="mm-sheet__lede">Genii is a personality game for fun and self-discovery. It isn't a scientific test, a diagnosis or a label for life.</p>
+      <div className="mm-how-grid">
+        <div><b>Only taps</b><span>Every answer is a tap. Genii adds up what the answers you picked point to, with fixed rules. No AI writes your result.</span></div>
+        <div><b>Not your life?</b><span>Skip, “Not my life” and “No recent example” never count for or against you. Neither do answers about money or time you simply don't have.</span></div>
+        <div><b>Eight locked guesses</b><span>Before the finale, Genii locks one guess per card. You see how many it called at the end.</span></div>
+        <div><b>Stays here</b><span>Your answers stay in this browser. No account, no tracking. The friend game sends only what a friend needs to play, in the link you choose to share.</span></div>
       </div>
-    </Dialog>
+      <p className="mm-sheet__fine">Some lines on your result are only for you, like the ones that sting a little. Your share card and friend links never include them unless you turn on the bestie bonus round.</p>
+    </Sheet>
   );
 }
 
-export function PersonaMoreDialog({ open, onClose, onMap, onHow, onHome, onDownload, onRestart, onDelete, motionOn, setMotionOn, hasRun }) {
-  const item = (close, fn, Icon, title, sub, extra = "") => (
-    <button type="button" className={extra} onClick={() => { close(); fn(); }}>
-      <Icon size={17} /><span><b>{title}</b><small>{sub}</small></span>
+function Item({ close, onClick, Icon, title, sub, danger = false }) {
+  return (
+    <button type="button" className={`mm-menu__item${danger ? " is-danger" : ""}`} onClick={() => { close(); onClick(); }}>
+      <span className="mm-menu__icon" aria-hidden="true"><Icon size={18} strokeWidth={1.75} /></span>
+      <span className="mm-menu__copy"><b>{title}</b><small>{sub}</small></span>
+      {danger ? null : <ArrowRight className="mm-menu__go" size={16} strokeWidth={1.75} aria-hidden="true" />}
     </button>
   );
+}
+
+/**
+ * The More sheet (DESIGN-DIRECTION 5.0): Chapter map, How this works, Save and leave, Motion, and Your data
+ * (download, play again, delete). Same actions and confirm dialogs as before.
+ */
+export function PersonaMoreDialog({ open, onClose, onMap, onHow, onHome, onDownload, onRestart, onDelete, motionOn, setMotionOn, hasRun }) {
   return (
-    <Dialog open={open} onClose={onClose} id="pmore-title" eyebrow="More options" title="More" className="more-dialog">
+    <Sheet open={open} onClose={onClose} id="pmore-title" title="Menu" className="mm-menu">
       {(close) => (
-        <div className="more-actions">
-          {hasRun && item(close, onMap, Map, "Chapter map", "See where you are in the run")}
-          {item(close, onHow, Info, "How it works", "What Genii does with your taps")}
-          {item(close, onHome, ArrowLeft, "Save and leave", "This browser keeps your place")}
-          {hasRun && item(close, onDownload, Download, "Download my data", "A file with your answers. Keep it private.")}
-          {hasRun && item(close, onRestart, RotateCcw, "Play again from the start", "Clears this run after one last check")}
-          {item(close, onDelete, Trash2, "Delete my data", "Removes everything Genii saved in this browser", "pr-danger")}
-          <button type="button" onClick={() => { setMotionOn(!motionOn); close(); }}>
-            <span className="more-icon">{motionOn ? <Sun size={17} /> : <Moon size={17} />}</span>
-            <span><b>{motionOn ? "Motion on" : "Motion off"}</b><small>{motionOn ? "Turn ambient movement off" : "Turn ambient movement on"}</small></span>
-          </button>
-        </div>
+        <>
+          <div className="mm-menu__group">
+            {hasRun && <Item close={close} onClick={onMap} Icon={Map} title="Chapter map" sub="See where you are in the run" />}
+            <Item close={close} onClick={onHow} Icon={Info} title="How this works" sub="What Genii does with your taps" />
+            <Item close={close} onClick={onHome} Icon={ArrowLeft} title="Save and leave" sub="This browser keeps your place" />
+          </div>
+          <div className="mm-menu__switch">
+            <span className="mm-menu__copy" id="pmore-motion"><b>Motion</b><small>{motionOn ? "Light, shards and fog move" : "Everything holds still"}</small></span>
+            <button type="button" role="switch" aria-checked={motionOn} aria-labelledby="pmore-motion" className="mm-switch" onClick={() => setMotionOn(!motionOn)}>
+              <span className="mm-switch__thumb" />
+            </button>
+          </div>
+          <div className="mm-menu__group">
+            <span className="mm-menu__heading">Your data</span>
+            {hasRun && <Item close={close} onClick={onDownload} Icon={Download} title="Download my data" sub="A file with your answers. Keep it private." />}
+            {hasRun && <Item close={close} onClick={onRestart} Icon={RotateCcw} title="Play again from the start" sub="Clears this run after one last check" />}
+            <Item close={close} onClick={onDelete} Icon={Trash2} title="Delete my data" sub="Removes everything Genii saved in this browser" danger />
+          </div>
+        </>
       )}
-    </Dialog>
+    </Sheet>
   );
 }
 
 export function ConfirmDialog({ open, onClose, onConfirm, title, body, confirmLabel, keepLabel = "Keep it", danger = false }) {
   return (
-    <Dialog open={open} onClose={onClose} id="pconfirm-title" eyebrow="Just checking" title={title} className="reset-dialog persona-confirm">
+    <Sheet open={open} onClose={onClose} id="pconfirm-title" kicker="Just checking" title={title} className="mm-confirm">
       {(close) => (
         <>
-          <p>{body}</p>
-          <div className="dialog-actions">
-            <button type="button" className="button button--quiet" onClick={close}>{keepLabel}</button>
-            <button type="button" className={`button button--primary ${danger ? "pr-danger-fill" : ""}`} onClick={() => { close(); onConfirm(); }}>{confirmLabel}</button>
+          <p className="mm-sheet__lede">{body}</p>
+          <div className="mm-confirm__actions">
+            <button type="button" className="mm-btn mm-btn--outline mm-btn--small" onClick={close}>{keepLabel}</button>
+            <button type="button" className={`mm-btn mm-btn--small ${danger ? "mm-btn--danger" : "mm-btn--primary"}`} onClick={() => { close(); onConfirm(); }}>{confirmLabel}</button>
           </div>
         </>
       )}
-    </Dialog>
+    </Sheet>
   );
 }

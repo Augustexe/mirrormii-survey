@@ -1,29 +1,16 @@
+import "./system/layers.css";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { MotionConfig } from "motion/react";
-import { AmbientWorld } from "./components/AmbientWorld.jsx";
+import { Backdrop } from "./art/index.js";
+import { setTheme, setThemeForVoice } from "./system/index.js";
 import * as Run from "./persona/session.js";
 import * as Friend from "./persona/friend.js";
 import { readHash, linkFor, LinkError } from "./persona/links.js";
 import { loadRun, restoreRun, loadFriendPlays, saveFriendPlay, deleteAllGeniiData, MOTION_KEY } from "./persona/store.js";
-import { resultView } from "./persona/views.js";
-import { PersonaHeader, PersonaLanding, SetupView, LobbyView, PersonaInterlude, interludeFor, PersonaQuizView, LockView } from "./persona/PersonaScreens.jsx";
-import { PersonaResult } from "./persona/PersonaResult.jsx";
-import { FriendGame } from "./persona/FriendGame.jsx";
-import { FriendResultsView } from "./persona/FriendResultsView.jsx";
-import { PersonaChapterMap, PersonaHowDialog, PersonaMoreDialog, ConfirmDialog } from "./persona/PersonaDialogs.jsx";
-import "./styles.css";
-import "./voice-polish.css";
-import "./launch.css";
-import "./result-visuals.css";
-import "./world.css";
-import "./jewels.css";
-import "./living-world.css";
-import "./question-surfaces.css";
-import "./result-details.css";
-import "./micro-details.css";
-import "./domain-surfaces.css";
-import "./result-final.css";
-import "./persona/persona.css";
+import { PersonaHeader, PersonaLanding, SetupView, LobbyView, PersonaInterlude, interludeFor, PersonaHowDialog, PersonaMoreDialog, ConfirmDialog, Toast } from "./persona/screens/index.js";
+import { PersonaQuizView, LockView, PersonaChapterMap, FriendGame, FriendResultsView } from "./persona/play/index.js";
+import { PersonaResult, resultView } from "./persona/reveal/index.js";
+
 
 const storage = () => { try { return window.localStorage; } catch { return null; } };
 const nowISO = () => new Date().toISOString();
@@ -63,12 +50,12 @@ class Boundary extends React.Component {
   render() {
     if (!this.state.failed) return this.props.children;
     return (
-      <main className="interlude-page persona-blocked">
-        <div className="interlude-copy">
-          <span className="chapter-kicker">Your answers are untouched</span>
-          <h1>Genii tripped over something.</h1>
-          <p>Reloading usually fixes it. Your saved answers stay in this browser.</p>
-          <div className="hero-actions"><button type="button" className="button button--primary" onClick={() => window.location.reload()}>Reload</button></div>
+      <main className="mm-screen mm-notice-page">
+        <div className="mm-panel mm-glass">
+          <span className="mm-kicker">Your answers are untouched</span>
+          <h1 className="mm-panel__title">Genii tripped over something.</h1>
+          <p className="mm-panel__note">Reloading usually fixes it. Your saved answers stay in this browser.</p>
+          <div className="mm-panel__foot"><button type="button" className="mm-btn mm-btn--primary" onClick={() => window.location.reload()}>Reload</button></div>
         </div>
       </main>
     );
@@ -101,6 +88,14 @@ function PersonaAppInner() {
   const lastRaw = useRef(initial.raw);
 
   useEffect(() => { document.body.dataset.motion = motionOn ? "on" : "off"; }, [motionOn]);
+  // The lobby voice sets the light for the whole run and the result (DESIGN-DIRECTION 3.4). The lobby screen
+  // previews and commits it itself; everywhere else the stored voice wins, and no run means Day.
+  const voice = run && run.lobby ? run.lobby.voice : null;
+  useEffect(() => {
+    if (screen === "lobby") return;
+    if (voice) setThemeForVoice(voice);
+    else setTheme("day");
+  }, [voice, screen]);
   const changeMotion = (on) => {
     setMotionOn(on);
     try { localStorage.setItem(MOTION_KEY, on ? "on" : "off"); } catch { /* preference only */ }
@@ -333,51 +328,67 @@ function PersonaAppInner() {
     return Run.chapterProgress(run);
   }, [run]);
 
-  const scene = { landing: "landing", interlude: "intro", card: "quiz", setup: "quiz", lobby: "quiz", lock: "gateway", result: "complete", friend: "quiz", friendResult: "complete" }[screen] || "landing";
   const hasRun = Boolean(run && run.setup);
+  // Backdrop scene (A-08): the voice's light on most screens, the chapter island on interludes, night for the lock.
+  const lightScene = voice === "heart" ? "dusk" : voice === "cards" ? "clear" : "day";
+  const islandScene = step && step.kind === "card" ? (step.phase === "extra" ? "island-8" : typeof step.chapter === "number" ? `island-${step.chapter}` : lightScene) : lightScene;
+  const backdrop = { interlude: islandScene, lock: "night" }[screen] || lightScene;
+  const animatedBackdrop = motionOn && ["landing", "interlude", "lock", "result"].includes(screen);
+  // Every answered card as a shard, in the order it was served (the interlude mirror and the header rail).
+  const shards = useMemo(() => {
+    if (!run || !run.lobby || !step || step.kind !== "card" || step.phase === "finale") return [];
+    return Run.routeFor(run).slice(0, step.resolved).map((c) => ({ chapter: typeof c.chapter === "number" ? c.chapter : "extras" }));
+  }, [run, step]);
+  // The shard rail belongs in the header center (5.0). Package B's card screen draws it today; PersonaHeader takes it
+  // through `rail`, and exposes #mm-header-center for a portal, so integration can move it without touching B.
+  const rail = null;
+  const clearBroken = () => { const s = storage(); if (s) s.removeItem(Run.STORAGE_KEY); lastRaw.current = null; setBroken(null); };
 
   return (
     <MotionConfig reducedMotion={motionOn ? "user" : "always"}>
-      <div className="app-shell persona-app" data-screen={screen}>
-        <AmbientWorld scene={scene} chapter={step && typeof step.chapter === "number" ? step.chapter : 2} pulseKey={`${screen}-${step && step.card ? step.card.id : ""}`} />
-        <PersonaHeader saved={run && screen !== "friend" ? Run.answeredCount(run) : 0} onHome={goHome} onMap={hasRun && screen !== "friend" ? () => setDialog("map") : null} onMore={() => setDialog("more")} motionOn={motionOn} setMotionOn={changeMotion} />
-        {!storageOK && <div className="storage-banner" role="status">Saving isn't available in this browser. Keep this tab open to finish.</div>}
-        {notice && (
-          <div className="storage-banner persona-broken" role="status">
-            <p>{notice}</p>
-            <button type="button" className="button button--quiet" onClick={() => setNotice("")}>OK</button>
-          </div>
-        )}
-        {broken && screen === "landing" && (
-          <div className="storage-banner persona-broken" role="alert">
-            <p>{broken.message} You can keep a copy of the old save, then start fresh.</p>
-            <button type="button" className="button button--secondary" onClick={() => download(broken.raw || "", "genii-old-save.json")}>Download the old save</button>
-            <button type="button" className="button button--quiet" onClick={() => { const s = storage(); if (s) s.removeItem(Run.STORAGE_KEY); lastRaw.current = null; setBroken(null); }}>Clear it</button>
-          </div>
-        )}
+      <div className="app-shell persona-app mm-app" data-screen={screen}>
+        <Backdrop scene={backdrop} animated={animatedBackdrop} />
+        <PersonaHeader
+          hidden={screen === "result" && view && !view.error}
+          onHome={goHome}
+          onMore={() => setDialog("more")}
+          onMap={hasRun && screen !== "friend" && screen !== "landing" ? () => setDialog("map") : null}
+          onSave={hasRun && !["landing", "friend", "friendResult", "linkError"].includes(screen) ? goHome : null}
+          rail={rail}
+        />
+        <div className="mm-toasts">
+          {!storageOK && <Toast>Saving isn't available in this browser. Keep this tab open to finish.</Toast>}
+          {notice && <Toast actions={[{ label: "OK", onClick: () => setNotice("") }]}>{notice}</Toast>}
+          {broken && screen === "landing" && (
+            <Toast tone="alert" actions={[{ label: "Keep a copy", onClick: () => download(broken.raw || "", "genii-old-save.json") }, { label: "Start fresh", onClick: clearBroken }]}>
+              This save is from an older version of the game. Keep a copy, then start fresh.
+            </Toast>
+          )}
+        </div>
 
-        {screen === "landing" && <PersonaLanding progress={!run || !run.setup ? null : step.kind === "result" ? "result" : "run"} onBegin={begin} onHow={() => setDialog("how")} />}
+        {screen === "landing" && <PersonaLanding progress={!run || !run.setup ? null : step.kind === "result" ? "result" : "run"} onBegin={begin} onHow={() => setDialog("how")} seed={run ? run.runId : undefined} />}
         {screen === "setup" && <SetupView busy={busy} onBack={goHome} onDone={startWithSetup} />}
         {screen === "lobby" && run && run.setup && !run.lobby && <LobbyView busy={busy} error={error} onBack={goHome} onDone={chooseLobby} />}
         {screen === "interlude" && step && step.kind === "card" && (
-          <PersonaInterlude chapter={interludeFor(step, Run.voiceFor(run))} count={step.phase === "chapter" ? step.size : 0} onContinue={() => setScreen("card")} onSave={goHome} />
+          <PersonaInterlude chapter={interludeFor(step, Run.voiceFor(run))} count={step.phase === "chapter" ? step.size : 0} onContinue={() => setScreen("card")} onSave={goHome}
+            filled={shards} seed={run.runId} voice={Run.voiceFor(run)} />
         )}
         {screen === "card" && step && step.kind === "card" && (
-          <PersonaQuizView step={step} setup={run.setup} onAnswer={answer} onMap={() => setDialog("map")} busy={busy} error={error} cardKey={`${step.card.id}-${cardKey}`} rushing={Run.recentlyRushed(run)} voice={Run.voiceFor(run)} />
+          <PersonaQuizView step={step} setup={run.setup} onAnswer={answer} onMap={() => setDialog("map")} busy={busy} error={error} cardKey={`${step.card.id}-${cardKey}`} rushing={Run.recentlyRushed(run)} voice={Run.voiceFor(run)} progress={progress} seed={run.runId} />
         )}
         {screen === "lock" && run && (step.kind === "lock" || (step.kind === "card" && step.phase === "finale")) && (
-          <LockView locked={Boolean(run.frozen)} lockHash={run.lockHash} onLock={lock} onStart={() => setScreen("card")} onSave={goHome} busy={busy} error={error} />
+          <LockView locked={Boolean(run.frozen)} lockHash={run.lockHash} onLock={lock} onStart={() => setScreen("card")} onSave={goHome} busy={busy} error={error} progress={progress} seed={run.runId} />
         )}
         {screen === "result" && view && !view.error && (
           <PersonaResult view={view} friends={friends} onFriendAction={friendAction} storageOK={storageOK}
             onRestart={() => setDialog("restart")} onDownload={downloadData} onDelete={() => setDialog("delete")} />
         )}
         {screen === "result" && view && view.error && (
-          <main className="interlude-page persona-blocked"><div className="interlude-copy">
-            <span className="chapter-kicker">Can't score this run</span>
-            <h1>{view.error}</h1>
-            <p>Genii only scores a finale against the guesses it locked. Start a fresh run to play again.</p>
-            <div className="hero-actions"><button type="button" className="button button--primary" onClick={() => setDialog("restart")}>Start a fresh run</button></div>
+          <main className="mm-screen mm-notice-page"><div className="mm-panel mm-glass">
+            <span className="mm-kicker">Can't score this run</span>
+            <h1 className="mm-panel__title">This run can't be scored.</h1>
+            <p className="mm-panel__note">Genii only scores a finale against the guesses it locked. Start a fresh run to play again.</p>
+            <div className="mm-panel__foot"><button type="button" className="mm-btn mm-btn--primary" onClick={() => setDialog("restart")}>Start a fresh run</button></div>
           </div></main>
         )}
         {screen === "friendResult" && friendView && (
@@ -387,11 +398,11 @@ function PersonaAppInner() {
           <FriendGame ch={friend.ch} play={friend.play} isOwnLink={friend.isOwnLink} onProgress={friendProgress} onYourTurn={yourTurn} onLeave={goHome} />
         )}
         {screen === "linkError" && (
-          <main className="interlude-page persona-blocked"><div className="interlude-copy">
-            <span className="chapter-kicker">That link didn't work</span>
-            <h1>{linkError}</h1>
-            <p>Ask for a fresh link, or start your own game.</p>
-            <div className="hero-actions"><button type="button" className="button button--primary" onClick={() => { setLinkError(null); goHome(); }}>Go to Genii</button></div>
+          <main className="mm-screen mm-notice-page"><div className="mm-panel mm-glass">
+            <span className="mm-kicker">That link didn't work</span>
+            <h1 className="mm-panel__title">{linkError}</h1>
+            <p className="mm-panel__note">Ask for a fresh link, or start your own game.</p>
+            <div className="mm-panel__foot"><button type="button" className="mm-btn mm-btn--primary" onClick={() => { setLinkError(null); goHome(); }}>Go to Genii</button></div>
           </div></main>
         )}
 

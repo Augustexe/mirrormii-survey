@@ -1,0 +1,328 @@
+/*
+ * MirrorMii survey design tokens (docs/DESIGN-DIRECTION.md section 4).
+ * The one place that defines colors, fonts, radii, shadows, durations and easings.
+ * Mirrored in tokens.js for canvas and motion code; tests/system-tokens.test.mjs keeps the two in step.
+ *
+ * Themes: html[data-theme="day" | "dusk" | "clear"] (the lobby voice sets it; day is the default).
+ * Night is scoped: any element with [data-scene="night"] gets the brand dark scale for its subtree.
+ */
+
+:root {
+  /* ---------- 4.1 Type ---------- */
+  --font-display: "Fraunces", "Fraunces fallback", Georgia, "Times New Roman", serif;
+  --font-text: "Figtree", "Figtree fallback", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --font-display-upright: "SOFT" 100, "WONK" 0;
+  --font-display-italic: "SOFT" 100, "WONK" 1;
+
+  /* Phone sizes are the default; desktop (1024 and up) and xs (under 360) below. */
+  --type-hero-size: 44px;      --type-hero-line: 46px;      --type-hero-weight: 600;      --type-hero-track: -0.025em;
+  --type-display-size: 36px;   --type-display-line: 40px;   --type-display-weight: 600;   --type-display-track: -0.02em;
+  --type-prompt-s-size: 30px;  --type-prompt-s-line: 34px;  --type-prompt-s-weight: 560;  --type-prompt-s-track: -0.015em;
+  --type-prompt-m-size: 26px;  --type-prompt-m-line: 30px;  --type-prompt-m-weight: 560;  --type-prompt-m-track: -0.01em;
+  --type-prompt-l-size: 22px;  --type-prompt-l-line: 27px;  --type-prompt-l-weight: 540;  --type-prompt-l-track: -0.005em;
+  --type-title-size: 22px;     --type-title-line: 28px;     --type-title-weight: 580;     --type-title-track: -0.01em;
+  --type-genii-size: 15px;     --type-genii-line: 20px;     --type-genii-weight: 420;     --type-genii-track: 0em;
+  --type-quote-size: 24px;     --type-quote-line: 31px;     --type-quote-weight: 460;     --type-quote-track: -0.01em;
+  --type-body-l-size: 18px;    --type-body-l-line: 27px;    --type-body-l-weight: 450;    --type-body-l-track: 0em;
+  --type-answer-size: 16px;    --type-answer-line: 21px;    --type-answer-weight: 500;    --type-answer-track: 0em;
+  --type-body-size: 16px;      --type-body-line: 24px;      --type-body-weight: 400;      --type-body-track: 0em;
+  --type-small-size: 14px;     --type-small-line: 20px;     --type-small-weight: 500;     --type-small-track: 0.005em;
+  --type-kicker-size: 12px;    --type-kicker-line: 16px;    --type-kicker-weight: 700;    --type-kicker-track: 0.12em;
+  --type-micro-size: 11px;     --type-micro-line: 14px;     --type-micro-weight: 600;     --type-micro-track: 0.04em;
+
+  /* Font shorthands (pair each with its --type-*-track as letter-spacing). */
+  --type-hero: var(--type-hero-weight) var(--type-hero-size) / var(--type-hero-line) var(--font-display);
+  --type-display: var(--type-display-weight) var(--type-display-size) / var(--type-display-line) var(--font-display);
+  --type-prompt-s: var(--type-prompt-s-weight) var(--type-prompt-s-size) / var(--type-prompt-s-line) var(--font-display);
+  --type-prompt-m: var(--type-prompt-m-weight) var(--type-prompt-m-size) / var(--type-prompt-m-line) var(--font-display);
+  --type-prompt-l: var(--type-prompt-l-weight) var(--type-prompt-l-size) / var(--type-prompt-l-line) var(--font-display);
+  --type-title: var(--type-title-weight) var(--type-title-size) / var(--type-title-line) var(--font-display);
+  --type-genii: italic var(--type-genii-weight) var(--type-genii-size) / var(--type-genii-line) var(--font-display);
+  --type-quote: italic var(--type-quote-weight) var(--type-quote-size) / var(--type-quote-line) var(--font-display);
+  --type-body-l: var(--type-body-l-weight) var(--type-body-l-size) / var(--type-body-l-line) var(--font-text);
+  --type-answer: var(--type-answer-weight) var(--type-answer-size) / var(--type-answer-line) var(--font-text);
+  --type-body: var(--type-body-weight) var(--type-body-size) / var(--type-body-line) var(--font-text);
+  --type-small: var(--type-small-weight) var(--type-small-size) / var(--type-small-line) var(--font-text);
+  --type-kicker: var(--type-kicker-weight) var(--type-kicker-size) / var(--type-kicker-line) var(--font-text);
+  --type-micro: var(--type-micro-weight) var(--type-micro-size) / var(--type-micro-line) var(--font-text);
+
+  /* Line lengths */
+  --measure-body: 34em;
+  --measure-prompt: 18em;
+  --measure-hero: 14em;
+
+  /* ---------- 4.2 Color: Day (default) ---------- */
+  --c-canvas: #F8F8FF;
+  --c-canvas-2: #EFEDFC;
+  --c-surface: rgba(255, 255, 255, 0.72);
+  --c-surface-solid: #FFFFFF;
+  --c-ink: #1E1B2E;
+  --c-ink-2: #4A4560;
+  --c-ink-3: #6E6987;
+  --c-line: #E2DEF7;
+  --c-violet: #8071E4;
+  --c-violet-300: #B3AAF0;
+  --c-violet-100: #E9E6FB;
+  --c-violet-text: #5646C0;
+  --c-violet-strong: #6A5AD6;
+  --g-brand: linear-gradient(135deg, #988DEA, #5B8BEB);
+  --g-deep: linear-gradient(135deg, #5A4ED6, #4A63D3);
+  --c-focus: #5646C0;
+  --c-focus-inner: #FFFFFF;
+  --c-danger: #B4235A;
+  --c-on-deep: #FFFFFF;
+
+  /* Backdrop glows (Day: sky and violet). Clear keeps Day colors at half strength. */
+  --glow-a: #988DEA;
+  --glow-b: #8FB8F2;
+  --glow-c: #C9B3F0;
+  --glow-strength: 1;
+
+  /* ---------- 4.2 Night (brand dark scale); used by [data-scene="night"] ---------- */
+  --n-900: #171625;
+  --n-800: #1F1D33;
+  --n-700: #2A2744;
+  --n-600: #38345A;
+  --n-ink: #F3F1FF;
+  --n-ink-2: #C9C4EE;
+  --n-ink-3: #9A94C0;
+  --n-violet: #A99CF5;
+  --n-glow: radial-gradient(closest-side, rgba(201, 194, 246, 0.55), rgba(128, 113, 228, 0));
+
+  /* ---------- 4.2 Chapter tints (never text colors) and deep icon colors; the same in every theme and in night ---------- */
+  --tint-ch1: #8FB8F2;  --tint-ch1-deep: #3D6FC4;  /* 1 Your phone: sky */
+  --tint-ch2: #F4B8A0;  --tint-ch2-deep: #B5603F;  /* 2 Friends: peach */
+  --tint-ch3: #F2A7C3;  --tint-ch3-deep: #B0426E;  /* 3 Love and your person: rose */
+  --tint-ch4: #F2D48A;  --tint-ch4-deep: #9A7419;  /* 4 Money and treats: butter */
+  --tint-ch5: #96D8C4;  --tint-ch5-deep: #2E8A6E;  /* 5 Work, school and ambition: mint */
+  --tint-ch6: #C9B3F0;  --tint-ch6-deep: #6A4BB8;  /* 6 Family and home: lilac */
+  --tint-ch7: #8EDBE6;  --tint-ch7-deep: #2A8595;  /* 7 Play, rules and you: aqua */
+  --tint-extras: #DCE3F2;  --tint-extras-deep: #5B6A8C;  /* Extras: pearl */
+  --tint-finale: #E6E4F5;  --tint-finale-deep: #5646C0;  /* Finale: frost with violet rim */
+  --tint-finale-rim: #8071E4;
+
+  /* Emotion beads (4.2): 12 emotions onto 6 tints */
+  --bead-butter: #F2D48A;  /* delight, pride */
+  --bead-peach: #F4B8A0;   /* warmth, relief */
+  --bead-sky: #8FB8F2;     /* longing, worry */
+  --bead-rose: #F2A7C3;    /* guilt, cringe */
+  --bead-lilac: #C9B3F0;   /* irritation, resentment, envy */
+  --bead-frost: #E6E4F5;   /* sting */
+
+  /* ---------- 4.3 Materials ---------- */
+  --glass-fill: var(--c-surface);
+  --glass-blur: blur(22px) saturate(150%);
+  --glass-border: rgba(255, 255, 255, 0.85);
+  --glass-inset: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  --glass-rim: linear-gradient(160deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 35%, rgba(152, 141, 234, 0.25) 100%);
+  --glass-rim-width: 1.5px;
+
+  --tile-fill: rgba(255, 255, 255, 0.88);
+  --tile-border: var(--c-line);
+
+  --glass-dark-fill: rgba(31, 29, 51, 0.55);
+  --glass-dark-blur: blur(24px);
+  --glass-dark-border: rgba(201, 196, 238, 0.18);
+  --glass-dark-rim: linear-gradient(160deg, rgba(201, 196, 238, 0.18), rgba(201, 196, 238, 0) 35%, rgba(169, 156, 245, 0.35) 100%);
+
+  --frost-overlay-opacity: 0.06;
+  --frost-blur: blur(0.3px);
+
+  --mirror-silver-1: #EEF0FA;
+  --mirror-silver-2: #C9CCE0;
+  --mirror-backing: linear-gradient(180deg, var(--mirror-silver-1), var(--mirror-silver-2));
+  --mirror-backing-opacity: 0.2;
+  --mirror-glass-opacity: 0.18;
+  --mirror-specular: linear-gradient(-20deg, rgba(255, 255, 255, 0) 35%, rgba(255, 255, 255, 0.7) 50%, rgba(255, 255, 255, 0) 65%);
+  --mirror-specular-width: 30%;
+
+  --grain-size: 160px;
+  --grain-opacity: 0.035;
+  --grain-blend: soft-light;
+
+  --glow-blur: blur(40px);
+
+  /* ---------- 4.4 Space ---------- */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-7: 32px;
+  --s-8: 40px;
+  --s-9: 56px;
+  --s-10: 72px;
+  --s-11: 96px;
+  --s-12: 128px;
+
+  --gutter: 16px;
+  --card-pad: 20px;
+  --answer-gap: 8px;
+  --section-gap: 24px;
+  --content-max: 1240px;
+  --sheet-max: 560px;
+  --header-h: 52px;
+
+  /* ---------- 4.4 Radii ---------- */
+  --r-chip: 8px;
+  --r-tile-s: 14px;
+  --r-answer: 18px;
+  --r-sheet: 28px;
+  --r-hero: 36px;
+  --r-pill: 999px;
+
+  /* ---------- 4.4 Elevation ---------- */
+  --e1: 0 1px 2px rgba(23, 22, 37, 0.06), 0 0 0 1px rgba(226, 222, 247, 0.9);
+  --e2: 0 10px 28px -10px rgba(86, 70, 192, 0.22);
+  --e3: 0 28px 64px -24px rgba(86, 70, 192, 0.32);
+  --glow-g1: 0 0 0 1px rgba(255, 255, 255, 0.6) inset, 0 0 44px rgba(152, 141, 234, 0.35);
+
+  /* ---------- 4.4 Safe areas and viewport ---------- */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-right: env(safe-area-inset-right, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --safe-left: env(safe-area-inset-left, 0px);
+  --scene-h: 100svh;
+
+  /* ---------- 4.6 Motion ---------- */
+  --motion-scale: 1;
+  --d-instant: 90ms;
+  --d-quick: 160ms;
+  --d-base: 240ms;
+  --d-slow: 420ms;
+  --d-scene: 700ms;
+  --d-reveal: 1600ms;
+  --d-reduced: 120ms;
+  --e-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --e-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --e-in: cubic-bezier(0.4, 0, 1, 1);
+  --sparkle-bursts: 1;
+
+  /* Decorative loops (always at least 6 s, except Genii's breath and the current-shard pulse) and fog timings */
+  --d-loop-breath: 4.8s;
+  --d-loop-pulse: 3s;
+  --d-loop-bob: 6s;
+  --d-loop-shimmer: 8s;
+  --d-loop-orbit: 18s;
+  --d-loop-wisp: 11s;
+  --d-step: 60ms;          /* entrance stagger step (max 4 steps) */
+  --d-decor-delay: 300ms;  /* decoration arrives after content */
+  --d-fog-refill: 2500ms;
+  --d-fog-peek: 1500ms;
+
+  /* Sheets and dialogs (5.16) */
+  --scrim: rgba(23, 22, 37, 0.36);
+  --scrim-blur: blur(6px);
+}
+
+/* Desktop type (1024 and up) */
+@media (min-width: 1024px) {
+  :root {
+    --type-hero-size: 80px;      --type-hero-line: 80px;
+    --type-display-size: 60px;   --type-display-line: 62px;
+    --type-prompt-s-size: 40px;  --type-prompt-s-line: 46px;
+    --type-prompt-m-size: 34px;  --type-prompt-m-line: 40px;
+    --type-prompt-l-size: 28px;  --type-prompt-l-line: 34px;
+    --type-title-size: 26px;     --type-title-line: 32px;
+    --type-genii-size: 17px;     --type-genii-line: 24px;
+    --type-quote-size: 30px;     --type-quote-line: 38px;
+    --type-body-l-size: 20px;    --type-body-l-line: 30px;
+    --type-answer-size: 17px;    --type-answer-line: 23px;
+    --type-kicker-size: 13px;
+    --card-pad: 32px;
+    --section-gap: 40px;
+    --header-h: 64px;
+  }
+}
+
+/* xs (under 360): prompt sizes one step down, gutter 12 */
+@media (max-width: 359.98px) {
+  :root {
+    --type-prompt-s-size: 26px;  --type-prompt-s-line: 30px;
+    --type-prompt-m-size: 22px;  --type-prompt-m-line: 27px;
+    --type-prompt-l-size: 20px;  --type-prompt-l-line: 25px;
+    --gutter: 12px;
+  }
+}
+
+/* ---------- 3.4 Themes ---------- */
+
+/* Day: the :root defaults. */
+html[data-theme="day"] {
+  --motion-scale: 1;
+}
+
+/* Dusk (Heart to heart): lavender to rose haze, softer, slower (durations x1.25), no bursts. */
+html[data-theme="dusk"] {
+  --c-canvas: #F7F2FB;
+  --c-canvas-2: #F6E9F1;
+  --g-deep: linear-gradient(135deg, #5A4ED6, #8A4FB8);
+  --glow-a: #F2C4D8;
+  --glow-b: #F8D5C6;
+  --glow-c: #C9B3F0;
+  --glow-strength: 1;
+  --motion-scale: 1.25;
+  --d-instant: 112.5ms;
+  --d-quick: 200ms;
+  --d-base: 300ms;
+  --d-slow: 525ms;
+  --d-scene: 875ms;
+  --d-reveal: 2000ms;
+  --sparkle-bursts: 0;
+}
+
+/* Clear (Just the cards): Day palette, quieter backdrop (glows at 50%), durations x0.85, no bursts. */
+html[data-theme="clear"] {
+  --glow-strength: 0.5;
+  --motion-scale: 0.85;
+  --d-instant: 76.5ms;
+  --d-quick: 136ms;
+  --d-base: 204ms;
+  --d-slow: 357ms;
+  --d-scene: 595ms;
+  --d-reveal: 1360ms;
+  --sparkle-bursts: 0;
+}
+
+/* ---------- Night (scoped) ---------- */
+[data-scene="night"] {
+  --c-canvas: #171625;
+  --c-canvas-2: #1F1D33;
+  --c-surface: rgba(31, 29, 51, 0.55);
+  --c-surface-solid: #2A2744;
+  --c-ink: #F3F1FF;
+  --c-ink-2: #C9C4EE;
+  --c-ink-3: #9A94C0;
+  --c-line: #38345A;
+  --c-violet-text: #A99CF5;
+  --c-focus: #A99CF5;
+  --c-focus-inner: #171625;
+  --glass-fill: var(--glass-dark-fill);
+  --glass-blur: var(--glass-dark-blur);
+  --glass-border: var(--glass-dark-border);
+  --glass-rim: var(--glass-dark-rim);
+  --tile-fill: rgba(42, 39, 68, 0.88);
+  --tile-border: #38345A;
+  --e3: 0 30px 80px -20px rgba(0, 0, 0, 0.55);
+  color-scheme: dark;
+}
+
+/* ---------- Reduced transparency: every glass goes solid, blur removed, rims kept ---------- */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --c-surface: #FFFFFF;
+    --glass-fill: #FFFFFF;
+    --glass-blur: none;
+    --tile-fill: #FFFFFF;
+    --glass-dark-fill: #2A2744;
+    --glass-dark-blur: none;
+    --glow-blur: none;
+  }
+  [data-scene="night"] {
+    --c-surface: #2A2744;
+    --glass-fill: #2A2744;
+    --glass-blur: none;
+    --tile-fill: #2A2744;
+  }
+}
