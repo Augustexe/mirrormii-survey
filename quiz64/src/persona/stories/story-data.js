@@ -43,7 +43,7 @@ export const UI_COPY = Object.freeze({
   dataTitle: "Your data",
   saving: "Making your image",
   saveFailed: "The image couldn't be made in this browser.",
-  tap: "Tap",
+  tap: "Next",
 });
 
 // The lobby's "How should Genii talk to you?" tap. Old runs carry no voice; they read as Make it fun.
@@ -74,7 +74,7 @@ export const STORY_COPY = Object.freeze({
     calls: {
       kicker: "Genii's calls",
       intro: "Before your last cards, Genii locked in a guess for each one.",
-      titles: { most: "Genii saw most of you coming.", half: "Genii read you more often than not.", some: "You kept Genii guessing.", none: "Genii held back on every guess this time." },
+      titles: { most: "Genii saw most of you coming.", half: "Genii read you more often than not.", even: "Half called. Half surprised Genii.", some: "You kept Genii guessing.", none: "Genii held back on every guess this time." },
       of: "called exactly",
       side: (pole) => `your ${pole} side`,
       more: "See the cards",
@@ -113,7 +113,7 @@ export const STORY_COPY = Object.freeze({
     calls: {
       kicker: "Genii's calls",
       intro: "Before your last cards, Genii quietly locked in a guess for each one.",
-      titles: { most: "Genii understood you well.", half: "Genii understood you more often than not.", some: "You surprised Genii, and that's good to know.", none: "Genii held back on every guess this time." },
+      titles: { most: "Genii understood you well.", half: "Genii understood you more often than not.", even: "Genii understood half of you. The other half surprised it.", some: "You surprised Genii, and that's good to know.", none: "Genii held back on every guess this time." },
       of: "called exactly",
       side: (pole) => `your ${pole} side`,
       more: "See the cards",
@@ -457,7 +457,7 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
     };
   }
   const ratio = guesses && guesses.called ? guesses.exact / guesses.called : 0;
-  const callsTitle = !guesses || !guesses.called ? C.calls.titles.none : ratio >= 0.75 ? C.calls.titles.most : ratio >= 0.5 ? C.calls.titles.half : C.calls.titles.some;
+  const callsTitle = !guesses || !guesses.called ? C.calls.titles.none : ratio >= 0.75 ? C.calls.titles.most : ratio > 0.5 ? C.calls.titles.half : ratio === 0.5 ? C.calls.titles.even : C.calls.titles.some;
 
   const slides = [
     { id: "intro", kicker: C.intro.kicker, title: C.intro.title, sub: C.intro.sub, mirror },

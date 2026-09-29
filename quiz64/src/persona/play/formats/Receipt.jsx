@@ -32,7 +32,7 @@ export function Receipt({ card, texts, picks, locked, onToggle, onDone, tally, k
       <div className="pc-receipt-shade">
       <div className="pc-receipt" ref={paperRef}>
         <p className="pc-receipt__head" aria-hidden="true">
-          <span>{voice === "heart" ? "What's true, lately" : "Receipts. Right now."}</span>
+          <span>{voice === "heart" ? "What's been true" : "Your receipts"}</span>
         </p>
         <div className="pc-receipt__items" role="group" aria-label="Tap every one that is true">
           {facts.map(row)}

@@ -85,7 +85,7 @@ export const LOBBY_COPY = Object.freeze({
     sub: "Then Genii makes its guesses.",
     badge: "Bonus card",
   }),
-  lockEyebrow: "Your cards are done",
+  lockEyebrow: "Every chapter done",
   mapLede: "Your rooms, then Genii locks its guesses and you play the final eight.",
   mapClosed: "Not in this run",
   mapFinale: "After your cards",

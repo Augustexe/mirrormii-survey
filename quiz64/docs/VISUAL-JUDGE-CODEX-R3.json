@@ -1,0 +1,225 @@
+{
+  "overall": 7,
+  "screens": [
+    {
+      "n": 1,
+      "name": "landing",
+      "score": 7,
+      "strengths": [
+        "The oversized serif headline gives the experience a distinctive editorial voice.",
+        "The fractured mirror makes the shard mechanic tangible before play begins."
+      ],
+      "problems": [
+        "The hero paragraph asks users to decode cards, guesses and archetypes at once. Shorten it to two sentences and move the archetype explanation into How this works.",
+        "The mirror occupies more space than its detail can reward on a phone. Reduce its height by 15% and bring Meet Genii and its supporting text upward."
+      ]
+    },
+    {
+      "n": 2,
+      "name": "lobby",
+      "score": 7,
+      "strengths": [
+        "The three voice choices are large, readable and easy to compare.",
+        "The orb colors introduce personality without breaking the glass world."
+      ],
+      "problems": [
+        "DAY, DUSK and CLEAR introduce a second naming system without explaining it. Remove these corner labels and let the voice names carry the choice.",
+        "Make it fun already appears selected, but the screen offers no explicit continuation. Add a Continue button below the options and reduce option padding to accommodate it."
+      ]
+    },
+    {
+      "n": 3,
+      "name": "chapter intro",
+      "score": 7,
+      "strengths": [
+        "The floating phone island establishes a recognizable chapter setting.",
+        "The miniature mirror connects chapter progress to the main visual mechanic."
+      ],
+      "problems": [
+        "The island consumes roughly the upper third before the chapter title appears. Reduce the illustration height by 20% and move Your phone upward.",
+        "0 of 40 shards promises completion through every answer while the screen also encourages skipping. Change the label to 0 shards collected and keep 6 cards next as the separate progress cue."
+      ]
+    },
+    {
+      "n": 4,
+      "name": "scenario card",
+      "score": 7,
+      "strengths": [
+        "The family-photo premise is specific, memorable and immediately playable.",
+        "Consistent answer containers make the primary interaction easy to recognize."
+      ],
+      "problems": [
+        "The full-size island below the card adds substantial decoration after the actionable content. Reduce it to a cropped chapter accent with no more than 80 pixels visible.",
+        "The header's miniature shards and chapter pills are too small to explain progress. Add a compact readable counter such as Card 2 of 40 beside the mirror and simplify the remaining marks."
+      ]
+    },
+    {
+      "n": 5,
+      "name": "reply card",
+      "score": 6,
+      "strengths": [
+        "The message thread gives this format an identity beyond another multiple-choice list.",
+        "The selected reply has a clear border and filled send icon."
+      ],
+      "problems": [
+        "The nested chat panel, message bubbles and four reply bubbles create excessive indentation and wrapping. Reduce the reply column's left inset and shorten the first two replies to two lines each.",
+        "The send icons imply submission, while the highlighted reply implies selection. Establish one interaction: make the whole reply submit on tap, remove the individual send buttons and show a brief selected state before advancing."
+      ]
+    },
+    {
+      "n": 6,
+      "name": "receipts card",
+      "score": 7,
+      "strengths": [
+        "The serrated paper, dotted rules and total turn a checklist into a convincing receipt.",
+        "Tear it off gives submission a playful action tied to the format."
+      ],
+      "problems": [
+        "The headline says lately while the receipt says RIGHT NOW, leaving the reference period unclear. Set both to a concrete period such as This past month.",
+        "Tear it off resembles a secondary outlined control despite being the main action. Give it the established violet primary-button treatment and enable it after a selection, including None of these."
+      ]
+    },
+    {
+      "n": 7,
+      "name": "rank card",
+      "score": 7,
+      "strengths": [
+        "Numbered rows and FIRST/LAST labels communicate the ordering task clearly.",
+        "This order is a concise, confident confirmation label."
+      ],
+      "problems": [
+        "Each handle combines arrows and dots without clarifying whether users drag or tap. Replace it with distinct up and down buttons and add Tap arrows to reorder above the list.",
+        "The fourth row is noticeably taller than the others because its copy wraps to three lines. Shorten it to Nothing public. I want my weekends back and use consistent row heights."
+      ]
+    },
+    {
+      "n": 8,
+      "name": "late-run card",
+      "score": 7,
+      "strengths": [
+        "The fitted-sheet detail makes the scenario funny and unusually specific.",
+        "The evolved Genii and increasingly colored mirror visibly reward progress."
+      ],
+      "problems": [
+        "The category wraps into two lines, pushing an already long question downward. Put FAMILY AND HOME on a smaller dedicated line and reduce the label-to-question gap.",
+        "Genii is pressed against the header and disconnected from its guidance line. Move the slime inward and align it beside a narrower two-line guide message."
+      ]
+    },
+    {
+      "n": 9,
+      "name": "lock",
+      "score": 7,
+      "strengths": [
+        "The deep violet transition gives the lock moment ceremony and consequence.",
+        "The numbered cards around the completed mirror visualize eight committed guesses."
+      ],
+      "problems": [
+        "YOUR CARDS ARE DONE conflicts with the explanation that eight cards remain. Replace it with CHAPTERS COMPLETE and title the step Eight cards left. Eight guesses locked.",
+        "The illustration dominates while the consequential lock explanation sits much lower. Reduce the mirror composition by 15% and move the lock notice directly above the primary button with a shorter sentence."
+      ]
+    },
+    {
+      "n": 10,
+      "name": "two archetypes",
+      "score": 8,
+      "strengths": [
+        "The split stained-glass mirror is the strongest visual expression of the two-archetype idea.",
+        "The large archetype names remain legible against a rich, atmospheric composition."
+      ],
+      "problems": [
+        "The broad empty area below Two sides. Both you weakens the reveal's pacing. Move that line closer to the mirror and raise the navigation cue.",
+        "The bottom-right Tap control has low contrast and does not say what happens next. Use Next with a brighter outline and a larger visible hit area."
+      ]
+    },
+    {
+      "n": 11,
+      "name": "your map",
+      "score": 6,
+      "strengths": [
+        "The six axes are grouped into the same two domains as the archetype reveal.",
+        "Glass knobs and gradient tracks preserve the visual language of the game."
+      ],
+      "problems": [
+        "Chosen poles are large while opposing poles are faint, making the scales difficult to compare. Give both endpoint labels equal size and contrast, then highlight the chosen label with color.",
+        "The controls look editable and the extreme knob positions suggest unexplained numerical precision. Use smaller fixed markers on thinner tracks and add Your answers lean toward beneath the title."
+      ]
+    },
+    {
+      "n": 12,
+      "name": "what Genii knows best",
+      "score": 6,
+      "strengths": [
+        "The large lead card establishes a clear strongest-insight hierarchy.",
+        "The crystal illustrations connect certainty to the shard-and-glass motif."
+      ],
+      "problems": [
+        "White text over the bright lavender background loses contrast, especially in the smaller labels. Darken the card fills substantially and reduce the background glow behind the content.",
+        "Repeated Crystal clear and Clear badges imply certainty without showing its basis. Replace them with Strong signal and Some signal, and add a short supporting observation beneath the lead insight."
+      ]
+    },
+    {
+      "n": 13,
+      "name": "room by room",
+      "score": 7,
+      "strengths": [
+        "The chapter islands become useful visual anchors for contextual interpretations.",
+        "Dark text on pale cards is considerably easier to read than the preceding reveal screen."
+      ],
+      "problems": [
+        "The one-to-three purple dots have no explained meaning and can resemble pagination. Replace them with short signal labels or remove them.",
+        "The first three descriptions wrap into dense three-line blocks. Trim each to two lines and reduce card padding slightly so all four rooms feel equally quick to scan."
+      ]
+    },
+    {
+      "n": 14,
+      "name": "Genii's calls",
+      "score": 5,
+      "strengths": [
+        "The single prominent result number makes prediction performance immediately visible.",
+        "Called and missed cards use distinct treatments that support a quick comparison."
+      ],
+      "problems": [
+        "4 of 8 contradicts Genii read you more often than not. Replace the sentence with Half called. Half surprised me.",
+        "The grid groups all successes on the left and failures on the right, while repeated dimension names obscure individual cards. Show the eight cards in play order and add a short scenario title to each tile."
+      ]
+    },
+    {
+      "n": 15,
+      "name": "share card",
+      "score": 7,
+      "strengths": [
+        "The exported card has a recognizable silhouette and readable archetype pairing.",
+        "Format, theme, image sharing and link copying are visibly available."
+      ],
+      "problems": [
+        "The oversized preview pushes sharing controls toward the bottom and competes with the friend-game button. Reduce preview height by 15% and make Share image the primary action on this screen.",
+        "Do you really know me appears on both the preview and a button without explaining the button's destination. Rename the button Challenge a friend and add They guess your answers beneath it."
+      ]
+    },
+    {
+      "n": 16,
+      "name": "get the app",
+      "score": 7,
+      "strengths": [
+        "You snap lunch / Miia lives it makes the app handoff concrete.",
+        "The phone illustration maintains continuity between the survey mirror and the app world."
+      ],
+      "problems": [
+        "The headline foregrounds Genii's limitation while the actual app benefit arrives in a long paragraph. Use Your real day becomes Miia's world and shorten the body to one sentence.",
+        "Get MirrorMii is visually strong but does not identify the destination. Add an App Store icon and label the button Get MirrorMii on the App Store; place the three secondary links in a compact footer."
+      ]
+    }
+  ],
+  "top_fixes": [
+    "Fix screen 14's incorrect performance sentence: at 4 of 8, display Half called. Half surprised me.; use more often than not only above half.",
+    "Clarify the lock transition: replace YOUR CARDS ARE DONE with CHAPTERS COMPLETE and explicitly say eight cards remain before the lock button.",
+    "Rebuild screen 11's label hierarchy with equally readable endpoints, a colored chosen label and smaller fixed markers on thinner tracks.",
+    "Darken screen 12's card backgrounds and reduce the glow behind them until all body text and signal labels have clear contrast.",
+    "Resolve screen 5's selection/submission ambiguity by making the whole reply tappable, removing the individual send controls and briefly highlighting the chosen reply before advancing.",
+    "Replace the tiny gameplay-header marks with a readable Card X of 40 counter, retaining the miniature mirror as the visual reward.",
+    "Reduce the landing mirror, chapter-intro island and share preview by 15–20% so the main action arrives earlier; crop gameplay islands to a small background accent.",
+    "Strengthen the app handoff with Your real day becomes Miia's world, a one-sentence explanation and an explicit App Store button."
+  ],
+  "hooks": "The set holds attention through specific writing, changing card formats and the accumulating mirror. The strongest screenshot moment is screen 10: two archetypes inside one split stained-glass mirror. Tighten the space beneath it and make Next unmistakable. The result sequence loses momentum when it shifts into six abstract sliders and repeated certainty badges; those screens need the same specificity as the questions.",
+  "brand_fit": "The violet palette, glass objects, floating islands and deep violet reveal form a coherent world. Genii's orb-to-slime progression fits the character and avoids genie imagery. The main gap is that Genii often feels like a decorative corner mascot while reusable guidance floats separately. Place the character consistently beside its lines, and reduce competing glows and translucent layers so the world feels deliberately composed. This is good, recognizable work, but uneven interaction clarity and result hierarchy keep round 3 at 7."
+}
