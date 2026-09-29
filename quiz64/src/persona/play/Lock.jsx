@@ -94,8 +94,10 @@ export function LockView({ locked, lockHash, onLock, onStart, onSave, busy, erro
             {Array.from({ length: PANES }, (_, i) => {
               const a = (-90 + i * (360 / PANES)) * (Math.PI / 180);
               return (
-                <span key={i} className="lock__pane" style={{ "--i": i, "--ox": `${Math.cos(a) * 150}px`, "--oy": `${Math.sin(a) * 128}px`, "--rx": `${(i - (PANES - 1) / 2) * 40}px` }}>
+                <span key={i} className="lock__pane" style={{ "--i": i, "--ox": `${Math.cos(a) * 150}px`, "--oy": `${Math.sin(a) * 128}px`, "--rx": `${(i - (PANES - 1) / 2) * 40}px`, "--pane-tint": `var(--tint-ch${(i % 7) + 1})` }}>
                   <LockPane state={locked ? "sealed" : "clear"} size={32} />
+                  {/* Each pane is one of Genii's eight guesses: numbered and tinted, so they read as eight, not a pattern. */}
+                  <span className="lock__pane-n">{i + 1}</span>
                 </span>
               );
             })}

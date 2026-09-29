@@ -6,8 +6,8 @@
  *   pick    the chosen thing bounces (mm-pick on --e-spring), fills deep violet, glows, and its check pops
  *   hold    the pick stays on screen (--d-hold) while its shard flies to the mirror; the others recede
  *   leave   the card lifts 8 px and fades (mm-leave, the last --d-quick of the hold)
- * Buttons: the primary CTA glows and breathes (6 s, slower than any content motion) with one sheen sweep on arrival
- * and on hover; secondary buttons are quiet glass with the same press. Tokens only; motion off or reduced motion keeps
+ * Buttons: the primary CTA glows and its glow breathes (6 s, slower than any content motion), brighter on hover and
+ * tighter on press; secondary buttons are quiet glass with the same press. Tokens only; motion off or reduced motion keeps
  * every end state and drops the travel.
  */
 
@@ -28,25 +28,28 @@
   --pick-ring: rgba(169, 156, 245, 0.55);
 }
 
-/* ---------- Primary CTA: glowing, breathing, one sheen ---------- */
+/* ---------- Primary CTA: glowing and breathing ---------- */
+/* No moving sheen: Chrome scores a sweep across a button (by transform, background-position or an animated gradient
+   stop) as a layout shift on every frame, and CLS stays 0. */
+/* The glow breathes on its own layer by opacity only (::before, an outer shadow around the button's own box), so the
+   button's painted bounds never change while it breathes: no layout shift, no paint of the page behind it. */
 .mm-btn--primary {
-  overflow: hidden;
   isolation: isolate;
   background: var(--cta-fill);
   box-shadow: var(--cta-inset), var(--cta-glow);
 }
-.mm-btn--primary::after {
+.mm-btn--primary::before {
   content: "";
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.34) 48%, rgba(255, 255, 255, 0.08) 56%, transparent 70%);
-  transform: translateX(-130%);
+  border-radius: inherit;
+  box-shadow: var(--cta-glow-hi);
+  opacity: 0;
   pointer-events: none;
+  transition: opacity var(--d-quick) var(--e-out);
 }
-.mm-btn--primary:hover:not(:disabled) {
-  box-shadow: var(--cta-inset), var(--cta-glow-hi);
-}
+.mm-btn--primary:hover:not(:disabled)::before { opacity: 1; }
 .mm-btn--primary:active:not(:disabled) {
   transform: scale(0.97);
   box-shadow: var(--cta-inset), var(--cta-glow-press);
@@ -72,31 +75,20 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  body:not([data-motion="off"]) .mm-btn--primary:not(:disabled) {
-    animation: mm-cta-breathe var(--d-loop-bob) var(--e-in-out) var(--d-scene) infinite alternate;
+  body:not([data-motion="off"]) .mm-btn--primary:not(:disabled)::before {
+    animation: mm-glow-breathe var(--d-loop-bob) var(--e-in-out) var(--d-scene) infinite alternate;
   }
-  body:not([data-motion="off"]) .mm-btn--primary:not(:disabled)::after {
-    animation: mm-sheen calc(var(--d-scene) * 1.4) var(--e-in-out) calc(var(--d-scene) + var(--d-slow)) 1 both;
-  }
-  body:not([data-motion="off"]) .mm-btn--primary:hover:not(:disabled)::after {
-    animation: mm-sheen var(--d-scene) var(--e-in-out) 1 both;
-  }
-  body:not([data-motion="off"]) .mm-btn--primary:active:not(:disabled),
-  body:not([data-motion="off"]) .mm-btn--primary:hover:not(:disabled) {
+  body:not([data-motion="off"]) .mm-btn--primary:hover:not(:disabled)::before,
+  body:not([data-motion="off"]) .mm-btn--primary:active:not(:disabled)::before {
     animation: none;
   }
 }
 
 /* ---------- Shared keyframes (every package may use them) ---------- */
-/* The CTA glow breathes between its rest and bright states (6 s, alternate). */
-@keyframes mm-cta-breathe {
-  from { box-shadow: var(--cta-inset), var(--cta-glow); }
-  to { box-shadow: var(--cta-inset), var(--cta-glow-hi); }
-}
-/* A light sheen crosses a surface once. */
-@keyframes mm-sheen {
-  from { transform: translateX(-130%); }
-  to { transform: translateX(130%); }
+/* A glow layer breathes (opacity only; 6 s, alternate). */
+@keyframes mm-glow-breathe {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 /* The pick: a haptic-like bounce (run it on --e-spring, which overshoots and settles). */
 @keyframes mm-pick {
@@ -134,5 +126,5 @@
   [data-scene="night"] { --secondary-fill: var(--n-700); }
 }
 @media (forced-colors: active) {
-  .mm-btn--primary::after { display: none; }
+  .mm-btn--primary { background: ButtonFace; }
 }

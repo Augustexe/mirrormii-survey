@@ -95,13 +95,24 @@
   .play[data-phase="finale"] .play-world__island { opacity: 0.45; filter: saturate(0.6); }
 
   .play-genii {
+    position: relative;
     display: flex;
     align-items: center;
     gap: var(--s-3);
-    min-block-size: 34px;
+    min-block-size: 40px;
     margin: 0 var(--s-1) 6px;
+    padding-inline-end: 64px;
   }
-  .play-genii .genii-light { flex: none; }
+  /* Genii's perch: 56 px at the row's end, resting on the card's top-right edge (above the card, clear of the vignette). */
+  .play-genii .genii-light.play-genii__perch {
+    --gl-size: 56px;
+    position: absolute;
+    z-index: 2;
+    inset-inline-end: 2px;
+    inset-block-start: -8px;
+    flex: none;
+    pointer-events: none;
+  }
   .play-genii__line {
     margin: 0;
     font: var(--type-genii);
@@ -117,7 +128,8 @@
   .play-genii.is-hush .genii-light { opacity: 0.55; }
   @media (max-height: 720px) {
     .play { padding-top: var(--s-1); }
-    .play-genii { min-block-size: 30px; margin-bottom: var(--s-1); }
+    .play-genii { min-block-size: 30px; margin-bottom: var(--s-1); padding-inline-end: 52px; }
+    .play-genii .genii-light.play-genii__perch { --gl-size: 44px; inset-block-start: -6px; }
     .pc { padding: var(--s-4); }
   }
 
@@ -258,21 +270,13 @@
   .pc-tile__shard { transition: opacity var(--d-quick) var(--e-out), transform var(--d-quick) var(--e-out); }
   .pc-tile__shard.is-flown,
   .pc-tile__lead.is-flown { opacity: 0; transform: translateY(-4px) scale(0.6); }
-  .pc-tile__fx { position: absolute; inset: 0; border-radius: inherit; overflow: hidden; pointer-events: none; }
-  .pc-tile__fx::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.4) 48%, rgba(255, 255, 255, 0.1) 56%, transparent 70%);
-    transform: translateX(-130%);
-  }
   .pc-tile:active:not(:disabled) { transform: scale(0.97); }
   @media (hover: hover) {
     .pc-tile:hover:not(:disabled):not(.is-selected) { border-color: var(--c-violet-300); box-shadow: var(--e2); transform: translateY(-1px); }
     .pc-tile:hover:not(:disabled) .pc-tile__lead { color: var(--c-violet); }
   }
   /* The pick (round 2): one unmistakable selected state on every format. Deep violet fill, white text, a glow, a ring
-     that ripples out, a sheen that crosses once, the check popping in, and a haptic-like bounce; the others recede. */
+     that ripples out, the check popping in, and a haptic-like bounce; the others recede. */
   .pc-tile.is-selected {
     z-index: 1;
     border-color: transparent;
@@ -289,7 +293,6 @@
     pointer-events: none;
     animation: mm-ripple var(--d-scene) var(--e-out) both;
   }
-  .pc-tile.is-selected .pc-tile__fx::after { animation: mm-sheen var(--d-scene) var(--e-in-out) var(--d-instant) both; }
   .pc-tile.is-selected .pc-tile__lead { color: var(--c-on-deep); }
   .pc-tile.is-selected .pc-tile__check { opacity: 1; transform: scale(1); animation: mm-check var(--d-slow) var(--e-spring) var(--d-instant) both; }
   .pc-tile:disabled { cursor: default; }
@@ -459,11 +462,9 @@
   .pc-save { margin: var(--s-1) 0 0; font: var(--type-micro); letter-spacing: var(--type-micro-track); color: var(--c-ink-3); }
   .pc-error { margin: var(--s-2) 0 0; font: var(--type-small); color: var(--c-danger); }
 
-  /* The glowing primary (motion.css recipe): deep fill, soft violet glow that breathes, one sheen on arrival. */
+  /* The glowing primary (motion.css recipe): deep fill and a soft violet glow that breathes. */
   .pc-primary {
     position: relative;
-    isolation: isolate;
-    overflow: hidden;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -480,19 +481,24 @@
     cursor: pointer;
     transition: transform var(--d-instant) var(--e-out), box-shadow var(--d-quick) var(--e-out), filter var(--d-quick) var(--e-out), opacity var(--d-quick) var(--e-out);
   }
-  .pc-primary::after {
+  .pc-primary:not(:disabled):not(.pc-primary--tear):not(.pc-primary--ghost) {
+    isolation: isolate;
+  }
+  /* The breathing glow: its own layer, opacity only (motion.css). */
+  .pc-primary:not(:disabled):not(.pc-primary--tear):not(.pc-primary--ghost)::before {
     content: "";
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: linear-gradient(105deg, transparent 30%, rgba(255, 255, 255, 0.34) 48%, rgba(255, 255, 255, 0.08) 56%, transparent 70%);
-    transform: translateX(-130%);
+    border-radius: inherit;
+    box-shadow: var(--cta-glow-hi);
+    opacity: 0;
     pointer-events: none;
+    animation: mm-glow-breathe var(--d-loop-bob) var(--e-in-out) var(--d-scene) infinite alternate;
   }
-  .pc-primary:not(:disabled):not(.pc-primary--tear):not(.pc-primary--ghost) { animation: mm-cta-breathe var(--d-loop-bob) var(--e-in-out) var(--d-scene) infinite alternate; }
-  .pc-primary:not(:disabled):not(.pc-primary--tear):not(.pc-primary--ghost)::after { animation: mm-sheen calc(var(--d-scene) * 1.4) var(--e-in-out) calc(var(--d-scene) + var(--d-slow)) 1 both; }
-  .pc-primary:hover:not(:disabled) { box-shadow: var(--cta-inset), var(--cta-glow-hi); animation: none; }
-  .pc-primary:active:not(:disabled) { transform: scale(0.97); box-shadow: var(--cta-inset), var(--cta-glow-press); animation: none; }
+  .pc-primary:hover:not(:disabled)::before { opacity: 1; animation: none; }
+  .pc-primary:active:not(:disabled) { transform: scale(0.97); box-shadow: var(--cta-inset), var(--cta-glow-press); }
+  .pc-primary:active:not(:disabled)::before { animation: none; }
   .pc.is-answered .pc-primary:disabled { opacity: 1; box-shadow: var(--cta-inset), var(--cta-glow-hi); }
   .pc-primary:disabled { opacity: 0.5; cursor: default; }
   .pc-primary--large { min-block-size: 56px; }
@@ -1211,7 +1217,31 @@
     animation: lock-bob calc(var(--d-scene) * 8) var(--e-in-out) infinite alternate;
     animation-delay: calc(var(--i) * var(--d-slow) * -1);
   }
-  .lock__pane svg { display: block; filter: drop-shadow(0 0 8px rgba(169, 156, 245, 0.45)); }
+  .lock__pane svg { display: block; filter: drop-shadow(0 0 8px color-mix(in srgb, var(--pane-tint, var(--n-violet)) 70%, transparent)); }
+  .lock__pane::before {
+    content: "";
+    position: absolute;
+    inset: 3px 3px 5px;
+    border-radius: 6px;
+    background: linear-gradient(160deg, color-mix(in srgb, var(--pane-tint, var(--n-violet)) 55%, transparent), transparent 70%);
+    pointer-events: none;
+  }
+  .lock__pane-n {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding-block-end: 2px;
+    font: var(--type-genii);
+    font-size: 15px;
+    font-weight: 600;
+    font-variation-settings: var(--font-display-italic);
+    color: var(--n-ink);
+    text-shadow: 0 0 6px var(--pane-tint, var(--n-violet));
+    transition: opacity var(--d-base) var(--e-out);
+  }
+  .lock[data-state="ritual"] .lock__pane-n,
+  .lock[data-state="locked"] .lock__pane-n { opacity: 0; }
   .lock[data-state="ritual"] .lock__pane svg { animation: lock-frost var(--d-base) var(--e-out) both; animation-delay: calc(var(--d-base) + var(--i) * var(--d-instant)); }
   .lock[data-state="ritual"] .lock__pane { translate: var(--rx) 124px; transition-delay: calc(var(--d-scene) * 1.7 + var(--i) * var(--d-instant) * 0.4); animation: none; }
   .lock[data-state="locked"] .lock__pane { translate: var(--rx) 124px; animation: none; }
@@ -1278,6 +1308,7 @@
     text-underline-offset: 4px;
     cursor: pointer;
   }
+  .lock__actions { margin-block-start: var(--s-2); }
   .lock__actions .pc-primary { inline-size: 100%; }
   .lock__boundary { margin: 0; font: var(--type-micro); letter-spacing: var(--type-micro-track); color: var(--n-ink-3); }
   @media (min-width: 1024px) {

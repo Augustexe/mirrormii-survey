@@ -23,7 +23,7 @@ const SHAPES = [
 // edge (a foreground out of focus), mid ones crisp, far ones small and hazy.
 const SHARDS = [
   [-5, 17, 54, -18, 3, 0, "a", 22],
-  [89, 9, 28, 22, 2, 1, "b", 24],
+  [93, 23, 28, 22, 2, 1, "b", 24],
   [92, 38, 60, -26, 3, 2, "c", 20],
   [-4, 57, 24, 12, 2, 3, "a", 26],
   [90, 74, 20, 30, 1, 0, "b", 30],

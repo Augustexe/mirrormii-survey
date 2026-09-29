@@ -147,7 +147,9 @@ export function PersonaQuizView({ step, setup, onAnswer, onMap, busy, error, car
         </aside>
         <section className="play-col">
           <div className={`play-genii${hush ? " is-hush" : ""}`}>
-            <GeniiLight mood={hush ? "hush" : "listening"} size="s" voice={voice} evolution={{ answered: step.resolved, total: step.total, phase: step.phase }} />
+            {/* Genii's perch (round 2): a 56 px Genii at the row's end, sitting on the card's top edge, so the player can watch
+                it evolve card by card without the row growing or the answers losing space. */}
+            <GeniiLight mood={hush ? "hush" : "listening"} size="m" voice={voice} className="play-genii__perch" evolution={{ answered: step.resolved, total: step.total, phase: step.phase }} />
             <p className="play-genii__line" aria-hidden="true" key={line || "none"}>{line || ""}</p>
           </div>
           <p className="pc-sr" aria-live="polite">{line || ""}</p>

@@ -139,7 +139,7 @@ export const elevation = Object.freeze({
 // hold: how long a picked answer stays on screen before the next card (round 2: the reply format's beat, on every format).
 export const durations = Object.freeze({ instant: 90, quick: 160, base: 240, slow: 420, scene: 700, reveal: 1600, hold: 820, reduced: 120 });
 // Decorative loop lengths and fog timings in ms (tokens.css --d-loop-*, --d-fog-*).
-export const loops = Object.freeze({ step: 60, decorDelay: 300, breath: 4800, pulse: 3000, bob: 6000, shimmer: 8000, orbit: 18000, wisp: 11000, fogRefill: 2500, fogPeek: 1500 });
+export const loops = Object.freeze({ step: 60, decorDelay: 300, breath: 4800, pulse: 3000, bob: 6000, shimmer: 8000, orbit: 18000, fogRefill: 2500, fogPeek: 1500 });
 export const easings = Object.freeze({
   out: [0.2, 0.8, 0.2, 1],
   inOut: [0.65, 0, 0.35, 1],
