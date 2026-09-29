@@ -37,10 +37,10 @@ content: ../../research/persona-quiz-v2/final/ (cards.json, library.json, friend
 
 # Persona quiz V2 web MVP
 
-One Genii product: the approved quiz64 shell (Genii stage, glass cards, chapter ribbon, ambient world, motion and
-accessibility patterns) now plays the maintained V2 persona kit end to end, including the friend game. `src/main.jsx`
-mounts `PersonaApp.jsx`. The older dossier app (`DossierApp.jsx`, `App.jsx`, V4 bank) stays in the tree for its
-regression tests but is no longer the entry point or in the production build.
+One Genii product: the Mirror, Mirror visual system (docs/DESIGN-DIRECTION.md) plays the maintained V2 persona kit end
+to end, including the friend game. `src/main.jsx` paints `Boot.jsx` (the landing from a small chunk) and lazy loads
+`PersonaApp.jsx`. The dossier app, its V4 bank, components, preview and tests were removed at integration (2026-09-29);
+they live in git history (before commit 2ac2fc6).
 
 ## Where things live
 
@@ -56,9 +56,12 @@ regression tests but is no longer the entry point or in the production build.
 | Result page and share projections | `src/persona/views.js` |
 | Storage (run key, friend-play key, delete-all) | `src/persona/store.js` |
 | Synchronous SHA-256 and canonical JSON for the lock | `src/persona/sha256.js` |
-| Screens | `src/PersonaApp.jsx`, `src/persona/PersonaScreens.jsx`, `PersonaCard.jsx`, `PersonaResult.jsx`, `FriendsPanel.jsx`, `FriendGame.jsx`, `FriendResultsView.jsx`, `PersonaDialogs.jsx`, `persona.css` |
-| Tests | `tests/persona-*.test.mjs` (logic, kit parity, friend links, UI render) |
-| Browser QA harness and evidence | `qa/persona-browser-qa.mjs`, `qa/evidence/report.json` |
+| First paint (landing before the game chunk loads; taps kept in `bootIntent`) | `src/Boot.jsx` |
+| Screens | `src/PersonaApp.jsx`; barrels `src/persona/screens/` (A), `src/persona/play/` (B), `src/persona/reveal/` and `src/persona/stories/` (C); `FriendsPanel.jsx`, `FriendGame.jsx`, `FriendResultsView.jsx`, `PersonaDialogs.jsx` |
+| Design system, art | `src/system/` (tokens, fonts, layers, GeniiLight, theme), `src/art/` (asset library) |
+| Legacy CSS (what the app still uses from 13 earlier stylesheets, tree-shaken) | `src/legacy.css`, lowest cascade layer |
+| Tests | `tests/*.test.mjs` (logic, kit parity, friend links, render, style guards, art); browser: `tests/visual/fold.mjs`, `tests/visual/play-evidence.mjs` |
+| Browser QA | `qa/play-through.mjs` (real UI, 40 + lock + 8 + 9 screens, mouse or `KEYS=1`), `qa/capture-screens.mjs` (screenshot matrix), `qa/qa-checks.mjs` (axe, fonts, copy, overflow, share PNGs, friend flow); report in `docs/QA-REPORT.md` |
 
 ## The player journey as built
 
@@ -207,7 +210,8 @@ the picker. `node --test tests.mjs` in the kit: 27 pass (unchanged).
   (coverage outranks flow); under 2% of neighbours in the tests. Rushers and skippers can also see a repeat, because
   retention outranks flow.
 - A chapter's title card count is its plan at the start; in 2.7% of chapters coverage ends it one or two cards early.
-- `qa/persona-browser-qa.mjs` still drives the pre-lobby flow and needs the lobby step before it runs again.
+- `qa/persona-browser-qa.mjs` still drives the pre-lobby flow and needs the lobby step before it runs again;
+  `qa/play-through.mjs` covers the current flow.
 
 ## Outside this MVP
 
@@ -218,4 +222,17 @@ the picker. `node --test tests.mjs` in the kit: 27 pass (unchanged).
 - Feedback page from the blind-test prompt (That's me / Kind of / Not me) and the research export beyond "Download my data".
 - Real-data checks from spec section 12 (R2 split, type spread, sting offense rate, legal check of names) and friend
   difficulty simulation.
-- The old dossier `preview.html` is dev-only now (`npm run dev`); it is not in the production build.
+- The old dossier `preview.html` was removed with the dossier build at integration.
+
+## Integration notes (2026-09-29)
+
+- Genii's line on a card (`geniiLineFor`, `src/persona/play/Quiz.jsx`): a reaction (reactions.js rules) or the voice's
+  host line rotated by the card's place in the run and the seed; never the same line on two cards in a row; the speed
+  nudge once per rushed streak.
+- Theme previews (`previewTheme`) paint at once, never through a View Transition: a running transition swallowed the
+  tap that started it, so a voice tile tapped on a phone was never chosen.
+- `Boot.jsx` must keep its literal storage keys in step with `session.js` and `store.js` (it cannot import them
+  without pulling in the kit). The landing it draws is replaced by PersonaApp's landing with `settled` (no replayed
+  entrance).
+- No `min-width` on html or body: at 200% zoom a 390 px phone lays out at 195 CSS px.
+- Retired Genii renders and badge PNGs stay on disk under `public/assets/` (D1); nothing in the build references them.

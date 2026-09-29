@@ -18,7 +18,7 @@ void require;
 // PRODUCT-TRUTH section 8 never-say list, plus the words the result must never show (LAUNCH-SPEC 13, DESIGN 7.5).
 const NEVER = [/\bdiagnos/i, /\btreat(ment|ed|ing)?\b/i, /\bcure\b/i, /\bprevent/i, /clinically proven/i, /anti-aging/i, /skin age/i, /before and after/i, /\bstreak/i, /\bpredicts?\b/i, /\bDNA\b/, /genomic/i, /free forever/i];
 const SYSTEM_WORDS = [/\bevidence\b/i, /\baxis\b/i, /\baxes\b/i, /\bsealed\b/i, /run id/i, /\bhash\b/i];
-const EM_DASH = /—/;
+const EM_DASH = /\u2014/;
 
 const report = { screens: [], axe: {}, fonts: new Set(), copy: [], overflow: [], share: [], friend: {}, perf: {}, errors: [] };
 

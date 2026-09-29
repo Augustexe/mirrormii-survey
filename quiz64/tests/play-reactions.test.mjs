@@ -15,7 +15,7 @@ test("reactions: 96 or more lines, 4 per emotion per voice, each at most 48 char
   assert.equal(R.REACTION_EMOTIONS.length, 12);
   for (const l of lines) {
     assert.ok(l.length <= 48, `too long: ${l}`);
-    assert.ok(!l.includes("—") && !l.includes("–"), `dash: ${l}`);
+    assert.ok(!l.includes("\u2014") && !l.includes("\u2013"), `dash: ${l}`);
   }
   for (const l of R.REACTIONS.delight.heart.concat(...R.REACTION_EMOTIONS.map((e) => R.REACTIONS[e].heart))) assert.ok(!l.includes("!"), `Heart to heart never shouts: ${l}`);
   assert.equal(new Set(lines).size, lines.length, "no duplicate lines");
