@@ -229,7 +229,32 @@ export function checkCards(cards, { lib, legacy = false } = {}) {
     }
   }
 
+  // Pattern variety (Jerry, 2026-09-28): no repeated hook shape. Clock times and day-or-time stamps in prompts,
+  // and the same two opening words, are capped across the bank and per chapter file.
+  checkVariety(cards, err);
+
   return { errors, warnings, counts: countCards(cards) };
+}
+
+const CLOCK = /\b\d{1,2}(:\d{2})?\s?(am|pm)\b|\b\d{1,2}:\d{2}\b|\bmidnight\b|\bnoon\b/i;
+const STAMP_OPEN = /^(monday|tuesday|wednesday|thursday|friday|saturday|sunday|tonight|this morning|\d{1,2}(:\d{2})?\s?(am|pm)?)\b/i;
+const opener = (p) => p.toLowerCase().replace(/[^a-z0-9' ]+/g, " ").trim().split(/\s+/).slice(0, 2).join(" ");
+
+export function checkVariety(cards, err) {
+  const list = cards.filter((c) => c && typeof c.prompt === "string" && c.type !== "feeling");
+  const n = list.length;
+  const bankCap = (share) => Math.max(2, Math.ceil(n * share));
+  const over = (items, cap, why) => items.slice(cap).forEach((c) => err(c.id, `${why} (${items.length} cards, max ${cap}: ${items.slice(0, cap).map((x) => x.id).join(", ")} already use it)`));
+  // Clock times or day/time stamps anywhere in the prompt: at most 5% of the bank, at most 1 per chapter file.
+  const timed = list.filter((c) => CLOCK.test(c.prompt) || STAMP_OPEN.test(c.prompt.trim()));
+  over(timed, bankCap(0.05), "clock time or day stamp in the prompt: vary the hook");
+  const byGroup = new Map();
+  for (const c of timed) { const g = c._group || "kit"; if (!byGroup.has(g)) byGroup.set(g, []); byGroup.get(g).push(c); }
+  if (!(byGroup.size === 1 && byGroup.has("kit"))) for (const [g, items] of byGroup) over(items, 1, `more than one timed hook in ${g}`);
+  // The same two opening words: at most 4% of the bank (Genii's bet stems count too, so bets vary their stem).
+  const byOpen = new Map();
+  for (const c of list) { const k = opener(c.prompt); if (!byOpen.has(k)) byOpen.set(k, []); byOpen.get(k).push(c); }
+  for (const [k, items] of byOpen) if (k && items.length > bankCap(0.04)) over(items, bankCap(0.04), `prompts opening "${k}" repeat`);
 }
 
 // Per group: total and per format family, next to the section 22 targets.
