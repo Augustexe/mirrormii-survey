@@ -139,7 +139,28 @@ test("deviceFor maps every fp.device in the bank to a family or an intentional c
   }
   if (unmapped.length) t.diagnostic(`absurd devices mapped by keyword, not yet in DEVICE_TABLE: ${[...new Set(unmapped)].join(", ")}`);
   for (const family of Object.values(DEVICE_TABLE)) assert.ok(family === "chapter" || DEVICE_FAMILIES.includes(family), family);
-  assert.equal(DEVICE_FAMILIES.length, 20);
+  assert.equal(DEVICE_FAMILIES.length, 23);
+});
+
+test("every device family has a glyph; removed cards' devices are gone; unknown devices still get a glyph or vignette", async () => {
+  const { DEVICE_GLYPHS } = await import("../src/art/shapes.js");
+  for (const family of DEVICE_FAMILIES) assert.ok(DEVICE_GLYPHS[family]?.l, `glyph for ${family}`);
+  for (const gone of ["unlockable-wish-phone", "flickering-lamp", "fairy-godparent", "shared-genie-wish", "wizard-apprentice", "wish-granting-duty", "wishing-well-door", "genie-fame-deal"]) {
+    assert.ok(!Object.prototype.hasOwnProperty.call(DEVICE_TABLE, gone), `${gone} was removed from the bank`);
+  }
+  // Every table entry is a device the bank still uses on an absurd card (no stale rows).
+  const absurd = new Set(bankCards().filter(({ card }) => card.world === "absurd").map(({ card }) => card.fp.device));
+  const stale = Object.keys(DEVICE_TABLE).filter((d) => !absurd.has(d));
+  assert.ok(stale.length <= 3, `stale DEVICE_TABLE rows: ${stale.join(", ")}`);
+  // Graceful fallback for a device a concurrent bank edit adds: every absurd card of every chapter resolves.
+  for (const { card } of bankCards()) {
+    const id = deviceFor({ ...card, fp: { ...card.fp, device: `new-${card.fp.device}-${card.id}` } });
+    if (card.world === "everyday") assert.equal(id, null);
+    else assert.ok(DEVICE_FAMILIES.includes(id) || isChapterDevice(id), `${card.id} -> ${id}`);
+  }
+  assert.equal(deviceFor({ id: "S-132", type: "sealed", world: "absurd", fp: { device: "achievement-mountain" } }), "mountain");
+  assert.equal(deviceFor({ id: "C3-80", chapter: 3, world: "absurd", fp: { device: "two-person-sweater" } }), "yarn");
+  assert.equal(deviceFor({ id: "C5-126", chapter: 5, world: "absurd", fp: { device: "snail-racer" } }), "shell");
 });
 
 test("no lamp and no genie: Genii is a slime, so no device family, glyph or keyword draws a lamp (round 2)", () => {
@@ -161,7 +182,7 @@ test("no lamp and no genie: Genii is a slime, so no device family, glyph or keyw
 test("deviceFor chapter fallbacks name the right chapter; keyword table matches section 6", () => {
   assert.equal(deviceFor({ id: "C4-1", chapter: 4, world: "unusual", fp: { device: "x" } }), "chapter-4");
   assert.equal(deviceFor({ id: "S-9", type: "sealed", world: "absurd", fp: { device: "reunion-name-tag" } }), "chapter-finale");
-  assert.equal(deviceFor({ id: "X-R3-31", world: "absurd", fp: { device: "holiday-curse" } }), "chapter-extras");
+  assert.equal(deviceFor({ id: "X-R3-31", world: "absurd", fp: { device: "unheard-oddity" } }), "chapter-extras");
   assert.equal(deviceFor({ id: "C4-123", chapter: 4, world: "absurd", fp: { device: "polite-tornado" } }), "weather");
   assert.equal(deviceFor(null), null);
   assert.equal(keywordFamily("a talking doorbell"), "bell");

@@ -30,110 +30,86 @@ export const DEVICE_FAMILIES = [
   "frame", // empty portrait frame with sparkle
   "machine", // gear with antenna
   "scroll", // rolled contract with a star seal
+  "mountain", // a peak with a summit flag: a hill that grows, a climb
+  "yarn", // ball of yarn and needles: knitting, a shared sweater
+  "shell", // a spiral shell with speed streaks: a snail race (never a face)
 ];
 
-// Every absurd-world device in research/persona-quiz-v2/final/bank (2026-09-29, bank revision included). "chapter" marks an
-// intentional fallback to the chapter vignette. tests/art-geometry.test.mjs fails when the bank gains an
-// absurd device that is not listed here, so every new one is mapped on purpose.
+// Every absurd-world device in research/persona-quiz-v2/final/bank (2026-09-29, round 2 card variety included; devices of
+// removed cards deleted). "chapter" marks an intentional fallback to the chapter vignette. A device the bank adds before
+// this table learns it falls back to DEVICE_KEYWORDS, then the chapter vignette, so a new card never breaks the card;
+// tests/art-geometry.test.mjs derives the device list from the bank and reports any device mapped by keyword only.
 export const DEVICE_TABLE = {
   // Chapter 1, Your phone
   "life-billboard": "frame",
   "friendship-houseplants": "chapter",
   "mystery-envelope-machine": "machine",
   "rogue-map-app": "machine",
-  "truth-autocorrect": "machine",
-  "unlockable-wish-phone": "gift",
+  "unlockable-phone": "machine", // a stall phone that never dies
   "ghost-poet": "house",
-  "talking-fridge": "machine",
   "ear-advisor": "envelope",
   "honest-mirror": "frame",
   // Chapter 2, Friends
-  "ten-year sleep": "time",
+  "hibernating-friend": "time", // a long winter sleep
   "friendship repair shop": "shop",
   "magic 8-ball": "fortune",
-  "rhyme curse": "scroll",
   "summoning bell": "bell",
   "magic door": "door",
   "haunted house": "house",
-  "bottled love": "bottle",
   sphinx: "riddle",
-  "text-first-ring": "treasure",
   "four-apologies": "scroll",
-  "mars-return": "chapter", // no space family; the Friends vignette carries it
   "grudge-stone": "chapter", // a carried stone has no family; the Friends vignette carries it
   // Chapter 3, Love and your person
-  "shared dreams": "dream",
   "memory-erase vending machine": "machine",
-  "message-reading glasses": "lens",
-  "award-for-anniversaries trade": "scroll",
   "talking doorbell": "bell",
-  "text from future self": "time",
-  "time skip": "time",
-  "flickering-lamp": "lens",
   "statue-unveiling": "frame",
+  "two-person-sweater": "yarn",
+  "early-shadow": "house", // the shadow waits at home
+  "relationship-progress-bar": "machine",
   // Chapter 4, Money and treats
   "polite-tornado": "weather",
   "mermaid-housemate": "water",
   "pirate-chest": "treasure",
   "talking-cat": "trace",
-  "leprechaun-gold": "treasure",
-  "fairy-godparent": "star",
   "pigeon-bill": "trace",
-  "genii-pays-forever": "gift",
   "time-traveler-concert": "time",
   "money-tree": "treasure",
+  "stranger-castle": "treasure", // an inheritance turned hotel
   // Chapter 5, Work, school and ambition
-  "genie-fame-deal": "scroll",
   "promoted-office-dog": "trace",
-  "barn-muffins-chickens": "trace",
   "never-wrong-fortune-cookie": "fortune",
-  "shared-genie-wish": "star",
-  "wizard-apprentice": "star",
   "eighth-day": "time",
   "weather-booking-desk": "weather",
+  "carrier-owl-offer": "envelope", // an offer letter
+  "snail-racer": "shell",
   // Chapter 6, Family and home
-  "lazy-river": "water",
-  "home-robot": "machine",
-  whale: "water",
-  "wish-granting-duty": "star",
   "golden-goose": "treasure",
   "magic-portrait": "frame",
-  "wishing-well-door": "door",
   "cat-year": "trace",
-  "squirrel-knighting": "trace",
   "life-board-game": "gift", // Genii's gift
-  "every-relative-wedding": "envelope", // an invitation
+  "moon-launch-guests": "envelope", // the guest list, an invitation
+  "lost-things-mailbox": "envelope",
+  "pocket-parent": "house", // moving out, coming home
   // Chapter 7, Play, rules and you
   "kitten-referee": "trace",
   "gnome-village": "chapter",
-  "time-loop": "time",
-  "life-scoreboard": "machine",
   "superhero-chat": "chapter",
   clone: "frame",
   "feeling-after-clone": "frame",
-  "secret-month": "time",
   "vacation-globe": "fortune",
   "vanishing-lists": "scroll",
   "fix-touch-power": "machine",
   // Extras
-  "group-teleport": "door",
-  "holiday-curse": "chapter",
-  "bottomless-fund": "treasure",
-  "snow-globes": "fortune",
   "mood-link": "weather",
-  "lighthouse-rulebook": "scroll",
-  "dragon-savings": "treasure",
   "genii-wall-frame": "frame",
   "self-building-house": "house",
+  "runaway-piggy-bank": "treasure", // a coin pot
   // Finale (sealed)
   "rain-cloud": "weather",
-  "stork-delivery": "trace",
-  "blind-life-swap": "door",
   "five-year-contract": "scroll",
-  "reunion-name-tag": "chapter",
   "freeze-remote": "machine",
-  "dragon-roommate": "treasure",
   "portal-hamster-passport": "door",
+  "achievement-mountain": "mountain",
 };
 
 // Keyword fallback for devices the table has not met yet (device string first, then the prompt), so a card the bank
@@ -141,14 +117,17 @@ export const DEVICE_TABLE = {
 export const DEVICE_KEYWORDS = [
   [/\b(?:door ?bell|bell)\b/, "bell"],
   [/\b(?:wish\w*|fairy|fairies|godparent|godmother|wizard\w*|witch\w*|spells?|spellbook|enchant\w*|shooting star|stars?|starlight|lamps?|lantern)\b/, "star"],
-  [/\b(?:envelope|letter|invitation|invite\w*|postcard|advisor|whisper\w*|secret\w*|note)\b/, "envelope"],
+  [/\b(?:envelope|letter|invitation|invite\w*|postcard|advisor|whisper\w*|secret\w*|note|mailbox|mail|owl)\b/, "envelope"],
   [/(?:8-ball|fortune|crystal ball|palm reader|snow ?globe)/, "fortune"],
+  [/\b(?:mountain|hill|peak|summit|climb\w*)\b/, "mountain"],
+  [/\b(?:knit\w*|sweater|yarn|scarf|tailor)\b/, "yarn"],
+  [/\b(?:snails?|shell)\b/, "shell"],
   [/\b(?:robot|machine|fridge|remote|app|autocorrect|scoreboard|gadget)\b/, "machine"],
   [/\b(?:sleep|nap|time|future|clock|hourglass|loop)\b/, "time"],
   [/\b(?:shop|store|market|awning)\b/, "shop"],
   [/\b(?:tornado|storm|rain|cloud|weather|lightning)\b/, "weather"],
   [/\b(?:mermaid|whale|wave|river|ocean|sea|lake)\b/, "water"],
-  [/\b(?:treasure|chest|gold|coins?|pirate|leprechaun|egg)\b/, "treasure"],
+  [/\b(?:treasure|chest|gold|coins?|pirate|leprechaun|egg|piggy|castle|savings)\b/, "treasure"],
   [/\b(?:cat|dog|kitten|puppy|paw|pigeon|bird|feather|stork|goose|chickens?|bone)\b/, "trace"],
   [/\b(?:haunt\w*|ghost\w*|mansion)\b/, "house"],
   [/\b(?:bottle\w*|potion|jar)\b/, "bottle"],

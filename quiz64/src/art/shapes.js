@@ -373,6 +373,24 @@ export const DEVICE_GLYPHS = {
     l: `${gear(12, 14.5, 5.6, 7.4, 8)} ${circle(12, 14.5, 2.2)} M12,7 V3`,
     f: circle(12, 2.6, 1.3),
   },
+  // Mountain: a peak with a snowcap and a summit flag (a hill that grows with every finish)
+  mountain: {
+    a: "M12,5.5 L14.9,10 L13.2,9.2 L12,10.6 L10.8,9.2 L9.1,10 Z",
+    l: "M2.5,20.5 L12,5.5 L21.5,20.5 Z M12,5.5 V1.5 L16,2.6 L12,3.7 M15.8,20.5 L18.4,16.4",
+    f: star(20, 6, 1.9),
+  },
+  // Yarn: a ball of yarn with two knitting needles stuck in and a loose end
+  yarn: {
+    a: circle(10.5, 14, 6.5),
+    l: `${circle(10.5, 14, 6.5)} M4.6,11.6 C7.5,12.8 11.5,16.5 13.3,20 M6,9.2 C9,10.2 14,14 16,17.6 M8.6,7.8 C11.6,8.4 15.8,11.4 17,14.6 M12.5,10.5 L19,3.5 M14.8,12.2 L21.5,5.6 M4.3,16.2 C2.6,17.6 2.6,20 4.3,21 C5.6,21.8 7.4,21.4 8.4,20.5`,
+    f: `${circle(19.3, 3.2, 1.1)} ${circle(21.8, 5.3, 1.1)}`,
+  },
+  // Shell: a spiral shell on a race line with speed streaks (a racer's shell, never a face)
+  shell: {
+    a: circle(13, 12.5, 6),
+    l: `${circle(13, 12.5, 6)} M13,12.5 a1,1 0 0 1 2,0 a2,2 0 0 1 -4,0 a3,3 0 0 1 6,0 a4,4 0 0 1 -8,0 M3,20.5 H22 M1.5,10 H5 M1,13.5 H4.5 M2,17 H5.5`,
+    f: star(21, 3.5, 1.9),
+  },
   // Scroll: a rolled contract with a star seal
   scroll: {
     a: "M7,4 H18 a2,2 0 0 1 0,4 H16.5 V18 a2.5,2.5 0 0 1 -2.5,2.5 H5.5 a2,2 0 0 1 0,-4 H7 Z",
