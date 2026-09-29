@@ -1,3 +1,5 @@
+> **Superseded by [docs/LAUNCH-SPEC.md](../../../docs/LAUNCH-SPEC.md) on 2026-09-28.** That file is the only spec. This page is history.
+
 # Result page and share card (persona quiz v2)
 
 How the result page reads, section by section, and where every line comes from. All data is in `result.json` (written by `node score.mjs profile answers.json`) plus `sealed-results.json` (written by `node score.mjs check`). Nothing on this page is written by hand or by a model: every line is a library line or the player's own answer.

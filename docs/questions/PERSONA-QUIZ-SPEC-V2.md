@@ -7,6 +7,7 @@ updated: 2026-09-27
 source_basis: research/persona-quiz-v2/BRIEF.md (governing spec, Jerry's rulings); research/sally-v2-2026-09-26/ (Sally's v2 system, 48 questions, friend and bestie versions, Chinese); research/persona-quiz-v2/LESSONS-FROM-TEST-1.md; research/persona-quiz-v2/final/ (cards.json, library.json, friend.json, score.mjs, sim.mjs, tests.mjs, SIM-REPORT.md, RESULT-TEMPLATE.md, VERIFY.md, PROMPT.md, README.md); research/persona-quiz-v2/library/ (types.json, tags.json, CRITIC-NOTES.md); research/persona-quiz-v2/judges/ (8 judge files); research/persona-quiz-v2/chapters/*.changes.md (build notes plus the "Fix pass" sections); the fix-pass judge reports (writing, evidence, flow, release), summarized in section 12. Counts were computed by a node script over final/ after the fix pass and the release judge's fixes on 2026-09-26; tests.mjs rerun the same day, 27 of 27 pass.
 supersedes: PERSONA-TAGS-V1.md for the persona layer (V1 mapped Sally's tags onto topic scores; V2 replaces topic scores with option-level evidence)
 ---
+> **Superseded by [docs/LAUNCH-SPEC.md](../LAUNCH-SPEC.md) on 2026-09-28.** That file is the only spec. This page is history.
 
 # Persona quiz spec V2
 

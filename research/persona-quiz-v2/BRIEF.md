@@ -1,3 +1,5 @@
+> **Superseded by [docs/LAUNCH-SPEC.md](../../docs/LAUNCH-SPEC.md) on 2026-09-28.** That file is the only spec. This page is history.
+
 # Persona quiz V2: build brief (read fully before any work)
 
 The single spec for this build. Written 2026-09-26 from Jerry's rulings and Sally's v2 system. If a detail is not here, choose what best serves the central purpose and say so in your notes.

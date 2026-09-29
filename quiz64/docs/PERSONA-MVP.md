@@ -1,3 +1,5 @@
+> Code notes for the web game. The spec is [docs/LAUNCH-SPEC.md](../../docs/LAUNCH-SPEC.md); where they differ, the spec wins.
+
 ---
 title: Persona quiz V2 web MVP, implementation contract
 status: local MVP, verified 2026-09-27; not deployed, not human-validated

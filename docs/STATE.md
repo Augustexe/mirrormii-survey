@@ -8,52 +8,9 @@ source_basis: questions/RUN-SPEC-LEDGER.md; questions/PERSONA-QUIZ-SPEC-V2.md; g
 
 # Genii survey state
 
-## The launch survey: the one build we are finishing
+## The launch survey
 
-There is one build: **persona quiz V2**. Everything else in this folder is history or reference. Do not start a parallel build or a new spec; improve this one.
-
-**Purpose.** People finish it, get a read of their personality that feels accurate, fun and a little spicy ("I didn't know that about me"), share it so friends answer about them, and want to download MirrorMii. It must not read like another generic personality test.
-
-| What | Where |
-|---|---|
-| Rulings (check before any work) | [questions/RUN-SPEC-LEDGER.md](questions/RUN-SPEC-LEDGER.md) |
-| Spec | [questions/PERSONA-QUIZ-SPEC-V2.md](questions/PERSONA-QUIZ-SPEC-V2.md) |
-| Open decisions | [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md), top section |
-| Content and scoring (the kit) | `research/persona-quiz-v2/final/`: `cards.json` (61 chapter cards in 7 chapters, 8 finale, 12 extras), `library.json` (6 axes, 16 half-names, 50 tags with sting, heart and calls), `friend.json`, `score.mjs`, `tests.mjs` (27 pass) |
-| Result template | `research/persona-quiz-v2/final/RESULT-TEMPLATE.md` (spec section 8) |
-| Structure source | Sally's v2 system, `research/sally-v2-2026-09-26/` (Chinese originals). A template for structure and humor, never a translation source |
-| Web game | `quiz64/src/PersonaApp.jsx` and `quiz64/src/persona/` in this checkout, branch `survey/launch` (see [CODE-MAP.md](CODE-MAP.md)). Not deployed |
-| Result page drafts | `research/result-page-wireframes/` (Gazette, Constellation, Stories). Preview config `result-wireframes`, port 8793 |
-
-### Status, 2026-09-28
-
-| Part | State |
-|---|---|
-| Onboarding lobby | **Built 2026-09-28.** Four taps after setup: ending style, how personal, which rooms (love, work, family can be closed), how Genii reacts. Copy in `quiz64/src/persona/lobby.js` (`LOBBY_COPY`); gentle and sharp reaction lines still TODO |
-| Picker and length | **Built 2026-09-28.** Every player answers exactly 40 cards (`RUN_SIZE` in `session.js`) plus the 8 sealed guesses. Covers all 6 sides on every room and depth combination (sim: 0% unfinished); lighter card after 3 rushed taps; same-side replacement after a skip. Cost: 8 tags never fired at 40 cards with every room open (they need 3+ cards); 48 cards would recover most |
-| Question cards | Built and judged three times. Vivid scenes; keep |
-| Evidence layer | Done. Every option carries axis values, tags and a did, would or believe grade |
-| Names and tags | **Rewrite.** They are literal translations of Sally's Chinese slang and read flat in English |
-| Result language | **Rewrite.** Library lines are generic, and draft lines read as gotcha or sitcom |
-| Result display | Direction: the Stories format (Jerry liked it, 2026-09-28). Designed after the language pass |
-| Friend game | Built in the web MVP. The link carries the owner's answer key (open) |
-| Validation | None on real people. Blind test 1 (older kit): 0 of 6. Blind test 2 never run |
-
-### Next, in order
-
-1. Remove old dossier code from `quiz64` (the web game still borrows some of its components and CSS) and update `qa/persona-browser-qa.mjs` for the lobby.
-2. English-native type names, tags and result lines, with Sally's as the template: 5 sample lines to Jerry first, then all of `library.json`.
-3. Voices: Make it fun (default), a sharper voice, Be kind for heavy cards; gentle and sharp Genii reactions.
-4. Result display in the Stories format (7 to 9 cards, type by card 3 or 4, told in the ending style from the lobby). Research: `research/result-page-wireframes/WRAPPED-RESEARCH.md`.
-5. Blind test 2 with Jerry and 3 to 5 real people. The player prompt is `research/persona-quiz-v2/final/PROMPT.md`; a staged copy sits in `/private/tmp/genii-blind-test-2` (temporary folder, may be gone).
-
-### Pending housekeeping (needs Jerry's OK for the git steps)
-
-- Put the web game on one branch in this checkout (`survey/launch` = this branch + the MVP branch) so it no longer lives only in a run folder.
-- Commit the 23 path-rewrite edits left over from the 2026-09-25 workspace rebuild.
-- Remove the stale worktree `/private/tmp/claude-501/survey-quiz-v2-wt` (same commit as this branch).
-- Remove `pilot/` and `research/blind-test-kit/` from git (superseded; Jerry asked on 2026-09-26 to clear out old bad evidence).
-- Nothing is pushed. Merging the web game to the Pages branch would replace the live dossier below.
+Everything about the launch survey (rules, numbers, status, rulings, plan, open decisions) is in **[LAUNCH-SPEC.md](LAUNCH-SPEC.md)**, the only spec. This page keeps only the live site and repository facts below.
 
 ## Live site (older build, still public)
 

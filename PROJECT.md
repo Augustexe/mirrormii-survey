@@ -6,7 +6,7 @@ Project ID: `mirrormii-genie-survey`. This page routes to the owning documents a
 
 The launch survey is persona quiz V2. Everything else is history.
 
-- [Live project state: the launch survey, status, next steps](docs/STATE.md)
+- [LAUNCH-SPEC.md: the only spec for the launch survey](docs/LAUNCH-SPEC.md)
 - [Run spec ledger: current vs outdated rulings](docs/questions/RUN-SPEC-LEDGER.md)
 
 - [Local wiki](docs/README.md)
@@ -34,6 +34,7 @@ For MirrorMii company, product, customer or marketing facts, use the governed La
 
 ## Changes
 
+- 2026-09-28: docs/LAUNCH-SPEC.md is the one build spec; BRIEF, PERSONA-QUIZ-SPEC-V2, RESULT-TEMPLATE and RUN-SPEC-LEDGER marked superseded; STATE and OPEN-QUESTIONS point to it.
 - 2026-09-28: Branch `survey/launch` created: the V2 kit plus the web game in one checkout.
 - 2026-09-28: Context cleanup. STATE.md now leads with the launch survey (persona quiz V2); AGENTS.md and docs/README.md point to it; history/BUILD-ITERATIONS.md lists every earlier build; RUN-SPEC-LEDGER.md records Jerry's 09-28 rulings (voice, Sally as template, spicy result, Stories display); OPEN-QUESTIONS.md gains the launch decisions; CODE-MAP.md gains the launch source map. research/result-page-wireframes added (three result page drafts).
 - 2026-09-27: persona quiz V2 web MVP built in quiz64 (PersonaApp): full run, lock, result, share card and friend loop; scorer split into research/persona-quiz-v2/final/score-core.mjs. Contract quiz64/docs/PERSONA-MVP.md, evidence quiz64/docs/PERSONA-MVP-VERIFICATION.md.

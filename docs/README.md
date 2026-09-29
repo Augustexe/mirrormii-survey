@@ -2,12 +2,7 @@
 
 ## Start here: the launch survey
 
-We are finishing one build, **persona quiz V2**. Read in this order:
-
-1. [STATE.md](STATE.md): what it is, where every file lives, status and next steps.
-2. [questions/RUN-SPEC-LEDGER.md](questions/RUN-SPEC-LEDGER.md): Jerry's current rulings. Check before any survey work.
-3. [questions/PERSONA-QUIZ-SPEC-V2.md](questions/PERSONA-QUIZ-SPEC-V2.md): the spec.
-4. [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md), top section: decisions waiting on Jerry.
+We are finishing one build. Its only spec is **[LAUNCH-SPEC.md](LAUNCH-SPEC.md)**: rules, rulings, numbers, status, plan and open decisions.
 
 Earlier builds are listed in [history/BUILD-ITERATIONS.md](history/BUILD-ITERATIONS.md). They do not govern the launch survey.
 

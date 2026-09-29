@@ -1,6 +1,6 @@
 ## Shared current context - required startup
 
-We are finishing one build, the launch survey (persona quiz V2). Before any survey work read `docs/STATE.md`, then `docs/questions/RUN-SPEC-LEDGER.md` (Jerry's current rulings), then `docs/questions/PERSONA-QUIZ-SPEC-V2.md`. Do not start a parallel build or a new spec; improve this one. Read `docs/CODE-MAP.md` before code or tests. Historical worktree docs do not override this maintained context.
+We are finishing one build, the launch survey (persona quiz V2). Before any survey work read `docs/LAUNCH-SPEC.md`: it is the only spec (rules, rulings, numbers, status, plan, open decisions). Update it in place; never start a parallel build or a second spec. Read `docs/CODE-MAP.md` before code or tests. Historical worktree docs do not override this maintained context.
 
 Older builds (history only, see `docs/history/BUILD-ITERATIONS.md`): For the V4 language candidate based on `533c3da`, read `quiz64/docs/ASTRA-IMPLEMENTATION.md` before changing wording, saved-state compatibility or result generation. `quiz64/src/respondent-copy.js` is the respondent wording layer; `data.js` retains the frozen authoring semantics. This candidate is local-only and awaits Council audit.
 
