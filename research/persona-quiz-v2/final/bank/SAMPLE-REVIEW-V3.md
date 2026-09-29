@@ -24,7 +24,7 @@ Read: surprise rose by 1.6 and fun by 1.0. Spice dipped slightly (4.20 to 3.93) 
 
 | Id | World | Format | Sub-question | Make it fun | Options | Panel |
 |---|---|---|---|---|---|---|
-| C1-100 | everyday | Genii's bet | Do you keep a quiet tally of your wins? | Genii bets you know your personal best at something, down to the exact number. | Guilty. 412 days. Please ask me how. <br>Guilty. Nobody knows the number but me. <br>Never. I break streaks on purpose. Freedom. <br>Never. I didn't know apps kept streaks. | 3.6 |
+| C1-100 | everyday | Genii's bet | Do you keep a quiet tally of your wins? | Genii bets you know your personal best at something, down to the exact number. | Guilty. 412. Please ask me how. <br>Guilty. Nobody knows the number but me. <br>Never. I stop counting on purpose. Freedom. <br>Never. I didn't know I had a personal best. | 3.6 |
 | C1-92 | everyday | Genii's bet | Do you keep count of who reaches out first? | Prove me wrong: there's a friend you won't text first until they text you. You're counting. | Guilty. It's 4 to 1. Their move. <br>Guilty. Held out a week, then caved with a meme. <br>Wrong. I text whoever I miss. No math involved. <br>Wrong. I forget to text everyone, equally. <br>I'm the one who never texts first. Someone's counting me. | 4.0 |
 | C1-110 | absurd | Scenario | Do you put your shoes on when someone says they need hands? | Genii curses your phone: it buzzes whenever anyone nearby needs a hand. Muting it floats an "unavailable" badge over your head. Everyone can see it. | Keep it on. Already jogging before the buzz ends. <br>Answer every buzz. Keep a list of who owes me. <br>Keep it on. Wait ten seconds. Someone closer might go. <br>Mute it. Wear the badge. My evenings are spoken for. | 4.2 |
 
@@ -116,7 +116,7 @@ Read: surprise rose by 1.6 and fun by 1.0. Spice dipped slightly (4.20 to 3.93) 
 - **C6-91 "I give it two years" toast.** Roasts a couple on their day, which is why it is spicy; the card asks for your first thought, not a verdict on the couple.
 - **S-90 time freeze line skip.** Cutting the line is framed as fun, no lecture; that is what makes the fair-order answer cost something.
 - **C5-111 chickens left outside.** "Chickens get blankets and my apologies" keeps it from reading as cruelty to animals.
-- **C1-100 app streak bet.** Close to the "never ask the player to open an app" ban; it asks what you already know, not to check.
+- **C1-100 personal-best bet.** Rewritten by Claude to drop the banned word "streak"; it asks what you already know, never to check an app.
 - **C3-81 shower argument.** The shower is only the place; no body content.
 
 **Cut or not picked, partly for the line**
