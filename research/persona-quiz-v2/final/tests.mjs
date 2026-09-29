@@ -322,8 +322,20 @@ test("weights by card type and rushed answers at 0.3", () => {
   assert.equal(p.axes[ax].score, Math.round((0.55 * 2 + 0.24 * 2 + 0.45 * 2 + 0.35 * 2) * 1000) / 1000);
 });
 
-test("circumstance, Not my life, No recent example and Skip never count", () => {
+// The shipped kit plus fixture cards with a circumstance option (appended to chapter 1) when the bank has fewer than
+// two: the round-1 revision (2026-09-29) cut every circumstance option, but the scorer still supports them.
+function circumstanceKit() {
   const circ = chapterCards.filter((c) => c.options.some((o) => o.circumstance)).slice(0, 2);
+  if (circ.length >= 2) return { K: { buildProfile, runCards }, circ };
+  const k = JSON.parse(JSON.stringify(kit));
+  const fx = [1, 2].map((n) => ({ id: `FX-CIRC-${n}`, type: "scenario", grade: "would", weight: 0.55, chapter: 1, privacy: "normal", prompt: `Circumstance fixture card ${n}`, exits: ["skip", "not_my_life"],
+    options: [{ t: "a", tags: [{ id: "T13A", s: 2 }] }, { t: "b", tags: [{ id: "T13B", s: 2 }] }, { t: "No real choice here", circumstance: true }] }));
+  k.chapters[0].cards.push(...fx);
+  return { K: createScorer({ kit: k, lib, friend: FRIEND }), circ: fx };
+}
+
+test("circumstance, Not my life, No recent example and Skip never count", () => {
+  const { K, circ } = circumstanceKit();
   assert.equal(circ.length, 2, "fixture: two cards with a circumstance option");
   const reals = chapterCards.filter((c) => c.type === "real");
   const others = chapterCards.filter((c) => c.type === "scenario" && !circ.includes(c));
@@ -335,7 +347,7 @@ test("circumstance, Not my life, No recent example and Skip never count", () => 
   const nml = others.find((c) => c.id !== pc.id), skp = others.find((c) => c.id !== pc.id && c !== nml);
   const ans = { ...ADULT, [nml.id]: "not_my_life", [skp.id]: "skip", [reals[0].id]: "no_recent", [pc.id]: picks };
   for (const c of circ) ans[c.id] = c.options.findIndex((o) => o.circumstance);
-  const p = buildProfile(ans);
+  const p = K.buildProfile(ans);
   assert.deepEqual(p.research.circumstance.map((x) => x.card).sort(), circ.map((c) => c.id).sort());
   assert.deepEqual(p.research.notMyLife, [nml.id]);
   assert.deepEqual(p.research.noRecent, [reals[0].id]);
@@ -508,14 +520,15 @@ test("tag ranking: share = net / the most the answered cards could give; exits, 
     else assert.ok(a.share > b.share || (a.share === b.share && a.net >= b.net), "other tags by share, then net");
   }
   // A circumstance pick leaves the card out of the denominator; an exit does too.
-  const card = runCards(ADULT.setup).find((c) => c.options.some((o) => o.circumstance) && c.options.some((o) => (o.tags || []).length));
+  const { K, circ } = circumstanceKit();
+  const card = circ.find((c) => c.options.some((o) => (o.tags || []).length));
   const ci = card.options.findIndex((o) => o.circumstance);
   const tagId = card.options.find((o) => (o.tags || []).length).tags[0].id;
-  const other = runCards(ADULT.setup).find((c) => c.id !== card.id && c.options.some((o) => (o.tags || []).some((x) => x.id === tagId)));
+  const other = K.runCards(ADULT.setup).find((c) => c.id !== card.id && SINGLE(c) && c.options.some((o) => (o.tags || []).some((x) => x.id === tagId)));
   const oi = other.options.findIndex((o) => (o.tags || []).some((x) => x.id === tagId));
-  const withCirc = buildProfile({ ...ADULT, [card.id]: ci, [other.id]: ans1(other, oi) });
-  const withExit = buildProfile({ ...ADULT, [card.id]: "skip", [other.id]: ans1(other, oi) });
-  const withAnswer = buildProfile({ ...ADULT, [card.id]: ci === 0 ? 1 : 0, [other.id]: ans1(other, oi) });
+  const withCirc = K.buildProfile({ ...ADULT, [card.id]: ci, [other.id]: ans1(other, oi) });
+  const withExit = K.buildProfile({ ...ADULT, [card.id]: "skip", [other.id]: ans1(other, oi) });
+  const withAnswer = K.buildProfile({ ...ADULT, [card.id]: ci === 0 ? 1 : 0, [other.id]: ans1(other, oi) });
   assert.equal(withCirc.tags[tagId].possible, withExit.tags[tagId].possible, `${card.id} circumstance pick is not in ${tagId}'s denominator`);
   assert.ok(withAnswer.tags[tagId].possible > withCirc.tags[tagId].possible, `${card.id} answered normally does count`);
 });

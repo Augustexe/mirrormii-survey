@@ -647,86 +647,88 @@
     "privacy": "normal"
   },
   {
-    "id": "S-127",
+    "id": "S-140",
     "type": "sealed",
     "primary": "R3",
-    "sq": "SQ-T11-1",
-    "world": "absurd",
-    "prompt": "A stork lands on your balcony with a clipboard: \"One baby, delivery scheduled in a year. Sign here, or write CANCEL.\"",
+    "sq": "SQ-T20-2",
+    "world": "unusual",
+    "prompt": "Family rule, three generations running: a new job's first paycheck buys dinner for the whole family. All 22 of them. Yours just cleared.",
     "options": [
       {
-        "t": "Sign. Then start measuring the spare room.",
+        "t": "Book the long table. That's how it's done.",
         "axes": {
           "R3": 2
         },
         "tags": [
           {
-            "id": "T11A",
+            "id": "T20A",
             "s": 2
           }
         ],
-        "emotion": "delight"
+        "emotion": "pride"
       },
       {
-        "t": "Write CANCEL. Neatly. Offer the stork a snack.",
-        "axes": {
-          "R3": -2
-        },
-        "tags": [
-          {
-            "id": "T11B",
-            "s": 2
-          }
-        ],
-        "emotion": "relief"
-      },
-      {
-        "t": "Ask to push the date back. Five years, maybe.",
-        "axes": {
-          "R3": 1
-        },
-        "tags": [
-          {
-            "id": "T11A",
-            "s": 1
-          }
-        ]
-      },
-      {
-        "t": "Ask if it delivers dogs instead.",
+        "t": "Cook for all 22 at my place instead. Still counts.",
         "axes": {
           "R3": -1
         },
         "tags": [
           {
-            "id": "T11B",
+            "id": "T20B",
             "s": 1
           }
         ]
+      },
+      {
+        "t": "Treat my friends instead. They got me the job.",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 2
+          }
+        ],
+        "emotion": "guilt"
+      },
+      {
+        "t": "Book it. A cheaper place than my cousin picked.",
+        "axes": {
+          "R3": 1
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
       }
     ],
     "heart": {
-      "prompt": "A stork lands on your balcony with a clipboard. One baby is scheduled for delivery in a year. You can sign, or write \"cancel.\"",
+      "prompt": "Your family has a rule, three generations old: the first paycheck from a new job pays for dinner for the whole family, all 22 of them. Yours has just arrived.",
       "options": [
-        "I sign, then start measuring the spare room.",
-        "I write \"cancel\" neatly and offer the stork something to eat.",
-        "I ask to move the date back, maybe five years.",
-        "I ask whether it could deliver a dog instead."
+        "I book the long table. That is how it is done.",
+        "I cook for all 22 at my place instead. It still counts.",
+        "I treat my friends instead. They helped me get the job.",
+        "I book it, at a cheaper place than my cousin chose."
       ]
     },
     "fp": {
-      "trigger": "a stork schedules a baby delivery",
-      "setting": "your balcony, a clipboard",
-      "ask": "sign for a baby or cancel",
-      "who": "a stork and you",
-      "stakes": "the life you picture",
-      "device": "stork-delivery"
+      "trigger": "a new job's first paycheck owes the family a dinner",
+      "setting": "family custom, 22 relatives",
+      "ask": "keep the custom or make your own",
+      "who": "the whole extended family",
+      "stakes": "the family way versus your way, and your money",
+      "device": "first-paycheck-dinner"
     },
-    "mask": "looks like a fairy-tale delivery; Genii's locked guess on the classic family script versus a life of your own design (R3, T11)",
+    "mask": "looks like a money moment; Genii's locked guess on keeping the family ritual versus remaking it (R3), with T20 as a side guess",
     "ae": [
+      "A",
       "D"
     ],
-    "privacy": "intimate"
+    "privacy": "normal"
   },
   {
     "id": "S-128",
@@ -894,73 +896,74 @@
     "privacy": "normal"
   },
   {
-    "id": "S-80",
+    "id": "S-141",
     "type": "sealed",
     "primary": "L1",
     "sq": "SQ-L1-1",
-    "world": "absurd",
-    "prompt": "One blind swap, courtesy of Genii: your whole life (home, job, friends) for a random one. \"At least as good.\" No previews. Yours is honestly good.",
+    "world": "unusual",
+    "prompt": "Game show, final round. Walk away with $20,000 now, or answer one last question for $100,000. The category: something you half know.",
     "options": [
       {
-        "t": "Keep mine. I built it. I like it.",
+        "t": "Take the $20,000. Wave. Leave. Frame the check.",
         "axes": {
           "L1": 2
         },
         "tags": [
           {
-            "id": "T22B",
-            "s": 2
+            "id": "T13B",
+            "s": 1
           }
-        ]
+        ],
+        "emotion": "relief"
       },
       {
-        "t": "Swap. \"At least as good\" plus a surprise? Sold.",
+        "t": "Play. Half knowing is basically knowing.",
         "axes": {
           "L1": -2
         },
         "tags": [
           {
-            "id": "T22A",
-            "s": 2
+            "id": "T13A",
+            "s": 1
           }
         ],
         "emotion": "delight"
       },
       {
-        "t": "Say no. Then wonder about it every night for a year.",
+        "t": "Poll the audience first. Walk if they hesitate.",
         "axes": {
           "L1": 1
-        },
-        "emotion": "longing"
+        }
       },
       {
-        "t": "Swap. Write everyone a very long goodbye letter.",
+        "t": "Play. I'd never forgive myself for walking.",
         "axes": {
           "L1": -1
         },
-        "emotion": "longing"
+        "emotion": "worry"
       }
     ],
     "heart": {
-      "prompt": "Genii offers to swap your whole life, home, job and friends, for a random one. It is promised to be at least as good, with no preview. Yours is good.",
+      "prompt": "In the final round of a game show, you can leave with $20,000 now, or answer one last question for $100,000. The category is something you half know.",
       "options": [
-        "I keep mine. I built it and I like it.",
-        "I swap. At least as good, plus a surprise, is enough.",
-        "I say no, then wonder about it every night for a year.",
-        "I swap, and write everyone a very long goodbye letter."
+        "I take the $20,000, leave, and frame the check.",
+        "I play. Half knowing is close enough to knowing.",
+        "I ask the audience first, and walk if they hesitate.",
+        "I play. I would never forgive myself for walking away."
       ]
     },
     "fp": {
-      "trigger": "blind life swap offered",
-      "setting": "Genii wish, no previews",
-      "ask": "keep your life or swap it blind",
-      "who": "just you",
-      "stakes": "a good life versus the unknown",
-      "device": "blind-life-swap"
+      "trigger": "a sure prize or one question for five times more",
+      "setting": "game show final round",
+      "ask": "walk away or risk it",
+      "who": "a host and a studio audience",
+      "stakes": "$20,000 sure versus $100,000 maybe",
+      "device": "game-show-final"
     },
-    "mask": "looks like a genie gamble; Genii's locked guess on keeping the sure good thing versus the unknown (L1), with T22 as a side guess",
+    "mask": "looks like a TV moment; Genii's locked guess on keeping the sure good thing versus a shot at more (L1), with T13 as a side guess",
     "ae": [
-      "D"
+      "A",
+      "C"
     ],
     "privacy": "normal"
   },
@@ -1342,15 +1345,15 @@
     "privacy": "normal"
   },
   {
-    "id": "S-133",
+    "id": "S-142",
     "type": "sealed",
     "primary": "L2",
-    "sq": "SQ-T16-1",
+    "sq": "SQ-L2-1",
     "world": "unusual",
-    "prompt": "The office installs a live leaderboard: who stays latest. You're #2. #1 is your closest friend at work.",
+    "prompt": "A billionaire you once lent an umbrella to will fund your dream project. The catch: build it from their yacht, 14-hour days, for a year.",
     "options": [
       {
-        "t": "Stay till I'm #1. The friendship will survive a ranking.",
+        "t": "Pack tonight. Fourteen hours is just two sevens.",
         "axes": {
           "L2": 2
         },
@@ -1359,10 +1362,11 @@
             "id": "T16A",
             "s": 2
           }
-        ]
+        ],
+        "emotion": "delight"
       },
       {
-        "t": "Leave on time. The board can think what it likes.",
+        "t": "Pass. My evenings are half of why I'm happy.",
         "axes": {
           "L2": -2
         },
@@ -1374,7 +1378,7 @@
         ]
       },
       {
-        "t": "Stay late, but only on nights my friend does.",
+        "t": "Go for six months. Then home, finished or not.",
         "axes": {
           "L2": 1
         },
@@ -1386,7 +1390,7 @@
         ]
       },
       {
-        "t": "Unplug the leaderboard. Accidentally. Twice.",
+        "t": "Pass. I'll build it on weekends, on my own clock.",
         "axes": {
           "L2": -1
         },
@@ -1396,30 +1400,30 @@
             "s": 1
           }
         ],
-        "emotion": "delight"
+        "emotion": "longing"
       }
     ],
     "heart": {
-      "prompt": "Your workplace puts up a live board ranking who stays latest. You are second. First place is your closest friend at work.",
+      "prompt": "A billionaire you once lent an umbrella to offers to fund your dream project, if you build it from their yacht, 14-hour days, for a year.",
       "options": [
-        "I stay until I am first. Our friendship can handle a ranking.",
-        "I leave on time and let the board show whatever it shows.",
-        "I stay late, but only on the nights my friend does.",
-        "I unplug the board, and I let it look like an accident."
+        "I pack tonight. Fourteen hours is just two sevens.",
+        "I pass. My evenings are much of why I am happy.",
+        "I go for six months, then come home, finished or not.",
+        "I pass, and build it on weekends, on my own schedule."
       ]
     },
     "fp": {
-      "trigger": "a board ranks who stays latest",
-      "setting": "office with a live leaderboard",
-      "ask": "chase first place or leave on time",
-      "who": "your closest work friend",
-      "stakes": "the top spot versus your evenings",
-      "device": "late-leaderboard"
+      "trigger": "a funder wants a year of 14-hour days",
+      "setting": "a billionaire's yacht",
+      "ask": "trade a year of free time for the dream",
+      "who": "a stranger with money",
+      "stakes": "your dream built fast versus your evenings",
+      "device": "yacht-offer"
     },
-    "mask": "looks like office comedy; Genii's locked guess on work as a race to win versus a job that ends when it ends (L2, T16)",
+    "mask": "looks like a lucky break; Genii's locked guess on trading free time for a win people can see (L2, T16)",
     "ae": [
       "A",
-      "C"
+      "D"
     ],
     "privacy": "normal"
   },
@@ -1666,82 +1670,84 @@
     "privacy": "normal"
   },
   {
-    "id": "S-100",
+    "id": "S-143",
     "type": "sealed",
     "primary": "L3",
-    "sq": "SQ-T12-1",
+    "sq": "SQ-L3-1",
     "world": "absurd",
-    "prompt": "Your new roommate is a dragon sleeping on a mountain of gold. Rent is $1,800. The dragon says, \"Half each. Fair is fair.\"",
+    "prompt": "You guard a magic portal. Rule one: no pets. A traveler arrives, in tears, carrying a hamster with its own tiny passport.",
     "options": [
       {
-        "t": "Half each. Rules don't bend for hoards.",
+        "t": "No pets. A passport doesn't make it a person.",
         "axes": {
           "L3": 2
         },
         "tags": [
           {
-            "id": "T12A",
+            "id": "T25A",
             "s": 2
           }
         ]
       },
       {
-        "t": "Split by hoard. You sleep on gold, I sleep on a futon.",
+        "t": "Stamp the tiny passport. Welcome through.",
         "axes": {
           "L3": -2
         },
         "tags": [
           {
-            "id": "T12B",
+            "id": "T25B",
             "s": 2
           }
-        ]
+        ],
+        "emotion": "delight"
       },
       {
-        "t": "Half each, but the dragon heats the whole flat.",
+        "t": "Call my supervisor. This needs an official ruling.",
         "axes": {
           "L3": 1
         },
         "tags": [
           {
-            "id": "T12A",
+            "id": "T25A",
             "s": 1
           }
         ]
       },
       {
-        "t": "Half for now. Bring it up at the first flat meeting.",
+        "t": "Let it through once. Write a hamster rule tomorrow.",
         "axes": {
           "L3": -1
         },
         "tags": [
           {
-            "id": "T12B",
+            "id": "T25B",
             "s": 1
           }
         ]
       }
     ],
     "heart": {
-      "prompt": "Your new roommate is a dragon who sleeps on a mountain of gold. The rent is $1,800, and the dragon says, \"Half each. That is fair.\"",
+      "prompt": "You guard a magic portal, and rule one is no pets. A traveler arrives in tears, carrying a hamster with its own tiny passport.",
       "options": [
-        "Half each. The rule is the rule, whatever the hoard.",
-        "I suggest we split by what we have. They sleep on gold.",
-        "Half each, as long as the dragon heats the whole flat.",
-        "I pay half for now and raise it at our first meeting."
+        "No pets. A passport does not make it a person.",
+        "I stamp the tiny passport and welcome them through.",
+        "I call my supervisor. This needs an official ruling.",
+        "I let it through this once, and write a hamster rule tomorrow."
       ]
     },
     "fp": {
-      "trigger": "rich roommate insists on an even split",
-      "setting": "shared flat with a dragon",
-      "ask": "split rent evenly or by wealth",
-      "who": "roommate with a fortune",
-      "stakes": "fair as equal versus fair as felt",
-      "device": "dragon-roommate"
+      "trigger": "a pet with a passport meets a no-pets rule",
+      "setting": "a magic portal checkpoint",
+      "ask": "enforce the rule or wave it through",
+      "who": "a crying traveler and a hamster",
+      "stakes": "the rule versus this one case",
+      "device": "portal-hamster-passport"
     },
-    "mask": "looks like a fantasy flatshare; Genii's locked guess on fair as the rule versus fair as the situation (L3, T12)",
+    "mask": "looks like a fantasy checkpoint; Genii's locked guess on the rule for everyone versus bending it for this case (L3, T25)",
     "ae": [
-      "A"
+      "A",
+      "C"
     ],
     "privacy": "normal"
   },
@@ -1754,7 +1760,7 @@
     "prompt": "A comet is visible for twelve minutes tonight. One telescope on the roof, forty neighbors, and you hold the eyepiece schedule.",
     "options": [
       {
-        "t": "Alphabetical, eighteen seconds each. Stopwatch in hand.",
+        "t": "Alphabetical, fifteen seconds each. Stopwatch in hand.",
         "axes": {
           "L3": 2
         },
@@ -1807,7 +1813,7 @@
     "heart": {
       "prompt": "A comet will be visible for twelve minutes tonight. There is one telescope on the roof and forty neighbors, and you are in charge of the schedule.",
       "options": [
-        "Alphabetical order, eighteen seconds each, timed on a stopwatch.",
+        "Alphabetical order, fifteen seconds each, timed on a stopwatch.",
         "The child who has talked comets all year gets a full minute.",
         "Whoever reaches the roof first looks first.",
         "The neighbor who moves away tomorrow goes first."

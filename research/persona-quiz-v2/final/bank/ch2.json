@@ -1,12 +1,34 @@
 [
  {
-  "id": "C2-91",
+  "id": "C2-140",
   "type": "scenario",
   "chapter": 2,
-  "prompt": "Ten years asleep, thanks to one cursed nap. Your phone: 212 texts from your neighbor. Zero from your best friend.",
+  "sq": "SQ-T02-2",
+  "world": "absurd",
+  "prompt": "A street-market ring: while you wear it, every friend texts you first. Forever. You'd never know if they would have anyway.",
   "options": [
    {
-    "t": "Call my best friend first. That's just how we are.",
+    "t": "Ring on. Finally, proof they want me around.",
+    "tags": [
+     {
+      "id": "T02B",
+      "s": 2
+     }
+    ],
+    "emotion": "relief"
+   },
+   {
+    "t": "Ring on. I'm done always going first.",
+    "tags": [
+     {
+      "id": "T02B",
+      "s": 1
+     }
+    ],
+    "emotion": "resentment"
+   },
+   {
+    "t": "Leave it. I text first. No scorecard.",
     "tags": [
      {
       "id": "T02A",
@@ -16,65 +38,43 @@
     "emotion": "warmth"
    },
    {
-    "t": "Answer all 212 first. My best friend can wait ten years.",
-    "tags": [
-     {
-      "id": "T02B",
-      "s": 2
-     }
-    ],
-    "emotion": "resentment"
-   },
-   {
-    "t": "Text my best friend: \"Zero? Really? Anyway, hi.\"",
-    "tags": [
-     {
-      "id": "T02B",
-      "s": 1
-     }
-    ],
-    "emotion": "sting"
-   },
-   {
-    "t": "Ten years is ten years. Nobody owes anybody a text.",
+    "t": "Leave it. Whoever's bored texts first. System works.",
     "tags": [
      {
       "id": "T02A",
       "s": 1
      }
     ],
-    "emotion": "relief"
+    "emotion": "delight"
    }
   ],
   "heart": {
-   "prompt": "A cursed nap kept you asleep for ten years. Your phone shows 212 texts from your neighbor and none from your best friend.",
+   "prompt": "A ring from a street market makes every friend message you first, forever, while you wear it. You would never know whether they would have anyway.",
    "options": [
-    "I call my best friend first. Silence is just how we are.",
-    "I answer all 212 first. My best friend can wait.",
-    "I text my best friend: none at all? Anyway, hello.",
-    "Ten years is a long time. Nobody owes anyone a message."
+    "I put it on. Finally, proof that they want me around.",
+    "I put it on. I am tired of always going first.",
+    "I leave it. I message first, and I do not keep score.",
+    "I leave it. Whoever is bored messages first, and that works."
    ]
   },
   "fp": {
-   "trigger": "waking from a ten-year magic sleep",
-   "setting": "your phone after a decade",
-   "ask": "who you answer first",
-   "who": "silent best friend, chatty neighbor",
-   "stakes": "the friendship versus your pride",
-   "device": "ten-year sleep"
+   "trigger": "a ring makes friends always text first",
+   "setting": "a street market, a magic ring",
+   "ask": "wear it or leave it",
+   "who": "all your friends",
+   "stakes": "proof you are wanted versus never knowing",
+   "device": "text-first-ring"
   },
-  "mask": "looks like a fairy-tale wake-up; measures whether a quiet stretch means fine or fading (T02)",
+  "mask": "looks like a magic trinket; measures keeping count of who reaches out first (T02)",
   "ae": [
    "A",
    "E"
   ],
   "privacy": "normal",
-  "sq": "SQ-T02-1",
-  "world": "absurd",
   "friend": {
-   "prompt": "{name} wakes from a cursed ten-year nap. 212 texts from the neighbor, zero from the best friend. What does {name} do?",
+   "prompt": "A magic ring would make every friend text {name} first, forever. {name} would never know if they meant it. What does {name} do?",
    "a": {
-    "t": "Calls the best friend first: \"That's just how we are.\"",
+    "t": "Leaves it: \"I text first. No scorecard.\"",
     "tags": [
      {
       "id": "T02A",
@@ -83,7 +83,7 @@
     ]
    },
    "b": {
-    "t": "Answers all 212 first: \"The best friend can wait ten years.\"",
+    "t": "Puts it on: \"Finally, proof they want me around.\"",
     "tags": [
      {
       "id": "T02B",
@@ -148,7 +148,7 @@
    }
   ],
   "heart": {
-   "prompt": "A shop opens next door that can repair any friendship, but both people stay locked inside until it is fixed. Your former best friend has just booked a time for the two of you.",
+   "prompt": "A shop next door can repair any friendship, but both people stay locked inside until it is fixed. Your former best friend has booked the two of you in.",
    "options": [
     "I go in prepared to stay as long as it takes.",
     "I go in, but I bring a list of everything they did.",
@@ -200,132 +200,97 @@
   }
  },
  {
-  "id": "C2-90",
+  "id": "C2-141",
   "type": "reply",
   "chapter": 2,
-  "prompt": "Noor is cutting a documentary about your friend group. Everyone else already sent their old chats.",
+  "sq": "SQ-R1-3",
+  "world": "unusual",
+  "prompt": "Your friends want to move in together. All six of you, one big old house.",
   "thread": [
    {
-    "from": "Noor",
-    "text": "the doc is SO close. just need our old chats from you"
+    "from": "Maya",
+    "text": "WE FOUND IT. six bedrooms, one kitchen, all of us. lease starts june"
    },
    {
-    "from": "Noor",
-    "text": "easiest if I borrow your phone at brunch and scroll?"
+    "from": "Theo",
+    "text": "room draw sunday. you're in right??"
    }
   ],
   "options": [
    {
-    "t": "\"Take it. Scroll back to the very beginning. Enjoy.\"",
+    "t": "\"IN. Dibs on the room by the kitchen.\"",
     "axes": {
-     "R1": 1
+     "R1": 2
     },
-    "tags": [
-     {
-      "id": "T01A",
-      "s": 2
-     }
-    ],
     "emotion": "delight"
    },
    {
-    "t": "\"I'll pick the screenshots. The phone stays with me.\"",
-    "axes": {
-     "R1": -1
-    },
-    "tags": [
-     {
-      "id": "T01B",
-      "s": 2
-     }
-    ]
-   },
-   {
-    "t": "\"Deal, if I get to see everyone else's first.\"",
+    "t": "\"In, if we do house dinner every Sunday. Mandatory.\"",
     "axes": {
      "R1": 1
     },
-    "tags": [
-     {
-      "id": "T01A",
-      "s": 1
-     }
-    ]
+    "emotion": "warmth"
    },
    {
-    "t": "\"Love you. Cut me from the film.\"",
+    "t": "\"In, but my door gets a lock. And a sign.\"",
+    "axes": {
+     "R1": -1
+    }
+   },
+   {
+    "t": "\"Love you all. I'll visit. Constantly.\"",
     "axes": {
      "R1": -2
     },
-    "tags": [
-     {
-      "id": "T01B",
-      "s": 2
-     }
-    ],
     "emotion": "guilt"
    }
   ],
   "heart": {
-   "prompt": "Your friend Noor is making a documentary about your friend group, and everyone else has already sent their old chats.",
+   "prompt": "Your friends want all six of you to move into one big old house together.",
    "thread": [
     {
-     "from": "Noor",
-     "text": "The documentary is nearly done. I just need our old chats from you."
+     "from": "Maya",
+     "text": "We found it. Six bedrooms, one kitchen, all of us. The lease starts in June."
     },
     {
-     "from": "Noor",
-     "text": "Would it be easiest if I borrowed your phone at brunch and scrolled through?"
+     "from": "Theo",
+     "text": "The room draw is on Sunday. You are in, right?"
     }
    ],
    "options": [
-    "I tell them to take my phone and scroll back as far as they like.",
-    "I say I will choose the screenshots myself, and my phone stays with me.",
-    "I say yes, if I can see what everyone else sent first.",
-    "I say I love them, and ask to be left out of the film."
+    "I am in, and I call the room next to the kitchen.",
+    "I am in, if we have a house dinner every Sunday.",
+    "I am in, but my door gets a lock.",
+    "I love you all, and I will visit often."
    ]
   },
   "fp": {
-   "trigger": "friend asks for your phone for a film",
-   "setting": "friend group documentary",
-   "ask": "hand over the phone or curate it",
-   "who": "friend making the film",
-   "stakes": "old chats seen versus being cut from the story",
-   "device": "friend-group documentary"
+   "trigger": "friends want to all move in together",
+   "setting": "a six-bedroom house hunt",
+   "ask": "move in with the group or keep your own place",
+   "who": "your friend group",
+   "stakes": "belonging versus a place of your own",
+   "device": "friend-group-house"
   },
-  "mask": "looks like a fun group project; measures an open phone versus a private one when someone warm asks (T01), with shared versus separate (R1)",
+  "mask": "looks like a fun housing plan; measures merging your life with your people versus keeping your own space (R1)",
   "ae": [
    "A",
    "B"
   ],
   "privacy": "normal",
-  "sq": "SQ-T01-2",
-  "world": "unusual",
   "friend": {
-   "prompt": "A friend making a documentary texts: \"just need our old chats. borrow your phone at brunch and scroll?\" What does {name} reply?",
+   "prompt": "{name}'s five closest friends want everyone in one big house. Room draw is Sunday. What does {name} reply?",
    "a": {
-    "t": "\"Take it. Scroll back to the very beginning. Enjoy.\"",
+    "t": "\"IN. Dibs on the room by the kitchen.\"",
     "axes": {
-     "R1": 1
-    },
-    "tags": [
-     {
-      "id": "T01A",
-      "s": 2
-     }
-    ]
+     "R1": 2
+    }
    },
    "b": {
-    "t": "\"Love you. Cut me from the film.\"",
+    "t": "\"Love you all. I'll visit. Constantly.\"",
     "axes": {
      "R1": -2
-    },
-    "tags": [
-     {
-      "id": "T01B",
-      "s": 2
-     }
-    ]
+    }
    }
   }
  },
@@ -442,10 +407,10 @@
   "id": "C2-120",
   "type": "scenario",
   "chapter": 2,
-  "prompt": "Your roommate quit their job for stand-up. The debut is tonight. They just ran the whole set for you. You didn't laugh once.",
+  "prompt": "Your roommate quit their job for stand-up. Their debut is tonight. They run the whole set for you. Only the landlord joke gets a laugh.",
   "options": [
    {
-    "t": "\"Honestly? Nothing landed. Want notes before tonight?\"",
+    "t": "\"Honestly? One joke landed. Want notes before tonight?\"",
     "axes": {
      "R2": 2
     },
@@ -496,16 +461,16 @@
    }
   ],
   "heart": {
-   "prompt": "Your roommate left their job to try stand-up comedy. Their first show is tonight, and they just performed the whole set for you. You did not laugh once.",
+   "prompt": "Your roommate left their job to try stand-up comedy. Their first show is tonight, and they perform the whole set for you. Only the landlord joke makes you laugh.",
    "options": [
-    "I tell them nothing landed, and offer notes before the show.",
+    "I say only one joke landed, and offer notes before the show.",
     "I say the landlord joke works and the rest needs work.",
     "I suggest opening with the landlord joke, and leave it there.",
     "I tell them they will be great, and laugh loudest."
    ]
   },
   "fp": {
-   "trigger": "roommate runs a bad stand-up set by you",
+   "trigger": "roommate runs a stand-up set by you; one joke lands",
    "setting": "apartment, hours before their debut",
    "ask": "honest notes or pure hype",
    "who": "roommate turned comic",
@@ -521,9 +486,9 @@
   "sq": "SQ-T07-1",
   "world": "unusual",
   "friend": {
-   "prompt": "{name}'s roommate quit a job for stand-up. Debut's tonight. {name} heard the whole set and never laughed. What does {name} do?",
+   "prompt": "{name}'s roommate quit a job for stand-up. Debut's tonight. Of the whole set, only the landlord joke made {name} laugh. What does {name} do?",
    "a": {
-    "t": "\"Honestly? Nothing landed. Want notes before tonight?\"",
+    "t": "\"Honestly? One joke landed. Want notes before tonight?\"",
     "axes": {
      "R2": 2
     },
@@ -653,7 +618,7 @@
   "type": "feeling",
   "chapter": 2,
   "follows": "C2-121",
-  "prompt": "Still holding that note. What hit first?",
+  "prompt": "What hit first?",
   "options": [
    {
     "t": "Cringe. Past me was so sure.",
@@ -664,7 +629,7 @@
     "emotion": "sting"
    },
    {
-    "t": "Pride. My real life beat the note.",
+    "t": "Pride. Real life turned out better.",
     "emotion": "pride"
    },
    {
@@ -677,11 +642,11 @@
    }
   ],
   "heart": {
-   "prompt": "You are still holding your old note. What did you feel first?",
+   "prompt": "What did you feel first?",
    "options": [
     "Embarrassed. I sounded so certain.",
     "Hurt. I really meant it.",
-    "Proud. My real life turned out better than the note.",
+    "Proud. My real life turned out better.",
     "Relieved. Nobody is holding me to it.",
     "Wistful. I miss who I was then."
    ]
@@ -1245,12 +1210,6 @@
     }
    },
    {
-    "t": "Chatter. Knocking back three times. Starting a conversation.",
-    "axes": {
-     "L1": -1
-    }
-   },
-   {
     "t": "Car camper. Doors locked, engine running. \"Nope.\"",
     "axes": {
      "L1": 1
@@ -1264,7 +1223,6 @@
     "The one with the flashlight, the exit map and regular headcounts.",
     "The one who suggests splitting up, and is already gone.",
     "The one reading the house rules on the fridge, twice.",
-    "The one knocking back, to start a conversation.",
     "The one waiting in the car with the doors locked."
    ]
   },
@@ -1301,13 +1259,15 @@
   }
  },
  {
-  "id": "C2-128",
+  "id": "C2-142",
   "type": "rank",
   "chapter": 2,
-  "prompt": "Genii can bottle your love for your oldest friend four ways. They open one each year. Rank them, first to last:",
+  "sq": "SQ-T05-1",
+  "world": "absurd",
+  "prompt": "You slept through helping your best friend move. Genii offers four apologies, one a day. Rank them, first to last:",
   "options": [
    {
-    "t": "My speech about them, sung at their door by a choir",
+    "t": "The sky over their new place spells \"I'M SO SORRY\"",
     "tags": [
      {
       "id": "T05B",
@@ -1316,7 +1276,7 @@
     ]
    },
    {
-    "t": "Their place deep-cleaned, fridge stocked, no note",
+    "t": "Every box unpacked overnight, shelves up, no note",
     "tags": [
      {
       "id": "T05A",
@@ -1325,7 +1285,7 @@
     ]
    },
    {
-    "t": "A letter from me that rewrites itself every birthday",
+    "t": "A letter from me that glows until they forgive me",
     "tags": [
      {
       "id": "T05B",
@@ -1334,7 +1294,7 @@
     ]
    },
    {
-    "t": "Me, on call every time their car dies",
+    "t": "Me at their door every weekend for a month, toolbox in hand",
     "tags": [
      {
       "id": "T05A",
@@ -1344,30 +1304,28 @@
    }
   ],
   "heart": {
-   "prompt": "Genii can send your love to your oldest friend in four forms, one each year. Put them in the order you would send them.",
+   "prompt": "You slept through helping your best friend move house. Genii offers four apologies, one each day. Put them in the order you would send them.",
    "options": [
-    "My speech about them, sung at their door by a choir.",
-    "Their home cleaned and their fridge filled, with no note.",
-    "A letter from me that rewrites itself every birthday.",
-    "Me, on call every time their car breaks down."
+    "The sky above their new home spells out that I am sorry.",
+    "Every box unpacked overnight and the shelves put up, with no note.",
+    "A letter from me that glows until they forgive me.",
+    "Me at their door every weekend for a month, ready to help."
    ]
   },
   "fp": {
-   "trigger": "Genii will deliver your love four ways",
-   "setting": "magic bottles, one opened a year",
-   "ask": "rank the ways you show love",
-   "who": "oldest friend",
-   "stakes": "being felt the way you mean it",
-   "device": "bottled love"
+   "trigger": "you slept through a friend's moving day",
+   "setting": "Genii's four apologies",
+   "ask": "rank how you make it up to them",
+   "who": "your best friend",
+   "stakes": "the friendship after you let them down",
+   "device": "four-apologies"
   },
-  "mask": "looks like a magic gift list; measures showing love by doing versus by saying (T05)",
+  "mask": "looks like a magic apology menu; measures showing love by doing versus by saying (T05)",
   "ae": [
    "A",
    "D"
   ],
-  "privacy": "normal",
-  "sq": "SQ-T05-1",
-  "world": "absurd"
+  "privacy": "normal"
  },
  {
   "id": "C2-129",
@@ -1541,38 +1499,15 @@
   }
  },
  {
-  "id": "C2-130",
+  "id": "C2-143",
   "type": "bet",
   "chapter": 2,
-  "prompt": "Confession time: you've known a friend's partner was cheating before your friend did.",
+  "sq": "SQ-T07-2",
+  "world": "everyday",
+  "prompt": "Confession time: you've heard what others say about a friend behind their back, and never told them.",
   "options": [
    {
-    "t": "Guilty. Told them that night. Lost them for a month.",
-    "axes": {
-     "R2": 2
-    },
-    "tags": [
-     {
-      "id": "T07A",
-      "s": 2
-     }
-    ],
-    "emotion": "sting"
-   },
-   {
-    "t": "Guilty. Dropped hints until they figured it out.",
-    "axes": {
-     "R2": -1
-    },
-    "tags": [
-     {
-      "id": "T07B",
-      "s": 1
-     }
-    ]
-   },
-   {
-    "t": "Guilty. Said nothing. Still carry it around.",
+    "t": "Guilty. Took it to the grave. Still at the grave.",
     "axes": {
      "R2": -2
     },
@@ -1585,7 +1520,31 @@
     "emotion": "guilt"
    },
    {
-    "t": "Guilty. Told the partner: \"You tell them, or I will.\"",
+    "t": "Guilty. Hinted until they asked the right question.",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Not me. Told them that night, word for word.",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Not me. Told them, then told everyone I told them.",
     "axes": {
      "R2": 1
     },
@@ -1594,61 +1553,85 @@
       "id": "T07A",
       "s": 1
      }
-    ]
-   },
-   {
-    "t": "Never. I'm always the last to know anything.",
-    "circumstance": true
+    ],
+    "emotion": "delight"
    }
   ],
   "heart": {
-   "prompt": "Have you ever known that a friend's partner was cheating before your friend knew?",
+   "prompt": "Have you heard what others say about a friend behind their back, and never told them?",
    "options": [
-    "Yes. I told them that night. We didn't speak for a month.",
-    "Yes. I hinted until they worked it out.",
-    "Yes. I said nothing, and I still think about it.",
-    "Yes. I told the partner to tell them, or I would.",
-    "No. I am usually the last to know."
+    "Yes. I kept it to myself, and I still do.",
+    "Yes. I hinted until they asked the right question.",
+    "No. I told them that night, word for word.",
+    "No. I told them, and then told the others I had."
    ]
   },
   "fp": {
-   "trigger": "you learn a friend's partner is cheating",
-   "setting": "real life, before your friend knows",
-   "ask": "tell, hint or stay silent",
-   "who": "friend and their partner",
-   "stakes": "the friendship versus being the messenger",
-   "device": "cheating secret"
+   "trigger": "you hear what others say about a friend",
+   "setting": "real life, behind their back",
+   "ask": "tell them or keep it",
+   "who": "a friend and the people talking",
+   "stakes": "the friend's feelings versus your place with the others",
+   "device": "behind-their-back-talk"
   },
-  "mask": "looks like a juicy confession; measures telling a friend the hard news now versus protecting them first (T07, R2), from a thing actually done",
+  "mask": "looks like a gossip confession; measures telling a friend the hard news straight versus shielding them (T07, R2), from a thing actually done",
   "ae": [
    "A",
    "B",
    "E"
   ],
-  "privacy": "intimate",
-  "sq": "SQ-T07-2",
-  "world": "unusual"
+  "privacy": "normal",
+  "friend": {
+   "prompt": "Genii bets {name} has heard what others say about a friend behind the friend's back, and never told. Guilty or not?",
+   "a": {
+    "t": "Not guilty. Told the friend that night, word for word.",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Guilty. Took it to the grave. Still at the grave.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 2
+     }
+    ]
+   }
+  }
  },
  {
-  "id": "C2-131",
+  "id": "C2-144",
   "type": "real",
   "chapter": 2,
-  "prompt": "Think back to the biggest amount a friend has ever asked to borrow. What did you actually do?",
+  "sq": "SQ-T06-2",
+  "world": "everyday",
+  "prompt": "The last time a friend asked to borrow something you'd rather not lend: your car, the good jacket. What did you actually do?",
   "options": [
    {
-    "t": "Sent it. Neither of us has mentioned it since.",
+    "t": "Handed it over. The rule doesn't apply to them.",
     "axes": {
-     "L3": -1
+     "L3": -2
     },
     "tags": [
      {
       "id": "T06A",
       "s": 2
      }
-    ]
+    ],
+    "emotion": "warmth"
    },
    {
-    "t": "Sent it, with a payback date in writing.",
+    "t": "Lent it, with a return date I actually enforced.",
     "axes": {
      "L3": 1
     },
@@ -1660,10 +1643,19 @@
     ]
    },
    {
-    "t": "Said no, and told them exactly why.",
+    "t": "Said no. Same rule for everyone, even them.",
     "axes": {
-     "R2": 1
+     "L3": 2
     },
+    "tags": [
+     {
+      "id": "T06B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Said no, and felt bad about it all week.",
     "tags": [
      {
       "id": "T06B",
@@ -1671,52 +1663,37 @@
      }
     ],
     "emotion": "guilt"
-   },
-   {
-    "t": "Said no, and invented a reason.",
-    "axes": {
-     "R2": -1
-    },
-    "tags": [
-     {
-      "id": "T06B",
-      "s": 2
-     }
-    ],
-    "emotion": "relief"
    }
   ],
   "heart": {
-   "prompt": "Think of the largest amount a friend has ever asked to borrow from you. What did you actually do?",
+   "prompt": "Think of the last time a friend asked to borrow something you would rather not lend, like your car or your good jacket. What did you do?",
    "options": [
-    "I sent it, and neither of us has mentioned it since.",
-    "I sent it, with a repayment date written down.",
-    "I said no, and told them honestly why.",
-    "I said no, and gave them a made-up reason."
+    "I handed it over. My rule does not apply to them.",
+    "I lent it, with a return date that I enforced.",
+    "I said no. The same rule applies to everyone, even them.",
+    "I said no, and felt bad about it all week."
    ]
   },
   "fp": {
-   "trigger": "friend asks to borrow a big sum",
-   "setting": "real life, a money ask",
-   "ask": "lend or refuse, and how",
-   "who": "friend",
-   "stakes": "your money versus the friendship",
-   "device": "friend loan"
+   "trigger": "a friend asks to borrow something you guard",
+   "setting": "real life, your car or good jacket",
+   "ask": "bend your rule or keep it",
+   "who": "a friend",
+   "stakes": "your things and your rule versus the friendship",
+   "device": "borrow-the-good-stuff"
   },
-  "mask": "looks like a money memory; measures whether your own rules bend for a friend (T06), with how you say no (R2) and terms versus trust (L3)",
+  "mask": "looks like a lending memory; measures whether your own rules bend for a friend (T06), with the rule versus the person (L3), from what you did",
   "ae": [
    "A",
    "B"
   ],
   "privacy": "normal",
-  "sq": "SQ-T06-2",
-  "world": "unusual",
   "friend": {
-   "prompt": "The biggest amount a friend has ever asked to borrow from {name}. What did {name} actually do?",
+   "prompt": "The last time a friend asked to borrow something {name} would rather not lend. What did {name} actually do?",
    "a": {
-    "t": "Sent it. Neither of us has mentioned it since.",
+    "t": "Handed it over. The rule doesn't apply to that friend.",
     "axes": {
-     "L3": -1
+     "L3": -2
     },
     "tags": [
      {
@@ -1726,9 +1703,9 @@
     ]
    },
    "b": {
-    "t": "Said no, and invented a reason.",
+    "t": "Said no. Same rule for everyone, even that friend.",
     "axes": {
-     "R2": -1
+     "L3": 2
     },
     "tags": [
      {
@@ -1833,31 +1810,25 @@
   }
  },
  {
-  "id": "C2-133",
+  "id": "C2-145",
   "type": "real",
   "chapter": 2,
-  "prompt": "The last time a friend's world fell apart and you couldn't fix it. What did you actually do first?",
+  "sq": "SQ-T05-1",
+  "world": "everyday",
+  "prompt": "A friend's last big good news: a new job, a new place, an acceptance. What did you actually do first?",
   "options": [
    {
-    "t": "Showed up with food. Said almost nothing.",
-    "tags": [
-     {
-      "id": "T05A",
-      "s": 2
-     }
-    ]
-   },
-   {
-    "t": "Sent a long message. Rewrote it four times.",
+    "t": "Sent a wall of caps and too many exclamation marks.",
     "tags": [
      {
       "id": "T05B",
       "s": 2
      }
-    ]
+    ],
+    "emotion": "delight"
    },
    {
-    "t": "Called, and stayed on till they hung up first.",
+    "t": "Called, and made them tell the whole story twice.",
     "tags": [
      {
       "id": "T05B",
@@ -1866,7 +1837,16 @@
     ]
    },
    {
-    "t": "Did their laundry while they talked to my back.",
+    "t": "Showed up with flowers. Said almost nothing.",
+    "tags": [
+     {
+      "id": "T05A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Offered to help with the boring part: boxes, forms.",
     "tags": [
      {
       "id": "T05A",
@@ -1876,34 +1856,32 @@
    }
   ],
   "heart": {
-   "prompt": "Think of the last time a friend's world fell apart and you could not fix it. What did you do first?",
+   "prompt": "Think of a friend's most recent big news, like a new job, a new home or an acceptance. What did you do first?",
    "options": [
-    "I showed up with food and said very little.",
-    "I sent a long message and rewrote it four times.",
-    "I called, and stayed on until they hung up.",
-    "I did their laundry while they talked."
+    "I sent a message in capitals with far too many exclamation marks.",
+    "I called and had them tell me the whole story twice.",
+    "I showed up with flowers and said very little.",
+    "I offered to help with the dull part, like boxes or forms."
    ]
   },
   "fp": {
-   "trigger": "friend's life falls apart",
-   "setting": "real life, the first day",
-   "ask": "how you showed up first",
-   "who": "friend",
-   "stakes": "being there in the way that lands",
-   "device": "rough-patch first move"
+   "trigger": "a friend gets big good news",
+   "setting": "real life, the first hour",
+   "ask": "how you celebrated first",
+   "who": "a friend",
+   "stakes": "showing it in a way that lands",
+   "device": "friend-good-news"
   },
-  "mask": "looks like a support memory; measures showing love by doing versus by saying (T05), from a thing actually done",
+  "mask": "looks like a celebration memory; measures showing love by doing versus by saying (T05), from a thing actually done",
   "ae": [
    "A",
    "B"
   ],
   "privacy": "normal",
-  "sq": "SQ-T05-1",
-  "world": "everyday",
   "friend": {
-   "prompt": "The last time a friend's world fell apart and {name} couldn't fix it. What did {name} actually do first?",
+   "prompt": "A friend's last big good news: a new job, a new place, an acceptance. What did {name} actually do first?",
    "a": {
-    "t": "Showed up with food. Said almost nothing.",
+    "t": "Showed up with flowers. Said almost nothing.",
     "tags": [
      {
       "id": "T05A",
@@ -1912,7 +1890,7 @@
     ]
    },
    "b": {
-    "t": "Sent a long message. Rewrote it four times.",
+    "t": "Sent a wall of caps and too many exclamation marks.",
     "tags": [
      {
       "id": "T05B",
@@ -1923,26 +1901,15 @@
   }
  },
  {
-  "id": "C2-134",
+  "id": "C2-146",
   "type": "receipts",
   "chapter": 2,
-  "prompt": "Friends, lately. Tap everything that's true:",
+  "sq": "SQ-T05-2",
+  "world": "everyday",
+  "prompt": "Last time a friend had a rough week. Tap everything that's true:",
   "options": [
    {
-    "t": "Went to a friend's thing I'd have happily skipped",
-    "tags": [
-     {
-      "id": "T06A",
-      "s": 2
-     },
-     {
-      "id": "T05A",
-      "s": 1
-     }
-    ]
-   },
-   {
-    "t": "Fixed, carried or assembled something for a friend",
+    "t": "Dropped off food or coffee without being asked",
     "tags": [
      {
       "id": "T05A",
@@ -1951,7 +1918,7 @@
     ]
    },
    {
-    "t": "Said \"I love you\" to a friend, out loud, unprompted",
+    "t": "Sent a long message about how much they matter",
     "tags": [
      {
       "id": "T05B",
@@ -1960,7 +1927,16 @@
     ]
    },
    {
-    "t": "Bailed on a friend and felt nothing but relief",
+    "t": "Stayed on the phone way past my bedtime",
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Muted them for a night to recharge",
     "tags": [
      {
       "id": "T06B",
@@ -1969,7 +1945,7 @@
     ]
    },
    {
-    "t": "Sent a gift instead of going",
+    "t": "Sent something funny instead of asking how they were",
     "tags": [
      {
       "id": "T05B",
@@ -1977,15 +1953,6 @@
      },
      {
       "id": "T06B",
-      "s": 1
-     }
-    ]
-   },
-   {
-    "t": "Stayed out way past my limit for one friend",
-    "tags": [
-     {
-      "id": "T06A",
       "s": 1
      }
     ]
@@ -1996,32 +1963,29 @@
    }
   ],
   "heart": {
-   "prompt": "Think about your friends lately. Choose everything that is true.",
+   "prompt": "Think of the last time a friend had a rough week. Which of these are true?",
    "options": [
-    "I went to a friend's event I would happily have skipped.",
-    "I fixed, carried or put together something for a friend.",
-    "I told a friend I love them, out loud, unasked.",
-    "I cancelled on a friend and felt only relief.",
-    "I sent a gift instead of going.",
-    "I stayed out well past my limit for one friend.",
+    "I dropped off food or coffee without being asked.",
+    "I sent a long message about how much they matter to me.",
+    "I stayed on the phone long past my bedtime.",
+    "I muted their messages for one night to recharge.",
+    "I sent something funny instead of asking how they were.",
     "None of these."
    ]
   },
   "fp": {
-   "trigger": "recent friend moments",
-   "setting": "the past few weeks",
-   "ask": "tick what you did",
-   "who": "friends",
-   "stakes": "showing up versus your energy",
-   "device": "friend receipts"
+   "trigger": "a friend's rough week",
+   "setting": "real life, the past few weeks",
+   "ask": "tick what you actually did",
+   "who": "a friend having a hard time",
+   "stakes": "showing up versus your own battery",
+   "device": "rough-week-receipts"
   },
   "mask": "looks like a quick checklist; measures showing up in person versus sending love from a distance (T05, T06), from things actually done",
   "ae": [
    "A"
   ],
-  "privacy": "normal",
-  "sq": "SQ-T05-2",
-  "world": "everyday"
+  "privacy": "normal"
  },
  {
   "id": "C2-135",

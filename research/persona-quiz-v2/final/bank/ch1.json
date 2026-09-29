@@ -1,12 +1,14 @@
 [
  {
-  "id": "C1-92",
+  "id": "C1-140",
   "type": "bet",
   "chapter": 1,
-  "prompt": "Prove me wrong: there's a friend you won't text first until they text you. You're counting.",
+  "sq": "SQ-T02-2",
+  "world": "everyday",
+  "prompt": "Prove me wrong: there's a friend you've stopped inviting, just to see if they'll ever invite you.",
   "options": [
    {
-    "t": "Guilty. It's 4 to 1. Their move.",
+    "t": "Guilty. Month three. Still waiting. Still counting.",
     "tags": [
      {
       "id": "T02B",
@@ -16,7 +18,7 @@
     "emotion": "resentment"
    },
    {
-    "t": "Guilty. Held out a week, then caved with a meme.",
+    "t": "Guilty. Lasted two weeks, then invited them anyway.",
     "tags": [
      {
       "id": "T02B",
@@ -26,7 +28,7 @@
     "emotion": "cringe"
    },
    {
-    "t": "Wrong. I text whoever I miss. No math involved.",
+    "t": "Wrong. I invite whoever I miss. No tests.",
     "tags": [
      {
       "id": "T02A",
@@ -36,49 +38,42 @@
     "emotion": "warmth"
    },
    {
-    "t": "Wrong. I forget to text everyone, equally.",
+    "t": "Wrong. I'm too disorganized to run a test.",
     "tags": [
      {
       "id": "T02A",
       "s": 1
      }
     ]
-   },
-   {
-    "t": "I'm the one who never texts first. Someone's counting me.",
-    "circumstance": true
    }
   ],
   "heart": {
-   "prompt": "Is there a friend you will not text first until they text you, and you are keeping count?",
+   "prompt": "Is there a friend you have stopped inviting, just to see whether they will ever invite you?",
    "options": [
-    "Yes. The count is four to one, so it is their turn.",
-    "Yes. I held out for a week, then sent them something anyway.",
-    "No. I text whoever I miss, without counting.",
-    "No. I forget to text everyone, equally.",
-    "I rarely text first myself. Someone may be counting me."
+    "Yes. It has been three months, and I am still counting.",
+    "Yes. I lasted two weeks, then invited them anyway.",
+    "No. I invite whoever I miss, without testing anyone.",
+    "No. I am too disorganized to run a test like that."
    ]
   },
   "fp": {
-   "trigger": "a friend owes you the first text",
-   "setting": "phone, an ongoing standoff",
-   "ask": "do you keep the count",
+   "trigger": "a friend never invites you first",
+   "setting": "your plans, an unspoken test",
+   "ask": "stop inviting to see if they invite you",
    "who": "a friend",
-   "stakes": "pride versus the friendship going quiet",
-   "device": "who-texts-first-count"
+   "stakes": "pride versus the friendship fading out",
+   "device": "invite-test"
   },
-  "mask": "looks like a texting confession; measures keeping count of who reaches out first (T02) from a thing actually done",
+  "mask": "looks like a petty confession; measures keeping count of who reaches out first (T02) from a thing actually done",
   "ae": [
    "A",
    "E"
   ],
   "privacy": "normal",
-  "sq": "SQ-T02-2",
-  "world": "everyday",
   "friend": {
-   "prompt": "Genii bets there's a friend {name} won't text first, and {name} is counting. Guilty or not?",
+   "prompt": "Genii bets there's a friend {name} stopped inviting, just to see if the friend ever invites {them}. Guilty or not?",
    "a": {
-    "t": "Never. Texts whoever {name} misses. No math.",
+    "t": "Wrong. Invites whoever {name} misses. No tests.",
     "tags": [
      {
       "id": "T02A",
@@ -87,7 +82,7 @@
     ]
    },
    "b": {
-    "t": "Guilty. It's 4 to 1. The friend's move.",
+    "t": "Guilty. Month three. Still waiting. Still counting.",
     "tags": [
      {
       "id": "T02B",
@@ -98,15 +93,15 @@
   }
  },
  {
-  "id": "C1-100",
+  "id": "C1-141",
   "type": "bet",
   "chapter": 1,
   "sq": "SQ-T16-2",
   "world": "everyday",
-  "prompt": "Genii bets you know your personal best at something, down to the exact number.",
+  "prompt": "Genii bets you've deleted a post because it didn't get enough likes.",
   "options": [
    {
-    "t": "Guilty. 412. Please ask me how.",
+    "t": "Guilty. Eleven likes in an hour? It had to go.",
     "axes": {
      "L2": 1
     },
@@ -116,10 +111,10 @@
       "s": 2
      }
     ],
-    "emotion": "pride"
+    "emotion": "cringe"
    },
    {
-    "t": "Guilty. Nobody knows the number but me.",
+    "t": "Guilty. Reposted it later, when more people were awake.",
     "tags": [
      {
       "id": "T16A",
@@ -128,7 +123,7 @@
     ]
    },
    {
-    "t": "Never. I stop counting on purpose. Freedom.",
+    "t": "Never. I post it and forget it exists.",
     "axes": {
      "L2": -1
     },
@@ -141,42 +136,43 @@
     "emotion": "relief"
    },
    {
-    "t": "Never. I didn't know I had a personal best.",
+    "t": "Never. My three loyal likers have never let me down.",
     "tags": [
      {
       "id": "T16B",
       "s": 1
      }
-    ]
+    ],
+    "emotion": "delight"
    }
   ],
   "heart": {
-   "prompt": "Genii guesses that you know your personal best at something, down to the exact number. Is that true?",
+   "prompt": "Genii guesses that you have deleted a post because it did not get enough likes. Is that true?",
    "options": [
-    "Yes. It is 412, and I would love to explain.",
-    "Yes, but nobody knows the number except me.",
-    "No. I stop counting on purpose, and it feels freeing.",
-    "No. I did not even know I had a personal best."
+    "Yes. Eleven likes in an hour, so it had to go.",
+    "Yes. I posted it again later, when more people were online.",
+    "No. I post something and forget it exists.",
+    "No. My three loyal likers always come through."
    ]
   },
   "fp": {
-   "trigger": "Genii guesses you know your personal best",
-   "setting": "your own quiet tally",
-   "ask": "do you keep a tally of wins",
-   "who": "just you",
-   "stakes": "wanting your count seen",
-   "device": "personal-best-tally"
+   "trigger": "a post you made gets few likes",
+   "setting": "your own feed",
+   "ask": "delete it or let it sit",
+   "who": "just you and your followers",
+   "stakes": "wanting your wins seen",
+   "device": "deleted-low-likes-post"
   },
-  "mask": "looks like a phone confession; measures keeping a quiet tally of wins and wanting it seen (T16, L2)",
+  "mask": "looks like a social media confession; measures keeping a quiet tally of wins and wanting them seen (T16, L2), from a thing actually done",
   "ae": [
    "A",
    "D"
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "Genii bets {name} knows {their} personal best at something, down to the exact number. Guilty or not?",
+   "prompt": "Genii bets {name} has deleted a post because it didn't get enough likes. Guilty or not?",
    "a": {
-    "t": "Guilty. 412. Please ask me how.",
+    "t": "Guilty. Eleven likes in an hour? It had to go.",
     "axes": {
      "L2": 1
     },
@@ -188,7 +184,7 @@
     ]
    },
    "b": {
-    "t": "Never. Stops counting on purpose. Freedom.",
+    "t": "Never. Posts it and forgets it exists.",
     "axes": {
      "L2": -1
     },
@@ -202,37 +198,15 @@
   }
  },
  {
-  "id": "C1-120",
+  "id": "C1-142",
   "type": "bet",
   "chapter": 1,
-  "sq": "SQ-T01-1",
+  "sq": "SQ-T01-2",
   "world": "everyday",
-  "prompt": "Calling it: you've tilted your phone away from someone sitting right next to you.",
+  "prompt": "Calling it: at least one person can see your live location right now.",
   "options": [
    {
-    "t": "Guilty. From my person. Nothing was even on it.",
-    "axes": {
-     "R1": -1
-    },
-    "tags": [
-     {
-      "id": "T01B",
-      "s": 2
-     }
-    ],
-    "emotion": "cringe"
-   },
-   {
-    "t": "Guilty. A stranger on the train. Pure instinct.",
-    "tags": [
-     {
-      "id": "T01B",
-      "s": 1
-     }
-    ]
-   },
-   {
-    "t": "Never. Read over my shoulder. It's mostly memes.",
+    "t": "Guilty. Three friends and my person. Wave hi.",
     "axes": {
      "R1": 1
     },
@@ -242,45 +216,67 @@
       "s": 2
      }
     ],
-    "emotion": "delight"
+    "emotion": "warmth"
    },
    {
-    "t": "Never. I turn it toward you and narrate.",
+    "t": "Guilty. One friend. Nobody else gets the dot.",
     "tags": [
      {
       "id": "T01A",
       "s": 1
      }
     ]
+   },
+   {
+    "t": "Wrong. Turned it on once. Off by dinner.",
+    "tags": [
+     {
+      "id": "T01B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Wrong. Nobody gets my dot. Not even my person.",
+    "axes": {
+     "R1": -1
+    },
+    "tags": [
+     {
+      "id": "T01B",
+      "s": 2
+     }
+    ],
+    "emotion": "pride"
    }
   ],
   "heart": {
-   "prompt": "Have you ever tilted your phone away from someone sitting right next to you?",
+   "prompt": "Can at least one person see your live location right now?",
    "options": [
-    "Yes. From my person, even with nothing on the screen.",
-    "Yes. From a stranger on a train. It was instinct.",
-    "No. Anyone can read over my shoulder. It is mostly memes.",
-    "No. I turn it toward you and explain what is on it."
+    "Yes. Three friends and my person can see it.",
+    "Yes. One friend can, and nobody else.",
+    "No. I turned it on once, then off that same day.",
+    "No. Nobody sees my location, not even my person."
    ]
   },
   "fp": {
-   "trigger": "someone beside you can see your screen",
-   "setting": "side by side, phone in hand",
-   "ask": "tilt it away or let them look",
-   "who": "your person or a stranger",
-   "stakes": "privacy versus looking like you are hiding something",
-   "device": "screen-tilt"
+   "trigger": "sharing your live location",
+   "setting": "your phone's map, always on",
+   "ask": "who gets to see where you are",
+   "who": "friends and your person",
+   "stakes": "closeness versus a private life",
+   "device": "live-location-sharing"
   },
-  "mask": "looks like a small phone-habit confession; measures an open versus a private phone (T01), with shared versus own space (R1), from a thing actually done",
+  "mask": "looks like a phone-settings confession; measures an open versus a private phone (T01), with shared versus own space (R1), from a thing actually done",
   "ae": [
    "A",
    "E"
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "Has {name} ever tilted {their} phone away from someone sitting right next to {them}?",
+   "prompt": "Genii bets at least one person can see {name}'s live location right now. Guilty or not?",
    "a": {
-    "t": "Never. Read over my shoulder. It's mostly memes.",
+    "t": "Guilty. Three friends and {their} person. Wave hi.",
     "axes": {
      "R1": 1
     },
@@ -292,7 +288,7 @@
     ]
    },
    "b": {
-    "t": "Guilty. From {their} person. Nothing was even on it.",
+    "t": "Wrong. Nobody gets {their} dot. Not even {their} person.",
     "axes": {
      "R1": -1
     },
@@ -306,15 +302,15 @@
   }
  },
  {
-  "id": "C1-12",
+  "id": "C1-143",
   "type": "receipts",
   "chapter": 1,
   "sq": "SQ-T04-1",
   "world": "everyday",
-  "prompt": "New people, lately. Tap everything that's true:",
+  "prompt": "The last party you went to. Tap everything that's true:",
   "options": [
    {
-    "t": "Gave my number to someone I'd known under an hour",
+    "t": "Talked to a total stranger for twenty minutes or more",
     "tags": [
      {
       "id": "T04B",
@@ -323,16 +319,7 @@
     ]
    },
    {
-    "t": "Left a follow request pending for weeks, on purpose",
-    "tags": [
-     {
-      "id": "T04A",
-      "s": 2
-     }
-    ]
-   },
-   {
-    "t": "Brought a brand-new person along to plans with my friends",
+    "t": "Swapped numbers with someone I'd just met",
     "tags": [
      {
       "id": "T04B",
@@ -341,16 +328,16 @@
     ]
    },
    {
-    "t": "Muted a chat because too many new people joined",
+    "t": "Introduced two people who'd never met",
     "tags": [
      {
-      "id": "T04A",
+      "id": "T04B",
       "s": 1
      }
     ]
    },
    {
-    "t": "Kept my close-friends list under ten people",
+    "t": "Stuck with the one person I came with, most of the night",
     "tags": [
      {
       "id": "T04A",
@@ -359,10 +346,10 @@
     ]
    },
    {
-    "t": "Said hi first to a stranger, and we still talk",
+    "t": "Already knew nearly everyone there",
     "tags": [
      {
-      "id": "T04B",
+      "id": "T04A",
       "s": 2
      }
     ]
@@ -373,26 +360,25 @@
    }
   ],
   "heart": {
-   "prompt": "Think about new people in your life lately. Which of these are true?",
+   "prompt": "Think of the last party you went to. Which of these are true?",
    "options": [
-    "I gave my number to someone I had known under an hour.",
-    "I left a follow request pending for weeks, on purpose.",
-    "I brought someone brand new to plans with my friends.",
-    "I muted a chat because too many new people joined it.",
-    "I kept my close-friends list to fewer than ten people.",
-    "I said hello first to a stranger, and we still talk.",
+    "I talked to a complete stranger for twenty minutes or more.",
+    "I swapped numbers with someone I had just met.",
+    "I introduced two people who had never met.",
+    "I stayed with the person I came with, most of the night.",
+    "I already knew nearly everyone there.",
     "None of these."
    ]
   },
   "fp": {
-   "trigger": "new people entering your life lately",
-   "setting": "your phone and your plans, recent weeks",
-   "ask": "what you actually did with newcomers",
-   "who": "strangers and new acquaintances",
+   "trigger": "the last party you went to",
+   "setting": "a party, recently",
+   "ask": "what you actually did with new people",
+   "who": "strangers and the people you came with",
    "stakes": "an open door versus a tight circle",
-   "device": "newcomer-receipts"
+   "device": "last-party-receipts"
   },
-  "mask": "looks like a quick tally of recent habits; measures a small, hard-to-join circle versus friends with everyone (T04), from things actually done",
+  "mask": "looks like a party recap; measures a small, hard-to-join circle versus friends with everyone (T04), from things actually done",
   "ae": [
    "A",
    "B"
@@ -400,170 +386,147 @@
   "privacy": "normal"
  },
  {
-  "id": "C1-30",
+  "id": "C1-144",
   "type": "real",
   "chapter": 1,
-  "sq": "SQ-R2-1",
-  "world": "unusual",
-  "prompt": "Think back to the last time a text about someone landed in front of that someone. What did you actually do?",
+  "sq": "SQ-R2-2",
+  "world": "everyday",
+  "prompt": "The last time someone scrolled their phone while you were telling them something. What did you actually do?",
   "options": [
    {
-    "t": "Owned it. \"Yes, I said it. Can we talk?\"",
+    "t": "Said it: \"Hello? I'm right here.\"",
     "axes": {
      "R2": 2
     },
-    "tags": [
-     {
-      "id": "T07A",
-      "s": 1
-     }
-    ],
-    "emotion": "cringe"
+    "emotion": "irritation"
    },
    {
-    "t": "Called them right away. Said sorry. No excuses.",
+    "t": "Stopped mid-sentence and waited till they looked up.",
     "axes": {
      "R2": 1
-    },
-    "emotion": "guilt"
+    }
    },
    {
-    "t": "Sent a joke to bury it. Never spoke of it again.",
+    "t": "Picked up my own phone. Two can play.",
     "axes": {
      "R2": -1
     }
    },
    {
-    "t": "Said I meant someone else with the same name. Committed.",
+    "t": "Kept talking like I hadn't noticed.",
     "axes": {
      "R2": -2
     },
-    "tags": [
-     {
-      "id": "T07B",
-      "s": 1
-     }
-    ]
+    "emotion": "sting"
    }
   ],
   "heart": {
-   "prompt": "Think of the last time a message you wrote about someone reached that person by mistake. What did you do?",
+   "prompt": "Think of the last time someone scrolled on their phone while you were telling them something. What did you do?",
    "options": [
-    "I owned it and asked if we could talk.",
-    "I called them straight away and apologized without excuses.",
-    "I made a joke of it, and we never mentioned it again.",
-    "I claimed I meant someone else by that name. Stuck to it."
+    "I said it out loud: I am right here.",
+    "I stopped mid-sentence and waited until they looked up.",
+    "I picked up my own phone too.",
+    "I kept talking as if I had not noticed."
    ]
   },
   "fp": {
-   "trigger": "a text about someone reaches them by mistake",
-   "setting": "wrong chat, a real moment",
-   "ask": "own it or cover it",
-   "who": "the person you were texting about",
-   "stakes": "the relationship and your face",
-   "device": "wrong-chat"
+   "trigger": "someone scrolls while you talk",
+   "setting": "face to face, a real moment",
+   "ask": "name it or let it slide",
+   "who": "whoever you were talking to",
+   "stakes": "being heard versus keeping it smooth",
+   "device": "scrolling-while-you-talk"
   },
-  "mask": "looks like a wrong-chat confession; measures owning a hard truth to someone's face versus smoothing it over (R2), from what you did",
+  "mask": "looks like a phone-manners memory; measures naming it when someone crosses a line versus absorbing it (R2), from what you did",
   "ae": [
    "A",
    "E"
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "A text {name} wrote about someone landed right in front of that someone. What did {name} actually do?",
+   "prompt": "The last time someone scrolled their phone while {name} was talking. What did {name} actually do?",
    "a": {
-    "t": "Owned it: \"Yes, I said it. Can we talk?\"",
+    "t": "Said it: \"Hello? I'm right here.\"",
     "axes": {
      "R2": 2
-    },
-    "tags": [
-     {
-      "id": "T07A",
-      "s": 1
-     }
-    ]
+    }
    },
    "b": {
-    "t": "Claimed it meant someone else with the same name. Committed.",
+    "t": "Kept talking like {they} hadn't noticed.",
     "axes": {
      "R2": -2
-    },
-    "tags": [
-     {
-      "id": "T07B",
-      "s": 1
-     }
-    ]
+    }
    }
   }
  },
  {
-  "id": "C1-130",
-  "type": "real",
+  "id": "C1-145",
+  "type": "bet",
   "chapter": 1,
   "sq": "SQ-L3-3",
-  "world": "unusual",
-  "prompt": "The last phone you found that wasn't yours, on a seat, a bar or a bench. What did you actually do?",
+  "world": "everyday",
+  "prompt": "Genii suspects: something you stream right now runs on someone else's login.",
   "options": [
    {
-    "t": "Took it to the police desk. Filled in the form.",
+    "t": "Guilty. An ex's. Still works. No questions asked.",
     "axes": {
-     "L3": 2
-    }
+     "L3": -2
+    },
+    "emotion": "delight"
    },
    {
-    "t": "Handed it to the nearest staff member. Done.",
-    "axes": {
-     "L3": 1
-    }
-   },
-   {
-    "t": "Answered when it rang: \"Hi, I have your phone.\"",
+    "t": "Guilty. A friend's. I buy their coffee as rent.",
     "axes": {
      "L3": -1
     }
    },
    {
-    "t": "Read the previews for clues. Strictly for clues.",
+    "t": "Wrong. I pay for every one myself.",
     "axes": {
-     "L3": -2
+     "L3": 2
     },
-    "emotion": "guilt"
+    "emotion": "pride"
+   },
+   {
+    "t": "Wrong. Shared only inside my home, by the rules.",
+    "axes": {
+     "L3": 1
+    }
    }
   ],
   "heart": {
-   "prompt": "Think of the last time you found a phone that was not yours, on a seat, at a bar or on a bench. What did you do?",
+   "prompt": "Does something you stream right now run on someone else's login?",
    "options": [
-    "I took it to the police and filled in the form.",
-    "I gave it to the nearest member of staff.",
-    "I answered it when it rang and said I had found it.",
-    "I read the message previews for clues about the owner."
+    "Yes. It is an ex's, and it still works.",
+    "Yes. It is a friend's, and I buy them coffee in return.",
+    "No. I pay for every one myself.",
+    "No. We share only within our home, as the rules allow."
    ]
   },
   "fp": {
-   "trigger": "you find a stranger's lost phone",
-   "setting": "a seat, a bar or a bench",
-   "ask": "follow the process or improvise",
-   "who": "a stranger who lost their phone",
-   "stakes": "doing it properly versus getting it home fast",
-   "device": "found-phone"
+   "trigger": "a streaming login that isn't yours",
+   "setting": "your streaming at home",
+   "ask": "borrow the login or pay your own",
+   "who": "an ex, a friend or just you",
+   "stakes": "a free show versus doing it by the book",
+   "device": "borrowed-streaming-login"
   },
-  "mask": "looks like a lost-and-found story; measures following the process when nobody is checking versus the sensible shortcut (L3), from what you did",
+  "mask": "looks like a small streaming confession; measures following the rules when nobody is checking versus the harmless shortcut (L3), from a thing actually done",
   "ae": [
    "A",
    "C"
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "The last time {name} found a stranger's phone on a seat, bar or bench. What did {name} actually do?",
+   "prompt": "Genii suspects something {name} streams runs on someone else's login. Guilty or not?",
    "a": {
-    "t": "Took it to the police desk. Filled in the form.",
+    "t": "Wrong. Pays for every single one.",
     "axes": {
      "L3": 2
     }
    },
    "b": {
-    "t": "Read the previews for clues. Strictly for clues.",
+    "t": "Guilty. An ex's login. Still works. No questions.",
     "axes": {
      "L3": -2
     }
@@ -743,41 +706,41 @@
   "chapter": 1,
   "sq": "SQ-L2-2",
   "world": "absurd",
-  "prompt": "Back to that billboard. Seventh of nine. First feeling?",
+  "prompt": "First feeling, before you thought it through?",
   "follows": "C1-123",
   "options": [
    {
-    "t": "Envy. Who's first, and what are they doing right?",
+    "t": "Envy, sharp and specific.",
     "emotion": "envy"
    },
    {
-    "t": "Relief. At least I'm not ninth.",
+    "t": "Relief. Could be worse.",
     "emotion": "relief"
    },
    {
-    "t": "Pride. Seventh, and I barely tried.",
+    "t": "Pride, weirdly.",
     "emotion": "pride"
    },
    {
-    "t": "Worry. That number is going to follow me.",
+    "t": "Worry. That'll stick with me.",
     "emotion": "worry"
    },
    {
-    "t": "Nothing. It's a billboard. I have lunch plans."
+    "t": "Nothing much. On with my day."
    }
   ],
   "heart": {
-   "prompt": "Think back to the billboard where you were seventh of nine. What did you feel first?",
+   "prompt": "What was your very first feeling, before you thought about it?",
    "options": [
-    "Envy. I want to know who is first and why.",
-    "Relief that I am not last.",
-    "Pride, since I barely tried.",
-    "Worry that the number will stay with me.",
-    "Nothing much. It is only a billboard."
+    "Envy, and very specific.",
+    "Relief. It could have been worse.",
+    "A strange kind of pride.",
+    "Worry that it would stay with me.",
+    "Not much. I got on with my day."
    ]
   },
   "fp": {
-   "trigger": "a moment after seeing your rank",
+   "trigger": "the moment right after the ranking",
    "setting": "the billboard, still up",
    "ask": "your first feeling",
    "who": "you alone",
@@ -959,15 +922,15 @@
   }
  },
  {
-  "id": "C1-122",
+  "id": "C1-146",
   "type": "scenario",
   "chapter": 1,
-  "sq": "SQ-T04-1",
+  "sq": "SQ-T04-2",
   "world": "unusual",
-  "prompt": "One post, 40,000 new followers. Your DMs: 312 strangers saying \"we should hang out.\"",
+  "prompt": "A note slides under your door. It's from the neighbor you've nodded at for two years: \"Want to be actual friends?\"",
   "options": [
    {
-    "t": "Answer all 312. Picnic in the park, everyone's invited.",
+    "t": "Knock tonight. Bring snacks. Friendship starts now.",
     "tags": [
      {
       "id": "T04B",
@@ -977,16 +940,7 @@
     "emotion": "delight"
    },
    {
-    "t": "Go private. Remove everyone I haven't met in person.",
-    "tags": [
-     {
-      "id": "T04A",
-      "s": 2
-     }
-    ]
-   },
-   {
-    "t": "Meet the three funniest. One might be my people.",
+    "t": "Bring them along on my next night out with friends.",
     "tags": [
      {
       "id": "T04B",
@@ -995,54 +949,64 @@
     ]
    },
    {
-    "t": "Say thanks. Change nothing. My circle's full.",
+    "t": "Slide back a \"yes!\" Keep it to hallway chats.",
     "tags": [
      {
       "id": "T04A",
       "s": 1
      }
     ]
+   },
+   {
+    "t": "Keep nodding. Act like the note never arrived.",
+    "tags": [
+     {
+      "id": "T04A",
+      "s": 2
+     }
+    ],
+    "emotion": "cringe"
    }
   ],
   "heart": {
-   "prompt": "One of your posts takes off. You gain 40,000 followers, and 312 strangers message you suggesting you meet.",
+   "prompt": "A note is slipped under your door. It is from the neighbor you have nodded to for two years, asking if you want to be real friends.",
    "options": [
-    "I answer all of them and invite everyone to a picnic.",
-    "I make my account private and remove everyone I have not met.",
-    "I meet the three funniest. One might become a real friend.",
-    "I thank everyone and change nothing. My circle is full."
+    "I knock on their door that evening and bring snacks.",
+    "I invite them along next time I go out with friends.",
+    "I write back yes, and keep it to chats in the hallway.",
+    "I keep nodding and act as if the note never came."
    ]
   },
   "fp": {
-   "trigger": "a post goes viral and strangers want to meet",
-   "setting": "your DMs after going viral",
-   "ask": "let strangers in or close the door",
-   "who": "312 strangers",
-   "stakes": "a bigger circle versus the one you trust",
-   "device": "viral-post"
+   "trigger": "a neighbor asks to be real friends",
+   "setting": "a note under your door",
+   "ask": "let them in or keep the nod",
+   "who": "a neighbor you barely know",
+   "stakes": "a new friend versus the awkwardness of saying no",
+   "device": "friendship-note-under-door"
   },
-  "mask": "looks like a fame fantasy; measures a small, hard-to-join circle versus friends with everyone (T04)",
+  "mask": "looks like an awkward neighbor moment; measures whether new people need to earn their way in (T04)",
   "ae": [
    "A",
    "B"
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "One post, 40,000 new followers, and 312 strangers in {name}'s DMs saying \"we should hang out.\" What does {name} do?",
+   "prompt": "A note under {name}'s door, from a neighbor {name} has nodded at for two years: \"Want to be actual friends?\" What does {name} do?",
    "a": {
-    "t": "Go private. Remove everyone I haven't met in person.",
+    "t": "Knocks tonight. Brings snacks. Friendship starts now.",
     "tags": [
      {
-      "id": "T04A",
+      "id": "T04B",
       "s": 2
      }
     ]
    },
    "b": {
-    "t": "Answer all 312. Picnic in the park, everyone's invited.",
+    "t": "Keeps nodding. Acts like the note never arrived.",
     "tags": [
      {
-      "id": "T04B",
+      "id": "T04A",
       "s": 2
      }
     ]
@@ -1260,7 +1224,7 @@
   "chapter": 1,
   "sq": "SQ-R3-2",
   "world": "unusual",
-  "prompt": "Four months in. Your parent adds your person to the family group chat. Nobody asked either of you.",
+  "prompt": "You've dated Sam for four months. Your parent adds Sam to the family group chat without asking either of you.",
   "thread": [
    {
     "from": "Your parent",
@@ -1312,7 +1276,7 @@
    }
   ],
   "heart": {
-   "prompt": "You and your person have been together four months. Your parent adds them to the family group chat without asking either of you.",
+   "prompt": "You have been dating Sam for four months. Your parent adds Sam to the family group chat without asking either of you.",
    "thread": [
     {
      "from": "Your parent",
@@ -1334,7 +1298,7 @@
    "trigger": "your parent adds your new partner to the family chat",
    "setting": "the family group chat",
    "ask": "welcome them in or set your own pace",
-   "who": "your parent, your person and a sibling",
+   "who": "your parent, Sam and a sibling",
    "stakes": "family warmth versus your own timeline as a couple",
    "device": "family-chat-add"
   },
@@ -1345,7 +1309,7 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "Four months in, {name}'s parent adds {name}'s person, Sam, to the family group chat unasked. What does {name} reply?",
+   "prompt": "{name} has dated Sam for four months. {name}'s parent adds Sam to the family group chat unasked. What does {name} reply?",
    "a": {
     "t": "\"Welcome, Sam! You're family now. No refunds.\"",
     "axes": {
@@ -1766,12 +1730,6 @@
     }
    },
    {
-    "t": "Auditor. Makes sure nobody grabs two vouchers.",
-    "axes": {
-     "L3": 1
-    }
-   },
-   {
     "t": "Fixer. Sweet-talks the desk into a room for whoever's crying.",
     "axes": {
      "L3": -1
@@ -1795,7 +1753,6 @@
    "options": [
     "I say the first twelve in line should get them.",
     "I suggest drawing names so everyone has the same chance.",
-    "I make sure nobody takes two vouchers.",
     "I persuade the desk to give a room to whoever is crying.",
     "I book an apartment for eight of us, outside the voucher list.",
     "I say the family with the baby should get one first."
@@ -1832,16 +1789,16 @@
   }
  },
  {
-  "id": "C1-129",
+  "id": "C1-147",
   "type": "pick_two",
   "chapter": 1,
   "sq": "SQ-T03-2",
   "world": "absurd",
-  "prompt": "Your smart fridge starts giving advice. Scary good, up all night, never repeats a word. Something's eating at you. Pick two.",
+  "prompt": "Genii tucks a tiny advisor in your ear for a week. Knows everything, never judges. Something's eating at you. Pick two.",
   "pick": 2,
   "options": [
    {
-    "t": "Open the fridge and talk till the light clicks off.",
+    "t": "Tell it the thing I've told nobody. Day one.",
     "tags": [
      {
       "id": "T03A",
@@ -1850,7 +1807,25 @@
     ]
    },
    {
-    "t": "Text my best friend. Only they get this one.",
+    "t": "Rehearse the hard conversation with it first.",
+    "tags": [
+     {
+      "id": "T03A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Let it pick which friend I should call.",
+    "tags": [
+     {
+      "id": "T03A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Keep it for directions. Feelings go to my best friend.",
     "tags": [
      {
       "id": "T03B",
@@ -1863,16 +1838,7 @@
     ]
    },
    {
-    "t": "Ask the fridge how to word it for my friend.",
-    "tags": [
-     {
-      "id": "T03A",
-      "s": 1
-     }
-    ]
-   },
-   {
-    "t": "Pen and paper. No appliances, no audience.",
+    "t": "Mute it and walk it off alone.",
     "tags": [
      {
       "id": "T03B",
@@ -1881,7 +1847,7 @@
     ]
    },
    {
-    "t": "Call whoever's still up. Any friend will do.",
+    "t": "Call three friends and take a vote.",
     "tags": [
      {
       "id": "T03B",
@@ -1892,46 +1858,37 @@
       "s": 1
      }
     ]
-   },
-   {
-    "t": "Fridge gets the full story. Friends get the highlights.",
-    "tags": [
-     {
-      "id": "T03A",
-      "s": 2
-     }
-    ]
    }
   ],
   "heart": {
-   "prompt": "Your smart fridge starts giving advice. It is surprisingly wise, awake all night and never repeats anything. Something is on your mind. Which two are most like you?",
+   "prompt": "Genii places a tiny advisor in your ear for a week. It knows everything and never judges. Something is bothering you. Which two are most like you?",
    "options": [
-    "I talk to the open fridge until its light turns off.",
-    "I message my best friend. Only they hear this one.",
-    "I ask the fridge how to put it to my friend.",
-    "I write it on paper, alone.",
-    "I call whichever friend is still awake.",
-    "The fridge hears everything. My friends hear a shorter version."
+    "On the first day, I tell it what I have told nobody.",
+    "I practice the difficult conversation with it first.",
+    "I let it choose which friend I should call.",
+    "I use it for directions. My feelings go to my best friend.",
+    "I mute it and walk it off alone.",
+    "I call three friends and ask what they think."
    ]
   },
   "fp": {
-   "trigger": "something is on your mind late and your fridge can talk",
-   "setting": "your kitchen, a smart fridge that gives advice",
+   "trigger": "something is eating at you and a magic advisor is listening",
+   "setting": "a tiny advisor in your ear",
    "ask": "machine or person first",
-   "who": "a fridge, your best friend, any friend awake",
+   "who": "an all-knowing advisor, your best friend, a few friends",
    "stakes": "being heard versus being known",
-   "device": "talking-fridge"
+   "device": "ear-advisor"
   },
-  "mask": "looks like a kitchen gag; measures whether a machine or a person hears your worries first (T03), and one close person versus anyone awake (T04)",
+  "mask": "looks like a magic gadget; measures whether a machine or a person hears your worries first (T03), and one close person versus a crowd (T04)",
   "ae": [
    "A",
    "B"
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "A smart fridge gives scary good advice all night. Something's eating at {name}. Which line sounds most like {name}?",
+   "prompt": "Genii puts an all-knowing advisor in {name}'s ear for a week. Something's eating at {name}. Which line sounds most like {name}?",
    "a": {
-    "t": "Opens the fridge and talks till the light clicks off.",
+    "t": "Tells it the secret nobody else knows. Day one.",
     "tags": [
      {
       "id": "T03A",
@@ -1940,7 +1897,7 @@
     ]
    },
    "b": {
-    "t": "Texts {their} best friend. Only that friend gets this one.",
+    "t": "Keeps it for directions. Feelings go to {their} best friend.",
     "tags": [
      {
       "id": "T03B",
@@ -1955,15 +1912,15 @@
   }
  },
  {
-  "id": "C1-121",
+  "id": "C1-148",
   "type": "eyes",
   "chapter": 1,
-  "sq": "SQ-T02-1",
+  "sq": "SQ-T02-2",
   "world": "unusual",
-  "prompt": "A spy agency is vetting you. The agent asks your best friend: \"If a friend went silent for months, would they notice?\"",
+  "prompt": "Friendship trivia, final round. The host asks your best friend one question about you: \"Keeps score of who calls first?\" Their answer:",
   "options": [
    {
-    "t": "Notice? They'd have a timeline by week two.",
+    "t": "\"Keep score? There's a spreadsheet in their head.\"",
     "tags": [
      {
       "id": "T02B",
@@ -1972,27 +1929,25 @@
     ]
    },
    {
-    "t": "They'd notice, say nothing, and feel it for a while.",
+    "t": "\"They'd never say it. But they notice. Every time.\"",
     "tags": [
      {
       "id": "T02B",
       "s": 1
      }
-    ],
-    "emotion": "sting"
+    ]
    },
    {
-    "t": "They'd pick it back up in month six like it was yesterday.",
+    "t": "\"They call whoever, whenever. Zero math.\"",
     "tags": [
      {
       "id": "T02A",
       "s": 2
      }
-    ],
-    "emotion": "warmth"
+    ]
    },
    {
-    "t": "They'd be the silent one. Still loved, somehow.",
+    "t": "\"They forget whose turn it is. Including their own.\"",
     "tags": [
      {
       "id": "T02A",
@@ -2002,32 +1957,32 @@
    }
   ],
   "heart": {
-   "prompt": "A spy agency is checking your background. The agent asks your best friend whether you would notice if a friend went quiet for months. What does your friend say?",
+   "prompt": "At a friendship trivia night, the host asks your best friend one last question about you: do you keep track of who calls first? What does your friend say?",
    "options": [
-    "They would notice right away and remember exactly when it started.",
-    "They would notice, say nothing, and feel it for a while.",
-    "Six months later, they would pick up as if nothing changed.",
-    "They would more likely be the quiet one, and still be loved."
+    "They keep track so closely it is like a spreadsheet.",
+    "They would never say so, but they notice every time.",
+    "They call whoever they like, whenever they like, without counting.",
+    "They lose track of whose turn it is, even their own."
    ]
   },
   "fp": {
-   "trigger": "a spy agency asks your best friend about you",
-   "setting": "a background check interview",
-   "ask": "do you notice when a friend goes quiet",
-   "who": "your best friend and an agent",
-   "stakes": "how your friendships look to someone else",
-   "device": "spy-vetting"
+   "trigger": "a trivia host asks your best friend about you",
+   "setting": "friendship trivia night, final round",
+   "ask": "do you keep score of who calls first",
+   "who": "your best friend and a room of teams",
+   "stakes": "how your friendships look out loud",
+   "device": "friendship-trivia-night"
   },
-  "mask": "looks like a spy interview; measures whether a quiet stretch reads as fine or as fading (T02), through a friend's eyes",
+  "mask": "looks like a trivia bit; measures keeping count of who reaches out first (T02), through a friend's eyes",
   "ae": [
    "B",
    "E"
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "A spy agency asks {name}'s best friend: if a friend went silent for months, would {name} notice? Which line?",
+   "prompt": "Friendship trivia, final round: does {name} keep score of who calls first? Which line would {name}'s best friend give?",
    "a": {
-    "t": "{They}'d pick it back up in month six like it was yesterday.",
+    "t": "\"Calls whoever, whenever. Zero math.\"",
     "tags": [
      {
       "id": "T02A",
@@ -2036,7 +1991,7 @@
     ]
    },
    "b": {
-    "t": "Notice? {They}'d have a timeline by week two.",
+    "t": "\"Keep score? There's a spreadsheet in {their} head.\"",
     "tags": [
      {
       "id": "T02B",

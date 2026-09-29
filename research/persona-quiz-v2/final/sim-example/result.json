@@ -7,21 +7,21 @@
     "unfinished"
   ],
   "type": {
-    "name": "Golden Retriever × The Easygoer",
-    "code": "We·Soft·Own | Steady·Easy·Context",
+    "name": "Old Soul × Creature of Habit",
+    "code": "Me·Soft·Classic | Steady·Easy·Rules",
     "badges": []
   },
   "halves": [
     {
       "side": "relationship",
-      "name": "Golden Retriever",
-      "code": "We·Soft·Own",
-      "desc": "You love out loud. Warm, gentle and all in, you decide for yourself what closeness looks like, and nobody around you ever wonders if they're wanted.",
+      "name": "Old Soul",
+      "code": "Me·Soft·Classic",
+      "desc": "You love the cozy, familiar kind of life, you speak gently, and you still need hours alone behind your own door. Quiet is where you recharge.",
       "axes": [
         {
           "axis": "R1",
-          "pole": "We",
-          "line": "Your people are your happy place. Close means shared: plans, snacks, calendars.",
+          "pole": "Me",
+          "line": "You love hard and keep your own door. Close still means space.",
           "flex": false,
           "unfinished": false
         },
@@ -34,8 +34,8 @@
         },
         {
           "axis": "R3",
-          "pole": "Own",
-          "line": "You write your own script for love, home and holidays.",
+          "pole": "Classic",
+          "line": "Traditions, rituals and the way a home should run feel like home to you.",
           "flex": false,
           "unfinished": false
         }
@@ -43,9 +43,9 @@
     },
     {
       "side": "life",
-      "name": "The Easygoer",
-      "code": "Steady·Easy·Context",
-      "desc": "You don't race anyone's timeline. You go with the flow, you like the flow familiar, and you're usually the calmest person in the room.",
+      "name": "Creature of Habit",
+      "code": "Steady·Easy·Rules",
+      "desc": "Your days run on routine and order, and you're in no rush to prove anything to anyone. Same café, same walk, same excellent choice.",
       "axes": [
         {
           "axis": "L1",
@@ -63,8 +63,8 @@
         },
         {
           "axis": "L3",
-          "pole": "Context",
-          "line": "You read the room. Rules bend when a person needs them to.",
+          "pole": "Rules",
+          "line": "A fair process keeps everyone safe. A rule is a rule.",
           "flex": false,
           "unfinished": false
         }
@@ -72,45 +72,77 @@
     }
   ],
   "stings": [
-    "You make room for everyone's feelings in real time. Yours tend to come up a week later, casually.",
-    "People mistake your calm for not caring. You just haven't found the thing worth rushing for yet."
+    "Some people read your need for quiet as distance. You've never quite explained that it isn't.",
+    "Your life is so steady that some nights you wonder what the other version would have looked like."
   ],
   "hearts": [
-    "I'd rather love too much than too carefully.",
-    "My life doesn't need a progress bar."
+    "Love with a little space is still deep love.",
+    "I chose my ordinary days. I didn't settle for them."
   ],
   "tags": [
     {
-      "id": "T25B",
-      "name": "Bends rules for people",
+      "id": "T25A",
+      "name": "Plays by the rules",
       "strength": "strong",
-      "heart": "I look at the person, not the form.",
-      "sting": "You make exceptions for everyone you care about, and keeping track of them all is its own job.",
+      "heart": "Fair isn't cold to me. It's safe.",
+      "sting": "You trust the process, because you don't quite trust people to wing it.",
       "stingOwnerOnly": true,
       "youToldGenii": [
         {
           "card": "C7-120",
           "chapter": 7,
-          "said": "Never. At our table, house rules beat the book.",
+          "said": "Guilty. Page 12. I had it bookmarked.",
           "grade": "did",
           "rushed": false
         },
         {
-          "card": "C2-41",
-          "chapter": 2,
-          "said": "\"Done. Biscuit and I go way back.\"",
+          "card": "C5-123",
+          "chapter": 5,
+          "said": "Zero. The syllabus doesn't read reviews.",
           "grade": "would",
           "rushed": false
         },
         {
-          "card": "C5-124",
-          "chapter": 5,
-          "said": "\"Wrong number!\" Then call my friend on the walk home.",
+          "card": "C7-7",
+          "chapter": 7,
+          "said": "\"Buyer one was first. I'm really sorry.\"",
           "grade": "would",
           "rushed": false
         }
       ],
       "evidenceCards": 7
+    },
+    {
+      "id": "T20A",
+      "name": "Classic at heart",
+      "strength": "strong",
+      "heart": "I can hold new ideas and old wishes at the same time.",
+      "sting": "You're open-minded about everyone's setup, and a small part of you still wants the one you grew up with.",
+      "stingOwnerOnly": true,
+      "youToldGenii": [
+        {
+          "card": "C6-148",
+          "chapter": 6,
+          "said": "Said \"in this house, we...\" and heard my parent's voice",
+          "grade": "did",
+          "rushed": false
+        },
+        {
+          "card": "C6-148",
+          "chapter": 6,
+          "said": "Kept a rule from my childhood home, like shoes off",
+          "grade": "did",
+          "rushed": false
+        },
+        {
+          "card": "C6-82",
+          "chapter": 6,
+          "said": "\"Forever. I'm even keeping the tablecloth with the gravy stain.\"",
+          "grade": "would",
+          "rushed": false
+        }
+      ],
+      "evidenceCards": 10
     },
     {
       "id": "T16B",
@@ -121,13 +153,6 @@
       "stingOwnerOnly": true,
       "youToldGenii": [
         {
-          "card": "C1-100",
-          "chapter": 1,
-          "said": "Never. I stop counting on purpose. Freedom.",
-          "grade": "did",
-          "rushed": false
-        },
-        {
           "card": "C5-128",
           "chapter": 5,
           "said": "Didn't touch it. Future me handled it.",
@@ -135,73 +160,16 @@
           "rushed": false
         },
         {
-          "card": "C4-120",
-          "chapter": 4,
-          "said": "Never. My free time costs more than they pay.",
-          "grade": "did",
-          "rushed": false
-        }
-      ],
-      "evidenceCards": 6
-    },
-    {
-      "id": "T20B",
-      "name": "Makes my own traditions",
-      "strength": "strong",
-      "heart": "No script is the gift I gave myself.",
-      "sting": "You skipped the script, which means every choice at home is yours to make, and to explain.",
-      "stingOwnerOnly": true,
-      "youToldGenii": [
-        {
-          "card": "C2-135",
-          "chapter": 2,
-          "said": "Wrong. Stopped going. Started my own.",
+          "card": "C1-141",
+          "chapter": 1,
+          "said": "Never. My three loyal likers have never let me down.",
           "grade": "did",
           "rushed": false
         },
         {
-          "card": "C3-127",
-          "chapter": 3,
-          "said": "Came exactly as I am. Sneakers, no rehearsed lines.",
-          "grade": "did",
-          "rushed": false
-        },
-        {
-          "card": "C6-12",
-          "chapter": 6,
-          "said": "Celebrated a holiday or birthday my own way, not the usual way",
-          "grade": "did",
-          "rushed": false
-        }
-      ],
-      "evidenceCards": 10
-    },
-    {
-      "id": "T10B",
-      "name": "Lets it go",
-      "strength": "strong",
-      "heart": "Leaving gently is still a way of caring.",
-      "sting": "You leave before it gets messy. Now and then, that's before it gets good.",
-      "stingOwnerOnly": true,
-      "youToldGenii": [
-        {
-          "card": "C3-5",
-          "chapter": 3,
-          "said": "Let it fade. Fewer texts, then none.",
-          "grade": "did",
-          "rushed": false
-        },
-        {
-          "card": "C7-100",
-          "chapter": 7,
-          "said": "Just stopped going. Nobody asked. I didn't explain.",
-          "grade": "did",
-          "rushed": false
-        },
-        {
-          "card": "C2-100",
-          "chapter": 2,
-          "said": "Cancel the booking. Some friendships end for a reason.",
+          "card": "C5-140",
+          "chapter": 5,
+          "said": "Sleep through it. Every week. No regrets.",
           "grade": "would",
           "rushed": false
         }
@@ -209,88 +177,120 @@
       "evidenceCards": 5
     },
     {
-      "id": "T13B",
-      "name": "Saves first, spends later",
+      "id": "T19B",
+      "name": "Family gets a vote",
       "strength": "strong",
-      "heart": "Being ready is how I relax.",
-      "sting": "You've saved for a rainy day so long that the sunny days sometimes go unspent.",
+      "heart": "My family is part of my 'we', and I like it that way.",
+      "sting": "Big decisions feel safer with a family nod, and waiting for it can slow a few of them down.",
       "stingOwnerOnly": true,
       "youToldGenii": [
         {
-          "card": "C4-121",
-          "chapter": 4,
-          "said": "Guilty. Two hiding spots. One is a decoy.",
+          "card": "C6-147",
+          "chapter": 6,
+          "said": "Never. Anything that big, I'd run past them first.",
           "grade": "did",
           "rushed": false
         },
         {
-          "card": "C4-122",
-          "chapter": 4,
-          "said": "Checked the numbers. Stayed home. Watched the photos.",
-          "grade": "did",
+          "card": "C5-110",
+          "chapter": 5,
+          "said": "\"Okay. The truck's on hold until we all talk.\"",
+          "grade": "would",
           "rushed": false
         },
         {
-          "card": "C4-127",
-          "chapter": 4,
-          "said": "\"$200. Friendship price. Not a cent more.\"",
+          "card": "C6-122",
+          "chapter": 6,
+          "said": "Unpack. I can't live under that face.",
           "grade": "would",
           "rushed": false
         }
       ],
-      "evidenceCards": 6
+      "evidenceCards": 4
+    },
+    {
+      "id": "T21A",
+      "name": "Big family wedding",
+      "strength": "strong",
+      "heart": "Thinking of my family is my own choice too.",
+      "sting": "You want the ceremony, and part of it is for the people who've waited years to see it.",
+      "stingOwnerOnly": true,
+      "youToldGenii": [
+        {
+          "card": "C6-146",
+          "chapter": 6,
+          "said": "Posted a photo within the month. Official is official.",
+          "grade": "did",
+          "rushed": false
+        },
+        {
+          "card": "C6-143",
+          "chapter": 6,
+          "said": "Our names, then send the photo to both families.",
+          "grade": "would",
+          "rushed": false
+        },
+        {
+          "card": "C2-124",
+          "chapter": 2,
+          "said": "Robbed. I've had that toast ready for years.",
+          "grade": "believe",
+          "rushed": false
+        }
+      ],
+      "evidenceCards": 4
     }
   ],
   "calls": [
     {
-      "line": "You've said 'technically' and then done the nice thing anyway.",
-      "fromTag": "T25B"
+      "line": "You've read the terms and conditions on something.",
+      "fromTag": "T25A"
+    },
+    {
+      "line": "You still make the family recipe exactly as written.",
+      "fromTag": "T20A"
     },
     {
       "line": "You'll leave on time today and not think about work or school once.",
       "fromTag": "T16B"
-    },
-    {
-      "line": "Your future home will have at least one tradition you invented.",
-      "fromTag": "T20B"
     }
   ],
   "plotTwist": {
-    "line": "You'd say: ‘Crush it. Finding out is the fun part.’ Last time, you did: ‘Something booked more than six months from now’",
-    "dim": "T17",
+    "line": "You'd say: ‘Advocate. \"The family with the baby gets one. Obviously.\"’ Last time, you did: ‘Guilty. Page 12. I had it bookmarked.’",
+    "dim": "L3",
     "said": {
-      "card": "C5-1",
-      "text": "Crush it. Finding out is the fun part."
+      "card": "C1-1",
+      "text": "Advocate. \"The family with the baby gets one. Obviously.\""
     },
     "did": {
-      "card": "C5-127",
-      "text": "Something booked more than six months from now",
+      "card": "C7-120",
+      "text": "Guilty. Page 12. I had it bookmarked.",
       "grade": "did"
     }
   },
   "unfinished": [],
   "share": {
-    "typeName": "Golden Retriever × The Easygoer",
+    "typeName": "Old Soul × Creature of Habit",
     "tags": [
       {
-        "name": "Bends rules for people",
-        "heart": "I look at the person, not the form."
+        "name": "Plays by the rules",
+        "heart": "Fair isn't cold to me. It's safe."
+      },
+      {
+        "name": "Classic at heart",
+        "heart": "I can hold new ideas and old wishes at the same time."
       },
       {
         "name": "Logs off on time",
         "heart": "A good life is the whole point, not the reward for later."
       },
       {
-        "name": "Makes my own traditions",
-        "heart": "No script is the gift I gave myself."
+        "name": "Family gets a vote",
+        "heart": "My family is part of my 'we', and I like it that way."
       },
       {
-        "name": "Lets it go",
-        "heart": "Leaving gently is still a way of caring."
-      },
-      {
-        "name": "Saves first, spends later",
-        "heart": "Being ready is how I relax."
+        "name": "Big family wedding",
+        "heart": "Thinking of my family is my own choice too."
       }
     ],
     "invite": "Do you really know me?"

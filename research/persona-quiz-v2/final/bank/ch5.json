@@ -1,12 +1,12 @@
 [
   {
-    "id": "C5-80",
+    "id": "C5-140",
     "type": "scenario",
     "chapter": 5,
-    "prompt": "A deal from Genii: world famous at one thing of your choosing. The catch? You never get a lazy Sunday again.",
+    "prompt": "Your week just grew an eighth day. Only you get it. Nobody at work knows it exists.",
     "options": [
       {
-        "t": "Deal. I'll rest when the documentary comes out.",
+        "t": "Work it. By spring I'm everyone's boss.",
         "axes": {
           "L2": 2
         },
@@ -19,7 +19,7 @@
         "emotion": "pride"
       },
       {
-        "t": "No deal. Lazy Sundays are my one true talent.",
+        "t": "Sleep through it. Every week. No regrets.",
         "axes": {
           "L2": -2
         },
@@ -28,10 +28,11 @@
             "id": "T16B",
             "s": 2
           }
-        ]
+        ],
+        "emotion": "relief"
       },
       {
-        "t": "Deal, but only for something I'd grind at anyway.",
+        "t": "Work it quietly. Let them wonder how I do it.",
         "axes": {
           "L2": 1
         },
@@ -40,10 +41,11 @@
             "id": "T16A",
             "s": 1
           }
-        ]
+        ],
+        "emotion": "delight"
       },
       {
-        "t": "Pass. Good at it quietly beats famous and tired.",
+        "t": "Spend it on the hobby I keep promising myself.",
         "axes": {
           "L2": -1
         },
@@ -57,34 +59,35 @@
       }
     ],
     "heart": {
-      "prompt": "Genii offers to make you world famous at one thing of your choice. The catch is that you will never have a slow, lazy Sunday again.",
+      "prompt": "Your week gains an eighth day, and only you get it. Nobody at work knows it exists.",
       "options": [
-        "I accept. I can rest once the work is known.",
-        "I decline. My slow Sundays matter more to me.",
-        "I accept, but only for something I would work at anyway.",
-        "I pass. Being good at it quietly is enough for me."
+        "I work it. By spring, I would be running things.",
+        "I sleep through it, every week, with no regrets.",
+        "I work it quietly and let people wonder how I manage.",
+        "I spend it on the hobby I keep promising myself."
       ]
     },
     "fp": {
-      "trigger": "fame offered at the cost of rest",
-      "setting": "Genii's deal",
-      "ask": "trade every Sunday for fame",
-      "who": "just you",
-      "stakes": "a visible win versus free time",
-      "device": "genie-fame-deal"
+      "trigger": "a secret extra day every week",
+      "setting": "your week, your job",
+      "ask": "work the extra day or rest",
+      "who": "just you, coworkers unaware",
+      "stakes": "a visible lead versus real rest",
+      "device": "eighth-day"
     },
-    "mask": "looks like a genie bargain; measures trading rest for a win people can see versus keeping your time (L2, T16)",
+    "mask": "looks like a time fantasy; measures giving free time to a win people can see versus keeping it (L2, T16)",
     "ae": [
       "A",
-      "D"
+      "D",
+      "E"
     ],
     "privacy": "normal",
     "sq": "SQ-L2-1",
     "world": "absurd",
     "friend": {
-      "prompt": "Genii offers {name} world fame at one thing. The catch: no lazy Sundays ever again. What does {name} do?",
+      "prompt": "{name}'s week grows a secret eighth day. Nobody at work knows. What does {name} do with it?",
       "a": {
-        "t": "Deal. \"I'll rest when the documentary comes out.\"",
+        "t": "Works it. \"By spring I'm everyone's boss.\"",
         "axes": {
           "L2": 2
         },
@@ -96,7 +99,7 @@
         ]
       },
       "b": {
-        "t": "No deal. \"Lazy Sundays are my one true talent.\"",
+        "t": "Sleeps through it. Every week. No regrets.",
         "axes": {
           "L2": -2
         },
@@ -218,7 +221,7 @@
     "type": "feeling",
     "chapter": 5,
     "follows": "C5-121",
-    "prompt": "The dog is your boss now. What hit first?",
+    "prompt": "First feeling, honestly?",
     "options": [
       {
         "t": "Happy for it. Truly."
@@ -237,7 +240,7 @@
       }
     ],
     "heart": {
-      "prompt": "The dog is your boss now. What was the first feeling?",
+      "prompt": "What was your first feeling, honestly?",
       "options": [
         "Real happiness for it.",
         "A small sting, and the question of why it was not me.",
@@ -325,7 +328,7 @@
       "options": [
         "I worked both days, and honestly I enjoyed it.",
         "I brought my laptop to a birthday dinner, and people noticed.",
-        "I did not touch it, and it worked out fine later.",
+        "I did not touch it. Future me handled it.",
         "I told people I was working, but I mostly rested."
       ]
     },
@@ -374,13 +377,13 @@
     }
   },
   {
-    "id": "C5-111",
+    "id": "C5-141",
     "type": "scenario",
     "chapter": 5,
-    "prompt": "Blizzard. You run the only warm barn in town. The fair's 60 chocolate chip muffins booked it weeks ago. Now 60 cold chickens are at the door.",
+    "prompt": "First week as the town's weather booker. A kite festival reserved Saturday's sunshine a year ago. Now a farmer is begging for rain.",
     "options": [
       {
-        "t": "Muffins stay. They booked. Chickens get blankets and my apologies.",
+        "t": "Sunshine. The kites booked first.",
         "axes": {
           "L3": 2
         },
@@ -389,11 +392,10 @@
             "id": "T25A",
             "s": 2
           }
-        ],
-        "emotion": "guilt"
+        ]
       },
       {
-        "t": "Call the muffin baker. Nothing moves without permission.",
+        "t": "Sunshine. The farmer gets Monday's rain and my apology.",
         "axes": {
           "L3": 1
         },
@@ -403,10 +405,10 @@
             "s": 1
           }
         ],
-        "emotion": "worry"
+        "emotion": "guilt"
       },
       {
-        "t": "Chickens in. Muffins out in the snow. Tell the fair later.",
+        "t": "Rain. Crops outrank kites.",
         "axes": {
           "L3": -2
         },
@@ -418,7 +420,7 @@
         ]
       },
       {
-        "t": "Squeeze the chickens between the muffin trays. Hope for the best.",
+        "t": "Rain. Then blame it on the forecast.",
         "axes": {
           "L3": -1
         },
@@ -432,34 +434,35 @@
       }
     ],
     "heart": {
-      "prompt": "There is a blizzard, and you run the only warm barn in town. The fair booked it weeks ago for 60 chocolate chip muffins. Now 60 cold chickens are at the door.",
+      "prompt": "In your first week booking the town's weather, you see a kite festival reserved Saturday's sunshine a year ago. Now a farmer is asking you for rain.",
       "options": [
-        "The muffins stay because they booked first. The chickens get blankets and my apology.",
-        "I call the baker and move nothing until they agree.",
-        "The chickens come in, the muffins go out, and I tell the fair later.",
-        "I fit the chickens in between the muffin trays and hope it works."
+        "Sunshine. The festival booked first.",
+        "Sunshine. The farmer gets rain on Monday, with my apology.",
+        "Rain. The crops matter more than the kites.",
+        "Rain, and I let people blame the forecast."
       ]
     },
     "fp": {
-      "trigger": "the booked space is needed by someone in need",
-      "setting": "only warm barn in a blizzard",
+      "trigger": "a booked sunny day versus a farmer who needs rain",
+      "setting": "a job booking the weather",
       "ask": "honor the booking or the need",
-      "who": "a fair's muffins and 60 chickens",
-      "stakes": "a promise kept versus cold chickens",
-      "device": "barn-muffins-chickens"
+      "who": "a kite festival and a farmer",
+      "stakes": "a promise kept versus a harvest",
+      "device": "weather-booking-desk"
     },
-    "mask": "looks like pure nonsense; measures first-come fairness versus the right call for the case (T25, L3). The booking is the rule, the chickens are the need",
+    "mask": "looks like a sky-office joke; measures first-come fairness versus the right call for the case (T25, L3). The booking is the rule, the farmer is the need",
     "ae": [
       "A",
-      "C"
+      "C",
+      "E"
     ],
     "privacy": "normal",
     "sq": "SQ-T25-2",
     "world": "absurd",
     "friend": {
-      "prompt": "Blizzard. {name} runs the only warm barn, booked by 60 muffins. Now 60 cold chickens knock. What does {name} do?",
+      "prompt": "{name} books the town's weather. A kite festival reserved Saturday's sun a year ago. A farmer begs for rain. What does {name} do?",
       "a": {
-        "t": "Muffins stay, they booked. Chickens get blankets and apologies.",
+        "t": "Sunshine. \"The kites booked first.\"",
         "axes": {
           "L3": 2
         },
@@ -471,7 +474,7 @@
         ]
       },
       "b": {
-        "t": "Chickens in, muffins out in the snow. Tell the fair later.",
+        "t": "Rain. \"Crops outrank kites.\"",
         "axes": {
           "L3": -2
         },
@@ -1154,121 +1157,121 @@
     }
   },
   {
-    "id": "C5-81",
+    "id": "C5-142",
     "type": "eyes",
     "chapter": 5,
-    "prompt": "A reality show is casting you. Your oldest friend is your reference. The producer asks: \"Whose clock do they run on?\"",
+    "prompt": "A famous garden wants you to shape its bonsai, a 20-year job. They call your best friend for a reference. Which line do they use?",
     "options": [
       {
-        "t": "Keeps a quiet scoreboard of everyone's milestones.",
-        "axes": {
-          "L2": 2
-        },
-        "tags": [
-          {
-            "id": "T17A",
-            "s": 1
-          }
-        ]
-      },
-      {
-        "t": "Their own. Hasn't noticed anyone else moved.",
-        "axes": {
-          "L2": -2
-        },
-        "tags": [
-          {
-            "id": "T17B",
-            "s": 1
-          }
-        ]
-      },
-      {
-        "t": "Hears one friend's news, rewrites the five-year plan overnight.",
+        "t": "They'll measure it every Sunday and send you a chart.",
         "axes": {
           "L2": 1
         },
         "tags": [
           {
-            "id": "T17A",
+            "id": "T24A",
             "s": 2
           }
         ]
       },
       {
-        "t": "Happy for everyone. Changes nothing. Sleeps great.",
+        "t": "They'll talk to it for 20 years and never check.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T24B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "They'll want visible proof by week two. Minimum.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T24A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "They'll trim it once, then happily wait a year.",
         "axes": {
           "L2": -1
         },
         "tags": [
           {
-            "id": "T17B",
+            "id": "T24B",
             "s": 1
           }
         ]
       }
     ],
     "heart": {
-      "prompt": "A reality show is considering you, and your oldest friend is your reference. The producer asks whose timeline you live by. What does your friend say?",
+      "prompt": "A famous garden wants you to shape its bonsai, a job that takes 20 years. They ask your best friend for a reference. What does your friend say?",
       "options": [
-        "They quietly keep track of where everyone is in life.",
-        "Their own. They have barely noticed anyone else moving.",
-        "One friend's news, and they rewrite their five-year plan overnight.",
-        "They are happy for everyone, change nothing and sleep well."
+        "They will measure it every week and send you a chart.",
+        "They will tend it for years and never check on progress.",
+        "They will want to see clear progress within two weeks.",
+        "They will trim it once, then wait a year, happily."
       ]
     },
     "fp": {
-      "trigger": "producer asks your reference about your pace",
-      "setting": "reality show casting call",
-      "ask": "whose timeline you run on",
-      "who": "oldest friend and a producer",
-      "stakes": "your reputation on comparison",
-      "device": "reality-show-casting"
+      "trigger": "a garden asks for a reference on a 20-year job",
+      "setting": "a famous garden, a bonsai",
+      "ask": "how you handle slow progress",
+      "who": "your best friend and the garden",
+      "stakes": "your name for patience",
+      "device": "bonsai-reference"
     },
-    "mask": "looks like a casting call; measures setting your clock by others versus keeping your own pace (L2, T17)",
+    "mask": "looks like a job reference; measures needing to see progress versus trusting the slow road (L2, T24)",
     "ae": [
       "A",
-      "E"
+      "D"
     ],
     "privacy": "normal",
-    "sq": "SQ-L2-2",
+    "sq": "SQ-L2-3",
     "world": "unusual",
     "friend": {
-      "prompt": "A reality show asks {name}'s oldest friend: whose clock does {name} run on? Which line?",
+      "prompt": "A famous garden wants {name} to shape a 20-year bonsai and calls for a reference. Which line fits {name}?",
       "a": {
-        "t": "Keeps a quiet scoreboard of everyone's milestones.",
+        "t": "Will measure it every Sunday and send a chart.",
         "axes": {
-          "L2": 2
+          "L2": 1
         },
         "tags": [
           {
-            "id": "T17A",
-            "s": 1
+            "id": "T24A",
+            "s": 2
           }
         ]
       },
       "b": {
-        "t": "{Their} own. Hasn't noticed anyone else moved.",
+        "t": "Will talk to it for 20 years and never check.",
         "axes": {
           "L2": -2
         },
         "tags": [
           {
-            "id": "T17B",
-            "s": 1
+            "id": "T24B",
+            "s": 2
           }
         ]
       }
     }
   },
   {
-    "id": "C5-127",
+    "id": "C5-143",
     "type": "receipts",
     "chapter": 5,
-    "prompt": "Work, school and big plans, lately. Tap everything that's true:",
+    "prompt": "Plans, lately. Tap everything that's true:",
     "options": [
       {
-        "t": "Something booked more than six months from now",
+        "t": "Booked the next appointment before leaving the last one",
         "tags": [
           {
             "id": "T17A",
@@ -1277,7 +1280,7 @@
         ]
       },
       {
-        "t": "A big decision you've left on \"let's see\" for weeks",
+        "t": "Picked month-to-month over a cheaper yearly deal",
         "tags": [
           {
             "id": "T17B",
@@ -1286,7 +1289,7 @@
         ]
       },
       {
-        "t": "Picked a date for something just so it was decided",
+        "t": "Bought a ticket for something months away",
         "tags": [
           {
             "id": "T17A",
@@ -1295,25 +1298,7 @@
         ]
       },
       {
-        "t": "Answered a real opportunity with \"can I get back to you?\"",
-        "tags": [
-          {
-            "id": "T17B",
-            "s": 1
-          }
-        ]
-      },
-      {
-        "t": "Asked for something in writing just to feel settled",
-        "tags": [
-          {
-            "id": "T17A",
-            "s": 1
-          }
-        ]
-      },
-      {
-        "t": "Changed a plan you'd already told people about",
+        "t": "Answered an invite with \"let's see\" and meant it",
         "tags": [
           {
             "id": "T17B",
@@ -1327,31 +1312,29 @@
       }
     ],
     "heart": {
-      "prompt": "Think about work, school and your bigger plans lately. Tap everything that is true.",
+      "prompt": "Think about your plans lately. Choose everything that is true.",
       "options": [
-        "I have something booked more than six months from now.",
-        "I have left a big decision open for weeks.",
-        "I chose a date for something mainly so it would be decided.",
-        "I answered a real opportunity by asking for more time.",
-        "I asked for something in writing so it would feel settled.",
-        "I changed a plan I had already told people about.",
-        "None of these"
+        "I booked my next appointment before leaving the last one.",
+        "I chose month-to-month over a cheaper yearly deal.",
+        "I bought a ticket for something months away.",
+        "I answered an invite with \"let's see\" and meant it.",
+        "None of these."
       ]
     },
     "fp": {
-      "trigger": "a look back at recent plans",
-      "setting": "work, school and big plans",
+      "trigger": "a look back at how you book things",
+      "setting": "appointments, deals and invites",
       "ask": "tap what's true",
       "who": "just you",
-      "stakes": "certainty versus open doors",
-      "device": "plans-receipts"
+      "stakes": "settled now versus free later",
+      "device": "booking-receipts"
     },
     "mask": "looks like a planning check; measures wanting it locked in versus keeping options open (T17) from things actually done",
     "ae": [
       "A"
     ],
     "privacy": "normal",
-    "sq": "SQ-T17-1",
+    "sq": "SQ-T17-2",
     "world": "everyday"
   },
   {
@@ -1424,9 +1407,9 @@
         }
       ],
       "options": [
-        "\"The truck is already bought. There are free tacos for whoever calms down first.\"",
+        "\"The truck is already bought. Free tacos for whoever calms down first.\"",
         "I react with a heart and go back to painting the truck.",
-        "\"I am calling now, and I am bringing the menu and the numbers.\"",
+        "\"I am calling now, with the menu and the numbers.\"",
         "\"Okay. I will put the truck on hold until we all talk.\""
       ]
     },
@@ -1656,74 +1639,73 @@
     }
   },
   {
-    "id": "C5-130",
+    "id": "C5-144",
     "type": "real",
     "chapter": 5,
-    "prompt": "Think back to the last time you got thrown in way over your head: covering for the boss, running the event, teaching the class.",
+    "prompt": "Last job post you were only half qualified for. What did you actually do?",
     "options": [
       {
-        "t": "Winged it from minute one. Learned on the way.",
+        "t": "Applied that night. I'd learn the other half on the job.",
         "axes": {
           "L1": -2
         },
         "emotion": "delight"
       },
       {
-        "t": "Stayed up the night before learning everything.",
+        "t": "Skipped it. I'll apply when I tick every box.",
         "axes": {
           "L1": 2
-        },
-        "emotion": "worry"
+        }
       },
       {
-        "t": "Found someone who'd done it. Copied them exactly.",
+        "t": "Found someone who works there. Grilled them first.",
         "axes": {
           "L1": 1
         }
       },
       {
-        "t": "Said yes. Let everyone think I'd done it before.",
+        "t": "Sent it to a friend. We both applied, for courage.",
         "axes": {
           "L1": -1
         },
-        "emotion": "pride"
+        "emotion": "warmth"
       }
     ],
     "heart": {
-      "prompt": "Think of the last time you were suddenly given something far beyond what you knew how to do, like covering for your boss, running an event or teaching a class.",
+      "prompt": "Think of the last job post you were only half qualified for. What did you actually do?",
       "options": [
-        "I improvised from the start and learned as I went.",
-        "I stayed up the night before and learned everything I could.",
-        "I found someone who had done it and followed their way closely.",
-        "I said yes and let people assume I had done it before."
+        "I applied that night. I would learn the rest there.",
+        "I skipped it. I will apply once I meet every point.",
+        "I found someone who works there and asked questions first.",
+        "I sent it to a friend, and we both applied for courage."
       ]
     },
     "fp": {
-      "trigger": "handed a role far beyond your experience",
-      "setting": "work or school, covering a role",
-      "ask": "step in blind or prepare first",
-      "who": "your boss, class or event crowd",
-      "stakes": "looking capable versus falling on your face",
-      "device": "over-your-head"
+      "trigger": "a job post you only half qualify for",
+      "setting": "job hunting",
+      "ask": "apply now or get ready first",
+      "who": "a hiring team, maybe a friend",
+      "stakes": "a shot at it versus being ready",
+      "device": "half-qualified-post"
     },
-    "mask": "looks like a war story; measures stepping in before you know how it ends versus preparing first (L1) from a thing actually done",
+    "mask": "looks like a job-hunt story; measures stepping in before you can see how it ends versus waiting until you are ready (L1) from a thing actually done",
     "ae": [
       "A",
-      "C"
+      "E"
     ],
     "privacy": "normal",
     "sq": "SQ-L1-2",
-    "world": "unusual",
+    "world": "everyday",
     "friend": {
-      "prompt": "Last time {name} got thrown in way over {their} head: covering for the boss, running the event. What did {name} actually do?",
+      "prompt": "The last job post {name} was only half qualified for. What did {name} actually do?",
       "a": {
-        "t": "Stayed up the night before learning everything.",
+        "t": "Skipped it. Applies only once every box is ticked.",
         "axes": {
           "L1": 2
         }
       },
       "b": {
-        "t": "Winged it from minute one. Learned on the way.",
+        "t": "Applied that night. Learning the other half on the job.",
         "axes": {
           "L1": -2
         }

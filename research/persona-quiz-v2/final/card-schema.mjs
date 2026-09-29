@@ -10,7 +10,7 @@ export const REAL_EXITS = Object.freeze(["skip", "not_my_life", "no_recent"]);
 export const TYPES = Object.freeze({
   scenario: { grade: "would", weight: 0.55, options: [3, 6], bank: [3, 5] },
   real: { grade: "did", weight: 0.8, options: [3, 5], bank: [3, 5] },
-  receipts: { grade: "did", weight: 0.4, options: [6, 8], bank: [6, 8] }, // 5 to 7 facts plus "None of these"
+  receipts: { grade: "did", weight: 0.4, options: [5, 8], bank: [5, 6] }, // 4 or 5 facts plus "None of these" (Codex R1: fewer choices)
   bet: { grade: "did", weight: 0.8, options: [2, 5], bank: [3, 5] }, // legacy guilty cards keep 2 until rewritten
   reply: { grade: "would", weight: 0.55, options: [3, 5], bank: [3, 5] },
   others: { grade: "believe", weight: 0.45, options: [3, 5], bank: [3, 5] },

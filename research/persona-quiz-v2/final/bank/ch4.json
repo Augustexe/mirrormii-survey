@@ -1,1856 +1,1855 @@
 [
- {
-  "id": "C4-5",
-  "type": "real",
-  "chapter": 4,
-  "sq": "SQ-T14-1",
-  "world": "everyday",
-  "prompt": "One more of something you already own plenty of: sneakers, plushies, hoodies, skins. The last time you wanted one, what did you actually do?",
-  "options": [
-   {
-    "t": "Bought it on the spot. There's always room for one more.",
-    "tags": [
-     {
-      "id": "T14A",
-      "s": 2
-     }
+  {
+    "id": "C4-5",
+    "type": "real",
+    "chapter": 4,
+    "sq": "SQ-T14-1",
+    "world": "everyday",
+    "prompt": "One more of something you already own plenty of: sneakers, plushies, hoodies, skins. The last time you wanted one, what did you actually do?",
+    "options": [
+      {
+        "t": "Bought it on the spot. There's always room for one more.",
+        "tags": [
+          {
+            "id": "T14A",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Bought it, then hid the bag for a few days.",
+        "tags": [
+          {
+            "id": "T14A",
+            "s": 1
+          }
+        ],
+        "emotion": "guilt"
+      },
+      {
+        "t": "Left it in my cart until the feeling passed.",
+        "tags": [
+          {
+            "id": "T14B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Gave two old ones away first. Then bought it.",
+        "tags": [
+          {
+            "id": "T14B",
+            "s": 1
+          }
+        ]
+      }
     ],
-    "emotion": "delight"
-   },
-   {
-    "t": "Bought it, then hid the bag for a few days.",
-    "tags": [
-     {
-      "id": "T14A",
-      "s": 1
-     }
+    "heart": {
+      "prompt": "Think of the last time you wanted one more of something you already had plenty of, like sneakers, plushies, hoodies or game skins. What did you actually do?",
+      "options": [
+        "I bought it right away. There is always room for one more.",
+        "I bought it, then kept the bag out of sight for days.",
+        "I left it in my cart until the feeling passed.",
+        "I gave two old ones away first, and then I bought it."
+      ]
+    },
+    "fp": {
+      "trigger": "wanting a duplicate of a collection item",
+      "setting": "a store or online cart",
+      "ask": "buy one more or let it pass",
+      "who": "just you",
+      "stakes": "the thing you love versus less stuff",
+      "device": "one-more-duplicate"
+    },
+    "mask": "looks like a shopping confession; measures paying for the thing you love versus walking away with less (T14) from what you actually did",
+    "ae": [
+      "A",
+      "E"
     ],
-    "emotion": "guilt"
-   },
-   {
-    "t": "Left it in my cart until the feeling passed.",
-    "tags": [
-     {
-      "id": "T14B",
-      "s": 2
-     }
-    ]
-   },
-   {
-    "t": "Gave two old ones away first. Then bought it.",
-    "tags": [
-     {
-      "id": "T14B",
-      "s": 1
-     }
-    ]
-   }
-  ],
-  "heart": {
-   "prompt": "Think of the last time you wanted one more of something you already had plenty of, like sneakers, plushies, hoodies or game skins. What did you actually do?",
-   "options": [
-    "I bought it right away. There is always room for one more.",
-    "I bought it, then kept the bag out of sight for days.",
-    "I left it in my cart until the feeling passed.",
-    "I gave two old ones away first, and then I bought it."
-   ]
+    "privacy": "normal",
+    "friend": {
+      "prompt": "Last time {name} wanted one more of something {they} owned plenty of already: sneakers, plushies, hoodies, skins. What did {name} actually do?",
+      "a": {
+        "t": "Bought it on the spot. Always room for one more.",
+        "tags": [
+          {
+            "id": "T14A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Left it in the cart until the feeling passed.",
+        "tags": [
+          {
+            "id": "T14B",
+            "s": 2
+          }
+        ]
+      }
+    }
   },
-  "fp": {
-   "trigger": "wanting a duplicate of a collection item",
-   "setting": "a store or online cart",
-   "ask": "buy one more or let it pass",
-   "who": "just you",
-   "stakes": "the thing you love versus less stuff",
-   "device": "one-more-duplicate"
+  {
+    "id": "C4-140",
+    "type": "receipts",
+    "chapter": 4,
+    "prompt": "Shared bills, lately. Tap everything that's true:",
+    "options": [
+      {
+        "t": "Sent someone a payment request for under $10",
+        "tags": [
+          {
+            "id": "T12A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Kept track in my head of who paid last",
+        "tags": [
+          {
+            "id": "T12A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Asked for my money back, out loud, no hints",
+        "axes": {
+          "R2": 1
+        },
+        "tags": [
+          {
+            "id": "T12A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Covered someone's share because they were short that month",
+        "tags": [
+          {
+            "id": "T12B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Rounded down what someone owed me, on purpose",
+        "tags": [
+          {
+            "id": "T12B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "None of these",
+        "none": true
+      }
+    ],
+    "heart": {
+      "prompt": "Think about shared bills lately. Tap everything that is true.",
+      "options": [
+        "I sent someone a payment request for less than $10.",
+        "I kept track in my head of who paid last.",
+        "I asked for my money back directly, without hinting.",
+        "I covered someone's share because they were short that month.",
+        "I rounded down what someone owed me, on purpose.",
+        "None of these"
+      ]
+    },
+    "fp": {
+      "trigger": "shared costs with friends, roommates or your person",
+      "setting": "recent weeks, real life",
+      "ask": "tick what is true",
+      "who": "people you split costs with",
+      "stakes": "keeping a tab versus keeping it loose",
+      "device": "shared-bill-receipts"
+    },
+    "mask": "looks like a money habits list; measures keeping an exact tab versus letting it stay loose (T12), with asking directly (R2)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T12-2",
+    "world": "everyday"
   },
-  "mask": "looks like a shopping confession; measures paying for the thing you love versus walking away with less (T14) from what you actually did",
-  "ae": [
-   "A",
-   "E"
-  ],
-  "privacy": "normal",
-  "friend": {
-   "prompt": "Last time {name} wanted one more of something {they} owned plenty of already: sneakers, plushies, hoodies, skins. What did {name} actually do?",
-   "a": {
-    "t": "Bought it on the spot. Always room for one more.",
-    "tags": [
-     {
-      "id": "T14A",
-      "s": 2
-     }
-    ]
-   },
-   "b": {
-    "t": "Left it in the cart until the feeling passed.",
-    "tags": [
-     {
-      "id": "T14B",
-      "s": 2
-     }
-    ]
-   }
+  {
+    "id": "C4-141",
+    "type": "bet",
+    "chapter": 4,
+    "prompt": "Be honest: you've said \"must be nice\" about someone else's big win.",
+    "options": [
+      {
+        "t": "Guilty. Said it, meant it, would say it again.",
+        "tags": [
+          {
+            "id": "T15B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Guilty. Then asked how they did it. Now I'm copying.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T15A",
+            "s": 1
+          }
+        ],
+        "emotion": "pride"
+      },
+      {
+        "t": "Never. If they got there, they did the work.",
+        "tags": [
+          {
+            "id": "T15A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Never out loud. Thought it plenty.",
+        "tags": [
+          {
+            "id": "T15B",
+            "s": 1
+          }
+        ],
+        "emotion": "cringe"
+      }
+    ],
+    "heart": {
+      "prompt": "Have you ever said \"must be nice\" about someone else's big success?",
+      "options": [
+        "Yes. I meant it, and I would say it again.",
+        "Yes. Then I asked how they did it, and copied it.",
+        "No. If they got there, they did the work.",
+        "Not out loud, but I have thought it many times."
+      ]
+    },
+    "fp": {
+      "trigger": "someone else's big win",
+      "setting": "a conversation about their success",
+      "ask": "have you said must be nice",
+      "who": "someone you know",
+      "stakes": "credit for effort versus naming the head start",
+      "device": "must-be-nice"
+    },
+    "mask": "looks like a petty confession; measures seeing the effort versus the head start behind a win (T15), with turning it into your own push (L2)",
+    "ae": [
+      "A",
+      "C",
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T15-1",
+    "world": "everyday",
+    "friend": {
+      "prompt": "Has {name} ever said \"must be nice\" about someone else's big win?",
+      "a": {
+        "t": "Never. If they got there, they did the work.",
+        "tags": [
+          {
+            "id": "T15A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Guilty. Said it, meant it, would say it again.",
+        "tags": [
+          {
+            "id": "T15B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C4-120",
+    "type": "bet",
+    "chapter": 4,
+    "sq": "SQ-L2-1",
+    "world": "everyday",
+    "prompt": "Genii suspects you've picked up extra work you didn't need, just to watch a number get bigger.",
+    "options": [
+      {
+        "t": "Guilty. The number was the whole reward.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 1
+          }
+        ],
+        "emotion": "pride"
+      },
+      {
+        "t": "Guilty. Then bought something loud to prove it happened.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T14A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Never. My free time costs more than they pay.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Never. I'll take the smaller number and the nap.",
+        "axes": {
+          "L2": -1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "Have you ever taken on extra work you did not need, mostly to see a number grow?",
+      "options": [
+        "Yes. Seeing the number grow was the whole reward.",
+        "Yes, and then I bought something noticeable to mark it.",
+        "No. My free time is worth more to me than the pay.",
+        "No. I would rather have the smaller number and the rest."
+      ]
+    },
+    "fp": {
+      "trigger": "optional extra work on offer",
+      "setting": "a side shift or side gig",
+      "ask": "take it for the number",
+      "who": "just you",
+      "stakes": "free time versus a win you can see",
+      "device": "extra-shift"
+    },
+    "mask": "looks like a hustle confession; measures trading free time for a visible win versus your own pace (L2, T16)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "Genii bets {name} has taken extra work {they} didn't need, just to watch a number grow. Guilty or not?",
+      "a": {
+        "t": "Guilty. The number was the whole reward.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 1
+          }
+        ]
+      },
+      "b": {
+        "t": "Never. My free time costs more than they pay.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C4-142",
+    "type": "bet",
+    "chapter": 4,
+    "prompt": "Genii's guess: there's money in your life you pretend doesn't exist. Not for fun. Not for anything.",
+    "options": [
+      {
+        "t": "Guilty. Untouchable. Even I forget the number.",
+        "axes": {
+          "L1": 1
+        },
+        "tags": [
+          {
+            "id": "T13B",
+            "s": 2
+          }
+        ],
+        "emotion": "pride"
+      },
+      {
+        "t": "Guilty. And I've raided it twice this year for fun.",
+        "axes": {
+          "L1": -1
+        },
+        "tags": [
+          {
+            "id": "T13A",
+            "s": 1
+          }
+        ],
+        "emotion": "cringe"
+      },
+      {
+        "t": "Never. Money sitting still feels like money wasted.",
+        "axes": {
+          "L1": -1
+        },
+        "tags": [
+          {
+            "id": "T13A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Not yet. Starting one is next month's plan.",
+        "tags": [
+          {
+            "id": "T13B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Do you have money set aside that you act as if does not exist, not for fun and not for anything else?",
+      "options": [
+        "Yes. It is untouchable. I barely remember how much is there.",
+        "Yes, and I have dipped into it twice this year for fun.",
+        "No. Money that just sits there feels wasted to me.",
+        "Not yet, but starting one is my plan for next month."
+      ]
+    },
+    "fp": {
+      "trigger": "money you pretend isn't there",
+      "setting": "your savings, in your head",
+      "ask": "do you keep an untouchable cushion",
+      "who": "just you",
+      "stakes": "a safety net versus money in use",
+      "device": "invisible-savings"
+    },
+    "mask": "looks like a money secret; measures keeping a safety net versus putting money to use (L1, T13)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-L1-3",
+    "world": "everyday",
+    "friend": {
+      "prompt": "Genii's guess: {name} has money set aside that {they} pretend doesn't exist. True?",
+      "a": {
+        "t": "Guilty. Untouchable. Even I forget the number.",
+        "axes": {
+          "L1": 1
+        },
+        "tags": [
+          {
+            "id": "T13B",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Never. Money sitting still feels like money wasted.",
+        "axes": {
+          "L1": -1
+        },
+        "tags": [
+          {
+            "id": "T13A",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C4-143",
+    "type": "real",
+    "chapter": 4,
+    "prompt": "Friends planned a trip that was a stretch for your budget. The most recent time, what did you actually do?",
+    "options": [
+      {
+        "t": "Booked it that night. Future me can deal.",
+        "tags": [
+          {
+            "id": "T13A",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Went, then skipped every other plan for a month.",
+        "tags": [
+          {
+            "id": "T13A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Did the math, then said \"next one.\"",
+        "tags": [
+          {
+            "id": "T13B",
+            "s": 2
+          }
+        ],
+        "emotion": "longing"
+      },
+      {
+        "t": "Joined for one night of it, on my budget.",
+        "tags": [
+          {
+            "id": "T13B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Think of the most recent time friends planned a trip that stretched your budget. What did you actually do?",
+      "options": [
+        "I booked it that night and left the money to future me.",
+        "I went, then skipped every other plan for a month.",
+        "I did the math and said I would join the next one.",
+        "I joined for one night of it, within my budget."
+      ]
+    },
+    "fp": {
+      "trigger": "friends plan a trip beyond your budget",
+      "setting": "a group trip on the table",
+      "ask": "book first or check first",
+      "who": "your friends",
+      "stakes": "the story versus the money",
+      "device": "stretch-trip"
+    },
+    "mask": "looks like a travel memory; measures booking before you can afford it versus checking first (T13) from what you did",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T13-2",
+    "world": "everyday",
+    "friend": {
+      "prompt": "Friends planned a trip that was a stretch for {name}'s budget. What did {name} actually do?",
+      "a": {
+        "t": "Booked it that night. Future me can deal.",
+        "tags": [
+          {
+            "id": "T13A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Did the math, then said \"next one.\"",
+        "tags": [
+          {
+            "id": "T13B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C4-102",
+    "type": "scenario",
+    "chapter": 4,
+    "sq": "SQ-T14-1",
+    "world": "unusual",
+    "prompt": "An auction house mistakes you for a bidder. Next lot: the vintage jacket you've wanted for six years. Bidding just passed your rent. Thirty seconds.",
+    "options": [
+      {
+        "t": "Paddle up. Rent can be late once.",
+        "tags": [
+          {
+            "id": "T14A",
+            "s": 2
+          },
+          {
+            "id": "T13A",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "One bid at my limit. Then let it go.",
+        "tags": [
+          {
+            "id": "T14A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Paddle down. Six years of wanting it was plenty.",
+        "tags": [
+          {
+            "id": "T14B",
+            "s": 2
+          }
+        ],
+        "emotion": "longing"
+      },
+      {
+        "t": "Slip out. I'll find a cheaper one that's almost it.",
+        "tags": [
+          {
+            "id": "T14B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "An auction house mistakes you for a bidder. Next up: the vintage jacket you have wanted for six years. Bidding just passed your rent. Thirty seconds.",
+      "options": [
+        "I raise my paddle. Rent can be late this once.",
+        "I bid once at my limit, and then I let it go.",
+        "I keep my paddle down. Six years of wanting it was enough.",
+        "I slip out and find a cheaper one that is nearly it."
+      ]
+    },
+    "fp": {
+      "trigger": "mistaken for a bidder on your dream object",
+      "setting": "auction room, thirty-second window",
+      "ask": "overpay for the thing you love",
+      "who": "you and a room of strangers",
+      "stakes": "rent versus the one you've wanted for years",
+      "device": "auction-paddle"
+    },
+    "mask": "looks like a movie moment; measures paying extra for the thing you love versus settling for less (T14)",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "Mistaken for an auction bidder, {name} spots the jacket {they}'d wanted for six years. Bids just passed rent. What does {name} do?",
+      "a": {
+        "t": "Paddle up. Rent can be late once.",
+        "tags": [
+          {
+            "id": "T14A",
+            "s": 2
+          },
+          {
+            "id": "T13A",
+            "s": 1
+          }
+        ]
+      },
+      "b": {
+        "t": "Paddle down. Six years of wanting it was plenty.",
+        "tags": [
+          {
+            "id": "T14B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C4-123",
+    "type": "scenario",
+    "chapter": 4,
+    "sq": "SQ-T14-2",
+    "world": "absurd",
+    "prompt": "A polite tornado knocks. It will take everything you own and leave one perfect thing of your choice. It can't wait long.",
+    "options": [
+      {
+        "t": "Deal. Keep my bed. The rest can blow away.",
+        "tags": [
+          {
+            "id": "T14B",
+            "s": 2
+          }
+        ],
+        "emotion": "relief"
+      },
+      {
+        "t": "No. Every chipped mug in there has a story.",
+        "tags": [
+          {
+            "id": "T14A",
+            "s": 2
+          }
+        ],
+        "emotion": "longing"
+      },
+      {
+        "t": "Deal, but I'm wearing four jackets when it hits.",
+        "tags": [
+          {
+            "id": "T14A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "No. I'll clear it out myself, on my own time.",
+        "tags": [
+          {
+            "id": "T14B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "A friendly tornado arrives at your door. It offers to take everything you own and leave behind one perfect thing of your choosing. It needs your answer soon.",
+      "options": [
+        "I agree and keep my bed. Everything else can go.",
+        "I say no. Every chipped mug I own has a story.",
+        "I agree, but I put on four jackets before it arrives.",
+        "I say no. I will clear things out myself, in time."
+      ]
+    },
+    "fp": {
+      "trigger": "offer to lose everything but one thing",
+      "setting": "your home, a tornado at the door",
+      "ask": "trade all your stuff for one perfect thing",
+      "who": "just you",
+      "stakes": "memories in objects versus a lighter life",
+      "device": "polite-tornado"
+    },
+    "mask": "looks like a silly weather fable; measures whether less stuff feels like freedom or loss (T14)",
+    "ae": [
+      "A",
+      "E"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "A polite tornado offers to take everything {name} owns and leave one perfect thing {name} picks. What does {name} do?",
+      "a": {
+        "t": "No. Every chipped mug in there has a story.",
+        "tags": [
+          {
+            "id": "T14A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Deal. Keep my bed. The rest can blow away.",
+        "tags": [
+          {
+            "id": "T14B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C4-124",
+    "type": "scenario",
+    "chapter": 4,
+    "sq": "SQ-T12-1",
+    "world": "absurd",
+    "prompt": "Your new housemate is a mermaid sitting on a sunken ship's worth of gold. They insist rent stays exactly fifty-fifty.",
+    "options": [
+      {
+        "t": "Fair. Same bathtub, same rent.",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T12A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Pitch it: we each pay by what we have.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T12B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Pay half. Start billing them for bathtub hours.",
+        "tags": [
+          {
+            "id": "T12A",
+            "s": 1
+          }
+        ],
+        "emotion": "irritation"
+      },
+      {
+        "t": "Pay half. Drop gold hints every single rent day.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T12B",
+            "s": 1
+          }
+        ],
+        "emotion": "envy"
+      }
+    ],
+    "heart": {
+      "prompt": "Your new housemate is a mermaid with a sunken ship full of gold. They insist that the rent is split exactly in half.",
+      "options": [
+        "That is fair. Same bathtub, same rent.",
+        "I suggest we each pay according to what we have.",
+        "I pay half and start charging them for bathtub time.",
+        "I pay half and hint about their gold every rent day."
+      ]
+    },
+    "fp": {
+      "trigger": "rich housemate insists on an even split",
+      "setting": "shared home, a mermaid in the tub",
+      "ask": "equal rent or rent by means",
+      "who": "a much richer housemate",
+      "stakes": "paying the same versus feeling it the same",
+      "device": "mermaid-housemate"
+    },
+    "mask": "looks like a fairy-tale flatshare; measures fair as paying the same versus feeling it the same (T12, L3)",
+    "ae": [
+      "A",
+      "B",
+      "C"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "{name}'s new housemate is a mermaid with a sunken ship's worth of gold, and insists rent stays fifty-fifty. What does {name} do?",
+      "a": {
+        "t": "Fair. Same bathtub, same rent.",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T12A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Pitch it: we each pay by what we have.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T12B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C4-125",
+    "type": "scenario",
+    "chapter": 4,
+    "sq": "SQ-T15-2",
+    "world": "absurd",
+    "prompt": "You and a friend dig up a pirate chest. You did all the digging. They had the map, from a thrift-store book.",
+    "options": [
+      {
+        "t": "Most of it's mine. The map never held a shovel.",
+        "tags": [
+          {
+            "id": "T15A",
+            "s": 2
+          }
+        ],
+        "emotion": "pride"
+      },
+      {
+        "t": "Even split. No map, no chest.",
+        "tags": [
+          {
+            "id": "T15B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Even split. Then tell everyone who did the digging.",
+        "tags": [
+          {
+            "id": "T15A",
+            "s": 1
+          }
+        ],
+        "emotion": "resentment"
+      },
+      {
+        "t": "They take more. Finding that map was the miracle.",
+        "tags": [
+          {
+            "id": "T15B",
+            "s": 1
+          }
+        ],
+        "emotion": "warmth"
+      }
+    ],
+    "heart": {
+      "prompt": "You and a friend find a pirate chest. You did all of the digging, and they found the map inside a thrift-store book.",
+      "options": [
+        "Most of it is mine. The map did not do any digging.",
+        "We split it evenly. Without the map, there would be no chest.",
+        "We split it evenly. Then I tell everyone who dug.",
+        "They take the larger share. Finding the map was the real luck."
+      ]
+    },
+    "fp": {
+      "trigger": "shared treasure, unequal effort",
+      "setting": "a dig site with a pirate chest",
+      "ask": "split by work or split evenly",
+      "who": "a friend with the lucky map",
+      "stakes": "credit for the work versus the luck that started it",
+      "device": "pirate-chest"
+    },
+    "mask": "looks like a treasure hunt; measures whether the reward goes to whoever worked hardest or is shared with luck (T15)",
+    "ae": [
+      "A",
+      "B",
+      "E"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "{name} did all the digging for a pirate chest. A friend had the map, from a thrift-store book. What does {name} do?",
+      "a": {
+        "t": "Most of it's mine. The map never held a shovel.",
+        "tags": [
+          {
+            "id": "T15A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Even split. No map, no chest.",
+        "tags": [
+          {
+            "id": "T15B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C4-30",
+    "type": "scenario",
+    "chapter": 4,
+    "sq": "SQ-R2-2",
+    "world": "unusual",
+    "prompt": "Kai still owes you $400. Today Kai's fundraiser link lands in everyone's inbox: \"Help me celebrate my birthday in Lisbon!!\"",
+    "options": [
+      {
+        "t": "Comment on the page: \"Counting my $400 as my donation.\"",
+        "axes": {
+          "R2": 2
+        },
+        "tags": [
+          {
+            "id": "T12A",
+            "s": 1
+          }
+        ],
+        "emotion": "irritation"
+      },
+      {
+        "t": "Text Kai: \"Lisbon looks great. My $400 first, please.\"",
+        "axes": {
+          "R2": 1
+        },
+        "tags": [
+          {
+            "id": "T12A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Chip in $20. Say nothing. Seethe in private.",
+        "axes": {
+          "R2": -2
+        },
+        "emotion": "resentment"
+      },
+      {
+        "t": "Chip in $50. That $400 was a gift now, apparently.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T12B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Kai still owes you $400. Today Kai sends everyone a fundraising page asking for help with a birthday trip to Lisbon.",
+      "options": [
+        "I comment that the $400 Kai owes me is my donation.",
+        "I message Kai privately and ask for my $400 first.",
+        "I give $20, say nothing, and stay upset privately.",
+        "I give $50 and decide the $400 has become a gift."
+      ]
+    },
+    "fp": {
+      "trigger": "a debtor asks everyone to fund their trip",
+      "setting": "a birthday fundraiser page",
+      "ask": "name the debt or swallow it",
+      "who": "a friend who owes you",
+      "stakes": "$400 and how the friendship feels",
+      "device": "fundraiser-link"
+    },
+    "mask": "looks like a nervy money moment; measures naming a line when it is crossed versus absorbing it (R2), with keeping a tab (T12)",
+    "ae": [
+      "A",
+      "B",
+      "E"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "Kai still owes {name} $400. Kai's fundraiser lands in every inbox: \"Help fund my Lisbon birthday!!\" What does {name} do?",
+      "a": {
+        "t": "Comments on the page: \"Counting my $400 as my donation.\"",
+        "axes": {
+          "R2": 2
+        },
+        "tags": [
+          {
+            "id": "T12A",
+            "s": 1
+          }
+        ]
+      },
+      "b": {
+        "t": "Chips in $20. Says nothing. Seethes in private.",
+        "axes": {
+          "R2": -2
+        }
+      }
+    }
+  },
+  {
+    "id": "C4-129",
+    "type": "feeling",
+    "chapter": 4,
+    "sq": "SQ-R2-2",
+    "world": "unusual",
+    "follows": "C4-30",
+    "prompt": "Before you click, comment or close it: first feeling?",
+    "options": [
+      {
+        "t": "Irritation. The nerve of that link."
+      },
+      {
+        "t": "Envy. I want a Lisbon too."
+      },
+      {
+        "t": "Guilt. Maybe I should just let the $400 go."
+      },
+      {
+        "t": "Worry. Asking might cost me Kai."
+      },
+      {
+        "t": "Amusement. Honestly, it's iconic."
+      }
+    ],
+    "heart": {
+      "prompt": "Before you click, comment or close the page, what do you feel first?",
+      "options": [
+        "Irritation that Kai sent it at all.",
+        "Envy. I would like a trip like that too.",
+        "Guilt. Maybe I should let the $400 go.",
+        "Worry that asking for it could cost me the friendship.",
+        "Amusement. It is almost impressive."
+      ]
+    },
+    "fp": {
+      "trigger": "the Lisbon fundraiser, a beat later",
+      "setting": "after the fundraiser card",
+      "ask": "first feeling",
+      "who": "a friend who owes you",
+      "stakes": "how the debt sits with you",
+      "device": "fundraiser-link"
+    },
+    "mask": "emotion follow-up to C4-30; scores nothing, feeds the emotional signature",
+    "ae": [
+      "E"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "C4-126",
+    "type": "reply",
+    "chapter": 4,
+    "sq": "SQ-R3-2",
+    "world": "unusual",
+    "prompt": "Your person's grandparents hit 60 years. The toast credits one secret: \"One bank account. Never two.\" Then a text from across the table.",
+    "thread": [
+      {
+        "from": "Your person",
+        "text": "that's gonna be us right?? one account, forever"
+      }
+    ],
+    "options": [
+      {
+        "t": "\"Obviously. One account, one team, sixty years.\"",
+        "axes": {
+          "R3": 2,
+          "R1": 1
+        },
+        "emotion": "warmth"
+      },
+      {
+        "t": "\"Love them. We're writing our own money rules.\"",
+        "axes": {
+          "R3": -2
+        }
+      },
+      {
+        "t": "\"Yes. Plus one small account nobody needs to know about.\"",
+        "axes": {
+          "R3": 1,
+          "R1": -1
+        },
+        "emotion": "guilt"
+      },
+      {
+        "t": "\"Separate accounts, one pot for bills. Our version.\"",
+        "axes": {
+          "R3": -1,
+          "R1": -1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "At your person's grandparents' sixtieth anniversary, the toast credits one thing: one bank account, never two. Then your person texts you from across the table.",
+      "thread": [
+        {
+          "from": "Your person",
+          "text": "That is going to be us, right? One account, forever?"
+        }
+      ],
+      "options": [
+        "Of course. One account, one team, like them.",
+        "I love them, but we will write our own money rules.",
+        "Yes, plus one small account that nobody needs to know about.",
+        "Separate accounts, with one shared pot for bills. Our own version."
+      ]
+    },
+    "fp": {
+      "trigger": "a family toast credits one shared account",
+      "setting": "a sixtieth anniversary party",
+      "ask": "run couple money the old way or your own",
+      "who": "your person, texting across the table",
+      "stakes": "how your money works as a couple",
+      "device": "anniversary-toast"
+    },
+    "mask": "looks like a sweet family moment; measures running a couple's money the way it has always been done versus your own design (R3), with shared versus separate (R1)",
+    "ae": [
+      "A",
+      "B",
+      "D"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "{name}'s person's grandparents credit 60 years to \"one bank account, never two.\" The person texts: \"that's us, right??\" What does {name} reply?",
+      "a": {
+        "t": "\"Obviously. One account, one team, sixty years.\"",
+        "axes": {
+          "R3": 2,
+          "R1": 1
+        }
+      },
+      "b": {
+        "t": "\"Love them. We're writing our own money rules.\"",
+        "axes": {
+          "R3": -2
+        }
+      }
+    }
+  },
+  {
+    "id": "C4-127",
+    "type": "reply",
+    "chapter": 4,
+    "sq": "SQ-L1-2",
+    "world": "absurd",
+    "prompt": "Dev's cat started talking last week. Two million followers already. Then Dev texts you.",
+    "thread": [
+      {
+        "from": "Dev",
+        "text": "cat merch drops next month. I need $5,000 from friends"
+      },
+      {
+        "from": "Dev",
+        "text": "10% of the cat's merch for your savings? it could stop talking any day tho"
+      }
+    ],
+    "options": [
+      {
+        "t": "\"Here's my savings. I believe in this cat.\"",
+        "axes": {
+          "L1": -2
+        },
+        "tags": [
+          {
+            "id": "T13A",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "\"Send me the numbers first. Every single one.\"",
+        "axes": {
+          "L1": 2
+        },
+        "emotion": "worry"
+      },
+      {
+        "t": "\"$200. Friendship price. Not a cent more.\"",
+        "axes": {
+          "L1": 1
+        },
+        "tags": [
+          {
+            "id": "T13B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "In. If it goes quiet, I still own part of a legend.",
+        "axes": {
+          "L1": -1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "Your friend Dev's cat started talking last week and already has two million followers. Then Dev sends you a message.",
+      "thread": [
+        {
+          "from": "Dev",
+          "text": "The cat's merchandise launches next month, and I need $5,000 from friends."
+        },
+        {
+          "from": "Dev",
+          "text": "Would you put in your savings for ten percent of the cat's merchandise? It could stop talking any day."
+        }
+      ],
+      "options": [
+        "Here are my savings. I believe in this cat.",
+        "Please send me all the numbers before I decide.",
+        "I can put in $200 as a friend, and no more.",
+        "I am in. Quiet or not, I own part of a legend."
+      ]
+    },
+    "fp": {
+      "trigger": "friend asks you to invest in a talking cat",
+      "setting": "a viral talking cat's merch launch",
+      "ask": "put your savings in now or wait for proof",
+      "who": "a friend with a famous cat",
+      "stakes": "your savings versus a wild upside",
+      "device": "talking-cat"
+    },
+    "mask": "looks like internet chaos; measures stepping in before you can see how it ends versus waiting for more information (L1)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "Dev's talking cat has two million followers. Dev texts: \"10% of the cat's merch for your savings?\" What does {name} reply?",
+      "a": {
+        "t": "\"Send me the numbers first. Every single one.\"",
+        "axes": {
+          "L1": 2
+        }
+      },
+      "b": {
+        "t": "\"Here's my savings. I believe in this cat.\"",
+        "axes": {
+          "L1": -2
+        },
+        "tags": [
+          {
+            "id": "T13A",
+            "s": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C4-82",
+    "type": "others",
+    "chapter": 4,
+    "sq": "SQ-L3-2",
+    "world": "unusual",
+    "prompt": "$2,400, stuffed inside the secondhand couch you and four roommates bought. Jae splits it by who's short on rent, not five ways. First thought?",
+    "options": [
+      {
+        "t": "Five ways. Couch money isn't a need-based program.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T12A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Right call. Whoever's short on rent gets more.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T12B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Who made Jae the judge of who's short?",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ],
+        "emotion": "irritation"
+      },
+      {
+        "t": "Fine, as long as nobody learns who got the most.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T12B",
+            "s": 1
+          }
+        ],
+        "emotion": "worry"
+      }
+    ],
+    "heart": {
+      "prompt": "You and four roommates find $2,400 inside a secondhand couch you bought together. Jae divides it by who is short on rent, not equally. Your first thought?",
+      "options": [
+        "It should be five equal shares. Found money is not about need.",
+        "That is right. Whoever is short on rent should get more.",
+        "Who decided Jae gets to judge who is short?",
+        "It is fine, as long as nobody learns who got the most."
+      ]
+    },
+    "fp": {
+      "trigger": "found cash split by need",
+      "setting": "shared apartment, secondhand couch",
+      "ask": "equal shares or by need",
+      "who": "four roommates",
+      "stakes": "fairness and money between housemates",
+      "device": "couch-cash"
+    },
+    "mask": "looks like a lucky find; measures fair as the same share for all versus what each person needs (L3, T12)",
+    "ae": [
+      "C",
+      "E"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "{name} and four roommates find $2,400 in a secondhand couch. Jae splits it by who's short on rent. {name}'s first thought?",
+      "a": {
+        "t": "Five ways. Couch money isn't a need-based program.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T12A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Right call. Whoever's short on rent gets more.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T12B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C4-100",
+    "type": "others",
+    "chapter": 4,
+    "sq": "SQ-T13-1",
+    "world": "absurd",
+    "prompt": "Your friend's leprechaun gold doubles every year, but only if none of it is spent. Day two, they spent a coin on pizza. First thought?",
+    "options": [
+      {
+        "t": "Icon. Best pizza anyone has ever eaten.",
+        "axes": {
+          "L1": -1
+        },
+        "tags": [
+          {
+            "id": "T13A",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Doubling forever. Traded for pizza. I need to lie down.",
+        "axes": {
+          "L1": 1
+        },
+        "tags": [
+          {
+            "id": "T13B",
+            "s": 2
+          }
+        ],
+        "emotion": "irritation"
+      },
+      {
+        "t": "Same. I'd have lasted a day and a half.",
+        "tags": [
+          {
+            "id": "T13A",
+            "s": 1
+          }
+        ],
+        "emotion": "cringe"
+      },
+      {
+        "t": "I'd have buried it and drawn myself a map.",
+        "axes": {
+          "L1": 1
+        },
+        "tags": [
+          {
+            "id": "T13B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Your friend's leprechaun gold doubles every year, but only if none of it is spent. On day two, they spent a coin on pizza. Your first thought?",
+      "options": [
+        "Good for them. Probably the best pizza of their life.",
+        "It could have doubled forever, and it went on pizza.",
+        "Honestly, I would have lasted about a day and a half myself.",
+        "I would have buried it somewhere and drawn myself a map."
+      ]
+    },
+    "fp": {
+      "trigger": "friend spends a magic doubling pot on day two",
+      "setting": "leprechaun's gold, pizza night",
+      "ask": "judge joy now versus letting it grow",
+      "who": "friend",
+      "stakes": "a treat today versus a fortune later",
+      "device": "leprechaun-gold"
+    },
+    "mask": "looks like a fable; measures spending found money now versus saving it (T13, L1)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "A friend's leprechaun gold doubles yearly, but only if none is spent. Day two, the friend spends a coin on pizza. {name}'s first thought?",
+      "a": {
+        "t": "Doubling forever. Traded for pizza. I need to lie down.",
+        "axes": {
+          "L1": 1
+        },
+        "tags": [
+          {
+            "id": "T13B",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Icon. Best pizza anyone has ever eaten.",
+        "axes": {
+          "L1": -1
+        },
+        "tags": [
+          {
+            "id": "T13A",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C4-144",
+    "type": "role",
+    "chapter": 4,
+    "prompt": "Your friend group wins $6,000 at a trivia final. The rule: one prize, spent together, on one thing. In this crew, you're the...",
+    "options": [
+      {
+        "t": "Hype. Already picked the thing and the date.",
+        "axes": {
+          "R1": 2
+        },
+        "emotion": "delight"
+      },
+      {
+        "t": "Yes vote. I wanted cash, but I'm in.",
+        "axes": {
+          "R1": 1
+        }
+      },
+      {
+        "t": "Spreadsheet. Every dollar and every ask, logged.",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T12A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Partial. I'll join the parts I like.",
+        "axes": {
+          "R1": -1
+        }
+      },
+      {
+        "t": "Exit. \"Love you all. Spend my part on you.\"",
+        "axes": {
+          "R1": -2
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "Your friend group wins $6,000 at a trivia final, and the rule is that it must be spent together, on one thing. Which one are you?",
+      "options": [
+        "The one who has already picked the thing and the date.",
+        "The one who wanted cash but goes along anyway.",
+        "The one logging every dollar and every request.",
+        "The one who joins only the parts they like.",
+        "The one who steps out and gives their part to the group."
+      ]
+    },
+    "fp": {
+      "trigger": "a group prize that must be spent together",
+      "setting": "right after a trivia final win",
+      "ask": "your part in spending it",
+      "who": "your friend group",
+      "stakes": "going with the group versus peeling off",
+      "device": "trivia-prize"
+    },
+    "mask": "looks like group-chat chaos; measures going with the group versus peeling off (R1)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-R1-3",
+    "world": "unusual",
+    "friend": {
+      "prompt": "{name}'s friend group wins $6,000 at trivia, to be spent together on one thing. In this crew, {name} is the...",
+      "a": {
+        "t": "Hype. Already picked the thing and the date.",
+        "axes": {
+          "R1": 2
+        }
+      },
+      "b": {
+        "t": "Exit: \"Love you all. Spend my part on you.\"",
+        "axes": {
+          "R1": -2
+        }
+      }
+    }
+  },
+  {
+    "id": "C4-2",
+    "type": "this_or_that",
+    "chapter": 4,
+    "sq": "SQ-T15-1",
+    "world": "absurd",
+    "round": "ch4-r120",
+    "prompt": "A fairy godparent made your friend famous overnight. In every interview they say: \"I grinded for years.\"",
+    "options": [
+      {
+        "t": "Let them tell it. Staying famous is its own grind.",
+        "tags": [
+          {
+            "id": "T15A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Comment under one clip: \"Fairy godparent, though?\"",
+        "tags": [
+          {
+            "id": "T15B",
+            "s": 2
+          }
+        ],
+        "emotion": "irritation"
+      }
+    ],
+    "heart": {
+      "prompt": "A fairy godparent made your friend famous overnight, and in every interview they say they worked for years to get there.",
+      "options": [
+        "I let them tell it their way. Staying famous takes work too.",
+        "I comment under one of the clips to mention the fairy godparent."
+      ]
+    },
+    "fp": {
+      "trigger": "friend's magic fame told as a grind story",
+      "setting": "interviews and clips",
+      "ask": "credit the effort or name the head start",
+      "who": "a newly famous friend",
+      "stakes": "their story versus the truth you know",
+      "device": "fairy-godparent"
+    },
+    "mask": "looks like a fame fable; measures seeing the effort versus the head start (T15)",
+    "ae": [
+      "A",
+      "E"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "A fairy godparent made {name}'s friend famous overnight. In every interview, the friend says: \"I grinded for years.\" Which one is {name}?",
+      "a": {
+        "t": "Let them tell it. Staying famous is its own grind.",
+        "tags": [
+          {
+            "id": "T15A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Comments under one clip: \"Fairy godparent, though?\"",
+        "tags": [
+          {
+            "id": "T15B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C4-53",
+    "type": "this_or_that",
+    "chapter": 4,
+    "sq": "SQ-R3-1",
+    "world": "absurd",
+    "round": "ch4-r120",
+    "prompt": "You invited someone on a first date in a hot-air balloon. On landing, a pigeon drops off the $640 bill.",
+    "options": [
+      {
+        "t": "I asked, so I pay. That's how dates work.",
+        "axes": {
+          "R3": 2
+        }
+      },
+      {
+        "t": "I pay mine, they pay theirs. No script.",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T12A",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "You invited someone on a first date in a hot-air balloon. When you land, a pigeon delivers the bill for $640.",
+      "options": [
+        "I asked, so I pay. That is how dates work.",
+        "I pay for mine and they pay for theirs. No script."
+      ]
+    },
+    "fp": {
+      "trigger": "the first-date bill arrives after you did the asking",
+      "setting": "hot-air balloon landing",
+      "ask": "the asker pays or split it",
+      "who": "a first date",
+      "stakes": "the dating script versus your own rules",
+      "device": "pigeon-bill"
+    },
+    "mask": "looks like a silly date; measures whether the old dating ritual feels like home or like a costume (R3)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "{name} invited someone on a first date in a hot-air balloon. On landing, a pigeon drops off the $640 bill. Which one is {name}?",
+      "a": {
+        "t": "I asked, so I pay. That's how dates work.",
+        "axes": {
+          "R3": 2
+        }
+      },
+      "b": {
+        "t": "I pay mine, they pay theirs. No script.",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T12A",
+            "s": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C4-145",
+    "type": "this_or_that",
+    "chapter": 4,
+    "prompt": "A time traveler offers you one seat at any concert in history. Tonight. Price: your entire savings.",
+    "options": [
+      {
+        "t": "Take it. Some nights are worth every cent.",
+        "axes": {
+          "L1": -1
+        },
+        "tags": [
+          {
+            "id": "T13A",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Keep the savings. The recording exists.",
+        "axes": {
+          "L1": 1
+        },
+        "tags": [
+          {
+            "id": "T13B",
+            "s": 2
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "A time traveler offers you a seat at any concert in history, tonight, and the price is all of your savings.",
+      "options": [
+        "I take it. Some nights are worth everything.",
+        "I keep my savings. I can listen to the recording."
+      ]
+    },
+    "fp": {
+      "trigger": "a once-ever concert costs your savings",
+      "setting": "a time traveler's offer",
+      "ask": "spend it all now or keep the cushion",
+      "who": "just you",
+      "stakes": "a legendary night versus your safety net",
+      "device": "time-traveler-concert"
+    },
+    "mask": "looks like a dream offer; measures booking before you can afford it versus checking first (T13, L1)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T13-2",
+    "world": "absurd",
+    "round": "ch4-r120",
+    "friend": {
+      "prompt": "A time traveler offers {name} a seat at any concert in history, tonight, for all {their} savings. Which one is {name}?",
+      "a": {
+        "t": "Take it. Some nights are worth every cent.",
+        "axes": {
+          "L1": -1
+        },
+        "tags": [
+          {
+            "id": "T13A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Keep the savings. The recording exists.",
+        "axes": {
+          "L1": 1
+        },
+        "tags": [
+          {
+            "id": "T13B",
+            "s": 2
+          }
+        ]
+      }
+    }
   }
- },
- {
-  "id": "C4-11",
-  "type": "receipts",
-  "chapter": 4,
-  "sq": "SQ-T12-2",
-  "world": "everyday",
-  "prompt": "Money between you and your people, lately. Tap everything that's true:",
-  "options": [
-   {
-    "t": "Know to the dollar what someone owes me right now",
-    "tags": [
-     {
-      "id": "T12A",
-      "s": 2
-     }
-    ]
-   },
-   {
-    "t": "Paid someone back the same day, down to the cent",
-    "tags": [
-     {
-      "id": "T12A",
-      "s": 1
-     }
-    ]
-   },
-   {
-    "t": "Asked someone straight out to pay me back",
-    "axes": {
-     "R2": 1
-    },
-    "tags": [
-     {
-      "id": "T12A",
-      "s": 1
-     }
-    ]
-   },
-   {
-    "t": "Covered a friend's share and let it quietly disappear",
-    "axes": {
-     "R2": -1
-    },
-    "tags": [
-     {
-      "id": "T12B",
-      "s": 2
-     }
-    ]
-   },
-   {
-    "t": "Said \"get the next one\" and never kept track",
-    "tags": [
-     {
-      "id": "T12B",
-      "s": 1
-     }
-    ]
-   },
-   {
-    "t": "Let someone cover me because they earn more",
-    "tags": [
-     {
-      "id": "T12B",
-      "s": 1
-     }
-    ]
-   },
-   {
-    "t": "None of these",
-    "none": true
-   }
-  ],
-  "heart": {
-   "prompt": "Think about money between you and the people close to you lately. Which of these are true?",
-   "options": [
-    "I know exactly how much someone owes me right now.",
-    "I paid someone back the same day, to the exact amount.",
-    "I asked someone directly to pay me back.",
-    "I covered a friend's share and let it go without saying anything.",
-    "I told someone to get the next one and never kept track.",
-    "I let someone pay for me because they earn more.",
-    "None of these"
-   ]
-  },
-  "fp": {
-   "trigger": "memory check on money owed between people",
-   "setting": "recent weeks, real life",
-   "ask": "tick what is true",
-   "who": "friends and people close to you",
-   "stakes": "keeping a tab versus keeping it loose",
-   "device": "tab-receipts"
-  },
-  "mask": "looks like a money habits list; measures keeping an exact tab versus letting it stay loose (T12), with asking directly versus absorbing it (R2)",
-  "ae": [
-   "A",
-   "B"
-  ],
-  "privacy": "normal"
- },
- {
-  "id": "C4-12",
-  "type": "bet",
-  "chapter": 4,
-  "sq": "SQ-T15-1",
-  "world": "everyday",
-  "prompt": "Hand on heart: you've looked up how someone affords their life. The apartment, the car, the trips.",
-  "options": [
-   {
-    "t": "Guilty. Found the family money in ten minutes.",
-    "tags": [
-     {
-      "id": "T15B",
-      "s": 2
-     }
-    ],
-    "emotion": "delight"
-   },
-   {
-    "t": "Guilty. Turns out they just work constantly. Annoying.",
-    "tags": [
-     {
-      "id": "T15A",
-      "s": 2
-     }
-    ],
-    "emotion": "irritation"
-   },
-   {
-    "t": "Guilty. Went in jealous, came out with a plan.",
-    "axes": {
-     "L2": 1
-    },
-    "tags": [
-     {
-      "id": "T15A",
-      "s": 1
-     }
-    ],
-    "emotion": "envy"
-   },
-   {
-    "t": "Never. I already assume there's a head start.",
-    "tags": [
-     {
-      "id": "T15B",
-      "s": 1
-     }
-    ]
-   }
-  ],
-  "heart": {
-   "prompt": "Have you ever looked into how someone pays for their life, like their apartment, their car or their trips?",
-   "options": [
-    "Yes, and I found the family money within ten minutes.",
-    "Yes, and it turned out they simply work all the time.",
-    "Yes. I started out jealous and left with a plan.",
-    "No. I already assume there was a head start somewhere."
-   ]
-  },
-  "fp": {
-   "trigger": "curiosity about someone's lifestyle",
-   "setting": "scrolling, alone",
-   "ask": "dig into how they afford it",
-   "who": "someone you know of",
-   "stakes": "credit for effort versus spotting the head start",
-   "device": "affordability-dig"
-  },
-  "mask": "looks like a nosy confession; measures seeing the effort versus the head start behind someone's life (T15), with turning envy into drive (L2)",
-  "ae": [
-   "A",
-   "E"
-  ],
-  "privacy": "normal",
-  "friend": {
-   "prompt": "Has {name} ever looked up how someone affords that apartment, that car, those trips?",
-   "a": {
-    "t": "Guilty. Turns out they just work constantly. Annoying.",
-    "tags": [
-     {
-      "id": "T15A",
-      "s": 2
-     }
-    ]
-   },
-   "b": {
-    "t": "Guilty. Found the family money in ten minutes.",
-    "tags": [
-     {
-      "id": "T15B",
-      "s": 2
-     }
-    ]
-   }
-  }
- },
- {
-  "id": "C4-120",
-  "type": "bet",
-  "chapter": 4,
-  "sq": "SQ-L2-1",
-  "world": "everyday",
-  "prompt": "Genii suspects you've picked up extra work you didn't need, just to watch a number get bigger.",
-  "options": [
-   {
-    "t": "Guilty. The number was the whole reward.",
-    "axes": {
-     "L2": 2
-    },
-    "tags": [
-     {
-      "id": "T16A",
-      "s": 1
-     }
-    ],
-    "emotion": "pride"
-   },
-   {
-    "t": "Guilty. Then bought something loud to prove it happened.",
-    "axes": {
-     "L2": 1
-    },
-    "tags": [
-     {
-      "id": "T14A",
-      "s": 1
-     }
-    ]
-   },
-   {
-    "t": "Never. My free time costs more than they pay.",
-    "axes": {
-     "L2": -2
-    },
-    "tags": [
-     {
-      "id": "T16B",
-      "s": 1
-     }
-    ]
-   },
-   {
-    "t": "Never. I'll take the smaller number and the nap.",
-    "axes": {
-     "L2": -1
-    }
-   }
-  ],
-  "heart": {
-   "prompt": "Have you ever taken on extra work you did not need, mostly to see a number grow?",
-   "options": [
-    "Yes. Seeing the number grow was the whole reward.",
-    "Yes, and then I bought something noticeable to mark it.",
-    "No. My free time is worth more to me than the pay.",
-    "No. I would rather have the smaller number and the rest."
-   ]
-  },
-  "fp": {
-   "trigger": "optional extra work on offer",
-   "setting": "a side shift or side gig",
-   "ask": "take it for the number",
-   "who": "just you",
-   "stakes": "free time versus a win you can see",
-   "device": "extra-shift"
-  },
-  "mask": "looks like a hustle confession; measures trading free time for a visible win versus your own pace (L2, T16)",
-  "ae": [
-   "A",
-   "D"
-  ],
-  "privacy": "normal",
-  "friend": {
-   "prompt": "Genii bets {name} has taken extra work {they} didn't need, just to watch a number grow. Guilty or not?",
-   "a": {
-    "t": "Guilty. The number was the whole reward.",
-    "axes": {
-     "L2": 2
-    },
-    "tags": [
-     {
-      "id": "T16A",
-      "s": 1
-     }
-    ]
-   },
-   "b": {
-    "t": "Never. My free time costs more than they pay.",
-    "axes": {
-     "L2": -2
-    },
-    "tags": [
-     {
-      "id": "T16B",
-      "s": 1
-     }
-    ]
-   }
-  }
- },
- {
-  "id": "C4-121",
-  "type": "bet",
-  "chapter": 4,
-  "sq": "SQ-L1-3",
-  "world": "unusual",
-  "prompt": "Somewhere in your home, Genii bets, there's cash hiding. Inside a book, a shoe, the freezer.",
-  "options": [
-   {
-    "t": "Guilty. Two hiding spots. One is a decoy.",
-    "axes": {
-     "L1": 2
-    },
-    "tags": [
-     {
-      "id": "T13B",
-      "s": 2
-     }
-    ],
-    "emotion": "pride"
-   },
-   {
-    "t": "Guilty. Forgot which book. It's still in there.",
-    "axes": {
-     "L1": 1
-    },
-    "tags": [
-     {
-      "id": "T13B",
-      "s": 1
-     }
-    ],
-    "emotion": "cringe"
-   },
-   {
-    "t": "Guilty. Found it once and spent it that day.",
-    "axes": {
-     "L1": -1
-    },
-    "tags": [
-     {
-      "id": "T13A",
-      "s": 1
-     }
-    ],
-    "emotion": "delight"
-   },
-   {
-    "t": "Never. Cash in a shoe is fun I forgot to have.",
-    "axes": {
-     "L1": -1
-    },
-    "tags": [
-     {
-      "id": "T13A",
-      "s": 1
-     }
-    ]
-   }
-  ],
-  "heart": {
-   "prompt": "Is there cash hidden somewhere unusual in your home, like in a book, a shoe or the freezer?",
-   "options": [
-    "Yes. I have two hiding places. One is a decoy.",
-    "Yes, but I forgot which book. It is still in there.",
-    "Yes. I found it once and spent it the same day.",
-    "No. Hidden cash is just fun I forgot to have."
-   ]
-  },
-  "fp": {
-   "trigger": "a secret stash of cash at home",
-   "setting": "odd hiding spots at home",
-   "ask": "keep a hidden cushion",
-   "who": "just you",
-   "stakes": "a secret safety net versus money in use",
-   "device": "hidden-cash-stash"
-  },
-  "mask": "looks like a funny secret; measures keeping a safety net versus putting everything to use (L1, T13)",
-  "ae": [
-   "A"
-  ],
-  "privacy": "normal",
-  "friend": {
-   "prompt": "Genii bets {name} has cash hiding at home. Inside a book, a shoe, the freezer. Guilty or not?",
-   "a": {
-    "t": "Guilty. Two hiding spots. One is a decoy.",
-    "axes": {
-     "L1": 2
-    },
-    "tags": [
-     {
-      "id": "T13B",
-      "s": 2
-     }
-    ]
-   },
-   "b": {
-    "t": "Guilty. Found it once and spent it that day.",
-    "axes": {
-     "L1": -1
-    },
-    "tags": [
-     {
-      "id": "T13A",
-      "s": 1
-     }
-    ]
-   }
-  }
- },
- {
-  "id": "C4-122",
-  "type": "real",
-  "chapter": 4,
-  "sq": "SQ-T13-2",
-  "world": "unusual",
-  "prompt": "Once-in-a-lifetime chance, and your wallet said no: a trip, a show, a last-minute seat. The last one, what did you do?",
-  "options": [
-   {
-    "t": "Said yes anyway. Figured out the money after.",
-    "tags": [
-     {
-      "id": "T13A",
-      "s": 2
-     }
-    ],
-    "emotion": "delight"
-   },
-   {
-    "t": "Said yes, then sold something to cover it.",
-    "tags": [
-     {
-      "id": "T13A",
-      "s": 1
-     }
-    ]
-   },
-   {
-    "t": "Checked the numbers. Stayed home. Watched the photos.",
-    "tags": [
-     {
-      "id": "T13B",
-      "s": 2
-     }
-    ],
-    "emotion": "longing"
-   },
-   {
-    "t": "Waited, saved up, and went the next time around.",
-    "tags": [
-     {
-      "id": "T13B",
-      "s": 1
-     }
-    ]
-   }
-  ],
-  "heart": {
-   "prompt": "Think of the last once-in-a-lifetime chance you could not really afford, like a trip, a show or a last-minute seat. What did you do?",
-   "options": [
-    "I said yes anyway and worked out the money afterward.",
-    "I said yes, and then sold something to pay for it.",
-    "I looked at the numbers, stayed home, and saw it in photos.",
-    "I waited, saved, and went the next time it came around."
-   ]
-  },
-  "fp": {
-   "trigger": "rare chance you can't quite afford",
-   "setting": "a trip, show or seat on offer",
-   "ask": "book first or check first",
-   "who": "just you",
-   "stakes": "the story versus the money",
-   "device": "once-in-a-lifetime-offer"
-  },
-  "mask": "looks like a travel memory; measures booking before you can afford it versus checking first (T13) from what you did",
-  "ae": [
-   "A",
-   "E"
-  ],
-  "privacy": "normal",
-  "friend": {
-   "prompt": "A once-in-a-lifetime trip, show or seat that {name}'s wallet said no to. The last one: what did {name} actually do?",
-   "a": {
-    "t": "Said yes anyway. Figured out the money after.",
-    "tags": [
-     {
-      "id": "T13A",
-      "s": 2
-     }
-    ]
-   },
-   "b": {
-    "t": "Checked the numbers. Stayed home. Watched the photos.",
-    "tags": [
-     {
-      "id": "T13B",
-      "s": 2
-     }
-    ]
-   }
-  }
- },
- {
-  "id": "C4-102",
-  "type": "scenario",
-  "chapter": 4,
-  "sq": "SQ-T14-1",
-  "world": "unusual",
-  "prompt": "An auction house mistakes you for a bidder. Next lot: the vintage jacket you've wanted for six years. Bidding just passed your rent. Thirty seconds.",
-  "options": [
-   {
-    "t": "Paddle up. Rent can be late once.",
-    "tags": [
-     {
-      "id": "T14A",
-      "s": 2
-     },
-     {
-      "id": "T13A",
-      "s": 1
-     }
-    ],
-    "emotion": "delight"
-   },
-   {
-    "t": "One bid at my limit. Then let it go.",
-    "tags": [
-     {
-      "id": "T14A",
-      "s": 1
-     }
-    ]
-   },
-   {
-    "t": "Paddle down. Six years of wanting it was plenty.",
-    "tags": [
-     {
-      "id": "T14B",
-      "s": 2
-     }
-    ],
-    "emotion": "longing"
-   },
-   {
-    "t": "Slip out. I'll find a cheaper one that's almost it.",
-    "tags": [
-     {
-      "id": "T14B",
-      "s": 1
-     }
-    ]
-   }
-  ],
-  "heart": {
-   "prompt": "An auction house mistakes you for a bidder. The next item is the vintage jacket you have wanted for six years, and the bidding has just passed your rent. You have thirty seconds.",
-   "options": [
-    "I raise my paddle. Rent can be late this once.",
-    "I bid once at my limit, and then I let it go.",
-    "I keep my paddle down. Six years of wanting it was enough.",
-    "I slip out and look for a cheaper one that is nearly the same."
-   ]
-  },
-  "fp": {
-   "trigger": "mistaken for a bidder on your dream object",
-   "setting": "auction room, thirty-second window",
-   "ask": "overpay for the thing you love",
-   "who": "you and a room of strangers",
-   "stakes": "rent versus the one you've wanted for years",
-   "device": "auction-paddle"
-  },
-  "mask": "looks like a movie moment; measures paying extra for the thing you love versus settling for less (T14)",
-  "ae": [
-   "A",
-   "C"
-  ],
-  "privacy": "normal",
-  "friend": {
-   "prompt": "Mistaken for an auction bidder, {name} spots the jacket {they}'d wanted for six years. Bids just passed rent. What does {name} do?",
-   "a": {
-    "t": "Paddle up. Rent can be late once.",
-    "tags": [
-     {
-      "id": "T14A",
-      "s": 2
-     },
-     {
-      "id": "T13A",
-      "s": 1
-     }
-    ]
-   },
-   "b": {
-    "t": "Paddle down. Six years of wanting it was plenty.",
-    "tags": [
-     {
-      "id": "T14B",
-      "s": 2
-     }
-    ]
-   }
-  }
- },
- {
-  "id": "C4-123",
-  "type": "scenario",
-  "chapter": 4,
-  "sq": "SQ-T14-2",
-  "world": "absurd",
-  "prompt": "A polite tornado knocks. It will take everything you own and leave one perfect thing of your choice. It can't wait long.",
-  "options": [
-   {
-    "t": "Deal. Keep my bed. The rest can blow away.",
-    "tags": [
-     {
-      "id": "T14B",
-      "s": 2
-     }
-    ],
-    "emotion": "relief"
-   },
-   {
-    "t": "No. Every chipped mug in there has a story.",
-    "tags": [
-     {
-      "id": "T14A",
-      "s": 2
-     }
-    ],
-    "emotion": "longing"
-   },
-   {
-    "t": "Deal, but I'm wearing four jackets when it hits.",
-    "tags": [
-     {
-      "id": "T14A",
-      "s": 1
-     }
-    ]
-   },
-   {
-    "t": "No. I'll clear it out myself, on my own time.",
-    "tags": [
-     {
-      "id": "T14B",
-      "s": 1
-     }
-    ]
-   }
-  ],
-  "heart": {
-   "prompt": "A friendly tornado arrives at your door. It offers to take everything you own and leave behind one perfect thing of your choosing. It needs your answer soon.",
-   "options": [
-    "I agree and keep my bed. Everything else can go.",
-    "I say no. Every chipped mug I own has a story.",
-    "I agree, but I put on four jackets before it arrives.",
-    "I say no. I will clear things out myself, in time."
-   ]
-  },
-  "fp": {
-   "trigger": "offer to lose everything but one thing",
-   "setting": "your home, a tornado at the door",
-   "ask": "trade all your stuff for one perfect thing",
-   "who": "just you",
-   "stakes": "memories in objects versus a lighter life",
-   "device": "polite-tornado"
-  },
-  "mask": "looks like a silly weather fable; measures whether less stuff feels like freedom or loss (T14)",
-  "ae": [
-   "A",
-   "E"
-  ],
-  "privacy": "normal",
-  "friend": {
-   "prompt": "A polite tornado offers to take everything {name} owns and leave one perfect thing {name} picks. What does {name} do?",
-   "a": {
-    "t": "No. Every chipped mug in there has a story.",
-    "tags": [
-     {
-      "id": "T14A",
-      "s": 2
-     }
-    ]
-   },
-   "b": {
-    "t": "Deal. Keep my bed. The rest can blow away.",
-    "tags": [
-     {
-      "id": "T14B",
-      "s": 2
-     }
-    ]
-   }
-  }
- },
- {
-  "id": "C4-124",
-  "type": "scenario",
-  "chapter": 4,
-  "sq": "SQ-T12-1",
-  "world": "absurd",
-  "prompt": "Your new housemate is a mermaid sitting on a sunken ship's worth of gold. They insist rent stays exactly fifty-fifty.",
-  "options": [
-   {
-    "t": "Fair. Same bathtub, same rent.",
-    "axes": {
-     "L3": 1
-    },
-    "tags": [
-     {
-      "id": "T12A",
-      "s": 2
-     }
-    ]
-   },
-   {
-    "t": "Pitch it: we each pay by what we have.",
-    "axes": {
-     "L3": -1
-    },
-    "tags": [
-     {
-      "id": "T12B",
-      "s": 2
-     }
-    ]
-   },
-   {
-    "t": "Pay half. Start billing them for bathtub hours.",
-    "tags": [
-     {
-      "id": "T12A",
-      "s": 1
-     }
-    ],
-    "emotion": "irritation"
-   },
-   {
-    "t": "Pay half. Drop gold hints every single rent day.",
-    "axes": {
-     "R2": -1
-    },
-    "tags": [
-     {
-      "id": "T12B",
-      "s": 1
-     }
-    ],
-    "emotion": "envy"
-   }
-  ],
-  "heart": {
-   "prompt": "Your new housemate is a mermaid with a sunken ship full of gold. They insist that the rent is split exactly in half.",
-   "options": [
-    "That is fair. Same bathtub, same rent.",
-    "I suggest we each pay according to what we have.",
-    "I pay half and start charging them for bathtub time.",
-    "I pay half and hint about their gold every rent day."
-   ]
-  },
-  "fp": {
-   "trigger": "rich housemate insists on an even split",
-   "setting": "shared home, a mermaid in the tub",
-   "ask": "equal rent or rent by means",
-   "who": "a much richer housemate",
-   "stakes": "paying the same versus feeling it the same",
-   "device": "mermaid-housemate"
-  },
-  "mask": "looks like a fairy-tale flatshare; measures fair as paying the same versus feeling it the same (T12, L3)",
-  "ae": [
-   "A",
-   "B",
-   "C"
-  ],
-  "privacy": "normal",
-  "friend": {
-   "prompt": "{name}'s new housemate is a mermaid with a sunken ship's worth of gold, and insists rent stays fifty-fifty. What does {name} do?",
-   "a": {
-    "t": "Fair. Same bathtub, same rent.",
-    "axes": {
-     "L3": 1
-    },
-    "tags": [
-     {
-      "id": "T12A",
-      "s": 2
-     }
-    ]
-   },
-   "b": {
-    "t": "Pitch it: we each pay by what we have.",
-    "axes": {
-     "L3": -1
-    },
-    "tags": [
-     {
-      "id": "T12B",
-      "s": 2
-     }
-    ]
-   }
-  }
- },
- {
-  "id": "C4-125",
-  "type": "scenario",
-  "chapter": 4,
-  "sq": "SQ-T15-2",
-  "world": "absurd",
-  "prompt": "You and a friend dig up a pirate chest. You did all the digging. They had the map, from a thrift-store book.",
-  "options": [
-   {
-    "t": "Most of it's mine. The map never held a shovel.",
-    "tags": [
-     {
-      "id": "T15A",
-      "s": 2
-     }
-    ],
-    "emotion": "pride"
-   },
-   {
-    "t": "Even split. No map, no chest.",
-    "tags": [
-     {
-      "id": "T15B",
-      "s": 2
-     }
-    ]
-   },
-   {
-    "t": "Even split. Then tell everyone who did the digging.",
-    "tags": [
-     {
-      "id": "T15A",
-      "s": 1
-     }
-    ],
-    "emotion": "resentment"
-   },
-   {
-    "t": "They take more. Finding that map was the miracle.",
-    "tags": [
-     {
-      "id": "T15B",
-      "s": 1
-     }
-    ],
-    "emotion": "warmth"
-   }
-  ],
-  "heart": {
-   "prompt": "You and a friend find a pirate chest. You did all of the digging, and they found the map inside a thrift-store book.",
-   "options": [
-    "Most of it is mine. The map did not do any digging.",
-    "We split it evenly. Without the map, there would be no chest.",
-    "We split it evenly. Then I tell everyone who dug.",
-    "They take the larger share. Finding the map was the real luck."
-   ]
-  },
-  "fp": {
-   "trigger": "shared treasure, unequal effort",
-   "setting": "a dig site with a pirate chest",
-   "ask": "split by work or split evenly",
-   "who": "a friend with the lucky map",
-   "stakes": "credit for the work versus the luck that started it",
-   "device": "pirate-chest"
-  },
-  "mask": "looks like a treasure hunt; measures whether the reward goes to whoever worked hardest or is shared with luck (T15)",
-  "ae": [
-   "A",
-   "B",
-   "E"
-  ],
-  "privacy": "normal",
-  "friend": {
-   "prompt": "{name} did all the digging for a pirate chest. A friend had the map, from a thrift-store book. What does {name} do?",
-   "a": {
-    "t": "Most of it's mine. The map never held a shovel.",
-    "tags": [
-     {
-      "id": "T15A",
-      "s": 2
-     }
-    ]
-   },
-   "b": {
-    "t": "Even split. No map, no chest.",
-    "tags": [
-     {
-      "id": "T15B",
-      "s": 2
-     }
-    ]
-   }
-  }
- },
- {
-  "id": "C4-30",
-  "type": "scenario",
-  "chapter": 4,
-  "sq": "SQ-R2-2",
-  "world": "unusual",
-  "prompt": "Kai still owes you $400. Today Kai's fundraiser link lands in everyone's inbox: \"Help me celebrate my birthday in Lisbon!!\"",
-  "options": [
-   {
-    "t": "Comment on the page: \"Counting my $400 as my donation.\"",
-    "axes": {
-     "R2": 2
-    },
-    "tags": [
-     {
-      "id": "T12A",
-      "s": 1
-     }
-    ],
-    "emotion": "irritation"
-   },
-   {
-    "t": "Text Kai: \"Lisbon looks great. My $400 first, please.\"",
-    "axes": {
-     "R2": 1
-    },
-    "tags": [
-     {
-      "id": "T12A",
-      "s": 2
-     }
-    ]
-   },
-   {
-    "t": "Chip in $20. Say nothing. Seethe in private.",
-    "axes": {
-     "R2": -2
-    },
-    "emotion": "resentment"
-   },
-   {
-    "t": "Chip in $50. That $400 was a gift now, apparently.",
-    "axes": {
-     "R2": -1
-    },
-    "tags": [
-     {
-      "id": "T12B",
-      "s": 1
-     }
-    ]
-   }
-  ],
-  "heart": {
-   "prompt": "Kai still owes you $400. Today Kai sends everyone a fundraising page asking for help with a birthday trip to Lisbon.",
-   "options": [
-    "I comment that the $400 Kai owes me is my donation.",
-    "I message Kai privately and ask for my $400 first.",
-    "I give $20, say nothing, and stay upset privately.",
-    "I give $50 and decide the $400 has become a gift."
-   ]
-  },
-  "fp": {
-   "trigger": "a debtor asks everyone to fund their trip",
-   "setting": "a birthday fundraiser page",
-   "ask": "name the debt or swallow it",
-   "who": "a friend who owes you",
-   "stakes": "$400 and how the friendship feels",
-   "device": "fundraiser-link"
-  },
-  "mask": "looks like a nervy money moment; measures naming a line when it is crossed versus absorbing it (R2), with keeping a tab (T12)",
-  "ae": [
-   "A",
-   "B",
-   "E"
-  ],
-  "privacy": "normal",
-  "friend": {
-   "prompt": "Kai still owes {name} $400. Kai's fundraiser lands in every inbox: \"Help fund my Lisbon birthday!!\" What does {name} do?",
-   "a": {
-    "t": "Comments on the page: \"Counting my $400 as my donation.\"",
-    "axes": {
-     "R2": 2
-    },
-    "tags": [
-     {
-      "id": "T12A",
-      "s": 1
-     }
-    ]
-   },
-   "b": {
-    "t": "Chips in $20. Says nothing. Seethes in private.",
-    "axes": {
-     "R2": -2
-    }
-   }
-  }
- },
- {
-  "id": "C4-129",
-  "type": "feeling",
-  "chapter": 4,
-  "sq": "SQ-R2-2",
-  "world": "unusual",
-  "follows": "C4-30",
-  "prompt": "Still on Kai's Lisbon link. First feeling?",
-  "options": [
-   {
-    "t": "Irritation. The nerve of that link."
-   },
-   {
-    "t": "Envy. I want a Lisbon too."
-   },
-   {
-    "t": "Guilt. Maybe I should just let the $400 go."
-   },
-   {
-    "t": "Worry. Asking might cost me Kai."
-   },
-   {
-    "t": "Amusement. Honestly, it's iconic."
-   }
-  ],
-  "heart": {
-   "prompt": "Thinking about Kai's fundraiser for Lisbon, what did you feel first?",
-   "options": [
-    "Irritation that Kai sent it at all.",
-    "Envy. I would like a trip like that too.",
-    "Guilt. Maybe I should let the $400 go.",
-    "Worry that asking for it could cost me the friendship.",
-    "Amusement. It is almost impressive."
-   ]
-  },
-  "fp": {
-   "trigger": "the Lisbon fundraiser, a beat later",
-   "setting": "after the fundraiser card",
-   "ask": "first feeling",
-   "who": "a friend who owes you",
-   "stakes": "how the debt sits with you",
-   "device": "fundraiser-link"
-  },
-  "mask": "emotion follow-up to C4-30; scores nothing, feeds the emotional signature",
-  "ae": [
-   "E"
-  ],
-  "privacy": "normal"
- },
- {
-  "id": "C4-126",
-  "type": "reply",
-  "chapter": 4,
-  "sq": "SQ-R3-2",
-  "world": "unusual",
-  "prompt": "Your person's grandparents hit 60 years. The toast credits one secret: \"One bank account. Never two.\" Then a text from across the table.",
-  "thread": [
-   {
-    "from": "Your person",
-    "text": "that's gonna be us right?? one account, forever"
-   }
-  ],
-  "options": [
-   {
-    "t": "\"Obviously. One account, one team, sixty years.\"",
-    "axes": {
-     "R3": 2,
-     "R1": 1
-    },
-    "emotion": "warmth"
-   },
-   {
-    "t": "\"Love them. We're writing our own money rules.\"",
-    "axes": {
-     "R3": -2
-    }
-   },
-   {
-    "t": "\"Yes. Plus one small account nobody needs to know about.\"",
-    "axes": {
-     "R3": 1,
-     "R1": -1
-    },
-    "emotion": "guilt"
-   },
-   {
-    "t": "\"Separate accounts, one pot for bills. Our version.\"",
-    "axes": {
-     "R3": -1,
-     "R1": -1
-    }
-   }
-  ],
-  "heart": {
-   "prompt": "At your person's grandparents' sixtieth anniversary, the toast credits one thing: one bank account, never two. Then your person texts you from across the table.",
-   "thread": [
-    {
-     "from": "Your person",
-     "text": "That is going to be us, right? One account, forever?"
-    }
-   ],
-   "options": [
-    "Of course. One account, one team, like them.",
-    "I love them, but we will write our own money rules.",
-    "Yes, plus one small account that nobody needs to know about.",
-    "Separate accounts, with one shared pot for bills. Our own version."
-   ]
-  },
-  "fp": {
-   "trigger": "a family toast credits one shared account",
-   "setting": "a sixtieth anniversary party",
-   "ask": "run couple money the old way or your own",
-   "who": "your person, texting across the table",
-   "stakes": "how your money works as a couple",
-   "device": "anniversary-toast"
-  },
-  "mask": "looks like a sweet family moment; measures running a couple's money the way it has always been done versus your own design (R3), with shared versus separate (R1)",
-  "ae": [
-   "A",
-   "B",
-   "D"
-  ],
-  "privacy": "normal",
-  "friend": {
-   "prompt": "{name}'s person's grandparents credit 60 years to \"one bank account, never two.\" The person texts: \"that's us, right??\" What does {name} reply?",
-   "a": {
-    "t": "\"Obviously. One account, one team, sixty years.\"",
-    "axes": {
-     "R3": 2,
-     "R1": 1
-    }
-   },
-   "b": {
-    "t": "\"Love them. We're writing our own money rules.\"",
-    "axes": {
-     "R3": -2
-    }
-   }
-  }
- },
- {
-  "id": "C4-127",
-  "type": "reply",
-  "chapter": 4,
-  "sq": "SQ-L1-2",
-  "world": "absurd",
-  "prompt": "Dev's cat started talking last week. Two million followers already. Then Dev texts you.",
-  "thread": [
-   {
-    "from": "Dev",
-    "text": "cat merch drops next month. I need $5,000 from friends"
-   },
-   {
-    "from": "Dev",
-    "text": "10% of the cat for your savings? it could stop talking any day tho"
-   }
-  ],
-  "options": [
-   {
-    "t": "\"Here's my savings. I believe in this cat.\"",
-    "axes": {
-     "L1": -2
-    },
-    "tags": [
-     {
-      "id": "T13A",
-      "s": 1
-     }
-    ],
-    "emotion": "delight"
-   },
-   {
-    "t": "\"Send me the numbers first. Every single one.\"",
-    "axes": {
-     "L1": 2
-    },
-    "emotion": "worry"
-   },
-   {
-    "t": "\"$200. Friendship price. Not a cent more.\"",
-    "axes": {
-     "L1": 1
-    },
-    "tags": [
-     {
-      "id": "T13B",
-      "s": 1
-     }
-    ]
-   },
-   {
-    "t": "\"In. If it goes quiet, I still own a legend.\"",
-    "axes": {
-     "L1": -1
-    }
-   }
-  ],
-  "heart": {
-   "prompt": "Your friend Dev's cat started talking last week and already has two million followers. Then Dev sends you a message.",
-   "thread": [
-    {
-     "from": "Dev",
-     "text": "The cat's merchandise launches next month, and I need $5,000 from friends."
-    },
-    {
-     "from": "Dev",
-     "text": "Would you put in your savings for ten percent of the cat? It could stop talking any day."
-    }
-   ],
-   "options": [
-    "Here are my savings. I believe in this cat.",
-    "Please send me all the numbers before I decide.",
-    "I can put in $200 as a friend, and no more.",
-    "I am in. Even if it goes quiet, I own a legend."
-   ]
-  },
-  "fp": {
-   "trigger": "friend asks you to invest in a talking cat",
-   "setting": "a viral talking cat's merch launch",
-   "ask": "put your savings in now or wait for proof",
-   "who": "a friend with a famous cat",
-   "stakes": "your savings versus a wild upside",
-   "device": "talking-cat"
-  },
-  "mask": "looks like internet chaos; measures stepping in before you can see how it ends versus waiting for more information (L1)",
-  "ae": [
-   "A",
-   "D"
-  ],
-  "privacy": "normal",
-  "friend": {
-   "prompt": "Dev's talking cat has two million followers. Dev texts: \"10% of the cat for your savings?\" What does {name} reply?",
-   "a": {
-    "t": "\"Send me the numbers first. Every single one.\"",
-    "axes": {
-     "L1": 2
-    }
-   },
-   "b": {
-    "t": "\"Here's my savings. I believe in this cat.\"",
-    "axes": {
-     "L1": -2
-    },
-    "tags": [
-     {
-      "id": "T13A",
-      "s": 1
-     }
-    ]
-   }
-  }
- },
- {
-  "id": "C4-82",
-  "type": "others",
-  "chapter": 4,
-  "sq": "SQ-L3-2",
-  "world": "unusual",
-  "prompt": "$2,400, stuffed inside the secondhand couch you and four roommates bought. Jae splits it by who's short on rent, not five ways. First thought?",
-  "options": [
-   {
-    "t": "Five ways. Couch money isn't a need-based program.",
-    "axes": {
-     "L3": 2
-    },
-    "tags": [
-     {
-      "id": "T12A",
-      "s": 2
-     }
-    ]
-   },
-   {
-    "t": "Right call. Whoever's short on rent gets more.",
-    "axes": {
-     "L3": -2
-    },
-    "tags": [
-     {
-      "id": "T12B",
-      "s": 2
-     }
-    ]
-   },
-   {
-    "t": "Who made Jae the judge of who's short?",
-    "axes": {
-     "L3": 1
-    },
-    "tags": [
-     {
-      "id": "T25A",
-      "s": 1
-     }
-    ],
-    "emotion": "irritation"
-   },
-   {
-    "t": "Fine, as long as nobody learns who got the most.",
-    "axes": {
-     "L3": -1
-    },
-    "tags": [
-     {
-      "id": "T12B",
-      "s": 1
-     }
-    ],
-    "emotion": "worry"
-   }
-  ],
-  "heart": {
-   "prompt": "You and four roommates find $2,400 inside a secondhand couch you bought together. Your roommate Jae divides it by who is short on rent, instead of equally. What is your first thought?",
-   "options": [
-    "It should be five equal shares. Found money is not about need.",
-    "That is right. Whoever is short on rent should get more.",
-    "Who decided Jae gets to judge who is short?",
-    "It is fine, as long as nobody learns who got the most."
-   ]
-  },
-  "fp": {
-   "trigger": "found cash split by need",
-   "setting": "shared apartment, secondhand couch",
-   "ask": "equal shares or by need",
-   "who": "four roommates",
-   "stakes": "fairness and money between housemates",
-   "device": "couch-cash"
-  },
-  "mask": "looks like a lucky find; measures fair as the same share for all versus what each person needs (L3, T12)",
-  "ae": [
-   "C",
-   "E"
-  ],
-  "privacy": "normal",
-  "friend": {
-   "prompt": "{name} and four roommates find $2,400 in a secondhand couch. Jae splits it by who's short on rent. {name}'s first thought?",
-   "a": {
-    "t": "Five ways. Couch money isn't a need-based program.",
-    "axes": {
-     "L3": 2
-    },
-    "tags": [
-     {
-      "id": "T12A",
-      "s": 2
-     }
-    ]
-   },
-   "b": {
-    "t": "Right call. Whoever's short on rent gets more.",
-    "axes": {
-     "L3": -2
-    },
-    "tags": [
-     {
-      "id": "T12B",
-      "s": 2
-     }
-    ]
-   }
-  }
- },
- {
-  "id": "C4-100",
-  "type": "others",
-  "chapter": 4,
-  "sq": "SQ-T13-1",
-  "world": "absurd",
-  "prompt": "A leprechaun gave your friend a pot of gold: it doubles every year untouched, vanishes if touched. Day two, they spent a coin on pizza. First thought?",
-  "options": [
-   {
-    "t": "Icon. Best pizza anyone has ever eaten.",
-    "axes": {
-     "L1": -1
-    },
-    "tags": [
-     {
-      "id": "T13A",
-      "s": 2
-     }
-    ],
-    "emotion": "delight"
-   },
-   {
-    "t": "Doubling forever. Traded for pizza. I need to lie down.",
-    "axes": {
-     "L1": 1
-    },
-    "tags": [
-     {
-      "id": "T13B",
-      "s": 2
-     }
-    ],
-    "emotion": "irritation"
-   },
-   {
-    "t": "Same. I'd have lasted a day and a half.",
-    "tags": [
-     {
-      "id": "T13A",
-      "s": 1
-     }
-    ],
-    "emotion": "cringe"
-   },
-   {
-    "t": "I'd have buried it and drawn myself a map.",
-    "axes": {
-     "L1": 1
-    },
-    "tags": [
-     {
-      "id": "T13B",
-      "s": 1
-     }
-    ]
-   }
-  ],
-  "heart": {
-   "prompt": "A leprechaun gives your friend a pot of gold that doubles every year it is left alone and disappears if anyone touches it. On the second day, they spend a coin on pizza. What is your first thought?",
-   "options": [
-    "Good for them. That was probably the best pizza of their life.",
-    "It could have doubled forever, and it went on pizza. I cannot believe it.",
-    "Honestly, I would have lasted about a day and a half myself.",
-    "I would have buried it somewhere and drawn myself a map."
-   ]
-  },
-  "fp": {
-   "trigger": "friend spends a magic doubling pot on day two",
-   "setting": "leprechaun's gold, pizza night",
-   "ask": "judge joy now versus letting it grow",
-   "who": "friend",
-   "stakes": "a treat today versus a fortune later",
-   "device": "leprechaun-gold"
-  },
-  "mask": "looks like a fable; measures spending found money now versus saving it (T13, L1)",
-  "ae": [
-   "A",
-   "D"
-  ],
-  "privacy": "normal",
-  "friend": {
-   "prompt": "A friend's leprechaun gold doubles yearly, vanishes if touched. Day two, the friend spends a coin on pizza. {name}'s first thought?",
-   "a": {
-    "t": "Doubling forever. Traded for pizza. I need to lie down.",
-    "axes": {
-     "L1": 1
-    },
-    "tags": [
-     {
-      "id": "T13B",
-      "s": 2
-     }
-    ]
-   },
-   "b": {
-    "t": "Icon. Best pizza anyone has ever eaten.",
-    "axes": {
-     "L1": -1
-    },
-    "tags": [
-     {
-      "id": "T13A",
-      "s": 2
-     }
-    ]
-   }
-  }
- },
- {
-  "id": "C4-80",
-  "type": "role",
-  "chapter": 4,
-  "sq": "SQ-R1-3",
-  "world": "unusual",
-  "prompt": "Six friends chip in on a retired ice cream truck. Nobody can drive stick. In the truck chat, you're the...",
-  "options": [
-   {
-    "t": "Hype captain. Already named it. Already printed shirts.",
-    "axes": {
-     "R1": 2
-    },
-    "emotion": "delight"
-   },
-   {
-    "t": "Yes vote. I wanted a hot tub, but I'm in.",
-    "axes": {
-     "R1": 1
-    }
-   },
-   {
-    "t": "Silent partner. Pay my sixth. Never set foot inside.",
-    "axes": {
-     "R1": -1
-    }
-   },
-   {
-    "t": "Calendar keeper. My weekends go on it first.",
-    "axes": {
-     "R1": -1,
-     "L3": 1
-    }
-   },
-   {
-    "t": "Exit. \"Love you all. Refund my sixth.\"",
-    "axes": {
-     "R1": -2
-    }
-   }
-  ],
-  "heart": {
-   "prompt": "Six friends put money together to buy a retired ice cream truck, and nobody knows how to drive it. In the group chat about it, which one are you?",
-   "options": [
-    "The one who has already named it and printed shirts.",
-    "The one who wanted a hot tub instead, but goes along.",
-    "The one who pays their share and never goes near it.",
-    "The one who makes the schedule and books their weekends first.",
-    "The one who loves everyone and asks for their money back."
-   ]
-  },
-  "fp": {
-   "trigger": "friend group buys one big thing together",
-   "setting": "a shared ice cream truck",
-   "ask": "your part in the group purchase",
-   "who": "five friends",
-   "stakes": "going with the group versus peeling off",
-   "device": "shared-ice-cream-truck"
-  },
-  "mask": "looks like group-chat chaos; measures going with the group versus peeling off (R1)",
-  "ae": [
-   "A",
-   "B"
-  ],
-  "privacy": "normal",
-  "friend": {
-   "prompt": "Six friends chip in on a retired ice cream truck. Nobody can drive stick. In the truck chat, {name} is the...",
-   "a": {
-    "t": "Hype captain. Already named it, already printed shirts.",
-    "axes": {
-     "R1": 2
-    }
-   },
-   "b": {
-    "t": "One heading for the exit: \"Love you all. Refund my sixth.\"",
-    "axes": {
-     "R1": -2
-    }
-   }
-  }
- },
- {
-  "id": "C4-2",
-  "type": "this_or_that",
-  "chapter": 4,
-  "sq": "SQ-T15-1",
-  "world": "absurd",
-  "round": "ch4-r120",
-  "prompt": "A fairy godparent made your friend famous overnight. In every interview they say: \"I grinded for years.\"",
-  "options": [
-   {
-    "t": "Let them tell it. Staying famous is its own grind.",
-    "tags": [
-     {
-      "id": "T15A",
-      "s": 2
-     }
-    ]
-   },
-   {
-    "t": "Comment under one clip: \"Fairy godparent, though?\"",
-    "tags": [
-     {
-      "id": "T15B",
-      "s": 2
-     }
-    ],
-    "emotion": "irritation"
-   }
-  ],
-  "heart": {
-   "prompt": "A fairy godparent made your friend famous overnight, and in every interview they say they worked for years to get there.",
-   "options": [
-    "I let them tell it their way. Staying famous takes work too.",
-    "I comment under one of the clips to mention the fairy godparent."
-   ]
-  },
-  "fp": {
-   "trigger": "friend's magic fame told as a grind story",
-   "setting": "interviews and clips",
-   "ask": "credit the effort or name the head start",
-   "who": "a newly famous friend",
-   "stakes": "their story versus the truth you know",
-   "device": "fairy-godparent"
-  },
-  "mask": "looks like a fame fable; measures seeing the effort versus the head start (T15)",
-  "ae": [
-   "A",
-   "E"
-  ],
-  "privacy": "normal",
-  "friend": {
-   "prompt": "A fairy godparent made {name}'s friend famous overnight. In every interview, the friend says: \"I grinded for years.\" Which one is {name}?",
-   "a": {
-    "t": "Let them tell it. Staying famous is its own grind.",
-    "tags": [
-     {
-      "id": "T15A",
-      "s": 2
-     }
-    ]
-   },
-   "b": {
-    "t": "Comments under one clip: \"Fairy godparent, though?\"",
-    "tags": [
-     {
-      "id": "T15B",
-      "s": 2
-     }
-    ]
-   }
-  }
- },
- {
-  "id": "C4-53",
-  "type": "this_or_that",
-  "chapter": 4,
-  "sq": "SQ-R3-1",
-  "world": "absurd",
-  "round": "ch4-r120",
-  "prompt": "Hot-air balloon, first date. On landing, a pigeon drops off the bill: $640.",
-  "options": [
-   {
-    "t": "Whoever asked pays. That's how dates work.",
-    "axes": {
-     "R3": 2
-    }
-   },
-   {
-    "t": "I pay mine, they pay theirs. No script.",
-    "axes": {
-     "R3": -2
-    },
-    "tags": [
-     {
-      "id": "T12A",
-      "s": 1
-     }
-    ]
-   }
-  ],
-  "heart": {
-   "prompt": "Your first date is in a hot-air balloon. When you land, a pigeon delivers the bill for $640.",
-   "options": [
-    "Whoever asked should pay. That is how dates work.",
-    "I pay for mine and they pay for theirs. No script."
-   ]
-  },
-  "fp": {
-   "trigger": "a first-date bill arrives",
-   "setting": "hot-air balloon landing",
-   "ask": "the asker pays or split it",
-   "who": "a first date",
-   "stakes": "the dating script versus your own rules",
-   "device": "pigeon-bill"
-  },
-  "mask": "looks like a silly date; measures whether the old dating ritual feels like home or like a costume (R3)",
-  "ae": [
-   "A",
-   "B"
-  ],
-  "privacy": "normal",
-  "friend": {
-   "prompt": "First date in a hot-air balloon. On landing, a pigeon drops off the bill: $640. Which one is {name}?",
-   "a": {
-    "t": "Whoever asked pays. That's how dates work.",
-    "axes": {
-     "R3": 2
-    }
-   },
-   "b": {
-    "t": "I pay mine, they pay theirs. No script.",
-    "axes": {
-     "R3": -2
-    },
-    "tags": [
-     {
-      "id": "T12A",
-      "s": 1
-     }
-    ]
-   }
-  }
- },
- {
-  "id": "C4-128",
-  "type": "rank",
-  "chapter": 4,
-  "sq": "SQ-T13-1",
-  "world": "absurd",
-  "prompt": "Genii will pay for one thing in your life, forever. Rank these, most wanted first.",
-  "options": [
-   {
-    "t": "Rent. Every month. Forever.",
-    "axes": {
-     "L1": 1
-    },
-    "tags": [
-     {
-      "id": "T13B",
-      "s": 2
-     }
-    ]
-   },
-   {
-    "t": "Every flight, anywhere, any time",
-    "axes": {
-     "L1": -1
-    },
-    "tags": [
-     {
-      "id": "T13A",
-      "s": 2
-     }
-    ]
-   },
-   {
-    "t": "A savings account that refills itself to $10,000",
-    "tags": [
-     {
-      "id": "T13B",
-      "s": 1
-     }
-    ]
-   },
-   {
-    "t": "Every night out with friends, all covered",
-    "tags": [
-     {
-      "id": "T13A",
-      "s": 1
-     }
-    ]
-   }
-  ],
-  "heart": {
-   "prompt": "Genii offers to pay for one thing in your life, forever. Put these in order, starting with the one you want most.",
-   "options": [
-    "My rent, every month, forever.",
-    "Every flight I want to take, anywhere.",
-    "A savings account that always refills to $10,000.",
-    "Every night out with my friends."
-   ]
-  },
-  "fp": {
-   "trigger": "Genii offers to fund one thing forever",
-   "setting": "a wish with one pick",
-   "ask": "security or experiences",
-   "who": "just you",
-   "stakes": "a cushion versus joy now",
-   "device": "genii-pays-forever"
-  },
-  "mask": "looks like a dream-life ranking; measures joy now versus a cushion for later (T13, L1)",
-  "ae": [
-   "D"
-  ],
-  "privacy": "normal"
- }
 ]
