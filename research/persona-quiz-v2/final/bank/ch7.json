@@ -59,7 +59,7 @@
   "heart": {
    "prompt": "You referee a kitten soccer final. The smallest kitten keeps carrying the ball in its mouth. The crowd loves it; the other bench does not.",
    "options": [
-    "I give a yellow card. A small player still follows the rules.",
+    "A yellow card. A small player still follows the rules.",
     "I give one gentle warning. The next time, it is a card.",
     "I let it play. People came for the game, not the rulebook.",
     "I allow it, but only while its team is behind."
@@ -116,7 +116,7 @@
   "prompt": "I bet a café or takeout spot has greeted you with \"the usual?\" before you said a word.",
   "options": [
    {
-    "t": "Guilty. Best compliment I've ever gotten.",
+    "t": "Best compliment I've ever gotten.",
     "axes": {
      "L1": 1
     },
@@ -129,7 +129,7 @@
     "emotion": "pride"
    },
    {
-    "t": "Guilty. Then ordered something new, out of spite.",
+    "t": "Heard it, then ordered something new out of spite.",
     "tags": [
      {
       "id": "T22A",
@@ -139,7 +139,7 @@
     "emotion": "cringe"
    },
    {
-    "t": "Never. I haven't ordered the same thing twice.",
+    "t": "I haven't ordered the same thing twice. Ever.",
     "axes": {
      "L1": -1
     },
@@ -151,7 +151,7 @@
     ]
    },
    {
-    "t": "Guilty, at three places. I rotate my usuals.",
+    "t": "At three places. I rotate my usuals.",
     "tags": [
      {
       "id": "T22B",
@@ -220,10 +220,10 @@
   "chapter": 7,
   "sq": "SQ-T23-1",
   "world": "absurd",
-  "prompt": "A village of tiny gnomes needs help rebuilding. Every Saturday, for a year. They pay in pastries.",
+  "prompt": "Tiny gnomes, one ruined village, every Saturday for a year. They pay in pastries.",
   "options": [
    {
-    "t": "Every Saturday. Tiny hard hat already ordered.",
+    "t": "Every Saturday, tiny hard hat already ordered.",
     "tags": [
      {
       "id": "T23A",
@@ -243,7 +243,7 @@
     "emotion": "pride"
    },
    {
-    "t": "One Saturday. Then suddenly I'm very busy.",
+    "t": "One Saturday, then suddenly I'm very busy.",
     "tags": [
      {
       "id": "T23B",
@@ -268,7 +268,7 @@
     "I come every Saturday. I have already ordered a small hard hat.",
     "I say yes, and I share every brick I lay online.",
     "I help for one Saturday, and then I become very busy.",
-    "I say no. My Saturdays already belong to my own project."
+    "No. My Saturdays already belong to my own project."
    ]
   },
   "fp": {
@@ -358,7 +358,7 @@
    "prompt": "Think of the most recent time someone asked a room for a volunteer and nobody answered. What did you actually do?",
    "options": [
     "I raised my hand before the silence became awkward.",
-    "I waited it out. Someone always gives in.",
+    "Someone always gives in, so I waited it out.",
     "I suggested the person next to me, with affection.",
     "I held out, then gave in when they looked at me."
    ]
@@ -405,7 +405,7 @@
   "type": "this_or_that",
   "chapter": 7,
   "round": "C7-r110",
-  "prompt": "Genii's travel deal, forever: every vacation goes to the one town you already love, or wherever a spinning globe lands.",
+  "prompt": "Pick one travel rule for life: every vacation goes to the town you already love, or wherever a spinning globe lands.",
   "options": [
    {
     "t": "The town I love. I already know which café.",
@@ -421,7 +421,7 @@
     "emotion": "relief"
    },
    {
-    "t": "The globe. Even if it lands on a parking lot.",
+    "t": "Spin the globe, even if it lands on a parking lot.",
     "axes": {
      "L1": -1
     },
@@ -435,10 +435,10 @@
    }
   ],
   "heart": {
-   "prompt": "Genii offers a deal that lasts forever: every vacation goes either to the one town you already love, or wherever a spinning globe lands.",
+   "prompt": "You pick one travel rule for life: every vacation goes to the one town you already love, or wherever a spinning globe lands.",
    "options": [
     "The town I love. I already know my café there.",
-    "The globe, even if it lands somewhere dull."
+    "I spin the globe, even if it lands somewhere dull."
    ]
   },
   "fp": {
@@ -458,7 +458,7 @@
   "sq": "SQ-T22-1",
   "world": "absurd",
   "friend": {
-   "prompt": "Genii's travel deal: every vacation forever goes to one beloved town, or wherever a spinning globe lands. Which one is {name}?",
+   "prompt": "One travel rule for life: every vacation goes to one beloved town, or wherever a spinning globe lands. Which one is {name}?",
    "a": {
     "t": "The town {they} love. \"I already know which café.\"",
     "axes": {
@@ -492,7 +492,7 @@
   "round": "C7-r110",
   "sq": "SQ-R3-1",
   "world": "unusual",
-  "prompt": "Your degree is done. The ceremony: four hours, a $90 gown, your name read wrong by a stranger. Or the diploma just arrives by mail.",
+  "prompt": "Four hours, a $90 gown, your name read wrong by a stranger. Or the diploma just arrives by mail. Your degree is done.",
   "options": [
    {
     "t": "Walk the stage. Gown, hat toss, the whole thing.",
@@ -508,7 +508,7 @@
     "emotion": "pride"
    },
    {
-    "t": "Mail it. I'll celebrate my own way.",
+    "t": "Mail it and celebrate my own way.",
     "axes": {
      "R3": -2
     },
@@ -525,7 +525,7 @@
    "prompt": "Your degree is finished. The ceremony means four hours, a $90 gown and your name read wrong by a stranger. Or the diploma simply arrives by mail.",
    "options": [
     "I walk the stage, with the gown and the hat toss.",
-    "I have it mailed and celebrate in my own way."
+    "Mail is fine. I will celebrate in my own way."
    ]
   },
   "fp": {
@@ -636,7 +636,7 @@
   "heart": {
    "prompt": "At a charity poker night, you and your oldest friend play together for a trip for two. You just saw them slide an ace from their sleeve.",
    "options": [
-    "I say it at the table, even if we lose the trip.",
+    "At the table, I say it, even if we lose the trip.",
     "I play our next hands badly until they understand.",
     "I stay quiet. The money goes to charity either way.",
     "I say nothing and start planning the trip for two."
@@ -690,7 +690,7 @@
   "id": "C7-143",
   "type": "scenario",
   "chapter": 7,
-  "prompt": "A spell erases every list, note and calendar entry the moment you write it. You're running your best friend's surprise party: 40 guests, three weeks.",
+  "prompt": "Every list, note and calendar entry you write vanishes the moment you finish it. You're running your best friend's surprise party: 40 guests, three weeks.",
   "options": [
    {
     "t": "Recite the guest list every night. Out loud. In order.",
@@ -738,10 +738,10 @@
    }
   ],
   "heart": {
-   "prompt": "A spell erases every list, note and calendar entry the moment you finish writing it. You are planning your best friend's surprise party: 40 guests, in three weeks.",
+   "prompt": "Every list, note and calendar entry you write vanishes the moment you finish it. You are planning your best friend's surprise party: 40 guests, in three weeks.",
    "options": [
     "I recite the guest list every night, out loud, in order.",
-    "I improvise. Surprise parties are a little chaotic anyway.",
+    "Surprise parties are a little chaotic anyway, so I improvise.",
     "I ask one friend to be my calendar for three weeks.",
     "I cut it to twelve guests, so there is less to remember."
    ]
@@ -857,7 +857,7 @@
    "options": [
     "I made a packing list, even for one night away.",
     "I could say within $20 what I spent going out.",
-    "I set a reminder for a friend's birthday.",
+    "For a friend's birthday, I set a reminder.",
     "I arrived at a trip or event without reading the plan.",
     "I guessed how much money I had and was far off.",
     "None of these."
@@ -908,7 +908,7 @@
     "emotion": "warmth"
    },
    {
-    "t": "\"Going. You owe me noodles.\"",
+    "t": "\"Going, but you owe me noodles.\"",
     "tags": [
      {
       "id": "T23A",
@@ -997,7 +997,7 @@
   "chapter": 7,
   "sq": "SQ-R3-2",
   "world": "unusual",
-  "prompt": "Ari and Noor, married four years, sleep in separate bedrooms. By choice. They say it saved the marriage. First thought?",
+  "prompt": "Ari and Noor, married four years, sleep in separate bedrooms. By choice. They say it saved the marriage. Honest reaction?",
   "options": [
    {
     "t": "A couple shares a bed. That's the whole point.",
@@ -1050,7 +1050,7 @@
    }
   ],
   "heart": {
-   "prompt": "Ari and Noor have been married four years and sleep in separate bedrooms, by choice. They say it saved their marriage. What is your first thought?",
+   "prompt": "Ari and Noor have been married four years and sleep in separate bedrooms, by choice. They say it saved their marriage. What is your honest reaction?",
    "options": [
     "A couple shares a bed. That is the point.",
     "That is brilliant. Nobody steals the blanket again.",
@@ -1110,7 +1110,7 @@
   "prompt": "Bet you've read a game's rulebook out loud mid-game, just to win an argument.",
   "options": [
    {
-    "t": "Guilty. Page 12. I had it bookmarked.",
+    "t": "Page 12. I had it bookmarked.",
     "axes": {
      "L3": 2
     },
@@ -1123,7 +1123,7 @@
     "emotion": "pride"
    },
    {
-    "t": "Guilty. Then lost on the exact rule I read.",
+    "t": "Read it, won the point, then lost on that exact rule.",
     "axes": {
      "L3": 1
     },
@@ -1136,7 +1136,7 @@
     "emotion": "cringe"
    },
    {
-    "t": "Never. At our table, house rules beat the book.",
+    "t": "At our table, house rules beat the book.",
     "axes": {
      "L3": -2
     },
@@ -1148,7 +1148,7 @@
     ]
    },
    {
-    "t": "Never. Whatever keeps the game fun is the rule.",
+    "t": "Whatever keeps the game fun is the rule.",
     "axes": {
      "L3": -1
     },
@@ -1216,7 +1216,7 @@
   "id": "C7-146",
   "type": "pick_two",
   "chapter": 7,
-  "prompt": "Your friend's band lost its bassist an hour before a 200-person show. You've played bass twice, at parties. They're begging. Pick your two first thoughts.",
+  "prompt": "An hour before a 200-person show, your friend's band loses its bassist. You've played bass twice, at parties. They're begging. Pick your two first thoughts.",
   "options": [
    {
     "t": "Yes. I'll learn the songs in the cab.",
@@ -1319,7 +1319,7 @@
   "chapter": 7,
   "sq": "SQ-R1-3",
   "world": "absurd",
-  "prompt": "A perfect clone of you, courtesy of Genii. It can go to every hangout, party and group dinner in your place. Nobody could tell.",
+  "prompt": "A perfect clone of you arrives in the mail. It can go to every hangout, party and group dinner in your place. Nobody could tell.",
   "options": [
    {
     "t": "No deal. I want to be at every single one.",
@@ -1329,7 +1329,7 @@
     "emotion": "warmth"
    },
    {
-    "t": "Clone does work stuff. My people get the real me.",
+    "t": "Work stuff goes to the clone. My people get the real me.",
     "axes": {
      "R1": 1
     }
@@ -1350,7 +1350,7 @@
    }
   ],
   "heart": {
-   "prompt": "Genii offers you a perfect clone. It could go to every hangout, party and group dinner in your place, and nobody could tell.",
+   "prompt": "A perfect clone of you arrives in the mail. It could go to every hangout, party and group dinner in your place, and nobody could tell.",
    "options": [
     "No, thank you. I want to be at every one of them.",
     "The clone handles work. The people I love get the real me.",
@@ -1374,7 +1374,7 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "Genii offers {name} a perfect clone to attend every hangout, party and group dinner. Nobody could tell. What does {name} do?",
+   "prompt": "A mail-order clone could attend every hangout, party and group dinner for {name}. Nobody could tell. What does {name} do?",
    "a": {
     "t": "No deal. \"I want to be at every single one.\"",
     "axes": {
@@ -1398,7 +1398,7 @@
   "prompt": "Picture the clone laughing with your friends while you're home. First feeling?",
   "options": [
    {
-    "t": "Relief. Honestly, a lot of relief.",
+    "t": "A lot of relief, honestly.",
     "emotion": "relief"
    },
    {
@@ -1414,7 +1414,7 @@
     "emotion": "worry"
    },
    {
-    "t": "Delighted. Like I got away with something.",
+    "t": "Delighted, like I got away with something.",
     "emotion": "delight"
    }
   ],
@@ -1446,7 +1446,7 @@
   "id": "C7-111",
   "type": "others",
   "chapter": 7,
-  "prompt": "An ash cloud grounds every flight. Four days in a hostel with nine strangers. One tapes a full group schedule to the fridge. First thought?",
+  "prompt": "An ash cloud grounds every flight. Four days in a hostel with nine strangers. One tapes a full group schedule to the fridge. Gut reaction?",
   "options": [
    {
     "t": "Finally, someone's in charge. Signing up for dishes.",
@@ -1497,7 +1497,7 @@
    }
   ],
   "heart": {
-   "prompt": "An ash cloud grounds every flight. You spend four days in a hostel with nine strangers, and one puts a group schedule on the fridge. Your first thought?",
+   "prompt": "An ash cloud grounds every flight. You spend four days in a hostel with nine strangers, and one puts a group schedule on the fridge. What is your gut reaction?",
    "options": [
     "Good, someone is organizing this. I will sign up for dishes.",
     "I take the pen and add time for charades.",
@@ -1559,7 +1559,7 @@
   "prompt": "You wake up able to fix anything by touching it. Rank what you'd do first, top to bottom.",
   "options": [
    {
-    "t": "Fix the street's broken stuff. Start a sign-up sheet.",
+    "t": "Every broken thing on the street, via a sign-up sheet.",
     "tags": [
      {
       "id": "T23A",
@@ -1568,7 +1568,7 @@
     ]
    },
    {
-    "t": "Fix my friends' things, but only when they ask.",
+    "t": "My friends' things, but only when they ask.",
     "tags": [
      {
       "id": "T23A",
@@ -1577,7 +1577,7 @@
     ]
    },
    {
-    "t": "Fix my old car first, then the rest of my stuff.",
+    "t": "My old car first, then the rest of my stuff.",
     "tags": [
      {
       "id": "T23B",
@@ -1586,7 +1586,7 @@
     ]
    },
    {
-    "t": "Fix nothing publicly. Once people know, my weekends are gone.",
+    "t": "Nothing in public. Once people know, my weekends are gone.",
     "tags": [
      {
       "id": "T23B",
@@ -1598,10 +1598,10 @@
   "heart": {
    "prompt": "You wake up able to repair anything simply by touching it. Put these in order, the first thing you would do at the top.",
    "options": [
-    "I fix the street's broken things, with a sign-up sheet.",
-    "I fix my friends' things, but only when they ask.",
-    "I fix my old car first, then the rest of my things.",
-    "I fix nothing in public. Once people know, my weekends are gone."
+    "Every broken thing on the street, with a sign-up sheet.",
+    "My friends' things, but only when they ask.",
+    "My old car first, then the rest of my things.",
+    "Nothing in public. Once people know, my weekends are gone."
    ]
   },
   "fp": {
@@ -1755,7 +1755,7 @@
   "id": "C7-148",
   "type": "real",
   "chapter": 7,
-  "prompt": "Your last trip away with friends, a few nights at least. What did your mornings actually look like?",
+  "prompt": "Last trip away with friends, a few nights at least. What did your mornings actually look like?",
   "options": [
    {
     "t": "Woke everyone for breakfast together. Group mornings or nothing.",
@@ -1790,7 +1790,7 @@
     "I woke everyone up so we could have breakfast together.",
     "I waited for the whole group before doing anything.",
     "I went off with one friend while the others slept.",
-    "I was up early and alone, with coffee and a walk."
+    "Up early and alone, with coffee and a walk."
    ]
   },
   "fp": {
@@ -1829,7 +1829,7 @@
   "id": "C7-149",
   "type": "real",
   "chapter": 7,
-  "prompt": "Forty minutes late, no warning. The most recent friend who did that to you: what did you actually do?",
+  "prompt": "Forty minutes late, no warning. The most recent friend who did that to you: how did you greet them?",
   "options": [
    {
     "t": "Said it straight: \"Forty minutes. Not okay.\"",
@@ -1852,7 +1852,7 @@
     "emotion": "resentment"
    },
    {
-    "t": "Said nothing. Already ordered them a drink.",
+    "t": "I'd already ordered them a drink. Said nothing.",
     "axes": {
      "R2": -2
     },
@@ -1865,7 +1865,7 @@
     "I told them plainly that forty minutes was not okay.",
     "I joked about it, pointedly, more than once.",
     "I said it was fine, and meant about half of it.",
-    "I said nothing. I had already ordered them a drink."
+    "Nothing. I had already ordered them a drink."
    ]
   },
   "fp": {

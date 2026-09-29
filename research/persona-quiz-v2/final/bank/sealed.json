@@ -108,7 +108,7 @@
       "prompt": "A curse means that whenever anything happens to you, a small rain cloud follows you until your person hears about it. Something has just happened.",
       "options": [
         "I call them right away. I would have told them anyway.",
-        "I stay damp for a week. Some news is mine first.",
+        "Some news is mine first. I stay damp for a week.",
         "I tell them the headline, and keep the details and the rain.",
         "I tell them, then ask for their news too."
       ]
@@ -137,7 +137,7 @@
     "prompt": "Seven to one: your friend group votes for a five-day silent retreat in the mountains. No talking at all. You were the one.",
     "options": [
       {
-        "t": "Go. Silent together still counts as together.",
+        "t": "Silent together still counts as together. I'm in.",
         "axes": {
           "R1": 2
         }
@@ -149,7 +149,7 @@
         }
       },
       {
-        "t": "Go for two days. Then hike out alone.",
+        "t": "Two days, then hike out alone.",
         "axes": {
           "R1": -1
         }
@@ -195,7 +195,7 @@
     "prompt": "Cast! Your person lands a year-long touring musical. The producer offers you a stagehand job on the same tour. Fourteen cities, one bus.",
     "options": [
       {
-        "t": "Sign. Their tour is my tour now.",
+        "t": "Their tour is my tour now. Signing.",
         "axes": {
           "R1": 2
         },
@@ -219,7 +219,7 @@
         ]
       },
       {
-        "t": "Stay. My life here doesn't pause for a year.",
+        "t": "My life here doesn't pause for a year. Staying.",
         "axes": {
           "R1": -2
         },
@@ -246,7 +246,7 @@
     "heart": {
       "prompt": "Your person is cast in a touring musical for a year. The producer offers you a job as a stagehand on the same tour: fourteen cities, one bus.",
       "options": [
-        "I sign. Their tour becomes my tour.",
+        "Yes. Their tour becomes my tour.",
         "I stay home and fly out for opening nights.",
         "I stay. My life here does not pause for a year.",
         "I sign, but I keep my apartment at home."
@@ -325,7 +325,7 @@
       "options": [
         "I tell them tonight, exactly as heard. Better from me.",
         "I hint that they should not order the new car just yet.",
-        "I say nothing, and I am there for them when it happens.",
+        "Nothing, for now. I will be there for them when it happens.",
         "I tell them tomorrow, gently, with a backup plan ready."
       ]
     },
@@ -350,7 +350,7 @@
     "primary": "R2",
     "sq": "SQ-R2-2",
     "world": "unusual",
-    "prompt": "Your neighbor's parrot learned a new phrase: your name, then \"never pays anyone back.\" You always pay people back.",
+    "prompt": "New phrase from the neighbor's parrot: your name, then \"never pays anyone back.\" You always pay people back.",
     "options": [
       {
         "t": "Knock now: \"Your parrot's wrong. So are you.\"",
@@ -391,7 +391,7 @@
         "I knock right away: the parrot is wrong, and so are they.",
         "I slide an old receipt under their door, with no note.",
         "I spend weeks teaching the parrot a better phrase from my balcony.",
-        "I mention it at the next building meeting, casually but clearly."
+        "At the next building meeting, I mention it, casually but clearly."
       ]
     },
     "fp": {
@@ -466,7 +466,7 @@
       "options": [
         "I stand up: the host is the killer, and also the cheater.",
         "I take the host aside in the kitchen and say it quietly.",
-        "I let them win. It is their party and their prize.",
+        "They can win. It is their party and their prize.",
         "I ask everyone to read every clue again, slowly and out loud."
       ]
     },
@@ -568,7 +568,7 @@
     "primary": "R3",
     "sq": "SQ-T19-1",
     "world": "unusual",
-    "prompt": "A dream program on the other side of the world accepts you. Before you've said yes, your family books a video call titled \"Discussion.\"",
+    "prompt": "Accepted: a dream program on the other side of the world. Before you've said yes, your family books a video call titled \"Discussion.\"",
     "options": [
       {
         "t": "Accept before the call. Join it to share the news.",
@@ -628,7 +628,7 @@
         "I accept before the call, then join it to share the news.",
         "I join the call. If they say no, I stay.",
         "I listen to everyone, then decide on my own that night.",
-        "I let them vote, but my vote counts twice."
+        "They vote, but my vote counts twice."
       ]
     },
     "fp": {
@@ -711,7 +711,7 @@
       "options": [
         "I book the long table. That is how it is done.",
         "I cook for all 22 at my place instead. It still counts.",
-        "I treat my friends instead. They helped me get the job.",
+        "My friends get the dinner instead. They helped me get the job.",
         "I book it, at a cheaper place than my cousin chose."
       ]
     },
@@ -876,7 +876,7 @@
       "options": [
         "I keep them. The shelves have honestly never looked better.",
         "I peel one off each day, quietly, hoping nobody notices.",
-        "I sit everyone down: this is our home, and our system.",
+        "Everyone sits down: this is our home, and our system.",
         "I keep the kitchen labels and take the rest down."
       ]
     },
@@ -947,7 +947,7 @@
       "prompt": "In the final round of a game show, you can leave with $20,000 now, or answer one last question for $100,000. The category is something you half know.",
       "options": [
         "I take the $20,000, leave, and frame the check.",
-        "I play. Half knowing is close enough to knowing.",
+        "Half knowing is close enough to knowing. I play.",
         "I ask the audience first, and walk if they hesitate.",
         "I play. I would never forgive myself for walking away."
       ]
@@ -973,7 +973,7 @@
     "primary": "L1",
     "sq": "SQ-T17-2",
     "world": "absurd",
-    "prompt": "A scroll unrolls on your pillow: Genii's five-year contract. Your job, home and people stay exactly as they are now. Good, guaranteed. No surprises either way.",
+    "prompt": "On your pillow, a contract: five years where your job, home and people stay exactly as they are, good and guaranteed, with no surprises either way.",
     "options": [
       {
         "t": "Sign it in pen. Five known-good years beat any gamble.",
@@ -1014,7 +1014,7 @@
         ]
       },
       {
-        "t": "Keep it unsigned under my pillow. Decide next year.",
+        "t": "Keep it unsigned under my pillow until next year.",
         "axes": {
           "L1": -1
         },
@@ -1028,10 +1028,10 @@
       }
     ],
     "heart": {
-      "prompt": "Genii leaves a contract on your pillow. If you sign, your job, home and people stay exactly as they are for five years. Good, guaranteed, with no surprises at all.",
+      "prompt": "A contract appears on your pillow. If you sign, your job, home and people stay exactly as they are for five years. Good, guaranteed, with no surprises at all.",
       "options": [
         "I sign. Five known good years beat any gamble.",
-        "I tear it up. I want the surprises, even the bad ones.",
+        "It gets torn up. I want the surprises, even the bad ones.",
         "I sign only the part about my home, not my work.",
         "I keep it unsigned and decide next year."
       ]
@@ -1044,7 +1044,7 @@
       "stakes": "guaranteed calm versus every surprise",
       "device": "five-year-contract"
     },
-    "mask": "looks like a wish with a catch; Genii's locked guess on the known versus the new (L1), with locking it in versus keeping options open (T17) as a side guess",
+    "mask": "looks like a strange gift; Genii's locked guess on the known versus the new (L1), with locking it in versus keeping options open (T17) as a side guess",
     "ae": [
       "A",
       "D"
@@ -1102,7 +1102,7 @@
       "prompt": "A famous chef tastes your cooking at a friend's barbecue and offers you a job. The condition: quit your current job by Friday, with no trial.",
       "options": [
         "I quit on Friday morning. I would rather risk it than wonder.",
-        "I keep my job and cook for friends on weekends.",
+        "My job stays. I cook for friends on weekends.",
         "I say no, then cook their signature dish nightly, a little bitter.",
         "I quit, and sublet my place in case it fails."
       ]
@@ -1128,10 +1128,10 @@
     "primary": "L1",
     "sq": "SQ-L1-2",
     "world": "unusual",
-    "prompt": "A job offer: double your pay, starts Monday. The company won't say what the job is until you arrive. Sign by tonight.",
+    "prompt": "Double your pay, starting Monday, sign by tonight. What's the job? The company won't say until you arrive.",
     "options": [
       {
-        "t": "Sign. I'll find out Monday like everyone else.",
+        "t": "Sign and find out Monday like everyone else.",
         "axes": {
           "L1": -2
         },
@@ -1144,7 +1144,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Sign. Then stake out their lobby all weekend.",
+        "t": "Sign, then stake out their lobby all weekend.",
         "axes": {
           "L1": -1
         },
@@ -1174,7 +1174,7 @@
       "options": [
         "I sign. I will find out on Monday.",
         "I sign, then watch their lobby all weekend.",
-        "I ask for one hint, any hint, before deciding.",
+        "One hint, any hint, before I decide.",
         "I say no. I do not sign what I cannot read."
       ]
     },
@@ -1202,7 +1202,7 @@
     "prompt": "Mid-karaoke, a touring theater director hands you a card: a year-long role, answer before the song ends. Your band's first real gig is next month.",
     "options": [
       {
-        "t": "Yes before the chorus. A sure thing beats a maybe.",
+        "t": "\"Yes!\" before the chorus. A sure thing beats a maybe.",
         "axes": {
           "L2": 2
         },
@@ -1256,7 +1256,7 @@
         "I say yes before the chorus. A sure thing beats a maybe.",
         "I say yes, if they let me play the show first.",
         "I take the card and decide after the show, offer or not.",
-        "I say no. I want to see where the band goes."
+        "No. I want to see where the band goes."
       ]
     },
     "fp": {
@@ -1279,7 +1279,7 @@
     "primary": "L2",
     "sq": "SQ-L2-2",
     "world": "absurd",
-    "prompt": "At your school reunion, the name tags magically show everyone's biggest win since graduation. Yours is blank. Your old rival's says \"Bestselling author.\"",
+    "prompt": "School reunion. The name tags print themselves with everyone's biggest win since graduation. Yours is blank. Your old rival's says \"Bestselling author.\"",
     "options": [
       {
         "t": "Leave early. Start a five-year plan in the parking lot.",
@@ -1321,10 +1321,10 @@
       }
     ],
     "heart": {
-      "prompt": "At your school reunion, the name tags magically show everyone's biggest achievement since graduating. Yours is blank. Your old rival's says \"Bestselling author.\"",
+      "prompt": "At your school reunion, the name tags print themselves with everyone's biggest achievement since graduating. Yours is blank. Your old rival's says \"Bestselling author.\"",
       "options": [
         "I leave early and start a five-year plan in the parking lot.",
-        "I wear it blank, and I am proud of that.",
+        "Blank, and I wear it proudly.",
         "I take a marker and write something impressive, mostly true.",
         "I congratulate my rival, mean it, and get another drink."
       ]
@@ -1350,10 +1350,10 @@
     "primary": "L2",
     "sq": "SQ-L2-1",
     "world": "unusual",
-    "prompt": "A billionaire you once lent an umbrella to will fund your dream project. The catch: build it from their yacht, 14-hour days, for a year.",
+    "prompt": "Once, you lent a billionaire an umbrella. Now they'll fund your dream project, if you build it from their yacht: 14-hour days, for a year.",
     "options": [
       {
-        "t": "Pack tonight. Fourteen hours is just two sevens.",
+        "t": "I'm packing tonight. Fourteen hours is just two sevens.",
         "axes": {
           "L2": 2
         },
@@ -1366,7 +1366,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Pass. My evenings are half of why I'm happy.",
+        "t": "My evenings are half of why I'm happy. Pass.",
         "axes": {
           "L2": -2
         },
@@ -1407,7 +1407,7 @@
       "prompt": "A billionaire you once lent an umbrella to offers to fund your dream project, if you build it from their yacht, 14-hour days, for a year.",
       "options": [
         "I pack tonight. Fourteen hours is just two sevens.",
-        "I pass. My evenings are much of why I am happy.",
+        "No. My evenings are much of why I am happy.",
         "I go for six months, then come home, finished or not.",
         "I pass, and build it on weekends, on my own schedule."
       ]
@@ -1433,7 +1433,7 @@
     "primary": "L2",
     "sq": "SQ-L2-3",
     "world": "unusual",
-    "prompt": "A museum hires you to place 10,000 mosaic tiles. Nobody sees the full picture until the last tile goes in.",
+    "prompt": "10,000 mosaic tiles, and you're the one placing them for a museum. Nobody sees the full picture until the last tile goes in.",
     "options": [
       {
         "t": "Count tiles nightly. Post the percentage somewhere public.",
@@ -1491,7 +1491,7 @@
         "I count the tiles every night and post the percentage publicly.",
         "I place a few tiles when I like. It will get there.",
         "I peek at one corner every Friday, just one.",
-        "I lose count by the second week, and I love it anyway."
+        "By the second week I lose count, and I love it anyway."
       ]
     },
     "fp": {
@@ -1515,10 +1515,10 @@
     "primary": "L3",
     "sq": "SQ-L3-3",
     "world": "absurd",
-    "prompt": "Genii's gift: a remote that freezes everyone but you. The line for the new coaster says four hours.",
+    "prompt": "The line for the new coaster says four hours. The remote in your pocket freezes everyone but you.",
     "options": [
       {
-        "t": "Freeze. Stroll to the front. Unfreeze looking innocent.",
+        "t": "Freeze, stroll to the front, unfreeze looking innocent.",
         "axes": {
           "L3": -2
         },
@@ -1543,7 +1543,7 @@
         ]
       },
       {
-        "t": "Freeze, then pass only the family who cut earlier.",
+        "t": "Only the family who cut earlier gets frozen and passed.",
         "axes": {
           "L3": -1
         },
@@ -1556,7 +1556,7 @@
         "emotion": "irritation"
       },
       {
-        "t": "Freeze, then read the park rules. Is this even allowed?",
+        "t": "Check the park rules first. Is freezing even allowed?",
         "axes": {
           "L3": 1
         },
@@ -1570,17 +1570,17 @@
       }
     ],
     "heart": {
-      "prompt": "Genii gives you a remote that freezes everyone except you. The line for the new roller coaster is four hours long.",
+      "prompt": "The line for the new roller coaster is four hours long. The remote in your pocket freezes everyone except you.",
       "options": [
         "I freeze everyone, walk to the front, and act innocent.",
-        "I stay put. The people ahead still arrived first.",
+        "Nobody gets frozen. The people ahead still arrived first.",
         "I freeze everyone, but only pass the family who cut earlier.",
         "I freeze everyone, then check whether the park rules allow this."
       ]
     },
     "fp": {
       "trigger": "freeze remote meets a four-hour line",
-      "setting": "theme park, wish granted",
+      "setting": "theme park, a remote that freezes time",
       "ask": "skip unseen or wait your turn",
       "who": "strangers in line",
       "stakes": "four hours versus the fair order",
@@ -1675,7 +1675,7 @@
     "primary": "L3",
     "sq": "SQ-L3-1",
     "world": "absurd",
-    "prompt": "You guard a magic portal. Rule one: no pets. A traveler arrives, in tears, carrying a hamster with its own tiny passport.",
+    "prompt": "You guard a portal between worlds. Rule one: no pets. A traveler arrives, in tears, carrying a hamster with its own tiny passport.",
     "options": [
       {
         "t": "No pets. A passport doesn't make it a person.",
@@ -1728,7 +1728,7 @@
       }
     ],
     "heart": {
-      "prompt": "You guard a magic portal, and rule one is no pets. A traveler arrives in tears, carrying a hamster with its own tiny passport.",
+      "prompt": "You guard a portal between worlds, and rule one is no pets. A traveler arrives in tears, carrying a hamster with its own tiny passport.",
       "options": [
         "No pets. A passport does not make it a person.",
         "I stamp the tiny passport and welcome them through.",
@@ -1757,7 +1757,7 @@
     "primary": "L3",
     "sq": "SQ-L3-2",
     "world": "unusual",
-    "prompt": "A comet is visible for twelve minutes tonight. One telescope on the roof, forty neighbors, and you hold the eyepiece schedule.",
+    "prompt": "Twelve minutes of comet tonight, one telescope on the roof, forty neighbors, and you hold the eyepiece schedule.",
     "options": [
       {
         "t": "Alphabetical, fifteen seconds each. Stopwatch in hand.",

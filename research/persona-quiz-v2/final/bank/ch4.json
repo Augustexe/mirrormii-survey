@@ -50,7 +50,7 @@
       "prompt": "Think of the last time you wanted one more of something you already had plenty of, like sneakers, plushies, hoodies or game skins. What did you actually do?",
       "options": [
         "I bought it right away. There is always room for one more.",
-        "I bought it, then kept the bag out of sight for days.",
+        "It came home with me, and the bag stayed hidden for days.",
         "I left it in my cart until the feeling passed.",
         "I gave two old ones away first, and then I bought it."
       ]
@@ -155,7 +155,7 @@
       "options": [
         "I sent someone a payment request for less than $10.",
         "I kept track in my head of who paid last.",
-        "I asked for my money back directly, without hinting.",
+        "Out loud, with no hints, I asked for my money back.",
         "I covered someone's share because they were short that month.",
         "I rounded down what someone owed me, on purpose.",
         "None of these"
@@ -185,7 +185,7 @@
     "prompt": "Be honest: you've said \"must be nice\" about someone else's big win.",
     "options": [
       {
-        "t": "Guilty. Said it, meant it, would say it again.",
+        "t": "Said it, meant it, would say it again.",
         "tags": [
           {
             "id": "T15B",
@@ -194,7 +194,7 @@
         ]
       },
       {
-        "t": "Guilty. Then asked how they did it. Now I'm copying.",
+        "t": "Said it, then asked how they did it. Now I'm copying.",
         "axes": {
           "L2": 1
         },
@@ -207,7 +207,7 @@
         "emotion": "pride"
       },
       {
-        "t": "Never. If they got there, they did the work.",
+        "t": "If they got there, they did the work.",
         "tags": [
           {
             "id": "T15A",
@@ -283,7 +283,7 @@
     "prompt": "Admit it: you've spent a whole weekend on a project mostly to post the \"done\" photo.",
     "options": [
       {
-        "t": "Guilty. Posted it Sunday night. Worth every hour.",
+        "t": "Posted it Sunday night. Worth every hour.",
         "axes": {
           "L2": 2
         },
@@ -296,7 +296,7 @@
         "emotion": "pride"
       },
       {
-        "t": "Guilty. Then bought myself something nice to celebrate.",
+        "t": "Did it, then bought myself something nice to celebrate.",
         "axes": {
           "L2": 1
         },
@@ -308,7 +308,7 @@
         ]
       },
       {
-        "t": "Never. A free weekend beats any done photo.",
+        "t": "A free weekend beats any done photo.",
         "axes": {
           "L2": -2
         },
@@ -320,7 +320,7 @@
         ]
       },
       {
-        "t": "Never. I finish things slowly and tell nobody.",
+        "t": "I finish things slowly and tell nobody.",
         "axes": {
           "L2": -1
         }
@@ -352,7 +352,7 @@
     "friend": {
       "prompt": "Genii bets {name} has given up a whole weekend on a project just to post the done photo. Guilty or not?",
       "a": {
-        "t": "Guilty. Posted it Sunday night. Worth every hour.",
+        "t": "Posted it Sunday night. Worth every hour.",
         "axes": {
           "L2": 2
         },
@@ -364,7 +364,7 @@
         ]
       },
       "b": {
-        "t": "Never. A free weekend beats any done photo.",
+        "t": "A free weekend beats any done photo.",
         "axes": {
           "L2": -2
         },
@@ -381,10 +381,10 @@
     "id": "C4-142",
     "type": "bet",
     "chapter": 4,
-    "prompt": "Genii's guess: you've got money you try to treat as untouchable.",
+    "prompt": "Somewhere, you've got money you try to treat as untouchable. Right?",
     "options": [
       {
-        "t": "Guilty. Even I forget the number.",
+        "t": "Even I forget the number.",
         "axes": {
           "L1": 1
         },
@@ -397,7 +397,7 @@
         "emotion": "pride"
       },
       {
-        "t": "Guilty. I raided it twice this year for fun.",
+        "t": "Raided it twice this year, for fun.",
         "axes": {
           "L1": -1
         },
@@ -410,7 +410,7 @@
         "emotion": "cringe"
       },
       {
-        "t": "Wrong. Money sitting still feels wasted.",
+        "t": "Money sitting still feels wasted.",
         "axes": {
           "L1": -1
         },
@@ -457,9 +457,9 @@
     "sq": "SQ-L1-3",
     "world": "everyday",
     "friend": {
-      "prompt": "Genii's guess: {name} has money {they} try to treat as untouchable. True?",
+      "prompt": "Somewhere, {name} has money {they} try to treat as untouchable. True?",
       "a": {
-        "t": "Guilty. Even I forget the number.",
+        "t": "Even {name} forgets the number.",
         "axes": {
           "L1": 1
         },
@@ -471,7 +471,7 @@
         ]
       },
       "b": {
-        "t": "Wrong. Money sitting still feels wasted.",
+        "t": "Money sitting still feels wasted.",
         "axes": {
           "L1": -1
         },
@@ -534,7 +534,7 @@
       "options": [
         "I booked it that night and left the money to future me.",
         "I went, then skipped every other plan for a month.",
-        "I did the math and said I would join the next one.",
+        "The math said no, so I will join the next one.",
         "I joined for one night of it, within my budget."
       ]
     },
@@ -608,7 +608,7 @@
         ]
       },
       {
-        "t": "Paddle down. Six years of wanting it was plenty.",
+        "t": "Six years of wanting it was plenty. Paddle stays down.",
         "tags": [
           {
             "id": "T14B",
@@ -618,7 +618,7 @@
         "emotion": "longing"
       },
       {
-        "t": "Slip out. I'll find a cheaper one that's almost it.",
+        "t": "Slip out and hunt for a cheaper one that's almost it.",
         "tags": [
           {
             "id": "T14B",
@@ -630,7 +630,7 @@
     "heart": {
       "prompt": "An auction house mistakes you for a bidder. Next up: the vintage jacket you have wanted for six years. Bidding just passed your rent. Thirty seconds.",
       "options": [
-        "I raise my paddle. Rent can be late this once.",
+        "Paddle up. Rent can be late this once.",
         "I bid once at my limit, and then I let it go.",
         "I keep my paddle down. Six years of wanting it was enough.",
         "I slip out and find a cheaper one that is nearly it."
@@ -682,10 +682,10 @@
     "chapter": 4,
     "sq": "SQ-T14-2",
     "world": "absurd",
-    "prompt": "A polite tornado knocks. It will take everything you own and leave one perfect thing of your choice. It can't wait long.",
+    "prompt": "Knock, knock. It's a polite tornado. It will take everything you own and leave one perfect thing of your choice. It can't wait long.",
     "options": [
       {
-        "t": "Deal. Keep my bed. The rest can blow away.",
+        "t": "Keep my bed. The rest can blow away.",
         "tags": [
           {
             "id": "T14B",
@@ -714,7 +714,7 @@
         ]
       },
       {
-        "t": "No. I'll clear it out myself, on my own time.",
+        "t": "I'll clear it out myself, thanks, on my own time.",
         "tags": [
           {
             "id": "T14B",
@@ -727,7 +727,7 @@
       "prompt": "A friendly tornado arrives at your door. It offers to take everything you own and leave behind one perfect thing of your choosing. It needs your answer soon.",
       "options": [
         "I agree and keep my bed. Everything else can go.",
-        "I say no. Every chipped mug I own has a story.",
+        "Every chipped mug I own has a story, so no.",
         "I agree, but I put on four jackets before it arrives.",
         "I say no. I will clear things out myself, in time."
       ]
@@ -774,10 +774,10 @@
     "chapter": 4,
     "sq": "SQ-T12-1",
     "world": "absurd",
-    "prompt": "Your new housemate is a mermaid sitting on a sunken ship's worth of gold. They insist rent stays exactly fifty-fifty.",
+    "prompt": "Rent day with your new housemate: a mermaid sitting on a sunken ship's worth of gold. They insist it stays exactly fifty-fifty.",
     "options": [
       {
-        "t": "Fair. Same bathtub, same rent.",
+        "t": "Same bathtub, same rent. Fair.",
         "axes": {
           "L3": 1
         },
@@ -811,7 +811,7 @@
         "emotion": "irritation"
       },
       {
-        "t": "Pay half. Drop gold hints every single rent day.",
+        "t": "Pay half, and drop gold hints every rent day.",
         "axes": {
           "R2": -1
         },
@@ -825,7 +825,7 @@
       }
     ],
     "heart": {
-      "prompt": "Your new housemate is a mermaid with a sunken ship full of gold. They insist that the rent is split exactly in half.",
+      "prompt": "Your new housemate is a mermaid with a sunken ship full of gold. On rent day, they insist the rent is split exactly in half.",
       "options": [
         "That is fair. Same bathtub, same rent.",
         "I suggest we each pay according to what we have.",
@@ -904,7 +904,7 @@
         ]
       },
       {
-        "t": "Even split. Then tell everyone who did the digging.",
+        "t": "Split it evenly, then tell everyone who did the digging.",
         "tags": [
           {
             "id": "T15A",
@@ -1026,7 +1026,7 @@
     "heart": {
       "prompt": "Kai still owes you $400. Today Kai sends everyone a fundraising page asking for help with a birthday trip to Lisbon.",
       "options": [
-        "I comment that the $400 Kai owes me is my donation.",
+        "In a comment, I call the $400 Kai owes me my donation.",
         "I message Kai privately and ask for my $400 first.",
         "I give $20, say nothing, and stay upset privately.",
         "I give $50 and decide the $400 has become a gift."
@@ -1079,16 +1079,16 @@
     "prompt": "Before you click, comment or close it: first feeling?",
     "options": [
       {
-        "t": "Irritation. The nerve of that link."
+        "t": "Irritation at the nerve of that link."
       },
       {
         "t": "Envy. I want a Lisbon too."
       },
       {
-        "t": "Guilt. Maybe I should just let the $400 go."
+        "t": "Guilt, like I should let the $400 go."
       },
       {
-        "t": "Worry. Asking might cost me Kai."
+        "t": "Worry that asking might cost me Kai."
       },
       {
         "t": "Amusement. Honestly, it's iconic."
@@ -1327,7 +1327,7 @@
     "chapter": 4,
     "sq": "SQ-L3-2",
     "world": "unusual",
-    "prompt": "$2,400, stuffed inside the secondhand couch you and four roommates bought. Jae splits it by who's short on rent, not five ways. First thought?",
+    "prompt": "$2,400, stuffed inside the secondhand couch you and four roommates bought. Jae splits it by who's short on rent, not five ways. Fair?",
     "options": [
       {
         "t": "Five ways. Couch money isn't a need-based program.",
@@ -1381,7 +1381,7 @@
       }
     ],
     "heart": {
-      "prompt": "You and four roommates find $2,400 inside a secondhand couch you bought together. Jae divides it by who is short on rent, not equally. Your first thought?",
+      "prompt": "You and four roommates find $2,400 inside a secondhand couch you bought together. Jae divides it by who is short on rent, not equally. Is that fair?",
       "options": [
         "It should be five equal shares. Found money is not about need.",
         "That is right. Whoever is short on rent should get more.",
@@ -1437,7 +1437,7 @@
     "chapter": 4,
     "sq": "SQ-T13-1",
     "world": "absurd",
-    "prompt": "Your friend's new money tree grows one $100 bill a week. They pick each bill the minute it appears and spend it by dinner. First thought?",
+    "prompt": "One $100 bill a week grows on your friend's new money tree. They pick each one the minute it appears and spend it by dinner. First thought?",
     "options": [
       {
         "t": "Right call. Money that grows back is for now.",
@@ -1466,7 +1466,7 @@
         "emotion": "worry"
       },
       {
-        "t": "A round for the whole group, every week. Perfect.",
+        "t": "A round for the whole group, every single week.",
         "axes": {
           "L1": -1
         },
@@ -1479,7 +1479,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "Sell the tree. One big sure check, done.",
+        "t": "Sell the tree for one big, sure check.",
         "axes": {
           "L1": 2
         },
@@ -1547,10 +1547,10 @@
     "id": "C4-144",
     "type": "role",
     "chapter": 4,
-    "prompt": "Your crew wins $6,000 at trivia. One shared prize, one group decision. In this crew, you're the...",
+    "prompt": "$6,000 trivia win, one shared prize, one group decision. In this crew, you're the...",
     "options": [
       {
-        "t": "Hype. Already picked the thing and the date.",
+        "t": "Hype, already picked the thing and the date.",
         "axes": {
           "R1": 2
         },
@@ -1563,7 +1563,7 @@
         }
       },
       {
-        "t": "Spreadsheet. Every dollar and every ask, logged.",
+        "t": "The spreadsheet: every dollar and every ask, logged.",
         "axes": {
           "L3": 1
         },
@@ -1581,7 +1581,7 @@
         }
       },
       {
-        "t": "Exit. \"Love you all. Spend my part on you.\"",
+        "t": "\"Love you all. Spend my part on you.\" Exit.",
         "axes": {
           "R1": -2
         }
@@ -1594,7 +1594,7 @@
         "The one who wanted cash but goes along anyway.",
         "The one logging every dollar and every request.",
         "The one who enjoys the parts they like and skips the rest.",
-        "The one who steps out and gives their part to the group."
+        "Stepping out, and giving my part to the group."
       ]
     },
     "fp": {
@@ -1636,10 +1636,10 @@
     "sq": "SQ-T15-1",
     "world": "absurd",
     "round": "ch4-r120",
-    "prompt": "A fairy godparent made your friend famous overnight. In every interview they say: \"I grinded for years.\"",
+    "prompt": "A sunflower in your friend's yard started singing opera. Now your friend is famous, and in every interview: \"Years of hard work.\"",
     "options": [
       {
-        "t": "Let them tell it. Staying famous is its own grind.",
+        "t": "Let them tell it. Managing a singing sunflower is its own grind.",
         "tags": [
           {
             "id": "T15A",
@@ -1648,7 +1648,7 @@
         ]
       },
       {
-        "t": "Comment under one clip: \"Fairy godparent, though?\"",
+        "t": "Comment under one clip: \"Say thanks to the sunflower.\"",
         "tags": [
           {
             "id": "T15B",
@@ -1659,30 +1659,30 @@
       }
     ],
     "heart": {
-      "prompt": "A fairy godparent made your friend famous overnight, and in every interview they say they worked for years to get there.",
+      "prompt": "A sunflower in your friend's yard started singing opera. Now your friend is famous, and in every interview they talk about years of hard work.",
       "options": [
-        "I let them tell it their way. Staying famous takes work too.",
-        "I comment under one of the clips to mention the fairy godparent."
+        "Let them tell it. Managing a singing sunflower is work too.",
+        "Under one clip, I suggest they thank the sunflower."
       ]
     },
     "fp": {
-      "trigger": "friend's magic fame told as a grind story",
-      "setting": "interviews and clips",
-      "ask": "credit the effort or name the head start",
-      "who": "a newly famous friend",
-      "stakes": "their story versus the truth you know",
-      "device": "fairy-godparent"
+      "trigger": "a friend's lucky break told as hard work",
+      "setting": "interviews after sudden fame",
+      "ask": "let the story stand or name the luck",
+      "who": "a friend",
+      "stakes": "credit versus honesty about a head start",
+      "device": "opera-sunflower"
     },
-    "mask": "looks like a fame fable; measures seeing the effort versus the head start (T15)",
+    "mask": "looks like a fame joke; measures whether you see the effort or the head start (T15)",
     "ae": [
       "A",
       "E"
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "A fairy godparent made {name}'s friend famous overnight. In every interview, the friend says: \"I grinded for years.\" Which one is {name}?",
+      "prompt": "A sunflower in a friend's yard sings opera. The friend is famous now and credits \"years of hard work.\" Which one is {name}?",
       "a": {
-        "t": "Let them tell it. Staying famous is its own grind.",
+        "t": "Lets them tell it. Managing a sunflower is its own grind.",
         "tags": [
           {
             "id": "T15A",
@@ -1691,7 +1691,7 @@
         ]
       },
       "b": {
-        "t": "Comments under one clip: \"Fairy godparent, though?\"",
+        "t": "Comments: \"Say thanks to the sunflower.\"",
         "tags": [
           {
             "id": "T15B",
@@ -1717,7 +1717,7 @@
         }
       },
       {
-        "t": "I pay mine, they pay theirs. No script.",
+        "t": "Mine's mine, theirs is theirs. No script.",
         "axes": {
           "R3": -2
         },
@@ -1733,7 +1733,7 @@
       "prompt": "You invited someone on a first date in a hot-air balloon. When you land, a pigeon delivers the bill for $640.",
       "options": [
         "I asked, so I pay. That is how dates work.",
-        "I pay for mine and they pay for theirs. No script."
+        "Each of us pays for our own. No script."
       ]
     },
     "fp": {
@@ -1776,7 +1776,7 @@
     "id": "C4-145",
     "type": "this_or_that",
     "chapter": 4,
-    "prompt": "A time traveler offers you one seat at any concert in history. Tonight. Price: your entire savings.",
+    "prompt": "One seat at any concert in history, tonight, from a time traveler. Price: your entire savings.",
     "options": [
       {
         "t": "Take it. Some nights are worth every cent.",
@@ -1792,7 +1792,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Keep the savings. The recording exists.",
+        "t": "Keep the savings and stream the recording.",
         "axes": {
           "L1": 1
         },
@@ -1805,10 +1805,10 @@
       }
     ],
     "heart": {
-      "prompt": "A time traveler offers you a seat at any concert in history, tonight, and the price is all of your savings.",
+      "prompt": "A time traveler offers you a seat at any concert in history, tonight. The price is all of your savings.",
       "options": [
         "I take it. Some nights are worth everything.",
-        "I keep my savings. I can listen to the recording."
+        "My savings stay. I can listen to the recording."
       ]
     },
     "fp": {

@@ -8,7 +8,7 @@
   "prompt": "Prove me wrong: there's a friend you've stopped inviting, just to see if they'll ever invite you.",
   "options": [
    {
-    "t": "Guilty. Month three. Still waiting. Still counting.",
+    "t": "It's been three months. I'm still counting.",
     "tags": [
      {
       "id": "T02B",
@@ -18,7 +18,7 @@
     "emotion": "resentment"
    },
    {
-    "t": "Guilty. Lasted two weeks, then invited them anyway.",
+    "t": "Tried it for two weeks, then caved and invited them.",
     "tags": [
      {
       "id": "T02B",
@@ -28,7 +28,7 @@
     "emotion": "cringe"
    },
    {
-    "t": "Wrong. I invite whoever I miss. No tests.",
+    "t": "I invite whoever I miss. Tests are exhausting.",
     "tags": [
      {
       "id": "T02A",
@@ -38,7 +38,7 @@
     "emotion": "warmth"
    },
    {
-    "t": "Wrong. I'm too disorganized to run a test.",
+    "t": "Too disorganized to run a test like that.",
     "tags": [
      {
       "id": "T02A",
@@ -51,9 +51,9 @@
    "prompt": "Is there a friend you have stopped inviting, just to see whether they will ever invite you?",
    "options": [
     "Yes. It has been three months, and I am still counting.",
-    "Yes. I lasted two weeks, then invited them anyway.",
+    "I tried, but after two weeks I invited them anyway.",
     "No. I invite whoever I miss, without testing anyone.",
-    "No. I am too disorganized to run a test like that."
+    "I am far too disorganized to run a test like that."
    ]
   },
   "fp": {
@@ -71,9 +71,9 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "Genii bets there's a friend {name} stopped inviting, just to see if the friend ever invites {them}. Guilty or not?",
+   "prompt": "Genii bets there's a friend {name} stopped inviting, just to see if the friend ever invites {them}. True?",
    "a": {
-    "t": "Wrong. Invites whoever {name} misses. No tests.",
+    "t": "Invites whoever {name} misses. Tests are exhausting.",
     "tags": [
      {
       "id": "T02A",
@@ -82,7 +82,7 @@
     ]
    },
    "b": {
-    "t": "Guilty. Month three. Still waiting. Still counting.",
+    "t": "Three months in, still waiting, still counting.",
     "tags": [
      {
       "id": "T02B",
@@ -101,7 +101,7 @@
   "prompt": "Genii bets you've deleted a post because it didn't get enough likes.",
   "options": [
    {
-    "t": "Guilty. Eleven likes in an hour? It had to go.",
+    "t": "Eleven likes in an hour? It had to go.",
     "axes": {
      "L2": 1
     },
@@ -114,7 +114,7 @@
     "emotion": "cringe"
    },
    {
-    "t": "Guilty. Reposted it later, when more people were awake.",
+    "t": "Deleted it, then reposted when more people were awake.",
     "tags": [
      {
       "id": "T16A",
@@ -123,7 +123,7 @@
     ]
    },
    {
-    "t": "Never. I post it and forget it exists.",
+    "t": "I post and forget it exists.",
     "axes": {
      "L2": -1
     },
@@ -136,7 +136,7 @@
     "emotion": "relief"
    },
    {
-    "t": "Never. My three loyal likers have never let me down.",
+    "t": "My three loyal likers have never once let me down.",
     "tags": [
      {
       "id": "T16B",
@@ -149,10 +149,10 @@
   "heart": {
    "prompt": "Genii guesses that you have deleted a post because it did not get enough likes. Is that true?",
    "options": [
-    "Yes. Eleven likes in an hour, so it had to go.",
-    "Yes. I posted it again later, when more people were online.",
+    "Yes. Eleven likes in an hour meant it had to go.",
+    "Yes, and I posted it again later, when more people were online.",
     "No. I post something and forget it exists.",
-    "No. My three loyal likers always come through."
+    "My three loyal likers always come through for me."
    ]
   },
   "fp": {
@@ -172,7 +172,7 @@
   "friend": {
    "prompt": "Genii bets {name} has deleted a post because it didn't get enough likes. Guilty or not?",
    "a": {
-    "t": "Guilty. Eleven likes in an hour? It had to go.",
+    "t": "Eleven likes in an hour? It had to go.",
     "axes": {
      "L2": 1
     },
@@ -184,7 +184,7 @@
     ]
    },
    "b": {
-    "t": "Never. Posts it and forgets it exists.",
+    "t": "Posts it and forgets it exists.",
     "axes": {
      "L2": -1
     },
@@ -206,7 +206,7 @@
   "prompt": "Calling it: at least one person can see your live location right now.",
   "options": [
    {
-    "t": "Guilty. Three friends and my person. Wave hi.",
+    "t": "Three friends and my person. Wave hi.",
     "axes": {
      "R1": 1
     },
@@ -219,7 +219,7 @@
     "emotion": "warmth"
    },
    {
-    "t": "Guilty. One friend. Nobody else gets the dot.",
+    "t": "Just one friend, and nobody else gets the dot.",
     "tags": [
      {
       "id": "T01A",
@@ -228,7 +228,7 @@
     ]
    },
    {
-    "t": "Wrong. Turned it on once. Off by dinner.",
+    "t": "Turned it on once. Off by dinner.",
     "tags": [
      {
       "id": "T01B",
@@ -237,7 +237,7 @@
     ]
    },
    {
-    "t": "Wrong. Nobody gets my dot. Not even my person.",
+    "t": "Nobody gets my location. Not even my person, and they've asked.",
     "axes": {
      "R1": -1
     },
@@ -254,8 +254,8 @@
    "prompt": "Can at least one person see your live location right now?",
    "options": [
     "Yes. Three friends and my person can see it.",
-    "Yes. One friend can, and nobody else.",
-    "No. I turned it on once, then off that same day.",
+    "Just one friend can, and nobody else.",
+    "I turned it on once, then off that same day.",
     "No. Nobody sees my location, not even my person."
    ]
   },
@@ -276,7 +276,7 @@
   "friend": {
    "prompt": "Genii bets at least one person can see {name}'s live location right now. Guilty or not?",
    "a": {
-    "t": "Guilty. Three friends and {their} person. Wave hi.",
+    "t": "Three friends and {their} person. Wave hi.",
     "axes": {
      "R1": 1
     },
@@ -288,7 +288,7 @@
     ]
    },
    "b": {
-    "t": "Wrong. Nobody gets {their} dot. Not even {their} person.",
+    "t": "Nobody gets {their} location. Not even {their} person.",
     "axes": {
      "R1": -1
     },
@@ -360,13 +360,13 @@
    }
   ],
   "heart": {
-   "prompt": "Think of the last party you went to. Which of these actually happened?",
+   "prompt": "Go back to the last party you went to. Which of these actually happened?",
    "options": [
     "I talked to a stranger for twenty minutes or more.",
     "I swapped numbers with someone I had just met.",
     "I introduced two people who had never met.",
     "I stayed with the person I came with, most of the night.",
-    "I already knew nearly everyone there.",
+    "Nearly everyone there was someone I already knew.",
     "None of these happened."
    ]
   },
@@ -421,9 +421,9 @@
    }
   ],
   "heart": {
-   "prompt": "Think of the last time someone scrolled on their phone while you were telling them something. What did you do?",
+   "prompt": "The last time someone scrolled on their phone while you were telling them something, what did you do?",
    "options": [
-    "I said it out loud: I am right here.",
+    "Out loud, I said it: I am right here.",
     "I stopped mid-sentence and waited until they looked up.",
     "I picked up my own phone too.",
     "I kept talking as if I had not noticed."
@@ -468,14 +468,14 @@
   "prompt": "Genii's hunch: you've waited for the walk signal on an empty street while strangers crossed past you.",
   "options": [
    {
-    "t": "Guilty. Stood there alone. Didn't budge. Light's the light.",
+    "t": "Stood there alone till it changed. Light's the light.",
     "axes": {
      "L3": 2
     },
     "emotion": "pride"
    },
    {
-    "t": "Guilty. Faked a phone call so it looked on purpose.",
+    "t": "Yes, with a fake phone call so it looked on purpose.",
     "axes": {
      "L3": 1
     },
@@ -488,7 +488,7 @@
     }
    },
    {
-    "t": "Never. Empty street, I walk. The light can catch up.",
+    "t": "Empty street? I walk. The light can catch up.",
     "axes": {
      "L3": -2
     },
@@ -540,7 +540,7 @@
   "chapter": 1,
   "sq": "SQ-T03-1",
   "world": "unusual",
-  "prompt": "Your most recent big message: a breakup, a resignation, a real apology. Who actually wrote it?",
+  "prompt": "Breakups, resignations, real apologies: think of your most recent big message. Who actually wrote it?",
   "options": [
    {
     "t": "An AI drafted it. I changed three words. Sent.",
@@ -562,7 +562,7 @@
     ]
    },
    {
-    "t": "Me. Nine drafts. Sent the tenth.",
+    "t": "Nine drafts, all mine. Sent the tenth.",
     "tags": [
      {
       "id": "T03B",
@@ -582,7 +582,7 @@
    }
   ],
   "heart": {
-   "prompt": "Think of the most recent important message you sent, such as a breakup, a resignation or a real apology. Who wrote it?",
+   "prompt": "Your most recent important message, such as a breakup, a resignation or a real apology: who wrote it?",
    "options": [
     "An AI drafted it, and I changed a few words before sending.",
     "An AI wrote a draft, then I rewrote it my way.",
@@ -635,7 +635,7 @@
   "prompt": "Overnight, a billboard goes up outside your window: your nine closest friends, ranked by how life is going. You're seventh.",
   "options": [
    {
-    "t": "Seventh? Give me one year. I'm taking third.",
+    "t": "\"Seventh?\" I'm taking third by next summer.",
     "axes": {
      "L2": 2
     },
@@ -665,7 +665,7 @@
   "heart": {
    "prompt": "A billboard appears outside your window overnight. It ranks your nine closest friends by how well life is going, and you are seventh.",
    "options": [
-    "I give myself one year to reach third place.",
+    "One year. That is how long I give myself to reach third.",
     "I study whoever is first, and I walk past again tomorrow.",
     "Seventh feels comfortable. The middle has no pressure.",
     "I close the curtains. I would rather not be ranked."
@@ -707,7 +707,7 @@
   "chapter": 1,
   "sq": "SQ-L2-2",
   "world": "absurd",
-  "prompt": "First feeling, before you thought it through?",
+  "prompt": "Seventh out of nine. What hit you first?",
   "follows": "C1-123",
   "options": [
    {
@@ -715,7 +715,7 @@
     "emotion": "envy"
    },
    {
-    "t": "Relief. Could be worse.",
+    "t": "Relief, because it could be worse.",
     "emotion": "relief"
    },
    {
@@ -723,7 +723,7 @@
     "emotion": "pride"
    },
    {
-    "t": "Worry. That'll stick with me.",
+    "t": "Worry that it'll stick with me.",
     "emotion": "worry"
    },
    {
@@ -731,7 +731,7 @@
    }
   ],
   "heart": {
-   "prompt": "What was your very first feeling, before you thought about it?",
+   "prompt": "Seventh out of nine. What did you feel first, before you thought about it?",
    "options": [
     "Envy, and very specific.",
     "Relief. It could have been worse.",
@@ -763,7 +763,7 @@
   "prompt": "Every friendship you have is now a houseplant on your windowsill. They wilt when nobody texts. Your oldest friend's is brown.",
   "options": [
    {
-    "t": "Leave it. We go quiet for months. It always perks up.",
+    "t": "It'll perk up. We go quiet for months, always have.",
     "tags": [
      {
       "id": "T02A",
@@ -805,7 +805,7 @@
   "heart": {
    "prompt": "Every friendship you have becomes a houseplant on your windowsill, and each one wilts when nobody texts. The plant for your oldest friend has turned brown.",
    "options": [
-    "I leave it. We go quiet for months, and it always recovers.",
+    "It can wait. We go quiet for months, and it always recovers.",
     "I send a meme like no time passed. It turns green.",
     "I send them a photo of the plant, with no message.",
     "I move it behind the green ones. That is where we are."
@@ -853,10 +853,10 @@
   "chapter": 1,
   "sq": "SQ-L1-1",
   "world": "absurd",
-  "prompt": "A subway vending machine wants one payment: your phone, photos and chats included. It pays out an envelope marked \"life-changing.\"",
+  "prompt": "Subway vending machine, one payment accepted: your phone, photos and chats included. It pays out an envelope marked \"life-changing.\"",
   "options": [
    {
-    "t": "Pay it. Photos are the past. The envelope is the future.",
+    "t": "Hand it over. Photos are the past; the envelope is the future.",
     "axes": {
      "L1": -2
     },
@@ -870,7 +870,7 @@
     "emotion": "pride"
    },
    {
-    "t": "Keep it. Then walk past that machine daily for a year.",
+    "t": "Keep it, then walk past that machine every day for a year.",
     "axes": {
      "L1": 1
     },
@@ -886,7 +886,7 @@
   "heart": {
    "prompt": "A vending machine in the subway accepts only one payment: your phone, with all its photos and chats. It gives you an envelope labeled \"life-changing.\"",
    "options": [
-    "I pay. Photos are the past. The envelope is the future.",
+    "Photos are the past, and the envelope is the future. I pay.",
     "I keep my phone. Every conversation I have had is in it.",
     "I keep it, and I think about that envelope all year.",
     "I pay quickly, before I can talk myself out of it."
@@ -928,10 +928,10 @@
   "chapter": 1,
   "sq": "SQ-T04-2",
   "world": "unusual",
-  "prompt": "A note slides under your door. It's from the neighbor you've nodded at for two years: \"Want to be actual friends?\"",
+  "prompt": "Slid under your door: a note from the neighbor you've nodded at for two years. \"Want to be actual friends?\"",
   "options": [
    {
-    "t": "Knock tonight. Bring snacks. Friendship starts now.",
+    "t": "Knock tonight with snacks. Friendship starts now.",
     "tags": [
      {
       "id": "T04B",
@@ -970,9 +970,9 @@
    }
   ],
   "heart": {
-   "prompt": "A note is slipped under your door. It is from the neighbor you have nodded to for two years, asking if you want to be real friends.",
+   "prompt": "Someone slips a note under your door. It is from the neighbor you have nodded to for two years, asking if you want to be real friends.",
    "options": [
-    "I knock on their door that evening and bring snacks.",
+    "Snacks in hand, I knock on their door that evening.",
     "I invite them along next time I go out with friends.",
     "I write back yes, and keep it to chats in the hallway.",
     "I keep nodding and act as if the note never came."
@@ -1035,7 +1035,7 @@
     ]
    },
    {
-    "t": "Fine. Photoshop me in. Put me in the sweater.",
+    "t": "Photoshop me in. Sweater and all.",
     "axes": {
      "R3": 1
     },
@@ -1078,7 +1078,7 @@
    "prompt": "Every holiday for 25 years, your family has taken the same photo on the same stairs. This year you are abroad, and they want to edit you into it.",
    "options": [
     "I send a selfie from the exact same angle.",
-    "I let them edit me in, sweater and all.",
+    "They can edit me in, sweater and all.",
     "I skip it this year. The tradition will survive.",
     "I send a beach photo and start a new tradition."
    ]
@@ -1185,7 +1185,7 @@
    "options": [
     "I skip the exit and tell work something came up.",
     "I keep going to the next town, just to see.",
-    "I ask where it is taking me before I go anywhere.",
+    "Where is it taking me? I ask before I go anywhere.",
     "I take my exit. My phone does not plan my day."
    ]
   },
@@ -1289,7 +1289,7 @@
     }
    ],
    "options": [
-    "I welcome Sam and tell them they are family now.",
+    "\"Welcome, Sam. You are family now.\"",
     "I share the holiday schedule with Sam and say everyone comes.",
     "I privately ask my parent to check with us next time.",
     "I remove Sam myself. We will join when we decide to."
@@ -1337,10 +1337,10 @@
   "chapter": 1,
   "sq": "SQ-T07-1",
   "world": "absurd",
-  "prompt": "Your friend bought a flea-market mirror that answers \"how do I look?\" out loud. Honestly. Their date heard it. They're keeping it. First thought?",
+  "prompt": "Your friend bought a flea-market mirror that answers \"how do I look?\" out loud. Honestly. Their date heard it. They're keeping it. Your take?",
   "options": [
    {
-    "t": "Keep it. Better to hear it at home than after.",
+    "t": "Better to hear it at home than after. Keep it.",
     "axes": {
      "R2": 2
     },
@@ -1392,7 +1392,7 @@
    }
   ],
   "heart": {
-   "prompt": "Your friend's flea-market mirror answers \"How do I look?\" out loud, and honestly. Their date heard it. They are keeping it. Your first thought?",
+   "prompt": "Your friend's flea-market mirror answers \"How do I look?\" out loud, and honestly. Their date heard it. They are keeping it. What do you make of that?",
    "options": [
     "Keep it. Better to hear it at home first.",
     "I would borrow it before every important night out.",
@@ -1448,7 +1448,7 @@
   "chapter": 1,
   "sq": "SQ-T01-1",
   "world": "unusual",
-  "prompt": "Your friend and their twin have shared one photo library since their first phones. Every picture either takes lands on both, instantly. First thought?",
+  "prompt": "Since their first phones, your friend and their twin have shared one photo library. Every picture either takes lands on both, instantly. First thought?",
   "options": [
    {
     "t": "Iconic. Zero secrets, double the memories.",
@@ -1502,7 +1502,7 @@
    }
   ],
   "heart": {
-   "prompt": "Your friend and their twin have shared one photo library since their first phones. Every picture either one takes appears on both. Your first thought?",
+   "prompt": "Since their first phones, your friend and their twin have shared one photo library. Every picture either one takes appears on both. Your first thought?",
    "options": [
     "I love it. No secrets, and twice the memories.",
     "I would try it with my closest person tomorrow.",
@@ -1557,10 +1557,10 @@
   "type": "this_or_that",
   "chapter": 1,
   "round": "ch1-r90",
-  "prompt": "Genii offers a phone that never cracks and never dies. The catch: it can never, ever be locked.",
+  "prompt": "A phone from a street stall: never cracks, never dies. The seller's one rule? It can never, ever be locked.",
   "options": [
    {
-    "t": "Deal. Scroll away, anyone. Nothing in there bites.",
+    "t": "Anyone can scroll it. Nothing in there bites.",
     "axes": {
      "R1": 1
     },
@@ -1587,21 +1587,21 @@
    }
   ],
   "heart": {
-   "prompt": "Genii offers you a phone that never breaks and never runs out of battery. The catch is that it can never be locked.",
+   "prompt": "A phone from a street stall never breaks and never runs out of battery. The seller's one rule is that it can never be locked.",
    "options": [
     "I take it. Anyone can look through it, and that is fine.",
-    "I keep my cracked phone. Nothing to hide, and it stays locked."
+    "My cracked phone stays. Nothing to hide, and it stays locked."
    ]
   },
   "fp": {
-   "trigger": "wish phone that can never lock",
+   "trigger": "a perfect phone that can never be locked",
    "setting": "Genii's offer",
    "ask": "trade the lock for a perfect phone",
    "who": "anyone who picks it up",
    "stakes": "privacy versus a phone that never dies",
-   "device": "unlockable-wish-phone"
+   "device": "unlockable-phone"
   },
-  "mask": "looks like a gadget wish; measures an open phone versus a private one (T01), with shared versus own space (R1)",
+  "mask": "looks like a gadget upgrade; measures an open phone versus a private one (T01), with shared versus own space (R1)",
   "ae": [
    "A",
    "D"
@@ -1610,9 +1610,9 @@
   "sq": "SQ-T01-1",
   "world": "absurd",
   "friend": {
-   "prompt": "Genii offers {name} a phone that never cracks or dies, but it can never be locked. Which one is {name}?",
+   "prompt": "A street-stall phone never cracks or dies, but it can never be locked. Which one is {name}?",
    "a": {
-    "t": "Deal. Scroll away, anyone. Nothing in there bites.",
+    "t": "Takes it. Anyone can scroll. Nothing in there bites.",
     "axes": {
      "R1": 1
     },
@@ -1642,7 +1642,7 @@
   "type": "this_or_that",
   "chapter": 1,
   "round": "ch1-r90",
-  "prompt": "A ghost poet haunts your laptop. It offers to write your farewell toast for your best friend. Tears guaranteed.",
+  "prompt": "There's a ghost poet in your laptop. It offers to write your farewell toast for your best friend. Tears guaranteed.",
   "options": [
    {
     "t": "Ghost writes it. I sneak in one inside joke.",
@@ -1655,7 +1655,7 @@
     "emotion": "relief"
    },
    {
-    "t": "I write it. Shaky, too long, and all mine.",
+    "t": "Me, shaky and too long, and every word mine.",
     "tags": [
      {
       "id": "T03B",
@@ -1669,7 +1669,7 @@
    "prompt": "The ghost of a poet lives in your laptop and offers to write your farewell toast for your best friend, who is moving away. Tears are guaranteed.",
    "options": [
     "I let the ghost write it and add one inside joke.",
-    "I write it myself. Shaky, too long, and mine."
+    "My own words, shaky and too long."
    ]
   },
   "fp": {
@@ -1719,7 +1719,7 @@
   "prompt": "Flight canceled. 140 stranded strangers, one group chat, and the airline has 12 hotel vouchers. In there, you're the...",
   "options": [
    {
-    "t": "Line keeper. \"First twelve at the desk. That's how lines work.\"",
+    "t": "The line keeper: \"First twelve at the desk. That's how lines work.\"",
     "axes": {
      "L3": 2
     }
@@ -1731,7 +1731,7 @@
     }
    },
    {
-    "t": "Fixer. Sweet-talks the desk into a room for whoever's crying.",
+    "t": "The one sweet-talking the desk into a room for whoever's crying.",
     "axes": {
      "L3": -1
     }
@@ -1743,7 +1743,7 @@
     }
    },
    {
-    "t": "Advocate. \"The family with the baby gets one. Obviously.\"",
+    "t": "Advocate: \"The family with the baby gets one. Obviously.\"",
     "axes": {
      "L3": -2
     }
@@ -1752,7 +1752,7 @@
   "heart": {
    "prompt": "Your flight is canceled. The 140 stranded passengers start a group chat, and the airline has only 12 hotel vouchers. Which role do you take?",
    "options": [
-    "I say the first twelve in line should get them.",
+    "First twelve in line should get them. That is how lines work.",
     "I suggest drawing names so everyone has the same chance.",
     "I persuade the desk to give a room to whoever is crying.",
     "I book an apartment for eight of us, outside the voucher list.",
@@ -1795,7 +1795,7 @@
   "chapter": 1,
   "sq": "SQ-T03-2",
   "world": "absurd",
-  "prompt": "Genii tucks a tiny advisor in your ear for a week. It knows everything and never judges. Something's eating at you. Pick two.",
+  "prompt": "A tiny advisor moves into your ear for a week, rent-free. It knows everything and never judges. Something's eating at you. Pick two.",
   "pick": 2,
   "options": [
    {
@@ -1862,7 +1862,7 @@
    }
   ],
   "heart": {
-   "prompt": "Genii places a tiny advisor in your ear for a week. It knows everything and never judges. Something is bothering you. Which two are most like you?",
+   "prompt": "A tiny advisor moves into your ear for a week. It knows everything and never judges. Something is bothering you. Which two are most like you?",
    "options": [
     "On the first day, I tell it what I have told nobody.",
     "I practice the difficult conversation with it first.",
@@ -1887,7 +1887,7 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "Genii puts an all-knowing advisor in {name}'s ear for a week. Something's eating at {name}. Which line sounds most like {name}?",
+   "prompt": "An all-knowing advisor lives in {name}'s ear for a week. Something's eating at {name}. Which line sounds most like {name}?",
    "a": {
     "t": "Tells it the secret nobody else knows. Day one.",
     "tags": [
@@ -1921,7 +1921,7 @@
   "prompt": "Charity auction. Someone paid $500 to be your best friend for a month. They ask your actual best friend for the rules. The answer:",
   "options": [
    {
-    "t": "\"They keep a quiet tally. Don't fall behind.\"",
+    "t": "\"Keep up. They keep a quiet tally.\"",
     "tags": [
      {
       "id": "T02B",
@@ -1930,7 +1930,7 @@
     ]
    },
    {
-    "t": "\"Go silent for weeks. They'll pick up mid-sentence.\"",
+    "t": "\"Go silent for weeks. They'll pick up like nothing happened.\"",
     "tags": [
      {
       "id": "T02A",
@@ -1948,7 +1948,7 @@
     ]
    },
    {
-    "t": "\"Don't wait on them. They lose track of turns.\"",
+    "t": "\"Don't wait on them, they lose track of turns.\"",
     "tags": [
      {
       "id": "T02A",

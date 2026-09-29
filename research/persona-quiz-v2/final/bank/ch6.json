@@ -6,7 +6,7 @@
     "prompt": "You wake up as a cat, for one year. Your parent and your person both come to take you home. You pick.",
     "options": [
       {
-        "t": "My parent. The family I came from knows my windowsill.",
+        "t": "My parent, because the family I came from knows my windowsill.",
         "axes": {
           "R3": 2
         },
@@ -18,7 +18,7 @@
         ]
       },
       {
-        "t": "My person. The family I'm building gets the cat.",
+        "t": "Home with my person. The family I'm building gets the cat.",
         "axes": {
           "R3": -2
         },
@@ -34,7 +34,7 @@
       "prompt": "You wake up as a cat for one year. Your parent and your person both come to take you home, and you get to choose.",
       "options": [
         "My parent. The family I came from knows my old windowsill.",
-        "My person. The family I am building gets the cat."
+        "With my person. The family I am building gets the cat."
       ]
     },
     "fp": {
@@ -60,7 +60,7 @@
     "chapter": 6,
     "sq": "SQ-R3-2",
     "world": "absurd",
-    "prompt": "Genii offers you and your person a board game of your life: move in, ring, wedding, house, in order. Or a blank board.",
+    "prompt": "A board game turns up on your doorstep: your life with your person, square by square. Move in, ring, wedding, house, in order. Or a blank board.",
     "options": [
       {
         "t": "Play it as printed. Keys, ring, wedding, house.",
@@ -76,7 +76,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "Blank board. We draw every square ourselves.",
+        "t": "The blank board, and we draw every square ourselves.",
         "axes": {
           "R3": -2
         },
@@ -90,10 +90,10 @@
       }
     ],
     "heart": {
-      "prompt": "Genii offers you and your person a board game of your life together, with squares in order: move in, ring, wedding, house. Or a blank board.",
+      "prompt": "A board game turns up on your doorstep: your life with your person, square by square, in order: move in, ring, wedding, house. There is also a blank board.",
       "options": [
         "We play it as printed, one square after another.",
-        "We take the blank board and draw every square ourselves."
+        "The blank board. We draw every square ourselves."
       ]
     },
     "fp": {
@@ -265,7 +265,7 @@
     "chapter": 6,
     "sq": "SQ-T07-1",
     "world": "unusual",
-    "prompt": "The couple asked for an honest toast. Their best friend delivers: \"I give it two years. Prove me wrong.\" First thought?",
+    "prompt": "The couple asked for an honest toast. Their best friend delivers: \"I give it two years. Prove me wrong.\" Your verdict?",
     "options": [
       {
         "t": "They asked for honest. That was honest. Respect.",
@@ -319,7 +319,7 @@
       }
     ],
     "heart": {
-      "prompt": "The couple asked for an honest toast. Their best friend stands up and says, \"I give it two years. Prove me wrong.\" What is your first thought?",
+      "prompt": "The couple asked for an honest toast. Their best friend stands up and says, \"I give it two years. Prove me wrong.\" What is your verdict?",
       "options": [
         "They asked for honesty, and that was honest. I respect it.",
         "True or not, that belongs in a private conversation, not a speech.",
@@ -375,7 +375,7 @@
     "chapter": 6,
     "sq": "SQ-T21-2",
     "world": "absurd",
-    "prompt": "Genii offers your friend a magic 900-seat wedding for every relative, living or long gone. They pick a courthouse for two. First thought?",
+    "prompt": "A wedding planner who books ghosts offers your friend 900 seats: every relative, living or long gone. They book a courthouse for two. Your reaction?",
     "options": [
       {
         "t": "Their great-grandparents could be there. Take the seats.",
@@ -423,7 +423,7 @@
       }
     ],
     "heart": {
-      "prompt": "Genii offers your friend a magic wedding with 900 seats for every relative, living or long gone. Your friend chooses a courthouse for two. Your first thought?",
+      "prompt": "A wedding planner who works with ghosts offers your friend 900 seats for every relative, living or long gone. Your friend chooses a courthouse for two. Your reaction?",
       "options": [
         "Their great-grandparents could be there. They should take the seats.",
         "Good choice. That day belongs to the two of them.",
@@ -439,7 +439,7 @@
       "stakes": "who belongs at the big moment",
       "device": "every-relative-wedding"
     },
-    "mask": "looks like a wish story; measures whether big moments belong to the whole family or a chosen few (T21), with shared versus apart (R1)",
+    "mask": "looks like a ghost story; measures whether big moments belong to the whole family or a chosen few (T21), with shared versus apart (R1)",
     "ae": [
       "A",
       "B",
@@ -447,7 +447,7 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "Genii offers {name}'s friend a wedding every relative can attend, living or long gone. The friend picks a courthouse for two. {name}'s first thought?",
+      "prompt": "A ghost-friendly planner offers {name}'s friend a 900-seat wedding for every relative, living or long gone. The friend picks a courthouse for two. {name}'s first thought?",
       "a": {
         "t": "\"I'd fill all 900 and cry through every hug.\"",
         "axes": {
@@ -480,10 +480,10 @@
     "chapter": 6,
     "sq": "SQ-T18-1",
     "world": "absurd",
-    "prompt": "Genii makes you your family's official wish-granter. Week one: 23 wishes. Your sibling got granting powers too. Nobody has asked them.",
+    "prompt": "Since your birthday, anything your family loses turns up in your mailbox. Week one: 23 calls. Your sibling's mailbox works too. Nobody calls them.",
     "options": [
       {
-        "t": "Grant all 23 by the weekend. That's what I'm here for.",
+        "t": "Return all 23 by Sunday. This is my calling now.",
         "tags": [
           {
             "id": "T18A",
@@ -493,7 +493,7 @@
         "emotion": "pride"
       },
       {
-        "t": "Grant them all. Mention it at every dinner for a year.",
+        "t": "Return every one, and bring it up at dinner for a year.",
         "tags": [
           {
             "id": "T18A",
@@ -503,7 +503,7 @@
         "emotion": "resentment"
       },
       {
-        "t": "Forward half to my sibling. Their powers need exercise.",
+        "t": "Forward half to my sibling. Their mailbox needs practice.",
         "tags": [
           {
             "id": "T18B",
@@ -513,7 +513,7 @@
         "emotion": "irritation"
       },
       {
-        "t": "Post granting hours: Sundays, two to four. Urgent wishes wait too.",
+        "t": "Mailbox hours: Sundays, two to four. Lost keys can wait.",
         "tags": [
           {
             "id": "T18B",
@@ -524,23 +524,23 @@
       }
     ],
     "heart": {
-      "prompt": "Imagine Genii makes you your family's wish-granter. In the first week they send you 23 wishes. Your sibling can grant wishes too, but nobody has asked them.",
+      "prompt": "Since your birthday, anything your family loses turns up in your mailbox. In the first week, 23 relatives call you. Your sibling's mailbox works too, but nobody calls them.",
       "options": [
-        "I grant all 23 by the weekend. That is my role here.",
-        "I grant them all, then mention it at dinners for a year.",
-        "I send half of them to my sibling to handle.",
-        "I set wish hours, Sundays two to four, urgent or not."
+        "I return all 23 by Sunday. This feels like my job now.",
+        "I return every one, then mention it at dinners for a year.",
+        "Half of them go to my sibling. Their mailbox can help too.",
+        "Sundays from two to four are mailbox hours. Lost keys can wait."
       ]
     },
     "fp": {
-      "trigger": "family sends a pile of wishes",
-      "setting": "magic wish-granting duty",
-      "ask": "grant them all, share or set hours",
-      "who": "whole family and an idle sibling",
-      "stakes": "your weeks versus family feelings",
-      "device": "wish-granting-duty"
+      "trigger": "everything the family loses arrives in your mailbox",
+      "setting": "your mailbox, week one",
+      "ask": "take every call or share the load",
+      "who": "relatives and a sibling",
+      "stakes": "being the family's go-to versus your limits",
+      "device": "lost-things-mailbox"
     },
-    "mask": "looks like a genie joke; measures being the family's first call versus helping on terms (T18)",
+    "mask": "looks like a magic chore; measures whether you are the family's first call or help with limits (T18)",
     "ae": [
       "A",
       "B",
@@ -548,9 +548,9 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "Genii makes {name} the family wish-granter. Week one: 23 wishes. A sibling has powers too. Nobody asks. What does {name} do?",
+      "prompt": "Anything {name}'s family loses now turns up in {their} mailbox. Week one: 23 calls. A sibling's mailbox works too. What does {name} do?",
       "a": {
-        "t": "Grants all 23 by the weekend: \"That's what I'm here for.\"",
+        "t": "Returns all 23 by Sunday: \"This is my calling now.\"",
         "tags": [
           {
             "id": "T18A",
@@ -559,7 +559,7 @@
         ]
       },
       "b": {
-        "t": "Forwards half to the sibling. Those powers need exercise.",
+        "t": "Forwards half to the sibling. Their mailbox needs practice.",
         "tags": [
           {
             "id": "T18B",
@@ -575,7 +575,7 @@
     "chapter": 6,
     "sq": "SQ-L3-2",
     "world": "absurd",
-    "prompt": "A goose that lays one golden egg a year moves into your family's yard. It only lets you near it. Four siblings are waiting.",
+    "prompt": "One golden egg a year: that's what the goose in your family's yard lays. It only lets you near it. Four siblings are waiting.",
     "options": [
       {
         "t": "Take turns, oldest first. One egg each, no exceptions.",
@@ -684,7 +684,7 @@
     "chapter": 6,
     "sq": "SQ-T19-1",
     "world": "absurd",
-    "prompt": "Your hallway's magic family portrait frowns at any choice your family wouldn't make. Guests see it. You just said yes to a cross-country move.",
+    "prompt": "In your hallway, the family portrait now frowns at any choice your family wouldn't make. Guests see it. You just said yes to a cross-country move.",
     "options": [
       {
         "t": "Turn it to face the wall. My move, my call.",
@@ -739,11 +739,11 @@
       }
     ],
     "heart": {
-      "prompt": "Your hallway family portrait now frowns at any choice your family would not make, and guests can see it. You just agreed to move across the country.",
+      "prompt": "The family portrait in your hallway now frowns at any choice your family would not make, and guests can see it. You just agreed to move across the country.",
       "options": [
         "I turn it to the wall. My move, my decision.",
         "I call home, ask their view, and wait for a smile.",
-        "I unpack. I cannot live under that frown.",
+        "The boxes get unpacked. I cannot live under that frown.",
         "I move it to the guest bathroom to frown at visitors."
       ]
     },
@@ -793,7 +793,7 @@
     "id": "C6-143",
     "type": "scenario",
     "chapter": 6,
-    "prompt": "A skywriting pilot owes you a favor: one message over the whole city tomorrow. Your person is standing right there while you decide.",
+    "prompt": "One message over the whole city tomorrow: a skywriting pilot owes you that favor. Your person is standing right there while you decide.",
     "options": [
       {
         "t": "Both our names in a giant heart. Go big.",
@@ -872,7 +872,7 @@
     "type": "feeling",
     "chapter": 6,
     "follows": "C6-143",
-    "prompt": "First feeling, before you answered?",
+    "prompt": "Before you answered, what did you feel?",
     "options": [
       {
         "t": "Giddy, against my will."
@@ -891,7 +891,7 @@
       }
     ],
     "heart": {
-      "prompt": "What was your first feeling, before you answered?",
+      "prompt": "Before you answered, what was the first thing you felt?",
       "options": [
         "Giddy, more than I expected.",
         "Exposed, with the whole city watching.",
@@ -959,7 +959,7 @@
         ]
       },
       {
-        "t": "Leave apartment listings on the new sheet. Say nothing.",
+        "t": "Leave apartment listings on the new sheet, no comment.",
         "axes": {
           "R1": -1
         },
@@ -976,7 +976,7 @@
       "prompt": "Your sibling moved onto your air mattress for what they said would be two weeks. It is now the fifth month, and they have just bought it a fitted sheet.",
       "options": [
         "I give them a key. They can stay as long as needed.",
-        "I put a move-out date on the fridge and circle it twice.",
+        "A move-out date goes on the fridge, circled twice.",
         "I give them my bed and take the air mattress myself.",
         "I leave apartment listings on the new sheet and say nothing."
       ]
@@ -1034,35 +1034,35 @@
     "thread": [
       {
         "from": "Your parent",
-        "text": "don't be mad. the wishing well actually worked"
+        "text": "small problem. literally. the science museum's shrink ray got me, for a month"
       },
       {
         "from": "Your parent",
-        "text": "there's a door from our kitchen into your hallway now. soup's on!"
+        "text": "I'm coming to stay with you! I'll ride in your pocket everywhere"
       }
     ],
     "options": [
       {
-        "t": "\"Best wish ever. Save me a bowl.\"",
+        "t": "\"Front pocket's yours. You're coming to everything.\"",
         "axes": {
           "R1": 2
         },
         "emotion": "delight"
       },
       {
-        "t": "\"Cute. Installing a lock on my side tonight.\"",
+        "t": "\"Welcome! You get the shelf by the window, not my pocket.\"",
         "axes": {
           "R1": -1
         }
       },
       {
-        "t": "\"Leave it open. My laundry's coming through.\"",
+        "t": "\"Come stay. Just sit out date nights.\"",
         "axes": {
           "R1": 1
         }
       },
       {
-        "t": "\"Please unwish it. I love you from a normal distance.\"",
+        "t": "\"Love you. Please shrink at your own place.\"",
         "axes": {
           "R1": -2
         },
@@ -1074,44 +1074,44 @@
       "thread": [
         {
           "from": "Your parent",
-          "text": "Please don't be upset. The wishing well actually worked."
+          "text": "A small problem, literally. The science museum's shrink ray got me, for a month."
         },
         {
           "from": "Your parent",
-          "text": "There is now a door from our kitchen into your hallway. The soup is ready."
+          "text": "I am coming to stay with you. I will ride in your pocket everywhere."
         }
       ],
       "options": [
-        "Best wish ever. Save me a bowl.",
-        "Sweet, but I am adding a lock on my side tonight.",
-        "I say leave it open. My laundry is coming through.",
-        "Please undo it. I love you from a normal distance."
+        "My front pocket is yours. You are coming everywhere with me.",
+        "Welcome. You get the shelf by the window, not my pocket.",
+        "Come and stay, but please sit out date nights.",
+        "I love you. Please stay small at your own place."
       ]
     },
     "fp": {
-      "trigger": "parent wishes a door between your homes",
-      "setting": "your hallway, their kitchen",
-      "ask": "keep the door open or close it",
+      "trigger": "a pocket-sized parent wants to move in",
+      "setting": "a text from home, three months after moving out",
+      "ask": "take them everywhere or keep your space",
       "who": "your parent",
-      "stakes": "closeness versus your own space",
-      "device": "wishing-well-door"
+      "stakes": "closeness with family versus your own life",
+      "device": "pocket-parent"
     },
-    "mask": "looks like a sweet parent text; measures whether close means shared space or close with a door you can shut (R1)",
+    "mask": "looks like a silly family text; measures closeness versus space with family (R1)",
     "ae": [
       "A",
       "B"
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "{name}'s parent texts: \"the wishing well worked. our kitchen now opens into your hallway. soup's on!\" What does {name} reply?",
+      "prompt": "{name}'s parent texts: \"the museum shrink ray got me for a month. I'll ride in your pocket!\" What does {name} reply?",
       "a": {
-        "t": "\"Best wish ever. Save me a bowl.\"",
+        "t": "\"Front pocket's yours. You're coming to everything.\"",
         "axes": {
           "R1": 2
         }
       },
       "b": {
-        "t": "\"Please unwish it. I love you from a normal distance.\"",
+        "t": "\"Love you. Please shrink at your own place.\"",
         "axes": {
           "R1": -2
         }
@@ -1150,7 +1150,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "\"Yes to the house. The menu's getting a makeover.\"",
+        "t": "\"Yes to the house, but the menu is getting a makeover.\"",
         "axes": {
           "R3": -1
         },
@@ -1329,7 +1329,7 @@
     "chapter": 6,
     "sq": "SQ-T18-1",
     "world": "everyday",
-    "prompt": "A relative's most recent \"can you help me with something?\" What did you actually do?",
+    "prompt": "\"Can you help me with something?\" The most recent time a relative asked, how did you answer?",
     "options": [
       {
         "t": "Said yes before they finished the sentence.",
@@ -1350,7 +1350,7 @@
         ]
       },
       {
-        "t": "Said yes for Saturday. Not every Saturday.",
+        "t": "Yes for Saturday. Not every Saturday.",
         "tags": [
           {
             "id": "T18B",
@@ -1359,7 +1359,7 @@
         ]
       },
       {
-        "t": "Said yes. Lied that I was free.",
+        "t": "Yes, and I lied that I was free.",
         "tags": [
           {
             "id": "T18A",
@@ -1370,12 +1370,12 @@
       }
     ],
     "heart": {
-      "prompt": "Think of the most recent time someone in your family asked, \"Can you help me with something?\" What did you actually do?",
+      "prompt": "The most recent time someone in your family asked, \"Can you help me with something?\", what did you do?",
       "options": [
         "I said yes before they had finished asking.",
         "I asked what the something was, and wanted it spelled out.",
         "I said yes for one Saturday, not every Saturday.",
-        "I said yes, and claimed I was free when I was not."
+        "Yes, and I claimed I was free when I was not."
       ]
     },
     "fp": {
@@ -1498,7 +1498,7 @@
     "prompt": "Be honest: you've cut a price tag off before a family visit, so nobody would ask.",
     "options": [
       {
-        "t": "Guilty. What they don't see, they can't vote on.",
+        "t": "What they don't see, they can't vote on.",
         "tags": [
           {
             "id": "T19A",
@@ -1508,7 +1508,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Guilty. Confessed the real price within an hour.",
+        "t": "Cut it, then confessed the real price within an hour.",
         "tags": [
           {
             "id": "T19B",
@@ -1518,7 +1518,7 @@
         "emotion": "guilt"
       },
       {
-        "t": "Never. Anything that big, I'd run past them first.",
+        "t": "Anything that big, I'd run past them first.",
         "tags": [
           {
             "id": "T19B",
@@ -1527,7 +1527,7 @@
         ]
       },
       {
-        "t": "Never. I say the price and let them gasp.",
+        "t": "I say the price out loud and let them gasp.",
         "tags": [
           {
             "id": "T19A",
@@ -1566,7 +1566,7 @@
     "friend": {
       "prompt": "Genii bets {name} has cut a price tag off before a family visit, so nobody would ask. Guilty or not?",
       "a": {
-        "t": "Guilty. What they don't see, they can't vote on.",
+        "t": "What they don't see, they can't vote on.",
         "tags": [
           {
             "id": "T19A",
@@ -1575,7 +1575,7 @@
         ]
       },
       "b": {
-        "t": "Never. Anything that big goes past the family first.",
+        "t": "Anything that big goes past the family first.",
         "tags": [
           {
             "id": "T19B",
@@ -1589,7 +1589,7 @@
     "id": "C6-148",
     "type": "receipts",
     "chapter": 6,
-    "prompt": "Your place, lately. Tap everything that's true:",
+    "prompt": "At home, lately. Tap everything that's true:",
     "options": [
       {
         "t": "Said \"in this house, we...\" and heard my parent's voice",
@@ -1641,7 +1641,7 @@
     "heart": {
       "prompt": "Think about how your home runs lately. Choose everything that is true.",
       "options": [
-        "I said \"in this house, we...\" and heard my parent in it.",
+        "\"In this house, we...\" I said it and heard my parent.",
         "I split the chores in a way my family would find strange.",
         "I kept a rule from my childhood home, like shoes off.",
         "I started a weekly ritual at home that nobody taught me.",

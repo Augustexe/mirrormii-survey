@@ -3,10 +3,10 @@
     "id": "C5-140",
     "type": "scenario",
     "chapter": 5,
-    "prompt": "Your week just grew an eighth day. Only you get it. Nobody at work knows it exists.",
+    "prompt": "Eight days a week now, but only for you. Nobody at work knows the extra one exists.",
     "options": [
       {
-        "t": "Work it. By spring I'm everyone's boss.",
+        "t": "Work it and be everyone's boss by spring.",
         "axes": {
           "L2": 2
         },
@@ -62,7 +62,7 @@
       "prompt": "Your week gains an eighth day, and only you get it. Nobody at work knows it exists.",
       "options": [
         "I work it. By spring, I would be running things.",
-        "I sleep through it, every week, with no regrets.",
+        "Sleep, every week, with no regrets.",
         "I work it quietly and let people wonder how I manage.",
         "I spend it on the hobby I keep promising myself."
       ]
@@ -168,7 +168,7 @@
       "options": [
         "I update my résumé tonight. I will not lose to a dog.",
         "I ask for a one-on-one to learn how it got the job.",
-        "I am happy for it. It really is a very good dog.",
+        "Honestly, I am happy for it. It is a very good dog.",
         "I let it go. Coming second to a dog is still fine."
       ]
     },
@@ -221,16 +221,16 @@
     "type": "feeling",
     "chapter": 5,
     "follows": "C5-121",
-    "prompt": "First feeling, honestly?",
+    "prompt": "Honestly, what landed first?",
     "options": [
       {
-        "t": "Happy for it. Truly."
+        "t": "Happy for it, truly."
       },
       {
         "t": "A small sting. Why not me?"
       },
       {
-        "t": "Relief. Let the dog run the meetings."
+        "t": "Relief: let the dog run the meetings."
       },
       {
         "t": "Embarrassed, weirdly."
@@ -240,7 +240,7 @@
       }
     ],
     "heart": {
-      "prompt": "What was your first feeling, honestly?",
+      "prompt": "Honestly, what did you feel first?",
       "options": [
         "Real happiness for it.",
         "A small sting, and the question of why it was not me.",
@@ -327,7 +327,7 @@
       "prompt": "Think of the last free weekend you had while a big deadline was coming. What actually happened?",
       "options": [
         "I worked both days, and honestly I enjoyed it.",
-        "I brought my laptop to a birthday dinner, and people noticed.",
+        "My laptop came to a birthday dinner, and people noticed.",
         "I did not touch it. Future me handled it.",
         "I told people I was working, but I mostly rested."
       ]
@@ -383,7 +383,7 @@
     "prompt": "First week as the town's weather booker. A kite festival reserved Saturday's sunshine a year ago. Now a farmer is begging for rain.",
     "options": [
       {
-        "t": "Sunshine. The kites booked first.",
+        "t": "The kites booked first, so sunshine.",
         "axes": {
           "L3": 2
         },
@@ -395,7 +395,7 @@
         ]
       },
       {
-        "t": "Sunshine. The farmer gets Monday's rain and my apology.",
+        "t": "Sunshine, and the farmer gets Monday's rain plus my apology.",
         "axes": {
           "L3": 1
         },
@@ -420,7 +420,7 @@
         ]
       },
       {
-        "t": "Rain. Then blame it on the forecast.",
+        "t": "Rain, then let everyone blame the forecast.",
         "axes": {
           "L3": -1
         },
@@ -436,7 +436,7 @@
     "heart": {
       "prompt": "In your first week booking the town's weather, you see a kite festival reserved Saturday's sunshine a year ago. Now a farmer is asking you for rain.",
       "options": [
-        "Sunshine. The festival booked first.",
+        "The festival booked first, so it gets the sunshine.",
         "Sunshine. The farmer gets rain on Monday, with my apology.",
         "Rain. The crops matter more than the kites.",
         "Rain, and I let people blame the forecast."
@@ -500,7 +500,7 @@
     ],
     "options": [
       {
-        "t": "\"Wrong number! Deleted.\" Act shocked with everyone next week.",
+        "t": "\"Deleted, promise.\" Act shocked with everyone next week.",
         "axes": {
           "L3": 2
         },
@@ -553,7 +553,7 @@
         }
       ],
       "options": [
-        "\"Wrong person. I deleted it.\" Next week, I act surprised.",
+        "\"I deleted it, promise.\" Next week, I act surprised.",
         "\"Wrong person. You may want to check who else got this.\"",
         "\"Wrong person.\" Then I call my friend on the way home.",
         "No reply. I tell my friend to start looking, and nothing more."
@@ -609,10 +609,10 @@
     "type": "this_or_that",
     "chapter": 5,
     "round": "ch5-r1",
-    "prompt": "A fortune cookie that's never been wrong. One bite and you'll know your whole career: every job, every title, how it ends.",
+    "prompt": "One bite of a never-wrong fortune cookie and you'll know your whole career: every job, every title, how it ends.",
     "options": [
       {
-        "t": "Bite. I'd sleep so much better knowing.",
+        "t": "Bite it, because I'd sleep better knowing.",
         "axes": {
           "L2": 1
         },
@@ -642,7 +642,7 @@
       "prompt": "A fortune cookie that has never been wrong would tell you your whole working life in one bite: every job, every title and how it ends.",
       "options": [
         "I eat it. Knowing would help me rest.",
-        "I throw it away. Finding out is the best part."
+        "It goes in the bin. Finding out is the best part."
       ]
     },
     "fp": {
@@ -694,10 +694,10 @@
     "type": "this_or_that",
     "chapter": 5,
     "round": "ch5-r1",
-    "prompt": "Genii grants one wish a year. You and your closest friend both wished for the same dream job. Genii says you pick who gets it.",
+    "prompt": "A carrier owl delivers one dream-job offer, addressed to you and your closest friend. Whoever feeds the owl first gets the job.",
     "options": [
       {
-        "t": "Me. And I'm not apologizing at the party.",
+        "t": "Feed the owl. I'll apologize at the party. Maybe.",
         "tags": [
           {
             "id": "T16A",
@@ -707,7 +707,7 @@
         "emotion": "pride"
       },
       {
-        "t": "Them. Losing to them beats watching them lose.",
+        "t": "My friend feeds it. Losing to them beats watching them lose.",
         "tags": [
           {
             "id": "T16B",
@@ -718,21 +718,21 @@
       }
     ],
     "heart": {
-      "prompt": "Genii grants one wish a year. You and your closest friend both wished for the same dream job, and Genii leaves the choice to you.",
+      "prompt": "A carrier owl brings one offer for your dream job, addressed to both you and your closest friend. Whoever feeds the owl first gets the job.",
       "options": [
-        "Me. I will not apologize for it at the celebration.",
-        "Them. Losing to them is easier than watching them lose."
+        "I feed the owl. I might apologize at the celebration.",
+        "They feed it. Losing to them is easier than watching them lose."
       ]
     },
     "fp": {
-      "trigger": "one dream job wished for by two friends",
-      "setting": "Genii's yearly wish",
-      "ask": "who gets the job",
+      "trigger": "one dream-job offer for two friends",
+      "setting": "an owl at the window",
+      "ask": "take the job or let them have it",
       "who": "your closest friend",
-      "stakes": "the win versus your friend's win",
-      "device": "shared-genie-wish"
+      "stakes": "the dream job versus watching them lose it",
+      "device": "carrier-owl-offer"
     },
-    "mask": "looks like a loyalty test; measures how much you want the visible win (T16)",
+    "mask": "looks like a whimsical race; measures whether you keep a quiet tally of wins (T16)",
     "ae": [
       "A",
       "B"
@@ -741,9 +741,9 @@
     "sq": "SQ-T16-2",
     "world": "absurd",
     "friend": {
-      "prompt": "{name} and {their} closest friend wished for the same dream job. Genii lets {name} pick who gets it. Which one is {name}?",
+      "prompt": "An owl brings one dream-job offer for {name} and {their} closest friend. First to feed the owl gets it. What does {name} do?",
       "a": {
-        "t": "\"Me. And I'm not apologizing at the party.\"",
+        "t": "Feeds the owl. Might apologize at the party.",
         "tags": [
           {
             "id": "T16A",
@@ -752,7 +752,7 @@
         ]
       },
       "b": {
-        "t": "\"Them. Losing to them beats watching them lose.\"",
+        "t": "Lets the friend feed it: \"Losing to them beats watching them lose.\"",
         "tags": [
           {
             "id": "T16B",
@@ -766,10 +766,10 @@
     "id": "C5-120",
     "type": "scenario",
     "chapter": 5,
-    "prompt": "A stranger you once gave directions to wants you managing their island resort in three weeks. You just signed a two-year lease you love.",
+    "prompt": "Three weeks from now, a stranger you once gave directions to wants you managing their island resort. You just signed a two-year lease you love.",
     "options": [
       {
-        "t": "Yes. Break the lease. Sell the couch.",
+        "t": "Break the lease, sell the couch, go.",
         "axes": {
           "L1": -2
         },
@@ -788,7 +788,7 @@
         }
       },
       {
-        "t": "No. But I'm saving their number forever.",
+        "t": "Saying no, but saving their number forever.",
         "axes": {
           "L1": 1
         },
@@ -804,7 +804,7 @@
     "heart": {
       "prompt": "A stranger you once gave directions to wants you to manage their island resort, starting in three weeks. You just signed a two-year lease you love.",
       "options": [
-        "I say yes, break the lease and sell the couch.",
+        "Yes. I break the lease and sell the couch.",
         "I say yes, and keep paying for my place just in case.",
         "I say no. I finally have the life I worked for.",
         "I say no, but I keep their number."
@@ -846,10 +846,10 @@
     "id": "C5-125",
     "type": "others",
     "chapter": 5,
-    "prompt": "Your teammate answered the CEO's email from their honeymoon. Three minutes flat. A week later, they got the promotion. First thought?",
+    "prompt": "Three minutes flat: that's how fast your teammate answered the CEO's email. From their honeymoon. A week later, they got the promotion. First thought?",
     "options": [
       {
-        "t": "Respect. That's what wanting it looks like.",
+        "t": "That's what wanting it looks like. Respect.",
         "axes": {
           "L2": 1
         },
@@ -861,7 +861,7 @@
         ]
       },
       {
-        "t": "Great title. Shame about the honeymoon.",
+        "t": "Great title, shame about the honeymoon.",
         "axes": {
           "L2": -2
         },
@@ -886,7 +886,7 @@
         "emotion": "envy"
       },
       {
-        "t": "Cool. Now we're all expected to do that.",
+        "t": "Now we're all expected to do that. Cool.",
         "axes": {
           "L2": -1
         },
@@ -959,7 +959,7 @@
     "prompt": "Hunch: your phone holds a screenshot of something a coworker said. Not to share. Just in case.",
     "options": [
       {
-        "t": "Guilty. Dated, labeled, in its own folder.",
+        "t": "Dated, labeled, in its own folder.",
         "tags": [
           {
             "id": "T08B",
@@ -969,7 +969,7 @@
         "emotion": "pride"
       },
       {
-        "t": "Guilty. Forgot why I saved it. Keeping it anyway.",
+        "t": "Forgot why I saved it. Keeping it anyway.",
         "tags": [
           {
             "id": "T08B",
@@ -979,7 +979,7 @@
         "emotion": "cringe"
       },
       {
-        "t": "Guilty. Deleted it the day we were good again.",
+        "t": "Had one. Deleted it the day we were good again.",
         "tags": [
           {
             "id": "T08A",
@@ -989,7 +989,7 @@
         "emotion": "relief"
       },
       {
-        "t": "Never. Once it's sorted, it's gone from my head too.",
+        "t": "Once it's sorted, it's gone from my head too.",
         "tags": [
           {
             "id": "T08A",
@@ -1026,7 +1026,7 @@
     "friend": {
       "prompt": "Genii bets {name} has a screenshot of a coworker's words, saved not to share, just in case. Guilty or not?",
       "a": {
-        "t": "Never. Once it's sorted, it's gone from {their} head too.",
+        "t": "Once it's sorted, it's gone from {their} head too.",
         "tags": [
           {
             "id": "T08A",
@@ -1035,7 +1035,7 @@
         ]
       },
       "b": {
-        "t": "Guilty. Dated, labeled, in its own folder.",
+        "t": "Dated, labeled, in its own folder.",
         "tags": [
           {
             "id": "T08B",
@@ -1064,7 +1064,7 @@
         ]
       },
       {
-        "t": "Accept it. Four minutes is a Wi-Fi hiccup.",
+        "t": "Four minutes is a Wi-Fi hiccup. Accepted.",
         "axes": {
           "L3": -2
         },
@@ -1076,7 +1076,7 @@
         ]
       },
       {
-        "t": "Zero. Felt a little too good, honestly.",
+        "t": "Zero, and it felt a little too good.",
         "axes": {
           "L3": 1
         },
@@ -1089,7 +1089,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Accept it. Then grade it very, very carefully.",
+        "t": "Accept it, then grade it very, very carefully.",
         "axes": {
           "L3": -1
         },
@@ -1162,7 +1162,7 @@
     "chapter": 5,
     "sq": "SQ-L2-3",
     "world": "unusual",
-    "prompt": "A famous perfumer offers you an apprenticeship: seven years before your first bottle. Your best friend gets the reference call. What do they say?",
+    "prompt": "Seven years before your first bottle: that's the apprenticeship a famous perfumer just offered you. Your best friend gets the reference call. What do they say?",
     "options": [
       {
         "t": "\"They'll want a progress chart by week one.\"",
@@ -1300,7 +1300,7 @@
         ]
       },
       {
-        "t": "Left a big question open for months and slept fine",
+        "t": "Left a big question open for months. Slept fine.",
         "tags": [
           {
             "id": "T17B",
@@ -1318,7 +1318,7 @@
       "options": [
         "I paid extra for the non-refundable option so I would stop deciding.",
         "I said \"maybe\" to a plan in case something better came up.",
-        "I pushed for a clear answer. Not knowing kept me up.",
+        "Not knowing kept me up, so I pushed for a clear answer.",
         "I left a big question open for months and slept fine.",
         "None of these."
       ]
@@ -1456,31 +1456,31 @@
     "id": "C5-126",
     "type": "others",
     "chapter": 5,
-    "prompt": "Your roommate quit a steady job to apprentice with a real wizard. Pay: one enchanted sandwich a week. Rent is due in two weeks. First thought?",
+    "prompt": "Six straight losses for Gary, the snail your roommate quit a steady job to race. Prize money only. Rent's due in two weeks. Honest take?",
     "options": [
       {
-        "t": "Legend. Somebody has to learn real magic.",
+        "t": "Somebody has to believe in Gary. Legend.",
         "axes": {
           "L1": -2
         },
         "emotion": "delight"
       },
       {
-        "t": "Love it. What's the plan B if the magic doesn't take?",
+        "t": "Love it, but what's the plan if Gary retires?",
         "axes": {
           "L1": 1
         },
         "emotion": "worry"
       },
       {
-        "t": "Great. Is the wizard covering their half of rent?",
+        "t": "Great. Is Gary covering their half of rent?",
         "axes": {
           "L1": 2
         },
         "emotion": "irritation"
       },
       {
-        "t": "Jealous. My job doesn't even come with lunch.",
+        "t": "Nobody at my job believes in me like that. Jealous.",
         "axes": {
           "L1": -1
         },
@@ -1488,23 +1488,23 @@
       }
     ],
     "heart": {
-      "prompt": "Your roommate left a steady job to train with a real wizard for one enchanted sandwich a week. Rent is due in two weeks. What is your first thought?",
+      "prompt": "Your roommate left a steady job to race snails for prize money. Their snail, Gary, has lost six in a row, and rent is due soon. Your honest take?",
       "options": [
-        "That is wonderful. Someone has to learn real magic.",
-        "I love it, but I want to know their backup plan.",
-        "I wonder how their half of the rent gets paid.",
-        "I am a little jealous. My job does not even include lunch."
+        "Somebody has to believe in Gary. I love it.",
+        "I love it, but what is the plan if Gary retires?",
+        "My first question is who pays their half of the rent.",
+        "I am jealous. Nobody at my job believes in me like that."
       ]
     },
     "fp": {
-      "trigger": "a roommate drops a steady job for a wild dream",
-      "setting": "shared apartment, rent coming",
-      "ask": "your first thought on the leap",
+      "trigger": "roommate quits a steady job to race snails",
+      "setting": "shared apartment, rent due",
+      "ask": "cheer the leap or ask about the net",
       "who": "your roommate",
-      "stakes": "their dream versus the rent",
-      "device": "wizard-apprentice"
+      "stakes": "rent and a friend's long-shot dream",
+      "device": "snail-racer"
     },
-    "mask": "looks like a roommate roast; measures your own line on keeping a safety net versus going all in (L1)",
+    "mask": "looks like a silly roommate story; measures whether you back the leap or want the safety net (L1)",
     "ae": [
       "A",
       "E"
@@ -1513,15 +1513,15 @@
     "sq": "SQ-L1-3",
     "world": "absurd",
     "friend": {
-      "prompt": "{name}'s roommate quit a steady job to apprentice with a wizard for one enchanted sandwich weekly. Rent's due. {name}'s first thought?",
+      "prompt": "{name}'s roommate quits a steady job to race snails. Their snail Gary has lost six straight. Rent's due. {name}'s first thought?",
       "a": {
-        "t": "\"Great. Is the wizard covering their half of rent?\"",
+        "t": "\"Great. Is Gary covering their half of rent?\"",
         "axes": {
           "L1": 2
         }
       },
       "b": {
-        "t": "\"Legend. Somebody has to learn real magic.\"",
+        "t": "\"Somebody has to believe in Gary. Legend.\"",
         "axes": {
           "L1": -2
         }
@@ -1535,7 +1535,7 @@
     "prompt": "Confession time: you've said yes to one job or school offer while secretly hoping another would call.",
     "options": [
       {
-        "t": "Guilty. Bailed on the first one when it did.",
+        "t": "Bailed on the first one the minute it did.",
         "axes": {
           "L1": -1
         },
@@ -1548,7 +1548,7 @@
         "emotion": "guilt"
       },
       {
-        "t": "Guilty. Would do it again. A yes in hand is a yes.",
+        "t": "Would do it again. A yes in hand is a yes.",
         "axes": {
           "L1": 1
         },
@@ -1560,7 +1560,7 @@
         ]
       },
       {
-        "t": "Never. Once I say yes, I stop looking.",
+        "t": "Once I say yes, I stop looking.",
         "axes": {
           "L1": 1
         },
@@ -1572,7 +1572,7 @@
         ]
       },
       {
-        "t": "Never. I hold out for the one I actually want.",
+        "t": "I hold out for the one I actually want.",
         "axes": {
           "L1": -1
         },
@@ -1674,7 +1674,7 @@
     "heart": {
       "prompt": "Think of the last job post you were only half qualified for. What did you actually do?",
       "options": [
-        "I applied that night. I would learn the rest there.",
+        "That night, I applied. I would learn the rest there.",
         "I skipped it. I will apply once I meet every point.",
         "I found someone who works there and asked questions first.",
         "I sent it to a friend, and we both applied for courage."

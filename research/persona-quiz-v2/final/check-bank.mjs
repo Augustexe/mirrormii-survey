@@ -15,6 +15,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { TYPES, LEGACY_TYPES, PRIVACY, FP_FIELDS, DID_TYPES, QUICK_TYPES, WORLDS, cardTexts } from "./card-schema.mjs";
+import { checkShapes } from "./shape-audit.mjs";
 
 const DIR = path.dirname(fileURLToPath(import.meta.url));
 const AXES = ["R1", "R2", "R3", "L1", "L2", "L3"];
@@ -46,6 +47,7 @@ export const BANS = Object.freeze([
   { id: "grading", re: /\b(kind(?!\s+of\b)|kindness|brave|bravery|healthy|unhealthy|responsible|irresponsible|mature|immature|selfish|selfless)\b/i, why: "grading word" },
   { id: "age", re: /\b(teen|teens|teenager|teenagers|adult|adults|minor|minors|under ?18|over ?18|18\+|21\+|years? old|your age|underage|grown-?up)\b/i, why: "age reference" },
   { id: "brand-never-say", re: /\b(streaks?|gacha|lottery|jackpot|predicts?|clinically|diagnose)\b/i, why: "brand never-say word (PRODUCT-TRUTH: no streaks, no gacha or lottery words, never \"predicts\")" },
+  { id: "genie-trope", re: /\b(genies?|lamps?|fairy god\w*|wizards?|wishing wells?|wish-grant\w*|grant(?:s|ed|ing)? (?:a |one |your |three )?wish(?:es)?|(?:a|one|three|your|the) wish(?:es)?|wished for)\b/i, why: "genie, lamp or wish-granting trope (Genii is a slime, never a genie: LAUNCH-SPEC section 23 ruling 2)" },
   { id: "health", re: /\b(diet|dieting|calories|weight loss|lose weight|therapy|therapist|diagnos\w*|medication|meds|depress\w*|anxiety disorder|adhd|autis\w*)\b/i, why: "health or diagnosis content" },
 ]);
 // Family roles are gendered but often the true detail; flagged for a second look, never failed.
@@ -126,6 +128,7 @@ export function checkCards(cards, { lib, legacy = false } = {}) {
       for (const t of [f.prompt, f.a && f.a.t, f.b && f.b.t]) {
         const m = typeof t === "string" && t.match(/\b(he|she|him|her|his|hers)\b/i);
         if (m) err(id, `friend text uses "${m[0]}" for the owner (use {they}, {them}, {their})`);
+        for (const b of BANS) { const mb = typeof t === "string" && t.replace(/\{\w+\}/g, "x").match(b.re); if (mb) err(id, `friend text: ${b.why} ("${mb[0]}")`); }
       }
     }
     if (c.round && group === "extras") err(id, "extras never carry a round (each serves its own axis)");
@@ -271,6 +274,10 @@ export function checkCards(cards, { lib, legacy = false } = {}) {
   // Pattern variety (Jerry, 2026-09-28): no repeated hook shape. Clock times and day-or-time stamps in prompts,
   // and the same two opening words, are capped across the bank and per chapter file.
   checkVariety(cards, err);
+  // Shape variety (Jerry, 2026-09-29, LAUNCH-SPEC section 23 ruling 4): answer openers, "Verdict. Reason." answers,
+  // prompt first words and endings, Heart to heart openers, shared shape signatures and flat rhythms are capped
+  // (SHAPE_LIMITS in shape-audit.mjs; run `node shape-audit.mjs` for the full report).
+  if (!legacy) checkShapes(cards, err);
 
   return { errors, warnings, counts: countCards(cards) };
 }

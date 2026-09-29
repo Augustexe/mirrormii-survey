@@ -960,6 +960,7 @@ test("sim --quick meets every target", () => {
 
 // ------------------------------------------------------------ bank tooling (check-bank.mjs, merge-bank.mjs)
 import { checkCards, loadBank, fpSimilarity } from "./check-bank.mjs";
+import { checkShapes } from "./shape-audit.mjs";
 import { buildKit } from "./merge-bank.mjs";
 
 // A small bank in the skill schema: one card of every format in chapter 1, one scenario per other chapter, one extra,
@@ -968,10 +969,11 @@ function fixtureBank() {
   let k = 0;
   const words = ["amber", "bolt", "cedar", "delta", "ember", "fjord", "grove", "harbor", "indigo", "juniper", "kettle", "lantern", "meadow", "nectar", "orbit", "pepper", "quartz", "raven", "saffron", "tundra", "umber", "velvet", "willow", "yonder", "zephyr"];
   const w = () => { k++; return `${words[k % words.length]} ${words[(k * 7 + 3) % words.length]} ${k}`; };
-  const opt = (ev) => ({ t: `Tap the ${w()}`, ...ev });
+  const verbs = ["Tap", "Grab", "Keep", "Send", "Call", "Skip", "Bring"];
+  const opt = (ev) => ({ t: `${verbs[k % verbs.length]} the ${w()}`, ...ev });
   const card = (id, type, options, extra = {}) => ({
     id, type, privacy: "normal", prompt: `A ${w()} moment arrives right now.`, options,
-    heart: { prompt: `A quiet ${w()} moment.`, options: options.map(() => `I choose the ${w()}`), ...(extra.heartThread ? { thread: extra.heartThread } : {}) },
+    heart: { prompt: `A quiet ${w()} moment.`, options: options.map((_, i) => `${i % 2 ? "Honestly, the" : "I choose the"} ${w()}`), ...(extra.heartThread ? { thread: extra.heartThread } : {}) },
     fp: { trigger: `t ${w()}`, setting: `s ${w()}`, ask: `a ${w()}`, who: `w ${w()}`, stakes: `k ${w()}` },
     mask: "fixture", ...Object.fromEntries(Object.entries(extra).filter(([key]) => key !== "heartThread")),
   });
@@ -1033,6 +1035,11 @@ test("check-bank: a clean bank passes; every rule catches its break", () => {
     ["legacy type", (b) => { b.ch1[4].type = "guilty"; }, /"guilty" is now "bet"/],
     ["friend on rank", (b) => { b.ch1[2].friend = { prompt: "x", a: { t: "a" }, b: { t: "b" } }; }, /rank cards never carry a friend version/],
     ["sealed primary", (b) => { b.sealed[0].primary = "L3"; }, /no option carries its primary axis L3/],
+    ["genie trope", (b) => { b.ch1[0].prompt = "A genie offers you three wishes."; }, /genie, lamp or wish-granting/],
+    ["genie in a friend text", (b) => { b.ch1[0].friend = { prompt: "{name} rubs a lamp. What does {name} do?", a: { t: "Rubs it", axes: { R1: 2 } }, b: { t: "Leaves it", axes: { R1: -2 } } }; }, /friend text: genie, lamp/],
+    ["one answer opener", (b) => { b.ch1[0].options.forEach((o) => { o.t = `Keep ${o.t}`; }); }, /4 of 4 answers open with "keep"/],
+    ["heart answers all open alike", (b) => { b.ch1[0].heart.options = b.ch1[0].heart.options.map((t) => `I say ${t}`); }, /every Heart to heart answer opens with "i"/],
+    ["verdict answers", (b) => { b.ch1[0].options.forEach((o, i) => { o.t = `${["Nope.", "Sure.", "Fine.", "Deal."][i]} ${o.t}.`; }); }, /answers are "Verdict\. Reason\."/],
   ];
   for (const [label, mutate, want] of breaks) {
     const b = fixtureBank();
@@ -1046,6 +1053,24 @@ test("check-bank: a clean bank passes; every rule catches its break", () => {
   assert.deepEqual(lr.errors, []);
   assert.ok(lr.warnings.some((x) => /option 0 is 15 words/.test(x.what)), "long options warn, never fail");
   assert.ok(fpSimilarity({ trigger: "friend texts late at night", setting: "bed, phone", ask: "show up", who: "best friend", stakes: "sleep" }, { trigger: "friend calls late at night", setting: "bed, phone", ask: "show up", who: "best friend", stakes: "sleep" }) >= 0.6, "4am call and 2am text read as the same situation");
+});
+
+test("shape limits: bank-wide caps catch a repeated answer opener, prompt opener, ending and shape", () => {
+  const many = Array.from({ length: 60 }, (_, i) => ({
+    id: `X-${i}`, type: "bet", _group: "ch1",
+    prompt: i < 20 ? `Your friend number ${i} did a thing. First thought?` : `Card ${i} opens its own way with ${i} words.`,
+    options: [{ t: `Guilty. Reason ${i} one.` }, { t: `Wrong about ${i}, honestly, and here is why.` }, { t: `A long answer ${i} with no verdict at the start.` }],
+    heart: { prompt: `Heart ${i} prompt.`, options: ["Yes, " + i, "No, " + i, "Maybe " + i] },
+  }));
+  const errs = [];
+  checkShapes(many, (id, what) => errs.push(what));
+  assert.ok(errs.some((e) => /answers open with "guilty"/.test(e)), "one answer opener over 3% of answers");
+  assert.ok(errs.some((e) => /prompts open with "your"/.test(e)), "prompt first word over 10%");
+  assert.ok(errs.some((e) => /prompts end with "first thought"/.test(e)), "prompt ending over 4%");
+  assert.ok(errs.some((e) => /cards share the shape/.test(e)), "one shape signature over 4%");
+  const few = [];
+  checkShapes(many.slice(0, 10), (id, what) => few.push(what));
+  assert.ok(!few.some((e) => /prompts open with/.test(e)), "bank-wide caps skip a small set");
 });
 
 test("merge-bank: builds cards.json from the bank, filling grade, weight, exits and checks from the type", () => {

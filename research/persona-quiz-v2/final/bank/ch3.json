@@ -3,10 +3,10 @@
     "id": "C3-80",
     "type": "scenario",
     "chapter": 3,
-    "prompt": "A wish went sideways: you and your person now share every dream, every night. Your person loves it. Genii can undo it by sunrise.",
+    "prompt": "A street tailor knits you and your person one sweater with two necks. It only comes off when one of you asks. They won't be the one.",
     "options": [
       {
-        "t": "Keep it. We share a pillow already. Why not the dreams?",
+        "t": "Nobody's asking. We'll learn to cook in it.",
         "axes": {
           "R1": 2
         },
@@ -19,7 +19,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "Undo it. My dreams are the one room nobody enters.",
+        "t": "Ask on day one. I need my own sleeves.",
         "axes": {
           "R1": -2
         },
@@ -32,7 +32,7 @@
         "emotion": "relief"
       },
       {
-        "t": "Keep it one week, then bargain for dream-free weekends.",
+        "t": "Weekends in the sweater. Weekdays, I want my arms back.",
         "axes": {
           "R1": -1
         },
@@ -44,7 +44,7 @@
         ]
       },
       {
-        "t": "Keep it, mostly to see what they dream about me.",
+        "t": "Wear it to every party and let people stare.",
         "axes": {
           "R1": 1
         },
@@ -58,23 +58,23 @@
       }
     ],
     "heart": {
-      "prompt": "Because of a wish that went wrong, you and your person now share the same dreams every night. Your person loves it. Genii can undo it before sunrise.",
+      "prompt": "A street tailor knits you and your person one sweater with two necks. It only comes off when one of you asks, and your person will not ask.",
       "options": [
-        "I keep it. We share so much already, dreams included.",
-        "I undo it. My dreams are the one place only mine.",
-        "I keep it for a week, then ask for weekends without it.",
-        "I keep it, partly to find out what they dream about me."
+        "Nobody is asking. We will learn to cook in it together.",
+        "I ask on the first day. I need my own sleeves.",
+        "Weekends in the sweater. On weekdays, I want my own arms back.",
+        "We wear it to every party and let people look."
       ]
     },
     "fp": {
-      "trigger": "wish makes you share dreams",
-      "setting": "sleep, Genii magic",
-      "ask": "keep or undo shared dreams",
+      "trigger": "a two-person sweater that only comes off if you ask",
+      "setting": "home, stuck together in one sweater",
+      "ask": "stay in it or be the one who asks out",
       "who": "your person",
-      "stakes": "your inner room versus their delight",
-      "device": "shared dreams"
+      "stakes": "closeness versus your own space, and being the one who asks",
+      "device": "two-person-sweater"
     },
-    "mask": "looks like a magic mishap; measures close as fully shared versus close with a room of your own (R1, T09)",
+    "mask": "looks like a cozy curse; measures whether closeness means shared space or keeping your own (R1, T09)",
     "ae": [
       "B",
       "D"
@@ -83,9 +83,9 @@
     "sq": "SQ-R1-1",
     "world": "absurd",
     "friend": {
-      "prompt": "A botched wish: {name} and {their} person share every dream. The person loves it. Genii can undo it. What does {name} do?",
+      "prompt": "A tailor knits {name} and {their} person one sweater with two necks. It only comes off if one of them asks. What does {name} do?",
       "a": {
-        "t": "Keep it. We share a pillow already. Why not dreams?",
+        "t": "Never asks. Learns to cook in it.",
         "axes": {
           "R1": 2
         },
@@ -97,7 +97,7 @@
         ]
       },
       "b": {
-        "t": "Undo it. My dreams are the one room nobody enters.",
+        "t": "Asks on day one. Needs {their} own sleeves.",
         "axes": {
           "R1": -2
         },
@@ -160,7 +160,7 @@
       "prompt": "An elevator is stuck between floors, and it has been two hours. Your ex uses the time to apologize, properly.",
       "options": [
         "I thank them and suggest coffee after, so we can really talk.",
-        "I accept it, then stare at the buttons for another hour.",
+        "\"Accepted.\" Then I stare at the buttons for another hour.",
         "I forgive them and unblock them, but keep them muted.",
         "I hug them and tell my friends we are fine now."
       ]
@@ -209,10 +209,10 @@
     "chapter": 3,
     "follows": "C3-91",
     "world": "unusual",
-    "prompt": "First feeling, before either of you says another word?",
+    "prompt": "Before either of you says another word: what's the first feeling?",
     "options": [
       {
-        "t": "Relief. Finally."
+        "t": "Relief, finally."
       },
       {
         "t": "Suspicion. Why now, exactly?"
@@ -221,7 +221,7 @@
         "t": "The old sting, fresh as ever."
       },
       {
-        "t": "Smug. Took them long enough."
+        "t": "Smug that it took them this long."
       },
       {
         "t": "Nothing. Doors, please."
@@ -380,10 +380,10 @@
     "id": "C3-81",
     "type": "bet",
     "chapter": 3,
-    "prompt": "Shower thoughts, Genii edition: you've rehearsed a whole argument with your person in there. What happened next?",
+    "prompt": "Shower confession: you've rehearsed a whole argument with your person in there. What happened next?",
     "options": [
       {
-        "t": "Guilty. Then said none of it. Ever.",
+        "t": "None of it ever left the shower.",
         "axes": {
           "R2": -2
         },
@@ -396,14 +396,14 @@
         "emotion": "resentment"
       },
       {
-        "t": "Guilty. Delivered the best line to their face that night.",
+        "t": "Delivered the best line to their face that night.",
         "axes": {
           "R2": 1
         },
         "emotion": "pride"
       },
       {
-        "t": "Guilty. Still having it. The shower's heard it forty times.",
+        "t": "The shower's heard it forty times. Still going.",
         "axes": {
           "R2": -1
         },
@@ -416,13 +416,13 @@
         "emotion": "irritation"
       },
       {
-        "t": "Never. If it bugs me, they hear it the first time.",
+        "t": "No rehearsal needed. If it bugs me, they hear it.",
         "axes": {
           "R2": 2
         }
       },
       {
-        "t": "Guilty. It stopped mattering before I'd dried off.",
+        "t": "It stopped mattering before I'd dried off.",
         "axes": {
           "R2": -1
         },
@@ -440,9 +440,9 @@
       "options": [
         "Yes, and I never said any of it to them.",
         "Yes, and I said the best part to them that same night.",
-        "Yes, and I am still having it. It keeps coming back.",
+        "I am still having it, honestly. It keeps coming back.",
         "No. If something bothers me, I tell them the first time.",
-        "Yes, and by the time I dried off it no longer mattered."
+        "By the time I dried off, it no longer mattered."
       ]
     },
     "fp": {
@@ -489,10 +489,10 @@
     "chapter": 3,
     "sq": "SQ-T10-2",
     "world": "absurd",
-    "prompt": "Your situationship is fizzling. A mall vending machine sells Clean Breaks: $5, and they forget you ever met. Fondly.",
+    "prompt": "Clean Breaks, $5 at the mall vending machine: they forget you ever met. Fondly. Your situationship is fizzling.",
     "options": [
       {
-        "t": "Insert $5. Nobody has to have the talk.",
+        "t": "$5 in, and nobody has to have the talk.",
         "axes": {
           "R2": -1
         },
@@ -527,7 +527,7 @@
         "emotion": "longing"
       },
       {
-        "t": "Buy one for them. And one for me.",
+        "t": "Buy two: one for them, one for me.",
         "tags": [
           {
             "id": "T10B",
@@ -538,10 +538,10 @@
       }
     ],
     "heart": {
-      "prompt": "Things with someone you have been seeing are fading. A vending machine at the mall sells a clean break: for five dollars, they forget you ever met, fondly.",
+      "prompt": "A vending machine at the mall sells a clean break: for five dollars, they forget you ever met, fondly. Things with someone you have been seeing are fading.",
       "options": [
         "I pay, so neither of us has to have the talk.",
-        "I walk past it and tell them in person.",
+        "They get the real talk, in person. I walk past it.",
         "I spend the five dollars on one more dinner together.",
         "I buy one for them, and one for myself."
       ]
@@ -630,7 +630,7 @@
         ]
       },
       {
-        "t": "Jealous. My last ending was a four-hour talk.",
+        "t": "My last ending was a four-hour talk. Jealous.",
         "tags": [
           {
             "id": "T10B",
@@ -695,17 +695,17 @@
     "id": "C3-140",
     "type": "this_or_that",
     "chapter": 3,
-    "prompt": "Your new lamp flickers whenever someone leaves out part of a story. Your person is telling you about their weekend away. Flicker.",
+    "prompt": "Your person's shadow got home from their weekend away an hour before they did. It's on your couch, ready to tell everything.",
     "options": [
       {
-        "t": "Pause the story. I want the flickery part.",
+        "t": "Pour the shadow a drink. I want the whole weekend.",
         "axes": {
           "R1": 2
         },
         "emotion": "worry"
       },
       {
-        "t": "Let it flicker. Some parts are theirs.",
+        "t": "Their weekend is theirs, so the shadow waits outside.",
         "axes": {
           "R1": -2
         },
@@ -713,21 +713,21 @@
       }
     ],
     "heart": {
-      "prompt": "Your new lamp flickers whenever someone leaves part of a story out. Your person is telling you about their weekend away, and it flickers.",
+      "prompt": "Your person's shadow came home from their weekend away an hour before they did. It is sitting on your couch, ready to tell you everything.",
       "options": [
-        "I stop them and ask about the part they skipped.",
-        "I let it go. Some parts of their life are theirs."
+        "I sit down with it. I want to hear the whole weekend.",
+        "Their weekend is theirs. I ask the shadow to wait outside."
       ]
     },
     "fp": {
-      "trigger": "a magic lamp shows your person skipped part of a story",
-      "setting": "home, a lamp that flickers at omissions",
-      "ask": "ask about the missing part or let it be",
+      "trigger": "their shadow offers the untold weekend",
+      "setting": "your couch, before they are home",
+      "ask": "hear the whole story or leave the gaps",
       "who": "your person",
       "stakes": "knowing everything versus trusting what you don't know",
-      "device": "flickering-lamp"
+      "device": "early-shadow"
     },
-    "mask": "looks like a haunted-lamp joke; measures whether close means knowing everything or trusting what you don't know (R1)",
+    "mask": "looks like a spooky joke; measures whether being close means knowing everything or trusting the gaps (R1)",
     "ae": [
       "C",
       "D"
@@ -736,15 +736,15 @@
     "sq": "SQ-R1-2",
     "world": "absurd",
     "friend": {
-      "prompt": "{name}'s new lamp flickers whenever someone leaves out part of a story. {name}'s person tells a weekend story. Flicker. Which one is {name}?",
+      "prompt": "{name}'s person's shadow gets home early from a weekend away, ready to tell everything. What does {name} do?",
       "a": {
-        "t": "Pause the story. I want the flickery part.",
+        "t": "Pours it a drink. Wants the whole weekend.",
         "axes": {
           "R1": 2
         }
       },
       "b": {
-        "t": "Let it flicker. Some parts are theirs.",
+        "t": "Sends it outside. The weekend is theirs.",
         "axes": {
           "R1": -2
         }
@@ -755,10 +755,10 @@
     "id": "C3-141",
     "type": "this_or_that",
     "chapter": 3,
-    "prompt": "Your city is unveiling a statue of you: Hardest Worker of the Year. The ceremony is the same night as your person's birthday dinner.",
+    "prompt": "Hardest Worker of the Year: your city unveils your statue the same night as your person's birthday dinner.",
     "options": [
       {
-        "t": "The statue. I'll bring them cake from the ceremony.",
+        "t": "I go to the statue and bring them cake after.",
         "axes": {
           "L2": 2,
           "R1": -1
@@ -766,7 +766,7 @@
         "emotion": "pride"
       },
       {
-        "t": "The dinner. The pigeons can unveil it.",
+        "t": "The dinner. Pigeons can unveil it.",
         "axes": {
           "L2": -2,
           "R1": 1
@@ -775,10 +775,10 @@
       }
     ],
     "heart": {
-      "prompt": "Your city is unveiling a statue of you as its hardest worker of the year. The ceremony falls on the same night as your person's birthday dinner.",
+      "prompt": "Your city is unveiling a statue of you as its hardest worker of the year, on the same night as your person's birthday dinner.",
       "options": [
         "I go to the ceremony and bring them cake afterward.",
-        "I go to the dinner. The statue can be unveiled without me."
+        "The dinner. The statue can be unveiled without me."
       ]
     },
     "fp": {
@@ -820,7 +820,7 @@
     "id": "C3-142",
     "type": "real",
     "chapter": 3,
-    "prompt": "Round three of the same fight with someone close: a partner, roommate or friend. The most recent time, what did you actually do?",
+    "prompt": "Round three of the same fight with someone close: a partner, roommate or friend. The last time it happened, your move?",
     "options": [
       {
         "t": "Called a proper sit-down. Brought a new idea.",
@@ -868,10 +868,10 @@
       }
     ],
     "heart": {
-      "prompt": "Think of the last time you had the same fight a third time with someone close, like a partner, roommate or friend. What did you actually do?",
+      "prompt": "The last time you had the same fight a third time with someone close, like a partner, roommate or friend, what did you do?",
       "options": [
         "I asked for a real conversation and brought a new idea.",
-        "I apologized first, mostly so it would stop.",
+        "Sorry came from me first, mostly so it would stop.",
         "I quietly started putting less of myself into it.",
         "I decided it was the last time, for the whole thing."
       ]
@@ -923,7 +923,7 @@
     "chapter": 3,
     "sq": "SQ-R3-2",
     "world": "absurd",
-    "prompt": "Your talking doorbell greets every guest with your person's last name, never yours. You get one chance to change its greeting.",
+    "prompt": "Ding-dong. Your talking doorbell greets every guest with your person's last name, never yours. You get one chance to change its greeting.",
     "options": [
       {
         "t": "Keep their name. One home, one name sounds right.",
@@ -957,7 +957,7 @@
         ]
       },
       {
-        "t": "Invent a new shared name. The doorbell learns it first.",
+        "t": "A brand-new shared name, and the doorbell learns it first.",
         "axes": {
           "R3": -2
         },
@@ -1123,7 +1123,7 @@
     "prompt": "Genii suspects you've already picked a name for a kid you don't have.",
     "options": [
       {
-        "t": "Guilty. First and middle. Nobody's allowed to steal it.",
+        "t": "First and middle. Nobody's allowed to steal it.",
         "tags": [
           {
             "id": "T11A",
@@ -1133,7 +1133,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "Guilty. Years ago. Stopped picturing it since.",
+        "t": "Picked one years ago. Stopped picturing it since.",
         "tags": [
           {
             "id": "T11B",
@@ -1142,7 +1142,7 @@
         ]
       },
       {
-        "t": "Wrong. But I've pictured the school pickups.",
+        "t": "No name yet, but I've pictured the school pickups.",
         "tags": [
           {
             "id": "T11A",
@@ -1151,7 +1151,7 @@
         ]
       },
       {
-        "t": "Wrong. The life I picture has a lot more sleep.",
+        "t": "The life I picture has a lot more sleep.",
         "tags": [
           {
             "id": "T11B",
@@ -1218,7 +1218,7 @@
         "emotion": "relief"
       },
       {
-        "t": "Games host. Couples' charades, and we're winning.",
+        "t": "Running couples' charades, and we're winning.",
         "tags": [
           {
             "id": "T09A",
@@ -1250,7 +1250,7 @@
       "prompt": "Four couples share a rented cabin for a long weekend. By Sunday, which one are you?",
       "options": [
         "The one who did everything with their person, even the dishes.",
-        "The one hiking alone at dawn, back for breakfast.",
+        "Hiking alone at dawn, back for breakfast.",
         "The one running couples' charades, on a team with their person.",
         "The one who became close friends with someone else's partner.",
         "The one still up late, talking with whoever is awake."
@@ -1322,14 +1322,14 @@
         "emotion": "warmth"
       },
       {
-        "t": "Congratulate everyone. Quietly start house hunting.",
+        "t": "Congratulate everyone, then quietly start house hunting.",
         "axes": {
           "L2": 1
         },
         "emotion": "envy"
       },
       {
-        "t": "Honestly relieved. Their year looks exhausting.",
+        "t": "Their year looks exhausting. I'm relieved, honestly.",
         "axes": {
           "L2": -1
         },
@@ -1382,7 +1382,7 @@
     "chapter": 3,
     "sq": "SQ-T09-1",
     "world": "unusual",
-    "prompt": "Your friend started dating a jazz drummer. Three months in, they own a hi-hat, quit their book club, and say \"we\" about every gig. First thought?",
+    "prompt": "Three months dating a jazz drummer, and your friend owns a hi-hat, quit their book club, and says \"we\" about every gig. Your read?",
     "options": [
       {
         "t": "Love that. Falling for someone means falling into their world.",
@@ -1419,7 +1419,7 @@
         ]
       },
       {
-        "t": "Same. I'd own drumsticks by week two.",
+        "t": "I'd own drumsticks by week two, same as them.",
         "tags": [
           {
             "id": "T09A",
@@ -1430,7 +1430,7 @@
       }
     ],
     "heart": {
-      "prompt": "Your friend started dating a jazz drummer. Three months later, they own a hi-hat, have left their book club and say \"we\" about every gig. What is your first thought?",
+      "prompt": "Three months into dating a jazz drummer, your friend owns a hi-hat, has left their book club and says \"we\" about every gig. What is your read?",
       "options": [
         "I love that. Falling for someone means stepping into their world.",
         "Give it a year. They will want something of their own again.",
@@ -1484,7 +1484,7 @@
     "id": "C3-147",
     "type": "real",
     "chapter": 3,
-    "prompt": "Your person's most recent weekend of plans without you. What did you actually do with yours?",
+    "prompt": "Most recent weekend your person had plans without you: what did you actually do with yours?",
     "options": [
       {
         "t": "Tagged along for part of it anyway.",
@@ -1532,9 +1532,9 @@
       }
     ],
     "heart": {
-      "prompt": "Think of the most recent weekend your person had plans without you. What did you actually do with yours?",
+      "prompt": "The most recent weekend your person had plans without you: what did you do with yours?",
       "options": [
-        "I joined them for part of it anyway.",
+        "Part of it, I joined them anyway.",
         "I missed them within hours and started planning our next weekend.",
         "I made my own plans before they had even left.",
         "I went on my own to the restaurant they refuse to try."
@@ -1653,7 +1653,7 @@
         "I know their order at three different places.",
         "I started a show only because they love it.",
         "I have a friend they have never met, and I like that.",
-        "I said \"I miss you\" and still kept my plans.",
+        "My plans stayed, even after I said \"I miss you.\"",
         "None of these"
       ]
     },
