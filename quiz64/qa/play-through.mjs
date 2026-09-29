@@ -29,21 +29,24 @@ const press = (k) => page.keyboard.press(k);
 // Keyboard: Tab to a control whose text matches, then Enter. Mouse: click it.
 // Keyboard mode moves focus with Tab only (never element.focus()), checks the focus ring is visible, then presses Enter.
 const focusMisses = [];
+const retries = [];
+const fatal = async (e) => { console.log(JSON.stringify({ fatal: String(e).slice(0, 300), errors, screen: await page.evaluate(() => `${document.querySelector(".mm-app")?.dataset.screen} | ${document.body.innerText.slice(0, 300)}`).catch(() => null) }, null, 1)); process.exit(1); };
+process.on("uncaughtException", fatal);
+process.on("unhandledRejection", fatal);
 async function activate(locator) {
   if (!KEYS) return locator.click();
-  const target = await locator.elementHandle();
-  for (let i = 0; i < 80; i++) {
-    if (await page.evaluate((t) => document.activeElement === t, target)) break;
-    await press("Tab");
-  }
-  const ring = await page.evaluate((t) => {
-    if (document.activeElement !== t) return "not reached";
+  // Re-resolve the locator on every Tab: a screen that re-renders (the Boot takeover, an interlude) replaces the node,
+  // and a stale handle would send Enter to whatever happens to hold focus (Save and leave, for one).
+  const on = () => locator.evaluate((t) => document.activeElement === t).catch(() => false);
+  for (let i = 0; i < 80 && !(await on()); i++) await press("Tab");
+  const ring = await locator.evaluate((t) => {
+    if (document.activeElement !== t) return `not reached (${t.className || t.tagName}: ${(t.textContent || "").trim().slice(0, 30)})`;
     const cs = getComputedStyle(t);
     const outline = cs.outlineStyle !== "none" && parseFloat(cs.outlineWidth) > 0;
     const shadow = cs.boxShadow && cs.boxShadow !== "none";
     return outline || shadow ? "ok" : `no ring (${t.className})`;
-  }, target);
-  if (ring !== "ok") focusMisses.push(ring);
+  }).catch((e) => `gone (${String(e).slice(0, 60)})`);
+  if (ring !== "ok") { focusMisses.push(ring); return locator.click().catch(() => {}); }
   return press("Enter");
 }
 
@@ -51,6 +54,8 @@ await page.goto(BASE);
 await page.evaluate(() => localStorage.clear());
 await page.goto(BASE);
 await page.waitForSelector(".mm-landing");
+// Boot paints the landing first (aria-busy); wait for the game to take over so Tab reaches the live button.
+await page.waitForSelector(".mm-app:not([aria-busy])");
 await shot("landing");
 await activate(page.getByRole("button", { name: /meet genii/i }));
 await page.waitForSelector(".mm-setup");
@@ -95,23 +100,39 @@ for (let guard = 0; guard < 400; guard++) {
   }
   const art = page.locator("article.pc").first();
   if (!(await art.count())) { if (++stuck > 40) throw new Error("no card, lock, interlude or result on screen"); continue; }
-  const type = await art.getAttribute("data-card-type");
-  const phase = await art.getAttribute("data-phase");
-  const prompt = (await page.locator(".pc-prompt").first().innerText()).trim();
+  // The card may be leaving (its exit transition) between the count and the reads: look again next turn.
+  const type = await art.getAttribute("data-card-type", { timeout: 1500 }).catch(() => null);
+  const phase = await art.getAttribute("data-phase", { timeout: 1500 }).catch(() => null);
+  const prompt = (await page.locator(".pc-prompt").first().innerText({ timeout: 1500 }).catch(() => "")).trim();
+  if (!type || !prompt) { await page.waitForTimeout(200); continue; }
   const sig = `${phase}|${prompt}`;
-  if (sig === lastSig) { if (++stuck > 60) throw new Error(`stuck on ${type}: ${prompt}`); continue; }
-  stuck = 0;
-  lastSig = sig;
-  const line = (await page.locator(".play-genii__line").first().innerText().catch(() => "")).trim();
-  if (phase === "finale") finale++; else cards++;
-  if (phase !== "finale") lines.push(line);
-  log.push({ i: cards + finale, phase, type, line, prompt: prompt.slice(0, 60) });
-  if (SHOTS) await shot(`${phase}-${type}`);
+  if (sig === lastSig) {
+    if (++stuck > 60) throw new Error(`stuck on ${type}: ${prompt}`);
+    // A key that landed while the card was still settling is lost, as it would be for a person: press again, once
+    // every 12 checks, and count it.
+    if (stuck % 12 !== 0) continue;
+    retries.push(`${type}: ${prompt.slice(0, 40)}`);
+  } else {
+    stuck = 0;
+    lastSig = sig;
+  }
+  if (!stuck) {
+    const line = (await page.locator(".play-genii__line").first().innerText().catch(() => "")).trim();
+    if (phase === "finale") finale++; else cards++;
+    if (phase !== "finale") lines.push(line);
+    log.push({ i: cards + finale, phase, type, line, prompt: prompt.slice(0, 60) });
+    if (SHOTS) await shot(`${phase}-${type}`);
+  }
   // A person reads the card first; answers under 1.5 s count as rushed (score-core rushedMs). DWELL=0 plays at speed.
   await page.waitForTimeout(Number(process.env.DWELL ?? 1700));
   if (KEYS) {
-    if (type === "pick_two") { await press("1"); await press("2"); await page.waitForTimeout(900); }
-    else if (type === "receipts") { await press("1"); await press("Enter"); }
+    if (type === "pick_two") {
+      // A person presses keys a beat apart; on a retry only the keys whose tile is not picked yet are pressed.
+      const on = await art.locator("button[data-index][aria-pressed=true]").evaluateAll((els) => els.map((e) => Number(e.dataset.index))).catch(() => []);
+      for (const i of [0, 1]) if (!on.includes(i)) { await press(String(i + 1)); await page.waitForTimeout(150); }
+      await page.waitForTimeout(900);
+    }
+    else if (type === "receipts") { await press("1"); await page.waitForTimeout(150); await press("Enter"); }
     else if (type === "rank") { const k = await art.locator(".pc-rank__tap").count(); for (let i = 1; i <= k; i++) await press(String(i)); await press("Enter"); }
     else await press("1");
   } else {
@@ -155,7 +176,7 @@ const sorted = [...timings].sort((a, b) => a - b);
 const tapToPrompt = sorted.length ? { median: sorted[Math.floor(sorted.length / 2)], p90: sorted[Math.floor(sorted.length * 0.9)] } : null;
 const repeats = lines.map((l, i) => (i && l && l === lines[i - 1] ? i : -1)).filter((i) => i >= 0);
 const distinct = new Set(lines.filter(Boolean)).size;
-const summary = { voice: VOICE, keys: KEYS, view: VIEW, cards, finale, interludes, locked, slides, stories, distinctLines: distinct, backToBackRepeats: repeats.length, focusMisses, tapToPrompt, maxWebGL, errors };
+const summary = { voice: VOICE, keys: KEYS, view: VIEW, cards, finale, interludes, locked, slides, stories, distinctLines: distinct, backToBackRepeats: repeats.length, focusMisses, retries, tapToPrompt, maxWebGL, errors };
 console.log(JSON.stringify(summary, null, 1));
 if (process.env.VERBOSE) for (const r of log) console.log(`${String(r.i).padStart(2)} ${r.phase.padEnd(7)} ${r.type.padEnd(12)} | ${r.line}`);
 await browser.close();
