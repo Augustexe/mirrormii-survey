@@ -30,13 +30,19 @@ export function playUntil(state, choose, stop = () => false) {
   throw new Error("run did not finish");
 }
 
-export const firstOption = (card) => ({ value: card.type === "pick_two" ? [0, 1] : 0 });
+export const firstOption = (card) => ({ value: card.type === "pick_two" ? [0, 1] : card.type === "receipts" ? [0] : 0 });
 
 // A consistent player: prefers options whose evidence points to the given signs.
 export function leaning(signs) {
   return (card) => {
     const scoreOf = (o) => Object.entries(o.axes || {}).reduce((acc, [ax, v]) => acc + (signs[ax] || 0) * v, 0) + (o.tags || []).reduce((acc, t) => acc + (t.id.endsWith("A") ? 1 : -1) * t.s * 0.3, 0);
-    const ranked = card.options.map((o, i) => ({ i, s: o.circumstance || o.depends ? -99 : scoreOf(o) })).sort((a, b) => b.s - a.s || a.i - b.i);
+    const ranked = card.options.map((o, i) => ({ i, s: o.circumstance || o.depends || o.none ? -99 : scoreOf(o) })).sort((a, b) => b.s - a.s || a.i - b.i);
+    if (card.type === "receipts") {
+      // Ticks every item that points its way; nothing fits: "None of these".
+      const ticks = ranked.filter((x) => x.s > 0).map((x) => x.i).sort((a, b) => a - b);
+      const none = card.options.findIndex((o) => o.none);
+      return { value: ticks.length ? ticks : none >= 0 ? [none] : [] };
+    }
     return { value: card.type === "pick_two" ? [ranked[0].i, ranked[1].i] : ranked[0].i };
   };
 }

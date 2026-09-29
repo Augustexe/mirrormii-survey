@@ -29,6 +29,20 @@ function utility(o, h) {
   return u;
 }
 
+// A receipts answer: each item is ticked when it fits the player (utility above a small bar, with the same gumbel
+// jitter as a pick); with probability nz an item is a coin flip instead. Nothing ticked: "None of these".
+export function receiptsTicks(card, hidden, r, nz) {
+  const gumbel = () => -Math.log(-Math.log(Math.max(1e-12, r())));
+  const out = [];
+  card.options.forEach((o, i) => {
+    if (o.none) return;
+    const tick = r() < nz ? r() < 0.5 : utility(o, hidden) + 0.12 * gumbel() > 0.1;
+    if (tick) out.push(i);
+  });
+  const none = card.options.findIndex((o) => o.none);
+  return out.length ? out : none >= 0 ? [none] : [];
+}
+
 // One synthetic player. Every card draw comes from an rng seeded by the player and the card, so a card gets the same
 // answer in the picker run and the baseline run.
 export function makePlayer(seed, { noise = 0.2, exitRate = 0, rushFrom = Infinity } = {}) {
@@ -45,6 +59,7 @@ export function makePlayer(seed, { noise = 0.2, exitRate = 0, rushFrom = Infinit
     const n = card.options.length;
     const want = card.type === "pick_two" ? 2 : 1;
     const nz = card.type === "feeling" ? 1 : noise;
+    if (card.type === "receipts") return { value: receiptsTicks(card, hidden, r, nz), ms, flip: null };
     const ranked = card.options.map((o, i) => [i, utility(o, hidden) + 0.12 * gumbel()]).sort((a, b) => b[1] - a[1]).map(([i]) => i);
     const out = [];
     while (out.length < want) {
@@ -188,12 +203,96 @@ export function simulate({ n = 300, noise = 0.2, baseline = true } = {}) {
   };
 }
 
+// A uniform random clicker (every option equally likely; receipts: each item a coin flip, None 1 in n).
+export function makeRandomPlayer(seed) {
+  const answer = (card) => {
+    const r = S.rng(hash32(`random|${seed}|${card.id}`));
+    const n = card.options.length;
+    const ms = Math.round(U(r, 2500, 11000));
+    if (card.type === "receipts") {
+      const none = card.options.findIndex((o) => o.none);
+      if (none >= 0 && r() < 1 / n) return { value: [none], ms };
+      const ticks = card.options.map((o, i) => (!o.none && r() < 0.5 ? i : -1)).filter((i) => i >= 0);
+      return { value: ticks, ms };
+    }
+    if (card.type === "pick_two") {
+      const a = Math.floor(r() * n);
+      let b = Math.floor(r() * (n - 1));
+      if (b >= a) b++;
+      return { value: [a, b], ms };
+    }
+    const value = Math.floor(r() * n);
+    const flip = card.options[value].depends && card.flip ? Math.floor(r() * card.flip.options.length) : null;
+    return { value, ms, flip };
+  };
+  return { seed, answer };
+}
+
+// Step B acceptance (LAUNCH-SPEC section 18): per-tag fire rates for consistent players at RUN_SIZE with every room
+// open (depth "personal", adult and teen; locked18 tags rated on adults only), the same per room combination, and
+// random clickers' pole shares with every room open.
+export function acceptance({ n = 1000, nRooms = 300, nRandom = 2000, noise = 0.2 } = {}) {
+  const tags = LIB.tags;
+  const rate = (fires, adults, all) => Object.fromEntries(tags.map((t) => [t.id, (fires[t.id] || 0) / ((t.locked18 ? adults : all) || 1)]));
+  const runSet = (rooms, count, tagPrefix) => {
+    const fires = {};
+    let adults = 0, all = 0, zero = 0, unfinished = 0, shown = 0, exact = 0, called = 0;
+    for (const age of ["adult", "teen"]) {
+      for (let i = 0; i < count; i++) {
+        const player = makePlayer(`${tagPrefix}-${age}-${i}`, { noise });
+        const s = playPicker({ age, closest: "best_friend", pronoun: "they" }, lobbyFor(rooms, "personal"), player, `acc${String(i).padStart(5, "0")}`);
+        const { profile, sealed } = Session.resultFor(s);
+        all++; if (age === "adult") adults++;
+        for (const id of profile.firedTags) fires[id] = (fires[id] || 0) + 1;
+        if (!profile.shownTags.length) zero++;
+        if (AXES.some((a) => profile.axes[a].unfinished)) unfinished++;
+        shown += profile.shownTags.length;
+        exact += sealed.exact; called += sealed.called;
+      }
+    }
+    return { rates: rate(fires, adults, all), n: all, zeroShare: zero / all, unfinishedShare: unfinished / all, shownMean: shown / all, exactRate: called ? exact / called : 0 };
+  };
+  const open = runSet(["love", "work", "family"], n, "open");
+  const byRooms = {};
+  for (const rooms of ROOM_SETS) byRooms[rooms.join("+") || "none"] = runSet(rooms, nRooms, `rooms-${rooms.join("+") || "none"}`);
+  const pos = Object.fromEntries(AXES.map((a) => [a, 0]));
+  let rn = 0;
+  for (const age of ["adult", "teen"]) {
+    for (let i = 0; i < nRandom; i++) {
+      const s = playPicker({ age, closest: "best_friend", pronoun: "they" }, lobbyFor(["love", "work", "family"], "personal"), makeRandomPlayer(`${age}-${i}`), `rnd${String(i).padStart(5, "0")}`);
+      const p = Session.profileFor(s);
+      for (const a of AXES) if (p.axes[a].pole > 0) pos[a]++;
+      rn++;
+    }
+  }
+  return { open, byRooms, random: Object.fromEntries(AXES.map((a) => [a, pos[a] / rn])), randomN: rn };
+}
+
 const pct = (x) => (x === null ? "n/a" : `${(100 * x).toFixed(1)}%`);
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const arg = (k, d) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : d; };
   const n = Number(arg("--n", 300));
   const t0 = Date.now();
+  if (process.argv.includes("--acceptance")) {
+    const acc = acceptance({ n: Number(arg("--n", 1000)), nRooms: Number(arg("--rooms", 300)), nRandom: Number(arg("--random", 2000)) });
+    if (process.argv.includes("--json")) { console.log(JSON.stringify(acc, null, 1)); process.exit(0); }
+    const o = acc.open;
+    console.log(`Every room open, depth personal, ${o.n} consistent players (adult and teen), ${((Date.now() - t0) / 1000).toFixed(1)} s`);
+    console.log(`tags shown mean ${o.shownMean.toFixed(2)}, 0 tags ${pct(o.zeroShare)}, any unfinished ${pct(o.unfinishedShare)}, sealed exact ${pct(o.exactRate)}`);
+    const under = Object.entries(o.rates).filter(([, r]) => r < 0.01);
+    console.log(`tags under 1%: ${under.map(([id, r]) => `${id} ${pct(r)}`).join(", ") || "none"}`);
+    console.log(`lowest five: ${Object.entries(o.rates).sort((a, b) => a[1] - b[1]).slice(0, 5).map(([id, r]) => `${id} ${pct(r)}`).join(", ")}`);
+    console.log("\n| Open rooms | Players | Tags under 1% | Never fired | 0 tags | Unfinished | Sealed exact |");
+    console.log("|---|---|---|---|---|---|---|");
+    for (const [k, r] of Object.entries(acc.byRooms)) {
+      const u = Object.entries(r.rates).filter(([, x]) => x < 0.01).map(([id]) => id);
+      const never = Object.entries(r.rates).filter(([, x]) => x === 0).map(([id]) => id);
+      console.log(`| ${k} | ${r.n} | ${u.length} ${u.join(" ")} | ${never.length} | ${pct(r.zeroShare)} | ${pct(r.unfinishedShare)} | ${pct(r.exactRate)} |`);
+    }
+    console.log(`\nRandom clickers (${acc.randomN}, every room open) on the + pole: ${AXES.map((a) => `${a} ${pct(acc.random[a])}`).join(", ")}`);
+    process.exit(0);
+  }
   const out = simulate({ n });
   if (process.argv.includes("--json")) { console.log(JSON.stringify(out, null, 1)); process.exit(0); }
   console.log(`players per bucket: ${n}, buckets: ${out.rows.length}, seconds: ${((Date.now() - t0) / 1000).toFixed(1)}`);

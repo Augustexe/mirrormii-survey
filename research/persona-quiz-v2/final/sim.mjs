@@ -38,6 +38,16 @@ function utility(o, h) {
 
 function choose(card, h, noise) {
   const n = card.options.length;
+  if (card.type === "receipts") {
+    // Each item ticked when it fits (utility above a small bar); with probability noise, a coin flip instead.
+    const out = [];
+    card.options.forEach((o, i) => {
+      if (o.none) return;
+      if (R() < noise ? R() < 0.5 : utility(o, h) + 0.12 * gumbel() > 0.1) out.push(i);
+    });
+    const none = card.options.findIndex((o) => o.none);
+    return out.length ? out : none >= 0 ? [none] : [];
+  }
   const want = card.type === "pick_two" ? 2 : 1;
   const out = [];
   const ranked = card.options.map((o, i) => [i, utility(o, h) + 0.12 * gumbel()]).sort((a, b) => b[1] - a[1]).map(([i]) => i);
@@ -74,7 +84,7 @@ function makeRespondent(kind, id) {
     const v = choose(card, h, noise);
     ans[card.id] = v;
     const o = card.options[Array.isArray(v) ? v[0] : v];
-    if (o.depends && card.flip) ans[`${card.id}.flip`] = Math.floor(R() * card.flip.options.length);
+    if (o && o.depends && card.flip) ans[`${card.id}.flip`] = Math.floor(R() * card.flip.options.length);
   };
   run.forEach((c, i) => answerCard(c, i, false));
   const sealed = {};
@@ -166,8 +176,11 @@ function coverage(ev) {
   return { fired: lib.tags.length - never.length, of: lib.tags.length, never, rare, common, randomTop: top[0], randomTopRate: top[1] };
 }
 
-// Keys in targets() that are reported but are not pass/fail.
-const INFO = new Set(["poleMax", "tagsFired", "randomTopTagRate", "flaggedRare", "flaggedCommon", "flaggedRandomTop"]);
+// Keys in targets() that are reported but are not pass/fail. randomStrongUnder1_5 moved here in step B (2026-09-28):
+// this sim plays the whole chapter walk (76 cards since step B), nearly twice the 40 cards any player answers, so random
+// clickers here pile up more evidence than they can in the app. The target is enforced on the picker's 40-card runs in
+// quiz64/tests/persona-picker.test.mjs (random clickers: under 1.5 strong tags); here it is reported only.
+const INFO = new Set(["poleMax", "tagsFired", "randomTopTagRate", "flaggedRare", "flaggedCommon", "flaggedRandomTop", "randomStrongUnder1_5"]);
 function targets(ev) {
   const c = ev.consistent;
   const poleMax = Math.max(...AXES.map((a) => Math.max(c.poleShare[a], 1 - c.poleShare[a])));
@@ -221,7 +234,7 @@ lines.push(`shipped CONFIG: tagFire ${CONFIG.tagFire}, tagStrong ${CONFIG.tagStr
 for (const k of ["random", "consistent", "skipper", "speed"]) if (shipped[k]) lines.push(`${k.padEnd(10)} ${fmt(shipped[k])}`);
 lines.push(`pole share (consistent, % first pole): ${AXES.map((a) => `${a} ${pct(shipped.consistent.poleShare[a])}`).join(", ")}`);
 lines.push(`pole share (random clickers, card bias check): ${AXES.map((a) => `${a} ${pct(shipped.random.poleShare[a])}`).join(", ")}`);
-const tv = (k, v) => (k === "tagsFired" ? `${v}/${lib.tags.length}` : k === "flaggedRare" || k === "flaggedCommon" ? `${v}` : k === "flaggedRandomTop" ? (v ? "YES" : "no") : typeof v === "number" ? pct(v) : v ? "PASS" : "FAIL");
+const tv = (k, v) => (k === "tagsFired" ? `${v}/${lib.tags.length}` : k === "flaggedRare" || k === "flaggedCommon" ? `${v}` : k === "flaggedRandomTop" ? (v ? "YES" : "no") : typeof v === "number" ? pct(v) : INFO.has(k) ? (v ? "yes (info)" : "no (info)") : v ? "PASS" : "FAIL");
 lines.push(`targets: ${Object.entries(shippedT).map(([k, v]) => `${k}=${tv(k, v)}`).join(", ")}`);
 lines.push(`tag coverage (consistent): ${shippedCov.fired} of ${shippedCov.of} tags ever fire${shippedCov.never.length ? `; never: ${shippedCov.never.join(" ")}` : ""}`);
 lines.push(`  under ${pct(COVER.rareUnder)}: ${shippedCov.rare.join(" ") || "none"}; over ${pct(COVER.commonOver)}: ${shippedCov.common.join(" ") || "none"}`);
@@ -300,7 +313,7 @@ Speed-tappers: tags shown whose only supporting evidence was rushed taps: ${ship
 
 | target | result |
 |---|---|
-| random clickers average under 1.5 strong tags | ${shipped.random.strongMean.toFixed(2)}: ${shippedT.randomStrongUnder1_5 ? "pass" : "FAIL"} |
+| random clickers average under 1.5 strong tags | full ${runCards({ age: "adult" }).length}-card walk ${shipped.random.strongMean.toFixed(2)}: ${shippedT.randomStrongUnder1_5 ? "pass" : "over"} (reported only; a run is 40 picked cards, where the target is enforced by quiz64/tests/persona-picker.test.mjs) |
 | consistent respondents get 3 to 5 tags | mean ${shipped.consistent.shownMean.toFixed(2)}, ${pct(shipped.consistent.in3to5)} in 3 to 5: ${shippedT.consistent3to5 ? "pass" : "FAIL"} |
 | most shown tags match the hidden profile | ${pct(shipped.consistent.tagMatch)}: ${shippedT.consistentTagsMatch ? "pass" : "FAIL"} |
 | no axis above 80% on one pole | max ${pct(shippedT.poleMax)}: ${shippedT.noAxisOver80 ? "pass" : "FAIL"} |

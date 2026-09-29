@@ -111,6 +111,45 @@ test("answers are validated per card: exits, pick two, depends follow-ups, order
   assert.equal(profile.research.depends[0].flip, depends.flip.options[2]);
 });
 
+test("new formats validate their own answer shapes: receipts ticks with an exclusive None, guilty and reply one pick", () => {
+  const receipts = { type: "receipts", exits: ["skip", "not_my_life"], options: [{ t: "a" }, { t: "b" }, { t: "c" }, { t: "None of these", none: true }] };
+  assert.deepEqual(Session.validateResponse(receipts, [2, 0]), [0, 2], "stored sorted");
+  assert.deepEqual(Session.validateResponse(receipts, []), [], "Done with nothing ticked");
+  assert.deepEqual(Session.validateResponse(receipts, [3]), [3]);
+  assert.throws(() => Session.validateResponse(receipts, [0, 3]), { code: "bad_answer" }, "None stands alone");
+  assert.throws(() => Session.validateResponse(receipts, [0, 0]), { code: "bad_answer" });
+  assert.throws(() => Session.validateResponse(receipts, 1), { code: "bad_answer" });
+  assert.throws(() => Session.validateResponse(receipts, "no_recent"), { code: "bad_answer" });
+  assert.equal(Session.validateResponse(receipts, "skip"), "skip");
+  for (const type of ["guilty", "reply", "others"]) {
+    const card = { type, exits: ["skip", "not_my_life"], options: [{ t: "a" }, { t: "b" }] };
+    assert.equal(Session.validateResponse(card, 1), 1);
+    assert.throws(() => Session.validateResponse(card, [0]), { code: "bad_answer" }, type);
+    assert.throws(() => Session.validateResponse(card, 2), { code: "bad_answer" }, type);
+  }
+  assert.ok(Session.LIGHT_TYPES.includes("guilty"), "guilty or not is a quick card for the rushed rule");
+});
+
+test("a receipts card plays through the step machine: ticks, an exclusive None, per-tick weight, save and restore", () => {
+  const card = KIT.chapters.flatMap((c) => c.cards).find((c) => c.type === "receipts" && c.teen);
+  const s = reach(card.id);
+  assert.ok(s, `${card.id} is served`);
+  assert.throws(() => Session.answerCard(s, card.id, 0), { code: "bad_answer" }, "receipts take a list");
+  const none = card.options.findIndex((o) => o.none);
+  assert.throws(() => Session.answerCard(s, card.id, [0, none]), { code: "bad_answer" });
+  const ticked = Session.answerCard(s, card.id, [2, 0], { ms: 5000 });
+  assert.deepEqual(ticked.answers[card.id], [0, 2]);
+  const ev = Object.values(Session.profileFor(ticked).tags).flatMap((t) => t.evidence).filter((e) => e.card === card.id);
+  assert.ok(ev.length >= 2 && ev.every((e) => e.w === card.weight && e.grade === "did"), "each tick counts at the card weight as did evidence");
+  const back = Session.restore(Session.serialize(ticked));
+  assert.equal(Session.currentStep(back).card.id, Session.currentStep(ticked).card.id, "a restored run resumes on the same card");
+  const nothing = Session.answerCard(s, card.id, [none], { ms: 5000 });
+  assert.equal(Object.values(Session.profileFor(nothing).tags).flatMap((t) => t.evidence).filter((e) => e.card === card.id).length, 0);
+  const guilty = KIT.chapters.flatMap((c) => c.cards).find((c) => c.type === "guilty" && c.teen);
+  assert.equal(guilty.options.length, 2);
+  assert.equal(guilty.weight, 0.8);
+});
+
 test("rushed taps count at 0.3 and are logged for research", () => {
   const s = completeRun(ADULT, (card) => ({ ...firstOption(card), ms: 900 }), "rushrun01");
   const p = Session.profileFor(s);
@@ -129,7 +168,7 @@ test("an unfinished side gets 1 or 2 extra cards for that side only, then Genii 
   assert.equal(Session.profileFor(s).axes.R1.unfinished, true);
   const offered = [];
   s = playUntil(s, (card, st) => { if (st.phase === "extra") offered.push(card.id); return firstOption(card); }, (st) => st.kind === "lock" || (st.kind === "card" && st.phase === "finale"));
-  assert.deepEqual(offered, KIT.extras.filter((c) => c.axisFor === "R1").map((c) => c.id), "two extras when the side had no cards");
+  assert.deepEqual([...offered].sort(), KIT.extras.filter((c) => c.axisFor === "R1").map((c) => c.id).sort(), "two extras when the side had no cards");
   assert.equal(Session.profileFor(s).axes.R1.unfinished, false);
 
   // A side with one valid card needs just one extra.

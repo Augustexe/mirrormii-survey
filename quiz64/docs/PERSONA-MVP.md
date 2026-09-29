@@ -1,3 +1,5 @@
+> Picker weights and rules changed in step B (2026-09-28): see docs/LAUNCH-SPEC.md section 10 and quiz64/src/persona/session.js; the picker notes below predate step B.
+
 > Code notes for the web game. The spec is [docs/LAUNCH-SPEC.md](../../docs/LAUNCH-SPEC.md); where they differ, the spec wins.
 
 ---

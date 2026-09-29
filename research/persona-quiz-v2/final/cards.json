@@ -1,6 +1,6 @@
 {
   "version": "persona-quiz-v2",
-  "built": "2026-09-26",
+  "built": "2026-09-28",
   "sources": {
     "chapters": [
       "../chapters/ch1.final.json",
@@ -22,7 +22,11 @@
     "feeling": 0,
     "sealed": 0,
     "rushedMs": 1500,
-    "rushedFactor": 0.3
+    "rushedFactor": 0.3,
+    "receipts": 0.4,
+    "guilty": 0.8,
+    "reply": 0.55,
+    "others": 0.45
   },
   "exits": {
     "skip": {
@@ -773,6 +777,179 @@
             "no_recent"
           ],
           "teen": true
+        },
+        {
+          "id": "C1-12",
+          "type": "receipts",
+          "sally": [],
+          "privacy": "normal",
+          "prompt": "Receipts check. Unlock your phone. Tap everything that's true right now.",
+          "options": [
+            {
+              "t": "An AI chat longer than any chat with a human",
+              "tags": [
+                {
+                  "id": "T03A",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "A voice note to a friend, over two minutes, this week",
+              "tags": [
+                {
+                  "id": "T03B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Live location shared with three or more people",
+              "axes": {
+                "R1": 1
+              },
+              "tags": [
+                {
+                  "id": "T01A",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Read receipts switched off",
+              "axes": {
+                "R1": -1
+              },
+              "tags": [
+                {
+                  "id": "T01B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "A Close Friends list with fewer than ten people",
+              "tags": [
+                {
+                  "id": "T04A",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Fifteen-plus group chats, none of them muted",
+              "tags": [
+                {
+                  "id": "T04B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "50+ unread texts, and you feel fine",
+              "tags": [
+                {
+                  "id": "T02A",
+                  "s": 3
+                }
+              ]
+            },
+            {
+              "t": "None of these",
+              "none": true
+            }
+          ],
+          "mask": "looks like a phone audit; measures, from facts on the phone, AI versus own words (T03), how open the phone is (T01, slight R1), circle size (T04) and how unbothered by unread texts (T02A)",
+          "ae": [
+            "A"
+          ],
+          "chapter": 1,
+          "grade": "did",
+          "weight": 0.4,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "teen": true
+        },
+        {
+          "id": "C1-13",
+          "type": "others",
+          "sally": [],
+          "privacy": "normal",
+          "prompt": "Your friend reads their partner's texts while the partner is in the shower. They tell you like it's a fun fact. First thought?",
+          "teenPrompt": "Your friend reads their sibling's texts while the sibling is in the shower. They tell you like it's a fun fact. First thought?",
+          "options": [
+            {
+              "t": "Nothing to hide, no harm done.",
+              "tags": [
+                {
+                  "id": "T01A",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Snooping is a line. Phones are private.",
+              "tags": [
+                {
+                  "id": "T01B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Flip my own phone face down. Instinct.",
+              "tags": [
+                {
+                  "id": "T01B",
+                  "s": 1
+                }
+              ]
+            },
+            {
+              "t": "Only a problem if you get caught.",
+              "tags": [
+                {
+                  "id": "T01A",
+                  "s": 1
+                }
+              ]
+            }
+          ],
+          "mask": "looks like gossip about a friend's snooping; measures the player's own line on phone privacy (T01)",
+          "ae": [
+            "B"
+          ],
+          "friend": {
+            "prompt": "{name}'s friend admits to reading someone's texts in secret. {name}'s first thought?",
+            "a": {
+              "t": "No harm if there's nothing to hide.",
+              "tags": [
+                {
+                  "id": "T01A",
+                  "s": 2
+                }
+              ]
+            },
+            "b": {
+              "t": "Snooping crosses a line.",
+              "tags": [
+                {
+                  "id": "T01B",
+                  "s": 2
+                }
+              ]
+            }
+          },
+          "chapter": 1,
+          "grade": "believe",
+          "weight": 0.45,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "teen": true
         }
       ]
     },
@@ -1094,7 +1271,7 @@
               "tags": [
                 {
                   "id": "T05A",
-                  "s": 1
+                  "s": 2
                 }
               ]
             },
@@ -1138,7 +1315,7 @@
               "tags": [
                 {
                   "id": "T05B",
-                  "s": 1
+                  "s": 2
                 }
               ]
             },
@@ -1328,7 +1505,7 @@
             {
               "t": "Stayed on my friend's side. Never brought it up.",
               "axes": {
-                "R2": -2
+                "R2": -1
               },
               "tags": []
             },
@@ -1457,7 +1634,9 @@
           "options": [
             {
               "t": "Send it tonight. Sort out paying back whenever.",
-              "axes": {},
+              "axes": {
+                "L3": -1
+              },
               "tags": [
                 {
                   "id": "T06A",
@@ -1471,7 +1650,7 @@
               "tags": [
                 {
                   "id": "T05A",
-                  "s": 2
+                  "s": 3
                 }
               ]
             },
@@ -1487,7 +1666,9 @@
             },
             {
               "t": "Agree on a payback date first. Set a reminder titled \"OWED\".",
-              "axes": {},
+              "axes": {
+                "L3": 1
+              },
               "tags": [
                 {
                   "id": "T12A",
@@ -1582,9 +1763,6 @@
             },
             {
               "t": "Smuggler: \"Come with me. Act like you were invited.\"",
-              "axes": {
-                "R2": 1
-              },
               "emotion": "delight"
             },
             {
@@ -1638,6 +1816,155 @@
             "not_my_life"
           ],
           "teen": true
+        },
+        {
+          "id": "C2-12",
+          "type": "guilty",
+          "sally": [],
+          "privacy": "normal",
+          "prompt": "I bet you've unblocked someone just to check if they'd changed.",
+          "options": [
+            {
+              "t": "Guilty",
+              "tags": [
+                {
+                  "id": "T08A",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Never",
+              "tags": [
+                {
+                  "id": "T08B",
+                  "s": 1
+                }
+              ]
+            }
+          ],
+          "mask": "looks like a confession; measures second chances (T08A) from a thing actually done",
+          "ae": [
+            "A"
+          ],
+          "friend": {
+            "prompt": "Has {name} ever unblocked someone just to check if they'd changed?",
+            "a": {
+              "t": "Guilty.",
+              "tags": [
+                {
+                  "id": "T08A",
+                  "s": 2
+                }
+              ]
+            },
+            "b": {
+              "t": "Never.",
+              "tags": [
+                {
+                  "id": "T08B",
+                  "s": 1
+                }
+              ]
+            }
+          },
+          "chapter": 2,
+          "grade": "did",
+          "weight": 0.8,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "teen": true
+        },
+        {
+          "id": "C2-13",
+          "type": "reply",
+          "sally": [],
+          "privacy": "normal",
+          "prompt": "Your friend, 11pm. What do you send back?",
+          "options": [
+            {
+              "t": "\"omw. bringing fries. we don't have to talk\"",
+              "tags": [
+                {
+                  "id": "T05A",
+                  "s": 3
+                }
+              ]
+            },
+            {
+              "t": "Three paragraphs and a heart. \"Read when ready.\"",
+              "tags": [
+                {
+                  "id": "T05B",
+                  "s": 3
+                }
+              ]
+            },
+            {
+              "t": "Their favorite food, delivered. No note.",
+              "tags": [
+                {
+                  "id": "T05A",
+                  "s": 1
+                }
+              ]
+            },
+            {
+              "t": "\"here whenever. love you.\" Check in at 9am.",
+              "tags": [
+                {
+                  "id": "T05B",
+                  "s": 1
+                }
+              ]
+            }
+          ],
+          "mask": "looks like a text thread; measures care shown through action versus through words (T05)",
+          "ae": [
+            "A",
+            "B"
+          ],
+          "friend": {
+            "prompt": "A friend texts {name}: 'worst day of my life. don't want to talk about it.' What does {name} send?",
+            "a": {
+              "t": "\"omw. bringing fries.\"",
+              "tags": [
+                {
+                  "id": "T05A",
+                  "s": 2
+                }
+              ]
+            },
+            "b": {
+              "t": "Three paragraphs and a heart.",
+              "tags": [
+                {
+                  "id": "T05B",
+                  "s": 2
+                }
+              ]
+            }
+          },
+          "chapter": 2,
+          "grade": "would",
+          "weight": 0.55,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "teen": true,
+          "thread": [
+            {
+              "from": "Dani",
+              "text": "worst day of my life"
+            },
+            {
+              "from": "Dani",
+              "text": "don't want to talk about it"
+            }
+          ]
         }
       ]
     },
@@ -1921,7 +2248,10 @@
                   "id": "T10A",
                   "s": 2
                 }
-              ]
+              ],
+              "axes": {
+                "R2": 1
+              }
             },
             {
               "t": "Let it fade. No fight, just fewer plans.",
@@ -1949,7 +2279,10 @@
                   "id": "T10A",
                   "s": 1
                 }
-              ]
+              ],
+              "axes": {
+                "R2": -1
+              }
             },
             {
               "t": "Started doing their dishes too, and mentioned it. Often.",
@@ -2417,6 +2750,186 @@
           ],
           "pick": 2,
           "teen": true
+        },
+        {
+          "id": "C3-13",
+          "type": "guilty",
+          "sally": [],
+          "privacy": "normal",
+          "prompt": "I bet you've celebrated a one-month anniversary. Balloons optional.",
+          "options": [
+            {
+              "t": "Guilty",
+              "axes": {
+                "R3": 1
+              },
+              "tags": [
+                {
+                  "id": "T09A",
+                  "s": 1
+                }
+              ]
+            },
+            {
+              "t": "Never",
+              "axes": {
+                "R3": -1
+              }
+            }
+          ],
+          "mask": "looks like a dating confession; measures following the classic relationship script (R3) from a thing actually done",
+          "ae": [
+            "A"
+          ],
+          "friend": {
+            "prompt": "Has {name} ever celebrated a one-month anniversary?",
+            "a": {
+              "t": "Guilty.",
+              "axes": {
+                "R3": 1
+              }
+            },
+            "b": {
+              "t": "Never.",
+              "axes": {
+                "R3": -1
+              }
+            }
+          },
+          "chapter": 3,
+          "grade": "did",
+          "weight": 0.8,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "teen": true
+        },
+        {
+          "id": "C3-14",
+          "type": "guilty",
+          "sally": [],
+          "privacy": "locked18",
+          "prompt": "I bet you've scrolled baby names 'just for fun.' And saved a few.",
+          "options": [
+            {
+              "t": "Guilty",
+              "tags": [
+                {
+                  "id": "T11A",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Never",
+              "tags": [
+                {
+                  "id": "T11B",
+                  "s": 1
+                }
+              ]
+            }
+          ],
+          "mask": "18+; looks like a confession; measures wanting kids someday (T11) from a thing actually done",
+          "ae": [
+            "A",
+            "D"
+          ],
+          "chapter": 3,
+          "grade": "did",
+          "weight": 0.8,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "teen": false
+        },
+        {
+          "id": "C3-15",
+          "type": "reply",
+          "sally": [],
+          "privacy": "normal",
+          "prompt": "After a quiet dinner, your person texts. What do you send back?",
+          "thread": [
+            {
+              "from": "Your person",
+              "text": "hey. you were quiet tonight"
+            },
+            {
+              "from": "Your person",
+              "text": "did I do something?"
+            }
+          ],
+          "options": [
+            {
+              "t": "Kind of, yeah. Can we talk tomorrow?",
+              "axes": {
+                "R2": 2
+              },
+              "tags": [
+                {
+                  "id": "T10A",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Nope, just tired! Night!",
+              "axes": {
+                "R2": -1
+              }
+            },
+            {
+              "t": "Honestly? I need a few days to myself.",
+              "tags": [
+                {
+                  "id": "T10B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "A meme. Let it do the talking.",
+              "axes": {
+                "R2": -1
+              }
+            }
+          ],
+          "mask": "looks like a text thread; measures saying the hard thing (R2) and working on friction versus stepping back (T10)",
+          "ae": [
+            "A",
+            "B"
+          ],
+          "friend": {
+            "prompt": "{name}'s person texts: 'you were quiet tonight. did I do something?' What does {name} send?",
+            "a": {
+              "t": "\"Kind of. Can we talk tomorrow?\"",
+              "axes": {
+                "R2": 2
+              },
+              "tags": [
+                {
+                  "id": "T10A",
+                  "s": 2
+                }
+              ]
+            },
+            "b": {
+              "t": "\"Nope, just tired!\"",
+              "axes": {
+                "R2": -1
+              }
+            }
+          },
+          "chapter": 3,
+          "grade": "would",
+          "weight": 0.55,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "teen": true
         }
       ]
     },
@@ -2700,76 +3213,6 @@
           "teen": true
         },
         {
-          "id": "C4-4",
-          "type": "this_or_that",
-          "sally": [
-            "Q35"
-          ],
-          "prompt": "A plant for your room. $10 at the big store, or $25 from a neighbor whose sales fund the animal shelter.",
-          "privacy": "normal",
-          "options": [
-            {
-              "t": "The neighbor's. My plant has a backstory now.",
-              "axes": {},
-              "tags": [
-                {
-                  "id": "T23A",
-                  "s": 2
-                }
-              ],
-              "emotion": "warmth"
-            },
-            {
-              "t": "The $10 one. The plant can't tell the difference.",
-              "axes": {},
-              "tags": [
-                {
-                  "id": "T23B",
-                  "s": 1
-                }
-              ]
-            }
-          ],
-          "feel": "tension",
-          "mask": "looks like a price check; measures paying clearly more so a purchase helps someone versus budget first (Sally Q35 reframed, T23)",
-          "ae": [
-            "A",
-            "D"
-          ],
-          "friend": {
-            "prompt": "{name} can buy a plant for $10, or for $25 from a neighbor raising money for the animal shelter. Which?",
-            "a": {
-              "t": "The neighbor's plant.",
-              "axes": {},
-              "tags": [
-                {
-                  "id": "T23A",
-                  "s": 2
-                }
-              ]
-            },
-            "b": {
-              "t": "The $10 one.",
-              "axes": {},
-              "tags": [
-                {
-                  "id": "T23B",
-                  "s": 1
-                }
-              ]
-            }
-          },
-          "chapter": 4,
-          "grade": "believe",
-          "weight": 0.45,
-          "exits": [
-            "skip",
-            "not_my_life"
-          ],
-          "teen": true,
-          "round": "ch4-r1"
-        },
-        {
           "id": "C4-2",
           "type": "this_or_that",
           "sally": [
@@ -2827,6 +3270,76 @@
                 {
                   "id": "T15B",
                   "s": 3
+                }
+              ]
+            }
+          },
+          "chapter": 4,
+          "grade": "believe",
+          "weight": 0.45,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "teen": true,
+          "round": "ch4-r1"
+        },
+        {
+          "id": "C4-4",
+          "type": "this_or_that",
+          "sally": [
+            "Q35"
+          ],
+          "prompt": "A plant for your room. $10 at the big store, or $25 from a neighbor whose sales fund the animal shelter.",
+          "privacy": "normal",
+          "options": [
+            {
+              "t": "The neighbor's. My plant has a backstory now.",
+              "axes": {},
+              "tags": [
+                {
+                  "id": "T23A",
+                  "s": 2
+                }
+              ],
+              "emotion": "warmth"
+            },
+            {
+              "t": "The $10 one. The plant can't tell the difference.",
+              "axes": {},
+              "tags": [
+                {
+                  "id": "T23B",
+                  "s": 1
+                }
+              ]
+            }
+          ],
+          "feel": "tension",
+          "mask": "looks like a price check; measures paying clearly more so a purchase helps someone versus budget first (Sally Q35 reframed, T23)",
+          "ae": [
+            "A",
+            "D"
+          ],
+          "friend": {
+            "prompt": "{name} can buy a plant for $10, or for $25 from a neighbor raising money for the animal shelter. Which?",
+            "a": {
+              "t": "The neighbor's plant.",
+              "axes": {},
+              "tags": [
+                {
+                  "id": "T23A",
+                  "s": 2
+                }
+              ]
+            },
+            "b": {
+              "t": "The $10 one.",
+              "axes": {},
+              "tags": [
+                {
+                  "id": "T23B",
+                  "s": 1
                 }
               ]
             }
@@ -2944,7 +3457,9 @@
             },
             {
               "t": "Whoever's broke this month gets it. Kai will survive.",
-              "axes": {},
+              "axes": {
+                "L3": -1
+              },
               "tags": [
                 {
                   "id": "T12B",
@@ -2994,6 +3509,153 @@
           "chapter": 4,
           "grade": "would",
           "weight": 0.55,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "teen": true
+        },
+        {
+          "id": "C4-11",
+          "type": "receipts",
+          "sally": [],
+          "privacy": "normal",
+          "prompt": "Receipts check. Open your banking or payment app. Tap everything that's true right now.",
+          "teenPrompt": "Receipts check. Your money right now: allowance, job, gift cards. Tap everything that's true.",
+          "options": [
+            {
+              "t": "Money set aside that you pretend doesn't exist",
+              "axes": {
+                "L1": 1
+              },
+              "tags": [
+                {
+                  "id": "T13B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "A ticket paid for before you knew if you could go",
+              "axes": {
+                "L1": -1
+              },
+              "tags": [
+                {
+                  "id": "T13A",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "A payment request under $5, sent to a friend",
+              "tags": [
+                {
+                  "id": "T12A",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "A friend's share you covered and never mentioned",
+              "tags": [
+                {
+                  "id": "T12B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "An app or sheet tracking where every dollar went",
+              "tags": [
+                {
+                  "id": "T24A",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Your exact balance? Honestly, a mystery",
+              "tags": [
+                {
+                  "id": "T24B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "None of these",
+              "none": true
+            }
+          ],
+          "mask": "looks like a money audit; measures, from facts, saving versus spending ahead (T13, slight L1), splitting exactly versus by means (T12) and tracking versus eyeballing (T24)",
+          "ae": [
+            "A"
+          ],
+          "chapter": 4,
+          "grade": "did",
+          "weight": 0.4,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "teen": true
+        },
+        {
+          "id": "C4-12",
+          "type": "guilty",
+          "sally": [],
+          "privacy": "normal",
+          "prompt": "I bet you've looked up how someone your age affords their life. Rent, car, three trips a year.",
+          "teenPrompt": "I bet you've looked up how someone at school affords their stuff. New phone, new sneakers, three trips a year.",
+          "options": [
+            {
+              "t": "Guilty",
+              "tags": [
+                {
+                  "id": "T15B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Never",
+              "tags": [
+                {
+                  "id": "T15A",
+                  "s": 1
+                }
+              ]
+            }
+          ],
+          "mask": "looks like a confession; measures spotting head starts (T15B) from a thing actually done",
+          "ae": [
+            "A"
+          ],
+          "friend": {
+            "prompt": "Has {name} ever looked up how someone their age affords their life?",
+            "a": {
+              "t": "Guilty.",
+              "tags": [
+                {
+                  "id": "T15B",
+                  "s": 2
+                }
+              ]
+            },
+            "b": {
+              "t": "Never.",
+              "tags": [
+                {
+                  "id": "T15A",
+                  "s": 1
+                }
+              ]
+            }
+          },
+          "chapter": 4,
+          "grade": "did",
+          "weight": 0.8,
           "exits": [
             "skip",
             "not_my_life"
@@ -3260,7 +3922,7 @@
               "tags": [
                 {
                   "id": "T16A",
-                  "s": 2
+                  "s": 3
                 }
               ],
               "emotion": "pride",
@@ -3853,6 +4515,171 @@
             "not_my_life"
           ],
           "teen": true
+        },
+        {
+          "id": "C5-11",
+          "type": "receipts",
+          "sally": [],
+          "privacy": "normal",
+          "prompt": "Receipts check. Think about this past week. Tap everything that's true.",
+          "options": [
+            {
+              "t": "A city you've never been to, pinned in your maps",
+              "axes": {
+                "L1": -1
+              },
+              "tags": [
+                {
+                  "id": "T22A",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "The same order at the same place, three times or more",
+              "axes": {
+                "L1": 1
+              },
+              "tags": [
+                {
+                  "id": "T22B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Work or homework done on a day off, unasked",
+              "axes": {
+                "L2": 1
+              },
+              "tags": [
+                {
+                  "id": "T16A",
+                  "s": 3
+                }
+              ]
+            },
+            {
+              "t": "A lunch break taken fully away from any screen",
+              "axes": {
+                "L2": -1
+              },
+              "tags": [
+                {
+                  "id": "T16B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "A whole Saturday blocked off for just you",
+              "tags": [
+                {
+                  "id": "T23B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "A fundraiser or volunteer shift on your calendar",
+              "tags": [
+                {
+                  "id": "T23A",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "None of these",
+              "none": true
+            }
+          ],
+          "mask": "looks like a week recap; measures, from facts, novelty versus routine (T22, L1), pushing versus clocking out (T16, L2) and own time versus giving it to a cause (T23)",
+          "ae": [
+            "A"
+          ],
+          "chapter": 5,
+          "grade": "did",
+          "weight": 0.4,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "teen": true
+        },
+        {
+          "id": "C5-12",
+          "type": "guilty",
+          "sally": [],
+          "privacy": "normal",
+          "prompt": "I bet you've closed your laptop at 5:00 exactly. Mid-sentence.",
+          "options": [
+            {
+              "t": "Guilty",
+              "axes": {
+                "L2": -1
+              },
+              "tags": [
+                {
+                  "id": "T16B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Never",
+              "axes": {
+                "L2": 1
+              },
+              "tags": [
+                {
+                  "id": "T16A",
+                  "s": 1
+                }
+              ]
+            }
+          ],
+          "mask": "looks like a confession; measures clocking out on time (T16B, L2 easy) from a thing actually done",
+          "ae": [
+            "A",
+            "D"
+          ],
+          "friend": {
+            "prompt": "Has {name} ever closed the laptop at 5:00 exactly, mid-sentence?",
+            "a": {
+              "t": "Guilty.",
+              "axes": {
+                "L2": -1
+              },
+              "tags": [
+                {
+                  "id": "T16B",
+                  "s": 2
+                }
+              ]
+            },
+            "b": {
+              "t": "Never.",
+              "axes": {
+                "L2": 1
+              },
+              "tags": [
+                {
+                  "id": "T16A",
+                  "s": 1
+                }
+              ]
+            }
+          },
+          "chapter": 5,
+          "grade": "did",
+          "weight": 0.8,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "teen": true,
+          "teenPrompt": "I bet you've stopped homework at the exact minute you said you would. Mid-sentence."
         }
       ]
     },
@@ -3971,49 +4798,73 @@
           "teen": true
         },
         {
-          "id": "C6-9",
+          "id": "C6-3",
           "type": "this_or_that",
           "sally": [
-            "Q09"
+            "Q04"
           ],
-          "prompt": "You and your person: six years, a shared dog, a joint Costco card. Your aunt asks, 'So when's the wedding?'",
-          "privacy": "locked18",
+          "prompt": "Your cousin and their partner swap roles every year: one works, one stays home with the baby, then they trade. Grandma is still recovering from the news. Your own home, someday?",
+          "teenPrompt": "Your friend's parents swap roles every year: one works, one runs the house, then they trade. There's a chart on the fridge. Your own home, someday?",
+          "privacy": "normal",
           "options": [
             {
-              "t": "Soon. Vows out loud, and Grandma crying in row one.",
-              "axes": {
-                "R3": 2
-              },
-              "tags": [
-                {
-                  "id": "T21A",
-                  "s": 2
-                }
-              ]
-            },
-            {
-              "t": "Never needed one. The dog is our marriage certificate.",
+              "t": "Same energy. Mine could run that way too.",
               "axes": {
                 "R3": -2
               },
               "tags": [
                 {
-                  "id": "T21B",
-                  "s": 2
-                },
+                  "id": "T20B",
+                  "s": 3
+                }
+              ]
+            },
+            {
+              "t": "Love it for them. Mine will run the way I grew up.",
+              "axes": {
+                "R3": 2
+              },
+              "tags": [
                 {
-                  "id": "T11B",
-                  "s": 1
+                  "id": "T20A",
+                  "s": 3
                 }
               ]
             }
           ],
-          "feel": "tension",
-          "mask": "looks like a nosy-aunt moment; measures whether commitment needs the classic ritual to count (R3, T21, T11B slight)",
+          "feel": "recognition",
+          "mask": "looks like an opinion on another family; measures whether the new script is fine for others but not for you (R3, T20A split)",
           "ae": [
             "B",
             "D"
           ],
+          "friend": {
+            "prompt": "{name} meets a couple who swap who works and who runs the home every year. Would {name} run a home that way?",
+            "a": {
+              "t": "Yes, same energy.",
+              "axes": {
+                "R3": -2
+              },
+              "tags": [
+                {
+                  "id": "T20B",
+                  "s": 2
+                }
+              ]
+            },
+            "b": {
+              "t": "Love it for them. {name}'s will run the way {name} grew up.",
+              "axes": {
+                "R3": 1
+              },
+              "tags": [
+                {
+                  "id": "T20A",
+                  "s": 3
+                }
+              ]
+            }
+          },
           "chapter": 6,
           "grade": "believe",
           "weight": 0.45,
@@ -4021,7 +4872,7 @@
             "skip",
             "not_my_life"
           ],
-          "teen": false,
+          "teen": true,
           "round": "ch6-r1"
         },
         {
@@ -4100,73 +4951,49 @@
           "round": "ch6-r1"
         },
         {
-          "id": "C6-3",
+          "id": "C6-9",
           "type": "this_or_that",
           "sally": [
-            "Q04"
+            "Q09"
           ],
-          "prompt": "Your cousin and their partner swap roles every year: one works, one stays home with the baby, then they trade. Grandma is still recovering from the news. Your own home, someday?",
-          "teenPrompt": "Your friend's parents swap roles every year: one works, one runs the house, then they trade. There's a chart on the fridge. Your own home, someday?",
-          "privacy": "normal",
+          "prompt": "You and your person: six years, a shared dog, a joint Costco card. Your aunt asks, 'So when's the wedding?'",
+          "privacy": "locked18",
           "options": [
             {
-              "t": "Same energy. Mine could run that way too.",
+              "t": "Soon. Vows out loud, and Grandma crying in row one.",
+              "axes": {
+                "R3": 2
+              },
+              "tags": [
+                {
+                  "id": "T21A",
+                  "s": 3
+                }
+              ]
+            },
+            {
+              "t": "Never needed one. The dog is our marriage certificate.",
               "axes": {
                 "R3": -2
               },
               "tags": [
                 {
-                  "id": "T20B",
-                  "s": 2
-                }
-              ]
-            },
-            {
-              "t": "Love it for them. Mine will run the way I grew up.",
-              "axes": {
-                "R3": 1
-              },
-              "tags": [
-                {
-                  "id": "T20A",
+                  "id": "T21B",
                   "s": 3
+                },
+                {
+                  "id": "T11B",
+                  "s": 1
                 }
               ]
             }
           ],
-          "feel": "recognition",
-          "mask": "looks like an opinion on another family; measures whether the new script is fine for others but not for you (R3, T20A split)",
+          "feel": "tension",
+          "mask": "looks like a nosy-aunt moment; measures whether commitment needs the classic ritual to count (R3, T21, T11B slight)",
           "ae": [
             "B",
             "D"
           ],
-          "friend": {
-            "prompt": "{name} meets a couple who swap who works and who runs the home every year. Would {name} run a home that way?",
-            "a": {
-              "t": "Yes, same energy.",
-              "axes": {
-                "R3": -2
-              },
-              "tags": [
-                {
-                  "id": "T20B",
-                  "s": 2
-                }
-              ]
-            },
-            "b": {
-              "t": "Love it for them. {name}'s will run the way {name} grew up.",
-              "axes": {
-                "R3": 1
-              },
-              "tags": [
-                {
-                  "id": "T20A",
-                  "s": 3
-                }
-              ]
-            }
-          },
           "chapter": 6,
           "grade": "believe",
           "weight": 0.45,
@@ -4174,7 +5001,7 @@
             "skip",
             "not_my_life"
           ],
-          "teen": true,
+          "teen": false,
           "round": "ch6-r1"
         },
         {
@@ -4280,7 +5107,10 @@
                   "s": 2
                 }
               ],
-              "emotion": "delight"
+              "emotion": "delight",
+              "axes": {
+                "R3": 1
+              }
             },
             {
               "t": "Doing open-bar math. That's a whole used car.",
@@ -4289,7 +5119,10 @@
                   "id": "T21B",
                   "s": 2
                 }
-              ]
+              ],
+              "axes": {
+                "R3": -1
+              }
             },
             {
               "t": "Cornering the grandparents: 'Okay, 50 years. What's the trick?'",
@@ -4307,7 +5140,10 @@
                   "id": "T21B",
                   "s": 1
                 }
-              ]
+              ],
+              "axes": {
+                "R3": -1
+              }
             },
             {
               "t": "Herding three generations into one photo. Twice.",
@@ -4316,7 +5152,10 @@
                   "id": "T21A",
                   "s": 1
                 }
-              ]
+              ],
+              "axes": {
+                "R3": 1
+              }
             },
             {
               "t": "Running the kids' table. Great at it. Zero plans for my own.",
@@ -4471,7 +5310,8 @@
             {
               "t": "Split by what we each hate least. I'll take trash.",
               "axes": {
-                "R3": -2
+                "R3": -2,
+                "L3": -1
               },
               "tags": [
                 {
@@ -4489,9 +5329,6 @@
             },
             {
               "t": "Bribe them with snacks to do all of it.",
-              "axes": {
-                "R3": -1
-              },
               "tags": [
                 {
                   "id": "T20B",
@@ -4566,7 +5403,10 @@
                   "id": "T18A",
                   "s": 3
                 }
-              ]
+              ],
+              "axes": {
+                "R2": -1
+              }
             },
             {
               "t": "Deadline. 'Last time' comes with an actual date.",
@@ -4575,7 +5415,10 @@
                   "id": "T18B",
                   "s": 2
                 }
-              ]
+              ],
+              "axes": {
+                "R2": 1
+              }
             },
             {
               "t": "Grumbler. I help, then vent about it all week.",
@@ -4585,7 +5428,10 @@
                   "s": 1
                 }
               ],
-              "emotion": "resentment"
+              "emotion": "resentment",
+              "axes": {
+                "R2": -1
+              }
             },
             {
               "t": "Secret sponsor. I help, and nobody else knows.",
@@ -4612,7 +5458,10 @@
                   "id": "T18B",
                   "s": 1
                 }
-              ]
+              ],
+              "axes": {
+                "R2": 1
+              }
             }
           ],
           "feel": "recognition",
@@ -4750,6 +5599,144 @@
           ],
           "pick": 2,
           "teen": true
+        },
+        {
+          "id": "C6-12",
+          "type": "receipts",
+          "sally": [],
+          "privacy": "normal",
+          "prompt": "Receipts check, family edition. Tap everything that's true right now.",
+          "options": [
+            {
+              "t": "A family group chat you actually reply in",
+              "axes": {
+                "R1": 1
+              },
+              "tags": [
+                {
+                  "id": "T19B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "A family call you let ring out this week",
+              "axes": {
+                "R1": -1
+              },
+              "tags": [
+                {
+                  "id": "T19A",
+                  "s": 1
+                }
+              ]
+            },
+            {
+              "t": "A dish you make exactly the way your family does",
+              "axes": {
+                "R3": 1
+              },
+              "tags": [
+                {
+                  "id": "T20A",
+                  "s": 3
+                }
+              ]
+            },
+            {
+              "t": "A holiday you now celebrate your own way",
+              "axes": {
+                "R3": -1
+              },
+              "tags": [
+                {
+                  "id": "T20B",
+                  "s": 3
+                }
+              ]
+            },
+            {
+              "t": "A relative's errand sitting on your to-do list",
+              "tags": [
+                {
+                  "id": "T18A",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "A family favor you said no to this month",
+              "tags": [
+                {
+                  "id": "T18B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "None of these",
+              "none": true
+            }
+          ],
+          "mask": "looks like a family audit; measures, from facts, family closeness (T19, slight R1), keeping versus rewriting traditions (T20, slight R3) and carrying family load (T18)",
+          "ae": [
+            "A",
+            "B"
+          ],
+          "chapter": 6,
+          "grade": "did",
+          "weight": 0.4,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "teen": true
+        },
+        {
+          "id": "C6-13",
+          "type": "guilty",
+          "sally": [],
+          "privacy": "locked18",
+          "prompt": "I bet you've saved a wedding venue to a folder. Yours, or purely hypothetical.",
+          "options": [
+            {
+              "t": "Guilty",
+              "axes": {
+                "R3": 1
+              },
+              "tags": [
+                {
+                  "id": "T21A",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Never",
+              "axes": {
+                "R3": -1
+              },
+              "tags": [
+                {
+                  "id": "T21B",
+                  "s": 1
+                }
+              ]
+            }
+          ],
+          "mask": "18+; looks like a confession; measures the classic wedding script (R3, T21) from a thing actually done",
+          "ae": [
+            "A",
+            "D"
+          ],
+          "chapter": 6,
+          "grade": "did",
+          "weight": 0.8,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "teen": false
         }
       ]
     },
@@ -4867,7 +5854,9 @@
           "options": [
             {
               "t": "Went deep on my own thing. Game, sketch, gym, guitar.",
-              "axes": {},
+              "axes": {
+                "R1": -1
+              },
               "tags": [
                 {
                   "id": "T23B",
@@ -4887,7 +5876,9 @@
             },
             {
               "t": "Texted around until a group plan happened.",
-              "axes": {},
+              "axes": {
+                "R1": 1
+              },
               "tags": [
                 {
                   "id": "T04B",
@@ -5181,10 +6172,12 @@
             },
             {
               "t": "Stalk the city on Street View for three nights first.",
-              "axes": {
-                "L1": 1
-              },
-              "tags": []
+              "tags": [
+                {
+                  "id": "T24A",
+                  "s": 1
+                }
+              ]
             },
             {
               "t": "Depends who'd still be here when I get back.",
@@ -5462,7 +6455,9 @@
           "options": [
             {
               "t": "My comfort show is on its fifth rewatch.",
-              "axes": {},
+              "axes": {
+                "L1": 1
+              },
               "tags": [
                 {
                   "id": "T22B",
@@ -5472,7 +6467,9 @@
             },
             {
               "t": "I pick the restaurant none of us has tried.",
-              "axes": {},
+              "axes": {
+                "L1": -1
+              },
               "tags": [
                 {
                   "id": "T22A",
@@ -5620,6 +6617,170 @@
           "chapter": 7,
           "grade": "would",
           "weight": 0.55,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "teen": true
+        },
+        {
+          "id": "C7-11",
+          "type": "reply",
+          "sally": [],
+          "privacy": "normal",
+          "prompt": "The group chat, Thursday night. What do you send?",
+          "thread": [
+            {
+              "from": "Rio",
+              "text": "beach day saturday?? who's planning"
+            },
+            {
+              "from": "Jo",
+              "text": "not me lol"
+            },
+            {
+              "from": "Sam",
+              "text": "i'll bring snacks"
+            }
+          ],
+          "options": [
+            {
+              "t": "On it. Shared doc: times, tides, backup plan.",
+              "tags": [
+                {
+                  "id": "T24A",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "On it. Pick a beach, show up at noon.",
+              "tags": [
+                {
+                  "id": "T24B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Starting a poll. Majority wins, no appeals.",
+              "axes": {
+                "L3": 1
+              }
+            },
+            {
+              "t": "Whoever drives picks. That's just fair.",
+              "axes": {
+                "L3": -1
+              }
+            }
+          ],
+          "mask": "looks like a group chat; measures planning versus winging it (T24) and deciding by a rule versus by the situation (L3)",
+          "ae": [
+            "A"
+          ],
+          "friend": {
+            "prompt": "The group chat asks who's planning Saturday's beach day. What does {name} send?",
+            "a": {
+              "t": "\"On it. Shared doc with a backup plan.\"",
+              "tags": [
+                {
+                  "id": "T24A",
+                  "s": 2
+                }
+              ]
+            },
+            "b": {
+              "t": "\"On it. Pick a beach, show up at noon.\"",
+              "tags": [
+                {
+                  "id": "T24B",
+                  "s": 2
+                }
+              ]
+            }
+          },
+          "chapter": 7,
+          "grade": "would",
+          "weight": 0.55,
+          "exits": [
+            "skip",
+            "not_my_life"
+          ],
+          "teen": true
+        },
+        {
+          "id": "C7-12",
+          "type": "others",
+          "sally": [],
+          "privacy": "normal",
+          "prompt": "Your friend finds a wallet with $80 inside and returns it. Minus $5, 'for the effort.' First thought?",
+          "options": [
+            {
+              "t": "Fair. Honestly, I'd have taken ten.",
+              "axes": {
+                "L3": -2
+              },
+              "tags": [
+                {
+                  "id": "T25B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Put the $5 back. It's not theirs.",
+              "axes": {
+                "L3": 1
+              },
+              "tags": [
+                {
+                  "id": "T25A",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Should've handed it to the front desk. Done.",
+              "axes": {
+                "L3": 1
+              }
+            }
+          ],
+          "mask": "looks like judging a friend; measures the player's own line on rules versus the situation (L3, T25)",
+          "ae": [
+            "B"
+          ],
+          "friend": {
+            "prompt": "{name}'s friend returns a lost wallet, minus $5 'for the effort.' {name}'s first thought?",
+            "a": {
+              "t": "Fair. Finder's fee.",
+              "axes": {
+                "L3": -2
+              },
+              "tags": [
+                {
+                  "id": "T25B",
+                  "s": 2
+                }
+              ]
+            },
+            "b": {
+              "t": "Put the $5 back.",
+              "axes": {
+                "L3": 1
+              },
+              "tags": [
+                {
+                  "id": "T25A",
+                  "s": 2
+                }
+              ]
+            }
+          },
+          "chapter": 7,
+          "grade": "believe",
+          "weight": 0.45,
           "exits": [
             "skip",
             "not_my_life"

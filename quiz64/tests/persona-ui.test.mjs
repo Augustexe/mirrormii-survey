@@ -4,7 +4,7 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { createServer } from "vite";
 import { fileURLToPath } from "node:url";
-import { ADULT, TEEN, clock, completeRun, leaning } from "./persona-helpers.mjs";
+import { ADULT, TEEN, clock, completeRun, leaning, firstOption } from "./persona-helpers.mjs";
 
 const visible = (html) => html.replace(/<[^>]*>/g, " ").replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, "\"").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/\s+/g, " ");
 // Internal ids and system words that must never reach the screen.
@@ -28,7 +28,7 @@ async function contentStripper() {
   const { S, LIB, FRIEND } = await load("/src/persona/kit.js");
   const strings = new Set();
   const walk = (v) => { if (typeof v === "string") { if (v.length > 3) strings.add(v); } else if (Array.isArray(v)) v.forEach(walk); else if (v && typeof v === "object") Object.values(v).forEach(walk); };
-  for (const c of S.allCards) { walk(c.prompt); walk(c.teenPrompt); walk(c.options.map((o) => o.t)); if (c.flip) walk(c.flip); }
+  for (const c of S.allCards) { walk(c.prompt); walk(c.teenPrompt); walk(c.options.map((o) => o.t)); if (c.flip) walk(c.flip); if (c.thread) walk(c.thread.map((m) => [m.from, m.text])); }
   walk(LIB.tags.map((t) => [t.name, t.sting, t.heart, t.calls]));
   walk([LIB.relationship, LIB.life].flat().map((h) => [h.name, h.desc, h.sting, h.heart]));
   walk(LIB.axes.map((a) => [a.plus, a.minus, a.plusLine, a.minusLine]));
@@ -46,10 +46,14 @@ test("every card renders its prompt, options and only its own exits; 18+ label o
     for (const card of cards) {
       if (setup === TEEN && !card.teen) continue;
       const step = { phase: card.type === "sealed" ? "finale" : card.axisFor ? "extra" : "chapter", chapter: card.chapter, index: 1, size: 8, round: card.round ? { index: 1, size: 3 } : null };
-      const text = visible(renderToStaticMarkup(React.createElement(PersonaCard, { card, step, setup, onAnswer() {} })));
+      const html = renderToStaticMarkup(React.createElement(PersonaCard, { card, step, setup, onAnswer() {} }));
+      const text = visible(html);
       assert.ok(text.includes(S.promptFor(card, setup).replace(/\s+/g, " ")), `${card.id} prompt`);
       if (setup === TEEN && card.teenPrompt) assert.ok(text.includes(card.teenPrompt.replace(/\s+/g, " ")), `${card.id} teen prompt`);
       for (const o of card.options) assert.ok(text.includes(o.t.replace(/\s+/g, " ")), `${card.id} option`);
+      for (const m of card.thread || []) assert.ok(text.includes(m.text.replace(/\s+/g, " ")), `${card.id} thread line`);
+      assert.equal(html.includes("persona-done"), card.type === "receipts", `${card.id}: Done button only on receipts`);
+      assert.equal(html.includes("persona-thread"), card.type === "reply", `${card.id}: chat bubbles only on reply cards`);
       assert.equal(text.includes("No recent example"), card.exits.includes("no_recent"), `${card.id} no recent`);
       assert.equal(/18\+/.test(text), card.privacy === "locked18", `${card.id} lock label`);
       const chrome = strip(text);
@@ -123,7 +127,7 @@ test("friend game screens: every level renders, the done screen shows counts onl
 test("a result with no named tags says why instead of showing empty sections", async () => {
   const { PersonaResult } = await load("/src/persona/PersonaResult.jsx");
   const { resultView } = await load("/src/persona/views.js");
-  const run = completeRun(ADULT, (card) => ({ value: card.type === "pick_two" ? [0, 1] : 0, ms: 700 }), "uinotags1");
+  const run = completeRun(ADULT, (card) => ({ ...firstOption(card), ms: 700 }), "uinotags1");
   const view = resultView(run);
   assert.equal(view.tags.length, 0);
   assert.equal(view.noTagsReason, "rushed");

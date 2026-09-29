@@ -24,6 +24,7 @@ export function createScorer({ kit, lib, friend }) {
     // share (net / the most net support the cards this player answered could have given the tag), then by net.
     // "net": every fired tag by net (the pre fix-pass ranking, kept for sim comparison).
     tagRank: "share",
+    receiptsCap: 3, // receipts: past this many ticks, each tick is scaled by cap / ticks, so a card never counts more than cap ticks
     splitMin: 0.4, // both believe and did/would evidence must reach this (weighted) to call a split
     // Plot twist: an axis split always qualifies. A tag-pair split qualifies only when the quoted believe card and the
     // quoted did/would card share one of these ("sally" question, "chapter"), so a twist never joins unrelated situations.
@@ -78,11 +79,25 @@ export function createScorer({ kit, lib, friend }) {
     }
     const picks = Array.isArray(raw) ? [...new Set(raw)] : [raw];
     for (const i of picks) if (!Number.isInteger(i) || !card.options[i]) throw new Error(`${card.id}: no option ${i}`);
-    if (card.type === "pick_two" && picks.length > 2) throw new Error(`${card.id}: pick_two takes at most 2 picks`);
-    if (card.type !== "pick_two" && picks.length !== 1) throw new Error(`${card.id}: takes one option`);
+    if (card.type === "receipts") {
+      // Tap everything that's true: 0 to n ticks; "None of these" (none: true) stands alone.
+      if (picks.some((i) => card.options[i].none) && picks.length > 1) throw new Error(`${card.id}: "none" cannot be ticked with other items`);
+    } else {
+      if (card.type === "pick_two" && picks.length > 2) throw new Error(`${card.id}: pick_two takes at most 2 picks`);
+      if (card.type !== "pick_two" && picks.length !== 1) throw new Error(`${card.id}: takes one option`);
+    }
     const flipRaw = answers[`${card.id}.flip`];
     const flip = Number.isInteger(flipRaw) && card.flip && card.flip.options[flipRaw] !== undefined ? flipRaw : null;
     return { kind: "picked", picks, flip, ms, rushed };
+  }
+
+  // Weight of each pick on one answered card, before the rushed factor. Receipts: every tick counts at the card weight,
+  // and past receiptsCap ticks each tick is scaled by receiptsCap / ticks ("None of these" never counts as a tick).
+  // Every other type: the card weight.
+  function pickWeight(card, picks, C = CONFIG) {
+    if (card.type !== "receipts") return card.weight;
+    const ticks = picks.filter((i) => card.options[i] && !card.options[i].none).length;
+    return card.weight * (ticks > C.receiptsCap ? C.receiptsCap / ticks : 1);
   }
 
   function gateOpen(card, answers) {
@@ -130,8 +145,12 @@ export function createScorer({ kit, lib, friend }) {
       if (a.kind === "not_my_life") { research.notMyLife.push(card.id); continue; }
       if (a.kind === "no_recent") { research.noRecent.push(card.id); continue; }
       if (a.rushed) research.rushed.push({ card: card.id, ms: a.ms });
-      const w = card.weight * (a.rushed ? C.rushedFactor : 1);
-      if (w && a.picks.some((i) => !card.options[i].circumstance && !card.options[i].depends)) scoringCards.push({ card, w });
+      // w is the weight of one pick (a receipts tick is scaled when many are ticked); cw is the card's base weight,
+      // the coverage-share denominator's unit (cardTagMax already caps receipts at receiptsCap ticks).
+      const rf = a.rushed ? C.rushedFactor : 1;
+      const w = pickWeight(card, a.picks, C) * rf;
+      const cw = card.weight * rf;
+      if (cw && a.picks.some((i) => !card.options[i].circumstance && !card.options[i].depends && !card.options[i].none)) scoringCards.push({ card, w: cw });
       for (const i of a.picks) {
         const o = card.options[i];
         if (o.emotion) emotions.push({ emotion: o.emotion, card: card.id, said: o.t, rushed: a.rushed });
@@ -143,6 +162,7 @@ export function createScorer({ kit, lib, friend }) {
         }
         if (o.circumstance) { research.circumstance.push({ card: card.id, said: o.t }); continue; }
         if (o.depends) { research.depends.push({ card: card.id, said: o.t, flip: a.flip === null ? null : card.flip.options[a.flip] }); continue; }
+        if (o.none) continue;
         if (!w) continue;
         for (const [ax, v] of Object.entries(o.axes || {})) {
           if (!v) continue;
@@ -273,7 +293,8 @@ export function createScorer({ kit, lib, friend }) {
   }
 
   // Most net support (tag strength minus pair strength, before the card weight) one answer to this card can give a tag.
-  // pick_two counts its best two picks. Never below 0.
+  // pick_two counts its best two picks; receipts its best receiptsCap ticks (the same cap the profile applies). Never
+  // below 0.
   const tagMaxCache = new Map();
   function cardTagMax(card, tagId) {
     const key = `${card.id}|${tagId}`;
@@ -281,7 +302,8 @@ export function createScorer({ kit, lib, friend }) {
     const pair = TAG[tagId] ? TAG[tagId].pair : null;
     const vals = card.options.map((o) => (o.tags || []).reduce((s, t) => s + (t.id === tagId ? t.s : t.id === pair ? -t.s : 0), 0))
       .map((v) => Math.max(0, v)).sort((a, b) => b - a);
-    const m = card.type === "pick_two" ? (vals[0] || 0) + (vals[1] || 0) : vals[0] || 0;
+    const take = card.type === "pick_two" ? 2 : card.type === "receipts" ? CONFIG.receiptsCap : 1;
+    const m = vals.slice(0, take).reduce((s, v) => s + v, 0);
     tagMaxCache.set(key, m);
     return m;
   }
@@ -765,6 +787,6 @@ export function createScorer({ kit, lib, friend }) {
   }
 
   return {
-    kit, lib, friendLib, AXES, TAG, pairOf, pairSign, gateOpen, rng, shuffle, CONFIG, allCards, cardById, isTeen, runCards, promptFor, optionVector, readAnswer, buildProfile, cardTagMax, twistOrder, cardLink, rankTags, typeOf, buildResult, profilePosition, predictCard, freezePredictions, checkSealed, friendMatch, friendMapping, pronounsFor, friendFill, buildFriendDeck, scoreFriendGame, rankFriends,
+    kit, lib, friendLib, AXES, TAG, pairOf, pairSign, gateOpen, pickWeight, rng, shuffle, CONFIG, allCards, cardById, isTeen, runCards, promptFor, optionVector, readAnswer, buildProfile, cardTagMax, twistOrder, cardLink, rankTags, typeOf, buildResult, profilePosition, predictCard, freezePredictions, checkSealed, friendMatch, friendMapping, pronounsFor, friendFill, buildFriendDeck, scoreFriendGame, rankFriends,
   };
 }

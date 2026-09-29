@@ -1,0 +1,6881 @@
+{
+  "note": "Evidence lock for cards.json. Written only by lock-evidence.mjs after a person re-reads the card; see that file.",
+  "normalize": "NFKC, straight quotes, ... for the ellipsis, single spaces, trimmed, lower case; sha256 hex",
+  "cards": {
+    "C1-1": {
+      "confirmed": "2026-09-29",
+      "type": "role",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "45ae3be503daec8a378a9db9441bfa92f69559e79464978aeaf1e3fa31408c91",
+      "options": [
+        {
+          "text": "dc9c55748fb4319a08aad754b9e97e4e0d683293f1295d926b8f60b13a58c330",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "baa2e25bea2bd04fb82e347788395bcca776edb99c422fafaf3e27a642642326",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T04B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "69f05a6464523c03852d3cf5c0e29e53288ac9ac22d56d01468d40ad1cb2bce2",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T04A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "e8590cfe7a43e0ca7b46b5cce0c9c517a98dd33b3f5fb09c1905941b06279d68",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T02A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "671a328f4e091edf5171145d4fd70954e8b6c1ae0b65006c918cddce39f7a87f",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T02B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "cfaa5466d58ab63372ca6356848f97271b2d8487100db6ebe07001014fb20b2b",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T08A",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "c6bc35256880e3a72e4f9337a24529e24e78226c096b7ff7dda99d8145128fdb",
+        "a": {
+          "text": "f0fedd2d18f8fc577e34fab57d245217710634c41dd1350478be4213e21c4145",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T04B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "81441fffb84b487d95b2f197262eb387c93766415be8a6e6ac527d5f1498f018",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T04A",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C1-11": {
+      "confirmed": "2026-09-29",
+      "type": "real",
+      "grade": "did",
+      "weight": 0.8,
+      "prompt": "c1f5fd07f0816171ed1a3d5fb583e3ca502aa27de3f1c55f2cb80ede7cb56c95",
+      "options": [
+        {
+          "text": "18e479af466857361a17bcce7c9ddc6b35a6192a1e3be1b774b04ebc9edf03e2",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T02A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "70aa566d07c2d0c6ce9096558739569dffcc50eca3da17a625fd73e76e52236f",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T02B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "84db1a20e462c8906a1bec870ca9c941dfb5cfee66a09de3e0e925fa02493962",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T02B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "dc53a440a7ef3757cd682d03a0bfff9a648a10ec78cb820a91ea63b4c3b4eec6",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T01A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "9f3ea45c6d29d3e16447bd6f5c9c74653760229e66b79a6bd39196835c8d3eb3",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T01B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "9af66f3b7a9c4a19c998e6f54584c88b4642a0b95d3ff68a112c26b0179c50d0",
+        "a": {
+          "text": "c902e16dfd88c3405d25fbf5d08970afd43a6b7ed99d15a9441a59060a74b484",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T02A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "e72da2ca7595321dad9e7c4e8bbdcb219d4c4de682c634adf6e312fb77e761d4",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T02B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C1-12": {
+      "confirmed": "2026-09-29",
+      "type": "receipts",
+      "grade": "did",
+      "weight": 0.4,
+      "prompt": "c5fcf2fadc27edbe8edda91e3e5dd9824a8556df1f4998cdd5a16cb79701c1b3",
+      "options": [
+        {
+          "text": "9db50baa75e509449b54b5dbeae212002b3d166be2ac736770cd08994d35afba",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T03A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "77a43afc1f2165c44215379fb5faf8729329efa9117a98ff53545ac49eaacb84",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T03B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "ec893883896736f56c2a5e37b59c5d2d2ac526458f7656568e6e523f94f8c277",
+          "evidence": {
+            "axes": {
+              "R1": 1
+            },
+            "tags": [
+              {
+                "id": "T01A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "07bc4df9671faf994cda0c3c726809a0f41633caf31b9a51f3953b85b3a20f57",
+          "evidence": {
+            "axes": {
+              "R1": -1
+            },
+            "tags": [
+              {
+                "id": "T01B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "1c0642d8143fafdb88c7a56d0ac7a428f4de7842a5e43ee261e6b08fbb02c8cc",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T04A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "e126aaa25ddd742c430471e3f34ef08d5da48d3a02c394f3f468d3fc4d4a48af",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T04B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "f196ecb28cb5d052cd93a6f245bebeb42d50636dab88aae98bfd384a35ec0243",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T02A",
+                "s": 3
+              }
+            ]
+          }
+        },
+        {
+          "text": "e0bd4ba41558c0911dacdaf47c5a348d9b01ffe647d01b563d004c3c0cd937f5",
+          "evidence": {
+            "none": true
+          }
+        }
+      ]
+    },
+    "C1-13": {
+      "confirmed": "2026-09-29",
+      "type": "others",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "a75df1cd24af418228ef95f58eabecd27cadb86834b351f67922d41f886d0a8a",
+      "options": [
+        {
+          "text": "3bf31ac6e2f72902ed217b3f2215fd164d3a6f442f118dbd3fa94c0860958b55",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T01A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "4e4df837b0f43325a6c314b1378efac8892b06f01bf9c293a2b5c1df05ba2c98",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T01B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "4e777837d57c79c8c61808d9eaa7269954854ef562a1fbe13993d2e6ac494a8c",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T01B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "4040fc22f62c791c59017074625f0b1788798f2bc2dedfcf2c7bf730761ebd32",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T01A",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "teenPrompt": "2b4ae5b2084e5d8ccf49b0cc70efa906166ac247800fd0580186ed4db4f20cf8",
+      "friend": {
+        "prompt": "12ac836e3765e11a53013ad138f5020dbb0c0a6eb79bbb07b5bbbd53f0a3358d",
+        "a": {
+          "text": "c47d6faf3b6393bb5423dd1eabba7308bab4ae46990fd03a97abd8cbd357b986",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T01A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "5400cbc9f1fff995f331a9a3dc050b67ca046382e19c2b66a86588e42fb6fc5b",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T01B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C1-2": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "f884f9176d2d65be13b94c4ad76fe3c09478d1dd663cdd484287aea83f448451",
+      "options": [
+        {
+          "text": "264b58db4784ac3bb3484fecaad3d588cb7df949318b80fdb0ebd7e51b9a668b",
+          "evidence": {
+            "axes": {
+              "R1": 2
+            },
+            "tags": [
+              {
+                "id": "T01A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "290ae8c951aab111aba9a846d2710897fb92742eddc608547b9d75f5d7adda02",
+          "evidence": {
+            "axes": {
+              "R1": 1
+            },
+            "tags": [
+              {
+                "id": "T01A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "ffdcc142e23d1f72081a944956ca0811b3e56ca454080711d8ff7b18aed52c98",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T01B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "832ae3437d7ced33e130a91697191484a2f4d12da1843e5eea5afaf7e826a077",
+          "evidence": {
+            "axes": {
+              "R1": -2
+            },
+            "tags": [
+              {
+                "id": "T01B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "7a8095291c8f1aebea53552e6d2b0a2e00a6b871adce637443e09565682cb362",
+          "evidence": {
+            "axes": {
+              "R1": -1
+            },
+            "tags": [
+              {
+                "id": "T01B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "68621a95456fe23fbc357d2ec42a55a934b89ee2b8b3d023466062f24a636250",
+          "evidence": {
+            "circumstance": true
+          }
+        }
+      ],
+      "teenPrompt": "c1401a894a61134fb60f5da40df98a694fe50d3af21f416316e648c73bdfcb7f",
+      "friend": {
+        "prompt": "5394264b69e72ba2d19589bf4014491d82d3dd50c5e91a5073507b085f45b0c5",
+        "a": {
+          "text": "fd71d328143d0b2179fb5cc9b4c2aaf945abc607f256acc91659f73408b8b134",
+          "evidence": {
+            "axes": {
+              "R1": 2
+            },
+            "tags": [
+              {
+                "id": "T01A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "778dc84840963dc65b27fac9f53dc0974e65c0433ad4ebd9d18c9fc4dfb095a5",
+          "evidence": {
+            "axes": {
+              "R1": -2
+            },
+            "tags": [
+              {
+                "id": "T01B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C1-4": {
+      "confirmed": "2026-09-29",
+      "type": "real",
+      "grade": "did",
+      "weight": 0.8,
+      "prompt": "ef4bdcf82d77d229b9fd4eddd18d413bd8ee4fa6475670e954dc5d8348c93f40",
+      "options": [
+        {
+          "text": "20986ca1368e9d3769ed2085fa88c49122e8b66de6b66de8cde0be5b8af377c9",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T03A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "1a975a4f2586bf1f00d1a5cc3636aafd30d6abc42986deb4dc94b8a9cd306bb6",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T03B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "48e276b9b9c23e0847766f7be9c39ecde95bdb65447611a7e46ea974dc49319c",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T02B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "1fb82fcc5b35b1864833fabe26a2e6a9e7aa8a6679395eebfdd8c8ec9dc04216",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T03B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "575adbcb8c1a471088f5d0bbec1ef1428072c6ca5284dcad6ce28f74a36ba0a7",
+          "evidence": {
+            "circumstance": true
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "9df5d3ce42a496c9c0d27fd3cd269c3f588b563f5255f5d18ac19b3004258c42",
+        "a": {
+          "text": "40f9a1de4cdce31f8969a441637c83c9472aa30802f7e178df9e376348f0d146",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T03A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "7082cc2ca8c2f66c5384d3aeeb4ddf04a56e78fa03f71bcbb59d90ae9993ff02",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T03B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C1-5": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "11287deb43f8fc1d9dbe8136cacb9a739c64ca3b3a407abb33f4d6dfd835a74e",
+      "options": [
+        {
+          "text": "2d737887ecbc04511c4026622eb1590f9567b6460ba87fe9b891f7b44a277824",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T01A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "634a30e8255686460d45c718309528866866bae211518bb26c867137a5e8b54f",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T01A",
+                "s": 1
+              },
+              {
+                "id": "T04A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "824dd4984dfb902ec601356f61b459d7c149d101eb86a063112478d3e2a35e61",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T01B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "98a3393781f3a3af6982b150e81bce0eaeeca835bd3f40b3dfe8c5c771a8f248",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T01B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "b5b0b375feeaf44ba4d517e8748d3b1024f37a45b79524c83040ae85376132d7",
+        "a": {
+          "text": "0e65f3192c067fc006fbdcd441e48336505a7583028c088d3e60923624df2a5a",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T01A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "16db565c19e95805c8e62582ceebf606b070fd615b2d0715aa9e0c9450466cf6",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T01B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C1-6": {
+      "confirmed": "2026-09-29",
+      "type": "this_or_that",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "71e9d38fe518571a7ae0709cca8cda56b3ae092d8bd9112c71fed74f2eb0ca9b",
+      "options": [
+        {
+          "text": "e9545b048eb497cde91c565e096e06062c6334b5c5dcd51593401a7ffca5ecac",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T02A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "041d01b232d8a7ffacc50299f754f881e868593724c949143092d4b811740542",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T02B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "ef7e17c297a034713207bd6f7530e5974d90bb4b2f2b40707328856dafe91197",
+        "a": {
+          "text": "2db27a53cfa18a8544b349629d078badfb0767d268d4c2f391b54a00aad06172",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T02A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "32424e041414298e9c213505ea885ea44c9aed573a25c5800bd0ac288b1eec28",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T02B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C1-7": {
+      "confirmed": "2026-09-29",
+      "type": "this_or_that",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "00b432bd317b1e10b29e17b84a247ab4127e51ab8f1907727f82ed8b247d27dd",
+      "options": [
+        {
+          "text": "3c1ab31c009e6a52215c3dc2ee61f0466dc6513fbc77dbf839b3f245f008227c",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T04B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "e0ef9d0df45f46373c70b37676f8734ed5895abda4da1f620668ab3f5d0cdeab",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T04A",
+                "s": 2
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "672c250a101b91939300d62c14961bcdb19028505acc7477c1993c4bfdb36eef",
+        "a": {
+          "text": "d75821592490a3d3ac1fadb4d3bb304cb5b96658a1cd0d0f978149a1830740cf",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T04B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "260f284d0fc5e39fedd7af0155603d606b9cd108805a9313cd219c20b3b68559",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T04A",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C1-8": {
+      "confirmed": "2026-09-29",
+      "type": "this_or_that",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "813d7920b4db64ee13595f652b3aca86044c6d5f42c18b96c5c858a3bc2fa6b0",
+      "options": [
+        {
+          "text": "48ae2771100efb8f0ffe5e4170c813db6342b739f8c887f4392148233c2abb2a",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T03A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "49a0a9374e12a79cd43831416d26a4f68b1677907045a39572caed03606f2a6a",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T03B",
+                "s": 2
+              },
+              {
+                "id": "T05B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "9e1adeb56d99bfd46f649f89bd316bb219c5628ff76da56fc6eaa174e032b6f1",
+        "a": {
+          "text": "ece5152f8e3076880dcd4d4e6fe1894a6f67067d08e3977ae970549fe8daadd7",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T03A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "a6cccab2380f297019dc677f1c9182b6a8c4f4159cef922facf4a7064697418f",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T03B",
+                "s": 2
+              },
+              {
+                "id": "T05B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C2-1": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "78909ae79a56e684fd164b912b73ae1d008c6528700902a3d018996fe3549a13",
+      "options": [
+        {
+          "text": "0c08b65db89b69cb3bcfa85d0fca93aa51be0267eb71b1bb7e9e86119375621f",
+          "evidence": {
+            "axes": {
+              "R2": 2
+            },
+            "tags": [
+              {
+                "id": "T07A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "9a0a75ddb067af35ff0a7f0f53da7c382fd7f12baf52882270e94d4833352acd",
+          "evidence": {
+            "axes": {
+              "R2": -2
+            },
+            "tags": [
+              {
+                "id": "T07B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "e5453c83db53738c9572662ce58dc76b1291d583a0e224d60c5966b321a3845c",
+          "evidence": {
+            "axes": {
+              "R2": -1
+            },
+            "tags": [
+              {
+                "id": "T07B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "305dee5fbd63ea4983c7265165940dba27765135fdff9a595a9d01bb0ba93ce4",
+          "evidence": {
+            "axes": {
+              "R2": 1
+            },
+            "tags": [
+              {
+                "id": "T07A",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "98e4ed9fb8748f5a092eec5464d4be705c1146d87324856a2fba634586f5ec31",
+        "a": {
+          "text": "43a64f5e070235642a4e939b608f48814d4e18bc850e292ac740be2900b7525f",
+          "evidence": {
+            "axes": {
+              "R2": 2
+            },
+            "tags": [
+              {
+                "id": "T07A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "b2c8ef83a7f440ada988488800f4714a1aefd4f08abf3d9e2a3bd01a06ef1356",
+          "evidence": {
+            "axes": {
+              "R2": -2
+            },
+            "tags": [
+              {
+                "id": "T07B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C2-10": {
+      "confirmed": "2026-09-29",
+      "type": "sealed",
+      "grade": "none",
+      "weight": 0,
+      "prompt": "5864137a5878da27d8205a40332c8f9993316d7c1098c1216ed2c4a7fbb7e402",
+      "options": [
+        {
+          "text": "695a3c1a62e663946ae757207620ca62f038f0d8d8c85666ea9e1033957dbcdf",
+          "evidence": {
+            "axes": {
+              "R2": 2
+            },
+            "tags": [
+              {
+                "id": "T07A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "42b340886c13921d5ac5ad174d26c5b81d2ef38c664af61477f2d4391d7cdc84",
+          "evidence": {
+            "axes": {
+              "R2": -2
+            }
+          }
+        },
+        {
+          "text": "465bf380deb2e3c9c436d7a387e0898f4177d0bd97194cfb0f188b7ece5ee853",
+          "evidence": {
+            "axes": {
+              "R2": -1
+            },
+            "tags": [
+              {
+                "id": "T07B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "3b07fd6d8ba229a3be9becd919e89fb601a7b4eb7eae15d601c9c171cde4a8db",
+          "evidence": {
+            "axes": {
+              "R2": 1
+            },
+            "tags": [
+              {
+                "id": "T07A",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "C2-11": {
+      "confirmed": "2026-09-29",
+      "type": "sealed",
+      "grade": "none",
+      "weight": 0,
+      "prompt": "f85d74a2fc5565b8979b842bc9c314a5bb9add041b5f1bb9fd9090de4fa79673",
+      "options": [
+        {
+          "text": "52927afbd6fbc3bb406d21c1341e432370969639daf14527628b829a2770a5fd",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T05A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "dc40d0fce541d020e3e418671981f4d19210b4e01393bfadd9418eb185049530",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "919d152c85e9e498f17fba0af7531622a3e68f05e373d854a78221aa5e7d5276",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "2fa78b2aebae51720bc28a03b748b5255b17cdd098c2c59cd2cf5357c54cad1a",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T05B",
+                "s": 1
+              },
+              {
+                "id": "T06B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "teenPrompt": "2c15236ffc6a1b95f4143ccffd440f5dee6de937c40b6c2f81e2e1d8c99492ff"
+    },
+    "C2-12": {
+      "confirmed": "2026-09-29",
+      "type": "guilty",
+      "grade": "did",
+      "weight": 0.8,
+      "prompt": "3d6dcbad6586e33a1b61fa29a7360129152a3d1bdbe0fab75a447fe908575225",
+      "options": [
+        {
+          "text": "51997f8a8db2530ecb0d91e859f9e234e49aff15b0d96fb92a2ac98ded4424ac",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T08A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "6497e4b3d7bed16979a343a7db4efa6d57725529f5ac3cec45c1f08fabcbdafc",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T08B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "b359eb8c4aeeacc2e0b09ce0bed5a3aaac9b67ed9bb9aef2cf2b596ccf37bdd8",
+        "a": {
+          "text": "bd4a9e76e6f3b02f6c7491ca4784cfdf007b8358b9ad14b6e67652d2ebce0175",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T08A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "c5c679e7a23d44a9350d67aff7e75c0b183d347c3f0cabcc62fb83c0d1fec9db",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T08B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C2-13": {
+      "confirmed": "2026-09-29",
+      "type": "reply",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "6d6309926d8d9ee334a6ed31293d6ef92bc31d5edb135f3678954a3621351eac",
+      "options": [
+        {
+          "text": "8905b1facc64492f2266a9d0b1e2aaf9717454ef8ff604c7408b6973fdd5e857",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T05A",
+                "s": 3
+              }
+            ]
+          }
+        },
+        {
+          "text": "51f7c6fd5429afa211e57a560fa76de68b885dc46f5f91fb9a3ef2dcc2c72f7f",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T05B",
+                "s": 3
+              }
+            ]
+          }
+        },
+        {
+          "text": "6bc1019ab97db2642086329b4ee4adf0a6fb9d146fa18354938cf8ee27f82602",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T05A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "0633d51b34b758f65fb35533113c2ab9f80c721ec64c987ad0822e401f4d50b7",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T05B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "thread": "60fd62a96e65dfefe1855466f8a6914f44e87a37fb13607b1abb05ca7bc0efd1",
+      "friend": {
+        "prompt": "9594cb847850f773f9503ed2c54f02b0b20f8c62f0e1c8d3a6dbd9f6062a82e4",
+        "a": {
+          "text": "bd0a947eb0e955a76dc5f4153474214ee140dbd8dff55f2f6c620f6921ae38df",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T05A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "2b7d107b1aa9e7fdb6384fb03231b31777250ba978256d31fc0dbedeb7422365",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T05B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C2-2": {
+      "confirmed": "2026-09-29",
+      "type": "real",
+      "grade": "did",
+      "weight": 0.8,
+      "prompt": "fb1fee5e01792506aa7691a13cdb536cd3c5982ae02d03509d71914347b03806",
+      "options": [
+        {
+          "text": "74fff395d6b775697e201ef4f3390f78c693870c90cc05d9bf319ac30271eb1f",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T05A",
+                "s": 1
+              },
+              {
+                "id": "T06A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "421895eb401de8a342739235138ec5407865bd4ceb87b0a3d1d6806815577a5b",
+          "evidence": {
+            "circumstance": true
+          }
+        },
+        {
+          "text": "2c0515b6186b5194a8b7ba1511e0cfb675f2dcd77fa3dcf9fc8edecc72e91a9e",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "ba80ae0106bbd994e6a1fa31312df095a58ce301b3b48fb642678e0561009c8e",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T05B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "7c32abf2c16c2134624cefd2224d79223faec9746ecabc77e098fbf72423f145",
+        "a": {
+          "text": "edd9379a1ae3821862535bf9f4dafe8e93c12c5d994f8753f3ad20995a1b0a0e",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T05A",
+                "s": 1
+              },
+              {
+                "id": "T06A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "cbb73fbac1c5fb8e35a90e118d784dc5cf48079db9fcbcbaaf553ff2e8fb178b",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C2-3": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "fcafb5dba6080a4e645869960d31b8f2aa2975f7916f3db787eb3675869af291",
+      "options": [
+        {
+          "text": "0705203cd3eebf92048612adaaaf4aba10f9907ca91716afd6214da3deb2f51f",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T08A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "09256e2fd15ba7da3f83007859ac1c71bea703e8c8b723a0467f3f9eafc5d275",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T08A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "de88c991bb7b89a3ca81e1f862741a00e21ee2fd705b03bb844d45c67101b459",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T08B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "2cc5ea167a012051f533c999c8a8bb1f53b9a2f03ef3d99b4a050bb4257af730",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T08B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "823fb6640a88466e0246371dd3603cd4c4f5906d3d076f713865235a6047de7c",
+          "evidence": {
+            "depends": true
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "15cef465eec7958825d1e1185d5f2c5a49d8678b676f6516bcaa0810a92d2a8c",
+        "a": {
+          "text": "bff71e89a49db8292bdd94bafae91abc19cb8e1ae172580a7c821c736f5ee091",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T08A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "38324a0e57dc32ca04588d20d86cfd9236ee31100089dab0c1ea08e0bc440f4b",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T08B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C2-4": {
+      "confirmed": "2026-09-29",
+      "type": "pick_two",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "77803e016e74b5f9ec4ae9209b2b06dad27cc6a86915d6d24abb28b482d0836a",
+      "options": [
+        {
+          "text": "64870d8988eb0c14ff7dc188cd1be69c59b3b8adf59d37600b994b1a9e0b41a2",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T05A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "dc40eb29e13fce487b5c243df467f07ba730c3201743f630e0f770d1e4b6b9da",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T03B",
+                "s": 1
+              },
+              {
+                "id": "T05B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "acbfae818a274a396649a53dc9a43ad1ae9ff18e9532823545d1e7fee0a49762",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T04B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "1aa897dcc96f750fb8025b897d2bd823565382128592bc27e31493e379e6241e",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T04A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "abd1fcd5fa37fe89139fa81184929bc3a8f5c52412c07d8e2a270c41eb8817ee",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T05B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "a42b5f58348334ff940004b7b0dff14c7e34e1b40f8ef6ef642e37374a9553c8",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T05A",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "289a52fd2df1ea49dd532f6efb19213e3d133ea83639c27f0a89cc676c839040",
+        "a": {
+          "text": "9fe4c372ad34dd8604dfa62ebc68f03eddb13db379de10a48934b98652d2cff9",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T05A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "8ea0769d806f75658649a9433cd26825e63580894c20847465dae43f03ebb2d0",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T05B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C2-5": {
+      "confirmed": "2026-09-29",
+      "type": "real",
+      "grade": "did",
+      "weight": 0.8,
+      "prompt": "5d66d5df90de515e7ceb5878d5e08fd12b07e27ef2ae1936dc0b5a982facdcbf",
+      "options": [
+        {
+          "text": "c5a67e696a2d6ab75d31e56bfdfe6952e656c1efe0b630c7273651889fcfc517",
+          "evidence": {
+            "axes": {
+              "R2": 2
+            },
+            "tags": [
+              {
+                "id": "T07A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "83226006ce15f1f3f90b9c700360d2d8dcbcb3a23daff10136d2ce910b562ef5",
+          "evidence": {
+            "axes": {
+              "R2": -1
+            },
+            "tags": [
+              {
+                "id": "T07B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "cd3fa2ee2fd4268c83e621d41e788d070d4b16d5a2ea832550f4486dedd2c9b6",
+          "evidence": {
+            "axes": {
+              "R2": -1
+            }
+          }
+        },
+        {
+          "text": "8639a19f424b217307c5e1af2e1c6111993d2cda6ad4a51dad22c61f96327bc4",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T08B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "7a87a947283f0b0bddff636eb1adde87dcd1eaa179cad8c4dbfb40b9de9fe7c2",
+          "evidence": {
+            "circumstance": true
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "6e211445e9399bf214cf9576087c809922378f9d64656e1e011c0554dd88ddd1",
+        "a": {
+          "text": "4ca0520dfe50244ca82424605bd03f897830238657a12e587ea4fdabb4a79c31",
+          "evidence": {
+            "axes": {
+              "R2": 2
+            },
+            "tags": [
+              {
+                "id": "T07A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "46b376e406994b3002cc8c1409b6aae4a5dabab3e15c45ab5c118e757a935db7",
+          "evidence": {
+            "axes": {
+              "R2": -1
+            },
+            "tags": [
+              {
+                "id": "T07B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C2-6": {
+      "confirmed": "2026-09-29",
+      "type": "feeling",
+      "grade": "emotion",
+      "weight": 0,
+      "prompt": "8a4b53692fc9fd197d9d757fd692bd4df6e323fc64edd14a00ae84685b8a5dff",
+      "options": [
+        {
+          "text": "72f60cd1e5a6a574441b14eb7e708c04a8f105ca39760e0cf67cb911b31aa4f9",
+          "evidence": {}
+        },
+        {
+          "text": "b028b82f286c08667e1f1bc7bb2b91ed3b64c46a28ed7372126ff4364fccc272",
+          "evidence": {}
+        },
+        {
+          "text": "bd7fb4d32569c06cc1e446a522191bc5f8e2995491a4d5d300ee18ff352e034e",
+          "evidence": {}
+        },
+        {
+          "text": "a05cf504c19b40a356e0a0413d9014b14bdd4e66aa4f315a9a727fd8b6ad5a00",
+          "evidence": {}
+        },
+        {
+          "text": "f52f6913e924e5b1a192fa73a71f6fb92a15a2f7171aca4b431a1b7bb959a3b1",
+          "evidence": {}
+        }
+      ]
+    },
+    "C2-7": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "522c003d29a00f4a544d664d51eccecd79b02bb03469e53bca2eb2b9d77f0abe",
+      "options": [
+        {
+          "text": "0dc82d59b319f30ee59211ded20aafa45aaeabbcd7d7ba365f66d3c36c293b37",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "c7abada7df93c577b003bc2df6c94f00dbfdf8612323c8c02af3d2afd8e40975",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "915d1cd7157a259fd3dd212716dc8d6ed2a9665cf58cd66f68811fc3e208565e",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "a3bd5548cef3ac136bfb14d8bb959083fbb390651c37c88008cae9cbd79e8c45",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "cdafe338097ecd089ce91ac7fe2a8c94f1bbb754cbbf8fa725c2a42edaf77fa7",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "f3ffe3ffc7422add86132e72bfe1c43f7602e48acbdbe71cf7591cb0c0f7412d",
+        "a": {
+          "text": "98ac0bc311ac41bb07a1b46b126bc7183ff69eda4afe5984b29c38c7f6ec4f35",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "8c3e082d6a527f0a62bd2cc664666a2992476b178e9bf7bf4f4ed467641da783",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C2-8": {
+      "confirmed": "2026-09-29",
+      "type": "role",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "cbf82240eab262e282920356cd861fef19c813558173a507a5edfbc0841d9fad",
+      "options": [
+        {
+          "text": "9d35f642baf677777414d205a51a60e65f26e27130a37b8cbdea281f30fc9630",
+          "evidence": {
+            "axes": {
+              "R2": 2
+            },
+            "tags": [
+              {
+                "id": "T07A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "164debbfed9f34a549a7781644ecaf8de1764d1e54471d504729cfcff7eea47a",
+          "evidence": {
+            "axes": {
+              "R2": 1
+            },
+            "tags": [
+              {
+                "id": "T07A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "9d616ffb2e045542c3bd27037c7c91c0da85c46db9b85d2d8f7823cc84018948",
+          "evidence": {
+            "axes": {
+              "R2": -2
+            }
+          }
+        },
+        {
+          "text": "f9dcc88d1bb64faaa1aa977a0e18558dfacf26a4e41f1987d903084785118c6b",
+          "evidence": {}
+        },
+        {
+          "text": "1685f154da9dc966820c9cc4735cc03c1e9f2d54f0b652b2a6149fb162a9681c",
+          "evidence": {
+            "axes": {
+              "R2": -1
+            },
+            "tags": [
+              {
+                "id": "T07B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "855f84d3649855ec5846aa289f9efdca4e15f87d70056d8fbd445d52c79cc318",
+        "a": {
+          "text": "b4f5156d416944356a752056f298aca9850d8d909a15a8af62952b03e5a151a8",
+          "evidence": {
+            "axes": {
+              "R2": 2
+            },
+            "tags": [
+              {
+                "id": "T07A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "f045305cb71cf5710840ec05ce923f64cfddaeacf30bbefff2463b0589ae863f",
+          "evidence": {
+            "axes": {
+              "R2": -2
+            }
+          }
+        }
+      }
+    },
+    "C2-9": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "ea9f28832af0fc64cb9b9ae5b0315b1a348e4e898379b1326f4ff03b5d89e3bc",
+      "options": [
+        {
+          "text": "77b300fe170582620b80b6833174a0a794a811da34e858fb97611b2e736e04c9",
+          "evidence": {
+            "axes": {
+              "L3": -1
+            },
+            "tags": [
+              {
+                "id": "T06A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "dddf3572beaedb73826b6c2304e1cdc5bc4a711f21c8114355ea3ff7f09daec8",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T05A",
+                "s": 3
+              }
+            ]
+          }
+        },
+        {
+          "text": "15398c6c9eb3e3fd9c21b0f2ba8ee5ffd2e1d7bf5e7e1971950f8501260e62bd",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "2ed545a91e4d55f33f296c527fbd9bdeb5b40b7a679937b596f2a6a39acc3f79",
+          "evidence": {
+            "axes": {
+              "L3": 1
+            },
+            "tags": [
+              {
+                "id": "T12A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "f01822e4ed5e4187e1dc84c26a6705fb9eced1359ced64af06e25a8b5945494c",
+          "evidence": {
+            "circumstance": true
+          }
+        }
+      ],
+      "teenPrompt": "d044259b4c15776c0d01b5a1e381e06033f665d79724339de954b512ad81b508",
+      "friend": {
+        "prompt": "71f8d6f2b5310cf67550eda5a14f8ee5995c8210a92b3fa8b9c8d160506bfeb0",
+        "a": {
+          "text": "ada81a1bfe7cf74d5a283cef6a83b9f5a74351d26b6c037e2d54de8c7fe83adc",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "69377ae82f65b63ec6e1ee60bf964903f53b627309369b403d515026bad82a2d",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T12A",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C3-1": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "d8a3234816881195c7ea0e65a6e19953a77d2dee68d3a1ee30a589546f285ac8",
+      "options": [
+        {
+          "text": "7bd754baffea4414484e60a111e70c4445294f79537738bc7d01b3625e8b0a0f",
+          "evidence": {
+            "axes": {
+              "R3": 1
+            }
+          }
+        },
+        {
+          "text": "fe47575b35d4ed37c985bffa0408952189742c91f424e3286c494ba2851f2a3b",
+          "evidence": {
+            "axes": {
+              "R3": -2
+            }
+          }
+        },
+        {
+          "text": "9576159134fe7e03f9b9505fe40b3a84da934a0cc6c63f4bd8dd85aa6082f889",
+          "evidence": {
+            "axes": {
+              "R3": -1
+            }
+          }
+        },
+        {
+          "text": "3f1ad92430f5eddadaecfd32c4988a9640cbdbed73ba593904a92215c45f81d4",
+          "evidence": {
+            "axes": {
+              "R3": 2
+            }
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "2fcc355fb48861b98b46304afac2fcb7340ff80dace162ed070bc3d01419ad79",
+        "a": {
+          "text": "57e1b0e68929473687304805ce6977c47b293b288ea3dfbbb6ac36101edbd34a",
+          "evidence": {
+            "axes": {
+              "R3": 2
+            }
+          }
+        },
+        "b": {
+          "text": "fe47575b35d4ed37c985bffa0408952189742c91f424e3286c494ba2851f2a3b",
+          "evidence": {
+            "axes": {
+              "R3": -2
+            }
+          }
+        }
+      }
+    },
+    "C3-10": {
+      "confirmed": "2026-09-29",
+      "type": "sealed",
+      "grade": "none",
+      "weight": 0,
+      "prompt": "f320ba8662d7db1873e5eb8a2d9fa7f86f133dc5fc6c8f9ef2feda1fc1ec8173",
+      "options": [
+        {
+          "text": "958617f2e5f5e5f8b36759865a10e592c2f786ccdd47a32042b3810fda2cd363",
+          "evidence": {
+            "axes": {
+              "R1": 1
+            },
+            "tags": [
+              {
+                "id": "T09A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "079059b028ab5a9f705420f80dcd09021fc01999613f02af99819bbe72d71039",
+          "evidence": {
+            "axes": {
+              "R1": -1
+            },
+            "tags": [
+              {
+                "id": "T09B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "bde431d7a2520a409ff76a37a5fe0728d27821b5b72ca78b03de6c18a358c85a",
+          "evidence": {
+            "axes": {
+              "R1": 2
+            },
+            "tags": [
+              {
+                "id": "T09A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "0a891e2e78e76af0b68ee182a03b8c8c535856fc8239db37b9212c99831c4ccf",
+          "evidence": {
+            "axes": {
+              "R1": -2
+            },
+            "tags": [
+              {
+                "id": "T09B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "C3-12": {
+      "confirmed": "2026-09-29",
+      "type": "real",
+      "grade": "did",
+      "weight": 0.8,
+      "prompt": "134119673a1f193a020146a022b8c1bbfd83eed3ef67d7af4f01c4f7bad725d6",
+      "options": [
+        {
+          "text": "f260e4cf1e871c1156131da987cdba60e7980cf23da985cf69f66f619d04d274",
+          "evidence": {
+            "axes": {
+              "R2": 2
+            }
+          }
+        },
+        {
+          "text": "e3e594c4fbc6ea1e71f387a4fc19e7125df381e8c6a09dcacdd6914ce7943fff",
+          "evidence": {
+            "axes": {
+              "R2": 1
+            }
+          }
+        },
+        {
+          "text": "6e03b6ab5aedb8d91ff41de4c0b99136f0e3fb907e284ce34f9165a6bcb873fd",
+          "evidence": {
+            "axes": {
+              "R2": -1
+            }
+          }
+        },
+        {
+          "text": "aeeef7a446c834d633300c0c2c07b7e5363d049b92a0a334187599117d9875e5",
+          "evidence": {
+            "axes": {
+              "R2": -2
+            }
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "ec05189badc648b90705fa3d4cf0209df581ec5cf8c15f9b3243e566cb7c0103",
+        "a": {
+          "text": "081a790d13d4d90030be8bd5bca64778b8e9bbafd5b99ad4bfc159891f532c66",
+          "evidence": {
+            "axes": {
+              "R2": 2
+            }
+          }
+        },
+        "b": {
+          "text": "7ea92b56013d3aba63e0fd1b9000fe6b8a328e55dfa2303a1d62cde62094245c",
+          "evidence": {
+            "axes": {
+              "R2": -2
+            }
+          }
+        }
+      }
+    },
+    "C3-13": {
+      "confirmed": "2026-09-29",
+      "type": "guilty",
+      "grade": "did",
+      "weight": 0.8,
+      "prompt": "1bafd90b605e2be10ec4a552233aa08a367b922eceb18637dfacb62d7076bae1",
+      "options": [
+        {
+          "text": "51997f8a8db2530ecb0d91e859f9e234e49aff15b0d96fb92a2ac98ded4424ac",
+          "evidence": {
+            "axes": {
+              "R3": 1
+            },
+            "tags": [
+              {
+                "id": "T09A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "6497e4b3d7bed16979a343a7db4efa6d57725529f5ac3cec45c1f08fabcbdafc",
+          "evidence": {
+            "axes": {
+              "R3": -1
+            }
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "2a78ae38c51a414c5f3a255b7f16d6ca2635722e37745ed6dac6bbfe3b6cf982",
+        "a": {
+          "text": "bd4a9e76e6f3b02f6c7491ca4784cfdf007b8358b9ad14b6e67652d2ebce0175",
+          "evidence": {
+            "axes": {
+              "R3": 1
+            }
+          }
+        },
+        "b": {
+          "text": "c5c679e7a23d44a9350d67aff7e75c0b183d347c3f0cabcc62fb83c0d1fec9db",
+          "evidence": {
+            "axes": {
+              "R3": -1
+            }
+          }
+        }
+      }
+    },
+    "C3-14": {
+      "confirmed": "2026-09-29",
+      "type": "guilty",
+      "grade": "did",
+      "weight": 0.8,
+      "prompt": "3772be54e687979482d0f1b25118d1734def2a2ff63d23e557256bfd249db040",
+      "options": [
+        {
+          "text": "51997f8a8db2530ecb0d91e859f9e234e49aff15b0d96fb92a2ac98ded4424ac",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T11A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "6497e4b3d7bed16979a343a7db4efa6d57725529f5ac3cec45c1f08fabcbdafc",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T11B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "C3-15": {
+      "confirmed": "2026-09-29",
+      "type": "reply",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "b9000e0e430c2921d74386c91e09541cbed04e6c59d0ee29c0048dd058bc90a8",
+      "options": [
+        {
+          "text": "5bdb8eae65cbbf0ba52923031c9fed2df8141d7a5aa4db4ff8d98dcc3936a149",
+          "evidence": {
+            "axes": {
+              "R2": 2
+            },
+            "tags": [
+              {
+                "id": "T10A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "4aa26f7d088d38f518d9dac20082388a9fe956595219125dd2864e3c2cd067f2",
+          "evidence": {
+            "axes": {
+              "R2": -1
+            }
+          }
+        },
+        {
+          "text": "a23d8e353250dd4ee1880ad5926f2886a29671996c0dd294d5cbf15d9ed2bee1",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T10B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "b7045fe50e817ef5c201fe37b6be69f5f551197feba09fd2daa7d5eed0cfb321",
+          "evidence": {
+            "axes": {
+              "R2": -1
+            }
+          }
+        }
+      ],
+      "thread": "96755d6a78e1ea1346110b450a5a59ab4ceabaeb2b7bfa49672dd0c2c230be1c",
+      "friend": {
+        "prompt": "d70a216636fcfcbfa4e79f9431d11e2786971db358a82c20eb9001cae2f3743e",
+        "a": {
+          "text": "68d63535884cf392136ba364e1b3210402c8a1b58b8a3dfd0c6ca14529b2fa85",
+          "evidence": {
+            "axes": {
+              "R2": 2
+            },
+            "tags": [
+              {
+                "id": "T10A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "4ad8c13b90ad670047f6951cd9950f033e1d811a431d72c50687f636e1a5a331",
+          "evidence": {
+            "axes": {
+              "R2": -1
+            }
+          }
+        }
+      }
+    },
+    "C3-2": {
+      "confirmed": "2026-09-29",
+      "type": "real",
+      "grade": "did",
+      "weight": 0.8,
+      "prompt": "943c3f71da0d5cbafe09d7a89ddaadc6480c0a70793e590dd255ee4ffbea4528",
+      "options": [
+        {
+          "text": "2e60e29eebfbf52784420d1b26894811e8b0199e9de7ec77790c2a504aadb5f1",
+          "evidence": {
+            "axes": {
+              "R1": 2
+            },
+            "tags": [
+              {
+                "id": "T09A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "cdefe1918998d176ff85766c70ea3050fea7083d3ea9e8aea756ba89b0ff560d",
+          "evidence": {
+            "axes": {
+              "R1": -2
+            },
+            "tags": [
+              {
+                "id": "T09B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "094111dfa536c868614b917afb843bad4f047049e67789de5abf857469589859",
+          "evidence": {
+            "axes": {
+              "R1": 1
+            },
+            "tags": [
+              {
+                "id": "T09A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "8efa1a13fa6c2c6a66ded39ecce849a301f9c89f40bec89372bf00e352f8dea0",
+          "evidence": {
+            "axes": {
+              "R1": -1
+            },
+            "tags": [
+              {
+                "id": "T09B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "39e18ca5915fa3bfc977d01ab42cc6f346869446df509437f4e2c2a039464b0a",
+        "a": {
+          "text": "dc47200da1081f087dc090e56611bf03448dafca82d771a2dc6995376e2e1cd9",
+          "evidence": {
+            "axes": {
+              "R1": 2
+            },
+            "tags": [
+              {
+                "id": "T09A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "2f69ede82c34a043e2f1cbd9f37b83025a875b135619d1fa858be850dca8370c",
+          "evidence": {
+            "axes": {
+              "R1": -2
+            },
+            "tags": [
+              {
+                "id": "T09B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C3-3": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "d7d7d8654488bd2bbced573417e0bc241600c96a9b7bdd16e3afd0c2e77baa74",
+      "options": [
+        {
+          "text": "6a56e9b939ba69cc01fe988738642fa7178ba2a5a0f3d148200c0bab1c6be3db",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T12A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "9867d650056658c2ae834651817ef1392ccfc3e4db3050fb50e694e216e046ab",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T12B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "7099325334a5223b527f660430ce3b3d949718b5840480a9277addef1cf6cffe",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T12A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "586a57dc2add70ffba9b0a8ae45d38176605d22f72c1fcc8de38d56e18d293ad",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T12B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "bc42790a53ed182669e85467a1a180527c55e094616ce00fcb3073e49d2e6fa2",
+          "evidence": {
+            "circumstance": true
+          }
+        }
+      ],
+      "teenPrompt": "0e337ca4303953a3a4b819b17a381b15630daa89fe2eea726fad3d105e8e6429",
+      "friend": {
+        "prompt": "17850f9dbfb42379d88ce2453e7e8b1a8d109e59ff51f30095b16daab9c4448f",
+        "a": {
+          "text": "efb8f4038e262fb6c04db30a3794d88a4e5a14d32cee229061591a740506c76e",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T12A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "1601d6669b3a37f8c7187cc4bcadbe16785dce46aea5b72266b026f5ef3e0875",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T12B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C3-4": {
+      "confirmed": "2026-09-29",
+      "type": "pick_two",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "386fc6150cf4b4cd217a303d340ecb002982f49691fa9af5c9fd495ed16735aa",
+      "options": [
+        {
+          "text": "99612b6e52ef25c9418941fbed4d315c77bb2ae522e3d8d56b4af53d1e3fd629",
+          "evidence": {
+            "axes": {
+              "R1": 1
+            },
+            "tags": [
+              {
+                "id": "T09A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "5006f6858f6b4dc493494441d3c4a455d969c41eb4f7b6859cef8945ecfd05f2",
+          "evidence": {
+            "axes": {
+              "R1": -1
+            },
+            "tags": [
+              {
+                "id": "T09B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "56bf64030381416dea75a04c28e7420bb627a8aa397fba7bf6f8379b29062eb3",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T12A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "99451af6710a9d98ed3f28861d3b30bb5cd8544983ec6ead1ce1e05b5333e03e",
+          "evidence": {
+            "axes": {
+              "R1": -1
+            },
+            "tags": [
+              {
+                "id": "T09B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "c0bd76c98a1b80b37a8a47e54b687b7cd9af1132f802d47c8e01bbe24da8da0a",
+          "evidence": {
+            "axes": {
+              "R1": 1
+            },
+            "tags": [
+              {
+                "id": "T09A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "ef4e828204426b9a8f9a91b0f3f46794eb4173f2e0675938ece8c1b4eefdd9e6",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T12B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "601e92eaa6c1278588e571459f5d6e736dc50a836611511d716b050ac828f7c9",
+        "a": {
+          "text": "57a9a0f3c20dfc2af9f3cc9f9848052eea524d8709456dd898d69e8888a10480",
+          "evidence": {
+            "axes": {
+              "R1": 1
+            },
+            "tags": [
+              {
+                "id": "T09A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "e2e93fc3ae97f8f50b532126e293036fec0651f424d05734a814ed24627f71f6",
+          "evidence": {
+            "axes": {
+              "R1": -1
+            },
+            "tags": [
+              {
+                "id": "T09B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C3-5": {
+      "confirmed": "2026-09-29",
+      "type": "real",
+      "grade": "did",
+      "weight": 0.8,
+      "prompt": "fba30407e639c9a7e848e57dd667893b898f10e93c16d4adc5b0491e292c11d3",
+      "options": [
+        {
+          "text": "5c5df98a9614d8e1dda53597014e10cc13451a671b6f4b75927602d45607adae",
+          "evidence": {
+            "axes": {
+              "R2": 1
+            },
+            "tags": [
+              {
+                "id": "T10A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "3c7c9557218e076313b9d1f122ebc703de2ebf0667e53ad5c8563f7e064aeb7a",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T10B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "d70686e8ea116d01f3f828b7e9f077eb82bf058f448ad9b62b99269890489fa9",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T10B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "086b69f4cc4ce6b607ed32e3e339deb5f7c74dc0270b847f867d18342d75aaa8",
+          "evidence": {
+            "axes": {
+              "R2": -1
+            },
+            "tags": [
+              {
+                "id": "T10A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "75f7018d205269e3ffd99e48b4faadaa83742bdf97417e5986b9f4f0c4f43390",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T10A",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "5f6edbc24fcc16881b116a6c4e11e11a038ae02f76386f2dd4da758bfea04829",
+        "a": {
+          "text": "d41d3e41eec5367ce6065f3ff92a698711b1c18eefb48b2c34399f993e237cc5",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T10A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "24d096eb73c5b82156bf47615d271595a9d4f094b38ca22e7c33e5772e5fc013",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T10B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C3-7": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "4968f454e3be36ba6b86f5b2915b8cef71ad1d5df9b581ee699d0e396849f38f",
+      "options": [
+        {
+          "text": "e80da7e8b2f35c1364e37d604cac780ac45a27eec276bfb1ac3ff242273b25b1",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T09A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "46fcd30af58d4e497b208b110c1c37ea5868a7ebbf96e3893623c7112aed3a67",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T09B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "456605a4dda0d1252298b0334395864a13fb1d4b6212f4d0609896980f1234f0",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T09B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "f2fd2d907067b82050434591f1557f5a91aac8a6c685f2b4fa45af29780b46a0",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T09A",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "teenPrompt": "8dd2f8750a422bf5b6ed8b256ab98415cc858b1a306e3536fea743af1943c61d"
+    },
+    "C3-8": {
+      "confirmed": "2026-09-29",
+      "type": "pick_two",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "d60f23a1b85d1b85e8b25e724d976827446a2f5a0321ec366d7968b3dbb3e270",
+      "options": [
+        {
+          "text": "cad26df6af521eb05e5a96f1479d44ce1911d95195a406e7605cc15cefdfa418",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T11A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "8293fcb757bc23bb124215fa086218edc39c21e88977444b6b0531be6aeff266",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T11A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "7d335bacc39082aea73ee01944d2f7c0da0dde5d79819c4bbbc16bdd7e304dac",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T11A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "4eb827c866b5e17c4ab0c2dac57ca678e5c34fd533f02c066ee0f9b9f1867dab",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T11B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "163ed574def9c951c86cbb038d454cf076397288ac9c09a5e7dee6d733f2d8f5",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T11B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "2a5b1c1fc2c5cd000c2e3adb0c274a3cdc43610b0b4340d7a5c3fa18e89fe8da",
+          "evidence": {
+            "circumstance": true
+          }
+        }
+      ]
+    },
+    "C3-9": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "1c3c3230072d9d8c2bdd2d62bfcd35df0469cf60ca2354ab3baba3b9b5a9b682",
+      "options": [
+        {
+          "text": "55cbbde2cdeb15e33e43fb0d570ac2baa99912357de47f0af0272a501e64b4dd",
+          "evidence": {
+            "axes": {
+              "L2": -1
+            },
+            "tags": [
+              {
+                "id": "T11A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "a2167459f58678b181823c13d1e9861805bcb719961c471c4a648926dfcbda62",
+          "evidence": {
+            "axes": {
+              "L2": 1
+            },
+            "tags": [
+              {
+                "id": "T16A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "f84479338b17040e5fb4c6edd448d14973e4f2b34232d5c042fce2be34506ef1",
+          "evidence": {
+            "axes": {
+              "L2": 1
+            },
+            "tags": [
+              {
+                "id": "T11B",
+                "s": 1
+              },
+              {
+                "id": "T16A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "47c2da3e0a8c3a41589255d43216810f7b7268d8efc06e4f63d820875a9f8892",
+          "evidence": {
+            "depends": true
+          }
+        }
+      ]
+    },
+    "C4-1": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "a68ed712c4c619c518582c20d50946ce06ac47609488b4ad3424c187623528a3",
+      "options": [
+        {
+          "text": "7efac5f7b4584d34c1a4eb8429f13113d784c9ccc622f522eb459397b53d8307",
+          "evidence": {
+            "axes": {
+              "L1": -2
+            },
+            "tags": [
+              {
+                "id": "T13A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "8b31e127be6c12e24090421878434fa0e9f0ee78b32aef1600352cfcbc135bb1",
+          "evidence": {
+            "axes": {
+              "L1": 2
+            },
+            "tags": [
+              {
+                "id": "T13B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "7d7ae624285178a9fc07e6e24b8c0ced8fb0fdd17cf2916814d587c4ce9ad45f",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "df072d5b9c7882bc9a55213478491c7dfd77e6a91690a50923d1f005fc8ea9f0",
+          "evidence": {
+            "circumstance": true
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "fecc4aa131b714828a4ea7cc80dbd3a5b0ab6f597dfe76125eed1fdd18093ee2",
+        "a": {
+          "text": "43a9311c15c0a0f086fdd813e12524383e0762f2dc12b15a89ad7bed718594d5",
+          "evidence": {
+            "axes": {
+              "L1": -2
+            },
+            "tags": [
+              {
+                "id": "T13A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "f9600d6cc22ca4479d3aaf687057739ede133daf4a96813801d1a9a44db78ee4",
+          "evidence": {
+            "axes": {
+              "L1": 2
+            },
+            "tags": [
+              {
+                "id": "T13B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C4-10": {
+      "confirmed": "2026-09-29",
+      "type": "sealed",
+      "grade": "none",
+      "weight": 0,
+      "prompt": "38728ab8667a64791e6d3ce70b3dc2ea4b325a6bbaff0fb6f1dd0941e42b5bd4",
+      "options": [
+        {
+          "text": "dc1bb02b6f5b291c6e6a9737c7c8db769dda96c4ab287d175945e333088412a8",
+          "evidence": {
+            "axes": {
+              "L1": -1
+            },
+            "tags": [
+              {
+                "id": "T13A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "795619b5969330d7e26f0798239ab8707e9be0c1402adea84b1804763517d8c1",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T13B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "114c1da3070e8432278bb8fb81819e4be0ecf4020ed1646b29fb6cf40c7b2f10",
+          "evidence": {
+            "axes": {
+              "L1": 1
+            },
+            "tags": [
+              {
+                "id": "T24A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "998de8adae83d6f85f9fd30f4208404e6351cde482ad7f450cf19019f88da464",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T14B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "C4-11": {
+      "confirmed": "2026-09-29",
+      "type": "receipts",
+      "grade": "did",
+      "weight": 0.4,
+      "prompt": "55c8244a34bef6e88ba886f8c06d2f62c8f9b2d4d7db7eac6cd89180d1a473a2",
+      "options": [
+        {
+          "text": "8c29fe12d1aec639fd15e97bf0b999756b906f45607ffcd5a900952df416a09e",
+          "evidence": {
+            "axes": {
+              "L1": 1
+            },
+            "tags": [
+              {
+                "id": "T13B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "01dcbc8a63715293d9f4f6e02c0114f3aaaf4d548ed7eab91c7de2ff24b3309b",
+          "evidence": {
+            "axes": {
+              "L1": -1
+            },
+            "tags": [
+              {
+                "id": "T13A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "c0bc3b54ce41be0bdab9cc8b89e64a1b69a7453bcd02808feeeb771a844c086f",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T12A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "1edc6399b8bc0c593949ef441bf511684f7c0b62c784d6121f6c4b19f40d40d5",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T12B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "a4208dace07cc4d469029cdcf256c96b3ce624e0e1bbbfde14006f880203484c",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "145feff9a92021f240650a99c1a18c7869955ceb6b971390292b95d1cf026523",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "e0bd4ba41558c0911dacdaf47c5a348d9b01ffe647d01b563d004c3c0cd937f5",
+          "evidence": {
+            "none": true
+          }
+        }
+      ],
+      "teenPrompt": "08b0b6ae734fe36d9f6dcc0f060918ce2c9521e011611f29ade7dbb57bd3782f"
+    },
+    "C4-12": {
+      "confirmed": "2026-09-29",
+      "type": "guilty",
+      "grade": "did",
+      "weight": 0.8,
+      "prompt": "793b09b9fb1ca0734aeede1576aa756e6ff24ec65333e640acfa7086db1fc19f",
+      "options": [
+        {
+          "text": "51997f8a8db2530ecb0d91e859f9e234e49aff15b0d96fb92a2ac98ded4424ac",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T15B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "6497e4b3d7bed16979a343a7db4efa6d57725529f5ac3cec45c1f08fabcbdafc",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T15A",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "teenPrompt": "e0cfbb87d3c87d22de97ae128d85819a8314071b543d171ce257324e9684fd1c",
+      "friend": {
+        "prompt": "2ccd7ba3b04e41c6192b6f34b8067058f5dfc98940ecfdc7e02bc4d1bd447420",
+        "a": {
+          "text": "bd4a9e76e6f3b02f6c7491ca4784cfdf007b8358b9ad14b6e67652d2ebce0175",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T15B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "c5c679e7a23d44a9350d67aff7e75c0b183d347c3f0cabcc62fb83c0d1fec9db",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T15A",
+                "s": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C4-2": {
+      "confirmed": "2026-09-29",
+      "type": "this_or_that",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "b3763c35190d2d7ec5edaa7459bed6a1789ca40b0fe365715e439caf3ef8aa86",
+      "options": [
+        {
+          "text": "a763381e53404a0bdeaef205c32deee9a725c8f9e74711dfa33cb7e65ca2f4b4",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T15A",
+                "s": 3
+              }
+            ]
+          }
+        },
+        {
+          "text": "214445a55ebd681486b1cb97f594f76e48dfc8b733c24153238118a33302f946",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T15B",
+                "s": 3
+              }
+            ]
+          }
+        }
+      ],
+      "teenPrompt": "bcf9e6e868d3ca4db93ce6897b41a52cc89e6fd4db509cfa206910b5dbde4cf8",
+      "friend": {
+        "prompt": "808a6512b6a9dc3686487d788db9583d75fdd365ef5831d903efa4eb7e8fc31b",
+        "a": {
+          "text": "54adddecfcdb3f350dd7dc2bb7ab1fb448a7cbefc3866016b68cb6f373c6c159",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T15A",
+                "s": 3
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "09efee458a6065a4204dcb21f3871fe1492ee60a1a06160fae94ceb6ab1f2eb0",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T15B",
+                "s": 3
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C4-3": {
+      "confirmed": "2026-09-29",
+      "type": "this_or_that",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "4acaeadf8095cf0750a9ea646627baa857d6bb6c2e904f2c31b96485e74fd994",
+      "options": [
+        {
+          "text": "fd43c114ae2520232672b22b5d7e4428b07c4ea33248752e135130f2984589fb",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T14A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "09493aaf945ef9eddcb8157a7db92e14773097827cccc87097cb463cc3fee963",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T14B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "90a30e9e2700f346ba28d7705334ce97ab7ca2961bb002ae8db86a79b8e03028",
+        "a": {
+          "text": "8e85c7d6e705117846f0f4b31421fc1d118881c36e5c8723d1f4c1a2b9e12a57",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T14A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "0de85a51c1fa7aa7107b8bda4eddba718a3c433c6341e8c74a85933807142080",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T14B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C4-4": {
+      "confirmed": "2026-09-29",
+      "type": "this_or_that",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "13a206d86b49fb48df2eb904be35cc5a24a00501ec2b8ba3acda4685b003a599",
+      "options": [
+        {
+          "text": "c983187386f70192fb48d8f949dbfbde8cd0c6f01c71a55186698cb6c05ff515",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T23A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "85624461c17838be09b3542bbfa7f9de471324eb4d7515ce602c8a984b6149b1",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T23B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "c1b9d1e62fa6c296b6a98f31f10c64cec516d0fa0b3ba7f3d7b50cb8377b497f",
+        "a": {
+          "text": "e4168780df56b7b9ca327e3a2a27205ef6be56dae67d3b5c635aad68af3d4929",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T23A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "deaae659bae84bd4bfefb15fb2bb0e378c03b130911f8cfecf95e23afbb8c78d",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T23B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C4-5": {
+      "confirmed": "2026-09-29",
+      "type": "real",
+      "grade": "did",
+      "weight": 0.8,
+      "prompt": "c43b91825186f6a1d61e03a371a66933a96ef12213533e9483e1cf98febca885",
+      "options": [
+        {
+          "text": "48b9d66b9bfcd355e9a04eb9b632accc0b12747e3f35e3966e1df07d8c11327a",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T14A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "bdf236690b297fcba3fcd6b4fc9c3f208842d945739881b702058cb45f403b73",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T14B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "51fd810f5568ae69022f4eed7955ee500bc28c070f71ee0e001dc9e22c65b7ec",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T14B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "ac580814a0d6a9ece921426b7cc1ba57c3c29ad33793985c326b27601c08f1c0",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T14A",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "c73a675157a5a7134097a7bfe05518135605cdb6e3c63740157675b6095e53cb",
+        "a": {
+          "text": "232469ea533142a8dd5be2be1d803004942e25e2467df3329e2835e5e86ffac8",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T14A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "609ca5100688d03ab9c29389d0de59edb62bcdd3d36a5dcce36e31a9c4a7778f",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T14B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C4-7": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "b349b76f92e976dbf91aa6e54dc239c3646b49e62b489964dcd00968939526e7",
+      "options": [
+        {
+          "text": "9751790be21516718b0e9058577ef08dbc5950fb1c052e448dffd2d919bac9f7",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T15A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "f007b1cc59cc3ccebb0f75d19919326a1f4ee7665fb8d322066d7a15ca87cca3",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T15B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "d0e69ce4aafd94965299c0c4d1fd839f4636c713dbe8a541f3f49c3129abb8bb",
+          "evidence": {
+            "axes": {
+              "L3": -1
+            },
+            "tags": [
+              {
+                "id": "T12B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "5b88bc369781cad0062bf442c226f326c3975c82766056b71991465b614b5de1",
+          "evidence": {
+            "axes": {
+              "L3": 1
+            }
+          }
+        }
+      ],
+      "teenPrompt": "e7e8b040b6ffd3d12e29e3fbb94fd077e520d80dc5715086c8620e3734a0b2a8",
+      "friend": {
+        "prompt": "6f559525de9c6c191aa8b4781a18901d196733fceecab9b5ba11e97e86c563a5",
+        "a": {
+          "text": "73904f101e94fb68f3b289fcf03e16fb8e5d790e69f356abc132a39ba14415b0",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T15A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "2a381bf07055b72f2f9f281f877092af6017c5e0d2710853f2c777858aed0d45",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T15B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C4-8": {
+      "confirmed": "2026-09-29",
+      "type": "pick_two",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "e2c870eb2e49b1adb8ddc85dcc917787a3b8deff2481e32a40aae8c4134e946d",
+      "options": [
+        {
+          "text": "efa7575f425e4f59c394c82936b19fc5ec420ef4aee21bff5c3f4742b9144e47",
+          "evidence": {
+            "axes": {
+              "L1": 1
+            },
+            "tags": [
+              {
+                "id": "T13B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "f53cd1aafb45e263b4ca21b660944a2fa85c89d0bfd1d8840c324548134924d2",
+          "evidence": {
+            "axes": {
+              "L1": -1
+            },
+            "tags": [
+              {
+                "id": "T13A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "a81153e4a1dae12f89a9eda0949c7e71943a0144c24452193c8b49bc2ea7fedc",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T15A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "56986398c1edd0d8d26c5fc28a7b1657d9b4b5f185ead4b995c987fdd12e7616",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "507133f8d5ebca59e606b6b03e770a97d8898e6a2b0c103351adacd6a64a9566",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "24010e48b65dab320a5f0e211e46946c32c12b294fa8c1f26459e7f433a306ff",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "C5-1": {
+      "confirmed": "2026-09-29",
+      "type": "this_or_that",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "2f16e8ee7f7caef0c8c2f5cb6c63ced0c036bd185f7c96723074664e719fa6e6",
+      "options": [
+        {
+          "text": "6b5b817f6587f50557a42c08df3c06f55764936880e96ba2235b3b47fd8d4336",
+          "evidence": {
+            "axes": {
+              "L2": 1
+            },
+            "tags": [
+              {
+                "id": "T17A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "fdcce2ba13dc6d1b981f7cec7e3e0019409030fce965cea192249ea95e5d9232",
+          "evidence": {
+            "axes": {
+              "L2": -1
+            },
+            "tags": [
+              {
+                "id": "T17B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "d717c203b8e7405935759a3f97c674eca644cfd42486dc8672679897cc3cb8fe",
+        "a": {
+          "text": "3c34c6793174976bed6517447d575bc15fd2aa9527f61eeb2f11deace8d66f57",
+          "evidence": {
+            "axes": {
+              "L2": 1
+            },
+            "tags": [
+              {
+                "id": "T17A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "982b30c050fdfc430d4d9058003af656f67949382c09b2e600c3a2bd88cd5bbc",
+          "evidence": {
+            "axes": {
+              "L2": -1
+            },
+            "tags": [
+              {
+                "id": "T17B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C5-10": {
+      "confirmed": "2026-09-29",
+      "type": "this_or_that",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "0be24f1fbe0c002a09bc5d13477157e5f0a2f945728120f04ec7ffdbb43a5fab",
+      "options": [
+        {
+          "text": "a6851f55a836ee39ad8728f34efcf55bf229b04351a9df3ca264c30eae1c23a8",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T10A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "5f2e3fd349140db0a3611a55616bb2ec53357a2b3fc4d05df365119bdf08e2c4",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T10B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "02e2a8e0f9279b30a0911101a56a8c2c4f1bbd6bef5631ee94824b20c0422c1d",
+        "a": {
+          "text": "62aa3d5ba36a529bbbbdd695d8227706e5c13ace36e9e84789540bb1a26bda3f",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T10A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "bbf40b21e37832aa58ed13416829bfcb4158e2f8995c9ad8317fb80522624896",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T10B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C5-11": {
+      "confirmed": "2026-09-29",
+      "type": "receipts",
+      "grade": "did",
+      "weight": 0.4,
+      "prompt": "da9b0b636f4a666e4f045406ed0db7a26da1399b2fedbebfdd3c1adbbc837e59",
+      "options": [
+        {
+          "text": "45caf17049794f746de096dbf2ac62e5a5b2440687fe2886d9fc878ad2922938",
+          "evidence": {
+            "axes": {
+              "L1": -1
+            },
+            "tags": [
+              {
+                "id": "T22A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "c759e8695e5a55c4227abc4f93d7eef3e0711b7867b369f195c779b4723f7892",
+          "evidence": {
+            "axes": {
+              "L1": 1
+            },
+            "tags": [
+              {
+                "id": "T22B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "f60fc38a39498e65527f515a6ec8ea4f62b7596f1a54d6cd103e55f79141475f",
+          "evidence": {
+            "axes": {
+              "L2": 1
+            },
+            "tags": [
+              {
+                "id": "T16A",
+                "s": 3
+              }
+            ]
+          }
+        },
+        {
+          "text": "a0ed284c995a5aea0c9faac99cfa244ca6e1da6f98defec21266a2af19a3bbe4",
+          "evidence": {
+            "axes": {
+              "L2": -1
+            },
+            "tags": [
+              {
+                "id": "T16B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "40af34652f44606678a0d8c9cb9cc65f6fe64dab9d45d402464be1b93093c671",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T23B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "8af4788bbb5d73661c69381d96399d5e0e9119a0165830ac1508611e026a4d99",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T23A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "e0bd4ba41558c0911dacdaf47c5a348d9b01ffe647d01b563d004c3c0cd937f5",
+          "evidence": {
+            "none": true
+          }
+        }
+      ]
+    },
+    "C5-12": {
+      "confirmed": "2026-09-29",
+      "type": "guilty",
+      "grade": "did",
+      "weight": 0.8,
+      "prompt": "f8550f36e1e9211f7e8b054364b9a699943dba885caa3fda3169af05a8bac49b",
+      "options": [
+        {
+          "text": "51997f8a8db2530ecb0d91e859f9e234e49aff15b0d96fb92a2ac98ded4424ac",
+          "evidence": {
+            "axes": {
+              "L2": -1
+            },
+            "tags": [
+              {
+                "id": "T16B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "6497e4b3d7bed16979a343a7db4efa6d57725529f5ac3cec45c1f08fabcbdafc",
+          "evidence": {
+            "axes": {
+              "L2": 1
+            },
+            "tags": [
+              {
+                "id": "T16A",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "teenPrompt": "3798475d34e16be2ebb376b3b000740d6af1f5958bab9adee7a53675a4010899",
+      "friend": {
+        "prompt": "b30fc2fc0f51ca8a8cb52d313af355ab8d85da235bc72db0adf4e05b2e9dd919",
+        "a": {
+          "text": "bd4a9e76e6f3b02f6c7491ca4784cfdf007b8358b9ad14b6e67652d2ebce0175",
+          "evidence": {
+            "axes": {
+              "L2": -1
+            },
+            "tags": [
+              {
+                "id": "T16B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "c5c679e7a23d44a9350d67aff7e75c0b183d347c3f0cabcc62fb83c0d1fec9db",
+          "evidence": {
+            "axes": {
+              "L2": 1
+            },
+            "tags": [
+              {
+                "id": "T16A",
+                "s": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C5-2": {
+      "confirmed": "2026-09-29",
+      "type": "this_or_that",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "04ae569ad870f1a98a10c0057a5e25154fa90c570c6bf5725c00c25446ded691",
+      "options": [
+        {
+          "text": "e32ebd57f533621f98404d4c79231eb4eb773d6b5499eaf4e02bdbbf97dcadc0",
+          "evidence": {
+            "axes": {
+              "L1": 2
+            },
+            "tags": [
+              {
+                "id": "T22B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "75cbac93906c6e66ae14a51cca22ef06ea62c2b196baa7f39fbc91341f2ac404",
+          "evidence": {
+            "axes": {
+              "L1": -2
+            },
+            "tags": [
+              {
+                "id": "T22A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "eea5a5cdca484ba0701417d43306715d151bbd48308c6393a3c9cd1f58a810b4",
+          "evidence": {
+            "circumstance": true
+          }
+        }
+      ],
+      "teenPrompt": "33c5d9b214e21bdf8d10138856f3bda05d8397fac4c72d3122cdb5c96d8c541f",
+      "friend": {
+        "prompt": "99803e5f80694eae50e79d7a70b9456a036c80f1e4b7062645a75af88bea306d",
+        "a": {
+          "text": "a1f2e4577cf3adff1a18e2606d85ebb832a684b7af5a06fa7b74ec2da752d1ac",
+          "evidence": {
+            "axes": {
+              "L1": 2
+            },
+            "tags": [
+              {
+                "id": "T22B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "535608b327edfa1eaf9c23f729610e27ef21d0cb9886a578d89840bcc21d1241",
+          "evidence": {
+            "axes": {
+              "L1": -2
+            },
+            "tags": [
+              {
+                "id": "T22A",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C5-4": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "081bb190d82271e03573c82a8c2d404afdfd03d08f2538a0860f322adf8b7b00",
+      "options": [
+        {
+          "text": "ff4644dc9bf0025470554361fe16d385c901d84b61d94f642a60044917fab705",
+          "evidence": {
+            "axes": {
+              "L2": 2
+            },
+            "tags": [
+              {
+                "id": "T16A",
+                "s": 3
+              }
+            ]
+          }
+        },
+        {
+          "text": "8b29b1371d69422d91342ac1ae010df29727b674a6ee719b77f4fbf01797cfab",
+          "evidence": {
+            "axes": {
+              "L2": 1
+            }
+          }
+        },
+        {
+          "text": "ce61cd7be3d0f6f28a73cd11d9fdce1a52144c4eda3e43fc2e986ec3d9888878",
+          "evidence": {
+            "axes": {
+              "L2": -2
+            },
+            "tags": [
+              {
+                "id": "T16B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "d332be06a3a7689405445c7f9949ea2172395339528408cedde58cb4ad4a86fe",
+          "evidence": {
+            "axes": {
+              "L2": -1
+            },
+            "tags": [
+              {
+                "id": "T16B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "teenPrompt": "493891dad1c4cf02690b0a152b9070c9f78b1f2daa01112f729c2787a03ec81d",
+      "friend": {
+        "prompt": "20cc52d413a032a86f3628829c147b84178e2a765b11586b75f436a28bb053c1",
+        "a": {
+          "text": "2ec5fb6e0da252f23d035ad490ac9e037aa69c1e2bfca17a24ae859a04319360",
+          "evidence": {
+            "axes": {
+              "L2": 2
+            },
+            "tags": [
+              {
+                "id": "T16A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "f502ce908e9d5a9cfe887b44226d65e53c78b53a81c191c65ebe1806b1f82f11",
+          "evidence": {
+            "axes": {
+              "L2": -2
+            },
+            "tags": [
+              {
+                "id": "T16B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C5-5": {
+      "confirmed": "2026-09-29",
+      "type": "real",
+      "grade": "did",
+      "weight": 0.8,
+      "prompt": "3c6864bcc3639921ab7d0f8ac3efb853d636082fd5fdcdd8f74e425073545d77",
+      "options": [
+        {
+          "text": "cc3d0312e61bdfa6fd3a44db6e6ccb6ca5025e33518e7e60115957059a8b9e0e",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "bd768abc4c7c6c6b85bc842498232002394666cb07d46636cfd35ac6dcdb8082",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "927ab782b7244ce7e82d29c404b2e9cec322100dff2a2c8dafc31fcf82c0ab9c",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "04f404a9ebd26bdea7f8b19774b8f56bd76dae9ceea530b5318501933ad3961a",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "ff20f537d647f57a0940a30e449ec1bf9a7cb06b2d7cefb0509e5ad9acaa2baa",
+          "evidence": {
+            "circumstance": true
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "f17d7c5729936ae0fdd8c305ba4d0b5f70983141b9517bef14842ca9c8068549",
+        "a": {
+          "text": "24f12319429799a96cf5649d2f6d22b84872ab11d99a89f0a0e7c0e1debee8c7",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "d601509f7ee67cc0fc9d475d6da887c4dad987270d67dcef5c044ec9a2258737",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C5-6": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "856aa97c66e4e1962a5ac457ebacd214e6092bdab3ee2d19801a0e9cef70bba9",
+      "options": [
+        {
+          "text": "672ec579c5446d141fa76dd9e8fd6676cb05a0e5073b2987cdcc698489e9796c",
+          "evidence": {
+            "axes": {
+              "L1": -2
+            },
+            "tags": [
+              {
+                "id": "T13A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "4be3c77c70c3c07917a135ac81d6e19ac399d2d53527f765b2fbaecef2f60af6",
+          "evidence": {
+            "axes": {
+              "L1": 2
+            },
+            "tags": [
+              {
+                "id": "T13B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "9b2ad44ee53d449b32012facae84cb182c9ae5d8d816fa2c652488fc410a251d",
+          "evidence": {
+            "axes": {
+              "L1": 1
+            },
+            "tags": [
+              {
+                "id": "T13B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "ee373cd0628ef5796f14dd0e1569f1f1598d66aa49a642a12f750dde64237315",
+          "evidence": {
+            "axes": {
+              "L1": -1
+            }
+          }
+        }
+      ],
+      "teenPrompt": "5c0002eb22553e90317deaf013af2916107484fa31db7975d71606872c038ac5",
+      "friend": {
+        "prompt": "274694b28f4c012617010e8c1db62655025feba7960aa7b86b7c85eb937eb871",
+        "a": {
+          "text": "0dc7aeae9d1691b749be20b16a46c7cb5590432897d320f6567f8426346999a1",
+          "evidence": {
+            "axes": {
+              "L1": -2
+            },
+            "tags": [
+              {
+                "id": "T13A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "3462f34464c1585fce760db7ed0e664aba15fa8a46247287cb369a5654b748d6",
+          "evidence": {
+            "axes": {
+              "L1": 2
+            },
+            "tags": [
+              {
+                "id": "T13B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C5-7": {
+      "confirmed": "2026-09-29",
+      "type": "real",
+      "grade": "did",
+      "weight": 0.8,
+      "prompt": "daec8a1ba51055f4d512974252bd47dfe426170c53262bcbac06c31faa4380f2",
+      "options": [
+        {
+          "text": "23bde164669651e484511def1c91333c3e844514024931af2d7c29f938bb95f3",
+          "evidence": {
+            "axes": {
+              "L2": -1
+            },
+            "tags": [
+              {
+                "id": "T16B",
+                "s": 1
+              },
+              {
+                "id": "T17B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "56fa5bcb5a7abe8216cc5da8684fb8e8dc1fe566e8a7f947a693828061faa6f6",
+          "evidence": {
+            "axes": {
+              "L2": 1
+            },
+            "tags": [
+              {
+                "id": "T17A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "8565de22b2df7274d759ccee1b30a5fcbb64b233e67cec1ae6976a2fa600b7f0",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T17A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "ca8ee2078794d8f95a110ed581c26d630400b8e6a8229e9668ac86db63c4a370",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T16A",
+                "s": 1
+              },
+              {
+                "id": "T17A",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "00255f50be170703ee19341196c55af707ca43c5a391fdda07e194a2b9fdb125",
+        "a": {
+          "text": "10491687e8b48cd44755cad91797bd50cceb599e48982a0174da958c489120b6",
+          "evidence": {
+            "axes": {
+              "L2": -1
+            },
+            "tags": [
+              {
+                "id": "T16B",
+                "s": 1
+              },
+              {
+                "id": "T17B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "a63afe7ca85c015dc5835dfbcb7ac766f52186a8c0d36251e196b8ba2c2ebfa2",
+          "evidence": {
+            "axes": {
+              "L2": 1
+            },
+            "tags": [
+              {
+                "id": "T17A",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C5-8": {
+      "confirmed": "2026-09-29",
+      "type": "feeling",
+      "grade": "emotion",
+      "weight": 0,
+      "prompt": "7a5f21ada921449320c66a10d9766ae128545102cc3b4e8ab0decdef25eb14ff",
+      "options": [
+        {
+          "text": "b4e62ad92ff93bff0e386ab7d694b31df1565263633cac1a5e97636a787c3da0",
+          "evidence": {}
+        },
+        {
+          "text": "8be09feaf9c69d1557413dfae1d02485fce67727cdade6f9e5db7b4dc89a417c",
+          "evidence": {}
+        },
+        {
+          "text": "3224fd5c7aa2255cdc24378967a2c37a4dc6f071c9cc59d17b3c06c4132e4b1f",
+          "evidence": {}
+        },
+        {
+          "text": "cf57924ea4afa52c116bc22d0dfc673196f0f359f58657a7e1cae0db0cf69431",
+          "evidence": {}
+        },
+        {
+          "text": "91d88599f1cdda6033566ab06c71be6afb4491571a7c302c1fe0b84eec4dcc7e",
+          "evidence": {}
+        }
+      ]
+    },
+    "C5-9": {
+      "confirmed": "2026-09-29",
+      "type": "pick_two",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "ae50b9b2f2c9be3d498374f645baf47ab1e205da2539244da09a57c8e95ac7ac",
+      "options": [
+        {
+          "text": "800df7ed8c7948a8103b14a9321d6fcc3ea3f2b8efc699e0a9a363a48271826a",
+          "evidence": {
+            "axes": {
+              "L2": 1
+            },
+            "tags": [
+              {
+                "id": "T16A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "334c33af2aa1e8e6814b083f211eb33ae5ed62b45c37d54217c93180dd8bac6d",
+          "evidence": {
+            "axes": {
+              "L2": 1
+            },
+            "tags": [
+              {
+                "id": "T16A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "d50209da5526c0d3a267a2b1bdab4adb77eb012ac4ba8a91bfeebd26fc3016c2",
+          "evidence": {
+            "axes": {
+              "L2": -1
+            },
+            "tags": [
+              {
+                "id": "T16B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "b2703e3a2ef44f64cdc63666131aa382a9ca0aa108932cb4b7408c2aae851d1e",
+          "evidence": {
+            "axes": {
+              "L2": -1
+            },
+            "tags": [
+              {
+                "id": "T16B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "c611c928bbddcefb6e03f75bc0d3331803186e3a5246bc6fc3bce3e669fc84e4",
+          "evidence": {
+            "axes": {
+              "L2": 1
+            },
+            "tags": [
+              {
+                "id": "T17A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "5579994ab61fb1f7c975c55906f54a5eaa311f9edf4866a17f793cac6edaf1e5",
+          "evidence": {
+            "axes": {
+              "L2": -1
+            },
+            "tags": [
+              {
+                "id": "T17B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "4bfac5b1e87a7c213989b6ddc04ca043656ec8e4079a063e48e904647750fba2",
+        "a": {
+          "text": "800df7ed8c7948a8103b14a9321d6fcc3ea3f2b8efc699e0a9a363a48271826a",
+          "evidence": {
+            "axes": {
+              "L2": 1
+            },
+            "tags": [
+              {
+                "id": "T16A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "b2703e3a2ef44f64cdc63666131aa382a9ca0aa108932cb4b7408c2aae851d1e",
+          "evidence": {
+            "axes": {
+              "L2": -1
+            },
+            "tags": [
+              {
+                "id": "T16B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C5-S1": {
+      "confirmed": "2026-09-29",
+      "type": "sealed",
+      "grade": "none",
+      "weight": 0,
+      "prompt": "673dbf399abf1be39639e82d29a2bcbf64f4d3cd7dfaa9466412c035fddb6898",
+      "options": [
+        {
+          "text": "73df410a7385f0f77404c7c9af63e15310a2c9be466962756ad8fa70bb6fb11c",
+          "evidence": {
+            "axes": {
+              "L2": 2
+            },
+            "tags": [
+              {
+                "id": "T16A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "559efc3031f3c1a8b258aca8eb3c2557f22b942caa882445eff68669ee316d75",
+          "evidence": {
+            "axes": {
+              "L1": -1,
+              "L2": 1
+            }
+          }
+        },
+        {
+          "text": "0cc8fc9b6e99d2fcddcebead7c39a8c6f828191fb6a75fceed76435c5258cd3a",
+          "evidence": {
+            "axes": {
+              "L2": -2
+            },
+            "tags": [
+              {
+                "id": "T16B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "fdb88b84464fd11f1f1a3704ede1595571faf2c9423de70acc8828cc57ca227a",
+          "evidence": {
+            "axes": {
+              "L1": -1,
+              "L2": -1
+            }
+          }
+        }
+      ]
+    },
+    "C6-1": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "0d0153442e4fcc8c6c24c190e4d1ba3062b94035308a515c7e7df36240f5f192",
+      "options": [
+        {
+          "text": "f7bb6c4a4d159437319e936e98c4936b675d9fc70dc5ee76aadc030e2a3d8e96",
+          "evidence": {
+            "axes": {
+              "R3": 2
+            }
+          }
+        },
+        {
+          "text": "d604b903c795b3e531c5c3ada1cc8242aa638892f36d5bcca376542e96d663ae",
+          "evidence": {
+            "axes": {
+              "L3": -1,
+              "R3": -2
+            },
+            "tags": [
+              {
+                "id": "T20B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "04c968e8787b0fa57f945635f60b23ef6d2c90c017cbf5aff259bab66c420a57",
+          "evidence": {
+            "axes": {
+              "L3": 1,
+              "R3": -1
+            }
+          }
+        },
+        {
+          "text": "92475476020d0db934b510bb9b37ccf917fa8374f2b62e758c4e52e43367452e",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T20B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "1e662d73319288b52346bb8893f7f8d2488a854e9dcb6cce847d90b6b2f8c635",
+          "evidence": {
+            "axes": {
+              "R3": 1
+            },
+            "tags": [
+              {
+                "id": "T20A",
+                "s": 3
+              }
+            ]
+          }
+        }
+      ],
+      "teenPrompt": "c48352fa0dc1509e89fdbfcdf11871fab462ef2a5905ef7e899ae9d7f3c40cf6",
+      "friend": {
+        "prompt": "4ab0b26e444b4728c73a0612a3df1fe1753eb2e883e7915a8d4c22541b0d41bd",
+        "a": {
+          "text": "8fe5c34f907facb758d297c6cf2e93adf308c42bb9bfa393e015da4192bca785",
+          "evidence": {
+            "axes": {
+              "R3": 2
+            }
+          }
+        },
+        "b": {
+          "text": "d0105b2fb58575ed2f7ce3588680d305ebf1d24ad24053b5faa7cfb4d3dfe9e4",
+          "evidence": {
+            "axes": {
+              "R3": -2
+            },
+            "tags": [
+              {
+                "id": "T20B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C6-10": {
+      "confirmed": "2026-09-29",
+      "type": "this_or_that",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "e8cd62fb4600223253af16617089e0e79830a65fa74bcb41e534c8cf19622766",
+      "options": [
+        {
+          "text": "efdb019c24c92da493bb51b7e96a47f7864a948a8d2c47e18a10e1ea99cc40b3",
+          "evidence": {
+            "axes": {
+              "L3": 2
+            },
+            "tags": [
+              {
+                "id": "T25A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "1ea287081c94f70b7463b4c699f4c84fa75ef0c5956eaed16983e03d14f42583",
+          "evidence": {
+            "axes": {
+              "L3": -2
+            },
+            "tags": [
+              {
+                "id": "T25B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "0a0569e3c1e15009b9506b40031da77ca918086c8cf2db066597406964113565",
+        "a": {
+          "text": "f108f4f5f0f098d3b800238fd984f75a2b0924c10e990625b2f07149ab09676c",
+          "evidence": {
+            "axes": {
+              "L3": 2
+            },
+            "tags": [
+              {
+                "id": "T25A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "4d2fd92ad0de974013c4f103db9931d69e99c641c5ea0b94ea06e7dc73413650",
+          "evidence": {
+            "axes": {
+              "L3": -2
+            },
+            "tags": [
+              {
+                "id": "T25B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C6-11": {
+      "confirmed": "2026-09-29",
+      "type": "role",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "17cdf6a897cf6c1254d82ff6ddc17eb5a9faf30bc195d187715f9785f404f3f5",
+      "options": [
+        {
+          "text": "dfc8235842c735826d85cab7f5133012610cf1389bb59bc05dc57f0de14be9b4",
+          "evidence": {
+            "axes": {
+              "R3": 1
+            },
+            "tags": [
+              {
+                "id": "T21A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "ecab1c46e31150542004ac0d0f91288c10e8d73e9bdc4a03682f202558356a93",
+          "evidence": {
+            "axes": {
+              "R3": -1
+            },
+            "tags": [
+              {
+                "id": "T21B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "f7d8f08fea54ccce5b82c18b3004be9f814e8fded82c5e15d0ecbedf0dd84ac2",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T21A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "4940ac96df37db2bcd86922d8f0d9b385f819061ee8bbdbf075f892d724394f1",
+          "evidence": {
+            "axes": {
+              "R3": -1
+            },
+            "tags": [
+              {
+                "id": "T21B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "f7fa23f14a5565a38b1dc3ebe839e7d709c46704d75ebd4c10bee303479718b9",
+          "evidence": {
+            "axes": {
+              "R3": 1
+            },
+            "tags": [
+              {
+                "id": "T21A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "17a3a4301587d74750b332c1f0db3905df8f8fd6714fd4be197c9571f7ecf827",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T11B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "C6-12": {
+      "confirmed": "2026-09-29",
+      "type": "receipts",
+      "grade": "did",
+      "weight": 0.4,
+      "prompt": "fd1e9c792e5cc8c75c63c837e529542fd22aedb63bd34eaa504432a1f0f56762",
+      "options": [
+        {
+          "text": "c4e10d6bf38529b08de36489424f0c42143fc221ef233b3ebec326a2b68ce89d",
+          "evidence": {
+            "axes": {
+              "R1": 1
+            },
+            "tags": [
+              {
+                "id": "T19B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "11b00938fa98e8938fa2ebedb24196f9c60a1dfafdcc3ca41eccb7e51342c66e",
+          "evidence": {
+            "axes": {
+              "R1": -1
+            },
+            "tags": [
+              {
+                "id": "T19A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "eb7db7eda8959015a498b47f36714dad622c40ad97b7479c952358bdaf3fbcf6",
+          "evidence": {
+            "axes": {
+              "R3": 1
+            },
+            "tags": [
+              {
+                "id": "T20A",
+                "s": 3
+              }
+            ]
+          }
+        },
+        {
+          "text": "5356fc653d874cde3aa8fef20843fa2c980c403c1fef12e00253e74346f5d7ec",
+          "evidence": {
+            "axes": {
+              "R3": -1
+            },
+            "tags": [
+              {
+                "id": "T20B",
+                "s": 3
+              }
+            ]
+          }
+        },
+        {
+          "text": "62e7b78c6191b11761216dd930aa622a2a36dcb2122f714df5285c355d03c570",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T18A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "aebdae6da8602fedc2af8dfa8bce62ab7fe89c21027e80eff3cb0b4cdee15ab0",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T18B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "e0bd4ba41558c0911dacdaf47c5a348d9b01ffe647d01b563d004c3c0cd937f5",
+          "evidence": {
+            "none": true
+          }
+        }
+      ]
+    },
+    "C6-13": {
+      "confirmed": "2026-09-29",
+      "type": "guilty",
+      "grade": "did",
+      "weight": 0.8,
+      "prompt": "c80dc65cbf17b985a61523a066cfde6d09d09b460a15b27af711648fc5920b8b",
+      "options": [
+        {
+          "text": "51997f8a8db2530ecb0d91e859f9e234e49aff15b0d96fb92a2ac98ded4424ac",
+          "evidence": {
+            "axes": {
+              "R3": 1
+            },
+            "tags": [
+              {
+                "id": "T21A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "6497e4b3d7bed16979a343a7db4efa6d57725529f5ac3cec45c1f08fabcbdafc",
+          "evidence": {
+            "axes": {
+              "R3": -1
+            },
+            "tags": [
+              {
+                "id": "T21B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "C6-2": {
+      "confirmed": "2026-09-29",
+      "type": "real",
+      "grade": "did",
+      "weight": 0.8,
+      "prompt": "0dd77c8116b14e5c66c781f57247e8ec06b71755fe0f8f5c4f10fcc0fe787255",
+      "options": [
+        {
+          "text": "697dcd063f958be52e917b60d9a7ce422ec5e0eaec9e199b640b96d7099ec8dd",
+          "evidence": {
+            "axes": {
+              "R1": -2
+            },
+            "tags": [
+              {
+                "id": "T19A",
+                "s": 3
+              }
+            ]
+          }
+        },
+        {
+          "text": "1c5ab7b767020515dcc1b63d0612e78080017df9774d74b380bc22b888a431bd",
+          "evidence": {
+            "axes": {
+              "R1": 1
+            },
+            "tags": [
+              {
+                "id": "T19B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "dea11875b63d03e431c0b74cb18bb37eaaeeedc539913a81ad7ae94da6cdb364",
+          "evidence": {
+            "axes": {
+              "R1": 2
+            },
+            "tags": [
+              {
+                "id": "T19B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "147fb03421df5cd8f48a59d89fd77f7eb42afc3c615a77e70e1d74ce899f6bd4",
+          "evidence": {
+            "axes": {
+              "R1": -1
+            },
+            "tags": [
+              {
+                "id": "T19A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "8d6abc8748c50827f0f7cc2fa90bd7979e8451bc8afa860f444f6387113fadca",
+          "evidence": {
+            "circumstance": true
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "08ae8d775bd8c66300d449c1626d44c8201c7292750a9db1b9c539429e51e00b",
+        "a": {
+          "text": "4531e40e3f506d1fa3085ab9feac8ae9bd03d7f757e51e0342ae89082a434a52",
+          "evidence": {
+            "axes": {
+              "R1": 1
+            },
+            "tags": [
+              {
+                "id": "T19B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "cd4465fa3061001eda49db73041b9c5b405feac912fb16f30f87c1321e275150",
+          "evidence": {
+            "axes": {
+              "R1": -1
+            },
+            "tags": [
+              {
+                "id": "T19A",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C6-3": {
+      "confirmed": "2026-09-29",
+      "type": "this_or_that",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "f1354d4a6eaadfc340299fb1e9d02424113089a1aeed6e3160f33c9d390c21aa",
+      "options": [
+        {
+          "text": "320d5f4a799240abed9e41cd7f0d2a56b746e3f9d70e260c581fdb19fbabb6fb",
+          "evidence": {
+            "axes": {
+              "R3": -2
+            },
+            "tags": [
+              {
+                "id": "T20B",
+                "s": 3
+              }
+            ]
+          }
+        },
+        {
+          "text": "80da1dcfb1dc9b9473a28d2dcd95438f7b55aac7ee7b32a964e1b8f33ba98f94",
+          "evidence": {
+            "axes": {
+              "R3": 2
+            },
+            "tags": [
+              {
+                "id": "T20A",
+                "s": 3
+              }
+            ]
+          }
+        }
+      ],
+      "teenPrompt": "4c2fb475d074bdf46c4bef9c73dec7773afa4571a74de1b8b01b4e019be1f3a6",
+      "friend": {
+        "prompt": "54141759f6a1ccf00e701b596298db145bc34c0d7f294833ecda46fdaee9b929",
+        "a": {
+          "text": "0dc90faa2eb8a57d936885e345dfafc0a508c774d316feb5fa0019db9c227639",
+          "evidence": {
+            "axes": {
+              "R3": -2
+            },
+            "tags": [
+              {
+                "id": "T20B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "a9707390ea1211e48b7fa3c07d78c654f5275d21b05a1ab6c35b79b21ddc9e49",
+          "evidence": {
+            "axes": {
+              "R3": 1
+            },
+            "tags": [
+              {
+                "id": "T20A",
+                "s": 3
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C6-4": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "dc5861e006abb888b03974a0e13d6c502a6df476b695bd92e8954b55a2d61f50",
+      "options": [
+        {
+          "text": "ff66f6b14253bf5df7d2a62ccaf51789bfc6e011843a69e4b668c55f43558c76",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T18A",
+                "s": 3
+              }
+            ]
+          }
+        },
+        {
+          "text": "d308baa484f7da20e68bb71e21a528e5a30ac6fa795519f1c575de3db6188654",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T18B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "1be47f26abd159d26762ae73f1dd7b3e5acc030ed534fcb68705dfba845a545a",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T18B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "e909b8944bf751b69a4c892b147a98b318e27cf0b86672e38397ba6f95cbb016",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T18A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "b209d1fa7f6a7ef6502e4b28345f14b982d3712dd29c88d81e569cdecfd3ab78",
+          "evidence": {
+            "circumstance": true
+          }
+        }
+      ],
+      "teenPrompt": "3b9ad37f0d9a0d83323f8d8ddf5cfe630c338433040c4b92222f01e07914a1e7",
+      "friend": {
+        "prompt": "9599e231eae1bde4337742498fc5067b532e7668bfd64fc6cd7de86e952e1728",
+        "a": {
+          "text": "52692420a8b3d9c9932c47b64ce24a047bac67aed39f94eea1dd74a3011f7e9f",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T18A",
+                "s": 3
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "dce6d782cea6bb487621158b4a291ec644da9d577d8aa17925a4dfe41c37d49c",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T18B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C6-6": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "35ec10a066e30d6ce489abe3f8a6c7938e06bf80c155c10003bed48ac0b0c517",
+      "options": [
+        {
+          "text": "1f01570155a90e7c2eddb4b34ae668d04709fc2a055c9698b012fae1690f3686",
+          "evidence": {
+            "axes": {
+              "R1": 2
+            },
+            "tags": [
+              {
+                "id": "T19B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "4e3e5b274ae2a8ffed5d6e78a2033232c968de3f7693a83b28af335e512e4cff",
+          "evidence": {
+            "axes": {
+              "R1": -1
+            },
+            "tags": [
+              {
+                "id": "T19A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "50951a184e5bf1709573785e1ff502819b041d4d3c14aade35b40a2eee387d04",
+          "evidence": {
+            "axes": {
+              "R1": -2
+            },
+            "tags": [
+              {
+                "id": "T19A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "ad7619c5c4f38bc905efb7a560f5602aa47afbcc0b9dca56e8159e5e96ba58b9",
+          "evidence": {
+            "depends": true
+          }
+        },
+        {
+          "text": "27d10d877b108dd14d65e2171bdf0207eb0d1c8c95f40948b2bedb20cf4e853e",
+          "evidence": {
+            "circumstance": true
+          }
+        }
+      ],
+      "teenPrompt": "30dde3083a0e89b3d255e8eb634a3770d9d2c8923b0172f776afb78eefbeb7b0",
+      "friend": {
+        "prompt": "03e2bf4ce2f373dfcff8dcc5df1c723ba60a9ea45fe0faaf16dbb4c6edf788d3",
+        "a": {
+          "text": "289fa8dfa8f55a6fbda6b22af89c17ec9a0c4600c1c8b5b2cd99407e5dd3e5ac",
+          "evidence": {
+            "axes": {
+              "R1": 2
+            },
+            "tags": [
+              {
+                "id": "T19B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "eb0fec403e3bc762bc66a1ea7e5dcae06479b529923a7a48d677b7d86d83dd76",
+          "evidence": {
+            "axes": {
+              "R1": -1
+            },
+            "tags": [
+              {
+                "id": "T19A",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C6-7": {
+      "confirmed": "2026-09-29",
+      "type": "pick_two",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "c6d394263296fea5fefee2855a5d7f62aca0f574c55bfa362da7704d1a9f50e3",
+      "options": [
+        {
+          "text": "7ce43bde2ebc324ac56a492cfdd60e273932faad599f0abfcbf9f43ade6c7a53",
+          "evidence": {
+            "axes": {
+              "R3": 1
+            },
+            "tags": [
+              {
+                "id": "T21A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "a73a688795674dc6a7f94b00ab343e531009c6ab9c452f069dfaa24197ba3a6d",
+          "evidence": {
+            "axes": {
+              "R3": 1
+            },
+            "tags": [
+              {
+                "id": "T21A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "7cfb669628b7d025c8bd7fbbbea1378e1ebe329aae525a11274cc6f8ca2322a4",
+          "evidence": {
+            "axes": {
+              "R3": 1
+            }
+          }
+        },
+        {
+          "text": "7276778fedd5ee7a96e8cde12b38e6c5357b3c24b00e75f7c2fc0bff800f8217",
+          "evidence": {
+            "axes": {
+              "R3": -1
+            },
+            "tags": [
+              {
+                "id": "T20B",
+                "s": 1
+              },
+              {
+                "id": "T21B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "d33adc513209647fc88b30d87484232d85ad8d142e3788c89d37fa2c191cafe5",
+          "evidence": {
+            "axes": {
+              "R3": -1
+            },
+            "tags": [
+              {
+                "id": "T20B",
+                "s": 1
+              },
+              {
+                "id": "T21B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "dc701f3ca0354ea5d89cec39590a3e777239e4832313570e62f509d1054a31db",
+          "evidence": {
+            "axes": {
+              "R3": -1
+            },
+            "tags": [
+              {
+                "id": "T20B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "C6-8": {
+      "confirmed": "2026-09-29",
+      "type": "role",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "b2bf7f1eaef0ab716965bbd918ecf87b25d9893bec0a52177a50df69ffe9c7ad",
+      "options": [
+        {
+          "text": "0033417616dfacae42e84a83080bdf3b7728530e7005b1a28495cf813bc05574",
+          "evidence": {
+            "axes": {
+              "R2": -1
+            },
+            "tags": [
+              {
+                "id": "T18A",
+                "s": 3
+              }
+            ]
+          }
+        },
+        {
+          "text": "6c9374e6afce9b14779d5d82e8436ece3c7daab5ee60a2ae3a7a50be7f757706",
+          "evidence": {
+            "axes": {
+              "R2": 1
+            },
+            "tags": [
+              {
+                "id": "T18B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "d24b0ce2eea5253dc454fc873b60f633a68cd8f7a07bc689a245becee142d095",
+          "evidence": {
+            "axes": {
+              "R2": -1
+            },
+            "tags": [
+              {
+                "id": "T18A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "1126ec007daca1107aaeb21ecd3c05bb60655421328ebb5e4ca7e2bf243f4764",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T18A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "259bdc81117f4362ed419cde5a06371dea8d07dffa9e0d836e54a02ce93bb239",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T18B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "0421b6de8e66b9eb93d52eff80eeca88a446e3b2456d5fbf672d1e41276faeb2",
+          "evidence": {
+            "axes": {
+              "R2": 1
+            },
+            "tags": [
+              {
+                "id": "T18B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "teenPrompt": "b5fbba35914b29868833a7e67c3b519f0c336c0f57e85ec38b8c534d1acaa8a0",
+      "friend": {
+        "prompt": "9de914b4587fdf6ce5100cbce735d0cf0edb2f10938abab6d077731de2896eec",
+        "a": {
+          "text": "cd050042ab68f99447deaee5b7a22f2564b34b551a350f341e13dcb8a1f8eab7",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T18A",
+                "s": 3
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "6c9374e6afce9b14779d5d82e8436ece3c7daab5ee60a2ae3a7a50be7f757706",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T18B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C6-9": {
+      "confirmed": "2026-09-29",
+      "type": "this_or_that",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "6f3675fd591d50205f404d5b2b25495b17e735b2e1b5b3482efc3e862041e1f9",
+      "options": [
+        {
+          "text": "176396a607d3bc66ed09bd232975900b6ad50d87f53a2b7ae4701841d780a921",
+          "evidence": {
+            "axes": {
+              "R3": 2
+            },
+            "tags": [
+              {
+                "id": "T21A",
+                "s": 3
+              }
+            ]
+          }
+        },
+        {
+          "text": "c56d7b16278d1735d766defd0da1318131d374149aba3a364a49a87890866c6c",
+          "evidence": {
+            "axes": {
+              "R3": -2
+            },
+            "tags": [
+              {
+                "id": "T11B",
+                "s": 1
+              },
+              {
+                "id": "T21B",
+                "s": 3
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "C6-S1": {
+      "confirmed": "2026-09-29",
+      "type": "sealed",
+      "grade": "none",
+      "weight": 0,
+      "prompt": "e2723e4406f104e340f3876bec676df8413ad2cbd783544c68b9a6e4e0361faf",
+      "options": [
+        {
+          "text": "116f388a717ef768fb5c9165eea5869aca740a47449b514eb78aee3647c695bb",
+          "evidence": {
+            "axes": {
+              "R3": 2
+            }
+          }
+        },
+        {
+          "text": "3c2bba4b3d14b25471ed9d46fbcafa7afa40b03f996b2e8918675af9a4f14bb5",
+          "evidence": {
+            "axes": {
+              "R3": -2
+            },
+            "tags": [
+              {
+                "id": "T20B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "2a2e5358164ded44f22d4516be5e410e64a40bcfaa292c011bc3de99962108a8",
+          "evidence": {
+            "axes": {
+              "R3": -1
+            },
+            "tags": [
+              {
+                "id": "T20B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "09e5cfff079ac3493a7483008bba125008193c02ff56d1e44b44b49b638311a6",
+          "evidence": {
+            "axes": {
+              "R3": 1
+            },
+            "tags": [
+              {
+                "id": "T20A",
+                "s": 2
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "C7-1": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "bc656e74ec15967a028a1142c31c8ffedf5e161ac7826121f0cd2f233c993648",
+      "options": [
+        {
+          "text": "ed521888dc6908855971ab8cdb47df5bf776e76ccccf6e997b10cde3c5b59b0a",
+          "evidence": {
+            "axes": {
+              "L3": 2
+            },
+            "tags": [
+              {
+                "id": "T25A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "3f5ab60e6771a27564578fac1465737f292072a45b3af743c96062044cc0e563",
+          "evidence": {
+            "axes": {
+              "L3": -1
+            },
+            "tags": [
+              {
+                "id": "T25B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "8d852ff65e636f59ad7f76df9c53f0abd0e4b12b3158ff2122b7299e37e5be34",
+          "evidence": {
+            "axes": {
+              "L3": 1
+            }
+          }
+        },
+        {
+          "text": "adaa1366b5a9676dddfffe2cf508542780e86fb5a5f5b9a528158a1d558d2d86",
+          "evidence": {
+            "axes": {
+              "L3": -2
+            },
+            "tags": [
+              {
+                "id": "T25B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "14dbba99e8a55c6636fe6e1a950867418b20320e27a34cb66187e32c6d5e8b95",
+        "a": {
+          "text": "0f1002bc2fb354ae6417b62de9b167dd158a62a35cfe425cc2a1b3db28aac350",
+          "evidence": {
+            "axes": {
+              "L3": 2
+            },
+            "tags": [
+              {
+                "id": "T25A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "e50f429e79009fbbfd9daa7a7520951fa724f15b83ba41219ee6ddf1e9039938",
+          "evidence": {
+            "axes": {
+              "L3": -2
+            },
+            "tags": [
+              {
+                "id": "T25B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C7-10": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "dc9c107ddbf8f9902aa3680e9dfa033a7c0553ba8e451f5edbf27b10ecc4241a",
+      "options": [
+        {
+          "text": "cae59072751eed81c6840326298e08d175477bbb38595525a725dd60d7d45ad6",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T08A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "20f0c5a9adc45889b10ad3b1296b05c5181427a0c3311e67b194a9f191b0024a",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T08B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "7f751948d0f2dc21fb1025aa74d70ad781883467cd76b1a7fd490cd64b31fa00",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T08A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "db97355e2713174193994ba8d15768bc4c92713092dc65213d8f65b81918b295",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T08B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "3328f51848937d899c935deeae65721cd27b9979bd3a5c1f0e8d977a51841b81",
+        "a": {
+          "text": "a9a1344b6ac31d118f5d88784047eb7f9e6718f21f728c14b0a36e0f662a4024",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T08A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "cbac1754cbe2942289f55df92a28f3b642ad1f07a03ddaa4b2620af5f14f49dd",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T08B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C7-11": {
+      "confirmed": "2026-09-29",
+      "type": "reply",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "18ebf4889e46308b71a71e022ac864bd16231fb8a2b886def1ce2fc9b891bb74",
+      "options": [
+        {
+          "text": "27d32ae4a5ac2a286e09e53a173818006d18cf086056b56f0f3b77a325269a5d",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "3a5f20140cd2047f83396fa3a943c3346737a954048487a8baa71683e8c50d48",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "3566d90a04be01d2b347c81981d1307acaf6f18645e9cab8e7341786266e2341",
+          "evidence": {
+            "axes": {
+              "L3": 1
+            }
+          }
+        },
+        {
+          "text": "ca8a5150ddc0325754bd1b6ff454514af33ddd69c1a5077050e8c4aed01f8e0e",
+          "evidence": {
+            "axes": {
+              "L3": -1
+            }
+          }
+        }
+      ],
+      "thread": "24a86bb04f83dbfb73a6b9d6b5e9fef941fd38481879925512917043cccf13d3",
+      "friend": {
+        "prompt": "8d83a13bd1f0d3d7200dab1c23041e5e6d99676d1d0eaaf7d609971a0fe2e180",
+        "a": {
+          "text": "076938470abb88b324219b9b3da664c611efbb92eb1905eb9602f1de74e67c34",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "2b7ae63b622378c076a2f4e6ddd11f78ed955c432bd59bf8848be163c0388088",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C7-12": {
+      "confirmed": "2026-09-29",
+      "type": "others",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "3c8a40d991e8020faa4ee6ae5fc343443e16d6234b33870cadd4e10083fdba20",
+      "options": [
+        {
+          "text": "6fc20f12531a4dfe9034f274633017c91b8fd9cfc68fdb78b5e2f5fe88eaf759",
+          "evidence": {
+            "axes": {
+              "L3": -2
+            },
+            "tags": [
+              {
+                "id": "T25B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "3fae1424d6fe45034b485993820e541f95914717097d83a3d5ecb135564b1c5f",
+          "evidence": {
+            "axes": {
+              "L3": 1
+            },
+            "tags": [
+              {
+                "id": "T25A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "422775802b877b80fb507982911c28230b9ef520f1da654e4cc00fc3a1dbdb15",
+          "evidence": {
+            "axes": {
+              "L3": 1
+            }
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "2f6cb1629e10a0f6754f9f749c1da0692e47314b3d9503aea4cc785a72d141b7",
+        "a": {
+          "text": "efcc6c80aea4b4e28095d422f6037bc58d2a93b4fde36675c2f59a480f1686d8",
+          "evidence": {
+            "axes": {
+              "L3": -2
+            },
+            "tags": [
+              {
+                "id": "T25B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "94a835a6278361b2a26d8af0bd9c2e5cb3a23688ed37e38f000ae4206aa8d020",
+          "evidence": {
+            "axes": {
+              "L3": 1
+            },
+            "tags": [
+              {
+                "id": "T25A",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C7-2": {
+      "confirmed": "2026-09-29",
+      "type": "role",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "db5e86664d46a6cce7d53754407e24e1ab84c0d8daff60074f2f98d81b53f4ce",
+      "options": [
+        {
+          "text": "12f34de14c882b7d66c28dea07ead10b92768ca95be7574762c6d9b6cae0a38f",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T14B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "5ed9d33133e6ccb6645e1643fcb4da2eec05f9d270022570ed202df36e25a97a",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T14A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "1ac0673c760d0bdb5b28f78de482bfbcafee3390a10dd8e8badaa7c474720eb3",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T14A",
+                "s": 1
+              },
+              {
+                "id": "T24A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "aefdd6e377eed03ce2a238667b233337a9d366604f264f3b5ed50ef6247c7ef0",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "fc5f2f708f60de472844d4947ec4c6f131b7629752d0a0aaae8136a4d3c54657",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T23A",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "7029ae9f6f2fe2ba104b28b70cf5d103aec0944f2fdd55da9ca3b462910f237d",
+        "a": {
+          "text": "70a92749d55425856ccd1835ed7bcee46277705d265d2c5e472a5002a2ed14fa",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T14B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "518bb08d9b56ee8f5948951a735dad4185eac1498c636bb6e1137cbcc97073a1",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T14A",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C7-3": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "9c58e7f3b0b9938ee19279e59c7edd09df8cf9032537e5f37603d1848f7704bf",
+      "options": [
+        {
+          "text": "5041d07609ee0ef499610243aee59707eddf7d3cdf1169370ad2ec3d295a94c5",
+          "evidence": {
+            "axes": {
+              "L1": -2
+            },
+            "tags": [
+              {
+                "id": "T22A",
+                "s": 3
+              }
+            ]
+          }
+        },
+        {
+          "text": "56f381f1aa8ab7d83d64aaac728e9da8231088e3b6644d1cbcb26edc60a5cf3e",
+          "evidence": {
+            "axes": {
+              "L1": 2
+            },
+            "tags": [
+              {
+                "id": "T22B",
+                "s": 3
+              }
+            ]
+          }
+        },
+        {
+          "text": "4244cb09a75d52adaa0828497996c3a630106eadb12f6ea2f518fa70a879e1c4",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "4d5dd26d4e2ec4d7fd058229ac5eaace357cd52517285167cf0ec84396102681",
+          "evidence": {
+            "depends": true
+          }
+        },
+        {
+          "text": "a2d781e89df6946fc8355b78ae8c1655fbfd52d6d7cc62ef7bcb0929ab857ebd",
+          "evidence": {
+            "circumstance": true
+          }
+        }
+      ],
+      "teenPrompt": "ac9242659baec3920f5b8230d8eb35796234cebb715e5838e7a8bb32f5f16559",
+      "friend": {
+        "prompt": "a32a5de78f65efdf3aee2c4e0b796937b56bbb4388dd9d899cac06a9bf2b7e52",
+        "a": {
+          "text": "08d607c5c31599a8136cb24abd57d73885267b3f43b3081e390a5d2c9879c8c9",
+          "evidence": {
+            "axes": {
+              "L1": -2
+            },
+            "tags": [
+              {
+                "id": "T22A",
+                "s": 3
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "27e3b5d7b5669bdaf120f8b7b9bed7b8c14c49022f6de2ef66869d18c26b6e50",
+          "evidence": {
+            "axes": {
+              "L1": 2
+            },
+            "tags": [
+              {
+                "id": "T22B",
+                "s": 3
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C7-4": {
+      "confirmed": "2026-09-29",
+      "type": "real",
+      "grade": "did",
+      "weight": 0.8,
+      "prompt": "c89cd0705037bfa5bf9336b3626cb4705dbf7195fac5b1a4d59db781f56902b4",
+      "options": [
+        {
+          "text": "9c49f629ef368ad5487f1c7059d0c29d95390957c020c2084a8cb3fd65b5fa7b",
+          "evidence": {
+            "axes": {
+              "L3": 2
+            },
+            "tags": [
+              {
+                "id": "T25A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "dc60cc1d860fc39ab7c5b11feb9fc4fa3e6d6279bce045b121e2b6332710cf7e",
+          "evidence": {
+            "axes": {
+              "L3": 1
+            },
+            "tags": [
+              {
+                "id": "T25A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "0a2399ddb216e7ff6b5acffeb24a493ac7c42588388f74f73a36bded8dc0a38a",
+          "evidence": {
+            "axes": {
+              "L3": -2
+            },
+            "tags": [
+              {
+                "id": "T25B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "39126ba905f9d1d87e11f79b289e152dd007e2c5f18635205d33b874fda6ac09",
+          "evidence": {
+            "axes": {
+              "L3": -1
+            },
+            "tags": [
+              {
+                "id": "T25B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "c2677cdd499bff5b30488b4c5c20227cc7e533241912af2a72ea0d8f21aa0efa",
+        "a": {
+          "text": "263ba1b7aebc5a0e60d8e9a6a23dd426c7e584b2c570965f7f19122441cd85c2",
+          "evidence": {
+            "axes": {
+              "L3": 2
+            },
+            "tags": [
+              {
+                "id": "T25A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "6625bc4247de409af4b90715544f1a8a4e8fba72fc5702662fb74d9de315d40a",
+          "evidence": {
+            "axes": {
+              "L3": -2
+            },
+            "tags": [
+              {
+                "id": "T25B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C7-5": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "10653dda770f1deb779a09bc33dbc921da13ebd8bdd2e8230a98a03643adf25e",
+      "options": [
+        {
+          "text": "1bb59292393abc7aa82ed7296f292f4423e59d21acab598620e63658d1f1bc98",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "95bfed7a7d9943a5c8b2928f56f6b733a5c3320aa8dd7d795f991d49e449489d",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "81e0a4cb47ea0557d6a6d0b48a073edac154c9f273d845b9d1c135e1e0d363b0",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "80ea8975e4142e1df489e1439e2ed9e41e295ab5b642449b37cf1eb7748274ee",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "e86076cb1b6244d718dc557b9db16474b59d4a3ea114f0cdbd6d8d4dbbb1d834",
+        "a": {
+          "text": "318614d21101fa701666860d89d79b5de873043d12c4f897872f5c7e34130533",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "e5643c834c12b390764b001f1d0eab8b7746a7bd9b0031f42729688716ccdfa8",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C7-6": {
+      "confirmed": "2026-09-29",
+      "type": "real",
+      "grade": "did",
+      "weight": 0.8,
+      "prompt": "482b6c9e0b750dac3accb8da436ebdb9737881a62bbe89cd48d375b813c16a71",
+      "options": [
+        {
+          "text": "e32a9851883c64bb58858db9343678e22e18f6b90c67e8c2aad46afd2114b7f4",
+          "evidence": {
+            "axes": {
+              "R1": -1
+            },
+            "tags": [
+              {
+                "id": "T23B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "085fb5052be30c65caf7e3235cdb81b9c05f0e6a4b16359d4997c92f23ff03e5",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T23A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "f4af65dc0ee90a68a4c3654d039188f5f5cf5c26f09585846f6c3d00c524935d",
+          "evidence": {
+            "axes": {
+              "R1": 1
+            },
+            "tags": [
+              {
+                "id": "T04B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "8222f466e9b7e805df7c381b2cc0b75559bc01633d17415d1f39e52ef1edd85b",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T18B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "ec60e75ccd5295f6bfbe7290f1bda8281405923c519570b8a5c17e1d88c64d0a",
+          "evidence": {
+            "circumstance": true
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "aabd64f77b90deb97dad71c8e6a14624899022d4bf4209475181965ec775116e",
+        "a": {
+          "text": "a453b1ced6e2c60a19474f6b59554d9774732d8091ec8e1379b87a312e4d0502",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T23B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "b8b9d755b5da4e61d55e21deddd9ca761b92abd80ffad9af86b445101bb0fa21",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T23A",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C7-7": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "ede5872a11c35109304ff166fc81a1eee2464bc05a0723db6426d5cf54865db8",
+      "options": [
+        {
+          "text": "bd4c44733a64134133cc5041fc393abca157025e34bc74df1995daffda3b436e",
+          "evidence": {
+            "axes": {
+              "L3": 2
+            },
+            "tags": [
+              {
+                "id": "T25A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "804eadbafb2c3153209934e79283160598595056708de661377a319010eace1c",
+          "evidence": {
+            "axes": {
+              "L3": -2
+            },
+            "tags": [
+              {
+                "id": "T25B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "5c46bb0026bfdd696e1ae1ff2c1a3834205ac0940bbe1a83bad064a39fec951f",
+          "evidence": {
+            "axes": {
+              "L3": 1
+            }
+          }
+        },
+        {
+          "text": "e3a72326c53e57268f4ba4bf2dc7ddafdb4faecc179212e67f3110bdd244ab49",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T06A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "b1737e5cf241677be6ce7024ed1722239c771bda7f7d206f64e8c947224a3ec6",
+          "evidence": {
+            "axes": {
+              "R2": -1
+            }
+          }
+        }
+      ],
+      "friend": {
+        "prompt": "2b7dcce486e91b6ca4f33956b01713711bb3812a0ffd88b602d501bc4d09a52e",
+        "a": {
+          "text": "95576c581b840b94c4bd57770f6742085194ca96a150b8e582d2664b3e6a1428",
+          "evidence": {
+            "axes": {
+              "L3": 2
+            },
+            "tags": [
+              {
+                "id": "T25A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        "b": {
+          "text": "c24bd65284f5fa30b7fb203dc85e179a3ac20c015cbeae7d551bde24c1333367",
+          "evidence": {
+            "axes": {
+              "L3": -2
+            },
+            "tags": [
+              {
+                "id": "T25B",
+                "s": 2
+              }
+            ]
+          }
+        }
+      }
+    },
+    "C7-9": {
+      "confirmed": "2026-09-29",
+      "type": "pick_two",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "0db7ae3890574e025e34fc59a8e9d928540165ccc256e9fceb9fc4a5ea3a1192",
+      "options": [
+        {
+          "text": "596673a0b57c08988e6afd28771c2e38e82f0714c554aab51a38905f88441982",
+          "evidence": {
+            "axes": {
+              "L1": 1
+            },
+            "tags": [
+              {
+                "id": "T22B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "a2f8924d72e451cdc36bcc9b417db59d07d30f88b3c9c6c9c96dea84f6603f73",
+          "evidence": {
+            "axes": {
+              "L1": -1
+            },
+            "tags": [
+              {
+                "id": "T22A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "1aeaa6104b0cb1730c91e588a1338caa33403b6cc681adf1513d519869346a83",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "fccf2aed8a6410114ed933421e9db78d8bf80b6e2480c99260d07bda9daed55e",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T24B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "6cdffd580ba0c290d08c56c4ffac29655d1407e359e706f1bf0755c828b29245",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T23A",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "2ff17f00fcb726a4c2de0b65c1204cfc61ff359070ce09442afb21f34238dc67",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T23B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "C7-S1": {
+      "confirmed": "2026-09-29",
+      "type": "sealed",
+      "grade": "none",
+      "weight": 0,
+      "prompt": "e812c7d20da018f511fa35884f2adf21109c2b500042cd5c0f27d7c2ea719cd9",
+      "options": [
+        {
+          "text": "ee0c334e520fc69533b613d89986a96dea71144d091131286dc216f6fa628f0b",
+          "evidence": {
+            "axes": {
+              "L3": 2
+            },
+            "tags": [
+              {
+                "id": "T25A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "b94a910a4db3cf0cfd00214f0af4aca80d50a294c03ed194359ce6e8515b59a2",
+          "evidence": {
+            "axes": {
+              "L3": -2
+            },
+            "tags": [
+              {
+                "id": "T25B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "79a45c1c45844ae6582b69a3f6b6abef2456d1df8bc587193690d7994f00a27f",
+          "evidence": {
+            "axes": {
+              "L3": -1
+            }
+          }
+        },
+        {
+          "text": "1d9d6e11058a85c5339e177816c1a785a7307b512470e412eb4bcebbdf00ce06",
+          "evidence": {
+            "axes": {
+              "L3": -1
+            },
+            "tags": [
+              {
+                "id": "T25B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "C7-S2": {
+      "confirmed": "2026-09-29",
+      "type": "sealed",
+      "grade": "none",
+      "weight": 0,
+      "prompt": "9de8b83c14ce057b6a72b2cc436da4a3482e5bc7eb3e4d19c3cb6664a533e5cf",
+      "options": [
+        {
+          "text": "7c0f0532bd8c98abc86c006a1aba95436b71ada717d0554c28727f009703b52f",
+          "evidence": {
+            "axes": {
+              "L1": -1
+            },
+            "tags": [
+              {
+                "id": "T22A",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "f8add6a07af7d36e69d0fc3991e1095d003b186ed35445058fdd4c09d737e31a",
+          "evidence": {
+            "axes": {
+              "L1": 1
+            },
+            "tags": [
+              {
+                "id": "T22B",
+                "s": 2
+              }
+            ]
+          }
+        },
+        {
+          "text": "7ac91c0d9184eb99485e339b632f7dee3ead002fd937902cc177a6b082ef9949",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T22B",
+                "s": 1
+              }
+            ]
+          }
+        },
+        {
+          "text": "2a4fd41180505d69703c86dfc0805c77fd83717f8eee9b05a21e6f2756f64818",
+          "evidence": {
+            "tags": [
+              {
+                "id": "T22B",
+                "s": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "X-L1-1": {
+      "confirmed": "2026-09-29",
+      "type": "this_or_that",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "0ba383d8a0c813d19018e6617d5c5d1b4822445c6a931086d84c2c45e8bab321",
+      "options": [
+        {
+          "text": "40edf2652d376f862a89acf8433af5467688b1eaf90193e8800ab9ed8949f3e5",
+          "evidence": {
+            "axes": {
+              "L1": -2
+            }
+          }
+        },
+        {
+          "text": "d209f05c32c2a9e7f7bb8feebaaf23d61e572502fb564fdde8d08e685a2b6df6",
+          "evidence": {
+            "axes": {
+              "L1": 2
+            }
+          }
+        }
+      ]
+    },
+    "X-L1-2": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "7a1154cd9f84353b737e5ec1ca5833a7cb1197d6c3a7b2e8a9870d2c2a7c3aea",
+      "options": [
+        {
+          "text": "4c85a17fefa90dad28801a619e6193f8e33b5d45ffb8da3dd68ff4227e328031",
+          "evidence": {
+            "axes": {
+              "L1": -2
+            }
+          }
+        },
+        {
+          "text": "00ea4861f3fa6ea64afc72171dac76492dd1374197fa9198dd1a4157facb82a0",
+          "evidence": {
+            "axes": {
+              "L1": -1
+            }
+          }
+        },
+        {
+          "text": "0ace852c8a86b14392680c4f63969e2e760fc3c26a1edd8bbee32e9006e3111c",
+          "evidence": {
+            "axes": {
+              "L1": 1
+            }
+          }
+        },
+        {
+          "text": "f8d135d8112fb3460a4d45212ac4b2cd8385cf56ae3482bdbbdf03f0c9930795",
+          "evidence": {
+            "axes": {
+              "L1": 2
+            }
+          }
+        }
+      ]
+    },
+    "X-L2-1": {
+      "confirmed": "2026-09-29",
+      "type": "this_or_that",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "d6de79724d25508f7495a1a238de6772fb00639128893fff04616e2b91564625",
+      "options": [
+        {
+          "text": "b883122860e2849f16f9d8fe2a516a0948ed74851497647c82a33b859ea53b98",
+          "evidence": {
+            "axes": {
+              "L2": 2
+            }
+          }
+        },
+        {
+          "text": "af9de5dfd874da2470e6af572943bbae0ce4e128eeb91ff3ae566d7cd3cf736b",
+          "evidence": {
+            "axes": {
+              "L2": -2
+            }
+          }
+        }
+      ]
+    },
+    "X-L2-2": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "4ae7e71a80eeaccd8a2500c182b60add9472a2df396fb60d81babfcbaa1f2414",
+      "options": [
+        {
+          "text": "907ba8bbccc0e7e1171aa63b95ee3a68f3b200c7a6ac4288a3cc3c053ae4eb12",
+          "evidence": {
+            "axes": {
+              "L2": 2
+            }
+          }
+        },
+        {
+          "text": "8222ad0400a42b0ad5e8f27b398d605ebbea5c240f674b9f7c1e97c80a88a652",
+          "evidence": {
+            "axes": {
+              "L2": 1
+            }
+          }
+        },
+        {
+          "text": "b9482467c863af5d277e9c9bee4e4c1a3d2c20b4b93f2ce4f2c8315084a2839d",
+          "evidence": {
+            "axes": {
+              "L2": -1
+            }
+          }
+        },
+        {
+          "text": "b906428f0301156830593f790d7adc6299f7960f4a04c6ed0902d1bcc427b508",
+          "evidence": {
+            "axes": {
+              "L2": -2
+            }
+          }
+        }
+      ]
+    },
+    "X-L3-1": {
+      "confirmed": "2026-09-29",
+      "type": "this_or_that",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "17933cc85c77a5d305f5dd55f4dafcaa055e45534a65e3938a774ffe2a5b0701",
+      "options": [
+        {
+          "text": "fc2683c02df9ddf589ed02be6a4d0fcef8c33e1874a55a5c64fcaa0880395d04",
+          "evidence": {
+            "axes": {
+              "L3": -2
+            }
+          }
+        },
+        {
+          "text": "9bc01eade009ba0505343792ac71f25b7980e8a12c1d118594fc8c0ef6a63e7d",
+          "evidence": {
+            "axes": {
+              "L3": 2
+            }
+          }
+        }
+      ]
+    },
+    "X-L3-2": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "e78542770ce06a2cfc83c1aca9ee85004f5ed716f8729249c0b25c05dbad49c0",
+      "options": [
+        {
+          "text": "2e83ae55b5aa84a14d5e413912cd6fdaf15dd0c38df81ab369ae3ba2516a25a6",
+          "evidence": {
+            "axes": {
+              "L3": 2
+            }
+          }
+        },
+        {
+          "text": "8358edcb12404a3abb7faf0f3a642587767f3b65e96d816c536919536f27733d",
+          "evidence": {
+            "axes": {
+              "L3": 1
+            }
+          }
+        },
+        {
+          "text": "80d8ceb5dd834159fdd7bd81b0e8fc20adaf656863e4269f785acd6215eb524e",
+          "evidence": {
+            "axes": {
+              "L3": -1
+            }
+          }
+        },
+        {
+          "text": "eeec5887001cbb004115e4cbcea29389e3e9033dd3c166bb17880273ca61a387",
+          "evidence": {
+            "axes": {
+              "L3": -2
+            }
+          }
+        }
+      ]
+    },
+    "X-R1-1": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "00ae7c3b289288f8d0149ebc441a9acdd97bfb631b2a85a565118fcdc6d2cbed",
+      "options": [
+        {
+          "text": "fad25065aafde1d5aa57cd6fcb762357d51d486bdec77dfb78ac91908eb620f4",
+          "evidence": {
+            "axes": {
+              "R1": 2
+            }
+          }
+        },
+        {
+          "text": "362b6fef160cbfc73dda0d43629a27d948952389487da559686352ac0454d66b",
+          "evidence": {
+            "axes": {
+              "R1": 1
+            }
+          }
+        },
+        {
+          "text": "8eb591df5e896e03c00bb7c10786055afaca78b9301b13dbc90733d3abe35a18",
+          "evidence": {
+            "axes": {
+              "R1": -1
+            }
+          }
+        },
+        {
+          "text": "21043b4174382b0a17072bd387958a473b2f52291378426cb8517151ad43110f",
+          "evidence": {
+            "axes": {
+              "R1": -2
+            }
+          }
+        }
+      ]
+    },
+    "X-R1-2": {
+      "confirmed": "2026-09-29",
+      "type": "this_or_that",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "89ed06f32d7bbb0e28bae8c5704dbedfa21de10b04a08e22f75c52a66bb74088",
+      "options": [
+        {
+          "text": "a88d3e91a1499ff2ccfc138766e0239f967af652582b2c16b00535abd06ba749",
+          "evidence": {
+            "axes": {
+              "R1": 2
+            }
+          }
+        },
+        {
+          "text": "ba7b106787cd94ac646eab7e204036f9a96fe348baddab4d4f9a4a9e7d0dc4e4",
+          "evidence": {
+            "axes": {
+              "R1": -2
+            }
+          }
+        }
+      ]
+    },
+    "X-R2-1": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "221b408d5ce98ec9addc52c228e6ec3dea9825e3618778916516902766b0f033",
+      "options": [
+        {
+          "text": "e1d8873a03ab25d228eaf2b55b19b92fc0af879201beaadcefcd40090ece9375",
+          "evidence": {
+            "axes": {
+              "R2": 2
+            }
+          }
+        },
+        {
+          "text": "65c5d5c7c54527d4dda8e153eb1488956ebbd9ae277d8779aeb1797e32d8def8",
+          "evidence": {
+            "axes": {
+              "R2": 1
+            }
+          }
+        },
+        {
+          "text": "4d8067f228f7415104139ab0cfa3a47cb549d350cac2a13851d229840a37f97f",
+          "evidence": {
+            "axes": {
+              "R2": -1
+            }
+          }
+        },
+        {
+          "text": "b2f2d0b28de873ba70742025395acb3fb3cc74cdf364413b52c7c0360306e981",
+          "evidence": {
+            "axes": {
+              "R2": -2
+            }
+          }
+        }
+      ]
+    },
+    "X-R2-2": {
+      "confirmed": "2026-09-29",
+      "type": "this_or_that",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "c13c53a0061abe847b212c738fca7341f4333a14269a88ee8e9c6a357c078c30",
+      "options": [
+        {
+          "text": "33f89bf9613155ec3508d20c24673890f3a3c04670261e9ae05ddf94e3bd1bad",
+          "evidence": {
+            "axes": {
+              "R2": 2
+            }
+          }
+        },
+        {
+          "text": "cde84a8298547efb68fc99368b5efc2c945dd4a52e017fa3b7d6a566eb0b7199",
+          "evidence": {
+            "axes": {
+              "R2": -2
+            }
+          }
+        }
+      ]
+    },
+    "X-R3-1": {
+      "confirmed": "2026-09-29",
+      "type": "this_or_that",
+      "grade": "believe",
+      "weight": 0.45,
+      "prompt": "8f50699f035530f9c5039c09c163b7567365ce1dc6180c05a5aeade681a530c3",
+      "options": [
+        {
+          "text": "1b6c51215ef1f37c01217339f6f8bdb0506f9f80d5c6da2dcc594c775df55263",
+          "evidence": {
+            "axes": {
+              "R3": 2
+            }
+          }
+        },
+        {
+          "text": "109995ef5a696371b908463f87e88f4180727980fed4407fb19dccfd5cbc1834",
+          "evidence": {
+            "axes": {
+              "R3": -2
+            }
+          }
+        }
+      ]
+    },
+    "X-R3-2": {
+      "confirmed": "2026-09-29",
+      "type": "scenario",
+      "grade": "would",
+      "weight": 0.55,
+      "prompt": "43f11ee865cdabb0da9be9f173bbfeb9df5e0d52ed2c8c65b564672e9bffd80b",
+      "options": [
+        {
+          "text": "832eb01475e1723708435aa9ae1e2834234d5601ad35266a41d6dcfa22cddc87",
+          "evidence": {
+            "axes": {
+              "R3": 2
+            }
+          }
+        },
+        {
+          "text": "4786da89d3a207fdf09ab64b91e012849fc90b4e0195478a33bbdc2644fad6de",
+          "evidence": {
+            "axes": {
+              "R3": 1
+            }
+          }
+        },
+        {
+          "text": "87af42106a192ca6083a367225376fe6bf90208c8b476aedbce1834559d4b5d7",
+          "evidence": {
+            "axes": {
+              "R3": -1
+            }
+          }
+        },
+        {
+          "text": "3018e129079234f4cdfe3d3fbc277cd77c0d55fafc3dc825752d16fafe76cdff",
+          "evidence": {
+            "axes": {
+              "R3": -2
+            }
+          }
+        }
+      ]
+    }
+  }
+}

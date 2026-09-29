@@ -7,7 +7,7 @@ import { S, KIT } from "../src/persona/kit.js";
 import { restoreRun } from "../src/persona/store.js";
 import { LOBBY_COPY, ENDING_IDS, DEPTH_IDS, ROOM_IDS, DELIVERY_IDS, ROOM_CHAPTERS, hostLine } from "../src/persona/lobby.js";
 import { ADULT, TEEN, clock, started, playUntil, firstOption, leaning, OPEN_LOBBY, ROOM_SETS, DEPTHS, lobbyFor } from "./persona-helpers.mjs";
-import { makePlayer, playPicker, simulate } from "./persona-sim.mjs";
+import { makePlayer, makeRandomPlayer, playPicker, simulate } from "./persona-sim.mjs";
 
 const { RUN_SIZE, FINALE_SIZE } = Session;
 const AXES = S.AXES;
@@ -243,6 +243,8 @@ test("flow: chapters in order and whole, each opened by its first authored card,
   }
 });
 
+// A receipts card is a list of small facts across topics, so the neighbour rule compares it on its axes only
+// (Session.flowDims); every other card on its axes and tag pairs.
 test("flow: no two cards of one type in a row except this_or_that rounds, and no neighbours on the same axis or tag pair", () => {
   let chapterBreaks = 0;
   let bonusBreaks = 0;
@@ -255,7 +257,7 @@ test("flow: no two cards of one type in a row except this_or_that rounds, and no
         const b = cards[k];
         neighbours++;
         const sameType = a.type === b.type && !isRoundPair(a, b);
-        const shared = Session.cardDims(b).filter((d) => Session.cardDims(a).includes(d));
+        const shared = Session.flowDims(b).filter((d) => Session.flowDims(a).includes(d));
         if (!sameType && !shared.length) continue;
         // Coverage outranks flow: when closed rooms leave an axis to the bonus cards alone, two bonus cards may have
         // to sit together. Anywhere else a steady player never sees a repeat.
@@ -282,4 +284,42 @@ test("simulation (small): 48 cards for everyone, no unfinished side, nobody with
   assert.ok(out.total.share3to5 >= 0.85, `3 to 5 tags ${out.total.share3to5}`);
   assert.ok(out.total.exactRate >= 0.45, `sealed exact ${out.total.exactRate}`);
   assert.ok(Object.values(ROOM_CHAPTERS).every((n) => KIT.chapters[n - 1]), "room chapters exist in the kit");
+});
+
+// Step B formats (2026-09-28): receipts and guilty-or-not cards are spread out, never back to back or clustered.
+test("flow: receipts and guilty cards are spread out: never two of one format within 3 cards, and rarely side by side", () => {
+  let near = 0;
+  let pairs = 0;
+  for (const c of COMBOS.filter((x) => x.depth === "personal")) {
+    for (const [i, signs] of SIGNS.entries()) {
+      const cards = runCardsOf(playTraced(c.setup, lobbyFor(c.rooms, c.depth), leaning(signs), `spr${i}00001`).state);
+      cards.forEach((card, k) => {
+        if (!Session.SPREAD_TYPES.includes(card.type)) return;
+        const window = cards.slice(Math.max(0, k - 3), k).map((x) => x.type);
+        assert.ok(!window.includes(card.type), `${c.name}: ${card.id} (${card.type}) within 3 cards of another ${card.type}`);
+        pairs++;
+        if (k > 0 && Session.SPREAD_TYPES.includes(cards[k - 1].type)) near++;
+      });
+    }
+  }
+  assert.ok(pairs > 0, "the new formats are served");
+  assert.ok(near / pairs < 0.1, `receipts right after guilty (or back) ${near} of ${pairs}`);
+});
+
+// Random clickers at the real run length: the kit sim's full walk no longer stands in for a run (see sim.mjs INFO).
+// Acceptance (45 to 55% per pole) is measured on 4,000 random clickers by persona-sim.mjs --acceptance; this sample is
+// smaller, so its band is wider.
+test("random clickers at RUN_SIZE: under 1.5 strong tags on average, every pole 42 to 58%", () => {
+  let strong = 0;
+  const plus = Object.fromEntries(AXES.map((a) => [a, 0]));
+  const n = 400;
+  for (let i = 0; i < n; i++) {
+    const setup = i % 2 ? ADULT : TEEN;
+    const s = playPicker(setup, OPEN_LOBBY, makeRandomPlayer(`guard-${i}`), `rndg${String(i).padStart(4, "0")}`);
+    const p = Session.profileFor(s);
+    strong += p.strongTags.length;
+    for (const a of AXES) if (p.axes[a].pole > 0) plus[a]++;
+  }
+  assert.ok(strong / n < 1.5, `random strong tags ${strong / n}`);
+  for (const a of AXES) assert.ok(plus[a] / n >= 0.42 && plus[a] / n <= 0.58, `${a}: ${plus[a] / n}`);
 });

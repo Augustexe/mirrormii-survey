@@ -874,7 +874,16 @@
       "C1-5",
       "C1-7",
       "C7-10",
-      "C3-5"
+      "C3-5",
+      "C1-13",
+      "C2-12",
+      "C2-13",
+      "C3-13",
+      "C3-15",
+      "C4-12",
+      "C5-12",
+      "C7-11",
+      "C7-12"
     ],
     "backupWhy": "Sally's fixed backup order, extended to every card with a friend field. Unused tag pairs come first, then cards that rescue an axis, then everything else.",
     "whyChips": {
@@ -1217,7 +1226,7 @@
           "a",
           "a",
           "b",
-          "a",
+          null,
           "b"
         ]
       },
@@ -1847,7 +1856,7 @@
         "answerMap": [
           "a",
           "b",
-          "b",
+          null,
           null,
           null
         ]
@@ -1908,6 +1917,156 @@
           "a",
           "b",
           "a",
+          "b"
+        ]
+      },
+      "C1-13": {
+        "chapter": 1,
+        "type": "others",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T01"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          "a"
+        ]
+      },
+      "C2-12": {
+        "chapter": 2,
+        "type": "guilty",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T08"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C2-13": {
+        "chapter": 2,
+        "type": "reply",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T05"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C3-13": {
+        "chapter": 3,
+        "type": "guilty",
+        "sally": [],
+        "axes": [
+          "R3"
+        ],
+        "pairs": [],
+        "level": "love",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C3-15": {
+        "chapter": 3,
+        "type": "reply",
+        "sally": [],
+        "axes": [
+          "R2"
+        ],
+        "pairs": [
+          "T10"
+        ],
+        "level": "love",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          null,
+          "b"
+        ]
+      },
+      "C4-12": {
+        "chapter": 4,
+        "type": "guilty",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T15"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C5-12": {
+        "chapter": 5,
+        "type": "guilty",
+        "sally": [],
+        "axes": [
+          "L2"
+        ],
+        "pairs": [
+          "T16"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C7-11": {
+        "chapter": 7,
+        "type": "reply",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T24"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
+          null,
+          null
+        ]
+      },
+      "C7-12": {
+        "chapter": 7,
+        "type": "others",
+        "sally": [],
+        "axes": [
+          "L3"
+        ],
+        "pairs": [
+          "T25"
+        ],
+        "level": "everyday",
+        "teenOk": true,
+        "answerMap": [
+          "a",
+          "b",
           "b"
         ]
       }

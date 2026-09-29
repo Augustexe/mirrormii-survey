@@ -22,19 +22,19 @@ People **finish** it, get a personality read that feels accurate and a little sp
 | What | Count |
 |---|---|
 | Taps per player | 55: setup 3, lobby 4, cards 40, sealed finale 8 |
-| Questions built | 81: 61 chapter cards, 12 extra cards, 8 sealed cards |
-| Answer options | 331: 159 carry axis values, 240 carry tags, 120 carry an emotion, 15 circumstance (score nothing), 4 "depends" with a follow-up |
+| Questions built | 96: 76 chapter cards, 12 extra cards, 8 sealed cards |
+| Answer options | 391: 199 carry axis values, 291 carry tags, 120 carry an emotion, 15 circumstance (score nothing), 4 "depends" with a follow-up, 4 "None of these" (score nothing) |
 | Chapters (categories) | 7: 4 always on, 3 optional rooms |
-| Card types (question formats) | 7 today; 7 more proposed (section 6) |
+| Card types (question formats) | 11 built (4 indirect formats added in step B); 3 more held (section 6) |
 | Axes | 6 (3 relationship, 3 life) |
 | Types | 64 (16 half-names) |
 | Tags | 50 in 25 opposite pairs (4 are 18+ only) |
 | Genii's calls | 150 one-liners |
 | Setup and lobby combinations | 13,824 |
 | Combinations that change the cards | 48 (age 2 × depth 3 × rooms 8) |
-| Distinct routes | 1,768 distinct card orders from 1,920 simulated players; nearly every player gets a unique route |
+| Distinct routes | 1,077 distinct card orders from 1,920 simulated players (40 per lobby bucket; the same count gave 903 before step B) |
 | Types reached in simulation | 64 of 64 |
-| Tests | 136 app, 27 kit, all pass |
+| Tests | 140 app, 32 kit, all pass |
 | Real-person accuracy | untested (blind test 1 on the older kit: 0 of 6) |
 
 ## 3. Where everything lives
@@ -45,6 +45,7 @@ People **finish** it, get a personality read that feels accurate and a little sp
 | Types, axes, tags and result lines | `research/persona-quiz-v2/final/library.json` |
 | Friend game content | `research/persona-quiz-v2/final/friend.json` |
 | Scorer (one scorer for app, CLI, sim, tests) | `research/persona-quiz-v2/final/score-core.mjs`; `score.mjs` CLI; `sim.mjs`; `tests.mjs` |
+| Evidence audit and lock | `research/persona-quiz-v2/final/audit.mjs` (per-axis and per-tag counts, random-clicker balance); `lock-evidence.mjs` and `evidence-lock.json` (section 7); picker acceptance: `node quiz64/tests/persona-sim.mjs --acceptance` |
 | Web game | `quiz64/src/PersonaApp.jsx`, `quiz64/src/persona/` (lobby `lobby.js`, picker and state `session.js`) |
 | Result page drafts | `research/result-page-wireframes/` (`stories.html` is the chosen direction) |
 | Structure source | Sally's v2 system, `research/sally-v2-2026-09-26/` (Chinese). A template, never a translation source |
@@ -83,13 +84,13 @@ flowchart LR
 
 | # | Chapter | Cards | On |
 |---|---|---|---|
-| 1 | Your phone | 8 | always |
-| 2 | Friends | 9 | always |
-| 3 | Love and your person | 9 | room: love |
-| 4 | Money and treats | 7 | always |
-| 5 | Work, school and ambition | 9 | room: work |
-| 6 | Family and home | 10 | room: family |
-| 7 | Play, rules and you | 9 | always |
+| 1 | Your phone | 10 | always |
+| 2 | Friends | 11 | always |
+| 3 | Love and your person | 12 | room: love |
+| 4 | Money and treats | 9 | always |
+| 5 | Work, school and ambition | 11 | room: work |
+| 6 | Family and home | 12 | room: family |
+| 7 | Play, rules and you | 11 | always |
 | Extras | Axis cards (6 scenario, 6 this-or-that) | 12 | pool, used by the picker |
 | Finale | Sealed guesses | 8 | always |
 
@@ -108,8 +109,12 @@ flowchart LR
 | Role | "In your group chat, you're the..." | believe, 0.45 | 5 |
 | Feeling | After a card: which feeling showed up first | emotion only, 0 | 2 |
 | Sealed | New moment; Genii locked its guess first | never scored | 8 |
+| Receipts check (step B) | Taps every ordinary fact that is true right now (5 to 7 items), or "None of these", then Done | did, 0.40 per tick; past 3 ticks each tick is scaled to 3/ticks | 4 (phone, money, week, family) |
+| Guilty or not (step B) | Genii bets on one specific thing they did: Guilty or Never | did, 0.80 | 6 (2 are 18+) |
+| Reply picker (step B) | A mock text thread in chat bubbles; picks the reply they'd send | would, 0.55 | 3 |
+| Other people (step B) | Reacts to what a friend did; first thought | believe, 0.45 | 2 |
 
-**Indirect formats** (approved 2026-09-28: the first four now; Rank it, Friend's-eye view and Vibe pick held until after blind test 2):
+**Indirect formats** (approved 2026-09-28: the first four are built, see the table above; Rank it, Friend's-eye view and Vibe pick held until after blind test 2):
 
 | Format | What the player does | Example | Grade, weight |
 |---|---|---|---|
@@ -133,23 +138,24 @@ Every answer option carries its own evidence. The scorer only adds up what optio
 | `circumstance` | The option is a situation, not a choice (money pressure, no real choice). Scores nothing (Sally's "only way right now") |
 | `depends` | Scores nothing; opens "What would flip you?" with 3 presets |
 | Exits | Skip, Not my life, No recent example (real cards). Never score |
-| Grade weight | did 0.80, would 0.55, believe 0.45, emotion 0, sealed 0 (plus section 6 proposals) |
+| Grade weight | did 0.80 (real, guilty), receipts 0.40 per tick (did, at most 3 ticks' worth per card), would 0.55 (scenario, reply), believe 0.45 (this or that, pick two, role, other people), emotion 0, sealed 0 |
 | Rushed | Under 1.5 s counts at 0.3. A tag also needs at least one calm card |
 | `mask` | Internal: what the card looks like versus what it measures |
-| `friend` | Third-person version for friend game Level 2 (51 cards) |
+| `friend` | Third-person version for friend game Level 2 (60 cards; never on receipts) |
+| `none` | Receipts only: "None of these", exclusive, scores nothing |
 
-**Content can change, evidence can't drift (approved, built in step B).** Tag and type names and all result lines are keyed by id, so renaming never touches evidence. Card and answer text can be rewritten freely, but a check will fail the tests when an option's text changes without its evidence being re-confirmed, so a rewrite can never silently change what an answer means.
+**Content can change, evidence can't drift (approved, built in step B).** Tag and type names and all result lines are keyed by id, so renaming never touches evidence. Card and answer text can be rewritten freely, but `evidence-lock.json` holds a sha256 of every normalized text (prompt, teen prompt, chat thread, each option, the friend sides) next to the evidence it carries, and the kit tests fail while any text or evidence differs from its locked entry. After re-reading a changed card, `node lock-evidence.mjs --confirm <cardId>` re-locks it (`--all` re-locks everything; with no flag it lists what changed). Typography (quotes, ellipsis, spacing, case) never trips it; library renames never reach it.
 
 ## 8. Axes and types
 
 | Axis | + pole | - pole | Cards carrying it (pool) |
 |---|---|---|---|
-| R1 | We | Me | 7 |
-| R2 | Direct | Soft | 7 |
-| R3 | Classic | Own | 7 |
-| L1 | Steady | Venture | 7 |
-| L2 | Push | Easy | 7 |
-| L3 | Rules | Context | 8 |
+| R1 | We | Me | 10 |
+| R2 | Direct | Soft | 10 |
+| R3 | Classic | Own | 11 |
+| L1 | Steady | Venture | 10 |
+| L2 | Push | Easy | 9 |
+| L3 | Rules | Context | 11 |
 
 Relationship half = R1 × R2 × R3 (8 names). Life half = L1 × L2 × L3 (8 names). Type = one of each (64). The 16 current names are literal translations of Sally's Chinese and will be rewritten English-native (section 18, step C). Flex badge when an axis is too close to call; the pole then follows real-behavior evidence first.
 
@@ -161,12 +167,12 @@ Relationship half = R1 × R2 × R3 (8 names). Life half = L1 × L2 × L3 (8 name
 
 Every player answers exactly 40 cards (`RUN_SIZE` in `session.js`) then the 8 sealed cards. Deterministic: the only randomness is seeded from the run id, and a restored save replays the same route. Pool: open chapters plus the 12 extras, after age, depth, the C3-9 gate and feeling-card rules. Chapters play in order, each opening with its first authored card. Per pick, in priority order:
 
-1. **Coverage:** every axis gets at least 2 valid cards; if a closed room carries an axis, other chapters and extras cover it.
-2. **Retention:** after Skip, Not my life or No recent example, the next card targets the same axis. After 3 rushed taps, the next card is a quick this-or-that or role card.
-3. **Flow:** no two cards of the same type in a row (except this-or-that rounds); no two neighbors on the same axis or tag pair.
-4. **Value:** otherwise, balance the axes and favor tag pairs the player is already leaning on.
+1. **Coverage:** every axis gets at least 2 valid cards; if a closed room carries an axis, other chapters and extras cover it. A card counts toward an axis by the share of its answers that carry it, and slots are held back for what a chapter cannot surely cover.
+2. **Retention:** after Skip, Not my life or No recent example, the next card targets the same axis. After 3 rushed taps, the next card is a quick this-or-that, role or guilty-or-not card.
+3. **Flow:** no two cards of the same type in a row (except this-or-that rounds); no two neighbors on the same axis or tag pair (a receipts card, a list of facts across topics, is compared on its axes only). Receipts and guilty-or-not cards are spread out: never two of one format within 4 cards, rarely one right after the other. An opening quick round takes at most half its chapter's slots.
+4. **Value:** otherwise, balance the axes and favor tag pairs the player is already leaning on. Each run also focuses on 10 of the 25 tag pairs (seeded from the run id) and favors the cards that can move those pairs most, so every tag's cards get served together for some players.
 
-Simulation (14,400 runs over every room combination): 0% unfinished sides, 89 to 98% of players get 3 to 5 tags, none get 0, sealed accuracy 57 to 61% exact (69-card baseline 59.6%, chance 25%).
+Simulation (14,400 runs over every room combination, step B): 0% unfinished sides, 95.7 to 99.7% of players get 3 to 5 tags, none get 0, sealed accuracy 56.6 to 59.3% exact (full-walk baseline 60.7%, chance 25%). Before step B: 0%, 86.7 to 98.3%, none, 57.1 to 61.7%.
 
 ## 11. Scoring settings
 
@@ -224,24 +230,26 @@ Teen-safe by default (18+ cards need 18+ setup; teens never get the marriage and
 | Friend game | Built |
 | Real-person validation | None |
 
-**Evidence gaps (step B fixes these):**
+**Evidence gaps (step B, 2026-09-28):** before and now. Numbers from `audit.mjs` and `persona-sim.mjs --acceptance` (3,000 consistent players with every room open; 4,000 random clickers).
 
-| # | Gap | Count |
-|---|---|---|
-| 1 | Cards per axis in the pool | 7 (L3: 8) |
-| 2 | Tags backed by only 2 cards | 9 |
-| 3 | Tags that never fired at 40 cards with every room open | 8 |
-| 4 | Tags firing for under 1% of players | 8 |
-| 5 | Tags with no "what you did" evidence | 19 |
-| 6 | Axes where random clickers lean (R3, L2, L3) | 3 |
-| 7 | Guard against answer rewrites changing meaning | missing |
-| 8 | Real-person accuracy | untested |
+| # | Gap | Before | Now | Status |
+|---|---|---|---|---|
+| 1 | Cards per axis in the pool | 7 (L3: 8) | 9 to 11 (R1 10, R2 10, R3 11, L1 10, L2 9, L3 11) | fixed |
+| 2 | Tags backed by fewer than 3 cards | 9 | 0 (every tag has 3 to 7) | fixed |
+| 3 | Tags that never fired at 40 cards with every room open | 8 | 0 | fixed |
+| 4 | Tags firing for under 1% of consistent players (every room open; 18+ tags on adults) | 16 | 0 (lowest: T05B 1.6%) | fixed |
+| 5 | Tags with no "what you did" evidence | 19 | 0 | fixed |
+| 6 | Axes where random clickers lean outside 45 to 55% | R3 43.5% on the full walk (older sim also flagged L2 55.5%, L3 57.5%) | 48.1 to 52.3% at 40 cards, 49.1 to 51.4% on the full walk | fixed |
+| 7 | Guard against answer rewrites changing meaning | missing | `evidence-lock.json` + `lock-evidence.mjs`, enforced by the kit tests | fixed |
+| 8 | Real-person accuracy | untested | untested | open (blind test 2) |
+
+With a room closed, its chapter's tags can only fire from cards elsewhere; per room combination, 6 to 22 tags stay silent (all of them tags of the closed rooms), as before.
 
 ## 18. Plan
 
 **Step A (done 2026-09-28):** this file.
 
-**Step B: evidence lock.** Acceptance: every item below passes, tests green, simulation rerun.
+**Step B: evidence lock.** Acceptance: every item below passes, tests green, simulation rerun. Items 1 to 5 done 2026-09-28 (section 17); item 6 open.
 1. Every axis has at least 9 cards in the pool, by adding axis values to existing options first and new cards only if needed.
 2. Every tag has at least 3 supporting cards, at least 1 of them "did" evidence, using the approved formats of section 6 (receipts check and guilty-or-not cover many tags per card).
 3. Every tag fires for at least 1% of consistent simulated players at 40 cards with every room open.
@@ -270,5 +278,6 @@ Replaced by this file; kept only as history: `research/persona-quiz-v2/BRIEF.md`
 
 ## Changes
 
+- 2026-09-28: Step B items 1 to 5 done: 15 new cards in the four approved formats (4 receipts, 6 guilty or not, 3 reply, 2 other people), 30 option edits on 16 existing cards (16 axis values added where the behavior implies the pole, 7 balance fixes, 7 strength changes), two quick rounds reordered (C6-3 and C4-2 now lead), picker rules for the new formats and per-run tag focus (section 10), evidence lock (section 7). Sections 2, 3, 5 to 8, 10, 17 and 18 updated.
 - 2026-09-28: Jerry approved section 19 (formats, 40 + 8, two voices, guard, app promise, friend link); step B started.
 - 2026-09-28: Created by consolidating six documents; added the question format catalog (section 6), the evidence gaps and plan (sections 17 and 18) and the approval list (section 19).

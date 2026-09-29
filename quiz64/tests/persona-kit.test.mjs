@@ -20,6 +20,7 @@ function randomAnswers(seed, age) {
     if (roll < 0.08) answers[card.id] = "skip";
     else if (roll < 0.12) answers[card.id] = "not_my_life";
     else if (card.type === "pick_two") answers[card.id] = [0, 1 + Math.floor(r() * (card.options.length - 1))];
+    else if (card.type === "receipts") answers[card.id] = card.options.map((o, i) => (!o.none && r() < 0.5 ? i : -1)).filter((i) => i >= 0);
     else answers[card.id] = Math.floor(r() * card.options.length);
     answers._ms[card.id] = Math.floor(600 + r() * 5000);
   }

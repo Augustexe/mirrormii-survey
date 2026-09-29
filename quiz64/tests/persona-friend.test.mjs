@@ -5,7 +5,7 @@ import * as Friend from "../src/persona/friend.js";
 import { decodePayload, encodePayload, readHash, linkFor, LinkError, MAX_PAYLOAD } from "../src/persona/links.js";
 import { S, TAG, FRIEND, KIT_ID } from "../src/persona/kit.js";
 import { restoreRun } from "../src/persona/store.js";
-import { ADULT, TEEN, clock, completeRun, leaning } from "./persona-helpers.mjs";
+import { ADULT, TEEN, clock, completeRun, leaning, firstOption } from "./persona-helpers.mjs";
 
 const consistent = leaning({ R1: 1, R2: -1, R3: -1, L1: 1, L2: -1, L3: 1 });
 const owner = completeRun(ADULT, consistent, "friendown1");
@@ -213,7 +213,7 @@ test("names: letters only, 24 characters; without one the lines still read natur
 });
 
 test("an owner with no named tags (all rushed) still gets a working friend game without an invented tag round", () => {
-  const rushed = completeRun(ADULT, (card) => ({ value: card.type === "pick_two" ? [0, 1] : 0, ms: 800 }), "rushowner1");
+  const rushed = completeRun(ADULT, (card) => ({ ...firstOption(card), ms: 800 }), "rushowner1");
   assert.equal(Session.resultFor(rushed).result.tags.length, 0);
   const { state, challenge: ch } = challenge(rushed, { rel: "bestie", stings: true }, "rushchal01", 9);
   const parsed = Friend.parseChallenge(Friend.challengePayload(state, ch));

@@ -20,7 +20,12 @@ export const MAX_MS = 600000;
 export const RUN_SIZE = 40;
 export const FINALE_SIZE = KIT.finale.length;
 export const MIN_AXIS_CARDS = S.CONFIG.minAxisCards;
-export const LIGHT_TYPES = Object.freeze(["this_or_that", "role"]);
+// Quick cards: served after a rushed streak. Guilty or not is two big buttons, so it counts as quick.
+export const LIGHT_TYPES = Object.freeze(["this_or_that", "role", "guilty"]);
+// Formats that should be spread out over the run, never clustered (LAUNCH-SPEC section 10): the picker penalises one
+// when the same format was served within the last SPREAD_WINDOW cards, and when the other one was served just before.
+export const SPREAD_TYPES = Object.freeze(["receipts", "guilty"]);
+export const SPREAD_WINDOW = 4;
 
 export const AGE_OPTIONS = Object.freeze([
   { id: "adult", text: "18 or older" },
@@ -124,7 +129,9 @@ export function openChapterIds(lobby) {
 }
 
 const INFO = new Map();
-// Axes and tag pairs a card can evidence (any option).
+// Axes and tag pairs a card can evidence (any option). flow: the dimensions the neighbour rule compares. A receipts card
+// is a list of small facts spread over several topics, so it is compared on its axes only; every other card on its
+// axes and tag pairs.
 function infoOf(card) {
   let info = INFO.get(card.id);
   if (!info) {
@@ -134,13 +141,20 @@ function infoOf(card) {
       for (const [a, v] of Object.entries(o.axes || {})) if (v) axes.add(a);
       for (const t of o.tags || []) pairs.add(t.id.slice(0, 3));
     }
-    info = { axes, pairs, dims: new Set([...axes, ...pairs]) };
+    const dims = new Set([...axes, ...pairs]);
+    // share: for each axis, the share of the card's scoring options that carry it (how surely an answer covers it).
+    const scoring = card.options.filter((o) => !o.circumstance && !o.depends && !o.none);
+    const share = Object.fromEntries([...axes].map((a) => [a, scoring.filter((o) => (o.axes || {})[a]).length / Math.max(1, scoring.length)]));
+    info = { axes, pairs, dims, share, flow: card.type === "receipts" ? new Set(axes) : dims };
     INFO.set(card.id, info);
   }
   return info;
 }
 export const cardAxes = (card) => [...infoOf(card).axes];
 export const cardDims = (card) => [...infoOf(card).dims];
+export const flowDims = (card) => [...infoOf(card).flow];
+// Do two neighbouring cards share a dimension the neighbour rule compares?
+const flowShare = (a, b) => { const fa = infoOf(a).flow; return [...infoOf(b).flow].some((d) => fa.has(d)); };
 
 // Static plan for one run: the groups in play order (open chapters, then the bonus group of extras), each with its
 // eligible cards in authored order, plus a seeded jitter per card from the run id (the only randomness, fixed per run).
@@ -166,7 +180,12 @@ function planFor(state) {
   for (const g of groups) for (const c of g.cards) jitter.set(c.id, r());
   const pairCards = new Map();
   for (const g of groups) for (const c of g.cards) if (c.type !== "feeling") for (const p of infoOf(c).pairs) pairCards.set(p, [...(pairCards.get(p) || []), c]);
-  const plan = { groups, order, group, rounds, feelingFor, jitter, pairCards, chapterCount: open.length };
+  // Seeded focus per tag pair (its own stream, so the per-card jitter is unchanged): each run leans toward a different
+  // set of pairs, so every pair's cards get served together for some players and every tag can fire for someone.
+  const rf = S.rng(parseInt(sha256Hex(`genii.picker.focus|${runId}`).slice(0, 8), 16));
+  const ranked = [...pairCards.keys()].sort().map((p) => [p, rf()]).sort((a, b) => b[1] - a[1]);
+  const focus = new Map(ranked.map(([p], i) => [p, i < FOCUS_PAIRS ? 1 : 0]));
+  const plan = { groups, order, group, rounds, feelingFor, jitter, pairCards, focus, chapterCount: open.length };
   if (PLANS.size > 64) PLANS.delete(PLANS.keys().next().value);
   PLANS.set(key, plan);
   return plan;
@@ -186,9 +205,22 @@ export const PICK_WEIGHTS = Object.freeze({
   real: 2, // real cards carry the most weight
   authored: 0.15, // per position in the authored chapter order
   jitter: 3, // seeded variety per run
+  focus: 48, // seeded focus: FOCUS_PAIRS tag pairs per run, times how far the card can move the pair (pairReach)
   borderClash: 15, // last card of a chapter clashing with the next opener, or with the finale
+  spread: 12, // a receipts or guilty card when the same format was served within SPREAD_WINDOW cards
+  spreadNear: 6, // a receipts or guilty card right after the other one
 });
 const PICK = PICK_WEIGHTS;
+// How far one answer to this card can move a tag pair toward firing: its best support for either side (card weight x
+// the most net strength one answer gives, pick_two and receipts capped as in the scorer) over tagFire, at most 1.
+const REACH = new Map();
+function pairReach(card, pair) {
+  const key = `${card.id}|${pair}`;
+  if (!REACH.has(key)) REACH.set(key, Math.min(1, (card.weight * Math.max(S.cardTagMax(card, `${pair}A`), S.cardTagMax(card, `${pair}B`))) / S.CONFIG.tagFire));
+  return REACH.get(key);
+}
+// Tag pairs each run focuses on (seeded from the run id).
+export const FOCUS_PAIRS = 10;
 
 function freshCtx() {
   return { served: [], ans: {}, valid: Object.fromEntries(AXES.map((a) => [a, 0])), pairs: {}, g: -1, gCount: 0, gQuota: 0, sizes: {}, round: null, timed: [] };
@@ -209,15 +241,21 @@ const choosable = (card, ctx, state) => !ctx.ans[card.id] && card.type !== "feel
 
 function supply(plan, ctx, state, from, to) {
   const out = Object.fromEntries(AXES.map((a) => [a, 0]));
+  const sure = Object.fromEntries(AXES.map((a) => [a, 0]));
   let count = 0;
   for (let gi = from; gi < to; gi++) {
     for (const c of plan.groups[gi].cards) {
       if (!choosable(c, ctx, state)) continue;
       count++;
-      for (const a of infoOf(c).axes) out[a]++;
+      // An axis counts by how surely an answer to the card covers it (a card with the axis on 2 of 5 options is 0.4).
+      for (const a of infoOf(c).axes) {
+        out[a] += infoOf(c).share[a];
+        if (infoOf(c).share[a] === 1) sure[a]++;
+      }
     }
   }
-  return { axes: out, count };
+  // axes: expected cover (by share); sure: cards whose every scoring answer covers the axis (used to reserve slots).
+  return { axes: out, sure, count };
 }
 
 function startGroup(plan, ctx, state, gi, R) {
@@ -235,7 +273,7 @@ function startGroup(plan, ctx, state, gi, R) {
   const chapters = supply(plan, ctx, state, gi, last);
   const extras = supply(plan, ctx, state, last, last + 1);
   const need = needOf(ctx);
-  const reserve = AXES.reduce((s, a) => s + Math.min(extras.axes[a], Math.max(0, need[a] - chapters.axes[a])), 0);
+  const reserve = AXES.reduce((s, a) => s + Math.ceil(Math.min(extras.axes[a], Math.max(0, need[a] - chapters.sure[a]))), 0);
   const avail = R - reserve;
   const share = Math.round((avail * here.count) / Math.max(1, here.count + later.count));
   const lower = R - (later.count + extras.count);
@@ -245,18 +283,19 @@ function startGroup(plan, ctx, state, gi, R) {
 // Slots this group may still use: its quota, shrunk when later groups must cover a short axis this group can't.
 function quotaLeft(plan, ctx, state, R) {
   const last = plan.groups.length;
-  const cur = supply(plan, ctx, state, ctx.g, ctx.g + 1).axes;
+  const here = supply(plan, ctx, state, ctx.g, ctx.g + 1);
+  const cur = here.axes;
   const later = supply(plan, ctx, state, ctx.g + 1, last).axes;
   const need = needOf(ctx);
-  const laterNeed = AXES.reduce((s, a) => s + Math.min(later[a], Math.max(0, need[a] - cur[a])), 0);
+  // Slots kept for later groups: what this group cannot surely cover itself.
+  const laterNeed = AXES.reduce((s, a) => s + Math.ceil(Math.min(later[a], Math.max(0, need[a] - here.sure[a]))), 0);
   return { left: Math.min(ctx.gQuota - ctx.gCount, R - laterNeed), cur, later, need };
 }
 
 const clash = (a, b) => {
   if (!a || !b) return false;
   if (a.type === b.type && a.type !== "sealed") return true;
-  const da = infoOf(a).dims;
-  return [...infoOf(b).dims].some((d) => da.has(d));
+  return flowShare(a, b);
 };
 
 function nextOpener(plan, ctx, state) {
@@ -306,10 +345,11 @@ function pickInGroup(plan, ctx, state, R) {
     return mkPick(plan, ctx, u.card, size, u.card.round ? { index: 1, size: 1 } : null, why);
   };
 
-  // Each chapter opens with its first authored card.
+  // Each chapter opens with its first authored card. An opening quick round takes at most half the chapter's slots, so
+  // a short chapter still has room for its other cards.
   if (ctx.gCount === 0 && group.key !== "extra") {
     const opener = cands.reduce((a, b) => (plan.order.get(a.card.id) <= plan.order.get(b.card.id) ? a : b));
-    return start(opener, Math.min(opener.k, left), { rule: "opener" });
+    return start(opener, Math.min(opener.k, left, Math.max(1, Math.floor(left / 2))), { rule: "opener" });
   }
 
   const urgent = new Set(AXES.filter((a) => q.need[a] > 0 && q.cur[a] > 0 && q.later[a] < q.need[a]));
@@ -320,7 +360,7 @@ function pickInGroup(plan, ctx, state, R) {
   const rushedStreak = ctx.timed.length >= 3 && ctx.timed.slice(-3).every(Boolean);
 
   // Flow rules between two cards: no two of one type in a row, no shared axis or tag pair.
-  const dimsOk = (a, b) => { const da = infoOf(a).dims; return ![...infoOf(b).dims].some((d) => da.has(d)); };
+  const dimsOk = (a, b) => !flowShare(a, b);
   const F1 = (u) => !prev || u.card.type !== prev.type;
   const F2 = (u) => {
     if (!prev) return true;
@@ -333,7 +373,13 @@ function pickInGroup(plan, ctx, state, R) {
 
   let pool = cands.filter((u) => u.k <= left);
   if (urgent.size && left <= mustHere) { const hit = pool.filter((u) => carries(u, urgent)); if (hit.length) pool = hit; }
-  if (R <= shortfall) { const short = new Set(AXES.filter((a) => q.need[a] > 0)); const hit = pool.filter((u) => carries(u, short)); if (hit.length) pool = hit; }
+  if (R <= shortfall) {
+    // Last slots for a short axis: a card whose every answer covers it, when there is one.
+    const short = new Set(AXES.filter((a) => q.need[a] > 0));
+    const hit = pool.filter((u) => carries(u, short));
+    const sure = hit.filter((u) => [...short].some((a) => (infoOf(u.card).share[a] || 0) === 1));
+    if (sure.length) pool = sure; else if (hit.length) pool = hit;
+  }
   // Retention: after an exit, a card on the exited card's axis; after three rushed taps, a lighter card. Both keep
   // the type rule (no two cards of one type in a row) and apply before the neighbour rule (see F2's exit waiver).
   const sameAxis = exitAxes && exitAxes.size ? pool.filter((u) => F1(u) && carries(u, exitAxes)) : [];
@@ -364,7 +410,11 @@ function pickInGroup(plan, ctx, state, R) {
   const cardValue = (c) => {
     const info = infoOf(c);
     let v = 0;
-    for (const a of info.axes) v += q.need[a] > 0 ? PICK.coverage * q.need[a] + (urgent.has(a) ? PICK.urgent : 0) : balance(ctx.valid[a]);
+    // Coverage counts in full when later groups hold little for the axis, and less when they can still easily cover it,
+    // so an early chapter does not spend its slots on axes a later chapter carries anyway.
+    const scarce = (a) => Math.min(1, (q.need[a] + 1) / (1 + q.later[a]));
+    // A card covers a short axis only as surely as its options carry it.
+    for (const a of info.axes) v += q.need[a] > 0 ? info.share[a] * (PICK.coverage * q.need[a] * scarce(a) + (urgent.has(a) ? PICK.urgent : 0)) : balance(ctx.valid[a]);
     // One answer feeds one or two pairs, so a card counts only its best pair.
     const pv = [...info.pairs].map((p) => {
       const pe = ctx.pairs[p];
@@ -372,7 +422,10 @@ function pickInGroup(plan, ctx, state, R) {
       if (pe && pe.net !== 0) return PICK.pairPush;
       return (plan.pairCards.get(p) || []).some((x) => x.id !== c.id && choosable(x, ctx, state)) ? PICK.pairOpen : 0;
     }).sort((a, b) => b - a);
-    return v + (pv[0] || 0);
+    // Focus counts by how much this one card can move the focused pair (its best support toward either side, as a share
+    // of what firing a tag takes), so the cards that evidence a pair best are the ones served for it.
+    const fv = Math.max(0, ...[...info.pairs].map((p) => (plan.focus.get(p) || 0) * pairReach(c, p)));
+    return v + (pv[0] || 0) + PICK.focus * fv;
   };
   const score = (u) => {
     const k = partial ? left : u.k;
@@ -386,6 +439,11 @@ function pickInGroup(plan, ctx, state, R) {
     const lastCard = S.cardById[u.members[k - 1]];
     if (k >= left && group.key !== "extra" && clash(lastCard, opener)) s -= PICK.borderClash;
     if (k >= R && clash(lastCard, KIT.finale[0])) s -= PICK.borderClash;
+    if (SPREAD_TYPES.includes(u.card.type)) {
+      const recent = ctx.served.slice(-SPREAD_WINDOW).map((id) => S.cardById[id].type);
+      if (recent.includes(u.card.type)) s -= PICK.spread;
+      if (prev && prev.type !== u.card.type && SPREAD_TYPES.includes(prev.type)) s -= PICK.spreadNear;
+    }
 
     return s;
   };
@@ -406,7 +464,7 @@ function sequenceable(u, cands, left, border) {
   const units = cands.filter((v) => v.card !== u.card);
   const groupUsed = (i) => units.reduce((m, v, j) => (v.card === units[i].card ? m | (1 << j) : m), 0);
   const lastOf = (v, k) => S.cardById[v.members[k - 1]];
-  const ok = (a, b) => a.type !== b.type && ![...infoOf(b).dims].some((d) => infoOf(a).dims.has(d));
+  const ok = (a, b) => a.type !== b.type && !flowShare(a, b);
   const memo = new Map();
   const dfs = (last, used, slots) => {
     if (slots === 0) return !border || !clash(last, border);
@@ -463,12 +521,12 @@ function apply(plan, ctx, pick, raw, ms) {
   ctx.ans[card.id] = { exit, picked: !exit, rushed };
   if (ms !== null && ms !== undefined) ctx.timed.push(rushed);
   if (exit || !card.weight) return;
-  const w = card.weight * (rushed ? S.CONFIG.rushedFactor : 1);
+  const w = S.pickWeight(card, [raw].flat()) * (rushed ? S.CONFIG.rushedFactor : 1);
   const axes = new Set();
   const pairs = {};
   for (const i of [raw].flat()) {
     const o = card.options[i];
-    if (!o || o.circumstance || o.depends) continue;
+    if (!o || o.circumstance || o.depends || o.none) continue;
     for (const [a, v] of Object.entries(o.axes || {})) if (v) axes.add(a);
     for (const t of o.tags || []) { const p = t.id.slice(0, 3); pairs[p] = (pairs[p] || 0) + (t.id.endsWith("A") ? 1 : -1) * t.s * w; }
   }
@@ -571,6 +629,12 @@ export function validateResponse(card, value) {
   }
   const n = card.options.length;
   const inRange = (i) => Number.isInteger(i) && i >= 0 && i < n;
+  if (card.type === "receipts") {
+    // Tap everything that's true, then Done: 0 to n items; "None of these" stands alone.
+    if (!Array.isArray(value) || new Set(value).size !== value.length || !value.every(inRange)) throw new PersonaError("bad_answer", "Tap the ones that are true, then Done.");
+    if (value.length > 1 && value.some((i) => card.options[i].none)) throw new PersonaError("bad_answer", "\"None of these\" can't be ticked with other items.");
+    return [...value].sort((a, b) => a - b);
+  }
   if (card.type === "pick_two") {
     const need = card.pick || 2;
     if (!Array.isArray(value) || value.length !== need || new Set(value).size !== need || !value.every(inRange)) throw new PersonaError("bad_answer", `Pick exactly ${need}.`);

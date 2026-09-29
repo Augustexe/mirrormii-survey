@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { motion, MotionConfigContext, useReducedMotion } from "motion/react";
-import { Check, Clock3, Heart, Lightbulb, Lock, Sparkles, SkipForward, Users, Zap, Layers } from "lucide-react";
+import { Check, Clock3, Heart, Lightbulb, Lock, Sparkles, SkipForward, Users, Zap, Layers, ListChecks, Gavel, MessageCircle, Eye } from "lucide-react";
 import { S } from "./kit.js";
 import { LOBBY_COPY } from "./lobby.js";
 
@@ -14,6 +14,10 @@ function frameFor(card, step) {
   if (card.type === "pick_two") return { icon: Layers, text: "Pick two" };
   if (card.type === "role") return { icon: Users, text: "Pick your role" };
   if (card.type === "feeling") return { icon: Heart, text: "First feeling" };
+  if (card.type === "receipts") return { icon: ListChecks, text: "Receipts check" };
+  if (card.type === "guilty") return { icon: Gavel, text: "Genii's bet" };
+  if (card.type === "reply") return { icon: MessageCircle, text: "Your reply" };
+  if (card.type === "others") return { icon: Eye, text: "First thought" };
   return { icon: Lightbulb, text: "Picture this" };
 }
 
@@ -34,6 +38,9 @@ export function PersonaCard({ card, step, setup, onAnswer, busy = false, error =
   const [depends, setDepends] = useState(null);
   const [chosen, setChosen] = useState(null);
   const pickTwo = card.type === "pick_two";
+  const receipts = card.type === "receipts";
+  const guilty = card.type === "guilty";
+  const multi = pickTwo || receipts;
   const need = card.pick || 2;
 
   useEffect(() => {
@@ -63,6 +70,13 @@ export function PersonaCard({ card, step, setup, onAnswer, busy = false, error =
       if (next.length === need) send(next, { ms: elapsed() });
       return;
     }
+    if (receipts) {
+      // "None of these" stands alone: ticking it clears the others, ticking an item clears it.
+      const none = !!card.options[i].none;
+      const next = picks.includes(i) ? picks.filter((x) => x !== i) : none ? [i] : [...picks.filter((x) => !card.options[x].none), i];
+      setPicks(next);
+      return;
+    }
     if (card.options[i].depends && card.flip) {
       setDepends({ index: i, ms: elapsed() });
       return;
@@ -71,7 +85,12 @@ export function PersonaCard({ card, step, setup, onAnswer, busy = false, error =
   };
   const frame = frameFor(card, step);
   const FrameIcon = frame.icon;
-  const selected = (i) => (pickTwo ? picks.includes(i) : chosen === i || (depends && depends.index === i));
+  const selected = (i) => (multi ? picks.includes(i) : chosen === i || (depends && depends.index === i));
+  const done = () => {
+    if (busy || chosen !== null) return;
+    send([...picks].sort((a, b) => a - b), { ms: elapsed() });
+  };
+  const thread = card.type === "reply" && Array.isArray(card.thread) ? card.thread : null;
 
   return (
     <article
@@ -88,6 +107,21 @@ export function PersonaCard({ card, step, setup, onAnswer, busy = false, error =
             {card.privacy === "locked18" && <span className="persona-lock-badge"><Lock size={11} aria-hidden="true" /> 18+</span>}
           </span>
           <h1 ref={heading} tabIndex="-1">{S.promptFor(card, setup)}</h1>
+          {thread && (
+            <ol className="persona-thread" aria-label="The messages">
+              {thread.map((m, k) => (
+                <li key={k} className={`persona-bubble ${m.from === "you" ? "persona-bubble--you" : ""}`}>
+                  {m.from !== "you" && <span className="persona-bubble__from">{m.from}</span>}
+                  <span className="persona-bubble__text">{m.text}</span>
+                </li>
+              ))}
+            </ol>
+          )}
+          {receipts && (
+            <p className="question-setup persona-pick-count" aria-live="polite">
+              Tap everything that's true, then Done. {picks.filter((x) => !card.options[x].none).length} tapped.
+            </p>
+          )}
           {pickTwo && (
             <p className="question-setup persona-pick-count" aria-live="polite">
               Tap the {need} that fit best. {picks.length}/{need} picked.
@@ -96,7 +130,11 @@ export function PersonaCard({ card, step, setup, onAnswer, busy = false, error =
         </div>
       </div>
       {!depends && (
-        <div className="answer-list persona-answers" role="group" aria-label={pickTwo ? `Choose ${need} answers` : "Choose one answer"}>
+        <div
+          className={`answer-list persona-answers ${receipts ? "persona-answers--receipts" : ""} ${guilty ? "persona-answers--guilty" : ""}`}
+          role="group"
+          aria-label={pickTwo ? `Choose ${need} answers` : receipts ? "Tap every one that is true" : "Choose one answer"}
+        >
           {card.options.map((option, i) => (
             <motion.button
               type="button"
@@ -104,16 +142,23 @@ export function PersonaCard({ card, step, setup, onAnswer, busy = false, error =
               initial={still ? false : { opacity: 0, y: 7 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.22, delay: still ? 0 : i * 0.035 }}
-              className={`answer-option persona-option ${selected(i) ? "answer-option--selected" : ""}`}
-              aria-pressed={pickTwo ? picks.includes(i) : undefined}
+              className={`answer-option persona-option ${receipts ? "persona-chip" : ""} ${guilty ? "persona-verdict" : ""} ${option.none ? "persona-chip--none" : ""} ${selected(i) ? "answer-option--selected" : ""}`}
+              aria-pressed={multi ? picks.includes(i) : undefined}
               disabled={busy || (chosen !== null && !selected(i))}
               onClick={() => tap(i)}
             >
-              <span className="answer-token">{String.fromCharCode(65 + i)}</span>
+              {!receipts && !guilty && <span className="answer-token">{String.fromCharCode(65 + i)}</span>}
               <span className="answer-copy">{option.t}</span>
               <Check className="answer-check" size={18} strokeWidth={2.5} aria-hidden="true" />
             </motion.button>
           ))}
+        </div>
+      )}
+      {receipts && !depends && (
+        <div className="persona-done">
+          <button type="button" className="button button--primary" disabled={busy || chosen !== null} onClick={done}>
+            Done
+          </button>
         </div>
       )}
       {depends && (
