@@ -42,6 +42,7 @@ export const DEVICE_TABLE = {
   "ghost-poet": "house",
   "talking-fridge": "machine",
   "ear-advisor": "lamp",
+  "honest-mirror": "frame",
   // Chapter 2, Friends
   "ten-year sleep": "time",
   "friendship repair shop": "shop",
@@ -54,6 +55,8 @@ export const DEVICE_TABLE = {
   sphinx: "riddle",
   "text-first-ring": "treasure",
   "four-apologies": "scroll",
+  "mars-return": "chapter", // no space family; the Friends vignette carries it
+  "grudge-stone": "chapter", // a carried stone has no family; the Friends vignette carries it
   // Chapter 3, Love and your person
   "shared dreams": "dream",
   "memory-erase vending machine": "machine",
@@ -74,6 +77,7 @@ export const DEVICE_TABLE = {
   "pigeon-bill": "trace",
   "genii-pays-forever": "lamp",
   "time-traveler-concert": "time",
+  "money-tree": "treasure",
   // Chapter 5, Work, school and ambition
   "genie-fame-deal": "lamp",
   "promoted-office-dog": "trace",
@@ -93,6 +97,8 @@ export const DEVICE_TABLE = {
   "wishing-well-door": "door",
   "cat-year": "trace",
   "squirrel-knighting": "trace",
+  "life-board-game": "lamp", // Genii's gift
+  "every-relative-wedding": "lamp", // Genii's offer
   // Chapter 7, Play, rules and you
   "kitten-referee": "trace",
   "gnome-village": "chapter",
@@ -114,6 +120,7 @@ export const DEVICE_TABLE = {
   "lighthouse-rulebook": "scroll",
   "dragon-savings": "treasure",
   "genii-wall-frame": "frame",
+  "self-building-house": "house",
   // Finale (sealed)
   "rain-cloud": "weather",
   "stork-delivery": "trace",

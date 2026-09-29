@@ -171,12 +171,24 @@ test("rushed taps count at 0.3 and are logged for research", () => {
   assert.equal(p.shownTags.filter((id) => p.tags[id].calmCards === 0).length, 0, "no tag fires from rushed taps alone");
 });
 
-function skipAxis(axis) {
-  return (card) => ((card.options || []).some((o) => o.axes && o.axes[axis]) && card.exits.includes("skip") && !card.id.startsWith("X-") ? { value: "skip" } : firstOption(card));
+// A player who gives one side no valid card and every other side its usual evidence: on a chapter card that carries
+// the axis, it answers an option without it when the format allows one, and skips only when it cannot. (Skipping every
+// card that touches the axis also starves any other axis those cards carry; since the 2026-09-29 bank revision some
+// cards carry R1 and L1 together, so that player left two sides short and the extras rightly went to both.)
+const SINGLE = ["scenario", "real", "others", "eyes", "role", "this_or_that", "bet", "reply", "feeling"];
+function avoidAxis(axis) {
+  return (card) => {
+    if (card.id.startsWith("X-") || !(card.options || []).some((o) => o.axes && o.axes[axis])) return firstOption(card);
+    const free = card.options.map((o, i) => ({ o, i })).filter(({ o }) => !(o.axes && o.axes[axis]) && !o.none && !o.circumstance && !o.depends).map(({ i }) => i);
+    if (SINGLE.includes(card.type) && free.length) return { value: free[0] };
+    if (card.type === "pick_two" && free.length >= 2) return { value: free.slice(0, 2) };
+    if (card.type === "receipts" && free.length) return { value: [free[0]] };
+    return card.exits.includes("skip") ? { value: "skip" } : firstOption(card);
+  };
 }
 
 test("an unfinished side gets 1 or 2 extra cards for that side only, then Genii locks", () => {
-  let s = playUntil(started(ADULT, "extrarun1"), skipAxis("R1"), (step) => step.kind === "card" && step.phase === "extra");
+  let s = playUntil(started(ADULT, "extrarun1"), avoidAxis("R1"), (step) => step.kind === "card" && step.phase === "extra");
   const step = Session.currentStep(s);
   assert.equal(step.card.axisFor, "R1");
   assert.equal(Session.profileFor(s).axes.R1.unfinished, true);
@@ -195,7 +207,7 @@ test("an unfinished side gets 1 or 2 extra cards for that side only, then Genii 
   const keepOne = (card) => {
     if (card.id.startsWith("X-") || !card.options.some((o) => o.axes && o.axes.R1)) return firstOption(card);
     if (!keep || keep === card.id) { keep = card.id; return onR1(card); }
-    return skipAxis("R1")(card);
+    return avoidAxis("R1")(card);
   };
   // The picker keeps its fixed run length, so only some routes reach the bonus cards with the side half done.
   let t = null;
@@ -213,7 +225,7 @@ test("an unfinished side gets 1 or 2 extra cards for that side only, then Genii 
   assert.equal(Session.profileFor(t).axes.R1.unfinished, false);
 
   // Skipping both extras leaves the side unfinished: Genii passes on it and the code shows "?".
-  let u = playUntil(started(ADULT, "extrarun3"), (card) => (card.id.startsWith("X-") ? { value: "skip" } : skipAxis("R1")(card)));
+  let u = playUntil(started(ADULT, "extrarun3"), (card) => (card.id.startsWith("X-") ? { value: "skip" } : avoidAxis("R1")(card)));
   const { profile } = Session.resultFor(u);
   assert.equal(profile.axes.R1.unfinished, true);
   const r1Finale = u.frozen.predictions.find((p) => p.primary === "R1");
