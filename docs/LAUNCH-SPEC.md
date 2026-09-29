@@ -326,8 +326,48 @@ Optional after 9: "How Genii read you" (the guess score). Screens 2, 5 and 8 are
 
 **Order of work.** 1 card-writer skill and checker; 2 a 30-card sample in both voices for Jerry; 3 the rest of the bank in batches; 4 tag and name library; 5 final screen in the app; 6 fonts and visual design; 7 GitHub push with Jerry's go.
 
+## 22. Build C plan (work packages, 2026-09-28)
+
+**Build decisions (delegated to Claude):**
+- Setup keeps closest person and pronoun (friend game); the age question is removed. Lobby is 3 taps: "How should Genii talk to you?" (Make it fun / Heart to heart / Just the cards: card wording, result wording and Genii's reactions; "Just the cards" uses Make it fun wording with reactions hidden), "How personal can Genii get?" (Keep it light: skips `intimate` cards / Ask me anything), and rooms. The ending-style tap is removed: its "the read plus what I said" option breaks the no-quotes rule, and voice now carries tone.
+- No `teenPrompt`, `teen` or `locked18`; tags T11 and T21 stay but are never age-gated. Cards on marriage, kids and weddings are written so anyone can answer or skip.
+- Type `guilty` becomes `bet` with 3 to 5 own answers. New types `rank` and `eyes` (skill section 4).
+
+**Card schema** (skill `skills/shared/genii-card-writer/SKILL.md` section 7): top-level text is Make it fun; `heart` holds Heart to heart (`prompt`, `options` as strings in the same order, optional `thread`); `fp` holds the situation fingerprint.
+
+**Library schema** (result copy, `library.json`): halves get `name` (archetype, section 21), `desc`, `read` (one confident line for the read screen), `sting`, `heart`, and `h: {desc, read, sting, heart}` for Heart to heart. Tags get `name` (plain, 4 words or fewer), `line` (one confident line), `sting`, `heart`, `calls`, and `h: {line, sting, heart}`. Axes keep `plusLine`/`minusLine` and add `h`. New `insights`: for each axis, `believePlus` and `believeMinus` lines (both voices) for "the thing you didn't know" when a believe-versus-did split exists on that axis, plus `insightFallback` per half code when no split exists. Never quote an answer.
+
+**Bank targets** (150 scored + 24 sealed = 174):
+
+| Chapter | Cards | did (real, receipts, bet) | scenario | reply | others | quick (this or that, role, pick two, rank, eyes) | feeling |
+|---|---|---|---|---|---|---|---|
+| 1 Your phone | 22 | 7 | 5 | 2 | 2 | 5 | 1 |
+| 2 Friends | 22 | 7 | 5 | 2 | 2 | 5 | 1 |
+| 3 Love and your person | 18 | 5 | 5 | 2 | 2 | 3 | 1 |
+| 4 Money and treats | 20 | 6 | 5 | 2 | 2 | 4 | 1 |
+| 5 Work, school and ambition | 18 | 5 | 5 | 2 | 2 | 3 | 1 |
+| 6 Family and home | 18 | 5 | 5 | 2 | 2 | 3 | 1 |
+| 7 Play, rules and you | 20 | 6 | 5 | 2 | 2 | 4 | 1 |
+| Extras (2 per axis) | 12 | | 6 | | | 6 | |
+| Sealed (4 per axis) | 24 | | | | | | |
+
+Coverage: every axis carried by at least 15 scored cards, at least 6 of them in the always-on chapters (1, 2, 4, 7); every tag supported by at least 4 cards with at least 1 did card; random tappers 45 to 55% on every axis. Existing cards count after keep, rewrite or cut.
+
+**Files:** chapter writers write `research/persona-quiz-v2/final/bank/ch1.json` to `ch7.json`, `extras.json` and `sealed.json` (each a JSON array of cards). New ids continue each chapter's numbering from 30 (`C2-30`, `C2-31`...); kept cards keep their ids. A merge script builds `cards.json` from the bank files.
+
+| Package | Owner (model) | Owns | Depends on |
+|---|---|---|---|
+| B Engine | agent (Opus) | score-core, score.mjs, sim, tests.mjs, audit, lock-evidence, check-bank, merge script, `quiz64/src/persona/` except result files, `quiz64/tests/` except result tests; mechanical schema migration of cards.json | skill, this section |
+| C Library | agent (Opus) | `library.json` | this section |
+| D Sample | agent (Opus) | `bank/sample.json`, `bank/SAMPLE-REVIEW.md` | skill |
+| F Result screen | agent (Opus) | `PersonaResult.jsx`, `views.js`, `share-image.js`, new Stories components and styles, result tests | library schema above |
+| E Chapter writers | 8 agents (Opus) | `bank/*.json` | Jerry's OK on the sample |
+| G Integrate | agent | merge, checker, audit, sim, fixes | B, C, E |
+| H Fonts and visuals | agent | styles | F, G |
+
 ## Changes
 
+- 2026-09-28: Section 22 added: build decisions (no age question, 3-tap lobby, bet/rank/eyes), card and library schemas, bank targets, files and work packages.
 - 2026-09-28: Section 21 added from the grill (bank size, uniqueness, template, 13 formats, voices, no age screen, no sensitive asks, archetype names, final screen order).
 
 - 2026-09-28: Step B items 1 to 5 done: 15 new cards in the four approved formats (4 receipts, 6 guilty or not, 3 reply, 2 other people), 30 option edits on 16 existing cards (16 axis values added where the behavior implies the pole, 7 balance fixes, 7 strength changes), two quick rounds reordered (C6-3 and C4-2 now lead), picker rules for the new formats and per-run tag focus (section 10), evidence lock (section 7). Sections 2, 3, 5 to 8, 10, 17 and 18 updated.
