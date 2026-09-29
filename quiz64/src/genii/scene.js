@@ -46,12 +46,14 @@ uniform vec3 uTip;
 uniform float uTilt;
 uniform vec4 uTipShape;
 uniform vec3 uNeck;
+uniform float uBase;
 float gRadius(vec3 d) {
   vec3 ax = mix(vec3(1.0), uAxes, uDrop);
   float t = uTilt * uDrop;
   float c = cos(t), s = sin(t);
   vec3 q = vec3(c * d.x + s * d.y, -s * d.x + c * d.y, d.z);
-  float re = 1.0 / length(q / ax);
+  float yb = min(d.y, 0.0);
+  float re = 1.0 / length(q / ax) + uDrop * uBase * 6.75 * yb * yb * (1.0 - yb * yb) * (1.0 - yb * yb);
   float k = max(dot(d, uTip), 0.0);
   float r = re + uDrop * (uTipShape.x * pow(k, uTipShape.y) + uTipShape.z * pow(k, uTipShape.w)) + uNeck.z * uNeck.x * pow(k, uNeck.y);
   float w = 0.5 * sin(dot(d, vec3(2.1, 1.3, 0.7)) * 2.0 + uTime * 1.7) + 0.5 * sin(dot(d, vec3(-1.2, 2.4, 1.1)) * 2.4 - uTime * 1.25);
@@ -101,6 +103,7 @@ function surfaceUniforms() {
     uTilt: { value: BODY.tilt },
     uTipShape: { value: [BODY.tipA, BODY.tipK1, BODY.tipB, BODY.tipK2] },
     uNeck: { value: new Vector3(BODY.neckA, BODY.neckK, 0) },
+    uBase: { value: BODY.base },
   };
 }
 
@@ -265,7 +268,10 @@ function shellMaterial(uniforms, envMap) {
         vec2 gNd = normal.xy / max(length(normal.xy), 1e-4);
         float gBottom = smoothstep(0.05, 0.85, dot(gNd, normalize(vec2(-0.2, -1.0))));
         // Saturated blue rim all round, strongest low, where the glass is thickest to the eye.
-        totalEmissiveRadiance += uRimColor * pow(gFres, 2.0) * uRim * (0.35 + 0.35 * gBottom);
+        // The thick canon rim: a wide fresnel band from brand blue #5B8BEB to cyan, strongest along the bottom and right.
+        float gLR = max(gBottom, smoothstep(0.2, 0.9, dot(gNd, normalize(vec2(1.0, -0.35)))) * 0.75);
+        vec3 gRimCol = mix(vec3(0.1, 0.26, 0.83), vec3(0.08, 0.68, 1.0), gBottom);
+        totalEmissiveRadiance += gRimCol * smoothstep(0.62, 0.02, gFacing) * uRim * (0.25 + 0.75 * gLR);
         // The caustic: a bright cyan band hugging the bottom edge inside the glass, and a thin white fresnel edge.
         float gCaustic = gBottom * smoothstep(0.04, 0.12, gFacing) * (1.0 - smoothstep(0.3, 0.48, gFacing));
         totalEmissiveRadiance += vec3(0.12, 0.55, 1.0) * gCaustic * (0.7 + 0.5 * uClear) * uRim;
@@ -300,9 +306,10 @@ function pearlMaterial(envMap) {
     shader.fragmentShader = shader.fragmentShader.replace("#include <emissivemap_fragment>", `#include <emissivemap_fragment>
       float pF = clamp(dot(normal, normalize(vViewPosition)), 0.0, 1.0);
       vec3 pR = reflect(-normalize(vViewPosition), normal);
-      totalEmissiveRadiance += vec3(0.86, 0.86, 0.98) * pow(pF, 1.4) * 0.5 * (0.75 + 0.25 * smoothstep(-0.6, 0.6, dot(normal, normalize(vec3(-0.5, 0.6, 0.6)))));
-      totalEmissiveRadiance += vec3(0.15, 0.3, 1.0) * pow(1.0 - pF, 2.2) * 0.8;
-      totalEmissiveRadiance += vec3(1.0) * pow(max(dot(pR, normalize(vec3(-0.5, 0.72, 0.48))), 0.0), 400.0) * 3.0;
+      totalEmissiveRadiance += vec3(0.86, 0.86, 0.98) * pow(pF, 2.0) * 0.32 * (0.75 + 0.25 * smoothstep(-0.6, 0.6, dot(normal, normalize(vec3(-0.5, 0.6, 0.6)))));
+      totalEmissiveRadiance += vec3(0.05, 0.25, 1.0) * pow(1.0 - pF, 1.5) * 1.1;
+      diffuseColor.rgb *= mix(vec3(1.0), vec3(0.35, 0.5, 1.0), pow(1.0 - pF, 1.2));
+      totalEmissiveRadiance += vec3(1.0) * smoothstep(0.93, 0.96, max(dot(pR, normalize(vec3(-0.45, 0.6, 0.66))), 0.0)) * 3.0;
       totalEmissiveRadiance += vec3(1.0) * pow(1.0 - pF, 10.0) * 0.8;
     `);
   };

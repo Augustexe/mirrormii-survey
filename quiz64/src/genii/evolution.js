@@ -75,20 +75,24 @@ export function formAt(evolution) {
 // Traced from the canon opal renders in public/assets: a wide droplet, slightly heavier bottom left,
 // the tip pulled up to the top right where the bead sits.
 export const BODY = Object.freeze({
-  axes: Object.freeze([1.0, 0.8, 0.8]),
+  axes: Object.freeze([1.0, 0.75, 0.8]),
   tilt: 0.1, // radians, lifts the right shoulder
   tip: Object.freeze(normalize([0.5, 0.866, 0])),
   tipA: 0.1, tipK1: 6,
   tipB: 0.15, tipK2: 40,
-  neckA: 0.06, neckK: 220, // a thin pulled neck that carries the bead
+  neckA: 0.11, neckK: 300, // a thin pulled neck that carries the bead
+  base: 0.035, // the lower half spreads a little, like a settled jelly
   center: Object.freeze([0, -0.06, 0]),
-  bead: 0.14, // bead radius
+  bead: 0.22, // bead radius
 });
 
 function normalize(v) {
   const l = Math.hypot(v[0], v[1], v[2]) || 1;
   return [v[0] / l, v[1] / l, v[2] / l];
 }
+
+// Smooth everywhere (no crease at the equator or the bottom pole): peaks a third of the way down.
+const baseBulge = (y) => (y < 0 ? 6.75 * y * y * (1 - y * y) * (1 - y * y) : 0);
 
 /** Surface radius along unit direction d at teardrop weight `drop` and neck weight `neck` (mirrors the GLSL in scene.js). */
 export function radiusAt(d, drop, neck = drop) {
@@ -98,7 +102,7 @@ export function radiusAt(d, drop, neck = drop) {
   const qx = c * d[0] + s * d[1];
   const qy = -s * d[0] + c * d[1];
   const qz = d[2];
-  const re = 1 / Math.hypot(qx / ax[0], qy / ax[1], qz / ax[2]);
+  const re = 1 / Math.hypot(qx / ax[0], qy / ax[1], qz / ax[2]) + drop * BODY.base * baseBulge(d[1]);
   const k = Math.max(0, d[0] * BODY.tip[0] + d[1] * BODY.tip[1] + d[2] * BODY.tip[2]);
   return re + drop * (BODY.tipA * Math.pow(k, BODY.tipK1) + BODY.tipB * Math.pow(k, BODY.tipK2)) + neck * BODY.neckA * Math.pow(k, BODY.neckK);
 }
@@ -106,7 +110,7 @@ export function radiusAt(d, drop, neck = drop) {
 /** Where the bead sits (body space) for a teardrop weight. */
 export function beadCenter(drop, neck = drop) {
   const r = radiusAt(BODY.tip, drop, neck);
-  const out = r + BODY.bead * 0.55;
+  const out = r + BODY.bead * 0.72;
   return [BODY.tip[0] * out, BODY.tip[1] * out, BODY.tip[2] * out];
 }
 
