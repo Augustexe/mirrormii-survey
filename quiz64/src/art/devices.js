@@ -7,8 +7,12 @@
 //                                        cards whose device has no family (listed as "chapter" below)
 //   null                                 everyday cards (no vignette), or no card
 
+// Genii is a slime, never a genie: no lamp, no genie tropes (LAUNCH-SPEC section 23, ruling 2). Wishes draw a
+// wishing star, Genii's offers draw a gift box, invitations, deals whispered in secret and letters draw an envelope.
 export const DEVICE_FAMILIES = [
-  "lamp", // wish lamp: genies, wishes, fairies, wizards
+  "star", // wishing star: wishes, fairy godparents, wizards, magic lights
+  "envelope", // sealed envelope: invitations, secret advice, letters
+  "gift", // wrapped gift: something Genii offers, with a catch
   "bell",
   "door",
   "fortune", // 8-ball, fortune cookie, snow globe
@@ -38,16 +42,16 @@ export const DEVICE_TABLE = {
   "mystery-envelope-machine": "machine",
   "rogue-map-app": "machine",
   "truth-autocorrect": "machine",
-  "unlockable-wish-phone": "lamp",
+  "unlockable-wish-phone": "gift",
   "ghost-poet": "house",
   "talking-fridge": "machine",
-  "ear-advisor": "lamp",
+  "ear-advisor": "envelope",
   "honest-mirror": "frame",
   // Chapter 2, Friends
   "ten-year sleep": "time",
   "friendship repair shop": "shop",
   "magic 8-ball": "fortune",
-  "rhyme curse": "lamp",
+  "rhyme curse": "scroll",
   "summoning bell": "bell",
   "magic door": "door",
   "haunted house": "house",
@@ -65,7 +69,7 @@ export const DEVICE_TABLE = {
   "talking doorbell": "bell",
   "text from future self": "time",
   "time skip": "time",
-  "flickering-lamp": "lamp",
+  "flickering-lamp": "lens",
   "statue-unveiling": "frame",
   // Chapter 4, Money and treats
   "polite-tornado": "weather",
@@ -73,32 +77,32 @@ export const DEVICE_TABLE = {
   "pirate-chest": "treasure",
   "talking-cat": "trace",
   "leprechaun-gold": "treasure",
-  "fairy-godparent": "lamp",
+  "fairy-godparent": "star",
   "pigeon-bill": "trace",
-  "genii-pays-forever": "lamp",
+  "genii-pays-forever": "gift",
   "time-traveler-concert": "time",
   "money-tree": "treasure",
   // Chapter 5, Work, school and ambition
-  "genie-fame-deal": "lamp",
+  "genie-fame-deal": "scroll",
   "promoted-office-dog": "trace",
   "barn-muffins-chickens": "trace",
   "never-wrong-fortune-cookie": "fortune",
-  "shared-genie-wish": "lamp",
-  "wizard-apprentice": "lamp",
+  "shared-genie-wish": "star",
+  "wizard-apprentice": "star",
   "eighth-day": "time",
   "weather-booking-desk": "weather",
   // Chapter 6, Family and home
   "lazy-river": "water",
   "home-robot": "machine",
   whale: "water",
-  "wish-granting-duty": "lamp",
+  "wish-granting-duty": "star",
   "golden-goose": "treasure",
   "magic-portrait": "frame",
   "wishing-well-door": "door",
   "cat-year": "trace",
   "squirrel-knighting": "trace",
-  "life-board-game": "lamp", // Genii's gift
-  "every-relative-wedding": "lamp", // Genii's offer
+  "life-board-game": "gift", // Genii's gift
+  "every-relative-wedding": "envelope", // an invitation
   // Chapter 7, Play, rules and you
   "kitten-referee": "trace",
   "gnome-village": "chapter",
@@ -132,11 +136,12 @@ export const DEVICE_TABLE = {
   "portal-hamster-passport": "door",
 };
 
-// Keyword fallback for devices the table has not met yet (device string first, then the prompt).
-// Order matters: the first match wins.
+// Keyword fallback for devices the table has not met yet (device string first, then the prompt), so a card the bank
+// adds or rewrites still gets a fitting glyph before the table learns its device. Order matters: the first match wins.
 export const DEVICE_KEYWORDS = [
   [/\b(?:door ?bell|bell)\b/, "bell"],
-  [/\b(?:genie|genii|wish\w*|fairy|wizard|lamp)\b/, "lamp"],
+  [/\b(?:wish\w*|fairy|fairies|godparent|godmother|wizard\w*|witch\w*|spells?|spellbook|enchant\w*|shooting star|stars?|starlight|lamps?|lantern)\b/, "star"],
+  [/\b(?:envelope|letter|invitation|invite\w*|postcard|advisor|whisper\w*|secret\w*|note)\b/, "envelope"],
   [/(?:8-ball|fortune|crystal ball|palm reader|snow ?globe)/, "fortune"],
   [/\b(?:robot|machine|fridge|remote|app|autocorrect|scoreboard|gadget)\b/, "machine"],
   [/\b(?:sleep|nap|time|future|clock|hourglass|loop)\b/, "time"],
@@ -153,6 +158,8 @@ export const DEVICE_KEYWORDS = [
   [/\b(?:portrait|painting|frame|billboard|clone)\b/, "frame"],
   [/\b(?:contract|scroll|deal|curse|trade)\b/, "scroll"],
   [/\b(?:door|portal|teleport|swap)\b/, "door"],
+  // Last: Genii names half the bank's prompts, so a specific object above always wins over "Genii offers".
+  [/\b(?:gift\w*|present|prize|offer\w*|genie|genii)\b/, "gift"],
 ];
 
 export function keywordFamily(text) {
