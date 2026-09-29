@@ -28,7 +28,7 @@
         }
       },
       {
-        "t": "Sunday dinners at mine, every single week. Yes.",
+        "t": "Yes. One yard, one grill, every weekend.",
         "axes": {
           "R1": 1
         }
@@ -40,7 +40,7 @@
         "Do it. Let us take out the hedge as well.",
         "Yes, and we will put up a fence, a nice one.",
         "I love you. Please buy the one down the street.",
-        "Yes. Sunday dinners at my place, every week."
+        "Yes. We will share one yard and one grill every weekend."
       ]
     },
     "fp": {
@@ -248,7 +248,7 @@
     "heart": {
       "prompt": "The bowling league's final night turns into a shouting match. The mediator asks your best friend how you act in a group argument. What do they say?",
       "options": [
-        "They are the first to say what everyone is thinking, out loud.",
+        "They are the first to say what everyone is thinking, loudly.",
         "They take people aside afterward and mend it one by one.",
         "Nobody notices when they change the subject. It is that smooth.",
         "They wait for a pause, then say it once, calmly, to everyone."
@@ -275,10 +275,10 @@
     "axisFor": "R3",
     "sq": "SQ-T20-2",
     "world": "unusual",
-    "prompt": "The family's holiday recipe card, handwritten in 1934, just burned in a toaster fire. You're the only one who ever memorized it.",
+    "prompt": "Family rule for every move: the old bread box goes into the new home first. You're moving in with your person. They hate the bread box.",
     "options": [
       {
-        "t": "Rewrite it exactly. Every pinch. Then laminate it.",
+        "t": "Bread box first. Four generations, no exceptions.",
         "axes": {
           "R3": 2
         },
@@ -290,7 +290,7 @@
         ]
       },
       {
-        "t": "Rewrite it with my own tweaks. Nobody will know.",
+        "t": "Sneak it in second, after something that's ours.",
         "axes": {
           "R3": -1
         },
@@ -303,7 +303,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Announce a new dish era. Starting this year.",
+        "t": "Retire it. Our first thing will be a plant.",
         "axes": {
           "R3": -2
         },
@@ -315,7 +315,7 @@
         ]
       },
       {
-        "t": "Call every relative. Rebuild it together, line by line.",
+        "t": "It goes in first, then lives in the closet.",
         "axes": {
           "R3": 1
         },
@@ -328,23 +328,23 @@
       }
     ],
     "heart": {
-      "prompt": "Your family's holiday recipe card, handwritten in 1934, burns in a toaster fire. You are the only one who ever memorized it.",
+      "prompt": "Your family's rule for every move: the old bread box enters the new home first. You are moving in with your person, who hates it.",
       "options": [
-        "I write it out exactly, every pinch, and laminate it.",
-        "I write it out with my own changes. Nobody will know.",
-        "This year begins a new dish. I announce it.",
-        "I call every relative so we can rebuild it together."
+        "The bread box goes first. Four generations, and no exceptions.",
+        "I bring it in second, after something that is ours.",
+        "I retire it. Our first thing will be a plant.",
+        "It goes in first, and then it lives in the closet."
       ]
     },
     "fp": {
-      "trigger": "the only copy of a family recipe burns",
-      "setting": "family kitchen, toaster fire",
-      "ask": "restore the recipe or remake it",
-      "who": "the whole family",
-      "stakes": "the tradition versus your version",
-      "device": "burned-recipe"
+      "trigger": "a family moving ritual meets a partner who hates it",
+      "setting": "moving day",
+      "ask": "keep the tradition or start your own",
+      "who": "your person and your family",
+      "stakes": "family ritual versus a home of your own",
+      "device": "bread-box"
     },
-    "mask": "looks like a kitchen disaster; measures keeping, remixing or retiring a tradition (R3, T20)",
+    "mask": "looks like a moving-day joke; measures the classic family script versus your own traditions (R3, T20)",
     "ae": [
       "A",
       "D"
@@ -389,8 +389,8 @@
     "heart": {
       "prompt": "Plant one seed and a house grows overnight. You pick the seed: the classic family home, or an unusual one you design together.",
       "options": [
-        "The classic home: fence, dining table, guest room for family.",
-        "Our own design: no dining table, a slide and a reading nook."
+        "I want the classic: fence, dining table, guest room for family.",
+        "We design our own, with a slide and a reading pit."
       ]
     },
     "fp": {
@@ -483,10 +483,10 @@
     "axisFor": "L1",
     "sq": "SQ-L1-3",
     "world": "absurd",
-    "prompt": "Two deals from a dragon for your savings. Guard them forever: untouchable, perfectly safe. Or swallow them and fly you anywhere tonight, one way.",
+    "prompt": "Your piggy bank grew legs overnight. It wants to run off to the circus with all your savings. You can lock it in a drawer, for emergencies only.",
     "options": [
       {
-        "t": "Guard them. A safe pile beats any sky.",
+        "t": "Drawer. A locked-up cushion beats any circus.",
         "axes": {
           "L1": 2
         },
@@ -499,7 +499,7 @@
         "emotion": "relief"
       },
       {
-        "t": "Swallow them, I'm already packing.",
+        "t": "Let it run. I'll follow it to the big top.",
         "axes": {
           "L1": -2
         },
@@ -513,21 +513,21 @@
       }
     ],
     "heart": {
-      "prompt": "A dragon offers two deals for your savings: guard them forever, untouchable and perfectly safe, or swallow them and fly you anywhere tonight, one way.",
+      "prompt": "Your piggy bank grew legs overnight and wants to run away to the circus with all your savings. You could lock it in a drawer, for emergencies only.",
       "options": [
-        "Guard them. A safe cushion matters more than any flight.",
-        "Swallow them. I am already packing."
+        "It goes in the drawer. A safe cushion beats any circus.",
+        "I let it run, and I follow it to the circus."
       ]
     },
     "fp": {
-      "trigger": "a dragon offers to guard or spend your savings",
-      "setting": "a dragon's bargain",
-      "ask": "keep the cushion or cut it and go",
-      "who": "just you and a dragon",
-      "stakes": "your safety net versus a one-way adventure",
-      "device": "dragon-savings"
+      "trigger": "your savings want to run away",
+      "setting": "a piggy bank with legs",
+      "ask": "lock the safety net or follow the adventure",
+      "who": "just you",
+      "stakes": "your whole cushion",
+      "device": "runaway-piggy-bank"
     },
-    "mask": "looks like a fairy-tale bargain; measures keeping the safety net versus cutting it to go all in (L1, T13)",
+    "mask": "looks like a silly fable; measures keeping the safety net versus cutting it to go all in (L1, T13)",
     "ae": [
       "D"
     ],
@@ -567,7 +567,7 @@
         "emotion": "pride"
       },
       {
-        "t": "Sign, and write only when it's fun. Late is fine.",
+        "t": "Sign, and keep my Sundays free no matter what.",
         "axes": {
           "L2": -1
         },
@@ -596,7 +596,7 @@
       "options": [
         "I sign tonight and tell my friends I am going into hiding.",
         "I sign, then introduce myself as an author everywhere I go.",
-        "I sign, and write only when it feels good. Late is fine.",
+        "I sign, but my Sundays stay free no matter what.",
         "No. It was fun because nobody was waiting for it."
       ]
     },
@@ -621,7 +621,7 @@
     "axisFor": "L2",
     "sq": "SQ-T16-2",
     "world": "absurd",
-    "prompt": "One wall of your home turns permanent: whatever goes up stays forever, and every guest sees it. Rank what you'd hang, first to last.",
+    "prompt": "Anything you hang on one wall of your home stays there forever, and every guest sees it. Rank what you'd hang, first to last.",
     "options": [
       {
         "t": "Every trophy, medal and certificate I've ever won.",
@@ -667,12 +667,12 @@
       }
     ],
     "heart": {
-      "prompt": "One wall of your home becomes permanent: whatever goes up stays forever, and every guest sees it. Put these in order, your first choice at the top.",
+      "prompt": "Anything you hang on one wall of your home stays there forever, and every guest sees it. Put these in order, your first choice at the top.",
       "options": [
-        "Every trophy, medal and certificate I have ever received.",
-        "A blurry photo of my laziest, happiest Sunday.",
-        "My best piece of work, with the date I finished it.",
-        "A hammock that guests can actually nap in."
+        "I hang every trophy, medal and certificate I have ever won.",
+        "I hang a blurry photo of my laziest, happiest Sunday.",
+        "My best work goes up, with the date I finished it.",
+        "I hang a hammock that guests can actually nap in."
       ]
     },
     "fp": {
@@ -695,10 +695,10 @@
     "axisFor": "L3",
     "sq": "SQ-L3-1",
     "world": "unusual",
-    "prompt": "You're working the door at your friend's club for one night. Rule: no sneakers. Your all-time favorite singer walks up. In sneakers.",
+    "prompt": "House-sitting. The owner's one rule, underlined twice: the tortoise never leaves its pen. It's been staring at the garden for an hour.",
     "options": [
       {
-        "t": "\"So sorry. Rules are rules, even for legends.\"",
+        "t": "Underlined twice means twice. The pen it is.",
         "axes": {
           "L3": 2
         },
@@ -710,7 +710,7 @@
         ]
       },
       {
-        "t": "Let them in. Obviously. Then scream into my sleeve.",
+        "t": "Let it roam. Look at that face.",
         "axes": {
           "L3": -2
         },
@@ -723,7 +723,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Lend them my shoes. Rule kept, technically.",
+        "t": "Move the whole pen to the garden. Rule kept, technically.",
         "axes": {
           "L3": 1
         },
@@ -735,7 +735,7 @@
         ]
       },
       {
-        "t": "Wave them in. Text my friend a very good excuse.",
+        "t": "One slow lap of the garden. The owner never needs to know.",
         "axes": {
           "L3": -1
         },
@@ -748,23 +748,23 @@
       }
     ],
     "heart": {
-      "prompt": "You are working the door at your friend's club for one night. The rule is no sneakers. Your favorite singer of all time arrives wearing sneakers.",
+      "prompt": "You are house-sitting, and the owner's one rule is underlined twice: the tortoise never leaves its pen. It has been staring at the garden for an hour.",
       "options": [
-        "Sorry, but the rule is the rule, even for them.",
-        "I let them in, of course, and quietly lose my mind.",
-        "I lend them my shoes, so the rule is technically kept.",
-        "I let them in and send my friend a good explanation."
+        "The rule is underlined twice, so the tortoise stays in its pen.",
+        "I let it roam. Look at that face.",
+        "I move the whole pen outside, so the rule technically holds.",
+        "It gets one slow lap. The owner never needs to know."
       ]
     },
     "fp": {
-      "trigger": "a celebrity breaks the dress code",
-      "setting": "club door, one night",
-      "ask": "enforce the rule or wave them in",
-      "who": "your favorite singer and the friend who owns the club",
-      "stakes": "the rule versus a once-in-a-lifetime moment",
-      "device": "club-door"
+      "trigger": "a pet begs to break the owner's one rule",
+      "setting": "house-sitting",
+      "ask": "keep the rule or bend it",
+      "who": "the owner and their tortoise",
+      "stakes": "trust versus a small kindness",
+      "device": "house-sit-tortoise"
     },
-    "mask": "looks like a fan moment; measures applying the rule to everyone versus bending it for this person (L3, T25)",
+    "mask": "looks like a pet-sitting dilemma; measures the rule versus the situation in front of you (L3, T25)",
     "ae": [
       "A",
       "C"
@@ -831,11 +831,11 @@
     "heart": {
       "prompt": "Your group has twenty minutes alone with a real dinosaur skeleton. There is a velvet rope, a sign saying not to touch, and no guards. Which one are you?",
       "options": [
-        "The one who guards the rope. The sign says no.",
-        "Taking a photo with one hand on a rib.",
-        "The one who touches nothing but keeps watch for the others.",
-        "The one who calls the front desk to say nobody is watching.",
-        "The one arguing that one finger cannot hurt a fossil."
+        "I guard the rope. The sign says no.",
+        "I take a photo with one hand on a rib.",
+        "I touch nothing, but I keep watch for the others.",
+        "I call the front desk to say nobody is watching.",
+        "One finger cannot hurt a fossil, I argue."
       ]
     },
     "fp": {

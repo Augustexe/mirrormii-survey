@@ -38,7 +38,7 @@
     "heart": {
       "prompt": "You and your best friend have six days on a sleeper train, sharing one tiny cabin. The conductor mentions an empty single cabin next door for $90.",
       "options": [
-        "We keep our tiny cabin. Six days side by side.",
+        "We keep our tiny cabin, six days side by side.",
         "I take it. We share meals and sleep apart.",
         "I take it to read in, and I still sleep in ours.",
         "We keep ours, and I spend the $90 on snacks for two."
@@ -65,7 +65,7 @@
     "primary": "R1",
     "sq": "SQ-R1-2",
     "world": "absurd",
-    "prompt": "New curse: whenever anything happens to you, a tiny rain cloud follows you until your person hears about it. Something just happened.",
+    "prompt": "New curse: every time something happens to you, a tiny rain cloud follows you until your person hears about it. You just got big news.",
     "options": [
       {
         "t": "Call them mid-drizzle. I'd have told them anyway.",
@@ -92,7 +92,7 @@
         ]
       },
       {
-        "t": "Tell them the headline. Keep the details and the drizzle.",
+        "t": "Tell them the headline only. A little drizzle, I can live with.",
         "axes": {
           "R1": -1
         }
@@ -105,12 +105,12 @@
       }
     ],
     "heart": {
-      "prompt": "A curse means that whenever anything happens to you, a small rain cloud follows you until your person hears about it. Something has just happened.",
+      "prompt": "A curse means that every time something happens to you, a small rain cloud follows you until your person hears about it. You have just had big news.",
       "options": [
         "I call them right away. I would have told them anyway.",
         "Some news is mine first. I stay damp for a week.",
-        "I tell them the headline, and keep the details and the rain.",
-        "I tell them, then ask for their news too."
+        "They get the headline only. A little rain is fine.",
+        "I tell them, and then I insist on hearing their news too."
       ]
     },
     "fp": {
@@ -323,9 +323,9 @@
     "heart": {
       "prompt": "At a work party, near the coats, you overhear the boss say your friend will not get the promotion they have already celebrated.",
       "options": [
-        "I tell them tonight, exactly as heard. Better from me.",
+        "Tonight they hear it from me, exactly as I heard it.",
         "I hint that they should not order the new car just yet.",
-        "Nothing, for now. I will be there for them when it happens.",
+        "I say nothing for now, and I am there when it happens.",
         "I tell them tomorrow, gently, with a backup plan ready."
       ]
     },
@@ -541,10 +541,10 @@
     "heart": {
       "prompt": "You are secretly the critic reviewing your friend's restaurant opening, and nobody knows. The food is bland. Your review is due tomorrow.",
       "options": [
-        "An honest review, and I call them tonight so they hear first.",
-        "I tell them the soup needs salt, and nothing more.",
-        "A glowing review. Our friendship matters more than my byline.",
-        "An honest review, with no warning. They read it with everyone else."
+        "I write it honestly and call them tonight, before it runs.",
+        "All they hear from me is that the soup needs salt.",
+        "I write a glowing review. Our friendship matters more than my byline.",
+        "I write it honestly, with no warning. They read it with everyone."
       ]
     },
     "fp": {
@@ -568,7 +568,7 @@
     "primary": "R3",
     "sq": "SQ-T19-1",
     "world": "unusual",
-    "prompt": "Accepted: a dream program on the other side of the world. Before you've said yes, your family books a video call titled \"Discussion.\"",
+    "prompt": "Accepted: a dream program on the other side of the world. Before you've even said yes, your family books a video call. Its title? \"Discussion.\"",
     "options": [
       {
         "t": "Accept before the call. Join it to share the news.",
@@ -652,7 +652,7 @@
     "primary": "R3",
     "sq": "SQ-T20-2",
     "world": "unusual",
-    "prompt": "Family rule, three generations running: a new job's first paycheck buys dinner for the whole family. All 22 of them. Yours just cleared.",
+    "prompt": "Family rule, three generations running: a new job's first paycheck pays for a restaurant dinner for all 22 relatives. Yours just cleared.",
     "options": [
       {
         "t": "Book the long table. That's how it's done.",
@@ -707,12 +707,12 @@
       }
     ],
     "heart": {
-      "prompt": "Your family has a rule, three generations old: the first paycheck from a new job pays for dinner for the whole family, all 22 of them. Yours has just arrived.",
+      "prompt": "Your family has a rule, three generations old: the first paycheck from a new job pays for a restaurant dinner for all 22 relatives. Yours has just arrived.",
       "options": [
         "I book the long table. That is how it is done.",
         "I cook for all 22 at my place instead. It still counts.",
-        "My friends get the dinner instead. They helped me get the job.",
-        "I book it, at a cheaper place than my cousin chose."
+        "I treat my friends instead. They helped me get the job.",
+        "Yes to the dinner, at a cheaper place than my cousin chose."
       ]
     },
     "fp": {
@@ -874,9 +874,9 @@
     "heart": {
       "prompt": "Your person's parent stays with you for a month and relabels every shelf in your home to match their own. The labels are printed and laminated.",
       "options": [
-        "I keep them. The shelves have honestly never looked better.",
+        "They stay. The shelves have honestly never looked better.",
         "I peel one off each day, quietly, hoping nobody notices.",
-        "Everyone sits down: this is our home, and our system.",
+        "I sit everyone down: this is our home, and our system.",
         "I keep the kitchen labels and take the rest down."
       ]
     },
@@ -901,7 +901,7 @@
     "primary": "L1",
     "sq": "SQ-L1-1",
     "world": "unusual",
-    "prompt": "Game show, final round. Walk away with $20,000 now, or answer one last question for $100,000. The category: something you half know.",
+    "prompt": "Game show, final round: take $20,000 now, or answer one question for $100,000. The topic is one you know about half of.",
     "options": [
       {
         "t": "Take the $20,000. Wave. Leave. Frame the check.",
@@ -930,7 +930,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Poll the audience first. Walk if they hesitate.",
+        "t": "Take the $20,000, but ask to hear the question anyway.",
         "axes": {
           "L1": 1
         }
@@ -944,11 +944,11 @@
       }
     ],
     "heart": {
-      "prompt": "In the final round of a game show, you can leave with $20,000 now, or answer one last question for $100,000. The category is something you half know.",
+      "prompt": "In the final round of a game show, you can take $20,000 now, or answer one question for $100,000. You know about half of the topic.",
       "options": [
         "I take the $20,000, leave, and frame the check.",
         "Half knowing is close enough to knowing. I play.",
-        "I ask the audience first, and walk if they hesitate.",
+        "I take the $20,000, then ask to hear the question anyway.",
         "I play. I would never forgive myself for walking away."
       ]
     },
@@ -973,7 +973,7 @@
     "primary": "L1",
     "sq": "SQ-T17-2",
     "world": "absurd",
-    "prompt": "On your pillow, a contract: five years where your job, home and people stay exactly as they are, good and guaranteed, with no surprises either way.",
+    "prompt": "On your pillow, a contract: your job, home and people stay exactly as they are for five years. Good, guaranteed, no surprises. Sign any part, any time.",
     "options": [
       {
         "t": "Sign it in pen. Five known-good years beat any gamble.",
@@ -1151,7 +1151,7 @@
         "emotion": "worry"
       },
       {
-        "t": "Ask for one hint. Any hint. Then decide.",
+        "t": "One hint, or I walk.",
         "axes": {
           "L1": 1
         }
@@ -1174,7 +1174,7 @@
       "options": [
         "I sign. I will find out on Monday.",
         "I sign, then watch their lobby all weekend.",
-        "One hint, any hint, before I decide.",
+        "Without one hint, I walk away.",
         "I say no. I do not sign what I cannot read."
       ]
     },
@@ -1214,7 +1214,7 @@
         ]
       },
       {
-        "t": "Yes, if they'll let me play the gig first.",
+        "t": "Yes, and I'll beg to play the gig first.",
         "axes": {
           "L2": 1
         },
@@ -1226,7 +1226,7 @@
         ]
       },
       {
-        "t": "Take the card. Decide after the gig. Risk it.",
+        "t": "Let the song end. If the offer dies, it dies.",
         "axes": {
           "L2": -1
         },
@@ -1254,8 +1254,8 @@
       "prompt": "Mid-karaoke, a touring theater director offers you a year-long role, answer before the song ends. Your band's first real show is next month.",
       "options": [
         "I say yes before the chorus. A sure thing beats a maybe.",
-        "I say yes, if they let me play the show first.",
-        "I take the card and decide after the show, offer or not.",
+        "I say yes, and I beg to play the show first.",
+        "I let the song end. If the offer dies, so be it.",
         "No. I want to see where the band goes."
       ]
     },
@@ -1279,10 +1279,10 @@
     "primary": "L2",
     "sq": "SQ-L2-2",
     "world": "absurd",
-    "prompt": "School reunion. The name tags print themselves with everyone's biggest win since graduation. Yours is blank. Your old rival's says \"Bestselling author.\"",
+    "prompt": "Every time you finish something big, the hill in your backyard grows. It's been a hill for three years. The neighbors have noticed.",
     "options": [
       {
-        "t": "Leave early. Start a five-year plan in the parking lot.",
+        "t": "Three big finishes by summer. It's becoming a mountain.",
         "axes": {
           "L2": 2
         },
@@ -1295,7 +1295,7 @@
         "emotion": "envy"
       },
       {
-        "t": "Wear it blank. Proudly. My wins don't fit on tags.",
+        "t": "I like the hill. You can picnic on a hill.",
         "axes": {
           "L2": -2
         },
@@ -1307,37 +1307,37 @@
         ]
       },
       {
-        "t": "Grab a marker. Write something impressive. Mostly true.",
+        "t": "Finish one thing, just to watch it grow.",
         "axes": {
           "L2": 1
         },
         "emotion": "cringe"
       },
       {
-        "t": "Congratulate the rival. Mean it. Get another drink.",
+        "t": "Plant flowers on it. It's doing fine.",
         "axes": {
           "L2": -1
         }
       }
     ],
     "heart": {
-      "prompt": "At your school reunion, the name tags print themselves with everyone's biggest achievement since graduating. Yours is blank. Your old rival's says \"Bestselling author.\"",
+      "prompt": "Every time you finish something big, the hill in your backyard grows. It has been a hill for three years, and the neighbors have noticed.",
       "options": [
-        "I leave early and start a five-year plan in the parking lot.",
-        "Blank, and I wear it proudly.",
-        "I take a marker and write something impressive, mostly true.",
-        "I congratulate my rival, mean it, and get another drink."
+        "I plan three big finishes by summer, and it becomes a mountain.",
+        "I like the hill. You can have a picnic on a hill.",
+        "I finish one thing, just to watch it grow.",
+        "Flowers go on it. It is doing fine."
       ]
     },
     "fp": {
-      "trigger": "name tags show your biggest win and yours is blank",
-      "setting": "school reunion",
-      "ask": "how you answer a rival's win",
-      "who": "old classmates and a rival",
-      "stakes": "how you measure up",
-      "device": "reunion-name-tag"
+      "trigger": "your backyard shows how much you have achieved",
+      "setting": "a hill that grows with every finish",
+      "ask": "push to grow it or enjoy the hill",
+      "who": "you and the neighbors",
+      "stakes": "visible progress versus your own pace",
+      "device": "achievement-mountain"
     },
-    "mask": "looks like reunion comedy; Genii's locked guess on setting your clock by others versus your own pace (L2, T17)",
+    "mask": "looks like a garden fable; Genii's locked guess on pushing for visible progress versus your own pace (L2), with locking it in versus keeping it open (T17) as a side guess",
     "ae": [
       "A",
       "E"
@@ -1378,7 +1378,7 @@
         ]
       },
       {
-        "t": "Go for six months. Then home, finished or not.",
+        "t": "Go, and count down every one of the 365 days.",
         "axes": {
           "L2": 1
         },
@@ -1406,9 +1406,9 @@
     "heart": {
       "prompt": "A billionaire you once lent an umbrella to offers to fund your dream project, if you build it from their yacht, 14-hour days, for a year.",
       "options": [
-        "I pack tonight. Fourteen hours is just two sevens.",
+        "I pack tonight. Fourteen-hour days do not scare me.",
         "No. My evenings are much of why I am happy.",
-        "I go for six months, then come home, finished or not.",
+        "I go, and I count down every one of the days.",
         "I pass, and build it on weekends, on my own schedule."
       ]
     },
@@ -1460,7 +1460,7 @@
         ]
       },
       {
-        "t": "Peek at one corner every Friday. Just one.",
+        "t": "Log my rows every Friday. Just rows, no peeking.",
         "axes": {
           "L2": 1
         },
@@ -1489,8 +1489,8 @@
       "prompt": "A museum hires you to place 10,000 mosaic tiles. Nobody will see the full picture until the last tile goes in.",
       "options": [
         "I count the tiles every night and post the percentage publicly.",
-        "I place a few tiles when I like. It will get there.",
-        "I peek at one corner every Friday, just one.",
+        "I add tiles when I feel like it. It will get there.",
+        "Every Friday, I log how many rows are done.",
         "By the second week I lose count, and I love it anyway."
       ]
     },
@@ -1543,7 +1543,7 @@
         ]
       },
       {
-        "t": "Only the family who cut earlier gets frozen and passed.",
+        "t": "Freeze, but only to pass the family who cut earlier.",
         "axes": {
           "L3": -1
         },
@@ -1574,8 +1574,8 @@
       "options": [
         "I freeze everyone, walk to the front, and act innocent.",
         "Nobody gets frozen. The people ahead still arrived first.",
-        "I freeze everyone, but only pass the family who cut earlier.",
-        "I freeze everyone, then check whether the park rules allow this."
+        "I freeze everyone, but only to pass the family who cut earlier.",
+        "Before freezing anyone, I check whether the park rules allow it."
       ]
     },
     "fp": {
@@ -1813,7 +1813,7 @@
     "heart": {
       "prompt": "A comet will be visible for twelve minutes tonight. There is one telescope on the roof and forty neighbors, and you are in charge of the schedule.",
       "options": [
-        "Alphabetical order, fifteen seconds each, timed on a stopwatch.",
+        "I set alphabetical order, fifteen seconds each, on a stopwatch.",
         "The child who has talked comets all year gets a full minute.",
         "Whoever reaches the roof first looks first.",
         "The neighbor who moves away tomorrow goes first."

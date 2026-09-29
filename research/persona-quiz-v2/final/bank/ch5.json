@@ -61,8 +61,8 @@
     "heart": {
       "prompt": "Your week gains an eighth day, and only you get it. Nobody at work knows it exists.",
       "options": [
-        "I work it. By spring, I would be running things.",
-        "Sleep, every week, with no regrets.",
+        "Work gets it. By spring, I would be running things.",
+        "I sleep through it every week, with no regrets.",
         "I work it quietly and let people wonder how I manage.",
         "I spend it on the hobby I keep promising myself."
       ]
@@ -221,7 +221,7 @@
     "type": "feeling",
     "chapter": 5,
     "follows": "C5-121",
-    "prompt": "Honestly, what landed first?",
+    "prompt": "The dog got your job. What landed first?",
     "options": [
       {
         "t": "Happy for it, truly."
@@ -240,13 +240,13 @@
       }
     ],
     "heart": {
-      "prompt": "Honestly, what did you feel first?",
+      "prompt": "The dog got the job you wanted. What did you feel first?",
       "options": [
-        "Real happiness for it.",
-        "A small sting, and the question of why it was not me.",
-        "Relief that someone else will run the meetings.",
-        "A strange kind of embarrassment.",
-        "Motivation to go after the next one."
+        "I am truly happy for it.",
+        "It stung a little. Why not me?",
+        "Relief came first. Let the dog run the meetings.",
+        "I felt strangely embarrassed.",
+        "It fired me up to go after the next one."
       ]
     },
     "fp": {
@@ -491,7 +491,7 @@
     "id": "C5-124",
     "type": "reply",
     "chapter": 5,
-    "prompt": "Wrong number. The CEO meant to text their assistant. Your closest work friend is on the design team.",
+    "prompt": "Wrong number: the CEO meant to text their assistant. Company rule: leaks get you fired. Your closest work friend is on the design team.",
     "thread": [
       {
         "from": "The CEO",
@@ -545,7 +545,7 @@
       }
     ],
     "heart": {
-      "prompt": "A text reaches you by mistake. The CEO meant to send it to their assistant. Your closest friend at work is on the design team.",
+      "prompt": "A text reaches you by mistake; it was meant for the CEO's assistant. Leaks get people fired. Your closest work friend is on the design team.",
       "thread": [
         {
           "from": "The CEO",
@@ -694,10 +694,10 @@
     "type": "this_or_that",
     "chapter": 5,
     "round": "ch5-r1",
-    "prompt": "A carrier owl delivers one dream-job offer, addressed to you and your closest friend. Whoever feeds the owl first gets the job.",
+    "prompt": "A carrier owl lands between your desk and your closest friend's with one dream-job offer. Whoever feeds it first gets the job.",
     "options": [
       {
-        "t": "Feed the owl. I'll apologize at the party. Maybe.",
+        "t": "Feed the owl. I'm not apologizing at the party.",
         "tags": [
           {
             "id": "T16A",
@@ -718,9 +718,9 @@
       }
     ],
     "heart": {
-      "prompt": "A carrier owl brings one offer for your dream job, addressed to both you and your closest friend. Whoever feeds the owl first gets the job.",
+      "prompt": "A carrier owl lands between your desk and your closest friend's, carrying one offer for your dream job. Whoever feeds it first gets the job.",
       "options": [
-        "I feed the owl. I might apologize at the celebration.",
+        "I feed the owl, and I will not apologize at the celebration.",
         "They feed it. Losing to them is easier than watching them lose."
       ]
     },
@@ -741,9 +741,9 @@
     "sq": "SQ-T16-2",
     "world": "absurd",
     "friend": {
-      "prompt": "An owl brings one dream-job offer for {name} and {their} closest friend. First to feed the owl gets it. What does {name} do?",
+      "prompt": "An owl lands between {name} and {their} closest friend with one dream-job offer. First to feed it gets the job. What does {name} do?",
       "a": {
-        "t": "Feeds the owl. Might apologize at the party.",
+        "t": "Feeds the owl. Not apologizing at the party.",
         "tags": [
           {
             "id": "T16A",
@@ -766,29 +766,29 @@
     "id": "C5-120",
     "type": "scenario",
     "chapter": 5,
-    "prompt": "Three weeks from now, a stranger you once gave directions to wants you managing their island resort. You just signed a two-year lease you love.",
+    "prompt": "Your best friend is moving to a tiny town across the ocean and bought you a one-way ticket too. It's refundable until tomorrow.",
     "options": [
       {
-        "t": "Break the lease, sell the couch, go.",
+        "t": "Keeping it. Work hears on Monday.",
         "axes": {
           "L1": -2
         },
         "emotion": "delight"
       },
       {
-        "t": "Yes, and keep paying for my place, just in case.",
+        "t": "Go, and keep paying rent back home, just in case.",
         "axes": {
           "L1": -1
         }
       },
       {
-        "t": "No. I finally have the life I worked for.",
+        "t": "I finally have the life I built. Refund.",
         "axes": {
           "L1": 2
         }
       },
       {
-        "t": "Saying no, but saving their number forever.",
+        "t": "Refund it, but keep the confirmation email forever.",
         "axes": {
           "L1": 1
         },
@@ -802,23 +802,23 @@
       }
     ],
     "heart": {
-      "prompt": "A stranger you once gave directions to wants you to manage their island resort, starting in three weeks. You just signed a two-year lease you love.",
+      "prompt": "Your best friend is moving to a small town across the ocean and bought you a one-way ticket too. It is refundable until tomorrow.",
       "options": [
-        "Yes. I break the lease and sell the couch.",
-        "I say yes, and keep paying for my place just in case.",
-        "I say no. I finally have the life I worked for.",
-        "I say no, but I keep their number."
+        "I keep it. Work hears about it on Monday.",
+        "I go, and I keep paying rent back home, just in case.",
+        "My life here is the one I built. I get the refund.",
+        "I refund it, but I keep the confirmation email forever."
       ]
     },
     "fp": {
-      "trigger": "a dream job offer from a stranger",
-      "setting": "island resort, three weeks away",
-      "ask": "leave the good life you have or stay",
-      "who": "a stranger you once helped",
-      "stakes": "a new home and lease versus the unknown",
-      "device": "island-resort-offer"
+      "trigger": "a friend buys you a one-way ticket abroad",
+      "setting": "a refundable ticket, deadline tomorrow",
+      "ask": "leap or stay",
+      "who": "your best friend",
+      "stakes": "the life you built versus a new one",
+      "device": "one-way-ticket"
     },
-    "mask": "looks like a lucky break; measures keeping a sure good life versus trading it for a great unknown (L1)",
+    "mask": "looks like a travel surprise; measures security and the known versus risk and the new (L1)",
     "ae": [
       "A",
       "D"
@@ -827,15 +827,15 @@
     "sq": "SQ-L1-1",
     "world": "unusual",
     "friend": {
-      "prompt": "Island resort manager job, starts in three weeks. {name} just signed a two-year lease and loves it. What does {name} do?",
+      "prompt": "{name}'s best friend moves across the ocean and buys {them} a one-way ticket too. Refundable until tomorrow. What does {name} do?",
       "a": {
-        "t": "No. \"I finally have the life I worked for.\"",
+        "t": "Refunds it. The life {name} built stays.",
         "axes": {
           "L1": 2
         }
       },
       "b": {
-        "t": "Yes. Breaks the lease, sells the couch.",
+        "t": "Keeps it. Work hears on Monday.",
         "axes": {
           "L1": -2
         }
@@ -1177,7 +1177,7 @@
         ]
       },
       {
-        "t": "\"If nothing smells right by month three, they walk.\"",
+        "t": "\"No visible progress by month three? They'll walk.\"",
         "axes": {
           "L2": 2
         },
@@ -1217,7 +1217,7 @@
       "prompt": "A famous perfumer offers you an apprenticeship: seven years before your first bottle. They ask your best friend for a reference. What does your friend say?",
       "options": [
         "They will want a chart of their progress from the first week.",
-        "If nothing smells right after three months, they will leave.",
+        "If they see no progress by month three, they will leave.",
         "They will love the learning itself. The bottle is a bonus.",
         "Seven years? They will lose count, and they will be happy."
       ]
@@ -1273,7 +1273,7 @@
     "prompt": "Decisions, this year. Tap everything that's true:",
     "options": [
       {
-        "t": "Paid more for the non-refundable option so I'd stop deciding",
+        "t": "Booked something non-refundable just to stop deciding",
         "tags": [
           {
             "id": "T17A",
@@ -1316,11 +1316,11 @@
     "heart": {
       "prompt": "Think about decisions you have made this year. Choose everything that is true.",
       "options": [
-        "I paid extra for the non-refundable option so I would stop deciding.",
+        "I booked something non-refundable just to stop deciding.",
         "I said \"maybe\" to a plan in case something better came up.",
         "Not knowing kept me up, so I pushed for a clear answer.",
         "I left a big question open for months and slept fine.",
-        "None of these."
+        "None of these are true."
       ]
     },
     "fp": {
@@ -1466,7 +1466,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Love it, but what's the plan if Gary retires?",
+        "t": "Love it, as long as there's a plan B besides Gary.",
         "axes": {
           "L1": 1
         },
@@ -1480,7 +1480,7 @@
         "emotion": "irritation"
       },
       {
-        "t": "Nobody at my job believes in me like that. Jealous.",
+        "t": "Jealous. I'd quit for a snail too, honestly.",
         "axes": {
           "L1": -1
         },
@@ -1491,9 +1491,9 @@
       "prompt": "Your roommate left a steady job to race snails for prize money. Their snail, Gary, has lost six in a row, and rent is due soon. Your honest take?",
       "options": [
         "Somebody has to believe in Gary. I love it.",
-        "I love it, but what is the plan if Gary retires?",
+        "I love it, as long as there is a plan besides Gary.",
         "My first question is who pays their half of the rent.",
-        "I am jealous. Nobody at my job believes in me like that."
+        "I am jealous. Honestly, I would quit for a snail too."
       ]
     },
     "fp": {
@@ -1658,7 +1658,7 @@
         }
       },
       {
-        "t": "Found someone who works there. Grilled them first.",
+        "t": "Grilled someone who works there, then applied a month later.",
         "axes": {
           "L1": 1
         }
@@ -1674,10 +1674,10 @@
     "heart": {
       "prompt": "Think of the last job post you were only half qualified for. What did you actually do?",
       "options": [
-        "That night, I applied. I would learn the rest there.",
+        "I applied that night. I would learn the rest there.",
         "I skipped it. I will apply once I meet every point.",
-        "I found someone who works there and asked questions first.",
-        "I sent it to a friend, and we both applied for courage."
+        "I questioned someone who works there, then applied a month later.",
+        "A friend and I both applied, for courage."
       ]
     },
     "fp": {

@@ -59,9 +59,9 @@
   "heart": {
    "prompt": "You referee a kitten soccer final. The smallest kitten keeps carrying the ball in its mouth. The crowd loves it; the other bench does not.",
    "options": [
-    "A yellow card. A small player still follows the rules.",
+    "I give a yellow card. Small players still follow the rules.",
     "I give one gentle warning. The next time, it is a card.",
-    "I let it play. People came for the game, not the rulebook.",
+    "It keeps playing. The crowd came for the kitten, not the rulebook.",
     "I allow it, but only while its team is behind."
    ]
   },
@@ -139,7 +139,7 @@
     "emotion": "cringe"
    },
    {
-    "t": "I haven't ordered the same thing twice. Ever.",
+    "t": "Never. I rarely order the same thing twice.",
     "axes": {
      "L1": -1
     },
@@ -166,7 +166,7 @@
    "options": [
     "Yes, and it felt like the best compliment I have had.",
     "Yes, and I ordered something new just to be contrary.",
-    "No. I have never ordered the same thing twice.",
+    "No. I rarely order the same thing twice.",
     "Yes, at three different places. I rotate between them."
    ]
   },
@@ -220,7 +220,7 @@
   "chapter": 7,
   "sq": "SQ-T23-1",
   "world": "absurd",
-  "prompt": "Tiny gnomes, one ruined village, every Saturday for a year. They pay in pastries.",
+  "prompt": "Tiny gnomes need help rebuilding their village: every Saturday for a year. They pay in pastries.",
   "options": [
    {
     "t": "Every Saturday, tiny hard hat already ordered.",
@@ -334,7 +334,7 @@
     ]
    },
    {
-    "t": "Volunteered the person next to me. Lovingly.",
+    "t": "Volunteered the person next to me. They still bring it up.",
     "tags": [
      {
       "id": "T23B",
@@ -359,7 +359,7 @@
    "options": [
     "I raised my hand before the silence became awkward.",
     "Someone always gives in, so I waited it out.",
-    "I suggested the person next to me, with affection.",
+    "I volunteered the person next to me. They still mention it.",
     "I held out, then gave in when they looked at me."
    ]
   },
@@ -421,7 +421,7 @@
     "emotion": "relief"
    },
    {
-    "t": "Spin the globe, even if it lands on a parking lot.",
+    "t": "Spin the globe, even if it lands somewhere boring.",
     "axes": {
      "L1": -1
     },
@@ -437,7 +437,7 @@
   "heart": {
    "prompt": "You pick one travel rule for life: every vacation goes to the one town you already love, or wherever a spinning globe lands.",
    "options": [
-    "The town I love. I already know my café there.",
+    "The town I love wins. I already know my café there.",
     "I spin the globe, even if it lands somewhere dull."
    ]
   },
@@ -492,7 +492,7 @@
   "round": "C7-r110",
   "sq": "SQ-R3-1",
   "world": "unusual",
-  "prompt": "Four hours, a $90 gown, your name read wrong by a stranger. Or the diploma just arrives by mail. Your degree is done.",
+  "prompt": "The ceremony: four hours, a $90 gown, your whole family in the stands. Or the diploma just arrives by mail. Your degree is done.",
   "options": [
    {
     "t": "Walk the stage. Gown, hat toss, the whole thing.",
@@ -522,10 +522,10 @@
    }
   ],
   "heart": {
-   "prompt": "Your degree is finished. The ceremony means four hours, a $90 gown and your name read wrong by a stranger. Or the diploma simply arrives by mail.",
+   "prompt": "Your degree is finished. The ceremony means four hours, a $90 gown and your whole family in the stands. Or the diploma simply arrives by mail.",
    "options": [
-    "I walk the stage, with the gown and the hat toss.",
-    "Mail is fine. I will celebrate in my own way."
+    "Stage, gown, hat toss: I want all of it.",
+    "I have it mailed and celebrate in my own way."
    ]
   },
   "fp": {
@@ -727,7 +727,7 @@
     ]
    },
    {
-    "t": "Cut it to twelve guests. Nothing left to track.",
+    "t": "Track twelve key people. The other 28 can wing it.",
     "tags": [
      {
       "id": "T24B",
@@ -743,7 +743,7 @@
     "I recite the guest list every night, out loud, in order.",
     "Surprise parties are a little chaotic anyway, so I improvise.",
     "I ask one friend to be my calendar for three weeks.",
-    "I cut it to twelve guests, so there is less to remember."
+    "I track twelve key people. The rest can wing it."
    ]
   },
   "fp": {
@@ -853,14 +853,14 @@
    }
   ],
   "heart": {
-   "prompt": "Lists and plans this month. Choose everything that is true for you:",
+   "prompt": "Think about lists and plans this month. Choose everything that is true for you.",
    "options": [
     "I made a packing list, even for one night away.",
     "I could say within $20 what I spent going out.",
-    "For a friend's birthday, I set a reminder.",
+    "I set a reminder for a friend's birthday.",
     "I arrived at a trip or event without reading the plan.",
-    "I guessed how much money I had and was far off.",
-    "None of these."
+    "My guess at how much money I had was far off.",
+    "None of these are true."
    ]
   },
   "fp": {
@@ -1237,7 +1237,7 @@
     }
    },
    {
-    "t": "Only if a real bassist hides behind the amp.",
+    "t": "Only if they turn my amp way down.",
     "axes": {
      "L1": 1
     }
@@ -1268,7 +1268,7 @@
    "options": [
     "Yes. I will learn the songs on the way there.",
     "Send me the setlist first, then I will answer.",
-    "Only if a real bass player hides behind the amp.",
+    "I will do it only if they turn my amp way down.",
     "Worst case, it becomes a great story. I am in.",
     "No. I do not play what I have not practiced.",
     "I am already choosing what to wear on stage."
@@ -1421,11 +1421,11 @@
   "heart": {
    "prompt": "Picture the clone laughing with your friends while you are at home. What is the first feeling?",
    "options": [
-    "Relief, and quite a lot of it.",
-    "Jealous of myself, somehow.",
-    "Guilty, as if I skipped something.",
-    "Worried that it is more fun than I am.",
-    "Delighted, as if I got away with something."
+    "I felt relief, and quite a lot of it.",
+    "I was jealous of myself, somehow.",
+    "I felt guilty, as if I skipped something.",
+    "I worried that it is more fun than I am.",
+    "Delight came first, as if I got away with something."
    ]
   },
   "fp": {
@@ -1598,10 +1598,10 @@
   "heart": {
    "prompt": "You wake up able to repair anything simply by touching it. Put these in order, the first thing you would do at the top.",
    "options": [
-    "Every broken thing on the street, with a sign-up sheet.",
-    "My friends' things, but only when they ask.",
-    "My old car first, then the rest of my things.",
-    "Nothing in public. Once people know, my weekends are gone."
+    "I fix every broken thing on the street, with a sign-up sheet.",
+    "My friends' things come first, but only when they ask.",
+    "I fix my old car first, then the rest of my things.",
+    "I fix nothing in public. Once people know, my weekends are gone."
    ]
   },
   "fp": {
@@ -1788,9 +1788,9 @@
    "prompt": "Think of your most recent trip with friends, a few nights at least. What did your mornings actually look like?",
    "options": [
     "I woke everyone up so we could have breakfast together.",
-    "I waited for the whole group before doing anything.",
+    "Nothing started until the whole group was ready. I waited.",
     "I went off with one friend while the others slept.",
-    "Up early and alone, with coffee and a walk."
+    "I was up early and alone, with coffee and a walk."
    ]
   },
   "fp": {
@@ -1839,7 +1839,7 @@
     "emotion": "irritation"
    },
    {
-    "t": "Joked about it. Pointedly. Twice.",
+    "t": "\"Traffic, or a nap?\" Joked, pointedly, twice.",
     "axes": {
      "R2": 1
     }
@@ -1863,9 +1863,9 @@
    "prompt": "Think of the most recent friend who arrived forty minutes late without warning. What did you actually do when they got there?",
    "options": [
     "I told them plainly that forty minutes was not okay.",
-    "I joked about it, pointedly, more than once.",
-    "I said it was fine, and meant about half of it.",
-    "Nothing. I had already ordered them a drink."
+    "I asked, \"Traffic, or a nap?\" pointedly, more than once.",
+    "\"No worries,\" I said, and meant about half of it.",
+    "I said nothing. I had already ordered them a drink."
    ]
   },
   "fp": {

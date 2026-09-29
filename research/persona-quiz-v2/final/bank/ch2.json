@@ -5,10 +5,10 @@
   "chapter": 2,
   "sq": "SQ-T02-1",
   "world": "absurd",
-  "prompt": "Fourteen months on Mars, Wi-Fi the whole time, and your best friend sent nothing. Now they're at your door, holding a Mars rock.",
+  "prompt": "Your best friend hibernates now. Every winter, gone. In March they text \"heyyy\" like nothing happened. It's March.",
   "options": [
    {
-    "t": "Hug first, rock second, then pick up mid-sentence.",
+    "t": "\"Heyyy\" right back. Spring is our season.",
     "tags": [
      {
       "id": "T02A",
@@ -18,7 +18,7 @@
     "emotion": "warmth"
    },
    {
-    "t": "Hug them, then: \"Mars has Wi-Fi. I checked.\"",
+    "t": "\"Welcome back. It was a long winter.\" Pointedly.",
     "tags": [
      {
       "id": "T02B",
@@ -28,7 +28,7 @@
     "emotion": "irritation"
    },
    {
-    "t": "Take the rock. Let them wait a week, like I did.",
+    "t": "Take a week to answer. They took four months.",
     "tags": [
      {
       "id": "T02B",
@@ -38,7 +38,7 @@
     "emotion": "resentment"
    },
    {
-    "t": "I laugh, because I never texted Mars either.",
+    "t": "Honestly, I barely noticed. I go quiet all winter too.",
     "tags": [
      {
       "id": "T02A",
@@ -49,32 +49,32 @@
    }
   ],
   "heart": {
-   "prompt": "Your best friend spent fourteen months on Mars with Wi-Fi and sent you nothing. Now they are at your door with a rock from Mars.",
+   "prompt": "Your best friend hibernates now. Every winter they disappear, and in March they text \"hey\" as if nothing happened. It is March.",
    "options": [
-    "A hug, the rock, and we pick right back up.",
-    "I hug them, then mention that Mars had Wi-Fi. I checked.",
-    "I take the rock and make them wait, the way I did.",
-    "I laugh. I never sent anything to Mars either."
+    "I reply right away. Spring is our season.",
+    "\"Welcome back. It was a long winter,\" I write, pointedly.",
+    "I take a week to answer. They took four months.",
+    "Honestly, I barely noticed. I go quiet all winter too."
    ]
   },
   "fp": {
-   "trigger": "a best friend returns after a silent year away",
-   "setting": "your doorstep, a rock from Mars",
-   "ask": "pick up or make the silence count",
+   "trigger": "a friend resurfaces after months of silence",
+   "setting": "a text every March",
+   "ask": "pick right up or make them wait",
    "who": "your best friend",
-   "stakes": "an easy return versus the quiet you noticed",
-   "device": "mars-return"
+   "stakes": "whether silence costs anything",
+   "device": "hibernating-friend"
   },
-  "mask": "looks like a space homecoming; measures whether a long quiet stretch means the friendship is fine or fading (T02)",
+  "mask": "looks like a cozy animal joke; measures whether long silence is fine or you notice who reaches out (T02)",
   "ae": [
    "A",
    "E"
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "{name}'s best friend is back from fourteen months on Mars. Had Wi-Fi, sent nothing. Now they're at the door. What does {name} do?",
+   "prompt": "{name}'s best friend hibernates every winter and texts \"heyyy\" in March like nothing happened. What does {name} do?",
    "a": {
-    "t": "Hugs them and picks up mid-sentence.",
+    "t": "\"Heyyy\" right back. Spring is their season.",
     "tags": [
      {
       "id": "T02A",
@@ -83,7 +83,7 @@
     ]
    },
    "b": {
-    "t": "Takes the rock. Lets them wait a week.",
+    "t": "Takes a week to answer. The friend took four months.",
     "tags": [
      {
       "id": "T02B",
@@ -259,9 +259,9 @@
    ],
    "options": [
     "I am in, and I call the room next to the kitchen.",
-    "I am in, if we have a house dinner every Sunday.",
+    "Only with a house dinner every Sunday. Then I am in.",
     "I am in, but my door gets a lock.",
-    "Love you all. I will visit, often."
+    "I love you all, and I will visit often."
    ]
   },
   "fp": {
@@ -463,10 +463,10 @@
   "heart": {
    "prompt": "Your roommate left their job to try stand-up comedy. Their first show is tonight, and they perform the whole set for you. Only the landlord joke makes you laugh.",
    "options": [
-    "I say only one joke landed, and offer notes before the show.",
+    "One joke landed, I tell them, and I offer notes.",
     "I say the landlord joke works and the rest needs work.",
     "I suggest opening with the landlord joke, and leave it there.",
-    "\"You are going to be great.\" Then I laugh loudest."
+    "I say it will go perfectly, then laugh the loudest."
    ]
   },
   "fp": {
@@ -618,7 +618,7 @@
   "type": "feeling",
   "chapter": 2,
   "follows": "C2-121",
-  "prompt": "What hit first?",
+  "prompt": "Reading that note out loud: what hit first?",
   "options": [
    {
     "t": "Cringe. Past me was so sure.",
@@ -642,13 +642,13 @@
    }
   ],
   "heart": {
-   "prompt": "What did you feel first?",
+   "prompt": "Reading that note out loud, what did you feel first?",
    "options": [
-    "Embarrassed. I sounded so certain.",
-    "Hurt. I really meant it.",
-    "Proud. My real life turned out better.",
-    "Relieved. Nobody is holding me to it.",
-    "Wistful. I miss who I was then."
+    "I felt embarrassed. I sounded so certain.",
+    "It hurt. I really meant it.",
+    "I felt proud. My real life turned out better.",
+    "Relief came first. Nobody is holding me to it.",
+    "I felt wistful. I miss who I was then."
    ]
   },
   "fp": {
@@ -834,7 +834,7 @@
     ]
    },
    {
-    "t": "I respect it. I'd have carved the date in.",
+    "t": "Same. I'd have carved the date in.",
     "tags": [
      {
       "id": "T08B",
@@ -857,8 +857,8 @@
    "prompt": "Every grudge your friend holds becomes a stone they carry. The oldest goes back six years, to a roommate who read their diary aloud, then apologized. Where do you land?",
    "options": [
     "They should put it down. The apology was the point.",
-    "Forgive, yes, but keep the stone on a shelf.",
-    "I respect it. I would have carved the date into it.",
+    "They can forgive and still keep the stone on a shelf.",
+    "I would do the same, and carve the date into it.",
     "Mine would weigh nothing. I forget without trying."
    ]
   },
@@ -931,7 +931,7 @@
     "emotion": "delight"
    },
    {
-    "t": "Fine, but someone's throwing a party anyway.",
+    "t": "Fine. I'm still giving that toast, to their voicemail.",
     "axes": {
      "R3": 1
     },
@@ -960,8 +960,8 @@
    "prompt": "Your closest friend just married at a drive-through chapel and told everyone afterward. There will be no party and no speeches. What do you think first?",
    "options": [
     "I feel robbed. I have had a toast ready for years.",
-    "I love it. Weddings are mostly expensive chairs.",
-    "That is fine, but someone should still throw a party.",
+    "I love it. Weddings cost a lot for one day.",
+    "That is fine, but I will still record my toast for them.",
     "I am a little jealous. That sounds perfect to me."
    ]
   },
@@ -1046,8 +1046,8 @@
   "heart": {
    "prompt": "When your best friend rings a brass bell, you appear beside them, wherever they are. You can only break the bell today.",
    "options": [
-    "I keep it. If it rings, I go, even in pajamas.",
-    "It breaks today. I do not want to be called away anytime."
+    "It stays with me. If it rings, I go, even in pajamas.",
+    "I break it today. Nobody should be able to summon me mid-shower."
    ]
   },
   "fp": {
@@ -1182,7 +1182,7 @@
   "id": "C2-127",
   "type": "role",
   "chapter": 2,
-  "prompt": "Haunted mansion, one night, your whole crew inside. Something upstairs just knocked twice. In this crew, you're the...",
+  "prompt": "Haunted mansion, one night, your whole crew. Something upstairs just knocked twice. In this crew, you're the...",
   "options": [
    {
     "t": "Scout, first up the stairs. Two knocks is an invite.",
@@ -1216,13 +1216,13 @@
    }
   ],
   "heart": {
-   "prompt": "Your group of friends inherits a haunted mansion for one night. Something upstairs has just knocked twice. Which one are you?",
+   "prompt": "Your group of friends spends one night in a haunted mansion. Something upstairs has just knocked twice. Which one are you?",
    "options": [
-    "The first one up the stairs. Two knocks sounds like an invitation.",
-    "The one with the flashlight, the exit map and regular headcounts.",
-    "The one who suggests splitting up, and is already gone.",
-    "The one reading the house rules on the fridge, twice.",
-    "Waiting in the car with the doors locked."
+    "I am first up the stairs. Two knocks sounds like an invitation.",
+    "I hold the flashlight and the exit map, and I count heads.",
+    "I suggest splitting up, and I am already gone.",
+    "I read the house rules on the fridge, twice.",
+    "Honestly, I am waiting in the car with the doors locked."
    ]
   },
   "fp": {
@@ -1306,9 +1306,9 @@
    "prompt": "You slept through helping your best friend move house. Put these apologies in order, from the one you would choose first to the last.",
    "options": [
     "The sky above their new home spells out that I am sorry.",
-    "Every box unpacked overnight and the shelves put up, with no note.",
-    "A letter from me that glows until they forgive me.",
-    "Me at their door every weekend for a month, ready to help."
+    "Every box is unpacked overnight, shelves up, with no note.",
+    "I send a letter that glows until they forgive me.",
+    "I show up every weekend for a month, ready to help."
    ]
   },
   "fp": {
@@ -1372,7 +1372,7 @@
   "heart": {
    "prompt": "A sphinx stops you and your best friend. Your friend must describe you in one true sentence, or you both turn to stone. What do they say?",
    "options": [
-    "Cross a line with them, and you hear about it right away.",
+    "Cross a line with them, they say, and you hear it instantly.",
     "They say it is fine, and they remember it.",
     "They let things go for so long that they forget them.",
     "They tell you directly, then buy the next round."
@@ -1506,7 +1506,7 @@
   "prompt": "Confession time: you've heard what others say about a friend behind their back, and never told them.",
   "options": [
    {
-    "t": "Took it to the grave. Still at the grave.",
+    "t": "Kept it to myself. Still keeping it.",
     "axes": {
      "R2": -2
     },
@@ -1531,7 +1531,7 @@
     ]
    },
    {
-    "t": "Told them that night, word for word.",
+    "t": "Told them that night, names included.",
     "axes": {
      "R2": 2
     },
@@ -1561,8 +1561,8 @@
    "options": [
     "Yes. I kept it to myself, and I still do.",
     "Yes. I hinted until they asked the right question.",
-    "No. I told them that night, word for word.",
-    "No. I told them, and then told the others I had."
+    "No. I told them that night, names included.",
+    "No. I told them, then told everyone that I had."
    ]
   },
   "fp": {
@@ -1583,7 +1583,7 @@
   "friend": {
    "prompt": "Genii bets {name} has heard what others say about a friend behind the friend's back, and never told. Guilty or not?",
    "a": {
-    "t": "Told the friend that night, word for word.",
+    "t": "Told the friend that night, names included.",
     "axes": {
      "R2": 2
     },
@@ -1595,7 +1595,7 @@
     ]
    },
    "b": {
-    "t": "Took it to the grave. Still at the grave.",
+    "t": "Kept it quiet. Still keeping it.",
     "axes": {
      "R2": -2
     },
@@ -1859,8 +1859,8 @@
    "options": [
     "I sent a message in capitals with far too many exclamation marks.",
     "I called and had them tell me the whole story twice.",
-    "Flowers, in person, and very few words.",
-    "I offered to help with the dull part, like boxes or forms."
+    "I showed up with flowers and said very little.",
+    "Boxes and forms were my department. I offered to help."
    ]
   },
   "fp": {
@@ -1905,7 +1905,7 @@
   "chapter": 2,
   "sq": "SQ-T05-2",
   "world": "everyday",
-  "prompt": "A friend's last rough week. Which of these did you do?",
+  "prompt": "A friend's last rough week. Tap everything you actually did:",
   "options": [
    {
     "t": "Dropped off food or coffee without being asked",

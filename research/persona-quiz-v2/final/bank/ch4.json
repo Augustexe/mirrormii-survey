@@ -155,10 +155,10 @@
       "options": [
         "I sent someone a payment request for less than $10.",
         "I kept track in my head of who paid last.",
-        "Out loud, with no hints, I asked for my money back.",
+        "I asked for my money back directly, with no hints.",
         "I covered someone's share because they were short that month.",
-        "I rounded down what someone owed me, on purpose.",
-        "None of these"
+        "Someone owed me, and I rounded it down on purpose.",
+        "None of these are true."
       ]
     },
     "fp": {
@@ -384,7 +384,7 @@
     "prompt": "Somewhere, you've got money you try to treat as untouchable. Right?",
     "options": [
       {
-        "t": "Even I forget the number.",
+        "t": "It's there, and even I forget the number.",
         "axes": {
           "L1": 1
         },
@@ -533,8 +533,8 @@
       "prompt": "Think of the most recent time friends planned a trip that stretched your budget. What did you actually do?",
       "options": [
         "I booked it that night and left the money to future me.",
-        "I went, then skipped every other plan for a month.",
-        "The math said no, so I will join the next one.",
+        "Going meant skipping every other plan for a month.",
+        "I did the math and said I would join the next one.",
         "I joined for one night of it, within my budget."
       ]
     },
@@ -582,7 +582,7 @@
     "chapter": 4,
     "sq": "SQ-T14-1",
     "world": "unusual",
-    "prompt": "An auction house mistakes you for a bidder. Next lot: the vintage jacket you've wanted for six years. Bidding just passed your rent. Thirty seconds.",
+    "prompt": "At an auction you wandered into by accident, the next lot is the jacket you've wanted for six years. Bidding just passed your rent.",
     "options": [
       {
         "t": "Paddle up. Rent can be late once.",
@@ -599,7 +599,7 @@
         "emotion": "delight"
       },
       {
-        "t": "One bid at my limit. Then let it go.",
+        "t": "Raise once. Then let it go.",
         "tags": [
           {
             "id": "T14A",
@@ -628,11 +628,11 @@
       }
     ],
     "heart": {
-      "prompt": "An auction house mistakes you for a bidder. Next up: the vintage jacket you have wanted for six years. Bidding just passed your rent. Thirty seconds.",
+      "prompt": "At an auction you wandered into by accident, the next lot is the jacket you have wanted for six years. Bidding has just passed your rent.",
       "options": [
-        "Paddle up. Rent can be late this once.",
-        "I bid once at my limit, and then I let it go.",
-        "I keep my paddle down. Six years of wanting it was enough.",
+        "I raise my paddle. Rent can be late this once.",
+        "I raise once, and then I let it go.",
+        "Six years of wanting it was enough. My paddle stays down.",
         "I slip out and find a cheaper one that is nearly it."
       ]
     },
@@ -1241,7 +1241,7 @@
         "emotion": "delight"
       },
       {
-        "t": "\"Send me every number before I decide.\"",
+        "t": "\"Numbers first. If they're shaky, I'm out.\"",
         "axes": {
           "L1": 2
         },
@@ -1260,7 +1260,7 @@
         ]
       },
       {
-        "t": "\"I'll put in $5,000. Quiet or not, it's a legend.\"",
+        "t": "\"$1,000, and I'm telling everyone I'm an investor.\"",
         "axes": {
           "L1": -1
         }
@@ -1280,9 +1280,9 @@
       ],
       "options": [
         "Here are my savings. I believe in this cat.",
-        "Please send me every number before I decide.",
+        "Show me the numbers first. If they are shaky, I am out.",
         "I can put in $200 as a friend, and no more.",
-        "I will put in the $5,000. Quiet or not, it is legendary."
+        "I will put in $1,000, and tell everyone I am an investor."
       ]
     },
     "fp": {
@@ -1327,10 +1327,10 @@
     "chapter": 4,
     "sq": "SQ-L3-2",
     "world": "unusual",
-    "prompt": "$2,400, stuffed inside the secondhand couch you and four roommates bought. Jae splits it by who's short on rent, not five ways. Fair?",
+    "prompt": "Birthday gift pot for a friend: Jae tells the group chat it's $50 each, no exceptions. Someone in the chat just lost their job. Your take?",
     "options": [
       {
-        "t": "Five ways. Couch money isn't a need-based program.",
+        "t": "$50 each. A gift pot isn't a need-based program.",
         "axes": {
           "L3": 2
         },
@@ -1342,7 +1342,7 @@
         ]
       },
       {
-        "t": "Right call. Whoever's short on rent gets more.",
+        "t": "Obviously they put in what they can.",
         "axes": {
           "L3": -2
         },
@@ -1354,7 +1354,7 @@
         ]
       },
       {
-        "t": "Who made Jae the judge of who's short?",
+        "t": "As agreed. Change the rule next birthday, not mid-pot.",
         "axes": {
           "L3": 1
         },
@@ -1367,7 +1367,7 @@
         "emotion": "irritation"
       },
       {
-        "t": "Fine, as long as nobody learns who got the most.",
+        "t": "I'd quietly cover their $50.",
         "axes": {
           "L3": -1
         },
@@ -1381,32 +1381,32 @@
       }
     ],
     "heart": {
-      "prompt": "You and four roommates find $2,400 inside a secondhand couch you bought together. Jae divides it by who is short on rent, not equally. Is that fair?",
+      "prompt": "For a friend's birthday gift, Jae tells the group chat that everyone puts in $50, no exceptions. Someone in the chat just lost their job. What is your take?",
       "options": [
-        "It should be five equal shares. Found money is not about need.",
-        "That is right. Whoever is short on rent should get more.",
-        "Who decided Jae gets to judge who is short?",
-        "It is fine, as long as nobody learns who got the most."
+        "Fifty each. A gift pot is not based on need.",
+        "They should obviously put in what they can.",
+        "As agreed. We can change the rule next birthday, not now.",
+        "I would quietly cover their $50."
       ]
     },
     "fp": {
-      "trigger": "found cash split by need",
-      "setting": "shared apartment, secondhand couch",
-      "ask": "equal shares or by need",
-      "who": "four roommates",
-      "stakes": "fairness and money between housemates",
-      "device": "couch-cash"
+      "trigger": "a flat gift contribution when someone just lost their job",
+      "setting": "the group chat",
+      "ask": "the same for all or by what each can give",
+      "who": "a friend group",
+      "stakes": "fairness versus a friend's pride and wallet",
+      "device": "gift-pot"
     },
-    "mask": "looks like a lucky find; measures fair as the same share for all versus what each person needs (L3, T12)",
+    "mask": "looks like group chat money; measures fair as the same share for everyone versus fair as what each can give (L3, T12)",
     "ae": [
       "C",
       "E"
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "{name} and four roommates find $2,400 in a secondhand couch. Jae splits it by who's short on rent. {name}'s first thought?",
+      "prompt": "Jae sets a $50-each birthday gift pot, no exceptions. One friend just lost their job. {name}'s first thought?",
       "a": {
-        "t": "Five ways. Couch money isn't a need-based program.",
+        "t": "$50 each. A gift pot isn't a need-based program.",
         "axes": {
           "L3": 2
         },
@@ -1418,7 +1418,7 @@
         ]
       },
       "b": {
-        "t": "Right call. Whoever's short on rent gets more.",
+        "t": "They should put in what they can.",
         "axes": {
           "L3": -2
         },
@@ -1495,7 +1495,7 @@
     "heart": {
       "prompt": "Your friend's new money tree grows one $100 bill every week. They pick each bill the moment it appears and spend it by dinnertime. What is your first thought?",
       "options": [
-        "Good call. Money that grows back is meant for now.",
+        "Spending it makes sense. Money that grows back is meant for now.",
         "They should leave a few on the branch. Trees have bad years.",
         "I would treat the whole group every week. That is its purpose.",
         "I would sell the tree for one large, certain payment."
@@ -1547,10 +1547,10 @@
     "id": "C4-144",
     "type": "role",
     "chapter": 4,
-    "prompt": "$6,000 trivia win, one shared prize, one group decision. In this crew, you're the...",
+    "prompt": "$6,000 trivia win, one shared prize: the group wants to blow it on one trip together. In this crew, you're the...",
     "options": [
       {
-        "t": "Hype, already picked the thing and the date.",
+        "t": "Hype, already picked the beach and the date.",
         "axes": {
           "R1": 2
         },
@@ -1575,7 +1575,7 @@
         ]
       },
       {
-        "t": "Partial. I'll enjoy the parts I like and sit out the rest.",
+        "t": "Partial. I'll come for the parts I like and skip the rest.",
         "axes": {
           "R1": -1
         }
@@ -1588,13 +1588,13 @@
       }
     ],
     "heart": {
-      "prompt": "Your crew wins $6,000 at trivia: one shared prize and one group decision. Which one are you?",
+      "prompt": "Your crew wins $6,000 at trivia, and the group wants to spend it on one trip together. Which one are you?",
       "options": [
-        "The one who has already picked the thing and the date.",
-        "The one who wanted cash but goes along anyway.",
-        "The one logging every dollar and every request.",
-        "The one who enjoys the parts they like and skips the rest.",
-        "Stepping out, and giving my part to the group."
+        "I have already picked the beach and the date.",
+        "My vote is yes, even though I wanted cash.",
+        "I log every dollar and every request in a spreadsheet.",
+        "I come for the parts I like and skip the rest.",
+        "I step out and give my part to the group."
       ]
     },
     "fp": {
@@ -1636,10 +1636,10 @@
     "sq": "SQ-T15-1",
     "world": "absurd",
     "round": "ch4-r120",
-    "prompt": "A sunflower in your friend's yard started singing opera. Now your friend is famous, and in every interview: \"Years of hard work.\"",
+    "prompt": "A stranger left your friend a castle. They turned it into a hotel, and now they sell a course called \"Built From Nothing.\"",
     "options": [
       {
-        "t": "Let them tell it. Managing a singing sunflower is its own grind.",
+        "t": "Let them teach it. Running a castle hotel is real work.",
         "tags": [
           {
             "id": "T15A",
@@ -1648,7 +1648,7 @@
         ]
       },
       {
-        "t": "Comment under one clip: \"Say thanks to the sunflower.\"",
+        "t": "Enroll, then ask in lesson one: \"Step one, the castle?\"",
         "tags": [
           {
             "id": "T15B",
@@ -1659,30 +1659,30 @@
       }
     ],
     "heart": {
-      "prompt": "A sunflower in your friend's yard started singing opera. Now your friend is famous, and in every interview they talk about years of hard work.",
+      "prompt": "A stranger left your friend a castle. They turned it into a hotel, and now they sell a course called \"Built From Nothing.\"",
       "options": [
-        "Let them tell it. Managing a singing sunflower is work too.",
-        "Under one clip, I suggest they thank the sunflower."
+        "They can teach it. Running a castle hotel is real work.",
+        "I enroll, and in the first lesson I ask about the castle."
       ]
     },
     "fp": {
-      "trigger": "a friend's lucky break told as hard work",
-      "setting": "interviews after sudden fame",
-      "ask": "let the story stand or name the luck",
+      "trigger": "a friend sells an inherited windfall as hustle",
+      "setting": "a castle hotel and a paid course",
+      "ask": "let the story stand or name the head start",
       "who": "a friend",
-      "stakes": "credit versus honesty about a head start",
-      "device": "opera-sunflower"
+      "stakes": "credit versus honesty about luck",
+      "device": "stranger-castle"
     },
-    "mask": "looks like a fame joke; measures whether you see the effort or the head start (T15)",
+    "mask": "looks like a rags-to-riches joke; measures whether you see the effort or the head start (T15)",
     "ae": [
       "A",
       "E"
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "A sunflower in a friend's yard sings opera. The friend is famous now and credits \"years of hard work.\" Which one is {name}?",
+      "prompt": "A stranger left {name}'s friend a castle. Now the friend sells a course called \"Built From Nothing.\" Which one is {name}?",
       "a": {
-        "t": "Lets them tell it. Managing a sunflower is its own grind.",
+        "t": "Lets them teach it. A castle hotel is real work.",
         "tags": [
           {
             "id": "T15A",
@@ -1691,7 +1691,7 @@
         ]
       },
       "b": {
-        "t": "Comments: \"Say thanks to the sunflower.\"",
+        "t": "Enrolls, then asks: \"Step one, the castle?\"",
         "tags": [
           {
             "id": "T15B",
@@ -1733,7 +1733,7 @@
       "prompt": "You invited someone on a first date in a hot-air balloon. When you land, a pigeon delivers the bill for $640.",
       "options": [
         "I asked, so I pay. That is how dates work.",
-        "Each of us pays for our own. No script."
+        "We each pay for our own. That feels right to me."
       ]
     },
     "fp": {
@@ -1792,7 +1792,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Keep the savings and stream the recording.",
+        "t": "Keep the savings. The music will still be out there.",
         "axes": {
           "L1": 1
         },
@@ -1807,8 +1807,8 @@
     "heart": {
       "prompt": "A time traveler offers you a seat at any concert in history, tonight. The price is all of your savings.",
       "options": [
-        "I take it. Some nights are worth everything.",
-        "My savings stay. I can listen to the recording."
+        "Yes. Some nights are worth everything.",
+        "I keep my savings. The music will still be out there."
       ]
     },
     "fp": {
