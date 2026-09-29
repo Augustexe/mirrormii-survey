@@ -1,4 +1,4 @@
-// Player-facing projections of a finished run. The final screen is Stories (LAUNCH-SPEC section 21): every line is
+// Player-facing projections of a finished run. The final screen is Stories (LAUNCH-SPEC sections 21 and 23): every line is
 // a library line in the player's voice. Answers, ids, scores and research fields stay inside score-core output and
 // never reach these views.
 import { S, LIB, KIT } from "./kit.js";
@@ -40,7 +40,25 @@ export function mirrorFor(state) {
   return { seed: String((state && state.runId) || "mirror"), filled, panes: Object.keys((state && state.finale) || {}).length };
 }
 
-// The owner's result: nine story screens plus the optional guess sheet.
+// A locked guess, as the calls screen shows it: what the card tested (its main lean, by the library's topic name), and
+// for a hit the pole Genii guessed on that lean. The guess comes from the frozen predictions, never from the answer.
+// (Card fingerprints are authoring fields the web build strips, so the topic is the lean, not the card's scene.)
+export function callInfo(state, id) {
+  const card = KIT.finale.find((c) => c.id === id);
+  if (!card) return null;
+  const axis = card.checks && card.checks.primary;
+  const meta = axis ? LIB.axes.find((a) => a.id === axis) : null;
+  const frozen = state && state.frozen && Array.isArray(state.frozen.predictions) ? state.frozen.predictions.find((p) => p.id === id) : null;
+  const pole = frozen && meta && frozen.side ? (frozen.side > 0 ? meta.plus : meta.minus) : null;
+  return { topic: (meta && meta.topic) || "", pole, axis: axis || null };
+}
+
+export const chapterOf = (id) => {
+  const card = S.cardById ? S.cardById[id] : null;
+  return card && typeof card.chapter === "number" ? card.chapter : null;
+};
+
+// The owner's result: the story screens plus the guess sheet.
 export function resultView(state) {
   const { profile, result, sealed } = resultFor(state);
   const voice = voiceOf(state.lobby);
@@ -51,6 +69,8 @@ export function resultView(state) {
     lib: LIB,
     voice,
     promptFor: (id) => sealedPrompt(id, state.setup, voice === "heart" ? "heart" : "fun"),
+    callFor: (id) => callInfo(state, id),
+    chapterOf,
     mirror: mirrorFor(state),
   });
   return { ...stories, share: shareProjection(result, stories) };

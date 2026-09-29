@@ -1,5 +1,6 @@
-// The final screen as Stories (LAUNCH-SPEC sections 21 and 22): nine screens from a synthetic result, no quoted
+// The final screen as Stories (LAUNCH-SPEC sections 21 to 23): the screens from a synthetic result, no quoted
 // answers, Heart to heart picks the h variants, and the screen still works on a library without the Build C fields.
+// Display accuracy against real runs lives in reveal-accuracy.test.mjs.
 import test from "node:test";
 import assert from "node:assert/strict";
 import React from "react";
@@ -10,7 +11,9 @@ import { fileURLToPath } from "node:url";
 const visible = (html) => html.replace(/<[^>]*>/g, " ").replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, "\"").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/\s+/g, " ");
 const WORDS = /\b(?:evidence|axis|axes|sealed|score|scores)\b/i;
 const IDS = /\b(?:C[1-7]-(?:\d+|S\d)|X-[RL]\d-\d|T\d\d[AB]|[RL][1-3])\b/;
-const ORDER = ["intro", "names", "read", "map", "traits", "insight", "stings", "share", "app"];
+// A synthetic run has no chapters to read rooms from; with a guess check it has the calls screen.
+const ORDER = ["intro", "names", "read", "map", "knows", "insight", "traits", "stings", "calls", "share", "app"];
+const ORDER_NO_CALLS = ORDER.filter((id) => id !== "calls");
 
 let server;
 const load = (p) => server.ssrLoadModule(p);
@@ -114,14 +117,14 @@ const slideHtml = (html, id) => {
 };
 
 // ---------------------------------------------------------------- tests
-test("the nine screens render in order from a synthetic result, with only the first one showing", async () => {
+test("the screens render in order from a synthetic result, with only the first one showing", async () => {
   const { buildStories } = await load("/src/persona/stories/story-data.js");
   const view = buildStories({ result: syntheticResult(), profile: syntheticProfile(), sealed: SEALED, lib: newLibrary(), voice: "fun", promptFor: (id) => `PROMPT ${id.length}` });
   assert.deepEqual(view.slides.map((s) => s.id), ORDER);
   const html = await render(view);
   const found = [...html.matchAll(/data-story="([a-z]+)"/g)].map((m) => m[1]);
   assert.deepEqual(found, ORDER);
-  assert.equal((html.match(/<section[^>]*hidden=""/g) || []).length, 8, "every screen but the first starts hidden");
+  assert.equal((html.match(/<section[^>]*hidden=""/g) || []).length, ORDER.length - 1, "every screen but the first starts hidden");
   const text = visible(html);
   assert.ok(text.includes("40 answers in. Here's you."));
 
@@ -130,21 +133,28 @@ test("the nine screens render in order from a synthetic result, with only the fi
   assert.ok(!text.includes("Golden Retriever × The Planner") && !/Golden Retriever (?:with|and) The Planner energy/.test(text), "the two names are never glued");
 
   const read = visible(slideHtml(html, "read"));
-  for (const line of ["NEW-READ-PEOPLE", "NEW-READ-LIFE", "NEW-LINE-1"]) assert.ok(read.includes(line), line);
+  for (const line of ["NEW-READ-PEOPLE", "NEW-READ-LIFE", "OLD-DESC-PEOPLE", "OLD-DESC-LIFE"]) assert.ok(read.includes(line), line);
+  assert.ok(!read.includes("NEW-LINE-1"), "the traits keep their own lines");
 
   const map = slideHtml(html, "map");
-  assert.ok(map.includes('data-art="facet"'), "the facet gem");
-  assert.ok(map.includes("Read it as a list"), "the list toggle");
-  const list = map.slice(map.indexOf("rv-maplist"));
-  assert.equal((list.match(/<li>/g) || []).length, 6, "six rows in the list, always in the DOM");
-  for (const a of AXES) { assert.ok(list.includes(`>${a.plus}<`), a.plus); assert.ok(list.includes(`>${a.minus}<`), a.minus); }
+  assert.equal((map.match(/class="rv-pair"/g) || []).length, 6, "six labelled opposing pairs");
+  for (const a of AXES) { assert.ok(map.includes(`>${a.plus}<`), a.plus); assert.ok(map.includes(`>${a.minus}<`), a.minus); }
+  assert.ok(visible(map).includes("We over Me.") && visible(map).includes("Right between Own and Classic."), "each pair reads as a sentence");
   assert.doesNotMatch(visible(map), /\d/, "no numbers on the map");
+
+  const knows = visible(slideHtml(html, "knows"));
+  assert.ok(knows.includes("What Genii knows best"));
+  assert.ok(knows.includes("You hold the person first."), "the clearest lean first");
+  assert.ok(knows.includes("Crystal clear") || knows.includes("Clear"), "a clarity cue in words");
 
   const traits = visible(slideHtml(html, "traits"));
   for (const i of [1, 2, 3]) assert.ok(traits.includes(`NEW-LINE-${i}`));
   assert.ok(visible(slideHtml(html, "insight")).includes("NEW-INSIGHT-MINUS"), "believe minus, acted plus");
   const stings = visible(slideHtml(html, "stings"));
-  assert.ok(stings.includes("OLD-STING-PEOPLE") && stings.includes("OLD-STING-LIFE") && stings.includes("Only you see this"));
+  assert.ok(stings.includes("OLD-STING-PEOPLE") && stings.includes("OLD-STING-LIFE") && stings.includes("OLD-TAGSTING-1") && stings.includes("Only you see this"));
+
+  const calls = visible(slideHtml(html, "calls"));
+  assert.ok(calls.includes("4") && calls.includes("of 6") && calls.includes("Called it") && calls.includes("Missed") && calls.includes("Passed"));
 
   const share = slideHtml(html, "share");
   const card = share.slice(share.indexOf("data-card"), share.indexOf("</figure>"));
@@ -166,14 +176,16 @@ test("no quoted answers, ids, numbers, scores or system words reach the main scr
     for (const lib of [oldLibrary(), newLibrary()]) {
       const view = buildStories({ result: syntheticResult(), profile: syntheticProfile(), sealed: SEALED, lib, voice, promptFor: () => "A PROMPT" });
       const html = await render(view);
-      const text = visible(html);
+      const callsAt = html.indexOf('data-story="calls"');
+      const withoutCalls = callsAt < 0 ? html : html.slice(0, callsAt) + html.slice(html.indexOf("</section>", callsAt));
+      const text = visible(withoutCalls);
       for (const q of QUOTES) assert.ok(!html.includes(q), `${voice}: no quoted answer ${q}`);
       assert.ok(!html.includes("GUESS-TEXT"));
       assert.ok(!/You told Genii|You'd say|Last time, you did/.test(text));
       assert.doesNotMatch(text, WORDS, voice);
       assert.doesNotMatch(text, IDS, voice);
       const SENTINEL = /\b(?:OLD|NEW|H|CALL)-[A-Z0-9-]+/g;
-      assert.doesNotMatch(text.replace(SENTINEL, "").replace("40 answers in", "").replace(/Screen \d of 9/, ""), /\d/, `${voice}: no numbers`);
+      assert.doesNotMatch(text.replace(SENTINEL, "").replace("40 answers in", "").replace(/Screen \d+ of \d+/, ""), /\d/, `${voice}: no numbers outside the calls`);
       assert.ok(!html.includes("We·Soft·Own"), "no type code");
     }
   }
@@ -182,10 +194,12 @@ test("no quoted answers, ids, numbers, scores or system words reach the main scr
 test("Heart to heart reads the h variants; Make it fun and Just the cards read the defaults", async () => {
   const { buildStories, voiceOf } = await load("/src/persona/stories/story-data.js");
   const heart = buildStories({ result: syntheticResult(), profile: syntheticProfile(), sealed: null, lib: newLibrary(), voice: "heart" });
+  assert.deepEqual(heart.slides.map((s) => s.id), ORDER_NO_CALLS, "no calls screen without a guess check");
   const html = visible(await render(heart));
-  for (const t of ["H-READ-PEOPLE", "H-READ-LIFE", "H-LINE-1", "H-LINE-2", "H-LINE-3", "H-INSIGHT-MINUS", "H-STING-PEOPLE", "H-STING-LIFE", "H-TAGHEART-1", "The tender part"]) assert.ok(html.includes(t), t);
+  for (const t of ["H-READ-PEOPLE", "H-READ-LIFE", "H-DESC-PEOPLE", "H-LINE-1", "H-LINE-2", "H-LINE-3", "H-INSIGHT-MINUS", "H-STING-PEOPLE", "H-STING-LIFE", "H-TAGSTING-1", "H-TAGHEART-1", "The tender part", "What came through most clearly"]) assert.ok(html.includes(t), t);
   for (const t of ["NEW-READ-PEOPLE", "NEW-LINE-1", "NEW-INSIGHT-MINUS", "OLD-STING-PEOPLE"]) assert.ok(!html.includes(t), `heart hides ${t}`);
-  assert.equal(heart.slides.find((s) => s.id === "map").caption, "H-You hold the person first.", "the map caption is the clearest side, in voice");
+  assert.equal(heart.slides.find((s) => s.id === "knows").findings[0].line, "H-You hold the person first.", "the clearest finding, in voice");
+  assert.equal(heart.slides.find((s) => s.id === "names").hook, "H-You hold the person first.", "the plaque carries it too");
   assert.ok(!html.includes("How Genii read you"), "no guess button without a guess check");
 
   for (const voice of ["fun", "cards"]) {
@@ -207,11 +221,12 @@ test("fallbacks: a library without the Build C fields still fills every screen",
   for (const voice of ["fun", "heart"]) {
     const view = buildStories({ result: syntheticResult(), profile: syntheticProfile(), sealed: null, lib: oldLibrary(), voice });
     const by = Object.fromEntries(view.slides.map((s) => [s.id, s]));
-    assert.deepEqual(by.read.lines, ["OLD-DESC-PEOPLE", "OLD-DESC-LIFE", "CALL-1A"], `${voice}: desc stands in for read, a call for a missing line`);
+    assert.deepEqual(by.read.lines, ["OLD-DESC-PEOPLE", "OLD-DESC-LIFE"], `${voice}: desc stands in for read`);
+    assert.deepEqual(by.read.bodies, ["", ""], `${voice}: no body repeats the line`);
     assert.deepEqual(by.traits.tags.map((t) => t.line), ["CALL-1A", "CALL-2A", "OLD-TAGHEART-3"], `${voice}: calls, then heart, stand in for line`);
     assert.equal(by.insight.line, "CALL-1B", `${voice}: no insights yet, so a call nobody has seen`);
-    assert.deepEqual(by.stings.stings, ["OLD-STING-PEOPLE", "OLD-STING-LIFE"]);
-    assert.equal(by.map.caption, "You hold the person first.");
+    assert.deepEqual(by.stings.stings, ["OLD-STING-PEOPLE", "OLD-STING-LIFE", "OLD-TAGSTING-1"]);
+    assert.equal(by.knows.findings[0].line, "You hold the person first.", "the axis line stands in for a missing finding line");
     for (const s of view.slides) assert.ok(JSON.stringify(s).length > 20);
   }
 
@@ -236,7 +251,7 @@ test("fallbacks: a library without the Build C fields still fills every screen",
   const traits = bare.slides.find((s) => s.id === "traits");
   assert.equal(traits.tags.length, 0);
   assert.match(traits.empty, /fast/);
-  assert.equal(bare.slides.find((s) => s.id === "read").lines.length, 3);
+  assert.equal(bare.slides.find((s) => s.id === "read").lines.length, 2);
   const text = visible(await render(bare));
   assert.ok(text.includes(traits.empty));
 
@@ -268,13 +283,16 @@ test("the optional guess sheet shows the guess check without answers", async () 
   assert.doesNotMatch(text, WORDS);
 });
 
-test("a real finished run projects into the nine screens with no quoted answers", async () => {
+test("a real finished run projects into the story screens with no quoted answers", async () => {
   const { ADULT, completeRun, leaning } = await import("./persona-helpers.mjs");
   const { resultView } = await load("/src/persona/views.js");
   const Session = await load("/src/persona/session.js");
   const run = completeRun(ADULT, leaning({ R1: 1, R2: -1, R3: -1, L1: 1, L2: -1, L3: 1 }), "storyrun1");
   const view = resultView(run);
-  assert.deepEqual(view.slides.map((s) => s.id), ORDER);
+  const { STORY_IDS } = await load("/src/persona/stories/story-data.js");
+  const ids = view.slides.map((s) => s.id);
+  assert.deepEqual(ids, STORY_IDS.filter((id) => ids.includes(id)), "in story order");
+  for (const id of ["intro", "names", "read", "map", "knows", "rooms", "insight", "traits", "stings", "calls", "share", "app"]) assert.ok(ids.includes(id), id);
   const { result, profile } = Session.resultFor(run);
   const html = await render(view);
   const said = [...result.tags.flatMap((t) => t.youToldGenii.map((q) => q.said)), ...profile.splits.flatMap((s) => [s.said.text, s.did.text])];
