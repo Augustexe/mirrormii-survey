@@ -350,6 +350,7 @@ function PersonaAppInner() {
         <Backdrop scene={backdrop} animated={animatedBackdrop} />
         <PersonaHeader
           hidden={screen === "result" && view && !view.error}
+          night={screen === "lock"}
           onHome={goHome}
           onMore={() => setDialog("more")}
           onMap={hasRun && screen !== "friend" && screen !== "landing" ? () => setDialog("map") : null}

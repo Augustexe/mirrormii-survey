@@ -7,12 +7,12 @@ import { asset } from "../../assets.js";
  * center during cards and the finale, a 44 px menu button right. Desktop: 64 px, plus "Chapter map" and
  * "Save and leave" text buttons. No Genii chip, no saved-answer count.
  * rail: the progress node (package B's shard rail) or null. Package B may also portal into #mm-header-center.
- * hidden: true on the result stories, which carry their own top bar.
+ * hidden: true on the result stories, which carry their own top bar. night: dark glass over a night scene (the lock).
  */
-export function PersonaHeader({ onHome, onMore, onMap = null, onSave = null, rail = null, hidden = false }) {
+export function PersonaHeader({ onHome, onMore, onMap = null, onSave = null, rail = null, hidden = false, night = false }) {
   if (hidden) return null;
   return (
-    <header className="mm-header mm-glass-bar">
+    <header className="mm-header mm-glass-bar" data-scene={night ? "night" : undefined}>
       <div className="mm-header__inner">
         <button type="button" className="mm-header__brand" onClick={onHome} aria-label="MirrorMii, back to the start">
           <img src={asset("mirrormii-wordmark.svg")} width="265" height="43" alt="MirrorMii" />

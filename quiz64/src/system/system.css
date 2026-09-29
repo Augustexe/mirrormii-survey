@@ -411,7 +411,8 @@ h2[tabindex="-1"]:focus {
   /* A soft-edged light, not a ball: white heart, lavender halo, violet falloff to nothing. */
   inset: 14%;
   border-radius: 50%;
-  background: radial-gradient(circle at 47% 45%, var(--c-surface-solid) 0 16%, var(--n-ink-2) 30%, rgba(128, 113, 228, 0.55) 48%, rgba(128, 113, 228, 0) 70%);
+  /* Lightness only falls outward: the old grey-lilac second stop read as a dark ring at sizes m to xl. */
+  background: radial-gradient(circle at 47% 45%, var(--c-surface-solid) 0 18%, color-mix(in srgb, var(--c-surface-solid) 70%, var(--c-violet-300)) 30%, color-mix(in srgb, var(--c-violet-300) 75%, transparent) 46%, rgba(128, 113, 228, 0.28) 60%, rgba(128, 113, 228, 0) 72%);
 }
 .genii-light[data-size="xs"] .genii-light__core,
 .genii-light[data-size="s"] .genii-light__core {

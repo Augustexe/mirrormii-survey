@@ -1,36 +1,6 @@
 import React from "react";
-import { ArrowLeft, ArrowRight, Check, Download, Info, Lock, Map, RotateCcw, Trash2 } from "lucide-react";
-import { ChapterGlyph } from "../art/index.js";
+import { ArrowLeft, ArrowRight, Download, Info, Map, RotateCcw, Trash2 } from "lucide-react";
 import { Sheet } from "../system/index.js";
-import { CHAPTERS } from "./kit.js";
-import { LOBBY_COPY } from "./lobby.js";
-
-// Read-only: the run moves forward card by card, so the map shows progress, not shortcuts.
-// Package B replaces this with the constellation sheet (DESIGN-DIRECTION 5.8); until then it wears the sheet styles.
-export function PersonaChapterMap({ open, onClose, progress }) {
-  return (
-    <Sheet open={open} onClose={onClose} id="pmap-title" kicker="Your run" title="Chapter map" className="mm-map">
-      <p className="mm-sheet__lede">{LOBBY_COPY.mapLede}</p>
-      <ol className="mm-map__list">
-        {[...CHAPTERS, { id: 8, title: "Finale", intro: "Eight new cards. Genii guesses first." }].map((ch) => {
-          const p = progress[ch.id] || { done: 0, total: 0, open: true };
-          const closed = p.open === false;
-          const locked = closed || (p.total === 0 && ch.id !== 1);
-          const done = p.total && p.done >= p.total;
-          return (
-            <li key={ch.id} className={`mm-map__row${locked ? " is-locked" : ""}${done ? " is-done" : ""}`}>
-              <span className="mm-map__glyph" aria-hidden="true"><ChapterGlyph chapter={ch.id === 8 ? "finale" : ch.id} size={28} /></span>
-              <span className="mm-map__copy"><strong>{ch.title}</strong><small>{ch.intro}</small></span>
-              <span className="mm-map__count">
-                {closed ? <><Lock size={13} aria-hidden="true" /> {LOBBY_COPY.mapClosed}</> : done ? <><Check size={14} aria-hidden="true" /> {`${p.done} of ${p.total}`}</> : p.total ? `${p.done} of ${p.total}` : ch.id === 8 ? LOBBY_COPY.mapFinale : "Up next"}
-              </span>
-            </li>
-          );
-        })}
-      </ol>
-    </Sheet>
-  );
-}
 
 export function PersonaHowDialog({ open, onClose }) {
   return (

@@ -116,8 +116,8 @@ export default function BackdropShader({ spec }) {
           colors={colors}
           speed={0}
           frame={0}
-          distortion={0.7}
-          swirl={0.12}
+          distortion={0.32}
+          swirl={0.05}
           grainMixer={0}
           grainOverlay={0}
           minPixelRatio={1}

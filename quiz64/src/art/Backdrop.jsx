@@ -148,9 +148,10 @@ export function Backdrop({ scene = "day", animated = true, className }) {
         </ShaderBoundary>
       ) : null}
       {spec.night ? <div style={{ ...fill, backgroundImage: SPECKS_URL, backgroundSize: "480px 480px", opacity: 0.7 }} /> : null}
+      {/* The water fades in below the horizon: a hard top edge read as a stray band across the landing mirror. */}
       <div
         data-part="water"
-        style={{ position: "absolute", left: 0, right: 0, top: "62%", bottom: 0, background: `linear-gradient(180deg, ${mix(spec.night ? "n-violet" : "c-on-deep", spec.night ? 10 : 34, 1)}, transparent 45%)` }}
+        style={{ position: "absolute", left: 0, right: 0, top: "62%", bottom: 0, background: `linear-gradient(180deg, transparent 0, ${mix(spec.night ? "n-violet" : "c-on-deep", spec.night ? 8 : 22, 1)} 9%, transparent 50%)` }}
       />
       <div
         data-part="horizon"

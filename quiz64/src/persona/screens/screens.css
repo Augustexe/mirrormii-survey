@@ -221,6 +221,7 @@
     padding: var(--s-1) var(--gutter);
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
     scrollbar-width: none;
   }
   .mm-landing__chips--phone::-webkit-scrollbar {
@@ -277,6 +278,31 @@
     display: block;
     font: var(--type-small);
     color: var(--c-ink-3);
+  }
+
+  /* Phone and tablet: kicker, title and promise, then the mirror, then the button and chips, so the promise, the
+     mirror and "Meet Genii" read as one first screen (integration, 2026-09-29). The mirror scales with the viewport
+     height; at 390 x 844 the chips and "How this works" stay above the fold, at 375 x 667 the button does. */
+  @media (max-width: 1023px) {
+    .mm-landing {
+      --mirror-w: clamp(112px, calc((100svh - 520px) * 0.52), 176px);
+      padding-block-start: var(--s-4);
+    }
+    .mm-landing__hero {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .mm-landing__copy {
+      display: contents;
+    }
+    .mm-landing__copy > .mm-kicker { order: 1; }
+    .mm-landing__title { order: 2; }
+    .mm-landing__promise { order: 3; margin-block-start: var(--s-3); }
+    .mm-landing__stage { order: 4; padding-block: var(--s-4) 0; }
+    .mm-landing__actions { order: 5; margin-block-start: var(--s-3); }
+    .mm-landing__below { margin-block-start: var(--s-3); gap: var(--s-3); }
+    .mm-landing .mm-fogmirror__reflection { block-size: 22px; }
   }
 
   @media (min-width: 1024px) {
@@ -441,8 +467,9 @@
     margin-block-start: 4px;
     overflow: hidden;
     opacity: 0.14;
-    -webkit-mask-image: linear-gradient(180deg, black, transparent);
-    mask-image: linear-gradient(180deg, black, transparent);
+    /* An ellipse, not a box: the straight sides of the flipped arch read as a hard rectangle under the mirror. */
+    -webkit-mask-image: radial-gradient(55% 100% at 50% 0%, black 30%, transparent);
+    mask-image: radial-gradient(55% 100% at 50% 0%, black 30%, transparent);
     pointer-events: none;
   }
   .mm-fogmirror__reflection svg {
@@ -591,17 +618,18 @@
   .has-pick > :not(.is-on):not(.is-picked) {
     opacity: 0.6;
   }
-  .is-on [data-part="line"],
-  .is-picked [data-part="line"] {
+  /* Glyph art turns white only inside a chosen setup or lobby tile (scoped: other components use .is-on too). */
+  :is(.mm-object, .mm-pill, .mm-depth).is-on [data-part="line"],
+  :is(.mm-object, .mm-voice).is-picked [data-part="line"] {
     stroke: var(--c-on-deep);
   }
-  .is-on [data-part="solid"],
-  .is-picked [data-part="solid"] {
+  :is(.mm-object, .mm-pill, .mm-depth).is-on [data-part="solid"],
+  :is(.mm-object, .mm-voice).is-picked [data-part="solid"] {
     fill: var(--c-on-deep);
     stroke: var(--c-on-deep);
   }
-  .is-on [data-part="accent"],
-  .is-picked [data-part="accent"] {
+  :is(.mm-object, .mm-pill, .mm-depth).is-on [data-part="accent"],
+  :is(.mm-object, .mm-voice).is-picked [data-part="accent"] {
     fill: rgba(255, 255, 255, 0.35);
   }
 
@@ -1266,42 +1294,5 @@
     justify-content: flex-end;
     gap: var(--s-2);
     margin-block-start: var(--s-6);
-  }
-  .mm-map__list {
-    display: grid;
-    gap: 2px;
-    margin: var(--s-4) 0 0;
-    padding: 0;
-    list-style: none;
-  }
-  .mm-map__row {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: var(--s-3);
-    padding: var(--s-2) var(--s-1);
-  }
-  .mm-map__row.is-locked {
-    opacity: 0.55;
-  }
-  .mm-map__copy strong {
-    display: block;
-    font: var(--type-answer);
-    font-weight: 650;
-  }
-  .mm-map__copy small {
-    display: block;
-    font: var(--type-small);
-    color: var(--c-ink-3);
-  }
-  .mm-map__count {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--s-1);
-    font: var(--type-small);
-    font-weight: 600;
-    color: var(--c-ink-2);
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
   }
 }

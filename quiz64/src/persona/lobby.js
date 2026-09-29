@@ -91,8 +91,9 @@ export const LOBBY_COPY = Object.freeze({
   mapFinale: "After your cards",
   landing: Object.freeze({
     kicker: "A personality game. Genii is taking notes.",
-    // Proposed shortening (DESIGN-DIRECTION 5.1, D6), shipped for Jerry's morning read.
-    promise: "40 quick cards about your real life. Genii locks in 8 guesses. You get two archetypes that are weirdly you.",
+    // Integration rewrite (2026-09-29, for Jerry's read): most cards now play in absurd or unusual worlds, so the
+    // promise no longer says "about your real life".
+    promise: "40 quick cards, from group chats to mermaid roommates. Genii locks in 8 guesses. Two archetypes, weirdly you.",
     factTitle: "48 cards",
     factBody: "You pick the rooms. About 8 minutes.",
     chips: Object.freeze(["40 cards, no typing", "8 guesses, locked", "Then: do your friends know you?"]),

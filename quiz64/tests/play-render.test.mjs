@@ -107,3 +107,28 @@ test("Genii's line: hidden on feeling and finale cards and for Just the cards", 
   assert.equal(geniiLineFor({ ...feeling, card: { id: "X", type: "scenario" } }, "cards"), null);
   assert.ok(geniiLineFor({ ...feeling, card: { id: "X", type: "scenario" } }, "fun"));
 });
+
+test("Genii's line varies: never the same line on two cards in a row, the speed nudge once per rushed streak", async () => {
+  const { geniiLineFor, rememberAnswer } = await load("/src/persona/play/Quiz.jsx");
+  const Session = await load("/src/persona/session.js");
+  for (const voice of ["fun", "heart"]) {
+    for (const [runId, ms] of [["linesrun01", 4000], ["linesrun02", 900], ["linesrun03", 4000]]) {
+      let s = started(ADULT, `${runId}${voice}`, { voice, depth: "anything", rooms: ["love", "work", "family"] });
+      const lines = [];
+      let nudges = 0;
+      for (let g = 0; g < 60; g++) {
+        const step = Session.currentStep(s);
+        if (step.kind !== "card" || step.phase === "finale") break;
+        const line = geniiLineFor(step, voice, { seed: s.runId, rushing: Session.recentlyRushed(s) });
+        if (line && lines.length && line === lines[lines.length - 1]) assert.fail(`${voice} ${runId}: "${line}" twice in a row at card ${step.resolved}`);
+        lines.push(line);
+        if (voice === "fun" && line && /Speedrun/.test(line)) nudges++;
+        const value = firstOption(step.card).value;
+        rememberAnswer(s.runId, step, step.card, value);
+        s = Session.answerCard(s, step.card.id, value, { ms });
+      }
+      assert.ok(new Set(lines.filter(Boolean)).size >= 6, `${voice} ${runId}: lines vary (${new Set(lines).size})`);
+      if (ms < 1500 && voice === "fun") assert.equal(nudges, 1, "one speed nudge for one long rushed streak");
+    }
+  }
+});
