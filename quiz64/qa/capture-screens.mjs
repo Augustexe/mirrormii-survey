@@ -5,6 +5,8 @@
 //   PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node qa/capture-screens.mjs [baseUrl] [outDir]
 // Needs the dev server (`npm run dev -- --port 5175`): states are built in the page with the app's own session module.
 // Env: SIZES=phone,small,desktop  ONLY=<regex on the file label>  WAIT=<ms before each shot, default 1400>
+//      PLAYER=<a|b|c|d> a leaning player preset (default a); b, c and d lean elsewhere and answer the final cards with
+//      some noise, so Genii's calls show hits, partials and surprises (G6).
 import fs from "node:fs";
 import path from "node:path";
 
@@ -51,15 +53,26 @@ const TYPES = ["scenario", "real", "this_or_that", "role", "pick_two", "receipts
 
 // Built in the page: plays a leaning player with the real session module until `stop` matches, then saves the run.
 // Run ids must match /^[a-z0-9]{6,32}$/ (the app rejects anything else as a corrupt save).
+const PLAYERS = {
+  a: { signs: { R1: 1, R2: -0.6, R3: -0.4, L1: 0.9, L2: -0.5, L3: 0.9 }, noise: 0 },
+  b: { signs: { R1: -0.9, R2: 0.8, R3: 0.5, L1: -0.8, L2: 0.7, L3: -0.6 }, noise: 0.5 },
+  c: { signs: { R1: 0.7, R2: 0.9, R3: -0.8, L1: -0.5, L2: -0.8, L3: -0.9 }, noise: 0.4 },
+  d: { signs: { R1: -0.6, R2: -0.9, R3: 0.9, L1: 0.8, L2: 0.9, L3: 0.4 }, noise: 0.6 },
+};
+const PLAYER = PLAYERS[process.env.PLAYER || "a"] || PLAYERS.a;
+
 async function seedRun(page, cfg) {
   return page.evaluate(async (cfg) => {
     localStorage.clear();
     if (!cfg) return true;
     const P = await import("/src/persona/session.js");
-    const signs = { R1: 1, R2: -0.6, R3: -0.4, L1: 0.9, L2: -0.5, L3: 0.9 };
-    const lean = (card) => {
+    const signs = cfg.player.signs;
+    let seed = 7;
+    const rnd = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+    const lean = (card, finale) => {
       const score = (o) => Object.entries(o.axes || {}).reduce((a, [k, v]) => a + (signs[k] || 0) * v, 0) + (o.tags || []).reduce((a, t) => a + (t.id.endsWith("A") ? 1 : -1) * t.s * 0.3, 0);
       const ranked = card.options.map((o, i) => ({ i, s: o.circumstance || o.depends || o.none ? -99 : score(o) })).sort((a, b) => b.s - a.s || a.i - b.i);
+      if (finale && cfg.player.noise && rnd() < cfg.player.noise) return ranked[Math.min(ranked.length - 1, 1 + Math.floor(rnd() * (ranked.length - 1)))].i;
       if (card.type === "pick_two" || card.type === "receipts") return [ranked[0].i, ranked[1].i].sort((a, b) => a - b);
       if (card.type === "rank") return ranked.map((r) => r.i);
       return ranked[0].i;
@@ -75,14 +88,15 @@ async function seedRun(page, cfg) {
         if (cfg.stop === "lock" && st.kind === "lock") { hit = true; break; }
         if (cfg.stop === "finale" && st.kind === "card" && st.phase === "finale") { hit = true; break; }
         if (cfg.stop === "mid" && st.kind === "card" && st.resolved === 17) { hit = true; break; }
+        if (cfg.stop === "late" && st.kind === "card" && st.phase !== "finale" && st.resolved >= 30 && st.card.type === "scenario") { hit = true; break; }
         if (st.kind === "result") { hit = cfg.stop === "result"; break; }
         if (st.kind === "lock") { s = P.lockGuesses(s); continue; }
-        s = P.answerCard(s, st.card.id, lean(st.card), { ms: 4200 });
+        s = P.answerCard(s, st.card.id, lean(st.card, st.phase === "finale"), { ms: 4200 });
       }
       if (hit) { localStorage.setItem("genii.persona.v2.run", P.serialize(s)); return true; }
     }
     return false;
-  }, cfg);
+  }, cfg && { ...cfg, player: PLAYER });
 }
 
 const browser = await chromium.launch({ channel: "chrome" });
@@ -171,6 +185,11 @@ for (const size of only) {
     await snap("card-clear");
     await open({ voice: "fun", stop: "type", type: "scenario", id: "shotdayscen", tries: 30 });
     await snap("card-day");
+  }
+  // A late-run card (Genii evolved), for the jury's screen 8.
+  if (want("card-late")) {
+    const ok = await open({ voice: "fun", stop: "late", id: "shotlaterun" });
+    if (ok) { await page.waitForSelector("article.pc", { timeout: 6000 }).catch(() => {}); await snap("card-late", 2400); } else errors.push(`${size}: no late card reached`);
   }
   // Chapter map, from the shard rail on a mid-run card.
   if (want("chapter-map")) {

@@ -68,7 +68,7 @@
     z-index: 0;
     inset-inline: 0;
     inset-block-end: 0;
-    block-size: min(46svh, 360px);
+    block-size: min(38svh, 296px);
     pointer-events: none;
     overflow: hidden;
   }
@@ -83,8 +83,8 @@
   .play-world__island {
     position: absolute;
     inset-inline-start: 50%;
-    inset-block-end: -64px;
-    inline-size: min(360px, 94vw);
+    inset-block-end: -58px;
+    inline-size: min(296px, 78vw);
     translate: -50% 0;
     opacity: 0.8;
     -webkit-mask-image: linear-gradient(to top, transparent 4%, black 40%);
@@ -101,15 +101,15 @@
     gap: var(--s-3);
     min-block-size: 40px;
     margin: 0 var(--s-1) 6px;
-    padding-inline-end: 64px;
+    padding-inline-end: 84px;
   }
   /* Genii's perch: 56 px at the row's end, resting on the card's top-right edge (above the card, clear of the vignette). */
   .play-genii .genii-light.play-genii__perch {
     --gl-size: 56px;
     position: absolute;
     z-index: 2;
-    inset-inline-end: 2px;
-    inset-block-start: -8px;
+    inset-inline-end: 10px;
+    inset-block-start: -4px;
     flex: none;
     pointer-events: none;
   }
@@ -179,8 +179,10 @@
     color: var(--c-violet-text);
   }
   .pc-kicker__glyph { flex: none; }
-  .pc-kicker__dot { opacity: 0.6; }
-  .pc-kicker__chapter { color: var(--c-ink-3); }
+  .pc-rank__hint { margin-inline-start: 8px; font: var(--type-micro); font-style: normal; letter-spacing: 0.02em; text-transform: none; color: var(--c-ink-3); }
+  /* G6 (R3): the chapter sits on its own smaller line, so the kicker never wraps mid-phrase above a long prompt. */
+  .pc-kicker__chapter { flex-basis: 100%; margin-top: -3px; font-size: 10.5px; letter-spacing: 0.12em; color: var(--c-ink-3); }
+  .pc-kicker__dot { display: none; }
   .pc-pips { display: inline-flex; gap: var(--s-1); margin-inline-start: var(--s-1); }
   .pc-pips i { inline-size: 6px; block-size: 6px; border-radius: 50%; background: var(--c-violet-300); opacity: 0.45; }
   .pc-pips i.is-on { background: var(--c-violet); opacity: 1; }
@@ -604,7 +606,8 @@
   .pc-receipt__count { font: var(--type-answer); font-weight: 800; font-size: 20px; letter-spacing: 0; font-variant-numeric: tabular-nums; color: var(--c-ink); }
   /* Tear it off: quiet (an outline with a perforation) until a line is ticked, then the dark pill with the count. An
      empty receipt still hands in, so the button never disables. */
-  .pc-primary--tear { background: transparent; color: var(--c-ink); box-shadow: inset 0 0 0 1.5px var(--c-ink-3); transition: background var(--d-quick) var(--e-out), color var(--d-quick) var(--e-out), box-shadow var(--d-quick) var(--e-out); }
+  /* G6 (R3): the main action looks like one before a tick too (light violet), and lights fully once a receipt is ticked. */
+  .pc-primary--tear { background: var(--c-violet-100); color: var(--c-violet-strong); box-shadow: inset 0 0 0 1.5px color-mix(in srgb, var(--c-violet) 45%, transparent); transition: background var(--d-quick) var(--e-out), color var(--d-quick) var(--e-out), box-shadow var(--d-quick) var(--e-out); }
   .pc-primary--tear.is-ready { background: var(--cta-fill); color: var(--c-on-deep); box-shadow: var(--cta-inset), var(--cta-glow); animation: mm-pick calc(var(--d-slow) * 0.86) var(--e-spring) both; }
   .pc-primary--tear::before {
     content: "";
@@ -634,7 +637,7 @@
      bottom-right), a hairline between what was said and what you could say. */
   .pc-thread-panel {
     margin-top: 10px;
-    padding: 6px 8px 8px;
+    padding: 6px 6px 8px;
     border-radius: 22px;
     background: var(--c-canvas-2);
     box-shadow: inset 0 1px 2px rgba(23, 22, 37, 0.06);
@@ -702,32 +705,44 @@
   .pc-bubble--sent .pc-bubble__text { animation: none; }
   .pc-bubble__delivered { margin: 3px 6px 0 0; font: var(--type-micro); color: var(--c-ink-3); animation: pc-fade var(--d-quick) var(--e-out) both; animation-delay: var(--d-quick); }
 
+  .pc-drafts__cue {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+    margin: 8px 4px 0;
+    padding-top: 7px;
+    border-top: 1px dashed color-mix(in srgb, var(--c-violet-300) 70%, transparent);
+    font: var(--type-micro);
+    letter-spacing: var(--type-micro-track);
+    color: var(--c-violet-text);
+  }
   .pc-drafts {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    gap: 5px;
+    align-items: stretch;
+    gap: 6px;
     margin-top: 6px;
-    padding-top: 6px;
-    border-top: 1px dashed color-mix(in srgb, var(--c-violet-300) 70%, transparent);
+    padding-inline-start: 18px;
   }
+  /* The whole reply is the button: a sent-side bubble outline, full width of the reply column. */
   .pc-draft {
     position: relative;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: var(--s-2);
-    max-inline-size: 88%;
     min-block-size: 44px;
-    padding: 6px 8px 6px 13px;
-    border: 1.5px solid color-mix(in srgb, var(--c-violet) 30%, transparent);
+    padding: 9px 14px;
+    border: 1.5px solid color-mix(in srgb, var(--c-violet) 34%, transparent);
     border-radius: 18px 18px 6px 18px;
-    background: color-mix(in srgb, var(--c-violet) 14%, var(--c-surface-solid));
+    background: var(--c-surface-solid);
     color: var(--c-ink);
     font: var(--type-answer);
     font-size: 15px;
     line-height: 20px;
     text-align: start;
     cursor: pointer;
+    box-shadow: 0 1px 0 color-mix(in srgb, var(--c-violet) 12%, transparent), 0 6px 14px -10px color-mix(in srgb, var(--c-violet-strong) 50%, transparent);
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
     transition: transform var(--d-instant) var(--e-out), border-color var(--d-quick) var(--e-out), opacity var(--d-quick) var(--e-out), background var(--d-quick) var(--e-out);
@@ -735,20 +750,7 @@
     animation-delay: calc(min(var(--i, 0), 4) * var(--stagger));
   }
   .pc-draft__text { min-inline-size: 0; }
-  .pc-draft__send {
-    flex: none;
-    display: grid;
-    place-items: center;
-    inline-size: 26px;
-    block-size: 26px;
-    border-radius: 50%;
-    background: var(--c-surface-solid);
-    color: var(--c-violet-text);
-    box-shadow: var(--e1);
-    transition: background var(--d-quick) var(--e-out), color var(--d-quick) var(--e-out);
-  }
-  .pc-draft:hover:not(:disabled) { border-color: var(--c-violet); background: color-mix(in srgb, var(--c-violet) 22%, var(--c-surface-solid)); }
-  .pc-draft:hover:not(:disabled) .pc-draft__send { background: var(--c-violet-strong); color: var(--c-on-deep); }
+  .pc-draft:hover:not(:disabled) { border-color: var(--c-violet); background: color-mix(in srgb, var(--c-violet) 12%, var(--c-surface-solid)); }
   .pc-draft:active:not(:disabled) { transform: scale(0.97); }
   /* The sent draft has flown into the thread as your bubble; its slot closes so the thread does not grow a gap. */
   .pc-draft.is-sent { display: none; }
@@ -980,7 +982,19 @@
   }
   .shard-rail.is-docked { position: static; inset: auto; block-size: 44px; }
   .shard-rail:focus-visible { outline: 3px solid var(--c-focus); outline-offset: -6px; border-radius: var(--r-pill); }
-  .rail-groups { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border-radius: var(--r-pill); }
+  .rail-groups { display: flex; align-items: center; gap: 6px; padding: 8px 10px 8px 6px; border-radius: var(--r-pill); }
+  .shard-rail { display: flex; align-items: center; }
+  .rail-count {
+    flex: none;
+    margin-inline-start: 7px;
+    font: 600 13px / 16px var(--font-text);
+    letter-spacing: 0.01em;
+    color: var(--c-ink-2);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .rail-count b { font-weight: 750; color: var(--c-ink); }
+  .rail-group:not(.is-current) { display: none; }
   .rail-mirror { flex: none; display: block; line-height: 0; margin-inline-end: 2px; filter: drop-shadow(0 2px 4px rgba(86, 70, 192, 0.28)); }
   .rail-mirror svg { display: block; }
   .rail-mirror [data-fresh] { animation-delay: calc(var(--d-instant) * 0); }
@@ -1092,6 +1106,7 @@
     .pc-done .pc-primary { inline-size: auto; min-inline-size: 220px; }
     .shard-rail:not(.is-docked) { inset-inline: 0; margin-inline: auto; inline-size: max-content; }
     .rail-groups { gap: 8px; }
+    .rail-group:not(.is-current) { display: flex; }
     .rail-group .rail-shards { display: flex; }
     .rail-group .rail-capsule { display: none; }
     .rail-shard svg { inline-size: 9px; block-size: 14px; }

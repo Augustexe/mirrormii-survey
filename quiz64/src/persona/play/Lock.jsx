@@ -87,7 +87,7 @@ export function LockView({ locked, lockHash, onLock, onStart, onSave, busy, erro
         <div className="lock__scene" aria-hidden="true">
           <span className="lock__horizon" />
           <div className="lock__mirror">
-            <MirrorArch seed={seed} filled={filled} fog={locked ? 0.35 : 0.05} glow={0.9} size={176} />
+            <MirrorArch seed={seed} filled={filled} fog={locked ? 0.35 : 0.05} glow={0.9} size={150} />
           </div>
           <span className="lock__light"><GeniiLight mood={ritual ? "thinking" : locked ? "sure" : "listening"} size="s" voice="cards" evolution={1} /></span>
           <div className="lock__panes">

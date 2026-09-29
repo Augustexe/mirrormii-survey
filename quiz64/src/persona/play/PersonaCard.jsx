@@ -25,7 +25,7 @@ import "./play.css";
 // holds for the "all panes etched" beat (5.11). Every beat scales with the voice's motion (Dusk slower, Clear quicker).
 // A tap anywhere during a hold skips the rest of it (never block a tap).
 export const BEATS = Object.freeze({
-  hold: tokens.beats.hold, reply: tokens.beats.hold + 120, settle: 600, afterSettle: 480, receipt: 760, finaleEnd: 1000, leave: tokens.beats.leave,
+  hold: tokens.beats.hold, reply: tokens.beats.hold + 360, settle: 600, afterSettle: 480, receipt: 760, finaleEnd: 1000, leave: tokens.beats.leave,
 });
 
 const now = () => (typeof performance !== "undefined" ? performance.now() : Date.now());

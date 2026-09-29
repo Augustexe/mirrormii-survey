@@ -8,9 +8,11 @@ const initialOf = (from) => {
   return word.charAt(0).toUpperCase();
 };
 
-// Your reply (5.7): one chat window. Received bubbles sit on the left with the sender's avatar and arrive in sequence
-// behind a typing indicator; your draft replies wait on the right, on the sent side, each with a send mark; tapping one
-// sends it into the thread as your bubble with "Delivered".
+// Your reply (5.7; G6 DESIGN-DIRECTION section 8 D13): one chat window. Received bubbles sit on the left with the
+// sender's avatar and arrive in sequence behind a typing indicator. Your replies wait under a single "Tap a reply to
+// send" cue with the send mark: the whole reply is the button (no per-row send icons, so selecting and sending are one
+// act); tapping one sends it into the thread as your bubble with "Delivered", and it holds there a beat before the
+// next card.
 export function Thread({ card, thread, texts, chosen, locked, onTap, kbd, still, from }) {
   const sentRef = useRef(null);
   useLayoutEffect(() => {
@@ -54,6 +56,7 @@ export function Thread({ card, thread, texts, chosen, locked, onTap, kbd, still,
           </li>
         ) : null}
       </ol>
+      <p className="pc-drafts__cue" aria-hidden="true"><SendHorizontal size={13} strokeWidth={2.4} /> Tap a reply to send it</p>
       <div className="pc-drafts" role="group" aria-label="Your reply">
         {texts.map((text, i) => (
           <button
@@ -67,7 +70,6 @@ export function Thread({ card, thread, texts, chosen, locked, onTap, kbd, still,
           >
             {kbd && i < 9 ? <kbd className="pc-kbd" aria-hidden="true">{i + 1}</kbd> : null}
             <span className="pc-draft__text">{text}</span>
-            <span className="pc-draft__send" aria-hidden="true"><SendHorizontal size={14} strokeWidth={2.25} /></span>
           </button>
         ))}
       </div>

@@ -880,7 +880,8 @@
     color: var(--c-on-deep);
     opacity: 0.88;
   }
-  .mm-voice__light {
+  .mm-voice__light { display: none; /* G6 (R3): the voice names carry the choice */
+
     position: absolute;
     inset: var(--s-3) var(--s-4) auto auto;
     font: var(--type-micro);
@@ -1130,7 +1131,7 @@
     position: relative;
     display: grid;
     place-items: end center;
-    block-size: 300px;
+    block-size: 244px; /* G6 (R3): 20% shorter, so the chapter title arrives sooner */
     margin-inline: calc(-1 * var(--gutter));
     overflow: hidden;
   }
@@ -1146,7 +1147,7 @@
   }
   .mm-interlude__island {
     position: relative;
-    inline-size: min(330px, 92%);
+    inline-size: min(270px, 76%);
   }
   .mm-interlude__island svg {
     display: block;

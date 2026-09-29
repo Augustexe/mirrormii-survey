@@ -171,7 +171,10 @@ test("lobby screen renders its first question and options; the card screen's bub
   assert.ok(!render("cards").includes(line) && !render("cards").includes(heartLine), "Just the cards hides Genii's between-card line");
   assert.ok(render("cards").includes(step.card.prompt.replace(/\s+/g, " ").slice(0, 20)), "Just the cards reads Make it fun wording");
   const seen = visible(renderToStaticMarkup(React.createElement(PersonaQuizView, { step, setup: ADULT, onAnswer() {}, onMap() {}, cardKey: "k", voice: "fun", seed: seeds.fun })).replace(/<span class="pc-sr"[^>]*>[^<]*<\/span>/g, ""));
-  assert.doesNotMatch(seen, /Card \d+ of \d+|\d+ \/ 40 cards/, "one progress indicator: the shard rail, with its count for screen readers only");
+  // G6 (R3): the rail carries one readable count beside its mirror, "Card N of 40", once; no second counter.
+  assert.equal((seen.match(/Card \d+ of \d+/g) || []).length, 1, "one readable count on the rail");
+  assert.ok(seen.includes(`Card ${step.resolved + 1} of ${step.total}`), "the count is the card's place in the run");
+  assert.doesNotMatch(seen, /\d+ \/ 40 cards/, "no second counter");
   const intro = interludeFor(Session.currentStep(Session.chooseLobby(Session.startRun(Session.newRun({ runId: "uilobby02" }), ADULT), { voice: "cards", depth: "light", rooms: [] })), "cards");
   assert.equal(intro.kicker, LOBBY_COPY.chapterKicker(1, 4), "chapter numbering counts only open rooms");
 });

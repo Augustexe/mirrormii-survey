@@ -66,6 +66,7 @@ function RailButton({ step, progress = null, onOpen, docked = false, shards = nu
       <button type="button" className={`shard-rail shard-rail--finale${docked ? " is-docked" : ""}`} onClick={onOpen} data-count={rail.panes}>
         <span className="pc-sr">{label}</span>
         <RailMirror shards={shards} seed={seed} fog={0.45} />
+        <span className="rail-count" aria-hidden="true">Final <b>{Math.min(rail.done + 1, rail.panes)}</b> of {rail.panes}</span>
         <span className="rail-panes" aria-hidden="true">
           {Array.from({ length: rail.panes }, (_, i) => (
             <span key={i} data-rail-slot={i === rail.current ? "current" : i}
@@ -81,6 +82,8 @@ function RailButton({ step, progress = null, onOpen, docked = false, shards = nu
     <button type="button" className={`shard-rail${docked ? " is-docked" : ""}`} onClick={onOpen}>
       <span className="pc-sr">{label}</span>
       <RailMirror shards={shards} seed={seed} />
+      {/* G6: a readable count beside the mirror (R3); the other chapters' capsules step back on phone. */}
+      <span className="rail-count" aria-hidden="true">Card <b>{step ? step.resolved + 1 : 1}</b> of {(step && step.total) || 40}</span>
       <span className="rail-groups" aria-hidden="true">
         {rail.groups.map((g) => {
           const shards = [];
