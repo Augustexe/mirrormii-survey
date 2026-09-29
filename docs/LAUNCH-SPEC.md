@@ -210,6 +210,7 @@ Teen-safe by default (18+ cards need 18+ setup; teens never get the marriage and
 | Result must be spicy ("I didn't know that about me") and distinct from generic tests | 09-28 |
 | Sally's system is a template, not a translation source; English names and tags may be rewritten | 09-28 |
 | Result display: Stories format | 09-28 |
+| Grill 09-28 (section 21): no age screen and no age-based content; nothing sensitive asked (never open a bank, messages or photos app); every situation and answer unique; Genii's bet gets its own answers per card; two voices on every card; classic known archetype names, never "X with Y energy"; final screen shows no quoted answers and no data list, only a confident read | 09-28 |
 | Run length 40 + 8; indirect formats (receipts, guilty or not, reply picker, other people); two distinct voices; text-change guard | 09-28 |
 | Multiple choice only, never free text | 09-26 |
 | Every question masked; vivid scenarios are the main format | 09-26 |
@@ -276,7 +277,58 @@ With a room closed, its chapter's tags can only fire from cards elsewhere; per r
 
 Replaced by this file; kept only as history: `research/persona-quiz-v2/BRIEF.md`, `docs/questions/PERSONA-QUIZ-SPEC-V2.md`, `research/persona-quiz-v2/final/RESULT-TEMPLATE.md`, `docs/questions/RUN-SPEC-LEDGER.md`, the launch sections of `docs/STATE.md` and `docs/OPEN-QUESTIONS.md`. `quiz64/docs/PERSONA-MVP.md` stays as code notes only. Build history: `docs/history/BUILD-ITERATIONS.md`.
 
+## 21. Build C: the full bank and the final screen (grill, 2026-09-28)
+
+Rulings from Jerry's grill rounds. Where they differ from earlier sections, this section wins.
+
+**Scope.** Build the full survey (bank, scorer, web game, final screen), then fonts and visual design, then push to GitHub (with Jerry's go at that point). The handoff package is decided later.
+
+**Bank size (delegated to Claude).** 174 unique cards: 150 scored plus 24 sealed. Every tag backed by at least 4 cards, every axis by at least 15. The 96 existing cards count after passing the template and the uniqueness check (keep, rewrite or cut). Variety is the goal: many distinct situations, answers and evidence paths.
+
+**Uniqueness.** Cards may share a chapter, axis or tag, never a situation (trigger + setting + ask + who is involved + stakes). "A friend calls at 4am" and "a friend texts at 2am needing to talk" are the same situation. No answer line repeats anywhere. Every card is fun, exciting and fits the template.
+
+**Card template** (codified in `skills/shared/genii-card-writer/`): Hook (one concrete scene-setter, 15 words or fewer, true detail) then Event (what just happened that forces a response; never an abstract opinion) then Ask (the format's stem, usually implied; never "what would you do when") then Moves (3 to 5 distinct actions, first person, action first, 12 words or fewer, equal charm, no ladders). Hidden: evidence per move, situation fingerprint, the two voice variants.
+
+**Formats.** 13: scenario, real moment, receipts, Genii's bet, reply, other people, this or that, role, pick two, rank it, friend's-eye view, feeling, sealed. Genii's bet has its own 3 to 5 answers per bet, never a fixed Guilty/Never pair. Receipts and every other format are answered from memory; never ask the player to open an app, account, bank, messages or photos, and never ask for anything sensitive.
+
+**Voices.** Every card in Make it fun and Heart to heart. One lobby tap, "How should Genii talk to you?" (Make it fun / Heart to heart / Just the cards), drives card wording and Genii's reactions. Claude keeps the two versions identical in meaning (evidence is locked by `evidence-lock.json`).
+
+**Age.** No age screen and no age-based content. Everyone gets the same bank, so every card is fine for anyone who plays. No explicit sexual content. Marriage and kids cards stay but are written so anyone can answer (or skip).
+
+**Names.** The result shows two classic, widely known archetypes, one per half, side by side, never glued into one phrase and never "X with Y energy":
+
+| With your people | Code | With your life | Code |
+|---|---|---|---|
+| Golden Retriever | We·Soft·Own | The Planner | Steady·Push·Rules |
+| Comfort Person | We·Soft·Classic | The Slow Burner | Steady·Push·Context |
+| Ride-or-Die | We·Direct·Own | Creature of Habit | Steady·Easy·Rules |
+| The Glue | We·Direct·Classic | The Easygoer | Steady·Easy·Context |
+| Lone Wolf | Me·Direct·Own | The Strategist | Venture·Push·Rules |
+| Straight Shooter | Me·Direct·Classic | The Go-Getter | Venture·Push·Context |
+| Free Spirit | Me·Soft·Own | The Explorer | Venture·Easy·Rules |
+| Old Soul | Me·Soft·Classic | The Wanderer | Venture·Easy·Context |
+
+Jerry approved the eight people archetypes; the eight life archetypes are Claude's working picks.
+
+**Tags.** All tags renamed to plain, instantly understood phrases (4 words or fewer) that someone who never played would get; each gets one confident line. The library may grow beyond 50 if the bank needs it.
+
+**Final screen** (Stories, no quoted answers, no data list, confident read written as fact, never science or accuracy claims):
+1. "40 answers in. Here's you."
+2. The two archetypes.
+3. The read: 3 confident lines.
+4. Your map: the 6 axes as a visual, no numbers.
+5. Your top traits: up to 5 tags, one line each.
+6. The thing you didn't know: one warm insight, no quotes.
+7. Only you: the stings.
+8. Share card.
+9. Get MirrorMii.
+Optional after 9: "How Genii read you" (the guess score). Screens 2, 5 and 8 are the share-worthy ones.
+
+**Order of work.** 1 card-writer skill and checker; 2 a 30-card sample in both voices for Jerry; 3 the rest of the bank in batches; 4 tag and name library; 5 final screen in the app; 6 fonts and visual design; 7 GitHub push with Jerry's go.
+
 ## Changes
+
+- 2026-09-28: Section 21 added from the grill (bank size, uniqueness, template, 13 formats, voices, no age screen, no sensitive asks, archetype names, final screen order).
 
 - 2026-09-28: Step B items 1 to 5 done: 15 new cards in the four approved formats (4 receipts, 6 guilty or not, 3 reply, 2 other people), 30 option edits on 16 existing cards (16 axis values added where the behavior implies the pole, 7 balance fixes, 7 strength changes), two quick rounds reordered (C6-3 and C4-2 now lead), picker rules for the new formats and per-run tag focus (section 10), evidence lock (section 7). Sections 2, 3, 5 to 8, 10, 17 and 18 updated.
 - 2026-09-28: Jerry approved section 19 (formats, 40 + 8, two voices, guard, app promise, friend link); step B started.
