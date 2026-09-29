@@ -37,12 +37,12 @@ function Composer({ setup, defaults, sentBefore, onCreate }) {
         <p className="fp-made__invite">“{made.invite}”</p>
         <label className="fp-field"><span>Their link</span><input readOnly value={made.link} onFocus={(e) => e.target.select()} /></label>
         <div className="fp-actions">
-          <button type="button" className="button button--primary" onClick={() => copy(`${made.invite} ${made.link}`, "both")}><Copy size={16} /> {copied === "both" ? "Copied" : "Copy invite and link"}</button>
-          <button type="button" className="button button--secondary" onClick={() => copy(made.link, "link")}><Link2 size={16} /> {copied === "link" ? "Copied" : "Copy link only"}</button>
-          {typeof navigator !== "undefined" && navigator.share && <button type="button" className="button button--secondary" onClick={share}><Share2 size={16} /> Share</button>}
+          <button type="button" className="rv-btn rv-btn--primary" onClick={() => copy(`${made.invite} ${made.link}`, "both")}><Copy size={16} /> {copied === "both" ? "Copied" : "Copy invite and link"}</button>
+          <button type="button" className="rv-btn" onClick={() => copy(made.link, "link")}><Link2 size={16} /> {copied === "link" ? "Copied" : "Copy link only"}</button>
+          {typeof navigator !== "undefined" && navigator.share && <button type="button" className="rv-btn" onClick={share}><Share2 size={16} /> Share</button>}
         </div>
         <small>When they finish, they get a link to send back. Open it in this browser to see how they did.</small>
-        <button type="button" className="persona-link" onClick={() => { setMade(null); setRel(null); }}>Send to someone else</button>
+        <button type="button" className="rv-textbtn" onClick={() => { setMade(null); setRel(null); }}>Send to someone else</button>
       </div>
     );
   }
@@ -93,7 +93,7 @@ function Composer({ setup, defaults, sentBefore, onCreate }) {
             ))}
           </fieldset>
           {error && <p className="save-error" role="alert">{error}</p>}
-          <button type="button" className="button button--primary button--large" onClick={create}>Make their link <ArrowRight size={18} /></button>
+          <button type="button" className="rv-cta rv-cta--deep" onClick={create}>Make their link <ArrowRight size={18} /></button>
         </>
       )}
     </div>
@@ -115,7 +115,7 @@ export function FriendsPanel({ friends, onAction }) {
   return (
     <section className="fp" aria-labelledby="fp-title">
       <div className="fp-intro">
-        <span className="eyebrow">The friend game</span>
+        <span className="rv-kicker">The friend game</span>
         <h2 id="fp-title">Do you really know me?</h2>
         <p>Send a link. They guess your type, a few of your choices and what Genii calls you. You see what they get right, and what they don't see.</p>
         {friends.returnTo && <p className="fp-return">{friends.returnTo.name || "Your friend"} played about you. Send one back and see if they really know you.</p>}
@@ -129,8 +129,8 @@ export function FriendsPanel({ friends, onAction }) {
               <li key={c.id} className="fp-sent__row">
                 <span className="fp-sent__who"><b>{c.label}</b><small>{c.played ? "Played" : "Waiting for their reply"}</small></span>
                 <span className="fp-sent__actions">
-                  {c.played && <button type="button" className="button button--primary" onClick={() => onAction("open", c.id)}>See how they did <ArrowRight size={16} /></button>}
-                  <button type="button" className="button button--secondary" onClick={() => copy(c.id, c.link)}><Copy size={15} /> {copiedId === c.id ? "Copied" : "Copy link"}</button>
+                  {c.played && <button type="button" className="rv-btn rv-btn--primary" onClick={() => onAction("open", c.id)}>See how they did <ArrowRight size={16} /></button>}
+                  <button type="button" className="rv-btn" onClick={() => copy(c.id, c.link)}><Copy size={15} /> {copiedId === c.id ? "Copied" : "Copy link"}</button>
                 </span>
               </li>
             ))}
@@ -140,7 +140,7 @@ export function FriendsPanel({ friends, onAction }) {
               <span>Got a reply link? If it opened somewhere else, paste it here.</span>
               <input value={paste} onChange={(e) => setPaste(e.target.value)} placeholder="Paste the reply link" />
             </label>
-            <button type="button" className="button button--secondary" onClick={openPaste} disabled={!paste.trim()}>Open reply</button>
+            <button type="button" className="rv-btn" onClick={openPaste} disabled={!paste.trim()}>Open reply</button>
             {pasteError && <p className="save-error" role="alert">{pasteError}</p>}
           </div>
         </div>

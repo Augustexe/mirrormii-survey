@@ -8,6 +8,38 @@ export const STORY_IDS = Object.freeze(["intro", "names", "read", "map", "traits
 
 // Placeholder until the public app link is decided (FACT-SHEET pending item 2). Swap here only.
 export const APP_LINK = "#get-mirrormii";
+// The address printed at the foot of the share image. Placeholder until the game link is decided (the brand site
+// for now). No digits: the share image carries no numbers.
+export const SHARE_URL_LABEL = "mirrormii.ai";
+
+// How each screen is lit (DESIGN-DIRECTION 5.12): night for the reveal, the map and the stings, the player's light
+// (Day or Dusk) for the read, the traits and the card, the deep gradient for the insight and the app.
+export const LOOKS = Object.freeze({ intro: "night", names: "night", read: "light", map: "night", traits: "light", insight: "deep", stings: "night", share: "light", app: "deep" });
+
+// Interface strings for the result (proposed copy, DESIGN-DIRECTION section 8 D6; shipped under the 2026-09-29 go).
+export const UI_COPY = Object.freeze({
+  hold: "Hold, or tap",
+  mapList: "Read it as a list",
+  mapGem: "Show the shape",
+  mapOver: "over",
+  mapBetween: "Right between",
+  mapOpen: "still open",
+  shareFormats: { story: "Story", post: "Post" },
+  shareImage: "Share image",
+  saveImage: "Save image",
+  saveForMe: "Save for me",
+  copyLink: "Copy link",
+  copied: "Copied",
+  shareSheet: "Share this screen",
+  stingsSheet: "Just for you",
+  stingsNote: "This screen never goes on a share card. You can keep a copy for yourself.",
+  privateTrait: "Only on your screen",
+  opposite: (a, b) => `Your opposite: ${a} and ${b}. Know one?`,
+  yourData: "Your data",
+  dataTitle: "Your data",
+  saving: "Making your image",
+  saveFailed: "The image couldn't be made in this browser.",
+});
 
 // The lobby's "How should Genii talk to you?" tap. Old runs carry no voice; they read as Make it fun.
 export function voiceOf(lobby) {
@@ -19,7 +51,7 @@ export const wordingFor = (voice) => (voice === "heart" ? "heart" : "fun");
 
 export const STORY_COPY = Object.freeze({
   fun: {
-    intro: { kicker: "Genii's read", title: "40 answers in. Here's you.", sub: "Tap to see it." },
+    intro: { kicker: "Genii's read", title: "40 answers in. Here's you.", sub: "Hold. Then let go." },
     names: { kicker: "You are", people: "With your people", life: "With your life", sub: "Two sides. Both you." },
     read: { kicker: "The read" },
     map: { kicker: "Your map", title: "Where you land" },
@@ -104,11 +136,42 @@ export function dotPosition(row) {
   return Math.round(Math.max(8, Math.min(92, pos)));
 }
 
+// A type code for the sigil art, with spaces instead of the middle dot: the dotted code is an internal id and never
+// reaches the page, even in an attribute.
+export function sigilCode(code) {
+  return String(code || "").split(/[·|.\s/]+/).filter(Boolean).join(" ");
+}
+
+const POLE_OPPOSITE = { We: "Me", Me: "We", Direct: "Soft", Soft: "Direct", Classic: "Own", Own: "Classic", Steady: "Venture", Venture: "Steady", Push: "Easy", Easy: "Push", Rules: "Context", Context: "Rules" };
+// The pairing hook (DESIGN-DIRECTION section 8 D3): every pole flipped, named from the library. Null when either half
+// has no clean opposite.
+export function oppositeOf(lib, relCode, lifeCode) {
+  const flip = (code) => String(code || "").split("·").map((p) => POLE_OPPOSITE[p] || null);
+  const find = (list, code) => {
+    const poles = flip(code);
+    if (!poles.length || poles.some((p) => !p)) return null;
+    const hit = (list || []).find((x) => x.code === poles.join("·"));
+    return hit && str(hit.name) ? hit.name : null;
+  };
+  const a = find(lib && lib.relationship, relCode);
+  const b = find(lib && lib.life, lifeCode);
+  return a && b ? [a, b] : null;
+}
+
+// The insight flip (story 6): the first sentence is the belief, the rest answers it. One sentence: no split.
+export function splitInsight(line) {
+  const text = String(line || "").trim();
+  const m = /^(.+?[.!?])\s+(\S.*)$/.exec(text);
+  if (!m) return { belief: text, behavior: null };
+  return { belief: m[1], behavior: m[2] };
+}
+
 // Screen data for one finished run.
 //   result: score-core buildResult output; profile: buildProfile output (axes, splits, counts; may be partial)
 //   sealed: checkSealed output or null; lib: library.json; voice: "fun" | "heart" | "cards"
 //   promptFor(cardId): the sealed card's prompt in this voice, for the optional guess sheet
-export function buildStories({ result, profile = {}, sealed = null, lib, voice = "fun", promptFor = null }) {
+//   mirror: { seed, filled: [{ chapter }] } for the reveal art (the run id and the answered cards in order), or null
+export function buildStories({ result, profile = {}, sealed = null, lib, voice = "fun", promptFor = null, mirror = null }) {
   const wording = wordingFor(voice);
   const C = STORY_COPY[wording];
   const L = lib || {};
@@ -123,8 +186,8 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
   const lifeH = halfOf("life");
   const relL = libHalf(relH);
   const lifeL = libHalf(lifeH);
-  const people = { label: C.names.people, name: str(relL.name) || relH.name, read: voiced(relL, ["read", "desc"], wording) || relH.desc || "" };
-  const life = { label: C.names.life, name: str(lifeL.name) || lifeH.name, read: voiced(lifeL, ["read", "desc"], wording) || lifeH.desc || "" };
+  const people = { label: C.names.people, name: str(relL.name) || relH.name, code: sigilCode(relH.code), read: voiced(relL, ["read", "desc"], wording) || relH.desc || "" };
+  const life = { label: C.names.life, name: str(lifeL.name) || lifeH.name, code: sigilCode(lifeH.code), read: voiced(lifeL, ["read", "desc"], wording) || lifeH.desc || "" };
   take(people.read);
   take(life.read);
 
@@ -135,12 +198,16 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
     const p = (profile.axes || {})[row.axis] || {};
     const sign = typeof p.pole === "number" ? p.pole : row.pole === meta.minus ? -1 : 1;
     const r = { key: row.axis, left: meta.minus || "", right: meta.plus || "", sign, flex: Boolean(row.flex), unfinished: Boolean(row.unfinished), norm: p.norm };
-    return { key: r.key, left: r.left, right: r.right, side: sign > 0 ? "right" : "left", flex: r.flex, unfinished: r.unfinished, pos: dotPosition(r), strength: r.unfinished || r.flex ? 0 : Math.abs(typeof p.norm === "number" ? p.norm : 0.5), line: axisLine(row.axis, sign) };
+    const strength = r.unfinished || r.flex ? 0 : Math.abs(typeof p.norm === "number" ? p.norm : 0.5);
+    // The facet reads lean from minus (-1) to plus (+1); a decided side never sits closer to the middle than a flex one.
+    const lean = r.unfinished || r.flex ? 0 : sign * Math.max(0.3, Math.min(1, strength || 0.5));
+    return { key: r.key, left: r.left, right: r.right, side: sign > 0 ? "right" : "left", flex: r.flex, unfinished: r.unfinished, pos: dotPosition(r), strength, lean, line: axisLine(row.axis, sign) };
   });
   const mapGroups = [
     { label: C.names.people, rows: mapHalf(relH) },
     { label: C.names.life, rows: mapHalf(lifeH) },
   ];
+  const facet = mapGroups.flatMap((g) => g.rows).map((r) => ({ key: r.key, lean: r.lean, flex: r.flex, unfinished: r.unfinished, plus: r.right, minus: r.left }));
   const decided = mapGroups.flatMap((g) => g.rows).filter((r) => r.strength > 0 && r.line).sort((a, b) => b.strength - a.strength);
   const mapCaption = decided.length ? decided[0].line : null;
 
@@ -150,6 +217,9 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
     const calls = Array.isArray(lt.calls) ? lt.calls.filter(str) : [];
     return {
       key: t.id,
+      chapter: lt.chapter ?? t.chapter ?? null,
+      // Marriage and kids tags (library `locked18`) stay on the owner's screen and never go on anything shareable.
+      private: Boolean(lt.locked18),
       name: str(lt.name) || t.name,
       line: voiced(lt, ["line"], wording) || calls[0] || voiced(lt, ["heart"], wording) || t.heart || "",
       heart: voiced(lt, ["heart"], wording) || t.heart || "",
@@ -160,6 +230,8 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
   // The read: people half, life half, strongest trait. With no trait, a call or the clearest side of the map.
   const third = tags[0] ? tags[0].line : calls.find((c) => !used.has(c)) || mapCaption || "";
   const readLines = [people.read, life.read, take(third)].filter(Boolean);
+  // What each tablet of the read carries as its mark: the half's sigil, or the trait's chapter glyph.
+  const readMarks = [{ kind: "sigil", code: people.code }, { kind: "sigil", code: life.code }, tags[0] ? { kind: "chapter", chapter: tags[0].chapter, private: tags[0].private } : { kind: "none" }].slice(0, readLines.length);
   tags.forEach((t) => used.add(t.line));
   if (mapCaption) used.add(mapCaption);
 
@@ -182,25 +254,29 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
   const counts = profile.counts || {};
   const noTraits = tags.length ? null : C.noTraits[(counts.rushed || 0) * 2 >= (counts.answered || 0) && counts.answered ? "rushed" : "thin"];
 
+  const opposite = oppositeOf(L, relH.code, lifeH.code);
   const share = {
     brand: C.share.brand,
-    names: [{ label: people.label, name: people.name }, { label: life.label, name: life.name }],
+    names: [{ label: people.label, name: people.name, code: people.code }, { label: life.label, name: life.name, code: life.code }],
     // Marriage and kids tags (library `locked18`) never go on anything shareable.
-    tags: tags.filter((t) => !(tagLib[t.key] && tagLib[t.key].locked18)).map((t) => ({ name: t.name, heart: t.heart })),
+    tags: tags.filter((t) => !t.private).map((t) => ({ name: t.name, heart: t.heart, chapter: t.chapter })),
     invite: str(result.share && result.share.invite) || "Do you really know me?",
+    facet,
+    mirror: mirror || null,
+    url: SHARE_URL_LABEL,
   };
 
   const slides = [
-    { id: "intro", tone: "iris", kicker: C.intro.kicker, title: C.intro.title, sub: C.intro.sub },
-    { id: "names", tone: "dawn", kicker: C.names.kicker, sub: C.names.sub, people, life },
-    { id: "read", tone: "pearl", kicker: C.read.kicker, lines: readLines },
-    { id: "map", tone: "dawn", kicker: C.map.kicker, title: C.map.title, groups: mapGroups, caption: mapCaption },
-    { id: "traits", tone: "peach", kicker: C.traits.kicker, title: C.traits.title, tags, empty: noTraits },
-    { id: "insight", tone: "iris", kicker: C.insight.kicker, line: insight },
-    { id: "stings", tone: "night", kicker: C.stings.kicker, title: C.stings.title, badge: C.stings.badge, stings },
-    { id: "share", tone: "dawn", kicker: C.share.kicker, sub: C.share.sub, share },
-    { id: "app", tone: "iris", kicker: C.app.kicker, title: C.app.title, body: C.app.body, button: C.app.button, note: C.app.note, link: APP_LINK },
-  ];
+    { id: "intro", kicker: C.intro.kicker, title: C.intro.title, sub: C.intro.sub, mirror },
+    { id: "names", kicker: C.names.kicker, sub: C.names.sub, people, life, mirror },
+    { id: "read", kicker: C.read.kicker, lines: readLines, marks: readMarks },
+    { id: "map", kicker: C.map.kicker, title: C.map.title, groups: mapGroups, caption: mapCaption, facet },
+    { id: "traits", kicker: C.traits.kicker, title: C.traits.title, tags, empty: noTraits },
+    { id: "insight", kicker: C.insight.kicker, line: insight, parts: splitInsight(insight) },
+    { id: "stings", kicker: C.stings.kicker, title: C.stings.title, badge: C.stings.badge, stings, private: true },
+    { id: "share", kicker: C.share.kicker, sub: C.share.sub, share, opposite: opposite ? UI_COPY.opposite(opposite[0], opposite[1]) : null },
+    { id: "app", kicker: C.app.kicker, title: C.app.title, body: C.app.body, button: C.app.button, note: C.app.note, link: APP_LINK, mirror },
+  ].map((sl) => ({ ...sl, look: LOOKS[sl.id], tone: LOOKS[sl.id] }));
 
   let guesses = null;
   if (sealed && Array.isArray(sealed.rows)) {
@@ -214,18 +290,26 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
   return { voice, wording, slides, share, guesses };
 }
 
-// What a saved image of one screen draws. Plain text blocks only; share-image.js lays them out.
+// What a saved image of one screen draws (share-image.js lays it out). Only what the screen itself shows, minus
+// anything private: marriage and kids traits never reach an image, and the stings image is saved, never shared.
 export function printFor(slide) {
-  const base = { tone: slide.tone, kicker: slide.kicker };
+  const base = { id: slide.id, look: slide.look || LOOKS[slide.id] || "night", kicker: slide.kicker };
   switch (slide.id) {
-    case "intro": return { ...base, title: slide.title, lines: [slide.sub] };
-    case "names": return { ...base, pairs: [slide.people, slide.life].map((h) => ({ label: h.label, name: h.name })), lines: [slide.sub] };
-    case "read": return { ...base, lines: slide.lines };
-    case "map": return { ...base, title: slide.title, map: slide.groups, lines: slide.caption ? [slide.caption] : [] };
-    case "traits": return { ...base, title: slide.title, items: slide.tags.map((t) => ({ name: t.name, line: t.line })), lines: slide.empty ? [slide.empty] : [] };
-    case "insight": return { ...base, lines: [slide.line], big: true };
-    case "stings": return { ...base, kicker: null, title: slide.title, badge: slide.badge, lines: slide.stings };
-    case "share": return { ...base, pairs: slide.share.names, items: slide.share.tags.map((t) => ({ name: t.name, line: t.heart })), button: slide.share.invite };
+    case "intro": return { ...base, title: slide.title, lines: [], mirror: slide.mirror };
+    case "names": return { ...base, kicker: null, names: [slide.people, slide.life].map((h) => ({ label: h.label, name: h.name, code: h.code })), lines: [slide.sub], mirror: slide.mirror };
+    case "read": {
+      const marks = slide.marks || [];
+      const keep = slide.lines.map((line, i) => ({ line, mark: marks[i] || { kind: "none" } })).filter((x) => !(x.mark && x.mark.private));
+      return { ...base, tablets: keep };
+    }
+    case "map": return { ...base, title: slide.title, facet: slide.facet, lines: slide.caption ? [slide.caption] : [] };
+    case "traits": {
+      const items = slide.tags.filter((t) => !t.private).map((t) => ({ name: t.name, line: t.line, chapter: t.chapter }));
+      return { ...base, title: slide.title, charms: items, lines: items.length ? [] : slide.empty ? [slide.empty] : [] };
+    }
+    case "insight": return { ...base, belief: slide.parts ? slide.parts.belief : slide.line, behavior: slide.parts ? slide.parts.behavior : null };
+    case "stings": return { ...base, kicker: null, title: slide.title, badge: slide.badge, quotes: slide.stings, private: true };
+    case "share": return { ...base, card: slide.share };
     case "app": return { ...base, title: slide.title, lines: [slide.body, slide.note] };
     default: return base;
   }

@@ -133,8 +133,11 @@ test("the nine screens render in order from a synthetic result, with only the fi
   for (const line of ["NEW-READ-PEOPLE", "NEW-READ-LIFE", "NEW-LINE-1"]) assert.ok(read.includes(line), line);
 
   const map = slideHtml(html, "map");
-  assert.equal((map.match(/pst-map__dot/g) || []).length, 6, "six dots");
-  for (const a of AXES) { assert.ok(map.includes(`>${a.plus}<`), a.plus); assert.ok(map.includes(`>${a.minus}<`), a.minus); }
+  assert.ok(map.includes('data-art="facet"'), "the facet gem");
+  assert.ok(map.includes("Read it as a list"), "the list toggle");
+  const list = map.slice(map.indexOf("rv-maplist"));
+  assert.equal((list.match(/<li>/g) || []).length, 6, "six rows in the list, always in the DOM");
+  for (const a of AXES) { assert.ok(list.includes(`>${a.plus}<`), a.plus); assert.ok(list.includes(`>${a.minus}<`), a.minus); }
   assert.doesNotMatch(visible(map), /\d/, "no numbers on the map");
 
   const traits = visible(slideHtml(html, "traits"));
@@ -144,13 +147,17 @@ test("the nine screens render in order from a synthetic result, with only the fi
   assert.ok(stings.includes("OLD-STING-PEOPLE") && stings.includes("OLD-STING-LIFE") && stings.includes("Only you see this"));
 
   const share = slideHtml(html, "share");
-  const card = share.slice(share.indexOf("pst-card"), share.indexOf("</figure>"));
+  const card = share.slice(share.indexOf("data-card"), share.indexOf("</figure>"));
   for (const t of ["Here, scroll my phone", "OLD-TAGHEART-1", "Golden Retriever", "The Planner"]) assert.ok(card.includes(t), t);
   for (const s of ["OLD-STING-PEOPLE", "OLD-STING-LIFE", "OLD-TAGSTING-1", "NEW-READ-PEOPLE"]) assert.ok(!card.includes(s), `no ${s} on the share card`);
   assert.ok(visible(share).includes("Do you really know me?"));
 
   const app = visible(slideHtml(html, "app"));
-  for (const t of ["Genii has only met you on paper.", "Get MirrorMii", "Do you really know me?", "How Genii read you", "Start over", "Delete my data", "Download my data"]) assert.ok(app.includes(t), t);
+  for (const t of ["Genii has only met you on paper.", "Get MirrorMii", "Do you really know me?", "How Genii read you", "Your data"]) assert.ok(app.includes(t), t);
+  for (const t of ["Start over", "Delete my data", "Download my data"]) assert.ok(!app.includes(t), `${t} waits behind Your data`);
+  const { DataSheet } = await load("/src/persona/reveal/Sheets.jsx");
+  const data = visible(renderToStaticMarkup(React.createElement(DataSheet, { storageOK: true, onDownload() {}, onRestart() {}, onDelete() {} })));
+  for (const t of ["Start over", "Delete my data", "Download my data"]) assert.ok(data.includes(t), t);
 });
 
 test("no quoted answers, ids, numbers, scores or system words reach the main screens", async () => {

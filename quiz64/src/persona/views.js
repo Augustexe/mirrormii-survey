@@ -28,6 +28,18 @@ function sealedPrompt(id, setup, wording) {
   try { return S.promptFor(card, setup); } catch { return card.prompt || ""; }
 }
 
+// The reveal art: the run id seeds the mirror's crack pattern, and every answered card is one shard in its chapter's
+// tint, in the order it was answered. Only chapters leave this function; no card id, option or answer does.
+export function mirrorFor(state) {
+  const ids = Object.keys((state && state.answers) || {}).filter((k) => !k.endsWith(".flip"));
+  const filled = ids.map((id) => {
+    const card = S.cardById ? S.cardById[id] : null;
+    const value = state.answers[id];
+    return { chapter: card && card.chapter != null ? card.chapter : "extras", skipped: typeof value === "string" };
+  });
+  return { seed: String((state && state.runId) || "mirror"), filled, panes: Object.keys((state && state.finale) || {}).length };
+}
+
 // The owner's result: nine story screens plus the optional guess sheet.
 export function resultView(state) {
   const { profile, result, sealed } = resultFor(state);
@@ -39,6 +51,7 @@ export function resultView(state) {
     lib: LIB,
     voice,
     promptFor: (id) => sealedPrompt(id, state.setup, voice === "heart" ? "heart" : "fun"),
+    mirror: mirrorFor(state),
   });
   return { ...stories, share: shareProjection(result, stories) };
 }
