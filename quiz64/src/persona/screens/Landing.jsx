@@ -54,7 +54,7 @@ export function PersonaLanding({ progress, onBegin, onHow, seed }) {
         </div>
       </section>
       <section className="mm-landing__below" aria-label="More about the game">
-        <ul className="mm-landing__chips mm-landing__chips--phone" aria-label="How the game works">
+        <ul className="mm-landing__chips mm-landing__chips--phone" aria-label="How the game works" tabIndex={0}>
           {L.chips.map((c) => <li key={c} className="mm-chip">{c}</li>)}
         </ul>
         <button type="button" className="mm-how mm-tile" onClick={onHow}>

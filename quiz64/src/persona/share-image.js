@@ -437,21 +437,26 @@ export function drawShareCard(ctx, card, { format = "story", theme = "night", li
     return;
   }
   drawWordmark(ctx, wordmarkImage, W / 2, 118, 220, p);
-  const aw = 600;
+  const rows = items.slice(0, 5);
+  const many = rows.length > 3;
+  // Five charms and the invite must fit above the footer: with more than three, the arch steps down (integration QA
+  // 2026-09-29 found the fifth charm drawn over the URL and the invite pushed off the 1920 px card).
+  const aw = many ? 470 : 600;
   const ax = (W - aw) / 2;
-  const ay = 230;
+  const ay = 210;
   const { h } = drawArch(ctx, { x: ax, y: ay, w: aw, mirror: card.mirror, p });
   drawPanes(ctx, { x: ax, y: ay, w: aw, h, names, p });
   // The facet as the jewel on the arch's plinth.
-  drawFacet(ctx, card.facet, W / 2, ay + h + 20, 210, p);
-  let y = ay + h + 150;
-  const rows = items.slice(0, 5);
-  const gap = rows.length > 3 ? 14 : 26;
+  drawFacet(ctx, card.facet, W / 2, ay + h + 20, many ? 170 : 210, p);
+  let y = ay + h + (many ? 120 : 150);
+  const gap = many ? 12 : 26;
+  const FLOOR = 1660;
   for (const it of rows) {
-    y = drawCharm(ctx, { x: 150, y, w: W - 300, item: { name: it.name, line: it.heartShort || it.heart, chapter: it.chapter }, p, nameSize: rows.length > 3 ? 38 : 42, lineSize: 27 }) + gap;
+    if (y > FLOOR - 70) break;
+    y = drawCharm(ctx, { x: 150, y, w: W - 300, item: { name: it.name, line: it.heartShort || it.heart, chapter: it.chapter }, p, nameSize: many ? 36 : 42, lineSize: 26, maxLines: many ? 1 : 2 }) + gap;
   }
   font(ctx, "display", 420, 52, true);
-  lines(ctx, [card.invite || ""], W / 2, Math.max(y + 60, 1760), { lh: 0, align: "center", color: p.accent });
+  lines(ctx, [card.invite || ""], W / 2, Math.min(Math.max(y + 70, 1740), 1770), { lh: 0, align: "center", color: p.accent });
   font(ctx, "text", 600, 26);
   lines(ctx, [card.url || ""], W / 2, 1850, { lh: 0, align: "center", color: p.ink3 });
 }

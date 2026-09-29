@@ -27,9 +27,23 @@ let n = 0;
 const shot = async (label) => { if (SHOTS) await page.screenshot({ path: path.join(OUT, `${String(++n).padStart(3, "0")}-${label}.png`) }); };
 const press = (k) => page.keyboard.press(k);
 // Keyboard: Tab to a control whose text matches, then Enter. Mouse: click it.
+// Keyboard mode moves focus with Tab only (never element.focus()), checks the focus ring is visible, then presses Enter.
+const focusMisses = [];
 async function activate(locator) {
   if (!KEYS) return locator.click();
-  await locator.focus();
+  const target = await locator.elementHandle();
+  for (let i = 0; i < 80; i++) {
+    if (await page.evaluate((t) => document.activeElement === t, target)) break;
+    await press("Tab");
+  }
+  const ring = await page.evaluate((t) => {
+    if (document.activeElement !== t) return "not reached";
+    const cs = getComputedStyle(t);
+    const outline = cs.outlineStyle !== "none" && parseFloat(cs.outlineWidth) > 0;
+    const shadow = cs.boxShadow && cs.boxShadow !== "none";
+    return outline || shadow ? "ok" : `no ring (${t.className})`;
+  }, target);
+  if (ring !== "ok") focusMisses.push(ring);
   return press("Enter");
 }
 
@@ -135,8 +149,8 @@ for (let i = 0; i < 40 && stories.length < 9; i++) {
 
 const repeats = lines.map((l, i) => (i && l && l === lines[i - 1] ? i : -1)).filter((i) => i >= 0);
 const distinct = new Set(lines.filter(Boolean)).size;
-const summary = { voice: VOICE, keys: KEYS, view: VIEW, cards, finale, interludes, locked, stories, distinctLines: distinct, backToBackRepeats: repeats.length, errors };
+const summary = { voice: VOICE, keys: KEYS, view: VIEW, cards, finale, interludes, locked, stories, distinctLines: distinct, backToBackRepeats: repeats.length, focusMisses, errors };
 console.log(JSON.stringify(summary, null, 1));
 if (process.env.VERBOSE) for (const r of log) console.log(`${String(r.i).padStart(2)} ${r.phase.padEnd(7)} ${r.type.padEnd(12)} | ${r.line}`);
 await browser.close();
-if (cards !== 40 || finale !== 8 || stories.length !== 9 || repeats.length || errors.length) process.exitCode = 1;
+if (cards !== 40 || finale !== 8 || stories.length !== 9 || repeats.length || errors.length || focusMisses.length) process.exitCode = 1;

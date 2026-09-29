@@ -12,8 +12,8 @@ html {
   -webkit-tap-highlight-color: transparent;
 }
 body {
+  /* No min-width: at 200% zoom a 390 px phone lays out at 195 CSS px, and a 320 px floor scrolled sideways. */
   margin: 0;
-  min-width: 320px;
   background: var(--c-canvas);
   color: var(--c-ink);
   font-family: var(--font-text);
