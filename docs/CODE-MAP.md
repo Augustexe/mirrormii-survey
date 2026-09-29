@@ -5,7 +5,14 @@
 | Part | Where |
 |---|---|
 | Content and scoring kit | `research/persona-quiz-v2/final/` in this checkout: `cards.json`, `library.json`, `friend.json`, `score.mjs`, `tests.mjs` (`node --test tests.mjs`, 27 pass). The web game's shared scorer `score-core.mjs` is on the MVP branch |
-| Web game | Branch `claude/survey-mvp-finish-20260927` (`cd18e82`). Checked out only at `hall/data/jobs/mirrormii-genie-survey/20260928T014509Z-survey-mvp-02-ce97f3/scratch/worktree` until Jerry approves moving it to `survey/launch` here. Files: `quiz64/src/main.jsx` (mounts PersonaApp), `PersonaApp.jsx`, `persona/` (session, friend game, links, store, result views, `persona.css`). `npm test` in `quiz64`: 124 pass |
+| Web game | This checkout, branch `survey/launch`. `quiz64/src/main.jsx` mounts `PersonaApp.jsx`. Contract: [quiz64/docs/PERSONA-MVP.md](../quiz64/docs/PERSONA-MVP.md) |
+| Scorer shared by kit CLI, sim, kit tests and the web app | `research/persona-quiz-v2/final/score-core.mjs` (`score.mjs` is the Node wrapper) |
+| Kit binding and build-time strip of authoring fields | `quiz64/src/persona/kit.js`, `quiz64/kit-strip.mjs`, `quiz64/vite.config.js` |
+| Run state machine, lock, save and replay-validated restore | `quiz64/src/persona/session.js`, `store.js`, `sha256.js` |
+| Friend challenge and reply links, friend and owner views | `quiz64/src/persona/friend.js`, `links.js` |
+| Result and share projections | `quiz64/src/persona/views.js` |
+| Screens and styles | `quiz64/src/PersonaApp.jsx`, `quiz64/src/persona/*.jsx`, `persona.css` |
+| Tests and browser QA | `quiz64/tests/persona-*.test.mjs` (`npm test` in `quiz64`), `quiz64/qa/persona-browser-qa.mjs` |
 | Result page drafts | `research/result-page-wireframes/` (static HTML, shared `data.js`) |
 | Preview configs (workspace `.claude/launch.json`) | `persona-mvp` (web game, port 5174, still pointed at the run worktree), `result-wireframes` (port 8793) |
 

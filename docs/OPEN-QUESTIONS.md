@@ -31,6 +31,9 @@ The integration and redesign are explicitly authorized and implemented in the ac
 - Source home: merge the live `codex/final-survey-dossier` branch into the project checkout and retire the workbench worktree (see [STATE.md](STATE.md)).
 - App handoff destination: still a placeholder; needs a verified URL and promise.
 - Spec V3 (2026-09-26): six decisions for Jerry in [SURVEY-SPEC-V3.md](SURVEY-SPEC-V3.md) section 9 (A to E tags, need_voice axis, emotional signature, five new questions, North American voice pass, pair mode).
+- Persona MVP (2026-09-27): the friend challenge link carries the answer key so the friend's device can show counts without a server; a determined friend could decode the owner's poles and Level 2 sides. Keep for a local MVP, or add a backend (the ledger names SQLite) before real players?
+- Persona MVP: which build goes to GitHub Pages next (the live dossier or this persona game), and on which branch. Nothing is pushed.
+- Persona MVP: bestie vs partner comparison, friend difficulty simulation and the blind-test feedback page are not built.
 - Market model: monetisation model, sourced cozy-gamer and gacha figures, and the App Store Glow Score contradiction ([MARKET-MODEL.md](MARKET-MODEL.md)).
 
 ## Earlier question ledger (historical implementation-status statements)

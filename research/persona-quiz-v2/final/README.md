@@ -9,7 +9,8 @@ The assembled, playable, scoreable quiz from `../BRIEF.md`: 7 chapters and a sea
 | `cards.json` | The run: `chapters[]` (n, title, intro, cards in run order), `finale[]` (8 sealed cards), `extras[]` (12 cards offered only when a side is unfinished), weights, exits and the flow. |
 | `library.json` | `types.json` and `tags.json` merged: 6 axes, 16 half-names, 50 tags in 25 pairs, tag rules. |
 | `friend.json` | The friend game content ("Do you really know me?"), read by `score.mjs friend`. |
-| `score.mjs` | The scorer and the CLI (below). Also importable by `sim.mjs` and `tests.mjs`. |
+| `score-core.mjs` | The scorer itself: `createScorer({ kit, lib, friend })`, pure functions, no I/O. Also scores a friend's guesses (`scoreFriendGame`, `rankFriends`). The quiz64 web app imports this file. |
+| `score.mjs` | The Node wrapper: loads the three kit files, re-exports the core for `sim.mjs` and `tests.mjs`, and runs the CLI (below). |
 | `sim.mjs` | Synthetic respondents; tunes the thresholds; writes `SIM-REPORT.md` and `sim-example/`. |
 | `tests.mjs` | `node --test tests.mjs`: 27 tests (format, validity, every tag able to fire on the adult and the teen run, order rules, run length, em dash, teen run, C3-9 gate, scoring edge cases, tag ranking, plot twist rules, freeze refusal, friend deck, sim targets). |
 | `SIM-REPORT.md` | The simulation numbers and the tuning grid. |
@@ -79,4 +80,4 @@ node assemble.mjs                        # rebuild cards.json and library.json f
 - Closed in the fix pass (2026-09-26): every tag can now fire on the adult and the teen run (tested), the plot twist only joins linked cards, T22B's call no longer repeats the C7-S2 finale prompt, and a friend or coworker gets the `everyday` Level 1 set.
 - 19 of 50 tags have no real-card trigger; they fire on scenario and quick-pick evidence only. 9 tags get their support from only 2 run cards (T03A, T10A, T10B, T11A, T15B, T18A, T19A, T19B, T20A); the test only asks for 2.
 - `library/tags.json` still carries stale prose: the T06B `triggers` describe C2-2, C2-7 and C5-5 options that the fix pass rewrote, T07's `origin` still cites Q30 (no card carries Q30 now), and `tagRules.firing` still says "strongest first" (the scorer now ranks by `tagRank: "share"`). The prose is not scored.
-- Still open by decision: no code scores a friend's guesses into the result screens, and the real-data checks (R2 split, type spread, sting offence rate, legal check of names) wait for after blind test 2.
+- Friend scoring now exists in `score-core.mjs` (2026-09-27, for the quiz64 web MVP); friend difficulty is still not simulated. Still open by decision: the real-data checks (R2 split, type spread, sting offence rate, legal check of names) wait for after blind test 2.

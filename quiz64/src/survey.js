@@ -10,7 +10,7 @@ import {
 
 export const chapterFor = (q) =>
   CHAPTERS.find((c) => c.id === q?.chapter) || CHAPTERS[0];
-export const asset = (name) => `${import.meta.env.BASE_URL}assets/${name}`;
+export { asset } from "./assets.js";
 export const questionIndex = (id) => QUESTIONS.findIndex((q) => q.id === id);
 export const isResolved = (state, q) =>
   Object.prototype.hasOwnProperty.call(state?.answers || {}, q.id);

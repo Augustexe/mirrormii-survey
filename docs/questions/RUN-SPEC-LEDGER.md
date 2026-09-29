@@ -44,9 +44,11 @@ People **finish**, get a **personality prediction** that feels accurate and fun,
 | AI generation | Deferred; a demo version first. Generation path to be decided with the team | 2026-09-26 |
 | Storage | SQLite for now, not Lark | 2026-09-26 |
 | Hosting | No backend for now. Internal first; published to GitHub Pages later so teammates take it themselves | 2026-09-26 |
-| Git | Kit on local branch `survey/tag-pilot-2026-09-26` (`5c47928`); web game on `claude/survey-mvp-finish-20260927`. Consolidating both into `survey/launch` awaits Jerry's OK. Nothing pushed | 2026-09-28 |
+| Git | Launch work on local branch `survey/launch` (the V2 kit plus the web game). Old builds removed from this branch; they stay in git history and on `main`. Nothing pushed | 2026-09-28 |
 
 ## Proposed, not yet ruled
+
+- Persona quiz V2 web game (2026-09-27): the quiz64 shell plays the V2 kit end to end with the friend game over fragment links, scored by the kit's `score-core.mjs` ([quiz64/docs/PERSONA-MVP.md](../../quiz64/docs/PERSONA-MVP.md)). On branch `survey/launch`; not deployed.
 
 - Persona tags (Sally's paired library, 41 meme-style tags with sting and 💛 lines) as the named layer of the result, plus her friend game ("Do you really know me?") on a static page via link fragments ([PERSONA-TAGS-V1](PERSONA-TAGS-V1.md)).
 

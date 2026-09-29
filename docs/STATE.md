@@ -22,7 +22,7 @@ There is one build: **persona quiz V2**. Everything else in this folder is histo
 | Content and scoring (the kit) | `research/persona-quiz-v2/final/`: `cards.json` (61 chapter cards in 7 chapters, 8 finale, 12 extras), `library.json` (6 axes, 16 half-names, 50 tags with sting, heart and calls), `friend.json`, `score.mjs`, `tests.mjs` (27 pass) |
 | Result template | `research/persona-quiz-v2/final/RESULT-TEMPLATE.md` (spec section 8) |
 | Structure source | Sally's v2 system, `research/sally-v2-2026-09-26/` (Chinese originals). A template for structure and humor, never a translation source |
-| Web game | `quiz64/src/PersonaApp.jsx` and `quiz64/src/persona/` on branch `claude/survey-mvp-finish-20260927`, 2 commits past this checkout's branch. Today it is checked out only inside a run folder (see [CODE-MAP.md](CODE-MAP.md)). 124 app tests and 27 kit tests pass (2026-09-28). Not merged, not deployed |
+| Web game | `quiz64/src/PersonaApp.jsx` and `quiz64/src/persona/` in this checkout, branch `survey/launch` (see [CODE-MAP.md](CODE-MAP.md)). Not deployed |
 | Result page drafts | `research/result-page-wireframes/` (Gazette, Constellation, Stories). Preview config `result-wireframes`, port 8793 |
 
 ### Status, 2026-09-28
