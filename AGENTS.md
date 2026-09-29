@@ -1,8 +1,8 @@
 ## Shared current context - required startup
 
-Read `/Users/jerryzhang/Workspace-Draft/projects/mirrormii-genie-survey/docs/README.md`, `STATE.md`, `WORKING-SET.md` and `OPEN-QUESTIONS.md` before project work, including work inside existing run worktrees. Read `CODE-MAP.md` before code or tests: the registered checkout contains the older prototype; the approved R6 React app is in a different worktree. Historical worktree docs do not override this maintained context.
+We are finishing one build, the launch survey (persona quiz V2). Before any survey work read `docs/STATE.md`, then `docs/questions/RUN-SPEC-LEDGER.md` (Jerry's current rulings), then `docs/questions/PERSONA-QUIZ-SPEC-V2.md`. Do not start a parallel build or a new spec; improve this one. Read `docs/CODE-MAP.md` before code or tests. Historical worktree docs do not override this maintained context.
 
-For the V4 language candidate based on `533c3da`, read `quiz64/docs/ASTRA-IMPLEMENTATION.md` before changing wording, saved-state compatibility or result generation. `quiz64/src/respondent-copy.js` is the respondent wording layer; `data.js` retains the frozen authoring semantics. This candidate is local-only and awaits Council audit.
+Older builds (history only, see `docs/history/BUILD-ITERATIONS.md`): For the V4 language candidate based on `533c3da`, read `quiz64/docs/ASTRA-IMPLEMENTATION.md` before changing wording, saved-state compatibility or result generation. `quiz64/src/respondent-copy.js` is the respondent wording layer; `data.js` retains the frozen authoring semantics. This candidate is local-only and awaits Council audit.
 
 Keep ongoing evidence, questions, ICP and psychology work in the listed masters. Runs retain frozen experiments and receipts. At task completion, update the maintained current-state/decision pages and catalog the run; do not leave the only current context in a run output. Never promote an experiment to an approved requirement merely because it is recent or finalized.
 

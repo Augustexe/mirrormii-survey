@@ -1,5 +1,7 @@
 # Core files to edit and build on
 
+**Launch survey (persona quiz V2):** use the file table in [STATE.md](STATE.md) and the launch section of [CODE-MAP.md](CODE-MAP.md). The rows below belong to earlier builds.
+
 ## Active integration
 
 The official pre-result visual system is locked to the existing App components/styles/assets. The final packet alone has the expanded game art direction.

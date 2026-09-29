@@ -1,4 +1,4 @@
-> Maintained working document, promoted 2026-09-18. [Original run snapshot](../../runs/20260918T024222Z-c25e30eace25/output/RESEARCH-SOURCES.md) remains immutable. Original status and limitations below still apply; promotion is filing, not product approval.
+> Maintained working document, promoted 2026-09-18. [Original run snapshot](../../../../hall/data/jobs/mirrormii-genie-survey/20260918T024222Z-c25e30eace25/output/RESEARCH-SOURCES.md) remains immutable. Original status and limitations below still apply; promotion is filing, not product approval.
 
 # Evidence acquisition shortlist
 

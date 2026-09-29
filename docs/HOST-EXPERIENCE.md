@@ -1,4 +1,4 @@
-> Reconciled 2026-09-18 from the approved release documentation: [consolidation handoff](../runs/20260918T011159Z-16d23238fdf9/output/HANDOFF.md). Implementation/team instructions below describe that historical task. Read [CURRENT.md](CURRENT.md) and [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) for later identity/ICP work and the experimental bank. Earlier canonical versions are preserved in the consolidation receipt.
+> Reconciled 2026-09-18 from the approved release documentation: [consolidation handoff](../../../hall/data/jobs/mirrormii-genie-survey/20260918T011159Z-16d23238fdf9/output/HANDOFF.md). Implementation/team instructions below describe that historical task. Read [CURRENT.md](CURRENT.md) and [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) for later identity/ICP work and the experimental bank. Earlier canonical versions are preserved in the consolidation receipt.
 
 # Genii: a conversation worth coming back to
 

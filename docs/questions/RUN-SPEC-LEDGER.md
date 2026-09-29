@@ -3,8 +3,8 @@ title: Run spec ledger, what is current, proposed and outdated
 status: current
 owner: jerry
 created: 2026-09-26
-updated: 2026-09-26
-source_basis: Jerry's rulings in the 2026-09-26 session (survey spec, grill rounds, Sally's research, team transcript, gauntlet, internal-run grill round 1)
+updated: 2026-09-28
+source_basis: Jerry's rulings in the 2026-09-26 and 2026-09-28 sessions; 2026-09-26 (survey spec, grill rounds, Sally's research, team transcript, gauntlet, internal-run grill round 1)
 ---
 
 # Run spec ledger
@@ -19,6 +19,11 @@ People **finish**, get a **personality prediction** that feels accurate and fun,
 
 | Area | Ruling | Date |
 |---|---|---|
+| Launch build | Persona quiz V2 (the kit plus the web MVP) is the one launch survey. Improve it; no parallel builds or new specs. State and next steps: [../STATE.md](../STATE.md) | 2026-09-28 |
+| Result voice | Smooth and natural. No gotcha lines that catch the player out ("You'd say X. Last three times, you did Y.") and no sitcom lines ("Genii called this before you answered") | 2026-09-28 |
+| Result goal | Spicy information: "I didn't know that about me." Distinct from generic personality tests; unique and tasteful. Serves feeling understood and wanting the app | 2026-09-28 |
+| Sally's system | A template for structure and humor, not a translation source. English type names, tags and lines may be rewritten or replaced so they land natively in English | 2026-09-28 |
+| Result display | The Stories (tap-through) format is preferred; layout and language not final ([drafts](../../research/result-page-wireframes/)) | 2026-09-28 |
 | Governing architecture | Sally v2 (research/sally-v2-2026-09-26): 64 types from 6 axes, up to 5 paired tags, friend game (guess type, guess choices, guess tags, bestie sting level), hidden research record | 2026-09-26 |
 | Evidence layer | Every answer option is tagged directly: axis values and persona tags, with grade weights, circumstance and exits. No topic scores | 2026-09-26 |
 | Persona quiz V2 build | research/persona-quiz-v2 (BRIEF.md is the build spec); run wf_a800d5eb-cdf; spec lands in docs/questions/PERSONA-QUIZ-SPEC-V2.md | 2026-09-26 |
@@ -39,7 +44,7 @@ People **finish**, get a **personality prediction** that feels accurate and fun,
 | AI generation | Deferred; a demo version first. Generation path to be decided with the team | 2026-09-26 |
 | Storage | SQLite for now, not Lark | 2026-09-26 |
 | Hosting | No backend for now. Internal first; published to GitHub Pages later so teammates take it themselves | 2026-09-26 |
-| Git | Work saved on local branch `survey/tag-pilot-2026-09-26` (commit 4dd09fa), not pushed | 2026-09-26 |
+| Git | Kit on local branch `survey/tag-pilot-2026-09-26` (`5c47928`); web game on `claude/survey-mvp-finish-20260927`. Consolidating both into `survey/launch` awaits Jerry's OK. Nothing pushed | 2026-09-28 |
 
 ## Proposed, not yet ruled
 
@@ -72,8 +77,12 @@ People **finish**, get a **personality prediction** that feels accurate and fun,
 | Prolific pass thresholds as the gate for the visual | Jerry's own judgment; panel metrics stay for the later pilot |
 | Women 18 to 34 as the survey's core audience; women-framed debate topics | Gender neutral questions and hooks |
 | The live build's 50-name title from 5 axes (quiz64) | Still live, but not the direction for the new build |
+| Git: work saved at commit 4dd09fa (2026-09-26) | The Git row above |
+| Literal English translations of Sally's half-names and tags as final copy | English-native rewrite, Sally's as the template (2026-09-28) |
 
 ## Open
+
+- SURVEY-SPEC-V3's six decisions (A to E tags, need_voice, emotional signature, five new questions, voice pass, pair mode) were written against the older 5-axis bank. Close as superseded or carry into V2: Jerry's call.
 
 - How the prediction gets generated for teammates who run it themselves (template in the browser, or a hosted function with an API key).
 - Where SQLite lives once the build is on GitHub Pages (Pages cannot run a database).

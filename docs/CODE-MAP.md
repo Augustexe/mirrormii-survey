@@ -1,9 +1,22 @@
-# Active source map, verified 2026-09-25
+# Source map
+
+## Launch survey (persona quiz V2), verified 2026-09-28
+
+| Part | Where |
+|---|---|
+| Content and scoring kit | `research/persona-quiz-v2/final/` in this checkout: `cards.json`, `library.json`, `friend.json`, `score.mjs`, `tests.mjs` (`node --test tests.mjs`, 27 pass). The web game's shared scorer `score-core.mjs` is on the MVP branch |
+| Web game | Branch `claude/survey-mvp-finish-20260927` (`cd18e82`). Checked out only at `hall/data/jobs/mirrormii-genie-survey/20260928T014509Z-survey-mvp-02-ce97f3/scratch/worktree` until Jerry approves moving it to `survey/launch` here. Files: `quiz64/src/main.jsx` (mounts PersonaApp), `PersonaApp.jsx`, `persona/` (session, friend game, links, store, result views, `persona.css`). `npm test` in `quiz64`: 124 pass |
+| Result page drafts | `research/result-page-wireframes/` (static HTML, shared `data.js`) |
+| Preview configs (workspace `.claude/launch.json`) | `persona-mvp` (web game, port 5174, still pointed at the run worktree), `result-wireframes` (port 8793) |
+
+Other worktrees of this repository: `/private/tmp/claude-501/survey-quiz-v2-wt` (`quiz-v2-fix-pass`, same commit as this checkout, removable) and older run worktrees for rows 5 to 7 of [history/BUILD-ITERATIONS.md](history/BUILD-ITERATIONS.md).
+
+## Live dossier build (older), verified 2026-09-25
 
 This is the live GitHub Pages build ([STATE.md](STATE.md)). The worktree below is clean at `ebaac09`, tracks `publication/codex/final-survey-dossier` with nothing ahead or behind, and includes the Pages workflow `.github/workflows/deploy-pages.yml`. Its local `origin` still points at the outdated `Augustexe/mirrormii-survey`; push to `publication`. The path sits inside a workbench folder that is due to leave the workspace: move the code before that happens (proposal in STATE.md).
 
 
-Use [/Users/jerryzhang/Workspace-Draft/projects/mirrormii-genie-survey/runs/20260921T072033Z-b5c7e4bdfdb4/scratch/worktree](/Users/jerryzhang/Workspace-Draft/projects/mirrormii-genie-survey/runs/20260921T072033Z-b5c7e4bdfdb4/scratch/worktree), branch `codex/final-survey-dossier`, base `2e65313`. The app in registered `project/` is not the new build. Do not retarget `approved-app` or replace historical baselines as cleanup.
+Use [/Users/jerryzhang/Workspace-Draft/hall/data/jobs/mirrormii-genie-survey/20260921T072033Z-b5c7e4bdfdb4/scratch/worktree](/Users/jerryzhang/Workspace-Draft/hall/data/jobs/mirrormii-genie-survey/20260921T072033Z-b5c7e4bdfdb4/scratch/worktree), branch `codex/final-survey-dossier`, base `2e65313`. The app in registered `project/` is not the new build. Do not retarget `approved-app` or replace historical baselines as cleanup.
 
 | Concern | Active file under `quiz64/src/` |
 |---|---|

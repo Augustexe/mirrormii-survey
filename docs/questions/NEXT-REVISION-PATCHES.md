@@ -1,4 +1,4 @@
-> Maintained working document, promoted 2026-09-18. [Original run snapshot](../../runs/20260918T174625Z-7724d715c4d8/output/NEXT-REVISION-PATCHES.md) remains immutable. Original status and limitations below still apply; promotion is filing, not product approval.
+> Maintained working document, promoted 2026-09-18. [Original run snapshot](../../../../hall/data/jobs/mirrormii-genie-survey/20260918T174625Z-7724d715c4d8/output/NEXT-REVISION-PATCHES.md) remains immutable. Original status and limitations below still apply; promotion is filing, not product approval.
 
 # Narrow next revision — proposed, not tested or installed
 
@@ -19,7 +19,7 @@ Next test should include fresh dense and sparse fixtures, explicit low-access/se
 
 ## Additional final-judge findings retained during consolidation
 
-These proposals were present in the [final independent audit](../../runs/20260918T174625Z-7724d715c4d8/output/FINAL-JUDGE-AUDIT.md) but missing from the original next-revision list. They are not applied to the frozen bank.
+These proposals were present in the [final independent audit](../../../../hall/data/jobs/mirrormii-genie-survey/20260918T174625Z-7724d715c4d8/output/FINAL-JUDGE-AUDIT.md) but missing from the original next-revision list. They are not applied to the frozen bank.
 
 11. **n22: specify reachability.** Its changed-plan follow-up includes “The plan didn't change.” Either make it reachable after an answered n21 regardless of change, or remove the unreachable choice and encode an explicit predicate. Decide in the next version.
 12. **h07/h08: preserve target-change limitations.** h07 narrows n17's generic helper to a trusted friend; h08 narrows n19's requester to a friend. Label these context-conditioned near transfers, not exact same-target validations. Review eligibility and rationale before the next freeze.

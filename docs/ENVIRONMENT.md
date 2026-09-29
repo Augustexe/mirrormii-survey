@@ -4,7 +4,7 @@
 
 ## Local source and review
 
-Project ID: `mirrormii-genie-survey`. Canonical source is `/Users/jerryzhang/Workspace-Draft/projects/mirrormii-genie-survey`; generated deliverables and validation evidence belong in an allocated project run.
+Project ID: `mirrormii-genie-survey`. Canonical source is `/Users/jerryzhang/Workspace-Draft/products/survey`; generated deliverables and validation evidence belong in an allocated project run.
 
 The MVP is a dependency-free browser app with JavaScript ES modules, a small Node development server and a standalone HTML builder. Managed Node 24 is the development route; `package.json` declares Node 22 or newer. No framework or third-party package install is needed. This project's registry and desired manifest now select `node-npm`; company/media context routing is unchanged. This is a local build choice, not a production backend selection.
 
@@ -21,7 +21,7 @@ The server binds `127.0.0.1:4173`; `PORT` overrides the port. It serves the page
 The standalone builder embeds owned application modules, styles and unchanged PNG assets into one `index.html`. Set `GENII_OUTPUT_DIR` to the allocated run's output subdirectory before building in this workspace:
 
 ```sh
-GENII_OUTPUT_DIR="/Users/jerryzhang/Workspace-Draft/projects/mirrormii-genie-survey/runs/20260914T214741Z-53aa82ae91a1/output/mvp" /Users/jerryzhang/Workspace-Draft/system/bin/dev npm run build
+GENII_OUTPUT_DIR="/Users/jerryzhang/Workspace-Draft/hall/data/jobs/mirrormii-genie-survey/20260914T214741Z-53aa82ae91a1/output/mvp" /Users/jerryzhang/Workspace-Draft/system/bin/dev npm run build
 ```
 
 Open the resulting `index.html` directly in a browser when local server binding is unavailable. A normal external checkout can use `npm run build`, whose default output is `dist/index.html`. Source `index.html` uses modules and is intended for the server; the built file is the portable review artifact. Storage and clipboard behavior can differ under file URLs. A file/localhost share URL is not a public campaign link.

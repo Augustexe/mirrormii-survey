@@ -1,4 +1,4 @@
-> Maintained working document, promoted 2026-09-18. [Original run snapshot](../../runs/20260917T201408Z-a40d4b34db0c/output/CONVERSATION-EVIDENCE.md) remains immutable. Original status and limitations below still apply; promotion is filing, not product approval.
+> Maintained working document, promoted 2026-09-18. [Original run snapshot](../../../../hall/data/jobs/mirrormii-genie-survey/20260917T201408Z-a40d4b34db0c/output/CONVERSATION-EVIDENCE.md) remains immutable. Original status and limitations below still apply; promotion is filing, not product approval.
 
 # Conversation evidence for the first Genii survey
 

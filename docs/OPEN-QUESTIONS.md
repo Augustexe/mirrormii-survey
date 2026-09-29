@@ -1,3 +1,21 @@
+# Launch survey: open decisions (2026-09-28)
+
+For persona quiz V2, the launch build ([STATE.md](STATE.md)). Older sections below concern earlier builds.
+
+| # | Open | Who |
+|---|---|---|
+| 1 | English-native type names and tags (Sally's as the template). Includes whether the headline stays "relationship half x life half" | Jerry, after a draft |
+| 2 | Result voice brief and the rewritten library lines | Jerry, after a draft |
+| 3 | Result display in the Stories format: which parts are shown, in what order | Jerry, after a draft |
+| 4 | App ending: promise only what the app does today, or carry the reading into the app ("Miia starts from your type"), which needs product work | Jerry |
+| 5 | Which build goes to Pages: the live dossier or the persona game, and when | Jerry |
+| 6 | Friend link carries the owner's answer key and is unsigned: fine for testing, or a backend before real players | Jerry |
+| 7 | Teens 13 to 17 are in the build; PRODUCT-TRUTH lists minors as anti-ICP | Jerry |
+| 8 | Company ICP: the ledger records gender-neutral; PRODUCT-TRUTH still says "starting with her" | Jerry |
+| 9 | Agent or judge rulings to ratify: adult run of 69 cards with the finale (brief said 56 to 64), keeping 18+ card C6-11, no back button, extras stop at two per side, friend scorer built before blind test 2 | Jerry |
+| 10 | SURVEY-SPEC-V3's six decisions: superseded, or carried into V2 | Jerry |
+| 11 | Blind test 2: when, and with which real people | Jerry |
+
 # Remaining validation after local integration: 2026-09-21
 
 The integration and redesign are explicitly authorized and implemented in the active worktree. Earlier questions below about whether to wire the framework are superseded. Remaining product evidence:

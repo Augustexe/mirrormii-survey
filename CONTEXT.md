@@ -1,3 +1,3 @@
 # Moved
 
-Read [projects/mirrormii-genie-survey/docs/README.md](docs/README.md).
+Read [products/survey/docs/README.md](docs/README.md).

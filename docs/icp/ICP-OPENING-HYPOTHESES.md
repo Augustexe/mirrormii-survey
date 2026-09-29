@@ -1,4 +1,4 @@
-> Maintained working document, promoted 2026-09-18. [Original run snapshot](../../runs/20260918T015043Z-b1b26c2a04de/output/ICP-OPENING-HYPOTHESES.md) remains immutable. Original status and limitations below still apply; promotion is filing, not product approval.
+> Maintained working document, promoted 2026-09-18. [Original run snapshot](../../../../hall/data/jobs/mirrormii-genie-survey/20260918T015043Z-b1b26c2a04de/output/ICP-OPENING-HYPOTHESES.md) remains immutable. Original status and limitations below still apply; promotion is filing, not product approval.
 
 # Genii first ICP and opening hypotheses
 

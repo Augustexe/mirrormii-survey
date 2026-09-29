@@ -5,7 +5,7 @@ access: "internal"
 owner: "jerry"
 created: "2026-09-24"
 updated: "2026-09-24"
-source_basis: "run:20260921T183726Z-f823a2b3afe9; projects/mirrormii-genie-survey/runs/20260921T183726Z-f823a2b3afe9/output/SECTION-VOICE-MAP.md"
+source_basis: "run:20260921T183726Z-f823a2b3afe9; hall/data/jobs/mirrormii-genie-survey/20260921T183726Z-f823a2b3afe9/output/SECTION-VOICE-MAP.md"
 promotion_target: null
 supersedes: null
 superseded_by: null
