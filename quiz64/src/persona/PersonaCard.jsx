@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { motion, MotionConfigContext, useReducedMotion } from "motion/react";
-import { Check, Clock3, Heart, Lightbulb, Lock, Sparkles, SkipForward, Users, Zap, Layers, ListChecks, Gavel, MessageCircle, Eye } from "lucide-react";
+import { Check, Clock3, Heart, Lightbulb, Lock, Sparkles, SkipForward, Users, Zap, Layers, ListChecks, ListOrdered, Gavel, MessageCircle, Eye, Glasses } from "lucide-react";
 import { S } from "./kit.js";
 import { LOBBY_COPY } from "./lobby.js";
 
@@ -15,7 +15,9 @@ function frameFor(card, step) {
   if (card.type === "role") return { icon: Users, text: "Pick your role" };
   if (card.type === "feeling") return { icon: Heart, text: "First feeling" };
   if (card.type === "receipts") return { icon: ListChecks, text: "Receipts check" };
-  if (card.type === "guilty") return { icon: Gavel, text: "Genii's bet" };
+  if (card.type === "bet") return { icon: Gavel, text: "Genii's bet" };
+  if (card.type === "rank") return { icon: ListOrdered, text: "Rank it" };
+  if (card.type === "eyes") return { icon: Glasses, text: "Through a friend's eyes" };
   if (card.type === "reply") return { icon: MessageCircle, text: "Your reply" };
   if (card.type === "others") return { icon: Eye, text: "First thought" };
   return { icon: Lightbulb, text: "Picture this" };
@@ -26,8 +28,11 @@ const now = () => (typeof performance !== "undefined" ? performance.now() : Date
 /**
  * One persona card. Taps answer immediately (the kit's one-card-at-a-time rule); the time from the card appearing
  * to the answering tap is reported so rushed taps can count less. No free text anywhere.
+ * voice: "heart" renders the card's Heart to heart text (prompt, options, thread) when it has one; anything else, or a
+ * card without it, renders Make it fun. Answers are option indexes either way, so evidence never depends on the voice.
+ * Rank it: tap the items first to last (tap a placed item to take it back), then Done.
  */
-export function PersonaCard({ card, step, setup, onAnswer, busy = false, error = "" }) {
+export function PersonaCard({ card, step, voice = "fun", onAnswer, busy = false, error = "" }) {
   const heading = useRef(null);
   const shownAt = useRef(now());
   const timer = useRef(null);
@@ -39,8 +44,8 @@ export function PersonaCard({ card, step, setup, onAnswer, busy = false, error =
   const [chosen, setChosen] = useState(null);
   const pickTwo = card.type === "pick_two";
   const receipts = card.type === "receipts";
-  const guilty = card.type === "guilty";
-  const multi = pickTwo || receipts;
+  const rank = card.type === "rank";
+  const multi = pickTwo || receipts || rank;
   const need = card.pick || 2;
 
   useEffect(() => {
@@ -70,6 +75,10 @@ export function PersonaCard({ card, step, setup, onAnswer, busy = false, error =
       if (next.length === need) send(next, { ms: elapsed() });
       return;
     }
+    if (rank) {
+      setPicks(picks.includes(i) ? picks.filter((x) => x !== i) : [...picks, i]);
+      return;
+    }
     if (receipts) {
       // "None of these" stands alone: ticking it clears the others, ticking an item clears it.
       const none = !!card.options[i].none;
@@ -88,9 +97,11 @@ export function PersonaCard({ card, step, setup, onAnswer, busy = false, error =
   const selected = (i) => (multi ? picks.includes(i) : chosen === i || (depends && depends.index === i));
   const done = () => {
     if (busy || chosen !== null) return;
+    if (rank) { if (picks.length === card.options.length) send([...picks], { ms: elapsed() }); return; }
     send([...picks].sort((a, b) => a - b), { ms: elapsed() });
   };
-  const thread = card.type === "reply" && Array.isArray(card.thread) ? card.thread : null;
+  const thread = card.type === "reply" ? S.threadFor(card, voice) : null;
+  const rankNo = (i) => picks.indexOf(i) + 1;
 
   return (
     <article
@@ -104,9 +115,8 @@ export function PersonaCard({ card, step, setup, onAnswer, busy = false, error =
         <div>
           <span className="eyebrow question-frame">
             <FrameIcon size={15} aria-hidden="true" /> {frame.text}
-            {card.privacy === "locked18" && <span className="persona-lock-badge"><Lock size={11} aria-hidden="true" /> 18+</span>}
           </span>
-          <h1 ref={heading} tabIndex="-1">{S.promptFor(card, setup)}</h1>
+          <h1 ref={heading} tabIndex="-1">{S.promptFor(card, voice)}</h1>
           {thread && (
             <ol className="persona-thread" aria-label="The messages">
               {thread.map((m, k) => (
@@ -127,13 +137,18 @@ export function PersonaCard({ card, step, setup, onAnswer, busy = false, error =
               Tap the {need} that fit best. {picks.length}/{need} picked.
             </p>
           )}
+          {rank && (
+            <p className="question-setup persona-pick-count" aria-live="polite">
+              Tap them in order, first to last, then Done. {picks.length}/{card.options.length} placed.
+            </p>
+          )}
         </div>
       </div>
       {!depends && (
         <div
-          className={`answer-list persona-answers ${receipts ? "persona-answers--receipts" : ""} ${guilty ? "persona-answers--guilty" : ""}`}
+          className={`answer-list persona-answers ${receipts ? "persona-answers--receipts" : ""} ${rank ? "persona-answers--rank" : ""}`}
           role="group"
-          aria-label={pickTwo ? `Choose ${need} answers` : receipts ? "Tap every one that is true" : "Choose one answer"}
+          aria-label={pickTwo ? `Choose ${need} answers` : receipts ? "Tap every one that is true" : rank ? "Put these in order, first to last" : "Choose one answer"}
         >
           {card.options.map((option, i) => (
             <motion.button
@@ -142,28 +157,29 @@ export function PersonaCard({ card, step, setup, onAnswer, busy = false, error =
               initial={still ? false : { opacity: 0, y: 7 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.22, delay: still ? 0 : i * 0.035 }}
-              className={`answer-option persona-option ${receipts ? "persona-chip" : ""} ${guilty ? "persona-verdict" : ""} ${option.none ? "persona-chip--none" : ""} ${selected(i) ? "answer-option--selected" : ""}`}
+              className={`answer-option persona-option ${receipts ? "persona-chip" : ""} ${option.none ? "persona-chip--none" : ""} ${selected(i) ? "answer-option--selected" : ""}`}
               aria-pressed={multi ? picks.includes(i) : undefined}
+              aria-label={rank && rankNo(i) ? `${S.optionText(card, i, voice)}, placed ${rankNo(i)}` : undefined}
               disabled={busy || (chosen !== null && !selected(i))}
               onClick={() => tap(i)}
             >
-              {!receipts && !guilty && <span className="answer-token">{String.fromCharCode(65 + i)}</span>}
-              <span className="answer-copy">{option.t}</span>
+              {!receipts && <span className="answer-token">{rank ? (rankNo(i) || "") : String.fromCharCode(65 + i)}</span>}
+              <span className="answer-copy">{S.optionText(card, i, voice)}</span>
               <Check className="answer-check" size={18} strokeWidth={2.5} aria-hidden="true" />
             </motion.button>
           ))}
         </div>
       )}
-      {receipts && !depends && (
+      {(receipts || rank) && !depends && (
         <div className="persona-done">
-          <button type="button" className="button button--primary" disabled={busy || chosen !== null} onClick={done}>
+          <button type="button" className="button button--primary" disabled={busy || chosen !== null || (rank && picks.length !== card.options.length)} onClick={done}>
             Done
           </button>
         </div>
       )}
       {depends && (
         <section className="persona-flip" aria-labelledby={`flip-${card.id}`}>
-          <p className="persona-flip__picked">{card.options[depends.index].t}</p>
+          <p className="persona-flip__picked">{S.optionText(card, depends.index, voice)}</p>
           <h2 id={`flip-${card.id}`}>{card.flip.prompt}</h2>
           <div className="persona-flip__options">
             {card.flip.options.map((text, f) => (

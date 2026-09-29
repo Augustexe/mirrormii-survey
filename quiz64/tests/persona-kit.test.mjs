@@ -12,15 +12,17 @@ const readJSON = (name) => JSON.parse(fs.readFileSync(new URL(name, dir), "utf8"
 const simAnswers = readJSON("sim-example/answers.json");
 const simSealed = readJSON("sim-example/sealed-answers.json");
 
-function randomAnswers(seed, age) {
+// seed: the rng seed; closest: the setup's closest person (the setup never changes the pool).
+function randomAnswers(seed, closest) {
   const r = S.rng(seed);
-  const answers = { setup: { age, closest: "best_friend", pronoun: "they" }, _ms: {} };
-  for (const card of S.runCards(answers.setup)) {
+  const answers = { setup: { closest, pronoun: "they" }, _ms: {} };
+  for (const card of S.runCards()) {
     const roll = r();
     if (roll < 0.08) answers[card.id] = "skip";
     else if (roll < 0.12) answers[card.id] = "not_my_life";
     else if (card.type === "pick_two") answers[card.id] = [0, 1 + Math.floor(r() * (card.options.length - 1))];
     else if (card.type === "receipts") answers[card.id] = card.options.map((o, i) => (!o.none && r() < 0.5 ? i : -1)).filter((i) => i >= 0);
+    else if (card.type === "rank") answers[card.id] = S.shuffle(card.options.map((_, i) => i), r);
     else answers[card.id] = Math.floor(r() * card.options.length);
     answers._ms[card.id] = Math.floor(600 + r() * 5000);
   }
@@ -28,12 +30,15 @@ function randomAnswers(seed, age) {
 }
 
 test("the web app scores with the reference kit's own code: identical profile, result, lock and friend deck", () => {
-  for (const answers of [simAnswers, randomAnswers(11, "adult"), randomAnswers(12, "teen")]) {
+  for (const answers of [simAnswers, randomAnswers(11, "best_friend"), randomAnswers(12, "parent")]) {
     const mine = S.buildProfile(answers);
     const ref = Reference.buildProfile(answers);
     assert.equal(canonicalJSON(mine), canonicalJSON(ref));
     assert.equal(canonicalJSON(S.buildResult(mine)), canonicalJSON(Reference.buildResult(ref)));
     assert.equal(canonicalJSON(S.freezePredictions(mine)), canonicalJSON(Reference.freezePredictions(ref)));
+    const drawn = S.drawFinale(99);
+    assert.deepEqual(drawn, Reference.drawFinale(99), "the same finale draw");
+    assert.equal(canonicalJSON(S.freezePredictions(mine, drawn)), canonicalJSON(Reference.freezePredictions(ref, drawn)));
     assert.equal(canonicalJSON(S.buildFriendDeck(mine, answers, { rel: "bestie", stings: true, seed: 5 })), canonicalJSON(Reference.buildFriendDeck(ref, answers, { rel: "bestie", stings: true, seed: 5 })));
   }
   const frozen = Reference.freezePredictions(Reference.buildProfile(simAnswers));
@@ -44,7 +49,7 @@ test("the web app scores with the reference kit's own code: identical profile, r
 test("the bundle strips authoring fields without changing a single score", () => {
   const full = createScorer({ kit: readJSON("cards.json"), lib: readJSON("library.json"), friend: readJSON("friend.json") });
   const stripped = createScorer({ kit: stripAuthoring(readJSON("cards.json")), lib: stripAuthoring(readJSON("library.json")), friend: stripAuthoring(readJSON("friend.json")) });
-  for (const [i, answers] of [simAnswers, randomAnswers(21, "adult"), randomAnswers(22, "teen"), randomAnswers(23, "adult")].entries()) {
+  for (const [i, answers] of [simAnswers, randomAnswers(21, "best_friend"), randomAnswers(22, "parent"), randomAnswers(23, "partner")].entries()) {
     const a = full.buildProfile(answers);
     const b = stripped.buildProfile(answers);
     assert.equal(canonicalJSON(a), canonicalJSON(b), `profile ${i}`);
@@ -56,11 +61,14 @@ test("the bundle strips authoring fields without changing a single score", () =>
   const text = JSON.stringify(stripAuthoring(readJSON("cards.json")));
   for (const key of AUTHORING_KEYS) assert.ok(!text.includes(`"${key}":`), key);
   assert.ok(!/looks like .*; measures/.test(text));
+  // Heart to heart text is player-facing: stripping never drops it.
+  const withHeart = { chapters: [{ cards: [{ id: "x", prompt: "p", heart: { prompt: "h", options: ["a"] }, fp: { trigger: "t" }, mask: "m", options: [{ t: "a" }] }] }] };
+  assert.deepEqual(stripAuthoring(withHeart).chapters[0].cards[0], { id: "x", prompt: "p", heart: { prompt: "h", options: ["a"] }, options: [{ t: "a" }] });
 });
 
-test("kit shape the app relies on: seven chapters, eight finale cards, twelve extras, friend content", () => {
+test("kit shape the app relies on: seven chapters, a sealed pool of at least eight cards, twelve extras, friend content", () => {
   assert.equal(KIT.chapters.length, 7);
-  assert.equal(KIT.finale.length, 8);
+  assert.ok(KIT.finale.length >= 8, "the sealed pool (the finale draws 8 per run)");
   assert.equal(KIT.extras.length, 12);
   assert.deepEqual(LIB.axes.map((a) => a.id), ["R1", "R2", "R3", "L1", "L2", "L3"]);
   for (const set of Object.values(FRIEND.level1.questions)) assert.deepEqual(set.map((q) => q.axis), ["R1", "R2", "R3", "L1", "L2", "L3"]);

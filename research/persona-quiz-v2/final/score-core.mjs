@@ -4,6 +4,12 @@
 // lib is library.json, friend is friend.json (or a function that loads it on first use). score.mjs wraps this
 // for the Node CLI, sim.mjs and tests.mjs; the quiz64 web app imports it directly, so the browser and the
 // reference kit share one scoring implementation.
+//
+// Card formats (grade, weight, type groups, rank position weights) live in card-schema.mjs. Everyone plays the same
+// bank: there is no age band and no age-gated content (LAUNCH-SPEC section 22). Cards may carry a Heart to heart
+// version in `heart` (prompt, options as strings in the same order, optional thread); its evidence is the card's own.
+import { RANK_WEIGHTS, NO_FRIEND_TYPES } from "./card-schema.mjs";
+
 export function createScorer({ kit, lib, friend }) {
   let friendCache = null;
   const friendLib = () => (typeof friend === "function" ? (friendCache ||= friend()) : friend);
@@ -31,6 +37,7 @@ export function createScorer({ kit, lib, friend }) {
     twistPairLink: ["sally", "chapter"],
     sealedPairScale: 1.2, // tag-pair net support that counts as a full-strength profile position for sealed guesses
     sealedTagWeight: 0.6, // tag evidence weight relative to axis evidence in sealed guesses
+    finaleSize: 8, // sealed cards drawn per run from the sealed pool (kit.finale)
   };
 
   const AXES = lib.axes.map((a) => a.id);
@@ -44,18 +51,27 @@ export function createScorer({ kit, lib, friend }) {
   const allCards = [...kit.chapters.flatMap((c) => c.cards), ...kit.finale, ...kit.extras];
   const cardById = Object.fromEntries(allCards.map((c) => [c.id, c]));
 
-  function isTeen(setup) {
-    return (setup && setup.age) === "teen";
+  // The chapter pool, in authored order (no finale, no extras). Everyone gets the same bank; the argument is kept
+  // for callers that still pass a setup.
+  function runCards() {
+    return kit.chapters.flatMap((ch) => ch.cards);
   }
 
-  // The chapter run for this player, in order (no finale, no extras).
-  function runCards(setup) {
-    const teen = isTeen(setup);
-    return kit.chapters.flatMap((ch) => ch.cards.filter((c) => !teen || c.teen));
+  // Voice: "heart" renders the card's Heart to heart text when it has one; anything else (or a card without `heart`)
+  // renders Make it fun. v may be the voice id, or an object carrying `voice` (a lobby or a setup).
+  const voiceOf = (v) => (typeof v === "string" ? v : v && typeof v === "object" ? v.voice : null);
+  const heartOf = (card, v) => (voiceOf(v) === "heart" && card.heart && typeof card.heart === "object" ? card.heart : null);
+  function promptFor(card, v) {
+    const h = heartOf(card, v);
+    return h && h.prompt ? h.prompt : card.prompt;
   }
-
-  function promptFor(card, setup) {
-    return isTeen(setup) && card.teenPrompt ? card.teenPrompt : card.prompt;
+  function optionText(card, i, v) {
+    const h = heartOf(card, v);
+    return h && Array.isArray(h.options) && typeof h.options[i] === "string" ? h.options[i] : card.options[i].t;
+  }
+  function threadFor(card, v) {
+    const h = heartOf(card, v);
+    return h && Array.isArray(h.thread) && h.thread.length ? h.thread : card.thread || null;
   }
 
   // Signed evidence vector of one option: axes as is; tags on their pair, + for A, - for B.
@@ -79,7 +95,10 @@ export function createScorer({ kit, lib, friend }) {
     }
     const picks = Array.isArray(raw) ? [...new Set(raw)] : [raw];
     for (const i of picks) if (!Number.isInteger(i) || !card.options[i]) throw new Error(`${card.id}: no option ${i}`);
-    if (card.type === "receipts") {
+    if (card.type === "rank") {
+      // Rank it: every item once, first to last.
+      if (!Array.isArray(raw) || raw.length !== card.options.length || picks.length !== card.options.length) throw new Error(`${card.id}: rank takes every option once, in order`);
+    } else if (card.type === "receipts") {
       // Tap everything that's true: 0 to n ticks; "None of these" (none: true) stands alone.
       if (picks.some((i) => card.options[i].none) && picks.length > 1) throw new Error(`${card.id}: "none" cannot be ticked with other items`);
     } else {
@@ -99,6 +118,13 @@ export function createScorer({ kit, lib, friend }) {
     const ticks = picks.filter((i) => card.options[i] && !card.options[i].none).length;
     return card.weight * (ticks > C.receiptsCap ? C.receiptsCap / ticks : 1);
   }
+  // Weight of each pick, in pick order. Rank it: the card weight times the position weight (1.0, 0.5, 0, -0.5), so
+  // the item ranked last counts against its own evidence. Every other type: pickWeight for every pick.
+  function pickWeights(card, picks, C = CONFIG) {
+    if (card.type === "rank") return picks.map((_, pos) => card.weight * (RANK_WEIGHTS[pos] ?? 0));
+    const w = pickWeight(card, picks, C);
+    return picks.map(() => w);
+  }
 
   function gateOpen(card, answers) {
     if (!card.gateRule) return true;
@@ -112,8 +138,7 @@ export function createScorer({ kit, lib, friend }) {
   function buildProfile(answers, cfg = {}) {
     const C = { ...CONFIG, ...cfg };
     const setup = answers.setup || {};
-    const teen = isTeen(setup);
-    const run = runCards(setup);
+    const run = runCards();
     const extras = kit.extras.filter((c) => answers[c.id] !== undefined);
     const scored = [...run, ...extras];
     const order = Object.fromEntries(scored.map((c, i) => [c.id, i]));
@@ -122,7 +147,7 @@ export function createScorer({ kit, lib, friend }) {
       if (k === "setup" || k === "_ms" || k.endsWith(".flip")) continue;
       if (!cardById[k]) warnings.push(`unknown card id ${k} ignored`);
       else if (cardById[k].type === "sealed") warnings.push(`${k} is a sealed card; sealed answers never count as profile evidence`);
-      else if (!order.hasOwnProperty(k)) warnings.push(`${k} is not in this player's run (teen or gated); ignored`);
+      else if (!order.hasOwnProperty(k)) warnings.push(`${k} is not in this player's run; ignored`);
     }
 
     const axisEv = Object.fromEntries(AXES.map((a) => [a, []]));
@@ -148,12 +173,14 @@ export function createScorer({ kit, lib, friend }) {
       // w is the weight of one pick (a receipts tick is scaled when many are ticked); cw is the card's base weight,
       // the coverage-share denominator's unit (cardTagMax already caps receipts at receiptsCap ticks).
       const rf = a.rushed ? C.rushedFactor : 1;
-      const w = pickWeight(card, a.picks, C) * rf;
+      const ws = pickWeights(card, a.picks, C).map((x) => x * rf);
       const cw = card.weight * rf;
       if (cw && a.picks.some((i) => !card.options[i].circumstance && !card.options[i].depends && !card.options[i].none)) scoringCards.push({ card, w: cw });
-      for (const i of a.picks) {
+      for (const [k, i] of a.picks.entries()) {
         const o = card.options[i];
-        if (o.emotion) emotions.push({ emotion: o.emotion, card: card.id, said: o.t, rushed: a.rushed });
+        const w = ws[k];
+        // A ranking records only the feeling of the item ranked first.
+        if (o.emotion && (card.type !== "rank" || k === 0)) emotions.push({ emotion: o.emotion, card: card.id, said: o.t, rushed: a.rushed });
         if (card.type === "feeling") {
           const prev = card.follows && answered[card.follows];
           const prevCard = card.follows && cardById[card.follows];
@@ -169,7 +196,6 @@ export function createScorer({ kit, lib, friend }) {
           axisEv[ax].push({ card: card.id, option: i, said: o.t, v, w, grade: card.grade, rushed: a.rushed, order: order[card.id], chapter: card.chapter });
         }
         for (const t of o.tags || []) {
-          if (teen && TAG[t.id] && TAG[t.id].locked18) continue;
           (tagEv[t.id] ||= []).push({ card: card.id, option: i, said: o.t, s: t.s, w, sup: w * t.s, grade: card.grade, rushed: a.rushed, order: order[card.id], chapter: card.chapter });
         }
       }
@@ -181,7 +207,7 @@ export function createScorer({ kit, lib, friend }) {
       const ev = axisEv[ax];
       const cards = new Set(ev.map((e) => e.card));
       const score = ev.reduce((s, e) => s + e.w * e.v, 0);
-      const max = ev.reduce((s, e) => s + e.w * 2, 0);
+      const max = ev.reduce((s, e) => s + Math.abs(e.w) * 2, 0);
       const norm = max ? score / max : 0;
       const unfinished = cards.size < C.minAxisCards;
       let pole, decidedBy;
@@ -208,12 +234,12 @@ export function createScorer({ kit, lib, friend }) {
     const tags = {};
     const raw = {}; // unrounded net and share, used for ranking
     for (const t of lib.tags) {
-      if (teen && t.locked18) continue;
       const ev = tagEv[t.id] || [];
       const support = sup(t.id);
       const net = support - sup(t.pair);
-      const cards = new Set(ev.map((e) => e.card));
-      const calm = new Set(ev.filter((e) => !e.rushed).map((e) => e.card));
+      // Only positive support counts a card (a rank item placed last gives negative support).
+      const cards = new Set(ev.filter((e) => e.sup > 0).map((e) => e.card));
+      const calm = new Set(ev.filter((e) => !e.rushed && e.sup > 0).map((e) => e.card));
       const fired = cards.size >= C.tagMinCards && calm.size >= 1 && net >= C.tagFire;
       if (!ev.length && !sup(t.pair)) continue;
       const possible = scoringCards.reduce((s, x) => s + x.w * cardTagMax(x.card, t.id), 0);
@@ -293,15 +319,21 @@ export function createScorer({ kit, lib, friend }) {
   }
 
   // Most net support (tag strength minus pair strength, before the card weight) one answer to this card can give a tag.
-  // pick_two counts its best two picks; receipts its best receiptsCap ticks (the same cap the profile applies). Never
-  // below 0.
+  // pick_two counts its best two picks; receipts its best receiptsCap ticks (the same cap the profile applies); rank the
+  // best order under the position weights. Never below 0.
   const tagMaxCache = new Map();
   function cardTagMax(card, tagId) {
     const key = `${card.id}|${tagId}`;
     if (tagMaxCache.has(key)) return tagMaxCache.get(key);
     const pair = TAG[tagId] ? TAG[tagId].pair : null;
-    const vals = card.options.map((o) => (o.tags || []).reduce((s, t) => s + (t.id === tagId ? t.s : t.id === pair ? -t.s : 0), 0))
-      .map((v) => Math.max(0, v)).sort((a, b) => b - a);
+    const net = card.options.map((o) => (o.tags || []).reduce((s, t) => s + (t.id === tagId ? t.s : t.id === pair ? -t.s : 0), 0));
+    if (card.type === "rank") {
+      const best = [...net].sort((a, b) => b - a).reduce((s, v, pos) => s + v * (RANK_WEIGHTS[pos] ?? 0), 0);
+      const m = Math.max(0, best);
+      tagMaxCache.set(key, m);
+      return m;
+    }
+    const vals = net.map((v) => Math.max(0, v)).sort((a, b) => b - a);
     const take = card.type === "pick_two" ? 2 : card.type === "receipts" ? CONFIG.receiptsCap : 1;
     const m = vals.slice(0, take).reduce((s, v) => s + v, 0);
     tagMaxCache.set(key, m);
@@ -380,7 +412,7 @@ export function createScorer({ kit, lib, friend }) {
     const shown = p.shownTags.map((id) => {
       const t = TAG[id];
       const rank = { did: 0, would: 1, believe: 2 };
-      const ev = p.tags[id].evidence.filter((e) => e.s > 0).sort((a, b) => rank[a.grade] - rank[b.grade] || b.s * b.w - a.s * a.w);
+      const ev = p.tags[id].evidence.filter((e) => e.s > 0 && e.w > 0).sort((a, b) => rank[a.grade] - rank[b.grade] || b.s * b.w - a.s * a.w);
       return {
         id, name: t.name, strength: p.tags[id].strong ? "strong" : p.tags[id].leaning ? "leaning" : "showing", heart: t.heart, sting: t.sting, stingOwnerOnly: true,
         youToldGenii: ev.slice(0, 3).map((e) => ({ card: e.card, chapter: e.chapter, said: e.said, grade: e.grade, rushed: e.rushed })),
@@ -462,8 +494,39 @@ export function createScorer({ kit, lib, friend }) {
     return sign(v[pairs[0]] || 0);
   }
 
-  function freezePredictions(p) {
-    return { version: kit.version, predictions: kit.finale.map((c) => predictCard(c, p)) };
+  // The finale for one run: CONFIG.finaleSize cards drawn from the sealed pool (kit.finale), deterministic from the seed
+  // (the app seeds it from the run id). One card per axis where the pool has one, then 2 tag-pair cards (cards without
+  // a main axis first, then cards whose pairs are not covered yet), then the rest at random. Play order is shuffled,
+  // then no two neighbours share a main axis where that can be avoided. Returns card ids.
+  function drawFinale(seed, n = CONFIG.finaleSize) {
+    const r = rng(seed);
+    const pool = kit.finale;
+    const size = Math.min(n, pool.length);
+    const picked = [];
+    const take = (c) => { if (c && picked.length < size && !picked.includes(c)) picked.push(c); };
+    const primaryOf = (c) => (c.checks && c.checks.primary) || null;
+    const pairsOf = (c) => (c.checks && c.checks.pairs) || [];
+    for (const ax of AXES) take(shuffle(pool.filter((c) => primaryOf(c) === ax), r)[0]);
+    for (let k = 0; k < 2; k++) {
+      const covered = new Set(picked.flatMap(pairsOf));
+      const cands = shuffle(pool.filter((c) => !picked.includes(c) && pairsOf(c).length), r);
+      const rankOf = (c) => (primaryOf(c) ? 2 : 0) + (pairsOf(c).some((q) => covered.has(q)) ? 1 : 0);
+      take([...cands].sort((a, b) => rankOf(a) - rankOf(b))[0]);
+    }
+    for (const c of shuffle(pool.filter((x) => !picked.includes(x)), r)) take(c);
+    const order = shuffle(picked, r);
+    for (let i = 1; i < order.length; i++) {
+      const same = (a, b) => a && b && primaryOf(a) && primaryOf(a) === primaryOf(b);
+      if (!same(order[i - 1], order[i])) continue;
+      const j = order.findIndex((c, k) => k > i && !same(order[i - 1], c) && !same(c, order[i + 1]));
+      if (j > i) [order[i], order[j]] = [order[j], order[i]];
+    }
+    return order.map((c) => c.id);
+  }
+
+  // Genii's guesses for the given finale ids (default: the whole sealed pool, in kit order).
+  function freezePredictions(p, ids = kit.finale.map((c) => c.id)) {
+    return { version: kit.version, predictions: ids.map((id) => predictCard(cardById[id], p)) };
   }
 
   function checkSealed(frozen, sealedAnswers) {
@@ -545,11 +608,10 @@ export function createScorer({ kit, lib, friend }) {
     if (!relOpt) throw new Error(`unknown relationship ${rel}; use one of ${F.relationships.options.map((o) => o.id).join(", ")}`);
     const r = rng(opts.seed ?? 20260926);
     const setup = answers.setup || {};
-    const teen = isTeen(setup);
     const toggles = F.relationships.privacyToggles;
     const def = (id) => toggles.find((t) => t.id === id).default[rel];
     const love = def("loveTags") === null ? false : opts.love ?? def("loveTags");
-    const mk = teen || def("marriageKidsTags") === null ? false : opts.mk ?? def("marriageKidsTags");
+    const mk = def("marriageKidsTags") === null ? false : opts.mk ?? def("marriageKidsTags");
     const stings = relOpt.level4 ? opts.stings ?? true : false;
     const groups = F.relationships.tagPairGroups;
     const allowed = new Set([...groups.open.pairs, ...(love ? groups.love.pairs : []), ...(mk ? groups.marriageKids.pairs : [])]);
@@ -567,20 +629,19 @@ export function createScorer({ kit, lib, friend }) {
     // Level 2: 12 cards from the run, via friend.json level2 selection.
     const L2 = F.level2;
     const snap = L2.cards || {};
-    const runIds = new Set(runCards(setup).filter((c) => gateOpen(c, answers)).map((c) => c.id));
+    const runIds = new Set(runCards().filter((c) => gateOpen(c, answers)).map((c) => c.id));
     const info = (id) => {
       const c = cardById[id];
       const s = snap[id] || {};
       const pairs = s.pairs || [...new Set([...Object.keys(optionVector(c.friend.a)), ...Object.keys(optionVector(c.friend.b))].filter((k) => !AXES.includes(k)))];
       const axes = s.axes || [...new Set([...Object.keys(c.friend.a.axes || {}), ...Object.keys(c.friend.b.axes || {})])];
-      return { id, card: c, level: s.level || "everyday", teenOk: s.teenOk !== false, pairs, axes, chapter: c.chapter };
+      return { id, card: c, level: s.level || "everyday", pairs, axes, chapter: c.chapter };
     };
     const eligible = (id) => {
       const c = cardById[id];
-      if (!c || !c.friend || c.privacy !== "normal" || !runIds.has(id)) return null;
+      if (!c || !c.friend || c.privacy !== "normal" || !runIds.has(id) || NO_FRIEND_TYPES.includes(c.type)) return null;
       const i = info(id);
       if (!relOpt.cardLevels.includes(i.level)) return null;
-      if (teen && !i.teenOk) return null;
       const a = readAnswer(c, answers);
       if (a.kind !== "picked" || a.rushed) return null;
       if (a.picks.some((j) => c.options[j].circumstance || c.options[j].depends)) return null;
@@ -787,6 +848,6 @@ export function createScorer({ kit, lib, friend }) {
   }
 
   return {
-    kit, lib, friendLib, AXES, TAG, pairOf, pairSign, gateOpen, pickWeight, rng, shuffle, CONFIG, allCards, cardById, isTeen, runCards, promptFor, optionVector, readAnswer, buildProfile, cardTagMax, twistOrder, cardLink, rankTags, typeOf, buildResult, profilePosition, predictCard, freezePredictions, checkSealed, friendMatch, friendMapping, pronounsFor, friendFill, buildFriendDeck, scoreFriendGame, rankFriends,
+    kit, lib, friendLib, AXES, TAG, pairOf, pairSign, gateOpen, pickWeight, pickWeights, rng, shuffle, CONFIG, allCards, cardById, runCards, promptFor, optionText, threadFor, optionVector, readAnswer, buildProfile, cardTagMax, twistOrder, cardLink, rankTags, typeOf, buildResult, profilePosition, predictCard, drawFinale, freezePredictions, checkSealed, friendMatch, friendMapping, pronounsFor, friendFill, buildFriendDeck, scoreFriendGame, rankFriends,
   };
 }

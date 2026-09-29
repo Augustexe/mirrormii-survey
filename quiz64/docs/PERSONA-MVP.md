@@ -1,5 +1,29 @@
 > Picker weights and rules changed in step B (2026-09-28): see docs/LAUNCH-SPEC.md section 10 and quiz64/src/persona/session.js; the picker notes below predate step B.
 
+> Build C engine (2026-09-28, LAUNCH-SPEC sections 21 and 22). Where the notes below still mention an age band, teen
+> prompts, locked 18+ cards, the ending tap or the delivery tap, this block wins:
+> - **Setup** is two taps (closest person, pronoun). No age screen, no under-13 stop, no teen or 18+ logic anywhere,
+>   friend game included (no age question for friends, no under-18 deck copy in links). Former 18+ cards are `intimate`.
+> - **Lobby** is three taps, stored as `{ voice, depth, rooms }` (schema `genii.persona.run/3`; `/1` and `/2` saves
+>   fail closed). `voice`: fun (Make it fun), heart (Heart to heart), cards (Just the cards: Make it fun wording, no
+>   between-card lines). `depth`: light (skips `privacy: "intimate"`) or anything. Copy in `LOBBY_COPY`; host lines per
+>   voice via `hostLine(voice)`. `Session.voiceFor(run)` and `cardVoiceFor(run)` read it; the ending tap is gone.
+> - **Two voices on a card**: `card.heart = { prompt, options: [strings, same order], thread? }`. `S.promptFor`,
+>   `S.optionText` and `S.threadFor` take the voice ("heart" or anything else); a card without `heart` reads Make it
+>   fun. Answers are option indexes either way, so evidence is never duplicated. `fp` (fingerprint) is stripped from the
+>   bundle with the other authoring keys; `heart` ships.
+> - **Formats**: `guilty` is now `bet` (3 to 5 own answers, did 0.80; the 6 legacy cards keep their two options until
+>   rewritten). New `rank` (answer: every option index once, first to last; position weights 1.0, 0.5, 0, -0.5 on each
+>   item's evidence, believe 0.45; UI: tap in order, then Done) and `eyes` (one pick, believe 0.45). Grades, weights,
+>   exits and type groups live in `research/persona-quiz-v2/final/card-schema.mjs`. Rushed-streak light types: this or
+>   that, role, bet, eyes. Spread types: receipts, bet. Rank and receipts never enter a friend deck.
+> - **Sealed pool**: `kit.finale` is the pool; each run plays `FINALE_SIZE` (8) cards drawn by `S.drawFinale(seed)`,
+>   seeded from `sha256("genii.finale|" + runId)` (`Session.finaleIds(run)`): one per axis where possible, then 2
+>   tag-pair cards, locked with sha256 as before.
+> - **Bank tooling** (in `research/persona-quiz-v2/final/`): `node check-bank.mjs` (bank checker, `--kit` for
+>   cards.json), `node merge-bank.mjs` (bank/*.json to cards.json), `node audit.mjs` (section 22 coverage targets).
+>   `assemble.mjs` is retired and refuses to run (library.json is hand-edited now).
+
 > Code notes for the web game. The spec is [docs/LAUNCH-SPEC.md](../../docs/LAUNCH-SPEC.md); where they differ, the spec wins.
 
 ---
@@ -26,7 +50,7 @@ regression tests but is no longer the entry point or in the production build.
 | Kit binding (JSON imports, `KIT_ID`) | `src/persona/kit.js` |
 | Build-time removal of authoring fields (masks, triggers, origins, "never" notes) | `kit-strip.mjs`, wired in `vite.config.js` |
 | Run state machine: setup, lobby, the picker, lock, finale, result, save and replay-validated restore | `src/persona/session.js` |
-| Lobby ids, every new lobby and picker line (`LOBBY_COPY`), host lines by delivery | `src/persona/lobby.js` |
+| Lobby ids, every new lobby and picker line (`LOBBY_COPY`), host lines by voice | `src/persona/lobby.js` |
 | Friend challenge, link payloads, friend deck view, reply import, owner and friend views, ranking | `src/persona/friend.js` |
 | Fragment payload encoding and validation | `src/persona/links.js` |
 | Result page and share projections | `src/persona/views.js` |
@@ -104,7 +128,7 @@ backend (see open items).
 
 | Key | Holds |
 |---|---|
-| `genii.persona.v2.run` | The owner's run (schema `genii.persona.run/2` with the lobby; `/1` saves fail closed), kit id, challenges sent, friends' replies |
+| `genii.persona.v2.run` | The owner's run (schema `genii.persona.run/3` with the three-tap lobby; `/1` and `/2` saves fail closed), kit id, challenges sent, friends' replies |
 | `genii.persona.friend-play.v1` | Friend games in progress on this device, by challenge id (up to 12) |
 | `genii.motion.v1` | Motion preference, written only when toggled |
 

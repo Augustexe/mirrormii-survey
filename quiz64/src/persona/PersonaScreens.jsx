@@ -9,8 +9,8 @@ import { ConversationProgress } from "../components/ConversationProgress.jsx";
 import { ChapterObject } from "../components/ChapterObject.jsx";
 import { PersonaCard } from "./PersonaCard.jsx";
 import { CHAPTERS, FINALE_TITLE } from "./kit.js";
-import { AGE_OPTIONS, CLOSEST_OPTIONS, PRONOUN_OPTIONS, RUN_SIZE } from "./session.js";
-import { LOBBY_COPY, LOBBY_DEFAULTS, hostLine, chapterIntro } from "./lobby.js";
+import { CLOSEST_OPTIONS, PRONOUN_OPTIONS, RUN_SIZE } from "./session.js";
+import { LOBBY_COPY, LOBBY_DEFAULTS, hostLine, chapterIntro, cardVoice } from "./lobby.js";
 
 export const CHAPTER_ICONS = [Smartphone, Users, Heart, Wallet, Briefcase, House, Gamepad2, Sparkles];
 const RIBBON = [...CHAPTERS.map((c) => ({ id: c.id, title: c.title })), { id: 8, title: "Finale" }];
@@ -83,20 +83,19 @@ export function PersonaLanding({ progress, onBegin, onHow }) {
   );
 }
 
-const SETUP_STEPS = [
-  { key: "age", eyebrow: "Before we start", title: "How old are you?", note: "Some cards are for 18+ only. Genii keeps the rest the same for everyone.", options: AGE_OPTIONS },
+// Setup: two taps, closest person and pronoun. There is no age question (LAUNCH-SPEC section 22).
+export const SETUP_STEPS = [
   { key: "closest", eyebrow: "Before we start", title: "Who's your closest person right now?", note: "“Your person” in the cards means them. It can be a crush, a partner or your closest friend.", options: CLOSEST_OPTIONS },
   { key: "pronoun", eyebrow: "Before we start", title: "When friends play about you, Genii should say…", note: "Only used in the friend game.", options: PRONOUN_OPTIONS },
 ];
 
-export function SetupView({ onDone, onBack, onUnder13, busy }) {
+export function SetupView({ onDone, onBack, busy }) {
   const [step, setStep] = useState(0);
   const [values, setValues] = useState({});
   const heading = useRef(null);
   useEffect(() => { heading.current?.focus({ preventScroll: true }); }, [step]);
   const s = SETUP_STEPS[step];
   const choose = (id) => {
-    if (s.key === "age" && id === "under13") return onUnder13();
     const next = { ...values, [s.key]: id };
     setValues(next);
     if (step < SETUP_STEPS.length - 1) setStep(step + 1);
@@ -105,9 +104,9 @@ export function SetupView({ onDone, onBack, onUnder13, busy }) {
   return (
     <motion.main className="quiz-page page-enter persona-setup" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.22 }}>
       <div className="quiz-topline">
-        <div><span className="eyebrow">{s.eyebrow}</span><strong>Question {step + 1} of 3</strong></div>
+        <div><span className="eyebrow">{s.eyebrow}</span><strong>Question {step + 1} of {SETUP_STEPS.length}</strong></div>
       </div>
-      <ConversationProgress value={step} total={3} />
+      <ConversationProgress value={step} total={SETUP_STEPS.length} />
       <div className="quiz-layout">
         <article className="question-card persona-card" data-chapter="1" data-role="context">
           <div className="question-head"><div>
@@ -136,7 +135,8 @@ export function SetupView({ onDone, onBack, onUnder13, busy }) {
   );
 }
 
-// The lobby: four unscored taps after setup. Rooms is a multi-select that starts with every room open.
+// The lobby: three unscored taps after setup (voice, how personal, rooms). Rooms is a multi-select that starts with
+// every room open.
 export function LobbyView({ onDone, onBack, busy, error = "" }) {
   const steps = LOBBY_COPY.steps;
   const [step, setStep] = useState(0);
@@ -147,7 +147,7 @@ export function LobbyView({ onDone, onBack, busy, error = "" }) {
   const next = (vals) => {
     setValues(vals);
     if (step < steps.length - 1) setStep(step + 1);
-    else onDone({ ending: vals.ending, depth: vals.depth, rooms: vals.rooms, delivery: vals.delivery });
+    else onDone({ voice: vals.voice, depth: vals.depth, rooms: vals.rooms });
   };
   const toggleRoom = (id) => setValues((v) => ({ ...v, rooms: v.rooms.includes(id) ? v.rooms.filter((r) => r !== id) : [...v.rooms, id] }));
   return (
@@ -191,21 +191,6 @@ export function LobbyView({ onDone, onBack, busy, error = "" }) {
   );
 }
 
-export function BlockedView({ onHome }) {
-  const heading = useRef(null);
-  useEffect(() => { heading.current?.focus({ preventScroll: true }); }, []);
-  return (
-    <main className="interlude-page page-enter persona-blocked">
-      <div className="interlude-copy">
-        <span className="chapter-kicker">Almost</span>
-        <h1 ref={heading} tabIndex="-1">Genii is for ages 13 and up.</h1>
-        <p>Nothing was saved. Come back when you're 13. Genii will still be here, taking notes.</p>
-        <div className="hero-actions"><button type="button" className="button button--secondary" onClick={onHome}>Back to the start</button></div>
-      </div>
-    </main>
-  );
-}
-
 export function PersonaInterlude({ chapter, count, onContinue, onSave }) {
   const heading = useRef(null);
   useEffect(() => { heading.current?.focus({ preventScroll: true }); window.scrollTo({ top: 0, behavior: "instant" }); }, [chapter.id]);
@@ -235,11 +220,11 @@ export function PersonaInterlude({ chapter, count, onContinue, onSave }) {
   );
 }
 
-export function interludeFor(step, delivery = LOBBY_DEFAULTS.delivery) {
+export function interludeFor(step, voice = LOBBY_DEFAULTS.voice) {
   const X = LOBBY_COPY.extras;
-  if (step.phase === "extra") return { id: 7, key: "extra", kicker: X.kicker, title: X.title, intro: chapterIntro(delivery, X.intro), sub: X.sub };
+  if (step.phase === "extra") return { id: 7, key: "extra", kicker: X.kicker, title: X.title, intro: chapterIntro(voice, X.intro), sub: X.sub };
   const ch = CHAPTERS.find((c) => c.id === step.chapter);
-  return { id: ch.id, key: `chapter-${ch.id}`, kicker: LOBBY_COPY.chapterKicker(step.ordinal || ch.id, step.chapters || CHAPTERS.length), title: ch.title, intro: chapterIntro(delivery, ch.intro), sub: "Tap what you'd actually do. Skip anything that isn't yours." };
+  return { id: ch.id, key: `chapter-${ch.id}`, kicker: LOBBY_COPY.chapterKicker(step.ordinal || ch.id, step.chapters || CHAPTERS.length), title: ch.title, intro: chapterIntro(voice, ch.intro), sub: "Tap what you'd actually do. Skip anything that isn't yours." };
 }
 
 function PersonaRibbon({ current, onOpen }) {
@@ -258,10 +243,12 @@ function PersonaRibbon({ current, onOpen }) {
   );
 }
 
-export function PersonaQuizView({ step, setup, onAnswer, onMap, busy, error, cardKey, rushing = false, delivery = LOBBY_DEFAULTS.delivery }) {
+// voice: the lobby voice (fun, heart or cards). Cards read Heart to heart for "heart", Make it fun otherwise; Genii's
+// between-card lines follow the voice and are hidden for Just the cards.
+export function PersonaQuizView({ step, setup, onAnswer, onMap, busy, error, cardKey, rushing = false, voice = LOBBY_DEFAULTS.voice }) {
   const current = step.phase === "finale" ? 8 : step.phase === "extra" ? 7 : step.chapter;
   const chapterTitle = step.phase === "finale" ? FINALE_TITLE : step.phase === "extra" ? LOBBY_COPY.extras.title : CHAPTERS.find((c) => c.id === step.chapter).title;
-  const bubble = hostLine(delivery, { phase: step.phase, index: step.index, rushing });
+  const bubble = hostLine(voice, { phase: step.phase, index: step.index, rushing });
   const card = step.card;
   const label = step.phase === "finale" ? `Final card ${step.index} of ${step.size}` : LOBBY_COPY.runLabel(step.resolved + 1, step.total || RUN_SIZE);
   return (
@@ -273,7 +260,7 @@ export function PersonaQuizView({ step, setup, onAnswer, onMap, busy, error, car
       </div>
       <ConversationProgress value={step.resolved} total={step.total} />
       <div className="quiz-layout">
-        <PersonaCard key={cardKey} card={card} step={step} setup={setup} onAnswer={onAnswer} busy={busy} error={error} />
+        <PersonaCard key={cardKey} card={card} step={step} voice={cardVoice(voice)} onAnswer={onAnswer} busy={busy} error={error} />
         <aside className="quiz-guide">
           <GeniiStage
             mood={step.phase === "finale" ? "skeptical" : card.type === "real" ? "attentive" : "curious"}

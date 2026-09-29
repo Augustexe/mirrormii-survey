@@ -16,7 +16,10 @@ The assembled, playable, scoreable quiz from `../BRIEF.md`: 7 chapters and a sea
 | `SIM-REPORT.md` | The simulation numbers and the tuning grid. |
 | `RESULT-TEMPLATE.md` | How the result page and the share card read, with a worked synthetic example. |
 | `PROMPT.md` | The handoff prompt for blind test 2 through lavish-axi. |
-| `assemble.mjs` | Rebuilds `cards.json` and `library.json` from `../chapters/*.final.json`, `../library/` and `../judges/flow.json`. Run it in the repo, not in the blind copy. |
+| `assemble.mjs` | Retired (Build C): refuses to run. `library.json` is edited by hand; `cards.json` is built by `merge-bank.mjs`. |
+| `card-schema.mjs` | Card formats: grade, weight, exits and option counts per type, type groups, rank position weights (Build C). |
+| `check-bank.mjs` | `node check-bank.mjs`: validates `bank/*.json` (or `--kit` for cards.json) and prints counts against LAUNCH-SPEC section 22. |
+| `merge-bank.mjs` | `node merge-bank.mjs`: builds `cards.json` from `bank/ch1.json`..`ch7.json`, `extras.json`, `sealed.json`. |
 | `sim-example/` | One synthetic respondent (answers, sealed answers, hidden profile, result, sealed results). |
 
 ## Commands
@@ -28,7 +31,9 @@ node score.mjs check sealed-answers.json # -> sealed-results.json (refuses if th
 node score.mjs friend --rel bestie --stings on   # -> friend-deck.json (partner | crush | friendOrCoworker | bestie)
 node sim.mjs                             # tune and report
 node --test tests.mjs                    # all checks
-node assemble.mjs                        # rebuild cards.json and library.json from the sources
+node check-bank.mjs                      # check the bank (Build C); --kit checks cards.json
+node merge-bank.mjs                      # bank/*.json -> cards.json (refuses on missing files or checker errors)
+node audit.mjs                           # coverage against LAUNCH-SPEC section 22
 ```
 
 `answers.json`: `{"setup":{"age":"teen|adult","closest":"...","pronoun":"she|he|they"},"<cardId>": optionIndex | [i, j] | "skip" | "not_my_life" | "no_recent", "<cardId>.flip": index, "_ms": {"<cardId>": ms}}`. Outputs go to the current folder.

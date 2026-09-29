@@ -6,7 +6,7 @@ import * as Friend from "./persona/friend.js";
 import { readHash, linkFor, LinkError } from "./persona/links.js";
 import { loadRun, restoreRun, loadFriendPlays, saveFriendPlay, deleteAllGeniiData, MOTION_KEY } from "./persona/store.js";
 import { resultView } from "./persona/views.js";
-import { PersonaHeader, PersonaLanding, SetupView, LobbyView, BlockedView, PersonaInterlude, interludeFor, PersonaQuizView, LockView } from "./persona/PersonaScreens.jsx";
+import { PersonaHeader, PersonaLanding, SetupView, LobbyView, PersonaInterlude, interludeFor, PersonaQuizView, LockView } from "./persona/PersonaScreens.jsx";
 import { PersonaResult } from "./persona/PersonaResult.jsx";
 import { FriendGame } from "./persona/FriendGame.jsx";
 import { FriendResultsView } from "./persona/FriendResultsView.jsx";
@@ -94,8 +94,7 @@ function PersonaAppInner() {
   const [cardKey, setCardKey] = useState(0);
   const [motionOn, setMotionOn] = useState(() => { try { return localStorage.getItem(MOTION_KEY) !== "off"; } catch { return true; } });
   const [notice, setNotice] = useState("");
-  // Who a friend's "Your turn" should send a link back to. Held in memory until setup succeeds, so an under-13
-  // stop leaves nothing saved.
+  // Who a friend's "Your turn" should send a link back to. Held in memory until setup succeeds.
   const [pendingReturn, setPendingReturn] = useState(null);
   // The run exactly as this tab last read or wrote it. A write only goes through if storage still holds it,
   // so a stale tab can never overwrite a newer run (a reply imported elsewhere, or a lock made in another tab).
@@ -112,12 +111,12 @@ function PersonaAppInner() {
     setFriendViewId(null);
     if (raw === null) {
       setRun(null);
-      setScreen((prev) => (["friend", "linkError", "blocked"].includes(prev) ? prev : "landing"));
+      setScreen((prev) => (["friend", "linkError"].includes(prev) ? prev : "landing"));
     } else {
       try {
         const next = restoreRun(raw);
         setRun(next);
-        setScreen((prev) => (["friend", "linkError", "blocked", "landing"].includes(prev) ? prev : next.setup ? screenFor(next) : "landing"));
+        setScreen((prev) => (["friend", "linkError", "landing"].includes(prev) ? prev : next.setup ? screenFor(next) : "landing"));
       } catch (e) {
         setRun(null);
         setBroken({ message: e.message, raw });
@@ -169,7 +168,7 @@ function PersonaAppInner() {
       try {
         const ch = Friend.parseChallenge(link.payload);
         const saved = storage() ? loadFriendPlays(storage())[ch.id] : null;
-        setFriend({ ch, isOwnLink: Boolean(current && current.challenges.some((c) => c.id === ch.id)), play: saved || { payload: link.payload, under18: ch.mk ? null : false, stage: "intro", step: 0, guesses: EMPTY_GUESSES, updatedAt: nowISO() } });
+        setFriend({ ch, isOwnLink: Boolean(current && current.challenges.some((c) => c.id === ch.id)), play: saved || { payload: link.payload, stage: "intro", step: 0, guesses: EMPTY_GUESSES, updatedAt: nowISO() } });
         setScreen("friend");
       } catch (e) {
         clearHash();
@@ -232,11 +231,6 @@ function PersonaAppInner() {
       setError("");
       setScreen(screenFor(next));
     } catch (e) { setError(e.message); }
-  };
-  const under13 = () => {
-    setPendingReturn(null);
-    if (run && !run.setup) persist(null);
-    setScreen("blocked");
   };
   const answer = (value, meta) => {
     if (!run || busy) return;
@@ -363,14 +357,13 @@ function PersonaAppInner() {
         )}
 
         {screen === "landing" && <PersonaLanding progress={!run || !run.setup ? null : step.kind === "result" ? "result" : "run"} onBegin={begin} onHow={() => setDialog("how")} />}
-        {screen === "setup" && <SetupView busy={busy} onBack={goHome} onUnder13={under13} onDone={startWithSetup} />}
+        {screen === "setup" && <SetupView busy={busy} onBack={goHome} onDone={startWithSetup} />}
         {screen === "lobby" && run && run.setup && !run.lobby && <LobbyView busy={busy} error={error} onBack={goHome} onDone={chooseLobby} />}
-        {screen === "blocked" && <BlockedView onHome={goHome} />}
         {screen === "interlude" && step && step.kind === "card" && (
-          <PersonaInterlude chapter={interludeFor(step, Run.deliveryFor(run))} count={step.phase === "chapter" ? step.size : 0} onContinue={() => setScreen("card")} onSave={goHome} />
+          <PersonaInterlude chapter={interludeFor(step, Run.voiceFor(run))} count={step.phase === "chapter" ? step.size : 0} onContinue={() => setScreen("card")} onSave={goHome} />
         )}
         {screen === "card" && step && step.kind === "card" && (
-          <PersonaQuizView step={step} setup={run.setup} onAnswer={answer} onMap={() => setDialog("map")} busy={busy} error={error} cardKey={`${step.card.id}-${cardKey}`} rushing={Run.recentlyRushed(run)} delivery={Run.deliveryFor(run)} />
+          <PersonaQuizView step={step} setup={run.setup} onAnswer={answer} onMap={() => setDialog("map")} busy={busy} error={error} cardKey={`${step.card.id}-${cardKey}`} rushing={Run.recentlyRushed(run)} voice={Run.voiceFor(run)} />
         )}
         {screen === "lock" && run && (step.kind === "lock" || (step.kind === "card" && step.phase === "finale")) && (
           <LockView locked={Boolean(run.frozen)} lockHash={run.lockHash} onLock={lock} onStart={() => setScreen("card")} onSave={goHome} busy={busy} error={error} />

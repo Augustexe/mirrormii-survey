@@ -4,10 +4,9 @@ import * as Session from "../src/persona/session.js";
 import { S, KIT, KIT_ID } from "../src/persona/kit.js";
 import { sha256Hex, canonicalJSON } from "../src/persona/sha256.js";
 import { restoreRun } from "../src/persona/store.js";
-import { ADULT, TEEN, clock, started, playUntil, firstOption, leaning, completeRun, reach, OPEN_LOBBY } from "./persona-helpers.mjs";
+import { ADULT, OTHER, clock, started, playUntil, firstOption, leaning, completeRun, reach, OPEN_LOBBY, lobbyFor } from "./persona-helpers.mjs";
 import crypto from "node:crypto";
 
-const LOCKED18 = ["C3-8", "C3-9", "C6-9", "C6-11"];
 const seenIds = (state) => Object.keys(state.answers).filter((k) => !k.endsWith(".flip"));
 
 test("sha256 matches node:crypto on ascii, unicode and block-boundary inputs", () => {
@@ -17,14 +16,17 @@ test("sha256 matches node:crypto on ascii, unicode and block-boundary inputs", (
   assert.equal(canonicalJSON({ b: 1, a: [2, { d: 1, c: 2 }] }), canonicalJSON({ a: [2, { c: 2, d: 1 }], b: 1 }));
 });
 
-test("setup: an age band, a closest person and a pronoun; under 13 never starts a run", () => {
+test("setup: closest person and pronoun only; there is no age question", () => {
   const fresh = Session.newRun({ now: clock(), runId: "abcdefgh" });
   assert.deepEqual(Session.currentStep(fresh), { kind: "setup" });
-  assert.throws(() => Session.startRun(fresh, { age: "under13", closest: "parent", pronoun: "he" }), { code: "under13" });
-  assert.throws(() => Session.startRun(fresh, { age: "adult", closest: "boss", pronoun: "he" }), { code: "bad_setup" });
+  assert.throws(() => Session.startRun(fresh, { closest: "boss", pronoun: "he" }), { code: "bad_setup" });
   assert.throws(() => Session.startRun(fresh, { ...ADULT, name: "free text" }), { code: "bad_setup" });
+  assert.throws(() => Session.startRun(fresh, { ...ADULT, age: "adult" }), { code: "bad_setup" }, "an age field is not part of setup");
+  assert.throws(() => Session.startRun(fresh, { ...ADULT, age: "under13" }), { code: "bad_setup" });
+  assert.equal(Session.AGE_OPTIONS, undefined, "no age options");
   const s = Session.startRun(fresh, ADULT);
-  assert.throws(() => Session.startRun(s, TEEN), { code: "already_started" });
+  assert.deepEqual(s.setup, { closest: ADULT.closest, pronoun: ADULT.pronoun });
+  assert.throws(() => Session.startRun(s, OTHER), { code: "already_started" });
   assert.deepEqual(Session.currentStep(s), { kind: "lobby" }, "the lobby comes right after setup");
   const l = Session.chooseLobby(s, OPEN_LOBBY);
   assert.equal(Session.currentStep(l).card.id, KIT.chapters[0].cards[0].id);
@@ -45,21 +47,19 @@ test("adult run: RUN_SIZE picked cards with chapters in order, the finale after 
   assert.equal(profile.warnings.length, 0);
 });
 
-test("teen run: locked 18+ cards and marriage and kids tags never appear", () => {
-  for (const choose of [firstOption, leaning({ R1: 1, R2: -1, R3: 1, L1: -1, L2: 1, L3: -1 }), leaning({ R1: -1, R2: 1, R3: -1, L1: 1, L2: -1, L3: 1 })]) {
-    let s = started(TEEN, "teenrun01");
-    const shown = [];
-    s = playUntil(s, (card, step) => { shown.push(card.id); return choose(card, step); });
-    for (const id of LOCKED18) assert.ok(!shown.includes(id), `${id} shown to a teen`);
-    for (const id of shown) assert.ok(S.cardById[id].teen !== false, `${id} teen flag`);
-    const { profile, result } = Session.resultFor(s);
-    for (const id of Object.keys(profile.tags)) assert.ok(!/^T(11|21)/.test(id), `teen scored ${id}`);
-    for (const t of result.tags) assert.ok(!/^T(11|21)/.test(t.id), `teen shown ${t.id}`);
-    assert.ok(shown.filter((id) => !id.startsWith("X-") && S.cardById[id].type !== "sealed").length <= 57);
+test("one bank for everyone: the setup never changes the route; Keep it light skips intimate cards", () => {
+  const route = (setup, lobby) => Session.routeFor(completeRun(setup, firstOption, "samerun01", lobby)).map((c) => c.id);
+  assert.deepEqual(route(ADULT, OPEN_LOBBY), route(OTHER, OPEN_LOBBY), "closest person and pronoun never change the cards");
+  assert.deepEqual(route(ADULT, OPEN_LOBBY), route(ADULT, { ...OPEN_LOBBY, voice: "heart" }), "the voice never changes the cards");
+  const intimate = KIT.chapters.flatMap((c) => c.cards).filter((c) => c.privacy === "intimate").map((c) => c.id);
+  assert.ok(intimate.length >= 4);
+  for (const runId of ["lightrun1", "lightrun2", "lightrun3"]) {
+    const shown = Session.routeFor(completeRun(ADULT, leaning({ R1: 1, R3: 1, L2: 1 }), runId, lobbyFor(["love", "work", "family"], "light"))).map((c) => c.id);
+    for (const id of intimate) assert.ok(!shown.includes(id), `${id} served on Keep it light`);
   }
-  const teenPrompted = KIT.chapters.flatMap((c) => c.cards).filter((c) => c.teenPrompt && c.teen);
-  assert.ok(teenPrompted.length > 0);
-  for (const card of teenPrompted) assert.equal(S.promptFor(card, TEEN), card.teenPrompt);
+  assert.equal(Session.depthAllows(S.cardById[intimate[0]], "anything"), true);
+  assert.equal(Session.depthAllows(S.cardById[intimate[0]], "light"), false);
+  for (const c of KIT.chapters.flatMap((ch) => ch.cards)) assert.ok(!("teen" in c) && !("teenPrompt" in c), c.id);
 });
 
 test("C3-9 joins the pool only after a C3-8 pick that carries the kids-yes line", () => {
@@ -92,12 +92,12 @@ test("answers are validated per card: exits, pick two, depends follow-ups, order
   assert.throws(() => Session.answerCard(s, first.id, 99), { code: "bad_answer" });
   assert.throws(() => Session.answerCard(s, first.id, 0, { ms: -5 }), { code: "bad_answer" });
   assert.throws(() => Session.answerCard(s, "C7-10", 0), { code: "out_of_order" });
-  const pickTwo = KIT.chapters.flatMap((c) => c.cards).find((c) => c.type === "pick_two" && c.teen);
+  const pickTwo = KIT.chapters.flatMap((c) => c.cards).find((c) => c.type === "pick_two");
   s = reach(pickTwo.id);
   assert.throws(() => Session.answerCard(s, pickTwo.id, [0]), { code: "bad_answer" });
   assert.throws(() => Session.answerCard(s, pickTwo.id, [1, 1]), { code: "bad_answer" });
   assert.throws(() => Session.answerCard(s, pickTwo.id, 0), { code: "bad_answer" });
-  const depends = KIT.chapters.flatMap((c) => c.cards).filter((c) => c.flip && c.teen).find((c) => reach(c.id));
+  const depends = KIT.chapters.flatMap((c) => c.cards).filter((c) => c.flip).find((c) => reach(c.id));
   const di = depends.options.findIndex((o) => o.depends);
   s = reach(depends.id);
   assert.throws(() => Session.answerCard(s, depends.id, 0, { flip: 1 }), { code: "bad_answer" }, "flip only after a depends option");
@@ -111,7 +111,7 @@ test("answers are validated per card: exits, pick two, depends follow-ups, order
   assert.equal(profile.research.depends[0].flip, depends.flip.options[2]);
 });
 
-test("new formats validate their own answer shapes: receipts ticks with an exclusive None, guilty and reply one pick", () => {
+test("new formats validate their own answer shapes: receipts ticks with an exclusive None, rank a full order, bet, eyes and reply one pick", () => {
   const receipts = { type: "receipts", exits: ["skip", "not_my_life"], options: [{ t: "a" }, { t: "b" }, { t: "c" }, { t: "None of these", none: true }] };
   assert.deepEqual(Session.validateResponse(receipts, [2, 0]), [0, 2], "stored sorted");
   assert.deepEqual(Session.validateResponse(receipts, []), [], "Done with nothing ticked");
@@ -121,17 +121,22 @@ test("new formats validate their own answer shapes: receipts ticks with an exclu
   assert.throws(() => Session.validateResponse(receipts, 1), { code: "bad_answer" });
   assert.throws(() => Session.validateResponse(receipts, "no_recent"), { code: "bad_answer" });
   assert.equal(Session.validateResponse(receipts, "skip"), "skip");
-  for (const type of ["guilty", "reply", "others"]) {
+  for (const type of ["bet", "reply", "others", "eyes"]) {
     const card = { type, exits: ["skip", "not_my_life"], options: [{ t: "a" }, { t: "b" }] };
     assert.equal(Session.validateResponse(card, 1), 1);
     assert.throws(() => Session.validateResponse(card, [0]), { code: "bad_answer" }, type);
     assert.throws(() => Session.validateResponse(card, 2), { code: "bad_answer" }, type);
   }
-  assert.ok(Session.LIGHT_TYPES.includes("guilty"), "guilty or not is a quick card for the rushed rule");
+  const rank = { type: "rank", exits: ["skip", "not_my_life"], options: [{ t: "a" }, { t: "b" }, { t: "c" }, { t: "d" }] };
+  assert.deepEqual(Session.validateResponse(rank, [2, 0, 3, 1]), [2, 0, 3, 1], "stored in rank order");
+  for (const bad of [[0, 1, 2], [0, 0, 1, 2], [0, 1, 2, 4], 1, []]) assert.throws(() => Session.validateResponse(rank, bad), { code: "bad_answer" }, JSON.stringify(bad));
+  assert.equal(Session.validateResponse(rank, "skip"), "skip");
+  assert.deepEqual([...Session.LIGHT_TYPES].sort(), ["bet", "eyes", "role", "this_or_that"], "quick cards for the rushed rule");
+  assert.deepEqual([...Session.SPREAD_TYPES], ["receipts", "bet"]);
 });
 
 test("a receipts card plays through the step machine: ticks, an exclusive None, per-tick weight, save and restore", () => {
-  const card = KIT.chapters.flatMap((c) => c.cards).find((c) => c.type === "receipts" && c.teen);
+  const card = KIT.chapters.flatMap((c) => c.cards).find((c) => c.type === "receipts");
   const s = reach(card.id);
   assert.ok(s, `${card.id} is served`);
   assert.throws(() => Session.answerCard(s, card.id, 0), { code: "bad_answer" }, "receipts take a list");
@@ -145,9 +150,9 @@ test("a receipts card plays through the step machine: ticks, an exclusive None, 
   assert.equal(Session.currentStep(back).card.id, Session.currentStep(ticked).card.id, "a restored run resumes on the same card");
   const nothing = Session.answerCard(s, card.id, [none], { ms: 5000 });
   assert.equal(Object.values(Session.profileFor(nothing).tags).flatMap((t) => t.evidence).filter((e) => e.card === card.id).length, 0);
-  const guilty = KIT.chapters.flatMap((c) => c.cards).find((c) => c.type === "guilty" && c.teen);
-  assert.equal(guilty.options.length, 2);
-  assert.equal(guilty.weight, 0.8);
+  const bet = KIT.chapters.flatMap((c) => c.cards).find((c) => c.type === "bet");
+  assert.equal(bet.grade, "did");
+  assert.equal(bet.weight, 0.8);
 });
 
 test("rushed taps count at 0.3 and are logged for research", () => {
@@ -190,7 +195,7 @@ test("an unfinished side gets 1 or 2 extra cards for that side only, then Genii 
 test("Genii locks its guesses once, before the finale, and a changed lock or answer refuses to score", () => {
   let s = playUntil(started(ADULT, "lockrun01"), firstOption, (step) => step.kind === "lock");
   assert.throws(() => Session.resultFor(s), { code: "not_complete" });
-  const firstFinale = KIT.finale[0].id;
+  const firstFinale = Session.finaleIds(s)[0];
   assert.throws(() => Session.answerCard(s, firstFinale, 0), { code: "out_of_order" }, "no finale before the lock");
   s = Session.lockGuesses(s, { now: clock() });
   assert.throws(() => Session.lockGuesses(s), { code: "already_locked" });
@@ -232,7 +237,7 @@ test("save and restore: a round trip resumes on the same card; bad saves fail cl
   assert.equal(Session.currentStep(back).card.id, Session.currentStep(mid).card.id);
   assert.deepEqual(back.answers, mid.answers);
 
-  const done = completeRun(TEEN, firstOption, "saverun02");
+  const done = completeRun(OTHER, firstOption, "saverun02");
   const again = restoreRun(Session.serialize(done));
   assert.equal(canonicalJSON(Session.resultFor(again).result), canonicalJSON(Session.resultFor(done).result));
 
@@ -242,13 +247,40 @@ test("save and restore: a round trip resumes on the same card; bad saves fail cl
   bad((d) => { d.schema = "genii.persona.run/0"; }, "schema");
   bad((d) => { d.kit = "persona-quiz-v1"; }, "kit_changed");
   bad((d) => { d.extra = 1; }, "corrupt");
-  bad((d) => { d.answers["C3-8"] = [0, 1]; }, "corrupt");
+  const offRoute = KIT.chapters.flatMap((c) => c.cards).find((c) => !(c.id in raw.answers) && c.type === "scenario").id;
+  bad((d) => { d.answers[offRoute] = 0; }, "corrupt");
   bad((d) => { d.ms["C9-9"] = 5; }, "corrupt");
-  bad((d) => { d.setup.age = "under13"; }, "corrupt");
+  bad((d) => { d.setup.age = "adult"; }, "corrupt");
+  bad((d) => { d.lobby.ending = "funny"; }, "corrupt");
+  bad((d) => { d.lobby.voice = "loud"; }, "corrupt");
   bad((d) => { d.lockHash = "0".repeat(64); }, "tampered");
   bad((d) => { d.frozen = null; }, "corrupt");
   bad((d) => { const k = Object.keys(d.answers)[3]; d.answers[k] = "no_such_exit"; });
   bad((d) => { d.frozen.predictions[0].predicted = (d.frozen.predictions[0].predicted + 1) % 4; }, "tampered");
-  bad((d) => { d.finale = { [KIT.finale[3].id]: 0 }; }, "corrupt");
+  bad((d) => { d.finale = { [Session.finaleIds(done)[3]]: 0 }; }, "corrupt");
+  bad((d) => { d.schema = "genii.persona.run/2"; }, "schema");
   assert.equal(KIT_ID.startsWith("persona-quiz-v2@"), true);
+});
+
+test("sealed pool: each run plays 8 finale cards drawn from the pool by its run id, locked with sha256", () => {
+  const a = started(ADULT, "finale001"), b = started(ADULT, "finale001"), c = started(ADULT, "finale002");
+  assert.deepEqual(Session.finaleIds(a), Session.finaleIds(b), "same run id, same finale");
+  assert.equal(Session.finaleIds(a).length, Session.FINALE_SIZE);
+  assert.equal(Session.FINALE_SIZE, Math.min(8, KIT.finale.length));
+  for (const id of Session.finaleIds(a)) assert.equal(S.cardById[id].type, "sealed");
+  const orders = new Set(["finale001", "finale002", "finale003", "finale004", "finale005", "finale006"].map((id) => Session.finaleIds(started(ADULT, id)).join()));
+  assert.ok(orders.size > 1, "run ids draw different finales");
+  assert.ok(Session.finaleIds(c).length === 8);
+  // The step machine serves the drawn cards in draw order, and the lock covers exactly them.
+  let s = playUntil(a, firstOption, (step) => step.kind === "card" && step.phase === "finale");
+  assert.deepEqual(s.frozen.predictions.map((p) => p.id), Session.finaleIds(a));
+  const served = [];
+  s = playUntil(s, (card) => { served.push(card.id); return firstOption(card); });
+  assert.deepEqual(served, [...Session.finaleIds(a)]);
+  assert.equal(Session.resultFor(s).sealed.rows.length, 8);
+  // A frozen set for a different draw refuses to score.
+  const other = structuredClone(s);
+  other.frozen.predictions.reverse();
+  other.lockHash = sha256Hex(canonicalJSON(other.frozen));
+  assert.deepEqual(Session.verifyLock(other), { ok: false, reason: "guesses_changed" });
 });

@@ -12,8 +12,12 @@
       "minus": "Me",
       "zhPlus": "我們",
       "zhMinus": "我",
-      "plusLine": "Your people are your happy place. Close means shared.",
-      "minusLine": "You love hard and keep your own door. Close still means space."
+      "plusLine": "Your people are your happy place. Close means shared: plans, snacks, calendars.",
+      "minusLine": "You love hard and keep your own door. Close still means space.",
+      "h": {
+        "plusLine": "You feel most yourself when life is shared with the people close to you.",
+        "minusLine": "You love deeply and keep room of your own. For you, closeness includes space."
+      }
     },
     {
       "id": "R2",
@@ -21,8 +25,12 @@
       "minus": "Soft",
       "zhPlus": "直",
       "zhMinus": "柔",
-      "plusLine": "You say the hard thing to their face, because that's respect.",
-      "minusLine": "You hold the person first. The hard part can wait for a gentler moment."
+      "plusLine": "You say the hard thing to their face, because that's how you show respect.",
+      "minusLine": "You hold the person first. The hard part waits for a gentler moment.",
+      "h": {
+        "plusLine": "You say difficult things directly, because to you that is a form of respect.",
+        "minusLine": "You look after the person first and choose a gentle moment for the hard part."
+      }
     },
     {
       "id": "R3",
@@ -30,8 +38,12 @@
       "minus": "Own",
       "zhPlus": "舊",
       "zhMinus": "新",
-      "plusLine": "Traditions, rituals and how a home should run feel like home to you.",
-      "minusLine": "You write your own script for love, home and holidays."
+      "plusLine": "Traditions, rituals and the way a home should run feel like home to you.",
+      "minusLine": "You write your own script for love, home and holidays.",
+      "h": {
+        "plusLine": "Traditions and familiar rituals give your relationships and your home their shape.",
+        "minusLine": "You shape love, home and celebrations in your own way rather than following a script."
+      }
     },
     {
       "id": "L1",
@@ -40,7 +52,11 @@
       "zhPlus": "穩",
       "zhMinus": "闖",
       "plusLine": "Security first. Your leaps come with a safety net.",
-      "minusLine": "New city, new plan, new try. The unknown pulls you in."
+      "minusLine": "New city, new plan, new try. The unknown pulls you in.",
+      "h": {
+        "plusLine": "You value security, and you take chances once your footing is solid.",
+        "minusLine": "You're drawn to the unfamiliar, and new places and plans feel inviting to you."
+      }
     },
     {
       "id": "L2",
@@ -49,7 +65,11 @@
       "zhPlus": "衝",
       "zhMinus": "鬆",
       "plusLine": "You want visible wins and a clear direction, sooner rather than later.",
-      "minusLine": "You run on your own clock. Other people's timelines are optional."
+      "minusLine": "You run on your own clock. Other people's timelines are optional.",
+      "h": {
+        "plusLine": "You want progress you can see and a clear direction to move in.",
+        "minusLine": "You move at your own pace and don't measure your life by other people's timelines."
+      }
     },
     {
       "id": "L3",
@@ -58,7 +78,11 @@
       "zhPlus": "規",
       "zhMinus": "情",
       "plusLine": "A fair process keeps everyone safe. A rule is a rule.",
-      "minusLine": "You read the room. Rules bend when a person needs them to."
+      "minusLine": "You read the room. Rules bend when a person needs them to.",
+      "h": {
+        "plusLine": "You trust a fair, consistent process, because it treats everyone the same.",
+        "minusLine": "You look at the person and the situation, and you let rules bend when someone needs it."
+      }
     }
   ],
   "relationship": [
@@ -67,88 +91,144 @@
       "R1": 1,
       "R2": 1,
       "R3": -1,
-      "name": "Trash-Talking Cuddle Bug",
+      "name": "Ride-or-Die",
       "zh": "嘴硬黏人精",
-      "desc": "You want your people close. You show it by roasting them, saying it straight and writing your own rules for love.",
-      "sting": "You call them annoying. Your real fear is the day they stop annoying you.",
-      "heart": "I'm clingy and I tell the truth. You get the full set."
+      "desc": "You're in it with your people all the way, and you'll tell them the truth on the way in. Your loyalty is loud, honest and done your way.",
+      "sting": "You'll go to war for your people. Letting them go to war for you is the part you haven't practiced.",
+      "heart": "I'm all in, and I tell the truth. You get both.",
+      "read": "You're the one who shows up first and tells the truth once you're there.",
+      "h": {
+        "desc": "You stay close to your people and speak honestly with them, and you build those bonds on your own terms rather than on anyone's template.",
+        "read": "You're the one who stays, and who tells people what they need to hear.",
+        "sting": "You defend the people you love without hesitation. Letting them stand up for you is harder, and it's allowed.",
+        "heart": "My loyalty and my honesty come together, and I trust both."
+      }
     },
     {
       "code": "We·Direct·Classic",
       "R1": 1,
       "R2": 1,
       "R3": 1,
-      "name": "Family CEO",
+      "name": "The Glue",
       "zh": "家族CEO",
-      "desc": "You're the hub of your people. You carry the load, make the call and keep the traditions running on time.",
-      "sting": "Everyone leans on you. Nobody has asked if you're tired.",
-      "heart": "I can carry it all, and I deserve to be carried too."
+      "desc": "You're your group's center of gravity. You make the plan, make the call and keep the traditions running, and somehow everyone ends up at your table.",
+      "sting": "Everyone leans on you. Very few people have thought to ask if you're tired.",
+      "heart": "I can carry it all, and I deserve to be carried too.",
+      "read": "You're the one who keeps everyone together, and everyone knows it.",
+      "h": {
+        "desc": "You hold your people together. You make decisions, keep traditions alive and bring everyone back to the same table, often before anyone asks.",
+        "read": "You're the one who holds people together, often without being asked.",
+        "sting": "Many people rely on you. Fewer think to ask how you are, and you're allowed to want that.",
+        "heart": "I carry a lot for the people I love, and I can let them carry me too."
+      }
     },
     {
       "code": "We·Soft·Own",
       "R1": 1,
       "R2": -1,
       "R3": -1,
-      "name": "Open-Book Golden Retriever",
+      "name": "Golden Retriever",
       "zh": "全透明暖寶",
-      "desc": "You love out loud: warm, gentle, all in, and mostly by your own rulebook.",
-      "sting": "You'll break any rule for your people, except the one where you tell them what hurt.",
-      "heart": "I'd rather love too much than too carefully."
+      "desc": "You love out loud. Warm, gentle and all in, you decide for yourself what closeness looks like, and nobody around you ever wonders if they're wanted.",
+      "sting": "You make room for everyone's feelings in real time. Yours tend to come up a week later, casually.",
+      "heart": "I'd rather love too much than too carefully.",
+      "read": "You're the one who makes everyone feel like the favorite, and means it every time.",
+      "h": {
+        "desc": "You love openly and gently, and you shape closeness in your own way rather than by anyone's rulebook. People feel welcome around you without having to earn it.",
+        "read": "You're the one who makes people feel welcome before they have said a word.",
+        "sting": "You make space for everyone's feelings as they happen. Your own often wait until later, and they deserve the same room.",
+        "heart": "I let my warmth show, and I don't apologize for how much I care."
+      }
     },
     {
       "code": "We·Soft·Classic",
       "R1": 1,
       "R2": -1,
       "R3": 1,
-      "name": "Human Weighted Blanket",
+      "name": "Comfort Person",
       "zh": "溫柔守家人",
-      "desc": "You keep everyone's feelings and every tradition safe: the birthday texts, the holiday dishes, the seat saved for whoever's late.",
-      "sting": "You check on everyone's feelings. Yours get checked if there's time left over.",
-      "heart": "My softness is my strength."
+      "desc": "You're the saved seat, the leftovers packed to go, the birthday nobody forgets because you didn't. Feelings and traditions are both safe with you.",
+      "sting": "You notice the second anyone is off. People rarely notice when you are, because you make it look easy.",
+      "heart": "Being someone's safe place is my favorite job.",
+      "read": "You're the one people call when they need to feel okay again.",
+      "h": {
+        "desc": "You protect the feelings and rituals that make people feel at home: the familiar meal, the message on the right day, the seat kept for someone running late.",
+        "read": "You're the one people turn to when they need to feel settled again.",
+        "sting": "You notice quickly when someone is struggling. Others notice your struggles less, partly because you carry them so quietly.",
+        "heart": "Being a safe place for the people I love matters to me, and I let it."
+      }
     },
     {
       "code": "Me·Direct·Own",
       "R1": -1,
       "R2": 1,
       "R3": -1,
-      "name": "No-Filter Free Agent",
+      "name": "Lone Wolf",
       "zh": "清醒獨行俠",
-      "desc": "In any relationship you're yourself first. Boundaries said out loud, script written by you.",
-      "sting": "You rarely get hurt, because you rarely let anyone that close.",
-      "heart": "My clear head is how I keep myself safe."
+      "desc": "You're yourself first in every relationship. Your boundaries are said out loud, your script is written by you, and the people who stay really stay.",
+      "sting": "You rarely get hurt. That's partly because very few people get close enough to try.",
+      "heart": "Being my own person is how I stay me in every room.",
+      "read": "You're the one who needs nobody's permission, and still picks your people carefully.",
+      "h": {
+        "desc": "You stay yourself in every relationship. You say where your limits are and shape your life by your own design, and the people close to you know exactly who they're with.",
+        "read": "You're the one who stays true to yourself, whoever is in the room.",
+        "sting": "You are rarely hurt, partly because few people get close enough. Letting one or two more in could feel different than you expect.",
+        "heart": "Knowing my own mind is how I stay close to people without losing myself."
+      }
     },
     {
       "code": "Me·Direct·Classic",
       "R1": -1,
       "R2": 1,
       "R3": 1,
-      "name": "Old-School Final Boss",
+      "name": "Straight Shooter",
       "zh": "老派硬核",
-      "desc": "You believe in the classic way to love and live, but the final call on your life is yours.",
-      "sting": "You want old-school love without handing over any of the control.",
-      "heart": "I can want tradition and freedom. Both. At once."
+      "desc": "You say what you mean and you like things done properly. The classic way makes sense to you, and the final call on your life stays with you.",
+      "sting": "The truth comes out of you easily. Telling someone you need them takes a lot longer.",
+      "heart": "Plain words are how I show respect.",
+      "read": "You're the one who says it plainly, and people trust you because of it.",
+      "h": {
+        "desc": "You speak plainly and value doing things the established way, while keeping the final say over your own life.",
+        "read": "You're the one who speaks plainly, and people trust you for it.",
+        "sting": "Honesty comes easily to you. Saying that you need someone comes more slowly, and it counts just as much.",
+        "heart": "Speaking plainly is how I show people respect."
+      }
     },
     {
       "code": "Me·Soft·Own",
       "R1": -1,
       "R2": -1,
       "R3": -1,
-      "name": "Soft-Spoken Rebel",
+      "name": "Free Spirit",
       "zh": "溫柔自由派",
-      "desc": "Gentle voice, iron line, and a life you'd rather write yourself than copy from a template.",
-      "sting": "Everyone thinks you're easygoing, right up until they step on your line.",
-      "heart": "Soft is not the same as a pushover."
+      "desc": "Gentle voice, clear line, and a life you'd rather write yourself than copy from a template. You're easy to be around and hard to steer.",
+      "sting": "People take your easygoing side as the whole story. They find the rest when they cross a line you never announced.",
+      "heart": "I can be gentle and still go my own way.",
+      "read": "You're the one who's easy to be around and impossible to put in a box.",
+      "h": {
+        "desc": "You're gentle with people and firm about your own path. You would rather shape your life yourself than follow a template, and you do it quietly.",
+        "read": "You're the one who moves gently and still goes exactly your own way.",
+        "sting": "People often see only your easy side. Your limits are real too, and saying them sooner would help the people who love you.",
+        "heart": "I can be gentle with people and still follow my own path."
+      }
     },
     {
       "code": "Me·Soft·Classic",
       "R1": -1,
       "R2": -1,
       "R3": 1,
-      "name": "Do-Not-Disturb Homebody",
+      "name": "Old Soul",
       "zh": "安靜老靈魂",
-      "desc": "You love the cozy, traditional kind of home, speak gently, and still need hours alone behind your own door.",
-      "sting": "You want a home. You want a door that locks even more.",
-      "heart": "Love with a little distance is still deep love."
+      "desc": "You love the cozy, familiar kind of life, you speak gently, and you still need hours alone behind your own door. Quiet is where you recharge.",
+      "sting": "Some people read your need for quiet as distance. You've never quite explained that it isn't.",
+      "heart": "Love with a little space is still deep love.",
+      "read": "You're the one who feels most like yourself on a quiet night at home.",
+      "h": {
+        "desc": "You're drawn to a calm, familiar life. You speak gently, you value long-held ways of doing things, and you need real time alone to feel like yourself.",
+        "read": "You're the one who feels most yourself in quiet, familiar places.",
+        "sting": "Some people read your need for quiet as distance. You haven't always explained that it isn't, and they would understand.",
+        "heart": "I love deeply, and space is part of how I do it."
+      }
     }
   ],
   "life": [
@@ -157,106 +237,297 @@
       "L1": 1,
       "L2": 1,
       "L3": 1,
-      "name": "Color-Coded Overachiever",
+      "name": "The Planner",
       "zh": "步步為營野心家",
-      "desc": "You want big wins, and you like the steps to them planned, checked and done by the book.",
+      "desc": "You want big wins, and you like the steps to them mapped, checked and done properly. Your calendar is a love letter to future you.",
       "sting": "You hit the goal and start the next list before you celebrate this one.",
-      "heart": "Big goals, small steps. Every one of them counts."
+      "heart": "Big goals, small steps. Every one of them counts.",
+      "read": "You're the one with a plan, a backup plan and a date for both.",
+      "h": {
+        "desc": "You aim high and build toward it carefully, one checked step at a time, and you like knowing the ground under each step is solid.",
+        "read": "You're the one who turns big goals into clear, steady steps.",
+        "sting": "You often reach a goal and move straight to the next. The one you just reached deserves a moment too.",
+        "heart": "I build my life one careful step at a time, and every step counts."
+      }
     },
     {
       "code": "Steady·Push·Context",
       "L1": 1,
       "L2": 1,
       "L3": -1,
-      "name": "Low-Key Tryhard",
+      "name": "The Slow Burner",
       "zh": "低調野心家",
-      "desc": "You're climbing, and you know when to take the side road, but you'd rather not bet your safety net to get there.",
-      "sting": "You want to be seen, but you won't let go of safe long enough to be.",
-      "heart": "Quiet ambition is still ambition."
+      "desc": "You're climbing, quietly and on purpose. You know when to take the side road, and you'd rather not bet the safety net to get there.",
+      "sting": "You'd love the recognition. You'd just rather nobody saw you wanting it.",
+      "heart": "Quiet ambition is still ambition.",
+      "read": "You're the one quietly getting further than anyone realizes.",
+      "h": {
+        "desc": "You're building something steadily and without fuss. You adapt when a situation calls for it, and you keep your footing while you climb.",
+        "read": "You're the one making steady progress that few people see yet.",
+        "sting": "You would like your work to be seen, and you rarely let yourself ask for that. Asking is allowed.",
+        "heart": "My ambition is quiet, and it's still mine."
+      }
     },
     {
       "code": "Steady·Easy·Rules",
       "L1": 1,
       "L2": -1,
       "L3": 1,
-      "name": "Slow-and-Steady Regular",
+      "name": "Creature of Habit",
       "zh": "規律生活家",
-      "desc": "Your days run on routine and order, and you're in no rush to prove anything to anyone.",
-      "sting": "Your life is so steady that some nights you wonder if it's too steady.",
-      "heart": "I chose my ordinary days. I didn't settle for them."
+      "desc": "Your days run on routine and order, and you're in no rush to prove anything to anyone. Same café, same walk, same excellent choice.",
+      "sting": "Your life is so steady that some nights you wonder what the other version would have looked like.",
+      "heart": "I chose my ordinary days. I didn't settle for them.",
+      "read": "You're the one whose ordinary days are exactly how you like them.",
+      "h": {
+        "desc": "Your days follow a rhythm you've chosen, with an order you trust, and you don't feel a need to prove yourself on anyone else's timeline.",
+        "read": "You're the one who has made a calm, familiar rhythm your own.",
+        "sting": "Your life is steady, and some nights you wonder about the other paths. Wondering is curiosity, not regret.",
+        "heart": "I chose the rhythm of my days, and I'm glad I did."
+      }
     },
     {
       "code": "Steady·Easy·Context",
       "L1": 1,
       "L2": -1,
       "L3": -1,
-      "name": "Chill Personified",
+      "name": "The Easygoer",
       "zh": "松弛感本人",
-      "desc": "You don't race anyone's timeline. You go with the flow, and you like the flow familiar.",
-      "sting": "You're not unambitious. Nothing has been worth the grind yet.",
-      "heart": "My life doesn't need a progress bar."
+      "desc": "You don't race anyone's timeline. You go with the flow, you like the flow familiar, and you're usually the calmest person in the room.",
+      "sting": "People mistake your calm for not caring. You just haven't found the thing worth rushing for yet.",
+      "heart": "My life doesn't need a progress bar.",
+      "read": "You're the one who stays calm while everyone else is rushing.",
+      "h": {
+        "desc": "You move at your own pace, adjust easily to what each day brings, and prefer the comfort of the familiar. People tend to relax around you.",
+        "read": "You're the one who helps everyone around you slow down a little.",
+        "sting": "People sometimes read your calm as not caring. You care; you just haven't found what is worth rushing for.",
+        "heart": "My life doesn't need a finish line to feel full."
+      }
     },
     {
       "code": "Venture·Push·Rules",
       "L1": -1,
       "L2": 1,
       "L3": 1,
-      "name": "Calculated Daredevil",
+      "name": "The Strategist",
       "zh": "有計畫的冒險家",
-      "desc": "You jump, but you like to scout the landing, pack a plan B and read the fine print first.",
-      "sting": "You say you love risk. Most of your leaps came with a backup plan.",
-      "heart": "Brave and careful. I get to be both."
+      "desc": "You jump, but only after scouting the landing, packing a plan B and reading the fine print. Bold moves, tidy math.",
+      "sting": "You'd rather lose on a plan than win on luck. It keeps a few great gambles off your list.",
+      "heart": "Bold and careful. I get to be both.",
+      "read": "You're the one who takes the big leap with the landing already mapped.",
+      "h": {
+        "desc": "You're drawn to new ground and big goals, and you prepare for them thoroughly: you study the terrain, set up a fallback and follow a clear method.",
+        "read": "You're the one who takes real risks, and plans each one thoroughly.",
+        "sting": "You would rather lose with a plan than win by luck. That keeps a few worthwhile chances off your list.",
+        "heart": "I can be bold and careful at the same time."
+      }
     },
     {
       "code": "Venture·Push·Context",
       "L1": -1,
       "L2": 1,
       "L3": -1,
-      "name": "Full-Send Trailblazer",
+      "name": "The Go-Getter",
       "zh": "野生開拓者",
-      "desc": "You want something big and you'll trade certainty to get it. Rules are negotiable; the mission isn't.",
-      "sting": "You'd rather regret doing it. Sometimes the bill for that is steep.",
-      "heart": "Even if I lose, I get a great story."
+      "desc": "You want something big and you'll trade certainty to get it. The route is negotiable. The mission isn't.",
+      "sting": "You'd rather regret doing it than not. Now and then the bill for that arrives, and you pay it quietly.",
+      "heart": "Even if I lose, I get a great story.",
+      "read": "You're the one who goes for it while everyone else is still talking about it.",
+      "h": {
+        "desc": "You pursue big goals and accept uncertainty along the way. You adapt the route whenever it helps, and you keep your eyes on where you're going.",
+        "read": "You're the one who moves toward what you want before the path is clear.",
+        "sting": "You would rather regret trying than regret waiting. Sometimes that costs you, and you tend to carry it alone.",
+        "heart": "Going after what I want is worth it, however it turns out."
+      }
     },
     {
       "code": "Venture·Easy·Rules",
       "L1": -1,
       "L2": -1,
       "L3": 1,
-      "name": "Side-Quest Knight",
+      "name": "The Explorer",
       "zh": "有底線的流浪者",
-      "desc": "You chase the new, skip the main quest, and still live by a personal code nobody can talk you out of.",
-      "sting": "You've gone far. You've rarely said where you're going.",
-      "heart": "Being on the road is my answer."
+      "desc": "You chase the new, skip the main quest and still live by a personal code nobody can talk you out of. Wide map, firm compass.",
+      "sting": "You've been a lot of places. You rarely tell anyone where you're headed next, sometimes including yourself.",
+      "heart": "Curiosity is my map. My values are my compass.",
+      "read": "You're the one who wanders far and always knows your own lines.",
+      "h": {
+        "desc": "You're curious about the new and unhurried about getting anywhere, and you carry a clear personal code with you wherever you go.",
+        "read": "You're the one who explores freely and keeps your values close.",
+        "sting": "You've been to many places and rarely say where you're heading next. People would like to come along, even just in conversation.",
+        "heart": "I explore freely, and my values travel with me."
+      }
     },
     {
       "code": "Venture·Easy·Context",
       "L1": -1,
       "L2": -1,
       "L3": -1,
-      "name": "Vibes-Based Wanderer",
+      "name": "The Wanderer",
       "zh": "隨風型旅人",
-      "desc": "You follow your curiosity wherever it goes. Rules and timelines are suggestions; the vibe decides.",
-      "sting": "Freedom is your superpower. It's also your favorite excuse.",
-      "heart": "I travel light, and I live true."
+      "desc": "You follow your curiosity wherever it goes. Rules and timelines are suggestions, and the moment decides.",
+      "sting": "Freedom is your superpower. Now and then it's also your favorite way out of a hard conversation.",
+      "heart": "I travel light, and I live true.",
+      "read": "You're the one who lets curiosity pick the route, and it usually picks well.",
+      "h": {
+        "desc": "You let curiosity guide you. You treat plans and rules as flexible, and you trust the moment to show you what comes next.",
+        "read": "You're the one who trusts curiosity and the moment to lead the way.",
+        "sting": "Your freedom means a great deal to you. Sometimes it is also an easy way to step around a hard conversation.",
+        "heart": "I travel light, and I live by what feels true to me."
+      }
     }
   ],
-  "typeNameRule": "relationship name × life name",
+  "typeNameRule": "two archetypes shown side by side, one per half (with your people, with your life); never glued into one phrase",
   "typeCodeRule": "relationship code | life code, e.g. We·Direct·Classic | Steady·Push·Rules",
   "flex": {
     "badge": "Flex",
     "zh": "彈性",
-    "line": "You live on both sides of this one. Genii couldn't call it, and honestly, neither could you."
+    "line": "You live on both sides of this one. Which side shows up depends on the moment.",
+    "h": {
+      "badge": "Flex",
+      "line": "You move between both sides of this, depending on the moment and the people."
+    }
   },
   "unfinished": {
-    "line": "This side isn't finished yet. Two more cards and Genii can call it.",
-    "zh": "這一面還沒測完整"
+    "line": "This side needs a couple more answers before it comes into focus.",
+    "zh": "這一面還沒測完整",
+    "h": {
+      "line": "This side needs a few more answers before it becomes clear."
+    }
   },
   "examples": [
-    "Trash-Talking Cuddle Bug × Low-Key Tryhard",
-    "Family CEO × Color-Coded Overachiever",
-    "Soft-Spoken Rebel × Vibes-Based Wanderer"
+    "Golden Retriever + The Planner",
+    "The Glue + The Go-Getter",
+    "Old Soul + The Wanderer"
   ],
+  "insights": {
+    "R1": {
+      "believePlus": {
+        "fun": "You picture yourself as the do-everything-together type. In real life, you keep a little room of your own, and it suits you.",
+        "heart": "You see yourself as someone who shares everything. In practice you keep some space for yourself, and it helps you stay close."
+      },
+      "believeMinus": {
+        "fun": "You think of yourself as independent. The moment your people need you, you're the first one there.",
+        "heart": "You see yourself as independent. When the people you love need you, you move toward them without thinking twice."
+      }
+    },
+    "R2": {
+      "believePlus": {
+        "fun": "You think of yourself as the honest one. With the people you love, softness gets there first.",
+        "heart": "You see yourself as someone who says things plainly. With people you care about, gentleness arrives before the hard words, and that is part of your honesty too."
+      },
+      "believeMinus": {
+        "fun": "You think of yourself as the gentle one. When it really matters, you say the true thing out loud, and people remember it.",
+        "heart": "You see yourself as gentle. When something really matters, you speak plainly, and people can rely on that."
+      }
+    },
+    "R3": {
+      "believePlus": {
+        "fun": "You think of yourself as a traditional soul. When it's your own life, you quietly rewrite the script.",
+        "heart": "You feel close to tradition. When the decisions are yours to make, you shape them in your own way."
+      },
+      "believeMinus": {
+        "fun": "You think of yourself as the no-script type. Your own home would still run on a few very classic rituals.",
+        "heart": "You see yourself as someone who writes your own script. In your own life, some familiar traditions still matter a great deal to you."
+      }
+    },
+    "L1": {
+      "believePlus": {
+        "fun": "You think of yourself as the careful one. Show you a real open door and you're already halfway through it.",
+        "heart": "You see yourself as careful. When a real opportunity appears, you step toward it more readily than you might expect."
+      },
+      "believeMinus": {
+        "fun": "You think of yourself as the adventurous one. When the real choice comes, you keep the safety net, and you like having it.",
+        "heart": "You see yourself as adventurous. When a real choice arrives, you keep your footing first, and that gives your adventures somewhere to return to."
+      }
+    },
+    "L2": {
+      "believePlus": {
+        "fun": "You think of yourself as driven. Given a real choice, you guard your free time like it's the prize.",
+        "heart": "You see yourself as driven. When the choice is real, you protect your own time, and that says a lot about what you value."
+      },
+      "believeMinus": {
+        "fun": "You think of yourself as laid-back. Put a real goal in front of you and you get quietly competitive.",
+        "heart": "You see yourself as relaxed about achievement. When a real goal appears, you work toward it with more drive than you usually show."
+      }
+    },
+    "L3": {
+      "believePlus": {
+        "fun": "You think of yourself as a rules person. When someone you care about needs an exception, you're the one who makes it.",
+        "heart": "You believe in rules and fairness. When the person in front of you needs some flexibility, you tend to give it."
+      },
+      "believeMinus": {
+        "fun": "You think of yourself as flexible. When fairness is really on the line, you want it done by the book.",
+        "heart": "You see yourself as flexible. When fairness is really at stake, you reach for clear, consistent rules."
+      }
+    }
+  },
+  "insightFallback": {
+    "We·Soft·Own": {
+      "fun": "Your hidden strength: people open up around you faster than they do anywhere else.",
+      "heart": "A quiet strength of yours: people tend to open up around you more easily than elsewhere."
+    },
+    "We·Soft·Classic": {
+      "fun": "Your hidden strength: you remember the small things, and that's why people feel at home with you.",
+      "heart": "A quiet strength of yours: you remember the small details, and that is much of why people feel at home with you."
+    },
+    "We·Direct·Own": {
+      "fun": "Your hidden strength: people always know where they stand with you, and they relax because of it.",
+      "heart": "A quiet strength of yours: people always know where they stand with you, and that lets them relax."
+    },
+    "We·Direct·Classic": {
+      "fun": "Your hidden strength: when things fall apart, people look for you first, and you already have a plan.",
+      "heart": "A quiet strength of yours: when things get hard, people look for you, and you usually know the next step."
+    },
+    "Me·Direct·Own": {
+      "fun": "Your hidden strength: you don't need a crowd to know who you are, and that makes you easy to trust.",
+      "heart": "A quiet strength of yours: you know who you are without a crowd to confirm it, and people find that steadying."
+    },
+    "Me·Direct·Classic": {
+      "fun": "Your hidden strength: your word holds. When you say you'll be there, you're there.",
+      "heart": "A quiet strength of yours: your word holds, and people plan around it."
+    },
+    "Me·Soft·Own": {
+      "fun": "Your hidden strength: you give people room to be themselves, because you know how much it matters.",
+      "heart": "A quiet strength of yours: you give people room to be themselves, because you know how much that room matters."
+    },
+    "Me·Soft·Classic": {
+      "fun": "Your hidden strength: your calm is contagious. People leave time with you feeling lighter.",
+      "heart": "A quiet strength of yours: your calm settles the people around you."
+    },
+    "Steady·Push·Rules": {
+      "fun": "Your hidden strength: you finish what you start, and people quietly count on it.",
+      "heart": "A quiet strength of yours: you finish what you start, and people rely on that more than they say."
+    },
+    "Steady·Push·Context": {
+      "fun": "Your hidden strength: plans change and you adapt without ever losing the thread.",
+      "heart": "A quiet strength of yours: when plans change, you adjust without losing your direction."
+    },
+    "Steady·Easy·Rules": {
+      "fun": "Your hidden strength: your routines are a home base other people borrow when their week goes sideways.",
+      "heart": "A quiet strength of yours: your steady rhythm gives other people something to lean on when their days are unsettled."
+    },
+    "Steady·Easy·Context": {
+      "fun": "Your hidden strength: you make a rough day feel smaller just by being in the room.",
+      "heart": "A quiet strength of yours: your ease helps hard days feel more manageable for the people around you."
+    },
+    "Venture·Push·Rules": {
+      "fun": "Your hidden strength: you make big ideas feel doable, because you've already sketched the steps.",
+      "heart": "A quiet strength of yours: you make ambitious ideas feel possible, because you can see the steps."
+    },
+    "Venture·Push·Context": {
+      "fun": "Your hidden strength: you get people moving. Things start happening once you're in.",
+      "heart": "A quiet strength of yours: your momentum helps other people begin."
+    },
+    "Venture·Easy·Rules": {
+      "fun": "Your hidden strength: you can go anywhere and still be completely yourself when you get there.",
+      "heart": "A quiet strength of yours: wherever you go, you stay recognizably yourself."
+    },
+    "Venture·Easy·Context": {
+      "fun": "Your hidden strength: you notice the detour everyone else walked past, and it's often the best part.",
+      "heart": "A quiet strength of yours: you notice possibilities other people pass by."
+    }
+  },
   "tagRules": {
     "pairs": "Every tag has exactly one opposite (pair). Support for a tag counts against its pair. The pair is the decoy card in friend game Level 3.",
     "firing": "A tag fires with support from at least 2 separate cards, at least 1 not rushed, and net support (minus its pair) above the simulation threshold. Circumstance, Not my life, No recent example and Skip never count. Up to 5 shown: strong tags first by net support, then the rest by coverage share (net support over what the player’s answered cards could give), from at least 3 chapters where possible.",
@@ -282,15 +553,21 @@
       "id": "T01A",
       "pair": "T01B",
       "chapter": 1,
-      "name": "Here, scroll my phone",
+      "name": "Open phone policy",
+      "line": "Your phone is an open book, and you like it that way.",
       "zh": "手機隨便看",
-      "sting": "You say you have nothing to hide. You're quietly hoping they have nothing to hide either.",
+      "sting": "Sharing everything feels easy to you. It stings a little when someone you love keeps a locked door.",
       "heart": "Letting you all the way in is how I feel safe.",
       "calls": [
-        "You've handed someone your unlocked phone to pick the music. No hovering.",
+        "You've handed someone your unlocked phone to pick the music, and didn't hover.",
         "Someone else's face or fingerprint can unlock your phone.",
-        "You've let someone scroll your camera roll without checking what's in it first."
+        "You've let a friend scroll your camera roll without checking it first."
       ],
+      "h": {
+        "line": "You let the people close to you see your phone freely, and it feels natural to you.",
+        "sting": "Openness comes easily to you, and it can hurt a little when someone close keeps parts of their life private.",
+        "heart": "Letting people all the way in is how I feel close to them."
+      },
       "never": "Controlling, jealous or lacking boundaries.",
       "triggers": [
         "C1-2 scenario (Q41): your person asks to swap passcodes, nothing's wrong → type yours into their phone on the spot, or point out you already swapped",
@@ -307,15 +584,21 @@
       "id": "T01B",
       "pair": "T01A",
       "chapter": 1,
-      "name": "My passcode, my dignity",
+      "name": "Private phone policy",
+      "line": "Your heart is an open door. Your phone is not.",
       "zh": "密碼是我最後的尊嚴",
-      "sting": "Your heart? Take it. Your phone? Absolutely not.",
+      "sting": "Your privacy is just a habit, and now and then someone you love takes it personally.",
       "heart": "My privacy doesn't owe anyone an explanation.",
       "calls": [
         "You tilt your screen away even when it's just a meme.",
         "When you show someone a photo, you never let go of the phone.",
-        "You'd rather explain a text than let someone scroll to find it."
+        "You'd rather read a text out loud than hand the phone over."
       ],
+      "h": {
+        "line": "You're open with people and still keep your phone to yourself.",
+        "sting": "Your privacy is simply part of you, and occasionally someone close reads it as distance.",
+        "heart": "Keeping some things to myself is how I stay comfortable, even with people I love."
+      },
       "never": "Secretive, hiding something or untrustworthy.",
       "triggers": [
         "C1-2 scenario (Q41): passcode swap → keep yours ('Nothing to hide. Still no.'), trade photos but never DMs, or laugh and change the subject",
@@ -332,15 +615,21 @@
       "id": "T02A",
       "pair": "T02B",
       "chapter": 1,
-      "name": "Leaves you on read, still loves you",
+      "name": "Texts back eventually",
+      "line": "You can go months without texting and pick up right where you left off.",
       "zh": "已讀不回但真心",
-      "sting": "Months of silence feel normal to you. The other person might think you drifted.",
+      "sting": "Long silences feel normal to you. The person on the other end might be wondering where you went.",
       "heart": "Missing you doesn't need a daily check-in.",
       "calls": [
         "You have unread messages right now from someone you'd drop everything for.",
-        "Your next reply will start with 'omg sorry, just saw this', a week late.",
-        "You've reacted to a message with one emoji and called that a reply."
+        "You've opened a reply with 'omg sorry, just saw this' a week late.",
+        "You've answered a long message with one emoji and meant it warmly."
       ],
+      "h": {
+        "line": "You can go months without talking and still feel just as close.",
+        "sting": "Long silences feel ordinary to you. The people on the other end may not always know that nothing has changed.",
+        "heart": "I don't need daily contact to keep someone close to my heart."
+      },
       "never": "Cold, careless or a bad friend.",
       "triggers": [
         "C1-11 golden real: last time a message that mattered showed 'Read' and no reply → forgot about it, they'd answer eventually",
@@ -356,15 +645,21 @@
       "id": "T02B",
       "pair": "T02A",
       "chapter": 1,
-      "name": "Waiting for you to text first",
+      "name": "Notices who texts first",
+      "line": "You notice who reaches out first, and it matters more than you let on.",
       "zh": "需要被主動的人",
-      "sting": "You say 'whatever happens, happens.' Then you check when they were last online.",
+      "sting": "You'd love someone to reach out first, and you usually wait instead of saying so.",
       "heart": "Wanting to be thought of isn't embarrassing.",
       "calls": [
         "You've typed 'hey', deleted it and put the phone down at least once this week.",
-        "A 'k.' with a period has ruined at least one of your afternoons.",
-        "A streak breaking would bother you more than you'd admit."
+        "A 'k.' with a period has changed the mood of your whole afternoon.",
+        "You remember who texted on your birthday before noon."
       ],
+      "h": {
+        "line": "Being the one someone reaches out to first means a lot to you.",
+        "sting": "You hope people will reach out first, and you often wait quietly rather than say so.",
+        "heart": "Wanting to be thought of is a natural thing to want."
+      },
       "never": "Needy, clingy or insecure. No attachment-style labels.",
       "triggers": [
         "C1-4 real (Q44): something ate at you after midnight → posted a sad song on your story and waited to see who'd ask",
@@ -381,15 +676,21 @@
       "id": "T03A",
       "pair": "T03B",
       "chapter": 1,
-      "name": "Tells the AI first",
+      "name": "Asks the AI first",
+      "line": "When something's on your mind, an AI hears about it before your friends do.",
       "zh": "AI知己派",
       "sting": "You might have told an AI more about your feelings than your friends.",
       "heart": "Feeling understood counts, wherever it comes from.",
       "calls": [
-        "You've asked an AI who was right in an argument, then shown your friend the answer.",
+        "You've asked an AI who was right in an argument.",
         "You've said 'thank you' to an AI and meant it.",
-        "You've asked an AI to explain a text someone sent you."
+        "You've asked an AI what a text someone sent you really meant."
       ],
+      "h": {
+        "line": "When you need to sort out a feeling, you often talk it through with an AI first.",
+        "sting": "You may have shared more of your feelings with an AI than with your friends, and they would want to hear it too.",
+        "heart": "Being understood matters to me, wherever it happens."
+      },
       "never": "Lonely, antisocial or replacing real people.",
       "triggers": [
         "C1-4 real (Q44): something ate at you after midnight → typed it all out to an AI first",
@@ -404,15 +705,21 @@
       "id": "T03B",
       "pair": "T03A",
       "chapter": 1,
-      "name": "Typos and all, my own words",
+      "name": "Writes it myself",
+      "line": "Typos and all, your words are yours. Nobody ghostwrites your apology.",
       "zh": "真人原話派",
-      "sting": "You'd rather send the clumsy apology than the good one. Sometimes the clumsy one lands worse.",
+      "sting": "You'd rather send the clumsy apology than the polished one. Sometimes the clumsy one lands harder than you meant.",
       "heart": "My messy real words are the truest version of me.",
       "calls": [
-        "You can tell when a friend's message was written by an AI, and it bugs you.",
-        "You've fought autocorrect over one word three times, and won.",
-        "Your group chat can tell it's you without seeing the name."
+        "You can tell when a friend's message was written by an AI.",
+        "Your group chat knows it's you without seeing the name.",
+        "You've rewritten one text five times and sent the first version anyway."
       ],
+      "h": {
+        "line": "You'd rather send your own imperfect words than a polished version that isn't you.",
+        "sting": "You choose your own words even when they come out clumsy, and occasionally they land harder than you intended.",
+        "heart": "My own words, even imperfect ones, are the most honest thing I can offer."
+      },
       "never": "Anti-tech, old-fashioned or judgmental.",
       "triggers": [
         "C1-4 real (Q44): after midnight → voice-noted your closest person, or wrote it in your notes app",
@@ -428,15 +735,21 @@
       "id": "T04A",
       "pair": "T04B",
       "chapter": 1,
-      "name": "Close Friends list: 4",
+      "name": "Small circle only",
+      "line": "Your circle is small, hard to get into and very hard to leave.",
       "zh": "挑人型溫暖",
       "sting": "You're not cold. New people just wait about a year for the warm version.",
       "heart": "The ones I choose always know it.",
       "calls": [
-        "The people in your phone's favorites have been the same for years.",
+        "The favorites in your phone have been the same people for years.",
         "You're in fewer group chats than anyone you know, and you like it.",
-        "A new friend has to earn a nickname from you, and it takes a while."
+        "A new friend has to earn a nickname from you."
       ],
+      "h": {
+        "line": "You keep a small circle, and the people in it stay close for years.",
+        "sting": "You aren't distant. New people simply need time before they meet the warmest version of you.",
+        "heart": "The people I choose always know they matter to me."
+      },
       "never": "Cold, snobby, antisocial or exclusive.",
       "triggers": [
         "C1-1 role: in the group chat you're the Courier who screenshots it all to two favorites",
@@ -453,15 +766,21 @@
       "id": "T04B",
       "pair": "T04A",
       "chapter": 1,
-      "name": "Mayor of every group chat",
+      "name": "Friends with everyone",
+      "line": "You know everyone, and nobody stays a stranger around you for long.",
       "zh": "全服都是朋友",
-      "sting": "You know everyone. Fewer people really know you.",
+      "sting": "You know everyone. Fewer people know what's actually going on with you.",
       "heart": "Nobody stays a stranger for long around me.",
       "calls": [
-        "You know your friends' coworkers by name, and you've never met a single one.",
+        "You know your friends' coworkers by name without ever meeting them.",
         "You've introduced two friends who now hang out without you.",
         "Your birthday comments look like a class reunion."
       ],
+      "h": {
+        "line": "You connect easily, and new people rarely stay strangers around you.",
+        "sting": "You know a great many people. Fewer of them know how you are really doing.",
+        "heart": "I like making people feel included from the first moment."
+      },
       "never": "Fake, shallow or a people-pleaser.",
       "triggers": [
         "C1-1 role: in the group chat you're the Recruiter: 'Everyone, this is Sam.'",
@@ -478,15 +797,21 @@
       "id": "T05A",
       "pair": "T05B",
       "chapter": 2,
-      "name": "Rolls eyes, grabs keys",
+      "name": "Says it with actions",
+      "line": "You'll grumble the whole way there, and you'll always be the one who shows up.",
       "zh": "嘴硬心軟",
-      "sting": "You'll tell them they were wrong. Then you'll pick up their 2am call.",
+      "sting": "You show up every time. Saying the soft part out loud is still on your to-do list.",
       "heart": "My words are armor. My actions are the soft part.",
       "calls": [
         "You've fixed a friend's problem and changed the subject before they could say thanks.",
         "Your version of comfort sounds like 'get in the car'.",
-        "You'll deny caring and still remember their exam date."
+        "You remember a friend's big day and act like it's no big deal."
       ],
+      "h": {
+        "line": "You rarely say how much you care. You show it by turning up and doing the thing.",
+        "sting": "You always show up for people. Saying the tender part aloud is harder for you, and people would treasure hearing it.",
+        "heart": "What I do for people says what I sometimes can't put into words."
+      },
       "never": "Mean, rude or harsh.",
       "triggers": [
         "C2-9 scenario (Q15): a close friend's laptop died before a deadline, they need $300 → lend your old laptop with a crumb warning",
@@ -502,15 +827,21 @@
       "id": "T05B",
       "pair": "T05A",
       "chapter": 2,
-      "name": "Writes the birthday paragraph",
+      "name": "Says it with words",
+      "line": "If you feel it, they're going to read it, probably in several paragraphs.",
       "zh": "長文告白派",
-      "sting": "You'll write them five paragraphs. Helping them move is a separate negotiation.",
+      "sting": "You pour everything into the message. The practical help sometimes arrives a little later.",
       "heart": "If I feel it, you're going to read it.",
       "calls": [
         "Your birthday posts need a 'see more' button.",
         "You've teared up reading your own message before sending it.",
-        "Your friends have saved at least one of your messages to reread on bad days."
+        "Someone has saved one of your messages to reread on a hard day."
       ],
+      "h": {
+        "line": "When you care about someone, you tell them, fully and in your own words.",
+        "sting": "Your words carry a lot of love. The practical help can come a little later, and people notice both.",
+        "heart": "Telling people what they mean to me is one of my favorite things to do."
+      },
       "never": "All talk, fake or performative.",
       "triggers": [
         "C2-2 real (Q28): a friend's plan cost way over budget → invented a clash, sent a long sweet message instead",
@@ -526,15 +857,21 @@
       "id": "T06A",
       "pair": "T06B",
       "chapter": 2,
-      "name": "Yes first, bank app later",
+      "name": "Friends come first",
+      "line": "One ask from a friend and your own rules quietly step aside.",
       "zh": "人情VIP",
-      "sting": "One ask from a friend and your budget rules vanish. They only ever apply to you.",
+      "sting": "Your budget and your bedtime are firm, right up until a friend needs you.",
       "heart": "Breaking my own rules for my people? No regrets.",
       "calls": [
         "You've given up your charger, your seat or your last slice this week.",
         "Your friends know you're the easiest yes in the chat.",
         "Your 'no' to a friend has a very short shelf life."
       ],
+      "h": {
+        "line": "When a friend asks for something, your own plans easily make room.",
+        "sting": "Your own limits are real, and they tend to disappear the moment a friend needs something.",
+        "heart": "Making room for my friends is something I'm glad to do."
+      },
       "never": "A pushover, naive or bad with money.",
       "triggers": [
         "C2-2 real (Q28): a friend's plan cost way over budget → went, paid, ate instant noodles for a week (capacity: tag only, not R2)",
@@ -553,15 +890,21 @@
       "id": "T06B",
       "pair": "T06A",
       "chapter": 2,
-      "name": "Limited-edition energy",
+      "name": "Social battery first",
+      "line": "You give a lot, and you know exactly when your battery hits zero.",
       "zh": "能量限量版",
-      "sting": "Your kindness has a daily cap. When it's gone, it's gone.",
+      "sting": "When your energy's gone, it's gone, and not everyone gets that it isn't about them.",
       "heart": "I charge myself first, so I have more to give.",
       "calls": [
         "You've let a call ring out, then texted 'what's up?' ten seconds later.",
-        "Your weekend has at least one nap in it that nobody is allowed to move.",
-        "After a big social weekend, you'll need a whole day of nobody."
+        "Your weekend has at least one nap nobody is allowed to move.",
+        "After a big social weekend, you need a whole day of nobody."
       ],
+      "h": {
+        "line": "You give a lot of yourself, and you know when you need to recharge.",
+        "sting": "When your energy runs out, you need to step back, and not everyone understands that it isn't about them.",
+        "heart": "Resting when I need to is how I keep showing up for people."
+      },
       "never": "Selfish, cold or uncaring. Not having the money.",
       "triggers": [
         "C2-2 real (Q28): a friend picks a plan way over budget → paid my share, home by 9, completely peopled out (capacity: tag only, not R2)",
@@ -577,15 +920,21 @@
       "id": "T07A",
       "pair": "T07B",
       "chapter": 2,
-      "name": "The honest review nobody asked for",
+      "name": "No sugarcoating",
+      "line": "When a friend wants the real answer, they come to you.",
       "zh": "直球選手",
-      "sting": "You think the truth is respect. Some people just feel poked.",
+      "sting": "You think the truth is respect. Some people hear it as a poke, even when you meant care.",
       "heart": "I'd rather annoy you than lie to you.",
       "calls": [
         "You've told someone about the spinach in their teeth, mid-conversation.",
         "Your friends send you outfit photos when they want the real answer.",
-        "You'll say 'can I be honest?' and not wait for the yes."
+        "You've said 'can I be honest?' and not waited for the yes."
       ],
+      "h": {
+        "line": "You tell people the truth plainly, and they come to you when they need it.",
+        "sting": "To you, honesty is a form of respect. Some people hear it more sharply than you intend.",
+        "heart": "I tell you the truth because I take you seriously."
+      },
       "never": "Rude, harsh or tactless.",
       "triggers": [
         "C2-5 real (Q25): a friend was clearly in the wrong with someone → told them straight it was wrong",
@@ -601,15 +950,21 @@
       "id": "T07B",
       "pair": "T07A",
       "chapter": 2,
-      "name": "Compliment sandwich chef",
+      "name": "Gentle with the truth",
+      "line": "You always get the truth across, wrapped so it actually lands.",
       "zh": "溫柔刺客",
-      "sting": "You wrap the truth in so much sugar that some people only taste the sugar.",
+      "sting": "You wrap the truth so carefully that now and then people only hear the wrapping.",
       "heart": "I say it softly so you can actually hear it.",
       "calls": [
         "You've said 'it's so close!' about something that was not close.",
-        "You'll call the haircut 'so you' and slip them your stylist's number next month.",
-        "You've let a friend 'figure it out on their own', with a nudge from you."
+        "You've called a haircut 'so you' and slipped them your stylist's number later.",
+        "You've let a friend 'figure it out', with a quiet nudge from you."
       ],
+      "h": {
+        "line": "You tell the truth in a way people can actually take in.",
+        "sting": "You deliver hard truths so carefully that sometimes the message gets lost.",
+        "heart": "I choose gentle words so the people I love can really hear me."
+      },
       "never": "Fake, passive-aggressive or dishonest.",
       "triggers": [
         "C2-5 real (Q25): a friend was in the wrong → bubble tea first, brought it up on the walk back",
@@ -625,15 +980,21 @@
       "id": "T08A",
       "pair": "T08B",
       "chapter": 2,
-      "name": "Redemption arc believer",
+      "name": "Gives second chances",
+      "line": "You believe people can change, and you'll leave the door open while they try.",
       "zh": "相信浪子回頭",
       "sting": "You'd give a second chance to someone who hasn't finished asking for one.",
       "heart": "I believe people can change, because I have.",
       "calls": [
-        "You've unmuted someone everyone else is still mad at.",
-        "You'll defend the villain's backstory in any show you watch.",
-        "You've given an ex-friend a second chance and told nobody."
+        "You've unmuted someone everyone else is still annoyed with.",
+        "You've defended the villain's backstory in a show.",
+        "You've quietly let an old friend back in and told almost nobody."
       ],
+      "h": {
+        "line": "You believe people can change, and you give them room to show it.",
+        "sting": "You offer second chances readily, sometimes before the other person has fully asked for one.",
+        "heart": "I believe in people changing, because I've seen it in myself."
+      },
       "never": "Naive, a doormat or excusing harm.",
       "triggers": [
         "C2-3 scenario (Q39): the person who started a rumor about your friend apologized and wants back in the chat → add them back with a meme, or one watched group hangout first",
@@ -650,14 +1011,20 @@
       "pair": "T08A",
       "chapter": 2,
       "name": "Keeps the receipts",
+      "line": "You forgive, and you also remember exactly what happened, with dates.",
       "zh": "截圖都留著",
-      "sting": "You forgive, technically. Your screenshots folder disagrees.",
+      "sting": "You forgive, technically. Your memory keeps the full file.",
       "heart": "I look after the person who got hurt first.",
       "calls": [
         "You've brought up something from three years ago, and you had the date.",
-        "You'll be polite to someone you haven't forgiven, and they'll never know.",
-        "When someone has 'changed', you wait for proof number three."
+        "You've been perfectly polite to someone you haven't forgiven.",
+        "When someone says they've changed, you wait to see it a few times."
       ],
+      "h": {
+        "line": "You're willing to forgive, and you keep a clear memory of what happened.",
+        "sting": "You forgive in your own way, and your memory keeps the details close.",
+        "heart": "I look after the person who was hurt before anything else."
+      },
       "never": "Vindictive, petty or holding grudges as a flaw.",
       "triggers": [
         "C2-3 scenario (Q39): the rumor-starter wants back in → DM your friend 'say the word and I decline', or say yes and keep the screenshots",
@@ -673,15 +1040,21 @@
       "id": "T09A",
       "pair": "T09B",
       "chapter": 3,
-      "name": "Head over heels, eyes open",
+      "name": "All in on us",
+      "line": "When you're in love, their day becomes your day, and you like it that way.",
       "zh": "有原則的戀愛腦",
-      "sting": "You say you're independent. You still want to be in every part of their day.",
+      "sting": "You love being part of their whole day, and the days apart feel longer than they should.",
       "heart": "I love all the way, and I know where the door is.",
       "calls": [
         "Your person's name is the first one your phone suggests.",
         "You've said 'we're watching this show' when only one of you is.",
         "You know your person's order at four different places."
       ],
+      "h": {
+        "line": "When you love someone, you want to share the everyday parts of life with them.",
+        "sting": "You enjoy sharing every part of the day, and time apart can feel longer to you than you expect.",
+        "heart": "I love fully, and I know my own worth while I do it."
+      },
       "never": "Clingy, codependent or 'boy-crazy'/'girl-crazy'. No gendered read.",
       "triggers": [
         "C3-2 real: the last party you and your person walked into together → stuck together all night, or left early together",
@@ -698,15 +1071,21 @@
       "id": "T09B",
       "pair": "T09A",
       "chapter": 3,
-      "name": "Dating, not merging",
+      "name": "Me first, then us",
+      "line": "You love hard and keep your own plans, friends and weekends intact.",
       "zh": "清醒戀愛派",
-      "sting": "You're not unromantic. You just won't hand over the steering wheel.",
+      "sting": "You're not unromantic. You just won't hand anyone the steering wheel.",
       "heart": "I'm me first. Then I'm someone's someone.",
       "calls": [
         "You've taken a trip without your person and loved every minute.",
         "Your person has friends you've never met, and that's fine by you.",
-        "You'll say 'I miss you' and still not cancel your plans."
+        "You've said 'I miss you' and still kept your plans."
       ],
+      "h": {
+        "line": "You love deeply and keep a life of your own alongside it.",
+        "sting": "You are romantic in your own way. You simply keep the wheel of your own life.",
+        "heart": "Being fully myself is what I bring to the people I love."
+      },
       "never": "Cold, commitment-shy or avoidant.",
       "triggers": [
         "C3-2 real: the last party with your person → split up at the door and swapped gossip at the end, or introduced them around and left them by the chips",
@@ -723,15 +1102,21 @@
       "id": "T10A",
       "pair": "T10B",
       "chapter": 3,
-      "name": "Relationship mechanic",
+      "name": "Works it out",
+      "line": "When things get rocky, you'd rather fix it than walk away.",
       "zh": "關係修理工",
       "sting": "You'll fix what's broken, including things that aren't yours to fix.",
       "heart": "I don't quit on people I chose.",
       "calls": [
         "You've had the same argument twice and brought a new idea to round three.",
-        "You've fixed a friendship with one 'can we talk?' text.",
+        "You've saved a friendship with one 'can we talk?' text.",
         "Your answer to 'this isn't working' is 'okay, what if we try this'."
       ],
+      "h": {
+        "line": "When things get difficult with someone you chose, you look for a way to repair it.",
+        "sting": "You try to repair what's broken, sometimes even when it isn't yours to carry.",
+        "heart": "I stay with the people I've chosen, and I work at it."
+      },
       "never": "A doormat, or stuck in something bad.",
       "triggers": [
         "C3-5 real (Q08): someone close kept grating on you for weeks → sat them down and made a deal (or joked until they got it, or did their dishes and mentioned it)",
@@ -747,15 +1132,21 @@
       "id": "T10B",
       "pair": "T10A",
       "chapter": 3,
-      "name": "Knows when to log off",
+      "name": "Lets it go",
+      "line": "When something's run its course, you let it end quietly, no scene.",
       "zh": "好聚好散派",
-      "sting": "You leave before it gets messy. Sometimes that's before it gets good.",
-      "heart": "Leaving kindly is still kind.",
+      "sting": "You leave before it gets messy. Now and then, that's before it gets good.",
+      "heart": "Leaving gently is still a way of caring.",
       "calls": [
         "You've quietly left a group chat and felt lighter.",
         "You've unfollowed someone and wished them well in the same minute.",
-        "Most of your exes, ex-friends and ex-teammates still like you."
+        "Most of your exes and ex-teammates still like you."
       ],
+      "h": {
+        "line": "When something has run its course, you let it end calmly.",
+        "sting": "You tend to leave before things get messy, and occasionally that means leaving before they get better.",
+        "heart": "Ending things gently is one of the ways I care."
+      },
       "never": "Cold, flaky or commitment-shy.",
       "triggers": [
         "C3-5 real (Q08): weeks of small friction → let it fade with fewer plans, or ended it with a kind text rewritten eleven times",
@@ -771,15 +1162,21 @@
       "id": "T11A",
       "pair": "T11B",
       "chapter": 3,
-      "name": "Future parent, with terms",
+      "name": "Wants kids someday",
+      "line": "You want kids someday, and you've already thought about how to share the load.",
       "zh": "想當爸媽，但有條件",
-      "sting": "You want kids. You've also already worked out who'll give up the most, and it's you.",
+      "sting": "You want kids, and you've already worked out who'd give up the most. It's you.",
       "heart": "I want it, and I want to be held up while I do it.",
       "calls": [
         "You've caught yourself rating playgrounds on a walk.",
         "You'd read the parental leave policy before the salary.",
-        "You've mentally assigned the night feeds, and you took most of them."
+        "You have a name you're quietly saving."
       ],
+      "h": {
+        "line": "You hope to have children one day, and you want the load shared fairly.",
+        "sting": "You want children, and you've already sensed that you might be the one giving up the most.",
+        "heart": "I want a family, and I want support while I build it."
+      },
       "never": "Baby-crazy, or judging people without kids.",
       "triggers": [
         "C3-9 scenario (Q11, 18+, only after a T11A pick on C3-8): kids penciled in, then the dream job calls → turn it down, the mood board stays on schedule",
@@ -794,15 +1191,21 @@
       "id": "T11B",
       "pair": "T11A",
       "chapter": 3,
-      "name": "Full life, no kids required",
+      "name": "Full life without kids",
+      "line": "You like kids just fine. You like your life exactly as it is even more.",
       "zh": "人生不一定要有娃",
-      "sting": "You don't dislike kids. You just really like your life as it is.",
+      "sting": "You love your life as it is, and you're tired of it being treated like a waiting room.",
       "heart": "My life is already whole.",
       "calls": [
         "You're some kid's favorite adult, and you still sleep in on Saturdays.",
         "Your 'someday' fund is a travel fund.",
         "You've said 'I love kids' and 'not for me' in the same sentence."
       ],
+      "h": {
+        "line": "You enjoy children and feel your life is already complete as it is.",
+        "sting": "Your life feels whole to you, and it can be tiring when others treat it as unfinished.",
+        "heart": "My life is already complete."
+      },
       "never": "Hating kids, selfish or missing something.",
       "triggers": [
         "C3-8 pick_two (Q10, 18+): the sleeping toddler → 'my five-year plan has zero car seats', or 'is a dog basically the same thing?'",
@@ -818,15 +1221,21 @@
       "id": "T12A",
       "pair": "T12B",
       "chapter": 4,
-      "name": "Splits it to the cent",
+      "name": "Splits to the cent",
+      "line": "Love is love and a tab is a tab, and you'd rather owe nobody.",
       "zh": "AB制信徒",
-      "sting": "Love is love and a tab is a tab. Your biggest fear is owing someone.",
+      "sting": "Owing someone even a little stays on your mind until it's paid.",
       "heart": "Owing no one is my kind of freedom.",
       "calls": [
-        "You've pulled out the calculator app at a group dinner, and nobody was surprised.",
-        "You'll offer to split before the bill even lands.",
-        "You and one friend have a running tab, and only you know the total."
+        "You've pulled out the calculator at a group dinner, and nobody was surprised.",
+        "You offer to split before the bill even lands.",
+        "You have a running tab with one friend, and only you know the total."
       ],
+      "h": {
+        "line": "You like splitting costs evenly, because owing nothing feels freeing.",
+        "sting": "Owing anyone, even a small amount, stays on your mind until it's settled.",
+        "heart": "Being even with people gives me a sense of freedom."
+      },
       "never": "Stingy, cheap or transactional.",
       "triggers": [
         "C2-9 scenario (Q15): a friend needs $300, payback unclear → agree on a payback date first, reminder titled 'OWED'",
@@ -842,15 +1251,21 @@
       "id": "T12B",
       "pair": "T12A",
       "chapter": 4,
-      "name": "Splits by who can afford it",
+      "name": "Splits by income",
+      "line": "To you, fair isn't paying the same. It's feeling it the same.",
       "zh": "一樣痛才叫公平",
-      "sting": "To you, fair isn't paying the same. It's straining the same.",
+      "sting": "You quietly cover the gap for friends, and they don't always notice how often.",
       "heart": "Fair is about what it costs you, not the number on the bill.",
       "calls": [
         "You've paid more toward a shared gift because you had more that month.",
-        "You'll suggest the cheaper place when one friend is short on cash, and never say why.",
+        "You've suggested the cheaper place when a friend was short, and never said why.",
         "You've said 'I've got this one, get the next when you can.'"
       ],
+      "h": {
+        "line": "For you, fairness means everyone contributes what they can comfortably manage.",
+        "sting": "You often cover the difference for others quietly, and they may not realize how often.",
+        "heart": "Fairness, to me, is about what something costs each person."
+      },
       "never": "Freeloading, or resenting people who earn more.",
       "triggers": [
         "C3-3 scenario (Q14): the income gap at home → split by what each has, so it pinches the same, or one shared pot",
@@ -866,15 +1281,21 @@
       "id": "T13A",
       "pair": "T13B",
       "chapter": 4,
-      "name": "Books it, figures it out later",
+      "name": "Books first, thinks later",
+      "line": "Your best stories start with 'okay, this is a bad idea, but'.",
       "zh": "賭徒體質",
-      "sting": "You call it a calculated risk. You did the math afterward.",
-      "heart": "My best stories start with 'okay, this is a bad idea, but'.",
+      "sting": "The math on your big yeses usually happens after the booking email arrives.",
+      "heart": "My best stories start with a leap.",
       "calls": [
-        "You've spent a refund before it even hit your account.",
+        "You've spent a refund before it hit your account.",
         "You've booked the trip first and checked your calendar second.",
         "You've said 'you only live once' at a checkout this year."
       ],
+      "h": {
+        "line": "You say yes to experiences quickly and work out the details afterward.",
+        "sting": "You tend to decide first and work out the cost afterward, and sometimes the cost is steeper than it looked.",
+        "heart": "Saying yes to life gives me the stories I love most."
+      },
       "never": "Reckless, irresponsible or a gambling problem.",
       "triggers": [
         "C4-1 scenario (Q33): $200 found in an old jacket → concert tickets, tonight",
@@ -890,15 +1311,21 @@
       "id": "T13B",
       "pair": "T13A",
       "chapter": 4,
-      "name": "Rainy-day fund devotee",
+      "name": "Saves first, spends later",
+      "line": "Being ready for anything is how you relax.",
       "zh": "穩字當頭",
-      "sting": "You've saved for a rainy day so long, you forgot sunny days are allowed.",
+      "sting": "You've saved for a rainy day so long that the sunny days sometimes go unspent.",
       "heart": "Being ready is how I relax.",
       "calls": [
         "You have money set aside that you pretend doesn't exist.",
-        "You've packed snacks from home to skip paying stadium prices.",
+        "You've packed snacks from home to skip stadium prices.",
         "You've let a gift card sit for months because spending it felt like losing it."
       ],
+      "h": {
+        "line": "Having money set aside lets you feel at ease.",
+        "sting": "You save carefully for hard times, and sometimes the easy times pass without you spending on them.",
+        "heart": "Being prepared is what lets me feel calm."
+      },
       "never": "Boring, scared or cheap.",
       "triggers": [
         "C4-1 scenario (Q33): $200 found → straight into savings",
@@ -914,15 +1341,21 @@
       "id": "T14A",
       "pair": "T14B",
       "chapter": 4,
-      "name": "Skips the dupe",
+      "name": "Buys the nice one",
+      "line": "You'll pay a little more for the one you actually love, every time.",
       "zh": "取悅自己專業戶",
-      "sting": "You say it's just for you. You still notice exactly who noticed.",
+      "sting": "You buy it for yourself, and you still notice who noticed.",
       "heart": "Making myself happy is real work too.",
       "calls": [
         "You've bought the nicer version and called it an investment.",
         "Your game character has a better wardrobe than most people.",
-        "You know the exact date your favorite brand drops its next thing."
+        "You know when your favorite brand drops its next thing."
       ],
+      "h": {
+        "line": "You're happy to spend a bit more on things that truly delight you.",
+        "sting": "You choose things for your own joy, and it still means something to you when someone notices.",
+        "heart": "Taking care of my own joy matters to me."
+      },
       "never": "Vain, materialistic or shallow.",
       "triggers": [
         "C4-5 real (Q36): wanted one more of something you own plenty of → bought it on the spot, or bought it and hid the bag",
@@ -939,14 +1372,20 @@
       "pair": "T14A",
       "chapter": 4,
       "name": "Minimalist on purpose",
+      "line": "Less stuff, more room. Walking out with nothing feels like a win.",
       "zh": "極簡清醒派",
-      "sting": "You saved the money and the time. What exactly are you saving them for?",
+      "sting": "You've saved the money and the space. You haven't quite decided what they're for.",
       "heart": "Less stuff, more room to breathe.",
       "calls": [
         "You've unsubscribed from every store newsletter.",
         "Your 'new' shirt is the same shirt in a second color.",
-        "You'll walk out of a store with nothing and feel great about it."
+        "You've walked out of a store with nothing and felt great about it."
       ],
+      "h": {
+        "line": "You keep your belongings few, and that leaves room to breathe.",
+        "sting": "You've saved money and space, and you may not have decided yet what you're saving them for.",
+        "heart": "Owning less gives me room for what matters."
+      },
       "never": "Cheap, joyless or judging how others spend.",
       "triggers": [
         "C4-5 real (Q36): one more of something you own plenty of → cleared out old ones first, or left it in the cart till the feeling passed",
@@ -963,14 +1402,20 @@
       "pair": "T15B",
       "chapter": 4,
       "name": "Earned, not given",
+      "line": "You like knowing you earned your spot, and you respect people who earned theirs.",
       "zh": "努力信仰者",
-      "sting": "You believe effort gets noticed. You quietly wish everyone worked as hard as you.",
+      "sting": "You hold yourself to the grind, and taking help is hard for you even when it's offered freely.",
       "heart": "I like knowing I earned my spot.",
       "calls": [
-        "You've turned down help just so you could say you did it alone.",
+        "You've turned down help just so you could say you did it yourself.",
         "You'd rather earn the rank than buy the boost.",
-        "You'll respect someone who grinds more than someone who got lucky."
+        "A grind story gets you off the couch faster than a pep talk."
       ],
+      "h": {
+        "line": "You value knowing that what you have came from your own effort.",
+        "sting": "You hold yourself to a high standard of effort, and accepting help can feel harder than it needs to.",
+        "heart": "Knowing I've worked for something makes it mean more to me."
+      },
       "never": "Looking down on people who struggle, or a political stance.",
       "triggers": [
         "C4-2 this_or_that (Q13): a friend whose parents covered the down payment says 'I worked so hard' → 'You earned it!' and mean it",
@@ -986,15 +1431,21 @@
       "id": "T15B",
       "pair": "T15A",
       "chapter": 4,
-      "name": "Head-start detector",
+      "name": "Luck counts too",
+      "line": "You can spot a head start from across the room, and you say so.",
       "zh": "起跑線偵測器",
-      "sting": "You can spot who had family help from across the room. The effort story doesn't fool you.",
+      "sting": "You spot the head start every time. It can make your own wins look smaller to you than they are.",
       "heart": "I see what other people miss.",
       "calls": [
         "You've read a 'how I made it at 22' post and gone straight to the comments.",
-        "You'll clock the family-money energy in a reality show within one episode.",
+        "You've clocked the family money in a reality show within one episode.",
         "You'd rather hear 'I got lucky' than 'I just worked hard'."
       ],
+      "h": {
+        "line": "You notice the advantages and circumstances behind people's success.",
+        "sting": "You see the advantages behind others' success clearly, and that can make you underrate your own.",
+        "heart": "I notice what others overlook, and I think it matters."
+      },
       "never": "Envious, bitter or resentful.",
       "triggers": [
         "C4-2 this_or_that (Q13): the family-funded 'I worked so hard' → must be nice, somebody had to say it",
@@ -1010,15 +1461,21 @@
       "id": "T16A",
       "pair": "T16B",
       "chapter": 5,
-      "name": "Building the trophy shelf",
+      "name": "In it to win",
+      "line": "You want wins people can see, and you keep a quiet tally of every one.",
       "zh": "想被看見的成績派",
-      "sting": "You say it's just a job. You're quietly keeping score of every win.",
+      "sting": "You keep score of every win, and one missing thank-you can outweigh ten good ones.",
       "heart": "Wanting to build something big isn't too much.",
       "calls": [
         "You have a folder of wins: kind emails, certificates, one legendary grade.",
-        "You've grabbed the hardest part of a project so your name would be on it.",
+        "You've taken the hardest part of a project so your name would be on it.",
         "You check the leaderboard even in games you 'play casually'."
       ],
+      "h": {
+        "line": "You want to build something that people can see and recognize.",
+        "sting": "You remember every achievement, and a single overlooked one can stay with you longer than the rest.",
+        "heart": "Wanting something big for my life is allowed."
+      },
       "never": "Arrogant, greedy or a workaholic.",
       "triggers": [
         "C5-4 scenario (Q20): the promotion costs every Saturday for a year → yes, already practicing the title",
@@ -1035,15 +1492,21 @@
       "id": "T16B",
       "pair": "T16A",
       "chapter": 5,
-      "name": "Clocks out on the dot",
+      "name": "Logs off on time",
+      "line": "Work ends when it ends. The best part of your week happens after.",
       "zh": "準時下線派",
-      "sting": "You've turned down a bigger role and slept like a baby. Some people are still confused.",
+      "sting": "You've turned down a bigger role and slept great. Some people still can't figure you out.",
       "heart": "A good life is the whole point, not the reward for later.",
       "calls": [
         "You'll leave on time today and not think about work or school once.",
         "You've put more hours into a hobby than into your résumé.",
-        "The best part of your week happens after the bell."
+        "You've muted a work or class chat for the whole weekend."
       ],
+      "h": {
+        "line": "You leave work or school at the door, and your real life happens after.",
+        "sting": "You've turned down more responsibility without regret, and some people still find that hard to understand.",
+        "heart": "My life outside work is the point, not the prize for later."
+      },
       "never": "Lazy, unmotivated or unambitious.",
       "triggers": [
         "C5-4 scenario (Q20): the promotion that eats Saturdays → pass and keep them, or point them to the person who wanted it",
@@ -1059,15 +1522,21 @@
       "id": "T17A",
       "pair": "T17B",
       "chapter": 5,
-      "name": "Needs a save point",
+      "name": "Wants it locked in",
+      "line": "You relax the moment something is booked, signed or decided.",
       "zh": "需要存檔點",
-      "sting": "Friends your age settle down and you say you're fine. You've already checked the timeline twice.",
+      "sting": "When friends hit milestones, you're happy for them, and you check your own timeline that same night.",
       "heart": "Wanting solid ground is how I take care of myself.",
       "calls": [
         "You've made a pros and cons list for something most people would just decide.",
         "You've set yourself a deadline nobody asked for.",
-        "You relax the moment something is booked, signed or decided."
+        "You've felt lighter the second a lease or plan was signed."
       ],
+      "h": {
+        "line": "You feel at ease once the important things are settled.",
+        "sting": "When friends reach milestones, you're glad for them, and you often find yourself checking your own timeline afterward.",
+        "heart": "Having solid ground under me is how I look after myself."
+      },
       "never": "Anxious, insecure or 'behind'.",
       "triggers": [
         "C5-7 real (Q48): someone your age had big news → opened your notes app and started a plan (or 'wait, are we behind?', or muted them)",
@@ -1083,15 +1552,21 @@
       "id": "T17B",
       "pair": "T17A",
       "chapter": 5,
-      "name": "Still loading, and that's fine",
+      "name": "Keeps options open",
+      "line": "No rush to lock it in. 'I don't know yet' is a full answer.",
       "zh": "人生選項保留派",
-      "sting": "You're not against settling down. You just hate being rushed.",
+      "sting": "You're not against settling down. You just go quiet when someone asks for the plan.",
       "heart": "My timeline is mine to write.",
       "calls": [
         "When someone asks 'so what's the plan?', you change the subject.",
         "You've said yes to something new with zero idea where it leads.",
-        "You're fine with 'I don't know yet' as a full answer."
+        "You've changed your plans more than once and been happier each time."
       ],
+      "h": {
+        "line": "You're comfortable leaving your future open, and 'not yet' is a real answer for you.",
+        "sting": "You're open to settling down one day. Being asked for a plan can make you want to change the subject.",
+        "heart": "My timeline belongs to me."
+      },
       "never": "Lost, flaky or directionless.",
       "triggers": [
         "C5-7 real (Q48): someone your age had big news → double-tapped, forgot it by the next video",
@@ -1107,15 +1582,21 @@
       "id": "T18A",
       "pair": "T18B",
       "chapter": 6,
-      "name": "Family's backup battery",
+      "name": "Family's first call",
+      "line": "When someone in the family needs help, yours is the first name they call.",
       "zh": "全家的備用電源",
-      "sting": "You're everyone's plan B. Your own plan A keeps moving to next month.",
+      "sting": "You're everyone's plan B. Your own plan A keeps getting moved to next month.",
       "heart": "When my people need someone, I want it to be me.",
       "calls": [
         "You're the one the family calls when the wifi breaks.",
         "You've answered a family call during a date, a class or a movie.",
         "In your family, 'can someone...' means you."
       ],
+      "h": {
+        "line": "When your family needs something, you want to be the one who helps.",
+        "sting": "You're always ready to step in for your family, and your own plans often wait.",
+        "heart": "When my family needs someone, I'm glad it's me."
+      },
       "never": "A martyr, guilt-tripped or unable to say no.",
       "triggers": [
         "C6-4 scenario (Q22): a parent needs daily help for six months → 'I've got it' before anyone answers (or wait, then fill the gaps)",
@@ -1130,15 +1611,21 @@
       "id": "T18B",
       "pair": "T18A",
       "chapter": 6,
-      "name": "Helps, with an end date",
+      "name": "Helps with limits",
+      "line": "You'll help your family, and you'll say when the help ends.",
       "zh": "幫忙有期限",
-      "sting": "You'll help. You'll also send the calendar invite for when it stops.",
+      "sting": "Your limits keep you steady, and once in a while a relative hears them as a no to them.",
       "heart": "Helping someone stand on their own is still love.",
       "calls": [
-        "You've told someone in your family 'I can do Tuesday, not every Tuesday.'",
-        "You've told family 'not this weekend' and didn't explain why.",
-        "You've sent a family member a how-to video instead of doing it for them."
+        "You've told family 'I can do Tuesday, not every Tuesday.'",
+        "You've said 'not this weekend' to family without explaining.",
+        "You've sent a relative a how-to video instead of doing it for them."
       ],
+      "h": {
+        "line": "You help your family willingly and clearly, with limits you set.",
+        "sting": "Your limits help you keep going, and sometimes a relative hears them as distance rather than care.",
+        "heart": "Helping someone stand on their own is a way of loving them."
+      },
       "never": "Cold, stingy or not caring about family.",
       "triggers": [
         "C6-4 scenario (Q22): the parent who needs daily help → start a sibling shift calendar, or pitch a hired caregiver",
@@ -1154,15 +1641,21 @@
       "id": "T19A",
       "pair": "T19B",
       "chapter": 6,
-      "name": "Moves out, still calls on Sundays",
+      "name": "My life, my call",
+      "line": "You love your family and you listen, and then you do your plan.",
       "zh": "溫柔的叛逃者",
-      "sting": "You love your family. Your family doesn't get to pick your life.",
+      "sting": "Choosing your own path sometimes means a tense dinner, and you feel it more than you show.",
       "heart": "Loving them and obeying them are two different things.",
       "calls": [
         "You've gone against the family vote and still made it home for dinner that week.",
         "You'll listen to every opinion at dinner and still do your plan.",
         "You've ended a family debate with 'love you, still doing it.'"
       ],
+      "h": {
+        "line": "You love your family and hear them out, and you make your own decisions.",
+        "sting": "Choosing your own way sometimes creates tension at home, and you feel it more than you show.",
+        "heart": "I can love my family and still choose my own path."
+      },
       "never": "Rebellious, ungrateful or not close to family.",
       "triggers": [
         "C6-2 real (Q24): your family's last big 'absolutely not' to a plan → did it anyway and told them after, or said you'd think about it and did it later",
@@ -1177,15 +1670,21 @@
       "id": "T19B",
       "pair": "T19A",
       "chapter": 6,
-      "name": "Runs it by the family group chat",
+      "name": "Family gets a vote",
+      "line": "Your family hears about your plans before your friends do, and you like that.",
       "zh": "家人點頭才安心",
-      "sting": "Your big decisions need a family vote. You pretend they're just 'updates'.",
+      "sting": "Big decisions feel safer with a family nod, and waiting for it can slow a few of them down.",
       "heart": "My family is part of my 'we', and I like it that way.",
       "calls": [
         "Your family knows your plans before your friends do.",
-        "You've let a parent pick the restaurant you didn't want, just to keep the night easy.",
+        "You've let a parent pick the restaurant, just to keep the night easy.",
         "You've asked 'what do you think?' about something you'd already decided."
       ],
+      "h": {
+        "line": "Your family's opinion matters to you, and you want them part of big decisions.",
+        "sting": "Big decisions feel better with your family's blessing, and waiting for it can slow things down.",
+        "heart": "My family is part of how I decide, and I'm glad of it."
+      },
       "never": "A pushover, dependent or unable to decide.",
       "triggers": [
         "C6-2 real (Q24): the family's 'absolutely not' → sent a sibling or aunt in first to soften them, or dropped it for peace at home",
@@ -1200,15 +1699,21 @@
       "id": "T20A",
       "pair": "T20B",
       "chapter": 6,
-      "name": "Modern for you, classic for me",
+      "name": "Classic at heart",
+      "line": "Other people can run their homes any way they like. Yours gets the classic version.",
       "zh": "嘴上新派，心裡傳統",
-      "sting": "Other people can split things however they like. In your own home, you want the classic version.",
+      "sting": "You're open-minded about everyone's setup, and a small part of you still wants the one you grew up with.",
       "heart": "I can hold new ideas and old wishes at the same time.",
       "calls": [
-        "You still make the family recipe exactly as written, measurements and all.",
+        "You still make the family recipe exactly as written.",
         "Your future home already has a very specific holiday routine.",
-        "You'd say roles don't matter, then feel odd when yours get swapped."
+        "You've kept a family tradition going that everyone else forgot."
       ],
+      "h": {
+        "line": "You're open to how others live, and your own home feels right the traditional way.",
+        "sting": "You're open to every kind of household, and part of you still longs for the one you grew up with.",
+        "heart": "New ideas and old wishes can live together in me."
+      },
       "never": "A hypocrite or old-fashioned.",
       "triggers": [
         "C6-3 this_or_that (Q04): your cousin quit a career to stay home, their partner works → love it for them, yours would run classic",
@@ -1223,15 +1728,21 @@
       "id": "T20B",
       "pair": "T20A",
       "chapter": 6,
-      "name": "Writes my own house rules",
+      "name": "Makes my own traditions",
+      "line": "No script for how a home should run. You're writing your own.",
       "zh": "說到做到的新派",
-      "sting": "You have no opinion on how others live. You have lots of opinions on how you'll live.",
+      "sting": "You skipped the script, which means every choice at home is yours to make, and to explain.",
       "heart": "No script is the gift I gave myself.",
       "calls": [
         "Your future home will have at least one tradition you invented.",
         "You'd cook every night if it meant never vacuuming again.",
         "You've made up a holiday that only your friends celebrate."
       ],
+      "h": {
+        "line": "You'd rather create your own way of running a home than follow a script.",
+        "sting": "Without a script, every choice at home is yours to make, and sometimes to explain.",
+        "heart": "Building my own way of doing things is a gift I gave myself."
+      },
       "never": "Anti-tradition or disrespectful to family.",
       "triggers": [
         "C6-1 scenario (Q01): week one sharing a place → split by what each of you hates least, or bribe them with snacks",
@@ -1247,15 +1758,21 @@
       "id": "T21A",
       "pair": "T21B",
       "chapter": 6,
-      "name": "The wedding's for the family",
+      "name": "Big family wedding",
+      "line": "When you picture the wedding, you picture the whole family there.",
       "zh": "婚禮是辦給爸媽看的",
-      "sting": "You say you want the ceremony. You also want certain people to finally relax.",
+      "sting": "You want the ceremony, and part of it is for the people who've waited years to see it.",
       "heart": "Thinking of my family is my own choice too.",
       "calls": [
         "You've already decided who sits at the family table.",
         "Your wedding board is older than any actual relationship.",
-        "You've told a relative 'you'll get an invite' before there was anyone to marry."
+        "You've promised a relative an invite before there was anyone to marry."
       ],
+      "h": {
+        "line": "For you, a wedding is something to share with the whole family.",
+        "sting": "You want the ceremony, and part of that wish is for the family who has hoped to see it.",
+        "heart": "Including my family is something I choose freely."
+      },
       "never": "Old-fashioned, marriage-obsessed or controlled by parents.",
       "triggers": [
         "C6-11 role (18+): a 300-guest family wedding → taking notes, yours gets every relative (or asking the grandparents' secret, or herding cousins into the photo)",
@@ -1271,15 +1788,21 @@
       "id": "T21B",
       "pair": "T21A",
       "chapter": 6,
-      "name": "Love without the paperwork",
+      "name": "No wedding needed",
+      "line": "Love doesn't need a stamp. A good anniversary dinner will do.",
       "zh": "不婚也完整",
-      "sting": "You're not against marriage. You just don't think love needs a stamp.",
-      "heart": "My love doesn't need proof.",
+      "sting": "You're not against weddings. You just get tired of being asked when.",
+      "heart": "My love doesn't need a certificate.",
       "calls": [
         "Your idea of a proposal is 'wanna keep doing this?'",
         "You'd rather celebrate an anniversary than plan a wedding.",
         "You've been a wedding guest and thought 'lovely, not for me.'"
       ],
+      "h": {
+        "line": "You don't feel love needs a wedding to be real.",
+        "sting": "You aren't against marriage. The repeated question of 'when' can wear on you.",
+        "heart": "My love is complete without a ceremony."
+      },
       "never": "Anti-commitment, or against marriage for others.",
       "triggers": [
         "C6-9 this_or_that (Q09, 18+): 'when's the wedding?' → never needed one, the dog is the certificate",
@@ -1295,15 +1818,21 @@
       "id": "T22A",
       "pair": "T22B",
       "chapter": 7,
-      "name": "Always has a flight tab open",
+      "name": "Always somewhere new",
+      "line": "You order the thing you can't pronounce and book the place nobody's tried.",
       "zh": "出走型靈魂",
-      "sting": "You love everything here. You're more scared of only ever seeing here.",
+      "sting": "You love your life here. The idea of only ever knowing here bothers you more than leaving ever could.",
       "heart": "Going far is how I see myself clearly.",
       "calls": [
         "You've learned 'thank you' in a language you don't speak yet.",
-        "You'll order the thing on the menu you can't pronounce.",
+        "You've ordered the menu item you couldn't pronounce.",
         "You've checked flight prices somewhere far away at 1am, just to see."
       ],
+      "h": {
+        "line": "You're drawn to new places, and distance helps you see yourself clearly.",
+        "sting": "You love your life here, and the thought of only ever knowing here weighs on you more than leaving does.",
+        "heart": "Seeing new places helps me understand myself."
+      },
       "never": "Restless, unstable or running away.",
       "triggers": [
         "C7-3 scenario (Q46): a year in a city you've never seen, life here is good → go, pack tonight",
@@ -1320,14 +1849,20 @@
       "pair": "T22A",
       "chapter": 7,
       "name": "Same order, every time",
+      "line": "You don't need new. You need yours, and you know exactly what yours is.",
       "zh": "老位子老點單",
-      "sting": "You say you're open to new things. You've had the same order for three years.",
+      "sting": "Once you find your thing, you're set, and a few great surprises may be waiting one menu over.",
       "heart": "I don't need new. I need mine.",
       "calls": [
-        "Your top song of the year was also your top song last year.",
+        "Your top song this year was also your top song last year.",
         "Your alarm has been the same sound for years.",
-        "You've been to the same vacation spot enough times to have a favorite bench."
+        "You've been to one vacation spot enough times to have a favorite bench."
       ],
+      "h": {
+        "line": "Familiar places and favorite things make you feel at home.",
+        "sting": "Once you've found what you like, you stay with it, and a few pleasant surprises may be waiting just past it.",
+        "heart": "I don't need something new. I like what's mine."
+      },
       "never": "Boring, closed-minded or afraid of change.",
       "triggers": [
         "C7-3 scenario (Q46): the year in a new city → stay, your people and your Thursday thing",
@@ -1343,15 +1878,21 @@
       "id": "T23A",
       "pair": "T23B",
       "chapter": 7,
-      "name": "Team healer, IRL",
+      "name": "First to volunteer",
+      "line": "Someone says they need hands and you're already putting on your shoes.",
       "zh": "志工心",
-      "sting": "You want to make the world better. You'll say yes to one more good cause before you say yes to a nap.",
+      "sting": "You'll say yes to one more good cause before you say yes to a nap.",
       "heart": "I love the world, and I'm practicing loving me too.",
       "calls": [
         "You've walked a stranger to where they were going instead of pointing.",
         "You've turned your birthday into a fundraiser, or thought hard about it.",
-        "You know where the nearest donation bin is without looking it up."
+        "You've signed up to help at an event and ended up running it."
       ],
+      "h": {
+        "line": "When someone needs help, you offer your time without being asked.",
+        "sting": "You say yes to helping others more readily than you say yes to rest.",
+        "heart": "I care about the world, and I'm learning to care for myself as well."
+      },
       "never": "A martyr, or morally better than anyone.",
       "triggers": [
         "C7-6 real (Q47): your last free afternoon → roped into a friend's bake sale, and loved it",
@@ -1368,15 +1909,21 @@
       "id": "T23B",
       "pair": "T23A",
       "chapter": 7,
-      "name": "Booked solid, all me",
+      "name": "Saturdays are for me",
+      "line": "Your free time goes into your own thing, and you protect it.",
       "zh": "先愛自己派",
-      "sting": "You'll give a good cause a like. Your Saturdays are already taken.",
+      "sting": "You'll cheer on a good cause from the sidelines. Your weekends are already booked with you.",
       "heart": "My own growth is a contribution too.",
       "calls": [
-        "You've passed the volunteer sign-up sheet along without writing your name.",
+        "You've passed the volunteer sheet along without writing your name.",
         "Your hobby has a progress tracker, and you check it more than your messages.",
         "You'd pick the class over the charity run."
       ],
+      "h": {
+        "line": "You spend your free time growing your own interests, and you guard it.",
+        "sting": "You support causes in spirit, and your weekends are usually reserved for your own growth.",
+        "heart": "Growing into who I want to be is worth my time."
+      },
       "never": "Selfish or uncaring.",
       "triggers": [
         "C7-6 real (Q47): your last free afternoon → went deep on your own thing, game, sketch, gym, guitar",
@@ -1392,15 +1939,21 @@
       "id": "T24A",
       "pair": "T24B",
       "chapter": 7,
-      "name": "There's a spreadsheet for that",
+      "name": "Tracks everything",
+      "line": "Budgets, calendars, packing lists: if it matters, you track it.",
       "zh": "萬物皆可表格",
-      "sting": "You need a chart to know if things are going well. Even the fun things.",
+      "sting": "You like a chart to know things are going well, even the fun things.",
       "heart": "Tracking is how I take myself seriously.",
       "calls": [
         "You have a budget app, and you've opened it this week.",
         "You've made a packing list for a one-night trip.",
         "Somewhere on your phone is a list of your other lists."
       ],
+      "h": {
+        "line": "You keep track of the things that matter, and it helps you feel on top of them.",
+        "sting": "You like to measure how things are going, even the parts of life meant just for fun.",
+        "heart": "Keeping track is one way I take my life seriously."
+      },
       "never": "Obsessive, controlling or uptight.",
       "triggers": [
         "C7-5 scenario (Q31, Q32 reframed): Sunday night before a packed week → color-code the whole week, or copy last week's unchecked boxes again",
@@ -1418,15 +1971,21 @@
       "id": "T24B",
       "pair": "T24A",
       "chapter": 7,
-      "name": "Eyeballs everything",
+      "name": "Goes by feel",
+      "line": "No spreadsheet needed. You know how things are going by how they feel.",
       "zh": "快樂優先體",
-      "sting": "You trust the feeling over the numbers. Sometimes a little too much.",
+      "sting": "You trust the feeling over the numbers, and once in a while the numbers had a point.",
       "heart": "Feeling good is my whole system.",
       "calls": [
         "You've found a subscription you forgot you were paying for.",
         "You've shown up to something on the wrong day, and laughed.",
-        "You've started five habit trackers and finished zero, happily."
+        "You've started five trackers and finished zero, happily."
       ],
+      "h": {
+        "line": "You trust your sense of how things are going more than any numbers.",
+        "sting": "You trust your instincts over numbers, and now and then the numbers would have helped.",
+        "heart": "How I feel is how I find my way."
+      },
       "never": "Irresponsible, lazy or chaotic.",
       "triggers": [
         "C7-5 scenario (Q31, Q32 reframed): Sunday night before a packed week → nothing, Monday you is capable, or ask the group chat",
@@ -1443,15 +2002,21 @@
       "id": "T25A",
       "pair": "T25B",
       "chapter": 7,
-      "name": "Actually read the rulebook",
+      "name": "Plays by the rules",
+      "line": "You've read the rulebook, and fair to you means the same rules for everyone.",
       "zh": "規則守門員",
-      "sting": "You trust the process, because you don't trust people to wing it.",
+      "sting": "You trust the process, because you don't quite trust people to wing it.",
       "heart": "Fair isn't cold to me. It's safe.",
       "calls": [
-        "You've actually read the terms and conditions on something.",
+        "You've read the terms and conditions on something.",
         "You've quoted the actual rule in a board game argument.",
         "You've waited for the walk signal on a completely empty street."
       ],
+      "h": {
+        "line": "You believe fairness means the same rules apply to everyone.",
+        "sting": "You rely on clear rules partly because you aren't sure people will be fair without them.",
+        "heart": "Clear rules make me feel safe, not restricted."
+      },
       "never": "Rigid, controlling or a snitch.",
       "triggers": [
         "C7-4 real (Q38 reframed): the last rule that made zero sense for you → asked whoever's in charge for an exception, or followed it and moved on",
@@ -1468,15 +2033,21 @@
       "id": "T25B",
       "pair": "T25A",
       "chapter": 7,
-      "name": "Bends rules for good reasons",
+      "name": "Bends rules for people",
+      "line": "People made the rules, so the rules can bend for people.",
       "zh": "情境主義者",
-      "sting": "You think people made the rules, so the rules should bend for people.",
+      "sting": "You make exceptions for everyone you care about, and keeping track of them all is its own job.",
       "heart": "I look at the person, not the form.",
       "calls": [
         "You've said 'technically' and then done the nice thing anyway.",
         "Your house rules have exceptions, and you remember all of them.",
         "You've let a kid win and made it look real."
       ],
+      "h": {
+        "line": "You look at the person in front of you before the rule.",
+        "sting": "You make exceptions for people you care about, and holding all of them in mind takes effort.",
+        "heart": "The person matters more to me than the form."
+      },
       "never": "A rule-breaker, unreliable or unfair.",
       "triggers": [
         "C7-4 real (Q38 reframed): the rule that made zero sense → worked around it quietly, or did it your way with a speech ready",

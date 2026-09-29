@@ -1,10 +1,11 @@
 // Authoring-only fields in the persona quiz V2 kit (research/persona-quiz-v2/final) that the scorer never reads:
-// masks ("looks like X; measures Y"), trigger notes, origins, "never read as" notes, translation notes and build notes.
+// masks ("looks like X; measures Y"), situation fingerprints (fp), trigger notes, origins, "never read as" notes,
+// translation notes and build notes. The Heart to heart text (heart) is player-facing and stays.
 // The web build drops them so the bundle does not ship what a card secretly measures. tests/persona-kit.test.mjs
 // proves the scorer returns identical results on the stripped and the full kit.
 export const AUTHORING_KEYS = new Set([
   "mask", "ae", "triggers", "origin", "never", "sources", "cardNotes", "backupWhy", "optionsNote", "gate",
-  "zhStatus", "zhSally",
+  "zhStatus", "zhSally", "fp",
 ]);
 
 export function stripAuthoring(value) {

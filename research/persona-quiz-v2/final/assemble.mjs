@@ -1,8 +1,14 @@
-// Assembles the blind test 2 kit from the chapter and library sources.
-//   node assemble.mjs   -> library.json + cards.json (in this folder)
-// Sources: ../chapters/ch1..7.final.json, ../library/types.json, ../library/tags.json,
-// ../judges/flow.json (finale order). Plain Node, no dependencies.
+// RETIRED (Build C, 2026-09-28). This script assembled the blind test 2 kit from ../chapters/*.final.json,
+// ../library/types.json, ../library/tags.json and ../judges/flow.json. Those sources are stale:
+//   - library.json is now the source of truth for result copy (written by hand, LAUNCH-SPEC section 22, package C).
+//     It must never be regenerated from ../library/types.json or tags.json.
+//   - cards.json is now built from bank/*.json by merge-bank.mjs.
+// Running it refuses and writes nothing (tests.mjs checks that). The old code below is kept for the record only and
+// never runs.
 import fs from "node:fs";
+
+console.error("assemble.mjs is retired: library.json is edited by hand and cards.json is built by merge-bank.mjs. Nothing was written.");
+process.exit(1);
 
 const here = (p) => new URL(p, import.meta.url);
 const read = (p) => JSON.parse(fs.readFileSync(here(p), "utf8"));
@@ -29,7 +35,7 @@ const library = {
   tagChapters: tagsLib.chapters,
   tags: tagsLib.tags,
 };
-write("./library.json", library);
+// write("./library.json", library); // never: library.json is the source of truth now
 
 // ---------- cards.json ----------
 const GRADE = { real: "did", scenario: "would", this_or_that: "believe", role: "believe", pick_two: "believe", feeling: "emotion", sealed: "none" };

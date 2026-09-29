@@ -5,11 +5,11 @@ import * as Friend from "../src/persona/friend.js";
 import { decodePayload, encodePayload, readHash, linkFor, LinkError, MAX_PAYLOAD } from "../src/persona/links.js";
 import { S, TAG, FRIEND, KIT_ID } from "../src/persona/kit.js";
 import { restoreRun } from "../src/persona/store.js";
-import { ADULT, TEEN, clock, completeRun, leaning, firstOption } from "./persona-helpers.mjs";
+import { ADULT, OTHER, clock, completeRun, leaning, firstOption } from "./persona-helpers.mjs";
 
 const consistent = leaning({ R1: 1, R2: -1, R3: -1, L1: 1, L2: -1, L3: 1 });
 const owner = completeRun(ADULT, consistent, "friendown1");
-const teenOwner = completeRun(TEEN, consistent, "friendteen");
+const otherOwner = completeRun(OTHER, consistent, "friendothr");
 
 function challenge(state, input, id = "chal000001", seed = 42) {
   return Friend.createChallenge(state, input, { now: clock(), id, seed });
@@ -70,12 +70,20 @@ test("level 2 never uses private, locked, rushed, circumstance or depends answer
   }
 });
 
-test("teen owner: no marriage and kids switch, no 18+ tags in any round", () => {
-  assert.equal(Friend.toggleOptions("partner", TEEN).mk, null);
-  const { state, challenge: ch } = challenge(teenOwner, { rel: "bestie", mk: true, stings: true });
-  assert.equal(ch.mk, false);
+test("no age logic: every owner gets the same switches; the marriage and kids switch is the owner's own choice", () => {
+  assert.deepEqual(Friend.toggleOptions("partner", ADULT), Friend.toggleOptions("partner", OTHER));
+  assert.ok(Friend.toggleOptions("partner").mk, "the marriage and kids switch is offered to every owner");
+  const { state, challenge: ch } = challenge(otherOwner, { rel: "bestie", mk: true, stings: true });
+  assert.equal(ch.mk, true);
+  const body = Friend.challengeBody(state, ch);
+  assert.ok(!("cu" in body) && !("du" in body), "no under-18 copy of the deck in the link");
   const parsed = Friend.parseChallenge(Friend.challengePayload(state, ch));
-  for (const id of [...(parsed.level3 ? parsed.level3.cards : []), ...(parsed.level4 ? parsed.level4.lines : [])]) assert.ok(!TAG[id].locked18, id);
+  assert.ok(!("level3u" in parsed) && !("level4u" in parsed));
+  assert.equal(Friend.friendIntro(parsed).needsAgeBand, undefined, "the friend is never asked their age");
+  const off = challenge(otherOwner, { rel: "bestie", mk: false, stings: true }, "chal000002");
+  const parsedOff = Friend.parseChallenge(Friend.challengePayload(off.state, off.challenge));
+  const mk = FRIEND.relationships.tagPairGroups.marriageKids.pairs;
+  for (const id of parsedOff.level3 ? parsedOff.level3.cards : []) assert.ok(!mk.includes(id.slice(0, 3)), `${id} with the switch off`);
 });
 
 test("friend plays perfectly and badly; the friend sees counts only; the owner's view matches", () => {
@@ -122,16 +130,21 @@ test("friend plays perfectly and badly; the friend sees counts only; the owner's
   assert.equal(Friend.ownerFriendView(restored, ch.id).band, badView.band);
 });
 
-test("marriage and kids opt-in: an under-18 friend gets the version without those tags", () => {
+test("marriage and kids opt-in: every friend plays the same deck, and a reply carries no age", () => {
   const { state, challenge: ch } = challenge(owner, { rel: "partner", mk: true, love: true });
   const parsed = Friend.parseChallenge(Friend.challengePayload(state, ch));
   assert.equal(parsed.mk, true);
-  const young = Friend.friendDeckView(parsed, { under18: true });
-  for (const c of young.level3.cards) assert.ok(!TAG[c.id].locked18, c.id);
-  const g = Friend.cleanGuesses(young, perfectGuesses(young));
-  const imported = Friend.importReply(state, Friend.replyPayload(parsed, young, g, { under18: true }), { now: clock() });
-  assert.equal(imported.state.friendResults[0].under18, true);
-  assert.equal(Friend.ownerFriendView(imported.state, ch.id).score.level3.z, young.level3.N);
+  const view = Friend.friendDeckView(parsed);
+  const g = Friend.cleanGuesses(view, perfectGuesses(view));
+  const reply = Friend.replyPayload(parsed, view, g);
+  assert.ok(!("u" in decodePayload(reply)), "no age flag in the reply link");
+  const imported = Friend.importReply(state, reply, { now: clock() });
+  assert.deepEqual(Object.keys(imported.state.friendResults[0]).sort(), ["challengeId", "guesses", "hideRoast", "receivedAt"]);
+  assert.equal(Friend.ownerFriendView(imported.state, ch.id).score.level3.z, view.level3.N);
+  // A reply saved with the old age flag is refused on restore (fails closed, never trusted).
+  const raw = JSON.parse(Session.serialize(imported.state));
+  raw.friendResults[0].under18 = false;
+  assert.throws(() => restoreRun(JSON.stringify(raw)), { code: "corrupt" });
 });
 
 test("ranking: two played links, best reader first, owner only", () => {
@@ -176,7 +189,9 @@ test("malformed, tampered and foreign links are rejected with a readable reason"
   rejects(mutate((b) => { b.c.d[0] = "T11A"; }), "invalid");
   rejects(mutate((b) => { b.d = null; }), "invalid");
   rejects(mutate((b) => { b.d.r.push("R99"); }), "invalid");
-  rejects(mutate((b) => { b.o[1] = 1; }), "invalid");
+  rejects(mutate((b) => { b.o[1] = 2; }), "invalid");
+  rejects(mutate((b) => { b.cu = b.c; }), "invalid"); // the old under-18 copy of the deck is not a field any more
+  rejects(mutate((b) => { b.c.d[0] = "T11A"; b.c.d[1] = "T11B"; }), "invalid"); // marriage and kids tags with the switch off
   rejects(mutate((b) => { b.a[0] = [0, 0]; }), "invalid");
   const ownRejects = mutate((b) => { b.r = "friendOrCoworker"; b.d = null; b.o = [1, 0, 0, 1]; });
   rejects(ownRejects, "invalid");

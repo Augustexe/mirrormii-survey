@@ -1,7 +1,8 @@
 // Genii persona quiz v2 scorer. Deterministic evidence parsing, no model judgment. Plain Node, no dependencies.
 //
 //   node score.mjs profile answers.json       -> profile.json + result.json (result page data)
-//   node score.mjs freeze                      -> sealed-predictions.json + sealed-predictions.sha256 (refuses to refreeze)
+//   node score.mjs freeze [--seed N]           -> sealed-predictions.json + sealed-predictions.sha256 (refuses to refreeze);
+//                                                 guesses for the 8 sealed cards drawn from the pool with seed N (default 1)
 //   node score.mjs check sealed-answers.json   -> sealed-results.json
 //   node score.mjs friend [--rel bestie|partner|crush|friendOrCoworker] [--stings on|off] [--love on|off] [--mk on|off] [--seed N]
 //                                              -> friend-deck.json (reads answers.json and profile.json in this folder)
@@ -10,8 +11,9 @@
 // from the folder this script lives in.
 //
 // answers.json:
-// { "setup": { "age": "teen|adult", "closest": "...", "pronoun": "she|he|they", "name": "optional display name" },
-//   "<cardId>": optionIndex | [i, j] (pick_two) | "skip" | "not_my_life" | "no_recent",
+// { "setup": { "closest": "...", "pronoun": "she|he|they", "name": "optional display name" },
+//   "<cardId>": optionIndex | [i, j] (pick_two) | [i, ...] (receipts ticks) | [first, second, third, last] (rank)
+//               | "skip" | "not_my_life" | "no_recent",
 //   "<cardId>.flip": index,                      (only after a "depends" option)
 //   "_ms": { "<cardId>": ms } }
 import fs from "node:fs";
@@ -29,9 +31,9 @@ export const lib = readJSON(path.join(DIR, "library.json"));
 // All scoring lives in score-core.mjs (shared with the quiz64 web app). This file adds the kit files and the CLI.
 const scorer = createScorer({ kit, lib, friend: () => readJSON(path.join(DIR, "friend.json")) });
 export const {
-  CONFIG, allCards, cardById, isTeen, runCards, promptFor, optionVector, readAnswer, buildProfile, cardTagMax, twistOrder,
-  cardLink, rankTags, typeOf, buildResult, profilePosition, predictCard, freezePredictions, checkSealed, friendMapping,
-  buildFriendDeck,
+  CONFIG, allCards, cardById, runCards, promptFor, optionText, threadFor, optionVector, readAnswer, pickWeights, buildProfile,
+  cardTagMax, twistOrder, cardLink, rankTags, typeOf, buildResult, profilePosition, predictCard, drawFinale, freezePredictions,
+  checkSealed, friendMapping, buildFriendDeck,
 } = scorer;
 const { AXES, TAG } = scorer;
 
@@ -76,7 +78,8 @@ function main(argv) {
     const profPath = path.resolve(process.cwd(), "profile.json");
     if (!fs.existsSync(profPath)) { console.error("No profile.json here. Run: node score.mjs profile answers.json"); return 1; }
     const p = readJSON(profPath);
-    const frozen = { ...freezePredictions(p), frozenAt: new Date().toISOString(), profileSha256: sha256File(profPath) };
+    const f = flags(argv.slice(1));
+    const frozen = { ...freezePredictions(p, drawFinale(f.seed ? Number(f.seed) : 1)), frozenAt: new Date().toISOString(), profileSha256: sha256File(profPath) };
     fs.writeFileSync(out, JSON.stringify(frozen, null, 2) + "\n", { flag: "wx" });
     const h = sha256File(out);
     fs.writeFileSync(path.resolve(process.cwd(), "sealed-predictions.sha256"), `${h}  sealed-predictions.json\n`);
@@ -107,7 +110,7 @@ function main(argv) {
     console.log(`friend deck (${deck.relationship}): level 1 six sides, level 2 ${deck.level2.cards.length} cards, level 3 ${deck.level3.cards.length} tag cards (N=${deck.level3.N ?? 0}), level 4 ${deck.level4 ? (deck.level4.enabled ? "on" : "off") : "n/a"}`);
     return 0;
   }
-  console.error("usage: node score.mjs profile answers.json | freeze | check sealed-answers.json | friend [--rel bestie] [--stings on|off] [--love on|off] [--mk on|off] [--seed N]");
+  console.error("usage: node score.mjs profile answers.json | freeze [--seed N] | check sealed-answers.json | friend [--rel bestie] [--stings on|off] [--love on|off] [--mk on|off] [--seed N]");
   return 2;
 }
 

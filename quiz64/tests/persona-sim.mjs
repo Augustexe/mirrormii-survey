@@ -1,8 +1,8 @@
 // Picker simulation: consistent synthetic players (hidden axis and tag-pair positions, 20% noise, the same player
 // model as research/persona-quiz-v2/final/sim.mjs) play the real step machine for every lobby bucket (8 room sets x
-// 3 depths x adult and teen), and the same players play the old fixed walk (every chapter card, then extras for an
-// unfinished side) as the 69-card baseline. Finale answers are drawn per player and card, so both runs face the same
-// sealed answers.
+// 2 depths; there is no age band and the voice never changes the route), and the same players play the old fixed walk
+// (every chapter card, then extras for an unfinished side) as the baseline. Finale answers are drawn per player and
+// card, and the baseline plays the same drawn finale as the picker run, so both face the same sealed answers.
 //   node tests/persona-sim.mjs            -> 300 players per bucket, prints the report tables
 //   node tests/persona-sim.mjs --n 50     -> fewer players
 //   node tests/persona-sim.mjs --json     -> machine-readable summary
@@ -20,6 +20,11 @@ function hash32(text) {
   return h >>> 0;
 }
 const U = (r, a, b) => a + (b - a) * r();
+function shuffled(n, r) {
+  const a = Array.from({ length: n }, (_, i) => i);
+  for (let i = n - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+}
 
 function utility(o, h) {
   if (o.circumstance) return -0.4;
@@ -61,6 +66,8 @@ export function makePlayer(seed, { noise = 0.2, exitRate = 0, rushFrom = Infinit
     const nz = card.type === "feeling" ? 1 : noise;
     if (card.type === "receipts") return { value: receiptsTicks(card, hidden, r, nz), ms, flip: null };
     const ranked = card.options.map((o, i) => [i, utility(o, hidden) + 0.12 * gumbel()]).sort((a, b) => b[1] - a[1]).map(([i]) => i);
+    // Rank it: the fitting order, or (with probability nz) a random one.
+    if (card.type === "rank") return { value: r() < nz ? shuffled(n, r) : ranked, ms, flip: null };
     const out = [];
     while (out.length < want) {
       const i = r() < nz ? Math.floor(r() * n) : ranked.find((j) => !out.includes(j));
@@ -88,8 +95,8 @@ export function playPicker(setup, lobby, player, runId) {
 }
 
 // The pre-picker walk: every chapter card in kit order (gate and feeling rules as the old app), then extras for an
-// unfinished side (1 or 2 per side), freeze, finale.
-export function playBaseline(setup, player) {
+// unfinished side (1 or 2 per side), freeze, finale (the given drawn finale ids, default: the whole sealed pool).
+export function playBaseline(setup, player, finaleIds = KIT.finale.map((c) => c.id)) {
   const answers = { setup, _ms: {} };
   let served = 0;
   for (const card of S.runCards(setup)) {
@@ -109,24 +116,21 @@ export function playBaseline(setup, player) {
     answers._ms[extra.id] = a.ms;
   }
   const profile = S.buildProfile(answers);
-  const frozen = S.freezePredictions(profile);
-  const finale = Object.fromEntries(KIT.finale.map((c) => [c.id, player.answer(c).value]));
+  const frozen = S.freezePredictions(profile, finaleIds);
+  const finale = Object.fromEntries(finaleIds.map((id) => [id, player.answer(S.cardById[id]).value]));
   return { profile, sealed: S.checkSealed(frozen, finale), cards: served };
 }
 
-// Can a tag reach tagFire from at least 2 cards in this pool (best option per card, pick_two its best two)?
+// Can a tag reach tagFire from at least 2 cards in this pool (the scorer's own per-card maximum: best option, pick_two
+// its best two, receipts its best three ticks, rank its best order)?
 export function tagReachable(tagId, cards) {
-  const pair = S.TAG[tagId].pair;
-  const per = cards.map((c) => {
-    const vals = c.options.map((o) => (o.tags || []).reduce((s, t) => s + (t.id === tagId ? t.s : t.id === pair ? -t.s : 0), 0)).map((v) => Math.max(0, v)).sort((a, b) => b - a);
-    return c.weight * (c.type === "pick_two" ? (vals[0] || 0) + (vals[1] || 0) : vals[0] || 0);
-  }).filter((v) => v > 0).sort((a, b) => b - a);
+  const per = cards.map((c) => c.weight * S.cardTagMax(c, tagId)).filter((v) => v > 0).sort((a, b) => b - a);
   return per.length >= S.CONFIG.tagMinCards && per.reduce((s, v) => s + v, 0) >= S.CONFIG.tagFire;
 }
 
 export function buckets() {
   const out = [];
-  for (const rooms of ROOM_SETS) for (const depth of DEPTHS) for (const age of ["adult", "teen"]) out.push({ rooms, depth, age, key: `${age}|${depth}|${rooms.join("+") || "none"}` });
+  for (const rooms of ROOM_SETS) for (const depth of DEPTHS) out.push({ rooms, depth, key: `${depth}|${rooms.join("+") || "none"}` });
   return out;
 }
 
@@ -137,17 +141,18 @@ export function simulate({ n = 300, noise = 0.2, baseline = true } = {}) {
   const rows = [];
   const fireByRooms = {}; // rooms key -> tag -> fires
   const shownAll = {};
-  const baseByAge = {};
-  const baseFires = {}; // tag -> fires in the baseline (each player and age once)
+  const baseByPlayer = {};
+  const baseFires = {}; // tag -> fires in the baseline (each player once)
   for (const b of buckets()) {
-    const setup = { age: b.age, closest: "best_friend", pronoun: "they" };
+    const setup = { closest: "best_friend", pronoun: "they" };
     const lobby = lobbyFor(b.rooms, b.depth);
     const G = { ...b, n: 0, anyUnfinished: 0, tags: [], zero: 0, three5: 0, exact: 0, called: 0, side: 0, sideOf: 0, passes: 0, cards: [], bExact: 0, bCalled: 0, bUnfinished: 0 };
     const roomsKey = b.rooms.join("+") || "none";
     const fires = (fireByRooms[roomsKey] ||= {});
     for (let i = 0; i < n; i++) {
-      const player = makePlayer(`${b.age}-${i}`, { noise });
-      const s = playPicker(setup, lobby, player, `sim${String(i).padStart(5, "0")}`);
+      const player = makePlayer(`p-${i}`, { noise });
+      const runId = `sim${String(i).padStart(5, "0")}`;
+      const s = playPicker(setup, lobby, player, runId);
       const { profile, sealed } = Session.resultFor(s);
       G.n++;
       G.cards.push(Session.routeFor(s).length);
@@ -158,20 +163,20 @@ export function simulate({ n = 300, noise = 0.2, baseline = true } = {}) {
       for (const id of profile.firedTags) fires[id] = (fires[id] || 0) + 1;
       for (const id of profile.shownTags) shownAll[id] = (shownAll[id] || 0) + 1;
       G.exact += sealed.exact; G.called += sealed.called; G.side += sealed.side; G.sideOf += sealed.sideOf; G.passes += sealed.passes;
-      // The baseline depends only on the age band (no lobby), so it is computed once per player and age.
+      // The baseline has no lobby, so it is computed once per player (with the same drawn finale as the picker run).
       if (baseline) {
-        const bk = `${b.age}|${i}`;
-        if (!baseByAge[bk]) {
-          baseByAge[bk] = playBaseline(setup, player);
-          for (const id of baseByAge[bk].profile.firedTags) baseFires[id] = (baseFires[id] || 0) + 1;
+        const bk = `${i}`;
+        if (!baseByPlayer[bk]) {
+          baseByPlayer[bk] = playBaseline(setup, player, Session.finaleIds({ runId }));
+          for (const id of baseByPlayer[bk].profile.firedTags) baseFires[id] = (baseFires[id] || 0) + 1;
         }
-        const base = baseByAge[bk];
+        const base = baseByPlayer[bk];
         G.bExact += base.sealed.exact; G.bCalled += base.sealed.called;
         if (AXES.some((a) => base.profile.axes[a].unfinished)) G.bUnfinished++;
       }
     }
     rows.push({
-      key: b.key, age: b.age, depth: b.depth, rooms: roomsKey, n: G.n,
+      key: b.key, depth: b.depth, rooms: roomsKey, n: G.n,
       cardsMin: Math.min(...G.cards), cardsMax: Math.max(...G.cards),
       unfinishedShare: G.anyUnfinished / G.n, tagsMean: mean(G.tags), zeroTags: G.zero, share3to5: G.three5 / G.n,
       exactRate: G.called ? G.exact / G.called : 0, sideRate: G.sideOf ? G.side / G.sideOf : 0, passesPerRun: G.passes / G.n,
@@ -180,21 +185,21 @@ export function simulate({ n = 300, noise = 0.2, baseline = true } = {}) {
     });
   }
   // Tags that never fired for anyone on a room set, and whether the room set's widest pool can fire them at all.
-  const adultTags = LIB.tags.map((t) => t.id);
+  const allTags = LIB.tags.map((t) => t.id);
   const silent = [];
   for (const rooms of ROOM_SETS) {
     const key = rooms.join("+") || "none";
-    const lobby = lobbyFor(rooms, "personal");
+    const lobby = lobbyFor(rooms, "anything");
     const open = new Set(Session.openChapterIds(lobby));
-    const pool = (age) => [...S.runCards({ age }).filter((c) => open.has(c.chapter) && Session.depthAllows(c, "personal")), ...KIT.extras];
-    for (const id of adultTags) {
+    const pool = [...S.runCards().filter((c) => open.has(c.chapter)), ...KIT.extras];
+    for (const id of allTags) {
       if (fireByRooms[key][id]) continue;
-      silent.push({ rooms: key, tag: id, name: S.TAG[id].name, reachable: tagReachable(id, pool("adult")) });
+      silent.push({ rooms: key, tag: id, name: S.TAG[id].name, reachable: tagReachable(id, pool) });
     }
   }
   const tot = (k) => rows.reduce((s, r) => s + r[k], 0);
   return {
-    rows, silent, shownAll, fireByRooms, baseFires, baselinePlayers: Object.keys(baseByAge).length,
+    rows, silent, shownAll, fireByRooms, baseFires, baselinePlayers: Object.keys(baseByPlayer).length,
     total: {
       n: tot("n"), unfinishedShare: rows.reduce((s, r) => s + r.unfinishedShare * r.n, 0) / tot("n"),
       exactRate: tot("_exact") / tot("_called"), baseExactRate: baseline ? tot("_bExact") / tot("_bCalled") : null,
@@ -221,6 +226,7 @@ export function makeRandomPlayer(seed) {
       if (b >= a) b++;
       return { value: [a, b], ms };
     }
+    if (card.type === "rank") return { value: shuffled(n, r), ms };
     const value = Math.floor(r() * n);
     const flip = card.options[value].depends && card.flip ? Math.floor(r() * card.flip.options.length) : null;
     return { value, ms, flip };
@@ -228,21 +234,21 @@ export function makeRandomPlayer(seed) {
   return { seed, answer };
 }
 
-// Step B acceptance (LAUNCH-SPEC section 18): per-tag fire rates for consistent players at RUN_SIZE with every room
-// open (depth "personal", adult and teen; locked18 tags rated on adults only), the same per room combination, and
-// random clickers' pole shares with every room open.
+// Acceptance (LAUNCH-SPEC sections 18 and 22): per-tag fire rates for consistent players at RUN_SIZE with every room
+// open (depth "anything"), the same per room combination, and random clickers' pole shares with every room open.
+// Counts are doubled from the old per-age-band loop so the sample sizes match earlier reports.
 export function acceptance({ n = 1000, nRooms = 300, nRandom = 2000, noise = 0.2 } = {}) {
   const tags = LIB.tags;
-  const rate = (fires, adults, all) => Object.fromEntries(tags.map((t) => [t.id, (fires[t.id] || 0) / ((t.locked18 ? adults : all) || 1)]));
+  const rate = (fires, all) => Object.fromEntries(tags.map((t) => [t.id, (fires[t.id] || 0) / (all || 1)]));
   const runSet = (rooms, count, tagPrefix) => {
     const fires = {};
-    let adults = 0, all = 0, zero = 0, unfinished = 0, shown = 0, exact = 0, called = 0;
-    for (const age of ["adult", "teen"]) {
+    let all = 0, zero = 0, unfinished = 0, shown = 0, exact = 0, called = 0;
+    for (const half of ["a", "b"]) {
       for (let i = 0; i < count; i++) {
-        const player = makePlayer(`${tagPrefix}-${age}-${i}`, { noise });
-        const s = playPicker({ age, closest: "best_friend", pronoun: "they" }, lobbyFor(rooms, "personal"), player, `acc${String(i).padStart(5, "0")}`);
+        const player = makePlayer(`${tagPrefix}-${half}-${i}`, { noise });
+        const s = playPicker({ closest: "best_friend", pronoun: "they" }, lobbyFor(rooms, "anything"), player, `acc${half}${String(i).padStart(5, "0")}`);
         const { profile, sealed } = Session.resultFor(s);
-        all++; if (age === "adult") adults++;
+        all++;
         for (const id of profile.firedTags) fires[id] = (fires[id] || 0) + 1;
         if (!profile.shownTags.length) zero++;
         if (AXES.some((a) => profile.axes[a].unfinished)) unfinished++;
@@ -250,16 +256,16 @@ export function acceptance({ n = 1000, nRooms = 300, nRandom = 2000, noise = 0.2
         exact += sealed.exact; called += sealed.called;
       }
     }
-    return { rates: rate(fires, adults, all), n: all, zeroShare: zero / all, unfinishedShare: unfinished / all, shownMean: shown / all, exactRate: called ? exact / called : 0 };
+    return { rates: rate(fires, all), n: all, zeroShare: zero / all, unfinishedShare: unfinished / all, shownMean: shown / all, exactRate: called ? exact / called : 0 };
   };
   const open = runSet(["love", "work", "family"], n, "open");
   const byRooms = {};
   for (const rooms of ROOM_SETS) byRooms[rooms.join("+") || "none"] = runSet(rooms, nRooms, `rooms-${rooms.join("+") || "none"}`);
   const pos = Object.fromEntries(AXES.map((a) => [a, 0]));
   let rn = 0;
-  for (const age of ["adult", "teen"]) {
+  for (const half of ["a", "b"]) {
     for (let i = 0; i < nRandom; i++) {
-      const s = playPicker({ age, closest: "best_friend", pronoun: "they" }, lobbyFor(["love", "work", "family"], "personal"), makeRandomPlayer(`${age}-${i}`), `rnd${String(i).padStart(5, "0")}`);
+      const s = playPicker({ closest: "best_friend", pronoun: "they" }, lobbyFor(["love", "work", "family"], "anything"), makeRandomPlayer(`${half}-${i}`), `rnd${half}${String(i).padStart(5, "0")}`);
       const p = Session.profileFor(s);
       for (const a of AXES) if (p.axes[a].pole > 0) pos[a]++;
       rn++;
@@ -278,7 +284,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     const acc = acceptance({ n: Number(arg("--n", 1000)), nRooms: Number(arg("--rooms", 300)), nRandom: Number(arg("--random", 2000)) });
     if (process.argv.includes("--json")) { console.log(JSON.stringify(acc, null, 1)); process.exit(0); }
     const o = acc.open;
-    console.log(`Every room open, depth personal, ${o.n} consistent players (adult and teen), ${((Date.now() - t0) / 1000).toFixed(1)} s`);
+    console.log(`Every room open, depth anything, ${o.n} consistent players, ${((Date.now() - t0) / 1000).toFixed(1)} s`);
     console.log(`tags shown mean ${o.shownMean.toFixed(2)}, 0 tags ${pct(o.zeroShare)}, any unfinished ${pct(o.unfinishedShare)}, sealed exact ${pct(o.exactRate)}`);
     const under = Object.entries(o.rates).filter(([, r]) => r < 0.01);
     console.log(`tags under 1%: ${under.map(([id, r]) => `${id} ${pct(r)}`).join(", ") || "none"}`);
@@ -296,9 +302,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const out = simulate({ n });
   if (process.argv.includes("--json")) { console.log(JSON.stringify(out, null, 1)); process.exit(0); }
   console.log(`players per bucket: ${n}, buckets: ${out.rows.length}, seconds: ${((Date.now() - t0) / 1000).toFixed(1)}`);
-  console.log("| Age | Depth | Open rooms | Cards | Any unfinished | Tags mean | 3 to 5 tags | 0 tags | Sealed exact | Baseline exact (69) | Sealed side |");
-  console.log("|---|---|---|---|---|---|---|---|---|---|---|");
-  for (const r of out.rows) console.log(`| ${r.age} | ${r.depth} | ${r.rooms} | ${r.cardsMin === r.cardsMax ? r.cardsMin : `${r.cardsMin}-${r.cardsMax}`}+8 | ${pct(r.unfinishedShare)} | ${r.tagsMean.toFixed(2)} | ${pct(r.share3to5)} | ${r.zeroTags} | ${pct(r.exactRate)} | ${pct(r.baseExactRate)} | ${pct(r.sideRate)} |`);
+  console.log("| Depth | Open rooms | Cards | Any unfinished | Tags mean | 3 to 5 tags | 0 tags | Sealed exact | Baseline exact (full walk) | Sealed side |");
+  console.log("|---|---|---|---|---|---|---|---|---|---|");
+  for (const r of out.rows) console.log(`| ${r.depth} | ${r.rooms} | ${r.cardsMin === r.cardsMax ? r.cardsMin : `${r.cardsMin}-${r.cardsMax}`}+8 | ${pct(r.unfinishedShare)} | ${r.tagsMean.toFixed(2)} | ${pct(r.share3to5)} | ${r.zeroTags} | ${pct(r.exactRate)} | ${pct(r.baseExactRate)} | ${pct(r.sideRate)} |`);
   const T = out.total;
   console.log(`\nTOTAL n=${T.n}: any unfinished ${pct(T.unfinishedShare)}, tags mean ${T.tagsMean.toFixed(2)}, 3 to 5 tags ${pct(T.share3to5)}, 0 tags ${T.zeroTags}, sealed exact ${pct(T.exactRate)} vs baseline ${pct(T.baseExactRate)}`);
   const byRooms = {};

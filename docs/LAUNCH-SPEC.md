@@ -223,10 +223,12 @@ Teen-safe by default (18+ cards need 18+ setup; teens never get the marriage and
 
 | Part | Status |
 |---|---|
-| Setup, lobby, picker, 40 + 8 | Built, tested, played in the browser |
+| Setup, lobby, picker, 40 + 8 | Built, tested, played in the browser. Build C engine (09-28): no age screen, 2-tap setup, 3-tap lobby (voice, how personal, rooms), 8 sealed cards drawn per run from the sealed pool; tested, not yet played in the browser |
 | Cards and evidence | Built; gaps below |
 | Names, tags, result lines | Built as literal translations; to rewrite |
-| Voices | One voice; 2 + Be kind planned |
+| Voices | Engine built (card `heart` text, Heart to heart host lines, Just the cards); cards carry no `heart` text yet, so everyone reads Make it fun until the bank lands |
+| Formats bet, rank, eyes | Built in scorer and app (guilty renamed bet; the 6 legacy bets keep 2 answers until rewritten) |
+| Bank tooling | Built: `check-bank.mjs`, `merge-bank.mjs`, `audit.mjs` against section 22 targets; bank files not written yet |
 | Evidence page | Old template in the app; Stories drafted |
 | Friend game | Built |
 | Real-person validation | None |

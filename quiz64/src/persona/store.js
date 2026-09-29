@@ -32,11 +32,10 @@ function cleanPlay(entry, id) {
   if (!entry || typeof entry !== "object" || typeof entry.payload !== "string") return null;
   const ch = parseChallenge(entry.payload);
   if (ch.id !== id) return null;
-  const under18 = ch.mk ? (entry.under18 === true ? true : entry.under18 === false ? false : null) : false;
-  const view = friendDeckView(ch, { under18: !!under18 });
+  const view = friendDeckView(ch);
   const stage = STAGES.includes(entry.stage) ? entry.stage : "intro";
   const step = Number.isInteger(entry.step) && entry.step >= 0 && entry.step < 64 ? entry.step : 0;
-  return { payload: entry.payload, under18, stage, step, guesses: cleanGuesses(view, entry.guesses), updatedAt: String(entry.updatedAt || "") };
+  return { payload: entry.payload, stage, step, guesses: cleanGuesses(view, entry.guesses), updatedAt: String(entry.updatedAt || "") };
 }
 
 export function loadFriendPlays(storage) {

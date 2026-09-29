@@ -7,18 +7,19 @@ import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { kit, lib, cardById, runCards, buildProfile, buildResult, freezePredictions, checkSealed, buildFriendDeck, promptFor, CONFIG, rankTags, twistOrder, cardLink, friendMapping } from "./score.mjs";
+import { kit, lib, cardById, runCards, buildProfile, buildResult, freezePredictions, drawFinale, checkSealed, buildFriendDeck, promptFor, optionText, threadFor, CONFIG, rankTags, twistOrder, cardLink, friendMapping } from "./score.mjs";
 import { createScorer } from "./score-core.mjs";
-import { checkLock, LOCK_FILE, normalize } from "./lock-evidence.mjs";
+import { checkLock, entryFor, LOCK_FILE, normalize } from "./lock-evidence.mjs";
+import { TYPES as TYPE_SPEC, DID_TYPES, RANK_WEIGHTS, fillFromType } from "./card-schema.mjs";
 
 const DIR = path.dirname(fileURLToPath(import.meta.url));
 const AXES = ["R1", "R2", "R3", "L1", "L2", "L3"];
 const TAGS = new Set(lib.tags.map((t) => t.id));
 const TAG = Object.fromEntries(lib.tags.map((t) => [t.id, t]));
 const FRIEND = JSON.parse(fs.readFileSync(path.join(DIR, "friend.json"), "utf8"));
-const TYPES = new Set(["scenario", "real", "this_or_that", "role", "pick_two", "feeling", "sealed", "receipts", "guilty", "reply", "others"]);
-const WEIGHT = { real: 0.8, scenario: 0.55, this_or_that: 0.45, role: 0.45, pick_two: 0.45, feeling: 0, sealed: 0, receipts: 0.4, guilty: 0.8, reply: 0.55, others: 0.45 };
-const GRADE = { real: "did", receipts: "did", guilty: "did", scenario: "would", reply: "would", this_or_that: "believe", role: "believe", pick_two: "believe", others: "believe" };
+const TYPES = new Set(Object.keys(TYPE_SPEC));
+const WEIGHT = Object.fromEntries(Object.entries(TYPE_SPEC).map(([t, x]) => [t, x.weight]));
+const GRADE = Object.fromEntries(Object.entries(TYPE_SPEC).map(([t, x]) => [t, x.grade]));
 const chapterCards = kit.chapters.flatMap((c) => c.cards);
 const everyCard = [...chapterCards, ...kit.finale, ...kit.extras];
 const dims = (c) => {
@@ -30,8 +31,8 @@ const dims = (c) => {
   return s;
 };
 const o_words = (c) => c.options.map((o) => o.t.split(/\s+/).length);
-const ADULT = { setup: { age: "adult", closest: "best friend", pronoun: "they" } };
-const TEEN = { setup: { age: "teen", closest: "best friend", pronoun: "she" } };
+// One bank for everyone (LAUNCH-SPEC section 22): setup is closest person and pronoun only.
+const ADULT = { setup: { closest: "best_friend", pronoun: "they" } };
 
 // ------------------------------------------------------------ format
 test("cards.json format", () => {
@@ -61,7 +62,7 @@ test("every card: type, weight, options, exits, friend side", () => {
     assert.ok(c.exits.includes("skip") && c.exits.includes("not_my_life"), `${c.id}: Skip and Not my life`);
     assert.equal(c.exits.includes("no_recent"), c.type === "real", `${c.id}: No recent example only on real cards`);
     const n = c.options.length;
-    const range = { this_or_that: [2, 3], pick_two: [6, 6], role: [5, 6], scenario: [4, 6], real: [4, 5], feeling: [5, 5], sealed: [4, 5], receipts: [6, 8], guilty: [2, 2], reply: [3, 5], others: [3, 5] }[c.type];
+    const range = TYPE_SPEC[c.type].options;
     assert.ok(n >= range[0] && n <= range[1], `${c.id}: ${n} options for ${c.type}`);
     if (c.type === "pick_two") assert.equal(c.pick, 2);
     for (const o of c.options) assert.ok(o.t && o.t.length <= 90, `${c.id}: option text "${o.t}"`);
@@ -79,10 +80,11 @@ test("every card: type, weight, options, exits, friend side", () => {
     }
     if (c.options.some((o) => o.depends)) assert.ok(c.flip, `${c.id}: depends option needs a flip`);
     // New formats (LAUNCH-SPEC section 6): masked, chaptered, multiple choice, every non-none option carries evidence.
-    if (["receipts", "guilty", "reply", "others"].includes(c.type)) {
+    if (["receipts", "bet", "reply", "others", "rank", "eyes"].includes(c.type)) {
       assert.ok(typeof c.chapter === "number" && c.mask, `${c.id}: chapter and mask`);
-      assert.ok(!c.options.some((o) => o.circumstance || o.depends), `${c.id}: no circumstance or depends options`);
-      for (const o of c.options.filter((x) => !x.none)) assert.ok(Object.keys(o.axes || {}).length + (o.tags || []).length > 0, `${c.id}: "${o.t}" carries evidence`);
+      assert.ok(!c.options.some((o) => o.depends || (o.circumstance && c.type === "receipts")), `${c.id}: no depends options (receipts: no circumstance)`);
+      assert.ok(c.options.filter((o) => o.circumstance).length <= 1, `${c.id}: at most one circumstance option`);
+      for (const o of c.options.filter((x) => !x.none && !x.circumstance)) assert.ok(Object.keys(o.axes || {}).length + (o.tags || []).length > 0, `${c.id}: "${o.t}" carries evidence`);
       assert.ok(o_words(c).every((n) => n <= 14), `${c.id}: answers stay short`);
     }
     const nones = c.options.filter((o) => o.none);
@@ -124,20 +126,17 @@ test("every tag id and axis value is valid; circumstance and feeling options sco
   assert.equal(lib.life.length, 8);
 });
 
-test("every tag and axis is reachable by at least 2 cards (adult and teen runs)", (t) => {
+test("every tag and axis is reachable by at least 2 cards", (t) => {
   const noReal = [];
-  for (const [label, setup] of [["adult", ADULT.setup], ["teen", TEEN.setup]]) {
-    const run = runCards(setup);
-    for (const ax of AXES) {
-      const n = run.filter((c) => c.options.some((o) => (o.axes || {})[ax])).length;
-      assert.ok(n >= 2, `${label}: ${ax} reachable by ${n} cards`);
-    }
-    for (const tag of lib.tags) {
-      if (label === "teen" && tag.locked18) continue;
-      const cards = run.filter((c) => c.options.some((o) => (o.tags || []).some((x) => x.id === tag.id)));
-      assert.ok(cards.length >= 2, `${label}: ${tag.id} reachable by ${cards.length} cards`);
-      if (label === "adult" && !cards.some((c) => c.type === "real")) noReal.push(tag.id);
-    }
+  const run = runCards();
+  for (const ax of AXES) {
+    const n = run.filter((c) => c.options.some((o) => (o.axes || {})[ax])).length;
+    assert.ok(n >= 2, `${ax} reachable by ${n} cards`);
+  }
+  for (const tag of lib.tags) {
+    const cards = run.filter((c) => c.options.some((o) => (o.tags || []).some((x) => x.id === tag.id)));
+    assert.ok(cards.length >= 2, `${tag.id} reachable by ${cards.length} cards`);
+    if (!cards.some((c) => c.type === "real")) noReal.push(tag.id);
   }
   t.diagnostic(`tags with no real-card trigger (only would/believe evidence): ${noReal.join(", ")}`);
   assert.ok(noReal.length <= 30, "at least 20 of 50 tags have a real-card trigger");
@@ -145,22 +144,19 @@ test("every tag and axis is reachable by at least 2 cards (adult and teen runs)"
 
 // DATA TEST (fix pass 2026-09-26, open item 1). Fails until the card agents unstick the thin tags; do not weaken it.
 // A tag that cannot reach tagFire from 2+ run cards can never fire for anybody. Maximum support per card = best
-// option strength x card weight (pick_two: best two picks), the same measure as check-src.cjs. Adult run: all 50 tags;
-// teen run: every tag except locked18 (a teen loses C3-8, C3-9, C6-9 and C6-11).
-test("every tag can fire: maximum support from the run cards >= tagFire from at least 2 cards (adult and teen)", () => {
+// option strength x card weight (pick_two: best two picks; rank: best order under the position weights), the same
+// measure as check-src.cjs. Every tag, on the one bank everyone plays.
+test("every tag can fire: maximum support from the run cards >= tagFire from at least 2 cards", () => {
   const stuck = [];
-  for (const [label, setup] of [["adult", ADULT.setup], ["teen", TEEN.setup]]) {
-    const run = runCards(setup);
-    for (const tag of lib.tags) {
-      if (label === "teen" && tag.locked18) continue;
-      let max = 0, cards = 0;
-      for (const c of run) {
-        const v = c.options.map((o) => ((o.tags || []).find((x) => x.id === tag.id) || { s: 0 }).s).sort((a, b) => b - a);
-        const best = (c.type === "pick_two" ? v[0] + (v[1] || 0) : v[0]) * c.weight;
-        if (best > 0) { max += best; cards++; }
-      }
-      if (max < CONFIG.tagFire - 1e-9 || cards < CONFIG.tagMinCards) stuck.push(`${label} ${tag.id} max ${max.toFixed(2)} from ${cards}`);
+  const run = runCards();
+  for (const tag of lib.tags) {
+    let max = 0, cards = 0;
+    for (const c of run) {
+      const v = c.options.map((o) => ((o.tags || []).find((x) => x.id === tag.id) || { s: 0 }).s).sort((a, b) => b - a);
+      const best = (c.type === "pick_two" ? v[0] + (v[1] || 0) : c.type === "rank" ? v.reduce((s, x, i) => s + x * RANK_WEIGHTS[i], 0) : v[0]) * c.weight;
+      if (best > 0) { max += best; cards++; }
     }
+    if (max < CONFIG.tagFire - 1e-9 || cards < CONFIG.tagMinCards) stuck.push(`${tag.id} max ${max.toFixed(2)} from ${cards}`);
   }
   assert.deepEqual(stuck, [], `${stuck.length} tag checks cannot fire:\n  ${stuck.join("\n  ")}`);
 });
@@ -185,8 +181,8 @@ function checkOrder(run, label) {
 // order are reported here, not failed.
 test("authored order: openers, rounds of up to 3, feeling cards after their card; neighbour rules live in the picker", (t) => {
   let clashes = 0;
-  for (const [label, s] of [["adult", ADULT.setup], ["teen", TEEN.setup]]) {
-    const run = runCards(s);
+  for (const [label] of [["pool"]]) {
+    const run = runCards();
     const rounds = {};
     for (const c of run) if (c.round) rounds[c.round] = (rounds[c.round] || 0) + 1;
     for (const [r, n] of Object.entries(rounds)) assert.ok(n <= 3, `${label}: round ${r} has ${n}`);
@@ -202,23 +198,21 @@ test("authored order: openers, rounds of up to 3, feeling cards after their card
     }
   }
   for (const ch of kit.chapters) assert.notEqual(ch.cards[0].type, "feeling", `chapter ${ch.n} opens with a playable card`);
-  const chapterRun = runCards(ADULT.setup);
-  const reals = chapterRun.map((c, i) => (["real", "receipts", "guilty"].includes(c.type) ? i : -1)).filter((i) => i >= 0);
+  const chapterRun = runCards();
+  const reals = chapterRun.map((c, i) => (DID_TYPES.includes(c.type) ? i : -1)).filter((i) => i >= 0);
   const early = reals.filter((i) => i < (chapterRun.length * 2) / 3).length;
   assert.ok(early >= reals.length / 2, `${early} of ${reals.length} did cards in the first two thirds`);
-  t.diagnostic(`authored-order neighbour or type clashes (adult + teen walks): ${clashes}`);
+  t.diagnostic(`authored-order neighbour or type clashes: ${clashes}`);
 });
 
 // Ruling 2026-09-28: every run is 40 picked cards + 8 sealed (RUN_SIZE in quiz64/src/persona/session.js). The chapter
-// pool must stay larger than any lobby's run, and step B keeps it at most 80 cards.
-test("pool size: the adult chapter pool is 56 to 80 cards, the teen pool at least 56", () => {
-  const n = runCards(ADULT.setup).length;
-  assert.ok(n >= 56 && n <= 80, `adult chapter pool is ${n} cards (want 56 to 80)`);
-  const t = runCards(TEEN.setup).length;
-  assert.ok(t >= 56, `teen chapter pool is ${t} cards (want at least 56)`);
+// pool must stay larger than any lobby's run. Build C grows the bank to 150 scored cards (LAUNCH-SPEC section 22).
+test("pool size: the chapter pool is 56 to 160 cards", () => {
+  const n = runCards().length;
+  assert.ok(n >= 56 && n <= 160, `chapter pool is ${n} cards (want 56 to 160)`);
 });
 
-test("finale covers all six axes plus common tags", () => {
+test("sealed pool covers all six axes plus common tags", () => {
   const covered = new Set(kit.finale.flatMap((c) => c.checks.axes));
   for (const ax of AXES) assert.ok(covered.has(ax), `finale checks ${ax}`);
   assert.ok(kit.finale.filter((c) => !c.checks.primary || c.checks.pairs.length).length >= 2);
@@ -238,21 +232,20 @@ test("no em dash anywhere in the kit", () => {
   }
 });
 
-// ------------------------------------------------------------ teen
-test("teen run skips locked18 cards, uses teen prompts, never scores locked18 tags", () => {
-  const run = runCards(TEEN.setup);
-  assert.ok(run.every((c) => c.privacy !== "locked18"));
-  const locked = chapterCards.filter((c) => c.privacy === "locked18").map((c) => c.id);
-  assert.deepEqual(locked, ["C3-8", "C3-9", "C3-14", "C6-9", "C6-11", "C6-13"], "the 18+ cards");
-  for (const id of locked) assert.ok(!run.some((c) => c.id === id), `${id} not in teen run`);
-  assert.equal(runCards(ADULT.setup).length - run.length, 6);
-  assert.equal(promptFor(cardById["C1-2"], TEEN.setup), cardById["C1-2"].teenPrompt);
-  assert.equal(promptFor(cardById["C1-2"], ADULT.setup), cardById["C1-2"].prompt);
-  // C6-7 is teen-visible but carries T21 (locked18): a teen profile must never hold it.
-  const a = { ...TEEN, "C6-7": [0, 3], "C6-3": 1, "C6-1": 0, "C6-9": 0, "C6-11": 0, "C3-8": [0, 1] };
-  const p = buildProfile(a);
-  assert.ok(!Object.keys(p.tags).some((id) => TAG[id].locked18), "no locked18 tag in a teen profile");
-  for (const id of ["C6-9", "C6-11", "C3-8"]) assert.ok(p.warnings.some((w) => w.includes(id)), `${id} answer ignored for a teen`);
+// ------------------------------------------------------------ no age (LAUNCH-SPEC section 22)
+test("no age logic: no card carries teen, teenPrompt or locked18; everyone gets the same pool", () => {
+  for (const c of everyCard) {
+    assert.ok(!("teen" in c) && !("teenPrompt" in c), `${c.id}: age fields are gone`);
+    assert.ok(["normal", "intimate"].includes(c.privacy), `${c.id}: privacy ${c.privacy}`);
+    assert.notEqual(c.type, "guilty", `${c.id}: guilty is now bet`);
+  }
+  assert.equal(runCards().length, chapterCards.length, "the pool is every chapter card");
+  assert.equal(runCards({ age: "teen" }).length, chapterCards.length, "a stray age in a setup changes nothing");
+  // The former 18+ cards are intimate now, so "Keep it light" still skips them; their tags score for anyone.
+  for (const id of ["C3-8", "C3-9", "C3-14", "C6-9", "C6-11", "C6-13"]) assert.equal(cardById[id].privacy, "intimate", id);
+  const p = buildProfile({ setup: { age: "teen", closest: "parent", pronoun: "she" }, "C6-7": [0, 3], "C6-11": 0, "C3-8": [0, 1] });
+  assert.ok(Object.keys(p.tags).some((id) => /^T(11|21)/.test(id)), "marriage and kids tags score like any other");
+  assert.ok(!p.warnings.some((w) => /C6-11|C3-8/.test(w)), "no answer is dropped for age");
 });
 
 test("C3-9 plays only after a T11A pick on C3-8", () => {
@@ -569,13 +562,14 @@ test("friend game: level 2 snapshot matches the cards; primary lists are clean",
 });
 
 // ------------------------------------------------------------ new formats (fixtures)
-// A tiny kit with one card of each new format, scored by the same createScorer the app uses.
+// A tiny kit with one card of each new format, scored by the same createScorer the app uses. fillFromType sets grade,
+// weight and exits as merge-bank.mjs does.
 const FX_LIB = lib;
 const fxOpt = (t, extra = {}) => ({ t, ...extra });
 const FX_KIT = {
   version: "fixture", built: "2026-09-28",
   chapters: [{ n: 1, title: "Fixture", intro: "Fixture chapter", cards: [
-    { id: "F-R", type: "receipts", grade: "did", weight: 0.4, chapter: 1, teen: true, privacy: "normal", prompt: "Tap everything that's true right now", exits: ["skip", "not_my_life"], options: [
+    { id: "F-R", type: "receipts", grade: "did", weight: 0.4, chapter: 1, privacy: "normal", prompt: "Tap everything that's true right now", exits: ["skip", "not_my_life"], options: [
       fxOpt("a", { axes: { L1: 1 }, tags: [{ id: "T24A", s: 2 }] }),
       fxOpt("b", { axes: { L1: -1 }, tags: [{ id: "T24B", s: 2 }] }),
       fxOpt("c", { tags: [{ id: "T24A", s: 1 }] }),
@@ -583,20 +577,26 @@ const FX_KIT = {
       fxOpt("e", { tags: [{ id: "T13A", s: 1 }] }),
       fxOpt("None of these", { none: true }),
     ] },
-    { id: "F-G", type: "guilty", grade: "did", weight: 0.8, chapter: 1, teen: true, privacy: "normal", prompt: "I bet you've done the thing.", exits: ["skip", "not_my_life"], options: [
-      fxOpt("Guilty", { axes: { L3: -2 }, tags: [{ id: "T25B", s: 2 }] }), fxOpt("Never", { axes: { L3: 1 } }),
-    ] },
-    { id: "F-P", type: "reply", grade: "would", weight: 0.55, chapter: 1, teen: true, privacy: "normal", prompt: "Group chat, 11pm.", thread: [{ from: "Sam", text: "who's booking??" }], exits: ["skip", "not_my_life"], options: [
+    fillFromType({ id: "F-G", type: "bet", chapter: 1, privacy: "normal", prompt: "I bet you've done the thing.", options: [
+      fxOpt("Guilty. Twice.", { axes: { L3: -2 }, tags: [{ id: "T25B", s: 2 }] }), fxOpt("Never. Not once.", { axes: { L3: 1 } }), fxOpt("Only on holiday.", { circumstance: true }),
+    ], heart: { prompt: "Have you ever done the thing?", options: ["Yes, twice.", "No, never.", "Only when I was away."] } }),
+    fillFromType({ id: "F-K", type: "rank", chapter: 1, privacy: "normal", prompt: "Rank what you'd cancel first.", options: [
+      fxOpt("Gym", { axes: { L2: -2 }, tags: [{ id: "T16B", s: 2 }] }), fxOpt("Date", { axes: { R1: -1 } }), fxOpt("Family dinner", { axes: { R3: -1 } }), fxOpt("Group project", { axes: { L2: 2 }, tags: [{ id: "T16A", s: 1 }] }),
+    ] }),
+    fillFromType({ id: "F-E", type: "eyes", chapter: 1, privacy: "normal", prompt: "Your best friend describes you to a stranger. Which line?", options: [
+      fxOpt("Always has a plan.", { axes: { L1: 2 } }), fxOpt("Down for anything.", { axes: { L1: -2 } }), fxOpt("Knows everyone.", { axes: { R1: 1 } }), fxOpt("Loyal to a fault.", { tags: [{ id: "T05A", s: 1 }] }),
+    ] }),
+    { id: "F-P", type: "reply", grade: "would", weight: 0.55, chapter: 1, privacy: "normal", prompt: "Group chat, 11pm.", thread: [{ from: "Sam", text: "who's booking??" }], exits: ["skip", "not_my_life"], options: [
       fxOpt("On it.", { axes: { L3: 2 } }), fxOpt("lol", { axes: { L3: -2 } }), fxOpt("Ask Jo", { axes: { R1: -1 } }),
-    ] },
-    { id: "F-O", type: "others", grade: "believe", weight: 0.45, chapter: 1, teen: true, privacy: "normal", prompt: "Your friend did a thing. First thought?", exits: ["skip", "not_my_life"], options: [
+    ], heart: { prompt: "It is 11pm in the group chat.", thread: [{ from: "Sam", text: "Who is booking the place?" }], options: ["I will do it.", "I laugh and leave it.", "I ask Jo."] } },
+    { id: "F-O", type: "others", grade: "believe", weight: 0.45, chapter: 1, privacy: "normal", prompt: "Your friend did a thing. First thought?", exits: ["skip", "not_my_life"], options: [
       fxOpt("Icon.", { axes: { L3: -1 } }), fxOpt("Oh no.", { axes: { L3: 1 } }), fxOpt("Same.", { tags: [{ id: "T24B", s: 1 }] }),
     ] },
   ] }],
   finale: [], extras: [],
 };
 const FX = createScorer({ kit: FX_KIT, lib: FX_LIB, friend: {} });
-const FXA = { setup: { age: "adult" } };
+const FXA = { setup: {} };
 
 test("receipts: each tick counts at 0.40, past 3 ticks each is scaled to 3/ticks; None of these stands alone and scores nothing", () => {
   const two = FX.buildProfile({ ...FXA, "F-R": [0, 2] });
@@ -621,7 +621,7 @@ test("receipts: each tick counts at 0.40, past 3 ticks each is scaled to 3/ticks
   assert.equal(two.tags.T24A.possible, 2.4);
 });
 
-test("guilty, reply and others: one pick each at 0.80, 0.55 and 0.45; guilty and receipts are did evidence", () => {
+test("bet, reply and others: one pick each at 0.80, 0.55 and 0.45; bet and receipts are did evidence", () => {
   const p = FX.buildProfile({ ...FXA, "F-G": 0, "F-P": 0, "F-O": 1, "F-R": [1] });
   const w = Object.fromEntries(p.axes.L3.evidence.map((e) => [e.card, e.w]));
   assert.deepEqual(w, { "F-G": 0.8, "F-P": 0.55, "F-O": 0.45 });
@@ -631,6 +631,121 @@ test("guilty, reply and others: one pick each at 0.80, 0.55 and 0.45; guilty and
   assert.throws(() => FX.buildProfile({ ...FXA, "F-P": 7 }), /no option/);
   const rushed = FX.buildProfile({ ...FXA, "F-R": [0, 2, 3, 4], _ms: { "F-R": 900 } });
   for (const e of rushed.tags.T24A.evidence) assert.equal(e.w, Math.round(0.4 * 0.75 * 0.3 * 1000) / 1000, "rushed and capped");
+  const circ = FX.buildProfile({ ...FXA, "F-G": 2 });
+  assert.deepEqual(circ.research.circumstance.map((x) => x.card), ["F-G"], "a bet's circumstance answer scores nothing");
+});
+
+test("bet: its own 3 to 5 answers, did 0.80; the 6 legacy guilty cards are bets with their text kept", () => {
+  assert.deepEqual([FX.cardById["F-G"].grade, FX.cardById["F-G"].weight, FX.cardById["F-G"].exits], ["did", 0.8, ["skip", "not_my_life"]]);
+  const bets = everyCard.filter((c) => c.type === "bet");
+  assert.deepEqual(bets.map((c) => c.id).sort(), ["C2-12", "C3-13", "C3-14", "C4-12", "C5-12", "C6-13"]);
+  for (const c of bets) assert.ok(c.grade === "did" && c.weight === 0.8, c.id);
+  assert.deepEqual(fillFromType({ id: "x", type: "guilty", options: [] }).type, "bet", "a guilty card merges as a bet");
+});
+
+test("rank: every item once, position weights 1.0, 0.5, 0, -0.5 on each item's evidence (believe 0.45)", () => {
+  const p = FX.buildProfile({ ...FXA, "F-K": [3, 1, 2, 0] });
+  const L2 = Object.fromEntries(p.axes.L2.evidence.map((e) => [e.said, e.w]));
+  assert.deepEqual(L2, { "Group project": 0.45, Gym: -0.225 }, "first at 1.0, last at -0.5");
+  assert.equal(p.axes.L2.score, Math.round((0.45 * 2 + -0.225 * -2) * 1000) / 1000, "ranking gym last pushes away from Easy");
+  assert.ok(p.axes.L2.norm > 0 && p.axes.L2.norm <= 1, "normalized by absolute weights");
+  assert.ok(!p.axes.R3.evidence.length, "third place (weight 0) carries nothing");
+  assert.equal(p.axes.R1.evidence[0].w, 0.225, "second place at 0.5");
+  assert.equal(p.axes.L2.evidence[0].grade, "believe");
+  assert.equal(p.tags.T16B.cards, 0, "an item ranked last never counts as a supporting card");
+  assert.ok(p.tags.T16A.net > 0.45, "T16A gains from its own first place and T16B's last place");
+  assert.throws(() => FX.buildProfile({ ...FXA, "F-K": [0, 1, 2] }), /rank takes every option/);
+  assert.throws(() => FX.buildProfile({ ...FXA, "F-K": 0 }), /rank takes every option/);
+  assert.throws(() => FX.buildProfile({ ...FXA, "F-K": [0, 0, 1, 2] }), /rank takes every option/);
+  // Most net support one ranking can give: best order under the position weights.
+  assert.equal(FX.cardTagMax(FX.cardById["F-K"], "T16A"), 1 * 1 + 0.5 * 0 + 0 * 0 + -0.5 * -2);
+  assert.deepEqual(FX.pickWeights(FX.cardById["F-K"], [0, 1, 2, 3]), RANK_WEIGHTS.map((x) => 0.45 * x));
+});
+
+test("eyes: one line, believe 0.45", () => {
+  const p = FX.buildProfile({ ...FXA, "F-E": 1 });
+  assert.deepEqual(p.axes.L1.evidence.map((e) => [e.w, e.grade, e.v]), [[0.45, "believe", -2]]);
+  assert.throws(() => FX.buildProfile({ ...FXA, "F-E": [0, 1] }), /one option/);
+});
+
+test("two voices: Heart to heart text when the voice is heart, Make it fun otherwise or when a card has none", () => {
+  const g = FX.cardById["F-G"], k = FX.cardById["F-K"], rp = FX.cardById["F-P"];
+  assert.equal(FX.promptFor(g, "heart"), "Have you ever done the thing?");
+  assert.equal(FX.promptFor(g, "fun"), g.prompt);
+  assert.equal(FX.promptFor(g, "cards"), g.prompt, "Just the cards reads Make it fun");
+  assert.equal(FX.promptFor(g, { voice: "heart" }), g.heart.prompt, "a lobby object works too");
+  assert.equal(FX.promptFor(g, { closest: "parent" }), g.prompt, "a setup without a voice reads Make it fun");
+  assert.equal(FX.optionText(g, 1, "heart"), "No, never.");
+  assert.equal(FX.optionText(g, 1, "fun"), "Never. Not once.");
+  assert.equal(FX.promptFor(k, "heart"), k.prompt, "no heart version: Make it fun");
+  assert.equal(FX.optionText(k, 0, "heart"), "Gym");
+  assert.deepEqual(FX.threadFor(rp, "heart"), rp.heart.thread);
+  assert.deepEqual(FX.threadFor(rp, "fun"), rp.thread);
+  // Evidence is the card's own, whichever voice was shown.
+  assert.deepEqual(FX.buildProfile({ ...FXA, "F-G": 0 }).axes.L3.evidence.map((e) => e.said), ["Guilty. Twice."]);
+});
+
+test("sealed pool: 8 drawn per run, deterministic from the seed, one per axis plus tag-pair cards", () => {
+  const a = drawFinale(12345), b = drawFinale(12345);
+  assert.deepEqual(a, b, "same seed, same finale");
+  assert.equal(a.length, Math.min(CONFIG.finaleSize, kit.finale.length));
+  assert.equal(new Set(a).size, a.length);
+  for (const id of a) assert.equal(cardById[id].type, "sealed");
+  const orders = new Set();
+  for (let seed = 1; seed <= 40; seed++) {
+    const ids = drawFinale(seed);
+    orders.add(ids.join());
+    const prim = new Set(ids.map((id) => cardById[id].checks.primary).filter(Boolean));
+    for (const ax of AXES) assert.ok(prim.has(ax), `seed ${seed}: ${ax} covered`);
+    assert.ok(ids.some((id) => !cardById[id].checks.primary), `seed ${seed}: the tag-pair card is drawn`);
+  }
+  assert.ok(orders.size > 5, "different runs get different orders");
+  // A bigger pool: 4 per axis plus spare tag-pair cards; still one per axis and 2 tag-pair cards, never more than 8.
+  const big = { ...FX_KIT, finale: [] };
+  for (const ax of AXES) for (let i = 0; i < 4; i++) big.finale.push({ id: `S-${ax}-${i}`, type: "sealed", checks: { primary: ax, axes: [ax], pairs: [`T0${i + 1}`] }, options: [fxOpt("a", { axes: { [ax]: 2 } }), fxOpt("b", { axes: { [ax]: -2 } }), fxOpt("c", { axes: { [ax]: 1 } })] });
+  for (let i = 0; i < 3; i++) big.finale.push({ id: `S-T-${i}`, type: "sealed", checks: { primary: null, axes: [], pairs: [`T2${i}`] }, options: [fxOpt("a", { tags: [{ id: `T2${i}A`, s: 2 }] }), fxOpt("b", { tags: [{ id: `T2${i}B`, s: 2 }] }), fxOpt("c")] });
+  const BIG = createScorer({ kit: big, lib, friend: {} });
+  for (let seed = 1; seed <= 20; seed++) {
+    const ids = BIG.drawFinale(seed);
+    assert.equal(ids.length, 8);
+    const prim = ids.map((id) => BIG.cardById[id].checks.primary);
+    for (const ax of AXES) assert.equal(prim.filter((x) => x === ax).length, 1, `seed ${seed}: one ${ax} card`);
+    assert.equal(prim.filter((x) => !x).length, 2, `seed ${seed}: two tag-pair cards`);
+  }
+  // Guesses are made for the drawn cards, in draw order.
+  const p = buildProfile({ ...ADULT, "C2-1": 0, "C2-5": 0, "C2-8": 0 });
+  assert.deepEqual(freezePredictions(p, a).predictions.map((x) => x.id), a);
+});
+
+test("friend decks never hold rank or receipts cards", () => {
+  const answers = JSON.parse(fs.readFileSync(path.join(DIR, "sim-example", "answers.json"), "utf8"));
+  const p = buildProfile(answers);
+  for (const rel of ["partner", "crush", "friendOrCoworker", "bestie"]) {
+    const d = buildFriendDeck(p, answers, { rel, seed: 3 });
+    for (const c of d.level2.cards) assert.ok(!["rank", "receipts"].includes(cardById[c.id].type), `${rel}: ${c.id}`);
+  }
+  // A rank card with a friend side is still left out.
+  const k = JSON.parse(JSON.stringify(FX_KIT));
+  const rk = k.chapters[0].cards.find((c) => c.id === "F-K");
+  rk.friend = { prompt: "x", a: { t: "a", axes: { L2: 1 } }, b: { t: "b", axes: { L2: -1 } } };
+  const FK = createScorer({ kit: k, lib, friend: FRIEND });
+  const fa = { ...FXA, "F-K": [3, 1, 2, 0] };
+  const deck = FK.buildFriendDeck(FK.buildProfile(fa), fa, { rel: "bestie", seed: 1 });
+  assert.ok(!deck.level2.cards.some((c) => c.id === "F-K"));
+});
+
+test("evidence lock covers Heart to heart text", () => {
+  const card = FX.cardById["F-G"];
+  const base = entryFor(card);
+  assert.ok(base.heart && base.heart.options.length === 3);
+  const lock = { cards: { [card.id]: base } };
+  const one = (mut) => { const c = JSON.parse(JSON.stringify(card)); mut(c); return checkLock({ chapters: [{ cards: [c] }], extras: [], finale: [] }, lock); };
+  assert.deepEqual(one(() => {}), []);
+  assert.equal(one((c) => { c.heart.options[1] = "No. Not ever."; }).length, 1, "a heart option rewrite trips it");
+  assert.equal(one((c) => { c.heart.prompt = "Something else?"; }).length, 1, "a heart prompt rewrite trips it");
+  assert.equal(one((c) => { delete c.heart; }).length, 1, "removing the heart version trips it");
+  assert.equal(one((c) => { c.heart.options[1] = c.heart.options[1].toUpperCase(); }).length, 0, "case is typography");
+  assert.match(one((c) => { c.heart.prompt += " Really?"; })[0].what, /Heart to heart/);
 });
 
 // ------------------------------------------------------------ evidence lock (LAUNCH-SPEC section 7)
@@ -675,4 +790,164 @@ test("lock-evidence CLI: check passes on the shipped kit; --confirm needs card i
 test("sim --quick meets every target", () => {
   const r = spawnSync(process.execPath, [path.join(DIR, "sim.mjs"), "--quick"], { cwd: DIR, encoding: "utf8" });
   assert.equal(r.status, 0, r.stdout + r.stderr);
+});
+
+// ------------------------------------------------------------ bank tooling (check-bank.mjs, merge-bank.mjs)
+import { checkCards, loadBank, fpSimilarity } from "./check-bank.mjs";
+import { buildKit } from "./merge-bank.mjs";
+
+// A small bank in the skill schema: one card of every format in chapter 1, one scenario per other chapter, one extra,
+// one sealed card. Every text is unique, both voices are present.
+function fixtureBank() {
+  let k = 0;
+  const words = ["amber", "bolt", "cedar", "delta", "ember", "fjord", "grove", "harbor", "indigo", "juniper", "kettle", "lantern", "meadow", "nectar", "orbit", "pepper", "quartz", "raven", "saffron", "tundra", "umber", "velvet", "willow", "yonder", "zephyr"];
+  const w = () => { k++; return `${words[k % words.length]} ${words[(k * 7 + 3) % words.length]} ${k}`; };
+  const opt = (ev) => ({ t: `Tap the ${w()}`, ...ev });
+  const card = (id, type, options, extra = {}) => ({
+    id, type, privacy: "normal", prompt: `A ${w()} moment arrives right now.`, options,
+    heart: { prompt: `A quiet ${w()} moment.`, options: options.map(() => `I choose the ${w()}`), ...(extra.heartThread ? { thread: extra.heartThread } : {}) },
+    fp: { trigger: `t ${w()}`, setting: `s ${w()}`, ask: `a ${w()}`, who: `w ${w()}`, stakes: `k ${w()}` },
+    mask: "fixture", ...Object.fromEntries(Object.entries(extra).filter(([key]) => key !== "heartThread")),
+  });
+  const ax = (a, v) => ({ axes: { [a]: v } });
+  const ch1 = [
+    card("C1-30", "scenario", [opt(ax("R1", 2)), opt(ax("R1", -2)), opt(ax("R1", 1)), opt(ax("R1", -1))]),
+    card("C1-31", "feeling", [opt(), opt(), opt(), opt(), opt()], { follows: "C1-30" }),
+    card("C1-32", "rank", [opt(ax("L2", 2)), opt(ax("L2", -2)), opt({ tags: [{ id: "T16A", s: 1 }] }), opt(ax("L1", 1))]),
+    card("C1-33", "eyes", [opt(ax("L1", 2)), opt(ax("L1", -2)), opt(ax("R2", 1)), opt({ tags: [{ id: "T05A", s: 1 }] })]),
+    card("C1-34", "bet", [opt({ ...ax("L3", -2), tags: [{ id: "T25B", s: 2 }] }), opt(ax("L3", 1)), opt({ circumstance: true })]),
+    card("C1-35", "receipts", [opt(ax("L1", 1)), opt(ax("L1", -1)), opt({ tags: [{ id: "T24A", s: 1 }] }), opt(ax("R3", 1)), opt(ax("R3", -1)), { t: "None of these", none: true }]),
+    card("C1-36", "reply", [opt(ax("L3", 2)), opt(ax("L3", -2)), opt(ax("R1", -1))], { thread: [{ from: "Sam", text: "who is booking" }], heartThread: [{ from: "Sam", text: "Who is booking the place?" }] }),
+    card("C1-37", "this_or_that", [opt(ax("R2", 2)), opt(ax("R2", -2))], { round: "fx-r1" }),
+    card("C1-38", "pick_two", [opt(ax("R3", 1)), opt(ax("R3", -1)), opt(ax("L2", 1)), opt(ax("L2", -1)), opt(ax("R1", 1)), opt(ax("R1", -1))]),
+    card("C1-39", "role", [opt(ax("R2", 1)), opt(ax("R2", -1)), opt(ax("L1", 1)), opt(ax("L1", -1)), opt(ax("R1", 2))]),
+    card("C1-40", "real", [opt(ax("L3", 2)), opt(ax("L3", -2)), opt(ax("L3", 1))]),
+    card("C1-41", "others", [opt(ax("R2", 2)), opt(ax("R2", -2)), opt(ax("R2", 1))]),
+  ];
+  const bank = { ch1 };
+  for (let n = 2; n <= 7; n++) bank[`ch${n}`] = [card(`C${n}-30`, "scenario", [opt(ax("L2", 2)), opt(ax("L2", -2)), opt(ax("L1", 1))])];
+  bank.extras = [card("X-R1-9", "scenario", [opt(ax("R1", 2)), opt(ax("R1", -2)), opt(ax("R1", -1))])];
+  bank.sealed = [card("S-R2-1", "sealed", [opt(ax("R2", 2)), opt(ax("R2", -2)), opt({ ...ax("R2", 1), tags: [{ id: "T07A", s: 1 }] })], { primary: "R2" })];
+  return bank;
+}
+const asCards = (bank) => Object.entries(bank).flatMap(([g, cards]) => cards.map((c) => ({ ...c, _group: g })));
+const writeBank = (dir, bank) => { for (const [g, cards] of Object.entries(bank)) if (cards) fs.writeFileSync(path.join(dir, `${g}.json`), JSON.stringify(cards, null, 2)); };
+
+test("check-bank: a clean bank passes; every rule catches its break", () => {
+  const clean = checkCards(asCards(fixtureBank()), { lib });
+  assert.deepEqual(clean.errors, [], JSON.stringify(clean.errors, null, 1));
+  assert.equal(clean.counts.ch1.total, 12);
+  assert.equal(clean.counts.ch1.did, 3, "real, receipts and bet are did cards");
+  assert.equal(clean.counts.ch1.quick, 5, "this_or_that, role, pick_two, rank and eyes are quick cards");
+  const breaks = [
+    ["no heart version", (b) => { delete b.ch1[0].heart; }, /no Heart to heart/],
+    ["heart option count", (b) => { b.ch1[0].heart.options.pop(); }, /heart has 3 options, Make it fun has 4/],
+    ["heart carries evidence", (b) => { b.ch1[0].heart.axes = { R1: 1 }; }, /heart\.axes is not a field/],
+    ["no fingerprint", (b) => { delete b.ch2[0].fp; }, /no situation fingerprint/],
+    ["em dash", (b) => { b.ch1[0].options[0].t += ` ${String.fromCharCode(0x2014)} obviously`; }, /em dash/],
+    ["what would you do", (b) => { b.ch1[0].prompt = "Your flight is gone. What would you do?"; }, /what would you do/],
+    ["open an app", (b) => { b.ch1[5].prompt = "Open your photos and tap what's there:"; }, /open an app/],
+    ["gendered", (b) => { b.ch1[0].options[1].t = "Call my boyfriend first"; }, /gendered/],
+    ["grading", (b) => { b.ch1[0].heart.options[1] = "I stay brave about it."; }, /grading word/],
+    ["age", (b) => { b.ch1[0].prompt = "Every teenager has done this once."; }, /age reference/],
+    ["3 axes", (b) => { b.ch1[0].options[0].axes = { R1: 1, R2: 1, R3: 1 }; }, /3 axes/],
+    ["axis value", (b) => { b.ch1[0].options[0].axes = { R1: 3 }; }, /axis value 3/],
+    ["4 tags", (b) => { b.ch1[0].options[0].tags = ["T01A", "T02A", "T03A", "T04A"].map((id) => ({ id, s: 1 })); }, /4 tags/],
+    ["unknown tag", (b) => { b.ch1[0].options[0].tags = [{ id: "T99A", s: 1 }]; }, /unknown tag T99A/],
+    ["two circumstances", (b) => { b.ch1[4].options[1] = { t: "Only at a wedding", circumstance: true }; b.ch1[4].options[0].circumstance = true; delete b.ch1[4].options[0].axes; delete b.ch1[4].options[0].tags; }, /at most one circumstance/],
+    ["circumstance scores", (b) => { b.ch1[4].options[2].axes = { L3: 1 }; }, /must score nothing/],
+    ["same fingerprint", (b) => { b.ch3[0].fp = { ...b.ch2[0].fp }; }, /same situation fingerprint as C2-30/],
+    ["same answer line", (b) => { b.ch3[0].options[0].t = b.ch2[0].options[0].t.toUpperCase() + "!"; }, /repeats C2-30/],
+    ["bet with 2 answers", (b) => { b.ch1[4].options.pop(); b.ch1[4].heart.options.pop(); }, /2 options for bet/],
+    ["rank with 3 items", (b) => { b.ch1[2].options.pop(); b.ch1[2].heart.options.pop(); }, /3 options for rank/],
+    ["receipts none not last", (b) => { b.ch1[5].options.reverse(); }, /None of these/],
+    ["age field", (b) => { b.ch1[0].teenPrompt = "x"; }, /"teenPrompt" is gone/],
+    ["wrong chapter", (b) => { b.ch2[0].chapter = 3; }, /chapter 3 in ch2\.json/],
+    ["feeling follows", (b) => { b.ch1[1].follows = "C2-30"; }, /not in ch1/],
+    ["legacy type", (b) => { b.ch1[4].type = "guilty"; }, /"guilty" is now "bet"/],
+    ["friend on rank", (b) => { b.ch1[2].friend = { prompt: "x", a: { t: "a" }, b: { t: "b" } }; }, /rank cards never carry a friend version/],
+    ["sealed primary", (b) => { b.sealed[0].primary = "L3"; }, /no option carries its primary axis L3/],
+  ];
+  for (const [label, mutate, want] of breaks) {
+    const b = fixtureBank();
+    mutate(b);
+    const r = checkCards(asCards(b), { lib });
+    assert.ok(r.errors.some((e) => want.test(e.what)), `${label}: expected ${want}, got ${JSON.stringify(r.errors.map((e) => e.what))}`);
+  }
+  const long = fixtureBank();
+  long.ch1[0].options[0].t = "Take a very long and winding answer that runs well past the twelve word limit";
+  const lr = checkCards(asCards(long), { lib });
+  assert.deepEqual(lr.errors, []);
+  assert.ok(lr.warnings.some((x) => /option 0 is 15 words/.test(x.what)), "long options warn, never fail");
+  assert.ok(fpSimilarity({ trigger: "friend texts late at night", setting: "bed, phone", ask: "show up", who: "best friend", stakes: "sleep" }, { trigger: "friend calls late at night", setting: "bed, phone", ask: "show up", who: "best friend", stakes: "sleep" }) >= 0.6, "4am call and 2am text read as the same situation");
+});
+
+test("merge-bank: builds cards.json from the bank, filling grade, weight, exits and checks from the type", () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "genii-bank-"));
+  const bankDir = path.join(tmp, "bank");
+  fs.mkdirSync(bankDir);
+  const out = path.join(tmp, "cards.json");
+  const merge = (...args) => spawnSync(process.execPath, [path.join(DIR, "merge-bank.mjs"), "--bank", bankDir, "--out", out, ...args], { cwd: tmp, encoding: "utf8" });
+  const bank = fixtureBank();
+  writeBank(bankDir, { ...bank, sealed: undefined });
+  const missing = merge();
+  assert.equal(missing.status, 1, "a missing bank file refuses");
+  assert.match(missing.stderr, /missing: .*sealed\.json/);
+  assert.ok(!fs.existsSync(out));
+  const bad = fixtureBank();
+  bad.ch2[0].options[0].axes = { R1: 5 };
+  writeBank(bankDir, bad);
+  assert.equal(merge().status, 1, "checker errors refuse");
+  assert.ok(!fs.existsSync(out));
+  writeBank(bankDir, bank);
+  assert.equal(merge("--dry").status, 0);
+  assert.ok(!fs.existsSync(out), "--dry writes nothing");
+  const ok = merge();
+  assert.equal(ok.status, 0, ok.stdout + ok.stderr);
+  const built = JSON.parse(fs.readFileSync(out, "utf8"));
+  assert.deepEqual(built.chapters.map((ch) => [ch.n, ch.title, ch.cards.length]), kit.chapters.map((ch, i) => [ch.n, ch.title, i ? 1 : 12]));
+  assert.deepEqual(built.chapters[0].cards.map((c) => c.id), bank.ch1.map((c) => c.id), "file order is play order");
+  const by = Object.fromEntries([...built.chapters.flatMap((ch) => ch.cards), ...built.extras, ...built.finale].map((c) => [c.id, c]));
+  for (const c of Object.values(by)) {
+    assert.equal(c.grade, TYPE_SPEC[c.type].grade, c.id);
+    assert.equal(c.weight, TYPE_SPEC[c.type].weight, c.id);
+    assert.deepEqual(c.exits, c.type === "real" ? ["skip", "not_my_life", "no_recent"] : ["skip", "not_my_life"], c.id);
+    assert.ok(!("_group" in c));
+  }
+  assert.equal(by["C3-30"].chapter, 3);
+  assert.equal(by["C1-38"].pick, 2);
+  assert.equal(by["X-R1-9"].axisFor, "R1");
+  assert.deepEqual(by["S-R2-1"].checks, { primary: "R2", axes: ["R2"], pairs: ["T07"] });
+  assert.deepEqual(by["C1-34"].heart, bank.ch1[4].heart, "heart passes through untouched");
+  assert.equal(buildKit(asCards({ ...bank, ch1: [{ ...bank.ch1[4], type: "guilty", teen: true, privacy: "locked18" }] }), kit).chapters[0].cards[0].type, "bet");
+  // The merged kit scores with the same scorer.
+  const M = createScorer({ kit: built, lib, friend: FRIEND });
+  const p = M.buildProfile({ setup: {}, "C1-32": [1, 3, 2, 0], "C1-34": 0, "C1-33": 0, "S-R2-1": 0 });
+  assert.equal(p.axes.L2.evidence.find((e) => e.card === "C1-32").w, 0.45);
+  assert.ok(p.warnings.some((x) => /S-R2-1 is a sealed card/.test(x)));
+  assert.deepEqual(M.drawFinale(5), ["S-R2-1"]);
+  fs.rmSync(tmp, { recursive: true, force: true });
+});
+
+test("check-bank CLI: the shipped bank folder checks without errors; --kit reports legacy cards", () => {
+  const r = spawnSync(process.execPath, [path.join(DIR, "check-bank.mjs"), "--quiet"], { cwd: DIR, encoding: "utf8" });
+  const { cards } = loadBank(path.join(DIR, "bank"));
+  if (cards.length) assert.ok([0, 1].includes(r.status), r.stderr);
+  else assert.equal(r.status, 0, r.stdout + r.stderr);
+  assert.match(r.stdout, /\| ch1 \|/);
+  const k = spawnSync(process.execPath, [path.join(DIR, "check-bank.mjs"), "--kit", "--json"], { cwd: DIR, encoding: "utf8" });
+  const out = JSON.parse(k.stdout);
+  assert.ok(out.counts.ch1.total > 0 && Array.isArray(out.errors) && Array.isArray(out.warnings));
+});
+
+// library.json is the source of truth for result copy (package C); assemble.mjs must never regenerate it (or cards.json).
+test("assemble.mjs is retired: it refuses and changes neither library.json nor cards.json", () => {
+  const before = ["library.json", "cards.json"].map((f) => fs.readFileSync(path.join(DIR, f), "utf8"));
+  const r = spawnSync(process.execPath, [path.join(DIR, "assemble.mjs")], { cwd: DIR, encoding: "utf8" });
+  const after = ["library.json", "cards.json"].map((f) => fs.readFileSync(path.join(DIR, f), "utf8"));
+  if (after[0] !== before[0]) fs.writeFileSync(path.join(DIR, "library.json"), before[0]);
+  if (after[1] !== before[1]) fs.writeFileSync(path.join(DIR, "cards.json"), before[1]);
+  assert.notEqual(r.status, 0, "assemble.mjs must refuse");
+  assert.equal(after[0], before[0], "assemble.mjs changed library.json");
+  assert.equal(after[1], before[1], "assemble.mjs changed cards.json");
 });

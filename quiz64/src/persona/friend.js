@@ -4,7 +4,7 @@
 // stings (except the owner-enabled bestie round), research fields, scores or other answers.
 import { S, FRIEND, KIT_ID, AXES, TAG, LIB } from "./kit.js";
 import { encodePayload, decodePayload, LinkError } from "./links.js";
-import { PersonaError, randomId, resultFor, scorerAnswers } from "./session.js";
+import { PersonaError, randomId, resultFor, scorerAnswers, FINALE_SIZE } from "./session.js";
 
 export const FRIEND_EMOJI = Object.freeze(["🐸", "🌙", "🦊", "🌻", "🐙", "🍓", "⚡", "🐝", "🌊", "🍜", "🦄", "🎧"]);
 export const RELATIONSHIPS = FRIEND.relationships.options;
@@ -50,13 +50,12 @@ export function friendLabel(rel, emoji) {
 }
 
 // ---------------------------------------------------------------- owner: create a challenge
-// Which switches a relationship offers (friend.json privacyToggles; null = not offered). Teens never get the
-// marriage and kids switch.
-export function toggleOptions(rel, setup) {
+// Which switches a relationship offers (friend.json privacyToggles; null = not offered). No age logic: every owner
+// gets the same switches (LAUNCH-SPEC section 22).
+export function toggleOptions(rel) {
   const def = (id) => TOGGLE[id].default[rel];
-  const teen = setup && setup.age === "teen";
   const offer = (id) => (def(id) === null ? null : { default: def(id), label: TOGGLE[id].label, confirm: TOGGLE[id].confirm || null });
-  return { love: offer("loveTags"), mk: teen ? null : offer("marriageKidsTags"), stings: offer("stingLines"), showType: offer("showType") };
+  return { love: offer("loveTags"), mk: offer("marriageKidsTags"), stings: offer("stingLines"), showType: offer("showType") };
 }
 
 export function invitesFor(rel, state) {
@@ -79,9 +78,9 @@ function randomSeed() {
   return bytes[0] >>> 0;
 }
 
-function normalizeChallenge(input, setup) {
+function normalizeChallenge(input) {
   if (!isObj(input) || !REL_IDS.includes(input.rel)) throw new PersonaError("bad_challenge", "Pick who you're sending this to.");
-  const offered = toggleOptions(input.rel, setup);
+  const offered = toggleOptions(input.rel);
   const pick = (key) => (offered[key] === null ? false : typeof input[key] === "boolean" ? input[key] : offered[key].default);
   const emoji = Number.isInteger(input.emoji) && input.emoji >= 0 && input.emoji < FRIEND_EMOJI.length ? input.emoji : 0;
   const invite = Number.isInteger(input.invite) && input.invite >= 0 && input.invite < (FRIEND.invites[input.rel] || []).length ? input.invite : 0;
@@ -90,7 +89,7 @@ function normalizeChallenge(input, setup) {
 
 export function createChallenge(state, input, { now = new Date().toISOString(), id = randomId(10), seed = randomSeed() } = {}) {
   resultFor(state);
-  const ch = { id, ...normalizeChallenge(input, state.setup), seed: seed >>> 0, createdAt: now, sentBefore: state.challenges.length > 0 };
+  const ch = { id, ...normalizeChallenge(input), seed: seed >>> 0, createdAt: now, sentBefore: state.challenges.length > 0 };
   challengeDeck(state, ch);
   return { state: { ...capChallenges({ ...state, challenges: [...state.challenges.filter((c) => c.id !== id), ch] }), updatedAt: now }, challenge: ch };
 }
@@ -107,10 +106,10 @@ function capChallenges(state) {
 }
 
 // The owner-side deck (with the truth). Rebuilt from the saved choices every time, never stored.
-export function challengeDeck(state, ch, { under18 = false } = {}) {
+export function challengeDeck(state, ch) {
   const answers = scorerAnswers(state);
   const profile = S.buildProfile(answers);
-  return S.buildFriendDeck(profile, answers, { rel: ch.rel, love: ch.love, mk: under18 ? false : ch.mk, stings: ch.stings, seed: ch.seed });
+  return S.buildFriendDeck(profile, answers, { rel: ch.rel, love: ch.love, mk: ch.mk, stings: ch.stings, seed: ch.seed });
 }
 
 const l3Body = (d) => (d.level3.skipped ? null : { n: d.level3.N, d: d.level3.cards.map((c) => c.id), t: d.level3.cards.filter((c) => c.role === "true").map((c) => c.id) });
@@ -131,11 +130,6 @@ export function challengeBody(state, ch) {
     c: l3Body(deck),
     d: l4Body(deck),
   };
-  if (ch.mk) {
-    const young = challengeDeck(state, ch, { under18: true });
-    body.cu = l3Body(young);
-    body.du = l4Body(young);
-  }
   return body;
 }
 
@@ -182,7 +176,7 @@ function checkL4(v, allowed, love) {
 
 export function parseChallenge(raw) {
   const b = decodePayload(raw);
-  const keys = ["v", "k", "i", "r", "n", "p", "e", "s", "w", "o", "a", "b", "c", "d", "cu", "du"];
+  const keys = ["v", "k", "i", "r", "n", "p", "e", "s", "w", "o", "a", "b", "c", "d"];
   if (Object.keys(b).some((k) => !keys.includes(k))) throw bad();
   if (b.v !== 1) throw new LinkError("version", "This link was made with a different version of Genii.");
   if (b.k !== KIT_ID) throw new LinkError("kit_changed", "This link was made with a different version of Genii's cards. Ask for a fresh link.");
@@ -197,7 +191,7 @@ export function parseChallenge(raw) {
   if (!Number.isInteger(b.w) || b.w < 0 || b.w >= (FRIEND.invites[b.r] || []).length) throw bad();
   if (!Array.isArray(b.o) || b.o.length !== 4 || !b.o.every((x) => x === 0 || x === 1)) throw bad();
   const [love, mk, stings, showType] = b.o.map(Boolean);
-  const offered = toggleOptions(b.r, { age: "adult" });
+  const offered = toggleOptions(b.r);
   if ((love && !offered.love) || (mk && !offered.mk) || (stings && !offered.stings)) throw bad();
   if (!Array.isArray(b.a) || b.a.length !== 6) throw bad();
   const questions = FRIEND.level1.questions[relOf(b.r).level1Set];
@@ -218,16 +212,11 @@ export function parseChallenge(raw) {
   const wantL4 = b.r === "bestie" && stings;
   if (wantL4 !== (b.d !== undefined && b.d !== null)) throw bad();
   const level4 = wantL4 ? checkL4(b.d, allowedPairs(b.r, love, mk), love) : null;
-  if (mk !== (b.cu !== undefined)) throw bad();
-  if ((mk && wantL4) !== (b.du !== undefined && b.du !== null)) throw bad();
-  const level3u = mk ? checkL3(b.cu, allowedPairs(b.r, love, false)) : null;
-  const level4u = mk && wantL4 ? checkL4(b.du, allowedPairs(b.r, love, false), love) : null;
-  for (const l3 of [level3, level3u]) if (l3) for (const id of l3.cards) if (TAG[id].locked18 && !(mk && l3 === level3)) throw bad();
-  return { id: b.i, rel: b.r, name, pronoun: b.p, emoji: b.e, seed: b.s, invite: b.w, love, mk, stings, showType, level1, level2, level3, level4, level3u, level4u };
+  return { id: b.i, rel: b.r, name, pronoun: b.p, emoji: b.e, seed: b.s, invite: b.w, love, mk, stings, showType, level1, level2, level3, level4 };
 }
 
 // The friend's playable deck, in the same shape score-core scoreFriendGame reads. Option order is shuffled per link.
-export function friendDeckView(ch, { under18 = false } = {}) {
+export function friendDeckView(ch) {
   const who = { pronoun: ch.pronoun, name: ch.name };
   const fill = (t) => fillOwner(t, who);
   const r = S.rng((ch.seed ^ 0x6e11) >>> 0);
@@ -241,7 +230,7 @@ export function friendDeckView(ch, { under18 = false } = {}) {
   const level2 = ch.level2.length
     ? { skipped: false, cards: ch.level2.map(({ id, answer }) => { const c = S.cardById[id]; return { id, prompt: fill(c.friend.prompt), a: fill(c.friend.a.t), b: fill(c.friend.b.t), order: r() < 0.5 ? ["a", "b"] : ["b", "a"], answer, weight: c.weight }; }) }
     : { skipped: true, line: fill(FRIEND.level2.skippedLine.t), cards: [] };
-  const l3 = under18 && ch.mk ? ch.level3u : ch.level3;
+  const l3 = ch.level3;
   const level3 = l3
     ? {
       skipped: false, N: l3.N, pick: l3.N,
@@ -250,7 +239,7 @@ export function friendDeckView(ch, { under18 = false } = {}) {
       cards: l3.cards.map((id) => ({ id, role: l3.truth.includes(id) ? "true" : l3.truth.some((t) => TAG[t].pair === id) ? "opposite" : "decoy", name: TAG[id].name, heart: TAG[id].heart })),
     }
     : { skipped: true, line: fill(FRIEND.level3.skippedLine.t), cards: [] };
-  const l4 = under18 && ch.mk ? ch.level4u : ch.level4;
+  const l4 = ch.level4;
   const level4 = l4
     ? {
       enabled: true,
@@ -269,7 +258,6 @@ export function friendIntro(ch) {
     title: fillOwner(FRIEND.results.friend.title.t, who),
     preGame: fillOwner(FRIEND.preGame[set].t, who),
     cta: FRIEND.preGame.cta,
-    needsAgeBand: ch.mk,
   };
 }
 
@@ -321,10 +309,10 @@ export function friendSafeResult(ch, view, guesses) {
 }
 
 // ---------------------------------------------------------------- reply: friend to owner
-export function replyPayload(ch, view, guesses, { under18 = false } = {}) {
+export function replyPayload(ch, view, guesses) {
   const g = cleanGuesses(view, guesses);
   return encodePayload({
-    v: 1, k: KIT_ID, i: ch.id, u: under18 && ch.mk ? 1 : 0,
+    v: 1, k: KIT_ID, i: ch.id,
     a: view.level1.map((q) => g.level1[q.axis] ?? 0),
     b: view.level2.cards.filter((c) => g.level2[c.id]).map((c) => [c.id, g.level2[c.id], g.why[c.id] || ""]),
     c: g.level3,
@@ -334,11 +322,10 @@ export function replyPayload(ch, view, guesses, { under18 = false } = {}) {
 
 export function parseReply(raw) {
   const b = decodePayload(raw);
-  if (Object.keys(b).some((k) => !["v", "k", "i", "u", "a", "b", "c", "d"].includes(k))) throw bad();
+  if (Object.keys(b).some((k) => !["v", "k", "i", "a", "b", "c", "d"].includes(k))) throw bad();
   if (b.v !== 1) throw new LinkError("version", "This reply was made with a different version of Genii.");
   if (b.k !== KIT_ID) throw new LinkError("kit_changed", "This reply was made with a different version of Genii's cards.");
   if (typeof b.i !== "string" || !/^[a-z0-9]{8,16}$/.test(b.i)) throw bad();
-  if (b.u !== 0 && b.u !== 1) throw bad();
   if (!Array.isArray(b.a) || b.a.length !== 6 || !b.a.every((x) => x === 1 || x === -1)) throw bad();
   if (!Array.isArray(b.b) || b.b.length > 12) throw bad();
   const level2 = {};
@@ -357,7 +344,7 @@ export function parseReply(raw) {
     level4 = { sting: sting || null, roast: roast || null };
   }
   const level1 = Object.fromEntries(AXES.map((ax, i) => [ax, b.a[i]]));
-  return { challengeId: b.i, under18: b.u === 1, guesses: { level1, level2, why, level3: b.c, level4 } };
+  return { challengeId: b.i, guesses: { level1, level2, why, level3: b.c, level4 } };
 }
 
 // Owner: add a friend's reply. It must answer a challenge saved in this browser and match that challenge's deck.
@@ -365,9 +352,9 @@ export function importReply(state, raw, { now = new Date().toISOString() } = {})
   const reply = parseReply(raw);
   const ch = state.challenges.find((c) => c.id === reply.challengeId);
   if (!ch) throw new LinkError("unknown_challenge", "This reply answers a challenge that isn't saved in this browser. Open it where you took the quiz.");
-  const deck = challengeDeck(state, ch, { under18: reply.under18 && ch.mk });
+  const deck = challengeDeck(state, ch);
   checkAgainstDeck(deck, reply.guesses);
-  const entry = { challengeId: ch.id, receivedAt: now, under18: reply.under18 && ch.mk, guesses: reply.guesses, hideRoast: false };
+  const entry = { challengeId: ch.id, receivedAt: now, guesses: reply.guesses, hideRoast: false };
   return { state: { ...state, friendResults: [...state.friendResults.filter((r) => r.challengeId !== ch.id), entry], updatedAt: now }, challengeId: ch.id };
 }
 
@@ -394,19 +381,19 @@ export function validateFriendData(state) {
   for (const ch of state.challenges) {
     const keys = ["id", "rel", "love", "mk", "stings", "showType", "emoji", "invite", "name", "seed", "createdAt", "sentBefore"];
     if (!isObj(ch) || Object.keys(ch).some((k) => !keys.includes(k)) || typeof ch.id !== "string" || !/^[a-z0-9]{8,16}$/.test(ch.id) || ids.has(ch.id)) throw new PersonaError("corrupt", "Bad saved challenge.");
-    const norm = normalizeChallenge(ch, state.setup);
+    const norm = normalizeChallenge(ch);
     if (["rel", "love", "mk", "stings", "showType", "emoji", "invite", "name"].some((k) => norm[k] !== ch[k]) || !Number.isInteger(ch.seed) || ch.seed < 0 || ch.seed > 0xffffffff || typeof ch.createdAt !== "string" || typeof ch.sentBefore !== "boolean") throw new PersonaError("corrupt", "Bad saved challenge.");
     ids.add(ch.id);
   }
-  if (state.challenges.length && !(state.frozen && Object.keys(state.finale).length === S.kit.finale.length)) throw new PersonaError("corrupt", "Challenges without a finished run.");
+  if (state.challenges.length && !(state.frozen && Object.keys(state.finale).length === FINALE_SIZE)) throw new PersonaError("corrupt", "Challenges without a finished run.");
   const replied = new Set();
   const replies = [];
   for (const r of state.friendResults) {
-    if (!isObj(r) || typeof r.challengeId !== "string" || typeof r.under18 !== "boolean" || typeof r.hideRoast !== "boolean" || typeof r.receivedAt !== "string" || !isObj(r.guesses)) throw new PersonaError("corrupt", "Bad saved reply.");
+    if (!isObj(r) || Object.keys(r).some((k) => !["challengeId", "receivedAt", "guesses", "hideRoast"].includes(k)) || typeof r.challengeId !== "string" || typeof r.hideRoast !== "boolean" || typeof r.receivedAt !== "string" || !isObj(r.guesses)) throw new PersonaError("corrupt", "Bad saved reply.");
     if (!ids.has(r.challengeId)) continue; // its link is gone: drop the reply, keep the run
     if (replied.has(r.challengeId)) throw new PersonaError("corrupt", "Two saved replies for one link.");
     const ch = state.challenges.find((c) => c.id === r.challengeId);
-    checkAgainstDeck(challengeDeck(state, ch, { under18: r.under18 && ch.mk }), r.guesses);
+    checkAgainstDeck(challengeDeck(state, ch), r.guesses);
     replied.add(r.challengeId);
     replies.push(r);
   }
@@ -428,7 +415,7 @@ export function ownerFriendView(state, challengeId) {
   const ch = state.challenges.find((c) => c.id === challengeId);
   const entry = state.friendResults.find((r) => r.challengeId === challengeId);
   if (!ch || !entry) return null;
-  const deck = challengeDeck(state, ch, { under18: entry.under18 && ch.mk });
+  const deck = challengeDeck(state, ch);
   const score = S.scoreFriendGame(deck, entry.guesses, scorerAnswers(state));
   const { profile } = resultFor(state);
   const O = FRIEND.results.owner;
@@ -497,7 +484,7 @@ export function ownerFriendView(state, challengeId) {
 export function ranking(state) {
   const rows = state.friendResults.filter((entry) => state.challenges.some((c) => c.id === entry.challengeId)).map((entry) => {
     const ch = state.challenges.find((c) => c.id === entry.challengeId);
-    const deck = challengeDeck(state, ch, { under18: entry.under18 && ch.mk });
+    const deck = challengeDeck(state, ch);
     return { key: ch.id, friend: friendLabel(ch.rel, ch.emoji), playedAt: entry.receivedAt, score: S.scoreFriendGame(deck, entry.guesses) };
   });
   const R = FRIEND.ranking;

@@ -14,19 +14,27 @@
     "finaleOrder": "../judges/flow.json order.finale"
   },
   "weights": {
-    "real": 0.8,
     "scenario": 0.55,
+    "real": 0.8,
+    "receipts": 0.4,
+    "bet": 0.8,
+    "reply": 0.55,
+    "others": 0.45,
     "this_or_that": 0.45,
     "role": 0.45,
     "pick_two": 0.45,
+    "rank": 0.45,
+    "eyes": 0.45,
     "feeling": 0,
     "sealed": 0,
     "rushedMs": 1500,
     "rushedFactor": 0.3,
-    "receipts": 0.4,
-    "guilty": 0.8,
-    "reply": 0.55,
-    "others": 0.45
+    "rankPositions": [
+      1,
+      0.5,
+      0,
+      -0.5
+    ]
   },
   "exits": {
     "skip": {
@@ -45,15 +53,14 @@
     }
   },
   "flow": [
-    "setup (age, closest person, pronoun)",
-    "chapters 1 to 7, in order, each opened by its title and intro",
-    "teen run (setup.age = teen): locked18 cards are never shown; teenPrompt replaces prompt where present",
+    "setup (closest person, pronoun); no age question",
+    "lobby: voice (Make it fun, Heart to heart, Just the cards), how personal (keep it light skips intimate cards), open rooms",
+    "the picker serves 40 cards from the open chapters and the extras; each chapter opens with its first authored card",
     "C3-9 shows only if the C3-8 picks include a T11A line (gateRule)",
     "a feeling card always plays right after the card named in follows",
-    "after chapter 7: node score.mjs profile; for any axis marked unfinished, play up to 2 extras with axisFor = that axis, then profile again",
-    "node score.mjs freeze (sha256 shown before the finale)",
-    "finale: the 8 sealed cards",
-    "result page, then feedback"
+    "Genii locks its guesses (sha256) for 8 sealed cards drawn from the sealed pool (finale), seeded by the run id",
+    "finale: the 8 drawn sealed cards",
+    "result page, then the friend game"
   ],
   "chapters": [
     {
@@ -162,8 +169,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C1-2",
@@ -172,7 +178,6 @@
             "Q41"
           ],
           "prompt": "Your person, totally casual: \"Let's swap passcodes. Nothing's wrong. It just feels close.\" They're already holding their phone out.",
-          "teenPrompt": "Your best friend, totally casual: \"Let's swap passcodes. Besties do.\" They're already holding their phone out.",
           "privacy": "normal",
           "options": [
             {
@@ -281,8 +286,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C1-4",
@@ -377,8 +381,7 @@
             "skip",
             "not_my_life",
             "no_recent"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C1-5",
@@ -467,8 +470,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C1-6",
@@ -534,7 +536,6 @@
             "skip",
             "not_my_life"
           ],
-          "teen": true,
           "round": "ch1-r1"
         },
         {
@@ -609,7 +610,6 @@
             "skip",
             "not_my_life"
           ],
-          "teen": true,
           "round": "ch1-r1"
         },
         {
@@ -674,7 +674,6 @@
             "skip",
             "not_my_life"
           ],
-          "teen": true,
           "round": "ch1-r1"
         },
         {
@@ -775,8 +774,7 @@
             "skip",
             "not_my_life",
             "no_recent"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C1-12",
@@ -869,8 +867,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C1-13",
@@ -878,7 +875,6 @@
           "sally": [],
           "privacy": "normal",
           "prompt": "Your friend reads their partner's texts while the partner is in the shower. They tell you like it's a fun fact. First thought?",
-          "teenPrompt": "Your friend reads their sibling's texts while the sibling is in the shower. They tell you like it's a fun fact. First thought?",
           "options": [
             {
               "t": "Nothing to hide, no harm done.",
@@ -948,8 +944,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         }
       ]
     },
@@ -1057,8 +1052,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C2-2",
@@ -1151,8 +1145,7 @@
             "skip",
             "not_my_life",
             "no_recent"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C2-3",
@@ -1255,8 +1248,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C2-4",
@@ -1366,8 +1358,7 @@
             "skip",
             "not_my_life"
           ],
-          "pick": 2,
-          "teen": true
+          "pick": 2
         },
         {
           "id": "C2-7",
@@ -1466,8 +1457,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C2-5",
@@ -1566,8 +1556,7 @@
             "skip",
             "not_my_life",
             "no_recent"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C2-6",
@@ -1619,8 +1608,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C2-9",
@@ -1629,7 +1617,6 @@
             "Q15"
           ],
           "prompt": "Your close friend's laptop died a week before a big deadline. They need $300 by Friday, no idea when they can pay you back. You have it. Losing it would sting.",
-          "teenPrompt": "Your close friend's laptop died a week before exams. They need $60 toward a used one by Friday, no idea when they'll pay you back. You have it. Losing it would sting.",
           "privacy": "normal",
           "options": [
             {
@@ -1718,8 +1705,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C2-8",
@@ -1814,12 +1800,11 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C2-12",
-          "type": "guilty",
+          "type": "bet",
           "sally": [],
           "privacy": "normal",
           "prompt": "I bet you've unblocked someone just to check if they'd changed.",
@@ -1874,8 +1859,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C2-13",
@@ -1954,7 +1938,6 @@
             "skip",
             "not_my_life"
           ],
-          "teen": true,
           "thread": [
             {
               "from": "Dani",
@@ -2037,8 +2020,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C3-2",
@@ -2137,8 +2119,7 @@
             "skip",
             "not_my_life",
             "no_recent"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C3-3",
@@ -2147,7 +2128,6 @@
             "Q14"
           ],
           "prompt": "You move in with your person. They earn twice what you do. Rent, groceries, Wi-Fi, the fancy olive oil. How does it get split?",
-          "teenPrompt": "You and your best friend plan a day out: train, bubble tea, arcade. They get twice your allowance. How does it get split?",
           "privacy": "normal",
           "options": [
             {
@@ -2229,8 +2209,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C3-5",
@@ -2330,8 +2309,7 @@
             "skip",
             "not_my_life",
             "no_recent"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C3-7",
@@ -2340,7 +2318,6 @@
             "Q06"
           ],
           "prompt": "You find out your person has spent months in late-night chats with someone else. Inside jokes, secrets they used to tell only you. Nothing physical. What hurts most?",
-          "teenPrompt": "Your best friend has spent months in late-night chats with someone new. Inside jokes, secrets they used to tell only you. They never mentioned it. What hurts most?",
           "privacy": "intimate",
           "options": [
             {
@@ -2396,8 +2373,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C3-8",
@@ -2406,7 +2382,7 @@
             "Q10"
           ],
           "prompt": "A friend's toddler falls asleep on you mid-party. Nobody can move you for an hour. Pick the two thoughts closest to yours.",
-          "privacy": "locked18",
+          "privacy": "intimate",
           "options": [
             {
               "t": "I want one. My parents would be unbearable grandparents.",
@@ -2474,8 +2450,7 @@
             "skip",
             "not_my_life"
           ],
-          "pick": 2,
-          "teen": false
+          "pick": 2
         },
         {
           "id": "C3-12",
@@ -2544,8 +2519,7 @@
             "skip",
             "not_my_life",
             "no_recent"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C3-9",
@@ -2555,7 +2529,7 @@
           ],
           "gate": "Show only if the player picked a T11A line on C3-8 (Sally: Q11 only for those who lean toward wanting kids on Q10).",
           "prompt": "Kids are penciled in for the next two years. There's already a nursery mood board. Then your dream job calls: bigger title, new city, answer by Friday.",
-          "privacy": "locked18",
+          "privacy": "intimate",
           "options": [
             {
               "t": "Turn it down. The mood board stays on schedule.",
@@ -2626,7 +2600,6 @@
             "skip",
             "not_my_life"
           ],
-          "teen": false,
           "gateRule": {
             "card": "C3-8",
             "anyTag": "T11A"
@@ -2748,12 +2721,11 @@
             "skip",
             "not_my_life"
           ],
-          "pick": 2,
-          "teen": true
+          "pick": 2
         },
         {
           "id": "C3-13",
-          "type": "guilty",
+          "type": "bet",
           "sally": [],
           "privacy": "normal",
           "prompt": "I bet you've celebrated a one-month anniversary. Balloons optional.",
@@ -2802,14 +2774,13 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C3-14",
-          "type": "guilty",
+          "type": "bet",
           "sally": [],
-          "privacy": "locked18",
+          "privacy": "intimate",
           "prompt": "I bet you've scrolled baby names 'just for fun.' And saved a few.",
           "options": [
             {
@@ -2842,8 +2813,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": false
+          ]
         },
         {
           "id": "C3-15",
@@ -2928,8 +2898,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         }
       ]
     },
@@ -3028,8 +2997,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C4-5",
@@ -3121,8 +3089,7 @@
             "skip",
             "not_my_life",
             "no_recent"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C4-8",
@@ -3209,8 +3176,7 @@
             "skip",
             "not_my_life"
           ],
-          "pick": 2,
-          "teen": true
+          "pick": 2
         },
         {
           "id": "C4-2",
@@ -3219,7 +3185,6 @@
             "Q13"
           ],
           "prompt": "Housewarming tour. Your friend pats the kitchen island: 'I worked so hard for this.' Their parents covered the down payment.",
-          "teenPrompt": "Your friend's parents paid for a private coach all year. They made the team and say, 'I earned this spot.'",
           "privacy": "normal",
           "options": [
             {
@@ -3281,7 +3246,6 @@
             "skip",
             "not_my_life"
           ],
-          "teen": true,
           "round": "ch4-r1"
         },
         {
@@ -3351,7 +3315,6 @@
             "skip",
             "not_my_life"
           ],
-          "teen": true,
           "round": "ch4-r1"
         },
         {
@@ -3422,7 +3385,6 @@
             "skip",
             "not_my_life"
           ],
-          "teen": true,
           "round": "ch4-r1"
         },
         {
@@ -3432,7 +3394,6 @@
             "Q16"
           ],
           "prompt": "Your team's fundraiser wraps. You pick the MVP, and $100 comes with it. Kai raised the most with one post to 40k followers. Remy raised almost as much, door to door.",
-          "teenPrompt": "Your club's fundraiser wraps. You pick the MVP, and a $50 gift card comes with it. Kai raised the most with one post to 4k followers. Remy raised almost as much, door to door.",
           "privacy": "normal",
           "options": [
             {
@@ -3512,8 +3473,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C4-11",
@@ -3521,7 +3481,6 @@
           "sally": [],
           "privacy": "normal",
           "prompt": "Receipts check. Open your banking or payment app. Tap everything that's true right now.",
-          "teenPrompt": "Receipts check. Your money right now: allowance, job, gift cards. Tap everything that's true.",
           "options": [
             {
               "t": "Money set aside that you pretend doesn't exist",
@@ -3598,16 +3557,14 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C4-12",
-          "type": "guilty",
+          "type": "bet",
           "sally": [],
           "privacy": "normal",
           "prompt": "I bet you've looked up how someone your age affords their life. Rent, car, three trips a year.",
-          "teenPrompt": "I bet you've looked up how someone at school affords their stuff. New phone, new sneakers, three trips a year.",
           "options": [
             {
               "t": "Guilty",
@@ -3659,8 +3616,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         }
       ]
     },
@@ -3745,7 +3701,6 @@
             "skip",
             "not_my_life"
           ],
-          "teen": true,
           "round": "ch5-r1"
         },
         {
@@ -3753,7 +3708,6 @@
           "type": "this_or_that",
           "sally": [],
           "prompt": "Your boss lets you pick your next assignment. One you've done five times and could do half-asleep. Or one nobody on the team has ever tried.",
-          "teenPrompt": "Next year you get one elective. The sequel to the class you aced, same teacher. Or a brand-new one nobody at school has taken yet.",
           "privacy": "normal",
           "options": [
             {
@@ -3831,7 +3785,6 @@
             "skip",
             "not_my_life"
           ],
-          "teen": true,
           "round": "ch5-r1"
         },
         {
@@ -3901,7 +3854,6 @@
             "skip",
             "not_my_life"
           ],
-          "teen": true,
           "round": "ch5-r1"
         },
         {
@@ -3911,7 +3863,6 @@
             "Q20"
           ],
           "prompt": "Your manager offers you the promotion. New title, more money, your own set of keys. Every Saturday is gone for a year.",
-          "teenPrompt": "Your club or team wants you as captain next year. Your name on everything. Every Saturday, gone.",
           "privacy": "normal",
           "options": [
             {
@@ -4003,8 +3954,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C5-5",
@@ -4105,8 +4055,7 @@
             "skip",
             "not_my_life",
             "no_recent"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C5-9",
@@ -4235,8 +4184,7 @@
             "skip",
             "not_my_life"
           ],
-          "pick": 2,
-          "teen": true
+          "pick": 2
         },
         {
           "id": "C5-6",
@@ -4246,7 +4194,6 @@
             "Q17"
           ],
           "prompt": "Your own thing (art, reselling, a channel) just had its best month ever. Growing it for real would take all your savings.",
-          "teenPrompt": "Your own thing (art, reselling, a channel) just had its best month ever. Growing it for real would take everything you saved this summer.",
           "privacy": "normal",
           "options": [
             {
@@ -4340,8 +4287,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C5-7",
@@ -4455,8 +4401,7 @@
             "skip",
             "not_my_life",
             "no_recent"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C5-8",
@@ -4513,8 +4458,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C5-11",
@@ -4604,12 +4548,11 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C5-12",
-          "type": "guilty",
+          "type": "bet",
           "sally": [],
           "privacy": "normal",
           "prompt": "I bet you've closed your laptop at 5:00 exactly. Mid-sentence.",
@@ -4677,9 +4620,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true,
-          "teenPrompt": "I bet you've stopped homework at the exact minute you said you would. Mid-sentence."
+          ]
         }
       ]
     },
@@ -4695,7 +4636,6 @@
             "Q21"
           ],
           "prompt": "Your parents offer to help you get your own place. One catch: it has to be a ten-minute walk from theirs.",
-          "teenPrompt": "Someday, your parents offer to help pay for your first apartment. One catch: it has to be a ten-minute walk from theirs.",
           "privacy": "normal",
           "options": [
             {
@@ -4794,8 +4734,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C6-3",
@@ -4804,7 +4743,6 @@
             "Q04"
           ],
           "prompt": "Your cousin and their partner swap roles every year: one works, one stays home with the baby, then they trade. Grandma is still recovering from the news. Your own home, someday?",
-          "teenPrompt": "Your friend's parents swap roles every year: one works, one runs the house, then they trade. There's a chart on the fridge. Your own home, someday?",
           "privacy": "normal",
           "options": [
             {
@@ -4872,7 +4810,6 @@
             "skip",
             "not_my_life"
           ],
-          "teen": true,
           "round": "ch6-r1"
         },
         {
@@ -4947,7 +4884,6 @@
             "skip",
             "not_my_life"
           ],
-          "teen": true,
           "round": "ch6-r1"
         },
         {
@@ -4957,7 +4893,7 @@
             "Q09"
           ],
           "prompt": "You and your person: six years, a shared dog, a joint Costco card. Your aunt asks, 'So when's the wedding?'",
-          "privacy": "locked18",
+          "privacy": "intimate",
           "options": [
             {
               "t": "Soon. Vows out loud, and Grandma crying in row one.",
@@ -5001,7 +4937,6 @@
             "skip",
             "not_my_life"
           ],
-          "teen": false,
           "round": "ch6-r1"
         },
         {
@@ -5011,7 +4946,6 @@
             "Q22"
           ],
           "prompt": "A parent needs someone with them every day for six months. They've told everyone they're 'totally fine.' Your siblings could help. Moving back would cost you at work.",
-          "teenPrompt": "A grandparent moves in and needs daily help for a few months. They insist they're 'totally fine.' Your family asks who can pitch in after school.",
           "privacy": "normal",
           "options": [
             {
@@ -5089,15 +5023,14 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C6-11",
           "type": "role",
           "sally": [],
           "prompt": "Your grandparents' 50th anniversary party. 300 guests, an open bar, a toast that's on page six. You're the one…",
-          "privacy": "locked18",
+          "privacy": "intimate",
           "options": [
             {
               "t": "Leading the family dance. I've known the steps since I was five.",
@@ -5180,8 +5113,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": false
+          ]
         },
         {
           "id": "C6-2",
@@ -5288,8 +5220,7 @@
             "skip",
             "not_my_life",
             "no_recent"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C6-1",
@@ -5298,7 +5229,6 @@
             "Q01"
           ],
           "prompt": "Week one in a new place with your person or a roommate. The sink is full, the trash smells, and you're both just staring at it.",
-          "teenPrompt": "Your parents are away for the weekend. You and your sibling are in charge. By Saturday the sink is full and the trash smells.",
           "privacy": "normal",
           "options": [
             {
@@ -5383,8 +5313,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C6-8",
@@ -5393,7 +5322,6 @@
             "Q23"
           ],
           "prompt": "Your parents want you to keep helping an adult sibling who never quite gets it together. In that story, you're the…",
-          "teenPrompt": "Your sibling keeps needing a rescue: homework, chores, cash. Your parents say, 'Help them, they're family.' In that story, you're the…",
           "privacy": "normal",
           "options": [
             {
@@ -5497,8 +5425,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C6-7",
@@ -5597,8 +5524,7 @@
             "skip",
             "not_my_life"
           ],
-          "pick": 2,
-          "teen": true
+          "pick": 2
         },
         {
           "id": "C6-12",
@@ -5689,14 +5615,13 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C6-13",
-          "type": "guilty",
+          "type": "bet",
           "sally": [],
-          "privacy": "locked18",
+          "privacy": "intimate",
           "prompt": "I bet you've saved a wedding venue to a folder. Yours, or purely hypothetical.",
           "options": [
             {
@@ -5735,8 +5660,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": false
+          ]
         }
       ]
     },
@@ -5840,8 +5764,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C7-6",
@@ -5938,8 +5861,7 @@
             "skip",
             "not_my_life",
             "no_recent"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C7-5",
@@ -6029,8 +5951,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C7-4",
@@ -6131,8 +6052,7 @@
             "skip",
             "not_my_life",
             "no_recent"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C7-3",
@@ -6141,7 +6061,6 @@
             "Q46"
           ],
           "prompt": "Offer on the table: one year in a city you've never seen. Place to live, sorted. Your life here is honestly good.",
-          "teenPrompt": "Your school offers a year-long exchange in a city you've never been to. Host family, sorted. Your life here is honestly good.",
           "privacy": "normal",
           "options": [
             {
@@ -6238,8 +6157,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C7-2",
@@ -6340,8 +6258,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C7-7",
@@ -6443,8 +6360,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C7-9",
@@ -6531,8 +6447,7 @@
             "skip",
             "not_my_life"
           ],
-          "pick": 2,
-          "teen": true
+          "pick": 2
         },
         {
           "id": "C7-10",
@@ -6620,8 +6535,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C7-11",
@@ -6706,8 +6620,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         },
         {
           "id": "C7-12",
@@ -6784,8 +6697,7 @@
           "exits": [
             "skip",
             "not_my_life"
-          ],
-          "teen": true
+          ]
         }
       ]
     }
@@ -6859,7 +6771,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "checks": {
         "primary": "R2",
         "axes": [
@@ -6936,7 +6847,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "checks": {
         "primary": "L1",
         "axes": [
@@ -7013,7 +6923,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "checks": {
         "primary": "R3",
         "axes": [
@@ -7089,7 +6998,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "checks": {
         "primary": "L2",
         "axes": [
@@ -7165,7 +7073,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "checks": {
         "primary": "L3",
         "axes": [
@@ -7245,7 +7152,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "checks": {
         "primary": "R1",
         "axes": [
@@ -7261,7 +7167,6 @@
       "type": "sealed",
       "sally": [],
       "prompt": "Saturday, 8am, pouring rain. Your friend needs help carrying a couch up four flights. You had a lazy morning planned.",
-      "teenPrompt": "Saturday, 8am, pouring rain. Your friend's family is moving and they begged you to help pack. You had a lazy morning planned.",
       "privacy": "normal",
       "options": [
         {
@@ -7322,7 +7227,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "checks": {
         "primary": null,
         "axes": [],
@@ -7398,7 +7302,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "checks": {
         "primary": "L1",
         "axes": [
@@ -7449,7 +7352,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "chapter": "extra",
       "mask": "extra card, only when R1 is unfinished; measures R1 only",
       "ae": [
@@ -7483,7 +7385,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "chapter": "extra",
       "mask": "extra card, only when R1 is unfinished; measures R1 only",
       "ae": [
@@ -7529,7 +7430,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "chapter": "extra",
       "mask": "extra card, only when R2 is unfinished; measures R2 only",
       "ae": [
@@ -7563,7 +7463,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "chapter": "extra",
       "mask": "extra card, only when R2 is unfinished; measures R2 only",
       "ae": [
@@ -7597,7 +7496,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "chapter": "extra",
       "mask": "extra card, only when R3 is unfinished; measures R3 only",
       "ae": [
@@ -7643,7 +7541,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "chapter": "extra",
       "mask": "extra card, only when R3 is unfinished; measures R3 only",
       "ae": [
@@ -7677,7 +7574,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "chapter": "extra",
       "mask": "extra card, only when L1 is unfinished; measures L1 only",
       "ae": [
@@ -7723,7 +7619,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "chapter": "extra",
       "mask": "extra card, only when L1 is unfinished; measures L1 only",
       "ae": [
@@ -7757,7 +7652,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "chapter": "extra",
       "mask": "extra card, only when L2 is unfinished; measures L2 only",
       "ae": [
@@ -7803,7 +7697,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "chapter": "extra",
       "mask": "extra card, only when L2 is unfinished; measures L2 only",
       "ae": [
@@ -7837,7 +7730,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "chapter": "extra",
       "mask": "extra card, only when L3 is unfinished; measures L3 only",
       "ae": [
@@ -7883,7 +7775,6 @@
         "skip",
         "not_my_life"
       ],
-      "teen": true,
       "chapter": "extra",
       "mask": "extra card, only when L3 is unfinished; measures L3 only",
       "ae": [

@@ -38,8 +38,7 @@ function Choice({ text, on, onClick, token, disabled }) {
 }
 
 export function FriendGame({ ch, play, isOwnLink, onProgress, onYourTurn, onLeave }) {
-  const under18 = ch.mk ? play.under18 : false;
-  const view = useMemo(() => friendDeckView(ch, { under18: !!under18 }), [ch, under18]);
+  const view = useMemo(() => friendDeckView(ch), [ch]);
   const intro = useMemo(() => friendIntro(ch), [ch]);
   const who = { pronoun: ch.pronoun, name: ch.name };
   const g = useMemo(() => cleanGuesses(view, play.guesses || EMPTY), [view, play.guesses]);
@@ -55,18 +54,9 @@ export function FriendGame({ ch, play, isOwnLink, onProgress, onYourTurn, onLeav
       <Frame kicker={`A game about ${name}`} title={intro.title} bubble="No typing. Just guesses.">
         {isOwnLink && <p className="fg-note" role="status">This is your own link. Send it to them, or play it here to see what they'll see.</p>}
         <p className="question-setup">{intro.preGame}</p>
-        {intro.needsAgeBand && (
-          <fieldset className="fg-age">
-            <legend>One round has 18+ cards. How old are you?</legend>
-            <div className="answer-list persona-answers">
-              <Choice token="A" text="18 or older" on={under18 === false} onClick={() => save({ under18: false })} />
-              <Choice token="B" text="Under 18" on={under18 === true} onClick={() => save({ under18: true })} />
-            </div>
-          </fieldset>
-        )}
         <div className="question-actions">
           <button type="button" className="button button--quiet" onClick={onLeave}>Not now</button>
-          <button type="button" className="button button--primary" disabled={intro.needsAgeBand && under18 === null} onClick={() => save({ stage: "level1", step: 0 })}>{intro.cta} <ArrowRight size={17} /></button>
+          <button type="button" className="button button--primary" onClick={() => save({ stage: "level1", step: 0 })}>{intro.cta} <ArrowRight size={17} /></button>
         </div>
       </Frame>
     );
@@ -196,7 +186,7 @@ export function FriendGame({ ch, play, isOwnLink, onProgress, onYourTurn, onLeav
 
   // Done: counts only. The friend never sees which ones they missed.
   const res = friendSafeResult(ch, view, g);
-  const reply = linkFor("reply", replyPayload(ch, view, g, { under18: !!under18 }));
+  const reply = linkFor("reply", replyPayload(ch, view, g));
   const copy = async (text, what) => { try { await navigator.clipboard.writeText(text); setCopied(what); setTimeout(() => setCopied(""), 1800); } catch { setCopied(""); } };
   const share = async () => { try { await navigator.share({ text: `My answers about you, from Genii's friend game:`, url: reply }); } catch { /* closed */ } };
   return (

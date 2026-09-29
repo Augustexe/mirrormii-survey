@@ -1,56 +1,64 @@
-// The lobby: four unscored taps right after setup that shape the run (2026-09-28). Every new player-facing line for
-// the lobby, the picker's bonus round and the delivery-routed host lines lives in LOBBY_COPY, so copy can be
-// replaced in one place. Ids are stored in the run; text never is.
+// The lobby: three unscored taps right after setup that shape the run (LAUNCH-SPEC section 22). Every new
+// player-facing line for the lobby, the picker's bonus round and the voice-routed host lines lives in LOBBY_COPY, so
+// copy can be replaced in one place. Ids are stored in the run; text never is.
 
-export const ENDING_IDS = Object.freeze(["sharp", "receipts", "funny", "gentle"]);
-export const DEPTH_IDS = Object.freeze(["light", "some", "personal"]);
+// How Genii talks: Make it fun, Heart to heart, or Just the cards (Make it fun wording, no reactions between cards).
+export const VOICE_IDS = Object.freeze(["fun", "heart", "cards"]);
+// How personal: "light" skips cards marked privacy "intimate"; "anything" plays every card.
+export const DEPTH_IDS = Object.freeze(["light", "anything"]);
 export const ROOM_IDS = Object.freeze(["love", "work", "family"]);
-export const DELIVERY_IDS = Object.freeze(["gentle", "playful", "sharp", "minimal"]);
 
 // Optional rooms and the kit chapter each one opens. Chapters 1, 2, 4 and 7 are always on.
 export const ROOM_CHAPTERS = Object.freeze({ love: 3, work: 5, family: 6 });
 export const ALWAYS_CHAPTERS = Object.freeze([1, 2, 4, 7]);
 
-// Used only for fields a stored lobby may lack. The lobby screen asks all four questions.
-export const LOBBY_DEFAULTS = Object.freeze({ ending: "funny", depth: "personal", rooms: ROOM_IDS, delivery: "playful" });
+// Used only when something asks before the lobby is chosen. The lobby screen asks all three questions.
+export const LOBBY_DEFAULTS = Object.freeze({ voice: "fun", depth: "anything", rooms: ROOM_IDS });
 
-// The playful lines are the ones the game already shipped with. Gentle and sharp reuse them until the founder
-// approves a voice for each (TODO copy).
-const PLAYFUL_HOST = Object.freeze({
+// The card wording a voice reads: Heart to heart, or Make it fun (Just the cards reads Make it fun).
+export const cardVoice = (voice) => (voice === "heart" ? "heart" : "fun");
+
+// Make it fun: the lines the game already shipped with.
+const FUN_HOST = Object.freeze({
   chapter: ["Pick the move you'd actually make. Perfect answers are suspicious.", "No cool answer here. Just yours.", "Not your life? Say so. That's an answer too.", "First instinct. Genii can tell when you overthink."],
   extra: ["Two more and I can call it."],
   finale: ["My guess is already locked. No peeking."],
   rushing: "Speedrun detected. Genii counts super-fast taps a little less.",
 });
+// Heart to heart: sincere and calm, full sentences, no exclamation marks.
+const HEART_HOST = Object.freeze({
+  chapter: ["Take your time. The honest answer is the one that helps.", "There is no right answer here, only yours.", "If a card is not your life, you can say so. That counts too.", "Go with what you would really do, not what sounds good."],
+  extra: ["A few more, and I will have the whole picture."],
+  finale: ["My guesses are already locked. Answer as you are."],
+  rushing: "You are moving quickly. Very fast taps count a little less, so take a breath if you like.",
+});
 
 export const LOBBY_COPY = Object.freeze({
   eyebrow: "Make it yours",
   counter: (n, total) => `Question ${n} of ${total}`,
-  guide: "Four quick picks, then the cards.",
-  setupGuide: "A few quick taps, then the cards.",
+  guide: "Three quick picks, then the cards.",
+  setupGuide: "Two quick taps, then the lobby.",
   guideNote: "You can skip any card later, whatever you pick here.",
   continue: "Continue",
   back: "Back",
   steps: Object.freeze([
     {
-      key: "ending",
-      title: "How should your ending read?",
-      note: "Genii keeps this in mind for your result.",
+      key: "voice",
+      title: "How should Genii talk to you?",
+      note: "Only the wording changes. Your answers count the same.",
       options: [
-        { id: "sharp", text: "One sharp read" },
-        { id: "receipts", text: "The read, plus what I said" },
-        { id: "funny", text: "Make me laugh" },
-        { id: "gentle", text: "Go easy on me" },
+        { id: "fun", text: "Make it fun" },
+        { id: "heart", text: "Heart to heart" },
+        { id: "cards", text: "Just the cards" },
       ],
     },
     {
       key: "depth",
       title: "How personal can Genii get?",
-      note: "Some cards stay 18+ only, whatever you pick.",
+      note: "You can skip any card, whatever you pick.",
       options: [
         { id: "light", text: "Keep it light" },
-        { id: "some", text: "A little personal" },
-        { id: "personal", text: "Ask me anything" },
+        { id: "anything", text: "Ask me anything" },
       ],
     },
     {
@@ -65,17 +73,6 @@ export const LOBBY_COPY = Object.freeze({
       ],
       open: "Open",
       closed: "Closed",
-    },
-    {
-      key: "delivery",
-      title: "How should Genii react between cards?",
-      note: "Only the tone changes. Your answers count the same.",
-      options: [
-        { id: "gentle", text: "Gently" },
-        { id: "playful", text: "Playful" },
-        { id: "sharp", text: "Straight to the point" },
-        { id: "minimal", text: "Quietly. Just the cards" },
-      ],
     },
   ]),
   // Picker surfaces
@@ -97,27 +94,26 @@ export const LOBBY_COPY = Object.freeze({
     factTitle: "48 cards",
     factBody: "You pick the rooms. About 8 minutes.",
   }),
-  // Host lines between cards, per delivery. TODO copy: gentle and sharp need their own approved lines.
+  // Host lines between cards, per voice. Just the cards shows none.
   host: Object.freeze({
-    playful: PLAYFUL_HOST,
-    gentle: PLAYFUL_HOST, // TODO copy: gentle voice, awaiting founder approval
-    sharp: PLAYFUL_HOST, // TODO copy: sharp voice, awaiting founder approval
-    minimal: null, // no reactions between cards
+    fun: FUN_HOST,
+    heart: HEART_HOST,
+    cards: null,
   }),
 });
 
-// Genii's bubble on a card screen, by delivery. Returns null when the bubble should stay empty (minimal hides every
+// Genii's bubble on a card screen, by voice. Returns null when the bubble should stay empty (Just the cards hides every
 // optional reaction, including the speed nudge).
-export function hostLine(delivery, { phase = "chapter", index = 1, rushing = false } = {}) {
-  const lines = LOBBY_COPY.host[DELIVERY_IDS.includes(delivery) ? delivery : LOBBY_DEFAULTS.delivery];
+export function hostLine(voice, { phase = "chapter", index = 1, rushing = false } = {}) {
+  const lines = LOBBY_COPY.host[VOICE_IDS.includes(voice) ? voice : LOBBY_DEFAULTS.voice];
   if (!lines) return null;
   if (rushing && phase !== "finale") return lines.rushing;
   const set = lines[phase] || lines.chapter;
   return set[(Math.max(1, index) - 1) % set.length];
 }
 
-// A chapter's intro bubble on its title card. The intro says what the chapter is about, so every delivery keeps it,
-// minimal included; only the between-card reactions above are optional.
-export function chapterIntro(delivery, intro) {
+// A chapter's intro bubble on its title card. The intro says what the chapter is about, so every voice keeps it,
+// Just the cards included; only the between-card reactions above are optional.
+export function chapterIntro(voice, intro) {
   return intro;
 }

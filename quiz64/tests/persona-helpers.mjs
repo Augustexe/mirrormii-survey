@@ -1,14 +1,16 @@
 // Shared helpers for the persona game tests: deterministic players that drive the real step machine.
 import * as Session from "../src/persona/session.js";
 
-export const ADULT = { age: "adult", closest: "best_friend", pronoun: "she" };
-export const TEEN = { age: "teen", closest: "best_friend", pronoun: "they" };
+// Setup is closest person and pronoun; there is no age question (LAUNCH-SPEC section 22). ADULT is the default setup
+// (the name predates the age screen); OTHER is a second setup for tests that compare two players.
+export const ADULT = Object.freeze({ closest: "best_friend", pronoun: "she" });
+export const OTHER = Object.freeze({ closest: "parent", pronoun: "they" });
 
 let tick = 0;
 export const clock = () => new Date(Date.UTC(2026, 8, 27, 12, 0, tick++)).toISOString();
 
-// Every room open, every card the age band allows: the widest pool.
-export const OPEN_LOBBY = Object.freeze({ ending: "funny", depth: "personal", rooms: ["love", "work", "family"], delivery: "playful" });
+// Every room open, every card: the widest pool.
+export const OPEN_LOBBY = Object.freeze({ voice: "fun", depth: "anything", rooms: ["love", "work", "family"] });
 
 // A run past setup and the lobby. Pass lobby = null to stop at the lobby step.
 export function started(setup = ADULT, runId = "testrun01", lobby = OPEN_LOBBY) {
@@ -30,7 +32,7 @@ export function playUntil(state, choose, stop = () => false) {
   throw new Error("run did not finish");
 }
 
-export const firstOption = (card) => ({ value: card.type === "pick_two" ? [0, 1] : card.type === "receipts" ? [0] : 0 });
+export const firstOption = (card) => ({ value: card.type === "pick_two" ? [0, 1] : card.type === "receipts" ? [0] : card.type === "rank" ? card.options.map((_, i) => i) : 0 });
 
 // A consistent player: prefers options whose evidence points to the given signs.
 export function leaning(signs) {
@@ -43,6 +45,7 @@ export function leaning(signs) {
       const none = card.options.findIndex((o) => o.none);
       return { value: ticks.length ? ticks : none >= 0 ? [none] : [] };
     }
+    if (card.type === "rank") return { value: ranked.map((x) => x.i) };
     return { value: card.type === "pick_two" ? [ranked[0].i, ranked[1].i] : ranked[0].i };
   };
 }
@@ -51,10 +54,10 @@ export function completeRun(setup = ADULT, choose = firstOption, runId, lobby = 
   return playUntil(started(setup, runId, lobby), choose);
 }
 
-// Every lobby the picker must handle: 8 room sets x 3 depths.
+// Every lobby the picker must handle: 8 room sets x 2 depths (the voice never changes the route).
 export const ROOM_SETS = [[], ["love"], ["work"], ["family"], ["love", "work"], ["love", "family"], ["work", "family"], ["love", "work", "family"]];
-export const DEPTHS = ["light", "some", "personal"];
-export const lobbyFor = (rooms, depth, extra = {}) => ({ ending: "funny", depth, rooms, delivery: "playful", ...extra });
+export const DEPTHS = ["light", "anything"];
+export const lobbyFor = (rooms, depth, extra = {}) => ({ voice: "fun", depth, rooms, ...extra });
 
 // The picker chooses which cards a run serves, so a test that needs one card tries run ids until the picker serves
 // it. Returns the state with that card on the table, or null.

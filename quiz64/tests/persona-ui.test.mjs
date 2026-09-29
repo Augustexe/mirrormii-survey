@@ -4,7 +4,7 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { createServer } from "vite";
 import { fileURLToPath } from "node:url";
-import { ADULT, TEEN, clock, completeRun, leaning, firstOption } from "./persona-helpers.mjs";
+import { ADULT, clock, completeRun, leaning, firstOption } from "./persona-helpers.mjs";
 
 const visible = (html) => html.replace(/<[^>]*>/g, " ").replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, "\"").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/\s+/g, " ");
 // Internal ids and system words that must never reach the screen.
@@ -28,7 +28,7 @@ async function contentStripper() {
   const { S, LIB, FRIEND } = await load("/src/persona/kit.js");
   const strings = new Set();
   const walk = (v) => { if (typeof v === "string") { if (v.length > 3) strings.add(v); } else if (Array.isArray(v)) v.forEach(walk); else if (v && typeof v === "object") Object.values(v).forEach(walk); };
-  for (const c of S.allCards) { walk(c.prompt); walk(c.teenPrompt); walk(c.options.map((o) => o.t)); if (c.flip) walk(c.flip); if (c.thread) walk(c.thread.map((m) => [m.from, m.text])); }
+  for (const c of S.allCards) { walk(c.prompt); walk(c.options.map((o) => o.t)); if (c.flip) walk(c.flip); if (c.thread) walk(c.thread.map((m) => [m.from, m.text])); if (c.heart) walk(c.heart); }
   walk(LIB.tags.map((t) => [t.name, t.sting, t.heart, t.calls]));
   walk([LIB.relationship, LIB.life].flat().map((h) => [h.name, h.desc, h.sting, h.heart]));
   walk(LIB.axes.map((a) => [a.plus, a.minus, a.plusLine, a.minusLine]));
@@ -37,25 +37,23 @@ async function contentStripper() {
   return (text) => sorted.reduce((acc, s) => acc.split(s.replace(/\{[a-zA-Z]+\}/g, "")).join(" "), text);
 }
 
-test("every card renders its prompt, options and only its own exits; 18+ label only on locked cards; teens get teen prompts", async () => {
+test("every card renders its prompt, options and only its own exits, in both voices; no age label anywhere", async () => {
   const { PersonaCard } = await load("/src/persona/PersonaCard.jsx");
   const { S, KIT } = await load("/src/persona/kit.js");
   const strip = await contentStripper();
   const cards = [...KIT.chapters.flatMap((c) => c.cards), ...KIT.finale, ...KIT.extras];
-  for (const setup of [ADULT, TEEN]) {
+  for (const voice of ["fun", "heart"]) {
     for (const card of cards) {
-      if (setup === TEEN && !card.teen) continue;
       const step = { phase: card.type === "sealed" ? "finale" : card.axisFor ? "extra" : "chapter", chapter: card.chapter, index: 1, size: 8, round: card.round ? { index: 1, size: 3 } : null };
-      const html = renderToStaticMarkup(React.createElement(PersonaCard, { card, step, setup, onAnswer() {} }));
+      const html = renderToStaticMarkup(React.createElement(PersonaCard, { card, step, voice, onAnswer() {} }));
       const text = visible(html);
-      assert.ok(text.includes(S.promptFor(card, setup).replace(/\s+/g, " ")), `${card.id} prompt`);
-      if (setup === TEEN && card.teenPrompt) assert.ok(text.includes(card.teenPrompt.replace(/\s+/g, " ")), `${card.id} teen prompt`);
-      for (const o of card.options) assert.ok(text.includes(o.t.replace(/\s+/g, " ")), `${card.id} option`);
-      for (const m of card.thread || []) assert.ok(text.includes(m.text.replace(/\s+/g, " ")), `${card.id} thread line`);
-      assert.equal(html.includes("persona-done"), card.type === "receipts", `${card.id}: Done button only on receipts`);
+      assert.ok(text.includes(S.promptFor(card, voice).replace(/\s+/g, " ")), `${card.id} prompt`);
+      card.options.forEach((o, i) => assert.ok(text.includes(S.optionText(card, i, voice).replace(/\s+/g, " ")), `${card.id} option`));
+      for (const m of S.threadFor(card, voice) || []) assert.ok(text.includes(m.text.replace(/\s+/g, " ")), `${card.id} thread line`);
+      assert.equal(html.includes("persona-done"), ["receipts", "rank"].includes(card.type), `${card.id}: Done button only on receipts and rank`);
       assert.equal(html.includes("persona-thread"), card.type === "reply", `${card.id}: chat bubbles only on reply cards`);
       assert.equal(text.includes("No recent example"), card.exits.includes("no_recent"), `${card.id} no recent`);
-      assert.equal(/18\+/.test(text), card.privacy === "locked18", `${card.id} lock label`);
+      assert.doesNotMatch(text, /18\+|13 and up|How old/, `${card.id}: no age label`);
       const chrome = strip(text);
       assert.doesNotMatch(chrome, IDS, card.id);
       assert.doesNotMatch(chrome, WORDS, card.id);
@@ -63,33 +61,41 @@ test("every card renders its prompt, options and only its own exits; 18+ label o
   }
 });
 
-test("the result page follows the template, marks owner-only lines and leaks no ids or system words", async () => {
-  const { PersonaResult } = await load("/src/persona/PersonaResult.jsx");
-  const { resultView } = await load("/src/persona/views.js");
-  const strip = await contentStripper();
-  for (const [setup, choose] of [[ADULT, leaning({ R1: 1, R2: -1, R3: -1, L1: 1, L2: -1, L3: 1 })], [TEEN, leaning({ R1: -1, R2: 1, R3: 1, L1: -1, L2: 1, L3: -1 })]]) {
-    const run = completeRun(setup, choose, "uiresult1");
-    const view = resultView(run);
-    const friends = { setup, defaults: {}, challenges: [], ranking: null, returnTo: null };
-    const html = renderToStaticMarkup(React.createElement(PersonaResult, { view, friends, onFriendAction() {}, storageOK: true }));
-    const text = visible(html);
-    for (const heading of ["What stings", "What you love about it", "Your tags", "Genii's calls", "Genii's guesses", "Do you really know me?"]) assert.ok(text.includes(heading), heading);
-    assert.ok(text.includes(view.typeName.split(" × ")[0]));
-    assert.ok(text.includes(view.code));
-    for (const s of view.stings) assert.ok(text.includes(s));
-    for (const t of view.tags) { assert.ok(text.includes(t.name)); assert.ok(text.includes(t.sting)); assert.ok(text.includes(t.heart)); }
-    assert.ok((text.match(/Only you see this/g) || []).length >= 1 + view.tags.length);
-    if (view.plotTwist) assert.ok(text.includes("Plot twist"));
-    assert.ok(text.includes(view.guesses.line));
-    const chrome = strip(text);
-    assert.doesNotMatch(chrome, IDS);
-    assert.doesNotMatch(chrome, WORDS);
-    assert.equal((chrome.match(/\btags?\b/gi) || []).length, 1, "the word tags appears only in the heading");
-    const card = html.slice(html.indexOf("pr-share-card"), html.indexOf("</figure>"));
-    for (const s of [...view.stings, ...view.tags.map((t) => t.sting)]) assert.ok(!card.includes(s), "no sting on the share card");
-    assert.ok(!card.includes(view.code));
-  }
+test("voices on a card: Heart to heart text for heart, Make it fun otherwise, and Make it fun when a card has none", async () => {
+  const { PersonaCard } = await load("/src/persona/PersonaCard.jsx");
+  const card = {
+    id: "UI-1", type: "reply", chapter: 1, privacy: "normal", exits: ["skip", "not_my_life"], grade: "would", weight: 0.55,
+    prompt: "Group chat, 11:40pm. Chaos.", thread: [{ from: "Sam", text: "who's booking??" }],
+    options: [{ t: "On it. Link in five.", axes: { L3: 2 } }, { t: "lol not me", axes: { L3: -2 } }, { t: "Tag the planner", axes: { R1: -1 } }],
+    heart: { prompt: "It is late, and the group chat needs a plan.", thread: [{ from: "Sam", text: "Who is booking the place?" }], options: ["I will book it now.", "I would rather someone else did.", "I ask our planner to do it."] },
+  };
+  const step = { phase: "chapter", chapter: 1, index: 1, size: 8, round: null };
+  const render = (voice) => visible(renderToStaticMarkup(React.createElement(PersonaCard, { card, step, voice, onAnswer() {} })));
+  const heart = render("heart");
+  const fun = render("fun");
+  for (const t of [card.heart.prompt, card.heart.thread[0].text, ...card.heart.options]) { assert.ok(heart.includes(t), t); assert.ok(!fun.includes(t), t); }
+  for (const t of [card.prompt, card.thread[0].text, ...card.options.map((o) => o.t)]) { assert.ok(fun.includes(t), t); assert.ok(!heart.includes(t), t); }
+  const { heart: _, ...plain } = card;
+  const fallback = visible(renderToStaticMarkup(React.createElement(PersonaCard, { card: plain, step, voice: "heart", onAnswer() {} })));
+  assert.ok(fallback.includes(card.prompt) && fallback.includes(card.options[0].t), "no heart version: Make it fun");
 });
+
+test("new formats render: rank with a Done button and order hint, bet and eyes as one-tap lists", async () => {
+  const { PersonaCard } = await load("/src/persona/PersonaCard.jsx");
+  const base = { chapter: 1, privacy: "normal", exits: ["skip", "not_my_life"] };
+  const step = { phase: "chapter", chapter: 1, index: 1, size: 8, round: null };
+  const rank = { ...base, id: "UI-R", type: "rank", prompt: "Rank what you'd cancel first.", options: ["Gym", "Date night", "Family dinner", "Group project"].map((t) => ({ t })) };
+  const html = renderToStaticMarkup(React.createElement(PersonaCard, { card: rank, step, onAnswer() {} }));
+  assert.ok(html.includes("persona-done") && visible(html).includes("Rank it") && visible(html).includes("0/4 placed"));
+  const bet = { ...base, id: "UI-B", type: "bet", prompt: "I bet you've unblocked someone to check on them.", options: [{ t: "Guilty. Blocked again that night." }, { t: "Guilty. We're friends now." }, { t: "Never. Blocked means gone." }] };
+  const bt = visible(renderToStaticMarkup(React.createElement(PersonaCard, { card: bet, step, onAnswer() {} })));
+  assert.ok(bt.includes("Genii's bet") && bet.options.every((o) => bt.includes(o.t)));
+  const eyes = { ...base, id: "UI-E", type: "eyes", prompt: "Your best friend describes you to a stranger. Which line?", options: ["Always has a plan", "Down for anything", "Knows everyone", "Loyal to a fault"].map((t) => ({ t })) };
+  const et = visible(renderToStaticMarkup(React.createElement(PersonaCard, { card: eyes, step, onAnswer() {} })));
+  assert.ok(et.includes("Through a friend's eyes"));
+});
+
+// The result page (Stories) tests live in persona-result.test.mjs (Build C package F).
 
 test("friend game screens: every level renders, the done screen shows counts only", async () => {
   const { FriendGame } = await load("/src/persona/FriendGame.jsx");
@@ -103,8 +109,9 @@ test("friend game screens: every level renders, the done screen shows counts onl
   const guesses = { level1: Object.fromEntries(view.level1.map((q) => [q.axis, q.truth])), level2: Object.fromEntries(view.level2.cards.map((c) => [c.id, c.answer])), why: {}, level3: view.level3.cards.filter((c) => c.role === "decoy").slice(0, view.level3.N).map((c) => c.id), level4: { sting: view.level4.stingPick.lines[0].tag, roast: null } };
   const stages = [["intro", 0], ["level1", 0], ["level1", 6], ["level2", 0], ["level3", 0], ["level4", 0], ["level4", 1], ["done", 0]];
   for (const [stage, step] of stages) {
-    const play = { payload: "", under18: false, stage, step, guesses, updatedAt: "" };
+    const play = { payload: "", stage, step, guesses, updatedAt: "" };
     const text = visible(renderToStaticMarkup(React.createElement(FriendGame, { ch, play, isOwnLink: false, onProgress() {}, onYourTurn() {}, onLeave() {} })));
+    assert.doesNotMatch(text, /How old|18 or older|Under 18/, `${stage}: the friend is never asked their age`);
     const chrome = strip(text);
     assert.doesNotMatch(chrome, IDS, stage);
     if (stage === "done") {
@@ -124,19 +131,16 @@ test("friend game screens: every level renders, the done screen shows counts onl
   assert.doesNotMatch(strip(text), IDS);
 });
 
-test("a result with no named tags says why instead of showing empty sections", async () => {
-  const { PersonaResult } = await load("/src/persona/PersonaResult.jsx");
-  const { resultView } = await load("/src/persona/views.js");
-  const run = completeRun(ADULT, (card) => ({ ...firstOption(card), ms: 700 }), "uinotags1");
-  const view = resultView(run);
-  assert.equal(view.tags.length, 0);
-  assert.equal(view.noTagsReason, "rushed");
-  const text = visible(renderToStaticMarkup(React.createElement(PersonaResult, { view, friends: { setup: ADULT, defaults: {}, challenges: [], ranking: null, returnTo: null }, onFriendAction() {}, storageOK: true })));
-  assert.ok(text.includes("Genii didn't name any this time"));
-  assert.ok(!text.includes("Genii's calls"));
+test("setup has no age screen: two questions, closest person then pronoun", async () => {
+  const { SetupView, SETUP_STEPS } = await load("/src/persona/PersonaScreens.jsx");
+  assert.deepEqual(SETUP_STEPS.map((s) => s.key), ["closest", "pronoun"]);
+  const text = visible(renderToStaticMarkup(React.createElement(SetupView, { onDone() {}, onBack() {} })));
+  assert.ok(text.includes(SETUP_STEPS[0].title));
+  assert.ok(text.includes("Question 1 of 2"));
+  assert.doesNotMatch(text, /How old|18 or older|13 to 17|Under 13/);
 });
 
-test("lobby screen renders its first question and options; the card screen's bubble follows the delivery", async () => {
+test("lobby screen renders its first question and options; the card screen's bubble follows the voice", async () => {
   const { LobbyView, PersonaQuizView, interludeFor } = await load("/src/persona/PersonaScreens.jsx");
   const { LOBBY_COPY, hostLine } = await load("/src/persona/lobby.js");
   const Session = await load("/src/persona/session.js");
@@ -148,14 +152,20 @@ test("lobby screen renders its first question and options; the card screen's bub
   assert.doesNotMatch(lobbyText, IDS);
   assert.doesNotMatch(lobbyText, WORDS);
 
-  let s = Session.chooseLobby(Session.startRun(Session.newRun({ runId: "uilobby01" }), ADULT), { depth: "some", rooms: ["work"], delivery: "playful" });
+  assert.equal(LOBBY_COPY.steps.length, 3, "three taps: voice, how personal, rooms");
+  assert.doesNotMatch(lobbyText, /ending|How should your ending read/i);
+
+  let s = Session.chooseLobby(Session.startRun(Session.newRun({ runId: "uilobby01" }), ADULT), { voice: "fun", depth: "light", rooms: ["work"] });
   s = Session.answerCard(s, Session.currentStep(s).card.id, 0, { ms: 4000 });
   const step = Session.currentStep(s);
-  const render = (delivery) => visible(renderToStaticMarkup(React.createElement(PersonaQuizView, { step, setup: ADULT, onAnswer() {}, onMap() {}, cardKey: "k", delivery })));
-  const line = hostLine("playful", { phase: step.phase, index: step.index });
-  assert.ok(render("playful").includes(line));
-  assert.ok(!render("minimal").includes(line), "minimal hides Genii's between-card line");
-  assert.ok(render("playful").includes(LOBBY_COPY.runLabel(step.resolved + 1, Session.RUN_SIZE)));
-  const intro = interludeFor(Session.currentStep(Session.chooseLobby(Session.startRun(Session.newRun({ runId: "uilobby02" }), ADULT), { depth: "light", rooms: [], delivery: "minimal" })), "minimal");
+  const render = (voice) => visible(renderToStaticMarkup(React.createElement(PersonaQuizView, { step, setup: ADULT, onAnswer() {}, onMap() {}, cardKey: "k", voice })));
+  const line = hostLine("fun", { phase: step.phase, index: step.index });
+  const heartLine = hostLine("heart", { phase: step.phase, index: step.index });
+  assert.ok(render("fun").includes(line));
+  assert.ok(render("heart").includes(heartLine) && !render("heart").includes(line), "Heart to heart has its own lines");
+  assert.ok(!render("cards").includes(line) && !render("cards").includes(heartLine), "Just the cards hides Genii's between-card line");
+  assert.ok(render("cards").includes(step.card.prompt.replace(/\s+/g, " ").slice(0, 20)), "Just the cards reads Make it fun wording");
+  assert.ok(render("fun").includes(LOBBY_COPY.runLabel(step.resolved + 1, Session.RUN_SIZE)));
+  const intro = interludeFor(Session.currentStep(Session.chooseLobby(Session.startRun(Session.newRun({ runId: "uilobby02" }), ADULT), { voice: "cards", depth: "light", rooms: [] })), "cards");
   assert.equal(intro.kicker, LOBBY_COPY.chapterKicker(1, 4), "chapter numbering counts only open rooms");
 });

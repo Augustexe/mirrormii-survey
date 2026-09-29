@@ -3,35 +3,34 @@
 // state; every write goes through the same step machine, and a restored save is replayed through it before use.
 //
 // The picker (2026-09-28) replaces the fixed chapter walk. It serves exactly RUN_SIZE cards from the eligible pool
-// (open chapters plus the 12 extras, after age, depth, gate and feeling rules), then the 8 finale cards. Picks are
-// deterministic: the same run id and the same answers always give the same route, so a save can be replayed.
+// (open chapters plus the extras, after depth, gate and feeling rules), then the 8 finale cards drawn from the sealed
+// pool. Picks are deterministic: the same run id and the same answers always give the same route and the same finale,
+// so a save can be replayed. There is no age question and no age-based content (LAUNCH-SPEC section 22).
 import { S, KIT, KIT_ID } from "./kit.js";
 import { sha256Hex, canonicalJSON } from "./sha256.js";
-import { ENDING_IDS, DEPTH_IDS, ROOM_IDS, DELIVERY_IDS, ROOM_CHAPTERS, LOBBY_DEFAULTS } from "./lobby.js";
+import { VOICE_IDS, DEPTH_IDS, ROOM_IDS, ROOM_CHAPTERS, LOBBY_DEFAULTS, cardVoice } from "./lobby.js";
+import { LIGHT_TYPES as LIGHT } from "../../../research/persona-quiz-v2/final/card-schema.mjs";
 
-export const SCHEMA = "genii.persona.run/2";
-// Saves from the fixed chapter walk. Their answers can't be replayed through the picker, so they fail closed.
-export const OLD_SCHEMAS = Object.freeze(["genii.persona.run/1"]);
+export const SCHEMA = "genii.persona.run/3";
+// Saves from the fixed chapter walk (/1) and from the age screen and four-tap lobby (/2). Their setup and lobby no
+// longer exist, so they fail closed.
+export const OLD_SCHEMAS = Object.freeze(["genii.persona.run/1", "genii.persona.run/2"]);
 export const STORAGE_KEY = "genii.persona.v2.run";
 export const EXITS = Object.freeze(["skip", "not_my_life", "no_recent"]);
 export const MAX_MS = 600000;
 
 // Scored cards per run (feeling follow-ups included, see PERSONA-MVP.md), then the finale.
 export const RUN_SIZE = 40;
-export const FINALE_SIZE = KIT.finale.length;
+// Sealed cards per run, drawn from the sealed pool (kit.finale) by the run id.
+export const FINALE_SIZE = Math.min(S.CONFIG.finaleSize, KIT.finale.length);
 export const MIN_AXIS_CARDS = S.CONFIG.minAxisCards;
-// Quick cards: served after a rushed streak. Guilty or not is two big buttons, so it counts as quick.
-export const LIGHT_TYPES = Object.freeze(["this_or_that", "role", "guilty"]);
+// Quick cards served after a rushed streak (card-schema.mjs): this or that, role, Genii's bet and friend's-eye view.
+export const LIGHT_TYPES = LIGHT;
 // Formats that should be spread out over the run, never clustered (LAUNCH-SPEC section 10): the picker penalises one
 // when the same format was served within the last SPREAD_WINDOW cards, and when the other one was served just before.
-export const SPREAD_TYPES = Object.freeze(["receipts", "guilty"]);
+export const SPREAD_TYPES = Object.freeze(["receipts", "bet"]);
 export const SPREAD_WINDOW = 4;
 
-export const AGE_OPTIONS = Object.freeze([
-  { id: "adult", text: "18 or older" },
-  { id: "teen", text: "13 to 17" },
-  { id: "under13", text: "Under 13" },
-]);
 export const CLOSEST_OPTIONS = Object.freeze([
   { id: "best_friend", text: "My best friend" },
   { id: "partner", text: "My partner" },
@@ -68,46 +67,46 @@ export function randomId(length = 12) {
   return [...bytes].map((b) => alphabet[b % alphabet.length]).join("");
 }
 
+// Setup is two taps: closest person (the cards' "your person") and pronoun (the friend game). No age question.
 export function validSetup(setup) {
   if (!isObj(setup)) return false;
   const keys = Object.keys(setup);
-  if (keys.some((k) => !["age", "closest", "pronoun"].includes(k))) return false;
-  return ["adult", "teen"].includes(setup.age) && CLOSEST_OPTIONS.some((o) => o.id === setup.closest) && PRONOUN_OPTIONS.some((o) => o.id === setup.pronoun);
+  if (keys.some((k) => !["closest", "pronoun"].includes(k))) return false;
+  return CLOSEST_OPTIONS.some((o) => o.id === setup.closest) && PRONOUN_OPTIONS.some((o) => o.id === setup.pronoun);
 }
 
-// Under 13 never starts a run; nothing is stored.
 export function startRun(state, setup, { now = new Date().toISOString() } = {}) {
-  if (setup && setup.age === "under13") throw new PersonaError("under13", "Genii is for ages 13 and up.");
-  if (!validSetup(setup)) throw new PersonaError("bad_setup", "Setup needs an age band, your closest person and a pronoun.");
+  if (!validSetup(setup)) throw new PersonaError("bad_setup", "Setup needs your closest person and a pronoun.");
   if (state.setup) throw new PersonaError("already_started", "This run already has a setup. Start over to change it.");
-  return { ...state, setup: { age: setup.age, closest: setup.closest, pronoun: setup.pronoun }, updatedAt: now };
+  return { ...state, setup: { closest: setup.closest, pronoun: setup.pronoun }, updatedAt: now };
 }
 
 // ---------------------------------------------------------------- lobby
-// A lobby is { ending, depth, rooms, delivery }. depth, rooms and delivery are required; ending falls back to
-// "funny" when missing. rooms lists the optional rooms left open (any subset of love, work, family).
+// A lobby is { voice, depth, rooms }, all three required. voice: fun, heart or cards (Just the cards: Make it fun
+// wording, no reactions between cards). depth: light (skips intimate cards) or anything. rooms lists the optional rooms
+// left open (any subset of love, work, family).
 export function validLobby(lobby) {
   if (!isObj(lobby)) return false;
-  if (Object.keys(lobby).some((k) => !["ending", "depth", "rooms", "delivery"].includes(k))) return false;
-  if (lobby.ending !== undefined && !ENDING_IDS.includes(lobby.ending)) return false;
-  if (!DEPTH_IDS.includes(lobby.depth) || !DELIVERY_IDS.includes(lobby.delivery)) return false;
+  if (Object.keys(lobby).some((k) => !["voice", "depth", "rooms"].includes(k))) return false;
+  if (!VOICE_IDS.includes(lobby.voice) || !DEPTH_IDS.includes(lobby.depth)) return false;
   if (!Array.isArray(lobby.rooms) || new Set(lobby.rooms).size !== lobby.rooms.length || !lobby.rooms.every((r) => ROOM_IDS.includes(r))) return false;
   return true;
 }
 
 export function normalizeLobby(lobby) {
-  return { ending: lobby.ending ?? LOBBY_DEFAULTS.ending, depth: lobby.depth, rooms: ROOM_IDS.filter((r) => lobby.rooms.includes(r)), delivery: lobby.delivery };
+  return { voice: lobby.voice, depth: lobby.depth, rooms: ROOM_IDS.filter((r) => lobby.rooms.includes(r)) };
 }
 
 export function chooseLobby(state, lobby, { now = new Date().toISOString() } = {}) {
   if (!state.setup) throw new PersonaError("not_ready", "Setup comes first.");
   if (state.lobby) throw new PersonaError("already_chosen", "This run already has its lobby picks. Start over to change them.");
-  if (!validLobby(lobby)) throw new PersonaError("bad_lobby", "The lobby needs an ending, a depth, your rooms and a delivery.");
+  if (!validLobby(lobby)) throw new PersonaError("bad_lobby", "The lobby needs a voice, how personal Genii can get and your rooms.");
   return { ...state, lobby: normalizeLobby(lobby), updatedAt: now };
 }
 
-export const endingFor = (state) => (state && state.lobby && state.lobby.ending) || LOBBY_DEFAULTS.ending;
-export const deliveryFor = (state) => (state && state.lobby && state.lobby.delivery) || LOBBY_DEFAULTS.delivery;
+// The lobby voice (fun, heart or cards), and the card wording it reads (heart or fun).
+export const voiceFor = (state) => (state && state.lobby && state.lobby.voice) || LOBBY_DEFAULTS.voice;
+export const cardVoiceFor = (state) => cardVoice(voiceFor(state));
 
 // The answers object score-core expects.
 export function scorerAnswers(state) {
@@ -115,13 +114,24 @@ export function scorerAnswers(state) {
 }
 
 // ---------------------------------------------------------------- the pool
-// light: no locked18 and no intimate cards; some: no locked18; personal: everything the age band allows (teens never
-// get locked18 cards, S.runCards already drops them).
+// light: no intimate cards; anything: every card. Everyone gets the same bank.
 export function depthAllows(card, depth) {
-  if (depth !== "personal" && card.privacy === "locked18") return false;
-  if (depth === "light" && card.privacy === "intimate") return false;
-  return true;
+  return !(depth === "light" && card.privacy === "intimate");
 }
+
+// ---------------------------------------------------------------- the finale
+// The 8 sealed cards of this run, drawn from the sealed pool (score-core drawFinale), seeded from the run id. Known
+// from the start, so the picker can keep the last run card clear of the first finale card.
+const FINALES = new Map();
+export function finaleIds(state) {
+  const id = state.runId;
+  if (!FINALES.has(id)) {
+    if (FINALES.size > 64) FINALES.delete(FINALES.keys().next().value);
+    FINALES.set(id, Object.freeze(S.drawFinale(parseInt(sha256Hex(`genii.finale|${id}`).slice(0, 8), 16), FINALE_SIZE)));
+  }
+  return FINALES.get(id);
+}
+export const finaleFor = (state) => finaleIds(state).map((id) => S.cardById[id]);
 
 export function openChapterIds(lobby) {
   const closed = new Set(ROOM_IDS.filter((r) => !lobby.rooms.includes(r)).map((r) => ROOM_CHAPTERS[r]));
@@ -161,14 +171,13 @@ const flowShare = (a, b) => { const fa = infoOf(a).flow; return [...infoOf(b).fl
 const PLANS = new Map();
 function planFor(state) {
   const { setup, lobby, runId } = state;
-  const key = `${runId}|${setup.age}|${lobby.depth}|${lobby.rooms.join(",")}`;
+  const key = `${runId}|${lobby.depth}|${lobby.rooms.join(",")}`;
   const hit = PLANS.get(key);
   if (hit) return hit;
   const allowed = S.runCards(setup).filter((c) => depthAllows(c, lobby.depth));
   const open = openChapterIds(lobby);
   const groups = open.map((n, i) => ({ key: n, ordinal: i + 1, cards: allowed.filter((c) => c.chapter === n) }));
-  const teen = S.isTeen(setup);
-  groups.push({ key: "extra", ordinal: null, cards: KIT.extras.filter((c) => depthAllows(c, lobby.depth) && (!teen || c.teen)) });
+  groups.push({ key: "extra", ordinal: null, cards: KIT.extras.filter((c) => depthAllows(c, lobby.depth)) });
   const order = new Map();
   const group = new Map();
   groups.forEach((g, gi) => g.cards.forEach((c, i) => { order.set(c.id, i); group.set(c.id, gi); }));
@@ -185,7 +194,7 @@ function planFor(state) {
   const rf = S.rng(parseInt(sha256Hex(`genii.picker.focus|${runId}`).slice(0, 8), 16));
   const ranked = [...pairCards.keys()].sort().map((p) => [p, rf()]).sort((a, b) => b[1] - a[1]);
   const focus = new Map(ranked.map(([p], i) => [p, i < FOCUS_PAIRS ? 1 : 0]));
-  const plan = { groups, order, group, rounds, feelingFor, jitter, pairCards, focus, chapterCount: open.length };
+  const plan = { groups, order, group, rounds, feelingFor, jitter, pairCards, focus, chapterCount: open.length, finaleFirst: finaleFor(state)[0] || null };
   if (PLANS.size > 64) PLANS.delete(PLANS.keys().next().value);
   PLANS.set(key, plan);
   return plan;
@@ -207,8 +216,8 @@ export const PICK_WEIGHTS = Object.freeze({
   jitter: 3, // seeded variety per run
   focus: 48, // seeded focus: FOCUS_PAIRS tag pairs per run, times how far the card can move the pair (pairReach)
   borderClash: 15, // last card of a chapter clashing with the next opener, or with the finale
-  spread: 12, // a receipts or guilty card when the same format was served within SPREAD_WINDOW cards
-  spreadNear: 6, // a receipts or guilty card right after the other one
+  spread: 12, // a receipts or bet card when the same format was served within SPREAD_WINDOW cards
+  spreadNear: 6, // a receipts or bet card right after the other one
 });
 const PICK = PICK_WEIGHTS;
 // How far one answer to this card can move a tag pair toward firing: its best support for either side (card weight x
@@ -393,7 +402,7 @@ function pickInGroup(plan, ctx, state, R) {
   // Sequencing: prefer a unit after which the rest of this chapter can still be ordered without breaking the type
   // and neighbour rules, ending clear of the next chapter's opener (or the finale); failing that, without the border.
   if (pool.length > 1) {
-    const border = group.key === "extra" || R <= left ? KIT.finale[0] : nextOpener(plan, ctx, state);
+    const border = group.key === "extra" || R <= left ? plan.finaleFirst : nextOpener(plan, ctx, state);
     const clean = (withBorder) => pool.filter((u) => sequenceable(u, cands, left, withBorder ? border : null));
     const withB = clean(true);
     if (withB.length) pool = withB;
@@ -438,7 +447,7 @@ function pickInGroup(plan, ctx, state, R) {
     s += PICK.jitter * plan.jitter.get(u.card.id);
     const lastCard = S.cardById[u.members[k - 1]];
     if (k >= left && group.key !== "extra" && clash(lastCard, opener)) s -= PICK.borderClash;
-    if (k >= R && clash(lastCard, KIT.finale[0])) s -= PICK.borderClash;
+    if (k >= R && clash(lastCard, plan.finaleFirst)) s -= PICK.borderClash;
     if (SPREAD_TYPES.includes(u.card.type)) {
       const recent = ctx.served.slice(-SPREAD_WINDOW).map((id) => S.cardById[id].type);
       if (recent.includes(u.card.type)) s -= PICK.spread;
@@ -521,13 +530,16 @@ function apply(plan, ctx, pick, raw, ms) {
   ctx.ans[card.id] = { exit, picked: !exit, rushed };
   if (ms !== null && ms !== undefined) ctx.timed.push(rushed);
   if (exit || !card.weight) return;
-  const w = S.pickWeight(card, [raw].flat()) * (rushed ? S.CONFIG.rushedFactor : 1);
+  const picks = [raw].flat();
+  const ws = S.pickWeights(card, picks).map((w) => w * (rushed ? S.CONFIG.rushedFactor : 1));
   const axes = new Set();
   const pairs = {};
-  for (const i of [raw].flat()) {
+  for (const [k, i] of picks.entries()) {
     const o = card.options[i];
-    if (!o || o.circumstance || o.depends || o.none) continue;
-    for (const [a, v] of Object.entries(o.axes || {})) if (v) axes.add(a);
+    const w = ws[k];
+    if (!o || o.circumstance || o.depends || o.none || !w) continue;
+    // A rank item only covers an axis when it is placed where it counts for it (first or second).
+    for (const [a, v] of Object.entries(o.axes || {})) if (v && w > 0) axes.add(a);
     for (const t of o.tags || []) { const p = t.id.slice(0, 3); pairs[p] = (pairs[p] || 0) + (t.id.endsWith("A") ? 1 : -1) * t.s * w; }
   }
   for (const a of axes) ctx.valid[a]++;
@@ -576,7 +588,7 @@ export function routeFor(state) {
   return [...w.ctx.served, ...(w.pick ? [w.pick.card.id] : [])].map((id) => S.cardById[id]);
 }
 
-// Every card this player could still be served or has been served: open chapters and extras after age and depth,
+// Every card this player could still be served or has been served: open chapters and extras after the depth filter,
 // gated cards only once their gate is open, feeling cards only after a picked moment they follow.
 export function poolFor(state) {
   if (!state.setup || !state.lobby) return [];
@@ -616,8 +628,9 @@ export function currentStep(state) {
     };
   }
   if (!state.frozen) return { kind: "lock" };
-  const index = KIT.finale.findIndex((c) => !own(state.finale, c.id));
-  if (index >= 0) return { kind: "card", phase: "finale", card: KIT.finale[index], chapter: "finale", index: index + 1, size: KIT.finale.length, resolved: index, total: KIT.finale.length, round: null };
+  const finale = finaleFor(state);
+  const index = finale.findIndex((c) => !own(state.finale, c.id));
+  if (index >= 0) return { kind: "card", phase: "finale", card: finale[index], chapter: "finale", index: index + 1, size: finale.length, resolved: index, total: finale.length, round: null };
   return { kind: "result" };
 }
 
@@ -634,6 +647,11 @@ export function validateResponse(card, value) {
     if (!Array.isArray(value) || new Set(value).size !== value.length || !value.every(inRange)) throw new PersonaError("bad_answer", "Tap the ones that are true, then Done.");
     if (value.length > 1 && value.some((i) => card.options[i].none)) throw new PersonaError("bad_answer", "\"None of these\" can't be ticked with other items.");
     return [...value].sort((a, b) => a - b);
+  }
+  if (card.type === "rank") {
+    // Rank it: every item once, first to last.
+    if (!Array.isArray(value) || value.length !== n || new Set(value).size !== n || !value.every(inRange)) throw new PersonaError("bad_answer", "Put every item in order, then Done.");
+    return [...value];
   }
   if (card.type === "pick_two") {
     const need = card.pick || 2;
@@ -663,7 +681,7 @@ function cleanMs(ms) {
 export function answerCard(state, cardId, value, { ms = null, flip = null, now = new Date().toISOString() } = {}) {
   const step = currentStep(state);
   if (step.kind !== "card" || step.card.id !== cardId) {
-    throw new PersonaError(state.frozen && KIT.finale.every((c) => c.id !== cardId) ? "locked" : "out_of_order", "That card is not the one on the table.");
+    throw new PersonaError(state.frozen && !finaleIds(state).includes(cardId) ? "locked" : "out_of_order", "That card is not the one on the table.");
   }
   const card = step.card;
   const stored = validateResponse(card, value);
@@ -691,7 +709,7 @@ export function lockGuesses(state, { now = new Date().toISOString() } = {}) {
   if (state.frozen) throw new PersonaError("already_locked", "Genii's guesses are locked once.");
   if (currentStep(state).kind !== "lock") throw new PersonaError("not_ready", "Finish the cards first.");
   const profile = profileFor(state);
-  const frozen = { ...S.freezePredictions(profile), frozenAt: now, profileSha256: sha256Hex(canonicalJSON(profile)) };
+  const frozen = { ...S.freezePredictions(profile, finaleIds(state)), frozenAt: now, profileSha256: sha256Hex(canonicalJSON(profile)) };
   return { ...state, frozen, lockHash: sha256Hex(canonicalJSON(frozen)), updatedAt: now };
 }
 
@@ -700,7 +718,7 @@ export function verifyLock(state) {
   if (typeof state.lockHash !== "string" || sha256Hex(canonicalJSON(state.frozen)) !== state.lockHash) return { ok: false, reason: "guesses_changed" };
   const profile = profileFor(state);
   if (sha256Hex(canonicalJSON(profile)) !== state.frozen.profileSha256) return { ok: false, reason: "answers_changed" };
-  if (canonicalJSON(S.freezePredictions(profile).predictions) !== canonicalJSON(state.frozen.predictions)) return { ok: false, reason: "guesses_changed" };
+  if (canonicalJSON(S.freezePredictions(profile, finaleIds(state)).predictions) !== canonicalJSON(state.frozen.predictions)) return { ok: false, reason: "guesses_changed" };
   return { ok: true };
 }
 
@@ -768,7 +786,7 @@ export function restore(raw, { validateExtras } = {}) {
     const check = verifyLock(state);
     if (!check.ok) throw new PersonaError("tampered", "This run changed after Genii locked its guesses.");
     const finaleIds = Object.keys(data.finale);
-    for (const card of KIT.finale) {
+    for (const card of finaleFor(state)) {
       if (!own(data.finale, card.id)) break;
       state = answerCard(state, card.id, data.finale[card.id], { now: state.updatedAt });
     }

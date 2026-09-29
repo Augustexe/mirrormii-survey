@@ -1,6 +1,6 @@
 // Evidence lock (LAUNCH-SPEC section 7, step B): card and answer text can be rewritten freely, but never silently.
-// evidence-lock.json holds, per card, a sha256 of each normalized text (prompt, teen prompt, chat thread, every option,
-// the friend-game sides) next to the evidence that text carries (axes, tags, grade, type, weight, circumstance,
+// evidence-lock.json holds, per card, a sha256 of each normalized text (prompt, chat thread, every option, the Heart to
+// heart version of each, the friend-game sides) next to the evidence that text carries (axes, tags, grade, type, weight, circumstance,
 // depends, none). tests.mjs fails while any text or evidence differs from its locked entry, until a person has
 // re-read the card and confirmed that the evidence still follows from the new words.
 //
@@ -50,8 +50,13 @@ export function entryFor(card) {
     prompt: sha(card.prompt),
     options: card.options.map((o) => ({ text: sha(o.t), evidence: evidenceOf(o) })),
   };
-  if (card.teenPrompt) e.teenPrompt = sha(card.teenPrompt);
   if (card.thread) e.thread = sha(card.thread.map((m) => `${m.from}: ${m.text}`).join("\n"));
+  // Heart to heart: same evidence as the options it mirrors (by index), so only its words are locked.
+  if (card.heart && typeof card.heart === "object") {
+    const h = card.heart;
+    e.heart = { prompt: sha(h.prompt), options: (h.options || []).map((t) => sha(t)) };
+    if (Array.isArray(h.thread) && h.thread.length) e.heart.thread = sha(h.thread.map((m) => `${m.from}: ${m.text}`).join("\n"));
+  }
   if (card.friend) e.friend = { prompt: sha(card.friend.prompt), a: { text: sha(card.friend.a.t), evidence: evidenceOf(card.friend.a) }, b: { text: sha(card.friend.b.t), evidence: evidenceOf(card.friend.b) } };
   return e;
 }
@@ -70,7 +75,9 @@ export function checkLock(kit, lock) {
     if (!locked) { out.push({ id: card.id, what: "new card, not locked yet" }); continue; }
     const now = entryFor(card);
     for (const k of ["type", "grade", "weight"]) if (now[k] !== locked[k]) out.push({ id: card.id, what: `${k} ${locked[k]} -> ${now[k]}` });
-    for (const k of ["prompt", "teenPrompt", "thread"]) if (now[k] !== locked[k]) out.push({ id: card.id, what: `${k} text changed` });
+    for (const k of ["prompt", "thread"]) if (now[k] !== locked[k]) out.push({ id: card.id, what: `${k} text changed` });
+    if (JSON.stringify(now.heart || null) !== JSON.stringify(locked.heart || null)) out.push({ id: card.id, what: locked.heart ? (now.heart ? "Heart to heart text changed" : "Heart to heart version removed") : "Heart to heart version added, not locked yet" });
+    if (locked.teenPrompt) out.push({ id: card.id, what: "lock still holds a teen prompt (age fields are gone)" });
     if (now.options.length !== locked.options.length) out.push({ id: card.id, what: `${locked.options.length} options -> ${now.options.length}` });
     now.options.forEach((o, i) => {
       const l = locked.options[i];
@@ -86,9 +93,13 @@ export function checkLock(kit, lock) {
 
 function describe(card) {
   const lines = [`${card.id} (${card.type}, ${card.grade}, ${card.weight}): ${card.prompt}`];
-  if (card.teenPrompt) lines.push(`  teen: ${card.teenPrompt}`);
   for (const m of card.thread || []) lines.push(`  [${m.from}] ${m.text}`);
   card.options.forEach((o, i) => lines.push(`  ${i}. ${o.t}  ${JSON.stringify(evidenceOf(o))}`));
+  if (card.heart) {
+    lines.push(`  heart: ${card.heart.prompt}`);
+    for (const m of card.heart.thread || []) lines.push(`    [${m.from}] ${m.text}`);
+    (card.heart.options || []).forEach((t, i) => lines.push(`    ${i}. ${t}`));
+  }
   if (card.friend) lines.push(`  friend: ${card.friend.prompt} / a: ${card.friend.a.t} ${JSON.stringify(evidenceOf(card.friend.a))} / b: ${card.friend.b.t} ${JSON.stringify(evidenceOf(card.friend.b))}`);
   return lines.join("\n");
 }
