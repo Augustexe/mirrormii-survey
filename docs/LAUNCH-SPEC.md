@@ -1,6 +1,6 @@
 ---
 title: MirrorMii launch survey, the one build spec
-status: proposed; sections marked APPROVAL wait on Jerry
+status: approved by Jerry 2026-09-28 (section 19); teens still open
 owner: jerry
 created: 2026-09-28
 updated: 2026-09-28
@@ -109,7 +109,7 @@ flowchart LR
 | Feeling | After a card: which feeling showed up first | emotion only, 0 | 2 |
 | Sealed | New moment; Genii locked its guess first | never scored | 8 |
 
-**APPROVAL: proposed indirect formats** (to fix the evidence gaps in section 17 without asking directly):
+**Indirect formats** (approved 2026-09-28: the first four now; Rank it, Friend's-eye view and Vibe pick held until after blind test 2):
 
 | Format | What the player does | Example | Grade, weight |
 |---|---|---|---|
@@ -138,7 +138,7 @@ Every answer option carries its own evidence. The scorer only adds up what optio
 | `mask` | Internal: what the card looks like versus what it measures |
 | `friend` | Third-person version for friend game Level 2 (51 cards) |
 
-**Content can change, evidence can't drift (APPROVAL, to build in step B).** Tag and type names and all result lines are keyed by id, so renaming never touches evidence. Card and answer text can be rewritten freely, but a check will fail the tests when an option's text changes without its evidence being re-confirmed, so a rewrite can never silently change what an answer means.
+**Content can change, evidence can't drift (approved, built in step B).** Tag and type names and all result lines are keyed by id, so renaming never touches evidence. Card and answer text can be rewritten freely, but a check will fail the tests when an option's text changes without its evidence being re-confirmed, so a rewrite can never silently change what an answer means.
 
 ## 8. Axes and types
 
@@ -204,6 +204,7 @@ Teen-safe by default (18+ cards need 18+ setup; teens never get the marriage and
 | Result must be spicy ("I didn't know that about me") and distinct from generic tests | 09-28 |
 | Sally's system is a template, not a translation source; English names and tags may be rewritten | 09-28 |
 | Result display: Stories format | 09-28 |
+| Run length 40 + 8; indirect formats (receipts, guilty or not, reply picker, other people); two distinct voices; text-change guard | 09-28 |
 | Multiple choice only, never free text | 09-26 |
 | Every question masked; vivid scenarios are the main format | 09-26 |
 | Every answer option tagged; no topic scores | 09-26 |
@@ -250,18 +251,18 @@ Teen-safe by default (18+ cards need 18+ setup; teens never get the marriage and
 
 **Step C (after B):** English-native names, tags and result lines (5 samples to Jerry first); voices; the Stories evidence page in the app; remove the old dossier code from `quiz64`.
 
-## 19. APPROVAL: decisions for Jerry
+## 19. Decisions
 
-| # | Decision | Recommendation |
+| # | Decision | Status |
 |---|---|---|
-| 1 | Which indirect formats to add (section 6) | Receipts check, Guilty or not, Reply picker, Other people. Hold Rank it, Friend's-eye view and Vibe pick |
-| 2 | Weights for the new formats (section 6) | As listed |
-| 3 | Run length | 40 cards + 8 sealed |
-| 4 | Voices | Make it fun (default) + a sharper voice; Be kind for heavy cards |
-| 5 | Text-change guard | Yes |
-| 6 | App ending promise | Only what the app does today |
+| 1 | Indirect formats | **Approved 09-28:** Receipts check, Guilty or not, Reply picker, Other people. Held: Rank it, Friend's-eye view, Vibe pick |
+| 2 | Weights for the new formats | **Approved 09-28** as in section 6 |
+| 3 | Run length | **Approved 09-28:** 40 cards + 8 sealed |
+| 4 | Voices | **Approved 09-28:** two distinct voices, Make it fun plus one more, picked by the player in onboarding. Principle (Jerry): everyone has their own circumstances and likes to be addressed differently, so onboarding learns who they are and the voice meets them there. The second voice is proposed with samples in step C |
+| 5 | Text-change guard | **Approved 09-28** |
+| 6 | App ending promise | **Approved 09-28:** only what the app does today |
 | 7 | Teens 13 to 17 | Open (conflicts with PRODUCT-TRUTH) |
-| 8 | Friend link answer key | Fine for testing; backend before real players |
+| 8 | Friend link answer key | **Approved 09-28:** fine for testing; backend before real players |
 
 ## 20. Superseded documents
 
@@ -269,4 +270,5 @@ Replaced by this file; kept only as history: `research/persona-quiz-v2/BRIEF.md`
 
 ## Changes
 
+- 2026-09-28: Jerry approved section 19 (formats, 40 + 8, two voices, guard, app promise, friend link); step B started.
 - 2026-09-28: Created by consolidating six documents; added the question format catalog (section 6), the evidence gaps and plan (sections 17 and 18) and the approval list (section 19).
