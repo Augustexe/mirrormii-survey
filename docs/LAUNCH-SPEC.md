@@ -221,7 +221,7 @@ Teen-safe by default (18+ cards need 18+ setup; teens never get the marriage and
 
 ## 17. Status and known gaps
 
-Status as of 2026-09-29 (overnight build C, Jerry's go):
+Status as of 2026-09-29 evening (overnight build C, then round 2 of section 23, Jerry's go):
 
 | Part | Status |
 |---|---|
@@ -229,7 +229,8 @@ Status as of 2026-09-29 (overnight build C, Jerry's go):
 | Evidence | Every axis 15+ cards; every tag fires (50 of 50); 17 tags sit at 3 supporting cards (target 4) and T11 at 2 (kids cap); sim: axis recovery 94.6%, Genii's sealed exact 67.5% (chance 25%), random tappers 47 to 54% per axis. Evidence lock covers all 174 cards and both voices |
 | Setup, lobby, picker, 40 + 8 | Built and tested: 2-tap setup, 3-tap lobby (voice, how personal, rooms), 40 picked cards, 8 sealed guesses drawn from the pool of 24 |
 | Result copy | Archetype names, plain tag names, confident read lines, stings, hearts and insights in both voices (`library.json`) |
-| Visual rebuild | Built (`quiz64/docs/DESIGN-DIRECTION.md`): design system (Fraunces and Figtree), Genii as light, mirror landing, lobby doors, island interludes, 13 distinct card formats, shard rail, lock ritual, The Reflection reveal (9 screens), mirror share image; all art made in code (`src/art`, 31 KB gzipped). Integration and visual QA in progress |
+| Visual rebuild | Built (`quiz64/docs/DESIGN-DIRECTION.md`): design system (Fraunces and Figtree), Genii as light, mirror landing, lobby doors, island interludes, 13 distinct card formats, shard rail, lock ritual, The Reflection reveal (9 screens in the first build, 12 in round 2), mirror share image; all art made in code (`src/art`). Integration and visual QA done (round 2 row) |
+| Round 2 (section 23) | Built and integrated (G1 to G5). Genii evolves from the orb to the full glass slime as cards are answered (`quiz64/src/genii`, three.js, lazy; stage sheet `quiz64/docs/GENII-EVOLUTION.png`); no lamps or genie tropes (three new code-made device glyphs: mountain, yarn, shell); play polish (hold beat on every format, one selected state, glowing CTAs, shards fly home around the chapter text); the reveal is now **12 story screens** (section 21) with "what Genii knows best" (5 to 6 findings), room by room and Genii's calls; `reveal-accuracy.test.mjs` proves every displayed line and the calls count trace to the player's own score (noisy players show partial calls). Card variety pass on the bank. Gate: 137 tests (136 pass at close; the kit parity test waits on the in-flight G4b card wording merge), axe 0 violations on 205 audited screens (phone, desktop, 200% zoom), CLS 0, landing LCP 80 to 160 ms (production, fast) and about 1 s (slow 4G, 4x CPU), every main action above the fold, full play-through by mouse and keyboard. Codex visual judge R3: 7 overall (`quiz64/docs/VISUAL-JUDGE-CODEX-R3.json`); before and after sheet `quiz64/docs/ROUND2-SHEET.png` |
 | Friend game | Built; restyled |
 | Real-person validation | None (blind test 2 open) |
 
@@ -318,17 +319,20 @@ Jerry approved the eight people archetypes; the eight life archetypes are Claude
 
 **Tags.** All tags renamed to plain, instantly understood phrases (4 words or fewer) that someone who never played would get; each gets one confident line. The library may grow beyond 50 if the bank needs it.
 
-**Final screen** (Stories, no quoted answers, no data list, confident read written as fact, never science or accuracy claims):
-1. "40 answers in. Here's you."
-2. The two archetypes.
-3. The read: 3 confident lines.
-4. Your map: the 6 axes as a visual, no numbers.
-5. Your top traits: up to 5 tags, one line each.
-6. The thing you didn't know: one warm insight, no quotes.
-7. Only you: the stings.
-8. Share card.
-9. Get MirrorMii.
-Optional after 9: "How Genii read you" (the guess score). Screens 2, 5 and 8 are the share-worthy ones.
+**Final screen** (Stories, no quoted answers, no data list, confident read written as fact, never science or accuracy claims). Round 2 (section 23, ruling 5) grew the deck from 9 to 12 screens; the order in force:
+1. "40 answers in. Here's you." (the shards assemble the mirror)
+2. The two archetypes, one per pane of the mirror.
+3. The read: the confident line and description for each half.
+4. Your map: the 6 leans as six opposing pairs, no numbers.
+5. What Genii knows best: 5 to 6 findings, clearest first, each with a clarity gem (new in round 2).
+6. Room by room: how you show up in each room you walked through, and where a room leans the other way (new; shown when at least 2 rooms have a line).
+7. The thing you didn't know: one warm insight, no quotes.
+8. Your top traits: up to 5 tags, one line each.
+9. Only you: the stings.
+10. Genii's calls: the locked guesses as panes, the one number allowed ("5 of 8 called exactly"; new, moved up from the optional sheet; shown when Genii locked guesses).
+11. Share card.
+12. Get MirrorMii (the friend game, "How Genii read you" and "Your data" as small links).
+Screens 2, 8 and 11 are the share-worthy ones. The grill's original 9-screen order was 1, 2, 3, 4, traits, insight, stings, share, app, with "How Genii read you" optional after 9.
 
 **Order of work.** 1 card-writer skill and checker; 2 a 30-card sample in both voices for Jerry; 3 the rest of the bank in batches; 4 tag and name library; 5 final screen in the app; 6 fonts and visual design; 7 GitHub push with Jerry's go.
 
@@ -371,8 +375,32 @@ Coverage: every axis carried by at least 15 scored cards, at least 6 of them in 
 | G Integrate | agent | merge, checker, audit, sim, fixes | B, C, E |
 | H Fonts and visuals | agent | styles | F, G |
 
+## 23. Round 2: the ten-times pass (Jerry, 2026-09-29 afternoon)
+
+**Jerry's verdict on the overnight build:** the visuals are the right direction; the orb, the fragmented room that puts itself back together, the interludes and the Stories display method stay. Everything below improves what exists; nothing is replaced wholesale.
+
+**Rulings (new):**
+1. **Genii evolves.** The orb is where Genii starts, not what Genii is. As cards are answered and Genii's read firms up, the orb takes on Genii's form step by step: a glow, then a droplet, then the slime with the bead on top and two eyes, matching the canon opal renders (`quiz64/public/assets/genii-opal-*.webp`). Full Genii lands at the lock and the reveal. Genii is a slime: never a genie, never a lamp.
+2. **No lamps, no genie tropes** in any artifact, icon or card. The `lamp` device and every wish, genie or fairy-godparent card are replaced.
+3. **Motion and finish:** buttons glow, answers have one clear selected state, boxes are tighter, transitions are cleaner. The reply (text a friend) format keeps the picked reply on screen for a beat before the next card; that hold pattern extends to every format.
+4. **Card variety:** too many cards still read with the same structure. A pass breaks repeated shapes (prompt shape, option shape, option length rhythm) without touching evidence: axes, tags, grades and weights stay locked unless a rewrite changes meaning, in which case the evidence is re-derived and re-locked.
+5. **The reveal gets ten times the content and craft:** more screens and more to read, higher-quality 3D-feeling assets, and "what Genii knows best" shows 5 to 6 findings instead of one. Every displayed claim must trace to the score (no line shown without the evidence behind it).
+6. **Accuracy of display:** a test proves that each reveal line comes from the player's actual scores and tags.
+
+**Packages (Opus crew, disjoint files, one repo, commit own paths only):**
+
+| Package | Owns |
+|---|---|
+| G1 Genii evolves | `src/system/GeniiLight.jsx` and its call sites' props, new `src/genii/`, three.js dependency |
+| G2 Play polish | `src/persona/play/**`, `src/persona/screens/**`, `src/art/**` (lamp removal), `src/system/` styles except GeniiLight |
+| G3 Reveal x10 | `src/persona/reveal/**`, `src/persona/stories/**`, share image, result copy in `library.json`, result tests |
+| G4 Card variety | `research/persona-quiz-v2/final/bank/*`, merged `cards.json`, evidence lock, Codex judge |
+| G5 Integrate and judge | full tests, capture, Codex visual judge round 3, fixes |
+
 ## Changes
 
+- 2026-09-29: Round 2 closed (G5): section 21 final screen order is the 12-screen deck; section 17 status adds round 2 with the gate numbers.
+- 2026-09-29: Section 23 added: round 2 rulings (Genii evolves from the orb, no lamps, motion finish, card variety, reveal x10, display accuracy) and packages G1 to G5.
 - 2026-09-29: Section 17 status updated after the overnight build: full 174-card bank, Codex judge rounds, visual rebuild.
 - 2026-09-29: Sub-question first and worlds (absurd, unusual, everyday) added; absurd weight cap 0.35 in card-schema.mjs; checker validates `sq` and `world`.
 - 2026-09-28: Spice standard added (section 21); variety rule for hook shapes enforced by check-bank.

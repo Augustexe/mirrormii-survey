@@ -509,12 +509,31 @@ At 390 px the rail is 40 x 7 + 39 x 2 + 6 x 6 = 394 px, too wide; phone therefor
 
 Covered by 5.7 Sealed and 5.8 (rail becomes panes). The finale has no interlude of its own beyond the lock screen. After the 8th answer, a 600 ms "all panes etched" beat (panes brighten in sequence), then story 1.
 
-### 5.12 The result: nine story screens
+### 5.12 The result: twelve story screens (round 2)
 
-**Stage.** Phone: full-bleed, 100svh, safe-area padded; the app header is hidden; a top bar inside the stage holds the 9 progress segments (3 px, radius 3, 4 px gaps, 12 px from the top safe area), a size-xs Genii orb with "Genii" label at left, and a single **share icon** at right (lucide Share, 44 px hit) that opens the share sheet for the current screen (replaces the per-screen "Save" pill; on story 7 the sheet offers "Save for me" only). Tap zones: left 30% back, right 70% forward; press and hold pauses any running animation; no auto-advance except 1 to 2. Keyboard: arrows, Space, Escape to the summary. Bottom: arrows remain for pointer users (44 px, glass-dark or glass) but "TAP TO CONTINUE" text is removed after the first screen.
+**Round 2 order (LAUNCH-SPEC sections 21 and 23, in force 2026-09-29).** Twelve screens; the specs below keep their first-build numbers in brackets where a screen moved.
+
+| # | Screen | Look | Round 2 |
+|---|---|---|---|
+| 1 | "40 answers in. Here's you." (shards assemble the mirror) | night | kept |
+| 2 | The two archetypes in the mirror's panes | night | kept, plaque under the arch |
+| 3 | The read: two glass tablets, one per half | light | kept |
+| 4 | Your map: six labelled opposing pairs, a glass rod each, a lit bead where you land, no numbers | night | redrawn (was the facet) |
+| 5 | What Genii knows best: 5 to 6 findings, clearest first, each with a clarity gem (table, crown and girdle rings light as the evidence firms up; a flex finding is a two-color gem); the clearest opens as a large crystal card | deep | new |
+| 6 | Room by room: each room walked through on its own chapter island, one line each from that room's answers, the clarity dots, and a note where a room leans the other way from the overall map (shown when 2 or more rooms have a line) | light | new |
+| 7 | The thing you didn't know (the flip under the waterline) | deep | kept (was 6) |
+| 8 | Your top traits as charms | light | kept (was 5) |
+| 9 | Only you: the stings | night | kept (was 7) |
+| 10 | Genii's calls: the locked guesses as panes (clear and lit for a hit, frosted for a miss, dim for a pass), the one number allowed, "N of M called exactly" (shown when guesses were locked) | deep | new, from the old optional sheet |
+| 11 | Your card (the mirror card) | light | kept (was 8), simpler share card |
+| 12 | Get MirrorMii: a glass phone with one in-game moment (you snap lunch, Miia lives it), one CTA; the friend game, "How Genii read you" and "Your data" as small links | deep | redrawn (was 9) |
+
+One WebGL light (`StageLight`) runs behind every screen and eases to each screen's look; screens change like a camera moving through the mirror room. Every displayed line traces to the player's own score (`tests/reveal-accuracy.test.mjs`, which also proves the calls count matches the sealed check, including partial hits).
+
+**Stage.** Phone: full-bleed, 100svh, safe-area padded; the app header is hidden; a top bar inside the stage holds one progress segment per screen (12 in round 2) (3 px, radius 3, 4 px gaps, 12 px from the top safe area), a size-xs Genii orb with "Genii" label at left, and a single **share icon** at right (lucide Share, 44 px hit) that opens the share sheet for the current screen (replaces the per-screen "Save" pill; on story 7 the sheet offers "Save for me" only). Tap zones: left 30% back, right 70% forward; press and hold pauses any running animation; no auto-advance except 1 to 2. Keyboard: arrows, Space, Escape to the summary. Bottom: arrows remain for pointer users (44 px, glass-dark or glass) but "TAP TO CONTINUE" text is removed after the first screen.
 Desktop: the stage is a 9:16 panel, 480 x 854 max (scaled to fit 900 tall with 24 px margins), centered on a full-viewport night mirror-room scene (large blurred mirror arch behind the stage, glows, grain); previous and next arrows sit outside the stage at 32 px from its edges; the story's own art may bleed beyond the stage by up to 60 px as light (never text). A text link under the stage: "See it all on one page" (optional, section 8 D4).
 
-**Themes per screen.** 1 night, 2 night, 3 light (Day or Dusk), 4 night, 5 light, 6 deep gradient, 7 night (deepest), 8 light, 9 deep gradient.
+**Themes per screen (round 2).** 1 night, 2 night, 3 light (Day or Dusk), 4 night, 5 deep, 6 light, 7 deep, 8 light, 9 night (deepest), 10 deep, 11 light, 12 deep.
 
 **Story 1: "40 answers in. Here's you."** (keep copy; sub "Tap to see it." becomes "Hold. Then let go." proposed for Make it fun, "Take your time with this one." kept for Heart).
 Layout: title centered at 58% height, `--type-display`, `--n-ink`; the shard orbit fills the upper 55%: 40 shards (their real chapter tints, in the order answered) on 3 elliptical orbits around Genii's light (size l); orbit speed 0.08 rev/s, parallax on device tilt disabled (permission prompts), pointer parallax on desktop.
@@ -540,32 +559,32 @@ Motion: spokes draw (300 ms), vertices travel from center to position (spring se
 Hook: a gem shape that is yours; it also appears on the share card.
 No numbers anywhere (section 13).
 
-**Story 5: Your top traits (charms).** Light.
+**Story 8 [was 5]: Your top traits (charms).** Light.
 Layout: kicker "Your top traits", title "What makes you, you" (keep) in `--type-display` 32/36; below, up to 5 **charms**: each a horizontal glass tile (radius 22) hanging from a thin 1 px line that runs up to a rail at the top (the mirror frame's lower edge, drawn as a slim silver bar under the title), so the tiles read as charms on a chain; each charm: chapter glyph in a 36 px tinted well at left, name in `--type-title` (Fraunces), line in `--type-body` ink-2 under it (one sentence, 90 characters or fewer). 5 charms at about 96 px each fit within 844 with the title.
 Motion: charms drop in from 12 px above with a tiny pendulum settle (rotate 2 degrees to 0, spring settle), 50 ms apart.
 Empty state (existing `noTraits` copy): a single frosted charm with the copy inside.
 
-**Story 6: The thing you didn't know (the other side).** Deep gradient (`--g-deep`; Dusk uses its dusk variant).
+**Story 7 [was 6]: The thing you didn't know (the other side).** Deep gradient (`--g-deep`; Dusk uses its dusk variant).
 Layout: kicker "The thing you didn't know" (keep) at 30% height; the insight is split at its sentence boundary: the first sentence (the belief) in `--type-display` 30/36 phone, white, centered; a 1 px white waterline at 54% height; the second sentence (the behavior) in `--type-quote` (Fraunces italic) below the line.
 Hook, the flip: the second sentence first appears **upside down and mirrored under the waterline** (scaleY(-1), 35% opacity, 2 px blur), holds 400 ms, then flips upright (rotateX from 180 to 0 degrees, 700 ms, `--e-in-out`) and sharpens. The belief reflects and the behavior answers it. When the insight is a fallback line with a single sentence, no split: it sits centered with a slow reflection under it.
 Reduced motion: both sentences upright, the reflection shown as a static 12% ghost under the line.
 Copy rules: 2 sentences, each 70 characters or fewer; no quotes; never "you'd say X, you did Y" (section 13 ruling).
 
-**Story 7: Only you (the back of the mirror).** Night, deepest (`--n-900` with a faint silver foxing texture: 20 to 30 soft specks from grain at 6%, suggesting old mirror backing).
+**Story 9 [was 7]: Only you (the back of the mirror).** Night, deepest (`--n-900` with a faint silver foxing texture: 20 to 30 soft specks from grain at 6%, suggesting old mirror backing).
 Layout: badge "Only you see this" (keep) as a glass-dark pill with lock glyph at top 140; title "The part that stings" (Heart: "The tender part") `--type-display` 32/36; stings (2 to 3) in `--type-quote` 22/30 phone, `--n-ink`, each preceded by a thin silver 24 px rule above rather than a pink left border; spacing 24 between.
 Motion: slow (Dusk timing for everyone): lines fade in 0, 150, 300 ms; no sparkles; Genii orb dimmed to 40% in the top bar.
 Share sheet on this screen: "Save for me" only (no share targets).
 
-**Story 8: Your card (the mirror card).** Light (share-worthy).
+**Story 11 [was 8]: Your card (the mirror card).** Light (share-worthy).
 Layout: kicker "Your card" (keep); a live DOM preview of the share image (section 5.13) at 78% of stage width (phone: 280 x 498 for 9:16), with a format toggle under it (two chips: "Story" 9:16, "Post" 4:5); then the primary CTA "Do you really know me?" (keep, `--g-deep` pill, full width) which opens the existing friend flow (FriendsPanel sheet); secondary row: "Share image" (Web Share API level 2 with the PNG file when `navigator.canShare({files})`, else download) and "Copy link" text buttons. Sub line (keep): "Send it. See who actually knows you."
 Proposed addition (section 8 D3): a small "Your opposite: Lone Wolf and The Wanderer. Know one?" line under the CTA (computed by flipping every pole; names from the library), the black cat and golden retriever hook from the Wrapped research.
 Motion: the preview card rises with a 3 degree tilt that settles to 0 (spring settle), then a single specular sweep across its mirror.
 
-**Story 9: Get MirrorMii.** Deep gradient.
+**Story 12 [was 9]: Get MirrorMii.** Deep gradient.
 Layout: the mirror from story 2 shrinks (600 ms) into a phone-shaped glass tablet (the app, drawn as a rounded rectangle 150 x 300 with a soft island scene inside, no Miia art) and Genii's light floats into it; kicker "Get MirrorMii" (keep); title "Genii has only met you on paper." (keep) `--type-display` 32/36 white; body (keep per voice) `--type-body-l` white at 88%; primary CTA "Get MirrorMii" (white pill, ink text, 56 px); note "Free to join." (keep); secondary: "Do you really know me?" as a ghost pill and "How Genii read you" as a text link. The data actions (Download my data, Start over, Delete my data) move behind one text button "Your data" that opens a sheet (same actions, same confirm dialogs), so the handoff screen has one job.
 Copy rule: only what the app does today (section 19 decision 6); never describe 2.0 features as live (PRODUCT-TRUTH section 8).
 
-**Summary view (desktop and Escape).** Optional, section 8 D4: a scrollable single page with all nine screens' content in an editorial layout (mirror top, read, facet, charms, insight, share card, CTA); stings excluded unless the owner expands "Only you".
+**Summary view (desktop and Escape).** Optional, section 8 D4: a scrollable single page with every screen's content in an editorial layout (mirror top, read, facet, charms, insight, share card, CTA); stings excluded unless the owner expands "Only you".
 
 ### 5.13 The share image (mirror card)
 
@@ -811,5 +830,6 @@ Capture tooling: a Playwright script `tests/visual/capture.mjs` that replays the
 
 ## 9. Changes
 
+- 2026-09-29: Section 5.12 updated to the round 2 twelve-screen deck (knows best, room by room and Genii's calls added; map and app screens redrawn; order table and looks).
 - 2026-09-29: Rewritten for the launch visual pass: benchmark study, screen-by-screen critique of 76 screenshots, the Mirror, Mirror concept and The Reflection reveal, the full system, per-screen specs for every screen and format, the asset list, four parallel packages with ownership and acceptance, and held decisions. Reference images in `design-refs/`.
 - 2026-09-17: First version (Genii conversation design for the dossier build), superseded; see git commit 8eff355.
