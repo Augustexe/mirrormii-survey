@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import { SetupGlyph } from "../../art/index.js";
-import { GeniiLight, motion } from "../../system/index.js";
+import { GeniiLight, motion, tokens } from "../../system/index.js";
 import { CLOSEST_OPTIONS, PRONOUN_OPTIONS } from "../session.js";
 import { LOBBY_COPY } from "../lobby.js";
 import { Dots } from "./Dots.jsx";
@@ -35,7 +35,8 @@ export function SetupView({ onDone, onBack, busy }) {
     setValues(next);
     setPicked(id);
     const go = () => { if (step < SETUP_STEPS.length - 1) setStep(step + 1); else onDone(next); };
-    const hold = document.body?.dataset.motion === "off" ? 0 : Math.round(motion.ms.base * 0.92);
+    // The pick holds on screen like a card answer does (round 2), a little shorter: setup has no shard to fly.
+    const hold = document.body?.dataset.motion === "off" ? 0 : Math.round(tokens.beats.hold * 0.8 * motion.scale);
     timer.current = setTimeout(go, hold);
   };
   const back = () => { clearTimeout(timer.current); setPicked(null); if (step) setStep(step - 1); else onBack(); };

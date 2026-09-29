@@ -7,6 +7,8 @@ const W = 100;
 const H = 160;
 const ARCH = geometry.archPath(W, H);
 const BRUSH = 36; // px radius of the clearing brush (DESIGN-DIRECTION 5.1)
+// Mosaic cells that carry a colored piece on the landing (one per chapter tint), spread over the arch.
+const PIECES = [5, 11, 17, 22, 28, 33, 38];
 
 function cssVar(name, fallback) {
   if (typeof window === "undefined") return fallback;
@@ -243,8 +245,24 @@ export function FogMirror({ seed = "mirrormii", className = "" }) {
         {/* The seams sit over the frost, so the crack pattern reads before any wipe: a deep violet line with a white
             catch-light beside it. */}
         <svg className="mm-fogmirror__seams" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" focusable="false">
+          <defs>
+            <linearGradient id={`${rid}-piece`} x1="0" y1="0" x2="0.8" y2="1">
+              <stop offset="0" stopColor="var(--c-surface-solid)" stopOpacity="0.9" />
+              <stop offset="0.5" stopColor="var(--c-surface-solid)" stopOpacity="0" />
+            </linearGradient>
+          </defs>
+          {/* Round 2 (Codex fix 1): seven colored pieces, one per chapter, already sit in the glass, so the mirror reads
+              as "your answers become this" before the first tap. They fly in with the landing and glint now and then. */}
+          <g clipPath={`url(#${rid}-clip)`} className="mm-fogmirror__pieces">
+            {PIECES.map((cell, k) => cells[cell] ? (
+              <g key={cell} className="mm-fogmirror__piece" style={{ "--k": k, "--tint": `var(--tint-ch${k + 1})` }}>
+                <path d={cells[cell].path} fill={`var(--tint-ch${k + 1})`} fillOpacity="0.82" />
+                <path d={cells[cell].path} fill={`url(#${rid}-piece)`} />
+              </g>
+            ) : null)}
+          </g>
           <g clipPath={`url(#${rid}-clip)`} fill="none" strokeLinejoin="round">
-            <g stroke="var(--c-violet-text)" strokeOpacity="0.3" strokeWidth="1.1" vectorEffect="non-scaling-stroke">
+            <g stroke="var(--c-violet-text)" strokeOpacity="0.46" strokeWidth="1.3" vectorEffect="non-scaling-stroke">
               {cells.map((c) => <path key={c.index} d={c.path} vectorEffect="non-scaling-stroke" />)}
             </g>
             <g stroke="var(--c-surface-solid)" strokeOpacity="0.75" strokeWidth="0.8" transform="translate(0.45 0.45)">

@@ -36,6 +36,42 @@ export function justFinished(filled = []) {
   return n;
 }
 
+// Where each returning shard starts (px from the mirror), scattered over the island above it: seeded by index so a
+// screenshot is stable. Up to 10 shards fly; the rest arrive with them.
+const SCATTER = [[150, -420], [40, -330], [250, -380], [-10, -250], [200, -290], [110, -470], [290, -260], [70, -210], [230, -440], [0, -380]];
+
+/**
+ * The reassembly (round 2): the chapter you just finished comes home. Its shards rise off the island, tumble through the
+ * air and fuse into the mirror one after another; each lands as a bright cell (MirrorArch data-fresh), and the mirror
+ * flares once when the last one is in. On the first chapter the mirror is empty and a light sweeps its seams, so the
+ * mechanic reads before the first answer. Decorative only; with reduced motion the mirror is simply complete.
+ */
+function MirrorAssembly({ seed, filled, size }) {
+  const fresh = justFinished(filled);
+  const flying = Math.min(fresh, SCATTER.length);
+  const start = filled.length - fresh;
+  return (
+    <div className={`mm-assembly${fresh ? " is-returning" : " is-empty"}`} style={{ "--fly": flying }}>
+      <MirrorArch seed={seed} filled={filled} fresh={fresh} fog={0} glow={0.7} seams="dark" size={size} />
+      {flying ? (
+        <span className="mm-assembly__air" aria-hidden="true">
+          {Array.from({ length: flying }, (_, i) => {
+            const [x, y] = SCATTER[i];
+            const shard = filled[start + i] || filled[filled.length - 1];
+            const key = typeof shard.chapter === "number" ? `ch${shard.chapter}` : shard.chapter === "extras" ? "extras" : "finale";
+            return (
+              <svg key={i} className="mm-assembly__shard" viewBox={shapes.SHARD_VIEWBOX} width="24" height="36" focusable="false"
+                style={{ "--fx": `${x}px`, "--fy": `${y}px`, "--r": `${(i % 2 ? 1 : -1) * (160 + i * 37)}deg`, "--i": i, "--tint": `var(--tint-${key})` }}>
+                <path d={shapes.shardFor(start + i)} />
+              </svg>
+            );
+          })}
+        </span>
+      ) : null}
+    </div>
+  );
+}
+
 export function PersonaInterlude({ chapter, count, onContinue, filled = [], seed = "mirrormii", voice = LOBBY_DEFAULTS.voice, total = 40 }) {
   const heading = useRef(null);
   useEffect(() => { heading.current?.focus({ preventScroll: true }); window.scrollTo({ top: 0, behavior: "instant" }); }, [chapter.id, chapter.key]);
@@ -64,7 +100,7 @@ export function PersonaInterlude({ chapter, count, onContinue, filled = [], seed
         {chapter.sub ? <p className="mm-interlude__sub mm-enter" style={{ "--step": 1 }}>{chapter.sub}</p> : null}
         <div className="mm-interlude__progress mm-enter" style={{ "--step": 2 }}>
           <div className="mm-interlude__mirror" role="img" aria-label={`${filled.length} ${filled.length === 1 ? "answer" : "answers"} in your mirror so far`}>
-            <MirrorArch seed={seed} filled={filled} fresh={justFinished(filled)} fog={0} glow={0.6} seams="dark" size={60} />
+            <MirrorAssembly seed={seed} filled={filled} size={72} />
           </div>
           <div className="mm-interlude__tally">
             <p className="mm-interlude__count">
@@ -74,7 +110,7 @@ export function PersonaInterlude({ chapter, count, onContinue, filled = [], seed
             {count > 0 ? (
               <div className="mm-shards" role="img" aria-label={`${count} cards in this chapter`}>
                 {Array.from({ length: count }, (_, i) => (
-                  <svg key={i} viewBox={shapes.SHARD_VIEWBOX} width="12" height="18" aria-hidden="true" focusable="false">
+                  <svg key={i} viewBox={shapes.SHARD_VIEWBOX} width="14" height="21" aria-hidden="true" focusable="false" style={{ "--i": i }}>
                     <path d={shapes.shardFor(i + filled.length)} />
                   </svg>
                 ))}

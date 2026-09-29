@@ -80,7 +80,8 @@ export function LobbyView({ onDone, onBack, busy, error = "" }) {
   const pick = (vals, id) => {
     if (picked) return;
     setPicked(id);
-    const hold = document.body?.dataset.motion === "off" ? 0 : Math.round(motion.ms.base * 0.92);
+    // The pick holds on screen like a card answer does (round 2), a little shorter: setup has no shard to fly.
+    const hold = document.body?.dataset.motion === "off" ? 0 : Math.round(tokens.beats.hold * 0.8 * motion.scale);
     timer.current = setTimeout(() => advance(vals), hold);
   };
   const chooseVoice = (id) => {

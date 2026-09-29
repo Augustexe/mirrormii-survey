@@ -301,8 +301,27 @@
     .mm-landing__promise { order: 3; margin-block-start: var(--s-3); }
     .mm-landing__stage { order: 4; padding-block: var(--s-3) 0; }
     .mm-landing__actions { order: 5; margin-block-start: var(--s-3); }
-    .mm-landing__below { margin-block-start: var(--s-3); gap: var(--s-3); }
+    .mm-landing__below { margin-block-start: var(--s-3); gap: var(--s-2); }
     .mm-landing .mm-fogmirror__reflection { block-size: 10px; }
+    /* Below the button: one light reassurance line instead of three pills (Codex R2, screen 1), then a slim
+       "How this works" row. */
+    .mm-landing__chips--phone { justify-content: center; gap: 0; }
+    .mm-landing__chips--phone .mm-chip {
+      padding: 2px 0;
+      background: none;
+      box-shadow: none;
+      font-weight: 500;
+      color: var(--c-ink-3);
+    }
+    .mm-landing__chips--phone .mm-chip:nth-child(2)::before {
+      content: "·";
+      margin-inline: var(--s-2);
+      color: var(--c-violet-300);
+      font-weight: 800;
+    }
+    .mm-landing__chips--phone .mm-chip:nth-child(n + 3) { flex-basis: 100%; text-align: center; }
+    .mm-landing .mm-how { padding: var(--s-2) var(--s-3); box-shadow: inset 0 0 0 1px var(--secondary-border); background: var(--secondary-fill); }
+    .mm-landing .mm-how__mark { inline-size: 32px; block-size: 32px; }
   }
 
   @media (min-width: 1024px) {
@@ -467,6 +486,26 @@
   .mm-fogmirror__drift--a { inset: 62% auto auto 22%; }
   .mm-fogmirror__drift--b { inset: 76% auto auto 70%; inline-size: 3px; block-size: 3px; }
   .mm-fogmirror__drift--c { inset: 48% auto auto 80%; inline-size: 4px; block-size: 4px; }
+  .mm-fogmirror__piece { transform-box: fill-box; transform-origin: 50% 50%; }
+  @media (prefers-reduced-motion: no-preference) {
+    body:not([data-motion="off"]) .mm-fogmirror__piece {
+      animation:
+        mm-piece-in calc(var(--d-scene) * 1.2) var(--e-settle) both,
+        mm-piece-glint calc(var(--d-loop-bob) * 1.5) var(--e-in-out) infinite;
+      animation-delay: calc(var(--d-scene) + var(--k) * var(--d-step) * 2), calc(var(--d-scene) * 3 + var(--k) * var(--d-loop-bob) * 0.21);
+    }
+    body:not([data-motion="off"]) .mm-landing.is-settled .mm-fogmirror__piece {
+      animation: mm-piece-glint calc(var(--d-loop-bob) * 1.5) var(--e-in-out) calc(var(--k) * var(--d-loop-bob) * 0.21) infinite;
+    }
+  }
+  @keyframes mm-piece-in {
+    from { opacity: 0; transform: translate(calc((var(--k) - 3) * 9px), -46px) rotate(calc((var(--k) - 3) * 40deg)) scale(1.6); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes mm-piece-glint {
+    0%, 86%, 100% { filter: brightness(1); }
+    92% { filter: brightness(1.35) drop-shadow(0 0 2px var(--c-surface-solid)); }
+  }
   .mm-fogmirror__fog {
     display: block;
     touch-action: pan-y;
@@ -637,19 +676,53 @@
   .mm-pill:active:not(:disabled),
   .mm-voice:active:not(:disabled),
   .mm-depth:active:not(:disabled) {
-    transform: scale(0.985);
+    transform: scale(0.97);
   }
+  /* The pick (round 2 vocabulary, motion.css): deep fill, glow, a haptic bounce, a ring that ripples out and a check
+     that pops into the corner; the pick holds on screen before the next question. */
   .mm-object.is-on,
   .mm-pill.is-on,
   .mm-voice.is-picked,
   .mm-depth.is-on {
+    position: relative;
     border-color: transparent;
     background: var(--g-deep);
     color: var(--c-on-deep);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35), var(--e3);
+    box-shadow: var(--pick-glow);
   }
+  .has-pick :is(.mm-object.is-on, .mm-pill.is-on, .mm-voice.is-picked, .mm-depth.is-on)::after {
+    content: "";
+    position: absolute;
+    inset-block-start: 8px;
+    inset-inline-end: 8px;
+    inline-size: 20px;
+    block-size: 20px;
+    border-radius: 50%;
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><circle cx='10' cy='10' r='10' fill='white'/><path d='M5.8 10.4l2.8 2.8 5.6-6' stroke='rgb(90,78,214)' stroke-width='2.4' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / contain no-repeat;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  }
+  .has-pick :is(.mm-object.is-on, .mm-pill.is-on, .mm-voice.is-picked, .mm-depth.is-on)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+  .mm-pill.is-on::after { display: none; }
   .has-pick > :not(.is-on):not(.is-picked) {
-    opacity: 0.6;
+    opacity: 0.45;
+    transform: scale(0.98);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    body:not([data-motion="off"]) .has-pick :is(.mm-object.is-on, .mm-pill.is-on, .mm-voice.is-picked, .mm-depth.is-on) {
+      animation: mm-pick calc(var(--d-slow) * 0.86) var(--e-spring) both;
+    }
+    body:not([data-motion="off"]) .has-pick :is(.mm-object.is-on, .mm-pill.is-on, .mm-voice.is-picked, .mm-depth.is-on)::after {
+      animation: mm-check var(--d-slow) var(--e-spring) var(--d-instant) both;
+    }
+    body:not([data-motion="off"]) .has-pick :is(.mm-object.is-on, .mm-pill.is-on, .mm-voice.is-picked, .mm-depth.is-on)::before {
+      animation: mm-ripple var(--d-scene) var(--e-out) both;
+    }
   }
   /* Glyph art turns white only inside a chosen setup or lobby tile (scoped: other components use .is-on too). */
   :is(.mm-object, .mm-pill, .mm-depth).is-on [data-part="line"],
@@ -1108,7 +1181,7 @@
     padding-block-start: var(--s-5);
   }
   .mm-interlude__title {
-    margin-block: var(--s-2) var(--s-5);
+    margin-block: var(--s-1) var(--s-4);
     font: var(--type-display);
     letter-spacing: var(--type-display-track);
     font-variation-settings: var(--font-display-upright);
@@ -1122,11 +1195,16 @@
     display: flex;
     align-items: center;
     gap: var(--s-4);
-    margin-block-start: var(--s-6);
-    padding: var(--s-3) var(--s-4) var(--s-3) var(--s-3);
+    margin-block-start: var(--s-5);
+    padding: var(--s-2) var(--s-4) var(--s-2) var(--s-2);
     border-radius: var(--r-answer);
     background: var(--tile-fill);
-    box-shadow: var(--e1);
+    box-shadow: var(--e1), var(--e2);
+  }
+  /* The reflection under a chapter title reads as a reflection, not a rendering artifact (Codex R2, screen 3). */
+  .mm-interlude__title .reflect__mirror {
+    opacity: 0.22;
+    color: var(--ch-deep, var(--c-violet-text));
   }
   .mm-interlude__tally {
     display: grid;
@@ -1156,23 +1234,25 @@
   }
   .mm-shards svg {
     fill: var(--ch-tint);
-    fill-opacity: 0.28;
-    stroke: var(--ch-tint);
-    stroke-width: 1.4;
+    fill-opacity: 0.4;
+    stroke: var(--ch-deep);
+    stroke-opacity: 0.7;
+    stroke-width: 1.2;
+    overflow: visible;
   }
   .mm-shards__count {
     margin-inline-start: var(--s-1);
     font: var(--type-small);
-    font-weight: 650;
-    color: var(--c-ink-2);
+    font-weight: 700;
+    color: var(--c-ink);
     font-variant-numeric: tabular-nums;
   }
   .mm-interlude__mirror {
     flex: none;
     display: grid;
     place-items: center;
-    inline-size: 84px;
-    block-size: 104px;
+    inline-size: 88px;
+    block-size: 118px;
     border-radius: var(--r-tile-s);
     background: radial-gradient(closest-side, color-mix(in srgb, var(--ch-tint) 55%, var(--c-violet-100)), transparent);
   }
@@ -1181,7 +1261,58 @@
     filter: drop-shadow(0 8px 12px rgba(86, 70, 192, 0.3));
   }
   .mm-interlude__actions {
-    margin-block-start: var(--s-6);
+    margin-block-start: var(--s-5);
+  }
+
+  /* ---------- The reassembly (round 2): the finished chapter's shards fly home into the mirror ---------- */
+  .mm-assembly { position: relative; display: grid; place-items: center; }
+  .mm-assembly > svg { position: relative; }
+  .mm-assembly__air { position: absolute; inset-inline-start: 50%; inset-block-start: 50%; inline-size: 0; block-size: 0; pointer-events: none; }
+  .mm-assembly__shard {
+    position: absolute;
+    inset-inline-start: -12px;
+    inset-block-start: -18px;
+    overflow: visible;
+    opacity: 0;
+    fill: var(--tint);
+    stroke: var(--c-surface-solid);
+    stroke-width: 1;
+    filter: drop-shadow(0 0 6px var(--tint));
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    body:not([data-motion="off"]) .mm-assembly__shard {
+      animation: mm-shard-home calc(var(--d-scene) * 1.15) var(--e-in-out) both;
+      animation-delay: calc(var(--d-quick) + var(--i) * var(--d-step) * 1.4);
+    }
+    body:not([data-motion="off"]) .mm-assembly.is-returning > svg {
+      animation: mm-catch var(--d-slow) var(--e-spring) both;
+      animation-delay: calc(var(--d-quick) + var(--d-scene) * 1.05 + var(--fly) * var(--d-step) * 1.4);
+    }
+    body:not([data-motion="off"]) .mm-assembly [data-fresh] {
+      animation-delay: calc(var(--d-quick) + var(--d-scene) * 0.95 + min(var(--fresh-i, 0), 9) * var(--d-step) * 1.4);
+    }
+    /* The empty mirror on chapter 1: a light sweeps its seams, once, then every 9 s. */
+    body:not([data-motion="off"]) .mm-assembly.is-empty [data-part="sweep"] {
+      animation: mm-seam-sweep calc(var(--d-loop-bob) * 1.5) var(--e-in-out) var(--d-scene) infinite;
+    }
+    body:not([data-motion="off"]) .mm-shards svg {
+      animation: mm-shard-wait calc(var(--d-loop-bob) * 0.75) var(--e-in-out) infinite alternate;
+      animation-delay: calc(var(--i, 0) * var(--d-step) * 2);
+    }
+  }
+  @keyframes mm-shard-home {
+    0% { opacity: 0; transform: translate(var(--fx), var(--fy)) rotate(0deg) scale(1.3); }
+    14% { opacity: 1; }
+    70% { opacity: 1; transform: translate(calc(var(--fx) * 0.18), calc(var(--fy) * 0.12)) rotate(calc(var(--r) * 0.8)) scale(1.05); }
+    100% { opacity: 0; transform: translate(0, 0) rotate(var(--r)) scale(0.35); }
+  }
+  @keyframes mm-seam-sweep {
+    0% { transform: translateX(-60px); }
+    40%, 100% { transform: translateX(130px); }
+  }
+  @keyframes mm-shard-wait {
+    from { transform: translateY(0); }
+    to { transform: translateY(-2px); }
   }
   .mm-interlude__start {
     inline-size: 100%;

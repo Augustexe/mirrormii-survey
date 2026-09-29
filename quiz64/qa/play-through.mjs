@@ -60,11 +60,11 @@ await activate(page.locator(".mm-pill").nth(2));
 await page.waitForSelector(".mm-lobby");
 const voiceIndex = { fun: 0, heart: 1, cards: 2 }[VOICE];
 await activate(page.locator(".mm-voice").nth(voiceIndex));
-await page.waitForTimeout(400);
+await page.waitForTimeout(1200); // the pick holds on screen before the next step (round 2)
 if (await page.locator(".mm-lobby[data-step=voice]").count()) await activate(page.locator(".mm-panel__go"));
 await page.waitForSelector(".mm-lobby[data-step=depth]");
 await activate(page.locator(".mm-depth").nth(1));
-await page.waitForTimeout(400);
+await page.waitForTimeout(1200); // the pick holds on screen before the next step (round 2)
 if (await page.locator(".mm-lobby[data-step=depth]").count()) await activate(page.locator(".mm-panel__go"));
 await page.waitForSelector(".mm-lobby[data-step=rooms]");
 await shot("lobby-rooms");

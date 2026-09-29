@@ -137,12 +137,12 @@ for (const size of only) {
     await page.locator(".mm-voice").nth(1).focus();
     await snap("lobby-voice-preview", 900);
     await page.locator(".mm-voice").nth(0).click();
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1200); // the pick holds on screen before the next step (round 2)
     if (await page.locator(".mm-lobby[data-step=voice]").count()) await page.locator(".mm-panel__go").click();
     await page.waitForSelector(".mm-lobby[data-step=depth]");
     await snap("05-lobby-2");
     await page.locator(".mm-depth").nth(1).click();
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1200); // the pick holds on screen before the next step (round 2)
     if (await page.locator(".mm-lobby[data-step=depth]").count()) await page.locator(".mm-panel__go").click();
     await page.waitForSelector(".mm-lobby[data-step=rooms]");
     await snap("06-lobby-3");
