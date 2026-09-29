@@ -570,6 +570,23 @@ html[data-hidden="true"] .genii-light__orb {
   mask-image: linear-gradient(to top, black, transparent 45%);
 }
 
+/* ---------- The mirror's newest shards (A-01 data-fresh) ---------- */
+/* Shards that just landed flash white and settle into their chapter tint, one after another. Motion on only: with
+   reduced motion or Motion off they are simply there. */
+@media (prefers-reduced-motion: no-preference) {
+  body:not([data-motion="off"]) [data-art="mirror-arch"] [data-fresh] {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    animation: mirror-shard-land var(--d-slow) var(--e-out) both;
+    animation-delay: calc(var(--d-scene) + min(var(--fresh-i, 0), 12) * var(--d-step) * 2);
+  }
+}
+@keyframes mirror-shard-land {
+  0% { opacity: 0; transform: scale(0.4); filter: brightness(2.2); }
+  60% { opacity: 1; transform: scale(1.06); filter: brightness(1.5); }
+  100% { opacity: 1; transform: scale(1); filter: brightness(1); }
+}
+
 @media (forced-colors: active) {
   .genii-light__core { background: CanvasText; box-shadow: none; }
   .genii-light__bloom, .genii-light__wisp, .genii-light__sparkles, .reflect__mirror { display: none; }

@@ -1,24 +1,57 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight, Check } from "lucide-react";
-import { ChapterGlyph, RoomDoor } from "../../art/index.js";
+import { ChapterGlyph, MirrorArch, RoomDoor } from "../../art/index.js";
 import { GeniiLight, motion, previewTheme, setThemeForVoice, tokens } from "../../system/index.js";
 import { CHAPTERS } from "../kit.js";
 import { ALWAYS_CHAPTERS, LOBBY_COPY, LOBBY_DEFAULTS } from "../lobby.js";
+import { ROOM_CHAPTER } from "../../art/palette.js";
 import { Dots } from "./Dots.jsx";
 
-// A two-position dial (Keep it light points left, Ask me anything points right). Colors come from CSS.
-function Dial({ at }) {
-  const angle = at === "light" ? -48 : 48;
+// Depth art: two small mirrors that show how open the player is choosing to be. Keep it light is a mirror behind
+// frost with only a sliver of light; Ask me anything is clear glass, colored shards and Genii's light at full glow.
+function DepthArt({ at }) {
+  const arch = "M8 50 L8 22 A16 16 0 0 1 40 22 L40 50 Z";
+  if (at === "light") {
+    return (
+      <svg className="mm-depthart mm-depthart--light" viewBox="0 0 48 56" width="48" height="56" aria-hidden="true" focusable="false">
+        <path d={arch} className="mm-depthart__glass" />
+        <circle cx="24" cy="22" r="4" className="mm-depthart__glow" opacity="0.5" />
+        <path d="M8 26 C14 22 18 30 24 26 C30 22 34 30 40 26 L40 50 L8 50 Z" className="mm-depthart__fog" />
+        <path d="M11 36 C16 33 20 38 26 35 M22 44 C27 41 31 46 37 43" className="mm-depthart__curl" />
+        <path d={arch} className="mm-depthart__frame" />
+        <path d="M5 51 H43" className="mm-depthart__frame" />
+      </svg>
+    );
+  }
   return (
-    <svg className="mm-dial" viewBox="0 0 40 40" width="40" height="40" aria-hidden="true" focusable="false">
-      <path d="M7 27 A14 14 0 0 1 33 27" fill="none" className="mm-dial__track" strokeWidth="3" strokeLinecap="round" />
-      <circle cx="9.5" cy="18" r="1.8" className={`mm-dial__stop${at === "light" ? " is-on" : ""}`} />
-      <circle cx="30.5" cy="18" r="1.8" className={`mm-dial__stop${at === "anything" ? " is-on" : ""}`} />
-      <g transform={`rotate(${angle} 20 27)`}>
-        <path d="M20 27 L20 13" className="mm-dial__needle" strokeWidth="3" strokeLinecap="round" />
-      </g>
-      <circle cx="20" cy="27" r="4" className="mm-dial__hub" />
+    <svg className="mm-depthart mm-depthart--open" viewBox="0 0 48 56" width="48" height="56" aria-hidden="true" focusable="false">
+      <path d={arch} className="mm-depthart__glass" />
+      <path d="M8 50 L8 34 L22 30 L18 50 Z" className="mm-depthart__shard" style={{ fill: "var(--tint-ch3)" }} />
+      <path d="M40 50 L40 30 L28 34 L32 50 Z" className="mm-depthart__shard" style={{ fill: "var(--tint-ch1)" }} />
+      <path d="M22 30 L28 34 L32 50 L18 50 Z" className="mm-depthart__shard" style={{ fill: "var(--tint-ch4)" }} />
+      <path d="M8 22 A16 16 0 0 1 20 7 L22 30 L8 34 Z" className="mm-depthart__shard" style={{ fill: "var(--tint-ch5)" }} />
+      <circle cx="26" cy="20" r="7" className="mm-depthart__glow" />
+      <path d="M26 11 C26.6 16.4 28.4 18.4 33 19 C28.4 19.6 26.6 21.6 26 27 C25.4 21.6 23.6 19.6 19 19 C23.6 18.4 25.4 16.4 26 11 Z" className="mm-depthart__star" />
+      <path d={arch} className="mm-depthart__frame" />
+      <path d="M5 51 H43" className="mm-depthart__frame" />
+      <path d="M44 8 L46 6 M44 16 L47 16 M3 12 L5 14" className="mm-depthart__ray" />
     </svg>
+  );
+}
+
+// The mirror preview under the lobby panel: it answers each pick live. Voice: the whole light changes (the page's
+// theme preview reaches the glass). Depth: frost for Keep it light, clear glass for Ask me anything. Rooms: a few
+// shards in the tint of every chapter that will be played.
+function LobbyMirror({ step, depth, rooms, picked }) {
+  const open = step === "rooms" ? [...ALWAYS_CHAPTERS, ...rooms.map((r) => ROOM_CHAPTER[r]).filter(Boolean)].sort((a, b) => a - b) : [];
+  const filled = open.flatMap((ch) => [0, 1, 2].map(() => ({ chapter: ch })));
+  const fog = step === "depth" ? (depth === "light" ? 0.62 : depth === "anything" ? 0 : 0.3) : step === "voice" ? 0.18 : 0;
+  return (
+    <div className="mm-lobby__mirror mm-decor" aria-hidden="true" data-step={step}>
+      <span className="mm-lobby__mirror-glow" />
+      <MirrorArch seed="mirrormii-lobby" filled={filled} fresh={step === "rooms" ? filled.length : 0} fog={fog} glow={depth === "light" && step === "depth" ? 0.35 : 0.9} seams="dark" size={112} key={step === "rooms" ? open.join("-") : step} />
+      <span className="mm-lobby__mirror-genii"><GeniiLight size="m" mood={picked ? "noted" : "listening"} /></span>
+    </div>
   );
 }
 
@@ -32,6 +65,7 @@ export function LobbyView({ onDone, onBack, busy, error = "" }) {
   const [step, setStep] = useState(0);
   const [values, setValues] = useState({ rooms: [...LOBBY_DEFAULTS.rooms] });
   const [picked, setPicked] = useState(null);
+  const [hoverDepth, setHoverDepth] = useState(null);
   const heading = useRef(null);
   const timer = useRef(0);
   const focusTimer = useRef(0);
@@ -108,8 +142,10 @@ export function LobbyView({ onDone, onBack, busy, error = "" }) {
               const on = values.depth === o.id;
               return (
                 <button type="button" key={o.id} className={`mm-depth mm-tile mm-enter${on ? " is-on" : ""}`} style={{ "--step": 1 + i }}
-                  aria-pressed={on} disabled={busy} onClick={() => pick({ ...values, depth: o.id }, o.id)}>
-                  <Dial at={o.id} />
+                  aria-pressed={on} disabled={busy} onClick={() => pick({ ...values, depth: o.id }, o.id)}
+                  onPointerEnter={() => setHoverDepth(o.id)} onPointerLeave={() => setHoverDepth(null)}
+                  onFocus={() => setHoverDepth(o.id)} onBlur={() => setHoverDepth(null)}>
+                  <DepthArt at={o.id} />
                   <span className="mm-depth__copy">
                     <span className="mm-depth__name">{o.text}</span>
                     <span className="mm-depth__sub">{LOBBY_COPY.depthCards[o.id]}</span>
@@ -155,6 +191,7 @@ export function LobbyView({ onDone, onBack, busy, error = "" }) {
           ) : <span className="mm-panel__private">{LOBBY_COPY.guideNote}</span>}
         </div>
       </article>
+      <LobbyMirror step={s.key} depth={(s.key === "depth" && (picked || hoverDepth)) || values.depth} rooms={values.rooms} picked={picked} />
     </main>
   );
 }

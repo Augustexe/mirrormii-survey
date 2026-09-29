@@ -1,6 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { shardFor, SHARD_VIEWBOX } from "../../art/shapes.js";
+import { MirrorArch } from "../../art/MirrorArch.jsx";
 import { CHAPTERS } from "../kit.js";
 import { LOBBY_COPY } from "../lobby.js";
 import { railGroups } from "./rail-model.js";
@@ -36,7 +37,22 @@ export function ShardRail(props) {
   return host ? createPortal(rail, host) : rail;
 }
 
-function RailButton({ step, progress = null, onOpen, docked = false }) {
+// The mirror itself, small, at the head of the rail: every answer lands in it as a shard in its chapter's tint, in the
+// run's own crack pattern, so the finale mirror is the one the player watched fill.
+// Only shards added while the rail is on screen play their landing (a remount after a chapter title shows them still).
+function RailMirror({ shards, seed, fog = 0 }) {
+  const seen = useRef({ len: null, fresh: 0 });
+  const len = Array.isArray(shards) ? shards.length : 0;
+  if (seen.current.len !== len) seen.current = { len, fresh: seen.current.len === null ? 0 : Math.max(0, len - seen.current.len) };
+  if (!Array.isArray(shards)) return null;
+  return (
+    <span className="rail-mirror" aria-hidden="true">
+      <MirrorArch seed={seed} filled={shards} fresh={seen.current.fresh} fog={fog} glow={0.5} seams="dark" size={24} />
+    </span>
+  );
+}
+
+function RailButton({ step, progress = null, onOpen, docked = false, shards = null, seed = "genii" }) {
   const rail = railGroups(step, progress);
   const last = useRef(null);
   const landing = useRef(-1);
@@ -49,6 +65,7 @@ function RailButton({ step, progress = null, onOpen, docked = false }) {
     return (
       <button type="button" className={`shard-rail shard-rail--finale${docked ? " is-docked" : ""}`} onClick={onOpen} data-count={rail.panes}>
         <span className="pc-sr">{label}</span>
+        <RailMirror shards={shards} seed={seed} fog={0.45} />
         <span className="rail-panes" aria-hidden="true">
           {Array.from({ length: rail.panes }, (_, i) => (
             <span key={i} data-rail-slot={i === rail.current ? "current" : i}
@@ -63,6 +80,7 @@ function RailButton({ step, progress = null, onOpen, docked = false }) {
   return (
     <button type="button" className={`shard-rail${docked ? " is-docked" : ""}`} onClick={onOpen}>
       <span className="pc-sr">{label}</span>
+      <RailMirror shards={shards} seed={seed} />
       <span className="rail-groups" aria-hidden="true">
         {rail.groups.map((g) => {
           const shards = [];

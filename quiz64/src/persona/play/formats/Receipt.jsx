@@ -1,8 +1,9 @@
 import React from "react";
 import { Check } from "lucide-react";
 
-// Receipts check (5.7): an actual receipt. Zigzag paper, items with a check box, dotted leaders and a stamp,
-// "None of these" last behind a dashed rule, a running total, and "Tear it off" to hand it in.
+// Receipts check (5.7): an actual receipt. Zigzag paper in a till-roll face, items with a check box and a quantity
+// column that prints "x1" when ticked, "None of these" last behind a dashed rule, a running total, and "Tear it off"
+// to hand it in (quiet until something is ticked, then dark with the count).
 export function Receipt({ card, texts, picks, locked, onToggle, onDone, tally, kbd, paperRef, voice }) {
   const items = texts.map((text, i) => ({ text, i, none: !!card.options[i].none }));
   const facts = items.filter((x) => !x.none);
@@ -21,8 +22,7 @@ export function Receipt({ card, texts, picks, locked, onToggle, onDone, tally, k
       >
         <span className="pc-receipt__box" aria-hidden="true">{on ? <Check size={15} strokeWidth={3} /> : null}</span>
         <span className="pc-receipt__text">{text}</span>
-        <span className="pc-receipt__leader" aria-hidden="true" />
-        <span className="pc-receipt__stamp" aria-hidden="true">{on ? <Check size={14} strokeWidth={3} /> : null}</span>
+        <span className="pc-receipt__qty" aria-hidden="true">{on && !isNone ? "x1" : ""}</span>
         {kbd && i < 9 ? <kbd className="pc-kbd" aria-hidden="true">{i + 1}</kbd> : null}
       </button>
     );
@@ -46,8 +46,9 @@ export function Receipt({ card, texts, picks, locked, onToggle, onDone, tally, k
       </div>
       </div>
       <div className="pc-done" data-part="persona-done">
-        <button type="button" className="pc-primary pc-primary--tear" disabled={locked} onClick={onDone}>
+        <button type="button" className={`pc-primary pc-primary--tear${picks.length ? " is-ready" : ""}`} disabled={locked} onClick={onDone}>
           Tear it off
+          {tally > 0 ? <span className="pc-tear__count" aria-hidden="true">{tally}</span> : null}
           {kbd ? <kbd className="pc-kbd pc-kbd--on-deep" aria-hidden="true">Enter</kbd> : null}
         </button>
       </div>

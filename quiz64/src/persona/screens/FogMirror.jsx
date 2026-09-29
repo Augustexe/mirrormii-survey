@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
-import { geometry } from "../../art/index.js";
+import { IslandScene, geometry } from "../../art/index.js";
 import { GeniiLight, tokens } from "../../system/index.js";
 
 const W = 100;
@@ -28,6 +28,19 @@ function paintFog(ctx, w, h, seed) {
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, W, H);
   ctx.globalAlpha = 1;
+  // A breath of clear glass in the middle: Genii's light and the island behind it show through before any wipe; the
+  // frost stays thick at the rim.
+  ctx.save();
+  ctx.globalCompositeOperation = "destination-out";
+  ctx.translate(W / 2, H * 0.52);
+  ctx.scale(1, 1.6);
+  const breath = ctx.createRadialGradient(0, 0, 0, 0, 0, W * 0.48);
+  breath.addColorStop(0, "rgba(0, 0, 0, 0.8)");
+  breath.addColorStop(0.6, "rgba(0, 0, 0, 0.5)");
+  breath.addColorStop(1, "rgba(0, 0, 0, 0)");
+  ctx.fillStyle = breath;
+  ctx.fillRect(-W, -H, W * 2, H * 2);
+  ctx.restore();
   for (let i = 0; i < 9; i++) {
     const x = rand() * W;
     const y = rand() * H;
@@ -212,6 +225,7 @@ export function FogMirror({ seed = "mirrormii", className = "" }) {
           </g>
         </svg>
         <div className="mm-fogmirror__inside">
+          <span className="mm-fogmirror__world"><IslandScene chapter={6} variant="scene" size={200} /></span>
           <span className="mm-fogmirror__drift mm-fogmirror__drift--a" />
           <span className="mm-fogmirror__drift mm-fogmirror__drift--b" />
           <span className="mm-fogmirror__drift mm-fogmirror__drift--c" />
@@ -226,15 +240,29 @@ export function FogMirror({ seed = "mirrormii", className = "" }) {
           onPointerCancel={onPointerLeave}
           onPointerLeave={onPointerLeave}
         />
+        {/* The seams sit over the frost, so the crack pattern reads before any wipe: a deep violet line with a white
+            catch-light beside it. */}
+        <svg className="mm-fogmirror__seams" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" focusable="false">
+          <g clipPath={`url(#${rid}-clip)`} fill="none" strokeLinejoin="round">
+            <g stroke="var(--c-violet-text)" strokeOpacity="0.3" strokeWidth="1.1" vectorEffect="non-scaling-stroke">
+              {cells.map((c) => <path key={c.index} d={c.path} vectorEffect="non-scaling-stroke" />)}
+            </g>
+            <g stroke="var(--c-surface-solid)" strokeOpacity="0.75" strokeWidth="0.8" transform="translate(0.45 0.45)">
+              {cells.map((c) => <path key={c.index} d={c.path} vectorEffect="non-scaling-stroke" />)}
+            </g>
+          </g>
+        </svg>
         <svg className="mm-fogmirror__rim" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" focusable="false">
           <defs>
             <linearGradient id={`${rid}-rim`} x1="0" y1="0" x2="1" y2="1">
               <stop offset="0" stopColor="var(--c-surface-solid)" />
-              <stop offset="0.45" stopColor="var(--mirror-silver-2)" />
-              <stop offset="1" stopColor="var(--c-violet-300)" />
+              <stop offset="0.3" stopColor="var(--mirror-silver-2)" />
+              <stop offset="0.65" stopColor="var(--c-violet-300)" />
+              <stop offset="1" stopColor="var(--c-violet)" />
             </linearGradient>
           </defs>
-          <path d={ARCH} fill="none" stroke={`url(#${rid}-rim)`} strokeWidth="5" vectorEffect="non-scaling-stroke" />
+          <path d={ARCH} fill="none" stroke="var(--c-violet-text)" strokeOpacity="0.55" strokeWidth="8.5" vectorEffect="non-scaling-stroke" />
+          <path d={ARCH} fill="none" stroke={`url(#${rid}-rim)`} strokeWidth="6" vectorEffect="non-scaling-stroke" />
           <path d={ARCH} fill="none" stroke="var(--c-surface-solid)" strokeOpacity="0.9" strokeWidth="1.2" vectorEffect="non-scaling-stroke" />
         </svg>
         <span className="mm-fogmirror__sheen" />

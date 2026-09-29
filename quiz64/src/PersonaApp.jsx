@@ -10,6 +10,7 @@ import { loadRun, restoreRun, loadFriendPlays, saveFriendPlay, deleteAllGeniiDat
 import { PersonaHeader, PersonaLanding, SetupView, LobbyView, PersonaInterlude, interludeFor, PersonaHowDialog, PersonaMoreDialog, ConfirmDialog, Toast } from "./persona/screens/index.js";
 import { PersonaQuizView, LockView, PersonaChapterMap, FriendGame, FriendResultsView } from "./persona/play/index.js";
 import { PersonaResult, resultView } from "./persona/reveal/index.js";
+import { mirrorFor } from "./persona/views.js";
 import { bootIntent } from "./Boot.jsx";
 
 
@@ -346,11 +347,12 @@ function PersonaAppInner() {
   const islandScene = step && step.kind === "card" ? (step.phase === "extra" ? "island-8" : typeof step.chapter === "number" ? `island-${step.chapter}` : lightScene) : lightScene;
   const backdrop = { interlude: islandScene, lock: "night" }[screen] || lightScene;
   const animatedBackdrop = motionOn && ["landing", "interlude", "lock", "result"].includes(screen);
-  // Every answered card as a shard, in the order it was served (the interlude mirror and the header rail).
+  // Every answered card as a shard in its chapter tint, in answer order: exactly the list the reveal builds its mirror
+  // from (views.mirrorFor), so the rail, the interlude mirror and the lock all grow the mirror the finale pays off.
   const shards = useMemo(() => {
-    if (!run || !run.lobby || !step || step.kind !== "card" || step.phase === "finale") return [];
-    return Run.routeFor(run).slice(0, step.resolved).map((c) => ({ chapter: typeof c.chapter === "number" ? c.chapter : "extras" }));
-  }, [run, step]);
+    if (!run || !run.lobby) return [];
+    try { return mirrorFor(run).filled.map((f) => ({ chapter: f.chapter })); } catch { return []; }
+  }, [run]);
   // The shard rail belongs in the header center (5.0). Package B's card screen draws it today; PersonaHeader takes it
   // through `rail`, and exposes #mm-header-center for a portal, so integration can move it without touching B.
   const rail = null;
@@ -387,10 +389,10 @@ function PersonaAppInner() {
             filled={shards} seed={run.runId} voice={Run.voiceFor(run)} />
         )}
         {screen === "card" && step && step.kind === "card" && (
-          <PersonaQuizView step={step} setup={run.setup} onAnswer={answer} onMap={() => setDialog("map")} busy={busy} error={error} cardKey={`${step.card.id}-${cardKey}`} rushing={Run.recentlyRushed(run)} voice={Run.voiceFor(run)} progress={progress} seed={run.runId} />
+          <PersonaQuizView step={step} setup={run.setup} onAnswer={answer} onMap={() => setDialog("map")} busy={busy} error={error} cardKey={`${step.card.id}-${cardKey}`} rushing={Run.recentlyRushed(run)} voice={Run.voiceFor(run)} progress={progress} seed={run.runId} shards={shards} />
         )}
         {screen === "lock" && run && (step.kind === "lock" || (step.kind === "card" && step.phase === "finale")) && (
-          <LockView locked={Boolean(run.frozen)} lockHash={run.lockHash} onLock={lock} onStart={() => setScreen("card")} onSave={goHome} busy={busy} error={error} progress={progress} seed={run.runId} />
+          <LockView locked={Boolean(run.frozen)} lockHash={run.lockHash} onLock={lock} onStart={() => setScreen("card")} onSave={goHome} busy={busy} error={error} progress={progress} seed={run.runId} shards={shards} />
         )}
         {screen === "result" && view && !view.error && (
           <PersonaResult view={view} friends={friends} onFriendAction={friendAction} storageOK={storageOK}

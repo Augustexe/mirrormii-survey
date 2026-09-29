@@ -27,7 +27,16 @@ export function interludeFor(step, voice = LOBBY_DEFAULTS.voice) {
  * shards (unfilled) and a small mirror showing every shard placed so far; one Start button.
  * filled: [{ chapter }] for every answered card in order; seed: the run id (the mirror's crack pattern).
  */
-export function PersonaInterlude({ chapter, count, onContinue, filled = [], seed = "mirrormii", voice = LOBBY_DEFAULTS.voice }) {
+// How many of the last shards belong to the chapter just finished (they land in the mirror as the title card opens).
+export function justFinished(filled = []) {
+  if (!filled.length) return 0;
+  const last = String(filled[filled.length - 1].chapter);
+  let n = 0;
+  for (let i = filled.length - 1; i >= 0 && String(filled[i].chapter) === last; i--) n++;
+  return n;
+}
+
+export function PersonaInterlude({ chapter, count, onContinue, filled = [], seed = "mirrormii", voice = LOBBY_DEFAULTS.voice, total = 40 }) {
   const heading = useRef(null);
   useEffect(() => { heading.current?.focus({ preventScroll: true }); window.scrollTo({ top: 0, behavior: "instant" }); }, [chapter.id, chapter.key]);
   const scene = chapter.scene ?? chapter.id;
@@ -54,18 +63,24 @@ export function PersonaInterlude({ chapter, count, onContinue, filled = [], seed
         </h1>
         {chapter.sub ? <p className="mm-interlude__sub mm-enter" style={{ "--step": 1 }}>{chapter.sub}</p> : null}
         <div className="mm-interlude__progress mm-enter" style={{ "--step": 2 }}>
-          {count > 0 ? (
-            <div className="mm-shards" role="img" aria-label={`${count} cards in this chapter`}>
-              {Array.from({ length: count }, (_, i) => (
-                <svg key={i} viewBox={shapes.SHARD_VIEWBOX} width="12" height="18" aria-hidden="true" focusable="false">
-                  <path d={shapes.shardFor(i + filled.length)} />
-                </svg>
-              ))}
-              <span className="mm-shards__count">{count} cards</span>
-            </div>
-          ) : <span className="mm-shards__count">{filled.length} answers in your mirror so far</span>}
           <div className="mm-interlude__mirror" role="img" aria-label={`${filled.length} ${filled.length === 1 ? "answer" : "answers"} in your mirror so far`}>
-            <MirrorArch seed={seed} filled={filled} fog={0} glow={0.5} size={46} />
+            <MirrorArch seed={seed} filled={filled} fresh={justFinished(filled)} fog={0} glow={0.6} seams="dark" size={60} />
+          </div>
+          <div className="mm-interlude__tally">
+            <p className="mm-interlude__count">
+              <strong>{`${filled.length} of ${total}`}</strong>
+              <span>{filled.length ? "shards in your mirror" : "shards. Each answer adds one."}</span>
+            </p>
+            {count > 0 ? (
+              <div className="mm-shards" role="img" aria-label={`${count} cards in this chapter`}>
+                {Array.from({ length: count }, (_, i) => (
+                  <svg key={i} viewBox={shapes.SHARD_VIEWBOX} width="12" height="18" aria-hidden="true" focusable="false">
+                    <path d={shapes.shardFor(i + filled.length)} />
+                  </svg>
+                ))}
+                <span className="mm-shards__count">{count} cards next</span>
+              </div>
+            ) : null}
           </div>
         </div>
         <div className="mm-interlude__actions mm-enter" style={{ "--step": 3 }}>

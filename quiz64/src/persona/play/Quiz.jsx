@@ -61,7 +61,7 @@ const tintOf = (step) => (step.phase === "finale" ? "var(--tint-finale-rim)" : s
  * voice: the lobby voice (fun, heart or cards). progress (chapterProgress) and seed (the run id) are optional; the
  * rail and reactions fall back gracefully without them.
  */
-export function PersonaQuizView({ step, setup, onAnswer, onMap, busy, error, cardKey, rushing = false, voice = LOBBY_DEFAULTS.voice, progress = null, seed = "genii" }) {
+export function PersonaQuizView({ step, setup, onAnswer, onMap, busy, error, cardKey, rushing = false, voice = LOBBY_DEFAULTS.voice, progress = null, seed = "genii", shards = null }) {
   const card = step.card;
   const reduced = useReducedMotion();
   const { reducedMotion } = useContext(MotionConfigContext);
@@ -70,7 +70,9 @@ export function PersonaQuizView({ step, setup, onAnswer, onMap, busy, error, car
   const line = geniiLineFor(step, voice, { rushing, seed });
   const hush = step.phase === "finale" || card.type === "feeling";
   const rail = useMemo(() => railGroups(step, progress), [step, progress]);
-  const filled = useMemo(() => filledShards(rail), [rail]);
+  // The run's shards in answer order (PersonaApp passes views.mirrorFor's list, the one the reveal lands); the rail's
+  // grouping is the fallback when a caller has none. The finale keeps the full mirror behind the fog.
+  const filled = useMemo(() => (Array.isArray(shards) ? shards : filledShards(rail)), [shards, rail]);
   const nicheRef = useRef(null);
   const enterFrom = card.type === "this_or_that" && step.round && step.round.index > 1 ? "side" : "below";
   const device = useMemo(() => { try { return card.world === "absurd" ? deviceFor(card) : null; } catch { return null; } }, [card]);
@@ -112,7 +114,11 @@ export function PersonaQuizView({ step, setup, onAnswer, onMap, busy, error, car
 
   return (
     <main className="play" data-phase={step.phase} data-type={card.type} data-voice={voice} data-enter={enterFrom}>
-      <ShardRail step={step} progress={progress} onOpen={onMap} />
+      <ShardRail step={step} progress={progress} onOpen={onMap} shards={filled} seed={seed} />
+      <div className="play-world" aria-hidden="true" data-chapter={String(chapterKey)} style={{ "--world-tint": tintOf(step) }}>
+        <span className="play-world__glow" />
+        <span className="play-world__island"><IslandScene chapter={chapterKey} variant="scene" size={300} /></span>
+      </div>
       <div className="play-grid">
         <aside className="play-niche" ref={nicheRef} aria-hidden="true">
           <div className="play-niche__island"><IslandScene chapter={chapterKey} variant="ambient" size={460} /></div>
@@ -127,7 +133,7 @@ export function PersonaQuizView({ step, setup, onAnswer, onMap, busy, error, car
         </aside>
         <section className="play-col">
           <div className={`play-genii${hush ? " is-hush" : ""}`}>
-            <GeniiLight mood={hush ? "hush" : "listening"} size="xs" voice={voice} />
+            <GeniiLight mood={hush ? "hush" : "listening"} size="s" voice={voice} />
             <p className="play-genii__line" aria-hidden="true" key={line || "none"}>{line || ""}</p>
           </div>
           <p className="pc-sr" aria-live="polite">{line || ""}</p>

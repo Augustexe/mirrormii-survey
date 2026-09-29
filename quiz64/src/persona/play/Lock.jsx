@@ -52,7 +52,7 @@ function CheatSheet({ open, onClose, lockHash }) {
  * frost and take a seal, then line up under the mirror. The locked state shows the panes, never a code; the full code
  * lives in the "How do I know Genii can't cheat?" sheet. The ritual is skippable by a tap and instant under reduced motion.
  */
-export function LockView({ locked, lockHash, onLock, onStart, onSave, busy, error, progress = null, seed = "genii" }) {
+export function LockView({ locked, lockHash, onLock, onStart, onSave, busy, error, progress = null, seed = "genii", shards = null }) {
   const heading = useRef(null);
   const reduced = useReducedMotion();
   const { reducedMotion } = useContext(MotionConfigContext);
@@ -76,7 +76,9 @@ export function LockView({ locked, lockHash, onLock, onStart, onSave, busy, erro
   useEffect(() => () => clearTimeout(timer.current), []);
   const skip = () => { if (ritual) { clearTimeout(timer.current); setRitual(false); } };
 
-  const shards = allShards(progress);
+  // The run's own shards (the same colors, cells and order the player watched fill the rail and the chapter mirrors,
+  // and the reveal lands); an even spread only when a caller has none.
+  const filled = Array.isArray(shards) && shards.length ? shards : allShards(progress);
   const state = ritual ? "ritual" : locked ? "locked" : "open";
 
   return (
@@ -85,7 +87,7 @@ export function LockView({ locked, lockHash, onLock, onStart, onSave, busy, erro
         <div className="lock__scene" aria-hidden="true">
           <span className="lock__horizon" />
           <div className="lock__mirror">
-            <MirrorArch seed={seed} filled={shards} fog={locked ? 0.35 : 0.05} glow={0.9} size={176} />
+            <MirrorArch seed={seed} filled={filled} fog={locked ? 0.35 : 0.05} glow={0.9} size={176} />
           </div>
           <span className="lock__light"><GeniiLight mood={ritual ? "thinking" : locked ? "sure" : "listening"} size="s" voice="cards" /></span>
           <div className="lock__panes">
@@ -107,14 +109,17 @@ export function LockView({ locked, lockHash, onLock, onStart, onSave, busy, erro
           {locked ? (
             <p className="lock__body">Locked before you play. They stay hidden until the end.</p>
           ) : (
-            <p className="lock__body">Before you see the last eight cards, Genii locks in one guess for each, using only the answers you already gave. Then you play them and see how many it called.</p>
+            <ol className="lock__steps">
+              <li>Genii guesses your last 8 cards from the answers you gave.</li>
+              <li>Then you play them and see what it called.</li>
+            </ol>
           )}
           {locked ? (
             <button type="button" className="lock__why" onClick={() => setSheet(true)}>How do I know Genii can't cheat?</button>
           ) : (
             <div className="lock__note">
               <Lock size={16} aria-hidden="true" />
-              <p><b>Your answers so far stay put.</b> After this, the chapter cards can't be changed. Genii can pass on a guess when a side of you is too close to call.</p>
+              <p><b>Your chapter answers lock after this.</b> Genii can pass when a side of you is too close to call.</p>
             </div>
           )}
           {error ? <p className="pc-error" role="alert">{error}</p> : null}

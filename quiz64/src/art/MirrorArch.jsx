@@ -14,7 +14,10 @@ const W = 100;
 const H = 160;
 const clamp01 = (n) => Math.max(0, Math.min(1, Number(n) || 0));
 
-export function MirrorArch({ seed, filled = [], fog = 0, glow = 0.6, mullion = false, size = 320, className }) {
+// fresh: how many of the last filled shards just landed; they carry data-fresh so a screen can play their arrival
+// (system.css animates them only when motion is on). seams: "dark" draws the cracks in deep violet with a white
+// highlight, so the mosaic reads on a pale page before any shard is filled.
+export function MirrorArch({ seed, filled = [], fog = 0, glow = 0.6, mullion = false, size = 320, className, fresh = 0, seams = "light" }) {
   const rid = safeId(useId(), "arch");
   const count = Math.max(filled.length, 40);
   const cells = useMemo(() => mosaic(seed ?? "mirror", count, { w: W, h: H }).cells, [seed, count]);
@@ -90,9 +93,11 @@ export function MirrorArch({ seed, filled = [], fog = 0, glow = 0.6, mullion = f
         <g data-part="cells">
           {cells.map((cell, i) => {
             const shard = filled[i];
-            return shard ? <path key={cell.index} data-index={cell.index} d={cell.path} fill={u(`c-${chapterKey(shard.chapter)}`)} fillOpacity="0.9" /> : null;
+            const isFresh = fresh > 0 && i >= filled.length - fresh;
+            return shard ? <path key={cell.index} data-index={cell.index} data-fresh={isFresh ? "true" : undefined} style={isFresh ? { "--fresh-i": i - (filled.length - fresh) } : undefined} d={cell.path} fill={u(`c-${chapterKey(shard.chapter)}`)} fillOpacity="0.9" /> : null;
           })}
         </g>
+        {seams === "dark" ? <path d={cracks} fill="none" stroke={v("c-violet-text")} strokeOpacity="0.45" strokeWidth="0.9" strokeLinejoin="round" /> : null}
         <path d={cracks} fill="none" stroke={white} strokeOpacity={filled.length ? 0.8 : 0.5} strokeWidth="0.4" strokeLinejoin="round" />
         <rect x="0" y="0" width={W} height={H} fill={u("sheen")} />
         <path data-part="sweep" d="M8,-4 L30,-4 L-4,170 L-26,170 Z" fill={u("sweep")} opacity="0.55" />
