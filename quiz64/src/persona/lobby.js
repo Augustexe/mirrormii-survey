@@ -90,10 +90,28 @@ export const LOBBY_COPY = Object.freeze({
   mapClosed: "Not in this run",
   mapFinale: "After your cards",
   landing: Object.freeze({
-    promise: "Your phone, your friends, your person, your money, your family. You pick the rooms, then Genii locks in eight guesses about you and you find out how many it got right.",
+    kicker: "A personality game. Genii is taking notes.",
+    // Proposed shortening (DESIGN-DIRECTION 5.1, D6), shipped for Jerry's morning read.
+    promise: "40 quick cards about your real life. Genii locks in 8 guesses. You get two archetypes that are weirdly you.",
     factTitle: "48 cards",
     factBody: "You pick the rooms. About 8 minutes.",
+    chips: Object.freeze(["40 cards, no typing", "8 guesses, locked", "Then: do your friends know you?"]),
+    howTitle: "How this works",
+    howSub: "Answers stay on this device. It's a game, not a test.",
+    resume: "Your answers are waiting in this browser",
   }),
+  // Lobby voice cards: the light each voice sets and a sample line in that voice. Samples for Make it fun and Heart
+  // to heart are existing host lines; the Just the cards line is proposed (DESIGN-DIRECTION 5.3, D6).
+  voiceCards: Object.freeze({
+    fun: Object.freeze({ light: "Day", sample: "First instinct. Genii can tell when you overthink." }),
+    heart: Object.freeze({ light: "Dusk", sample: "Take your time. The honest answer is the one that helps." }),
+    cards: Object.freeze({ light: "Clear", sample: "No commentary. Just you and the cards." }),
+  }),
+  depthCards: Object.freeze({
+    light: "Skips the most personal cards.",
+    anything: "Every card is fair game.",
+  }),
+  alwaysOpen: "Always in",
   // Host lines between cards, per voice. Just the cards shows none.
   host: Object.freeze({
     fun: FUN_HOST,
