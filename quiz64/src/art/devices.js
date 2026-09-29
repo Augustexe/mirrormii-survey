@@ -43,14 +43,12 @@ export const DEVICE_TABLE = {
   // Chapter 1, Your phone
   "life-billboard": "frame",
   "friendship-houseplants": "chapter",
-  "mystery-envelope-machine": "machine",
   "rogue-map-app": "machine",
   "unlockable-phone": "machine", // a stall phone that never dies
   "ghost-poet": "house",
   "ear-advisor": "envelope",
   "honest-mirror": "frame",
   // Chapter 2, Friends
-  "hibernating-friend": "time", // a long winter sleep
   "friendship repair shop": "shop",
   "magic 8-ball": "fortune",
   "summoning bell": "bell",
@@ -58,7 +56,6 @@ export const DEVICE_TABLE = {
   "haunted house": "house",
   sphinx: "riddle",
   "four-apologies": "scroll",
-  "grudge-stone": "chapter", // a carried stone has no family; the Friends vignette carries it
   // Chapter 3, Love and your person
   "memory-erase vending machine": "machine",
   "talking doorbell": "bell",
@@ -72,7 +69,6 @@ export const DEVICE_TABLE = {
   "pirate-chest": "treasure",
   "talking-cat": "trace",
   "pigeon-bill": "trace",
-  "time-traveler-concert": "time",
   "money-tree": "treasure",
   "stranger-castle": "treasure", // an inheritance turned hotel
   // Chapter 5, Work, school and ambition
@@ -83,11 +79,8 @@ export const DEVICE_TABLE = {
   "carrier-owl-offer": "envelope", // an offer letter
   "snail-racer": "shell",
   // Chapter 6, Family and home
-  "golden-goose": "treasure",
   "magic-portrait": "frame",
-  "cat-year": "trace",
   "life-board-game": "gift", // Genii's gift
-  "moon-launch-guests": "envelope", // the guest list, an invitation
   "lost-things-mailbox": "envelope",
   "pocket-parent": "house", // moving out, coming home
   // Chapter 7, Play, rules and you
@@ -102,24 +95,22 @@ export const DEVICE_TABLE = {
   // Extras
   "mood-link": "weather",
   "genii-wall-frame": "frame",
-  "self-building-house": "house",
-  "runaway-piggy-bank": "treasure", // a coin pot
   // Finale (sealed)
   "rain-cloud": "weather",
   "five-year-contract": "scroll",
-  "freeze-remote": "machine",
-  "portal-hamster-passport": "door",
-  "achievement-mountain": "mountain",
   // Round 2 card variety, second pass (G4b, landing while this table was updated; chapters as the bank sets them)
   "probably-better-app": "machine",
-  "dragon-cave": "treasure", // a dragon's hoard
   "memory-delete": "machine",
   "pumpkin-curse": "scroll",
-  "talking-swans": "trace", // a feather, never an animal face
-  "gold-star-door": "door",
-  "time-agency": "time",
   "anniversary-holiday": "chapter",
-  "floating-safety-net": "chapter",
+  // Card variety round 4 (G4b, 5c21b23)
+  "priced-words": "treasure", // every word costs coins
+  "goldfish-year": "water", // a bowl, a fin
+  "sky-ring": "gift", // a ring that arrives out of the sky
+  "training-wheels": "mountain", // the final, a climb to the flag
+  "hero-code": "scroll", // the superhero code, rule one
+  "moon-hotel": "dream", // a night on the Moon: cloud and crescent
+  "statue-posing": "frame", // posed like a statue, framed
 };
 
 // Keyword fallback for devices the table has not met yet (device string first, then the prompt), so a card the bank
