@@ -3,12 +3,12 @@
 // art (the mirror, the facet, the flip, the card) lives in ../reveal.
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight, Link2, Lock, Share, Sparkles, Users } from "lucide-react";
-import { AppTablet, ChapterGlyph, MirrorArch, Sigil } from "../../art/index.js";
-import { IntroScreen, NamesScreen, MirrorToApp } from "../reveal/MirrorReveal.jsx";
+import { ChapterGlyph, MirrorArch, Sigil } from "../../art/index.js";
+import { IntroScreen, NamesScreen, WorldPortal } from "../reveal/MirrorReveal.jsx";
 import { FacetScreen } from "../reveal/FacetScreen.jsx";
 import { InsightFlip } from "../reveal/InsightFlip.jsx";
 import { seeded } from "../reveal/layout.js";
-import { renderShareCard, FORMATS } from "../share-image.js";
+import { renderShareCard, FORMATS, SHARE_TRAITS } from "../share-image.js";
 import { UI_COPY } from "./story-data.js";
 
 function Kicker({ children }) {
@@ -108,7 +108,7 @@ export function MirrorCard({ card, active, format = "story", theme = "night" }) 
         ))}
         {card.tags.length > 0 && (
           <ul className="rv-card__tags">
-            {card.tags.map((t, i) => <li key={i}><b>{t.name}</b> <span>{t.heart}</span></li>)}
+            {card.tags.slice(0, SHARE_TRAITS).map((t, i) => <li key={i}><b>{t.name}</b> <span>{t.heart}</span></li>)}
           </ul>
         )}
         <p className="rv-card__invite">{card.invite}</p>
@@ -137,23 +137,25 @@ function ShareScreen({ s, active, onInvite, onShareImage, onCopy, copied, format
         <Seg label="Card shape" value={format} onChange={setFormat} options={[["story", UI_COPY.shareFormats.story], ["post", UI_COPY.shareFormats.post]]} />
         <Seg label="Card light" value={cardTheme} onChange={setCardTheme} options={[["night", "Night"], ["day", "Day"]]} />
       </div>
+      <div className="rv-actions rv-in">
+        <button type="button" className="rv-textbtn rv-pillbtn rv-pillbtn--strong" onClick={onShareImage} disabled={busy}><Share size={17} aria-hidden="true" /> {UI_COPY.shareImage}</button>
+        <button type="button" className="rv-textbtn rv-pillbtn" onClick={onCopy}><Link2 size={17} aria-hidden="true" /> {copied ? UI_COPY.copied : UI_COPY.copyLink}</button>
+      </div>
       <button type="button" className="rv-cta rv-cta--deep rv-in" onClick={onInvite}>{s.share.invite} <ArrowRight size={18} aria-hidden="true" /></button>
       <p className="rv-sub rv-in">{s.sub}</p>
-      <div className="rv-actions rv-in">
-        <button type="button" className="rv-textbtn" onClick={onShareImage} disabled={busy}><Share size={15} aria-hidden="true" /> {UI_COPY.shareImage}</button>
-        <button type="button" className="rv-textbtn" onClick={onCopy}><Link2 size={15} aria-hidden="true" /> {copied ? UI_COPY.copied : UI_COPY.copyLink}</button>
-      </div>
       {s.opposite && <p className="rv-opposite rv-in">{s.opposite}</p>}
     </div>
   );
 }
 
 // Story 9: the mirror becomes the app. One job: Get MirrorMii. The data actions wait behind "Your data".
-function App({ s, onFriends, onGuesses, hasGuesses, guessLabel, onData }) {
+function App({ s, stage, onFriends, onGuesses, hasGuesses, guessLabel, onData }) {
   const placeholder = s.link.startsWith("#");
+  // As large as the screen allows under the copy and the buttons (about 200 px wide on a 390 x 844 phone).
+  const art = Math.round(Math.max(150, Math.min(240, ((stage ? stage.h : 844) - 520) * 0.62, (stage ? stage.w : 390) * 0.56)));
   return (
     <div className="rv-body rv-body--app">
-      <MirrorToApp mirror={s.mirror}><AppTablet size={96} /></MirrorToApp>
+      <WorldPortal mirror={s.mirror} size={art} />
       <Kicker>{s.kicker}</Kicker>
       <h2 className="rv-title rv-in" data-focus tabIndex="-1">{s.title}</h2>
       <p className="rv-body-l rv-in">{s.body}</p>

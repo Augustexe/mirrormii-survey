@@ -62,8 +62,28 @@ test("the mirror card draws names, traits, the invite and the address, and nothi
         assert.doesNotMatch(all, BANNED);
         for (const s of stings) assert.ok(!all.includes(s), "no sting");
         for (const a of answers) assert.ok(!all.includes(a), `no quoted answer: ${a}`);
+        // At most two traits, so each reads at feed size; the rest stay on story 5.
+        const shown = view.share.tags.filter((t) => all.includes(t.name));
+        assert.ok(shown.length <= 2, `${voice} ${format} ${theme}: ${shown.length} traits on the card`);
+        if (view.share.tags.length >= 2) assert.equal(shown.length, 2);
+        for (const t of view.share.tags.slice(2)) assert.ok(!all.includes(t.name), `third trait stays off the card: ${t.name}`);
       }
     }
+  }
+});
+
+test("story 2 carries one sharp line under the names: a public trait line or the people read, never an answer", async () => {
+  for (const voice of ["fun", "heart"]) {
+    const { view, run, Session } = await finishedView(voice);
+    const names = view.slides.find((s) => s.id === "names");
+    const traits = view.slides.find((s) => s.id === "traits").tags;
+    const pub = traits.find((t) => !t.private);
+    assert.ok(names.hook, `${voice}: a hook line`);
+    assert.ok(names.hook === (traits[0] && !traits[0].private ? traits[0].line : names.people.read), `${voice}: hook comes from the strongest public trait or the people read`);
+    assert.ok(pub || names.hook === names.people.read);
+    const { result } = Session.resultFor(run);
+    const said = result.tags.flatMap((t) => (t.youToldGenii || []).map((q) => q.said)).filter(Boolean);
+    for (const a of said) assert.ok(!names.hook.includes(a), "no quoted answer");
   }
 });
 
@@ -89,13 +109,14 @@ test("marriage and kids traits never reach the card or a story image", async () 
     stings: [], calls: [],
   };
   const view = buildStories({ result, profile: {}, lib, voice: "fun" });
+  assert.equal(view.slides.find((s) => s.id === "names").hook, "PEOPLE-READ", "a kids trait never becomes the story 2 line");
   assert.ok(view.slides.find((s) => s.id === "traits").tags[0].private, "the owner still sees it, marked private");
   assert.deepEqual(view.share.tags.map((t) => t.name), ["Yes first"]);
   assert.equal(view.slides.find((s) => s.id === "share").opposite, "Your opposite: Straight Shooter and The Wanderer. Know one?");
   const card = recorder();
   drawShareCard(card, view.share, { format: "story" });
   assert.ok(!card.texts.join(" ").includes("kids"));
-  for (const id of ["read", "traits"]) {
+  for (const id of ["read", "traits", "names"]) {
     const ctx = recorder();
     drawStory(ctx, printFor(view.slides.find((s) => s.id === id)));
     const all = ctx.texts.join(" ");

@@ -254,6 +254,10 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
   const counts = profile.counts || {};
   const noTraits = tags.length ? null : C.noTraits[(counts.rushed || 0) * 2 >= (counts.answered || 0) && counts.answered ? "rushed" : "thin"];
 
+  // The one sharp line under the two names on story 2 (the screenshot moment): the strongest trait's line when it
+  // can be shown to anyone, the people half's read otherwise. A library line in the player's voice, never an answer.
+  const hook = (tags[0] && !tags[0].private && tags[0].line) || people.read || life.read || "";
+
   const opposite = oppositeOf(L, relH.code, lifeH.code);
   const share = {
     brand: C.share.brand,
@@ -268,7 +272,7 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
 
   const slides = [
     { id: "intro", kicker: C.intro.kicker, title: C.intro.title, sub: C.intro.sub, mirror },
-    { id: "names", kicker: C.names.kicker, sub: C.names.sub, people, life, mirror },
+    { id: "names", kicker: C.names.kicker, sub: C.names.sub, hook, people, life, mirror },
     { id: "read", kicker: C.read.kicker, lines: readLines, marks: readMarks },
     { id: "map", kicker: C.map.kicker, title: C.map.title, groups: mapGroups, caption: mapCaption, facet },
     { id: "traits", kicker: C.traits.kicker, title: C.traits.title, tags, empty: noTraits },
@@ -296,7 +300,7 @@ export function printFor(slide) {
   const base = { id: slide.id, look: slide.look || LOOKS[slide.id] || "night", kicker: slide.kicker };
   switch (slide.id) {
     case "intro": return { ...base, title: slide.title, lines: [], mirror: slide.mirror };
-    case "names": return { ...base, kicker: null, names: [slide.people, slide.life].map((h) => ({ label: h.label, name: h.name, code: h.code })), lines: [slide.sub], mirror: slide.mirror };
+    case "names": return { ...base, kicker: null, names: [slide.people, slide.life].map((h) => ({ label: h.label, name: h.name, code: h.code })), hook: slide.hook || null, lines: [slide.sub], mirror: slide.mirror };
     case "read": {
       const marks = slide.marks || [];
       const keep = slide.lines.map((line, i) => ({ line, mark: marks[i] || { kind: "none" } })).filter((x) => !(x.mark && x.mark.private));

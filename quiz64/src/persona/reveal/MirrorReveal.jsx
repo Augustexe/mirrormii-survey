@@ -4,8 +4,8 @@
 // your two names resolve in the two panes of the arch. Names and titles are in the DOM from the first frame.
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion as m } from "motion/react";
-import { MirrorArch, Sigil, Sparkle, geometry } from "../../art/index.js";
-import { tint } from "../../art/palette.js";
+import { AppTablet, IslandScene, MirrorArch, Sigil, Sparkle, geometry } from "../../art/index.js";
+import { tint, v } from "../../art/palette.js";
 import { GeniiLight, tokens } from "../../system/index.js";
 import { archBox, archClip, durationMs } from "./layout.js";
 
@@ -225,8 +225,10 @@ function Pane({ half, where, box, first, sparkle }) {
   const style = { left: box.glassLeft, top: where === "up" ? box.glassTop : box.mullionY, width: box.glassW, height: h };
   return (
     <span className={`rv-pane rv-pane--${where}`} style={style}>
-      <span className="rv-pane__label">{half.label}</span>
-      <span className="rv-pane__sigil" aria-hidden="true"><Sigil code={half.code} size={Math.round(Math.min(44, box.glassW * 0.15))} /></span>
+      <span className="rv-pane__label">
+        <span className="rv-pane__sigil" aria-hidden="true"><Sigil code={half.code} size={Math.round(Math.min(24, box.glassW * 0.085))} /></span>
+        {half.label}
+      </span>
       <m.span className="rv-pane__name" initial={first ? { opacity: 0, y: 8, scale: 0.96 } : false}
         animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ ...tokens.springs.settle, delay: first ? first : 0 }}>
         {half.name}
@@ -256,6 +258,10 @@ export function NamesScreen({ s, stage, active, reduced, wipe, onWiped, sparkles
   return (
     <div className="rv-names" data-wipe={wiping ? "on" : "off"}>
       <StandingMirror box={box} mirror={mirror} fog={0}>
+        {/* Two panes, two characters (people warm, life cool), and a soft scrim behind each block of lettering so the
+            names read while the glass stays glass around them. */}
+        <span className="rv-mirror__panes" style={{ clipPath: clip, "--t": `${box.glassTop}px`, "--m": `${box.mullionY}px`, "--b": `${box.bottom}px` }} />
+        <span className="rv-mirror__scrim" style={{ clipPath: clip, left: 0, top: 0, width: stage.w, height: stage.h, "--up": `${box.mullionY - box.glassH * 0.2}px`, "--down": `${box.mullionY + box.glassH * 0.25}px`, "--rx": `${box.glassW * 0.62}px`, "--ry": `${box.glassH * 0.2}px`, "--cx": `${box.cx}px` }} />
         <span className="rv-mirror__wipe" style={{ clipPath: clip }} />
         <span className="rv-mirror__pass" style={{ clipPath: clip }} />
         <span className="rv-names__reflection" style={{ transformOrigin: `0 ${box.bottom}px`, WebkitMaskImage: `linear-gradient(to bottom, transparent ${box.bottom - 150}px, black ${box.bottom}px, transparent ${box.bottom}px)`, maskImage: `linear-gradient(to bottom, transparent ${box.bottom - 150}px, black ${box.bottom}px, transparent ${box.bottom}px)` }}>
@@ -273,20 +279,72 @@ export function NamesScreen({ s, stage, active, reduced, wipe, onWiped, sparkles
         <span className="sr-only">. </span>
         <Pane half={s.life} where="down" box={box} first={active && wipe ? settle + 0.12 : 0} sparkle={sparkles && active && wipe} />
       </h2>
-      <p className="rv-names__sub rv-in" style={{ top: box.bottom + 34 }}>{s.sub}</p>
+      <div className="rv-names__under" style={{ top: box.bottom + 30 }}>
+        {s.hook ? <p className="rv-names__hook rv-in">{s.hook}</p> : null}
+        <p className="rv-names__sub rv-in">{s.sub}</p>
+      </div>
     </div>
   );
 }
 
-// ---------------------------------------------------------------- story 9 art: the mirror becomes the app
+// ---------------------------------------------------------------- story 9 art: the mirror opens onto the world
 
-export function MirrorToApp({ mirror, children }) {
+// The player's own mirror, its glass opened in the middle onto a glimpse of Genii's island world (a dusk sky, the
+// mirror island in front and two far islands from the chapters they played most), with a few of their shards
+// drifting out toward a glass phone: the reflection that lives in the app. Drawn from src/art pieces only.
+const OPEN = 14; // the ring of shards left around the opening, in arch units (glass is 100 x 160)
+
+function topChapters(filled) {
+  const count = new Map();
+  for (const f of filled) { const k = String(f.chapter); if (k !== "extras") count.set(k, (count.get(k) || 0) + 1); }
+  const order = [...count.entries()].sort((a, b) => b[1] - a[1]).map(([k]) => Number(k) || k);
+  const pick = order.filter((c) => c !== 3).slice(0, 2);
+  while (pick.length < 2) pick.push(pick.length ? 1 : 6);
+  return pick;
+}
+
+export function WorldPortal({ mirror, size = 200 }) {
   const mm = mirrorOf({ mirror });
+  const cells = useCells(mm);
+  const u = size / 112; // MirrorArch pads the 100 x 160 glass by 6 on every side
+  const svgH = 172 * u;
+  const ow = (100 - OPEN * 2) * u;
+  const oh = (160 - OPEN - 8) * u;
+  const ox = (6 + OPEN) * u;
+  const oy = (6 + OPEN) * u;
+  const r = ow / 2;
+  const f = (n) => Math.round(n * 10) / 10;
+  const opening = `path("M${f(ox)},${f(oy + oh)} L${f(ox)},${f(oy + r)} A${f(r)},${f(r)} 0 0 1 ${f(ox + ow)},${f(oy + r)} L${f(ox + ow)},${f(oy + oh)} Z")`;
+  const [far1, far2] = topChapters(mm.filled);
+  // Six of the player's shards, in the order they answered, drifting out of the glass.
+  const drift = [[-0.12, 0.3, -18], [1.1, 0.2, 16], [-0.2, 0.58, 24], [1.16, 0.44, -12], [-0.06, 0.86, -30], [0.94, 0.06, 20]];
+  const loose = drift.map((d, i) => ({ d, cell: cells[i * 5 % cells.length], chapter: (mm.filled[i * 5] || mm.filled[i] || {}).chapter ?? 1 }));
+  const W = size * 1.5;
   return (
-    <div className="rv-toapp" aria-hidden="true">
-      <span className="rv-toapp__mirror"><MirrorArch seed={mm.seed} filled={mm.filled} mullion glow={0.6} size={112} /></span>
-      <span className="rv-toapp__tablet">{children}</span>
-      <span className="rv-toapp__genii" />
+    <div className="rv-world" style={{ width: W, height: svgH, "--rv-world-u": `${u}px` }} aria-hidden="true">
+      <span className="rv-world__halo" />
+      <span className="rv-world__arch" style={{ left: (W - size) / 2 }}>
+        <MirrorArch seed={mm.seed} filled={mm.filled} mullion={false} glow={0.9} size={size} />
+        <span className="rv-world__open" style={{ clipPath: opening }}>
+          <span className="rv-world__sky" />
+          <span className="rv-world__sun" style={{ left: ox + ow * 0.5, top: oy + r * 0.62 }} />
+          <span className="rv-world__far" style={{ left: ox - ow * 0.1, top: oy + oh * 0.22 }}><IslandScene chapter={far1} size={ow * 0.62} /></span>
+          <span className="rv-world__far rv-world__far--2" style={{ left: ox + ow * 0.52, top: oy + oh * 0.3 }}><IslandScene chapter={far2} size={ow * 0.56} /></span>
+          <span className="rv-world__near" style={{ left: ox - ow * 0.16, top: oy + oh * 0.42 }}><IslandScene chapter="finale" size={ow * 1.32} /></span>
+          <span className="rv-world__mist" />
+        </span>
+        <svg className="rv-world__rim" width={size} height={svgH} viewBox={`0 0 ${size} ${svgH}`}>
+          <path d={`M${f(ox)},${f(oy + oh)} L${f(ox)},${f(oy + r)} A${f(r)},${f(r)} 0 0 1 ${f(ox + ow)},${f(oy + r)} L${f(ox + ow)},${f(oy + oh)}`} fill="none" />
+        </svg>
+      </span>
+      <svg className="rv-world__shards" width={W} height={svgH} viewBox={`0 0 ${W} ${svgH}`} overflow="visible">
+        {loose.map(({ d, cell, chapter }, i) => cell ? (
+          <path key={i} d={cell.path} fill={tint(chapter)} stroke={v("c-on-deep")} strokeOpacity="0.8" strokeWidth="0.6"
+            transform={`translate(${f((W - size) / 2 + d[0] * size)} ${f(d[1] * svgH)}) rotate(${d[2]}) scale(${f(u * 0.42)}) translate(${-cell.centroid[0]} ${-cell.centroid[1]})`}
+            style={{ "--i": i }} />
+        ) : null)}
+      </svg>
+      <span className="rv-world__tablet" style={{ left: (W + size) / 2 - size * 0.16, top: svgH - size * 0.62 }}><AppTablet size={size * 0.28} /></span>
     </div>
   );
 }

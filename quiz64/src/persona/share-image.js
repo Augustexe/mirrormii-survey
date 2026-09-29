@@ -51,12 +51,24 @@ function wrap(ctx, value, width) {
   return lines;
 }
 
+// Narrow the measure while the line count holds, so a two-line block never ends on one orphaned word.
+function balanced(ctx, value, width, first) {
+  if (first.length < 2) return first;
+  let best = first;
+  for (let wd = width * 0.95; wd > width * 0.4; wd *= 0.95) {
+    const next = wrap(ctx, value, wd);
+    if (next.length !== first.length) break;
+    best = next;
+  }
+  return best;
+}
+
 // Fit text into at most `maxLines` lines at the largest size between max and min. Returns { size, lines }.
-function fit(ctx, value, { face, weight, italic, max, min, width, maxLines }) {
+function fit(ctx, value, { face, weight, italic, max, min, width, maxLines, balance = true }) {
   for (let size = max; size >= min; size -= 2) {
     font(ctx, face, weight, size, italic);
     const lines = wrap(ctx, value, width);
-    if (lines.length <= maxLines && lines.every((l) => ctx.measureText(l).width <= width)) return { size, lines };
+    if (lines.length <= maxLines && lines.every((l) => ctx.measureText(l).width <= width)) return { size, lines: balance ? balanced(ctx, value, width, lines) : lines };
   }
   font(ctx, face, weight, min, italic);
   return { size: min, lines: wrap(ctx, value, width).slice(0, maxLines) };
@@ -157,88 +169,6 @@ function mosaicOf(mirror) {
   return { filled, cells: geometry.mosaic(seed, Math.max(40, filled.length), { w: 100, h: 160 }).cells };
 }
 
-// The arch at (x, y) with glass width w: silver rim, seeded crack mosaic in chapter tints, mullion, specular sweep.
-export function drawArch(ctx, { x, y, w, mirror, p, fog = 0, strength = 0.26 }) {
-  const s = w / 100;
-  const h = 160 * s;
-  const arch = path(geometry.archPath(100, 160));
-  const { filled, cells } = mosaicOf(mirror);
-  // Glow behind the mirror.
-  glow(ctx, x + w / 2, y + h * 0.42, w * 1.05, p.dark ? N.violet : C.violet300, p.dark ? 0.32 : 0.4);
-  ctx.save();
-  ctx.translate(x, y);
-  ctx.scale(s, s);
-  if (arch) ctx.clip(arch);
-  const base = ctx.createLinearGradient(0, 0, 0, 160);
-  base.addColorStop(0, p.dark ? N.n700 : tokens.color.surfaceSolid);
-  base.addColorStop(1, p.dark ? N.n900 : C.violet100);
-  ctx.fillStyle = base;
-  ctx.fillRect(0, 0, 100, 160);
-  const brand = ctx.createLinearGradient(0, 0, 100, 160);
-  brand.addColorStop(0, rgba(tokens.gradients.brand[0], 0.24));
-  brand.addColorStop(1, rgba(tokens.gradients.brand[1], 0.18));
-  ctx.fillStyle = brand;
-  ctx.fillRect(0, 0, 100, 160);
-  for (let i = 0; i < cells.length; i++) {
-    const cell = cells[i];
-    const shard = filled[i];
-    const d = path(cell.path);
-    if (!d) continue;
-    if (shard) {
-      ctx.globalAlpha = (shard.skipped ? 0.5 : 1) * strength;
-      ctx.fillStyle = tintOf(shard.chapter);
-      ctx.fill(d);
-    }
-    ctx.globalAlpha = p.dark ? 0.32 : 0.7;
-    ctx.strokeStyle = tokens.color.surfaceSolid;
-    ctx.lineWidth = 0.35;
-    ctx.stroke(d);
-  }
-  ctx.globalAlpha = 1;
-  // Genii's light resting behind the glass, and the specular sweep.
-  const inner = ctx.createRadialGradient(50, 22, 0, 50, 22, 70);
-  inner.addColorStop(0, rgba(N.ink2, p.dark ? 0.28 : 0.5));
-  inner.addColorStop(1, rgba(N.ink2, 0));
-  ctx.fillStyle = inner;
-  ctx.fillRect(0, 0, 100, 160);
-  ctx.rotate((-20 * Math.PI) / 180);
-  const sweep = ctx.createLinearGradient(-20, 0, 40, 0);
-  sweep.addColorStop(0, rgba(tokens.color.surfaceSolid, 0));
-  sweep.addColorStop(0.5, rgba(tokens.color.surfaceSolid, p.dark ? 0.1 : 0.35));
-  sweep.addColorStop(1, rgba(tokens.color.surfaceSolid, 0));
-  ctx.fillStyle = sweep;
-  ctx.fillRect(-20, -40, 60, 260);
-  ctx.setTransform(1, 0, 0, 1, 0, 0);
-  if (fog > 0) {
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.scale(s, s);
-    if (arch) ctx.clip(arch);
-    ctx.fillStyle = rgba(p.dark ? N.ink2 : tokens.color.surfaceSolid, 0.62 * fog);
-    ctx.fillRect(0, 0, 100, 160);
-    ctx.restore();
-  }
-  ctx.restore();
-  // Silver rim and mullion.
-  ctx.save();
-  ctx.translate(x, y);
-  ctx.scale(s, s);
-  const rim = ctx.createLinearGradient(0, 0, 100, 160);
-  rim.addColorStop(0, tokens.color.surfaceSolid);
-  rim.addColorStop(0.5, rgba(N.ink2, 0.9));
-  rim.addColorStop(1, rgba(tokens.color.surfaceSolid, 0.8));
-  ctx.strokeStyle = rim;
-  ctx.lineWidth = 1.4;
-  if (arch) ctx.stroke(arch);
-  ctx.lineWidth = 0.9;
-  ctx.beginPath();
-  ctx.moveTo(0, 80);
-  ctx.lineTo(100, 80);
-  ctx.stroke();
-  ctx.restore();
-  return { h, s };
-}
-
 export function drawSigil(ctx, code, x, y, size, color) {
   const k = size / geometry.SIGIL_GRID;
   ctx.save();
@@ -257,37 +187,6 @@ export function drawSigil(ctx, code, x, y, size, color) {
   }
   ctx.setLineDash([]);
   ctx.restore();
-}
-
-// The two names in the two panes of the arch. `scale` sets the type size relative to a 600 px glass.
-function drawPanes(ctx, { x, y, w, h, names, p }) {
-  const k = w / 600;
-  const pad = 44 * k;
-  const nameMax = 84 * k;
-  const nameMin = 56 * k;
-  const sig = 80 * k;
-  const ink = p.dark ? N.ink : C.ink;
-  const soft = p.dark ? N.ink2 : C.ink2;
-  const [people, life] = names;
-  // Upper pane: label, sigil, name, set on the lower part of the pane so the dome stays open.
-  const upName = fit(ctx, people.name, { face: "display", weight: 600, max: nameMax, min: nameMin, width: w - pad * 2, maxLines: 2 });
-  const upBlock = 26 * k + 24 * k + sig + 20 * k + upName.lines.length * upName.size * 1.02;
-  let yy = y + h / 2 - 40 * k - upBlock;
-  tracked(ctx, people.label, x + w / 2, yy + 26 * k, { size: 24 * k, color: soft, align: "center", track: 0.14 });
-  yy += 26 * k + 24 * k;
-  drawSigil(ctx, people.code, x + w / 2 - sig / 2, yy, sig, ink);
-  yy += sig + 20 * k;
-  font(ctx, "display", 600, upName.size);
-  lines(ctx, upName.lines, x + w / 2, yy + upName.size * 0.82, { lh: upName.size * 1.02, align: "center", color: ink });
-  // Lower pane.
-  yy = y + h / 2 + 48 * k;
-  tracked(ctx, life.label, x + w / 2, yy + 26 * k, { size: 24 * k, color: soft, align: "center", track: 0.14 });
-  yy += 26 * k + 24 * k;
-  drawSigil(ctx, life.code, x + w / 2 - sig / 2, yy, sig, ink);
-  yy += sig + 20 * k;
-  const lowName = fit(ctx, life.name, { face: "display", weight: 600, max: nameMax, min: nameMin, width: w - pad * 2, maxLines: 2 });
-  font(ctx, "display", 600, lowName.size);
-  lines(ctx, lowName.lines, x + w / 2, yy + lowName.size * 0.82, { lh: lowName.size * 1.02, align: "center", color: ink });
 }
 
 export function drawFacet(ctx, axes, cx, cy, size, p, { labels = false } = {}) {
@@ -408,57 +307,294 @@ function drawWordmark(ctx, img, cx, y, width, p) {
   } catch { /* the wordmark is decoration */ }
 }
 
+// ---------------------------------------------------------------- the hero mirror (share card, stories 1 and 2)
+
+// The completed mirror at full strength, the way it stands on story 2: silver frame, every shard in its chapter tint,
+// the two panes lit differently (people warm, life cool), and a soft scrim inside the glass behind each block of
+// lettering so the names read at feed size while the glass stays glass around them (VISUAL-JUDGE top fixes 1 and 2).
+const SILVER = ["#EEF0FA", "#C9CCE0"];
+const PANE_HUE = { people: { night: "#8A4FB8", day: "#F2A7C3", rim: "#F2A7C3" }, life: { night: "#3D6FC4", day: "#8FB8F2", rim: "#8FB8F2" } };
+
+function cellBox(cell) {
+  const xs = cell.points.map((q) => q[0]);
+  const ys = cell.points.map((q) => q[1]);
+  return [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)];
+}
+
+// Where the lettering sits in each pane, so the scrims can be drawn under it before the text goes on top. Each block
+// is a label pill (the half's sigil and "With your people" / "With your life") over the name.
+function paneLayout(ctx, { x, y, w, h, names }) {
+  const k = w / 600;
+  const [people, life] = names;
+  const fitName = (name) => fit(ctx, name || "", { face: "display", weight: 600, max: 124 * k, min: 72 * k, width: w - 96 * k, maxLines: 2 });
+  const pill = 66 * k;
+  const gap = 30 * k;
+  const block = (name) => pill + gap + name.lines.length * name.size * 1.0;
+  const up = fitName(people && people.name);
+  const low = fitName(life && life.name);
+  const upH = block(up);
+  const lowH = block(low);
+  // Upper pane: the block ends just above the mullion, so the dome stays open glass; lower pane: centered.
+  const upTop = y + h * 0.5 - 44 * k - upH;
+  const lowTop = y + h * 0.75 - lowH / 2 - 4 * k;
+  return {
+    k, pill, gap,
+    panes: [
+      { half: people, which: "people", name: up, top: upTop, height: upH },
+      { half: life, which: "life", name: low, top: lowTop, height: lowH },
+    ],
+  };
+}
+
+export function drawHeroMirror(ctx, { x, y, w, mirror, p, layout = null, fog = 0 }) {
+  const s = w / 100;
+  const h = 160 * s;
+  const arch = path(geometry.archPath(100, 160));
+  const frame = path(geometry.archPath(110, 165));
+  const { filled, cells } = mosaicOf(mirror);
+  const night = p.dark;
+  // Light behind the mirror.
+  glow(ctx, x + w / 2, y + h * 0.42, w * 1.1, night ? N.violet : C.violet300, night ? 0.42 : 0.5);
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(s, s);
+  // Silver frame, with a soft shadow under it.
+  ctx.save();
+  ctx.shadowColor = rgba(N.n900, night ? 0.7 : 0.25);
+  ctx.shadowBlur = 40 / s;
+  ctx.shadowOffsetY = 18 / s;
+  const fr = ctx.createLinearGradient(-5, 0, 105, 40);
+  fr.addColorStop(0, SILVER[1]);
+  fr.addColorStop(0.2, tokens.color.surfaceSolid);
+  fr.addColorStop(0.45, SILVER[0]);
+  fr.addColorStop(0.65, SILVER[1]);
+  fr.addColorStop(0.85, tokens.color.surfaceSolid);
+  fr.addColorStop(1, SILVER[1]);
+  ctx.fillStyle = fr;
+  if (frame) { ctx.translate(-5, -5); ctx.fill(frame); ctx.translate(5, 5); }
+  ctx.restore();
+  // The glass.
+  ctx.save();
+  if (arch) ctx.clip(arch);
+  const base = ctx.createLinearGradient(0, 0, 0, 160);
+  base.addColorStop(0, night ? N.n600 : C.violet100);
+  base.addColorStop(1, night ? N.n900 : tokens.color.surfaceSolid);
+  ctx.fillStyle = base;
+  ctx.fillRect(0, 0, 100, 160);
+  for (let i = 0; i < cells.length; i++) {
+    const cell = cells[i];
+    const shard = filled[i];
+    const d = path(cell.path);
+    if (!d) continue;
+    if (shard && cell.points) {
+      const [x0, y0, x1, y1] = cellBox(cell);
+      const t = tokens.chapterTint[shard.chapter] || tokens.chapterTint[Number(shard.chapter)] || tokens.chapterTint.extras;
+      const g = ctx.createLinearGradient(x0, y0, x0 + (x1 - x0) * 0.8, y1);
+      g.addColorStop(0, rgba(tokens.color.surfaceSolid, night ? 0.55 : 0.85));
+      g.addColorStop(0.45, t.tint);
+      g.addColorStop(1, rgba(t.deep, night ? 0.9 : 0.6));
+      ctx.globalAlpha = (shard.skipped ? 0.45 : 1) * (night ? 0.94 : 0.9);
+      ctx.fillStyle = g;
+      ctx.fill(d);
+    }
+  }
+  ctx.globalAlpha = 1;
+  // Two panes, two characters: people warm above the mullion, life cool below.
+  for (const [which, top] of [["people", 0], ["life", 80]]) {
+    const hue = PANE_HUE[which][night ? "night" : "day"];
+    const pg = ctx.createLinearGradient(0, top, 0, top + 80);
+    pg.addColorStop(0, rgba(hue, night ? 0.26 : 0.2));
+    pg.addColorStop(1, rgba(hue, night ? 0.42 : 0.3));
+    ctx.fillStyle = pg;
+    ctx.fillRect(0, top, 100, 80);
+  }
+  // Crack lines.
+  ctx.strokeStyle = rgba(tokens.color.surfaceSolid, night ? 0.55 : 0.85);
+  ctx.lineWidth = 0.45;
+  ctx.lineJoin = "round";
+  for (const cell of cells) { const d = path(cell.path); if (d) ctx.stroke(d); }
+  // Scrims: a soft dark (Night) or light (Day) zone behind each block of lettering.
+  if (layout) {
+    for (const pane of layout.panes) {
+      const cy = (pane.top + pane.height / 2 - y) / s;
+      const ry = (pane.height / 2) / s + 14;
+      ctx.save();
+      ctx.translate(50, cy);
+      ctx.scale(1, ry / 58);
+      const sg = ctx.createRadialGradient(0, 0, 0, 0, 0, 58);
+      const ink = night ? N.n900 : tokens.color.surfaceSolid;
+      sg.addColorStop(0, rgba(ink, night ? 0.86 : 0.9));
+      sg.addColorStop(0.6, rgba(ink, night ? 0.7 : 0.74));
+      sg.addColorStop(1, rgba(ink, 0));
+      ctx.fillStyle = sg;
+      ctx.fillRect(-60, -60, 120, 120);
+      ctx.restore();
+    }
+  }
+  // Genii's light resting at the top of the dome, and one specular sweep.
+  const inner = ctx.createRadialGradient(50, 18, 0, 50, 18, 34);
+  inner.addColorStop(0, rgba(tokens.color.surfaceSolid, night ? 0.5 : 0.7));
+  inner.addColorStop(1, rgba(tokens.color.surfaceSolid, 0));
+  ctx.fillStyle = inner;
+  ctx.fillRect(0, 0, 100, 160);
+  ctx.save();
+  ctx.rotate((-20 * Math.PI) / 180);
+  const sweep = ctx.createLinearGradient(-30, 0, 10, 0);
+  sweep.addColorStop(0, rgba(tokens.color.surfaceSolid, 0));
+  sweep.addColorStop(0.5, rgba(tokens.color.surfaceSolid, night ? 0.14 : 0.3));
+  sweep.addColorStop(1, rgba(tokens.color.surfaceSolid, 0));
+  ctx.fillStyle = sweep;
+  ctx.fillRect(-30, -40, 40, 260);
+  ctx.restore();
+  if (fog > 0) {
+    ctx.fillStyle = rgba(night ? N.ink2 : tokens.color.surfaceSolid, 0.7 * fog);
+    ctx.fillRect(0, 0, 100, 160);
+  }
+  ctx.restore();
+  // Inner rim, mullion with its jewel, plinth and finial.
+  ctx.strokeStyle = rgba(tokens.color.surfaceSolid, 0.95);
+  ctx.lineWidth = 0.9;
+  if (arch) ctx.stroke(arch);
+  ctx.fillStyle = fr;
+  ctx.fillRect(0, 78.4, 100, 3.2);
+  ctx.strokeStyle = SILVER[1];
+  ctx.lineWidth = 0.3;
+  ctx.strokeRect(0, 78.4, 100, 3.2);
+  ctx.beginPath(); ctx.arc(50, 80, 3.6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  ctx.fillStyle = fr;
+  roundRect(ctx, -8, 158.5, 116, 7, 2.5);
+  ctx.fill();
+  ctx.stroke();
+  ctx.beginPath(); ctx.arc(50, -5, 4.4, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  ctx.restore();
+  return { h, s };
+}
+
+// The lettering on the panes: a label pill edged in that pane's hue, carrying the half's sigil and its label, then the
+// name at the largest size that fits two lines.
+function drawPaneText(ctx, { x, w, layout, p }) {
+  const { k, pill, gap } = layout;
+  const ink = p.dark ? N.ink : C.ink;
+  const cx = x + w / 2;
+  for (const pane of layout.panes) {
+    if (!pane.half) continue;
+    let yy = pane.top;
+    const size = 27 * k;
+    const track = size * 0.16;
+    const label = String(pane.half.label || "").toUpperCase();
+    font(ctx, "text", 700, size);
+    const spaced = "letterSpacing" in ctx;
+    if (spaced) ctx.letterSpacing = `${track.toFixed(1)}px`;
+    const tw = ctx.measureText(label).width - (spaced ? track : 0);
+    if (spaced) ctx.letterSpacing = "0px";
+    const sig = 46 * k;
+    const padL = 18 * k;
+    const padR = 30 * k;
+    const inner = 12 * k;
+    const pw = padL + sig + inner + tw + padR;
+    const px = cx - pw / 2;
+    roundRect(ctx, px, yy, pw, pill, pill / 2);
+    ctx.fillStyle = p.dark ? rgba(N.n900, 0.78) : rgba(tokens.color.surfaceSolid, 0.92);
+    ctx.fill();
+    ctx.strokeStyle = PANE_HUE[pane.which].rim;
+    ctx.lineWidth = Math.max(2, 3 * k);
+    ctx.stroke();
+    drawSigil(ctx, pane.half.code, px + padL, yy + (pill - sig) / 2, sig, ink);
+    tracked(ctx, label, px + padL + sig + inner, yy + pill / 2 + size * 0.36, { size, color: ink, align: "left", track: 0.16 });
+    yy += pill + gap;
+    font(ctx, "display", 600, pane.name.size);
+    ctx.save();
+    if (p.dark) { ctx.shadowColor = rgba(N.n900, 0.9); ctx.shadowBlur = 24 * k; }
+    lines(ctx, pane.name.lines, cx, yy + pane.name.size * 0.8, { lh: pane.name.size * 1.0, align: "center", color: ink });
+    ctx.restore();
+  }
+}
+
+// The whole mirror with both names: layout, glass, lettering. Returns the glass height.
+export function drawNamedMirror(ctx, { x, y, w, names, mirror, p, fog = 0 }) {
+  const h = w * 1.6;
+  const layout = names && names.length ? paneLayout(ctx, { x, y, w, h, names }) : null;
+  drawHeroMirror(ctx, { x, y, w, mirror, p, layout, fog });
+  if (layout) drawPaneText(ctx, { x, w, layout, p });
+  return h;
+}
+
+// One trait for the card, centered: a chapter dot and the name, the heart line under it.
+function drawTrait(ctx, { cx, y, w, item, p, nameSize, lineSize }) {
+  const nm = fit(ctx, item.name, { face: "display", weight: 600, max: nameSize, min: nameSize * 0.72, width: w - nameSize, maxLines: 1 });
+  font(ctx, "display", 600, nm.size);
+  const text = nm.lines[0] || "";
+  const tw = ctx.measureText(text).width;
+  const r = nm.size * 0.2;
+  const gap = nm.size * 0.36;
+  const left = cx - (tw + r * 2 + gap) / 2;
+  ctx.beginPath();
+  ctx.arc(left + r, y + nm.size * 0.5, r, 0, Math.PI * 2);
+  ctx.fillStyle = tintOf(item.chapter);
+  ctx.fill();
+  ctx.strokeStyle = rgba(tokens.color.surfaceSolid, 0.9);
+  ctx.lineWidth = 3;
+  ctx.stroke();
+  lines(ctx, [text], left + r * 2 + gap, y + nm.size * 0.8, { lh: 0, color: p.ink });
+  let end = y + nm.size * 1.1;
+  if (item.line) {
+    const ln = fit(ctx, item.line, { face: "display", weight: 420, italic: true, max: lineSize, min: lineSize * 0.8, width: w, maxLines: 2 });
+    font(ctx, "display", 420, ln.size, true);
+    end = lines(ctx, ln.lines, cx, end + ln.size * 0.95, { lh: ln.size * 1.25, align: "center", color: p.ink2 }) - ln.size * 0.3;
+  }
+  return end;
+}
+
+function traitHeight(ctx, item, { w, nameSize, lineSize }) {
+  let hgt = nameSize * 1.1;
+  if (item.line) {
+    const ln = fit(ctx, item.line, { face: "display", weight: 420, italic: true, max: lineSize, min: lineSize * 0.8, width: w, maxLines: 2 });
+    hgt += ln.size * 0.65 + ln.lines.length * ln.size * 1.25 - ln.size * 0.3;
+  }
+  return hgt;
+}
+
 // ---------------------------------------------------------------- the mirror card
 
 // The share card in either format and theme. `card` is the share projection (story-data.js buildStories().share).
+// The completed mirror with both names is the hero; at most two traits go under it (the rest stay on story 5).
+export const SHARE_TRAITS = 2;
 export function drawShareCard(ctx, card, { format = "story", theme = "night", lightTheme = "day", wordmarkImage = null } = {}) {
   const { w: W, h: H } = FORMATS[format] || FORMATS.story;
   const p = paletteFor(theme === "day" ? "light" : "night", lightTheme);
   ctx.textBaseline = "alphabetic";
   background(ctx, W, H, p);
   const names = card.names || [];
-  const items = (card.tags || []).filter((t) => t && t.name);
+  const items = (card.tags || []).filter((t) => t && t.name).slice(0, SHARE_TRAITS);
+  const trait = (it) => ({ name: it.name, line: it.heartShort || it.heart, chapter: it.chapter });
   if (format === "post") {
-    const ax = 80;
-    const ay = 150;
-    const aw = 440;
-    const { h } = drawArch(ctx, { x: ax, y: ay, w: aw, mirror: card.mirror, p });
-    drawPanes(ctx, { x: ax, y: ay, w: aw, h, names, p });
-    drawWordmark(ctx, wordmarkImage, 790, 150, 200, p);
-    let y = 250;
-    for (const it of items.slice(0, 4)) {
-      y = drawCharm(ctx, { x: 590, y, w: 410, item: { name: it.name, line: it.heartShort || it.heart, chapter: it.chapter }, p, nameSize: 34, lineSize: 24, maxLines: 2 }) + 22;
-    }
-    drawFacet(ctx, card.facet, 795, Math.max(y + 130, 780), 220, p);
-    font(ctx, "display", 420, 52, true);
-    lines(ctx, [card.invite || ""], W / 2, 1195, { lh: 0, align: "center", color: p.accent });
-    font(ctx, "text", 600, 26);
-    lines(ctx, [card.url || ""], W / 2, 1270, { lh: 0, align: "center", color: p.ink3 });
+    drawWordmark(ctx, wordmarkImage, W / 2, 22, 170, p);
+    const aw = items.length ? 560 : 620;
+    const ay = 122;
+    const h = drawNamedMirror(ctx, { x: (W - aw) / 2, y: ay, w: aw, names, mirror: card.mirror, p });
+    const ty = ay + h + 54;
+    if (items.length === 1) drawTrait(ctx, { cx: W / 2, y: ty, w: 820, item: trait(items[0]), p, nameSize: 46, lineSize: 30 });
+    else items.forEach((it, i) => drawTrait(ctx, { cx: i ? 790 : 290, y: ty, w: 440, item: trait(it), p, nameSize: 42, lineSize: 27 }));
+    font(ctx, "display", 420, 46, true);
+    lines(ctx, [card.invite || ""], W / 2, H - 76, { lh: 0, align: "center", color: p.accent });
+    font(ctx, "text", 600, 24);
+    lines(ctx, [card.url || ""], W / 2, H - 30, { lh: 0, align: "center", color: p.ink3 });
     return;
   }
-  drawWordmark(ctx, wordmarkImage, W / 2, 118, 220, p);
-  const rows = items.slice(0, 5);
-  const many = rows.length > 3;
-  // Five charms and the invite must fit above the footer: with more than three, the arch steps down (integration QA
-  // 2026-09-29 found the fifth charm drawn over the URL and the invite pushed off the 1920 px card).
-  const aw = many ? 470 : 600;
-  const ax = (W - aw) / 2;
-  const ay = 210;
-  const { h } = drawArch(ctx, { x: ax, y: ay, w: aw, mirror: card.mirror, p });
-  drawPanes(ctx, { x: ax, y: ay, w: aw, h, names, p });
-  // The facet as the jewel on the arch's plinth.
-  drawFacet(ctx, card.facet, W / 2, ay + h + 20, many ? 170 : 210, p);
-  let y = ay + h + (many ? 120 : 150);
-  const gap = many ? 12 : 26;
-  const FLOOR = 1660;
-  for (const it of rows) {
-    if (y > FLOOR - 70) break;
-    y = drawCharm(ctx, { x: 150, y, w: W - 300, item: { name: it.name, line: it.heartShort || it.heart, chapter: it.chapter }, p, nameSize: many ? 36 : 42, lineSize: 26, maxLines: many ? 1 : 2 }) + gap;
-  }
-  font(ctx, "display", 420, 52, true);
-  lines(ctx, [card.invite || ""], W / 2, Math.min(Math.max(y + 70, 1740), 1770), { lh: 0, align: "center", color: p.accent });
-  font(ctx, "text", 600, 26);
-  lines(ctx, [card.url || ""], W / 2, 1850, { lh: 0, align: "center", color: p.ink3 });
+  drawWordmark(ctx, wordmarkImage, W / 2, 62, 220, p);
+  // The mirror takes whatever the traits leave: measure the traits first, then size the arch to fit above them.
+  const TRAIT = { w: 880, nameSize: 58, lineSize: 36 };
+  const traitsH = items.reduce((sum, it) => sum + traitHeight(ctx, trait(it), TRAIT) + 30, 0);
+  const ay = 196;
+  const INVITE = 1800;
+  const aw = Math.round(Math.min(800, (INVITE - 90 - traitsH - 70 - ay) / 1.66));
+  const h = drawNamedMirror(ctx, { x: (W - aw) / 2, y: ay, w: aw, names, mirror: card.mirror, p });
+  let y = ay + h + 70;
+  for (const it of items) y = drawTrait(ctx, { cx: W / 2, y, item: trait(it), p, ...TRAIT }) + 30;
+  font(ctx, "display", 420, 54, true);
+  lines(ctx, [card.invite || ""], W / 2, INVITE, { lh: 0, align: "center", color: p.accent });
+  font(ctx, "text", 600, 28);
+  lines(ctx, [card.url || ""], W / 2, 1872, { lh: 0, align: "center", color: p.ink3 });
 }
 
 // ---------------------------------------------------------------- story-screen images
@@ -471,12 +607,12 @@ function drawStoryBody(ctx, spec, p, W, H) {
   switch (spec.id) {
     case "intro":
     case "names": {
-      const aw = 640;
-      const { h } = drawArch(ctx, { x: (W - aw) / 2, y: 230, w: aw, mirror: spec.mirror, p, fog: spec.id === "intro" ? 1 : 0 });
-      if (spec.names) drawPanes(ctx, { x: (W - aw) / 2, y: 230, w: aw, h, names: spec.names, p });
-      y = 230 + h + 110;
+      const aw = spec.hook ? 740 : 760;
+      const h = drawNamedMirror(ctx, { x: (W - aw) / 2, y: 250, w: aw, names: spec.names || [], mirror: spec.mirror, p, fog: spec.id === "intro" ? 1 : 0 });
+      y = 250 + h + 100;
       if (spec.title) y = block(ctx, spec.title, W / 2, y, { face: "display", weight: 600, max: 80, min: 56, width, maxLines: 2, color: p.ink, align: "center", lh: 1.08 });
-      for (const l of spec.lines || []) block(ctx, l, W / 2, y, { face: "display", weight: 420, italic: true, max: 44, min: 34, width, maxLines: 2, color: p.ink2, align: "center" });
+      if (spec.hook) y = block(ctx, spec.hook, W / 2, y, { face: "display", weight: 560, max: 50, min: 40, width, maxLines: 3, color: p.ink, align: "center", lh: 1.24 }) + 40;
+      for (const l of spec.lines || []) block(ctx, l, W / 2, y, { face: "display", weight: 420, italic: true, max: 40, min: 32, width, maxLines: 2, color: p.ink2, align: "center" });
       return;
     }
     case "read": {
