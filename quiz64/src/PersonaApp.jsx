@@ -2,12 +2,11 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { MotionConfig } from "motion/react";
 import { AmbientWorld } from "./components/AmbientWorld.jsx";
 import * as Run from "./persona/session.js";
-import { KIT, CHAPTERS } from "./persona/kit.js";
 import * as Friend from "./persona/friend.js";
 import { readHash, linkFor, LinkError } from "./persona/links.js";
 import { loadRun, restoreRun, loadFriendPlays, saveFriendPlay, deleteAllGeniiData, MOTION_KEY } from "./persona/store.js";
 import { resultView } from "./persona/views.js";
-import { PersonaHeader, PersonaLanding, SetupView, BlockedView, PersonaInterlude, interludeFor, PersonaQuizView, LockView } from "./persona/PersonaScreens.jsx";
+import { PersonaHeader, PersonaLanding, SetupView, LobbyView, BlockedView, PersonaInterlude, interludeFor, PersonaQuizView, LockView } from "./persona/PersonaScreens.jsx";
 import { PersonaResult } from "./persona/PersonaResult.jsx";
 import { FriendGame } from "./persona/FriendGame.jsx";
 import { FriendResultsView } from "./persona/FriendResultsView.jsx";
@@ -45,6 +44,7 @@ function download(text, filename) {
 function screenFor(run) {
   const step = Run.currentStep(run);
   if (step.kind === "setup") return "setup";
+  if (step.kind === "lobby") return "lobby";
   if (step.kind === "lock") return "lock";
   if (step.kind === "result") return "result";
   if (step.phase === "finale" && step.index === 1) return "lock";
@@ -224,6 +224,15 @@ function PersonaAppInner() {
       setScreen(screenFor(next));
     } catch (e) { setError(e.message); }
   };
+  const chooseLobby = (lobby) => {
+    if (!run) return setScreen("setup");
+    try {
+      const next = persist(Run.chooseLobby(run, lobby, { now: nowISO() }));
+      if (!next) return;
+      setError("");
+      setScreen(screenFor(next));
+    } catch (e) { setError(e.message); }
+  };
   const under13 = () => {
     setPendingReturn(null);
     if (run && !run.setup) persist(null);
@@ -327,17 +336,10 @@ function PersonaAppInner() {
   };
   const progress = useMemo(() => {
     if (!run || !run.setup) return {};
-    const route = Run.routeFor(run);
-    const out = {};
-    for (const ch of CHAPTERS) {
-      const cards = route.filter((c) => c.chapter === ch.id);
-      out[ch.id] = { total: cards.length, done: cards.filter((c) => Object.prototype.hasOwnProperty.call(run.answers, c.id)).length };
-    }
-    if (run.frozen) out[8] = { total: KIT.finale.length, done: Object.keys(run.finale).length };
-    return out;
+    return Run.chapterProgress(run);
   }, [run]);
 
-  const scene = { landing: "landing", interlude: "intro", card: "quiz", setup: "quiz", lock: "gateway", result: "complete", friend: "quiz", friendResult: "complete" }[screen] || "landing";
+  const scene = { landing: "landing", interlude: "intro", card: "quiz", setup: "quiz", lobby: "quiz", lock: "gateway", result: "complete", friend: "quiz", friendResult: "complete" }[screen] || "landing";
   const hasRun = Boolean(run && run.setup);
 
   return (
@@ -362,12 +364,13 @@ function PersonaAppInner() {
 
         {screen === "landing" && <PersonaLanding progress={!run || !run.setup ? null : step.kind === "result" ? "result" : "run"} onBegin={begin} onHow={() => setDialog("how")} />}
         {screen === "setup" && <SetupView busy={busy} onBack={goHome} onUnder13={under13} onDone={startWithSetup} />}
+        {screen === "lobby" && run && run.setup && !run.lobby && <LobbyView busy={busy} error={error} onBack={goHome} onDone={chooseLobby} />}
         {screen === "blocked" && <BlockedView onHome={goHome} />}
         {screen === "interlude" && step && step.kind === "card" && (
-          <PersonaInterlude chapter={interludeFor(step)} count={step.phase === "chapter" ? step.size : 0} onContinue={() => setScreen("card")} onSave={goHome} />
+          <PersonaInterlude chapter={interludeFor(step, Run.deliveryFor(run))} count={step.phase === "chapter" ? step.size : 0} onContinue={() => setScreen("card")} onSave={goHome} />
         )}
         {screen === "card" && step && step.kind === "card" && (
-          <PersonaQuizView step={step} setup={run.setup} onAnswer={answer} onMap={() => setDialog("map")} busy={busy} error={error} cardKey={`${step.card.id}-${cardKey}`} rushing={Run.recentlyRushed(run)} />
+          <PersonaQuizView step={step} setup={run.setup} onAnswer={answer} onMap={() => setDialog("map")} busy={busy} error={error} cardKey={`${step.card.id}-${cardKey}`} rushing={Run.recentlyRushed(run)} delivery={Run.deliveryFor(run)} />
         )}
         {screen === "lock" && run && (step.kind === "lock" || (step.kind === "card" && step.phase === "finale")) && (
           <LockView locked={Boolean(run.frozen)} lockHash={run.lockHash} onLock={lock} onStart={() => setScreen("card")} onSave={goHome} busy={busy} error={error} />

@@ -1,15 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import {
-  ArrowRight, BookOpen, Briefcase, Gamepad2, Heart, House, Lock, Menu, Moon, Smartphone, Sparkles, Sun, Users, Wallet,
+  ArrowRight, BookOpen, Briefcase, Check, Gamepad2, Heart, House, Lock, Menu, Moon, Smartphone, Sparkles, Sun, Users, Wallet,
 } from "lucide-react";
 import { asset } from "../assets.js";
 import { GeniiStage } from "../components/GeniiStage.jsx";
 import { ConversationProgress } from "../components/ConversationProgress.jsx";
 import { ChapterObject } from "../components/ChapterObject.jsx";
 import { PersonaCard } from "./PersonaCard.jsx";
-import { CHAPTERS, FINALE_TITLE, EXTRAS_TITLE } from "./kit.js";
-import { AGE_OPTIONS, CLOSEST_OPTIONS, PRONOUN_OPTIONS } from "./session.js";
+import { CHAPTERS, FINALE_TITLE } from "./kit.js";
+import { AGE_OPTIONS, CLOSEST_OPTIONS, PRONOUN_OPTIONS, RUN_SIZE } from "./session.js";
+import { LOBBY_COPY, LOBBY_DEFAULTS, hostLine, chapterIntro } from "./lobby.js";
 
 export const CHAPTER_ICONS = [Smartphone, Users, Heart, Wallet, Briefcase, House, Gamepad2, Sparkles];
 const RIBBON = [...CHAPTERS.map((c) => ({ id: c.id, title: c.title })), { id: 8, title: "Finale" }];
@@ -46,8 +47,7 @@ export function PersonaLanding({ progress, onBegin, onHow }) {
           <span className="eyebrow">A personality game. Genii is taking notes.</span>
           <h1>Let’s get<br /><em>oddly specific.</em></h1>
           <p className="hero-promise">
-            Your phone, your friends, your person, your money, your family. Seven quick chapters of real-life moments,
-            then Genii locks in eight guesses about you and you find out how many it got right.
+            {LOBBY_COPY.landing.promise}
           </p>
           <div className="hero-actions">
             <button type="button" className="button button--primary button--large" onClick={onBegin}>
@@ -67,7 +67,7 @@ export function PersonaLanding({ progress, onBegin, onHow }) {
           <strong>Tap what you'd actually do.</strong>
           <small>No typing. No right answers. The cool answer doesn't exist.</small>
         </div>
-        <div className="journey-fact"><b>7 chapters</b><span>About 60 cards, 10 to 12 minutes.</span></div>
+        <div className="journey-fact"><b>{LOBBY_COPY.landing.factTitle}</b><span>{LOBBY_COPY.landing.factBody}</span></div>
         <div className="journey-fact"><b>8 guesses</b><span>Genii locks them in before the finale.</span></div>
         <div className="journey-fact"><b>Skip anytime</b><span>“Not my life” is always an answer.</span></div>
         <div className="journey-fact"><b>Friends</b><span>Then see who really knows you.</span></div>
@@ -128,8 +128,63 @@ export function SetupView({ onDone, onBack, onUnder13, busy }) {
           </div>
         </article>
         <aside className="quiz-guide">
-          <GeniiStage mood="curious" compact bubble="Three taps, then the fun part." />
+          <GeniiStage mood="curious" compact bubble={LOBBY_COPY.setupGuide} />
           <div className="guide-copy"><span className="eyebrow">Stays on this device</span><p>No account. No names needed.</p><small>You can delete everything from the More menu.</small></div>
+        </aside>
+      </div>
+    </motion.main>
+  );
+}
+
+// The lobby: four unscored taps after setup. Rooms is a multi-select that starts with every room open.
+export function LobbyView({ onDone, onBack, busy, error = "" }) {
+  const steps = LOBBY_COPY.steps;
+  const [step, setStep] = useState(0);
+  const [values, setValues] = useState({ rooms: [...LOBBY_DEFAULTS.rooms] });
+  const heading = useRef(null);
+  useEffect(() => { heading.current?.focus({ preventScroll: true }); }, [step]);
+  const s = steps[step];
+  const next = (vals) => {
+    setValues(vals);
+    if (step < steps.length - 1) setStep(step + 1);
+    else onDone({ ending: vals.ending, depth: vals.depth, rooms: vals.rooms, delivery: vals.delivery });
+  };
+  const toggleRoom = (id) => setValues((v) => ({ ...v, rooms: v.rooms.includes(id) ? v.rooms.filter((r) => r !== id) : [...v.rooms, id] }));
+  return (
+    <motion.main className="quiz-page page-enter persona-setup persona-lobby" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.22 }}>
+      <div className="quiz-topline">
+        <div><span className="eyebrow">{LOBBY_COPY.eyebrow}</span><strong>{LOBBY_COPY.counter(step + 1, steps.length)}</strong></div>
+      </div>
+      <ConversationProgress value={step} total={steps.length} />
+      <div className="quiz-layout">
+        <article className="question-card persona-card" data-chapter="1" data-role="context">
+          <div className="question-head"><div>
+            <span className="eyebrow question-frame"><Sparkles size={15} aria-hidden="true" /> {LOBBY_COPY.eyebrow}</span>
+            <h1 ref={heading} tabIndex="-1">{s.title}</h1>
+            <p className="question-setup">{s.note}</p>
+          </div></div>
+          <div className="answer-list persona-answers" role="group" aria-label={s.title}>
+            {s.options.map((o, i) => {
+              const on = s.multi ? values.rooms.includes(o.id) : values[s.key] === o.id;
+              return (
+                <button type="button" key={o.id} className={`answer-option persona-option ${on ? "answer-option--selected" : ""}`} disabled={busy}
+                  aria-pressed={s.multi ? on : undefined}
+                  onClick={() => (s.multi ? toggleRoom(o.id) : next({ ...values, [s.key]: o.id }))}>
+                  <span className="answer-token">{s.multi ? (on ? <Check size={15} aria-hidden="true" /> : String.fromCharCode(65 + i)) : String.fromCharCode(65 + i)}</span>
+                  <span className="answer-copy">{o.text}{s.multi && <small className="lobby-room-state"> {on ? s.open : s.closed}</small>}</span>
+                </button>
+              );
+            })}
+          </div>
+          {error && <p className="save-error" role="alert">{error}</p>}
+          <div className="question-actions">
+            <button type="button" className="button button--quiet" onClick={() => (step ? setStep(step - 1) : onBack())}>{LOBBY_COPY.back}</button>
+            {s.multi && <button type="button" className="button button--primary" disabled={busy} onClick={() => next(values)}>{LOBBY_COPY.continue} <ArrowRight size={17} /></button>}
+          </div>
+        </article>
+        <aside className="quiz-guide">
+          <GeniiStage mood="curious" compact bubble={LOBBY_COPY.guide} />
+          <div className="guide-copy"><span className="eyebrow">{LOBBY_COPY.eyebrow}</span><p>{LOBBY_COPY.guideNote}</p></div>
         </aside>
       </div>
     </motion.main>
@@ -180,10 +235,11 @@ export function PersonaInterlude({ chapter, count, onContinue, onSave }) {
   );
 }
 
-export function interludeFor(step) {
-  if (step.phase === "extra") return { id: 7, key: "extra", kicker: "Almost there", title: EXTRAS_TITLE, intro: "One side of you is still a mystery. Two more cards and Genii can call it.", sub: "A quick bonus round, then Genii makes its guesses." };
+export function interludeFor(step, delivery = LOBBY_DEFAULTS.delivery) {
+  const X = LOBBY_COPY.extras;
+  if (step.phase === "extra") return { id: 7, key: "extra", kicker: X.kicker, title: X.title, intro: chapterIntro(delivery, X.intro), sub: X.sub };
   const ch = CHAPTERS.find((c) => c.id === step.chapter);
-  return { id: ch.id, key: `chapter-${ch.id}`, kicker: `Chapter ${ch.id} of ${CHAPTERS.length}`, title: ch.title, intro: ch.intro, sub: "Tap what you'd actually do. Skip anything that isn't yours." };
+  return { id: ch.id, key: `chapter-${ch.id}`, kicker: LOBBY_COPY.chapterKicker(step.ordinal || ch.id, step.chapters || CHAPTERS.length), title: ch.title, intro: chapterIntro(delivery, ch.intro), sub: "Tap what you'd actually do. Skip anything that isn't yours." };
 }
 
 function PersonaRibbon({ current, onOpen }) {
@@ -202,19 +258,12 @@ function PersonaRibbon({ current, onOpen }) {
   );
 }
 
-const GUIDE = {
-  chapter: ["Pick the move you'd actually make. Perfect answers are suspicious.", "No cool answer here. Just yours.", "Not your life? Say so. That's an answer too.", "First instinct. Genii can tell when you overthink."],
-  extra: ["Two more and I can call it."],
-  finale: ["My guess is already locked. No peeking."],
-};
-
-export function PersonaQuizView({ step, setup, onAnswer, onMap, busy, error, cardKey, rushing = false }) {
+export function PersonaQuizView({ step, setup, onAnswer, onMap, busy, error, cardKey, rushing = false, delivery = LOBBY_DEFAULTS.delivery }) {
   const current = step.phase === "finale" ? 8 : step.phase === "extra" ? 7 : step.chapter;
-  const chapterTitle = step.phase === "finale" ? FINALE_TITLE : step.phase === "extra" ? EXTRAS_TITLE : CHAPTERS.find((c) => c.id === step.chapter).title;
-  const lines = GUIDE[step.phase] || GUIDE.chapter;
-  const bubble = rushing && step.phase !== "finale" ? "Speedrun detected. Genii counts super-fast taps a little less." : lines[(step.index - 1) % lines.length];
+  const chapterTitle = step.phase === "finale" ? FINALE_TITLE : step.phase === "extra" ? LOBBY_COPY.extras.title : CHAPTERS.find((c) => c.id === step.chapter).title;
+  const bubble = hostLine(delivery, { phase: step.phase, index: step.index, rushing });
   const card = step.card;
-  const label = step.phase === "finale" ? `Final card ${step.index} of ${step.size}` : step.phase === "extra" ? "Bonus card" : `Card ${step.index} of ${step.size}`;
+  const label = step.phase === "finale" ? `Final card ${step.index} of ${step.size}` : LOBBY_COPY.runLabel(step.resolved + 1, step.total || RUN_SIZE);
   return (
     <motion.main className="quiz-page page-enter" initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.22 }}>
       <PersonaRibbon current={current} onOpen={onMap} />
@@ -256,7 +305,7 @@ export function LockView({ locked, lockHash, onLock, onStart, onSave, busy, erro
         <span className="gateway-seal" aria-hidden="true">08</span>
       </div>
       <div className="gateway-copy">
-        <span className="eyebrow">{locked ? "Guesses locked" : "Seven chapters done"}</span>
+        <span className="eyebrow">{locked ? "Guesses locked" : LOBBY_COPY.lockEyebrow}</span>
         <h1 ref={heading} tabIndex="-1">{locked ? <>Genii has made<br /><em>its guesses.</em></> : <>Eight cards.<br /><em>Eight guesses.</em></>}</h1>
         <p>
           {locked

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Reading Stories</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,800;1,9..144,500&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --ink: #1c1240; --violet: #7b5cfa; --lav: #efe9ff; --pink: #ffd3ea; --sting: #ff7aa2; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { font-family: Manrope, system-ui, sans-serif; background: #e9e4f7; display: grid; place-items: center; }
+  .phone { position: relative; width: min(100vw, 420px); height: min(100vh, 860px); overflow: hidden; border-radius: 28px; box-shadow: 0 30px 80px rgba(40,20,100,.3); background: #000; user-select: none; }
+  @media (max-width: 480px) { .phone { border-radius: 0; box-shadow: none; } }
+  .bars { position: absolute; top: 12px; left: 12px; right: 12px; display: flex; gap: 4px; z-index: 5; }
+  .bars i { flex: 1; height: 3px; border-radius: 3px; background: rgba(255,255,255,.35); overflow: hidden; }
+  .bars i b { display: block; height: 100%; width: 0; background: #fff; }
+  .bars i.done b { width: 100%; }
+  .bars i.now b { width: 100%; transition: width .4s; }
+  .top { position: absolute; top: 24px; left: 16px; right: 16px; display: flex; justify-content: space-between; align-items: center; z-index: 5; color: #fff; font-size: 13px; font-weight: 700; }
+  .top .g { display: flex; gap: 8px; align-items: center; }
+  .top .g i { width: 26px; height: 26px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #fff, #b9a4ff 55%, #7b5cfa); display: inline-block; }
+  .slide { position: absolute; inset: 0; padding: 78px 26px 96px; display: none; flex-direction: column; justify-content: center; color: #fff; }
+  .slide.on { display: flex; }
+  .slide.on .in { animation: rise .6s both; }
+  .slide.on .in:nth-child(2) { animation-delay: .25s; } .slide.on .in:nth-child(3) { animation-delay: .5s; }
+  .slide.on .in:nth-child(4) { animation-delay: .75s; } .slide.on .in:nth-child(5) { animation-delay: 1s; }
+  .slide.on .in:nth-child(6) { animation-delay: 1.25s; } .slide.on .in:nth-child(7) { animation-delay: 1.5s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+  .k { font-size: 12px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; opacity: .8; margin-bottom: 10px; }
+  .h { font-family: Fraunces, serif; font-weight: 800; font-size: 42px; line-height: 1.02; margin: 0 0 14px; }
+  .h.xl { font-size: 54px; }
+  .p { font-size: 18px; line-height: 1.45; opacity: .95; }
+  .serif { font-family: Fraunces, serif; font-style: italic; font-weight: 500; }
+  .bubble { align-self: flex-start; max-width: 88%; background: #fff; color: var(--ink); border-radius: 20px 20px 20px 6px; padding: 11px 15px; margin: 6px 0; font-size: 16px; font-weight: 600; }
+  .bubble small { display: block; font-size: 11px; font-weight: 700; color: #7c6fa8; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 2px; }
+  .spec { margin: 14px 0 4px; }
+  .spec .ends { display: flex; justify-content: space-between; font-size: 13px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+  .spec .ends span { opacity: .55; } .spec .ends span.me { opacity: 1; }
+  .spec .track { position: relative; height: 8px; border-radius: 8px; background: rgba(255,255,255,.25); margin: 6px 0; }
+  .spec .dot { position: absolute; top: 50%; width: 22px; height: 22px; border-radius: 50%; background: #fff; transform: translate(-50%,-50%); box-shadow: 0 0 0 6px rgba(255,255,255,.25); }
+  .spec .line { font-size: 14px; opacity: .9; }
+  .grid8 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 16px 0; }
+  .g8 { aspect-ratio: 3/4; border-radius: 12px; background: rgba(255,255,255,.14); display: grid; place-items: center; font-size: 26px; font-weight: 800; }
+  .g8.hit { background: #fff; color: var(--violet); }
+  .bet { background: rgba(255,255,255,.14); border-radius: 18px; padding: 14px; margin: 8px 0; }
+  .bet .t { font-family: Fraunces, serif; font-size: 18px; margin-bottom: 10px; }
+  .bet .row { display: flex; gap: 8px; position: relative; z-index: 6; }
+  .pill { flex: 1; border: 1px solid rgba(255,255,255,.6); background: transparent; color: #fff; border-radius: 999px; padding: 8px; font: 700 14px Manrope; cursor: pointer; }
+  .pill.sel { background: #fff; color: var(--ink); }
+  .share { background: linear-gradient(160deg, #fff, #efe9ff); color: var(--ink); border-radius: 24px; padding: 22px; box-shadow: 0 20px 40px rgba(0,0,0,.25); }
+  .share .n { font-family: Fraunces, serif; font-weight: 800; font-size: 30px; line-height: 1.05; margin: 4px 0 12px; }
+  .share .tag { font-size: 14px; margin: 6px 0; } .share .tag b { color: var(--violet); }
+  .cta { position: relative; z-index: 6; display: block; width: 100%; border: 0; border-radius: 999px; padding: 16px; font: 800 17px Manrope; background: #fff; color: var(--ink); margin-top: 14px; cursor: pointer; }
+  .cta.ghost { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.7); }
+  .only { display: inline-block; font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; background: rgba(0,0,0,.3); border-radius: 999px; padding: 4px 10px; margin-bottom: 12px; }
+  .hint { position: absolute; bottom: 26px; left: 0; right: 0; text-align: center; color: rgba(255,255,255,.75); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; z-index: 4; }
+  .zone { position: absolute; top: 60px; bottom: 0; width: 38%; z-index: 3; cursor: pointer; }
+  .zone.l { left: 0; } .zone.r { right: 0; width: 62%; }
+  .orb { width: 120px; height: 120px; border-radius: 50%; margin: 0 auto 26px; background: radial-gradient(circle at 35% 30%, #fff, #cbb9ff 40%, #7b5cfa 75%); box-shadow: 0 0 80px rgba(203,185,255,.8); animation: float 4s ease-in-out infinite; }
+  @keyframes float { 50% { transform: translateY(-10px); } }
+</style>
+</head>
+<body>
+<div class="phone" id="phone">
+  <div class="bars" id="bars"></div>
+  <div class="top"><span class="g"><i></i>Genii</span><span id="count"></span></div>
+  <div id="slides"></div>
+  <div class="zone l" id="prev"></div><div class="zone r" id="next"></div>
+  <div class="hint" id="hint">Tap to continue</div>
+</div>
+<script src="data.js"></script>
+<script>
+const D = window.DEMO;
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const gradeWord = { did: "What you did", would: "What you'd do", believe: "What you believe" };
+const BG = ["linear-gradient(170deg,#2a1b6b,#7b5cfa)", "linear-gradient(170deg,#7b5cfa,#ff9ccf)", "linear-gradient(170deg,#ff9ccf,#ffb56b)", "linear-gradient(170deg,#3c7bff,#8b6cff)", "linear-gradient(170deg,#1c1240,#5b3fc4)", "linear-gradient(170deg,#0f9f8f,#7b5cfa)"];
+const spec = (a) => { const pct = ((a.pos * (a.pole === a.right ? 1 : -1)) + 1) / 2 * 100;
+  return `<div class="spec in"><div class="ends"><span class="${a.pole === a.left ? "me" : ""}">${a.left}</span><span class="${a.pole === a.right ? "me" : ""}">${a.right}</span></div><div class="track"><div class="dot" style="left:${pct}%"></div></div><div class="line">${esc(a.line)}</div></div>`; };
+const G = D.guesses;
+const S = [
+  { bg: BG[0], html: `<div class="orb in"></div><div class="h in" style="text-align:center">${D.answered} moments.<br>7 chapters.</div><div class="p in serif" style="text-align:center;font-size:22px">Genii was paying attention.</div>` },
+  { bg: BG[1], html: `<div class="k in">You are</div><div class="h xl in">${esc(D.name)}</div><div class="p in">${esc(D.halves[0].desc)}</div>` },
+  ...D.halves.map((h, i) => ({ bg: BG[3 + i], html: `<div class="k in">${esc(h.side)}</div><div class="h in">${esc(h.word)}</div>${h.axes.map(spec).join("")}<div class="p serif in" style="margin-top:14px">"${esc(D.hearts[i])}"</div>` })),
+  ...D.tags.slice(0, 3).map((t, i) => ({ bg: BG[[1, 2, 5][i]], html: `<div class="k in">Your tag · ${t.strength}</div><div class="h in">${esc(t.name)}</div><div class="k in" style="margin-top:4px">You told Genii</div>${t.told.map((x) => `<div class="bubble in"><small>${gradeWord[x.grade]}</small>"${esc(x.said)}"</div>`).join("")}<div class="p serif in" style="margin-top:12px">${esc(t.heart)}</div>` })),
+  { bg: "linear-gradient(170deg,#12092c,#3a1f5c)", html: `<div><span class="only in">Only you see this</span></div><div class="h in">The part that stings</div>${D.stings.concat(D.tags[0].sting).map((s) => `<div class="p in" style="border-left:3px solid var(--sting);padding-left:12px;margin:10px 0">${esc(s)}</div>`).join("")}` },
+  { bg: BG[4], html: `<div><span class="only in">Only you see this</span></div><div class="h in">Plot twist</div><div class="k in">You'd say</div><div class="bubble in">"${esc(D.twist.say)}"</div><div class="k in" style="margin-top:14px">Put on the spot, you went with</div><div class="bubble in">${esc(D.twist.did)}</div>` },
+  { bg: BG[0], html: `<div class="k in">Before your last 8 answers, Genii wrote down its guesses</div><div class="h xl in">${G.exact} of ${G.of}</div><div class="p in">called exactly. Chance alone gets about 2.</div><div class="grid8 in">${G.rows.map((r) => `<div class="g8 ${r.hit ? "hit" : ""}">${r.hit ? "✓" : "?"}</div>`).join("")}</div><div class="p in" style="font-size:15px">The one it missed: <b>${esc(G.rows.find((r) => !r.hit).topic)}</b>. You're harder to read about your person than about your plans.</div>` },
+  { bg: BG[2], html: `<div class="k in">Genii's bets</div><div class="h in">True or not?</div>${D.calls.map((c, i) => `<div class="bet in"><div class="t">${esc(c)}</div><div class="row"><button class="pill" data-b="${i}">So true</button><button class="pill" data-b="${i}">Nope</button></div></div>`).join("")}` },
+  { bg: BG[1], html: `<div class="k in">Your card</div><div class="share in"><div class="k" style="color:#7c6fa8">Genii says I'm</div><div class="n">${esc(D.name)}</div>${D.tags.slice(0, 3).map((t) => `<div class="tag"><b>${esc(t.name)}.</b> ${esc(t.heart)}</div>`).join("")}</div><button class="cta in">${esc(D.invite)}</button><div class="p in" style="font-size:14px;text-align:center;margin-top:8px">Send it. See who actually knows you.</div>` },
+  { bg: "linear-gradient(170deg,#7b5cfa,#2a1b6b)", html: `<div class="orb in" style="width:90px;height:90px"></div><div class="h in" style="text-align:center">${esc(D.app.head)}</div><div class="p in" style="text-align:center">${esc(D.app.body)}</div><button class="cta in">${esc(D.app.button)}</button><button class="cta ghost in">Save my reading</button>` },
+];
+const slides = document.getElementById("slides"), bars = document.getElementById("bars");
+slides.innerHTML = S.map((s) => `<div class="slide" style="background:${s.bg}">${s.html}</div>`).join("");
+bars.innerHTML = S.map(() => "<i><b></b></i>").join("");
+let cur = 0;
+function show(i) {
+  cur = Math.max(0, Math.min(S.length - 1, i));
+  slides.querySelectorAll(".slide").forEach((el, j) => el.classList.toggle("on", j === cur));
+  bars.querySelectorAll("i").forEach((el, j) => { el.className = j < cur ? "done" : j === cur ? "now" : ""; });
+  document.getElementById("count").textContent = `${cur + 1} / ${S.length}`;
+  document.getElementById("hint").style.display = cur === S.length - 1 ? "none" : "";
+}
+document.getElementById("prev").onclick = () => show(cur - 1);
+document.getElementById("next").onclick = () => show(cur + 1);
+document.addEventListener("keydown", (e) => { if (e.key === "ArrowRight" || e.key === " ") show(cur + 1); if (e.key === "ArrowLeft") show(cur - 1); });
+slides.addEventListener("click", (e) => { const b = e.target.closest(".pill"); if (!b) return; b.parentElement.querySelectorAll(".pill").forEach((p) => p.classList.toggle("sel", p === b)); });
+show(0);
+</script>
+</body>
+</html>

@@ -2,12 +2,13 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import { motion, MotionConfigContext, useReducedMotion } from "motion/react";
 import { Check, Clock3, Heart, Lightbulb, Lock, Sparkles, SkipForward, Users, Zap, Layers } from "lucide-react";
 import { S } from "./kit.js";
+import { LOBBY_COPY } from "./lobby.js";
 
 const EXIT_LABEL = { skip: "Skip", not_my_life: "Not my life", no_recent: "No recent example" };
 
 function frameFor(card, step) {
   if (step.phase === "finale") return { icon: Lock, text: `Final ${step.index} of ${step.size}` };
-  if (step.phase === "extra") return { icon: Sparkles, text: "One more card" };
+  if (step.phase === "extra") return { icon: Sparkles, text: LOBBY_COPY.extras.badge };
   if (card.type === "real") return { icon: Clock3, text: "From your life" };
   if (card.type === "this_or_that") return { icon: Zap, text: step.round && step.round.size > 1 ? `Quick round ${step.round.index}/${step.round.size}` : "Quick pick" };
   if (card.type === "pick_two") return { icon: Layers, text: "Pick two" };

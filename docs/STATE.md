@@ -29,7 +29,9 @@ There is one build: **persona quiz V2**. Everything else in this folder is histo
 
 | Part | State |
 |---|---|
-| Question cards | Built and judged three times. Vivid scenes; keep. Length (69 cards on the adult run) still to tighten |
+| Onboarding lobby | **Built 2026-09-28.** Four taps after setup: ending style, how personal, which rooms (love, work, family can be closed), how Genii reacts. Copy in `quiz64/src/persona/lobby.js` (`LOBBY_COPY`); gentle and sharp reaction lines still TODO |
+| Picker and length | **Built 2026-09-28.** Every player answers exactly 40 cards (`RUN_SIZE` in `session.js`) plus the 8 sealed guesses. Covers all 6 sides on every room and depth combination (sim: 0% unfinished); lighter card after 3 rushed taps; same-side replacement after a skip. Cost: 8 tags never fired at 40 cards with every room open (they need 3+ cards); 48 cards would recover most |
+| Question cards | Built and judged three times. Vivid scenes; keep |
 | Evidence layer | Done. Every option carries axis values, tags and a did, would or believe grade |
 | Names and tags | **Rewrite.** They are literal translations of Sally's Chinese slang and read flat in English |
 | Result language | **Rewrite.** Library lines are generic, and draft lines read as gotcha or sitcom |
@@ -39,10 +41,10 @@ There is one build: **persona quiz V2**. Everything else in this folder is histo
 
 ### Next, in order
 
-1. Voice brief for the result: how Genii talks, following the voice rulings in the ledger.
-2. English-native type names and tags, with Sally's as the template.
-3. Result language rewrite in `library.json`: half descriptions, pole lines, stings, hearts, calls.
-4. Result display in the Stories format on the web game.
+1. Remove old dossier code from `quiz64` (the web game still borrows some of its components and CSS) and update `qa/persona-browser-qa.mjs` for the lobby.
+2. English-native type names, tags and result lines, with Sally's as the template: 5 sample lines to Jerry first, then all of `library.json`.
+3. Voices: Make it fun (default), a sharper voice, Be kind for heavy cards; gentle and sharp Genii reactions.
+4. Result display in the Stories format (7 to 9 cards, type by card 3 or 4, told in the ending style from the lobby). Research: `research/result-page-wireframes/WRAPPED-RESEARCH.md`.
 5. Blind test 2 with Jerry and 3 to 5 real people. The player prompt is `research/persona-quiz-v2/final/PROMPT.md`; a staged copy sits in `/private/tmp/genii-blind-test-2` (temporary folder, may be gone).
 
 ### Pending housekeeping (needs Jerry's OK for the git steps)

@@ -1,0 +1,285 @@
+// The lobby and the rules-based picker (2026-09-28): lobby validation and persistence, a fixed run length on every
+// lobby, axis coverage, determinism and replay, the retention rules, the flow rules and a quick simulation.
+import test from "node:test";
+import assert from "node:assert/strict";
+import * as Session from "../src/persona/session.js";
+import { S, KIT } from "../src/persona/kit.js";
+import { restoreRun } from "../src/persona/store.js";
+import { LOBBY_COPY, ENDING_IDS, DEPTH_IDS, ROOM_IDS, DELIVERY_IDS, ROOM_CHAPTERS, hostLine } from "../src/persona/lobby.js";
+import { ADULT, TEEN, clock, started, playUntil, firstOption, leaning, OPEN_LOBBY, ROOM_SETS, DEPTHS, lobbyFor } from "./persona-helpers.mjs";
+import { makePlayer, playPicker, simulate } from "./persona-sim.mjs";
+
+const { RUN_SIZE, FINALE_SIZE } = Session;
+const AXES = S.AXES;
+const SIGNS = [
+  { R1: 1, R2: 1, R3: 1, L1: 1, L2: 1, L3: 1 },
+  { R1: -1, R2: -1, R3: -1, L1: -1, L2: -1, L3: -1 },
+  { R1: 1, R2: -1, R3: 1, L1: -1, L2: 1, L3: -1 },
+];
+const COMBOS = ROOM_SETS.flatMap((rooms) => DEPTHS.flatMap((depth) => [ADULT, TEEN].map((setup) => ({ rooms, depth, setup, name: `${setup.age}/${depth}/${rooms.join("+") || "no rooms"}` }))));
+const runCardsOf = (state) => Session.routeFor(state);
+const isRoundPair = (a, b) => a.type === "this_or_that" && b.type === "this_or_that" && a.round && a.round === b.round;
+
+// Plays a run step by step, recording the picker's reason for every run card.
+function playTraced(setup, lobby, choose, runId) {
+  let s = started(setup, runId, lobby);
+  const trace = [];
+  for (let guard = 0; guard < 100; guard++) {
+    const step = Session.currentStep(s);
+    if (step.kind === "lock") { s = Session.lockGuesses(s, { now: clock() }); continue; }
+    if (step.kind !== "card") break;
+    if (step.phase !== "finale") trace.push({ step, why: Session.pickInfo(s), rushedBefore: Session.recentlyRushed(s) });
+    const pick = choose(step.card, step, s);
+    s = Session.answerCard(s, step.card.id, pick.value, { ms: pick.ms ?? 4000, flip: pick.flip ?? null, now: clock() });
+  }
+  return { state: s, trace };
+}
+
+// ------------------------------------------------------------------------------------------------ lobby
+test("lobby: validation, defaults and one-time choice", () => {
+  const s = started(ADULT, "lobbyrun1", null);
+  assert.deepEqual(Session.currentStep(s), { kind: "lobby" });
+  assert.throws(() => Session.chooseLobby(Session.newRun({ runId: "lobbyrun0" }), OPEN_LOBBY), { code: "not_ready" });
+  for (const bad of [null, {}, { ...OPEN_LOBBY, depth: "deep" }, { ...OPEN_LOBBY, delivery: "loud" }, { ...OPEN_LOBBY, ending: "twist" },
+    { ...OPEN_LOBBY, rooms: ["love", "love"] }, { ...OPEN_LOBBY, rooms: ["money"] }, { ...OPEN_LOBBY, rooms: "love" }, { ...OPEN_LOBBY, extra: 1 },
+    { ending: "funny", rooms: [], delivery: "gentle" }]) {
+    assert.throws(() => Session.chooseLobby(s, bad), { code: "bad_lobby" }, JSON.stringify(bad));
+  }
+  const noEnding = Session.chooseLobby(s, { depth: "some", rooms: ["family", "love"], delivery: "minimal" });
+  assert.deepEqual(noEnding.lobby, { ending: "funny", depth: "some", rooms: ["love", "family"], delivery: "minimal" }, "ending defaults to funny; rooms in canonical order");
+  assert.equal(Session.endingFor(noEnding), "funny");
+  assert.equal(Session.endingFor(s), "funny", "no lobby yet reads as funny");
+  assert.equal(Session.deliveryFor(noEnding), "minimal");
+  assert.throws(() => Session.chooseLobby(noEnding, OPEN_LOBBY), { code: "already_chosen" });
+  for (const ending of ENDING_IDS) for (const delivery of DELIVERY_IDS) assert.equal(Session.chooseLobby(s, { ...OPEN_LOBBY, ending, delivery }).lobby.ending, ending);
+});
+
+test("lobby: saved and restored with the run; bad or missing lobbies and old saves fail closed", () => {
+  const atLobby = started(TEEN, "lobbysave1", null);
+  const back = restoreRun(Session.serialize(atLobby));
+  assert.equal(back.lobby, null);
+  assert.deepEqual(Session.currentStep(back), { kind: "lobby" });
+
+  const mid = playUntil(started(ADULT, "lobbysave2", lobbyFor(["work"], "light", { ending: "receipts", delivery: "sharp" })), firstOption, (step) => step.kind === "card" && step.resolved === 17);
+  const again = restoreRun(Session.serialize(mid));
+  assert.deepEqual(again.lobby, mid.lobby);
+  assert.equal(Session.currentStep(again).card.id, Session.currentStep(mid).card.id);
+
+  const raw = JSON.parse(Session.serialize(mid));
+  const bad = (mutate, code) => { const copy = structuredClone(raw); mutate(copy); assert.throws(() => restoreRun(JSON.stringify(copy)), (e) => e.code === code, code); };
+  bad((d) => { d.lobby.depth = "deep"; }, "corrupt");
+  bad((d) => { d.lobby.rooms = ["work", "attic"]; }, "corrupt");
+  bad((d) => { d.lobby.spy = true; }, "corrupt");
+  bad((d) => { d.lobby = null; }, "corrupt"); // answers without a lobby are outside any route
+  bad((d) => { d.lobby.rooms = ["love", "work", "family"]; }, "corrupt"); // a different lobby gives a different route
+  bad((d) => { d.schema = "genii.persona.run/1"; }, "schema");
+  const legacy = structuredClone(raw);
+  delete legacy.lobby.ending;
+  assert.equal(restoreRun(JSON.stringify(legacy)).lobby.ending, "funny", "a lobby saved without an ending reads as funny");
+  // A save from before the lobby existed (schema 1, no lobby field) is refused with a readable reason, never a crash.
+  const v1 = structuredClone(raw);
+  v1.schema = "genii.persona.run/1";
+  delete v1.lobby;
+  assert.throws(() => restoreRun(JSON.stringify(v1)), (e) => e.code === "schema" && /earlier version/.test(e.message));
+});
+
+test("lobby copy: one object, every id covered, short lines, no em dash; host lines follow the delivery", () => {
+  const byKey = Object.fromEntries(LOBBY_COPY.steps.map((s) => [s.key, s.options.map((o) => o.id)]));
+  assert.deepEqual(byKey, { ending: [...ENDING_IDS], depth: [...DEPTH_IDS], rooms: [...ROOM_IDS], delivery: [...DELIVERY_IDS] });
+  const strings = [];
+  const walk = (v) => { if (typeof v === "string") strings.push(v); else if (typeof v === "function") strings.push(v(1, 2)); else if (v && typeof v === "object") Object.values(v).forEach(walk); };
+  walk(LOBBY_COPY);
+  for (const t of strings) {
+    assert.ok(!/—/.test(t), `em dash in "${t}"`);
+    assert.ok(t.length <= 190, `long line "${t}"`);
+  }
+  for (const step of LOBBY_COPY.steps) for (const o of step.options) assert.ok(o.text.split(/\s+/).length <= 6, `short option "${o.text}"`);
+  assert.equal(hostLine("minimal", { phase: "chapter", index: 2 }), null);
+  assert.equal(hostLine("minimal", { phase: "chapter", index: 2, rushing: true }), null, "minimal hides the speed nudge too");
+  for (const d of ["gentle", "playful", "sharp"]) {
+    assert.equal(typeof hostLine(d, { phase: "chapter", index: 3 }), "string");
+    assert.equal(hostLine(d, { phase: "chapter", rushing: true }), LOBBY_COPY.host[d].rushing);
+  }
+});
+
+// ------------------------------------------------------------------------------------------------ run length and filters
+test("every lobby x age band: exactly RUN_SIZE run cards, then the 8 finale cards, with the room, depth and age filters", () => {
+  assert.equal(RUN_SIZE, 40);
+  assert.equal(FINALE_SIZE, 8);
+  for (const c of COMBOS) {
+    for (const [label, choose] of [["first option", firstOption], ["consistent", leaning(SIGNS[2])]]) {
+      const { state, trace } = playTraced(c.setup, lobbyFor(c.rooms, c.depth), choose, "lenrun001");
+      const cards = runCardsOf(state);
+      assert.equal(cards.length, RUN_SIZE, `${c.name} ${label}: ${cards.length} run cards`);
+      assert.equal(Object.keys(state.finale).length, FINALE_SIZE, `${c.name}: finale`);
+      assert.equal(Session.answeredCount(state), RUN_SIZE + FINALE_SIZE, `${c.name}: 48 answers`);
+      assert.equal(Session.currentStep(state).kind, "result");
+      const open = new Set(Session.openChapterIds(lobbyFor(c.rooms, c.depth)));
+      for (const card of cards) {
+        if (card.chapter !== "extra") assert.ok(open.has(card.chapter), `${c.name}: ${card.id} from a closed room`);
+        if (c.depth !== "personal" || c.setup.age === "teen") assert.notEqual(card.privacy, "locked18", `${c.name}: ${card.id}`);
+        if (c.depth === "light") assert.notEqual(card.privacy, "intimate", `${c.name}: ${card.id}`);
+        if (c.setup.age === "teen") assert.notEqual(card.teen, false, `${c.name}: ${card.id}`);
+      }
+      // "Card x of 40": the counter moves by one per card and the total never changes.
+      trace.forEach((t, i) => { assert.equal(t.step.resolved, i); assert.equal(t.step.total, RUN_SIZE); });
+    }
+  }
+});
+
+test("coverage: every axis gets at least 2 valid cards for a consistent player on every lobby", () => {
+  for (const c of COMBOS) {
+    for (const [i, signs] of SIGNS.entries()) {
+      const { state } = playTraced(c.setup, lobbyFor(c.rooms, c.depth), leaning(signs), `cover${i}0001`);
+      const p = Session.profileFor(state);
+      for (const a of AXES) assert.ok(p.axes[a].cards >= 2 && !p.axes[a].unfinished, `${c.name} signs ${i}: ${a} has ${p.axes[a].cards}`);
+    }
+    for (let i = 0; i < 3; i++) {
+      const player = makePlayer(`cover-${c.name}-${i}`, { noise: 0 });
+      const p = Session.profileFor(playPicker(c.setup, lobbyFor(c.rooms, c.depth), player, `covsyn${i}01`));
+      for (const a of AXES) assert.ok(!p.axes[a].unfinished, `${c.name} synthetic ${i}: ${a} unfinished`);
+    }
+  }
+});
+
+// ------------------------------------------------------------------------------------------------ determinism and replay
+test("the picker is deterministic, restore replays it card for card, and run ids vary the route", () => {
+  const lobby = lobbyFor(["love", "family"], "some");
+  const choose = leaning(SIGNS[0]);
+  const a = playTraced(ADULT, lobby, choose, "determ001");
+  const b = playTraced(ADULT, lobby, choose, "determ001");
+  assert.deepEqual(runCardsOf(a.state).map((c) => c.id), runCardsOf(b.state).map((c) => c.id));
+  // Same answers, same saved run; only the clock differs (timestamps and the lock hash, which covers the lock time).
+  const clockless = (st) => Session.serialize(st).replace(/"(createdAt|updatedAt|frozenAt|lockHash)":"[^"]*"/g, "");
+  assert.equal(clockless(a.state), clockless(b.state));
+
+  for (const at of [1, 9, 23, RUN_SIZE - 1]) {
+    const mid = playUntil(started(TEEN, "replay001", lobby), choose, (step) => step.kind === "card" && step.resolved === at);
+    const back = restoreRun(Session.serialize(mid));
+    assert.deepEqual(runCardsOf(back).map((c) => c.id), runCardsOf(mid).map((c) => c.id), `replay at ${at}`);
+    assert.deepEqual(Session.currentStep(back), Session.currentStep(mid));
+    assert.equal(Session.recentlyRushed(back), Session.recentlyRushed(mid));
+  }
+  const done = restoreRun(Session.serialize(a.state));
+  assert.deepEqual(Session.resultFor(done).sealed, Session.resultFor(a.state).sealed);
+
+  // An answer for a card the picker never served (or served in another order) can't be replayed.
+  const raw = JSON.parse(Session.serialize(a.state));
+  const served = new Set(Object.keys(raw.answers));
+  const unserved = S.runCards(ADULT).find((c) => !served.has(c.id) && c.type === "scenario" && Session.openChapterIds(lobby).includes(c.chapter));
+  const copy = structuredClone(raw);
+  const victim = Object.keys(copy.answers).filter((k) => !k.includes(".")).at(-1);
+  delete copy.answers[victim];
+  delete copy.ms[victim];
+  copy.answers[unserved.id] = 0;
+  assert.throws(() => restoreRun(JSON.stringify(copy)), { code: "corrupt" });
+
+  const routes = new Set();
+  for (let i = 0; i < 10; i++) routes.add(runCardsOf(playUntil(started(ADULT, `variety${i}0`, OPEN_LOBBY), choose)).map((c) => c.id).join());
+  assert.ok(routes.size >= 3, `run ids give different routes (${routes.size} of 10)`);
+});
+
+// ------------------------------------------------------------------------------------------------ retention rules
+test("rushed streak: after three rushed taps the next free pick is a lighter card whenever one is on offer", () => {
+  let fired = 0;
+  for (const c of COMBOS) {
+    const rusher = (card, step) => ({ ...firstOption(card), ms: step.resolved >= 6 ? 700 : 4000 });
+    const { trace } = playTraced(c.setup, lobbyFor(c.rooms, c.depth), rusher, "rushrule1");
+    for (const t of trace) {
+      if (t.why.rule !== "pick" || !t.why.rushed) continue;
+      assert.ok(t.rushedBefore, "the streak matches recentlyRushed");
+      if (!t.why.lightOffered) continue;
+      fired++;
+      assert.ok(Session.LIGHT_TYPES.includes(t.step.card.type), `${c.name}: ${t.step.card.id} is ${t.step.card.type} after a rushed streak`);
+    }
+  }
+  assert.ok(fired >= COMBOS.length, `the rule fired ${fired} times`);
+  // Same run, calm versus rushed: the rushed run gets more quick cards.
+  const light = (ms) => runCardsOf(playUntil(started(ADULT, "rushcmp01"), (card, step) => ({ ...firstOption(card), ms: step.resolved >= 3 ? ms : 4000 }))).filter((c) => Session.LIGHT_TYPES.includes(c.type)).length;
+  assert.ok(light(700) > light(4000), `light cards rushed ${light(700)} vs calm ${light(4000)}`);
+});
+
+test("exit replacement: after Skip, Not my life or No recent example, the next free pick evidences the exited card's axis when it can", () => {
+  let fired = 0;
+  let exits = 0;
+  for (const c of COMBOS) {
+    const skipper = (card, step) => (step.resolved % 4 === 1 && card.exits.length ? { value: card.exits[step.resolved % card.exits.length] } : firstOption(card));
+    const { trace } = playTraced(c.setup, lobbyFor(c.rooms, c.depth), skipper, "exitrule1");
+    for (let i = 1; i < trace.length; i++) {
+      const prev = trace[i - 1].step.card;
+      if (trace[i - 1].step.resolved % 4 === 1 && Session.cardAxes(prev).length) exits++;
+      const t = trace[i];
+      if (t.why.rule !== "pick" || !t.why.exitAxes.length) continue;
+      assert.deepEqual([...t.why.exitAxes].sort(), Session.cardAxes(prev).sort(), "the exited card's axes");
+      if (!t.why.sameAxisOffered) continue;
+      fired++;
+      assert.ok(Session.cardAxes(t.step.card).some((a) => t.why.exitAxes.includes(a)), `${c.name}: ${t.step.card.id} after exiting ${prev.id}`);
+    }
+  }
+  assert.ok(exits > 0 && fired >= COMBOS.length / 2, `the rule fired ${fired} times over ${exits} axis exits`);
+});
+
+// ------------------------------------------------------------------------------------------------ flow rules
+test("flow: chapters in order and whole, each opened by its first authored card, feeling cards right after their card", () => {
+  for (const c of COMBOS) {
+    const { state, trace } = playTraced(c.setup, lobbyFor(c.rooms, c.depth), leaning(SIGNS[1]), "flowrun01");
+    const cards = runCardsOf(state);
+    const groups = [];
+    for (const t of trace) if (!groups.length || groups.at(-1).key !== t.step.chapter) groups.push({ key: t.step.chapter, first: t });
+    const keys = groups.map((g) => g.key);
+    assert.equal(new Set(keys).size, keys.length, `${c.name}: a chapter was left and re-entered ${keys}`);
+    assert.deepEqual(keys.filter((k) => k !== "extra"), [...keys.filter((k) => k !== "extra")].sort((x, y) => x - y));
+    if (keys.includes("extra")) assert.equal(keys.at(-1), "extra", "bonus cards come last");
+    for (const g of groups) {
+      assert.equal(g.first.step.index, 1, `${c.name}: chapter ${g.key} starts at card 1 (its intro shows)`);
+      if (g.key === "extra") continue;
+      const eligible = KIT.chapters[g.key - 1].cards.filter((x) => (c.setup.age !== "teen" || x.teen) && Session.depthAllows(x, c.depth) && !x.gateRule && x.type !== "feeling");
+      assert.equal(g.first.step.card.id, eligible[0].id, `${c.name}: chapter ${g.key} opener`);
+      assert.equal(g.first.why.rule, "opener");
+    }
+    cards.forEach((card, i) => {
+      if (card.type === "feeling") assert.equal(cards[i - 1].id, card.follows, `${c.name}: ${card.id} follows ${card.follows}`);
+    });
+  }
+});
+
+test("flow: no two cards of one type in a row except this_or_that rounds, and no neighbours on the same axis or tag pair", () => {
+  let chapterBreaks = 0;
+  let bonusBreaks = 0;
+  let neighbours = 0;
+  for (const c of COMBOS) {
+    for (const [i, signs] of SIGNS.entries()) {
+      const cards = runCardsOf(playTraced(c.setup, lobbyFor(c.rooms, c.depth), leaning(signs), `nbr${i}00001`).state);
+      for (let k = 1; k < cards.length; k++) {
+        const a = cards[k - 1];
+        const b = cards[k];
+        neighbours++;
+        const sameType = a.type === b.type && !isRoundPair(a, b);
+        const shared = Session.cardDims(b).filter((d) => Session.cardDims(a).includes(d));
+        if (!sameType && !shared.length) continue;
+        // Coverage outranks flow: when closed rooms leave an axis to the bonus cards alone, two bonus cards may have
+        // to sit together. Anywhere else a steady player never sees a repeat.
+        if (a.chapter === "extra" && b.chapter === "extra") { bonusBreaks++; continue; }
+        chapterBreaks++;
+        assert.fail(`${c.name}: ${a.id} (${a.type}) then ${b.id} (${b.type}) share ${sameType ? "a type" : shared}`);
+      }
+    }
+  }
+  assert.equal(chapterBreaks, 0);
+  assert.ok(bonusBreaks / neighbours < 0.02, `bonus-card repeats ${bonusBreaks} of ${neighbours} neighbours`);
+});
+
+// ------------------------------------------------------------------------------------------------ simulation
+test("simulation (small): 48 cards for everyone, no unfinished side, nobody with 0 tags, most with 3 to 5", () => {
+  const out = simulate({ n: 4, baseline: false });
+  assert.equal(out.rows.length, 48);
+  for (const r of out.rows) {
+    assert.equal(r.cardsMin, RUN_SIZE);
+    assert.equal(r.cardsMax, RUN_SIZE);
+    assert.equal(r.zeroTags, 0, r.key);
+  }
+  assert.ok(out.total.unfinishedShare <= 0.01, `unfinished ${out.total.unfinishedShare}`);
+  assert.ok(out.total.share3to5 >= 0.85, `3 to 5 tags ${out.total.share3to5}`);
+  assert.ok(out.total.exactRate >= 0.45, `sealed exact ${out.total.exactRate}`);
+  assert.ok(Object.values(ROOM_CHAPTERS).every((n) => KIT.chapters[n - 1]), "room chapters exist in the kit");
+});

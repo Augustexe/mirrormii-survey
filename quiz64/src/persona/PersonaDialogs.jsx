@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import { ArrowLeft, Check, Download, Info, Lock, Map, Moon, RotateCcw, Sun, Trash2, X } from "lucide-react";
 import { useDialogFocus } from "../components/useDialogFocus.js";
 import { CHAPTERS } from "./kit.js";
+import { LOBBY_COPY } from "./lobby.js";
 
 function Dialog({ open, onClose, id, eyebrow, title, className = "", children }) {
   const ref = useRef(null);
@@ -24,16 +25,17 @@ function Dialog({ open, onClose, id, eyebrow, title, className = "", children })
 export function PersonaChapterMap({ open, onClose, progress }) {
   return (
     <Dialog open={open} onClose={onClose} id="pmap-title" eyebrow="Your run" title="Chapter map">
-      <p className="dialog-lede">Seven chapters, then Genii locks its guesses and you play the final eight.</p>
+      <p className="dialog-lede">{LOBBY_COPY.mapLede}</p>
       <div className="chapter-list">
         {[...CHAPTERS, { id: 8, title: "Finale", intro: "Eight new cards. Genii guesses first." }].map((ch) => {
-          const p = progress[ch.id] || { done: 0, total: 0 };
-          const locked = p.total === 0 && ch.id !== 1;
+          const p = progress[ch.id] || { done: 0, total: 0, open: true };
+          const closed = p.open === false;
+          const locked = closed || (p.total === 0 && ch.id !== 1);
           return (
             <div key={ch.id} className={`chapter-row ${locked ? "chapter-row--locked" : ""}`}>
               <span className="chapter-emblem">{locked ? <Lock size={16} /> : p.total && p.done >= p.total ? <Check size={18} /> : <Map size={15} />}</span>
               <span className="chapter-copy"><strong>{ch.title}</strong><small>{ch.intro}</small></span>
-              <span className="chapter-count">{p.total ? `${p.done} of ${p.total}` : ch.id === 8 ? "After chapter 7" : "Up next"}</span>
+              <span className="chapter-count">{closed ? LOBBY_COPY.mapClosed : p.total ? `${p.done} of ${p.total}` : ch.id === 8 ? LOBBY_COPY.mapFinale : "Up next"}</span>
             </div>
           );
         })}

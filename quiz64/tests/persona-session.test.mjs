@@ -4,7 +4,7 @@ import * as Session from "../src/persona/session.js";
 import { S, KIT, KIT_ID } from "../src/persona/kit.js";
 import { sha256Hex, canonicalJSON } from "../src/persona/sha256.js";
 import { restoreRun } from "../src/persona/store.js";
-import { ADULT, TEEN, clock, started, playUntil, firstOption, leaning, completeRun } from "./persona-helpers.mjs";
+import { ADULT, TEEN, clock, started, playUntil, firstOption, leaning, completeRun, reach, OPEN_LOBBY } from "./persona-helpers.mjs";
 import crypto from "node:crypto";
 
 const LOCKED18 = ["C3-8", "C3-9", "C6-9", "C6-11"];
@@ -25,16 +25,18 @@ test("setup: an age band, a closest person and a pronoun; under 13 never starts 
   assert.throws(() => Session.startRun(fresh, { ...ADULT, name: "free text" }), { code: "bad_setup" });
   const s = Session.startRun(fresh, ADULT);
   assert.throws(() => Session.startRun(s, TEEN), { code: "already_started" });
-  assert.equal(Session.currentStep(s).card.id, KIT.chapters[0].cards[0].id);
+  assert.deepEqual(Session.currentStep(s), { kind: "lobby" }, "the lobby comes right after setup");
+  const l = Session.chooseLobby(s, OPEN_LOBBY);
+  assert.equal(Session.currentStep(l).card.id, KIT.chapters[0].cards[0].id);
 });
 
-test("adult run: every chapter card in run order, the finale after one lock, then a result", () => {
+test("adult run: RUN_SIZE picked cards with chapters in order, the finale after one lock, then a result", () => {
   const s = completeRun(ADULT, firstOption, "adultrun1");
-  const expected = S.runCards(ADULT).map((c) => c.id);
-  const seen = seenIds(s);
-  assert.deepEqual(seen.filter((id) => expected.includes(id)), expected.filter((id) => seen.includes(id)), "run order kept");
-  assert.ok(seen.length >= 60 && seen.length <= 61 + KIT.extras.length, `adult chapter cards ${seen.length}`);
-  for (const id of LOCKED18) assert.ok(id === "C3-9" ? true : seen.includes(id), `${id} shown to an adult`);
+  const seen = Session.routeFor(s).map((c) => c.id);
+  assert.equal(seen.length, Session.RUN_SIZE, `adult run cards ${seen.length}`);
+  assert.deepEqual(seenIds(s).sort(), [...seen].sort());
+  const chapterOf = (id) => (S.cardById[id].chapter === "extra" ? 8 : S.cardById[id].chapter);
+  for (let i = 1; i < seen.length; i++) assert.ok(chapterOf(seen[i - 1]) <= chapterOf(seen[i]), `chapters in order at ${seen[i]}`);
   assert.equal(Object.keys(s.finale).length, 8);
   assert.equal(Session.currentStep(s).kind, "result");
   const { profile, result, sealed } = Session.resultFor(s);
@@ -60,22 +62,23 @@ test("teen run: locked 18+ cards and marriage and kids tags never appear", () =>
   for (const card of teenPrompted) assert.equal(S.promptFor(card, TEEN), card.teenPrompt);
 });
 
-test("C3-9 appears only after a C3-8 pick that carries the kids-yes line", () => {
-  const reach = (picks) => {
-    let s = playUntil(started(ADULT, "gaterun01"), firstOption, (step) => step.kind === "card" && step.card.id === "C3-8");
-    s = Session.answerCard(s, "C3-8", picks, { ms: 3000, now: clock() });
-    return Session.routeFor(s).map((c) => c.id);
-  };
-  assert.ok(reach([0, 3]).includes("C3-9"));
-  assert.ok(!reach([3, 4]).includes("C3-9"));
+test("C3-9 joins the pool only after a C3-8 pick that carries the kids-yes line", () => {
+  const at = reach("C3-8");
+  assert.ok(at, "some run serves C3-8");
+  assert.ok(!Session.poolFor(at).some((c) => c.id === "C3-9"), "gated before C3-8 is answered");
+  const pool = (picks) => Session.poolFor(Session.answerCard(at, "C3-8", picks, { ms: 3000, now: clock() })).map((c) => c.id);
+  assert.ok(pool([0, 3]).includes("C3-9"));
+  assert.ok(!pool([3, 4]).includes("C3-9"));
 });
 
-test("a feeling card follows a picked moment; after an exit it is left out", () => {
+test("a feeling card joins the pool after a picked moment; after an exit it is left out", () => {
   const card = KIT.chapters.flatMap((c) => c.cards).find((c) => c.type === "feeling");
+  const before = reach(card.follows);
+  assert.ok(before, `some run serves ${card.follows}`);
   const at = (value) => {
-    let s = playUntil(started(ADULT, "feelrun01"), firstOption, (step) => step.kind === "card" && step.card.id === card.follows);
-    s = Session.answerCard(s, card.follows, value, { ms: 3000, now: clock() });
-    return Session.routeFor(s).some((c) => c.id === card.id);
+    const s = Session.answerCard(before, card.follows, value, { ms: 3000, now: clock() });
+    // Eligible after a picked moment; it plays next when the chapter still has a slot (see persona-picker tests).
+    return Session.poolFor(s).some((c) => c.id === card.id);
   };
   assert.equal(at(0), true);
   assert.equal(at("skip"), false);
@@ -90,13 +93,13 @@ test("answers are validated per card: exits, pick two, depends follow-ups, order
   assert.throws(() => Session.answerCard(s, first.id, 0, { ms: -5 }), { code: "bad_answer" });
   assert.throws(() => Session.answerCard(s, "C7-10", 0), { code: "out_of_order" });
   const pickTwo = KIT.chapters.flatMap((c) => c.cards).find((c) => c.type === "pick_two" && c.teen);
-  s = playUntil(s, firstOption, (step) => step.kind === "card" && step.card.id === pickTwo.id);
+  s = reach(pickTwo.id);
   assert.throws(() => Session.answerCard(s, pickTwo.id, [0]), { code: "bad_answer" });
   assert.throws(() => Session.answerCard(s, pickTwo.id, [1, 1]), { code: "bad_answer" });
   assert.throws(() => Session.answerCard(s, pickTwo.id, 0), { code: "bad_answer" });
-  const depends = KIT.chapters.flatMap((c) => c.cards).find((c) => c.flip && c.teen);
+  const depends = KIT.chapters.flatMap((c) => c.cards).filter((c) => c.flip && c.teen).find((c) => reach(c.id));
   const di = depends.options.findIndex((o) => o.depends);
-  s = playUntil(started(ADULT, "valrun002"), firstOption, (step) => step.kind === "card" && step.card.id === depends.id);
+  s = reach(depends.id);
   assert.throws(() => Session.answerCard(s, depends.id, 0, { flip: 1 }), { code: "bad_answer" }, "flip only after a depends option");
   const withFlip = Session.answerCard(s, depends.id, di, { flip: 2, ms: 2500 });
   assert.equal(withFlip.answers[`${depends.id}.flip`], 2);
@@ -111,7 +114,7 @@ test("answers are validated per card: exits, pick two, depends follow-ups, order
 test("rushed taps count at 0.3 and are logged for research", () => {
   const s = completeRun(ADULT, (card) => ({ ...firstOption(card), ms: 900 }), "rushrun01");
   const p = Session.profileFor(s);
-  assert.ok(p.counts.rushed > 50);
+  assert.ok(p.counts.rushed >= Session.RUN_SIZE - 2, `rushed ${p.counts.rushed}`);
   assert.equal(p.shownTags.filter((id) => p.tags[id].calmCards === 0).length, 0, "no tag fires from rushed taps alone");
 });
 
@@ -178,8 +181,9 @@ test("Genii locks its guesses once, before the finale, and a changed lock or ans
 
 test("sealed finale answers never become profile evidence", () => {
   const a = completeRun(ADULT, firstOption, "sealrun01");
-  const b = playUntil(started(ADULT, "sealrun02"), (card, step) => (step.phase === "finale" ? { value: card.options.length - 1 } : firstOption(card)));
-  assert.equal(canonicalJSON(Session.profileFor(a)), canonicalJSON(Session.profileFor(b)).replaceAll("sealrun02", "sealrun01"));
+  // Same run id, so the picker serves the same cards; only the finale answers differ.
+  const b = playUntil(started(ADULT, "sealrun01"), (card, step) => (step.phase === "finale" ? { value: card.options.length - 1 } : firstOption(card)));
+  assert.equal(canonicalJSON(Session.profileFor(a)), canonicalJSON(Session.profileFor(b)));
   assert.notDeepEqual(a.finale, b.finale);
 });
 

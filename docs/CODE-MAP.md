@@ -14,7 +14,7 @@
 | Screens and styles | `quiz64/src/PersonaApp.jsx`, `quiz64/src/persona/*.jsx`, `persona.css` |
 | Tests and browser QA | `quiz64/tests/persona-*.test.mjs` (`npm test` in `quiz64`), `quiz64/qa/persona-browser-qa.mjs` |
 | Result page drafts | `research/result-page-wireframes/` (static HTML, shared `data.js`) |
-| Preview configs (workspace `.claude/launch.json`) | `persona-mvp` (web game, port 5174, still pointed at the run worktree), `result-wireframes` (port 8793) |
+| Preview configs (workspace `.claude/launch.json`) | `persona-mvp` (web game, port 5174), `result-wireframes` (port 8793) |
 
 Other worktrees of this repository: `/private/tmp/claude-501/survey-quiz-v2-wt` (`quiz-v2-fix-pass`, same commit as this checkout, removable) and older run worktrees for rows 5 to 7 of [history/BUILD-ITERATIONS.md](history/BUILD-ITERATIONS.md).
 

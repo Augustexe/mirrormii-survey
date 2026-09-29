@@ -131,3 +131,27 @@ test("a result with no named tags says why instead of showing empty sections", a
   assert.ok(text.includes("Genii didn't name any this time"));
   assert.ok(!text.includes("Genii's calls"));
 });
+
+test("lobby screen renders its first question and options; the card screen's bubble follows the delivery", async () => {
+  const { LobbyView, PersonaQuizView, interludeFor } = await load("/src/persona/PersonaScreens.jsx");
+  const { LOBBY_COPY, hostLine } = await load("/src/persona/lobby.js");
+  const Session = await load("/src/persona/session.js");
+  const lobbyText = visible(renderToStaticMarkup(React.createElement(LobbyView, { onDone() {}, onBack() {} })));
+  const first = LOBBY_COPY.steps[0];
+  assert.ok(lobbyText.includes(first.title));
+  for (const o of first.options) assert.ok(lobbyText.includes(o.text), o.text);
+  assert.ok(lobbyText.includes(LOBBY_COPY.counter(1, LOBBY_COPY.steps.length)));
+  assert.doesNotMatch(lobbyText, IDS);
+  assert.doesNotMatch(lobbyText, WORDS);
+
+  let s = Session.chooseLobby(Session.startRun(Session.newRun({ runId: "uilobby01" }), ADULT), { depth: "some", rooms: ["work"], delivery: "playful" });
+  s = Session.answerCard(s, Session.currentStep(s).card.id, 0, { ms: 4000 });
+  const step = Session.currentStep(s);
+  const render = (delivery) => visible(renderToStaticMarkup(React.createElement(PersonaQuizView, { step, setup: ADULT, onAnswer() {}, onMap() {}, cardKey: "k", delivery })));
+  const line = hostLine("playful", { phase: step.phase, index: step.index });
+  assert.ok(render("playful").includes(line));
+  assert.ok(!render("minimal").includes(line), "minimal hides Genii's between-card line");
+  assert.ok(render("playful").includes(LOBBY_COPY.runLabel(step.resolved + 1, Session.RUN_SIZE)));
+  const intro = interludeFor(Session.currentStep(Session.chooseLobby(Session.startRun(Session.newRun({ runId: "uilobby02" }), ADULT), { depth: "light", rooms: [], delivery: "minimal" })), "minimal");
+  assert.equal(intro.kicker, LOBBY_COPY.chapterKicker(1, 4), "chapter numbering counts only open rooms");
+});
