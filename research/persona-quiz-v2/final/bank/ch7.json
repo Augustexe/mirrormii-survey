@@ -1,0 +1,1988 @@
+[
+ {
+  "id": "C7-112",
+  "type": "scenario",
+  "chapter": 7,
+  "prompt": "You referee a soccer final between two kitten teams. The tiniest kitten keeps carrying the ball in its mouth. The crowd adores it. The other bench does not.",
+  "options": [
+   {
+    "t": "Yellow card. Tiny rules are still rules.",
+    "axes": {
+     "L3": 2
+    },
+    "tags": [
+     {
+      "id": "T25A",
+      "s": 2
+     }
+    ],
+    "emotion": "cringe"
+   },
+   {
+    "t": "Warn it once, gently. Next time, it's a card.",
+    "axes": {
+     "L3": 1
+    },
+    "tags": [
+     {
+      "id": "T25A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Let it play. Nobody bought tickets for the rulebook.",
+    "axes": {
+     "L3": -2
+    },
+    "tags": [
+     {
+      "id": "T25B",
+      "s": 2
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "Allow it, but only while its team is losing.",
+    "axes": {
+     "L3": -1
+    },
+    "tags": [
+     {
+      "id": "T25B",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "You are the referee for a soccer final between two teams of kittens. The smallest kitten keeps carrying the ball in its mouth. The crowd loves it, and the other team's bench does not.",
+   "options": [
+    "I give a yellow card. A small player still follows the rules.",
+    "I give one gentle warning. The next time, it is a card.",
+    "I let it play. People came for the game, not the rulebook.",
+    "I allow it, but only while its team is behind."
+   ]
+  },
+  "fp": {
+   "trigger": "the smallest player keeps breaking a rule",
+   "setting": "kitten soccer final",
+   "ask": "call it or let it slide",
+   "who": "a tiny kitten, a crowd, the other bench",
+   "stakes": "a fair match versus the crowd's favorite",
+   "device": "kitten-referee"
+  },
+  "mask": "looks like a cute absurdity; measures a rule as a rule versus bending it for the player (T25, L3)",
+  "ae": [
+   "A",
+   "C"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T25-1",
+  "world": "absurd",
+  "friend": {
+   "prompt": "{name} referees a kitten soccer final. The tiniest one carries the ball in its mouth. Crowd adores it. What does {name} do?",
+   "a": {
+    "t": "Yellow card. \"Tiny rules are still rules.\"",
+    "axes": {
+     "L3": 2
+    },
+    "tags": [
+     {
+      "id": "T25A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Lets it play. \"Nobody bought tickets for the rulebook.\"",
+    "axes": {
+     "L3": -2
+    },
+    "tags": [
+     {
+      "id": "T25B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C7-130",
+  "type": "bet",
+  "chapter": 7,
+  "sq": "SQ-T22-1",
+  "world": "everyday",
+  "prompt": "Be real: you've skipped a friend's new plan to keep your usual one, then blamed something else.",
+  "options": [
+   {
+    "t": "Guilty. Blamed work. I was at my usual table, happy.",
+    "axes": {
+     "L1": 1
+    },
+    "tags": [
+     {
+      "id": "T22B",
+      "s": 2
+     }
+    ],
+    "emotion": "guilt"
+   },
+   {
+    "t": "Never. A new plan beats my usual, every time.",
+    "axes": {
+     "L1": -1
+    },
+    "tags": [
+     {
+      "id": "T22A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Never. I just drag them to my usual thing instead.",
+    "tags": [
+     {
+      "id": "T22B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "What usual? No two weeks of mine look alike.",
+    "axes": {
+     "L1": -1
+    },
+    "tags": [
+     {
+      "id": "T22A",
+      "s": 1
+     }
+    ],
+    "emotion": "delight"
+   }
+  ],
+  "heart": {
+   "prompt": "Have you ever skipped a friend's new plan to keep your usual one, and given a different reason?",
+   "options": [
+    "Yes. I blamed work and went to my usual place, happy.",
+    "No. A new plan wins over my usual, every time.",
+    "No. I invite them to my usual thing instead.",
+    "I do not really have a usual. My weeks all look different."
+   ]
+  },
+  "fp": {
+   "trigger": "a friend's new plan clashes with your usual",
+   "setting": "real life, a regular week",
+   "ask": "keep your usual or try the new one",
+   "who": "a friend with a new idea",
+   "stakes": "your thing versus the new thing, plus a small fib",
+   "device": "white-lie-usual"
+  },
+  "mask": "looks like a confession about a fib; measures the new thing versus your thing (T22, L1) from a thing actually done",
+  "ae": [
+   "A",
+   "B",
+   "E"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "Has {name} ever skipped a friend's new plan to keep {their} usual one, then blamed something else?",
+   "a": {
+    "t": "Guilty. Blamed work. Was at {their} usual table, happy.",
+    "axes": {
+     "L1": 1
+    },
+    "tags": [
+     {
+      "id": "T22B",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Never. A new plan beats the usual, every time.",
+    "axes": {
+     "L1": -1
+    },
+    "tags": [
+     {
+      "id": "T22A",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C7-121",
+  "type": "scenario",
+  "chapter": 7,
+  "sq": "SQ-T23-1",
+  "world": "absurd",
+  "prompt": "A village of tiny gnomes needs help rebuilding. Every Saturday, for a year. They pay in pastries.",
+  "options": [
+   {
+    "t": "Every Saturday. Tiny hard hat already ordered.",
+    "tags": [
+     {
+      "id": "T23A",
+      "s": 2
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "Yes, and I'm posting every tiny brick I lay.",
+    "tags": [
+     {
+      "id": "T23A",
+      "s": 1
+     }
+    ],
+    "emotion": "pride"
+   },
+   {
+    "t": "One Saturday. Then suddenly I'm very busy.",
+    "tags": [
+     {
+      "id": "T23B",
+      "s": 1
+     }
+    ],
+    "emotion": "guilt"
+   },
+   {
+    "t": "No. My Saturdays already have a project.",
+    "tags": [
+     {
+      "id": "T23B",
+      "s": 2
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "A village of tiny gnomes asks you to help rebuild it every Saturday for a year. They pay in pastries.",
+   "options": [
+    "I come every Saturday. I have already ordered a small hard hat.",
+    "I say yes, and I share every brick I lay online.",
+    "I help for one Saturday, and then I become very busy.",
+    "I say no. My Saturdays already belong to my own project."
+   ]
+  },
+  "fp": {
+   "trigger": "a whole village asks for your weekends",
+   "setting": "tiny gnome town",
+   "ask": "give your Saturdays or keep them",
+   "who": "a village of gnomes",
+   "stakes": "a year of Saturdays",
+   "device": "gnome-village"
+  },
+  "mask": "looks like a fairy tale; measures whose your free time is (T23)",
+  "ae": [
+   "A",
+   "D"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "Tiny gnomes need help rebuilding the village every Saturday for a year, paid in pastries. What does {name} do?",
+   "a": {
+    "t": "Every Saturday. Tiny hard hat already ordered.",
+    "tags": [
+     {
+      "id": "T23A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "No. {Their} Saturdays already have a project.",
+    "tags": [
+     {
+      "id": "T23B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C7-122",
+  "type": "real",
+  "chapter": 7,
+  "sq": "SQ-T23-2",
+  "world": "unusual",
+  "prompt": "Think back to the last time a stranger near you suddenly needed a hand. Spilled groceries, a stalled car, a loose dog.",
+  "options": [
+   {
+    "t": "Was already helping before I'd decided to.",
+    "tags": [
+     {
+      "id": "T23A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Helped. Then told the story for a week.",
+    "tags": [
+     {
+      "id": "T23A",
+      "s": 1
+     }
+    ],
+    "emotion": "pride"
+   },
+   {
+    "t": "Looked around. Someone closer went. I let them.",
+    "tags": [
+     {
+      "id": "T23B",
+      "s": 1
+     }
+    ],
+    "emotion": "relief"
+   },
+   {
+    "t": "Kept walking. Thought about it for a whole block.",
+    "tags": [
+     {
+      "id": "T23B",
+      "s": 2
+     }
+    ],
+    "emotion": "guilt"
+   }
+  ],
+  "heart": {
+   "prompt": "Think about the last time a stranger near you suddenly needed help, like spilled groceries, a car that would not start, or a dog that got loose. What did you do?",
+   "options": [
+    "I was already helping before I had decided to.",
+    "I helped, and then I told the story for a week.",
+    "I looked around, someone closer went, and I let them.",
+    "I kept walking, and I thought about it for a whole block."
+   ]
+  },
+  "fp": {
+   "trigger": "a stranger suddenly needs help nearby",
+   "setting": "street or store, real life",
+   "ask": "jump in or leave it",
+   "who": "a stranger",
+   "stakes": "your time versus being the one who moved",
+   "device": "stranger-emergency"
+  },
+  "mask": "looks like a memory of a street moment; measures whether you move before anyone asks twice (T23)",
+  "ae": [
+   "A",
+   "B",
+   "E"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "Last time a stranger near {name} needed a hand: spilled groceries, stalled car, loose dog. What did {name} actually do?",
+   "a": {
+    "t": "Was already helping before deciding to.",
+    "tags": [
+     {
+      "id": "T23A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Kept walking. Thought about it for a whole block.",
+    "tags": [
+     {
+      "id": "T23B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C7-110",
+  "type": "this_or_that",
+  "chapter": 7,
+  "round": "C7-r110",
+  "prompt": "Genii's forever deal: your one perfect day on repeat, or random days that could be amazing or awful.",
+  "options": [
+   {
+    "t": "The perfect day. I'll know every joke before it lands.",
+    "axes": {
+     "L1": 1
+    },
+    "tags": [
+     {
+      "id": "T22B",
+      "s": 2
+     }
+    ],
+    "emotion": "relief"
+   },
+   {
+    "t": "Random days. Even the awful ones are new.",
+    "axes": {
+     "L1": -1
+    },
+    "tags": [
+     {
+      "id": "T22A",
+      "s": 2
+     }
+    ],
+    "emotion": "delight"
+   }
+  ],
+  "heart": {
+   "prompt": "Genii offers a choice that lasts forever: your one perfect day on repeat, or random days that could be wonderful or terrible.",
+   "options": [
+    "The perfect day, even if I know every moment before it happens.",
+    "Random days, because even the bad ones would be new."
+   ]
+  },
+  "fp": {
+   "trigger": "choose one kind of day forever",
+   "setting": "impossible time loop",
+   "ask": "repeat the perfect day or roll the dice",
+   "who": "just you",
+   "stakes": "comfort versus surprise for the rest of time",
+   "device": "time-loop"
+  },
+  "mask": "looks like a time-loop riddle; measures routine as comfort versus the pull of the new (T22)",
+  "ae": [
+   "A",
+   "D"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T22-2",
+  "world": "absurd",
+  "friend": {
+   "prompt": "Genii's forever deal: one perfect day on repeat, or random days, amazing or awful. Which one is {name}?",
+   "a": {
+    "t": "The perfect day. \"I'll know every joke before it lands.\"",
+    "axes": {
+     "L1": 1
+    },
+    "tags": [
+     {
+      "id": "T22B",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Random days. \"Even the awful ones are new.\"",
+    "axes": {
+     "L1": -1
+    },
+    "tags": [
+     {
+      "id": "T22A",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C7-136",
+  "type": "this_or_that",
+  "chapter": 7,
+  "round": "C7-r110",
+  "sq": "SQ-R3-1",
+  "world": "unusual",
+  "prompt": "Your birthday. Your family wants it the way it's always been: same restaurant, same cake, same off-key song. Your friends booked a surprise trip that weekend.",
+  "options": [
+   {
+    "t": "The family version. The off-key song is the gift.",
+    "axes": {
+     "R3": 2
+    },
+    "tags": [
+     {
+      "id": "T20A",
+      "s": 1
+     }
+    ],
+    "emotion": "warmth"
+   },
+   {
+    "t": "The trip. New year, new way to celebrate.",
+    "axes": {
+     "R3": -2
+    },
+    "tags": [
+     {
+      "id": "T20B",
+      "s": 1
+     }
+    ],
+    "emotion": "delight"
+   }
+  ],
+  "heart": {
+   "prompt": "It is your birthday. Your family wants it the way it has always been: the same restaurant, cake and off-key song. Your friends booked a surprise trip that weekend.",
+   "options": [
+    "The family version. The off-key song is the real gift.",
+    "The trip. A new year, and a new way to celebrate."
+   ]
+  },
+  "fp": {
+   "trigger": "birthday plans clash",
+   "setting": "family birthday ritual versus a surprise trip",
+   "ask": "keep the ritual or go your own way",
+   "who": "your family and your friends",
+   "stakes": "an old tradition versus a new one",
+   "device": "birthday-clash"
+  },
+  "mask": "looks like a scheduling clash; measures whether the old rituals feel like home or like a costume (R3, T20)",
+  "ae": [
+   "A",
+   "B",
+   "D"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "{name}'s birthday: family wants the same restaurant, cake and off-key song. Friends booked a surprise trip. Which one is {name}?",
+   "a": {
+    "t": "The family version. \"The off-key song is the gift.\"",
+    "axes": {
+     "R3": 2
+    },
+    "tags": [
+     {
+      "id": "T20A",
+      "s": 1
+     }
+    ]
+   },
+   "b": {
+    "t": "The trip. \"New year, new way to celebrate.\"",
+    "axes": {
+     "R3": -2
+    },
+    "tags": [
+     {
+      "id": "T20B",
+      "s": 1
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C7-41",
+  "type": "scenario",
+  "chapter": 7,
+  "sq": "SQ-L3-1",
+  "world": "unusual",
+  "prompt": "Charity poker night. You and your oldest friend play as a team for a trip for two. You just saw them slide an ace from their sleeve.",
+  "options": [
+   {
+    "t": "Call it at the table. Trip or no trip.",
+    "axes": {
+     "L3": 2,
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T25A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Tank our next hands till they get the hint.",
+    "axes": {
+     "L3": 1,
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T25A",
+      "s": 1
+     }
+    ],
+    "emotion": "irritation"
+   },
+   {
+    "t": "Keep quiet. The money goes to charity either way.",
+    "axes": {
+     "L3": -1
+    },
+    "tags": [
+     {
+      "id": "T25B",
+      "s": 1
+     }
+    ],
+    "emotion": "guilt"
+   },
+   {
+    "t": "Say nothing. Start packing for two.",
+    "axes": {
+     "L3": -2
+    },
+    "tags": [
+     {
+      "id": "T25B",
+      "s": 2
+     }
+    ],
+    "emotion": "delight"
+   }
+  ],
+  "heart": {
+   "prompt": "At a charity poker night, you and your oldest friend play as a team for a trip for two. You just saw them slide an ace out of their sleeve.",
+   "options": [
+    "I say it at the table, even if we lose the trip.",
+    "I play our next hands badly until they understand.",
+    "I stay quiet. The money goes to charity either way.",
+    "I say nothing and start planning the trip for two."
+   ]
+  },
+  "fp": {
+   "trigger": "your own teammate cheats to win",
+   "setting": "charity poker night",
+   "ask": "call it, sink it or ride it",
+   "who": "your oldest friend as your partner",
+   "stakes": "a trip for two versus a clean game",
+   "device": "card-sleeve-cheat"
+  },
+  "mask": "looks like a heist moment; measures the rule versus the person when the person is yours (L3, T25), and whether you say it out loud (R2)",
+  "ae": [
+   "A",
+   "B",
+   "C"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "Charity poker, team prize: a trip for two. {name} spots {their} oldest friend's sleeve ace. What does {name} do?",
+   "a": {
+    "t": "Calls it at the table. Trip or no trip.",
+    "axes": {
+     "L3": 2,
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T25A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Says nothing. Starts packing for two.",
+    "axes": {
+     "L3": -2
+    },
+    "tags": [
+     {
+      "id": "T25B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C7-125",
+  "type": "scenario",
+  "chapter": 7,
+  "sq": "SQ-L2-3",
+  "world": "absurd",
+  "prompt": "Genii offers a pocket scoreboard: live numbers on your savings, your skills, and how far you are from every goal.",
+  "options": [
+   {
+    "t": "Take it. I want to watch every number climb.",
+    "axes": {
+     "L2": 2
+    },
+    "tags": [
+     {
+      "id": "T24A",
+      "s": 2
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "Take it. Checking it becomes my new hobby.",
+    "axes": {
+     "L2": 1
+    },
+    "tags": [
+     {
+      "id": "T24A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Pass. I know how I'm doing. I can feel it.",
+    "axes": {
+     "L2": -2
+    },
+    "tags": [
+     {
+      "id": "T24B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Pass. I'd rather be surprised by how far I got.",
+    "axes": {
+     "L2": -1
+    },
+    "tags": [
+     {
+      "id": "T24B",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "Genii offers you a pocket scoreboard with live numbers for your savings, your skills, and how far you are from every goal.",
+   "options": [
+    "I take it. I want to watch every number go up.",
+    "I take it, and checking it becomes my new hobby.",
+    "I say no. I can feel how I am doing.",
+    "I say no. I would rather be surprised by my progress."
+   ]
+  },
+  "fp": {
+   "trigger": "a live scoreboard of your life is offered",
+   "setting": "Genii's gift, in your pocket",
+   "ask": "watch the numbers or trust the feel",
+   "who": "just you",
+   "stakes": "proof of progress versus peace",
+   "device": "life-scoreboard"
+  },
+  "mask": "looks like a magic gadget; measures needing visible progress versus trusting the slow road (L2, T24)",
+  "ae": [
+   "A",
+   "D",
+   "E"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "Genii offers {name} a pocket scoreboard: live numbers on savings, skills and distance to every goal. What does {name} do?",
+   "a": {
+    "t": "Takes it. \"I want to watch every number climb.\"",
+    "axes": {
+     "L2": 2
+    },
+    "tags": [
+     {
+      "id": "T24A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Passes. \"I know how I'm doing. I can feel it.\"",
+    "axes": {
+     "L2": -2
+    },
+    "tags": [
+     {
+      "id": "T24B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C7-126",
+  "type": "receipts",
+  "chapter": 7,
+  "sq": "SQ-L2-3",
+  "world": "everyday",
+  "prompt": "No judging. Tap everything that's true from the last month:",
+  "options": [
+   {
+    "t": "Counted the pages left in a book, more than once",
+    "axes": {
+     "L2": 1
+    },
+    "tags": [
+     {
+      "id": "T24A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Made a chart or tally for a hobby or a goal",
+    "axes": {
+     "L2": 1
+    },
+    "tags": [
+     {
+      "id": "T24A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Gave up on something because I couldn't see it working",
+    "axes": {
+     "L2": 1
+    }
+   },
+   {
+    "t": "Picked a hobby back up without caring how rusty I was",
+    "axes": {
+     "L2": -1
+    },
+    "tags": [
+     {
+      "id": "T24B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Kept at something slow without checking if I'm improving",
+    "axes": {
+     "L2": -2
+    },
+    "tags": [
+     {
+      "id": "T24B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Planted something, then forgot to look at it for weeks",
+    "axes": {
+     "L2": -1
+    },
+    "tags": [
+     {
+      "id": "T24B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "None of these",
+    "none": true
+   }
+  ],
+  "heart": {
+   "prompt": "Without judging yourself, choose everything that has been true in the last month.",
+   "options": [
+    "I counted the pages left in a book, more than once.",
+    "I made a chart or tally for a hobby or a goal.",
+    "I gave up on something because I could not see it working.",
+    "I picked a hobby back up, not minding how rusty I was.",
+    "I kept at something slow without checking whether I was improving.",
+    "I planted something and then forgot to look at it for weeks.",
+    "None of these."
+   ]
+  },
+  "fp": {
+   "trigger": "a month of small progress habits",
+   "setting": "real life, the last month",
+   "ask": "tick what is true",
+   "who": "just you",
+   "stakes": "needing proof versus trusting the slow road",
+   "device": "progress-receipts"
+  },
+  "mask": "looks like a quick memory check; measures needing to see progress versus trusting the slow build (L2, T24) from things actually done",
+  "ae": [
+   "A"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C7-135",
+  "type": "reply",
+  "chapter": 7,
+  "sq": "SQ-T23-2",
+  "world": "absurd",
+  "prompt": "You can fly. So can everyone in your neighborhood hero chat. Then:",
+  "thread": [
+   {
+    "from": "Hero chat",
+    "text": "KITE STUCK ON THE WATER TOWER. elm st. who's closest??"
+   },
+   {
+    "from": "Dana (also flies)",
+    "text": "me, 2 blocks. but i JUST sat down with noodles"
+   }
+  ],
+  "options": [
+   {
+    "t": "\"On my way. Eat your noodles.\"",
+    "tags": [
+     {
+      "id": "T23A",
+      "s": 2
+     }
+    ],
+    "emotion": "warmth"
+   },
+   {
+    "t": "\"Going. You owe me noodles.\"",
+    "tags": [
+     {
+      "id": "T23A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "\"Dana, you're closer. Noodles travel.\"",
+    "tags": [
+     {
+      "id": "T23B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "\"Off duty tonight. Someone else has wings.\"",
+    "tags": [
+     {
+      "id": "T23B",
+      "s": 2
+     }
+    ],
+    "emotion": "relief"
+   }
+  ],
+  "heart": {
+   "prompt": "Imagine you can fly, like everyone in your neighborhood hero group chat. Then these messages arrive.",
+   "thread": [
+    {
+     "from": "Hero chat",
+     "text": "A kite is stuck on the water tower on Elm Street. Who is closest?"
+    },
+    {
+     "from": "Dana (also flies)",
+     "text": "I am two blocks away, but I just sat down to eat."
+    }
+   ],
+   "options": [
+    "\"I am on my way. Enjoy your dinner.\"",
+    "\"I will go. You owe me dinner.\"",
+    "\"Dana, you are closer. Your dinner can come with you.\"",
+    "\"I am off duty tonight. Someone else can fly there.\""
+   ]
+  },
+  "fp": {
+   "trigger": "a small rescue call lands in the group",
+   "setting": "neighborhood superhero group chat",
+   "ask": "fly over or let the closer one go",
+   "who": "a neighbor hero mid-dinner",
+   "stakes": "your night versus being the one who shows",
+   "device": "superhero-chat"
+  },
+  "mask": "looks like a superhero joke; measures whether you move before anyone asks twice (T23)",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "{name}'s flying hero chat: \"Kite stuck on the water tower!\" The closest flyer: \"just sat down with noodles.\" What does {name} reply?",
+   "a": {
+    "t": "\"On my way. Eat your noodles.\"",
+    "tags": [
+     {
+      "id": "T23A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "\"Off duty tonight. Someone else has wings.\"",
+    "tags": [
+     {
+      "id": "T23B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C7-128",
+  "type": "others",
+  "chapter": 7,
+  "sq": "SQ-R3-1",
+  "world": "unusual",
+  "prompt": "Your coworker's family skips the big holiday dinner. Every year, all 14 of them play laser tag instead. First thought?",
+  "options": [
+   {
+    "t": "Legends. Where do I sign up?",
+    "axes": {
+     "R3": -2
+    },
+    "tags": [
+     {
+      "id": "T20B",
+      "s": 2
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "Fun once. But where's the long table, the leftovers?",
+    "axes": {
+     "R3": 1
+    },
+    "tags": [
+     {
+      "id": "T20A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "A holiday needs the dinner. That's the whole point.",
+    "axes": {
+     "R3": 2
+    },
+    "tags": [
+     {
+      "id": "T20A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Honestly? My family would be happier doing that.",
+    "axes": {
+     "R3": -1
+    },
+    "tags": [
+     {
+      "id": "T20B",
+      "s": 1
+     }
+    ],
+    "emotion": "longing"
+   }
+  ],
+  "heart": {
+   "prompt": "Your coworker's family skips the big holiday dinner. Every year, all 14 of them play laser tag instead. What is your first thought?",
+   "options": [
+    "I love it. I would join them in a second.",
+    "Fun once, but I would miss the long table and leftovers.",
+    "A holiday needs the dinner. That is the point of it.",
+    "Honestly, my own family might be happier doing that."
+   ]
+  },
+  "fp": {
+   "trigger": "a family trades the holiday dinner for a game",
+   "setting": "laser tag arena on a holiday",
+   "ask": "your first thought",
+   "who": "a coworker's whole family",
+   "stakes": "the ritual versus a new way",
+   "device": "holiday-laser-tag"
+  },
+  "mask": "looks like office gossip; measures whether the old rituals feel like home or like a costume (R3, T20), shown by how you judge theirs",
+  "ae": [
+   "A",
+   "C",
+   "D"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "A coworker's whole family, all 14, skips holiday dinner for laser tag every year. {name}'s first thought?",
+   "a": {
+    "t": "\"A holiday needs the dinner. That's the whole point.\"",
+    "axes": {
+     "R3": 2
+    },
+    "tags": [
+     {
+      "id": "T20A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "\"Legends. Where do I sign up?\"",
+    "axes": {
+     "R3": -2
+    },
+    "tags": [
+     {
+      "id": "T20B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C7-120",
+  "type": "bet",
+  "chapter": 7,
+  "sq": "SQ-T25-1",
+  "world": "everyday",
+  "prompt": "Bet you've read a game's rulebook out loud mid-game, just to win an argument.",
+  "options": [
+   {
+    "t": "Guilty. Page 12. I had it bookmarked.",
+    "axes": {
+     "L3": 2
+    },
+    "tags": [
+     {
+      "id": "T25A",
+      "s": 2
+     }
+    ],
+    "emotion": "pride"
+   },
+   {
+    "t": "Guilty. Then lost on the exact rule I read.",
+    "axes": {
+     "L3": 1
+    },
+    "tags": [
+     {
+      "id": "T25A",
+      "s": 1
+     }
+    ],
+    "emotion": "cringe"
+   },
+   {
+    "t": "Never. At our table, house rules beat the book.",
+    "axes": {
+     "L3": -2
+    },
+    "tags": [
+     {
+      "id": "T25B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Never. Whatever keeps the game fun is the rule.",
+    "axes": {
+     "L3": -1
+    },
+    "tags": [
+     {
+      "id": "T25B",
+      "s": 1
+     }
+    ],
+    "emotion": "delight"
+   }
+  ],
+  "heart": {
+   "prompt": "Have you ever read a game's rulebook out loud in the middle of a game to settle an argument?",
+   "options": [
+    "Yes. I knew the exact page and had it marked.",
+    "Yes, and then I lost because of the very rule I read.",
+    "No. At our table, our house rules matter more than the book.",
+    "No. Whatever keeps the game fun becomes the rule."
+   ]
+  },
+  "fp": {
+   "trigger": "a rules fight breaks out mid-game",
+   "setting": "game night, rulebook in reach",
+   "ask": "quote the book or let the table decide",
+   "who": "friends at the table",
+   "stakes": "winning the argument versus the mood",
+   "device": "rulebook-read-aloud"
+  },
+  "mask": "looks like a game-night confession; measures a rule as a rule versus rules that bend for the table (T25, L3) from a thing actually done",
+  "ae": [
+   "A",
+   "C"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "Has {name} ever read a game's rulebook out loud mid-game, just to win an argument?",
+   "a": {
+    "t": "Guilty. Page 12. Had it bookmarked.",
+    "axes": {
+     "L3": 2
+    },
+    "tags": [
+     {
+      "id": "T25A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Never. At {their} table, house rules beat the book.",
+    "axes": {
+     "L3": -2
+    },
+    "tags": [
+     {
+      "id": "T25B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C7-80",
+  "type": "pick_two",
+  "chapter": 7,
+  "pick": 2,
+  "prompt": "One spot left on a sailboat crossing the Atlantic. Leaves in 36 hours. You've never sailed. Pick your two first thoughts.",
+  "options": [
+   {
+    "t": "Yes. I'll learn which rope is which on the way.",
+    "axes": {
+     "L1": -2
+    },
+    "tags": [
+     {
+      "id": "T22A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Who's the captain? I need a name and reviews.",
+    "axes": {
+     "L1": 1
+    }
+   },
+   {
+    "t": "What's my way off if I hate it by day three?",
+    "axes": {
+     "L1": 2
+    }
+   },
+   {
+    "t": "Say yes. Then look up what a \"jib\" is.",
+    "axes": {
+     "L1": -1
+    },
+    "tags": [
+     {
+      "id": "T22A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "My own bed and my Thursday routine, thanks.",
+    "axes": {
+     "L1": 1
+    },
+    "tags": [
+     {
+      "id": "T22B",
+      "s": 1
+     }
+    ],
+    "emotion": "relief"
+   },
+   {
+    "t": "Already telling everyone I'm a sailor now.",
+    "axes": {
+     "L1": -2
+    },
+    "emotion": "delight"
+   }
+  ],
+  "heart": {
+   "prompt": "There is one spot left on a sailboat crossing the Atlantic. It leaves in 36 hours, and you have never sailed. Which two thoughts come first?",
+   "options": [
+    "Yes. I will learn which rope is which on the way.",
+    "Who is the captain? I want a name and some reviews first.",
+    "What is my way out if I hate it by the third day?",
+    "I say yes, then look up the basics.",
+    "I would rather keep my own bed and my weekly routine.",
+    "I am already telling people I sail now."
+   ]
+  },
+  "fp": {
+   "trigger": "last-minute crew spot on a sailboat",
+   "setting": "ocean crossing, 36 hours out",
+   "ask": "jump in or get the details first",
+   "who": "a crew of strangers",
+   "stakes": "adventure versus falling with no net",
+   "device": "sailboat-crew"
+  },
+  "mask": "looks like a travel daydream; measures stepping in blind versus needing a plan B first (L1)",
+  "ae": [
+   "A",
+   "D"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-L1-2",
+  "world": "unusual",
+  "friend": {
+   "prompt": "One spot on a sailboat crossing the Atlantic, leaving in 36 hours. {name} has never sailed. Which line sounds most like {name}?",
+   "a": {
+    "t": "\"What's my way off if I hate it by day three?\"",
+    "axes": {
+     "L1": 2
+    }
+   },
+   "b": {
+    "t": "\"Yes. I'll learn which rope is which on the way.\"",
+    "axes": {
+     "L1": -2
+    },
+    "tags": [
+     {
+      "id": "T22A",
+      "s": 1
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C7-134",
+  "type": "scenario",
+  "chapter": 7,
+  "sq": "SQ-R1-3",
+  "world": "absurd",
+  "prompt": "A perfect clone of you, courtesy of Genii. It can go to every hangout, party and group dinner in your place. Nobody could tell.",
+  "options": [
+   {
+    "t": "No deal. I want to be at every single one.",
+    "axes": {
+     "R1": 2
+    },
+    "emotion": "warmth"
+   },
+   {
+    "t": "Clone does work stuff. My people get the real me.",
+    "axes": {
+     "R1": 1
+    }
+   },
+   {
+    "t": "Clone takes the big group ones. I keep the one-on-ones.",
+    "axes": {
+     "R1": -1
+    },
+    "emotion": "relief"
+   },
+   {
+    "t": "Clone goes everywhere. Me and my couch, reunited.",
+    "axes": {
+     "R1": -2
+    },
+    "emotion": "delight"
+   }
+  ],
+  "heart": {
+   "prompt": "Genii offers you a perfect clone. It could go to every hangout, party and group dinner in your place, and nobody could tell.",
+   "options": [
+    "No, thank you. I want to be at every one of them.",
+    "The clone can handle work. The people I love get the real me.",
+    "The clone takes the big group events. I keep the one-on-ones.",
+    "The clone goes everywhere, and I stay home on my couch."
+   ]
+  },
+  "fp": {
+   "trigger": "a clone could live your social life for you",
+   "setting": "Genii's gift, every hangout",
+   "ask": "show up yourself or send the clone",
+   "who": "your friend group",
+   "stakes": "being there versus your own time",
+   "device": "clone"
+  },
+  "mask": "looks like a sci-fi perk; measures going with your people versus peeling off for your own time (R1)",
+  "ae": [
+   "A",
+   "B",
+   "D"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "Genii offers {name} a perfect clone to attend every hangout, party and group dinner. Nobody could tell. What does {name} do?",
+   "a": {
+    "t": "No deal. \"I want to be at every single one.\"",
+    "axes": {
+     "R1": 2
+    }
+   },
+   "b": {
+    "t": "Clone goes everywhere. \"Me and my couch, reunited.\"",
+    "axes": {
+     "R1": -2
+    }
+   }
+  }
+ },
+ {
+  "id": "C7-131",
+  "type": "feeling",
+  "chapter": 7,
+  "follows": "C7-134",
+  "world": "absurd",
+  "prompt": "Picture that clone at your next hangout. First feeling, no editing.",
+  "options": [
+   {
+    "t": "Relief. Honestly, a lot of relief.",
+    "emotion": "relief"
+   },
+   {
+    "t": "Jealous. Of myself. Somehow.",
+    "emotion": "envy"
+   },
+   {
+    "t": "Guilty. My friends deserve the original.",
+    "emotion": "guilt"
+   },
+   {
+    "t": "Worried it's more fun than me.",
+    "emotion": "worry"
+   },
+   {
+    "t": "Delighted. Two of me, zero small talk.",
+    "emotion": "delight"
+   }
+  ],
+  "heart": {
+   "prompt": "Imagine the clone at your next hangout. What is the first feeling, before you edit it?",
+   "options": [
+    "Relief, and quite a lot of it.",
+    "Jealous of myself, somehow.",
+    "Guilty. My friends deserve the real me.",
+    "Worried that it is more fun than I am.",
+    "Delighted. Two of me, and no small talk for me."
+   ]
+  },
+  "fp": {
+   "trigger": "right after the clone choice",
+   "setting": "your next hangout, imagined",
+   "ask": "first feeling",
+   "who": "just you",
+   "stakes": "how the clone call sits with you",
+   "device": "feeling-after-clone"
+  },
+  "mask": "looks like a vibe check; logs the emotion under the show-up-or-send-the-clone call (emotion only, no profile evidence)",
+  "ae": [
+   "E"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C7-111",
+  "type": "others",
+  "chapter": 7,
+  "prompt": "An ash cloud grounds every flight. Four days in a hostel with nine strangers. One tapes a full group schedule to the fridge. First thought?",
+  "options": [
+   {
+    "t": "Finally, someone's in charge. Signing up for dishes.",
+    "tags": [
+     {
+      "id": "T24A",
+      "s": 2
+     },
+     {
+      "id": "T17A",
+      "s": 1
+     }
+    ],
+    "emotion": "relief"
+   },
+   {
+    "t": "Grab the pen. Add a slot for charades.",
+    "tags": [
+     {
+      "id": "T24A",
+      "s": 1
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "Cute. I'll follow it until lunch, then freelance.",
+    "tags": [
+     {
+      "id": "T24B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Nobody schedules my stranded days. Skipping \"group trivia.\"",
+    "tags": [
+     {
+      "id": "T24B",
+      "s": 2
+     },
+     {
+      "id": "T17B",
+      "s": 1
+     }
+    ],
+    "emotion": "irritation"
+   }
+  ],
+  "heart": {
+   "prompt": "An ash cloud grounds every flight. You spend four days in a hostel with nine strangers, and one puts a group schedule on the fridge. Your first thought?",
+   "options": [
+    "Good, someone is organizing this. I will sign up for dishes.",
+    "I take the pen and add time for charades.",
+    "I will follow it until lunch and then do my own thing.",
+    "Nobody plans my stranded days for me. I am skipping group trivia."
+   ]
+  },
+  "fp": {
+   "trigger": "a stranger posts a strict group schedule",
+   "setting": "hostel, every flight grounded by ash",
+   "ask": "join the plan or keep the days open",
+   "who": "nine stranded strangers",
+   "stakes": "structure versus four free days",
+   "device": "fridge-schedule"
+  },
+  "mask": "looks like travel-chaos comedy; measures a plan as calm versus a plan as a cage (T24, T17)",
+  "ae": [
+   "A",
+   "C",
+   "E"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T24-2",
+  "world": "unusual",
+  "friend": {
+   "prompt": "Ash cloud. Four days stuck in a hostel with nine strangers. One tapes a group schedule to the fridge. {name}'s first thought?",
+   "a": {
+    "t": "\"Finally, someone's in charge. Signing up for dishes.\"",
+    "tags": [
+     {
+      "id": "T24A",
+      "s": 2
+     },
+     {
+      "id": "T17A",
+      "s": 1
+     }
+    ]
+   },
+   "b": {
+    "t": "\"Nobody schedules my stranded days.\" Skips group trivia.",
+    "tags": [
+     {
+      "id": "T24B",
+      "s": 2
+     },
+     {
+      "id": "T17B",
+      "s": 1
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C7-132",
+  "type": "rank",
+  "chapter": 7,
+  "sq": "SQ-T23-1",
+  "world": "absurd",
+  "prompt": "Genii slips you a secret month off, fully paid. Nobody will ever know. Rank how you'd spend it, favorite first.",
+  "options": [
+   {
+    "t": "Filling in wherever someone's short on hands.",
+    "tags": [
+     {
+      "id": "T23A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Doing every favor my friends have been saving up.",
+    "tags": [
+     {
+      "id": "T23A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "My own project. Door shut. Phone off.",
+    "tags": [
+     {
+      "id": "T23B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "A solo trip where nobody can reach me.",
+    "tags": [
+     {
+      "id": "T23B",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "Genii gives you a secret month off, fully paid, and nobody will ever know. Put these in order, starting with how you would most like to spend it.",
+   "options": [
+    "Helping wherever people are short of help.",
+    "Doing all the favors my friends have been saving for me.",
+    "My own project, with the door shut and my phone off.",
+    "Taking a trip alone, where nobody can reach me."
+   ]
+  },
+  "fp": {
+   "trigger": "a month nobody knows you have",
+   "setting": "Genii's secret gift",
+   "ask": "rank how you spend it",
+   "who": "you, your friends, anyone short-handed",
+   "stakes": "giving the time away versus keeping it",
+   "device": "secret-month"
+  },
+  "mask": "looks like a daydream ranking; measures whose your free time is when nobody would ever know (T23)",
+  "ae": [
+   "A",
+   "D"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C7-7",
+  "type": "reply",
+  "chapter": 7,
+  "sq": "SQ-T25-2",
+  "world": "unusual",
+  "prompt": "You're reselling your concert ticket at face value. Two texts land a minute apart:",
+  "thread": [
+   {
+    "from": "Buyer 1",
+    "text": "I'll take it! sending the money now"
+   },
+   {
+    "from": "Buyer 2",
+    "text": "please. it's my kid's first concert ever. I promised them"
+   }
+  ],
+  "options": [
+   {
+    "t": "\"Buyer one was first. I'm really sorry.\"",
+    "axes": {
+     "L3": 2
+    },
+    "tags": [
+     {
+      "id": "T25A",
+      "s": 2
+     }
+    ],
+    "emotion": "guilt"
+   },
+   {
+    "t": "\"Whoever pays first gets it. Go.\"",
+    "axes": {
+     "L3": 1
+    },
+    "tags": [
+     {
+      "id": "T25A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "\"Kid gets it. Buyer one, I owe you a drink.\"",
+    "axes": {
+     "L3": -1
+    },
+    "tags": [
+     {
+      "id": "T25B",
+      "s": 1
+     }
+    ],
+    "emotion": "warmth"
+   },
+   {
+    "t": "Send it to the kid. Tell buyer one it already sold.",
+    "axes": {
+     "L3": -2
+    },
+    "tags": [
+     {
+      "id": "T25B",
+      "s": 2
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "You are reselling your concert ticket at face value. Two messages arrive a minute apart.",
+   "thread": [
+    {
+     "from": "Buyer 1",
+     "text": "I will take it. I am sending the money now."
+    },
+    {
+     "from": "Buyer 2",
+     "text": "Please. It is my child's first concert, and I promised them."
+    }
+   ],
+   "options": [
+    "\"The first buyer asked first. I am really sorry.\"",
+    "\"Whoever pays first gets it.\"",
+    "\"The ticket goes to your child. First buyer, I owe you a drink.\"",
+    "I send it to the child and tell the first buyer it already sold."
+   ]
+  },
+  "fp": {
+   "trigger": "two buyers want your one ticket",
+   "setting": "reselling a concert ticket",
+   "ask": "first come or the bigger need",
+   "who": "a stranger who was first and a parent who promised",
+   "stakes": "fair order versus a kid's first concert",
+   "device": "ticket-resale"
+  },
+  "mask": "looks like a resale hassle; measures first come, first served versus the right call for the case (T25, L3)",
+  "ae": [
+   "A",
+   "C"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "{name} resells a concert ticket. Buyer one: \"sending money now.\" Buyer two: \"my kid's first concert ever.\" What does {name} reply?",
+   "a": {
+    "t": "\"Buyer one was first. I'm really sorry.\"",
+    "axes": {
+     "L3": 2
+    },
+    "tags": [
+     {
+      "id": "T25A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Sends it to the kid. Tells buyer one it sold.",
+    "axes": {
+     "L3": -2
+    },
+    "tags": [
+     {
+      "id": "T25B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C7-133",
+  "type": "real",
+  "chapter": 7,
+  "sq": "SQ-R1-3",
+  "world": "everyday",
+  "prompt": "Most recent group plan you didn't love, like axe throwing or a pottery class. What did you actually do?",
+  "options": [
+   {
+    "t": "Went. Being there was the whole point.",
+    "axes": {
+     "R1": 2
+    },
+    "emotion": "warmth"
+   },
+   {
+    "t": "Went. Narrated my suffering the entire time.",
+    "axes": {
+     "R1": 1
+    },
+    "emotion": "delight"
+   },
+   {
+    "t": "Joined for the food after. Skipped the main event.",
+    "axes": {
+     "R1": -1
+    }
+   },
+   {
+    "t": "Said \"have fun!\" and did my own thing.",
+    "axes": {
+     "R1": -2
+    },
+    "emotion": "relief"
+   }
+  ],
+  "heart": {
+   "prompt": "Think of the most recent group plan you did not love, like axe throwing or a pottery class. What did you actually do?",
+   "options": [
+    "I went. Being there with them was the point.",
+    "I went, and joked about my suffering the whole time.",
+    "I joined them for the meal afterward and skipped the main event.",
+    "I told them to have fun and did my own thing."
+   ]
+  },
+  "fp": {
+   "trigger": "friends pick a plan you don't love",
+   "setting": "axe throwing or a pottery class",
+   "ask": "go along or peel off",
+   "who": "your friend group",
+   "stakes": "being part of it versus your own evening",
+   "device": "group-plan-vote"
+  },
+  "mask": "looks like a memory of a meh night out; measures going with the group versus peeling off (R1) from a thing actually done",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "The last group plan {name} didn't love, like axe throwing or pottery. What did {name} actually do?",
+   "a": {
+    "t": "Went. Being there was the whole point.",
+    "axes": {
+     "R1": 2
+    }
+   },
+   "b": {
+    "t": "Said \"have fun!\" and did {their} own thing.",
+    "axes": {
+     "R1": -2
+    }
+   }
+  }
+ },
+ {
+  "id": "C7-100",
+  "type": "real",
+  "chapter": 7,
+  "sq": "SQ-T10-2",
+  "world": "everyday",
+  "prompt": "The club, team or crew you most recently stopped showing up to. What did you actually do?",
+  "options": [
+   {
+    "t": "Told them in person: \"I'm out. Thanks for everything.\"",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T10A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Sent a long goodbye message. Muted the chat right after.",
+    "axes": {
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T10A",
+      "s": 1
+     }
+    ],
+    "emotion": "cringe"
+   },
+   {
+    "t": "Just stopped going. Nobody asked. I didn't explain.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T10B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Said \"busy lately\" three times till they stopped asking.",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T10B",
+      "s": 1
+     }
+    ],
+    "emotion": "guilt"
+   },
+   {
+    "t": "Still a member on paper. Haven't been in a year.",
+    "tags": [
+     {
+      "id": "T10B",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "Think of the club, team or group you most recently stopped going to. What did you actually do?",
+   "options": [
+    "I told them in person that I was leaving, and thanked them.",
+    "I sent a long goodbye message, then muted the chat.",
+    "I stopped going. Nobody asked, and I did not explain.",
+    "I said I was busy until they stopped asking.",
+    "I am still a member on paper, but I have not been in a year."
+   ]
+  },
+  "fp": {
+   "trigger": "you drifted out of a group",
+   "setting": "club, team or crew",
+   "ask": "say it's over or let it fade",
+   "who": "a group you belonged to",
+   "stakes": "a clean ending versus a quiet one",
+   "device": "quiet-exit"
+  },
+  "mask": "looks like a memory; measures whether ending something needs a conversation (T10, R2)",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "The club, team or crew {name} most recently stopped showing up to. What did {name} actually do?",
+   "a": {
+    "t": "Told them in person: \"I'm out. Thanks for everything.\"",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T10A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Just stopped going. Nobody asked. Didn't explain.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T10B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ }
+]

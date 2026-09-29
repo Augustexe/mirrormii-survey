@@ -115,6 +115,20 @@ export function checkCards(cards, { lib, legacy = false } = {}) {
     if (!PRIVACY.includes(c.privacy)) err(id, `privacy "${c.privacy}" (normal or intimate)`);
     if (c.friend && c.privacy !== "normal") err(id, "intimate cards never carry a friend version");
     if (c.friend && ["receipts", "rank"].includes(type)) err(id, `${type} cards never carry a friend version`);
+    if (c.friend) {
+      const f = c.friend;
+      if (typeof f.prompt !== "string" || !f.prompt.includes("{name}")) err(id, "friend.prompt names the owner as {name}");
+      for (const k of ["a", "b"]) {
+        const s = f[k];
+        if (!s || typeof s.t !== "string" || !s.t.trim()) err(id, `friend.${k}.t missing`);
+        else if (!Object.keys(s.axes || {}).length && !(s.tags || []).length) err(id, `friend.${k} carries no evidence (copy it from the option it retells)`);
+      }
+      for (const t of [f.prompt, f.a && f.a.t, f.b && f.b.t]) {
+        const m = typeof t === "string" && t.match(/\b(he|she|him|her|his|hers)\b/i);
+        if (m) err(id, `friend text uses "${m[0]}" for the owner (use {they}, {them}, {their})`);
+      }
+    }
+    if (c.round && group === "extras") err(id, "extras never carry a round (each serves its own axis)");
     for (const k of ["teen", "teenPrompt"]) if (k in c) err(id, `"${k}" is gone (no age logic)`);
     if (!c.mask) warn(id, "no mask (what it looks like versus what it measures)");
     // Sub-question first and worlds (Jerry, 2026-09-29).
@@ -194,8 +208,27 @@ export function checkCards(cards, { lib, legacy = false } = {}) {
     }
   }
 
+  // Quick rounds: 2 or 3 this_or_that cards in one file, next to each other, never sharing an axis or tag pair (they are
+  // served back to back, so the neighbour rule holds inside a round too).
+  const rounds = new Map();
+  for (const c of cards) if (c && c.round) rounds.set(`${c._group}|${c.round}`, [...(rounds.get(`${c._group}|${c.round}`) || []), c]);
+  const dimsOf = (c) => new Set((c.options || []).flatMap((o) => [...Object.keys(o.axes || {}), ...(o.tags || []).map((t) => t.id.slice(0, 3))]));
+  for (const members of rounds.values()) {
+    const id = members[0].id;
+    if (members.length > 3) err(id, `round ${members[0].round} has ${members.length} cards (2 or 3)`);
+    if (members.length < 2) warn(id, `round ${members[0].round} has one card (it plays as a single card)`);
+    if (members.some((m) => m.type !== "this_or_that")) err(id, `round ${members[0].round} holds only this_or_that cards`);
+    const file = cards.filter((x) => x && x._group === members[0]._group);
+    const idx = members.map((m) => file.indexOf(m));
+    if (idx[idx.length - 1] - idx[0] !== idx.length - 1) err(id, `round ${members[0].round} cards sit next to each other in the file`);
+    for (let k = 1; k < members.length; k++) {
+      const shared = [...dimsOf(members[k - 1])].filter((d) => dimsOf(members[k]).has(d));
+      if (shared.length) err(members[k].id, `round ${members[0].round}: shares ${shared.join(", ")} with ${members[k - 1].id}`);
+    }
+  }
+
   // Uniqueness across the bank: fingerprints.
-  const withFp = cards.filter((c) => c && c.fp && typeof c.fp === "object" && FP_FIELDS.every((k) => typeof c.fp[k] === "string"));
+  const withFp =cards.filter((c) => c && c.fp && typeof c.fp === "object" && FP_FIELDS.every((k) => typeof c.fp[k] === "string"));
   const seenFp = new Map();
   for (const c of withFp) {
     const k = fpKey(c.fp);

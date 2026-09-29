@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 import { kit, lib, cardById, runCards, buildProfile, buildResult, freezePredictions, drawFinale, checkSealed, buildFriendDeck, promptFor, optionText, threadFor, CONFIG, rankTags, twistOrder, cardLink, friendMapping } from "./score.mjs";
 import { createScorer } from "./score-core.mjs";
 import { checkLock, entryFor, LOCK_FILE, normalize } from "./lock-evidence.mjs";
-import { TYPES as TYPE_SPEC, DID_TYPES, RANK_WEIGHTS, fillFromType } from "./card-schema.mjs";
+import { TYPES as TYPE_SPEC, DID_TYPES, RANK_WEIGHTS, fillFromType, ABSURD_WEIGHT_CAP } from "./card-schema.mjs";
 
 const DIR = path.dirname(fileURLToPath(import.meta.url));
 const AXES = ["R1", "R2", "R3", "L1", "L2", "L3"];
@@ -34,6 +34,38 @@ const o_words = (c) => c.options.map((o) => o.t.split(/\s+/).length);
 // One bank for everyone (LAUNCH-SPEC section 22): setup is closest person and pronoun only.
 const ADULT = { setup: { closest: "best_friend", pronoun: "they" } };
 
+// Fixture finders: scoring tests pick cards from the shipped bank by property, never by id, so a rewritten bank keeps
+// them meaningful. single: one-pick cards (not pick_two, receipts, rank or feeling).
+const SINGLE = (c) => !["pick_two", "receipts", "rank", "feeling"].includes(c.type);
+const byOrder = new Map(chapterCards.map((c, i) => [c.id, i]));
+// Options of a chapter card that carry axis ax with value v (v omitted: any value), as [card, optionIndex].
+function axisOptions(ax, { v, grade, weight, single = true } = {}) {
+  const out = [];
+  for (const c of chapterCards) {
+    if (single && !SINGLE(c)) continue;
+    if (grade && c.grade !== grade) continue;
+    if (weight !== undefined && c.weight !== weight) continue;
+    c.options.forEach((o, i) => {
+      const x = (o.axes || {})[ax];
+      if (x && (v === undefined || x === v) && !o.circumstance && !o.depends) out.push([c, i]);
+    });
+  }
+  return out;
+}
+const firstDistinct = (...lists) => {
+  // One entry from each list, all on different cards (depth-first).
+  const go = (k, used) => {
+    if (k === lists.length) return [];
+    for (const x of lists[k]) {
+      if (used.has(x[0].id)) continue;
+      const rest = go(k + 1, new Set([...used, x[0].id]));
+      if (rest) return [x, ...rest];
+    }
+    return null;
+  };
+  return go(0, new Set());
+};
+
 // ------------------------------------------------------------ format
 test("cards.json format", () => {
   assert.equal(kit.version, "persona-quiz-v2");
@@ -41,22 +73,25 @@ test("cards.json format", () => {
   kit.chapters.forEach((ch, i) => {
     assert.equal(ch.n, i + 1);
     assert.ok(ch.title && ch.intro, `chapter ${ch.n} needs a title and intro`);
-    // Step B (2026-09-28) added the indirect formats: chapters hold 7 to 12 cards; the picker serves 40 of the pool.
-    assert.ok(ch.cards.length >= 7 && ch.cards.length <= 12, `chapter ${ch.n} has ${ch.cards.length} cards`);
+    // Build C (LAUNCH-SPEC section 22): chapters hold 18 to 22 cards; the picker serves 40 of the pool.
+    assert.ok(ch.cards.length >= 16 && ch.cards.length <= 24, `chapter ${ch.n} has ${ch.cards.length} cards`);
     for (const c of ch.cards) assert.notEqual(c.type, "sealed", `${c.id}: sealed cards run only in the finale`);
   });
-  assert.equal(kit.finale.length, 8);
+  // The sealed pool (4 per axis, section 22); each run draws CONFIG.finaleSize of them.
+  assert.ok(kit.finale.length >= CONFIG.finaleSize, `sealed pool ${kit.finale.length}`);
   for (const c of kit.finale) assert.equal(c.type, "sealed");
   const ids = everyCard.map((c) => c.id);
   assert.equal(new Set(ids).size, ids.length, "card ids are unique");
   const total = chapterCards.length;
-  assert.ok(total >= 56 && total <= 80, `chapter cards ${total} within 56 to 80`);
+  assert.ok(total >= 120 && total <= 160, `chapter cards ${total} within 120 to 160`);
 });
 
 test("every card: type, weight, options, exits, friend side", () => {
   for (const c of everyCard) {
     assert.ok(TYPES.has(c.type), `${c.id}: type ${c.type}`);
-    assert.equal(c.weight, WEIGHT[c.type], `${c.id}: weight`);
+    // Absurd-world cards are capped (card-schema.mjs ABSURD_WEIGHT_CAP, LAUNCH-SPEC section 21).
+    assert.equal(c.weight, c.world === "absurd" ? Math.min(WEIGHT[c.type], ABSURD_WEIGHT_CAP) : WEIGHT[c.type], `${c.id}: weight`);
+    if (c.world === "absurd") assert.ok(!DID_TYPES.includes(c.type), `${c.id}: did cards are never absurd`);
     if (GRADE[c.type]) assert.equal(c.grade, GRADE[c.type], `${c.id}: grade`);
     assert.ok(c.prompt && c.prompt.length > 10, `${c.id}: prompt`);
     assert.ok(c.exits.includes("skip") && c.exits.includes("not_my_life"), `${c.id}: Skip and Not my life`);
@@ -81,7 +116,7 @@ test("every card: type, weight, options, exits, friend side", () => {
     if (c.options.some((o) => o.depends)) assert.ok(c.flip, `${c.id}: depends option needs a flip`);
     // New formats (LAUNCH-SPEC section 6): masked, chaptered, multiple choice, every non-none option carries evidence.
     if (["receipts", "bet", "reply", "others", "rank", "eyes"].includes(c.type)) {
-      assert.ok(typeof c.chapter === "number" && c.mask, `${c.id}: chapter and mask`);
+      assert.ok((typeof c.chapter === "number" || (c.chapter === "extra" && kit.extras.includes(c))) && c.mask, `${c.id}: chapter and mask`);
       assert.ok(!c.options.some((o) => o.depends || (o.circumstance && c.type === "receipts")), `${c.id}: no depends options (receipts: no circumstance)`);
       assert.ok(c.options.filter((o) => o.circumstance).length <= 1, `${c.id}: at most one circumstance option`);
       for (const o of c.options.filter((x) => !x.none && !x.circumstance)) assert.ok(Object.keys(o.axes || {}).length + (o.tags || []).length > 0, `${c.id}: "${o.t}" carries evidence`);
@@ -144,7 +179,8 @@ test("every tag and axis is reachable by at least 2 cards", (t) => {
 
 // DATA TEST (fix pass 2026-09-26, open item 1). Fails until the card agents unstick the thin tags; do not weaken it.
 // A tag that cannot reach tagFire from 2+ run cards can never fire for anybody. Maximum support per card = best
-// option strength x card weight (pick_two: best two picks; rank: best order under the position weights), the same
+// option strength x card weight (pick_two: best two picks; receipts: best receiptsCap ticks; rank: best order under the
+// position weights), the same
 // measure as check-src.cjs. Every tag, on the one bank everyone plays.
 test("every tag can fire: maximum support from the run cards >= tagFire from at least 2 cards", () => {
   const stuck = [];
@@ -153,7 +189,7 @@ test("every tag can fire: maximum support from the run cards >= tagFire from at 
     let max = 0, cards = 0;
     for (const c of run) {
       const v = c.options.map((o) => ((o.tags || []).find((x) => x.id === tag.id) || { s: 0 }).s).sort((a, b) => b - a);
-      const best = (c.type === "pick_two" ? v[0] + (v[1] || 0) : c.type === "rank" ? v.reduce((s, x, i) => s + x * RANK_WEIGHTS[i], 0) : v[0]) * c.weight;
+      const best = (c.type === "pick_two" ? v[0] + (v[1] || 0) : c.type === "receipts" ? v.slice(0, CONFIG.receiptsCap).reduce((s, x) => s + x, 0) : c.type === "rank" ? v.reduce((s, x, i) => s + x * RANK_WEIGHTS[i], 0) : v[0]) * c.weight;
       if (best > 0) { max += best; cards++; }
     }
     if (max < CONFIG.tagFire - 1e-9 || cards < CONFIG.tagMinCards) stuck.push(`${tag.id} max ${max.toFixed(2)} from ${cards}`);
@@ -241,70 +277,130 @@ test("no age logic: no card carries teen, teenPrompt or locked18; everyone gets 
   }
   assert.equal(runCards().length, chapterCards.length, "the pool is every chapter card");
   assert.equal(runCards({ age: "teen" }).length, chapterCards.length, "a stray age in a setup changes nothing");
-  // The former 18+ cards are intimate now, so "Keep it light" still skips them; their tags score for anyone.
-  for (const id of ["C3-8", "C3-9", "C3-14", "C6-9", "C6-11", "C6-13"]) assert.equal(cardById[id].privacy, "intimate", id);
-  const p = buildProfile({ setup: { age: "teen", closest: "parent", pronoun: "she" }, "C6-7": [0, 3], "C6-11": 0, "C3-8": [0, 1] });
+  // Sensitive cards are intimate, so "Keep it light" skips them; marriage and kids tags (T11, T21) score for anyone.
+  assert.ok(chapterCards.some((c) => c.privacy === "intimate"), "the bank has intimate cards for Keep it light to skip");
+  const mk = chapterCards.filter(SINGLE).map((c) => [c, c.options.findIndex((o) => (o.tags || []).some((t) => /^T(11|21)A/.test(t.id)))]).filter(([, i]) => i >= 0);
+  assert.ok(mk.length >= 2, "marriage and kids cards exist");
+  const ans = { setup: { age: "teen", closest: "parent", pronoun: "she" } };
+  for (const [c, i] of mk) ans[c.id] = i;
+  const p = buildProfile(ans);
   assert.ok(Object.keys(p.tags).some((id) => /^T(11|21)/.test(id)), "marriage and kids tags score like any other");
-  assert.ok(!p.warnings.some((w) => /C6-11|C3-8/.test(w)), "no answer is dropped for age");
+  assert.deepEqual(p.warnings, [], "no answer is dropped for age");
+  assert.equal(p.research.gatedOut.length, 0);
 });
 
-test("C3-9 plays only after a T11A pick on C3-8", () => {
-  const off = buildProfile({ ...ADULT, "C3-8": [3, 4], "C3-9": 1 });
-  assert.ok(off.research.gatedOut.includes("C3-9"));
-  const on = buildProfile({ ...ADULT, "C3-8": [0, 3], "C3-9": 1 });
-  assert.ok(!on.research.gatedOut.includes("C3-9"));
-  assert.ok(on.axes.L2.evidence.some((e) => e.card === "C3-9"));
+// Build C removed the kids gate (C3-8/C3-9): no shipped card carries a gateRule. The scorer keeps gate support, so it
+// is checked on a two-card fixture.
+test("gates: no shipped card is gated; a gated card counts only after its gate tag is picked", () => {
+  assert.deepEqual(everyCard.filter((c) => c.gateRule).map((c) => c.id), []);
+  const src = { id: "G-1", type: "scenario", grade: "would", weight: 0.55, chapter: 1, privacy: "normal", prompt: "Gate source card", exits: ["skip", "not_my_life"], options: [
+    { t: "yes", tags: [{ id: "T11A", s: 2 }] }, { t: "no", tags: [{ id: "T11B", s: 2 }] }, { t: "maybe", axes: { L2: 1 } }] };
+  const gated = { id: "G-2", type: "scenario", grade: "would", weight: 0.55, chapter: 1, privacy: "normal", prompt: "Gated follow-up card", exits: ["skip", "not_my_life"], gateRule: { card: "G-1", anyTag: "T11A" }, options: [
+    { t: "a", axes: { L2: 2 } }, { t: "b", axes: { L2: -2 } }, { t: "c", axes: { L2: 1 } }] };
+  const G = createScorer({ kit: { version: "fx", chapters: [{ n: 1, title: "x", intro: "x", cards: [src, gated] }], finale: [], extras: [] }, lib, friend: {} });
+  const off = G.buildProfile({ setup: {}, "G-1": 1, "G-2": 1 });
+  assert.ok(off.research.gatedOut.includes("G-2"));
+  const on = G.buildProfile({ setup: {}, "G-1": 0, "G-2": 1 });
+  assert.ok(!on.research.gatedOut.includes("G-2"));
+  assert.ok(on.axes.L2.evidence.some((e) => e.card === "G-2"));
 });
 
 // ------------------------------------------------------------ scoring
 test("weights by card type and rushed answers at 0.3", () => {
-  const p = buildProfile({ ...ADULT, "C2-1": 0, "C2-5": 0, "C2-8": 0, _ms: { "C2-1": 4000, "C2-5": 900, "C2-8": 5000 } });
-  const ev = Object.fromEntries(p.axes.R2.evidence.map((e) => [e.card, e.w]));
-  assert.equal(ev["C2-1"], 0.55);
-  assert.equal(ev["C2-5"], 0.24); // 0.80 x 0.3, rushed
-  assert.equal(ev["C2-8"], 0.45);
-  assert.equal(p.axes.R2.score, Math.round((0.55 * 2 + 0.24 * 2 + 0.45 * 2) * 1000) / 1000);
+  // A would card (0.55), a did card (0.80, answered rushed), a believe card (0.45) and an absurd card (0.35), all +2 on
+  // one axis, on four different cards.
+  const ax = AXES.find((a) => firstDistinct(axisOptions(a, { v: 2, weight: 0.55 }), axisOptions(a, { v: 2, weight: 0.8 }), axisOptions(a, { v: 2, weight: 0.45 }), axisOptions(a, { v: 2, weight: ABSURD_WEIGHT_CAP })));
+  assert.ok(ax, "fixture: one axis with would, did, believe and absurd +2 options");
+  const [w, d, b, x] = firstDistinct(axisOptions(ax, { v: 2, weight: 0.55 }), axisOptions(ax, { v: 2, weight: 0.8 }), axisOptions(ax, { v: 2, weight: 0.45 }), axisOptions(ax, { v: 2, weight: ABSURD_WEIGHT_CAP }));
+  assert.equal(x[0].world, "absurd");
+  const p = buildProfile({ ...ADULT, [w[0].id]: w[1], [d[0].id]: d[1], [b[0].id]: b[1], [x[0].id]: x[1], _ms: { [w[0].id]: 4000, [d[0].id]: 900, [b[0].id]: 5000, [x[0].id]: 5000 } });
+  const ev = Object.fromEntries(p.axes[ax].evidence.map((e) => [e.card, e.w]));
+  assert.equal(ev[w[0].id], 0.55);
+  assert.equal(ev[d[0].id], 0.24); // 0.80 x 0.3, rushed
+  assert.equal(ev[b[0].id], 0.45);
+  assert.equal(ev[x[0].id], 0.35, "absurd cards weigh 0.35");
+  assert.equal(p.axes[ax].score, Math.round((0.55 * 2 + 0.24 * 2 + 0.45 * 2 + 0.35 * 2) * 1000) / 1000);
 });
 
 test("circumstance, Not my life, No recent example and Skip never count", () => {
-  const p = buildProfile({ ...ADULT, "C4-1": 3, "C5-2": 2, "C5-6": "not_my_life", "C7-3": "skip", "C6-2": "no_recent", "C4-8": [0, 1] });
-  assert.deepEqual(p.research.circumstance.map((x) => x.card).sort(), ["C4-1", "C5-2"]);
-  assert.deepEqual(p.research.notMyLife, ["C5-6"]);
-  assert.deepEqual(p.research.noRecent, ["C6-2"]);
-  assert.deepEqual(p.research.skipped, ["C7-3"]);
-  assert.deepEqual(p.axes.L1.evidence.map((e) => e.card), ["C4-8", "C4-8"]);
-  assert.equal(p.axes.L1.cards, 1);
-  assert.equal(p.axes.L1.unfinished, true, "one valid card leaves the axis unfinished");
+  const circ = chapterCards.filter((c) => c.options.some((o) => o.circumstance)).slice(0, 2);
+  assert.equal(circ.length, 2, "fixture: two cards with a circumstance option");
+  const reals = chapterCards.filter((c) => c.type === "real");
+  const others = chapterCards.filter((c) => c.type === "scenario" && !circ.includes(c));
+  // A pick_two card with two options on one axis: one card, two pieces of evidence.
+  const two = chapterCards.filter((c) => c.type === "pick_two").map((c) => [c, AXES.find((a) => c.options.filter((o) => (o.axes || {})[a]).length >= 2)]).find(([, a]) => a);
+  assert.ok(two, "fixture: a pick_two card with two options on one axis");
+  const [pc, ax] = two;
+  const picks = pc.options.map((o, i) => ((o.axes || {})[ax] ? i : -1)).filter((i) => i >= 0).slice(0, 2);
+  const nml = others.find((c) => c.id !== pc.id), skp = others.find((c) => c.id !== pc.id && c !== nml);
+  const ans = { ...ADULT, [nml.id]: "not_my_life", [skp.id]: "skip", [reals[0].id]: "no_recent", [pc.id]: picks };
+  for (const c of circ) ans[c.id] = c.options.findIndex((o) => o.circumstance);
+  const p = buildProfile(ans);
+  assert.deepEqual(p.research.circumstance.map((x) => x.card).sort(), circ.map((c) => c.id).sort());
+  assert.deepEqual(p.research.notMyLife, [nml.id]);
+  assert.deepEqual(p.research.noRecent, [reals[0].id]);
+  assert.deepEqual(p.research.skipped, [skp.id]);
+  assert.deepEqual(p.axes[ax].evidence.map((e) => e.card), [pc.id, pc.id]);
+  assert.equal(p.axes[ax].cards, 1);
+  assert.equal(p.axes[ax].unfinished, true, "one valid card leaves the axis unfinished");
+  assert.equal(p.counts.answered, 3, "two circumstance picks and the pick_two card");
 });
 
 test("unfinished axis offers extras, and the extras finish it", () => {
-  const p = buildProfile({ ...ADULT, "C3-1": 1 });
+  for (const ax of AXES) assert.ok(kit.extras.filter((c) => c.axisFor === ax).length >= 1, `extras cover ${ax}`);
+  const [c, i] = axisOptions("R3").find(([, j], k, all) => all[k][0].options[j].axes.R3 < 0);
+  const p = buildProfile({ ...ADULT, [c.id]: i });
   assert.equal(p.axes.R3.unfinished, true);
   const r = buildResult(p);
   const u = r.unfinished.find((x) => x.axis === "R3");
-  assert.deepEqual(u.extras, ["X-R3-1", "X-R3-2"]);
+  const xs = kit.extras.filter((x) => x.axisFor === "R3");
+  assert.deepEqual(u.extras, xs.map((x) => x.id));
   assert.equal(u.line, lib.unfinished.line);
-  const p2 = buildProfile({ ...ADULT, "C3-1": 1, "X-R3-1": 1 });
+  const x = xs.find((e) => SINGLE(e) && e.options.some((o) => (o.axes || {}).R3 < 0));
+  const p2 = buildProfile({ ...ADULT, [c.id]: i, [x.id]: x.options.findIndex((o) => (o.axes || {}).R3 < 0) });
   assert.equal(p2.axes.R3.unfinished, false);
   assert.equal(p2.axes.R3.pole, -1);
 });
 
 test("flex: tie broken by real-card evidence first, then the first card", () => {
-  // C2-1 +2 (0.55) and C2-8 -2 (0.45): norm 0.1, no real card, first card C2-1 decides.
-  const a = buildProfile({ ...ADULT, "C2-1": 0, "C2-8": 2 });
-  assert.equal(a.axes.R2.flex, true);
-  assert.equal(a.axes.R2.pole, 1);
-  assert.match(a.axes.R2.decidedBy, /first card C2-1/);
-  // C2-1 -2, C3-12 +2 (real), C2-8 -1: near zero, real evidence says Direct although the first card says Soft.
-  const b = buildProfile({ ...ADULT, "C2-1": 1, "C3-12": 0, "C2-8": 4 });
-  assert.equal(b.axes.R2.flex, true);
-  assert.equal(b.axes.R2.pole, 1);
-  assert.equal(b.axes.R2.decidedBy, "real cards");
-  assert.ok(buildResult(b).type.badges.some((x) => x.axis === "R2" && x.badge === "Flex"));
+  const flexOf = (picks) => { const sc = picks.reduce((t, [c, i, ax]) => t + c.weight * c.options[i].axes[ax], 0); const mx = picks.reduce((t, [c]) => t + c.weight * 2, 0); return Math.abs(sc / mx) < CONFIG.flexBand; };
+  const notDid = (ax) => axisOptions(ax).filter(([c]) => c.grade !== "did").map(([c, i]) => [c, i, ax]);
+  const did = (ax) => axisOptions(ax, { grade: "did" }).map(([c, i]) => [c, i, ax]);
+  const sgn = ([c, i, ax]) => Math.sign(c.options[i].axes[ax]);
+  // Two non-did cards on opposite sides that cancel within the flex band: the first card in authored order decides.
+  let two = null, three = null;
+  for (const ax of AXES) {
+    for (const x of notDid(ax)) for (const y of notDid(ax)) {
+      if (two || x[0].id >= y[0].id || sgn(x) === sgn(y)) continue;
+      if (flexOf([x, y])) two = [x, y];
+    }
+    // Non-did cards on one side, a did card on the other, near zero: the did card decides against the first card.
+    for (const x of notDid(ax)) for (const d of did(ax)) for (const y of notDid(ax)) {
+      if (three || new Set([x[0].id, d[0].id, y[0].id]).size < 3 || sgn(x) !== sgn(y) || sgn(d) === sgn(x)) continue;
+      if (flexOf([x, d, y])) three = [x, d, y];
+    }
+  }
+  assert.ok(two && three, "fixtures: cancelling non-did cards, and non-did cards cancelled by a did card");
+  const ans = (picks) => ({ ...ADULT, ...Object.fromEntries(picks.map(([c, i]) => [c.id, i])) });
+  const first = (picks) => [...picks].sort((p, q) => byOrder.get(p[0].id) - byOrder.get(q[0].id))[0];
+  const ax1 = two[0][2];
+  const a = buildProfile(ans(two));
+  assert.equal(a.axes[ax1].flex, true);
+  assert.equal(a.axes[ax1].pole, sgn(first(two)));
+  assert.equal(a.axes[ax1].decidedBy, `first card ${first(two)[0].id}`);
+  const ax2 = three[0][2];
+  const b = buildProfile(ans(three));
+  assert.equal(b.axes[ax2].flex, true, `norm ${b.axes[ax2].norm}`);
+  assert.equal(b.axes[ax2].pole, sgn(three[1]));
+  assert.notEqual(b.axes[ax2].pole, sgn(first(three)), "the did card overrules the first card");
+  assert.equal(b.axes[ax2].decidedBy, "real cards");
+  assert.ok(buildResult(b).type.badges.some((x) => x.axis === ax2 && x.badge === "Flex"));
 });
 
 test("split: believe one way, did the other, becomes the plot twist", () => {
-  const p = buildProfile({ ...ADULT, "C2-8": 0, "C2-5": 2, "C3-12": 3 });
+  // Believe Direct (+2 at 0.45), did Soft twice (-2 at 0.80).
+  const [b, d1, d2] = firstDistinct(axisOptions("R2", { v: 2, grade: "believe" }), axisOptions("R2", { v: -2, grade: "did" }), axisOptions("R2", { v: -2, grade: "did" }));
+  const p = buildProfile({ ...ADULT, [b[0].id]: b[1], [d1[0].id]: d1[1], [d2[0].id]: d2[1] });
   const s = p.splits.find((x) => x.dim === "R2");
   assert.ok(s, "R2 split found");
   assert.ok(s.believe > 0 && s.act < 0);
@@ -393,7 +489,11 @@ test("tag ranking: share = net / the most the answered cards could give; exits, 
       const ms = answers._ms[c.id];
       const w = c.weight * (ms !== undefined && ms < CONFIG.rushedMs ? CONFIG.rushedFactor : 1);
       const v = c.options.map((o) => Math.max(0, (o.tags || []).reduce((s, x) => s + (x.id === id ? x.s : x.id === TAG[id].pair ? -x.s : 0), 0))).sort((a, b) => b - a);
-      possible += w * (c.type === "pick_two" ? v[0] + (v[1] || 0) : v[0]);
+      // pick_two: best two picks; receipts: best receiptsCap ticks; rank: best order under the position weights.
+      if (c.type === "rank") {
+        const net = c.options.map((o) => (o.tags || []).reduce((s, x) => s + (x.id === id ? x.s : x.id === TAG[id].pair ? -x.s : 0), 0)).sort((a, b) => b - a);
+        possible += w * Math.max(0, net.reduce((s, x, k) => s + x * RANK_WEIGHTS[k], 0));
+      } else possible += w * (c.type === "pick_two" ? v[0] + (v[1] || 0) : c.type === "receipts" ? v.slice(0, CONFIG.receiptsCap).reduce((s, x) => s + x, 0) : v[0]);
     }
     assert.ok(Math.abs(t.possible - possible) < 0.002, `${id}: possible ${t.possible} vs ${possible}`);
     if (possible) assert.ok(Math.abs(t.share - t.net / possible) < 0.002, `${id}: share`);
@@ -421,21 +521,34 @@ test("tag ranking: share = net / the most the answered cards could give; exits, 
 });
 
 test("tags: 2 separate cards, 1 not rushed, net over threshold, pair subtracts, max 5", () => {
-  const base = { ...ADULT, "C6-10": 0, "C7-1": 0, "C7-4": 0, "C7-7": 0 };
+  // A tag with 4 one-pick cards that together fire it, 2 of which also offer its pair.
+  const tagOpt = (c, id) => c.options.map((o, i) => [i, ((o.tags || []).find((t) => t.id === id) || { s: 0 }).s]).filter(([, x]) => x).sort((a, b) => b[1] - a[1])[0];
+  let fx = null;
+  for (const tag of lib.tags) {
+    const cards = chapterCards.filter(SINGLE).filter((c) => tagOpt(c, tag.id)).sort((a, b) => b.weight * tagOpt(b, tag.id)[1] - a.weight * tagOpt(a, tag.id)[1]).slice(0, 4);
+    if (cards.length < 4) continue;
+    const pairable = cards.filter((c) => tagOpt(c, tag.pair));
+    const base = { ...ADULT };
+    for (const c of cards) base[c.id] = tagOpt(c, tag.id)[0];
+    if (pairable.length >= 2 && buildProfile(base).tags[tag.id].fired) { fx = { id: tag.id, pair: tag.pair, cards, pairable, base }; break; }
+  }
+  assert.ok(fx, "fixture: a tag that fires from 4 cards, 2 of them offering its pair");
+  const { id, cards, pairable, base } = fx;
   const calm = buildProfile(base);
-  assert.equal(calm.tags.T25A.fired, true);
-  const rushedAll = buildProfile({ ...base, _ms: { "C6-10": 500, "C7-1": 500, "C7-4": 500, "C7-7": 500 } });
-  assert.equal(rushedAll.tags.T25A.fired, false, "all-rushed support never fires");
-  const oneCard = buildProfile({ ...ADULT, "C7-1": 0 });
-  assert.ok(!oneCard.tags.T25A.fired, "one card never fires");
-  const paired = buildProfile({ ...base, "C7-4": 2, "C7-7": 1 });
-  assert.ok(paired.tags.T25A.net < calm.tags.T25A.net, "pair support subtracts");
+  assert.equal(calm.tags[id].fired, true);
+  const rushedAll = buildProfile({ ...base, _ms: Object.fromEntries(cards.map((c) => [c.id, 500])) });
+  assert.equal(rushedAll.tags[id].fired, false, "all-rushed support never fires");
+  const oneCard = buildProfile({ ...ADULT, [cards[0].id]: base[cards[0].id] });
+  assert.ok(!oneCard.tags[id].fired, "one card never fires");
+  const paired = buildProfile({ ...base, ...Object.fromEntries(pairable.slice(0, 2).map((c) => [c.id, tagOpt(c, fx.pair)[0]])) });
+  assert.ok(paired.tags[id].net < calm.tags[id].net, "pair support subtracts");
   // A strongly consistent full run never shows more than 5, and spreads chapters.
   const full = { ...ADULT, _ms: {} };
   for (const c of runCards(ADULT.setup)) {
     const scoreOpt = (o) => (o.tags || []).reduce((s, t) => s + (t.id.endsWith("A") ? t.s : 0), 0);
     const order = c.options.map((o, i) => [i, scoreOpt(o)]).sort((x, y) => y[1] - x[1]).map(([i]) => i);
-    full[c.id] = c.type === "pick_two" ? order.slice(0, 2) : order[0];
+    if (c.type === "receipts") { const ticks = order.filter((i) => scoreOpt(c.options[i]) > 0); full[c.id] = ticks.length ? ticks.sort((x, y) => x - y) : [c.options.findIndex((o) => o.none)]; }
+    else full[c.id] = c.type === "pick_two" ? order.slice(0, 2) : c.type === "rank" ? order : order[0];
   }
   const pf = buildProfile(full);
   assert.ok(pf.shownTags.length <= CONFIG.maxTags);
@@ -443,28 +556,52 @@ test("tags: 2 separate cards, 1 not rushed, net over threshold, pair subtracts, 
 });
 
 test("research record: depends picks with flip answers, emotions, feelings", () => {
-  // C1-3 (the feeling card after C1-2) was cut; C2-6 is the feeling card after C2-5, option 3 "Guilty...".
-  const p = buildProfile({ ...ADULT, "C7-3": 3, "C7-3.flip": 1, "C1-2": 0, "C2-5": 1, "C2-6": 3 });
-  assert.ok(cardById["C7-3"].options[3].depends && cardById["C2-6"].follows === "C2-5", "fixture cards");
-  assert.deepEqual(p.research.depends, [{ card: "C7-3", said: cardById["C7-3"].options[3].t, flip: cardById["C7-3"].flip.options[1] }]);
-  assert.ok(p.emotions.some((e) => e.emotion === "warmth" && e.from.some((f) => f.startsWith("C1-2:"))));
+  // Emotions and feelings from the bank: a feeling card after its moment, and another card's option with an emotion.
+  const feel = chapterCards.find((c) => c.type === "feeling" && c.follows && c.privacy === "normal");
+  const moment = cardById[feel.follows];
+  const fi = feel.options.findIndex((o) => o.emotion);
+  const emo = chapterCards.find((c) => SINGLE(c) && c.id !== moment.id && c.options.some((o) => o.emotion));
+  const ei = emo.options.findIndex((o) => o.emotion);
+  const mi = moment.options.findIndex((o) => !o.circumstance);
+  const p = buildProfile({ ...ADULT, [emo.id]: ei, [moment.id]: mi, [feel.id]: fi });
+  assert.ok(p.emotions.some((e) => e.emotion === emo.options[ei].emotion && e.from.some((f) => f.startsWith(`${emo.id}:`))));
   assert.equal(p.feelings.length, 1);
-  assert.equal(p.feelings[0].follows, "C2-5");
-  assert.equal(p.feelings[0].feeling, "guilt");
+  assert.equal(p.feelings[0].follows, moment.id);
+  assert.equal(p.feelings[0].followsSaid, moment.options[mi].t);
+  assert.equal(p.feelings[0].feeling, feel.options[fi].emotion);
+  // No shipped card has a "depends" option now; the flip record is checked on a fixture card.
+  const dep = { id: "D-1", type: "scenario", grade: "would", weight: 0.55, chapter: 1, privacy: "normal", prompt: "A depends fixture card", exits: ["skip", "not_my_life"],
+    options: [{ t: "a", axes: { L1: 2 } }, { t: "b", axes: { L1: -2 } }, { t: "Depends", depends: true }], flip: { prompt: "What would flip you?", options: ["x", "y", "z"] } };
+  const D = createScorer({ kit: { version: "fx", chapters: [{ n: 1, title: "x", intro: "x", cards: [dep] }], finale: [], extras: [] }, lib, friend: {} });
+  const pd = D.buildProfile({ setup: {}, "D-1": 2, "D-1.flip": 1 });
+  assert.deepEqual(pd.research.depends, [{ card: "D-1", said: "Depends", flip: "y" }]);
+  assert.equal(pd.axes.L1.cards, 0, "a depends pick scores nothing");
 });
 
+const directProfile = () => {
+  const picks = firstDistinct(axisOptions("R2", { v: 2 }), axisOptions("R2", { v: 2 }), axisOptions("R2", { v: 2 }));
+  return buildProfile({ ...ADULT, ...Object.fromEntries(picks.map(([c, i]) => [c.id, i])) });
+};
+
 test("sealed: passes on flex or unfinished axes; check scores exact and side", () => {
-  const p = buildProfile({ ...ADULT, "C2-1": 0, "C2-5": 0, "C2-8": 0 });
+  const p = directProfile();
+  assert.equal(p.axes.R2.pole, 1);
+  assert.equal(p.axes.R3.unfinished, true);
   const frozen = freezePredictions(p);
-  const r2 = frozen.predictions.find((x) => x.id === "C2-10");
+  const r2card = kit.finale.find((c) => c.checks.primary === "R2");
+  const r2 = frozen.predictions.find((x) => x.id === r2card.id);
   assert.equal(r2.pass, false);
-  assert.equal(r2.predicted, 0, "a Direct profile predicts the direct line");
-  const r3 = frozen.predictions.find((x) => x.id === "C6-S1");
+  const top = Math.max(...r2card.options.map((o) => (o.axes || {}).R2 || 0));
+  assert.equal((r2card.options[r2.predicted].axes || {}).R2, top, "a Direct profile predicts the most direct line");
+  assert.equal(r2.side, 1);
+  const r3card = kit.finale.find((c) => c.checks.primary === "R3");
+  const r3 = frozen.predictions.find((x) => x.id === r3card.id);
   assert.equal(r3.pass, true, "R3 unfinished: Genii passes");
-  const res = checkSealed(frozen, { "C2-10": 0, "C6-S1": 1 });
-  const row = res.rows.find((x) => x.id === "C2-10");
+  const res = checkSealed(frozen, { [r2card.id]: r2.predicted, [r3card.id]: 1 });
+  const row = res.rows.find((x) => x.id === r2card.id);
   assert.equal(row.status, "hit");
-  assert.equal(res.rows.find((x) => x.id === "C6-S1").status, "pass");
+  assert.equal(row.sideHit, true);
+  assert.equal(res.rows.find((x) => x.id === r3card.id).status, "pass");
 });
 
 // ------------------------------------------------------------ CLI: freeze refusal and tamper check
@@ -491,7 +628,10 @@ test("CLI: profile, freeze once, refuse refreeze, refuse tampered predictions, c
   const res = JSON.parse(fs.readFileSync(path.join(tmp, "sealed-results.json"), "utf8"));
   assert.equal(res.sha256, sha);
   const pred = path.join(tmp, "sealed-predictions.json");
-  fs.writeFileSync(pred, fs.readFileSync(pred, "utf8").replace(/"predicted": \d/, '"predicted": 3'));
+  const tampered = JSON.parse(fs.readFileSync(pred, "utf8"));
+  const t0 = tampered.predictions[0];
+  t0.predicted = (t0.predicted + 1) % t0.scores.length;
+  fs.writeFileSync(pred, JSON.stringify(tampered, null, 2) + "\n");
   assert.equal(cli(["check", "sealed-answers.json"], tmp).status, 1, "tampered predictions are refused");
   const fr = cli(["friend", "--rel", "bestie", "--stings", "on"], tmp);
   assert.equal(fr.status, 0, fr.stderr);
@@ -504,20 +644,22 @@ test("CLI: profile, freeze once, refuse refreeze, refuse tampered predictions, c
 // ------------------------------------------------------------ friend game
 test("friend deck: 12 level 2 cards, never private or rushed; 12 tag cards with N true", () => {
   const answers = JSON.parse(fs.readFileSync(path.join(DIR, "sim-example", "answers.json"), "utf8"));
-  answers._ms["C2-1"] = 800; // rushed: must not appear
+  // The first card of the calm bestie deck, answered rushed, must drop out.
+  const rushedId = buildFriendDeck(buildProfile(answers), answers, { rel: "bestie", seed: 7 }).level2.cards[0].id;
+  answers._ms[rushedId] = 800;
   const p = buildProfile(answers);
   for (const rel of ["partner", "crush", "friendOrCoworker", "bestie"]) {
     const d = buildFriendDeck(p, answers, { rel, seed: 7 });
     assert.equal(d.level1.length, 6);
-    assert.ok(d.level2.cards.length <= 12 && d.level2.cards.length >= 6, `${rel}: ${d.level2.cards.length} level 2 cards`);
+    assert.equal(d.level2.cards.length, 12, `${rel}: ${d.level2.cards.length} level 2 cards`);
     for (const c of d.level2.cards) {
       assert.equal(cardById[c.id].privacy, "normal");
-      assert.notEqual(c.id, "C2-1", "rushed card excluded");
+      assert.notEqual(c.id, rushedId, "rushed card excluded");
       assert.ok(["a", "b"].includes(c.answer));
     }
     const levels = FRIEND.relationships.options.find((o) => o.id === rel).cardLevels;
     for (const c of d.level2.cards) assert.ok(levels.includes(FRIEND.level2.cards[c.id].level), `${rel}: ${c.id} level allowed`);
-    if (rel === "friendOrCoworker") assert.ok(!d.level2.cards.some((c) => ["C1-2", "C3-3", "C3-1", "C3-2", "C3-4", "C3-5", "C3-12"].includes(c.id)), "no love or couple cards for a friend or coworker");
+    if (rel === "friendOrCoworker") assert.ok(d.level2.cards.every((c) => FRIEND.level2.cards[c.id].level === "everyday" && cardById[c.id].chapter !== 3), "no love or couple cards for a friend or coworker");
     if (!d.level3.skipped) {
       assert.equal(d.level3.cards.length, 12);
       assert.equal(d.level3.cards.filter((c) => c.role === "true").length, d.level3.N);
@@ -530,8 +672,8 @@ test("friend deck: 12 level 2 cards, never private or rushed; 12 tag cards with 
   }
 });
 
-// friend.json level2.cards is a snapshot of the chapter files. If a card's options or friend field change, recompute it
-// (level2.answerMapping; /private/tmp/claude-501/quiz-v2-tools/friend-snapshot.mjs does it) so it never goes stale.
+// friend.json level2.cards is a snapshot of cards.json. If a card's options or friend field change, recompute it with
+// node friend-snapshot.mjs --write (level2.answerMapping) so it never goes stale.
 test("friend game: level 2 snapshot matches the cards; primary lists are clean", () => {
   const L2 = FRIEND.level2;
   const friendCards = chapterCards.filter((c) => c.friend);
@@ -546,6 +688,9 @@ test("friend game: level 2 snapshot matches the cards; primary lists are clean",
     assert.deepEqual(s.answerMap, c.options.map((o, i) => (o.circumstance || o.depends ? null : friendMapping(c, [i]))), `${c.id}: answerMap`);
     assert.ok(["everyday", "love", "couple"].includes(s.level), `${c.id}: level`);
   }
+  const snapCheck = spawnSync(process.execPath, [path.join(DIR, "friend-snapshot.mjs")], { cwd: DIR, encoding: "utf8" });
+  assert.equal(snapCheck.status, 0, snapCheck.stdout + snapCheck.stderr);
+  assert.ok(L2.primary.friend.every((id) => L2.cards[id].level === "everyday"), "primary.friend also serves friend or coworker: everyday cards only");
   const backup = L2.backupOrder;
   assert.deepEqual([...backup].sort(), friendCards.map((c) => c.id).sort(), "backupOrder holds every friend card once");
   for (const [k, list] of Object.entries(L2.primary).filter(([, v]) => Array.isArray(v))) {
@@ -635,11 +780,14 @@ test("bet, reply and others: one pick each at 0.80, 0.55 and 0.45; bet and recei
   assert.deepEqual(circ.research.circumstance.map((x) => x.card), ["F-G"], "a bet's circumstance answer scores nothing");
 });
 
-test("bet: its own 3 to 5 answers, did 0.80; the 6 legacy guilty cards are bets with their text kept", () => {
+test("bet: its own 3 to 5 answers, did 0.80; no legacy two-answer guilty card is left", () => {
   assert.deepEqual([FX.cardById["F-G"].grade, FX.cardById["F-G"].weight, FX.cardById["F-G"].exits], ["did", 0.8, ["skip", "not_my_life"]]);
   const bets = everyCard.filter((c) => c.type === "bet");
-  assert.deepEqual(bets.map((c) => c.id).sort(), ["C2-12", "C3-13", "C3-14", "C4-12", "C5-12", "C6-13"]);
-  for (const c of bets) assert.ok(c.grade === "did" && c.weight === 0.8, c.id);
+  assert.ok(bets.length >= 7, `${bets.length} bets in the bank`);
+  for (const c of bets) {
+    assert.ok(c.grade === "did" && c.weight === 0.8, c.id);
+    assert.ok(c.options.length >= TYPE_SPEC.bet.bank[0] && c.options.length <= TYPE_SPEC.bet.bank[1], `${c.id}: ${c.options.length} answers`);
+  }
   assert.deepEqual(fillFromType({ id: "x", type: "guilty", options: [] }).type, "bet", "a guilty card merges as a bet");
 });
 
@@ -695,9 +843,14 @@ test("sealed pool: 8 drawn per run, deterministic from the seed, one per axis pl
   for (let seed = 1; seed <= 40; seed++) {
     const ids = drawFinale(seed);
     orders.add(ids.join());
-    const prim = new Set(ids.map((id) => cardById[id].checks.primary).filter(Boolean));
-    for (const ax of AXES) assert.ok(prim.has(ax), `seed ${seed}: ${ax} covered`);
-    assert.ok(ids.some((id) => !cardById[id].checks.primary), `seed ${seed}: the tag-pair card is drawn`);
+    const prim = ids.map((id) => cardById[id].checks.primary).filter(Boolean);
+    for (const ax of AXES) assert.ok(prim.includes(ax), `seed ${seed}: ${ax} covered`);
+    for (const ax of AXES) assert.ok(prim.filter((x) => x === ax).length <= 2, `seed ${seed}: ${ax} at most twice`);
+    // The two cards past one per axis are tag-pair checks: a pair-only card when the pool has one, else cards that
+    // also carry a tag pair.
+    const extra = ids.filter((id) => !cardById[id].checks.primary || cardById[id].checks.pairs.length);
+    if (kit.finale.some((c) => !c.checks.primary)) assert.ok(ids.some((id) => !cardById[id].checks.primary), `seed ${seed}: the tag-pair card is drawn`);
+    else assert.ok(extra.length >= 2, `seed ${seed}: tag-pair cards drawn`);
   }
   assert.ok(orders.size > 5, "different runs get different orders");
   // A bigger pool: 4 per axis plus spare tag-pair cards; still one per axis and 2 tag-pair cards, never more than 8.
@@ -713,7 +866,7 @@ test("sealed pool: 8 drawn per run, deterministic from the seed, one per axis pl
     assert.equal(prim.filter((x) => !x).length, 2, `seed ${seed}: two tag-pair cards`);
   }
   // Guesses are made for the drawn cards, in draw order.
-  const p = buildProfile({ ...ADULT, "C2-1": 0, "C2-5": 0, "C2-8": 0 });
+  const p = directProfile();
   assert.deepEqual(freezePredictions(p, a).predictions.map((x) => x.id), a);
 });
 

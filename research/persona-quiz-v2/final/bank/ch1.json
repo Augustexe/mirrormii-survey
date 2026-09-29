@@ -1,0 +1,2049 @@
+[
+ {
+  "id": "C1-92",
+  "type": "bet",
+  "chapter": 1,
+  "prompt": "Prove me wrong: there's a friend you won't text first until they text you. You're counting.",
+  "options": [
+   {
+    "t": "Guilty. It's 4 to 1. Their move.",
+    "tags": [
+     {
+      "id": "T02B",
+      "s": 2
+     }
+    ],
+    "emotion": "resentment"
+   },
+   {
+    "t": "Guilty. Held out a week, then caved with a meme.",
+    "tags": [
+     {
+      "id": "T02B",
+      "s": 1
+     }
+    ],
+    "emotion": "cringe"
+   },
+   {
+    "t": "Wrong. I text whoever I miss. No math involved.",
+    "tags": [
+     {
+      "id": "T02A",
+      "s": 2
+     }
+    ],
+    "emotion": "warmth"
+   },
+   {
+    "t": "Wrong. I forget to text everyone, equally.",
+    "tags": [
+     {
+      "id": "T02A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "I'm the one who never texts first. Someone's counting me.",
+    "circumstance": true
+   }
+  ],
+  "heart": {
+   "prompt": "Is there a friend you will not text first until they text you, and you are keeping count?",
+   "options": [
+    "Yes. The count is four to one, so it is their turn.",
+    "Yes. I held out for a week, then sent them something anyway.",
+    "No. I text whoever I miss, without counting.",
+    "No. I forget to text everyone, equally.",
+    "I rarely text first myself. Someone may be counting me."
+   ]
+  },
+  "fp": {
+   "trigger": "a friend owes you the first text",
+   "setting": "phone, an ongoing standoff",
+   "ask": "do you keep the count",
+   "who": "a friend",
+   "stakes": "pride versus the friendship going quiet",
+   "device": "who-texts-first-count"
+  },
+  "mask": "looks like a texting confession; measures keeping count of who reaches out first (T02) from a thing actually done",
+  "ae": [
+   "A",
+   "E"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T02-2",
+  "world": "everyday",
+  "friend": {
+   "prompt": "Genii bets there's a friend {name} won't text first, and {name} is counting. Guilty or not?",
+   "a": {
+    "t": "Never. Texts whoever {name} misses. No math.",
+    "tags": [
+     {
+      "id": "T02A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Guilty. It's 4 to 1. The friend's move.",
+    "tags": [
+     {
+      "id": "T02B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C1-100",
+  "type": "bet",
+  "chapter": 1,
+  "sq": "SQ-T16-2",
+  "world": "everyday",
+  "prompt": "Genii bets you know your personal best at something, down to the exact number.",
+  "options": [
+   {
+    "t": "Guilty. 412. Please ask me how.",
+    "axes": {
+     "L2": 1
+    },
+    "tags": [
+     {
+      "id": "T16A",
+      "s": 2
+     }
+    ],
+    "emotion": "pride"
+   },
+   {
+    "t": "Guilty. Nobody knows the number but me.",
+    "tags": [
+     {
+      "id": "T16A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Never. I stop counting on purpose. Freedom.",
+    "axes": {
+     "L2": -1
+    },
+    "tags": [
+     {
+      "id": "T16B",
+      "s": 2
+     }
+    ],
+    "emotion": "relief"
+   },
+   {
+    "t": "Never. I didn't know I had a personal best.",
+    "tags": [
+     {
+      "id": "T16B",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "Genii guesses that you know your personal best at something, down to the exact number. Is that true?",
+   "options": [
+    "Yes. It is 412, and I would love to explain.",
+    "Yes, but nobody knows the number except me.",
+    "No. I stop counting on purpose, and it feels freeing.",
+    "No. I did not even know I had a personal best."
+   ]
+  },
+  "fp": {
+   "trigger": "Genii guesses you know your personal best",
+   "setting": "your own quiet tally",
+   "ask": "do you keep a tally of wins",
+   "who": "just you",
+   "stakes": "wanting your count seen",
+   "device": "personal-best-tally"
+  },
+  "mask": "looks like a phone confession; measures keeping a quiet tally of wins and wanting it seen (T16, L2)",
+  "ae": [
+   "A",
+   "D"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "Genii bets {name} knows {their} personal best at something, down to the exact number. Guilty or not?",
+   "a": {
+    "t": "Guilty. 412. Please ask me how.",
+    "axes": {
+     "L2": 1
+    },
+    "tags": [
+     {
+      "id": "T16A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Never. Stops counting on purpose. Freedom.",
+    "axes": {
+     "L2": -1
+    },
+    "tags": [
+     {
+      "id": "T16B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C1-120",
+  "type": "bet",
+  "chapter": 1,
+  "sq": "SQ-T01-1",
+  "world": "everyday",
+  "prompt": "Calling it: you've tilted your phone away from someone sitting right next to you.",
+  "options": [
+   {
+    "t": "Guilty. From my person. Nothing was even on it.",
+    "axes": {
+     "R1": -1
+    },
+    "tags": [
+     {
+      "id": "T01B",
+      "s": 2
+     }
+    ],
+    "emotion": "cringe"
+   },
+   {
+    "t": "Guilty. A stranger on the train. Pure instinct.",
+    "tags": [
+     {
+      "id": "T01B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Never. Read over my shoulder. It's mostly memes.",
+    "axes": {
+     "R1": 1
+    },
+    "tags": [
+     {
+      "id": "T01A",
+      "s": 2
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "Never. I turn it toward you and narrate.",
+    "tags": [
+     {
+      "id": "T01A",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "Have you ever tilted your phone away from someone sitting right next to you?",
+   "options": [
+    "Yes. From my person, even with nothing on the screen.",
+    "Yes. From a stranger on a train. It was instinct.",
+    "No. Anyone can read over my shoulder. It is mostly memes.",
+    "No. I turn it toward you and explain what is on it."
+   ]
+  },
+  "fp": {
+   "trigger": "someone beside you can see your screen",
+   "setting": "side by side, phone in hand",
+   "ask": "tilt it away or let them look",
+   "who": "your person or a stranger",
+   "stakes": "privacy versus looking like you are hiding something",
+   "device": "screen-tilt"
+  },
+  "mask": "looks like a small phone-habit confession; measures an open versus a private phone (T01), with shared versus own space (R1), from a thing actually done",
+  "ae": [
+   "A",
+   "E"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "Has {name} ever tilted {their} phone away from someone sitting right next to {them}?",
+   "a": {
+    "t": "Never. Read over my shoulder. It's mostly memes.",
+    "axes": {
+     "R1": 1
+    },
+    "tags": [
+     {
+      "id": "T01A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Guilty. From {their} person. Nothing was even on it.",
+    "axes": {
+     "R1": -1
+    },
+    "tags": [
+     {
+      "id": "T01B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C1-12",
+  "type": "receipts",
+  "chapter": 1,
+  "sq": "SQ-T04-1",
+  "world": "everyday",
+  "prompt": "New people, lately. Tap everything that's true:",
+  "options": [
+   {
+    "t": "Gave my number to someone I'd known under an hour",
+    "tags": [
+     {
+      "id": "T04B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Left a follow request pending for weeks, on purpose",
+    "tags": [
+     {
+      "id": "T04A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Brought a brand-new person along to plans with my friends",
+    "tags": [
+     {
+      "id": "T04B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Muted a chat because too many new people joined",
+    "tags": [
+     {
+      "id": "T04A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Kept my close-friends list under ten people",
+    "tags": [
+     {
+      "id": "T04A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Said hi first to a stranger, and we still talk",
+    "tags": [
+     {
+      "id": "T04B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "None of these",
+    "none": true
+   }
+  ],
+  "heart": {
+   "prompt": "Think about new people in your life lately. Which of these are true?",
+   "options": [
+    "I gave my number to someone I had known under an hour.",
+    "I left a follow request pending for weeks, on purpose.",
+    "I brought someone brand new to plans with my friends.",
+    "I muted a chat because too many new people joined it.",
+    "I kept my close-friends list to fewer than ten people.",
+    "I said hello first to a stranger, and we still talk.",
+    "None of these."
+   ]
+  },
+  "fp": {
+   "trigger": "new people entering your life lately",
+   "setting": "your phone and your plans, recent weeks",
+   "ask": "what you actually did with newcomers",
+   "who": "strangers and new acquaintances",
+   "stakes": "an open door versus a tight circle",
+   "device": "newcomer-receipts"
+  },
+  "mask": "looks like a quick tally of recent habits; measures a small, hard-to-join circle versus friends with everyone (T04), from things actually done",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C1-30",
+  "type": "real",
+  "chapter": 1,
+  "sq": "SQ-R2-1",
+  "world": "unusual",
+  "prompt": "Think back to the last time a text about someone landed in front of that someone. What did you actually do?",
+  "options": [
+   {
+    "t": "Owned it. \"Yes, I said it. Can we talk?\"",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 1
+     }
+    ],
+    "emotion": "cringe"
+   },
+   {
+    "t": "Called them right away. Said sorry. No excuses.",
+    "axes": {
+     "R2": 1
+    },
+    "emotion": "guilt"
+   },
+   {
+    "t": "Sent a joke to bury it. Never spoke of it again.",
+    "axes": {
+     "R2": -1
+    }
+   },
+   {
+    "t": "Said I meant someone else with the same name. Committed.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "Think of the last time a message you wrote about someone reached that person by mistake. What did you do?",
+   "options": [
+    "I owned it and asked if we could talk.",
+    "I called them straight away and apologized without excuses.",
+    "I made a joke of it, and we never mentioned it again.",
+    "I claimed I meant someone else by that name. Stuck to it."
+   ]
+  },
+  "fp": {
+   "trigger": "a text about someone reaches them by mistake",
+   "setting": "wrong chat, a real moment",
+   "ask": "own it or cover it",
+   "who": "the person you were texting about",
+   "stakes": "the relationship and your face",
+   "device": "wrong-chat"
+  },
+  "mask": "looks like a wrong-chat confession; measures owning a hard truth to someone's face versus smoothing it over (R2), from what you did",
+  "ae": [
+   "A",
+   "E"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "A text {name} wrote about someone landed right in front of that someone. What did {name} actually do?",
+   "a": {
+    "t": "Owned it: \"Yes, I said it. Can we talk?\"",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 1
+     }
+    ]
+   },
+   "b": {
+    "t": "Claimed it meant someone else with the same name. Committed.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 1
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C1-130",
+  "type": "real",
+  "chapter": 1,
+  "sq": "SQ-L3-3",
+  "world": "unusual",
+  "prompt": "The last phone you found that wasn't yours, on a seat, a bar or a bench. What did you actually do?",
+  "options": [
+   {
+    "t": "Took it to the police desk. Filled in the form.",
+    "axes": {
+     "L3": 2
+    }
+   },
+   {
+    "t": "Handed it to the nearest staff member. Done.",
+    "axes": {
+     "L3": 1
+    }
+   },
+   {
+    "t": "Answered when it rang: \"Hi, I have your phone.\"",
+    "axes": {
+     "L3": -1
+    }
+   },
+   {
+    "t": "Read the previews for clues. Strictly for clues.",
+    "axes": {
+     "L3": -2
+    },
+    "emotion": "guilt"
+   }
+  ],
+  "heart": {
+   "prompt": "Think of the last time you found a phone that was not yours, on a seat, at a bar or on a bench. What did you do?",
+   "options": [
+    "I took it to the police and filled in the form.",
+    "I gave it to the nearest member of staff.",
+    "I answered it when it rang and said I had found it.",
+    "I read the message previews for clues about the owner."
+   ]
+  },
+  "fp": {
+   "trigger": "you find a stranger's lost phone",
+   "setting": "a seat, a bar or a bench",
+   "ask": "follow the process or improvise",
+   "who": "a stranger who lost their phone",
+   "stakes": "doing it properly versus getting it home fast",
+   "device": "found-phone"
+  },
+  "mask": "looks like a lost-and-found story; measures following the process when nobody is checking versus the sensible shortcut (L3), from what you did",
+  "ae": [
+   "A",
+   "C"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "The last time {name} found a stranger's phone on a seat, bar or bench. What did {name} actually do?",
+   "a": {
+    "t": "Took it to the police desk. Filled in the form.",
+    "axes": {
+     "L3": 2
+    }
+   },
+   "b": {
+    "t": "Read the previews for clues. Strictly for clues.",
+    "axes": {
+     "L3": -2
+    }
+   }
+  }
+ },
+ {
+  "id": "C1-131",
+  "type": "real",
+  "chapter": 1,
+  "sq": "SQ-T03-1",
+  "world": "unusual",
+  "prompt": "Your most recent big message: a breakup, a resignation, a real apology. Who actually wrote it?",
+  "options": [
+   {
+    "t": "An AI drafted it. I changed three words. Sent.",
+    "tags": [
+     {
+      "id": "T03A",
+      "s": 2
+     }
+    ],
+    "emotion": "relief"
+   },
+   {
+    "t": "An AI wrote it, then I rewrote it in my voice.",
+    "tags": [
+     {
+      "id": "T03A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Me. Nine drafts. Sent the tenth.",
+    "tags": [
+     {
+      "id": "T03B",
+      "s": 2
+     }
+    ],
+    "emotion": "pride"
+   },
+   {
+    "t": "Me, first try, typos in. Sent before I chickened out.",
+    "tags": [
+     {
+      "id": "T03B",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "Think of the most recent important message you sent, such as a breakup, a resignation or a real apology. Who wrote it?",
+   "options": [
+    "An AI drafted it, and I changed a few words before sending.",
+    "An AI wrote a draft, then I rewrote it my way.",
+    "I did. I wrote nine drafts and sent the tenth.",
+    "I did, first try, typos and all, before I lost my nerve."
+   ]
+  },
+  "fp": {
+   "trigger": "you had to send a message that mattered",
+   "setting": "a breakup, resignation or apology text",
+   "ask": "who wrote the words",
+   "who": "you, and maybe an AI",
+   "stakes": "saying it well versus saying it as yourself",
+   "device": "ai-ghostwriter"
+  },
+  "mask": "looks like a writing-habit question; measures letting an AI word your feelings versus writing them yourself (T03), from what you did",
+  "ae": [
+   "A",
+   "D"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "{name}'s last big message: a breakup, a resignation, a real apology. Who actually wrote it?",
+   "a": {
+    "t": "An AI drafted it. I changed three words. Sent.",
+    "tags": [
+     {
+      "id": "T03A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Me. Nine drafts. Sent the tenth.",
+    "tags": [
+     {
+      "id": "T03B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C1-123",
+  "type": "scenario",
+  "chapter": 1,
+  "sq": "SQ-L2-2",
+  "world": "absurd",
+  "prompt": "Overnight, a billboard goes up outside your window: your nine closest friends, ranked by how life is going. You're seventh.",
+  "options": [
+   {
+    "t": "Seventh? Give me one year. I'm taking third.",
+    "axes": {
+     "L2": 2
+    },
+    "emotion": "pride"
+   },
+   {
+    "t": "Study whoever's first. Walk past again tomorrow.",
+    "axes": {
+     "L2": 1
+    },
+    "emotion": "envy"
+   },
+   {
+    "t": "Seventh is cozy. Middle of the pack, zero pressure.",
+    "axes": {
+     "L2": -1
+    },
+    "emotion": "relief"
+   },
+   {
+    "t": "Close the curtains. Unranked and thriving.",
+    "axes": {
+     "L2": -2
+    }
+   }
+  ],
+  "heart": {
+   "prompt": "A billboard appears outside your window overnight. It ranks your nine closest friends by how well life is going, and you are seventh.",
+   "options": [
+    "I give myself one year to reach third place.",
+    "I study whoever is first, and I walk past again tomorrow.",
+    "Seventh feels comfortable. The middle has no pressure.",
+    "I close the curtains. I would rather not be ranked."
+   ]
+  },
+  "fp": {
+   "trigger": "a billboard ranks your friends' lives",
+   "setting": "outside your window, in public",
+   "ask": "race up the ranks or shrug it off",
+   "who": "your nine closest friends",
+   "stakes": "pride and peace versus envy",
+   "device": "life-billboard"
+  },
+  "mask": "looks like a public-ranking gag; measures setting your pace by your friends' progress versus keeping your own (L2)",
+  "ae": [
+   "D",
+   "E"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "A billboard outside {name}'s window ranks {their} nine closest friends by how life is going. {name} is seventh. What does {name} do?",
+   "a": {
+    "t": "\"Seventh? Give me one year. I'm taking third.\"",
+    "axes": {
+     "L2": 2
+    }
+   },
+   "b": {
+    "t": "Closes the curtains. Unranked and thriving.",
+    "axes": {
+     "L2": -2
+    }
+   }
+  }
+ },
+ {
+  "id": "C1-133",
+  "type": "feeling",
+  "chapter": 1,
+  "sq": "SQ-L2-2",
+  "world": "absurd",
+  "prompt": "Back to that billboard. Seventh of nine. First feeling?",
+  "follows": "C1-123",
+  "options": [
+   {
+    "t": "Envy. Who's first, and what are they doing right?",
+    "emotion": "envy"
+   },
+   {
+    "t": "Relief. At least I'm not ninth.",
+    "emotion": "relief"
+   },
+   {
+    "t": "Pride. Seventh, and I barely tried.",
+    "emotion": "pride"
+   },
+   {
+    "t": "Worry. That number is going to follow me.",
+    "emotion": "worry"
+   },
+   {
+    "t": "Nothing. It's a billboard. I have lunch plans."
+   }
+  ],
+  "heart": {
+   "prompt": "Think back to the billboard where you were seventh of nine. What did you feel first?",
+   "options": [
+    "Envy. I want to know who is first and why.",
+    "Relief that I am not last.",
+    "Pride, since I barely tried.",
+    "Worry that the number will stay with me.",
+    "Nothing much. It is only a billboard."
+   ]
+  },
+  "fp": {
+   "trigger": "a moment after seeing your rank",
+   "setting": "the billboard, still up",
+   "ask": "your first feeling",
+   "who": "you alone",
+   "stakes": "a feeling only, never scored",
+   "device": "life-billboard"
+  },
+  "mask": "looks like a check-in; records the first feeling after the ranking card (no scoring)",
+  "ae": [
+   "E"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C1-124",
+  "type": "scenario",
+  "chapter": 1,
+  "sq": "SQ-T02-1",
+  "world": "absurd",
+  "prompt": "Every friendship you have is now a houseplant on your windowsill. They wilt when nobody texts. Your oldest friend's is brown.",
+  "options": [
+   {
+    "t": "Leave it. We go quiet for months. It always perks up.",
+    "tags": [
+     {
+      "id": "T02A",
+      "s": 2
+     }
+    ],
+    "emotion": "warmth"
+   },
+   {
+    "t": "Send a meme like no time passed. Green by dinner.",
+    "tags": [
+     {
+      "id": "T02A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Send them a photo of it. No caption.",
+    "tags": [
+     {
+      "id": "T02B",
+      "s": 1
+     }
+    ],
+    "emotion": "irritation"
+   },
+   {
+    "t": "Move it behind the green ones. That's where we are now.",
+    "tags": [
+     {
+      "id": "T02B",
+      "s": 2
+     }
+    ],
+    "emotion": "sting"
+   }
+  ],
+  "heart": {
+   "prompt": "Every friendship you have becomes a houseplant on your windowsill, and each one wilts when nobody texts. The plant for your oldest friend has turned brown.",
+   "options": [
+    "I leave it. We go quiet for months, and it always recovers.",
+    "I send a meme like no time passed. It turns green.",
+    "I send them a photo of the plant, with no message.",
+    "I move it behind the green ones. That is where we are."
+   ]
+  },
+  "fp": {
+   "trigger": "a friendship plant wilts from silence",
+   "setting": "a windowsill of magic houseplants",
+   "ask": "shrug off the quiet or read it as fading",
+   "who": "your oldest friend",
+   "stakes": "the friendship versus your pride",
+   "device": "friendship-houseplants"
+  },
+  "mask": "looks like a plant gag; measures whether a quiet stretch reads as fine or as fading (T02)",
+  "ae": [
+   "A",
+   "E"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "Each of {name}'s friendships is a windowsill plant that wilts without texts. The oldest friend's is brown. What does {name} do?",
+   "a": {
+    "t": "Leave it. We go quiet for months. It always perks up.",
+    "tags": [
+     {
+      "id": "T02A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Move it behind the green ones. That's where we are now.",
+    "tags": [
+     {
+      "id": "T02B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C1-132",
+  "type": "scenario",
+  "chapter": 1,
+  "sq": "SQ-L1-1",
+  "world": "absurd",
+  "prompt": "A subway vending machine wants one payment: your phone, photos and chats included. It pays out an envelope marked \"life-changing.\"",
+  "options": [
+   {
+    "t": "Pay it. Photos are the past. The envelope is the future.",
+    "axes": {
+     "L1": -2
+    },
+    "emotion": "delight"
+   },
+   {
+    "t": "Keep my phone. Every chat I've ever had lives in it.",
+    "axes": {
+     "L1": 2
+    },
+    "emotion": "pride"
+   },
+   {
+    "t": "Keep it. Then walk past that machine daily for a year.",
+    "axes": {
+     "L1": 1
+    },
+    "emotion": "longing"
+   },
+   {
+    "t": "Pay fast, before my inner hoarder wakes up.",
+    "axes": {
+     "L1": -1
+    }
+   }
+  ],
+  "heart": {
+   "prompt": "A vending machine in the subway accepts only one payment: your phone, with all its photos and chats. It gives you an envelope labeled \"life-changing.\"",
+   "options": [
+    "I pay. Photos are the past. The envelope is the future.",
+    "I keep my phone. Every conversation I have had is in it.",
+    "I keep it, and I think about that envelope all year.",
+    "I pay quickly, before I can talk myself out of it."
+   ]
+  },
+  "fp": {
+   "trigger": "a machine offers a mystery envelope for your phone",
+   "setting": "a subway vending machine",
+   "ask": "trade everything on your phone for the unknown",
+   "who": "just you",
+   "stakes": "years of memories versus a life-changing unknown",
+   "device": "mystery-envelope-machine"
+  },
+  "mask": "looks like a strange vending machine; measures keeping a sure good thing versus trading it for a great unknown (L1)",
+  "ae": [
+   "A",
+   "D"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "A subway machine trades one envelope marked \"life-changing\" for {name}'s phone, photos and chats included. What does {name} do?",
+   "a": {
+    "t": "Keep my phone. Every chat I've ever had lives in it.",
+    "axes": {
+     "L1": 2
+    }
+   },
+   "b": {
+    "t": "Pay it. Photos are the past. The envelope is the future.",
+    "axes": {
+     "L1": -2
+    }
+   }
+  }
+ },
+ {
+  "id": "C1-122",
+  "type": "scenario",
+  "chapter": 1,
+  "sq": "SQ-T04-1",
+  "world": "unusual",
+  "prompt": "One post, 40,000 new followers. Your DMs: 312 strangers saying \"we should hang out.\"",
+  "options": [
+   {
+    "t": "Answer all 312. Picnic in the park, everyone's invited.",
+    "tags": [
+     {
+      "id": "T04B",
+      "s": 2
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "Go private. Remove everyone I haven't met in person.",
+    "tags": [
+     {
+      "id": "T04A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Meet the three funniest. One might be my people.",
+    "tags": [
+     {
+      "id": "T04B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Say thanks. Change nothing. My circle's full.",
+    "tags": [
+     {
+      "id": "T04A",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "One of your posts takes off. You gain 40,000 followers, and 312 strangers message you suggesting you meet.",
+   "options": [
+    "I answer all of them and invite everyone to a picnic.",
+    "I make my account private and remove everyone I have not met.",
+    "I meet the three funniest. One might become a real friend.",
+    "I thank everyone and change nothing. My circle is full."
+   ]
+  },
+  "fp": {
+   "trigger": "a post goes viral and strangers want to meet",
+   "setting": "your DMs after going viral",
+   "ask": "let strangers in or close the door",
+   "who": "312 strangers",
+   "stakes": "a bigger circle versus the one you trust",
+   "device": "viral-post"
+  },
+  "mask": "looks like a fame fantasy; measures a small, hard-to-join circle versus friends with everyone (T04)",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "One post, 40,000 new followers, and 312 strangers in {name}'s DMs saying \"we should hang out.\" What does {name} do?",
+   "a": {
+    "t": "Go private. Remove everyone I haven't met in person.",
+    "tags": [
+     {
+      "id": "T04A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Answer all 312. Picnic in the park, everyone's invited.",
+    "tags": [
+     {
+      "id": "T04B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C1-125",
+  "type": "scenario",
+  "chapter": 1,
+  "sq": "SQ-R3-1",
+  "world": "unusual",
+  "prompt": "Every holiday for 25 years, your family takes the same photo on the same stairs. This year you're abroad. They want you photoshopped in.",
+  "options": [
+   {
+    "t": "Send a selfie at the exact angle. The stairs must be honored.",
+    "axes": {
+     "R3": 2
+    },
+    "tags": [
+     {
+      "id": "T20A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Fine. Photoshop me in. Put me in the sweater.",
+    "axes": {
+     "R3": 1
+    },
+    "tags": [
+     {
+      "id": "T20A",
+      "s": 1
+     }
+    ],
+    "emotion": "warmth"
+   },
+   {
+    "t": "Skip one year. The stairs will survive.",
+    "axes": {
+     "R3": -1
+    },
+    "tags": [
+     {
+      "id": "T20B",
+      "s": 1
+     }
+    ],
+    "emotion": "guilt"
+   },
+   {
+    "t": "Send a beach photo instead. New tradition starts now.",
+    "axes": {
+     "R3": -2
+    },
+    "tags": [
+     {
+      "id": "T20B",
+      "s": 2
+     }
+    ],
+    "emotion": "delight"
+   }
+  ],
+  "heart": {
+   "prompt": "Every holiday for 25 years, your family has taken the same photo on the same stairs. This year you are abroad, and they want to edit you into it.",
+   "options": [
+    "I send a selfie from the exact same angle.",
+    "I let them edit me in, sweater and all.",
+    "I skip it this year. The tradition will survive.",
+    "I send a beach photo and start a new tradition."
+   ]
+  },
+  "fp": {
+   "trigger": "family wants you edited into the yearly photo",
+   "setting": "abroad over the holidays",
+   "ask": "keep the ritual or break it",
+   "who": "your whole family",
+   "stakes": "belonging versus doing it your way",
+   "device": "holiday-stairs-photo"
+  },
+  "mask": "looks like a family-photo gag; measures keeping the family ritual versus writing your own (R3, T20)",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "Same holiday photo, same stairs, 25 years running. {name} is abroad, and the family wants {them} photoshopped in. What does {name} do?",
+   "a": {
+    "t": "Sends a selfie at the exact angle. The stairs must be honored.",
+    "axes": {
+     "R3": 2
+    },
+    "tags": [
+     {
+      "id": "T20A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Sends a beach photo instead. New tradition starts now.",
+    "axes": {
+     "R3": -2
+    },
+    "tags": [
+     {
+      "id": "T20B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C1-126",
+  "type": "reply",
+  "chapter": 1,
+  "sq": "SQ-L1-2",
+  "world": "absurd",
+  "prompt": "Driving to work. Your map app, which has never texted anyone, texts you.",
+  "thread": [
+   {
+    "from": "Your map app",
+    "text": "skip your exit. keep driving. 400 miles."
+   },
+   {
+    "from": "Your map app",
+    "text": "trust me. you'll thank me"
+   }
+  ],
+  "options": [
+   {
+    "t": "Skip the exit. Text work \"something came up.\"",
+    "axes": {
+     "L1": -2
+    },
+    "emotion": "delight"
+   },
+   {
+    "t": "Keep driving to the next town. Just to see.",
+    "axes": {
+     "L1": -1
+    }
+   },
+   {
+    "t": "\"400 miles to WHERE? Destination first.\"",
+    "axes": {
+     "L1": 1
+    }
+   },
+   {
+    "t": "Take my exit. A phone doesn't plan my day.",
+    "axes": {
+     "L1": 2
+    },
+    "emotion": "pride"
+   }
+  ],
+  "heart": {
+   "prompt": "You are driving to work when your map app, which has never spoken before, sends you a message.",
+   "thread": [
+    {
+     "from": "Your map app",
+     "text": "Skip your exit and keep driving for 400 miles."
+    },
+    {
+     "from": "Your map app",
+     "text": "Trust me. You will be glad you did."
+    }
+   ],
+   "options": [
+    "I skip the exit and tell work something came up.",
+    "I keep going to the next town, just to see.",
+    "I ask where it is taking me before I go anywhere.",
+    "I take my exit. My phone does not plan my day."
+   ]
+  },
+  "fp": {
+   "trigger": "your map app tells you to skip your exit",
+   "setting": "the drive to work",
+   "ask": "follow the unknown road or stick to the plan",
+   "who": "your phone, with work waiting",
+   "stakes": "a normal day versus a mystery road trip",
+   "device": "rogue-map-app"
+  },
+  "mask": "looks like a haunted-phone gag; measures stepping in blind versus needing a destination first (L1)",
+  "ae": [
+   "A",
+   "D"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "Driving to work, {name}'s map app texts: \"skip your exit. keep driving. 400 miles.\" What does {name} do?",
+   "a": {
+    "t": "Takes the exit. A phone doesn't plan {their} day.",
+    "axes": {
+     "L1": 2
+    }
+   },
+   "b": {
+    "t": "Skips the exit. Texts work \"something came up.\"",
+    "axes": {
+     "L1": -2
+    }
+   }
+  }
+ },
+ {
+  "id": "C1-127",
+  "type": "reply",
+  "chapter": 1,
+  "sq": "SQ-R3-2",
+  "world": "unusual",
+  "prompt": "Four months in. Your parent adds your person to the family group chat. Nobody asked either of you.",
+  "thread": [
+   {
+    "from": "Your parent",
+    "text": "Everyone say hi to Sam!! 🎉 our newest member"
+   },
+   {
+    "from": "Your sibling",
+    "text": "welcome Sam. there's no leaving"
+   }
+  ],
+  "options": [
+   {
+    "t": "\"Welcome, Sam! You're family now. No refunds.\"",
+    "axes": {
+     "R3": 2
+    },
+    "emotion": "warmth"
+   },
+   {
+    "t": "Pin the holiday schedule for Sam. Attendance is mandatory.",
+    "axes": {
+     "R3": 1
+    },
+    "tags": [
+     {
+      "id": "T20A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Text my parent privately: \"Next time, ask us first.\"",
+    "axes": {
+     "R3": -1
+    }
+   },
+   {
+    "t": "Remove Sam myself. We'll join when we decide.",
+    "axes": {
+     "R3": -2
+    },
+    "tags": [
+     {
+      "id": "T20B",
+      "s": 1
+     }
+    ],
+    "emotion": "cringe"
+   }
+  ],
+  "heart": {
+   "prompt": "You and your person have been together four months. Your parent adds them to the family group chat without asking either of you.",
+   "thread": [
+    {
+     "from": "Your parent",
+     "text": "Everyone, please say hello to Sam, our newest member."
+    },
+    {
+     "from": "Your sibling",
+     "text": "Welcome, Sam. There is no leaving now."
+    }
+   ],
+   "options": [
+    "I welcome Sam and tell them they are family now.",
+    "I share the holiday schedule with Sam and say everyone comes.",
+    "I privately ask my parent to check with us next time.",
+    "I remove Sam myself. We will join when we decide to."
+   ]
+  },
+  "fp": {
+   "trigger": "your parent adds your new partner to the family chat",
+   "setting": "the family group chat",
+   "ask": "welcome them in or set your own pace",
+   "who": "your parent, your person and a sibling",
+   "stakes": "family warmth versus your own timeline as a couple",
+   "device": "family-chat-add"
+  },
+  "mask": "looks like a family-chat mishap; measures running a couple the family's way versus on your own terms (R3)",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "Four months in, {name}'s parent adds {name}'s person, Sam, to the family group chat unasked. What does {name} reply?",
+   "a": {
+    "t": "\"Welcome, Sam! You're family now. No refunds.\"",
+    "axes": {
+     "R3": 2
+    }
+   },
+   "b": {
+    "t": "Removes Sam: \"We'll join when we decide.\"",
+    "axes": {
+     "R3": -2
+    },
+    "tags": [
+     {
+      "id": "T20B",
+      "s": 1
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C1-128",
+  "type": "others",
+  "chapter": 1,
+  "sq": "SQ-T07-1",
+  "world": "absurd",
+  "prompt": "A glitch hits a friend's phone: autocorrect now turns every text into the blunt truth. They refuse to fix it. First thought?",
+  "options": [
+   {
+    "t": "Legend. I'd pay money for that glitch.",
+    "axes": {
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 1
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "Mine already does that. No glitch required.",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 2
+     }
+    ],
+    "emotion": "pride"
+   },
+   {
+    "t": "Fix it before it ends a friendship. Or three.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 2
+     }
+    ],
+    "emotion": "worry"
+   },
+   {
+    "t": "Stop asking them anything I don't want answered.",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "A glitch on a friend's phone makes autocorrect turn every message into the blunt truth, and they refuse to fix it. What is your first thought?",
+   "options": [
+    "I love it. I would pay for that glitch.",
+    "My messages already sound like that, glitch or not.",
+    "They should fix it before it costs them a friendship.",
+    "I would stop asking them questions I do not want answered."
+   ]
+  },
+  "fp": {
+   "trigger": "a friend's autocorrect turns texts brutally honest",
+   "setting": "a glitched phone",
+   "ask": "cheer the honesty or want it fixed",
+   "who": "a friend and everyone they text",
+   "stakes": "friendships versus the truth",
+   "device": "truth-autocorrect"
+  },
+  "mask": "looks like a glitch story; measures your own line on raw versus wrapped truth (T07, R2)",
+  "ae": [
+   "C",
+   "D"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "A glitch turns every text on a friend's phone into the blunt truth. The friend won't fix it. {name}'s first thought?",
+   "a": {
+    "t": "\"Mine already does that. No glitch required.\"",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "\"Fix it before it ends a friendship. Or three.\"",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C1-13",
+  "type": "others",
+  "chapter": 1,
+  "sq": "SQ-T01-1",
+  "world": "unusual",
+  "prompt": "A couple you know shares one phone. One. On purpose. It's been a year. First thought?",
+  "options": [
+   {
+    "t": "Goals. Zero secrets, one charger.",
+    "axes": {
+     "R1": 2
+    },
+    "tags": [
+     {
+      "id": "T01A",
+      "s": 2
+     }
+    ],
+    "emotion": "warmth"
+   },
+   {
+    "t": "Honestly? I'd try it tomorrow.",
+    "axes": {
+     "R1": 1
+    },
+    "tags": [
+     {
+      "id": "T01A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Cute. But where do they complain about each other?",
+    "axes": {
+     "R1": -1
+    },
+    "tags": [
+     {
+      "id": "T01B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "I'd last one day. My group chats would end us.",
+    "axes": {
+     "R1": -2
+    },
+    "tags": [
+     {
+      "id": "T01B",
+      "s": 2
+     }
+    ],
+    "emotion": "cringe"
+   }
+  ],
+  "heart": {
+   "prompt": "A couple you know has shared a single phone, on purpose, for a year. What is your first thought?",
+   "options": [
+    "That sounds lovely. No secrets and one charger.",
+    "Honestly, I would try it tomorrow.",
+    "It is sweet, but where do they complain about each other?",
+    "I would last one day before my group chats ended us."
+   ]
+  },
+  "fp": {
+   "trigger": "a couple shares a single phone on purpose",
+   "setting": "a couple you know",
+   "ask": "romantic or unthinkable",
+   "who": "a couple you know",
+   "stakes": "closeness versus a room of your own",
+   "device": "one-shared-phone"
+  },
+  "mask": "looks like gossip about a couple; measures an open versus a private phone (T01) and whether close means shared (R1)",
+  "ae": [
+   "B",
+   "D"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "A couple {name} knows has shared one phone, on purpose, for a whole year. {name}'s first thought?",
+   "a": {
+    "t": "\"Goals. Zero secrets, one charger.\"",
+    "axes": {
+     "R1": 2
+    },
+    "tags": [
+     {
+      "id": "T01A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "\"I'd last one day. My group chats would end us.\"",
+    "axes": {
+     "R1": -2
+    },
+    "tags": [
+     {
+      "id": "T01B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C1-90",
+  "type": "this_or_that",
+  "chapter": 1,
+  "round": "ch1-r90",
+  "prompt": "Genii offers a phone that never cracks and never dies. The catch: it can never, ever be locked.",
+  "options": [
+   {
+    "t": "Deal. Scroll away, anyone. Nothing in there bites.",
+    "axes": {
+     "R1": 1
+    },
+    "tags": [
+     {
+      "id": "T01A",
+      "s": 2
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "Keep my cracked one at 9%. Nothing to hide. Still locked.",
+    "axes": {
+     "R1": -1
+    },
+    "tags": [
+     {
+      "id": "T01B",
+      "s": 2
+     }
+    ],
+    "emotion": "pride"
+   }
+  ],
+  "heart": {
+   "prompt": "Genii offers you a phone that never breaks and never runs out of battery. The catch is that it can never be locked.",
+   "options": [
+    "I take it. Anyone can look through it, and that is fine.",
+    "I keep my cracked phone. Nothing to hide, and it stays locked."
+   ]
+  },
+  "fp": {
+   "trigger": "wish phone that can never lock",
+   "setting": "Genii's offer",
+   "ask": "trade the lock for a perfect phone",
+   "who": "anyone who picks it up",
+   "stakes": "privacy versus a phone that never dies",
+   "device": "unlockable-wish-phone"
+  },
+  "mask": "looks like a gadget wish; measures an open phone versus a private one (T01), with shared versus own space (R1)",
+  "ae": [
+   "A",
+   "D"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T01-1",
+  "world": "absurd",
+  "friend": {
+   "prompt": "Genii offers {name} a phone that never cracks or dies, but it can never be locked. Which one is {name}?",
+   "a": {
+    "t": "Deal. Scroll away, anyone. Nothing in there bites.",
+    "axes": {
+     "R1": 1
+    },
+    "tags": [
+     {
+      "id": "T01A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Keeps the cracked one at 9%. Nothing to hide. Still locked.",
+    "axes": {
+     "R1": -1
+    },
+    "tags": [
+     {
+      "id": "T01B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C1-91",
+  "type": "this_or_that",
+  "chapter": 1,
+  "round": "ch1-r90",
+  "prompt": "A ghost poet haunts your laptop. It offers to write your farewell toast for your best friend. Tears guaranteed.",
+  "options": [
+   {
+    "t": "Ghost writes it. I sneak in one inside joke.",
+    "tags": [
+     {
+      "id": "T03A",
+      "s": 2
+     }
+    ],
+    "emotion": "relief"
+   },
+   {
+    "t": "I write it. Shaky, too long, and all mine.",
+    "tags": [
+     {
+      "id": "T03B",
+      "s": 2
+     }
+    ],
+    "emotion": "pride"
+   }
+  ],
+  "heart": {
+   "prompt": "The ghost of a poet lives in your laptop and offers to write your farewell toast for your best friend, who is moving away. Tears are guaranteed.",
+   "options": [
+    "I let the ghost write it and add one inside joke.",
+    "I write it myself. Shaky, too long, and mine."
+   ]
+  },
+  "fp": {
+   "trigger": "a ghost poet offers to write your toast",
+   "setting": "a haunted laptop",
+   "ask": "borrowed words or your own",
+   "who": "your best friend, moving away",
+   "stakes": "a perfect toast versus one that is yours",
+   "device": "ghost-poet"
+  },
+  "mask": "looks like a spooky writing gag; measures letting something else draft your feelings versus writing them yourself (T03), the AI question in costume",
+  "ae": [
+   "A",
+   "D"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T03-1",
+  "world": "absurd",
+  "friend": {
+   "prompt": "A ghost poet in {name}'s laptop offers to write {their} farewell toast for {their} best friend. Tears guaranteed. Which one is {name}?",
+   "a": {
+    "t": "Ghost writes it. I sneak in one inside joke.",
+    "tags": [
+     {
+      "id": "T03A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "I write it. Shaky, too long, and all mine.",
+    "tags": [
+     {
+      "id": "T03B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C1-1",
+  "type": "role",
+  "chapter": 1,
+  "sq": "SQ-L3-2",
+  "world": "unusual",
+  "prompt": "Flight canceled. 140 stranded strangers, one group chat, and the airline has 12 hotel vouchers. In there, you're the...",
+  "options": [
+   {
+    "t": "Line keeper. \"First twelve at the desk. That's how lines work.\"",
+    "axes": {
+     "L3": 2
+    }
+   },
+   {
+    "t": "Hat holder. \"Every name in a hat. Same odds for all.\"",
+    "axes": {
+     "L3": 1
+    }
+   },
+   {
+    "t": "Auditor. Makes sure nobody grabs two vouchers.",
+    "axes": {
+     "L3": 1
+    }
+   },
+   {
+    "t": "Fixer. Sweet-talks the desk into a room for whoever's crying.",
+    "axes": {
+     "L3": -1
+    }
+   },
+   {
+    "t": "Couch finder. Books an apartment for eight, off the list.",
+    "axes": {
+     "L3": -1
+    }
+   },
+   {
+    "t": "Advocate. \"The family with the baby gets one. Obviously.\"",
+    "axes": {
+     "L3": -2
+    }
+   }
+  ],
+  "heart": {
+   "prompt": "Your flight is canceled. The 140 stranded passengers start a group chat, and the airline has only 12 hotel vouchers. Which role do you take?",
+   "options": [
+    "I say the first twelve in line should get them.",
+    "I suggest drawing names so everyone has the same chance.",
+    "I make sure nobody takes two vouchers.",
+    "I persuade the desk to give a room to whoever is crying.",
+    "I book an apartment for eight of us, outside the voucher list.",
+    "I say the family with the baby should get one first."
+   ]
+  },
+  "fp": {
+   "trigger": "12 hotel vouchers for 140 stranded passengers",
+   "setting": "a canceled flight and an airport group chat",
+   "ask": "who deserves the rooms",
+   "who": "140 strangers and an airline desk",
+   "stakes": "a bed tonight and what fair means",
+   "device": "stranded-flight-chat"
+  },
+  "mask": "looks like travel chaos; measures equal shares and first come, first served versus giving more to whoever needs it (L3)",
+  "ae": [
+   "A",
+   "C"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "Flight canceled: 140 stranded strangers, one group chat, 12 hotel vouchers. In there, {name} is the...",
+   "a": {
+    "t": "Line keeper: \"First twelve at the desk. That's how lines work.\"",
+    "axes": {
+     "L3": 2
+    }
+   },
+   "b": {
+    "t": "Advocate: \"The family with the baby gets one. Obviously.\"",
+    "axes": {
+     "L3": -2
+    }
+   }
+  }
+ },
+ {
+  "id": "C1-129",
+  "type": "pick_two",
+  "chapter": 1,
+  "sq": "SQ-T03-2",
+  "world": "absurd",
+  "prompt": "Your smart fridge starts giving advice. Scary good, up all night, never repeats a word. Something's eating at you. Pick two.",
+  "pick": 2,
+  "options": [
+   {
+    "t": "Open the fridge and talk till the light clicks off.",
+    "tags": [
+     {
+      "id": "T03A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Text my best friend. Only they get this one.",
+    "tags": [
+     {
+      "id": "T03B",
+      "s": 2
+     },
+     {
+      "id": "T04A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Ask the fridge how to word it for my friend.",
+    "tags": [
+     {
+      "id": "T03A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Pen and paper. No appliances, no audience.",
+    "tags": [
+     {
+      "id": "T03B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Call whoever's still up. Any friend will do.",
+    "tags": [
+     {
+      "id": "T03B",
+      "s": 1
+     },
+     {
+      "id": "T04B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Fridge gets the full story. Friends get the highlights.",
+    "tags": [
+     {
+      "id": "T03A",
+      "s": 2
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "Your smart fridge starts giving advice. It is surprisingly wise, awake all night and never repeats anything. Something is on your mind. Which two are most like you?",
+   "options": [
+    "I talk to the open fridge until its light turns off.",
+    "I message my best friend. Only they hear this one.",
+    "I ask the fridge how to put it to my friend.",
+    "I write it on paper, alone.",
+    "I call whichever friend is still awake.",
+    "The fridge hears everything. My friends hear a shorter version."
+   ]
+  },
+  "fp": {
+   "trigger": "something is on your mind late and your fridge can talk",
+   "setting": "your kitchen, a smart fridge that gives advice",
+   "ask": "machine or person first",
+   "who": "a fridge, your best friend, any friend awake",
+   "stakes": "being heard versus being known",
+   "device": "talking-fridge"
+  },
+  "mask": "looks like a kitchen gag; measures whether a machine or a person hears your worries first (T03), and one close person versus anyone awake (T04)",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "A smart fridge gives scary good advice all night. Something's eating at {name}. Which line sounds most like {name}?",
+   "a": {
+    "t": "Opens the fridge and talks till the light clicks off.",
+    "tags": [
+     {
+      "id": "T03A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Texts {their} best friend. Only that friend gets this one.",
+    "tags": [
+     {
+      "id": "T03B",
+      "s": 2
+     },
+     {
+      "id": "T04A",
+      "s": 1
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C1-121",
+  "type": "eyes",
+  "chapter": 1,
+  "sq": "SQ-T02-1",
+  "world": "unusual",
+  "prompt": "A spy agency is vetting you. The agent asks your best friend: \"If a friend went silent for months, would they notice?\"",
+  "options": [
+   {
+    "t": "Notice? They'd have a timeline by week two.",
+    "tags": [
+     {
+      "id": "T02B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "They'd notice, say nothing, and feel it for a while.",
+    "tags": [
+     {
+      "id": "T02B",
+      "s": 1
+     }
+    ],
+    "emotion": "sting"
+   },
+   {
+    "t": "They'd pick it back up in month six like it was yesterday.",
+    "tags": [
+     {
+      "id": "T02A",
+      "s": 2
+     }
+    ],
+    "emotion": "warmth"
+   },
+   {
+    "t": "They'd be the silent one. Still loved, somehow.",
+    "tags": [
+     {
+      "id": "T02A",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "A spy agency is checking your background. The agent asks your best friend whether you would notice if a friend went quiet for months. What does your friend say?",
+   "options": [
+    "They would notice right away and remember exactly when it started.",
+    "They would notice, say nothing, and feel it for a while.",
+    "Six months later, they would pick up as if nothing changed.",
+    "They would more likely be the quiet one, and still be loved."
+   ]
+  },
+  "fp": {
+   "trigger": "a spy agency asks your best friend about you",
+   "setting": "a background check interview",
+   "ask": "do you notice when a friend goes quiet",
+   "who": "your best friend and an agent",
+   "stakes": "how your friendships look to someone else",
+   "device": "spy-vetting"
+  },
+  "mask": "looks like a spy interview; measures whether a quiet stretch reads as fine or as fading (T02), through a friend's eyes",
+  "ae": [
+   "B",
+   "E"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "A spy agency asks {name}'s best friend: if a friend went silent for months, would {name} notice? Which line?",
+   "a": {
+    "t": "{They}'d pick it back up in month six like it was yesterday.",
+    "tags": [
+     {
+      "id": "T02A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Notice? {They}'d have a timeline by week two.",
+    "tags": [
+     {
+      "id": "T02B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ }
+]

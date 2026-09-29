@@ -1,0 +1,866 @@
+[
+  {
+    "id": "X-R1-30",
+    "type": "scenario",
+    "axisFor": "R1",
+    "sq": "SQ-R1-1",
+    "world": "unusual",
+    "prompt": "Your sibling wants to buy the house next door. Shared backyard, no fence. The auction is tomorrow, and they need your yes.",
+    "options": [
+      {
+        "t": "Yes. Let's rip out the hedge too.",
+        "axes": {
+          "R1": 2
+        },
+        "emotion": "delight"
+      },
+      {
+        "t": "Yes, and we're building a fence. A nice one.",
+        "axes": {
+          "R1": -1
+        },
+        "emotion": "guilt"
+      },
+      {
+        "t": "\"Love you. Please buy the one down the street.\"",
+        "axes": {
+          "R1": -2
+        }
+      },
+      {
+        "t": "Yes. Sunday dinners at mine, every single week.",
+        "axes": {
+          "R1": 1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "Your sibling wants to buy the house next door to yours, with a shared backyard and no fence. The auction is tomorrow, and they need your answer.",
+      "options": [
+        "Yes. Let us take out the hedge as well.",
+        "Yes, and we will put up a fence, a nice one.",
+        "I love you. Please buy the one down the street.",
+        "Yes. Sunday dinners at my place, every week."
+      ]
+    },
+    "fp": {
+      "trigger": "a sibling wants to buy the house next door",
+      "setting": "neighboring houses, auction tomorrow",
+      "ask": "welcome them next door or not",
+      "who": "your sibling",
+      "stakes": "closeness versus your own space",
+      "device": "house-next-door"
+    },
+    "mask": "looks like a real estate favor; measures whether close means shared space or close with room of your own (R1)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-R1-31",
+    "type": "pick_two",
+    "axisFor": "R1",
+    "pick": 2,
+    "sq": "SQ-R1-3",
+    "world": "absurd",
+    "prompt": "One shared power for your whole friend group: teleport anywhere, but only all six at once. Pick the two thoughts most like yours.",
+    "options": [
+      {
+        "t": "Finally. Nobody can bail on a trip again.",
+        "axes": {
+          "R1": 2
+        }
+      },
+      {
+        "t": "Can I get a solo version? Asking for me.",
+        "axes": {
+          "R1": -2
+        }
+      },
+      {
+        "t": "Group vote each morning. I'll go wherever we land.",
+        "axes": {
+          "R1": 1
+        }
+      },
+      {
+        "t": "Deal, but Sundays are no-teleport days.",
+        "axes": {
+          "R1": -1
+        }
+      },
+      {
+        "t": "Pack snacks for six. Every single jump.",
+        "axes": {
+          "R1": 1
+        }
+      },
+      {
+        "t": "Beam everyone somewhere lovely. Walk home alone.",
+        "axes": {
+          "R1": -1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "Your friend group gains one shared power: you can teleport anywhere, but only all six of you, at the same moment. Pick the two thoughts closest to yours.",
+      "options": [
+        "Finally, nobody can back out of a trip again.",
+        "Could I have a version that works just for me?",
+        "We vote every morning, and I go wherever we land.",
+        "Yes, but Sundays are for staying put.",
+        "I pack snacks for all six of us, every time.",
+        "I take everyone somewhere lovely, then walk home on my own."
+      ]
+    },
+    "fp": {
+      "trigger": "friends share a teleport that only works together",
+      "setting": "anywhere, as a group of six",
+      "ask": "all together or your own way",
+      "who": "your whole friend group",
+      "stakes": "the group as one versus your own plans",
+      "device": "group-teleport"
+    },
+    "mask": "looks like a superpower daydream; measures going with the group versus peeling off (R1)",
+    "ae": [
+      "B",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-R2-30",
+    "type": "scenario",
+    "axisFor": "R2",
+    "sq": "SQ-R2-2",
+    "world": "unusual",
+    "prompt": "Costume contest, $1,000 prize. Your friend is winning, dressed as you. The wig is wrong. The laugh is worse. The crowd loves it.",
+    "options": [
+      {
+        "t": "Tell them tonight: funny, but it stung.",
+        "axes": {
+          "R2": 2
+        },
+        "tags": [
+          {
+            "id": "T07A",
+            "s": 1
+          }
+        ],
+        "emotion": "sting"
+      },
+      {
+        "t": "Pose next to them. Text my feelings tomorrow.",
+        "axes": {
+          "R2": -1
+        }
+      },
+      {
+        "t": "Vote for them. A thousand dollars is a thousand dollars.",
+        "axes": {
+          "R2": -2
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Grab the mic: \"For the record, I laugh better.\"",
+        "axes": {
+          "R2": 1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "At a costume contest with a $1,000 prize, your friend is winning, dressed as you. The wig is wrong and the laugh is worse. The crowd loves it.",
+      "options": [
+        "I tell them tonight that it was funny, but it hurt.",
+        "I pose next to them and tell them how I feel tomorrow.",
+        "I vote for them. It is a lot of money.",
+        "I take the microphone and say that I laugh better than that."
+      ]
+    },
+    "fp": {
+      "trigger": "a friend wins a contest by impersonating you",
+      "setting": "costume contest stage",
+      "ask": "say it stung or let it go",
+      "who": "a friend and a cheering crowd",
+      "stakes": "your pride versus their win",
+      "device": "costume-of-you"
+    },
+    "mask": "looks like a party roast; measures naming it when someone crosses a line versus absorbing it (R2)",
+    "ae": [
+      "A",
+      "E"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-R2-31",
+    "type": "eyes",
+    "axisFor": "R2",
+    "sq": "SQ-R2-3",
+    "world": "unusual",
+    "prompt": "Your bowling league's season finale turns into a screaming match. The mediator asks your best friend how you act in a group fight.",
+    "options": [
+      {
+        "t": "\"First to say what everyone's thinking. Loudly.\"",
+        "axes": {
+          "R2": 2
+        },
+        "tags": [
+          {
+            "id": "T07A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "\"Takes people aside after. Fixes it one by one.\"",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "\"Changes the subject so smoothly nobody notices.\"",
+        "axes": {
+          "R2": -2
+        }
+      },
+      {
+        "t": "\"Waits for a gap. Says it once, calmly, to everyone.\"",
+        "axes": {
+          "R2": 1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "Your bowling league's final night turns into a shouting match. The mediator asks your best friend how you act in a group argument. What do they say?",
+      "options": [
+        "They are the first to say what everyone is thinking, out loud.",
+        "They take people aside afterward and mend it one by one.",
+        "They change the subject so smoothly that nobody notices.",
+        "They wait for a pause, then say it once, calmly, to everyone."
+      ]
+    },
+    "fp": {
+      "trigger": "a mediator asks your friend how you fight",
+      "setting": "bowling league blowup",
+      "ask": "how you handle a group fight",
+      "who": "your best friend and a league mediator",
+      "stakes": "the group's peace versus the truth said",
+      "device": "league-mediator"
+    },
+    "mask": "looks like league drama; measures saying it to the whole group versus keeping the peace (R2)",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-R3-30",
+    "type": "scenario",
+    "axisFor": "R3",
+    "sq": "SQ-T20-2",
+    "world": "unusual",
+    "prompt": "The family's holiday recipe card, handwritten in 1934, just burned in a toaster fire. You're the only one who ever memorized it.",
+    "options": [
+      {
+        "t": "Rewrite it exactly. Every pinch. Then laminate it.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Rewrite it with my own tweaks. Nobody will know.",
+        "axes": {
+          "R3": -1
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Announce a new dish era. Starting this year.",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Call every relative. Rebuild it together, line by line.",
+        "axes": {
+          "R3": 1
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Your family's holiday recipe card, handwritten in 1934, burns in a toaster fire. You are the only one who ever memorized it.",
+      "options": [
+        "I write it out exactly, every pinch, and laminate it.",
+        "I write it out with my own changes. Nobody will know.",
+        "I announce that this year begins a new dish.",
+        "I call every relative so we can rebuild it together."
+      ]
+    },
+    "fp": {
+      "trigger": "the only copy of a family recipe burns",
+      "setting": "family kitchen, toaster fire",
+      "ask": "restore the recipe or remake it",
+      "who": "the whole family",
+      "stakes": "the tradition versus your version",
+      "device": "burned-recipe"
+    },
+    "mask": "looks like a kitchen disaster; measures keeping, remixing or retiring a tradition (R3, T20)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-R3-31",
+    "type": "this_or_that",
+    "axisFor": "R3",
+    "sq": "SQ-R3-3",
+    "world": "absurd",
+    "prompt": "A curse: every holiday, forever, you spend with only one group. The family you grew up with, or the friends you chose.",
+    "options": [
+      {
+        "t": "My family. Same table, same arguments, forever.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T19B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "My friends. The family I picked, every year.",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T19A",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "A curse means that every holiday, forever, you can spend with only one group: the family you grew up with, or the friends you chose.",
+      "options": [
+        "My family. The same table and the same arguments, always.",
+        "My friends. The family I chose, every year."
+      ]
+    },
+    "fp": {
+      "trigger": "a curse limits every holiday to one group",
+      "setting": "every holiday, forever",
+      "ask": "family of origin or chosen friends",
+      "who": "your family and your closest friends",
+      "stakes": "whose claim comes first",
+      "device": "holiday-curse"
+    },
+    "mask": "looks like a cursed calendar; measures whether the family you came from or the one you chose comes first (R3, T19)",
+    "ae": [
+      "B"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-L1-30",
+    "type": "scenario",
+    "axisFor": "L1",
+    "sq": "SQ-L1-2",
+    "world": "unusual",
+    "prompt": "An airport sells unclaimed suitcases, sealed, $300 each. One is humming softly. Another has a first-class sticker. You have exactly $300.",
+    "options": [
+      {
+        "t": "The humming one. No questions. Best $300 ever.",
+        "axes": {
+          "L1": -2
+        },
+        "tags": [
+          {
+            "id": "T22A",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "The first-class one. At least there's a clue.",
+        "axes": {
+          "L1": -1
+        }
+      },
+      {
+        "t": "Watch three people open theirs first. Then decide.",
+        "axes": {
+          "L1": 1
+        }
+      },
+      {
+        "t": "Keep my $300. A mystery isn't a plan.",
+        "axes": {
+          "L1": 2
+        },
+        "tags": [
+          {
+            "id": "T13B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "An airport is selling unclaimed suitcases, sealed, for $300 each. One is humming quietly. Another has a first-class sticker. You have exactly $300.",
+      "options": [
+        "The humming one, with no questions asked.",
+        "The one with the first-class sticker. At least there is a clue.",
+        "I watch three people open theirs before I decide.",
+        "I keep my $300. A mystery is not a plan."
+      ]
+    },
+    "fp": {
+      "trigger": "sealed suitcases for sale, contents unknown",
+      "setting": "airport unclaimed-luggage sale",
+      "ask": "buy blind or keep the money",
+      "who": "strangers bidding, just you",
+      "stakes": "$300 on a mystery",
+      "device": "mystery-suitcase"
+    },
+    "mask": "looks like a treasure hunt; measures stepping in blind versus waiting for more information (L1)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-L1-31",
+    "type": "this_or_that",
+    "axisFor": "L1",
+    "sq": "SQ-L1-3",
+    "world": "absurd",
+    "prompt": "Choose, and it's permanent: a savings account that never runs dry, but you can never leave your current job. Or no cushion, every door open.",
+    "options": [
+      {
+        "t": "The bottomless account. Never worrying beats any door.",
+        "axes": {
+          "L1": 2
+        },
+        "tags": [
+          {
+            "id": "T13B",
+            "s": 1
+          }
+        ],
+        "emotion": "relief"
+      },
+      {
+        "t": "No cushion. I'll take every door, nerves included.",
+        "axes": {
+          "L1": -2
+        },
+        "tags": [
+          {
+            "id": "T22A",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Choose one, permanently: a savings account that never runs out, but you can never leave your current job. Or no cushion, and every door stays open.",
+      "options": [
+        "The account that never runs out. Never worrying matters more.",
+        "No cushion. I will take every open door, nerves included."
+      ]
+    },
+    "fp": {
+      "trigger": "an endless fund that locks your job forever",
+      "setting": "a permanent magic choice",
+      "ask": "security or open doors",
+      "who": "just you",
+      "stakes": "a safety net versus freedom to leave",
+      "device": "bottomless-fund"
+    },
+    "mask": "looks like a wish with fine print; measures keeping the safety net even when it holds you back (L1)",
+    "ae": [
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-L2-30",
+    "type": "scenario",
+    "axisFor": "L2",
+    "sq": "SQ-L2-1",
+    "world": "unusual",
+    "prompt": "A publisher found the story you posted online years ago. Book deal: finished manuscript in six months. Every evening and weekend until then.",
+    "options": [
+      {
+        "t": "Sign tonight. Tell my friends I've gone into hiding.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Sign, then introduce myself as an author. Everywhere.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 1
+          }
+        ],
+        "emotion": "pride"
+      },
+      {
+        "t": "Sign, and write only when it's fun. Late is fine.",
+        "axes": {
+          "L2": -1
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Pass. It was fun because nobody was waiting.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 2
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "A publisher found a story you posted online years ago. They offer a book deal with the manuscript due in six months: every evening and weekend until then.",
+      "options": [
+        "I sign tonight and tell my friends I am going into hiding.",
+        "I sign, then introduce myself as an author everywhere I go.",
+        "I sign, and write only when it feels good. Late is fine.",
+        "I say no. It was fun because nobody was waiting for it."
+      ]
+    },
+    "fp": {
+      "trigger": "a publisher offers a deal on your old online story",
+      "setting": "a publisher's offer, six-month deadline",
+      "ask": "give up evenings for the book",
+      "who": "a publisher and your friends",
+      "stakes": "a visible win versus your free time",
+      "device": "book-deal"
+    },
+    "mask": "looks like a lucky break; measures trading free time for a win people can see (L2, T16)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-L2-31",
+    "type": "rank",
+    "axisFor": "L2",
+    "sq": "SQ-L2-3",
+    "world": "absurd",
+    "prompt": "A tiny shop sells snow globes, each holding a version of your next year. Rank them, the one you'd buy first on top.",
+    "options": [
+      {
+        "t": "The year I finally win the thing.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "The year with nothing on the calendar.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "The year the numbers prove it's working.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T24A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "The year I learn something slowly, no deadline.",
+        "axes": {
+          "L2": -1
+        },
+        "tags": [
+          {
+            "id": "T24B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "A tiny shop sells snow globes, each holding a version of your next year. Put them in order, the one you would buy first at the top.",
+      "options": [
+        "The year I finally win the thing I want.",
+        "The year with nothing planned at all.",
+        "The year the numbers show that it is working.",
+        "The year I learn something slowly, with no deadline."
+      ]
+    },
+    "fp": {
+      "trigger": "snow globes hold four versions of next year",
+      "setting": "a tiny magic shop",
+      "ask": "rank the years you would pick",
+      "who": "just you",
+      "stakes": "winning and proof versus ease",
+      "device": "snow-globes"
+    },
+    "mask": "looks like a magic shop; measures wanting visible progress versus trusting the slow road (L2, T24)",
+    "ae": [
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-L3-30",
+    "type": "scenario",
+    "axisFor": "L3",
+    "sq": "SQ-L3-1",
+    "world": "unusual",
+    "prompt": "You're working the door at your friend's club for one night. Rule: no sneakers. Your all-time favorite singer walks up. In sneakers.",
+    "options": [
+      {
+        "t": "\"So sorry. Rules are rules, even for legends.\"",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Let them in. Obviously. Then scream into my sleeve.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Lend them my shoes. Rule kept, technically.",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Wave them in. Text my friend a very good excuse.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "You are working the door at your friend's club for one night. The rule is no sneakers. Your favorite singer of all time arrives wearing sneakers.",
+      "options": [
+        "I apologize. The rule is the rule, even for them.",
+        "I let them in, of course, and quietly lose my mind.",
+        "I lend them my shoes, so the rule is technically kept.",
+        "I let them in and send my friend a good explanation."
+      ]
+    },
+    "fp": {
+      "trigger": "a celebrity breaks the dress code",
+      "setting": "club door, one night",
+      "ask": "enforce the rule or wave them in",
+      "who": "your favorite singer and the friend who owns the club",
+      "stakes": "the rule versus a once-in-a-lifetime moment",
+      "device": "club-door"
+    },
+    "mask": "looks like a fan moment; measures applying the rule to everyone versus bending it for this person (L3, T25)",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-L3-31",
+    "type": "role",
+    "axisFor": "L3",
+    "sq": "SQ-L3-3",
+    "world": "unusual",
+    "prompt": "Your group gets twenty minutes alone with a real dinosaur skeleton. A velvet rope, a \"Do not touch\" sign, zero guards. You're the...",
+    "options": [
+      {
+        "t": "Rope guardian. \"The sign says no. So, no.\"",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Selfie artist. One hand on a rib. Just one.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Plaque reader. Every word, out loud. Rope stays up.",
+        "axes": {
+          "L3": 1
+        }
+      },
+      {
+        "t": "Lookout. Touching nothing, watching the hall for everyone.",
+        "axes": {
+          "L3": -1
+        }
+      },
+      {
+        "t": "Front-desk caller. \"Hi, nobody's watching the dinosaur.\"",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Tail negotiator. \"One pinky can't hurt a fossil.\"",
+        "axes": {
+          "L3": -1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "Your group has twenty minutes alone with a real dinosaur skeleton. There is a velvet rope, a sign saying not to touch, and no guards. Which one are you?",
+      "options": [
+        "The one who guards the rope. The sign says no.",
+        "The one taking a photo with one hand on a rib.",
+        "The one reading every plaque aloud, rope untouched.",
+        "The one who touches nothing but keeps watch for the others.",
+        "The one who calls the front desk to say nobody is watching.",
+        "The one arguing that one finger cannot hurt a fossil."
+      ]
+    },
+    "fp": {
+      "trigger": "an unguarded exhibit with a do-not-touch sign",
+      "setting": "museum hall, velvet rope",
+      "ask": "follow the sign when nobody checks",
+      "who": "your friend group",
+      "stakes": "the rule versus a harmless thrill",
+      "device": "museum-rope"
+    },
+    "mask": "looks like a museum field trip; measures following the process when nobody is checking (L3)",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal"
+  }
+]

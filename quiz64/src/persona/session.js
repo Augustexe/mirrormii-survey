@@ -181,8 +181,9 @@ function planFor(state) {
   const order = new Map();
   const group = new Map();
   groups.forEach((g, gi) => g.cards.forEach((c, i) => { order.set(c.id, i); group.set(c.id, gi); }));
+  // Rounds from every group the picker serves (chapters and extras), so a round id on any served card resolves.
   const rounds = new Map();
-  for (const c of allowed) if (c.round) rounds.set(c.round, [...(rounds.get(c.round) || []), c.id]);
+  for (const g of groups) for (const c of g.cards) if (c.round) rounds.set(c.round, [...(rounds.get(c.round) || []), c.id]);
   const feelingFor = new Map(allowed.filter((c) => c.type === "feeling" && c.follows).map((c) => [c.follows, c]));
   const r = S.rng(parseInt(sha256Hex(`genii.picker|${runId}`).slice(0, 8), 16));
   const jitter = new Map();
@@ -368,7 +369,7 @@ function pickInGroup(plan, ctx, state, R) {
   const exitAxes = prevAns && prevAns.exit ? infoOf(prev).axes : null;
   const rushedStreak = ctx.timed.length >= 3 && ctx.timed.slice(-3).every(Boolean);
 
-  // Flow rules between two cards: no two of one type in a row, no shared axis or tag pair.
+  // Flow rules between two cards: no two of one type in a row, no shared axis or tag pair (F3, spread, below).
   const dimsOk = (a, b) => !flowShare(a, b);
   const F1 = (u) => !prev || u.card.type !== prev.type;
   const F2 = (u) => {
@@ -379,6 +380,9 @@ function pickInGroup(plan, ctx, state, R) {
     return dimsOk(prev, u.card);
   };
   const carries = (u, set) => [...axesOf(u)].some((a) => set.has(a));
+  // Spread (LAUNCH-SPEC section 10): never two receipts or two bet cards within SPREAD_WINDOW cards.
+  const recentTypes = ctx.served.slice(-SPREAD_WINDOW).map((id) => S.cardById[id].type);
+  const F3 = (u) => !SPREAD_TYPES.includes(u.card.type) || !recentTypes.includes(u.card.type);
 
   let pool = cands.filter((u) => u.k <= left);
   if (urgent.size && left <= mustHere) { const hit = pool.filter((u) => carries(u, urgent)); if (hit.length) pool = hit; }
@@ -391,14 +395,24 @@ function pickInGroup(plan, ctx, state, R) {
   }
   // Retention: after an exit, a card on the exited card's axis; after three rushed taps, a lighter card. Both keep
   // the type rule (no two cards of one type in a row) and apply before the neighbour rule (see F2's exit waiver).
-  const sameAxis = exitAxes && exitAxes.size ? pool.filter((u) => F1(u) && carries(u, exitAxes)) : [];
+  // The replacement is the next card itself: a round qualifies only when its first card carries the axis.
+  const firstCarries = (u, set) => [...infoOf(u.card).axes].some((a) => set.has(a));
+  const sameAxis = exitAxes && exitAxes.size ? pool.filter((u) => F1(u) && firstCarries(u, exitAxes)) : [];
   if (sameAxis.length) pool = sameAxis;
   const light = rushedStreak ? pool.filter((u) => F1(u) && LIGHT_TYPES.includes(u.card.type)) : [];
   if (light.length) pool = light;
   const why = { rule: "pick", rushed: rushedStreak, lightOffered: light.length > 0, exitAxes: exitAxes ? [...exitAxes] : [], sameAxisOffered: sameAxis.length > 0 };
-  const strict = pool.filter((u) => F1(u) && F2(u));
-  if (strict.length) pool = strict;
-  else { const typeFine = pool.filter(F1); if (typeFine.length) pool = typeFine; }
+  // Rarely a receipts card right after a bet (or back): preferred against whenever another unit keeps the rules.
+  const F4 = (u) => !(prev && SPREAD_TYPES.includes(u.card.type) && SPREAD_TYPES.includes(prev.type));
+  const strict = pool.filter((u) => F1(u) && F2(u) && F3(u));
+  const apart = strict.filter(F4);
+  if (apart.length) pool = apart;
+  else if (strict.length) pool = strict;
+  else {
+    const typeFine = pool.filter((u) => F1(u) && F3(u));
+    if (typeFine.length) pool = typeFine;
+    else { const typeOnly = pool.filter(F1); if (typeOnly.length) pool = typeOnly; }
+  }
   // Sequencing: prefer a unit after which the rest of this chapter can still be ordered without breaking the type
   // and neighbour rules, ending clear of the next chapter's opener (or the finale); failing that, without the border.
   if (pool.length > 1) {
@@ -440,7 +454,7 @@ function pickInGroup(plan, ctx, state, R) {
     const k = partial ? left : u.k;
     const members = u.members.slice(0, k).map((id) => S.cardById[id]);
     let s = members.reduce((acc, c) => acc + cardValue(c), 0) / k;
-    if (exitAxes && [...axesOf(u)].some((a) => exitAxes.has(a))) s += PICK.exitSameAxis;
+    if (exitAxes && [...infoOf(u.card).axes].some((a) => exitAxes.has(a))) s += PICK.exitSameAxis;
     if (rushedStreak && LIGHT_TYPES.includes(u.card.type)) s += PICK.rushedLight;
     if (u.card.type === "real") s += PICK.real;
     s -= PICK.authored * plan.order.get(u.card.id);

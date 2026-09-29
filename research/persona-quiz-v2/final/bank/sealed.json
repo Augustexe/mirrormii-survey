@@ -1,0 +1,1831 @@
+[
+  {
+    "id": "S-120",
+    "type": "sealed",
+    "primary": "R1",
+    "sq": "SQ-R1-1",
+    "world": "unusual",
+    "prompt": "Six days on a sleeper train with your best friend, one tiny shared cabin. The conductor mentions an empty solo cabin next door. $90.",
+    "options": [
+      {
+        "t": "Keep the tiny cabin. Six days of us, bunk to bunk.",
+        "axes": {
+          "R1": 2
+        },
+        "emotion": "warmth"
+      },
+      {
+        "t": "Buy it. Meals together, nights apart.",
+        "axes": {
+          "R1": -2
+        },
+        "emotion": "relief"
+      },
+      {
+        "t": "Buy it for reading. Still sleep in ours.",
+        "axes": {
+          "R1": -1
+        }
+      },
+      {
+        "t": "Keep ours. Spend the $90 on snacks for two.",
+        "axes": {
+          "R1": 1
+        },
+        "emotion": "delight"
+      }
+    ],
+    "heart": {
+      "prompt": "You and your best friend have six days on a sleeper train, sharing one tiny cabin. The conductor mentions an empty single cabin next door for $90.",
+      "options": [
+        "We keep our tiny cabin. Six days side by side.",
+        "I take it. We share meals and sleep apart.",
+        "I take it to read in, and I still sleep in ours.",
+        "We keep ours, and I spend the $90 on snacks for two."
+      ]
+    },
+    "fp": {
+      "trigger": "a solo cabin opens on a long train trip",
+      "setting": "six-day sleeper train",
+      "ask": "stay together or take your own room",
+      "who": "your best friend",
+      "stakes": "togetherness versus a door of your own",
+      "device": "sleeper-train"
+    },
+    "mask": "looks like a travel perk; Genii's locked guess on close as shared space versus close with a door of your own (R1)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-121",
+    "type": "sealed",
+    "primary": "R1",
+    "sq": "SQ-R1-2",
+    "world": "absurd",
+    "prompt": "New curse: whenever anything happens to you, a tiny rain cloud follows you until your person hears about it. Something just happened.",
+    "options": [
+      {
+        "t": "Call them mid-drizzle. I'd have told them anyway.",
+        "axes": {
+          "R1": 2
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Stay damp for a week. Some news is mine first.",
+        "axes": {
+          "R1": -2
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Tell them the headline. Keep the details and the drizzle.",
+        "axes": {
+          "R1": -1
+        }
+      },
+      {
+        "t": "Tell them, then demand their news too. Fair's fair.",
+        "axes": {
+          "R1": 1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "A curse means that whenever anything happens to you, a small rain cloud follows you until your person hears about it. Something has just happened.",
+      "options": [
+        "I call them right away. I would have told them anyway.",
+        "I stay damp for a week. Some news is mine first.",
+        "I tell them the headline, and keep the details and the rain.",
+        "I tell them, then ask for their news too."
+      ]
+    },
+    "fp": {
+      "trigger": "a rain cloud follows you until your person knows your news",
+      "setting": "anywhere, under a personal cloud",
+      "ask": "tell them now or keep it a while",
+      "who": "your person",
+      "stakes": "being fully known versus news of your own",
+      "device": "rain-cloud"
+    },
+    "mask": "looks like a silly curse; Genii's locked guess on close as knowing everything versus keeping some rooms private (R1)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-122",
+    "type": "sealed",
+    "primary": "R1",
+    "sq": "SQ-R1-3",
+    "world": "unusual",
+    "prompt": "Seven to one: your friend group votes for a five-day silent retreat in the mountains. No talking at all. You were the one.",
+    "options": [
+      {
+        "t": "Go. Silent together still counts as together.",
+        "axes": {
+          "R1": 2
+        }
+      },
+      {
+        "t": "\"You go. I'll host the loud welcome-back dinner.\"",
+        "axes": {
+          "R1": -2
+        }
+      },
+      {
+        "t": "Go for two days. Then hike out alone.",
+        "axes": {
+          "R1": -1
+        }
+      },
+      {
+        "t": "Go, and pass notes the entire time.",
+        "axes": {
+          "R1": 1
+        },
+        "emotion": "delight"
+      }
+    ],
+    "heart": {
+      "prompt": "Your friend group votes seven to one for a five-day silent retreat in the mountains, with no talking at all. You were the one vote against.",
+      "options": [
+        "I go. Being silent together is still being together.",
+        "They go. I host a loud dinner when they come back.",
+        "I go for two days, then walk out on my own.",
+        "I go, and I pass notes the entire time."
+      ]
+    },
+    "fp": {
+      "trigger": "friends outvote you on a silent retreat",
+      "setting": "mountain retreat, five days",
+      "ask": "go with the group or peel off",
+      "who": "your whole friend group",
+      "stakes": "staying one unit versus your own plan",
+      "device": "silent-retreat"
+    },
+    "mask": "looks like a group trip vote; Genii's locked guess on going with the group versus peeling off (R1)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-123",
+    "type": "sealed",
+    "primary": "R1",
+    "sq": "SQ-T09-1",
+    "world": "unusual",
+    "prompt": "Cast! Your person lands a year-long touring musical. The producer offers you a stagehand job on the same tour. Fourteen cities, one bus.",
+    "options": [
+      {
+        "t": "Sign. Their tour is my tour now.",
+        "axes": {
+          "R1": 2
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Stay home. Fly out for opening nights.",
+        "axes": {
+          "R1": -1
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Stay. My life here doesn't pause for a year.",
+        "axes": {
+          "R1": -2
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Sign, but keep my apartment back home.",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Your person is cast in a touring musical for a year. The producer offers you a job as a stagehand on the same tour: fourteen cities, one bus.",
+      "options": [
+        "I sign. Their tour becomes my tour.",
+        "I stay home and fly out for opening nights.",
+        "I stay. My life here does not pause for a year.",
+        "I sign, but I keep my apartment at home."
+      ]
+    },
+    "fp": {
+      "trigger": "a job offer to follow your person on tour",
+      "setting": "touring musical, one bus",
+      "ask": "join their year or keep yours",
+      "who": "your person",
+      "stakes": "one shared life versus your own",
+      "device": "tour-bus"
+    },
+    "mask": "looks like a lucky job offer; Genii's locked guess on folding into their life versus keeping yours (R1, T09)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-91",
+    "type": "sealed",
+    "primary": "R2",
+    "sq": "SQ-T07-2",
+    "world": "unusual",
+    "prompt": "Work party, by the coats. You overhear the boss: your friend won't get the promotion they've already celebrated.",
+    "options": [
+      {
+        "t": "Tell them tonight, word for word. Better from me.",
+        "axes": {
+          "R2": 2
+        },
+        "tags": [
+          {
+            "id": "T07A",
+            "s": 2
+          }
+        ],
+        "emotion": "worry"
+      },
+      {
+        "t": "Hint: \"Maybe don't order the new car yet?\"",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Say nothing. Be there with snacks when it lands.",
+        "axes": {
+          "R2": -2
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 2
+          }
+        ],
+        "emotion": "guilt"
+      },
+      {
+        "t": "Tell them tomorrow, gently, with a plan B ready.",
+        "axes": {
+          "R2": 1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "At a work party, near the coats, you overhear the boss say your friend will not get the promotion they have already celebrated.",
+      "options": [
+        "I tell them tonight, exactly as heard. Better from me.",
+        "I hint that they should not order the new car just yet.",
+        "I say nothing, and I am there for them when it happens.",
+        "I tell them tomorrow, gently, with a backup plan ready."
+      ]
+    },
+    "fp": {
+      "trigger": "overhearing the boss about your friend",
+      "setting": "work party, by the coat rack",
+      "ask": "tell them straight or shield them",
+      "who": "a friend at work and the boss",
+      "stakes": "their pride versus your source",
+      "device": "overheard-boss"
+    },
+    "mask": "looks like office gossip; Genii's locked guess on saying the hard thing now versus holding the person first (R2), with T07 as a side guess",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-124",
+    "type": "sealed",
+    "primary": "R2",
+    "sq": "SQ-R2-2",
+    "world": "unusual",
+    "prompt": "Your neighbor's parrot learned a new phrase: your name, then \"never pays anyone back.\" You always pay people back.",
+    "options": [
+      {
+        "t": "Knock now: \"Your parrot's wrong. So are you.\"",
+        "axes": {
+          "R2": 2
+        },
+        "tags": [
+          {
+            "id": "T07A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Slide an old receipt under their door. No note.",
+        "axes": {
+          "R2": -1
+        }
+      },
+      {
+        "t": "Teach the parrot a better line. Weeks of balcony lessons.",
+        "axes": {
+          "R2": -2
+        },
+        "emotion": "delight"
+      },
+      {
+        "t": "Bring it up at the building meeting. Casually. Clearly.",
+        "axes": {
+          "R2": 1
+        },
+        "emotion": "irritation"
+      }
+    ],
+    "heart": {
+      "prompt": "Your neighbor's parrot has learned a new phrase: your name, followed by \"never pays anyone back.\" You always pay people back.",
+      "options": [
+        "I knock right away: the parrot is wrong, and so are they.",
+        "I slide an old receipt under their door, with no note.",
+        "I spend weeks teaching the parrot a better phrase from my balcony.",
+        "I mention it at the next building meeting, casually but clearly."
+      ]
+    },
+    "fp": {
+      "trigger": "a parrot repeats gossip about you",
+      "setting": "neighboring balconies",
+      "ask": "confront the neighbor or work around it",
+      "who": "the neighbor next door",
+      "stakes": "your name in the building",
+      "device": "gossip-parrot"
+    },
+    "mask": "looks like a pet mishap; Genii's locked guess on naming it when someone crosses a line versus absorbing it (R2)",
+    "ae": [
+      "A",
+      "E"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-125",
+    "type": "sealed",
+    "primary": "R2",
+    "sq": "SQ-R2-3",
+    "world": "unusual",
+    "prompt": "Murder mystery party, $200 prize pot. You've worked out that the host rigged the clues so the host wins. Twelve guests are still guessing.",
+    "options": [
+      {
+        "t": "Stand up: \"The killer is the host. So is the cheater.\"",
+        "axes": {
+          "R2": 2
+        },
+        "tags": [
+          {
+            "id": "T07A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Pull the host aside in the kitchen. Quietly.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Let them win. Their party, their pot.",
+        "axes": {
+          "R2": -2
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Ask the room to reread every clue. Slowly. Out loud.",
+        "axes": {
+          "R2": 1
+        },
+        "emotion": "delight"
+      }
+    ],
+    "heart": {
+      "prompt": "At a murder mystery party with a $200 prize, you realize the host set up the clues so the host wins. Twelve guests are still guessing.",
+      "options": [
+        "I stand up: the host is the killer, and also the cheater.",
+        "I take the host aside in the kitchen and say it quietly.",
+        "I let them win. It is their party and their prize.",
+        "I ask everyone to read every clue again, slowly and out loud."
+      ]
+    },
+    "fp": {
+      "trigger": "the host rigged the party game",
+      "setting": "murder mystery party",
+      "ask": "call it out to the room or not",
+      "who": "the host and twelve guests",
+      "stakes": "$200 and the host's face",
+      "device": "murder-mystery-party"
+    },
+    "mask": "looks like party-game drama; Genii's locked guess on saying it to the whole room versus keeping the peace (R2)",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-126",
+    "type": "sealed",
+    "primary": "R2",
+    "sq": "SQ-R2-1",
+    "world": "unusual",
+    "prompt": "You're secretly the critic reviewing your friend's restaurant opening. Nobody knows. The food is bland. Your review is due tomorrow.",
+    "options": [
+      {
+        "t": "Honest review. Call them tonight so they hear it first.",
+        "axes": {
+          "R2": 2
+        },
+        "tags": [
+          {
+            "id": "T07A",
+            "s": 2
+          }
+        ],
+        "emotion": "worry"
+      },
+      {
+        "t": "Tell them the soup needs salt. Nothing else.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Glowing review. Friendship outranks my byline.",
+        "axes": {
+          "R2": -2
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 2
+          }
+        ],
+        "emotion": "guilt"
+      },
+      {
+        "t": "Honest review, no warning. They read it with everyone.",
+        "axes": {
+          "R2": 1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "You are secretly the critic reviewing your friend's restaurant opening, and nobody knows. The food is bland. Your review is due tomorrow.",
+      "options": [
+        "An honest review, and I call them tonight so they hear first.",
+        "I tell them the soup needs salt, and nothing more.",
+        "A glowing review. Our friendship matters more than my byline.",
+        "An honest review, with no warning. They read it with everyone else."
+      ]
+    },
+    "fp": {
+      "trigger": "you secretly review a friend's restaurant",
+      "setting": "restaurant opening, critic's table",
+      "ask": "honest review or protect them",
+      "who": "a friend who owns the restaurant",
+      "stakes": "their big opening versus your honesty",
+      "device": "secret-food-critic"
+    },
+    "mask": "looks like an undercover job; Genii's locked guess on saying the hard truth now versus protecting the person first (R2, T07)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-111",
+    "type": "sealed",
+    "primary": "R3",
+    "sq": "SQ-T19-1",
+    "world": "unusual",
+    "prompt": "A dream program on the other side of the world accepts you. Before you've said yes, your family books a video call titled \"Discussion.\"",
+    "options": [
+      {
+        "t": "Accept before the call. Join it to share the news.",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T19A",
+            "s": 2
+          }
+        ],
+        "emotion": "pride"
+      },
+      {
+        "t": "Join the call. If they say no, I stay.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T19B",
+            "s": 2
+          }
+        ],
+        "emotion": "longing"
+      },
+      {
+        "t": "Hear everyone out. Then decide alone, that night.",
+        "axes": {
+          "R3": -1
+        },
+        "tags": [
+          {
+            "id": "T19A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Let them vote. Mine counts double.",
+        "axes": {
+          "R3": 1
+        },
+        "tags": [
+          {
+            "id": "T19B",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      }
+    ],
+    "heart": {
+      "prompt": "You are accepted into a dream program on the other side of the world. Before you have said yes, your family schedules a video call called \"Discussion.\"",
+      "options": [
+        "I accept before the call, then join it to share the news.",
+        "I join the call. If they say no, I stay.",
+        "I listen to everyone, then decide on my own that night.",
+        "I let them vote, but my vote counts twice."
+      ]
+    },
+    "fp": {
+      "trigger": "family books a call about your acceptance",
+      "setting": "video call, a program far away",
+      "ask": "decide alone or give them a vote",
+      "who": "the whole family",
+      "stakes": "a dream versus family support",
+      "device": "family-video-call"
+    },
+    "mask": "looks like big news; Genii's locked guess on the family script versus writing your own (R3), with who gets a vote (T19) as a side guess",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-127",
+    "type": "sealed",
+    "primary": "R3",
+    "sq": "SQ-T11-1",
+    "world": "absurd",
+    "prompt": "A stork lands on your balcony with a clipboard: \"One baby, delivery scheduled in a year. Sign here, or write CANCEL.\"",
+    "options": [
+      {
+        "t": "Sign. Then start measuring the spare room.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T11A",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Write CANCEL. Neatly. Offer the stork a snack.",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T11B",
+            "s": 2
+          }
+        ],
+        "emotion": "relief"
+      },
+      {
+        "t": "Ask to push the date back. Five years, maybe.",
+        "axes": {
+          "R3": 1
+        },
+        "tags": [
+          {
+            "id": "T11A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Ask if it delivers dogs instead.",
+        "axes": {
+          "R3": -1
+        },
+        "tags": [
+          {
+            "id": "T11B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "A stork lands on your balcony with a clipboard. One baby is scheduled for delivery in a year. You can sign, or write \"cancel.\"",
+      "options": [
+        "I sign, then start measuring the spare room.",
+        "I write \"cancel\" neatly and offer the stork something to eat.",
+        "I ask to move the date back, maybe five years.",
+        "I ask whether it could deliver a dog instead."
+      ]
+    },
+    "fp": {
+      "trigger": "a stork schedules a baby delivery",
+      "setting": "your balcony, a clipboard",
+      "ask": "sign for a baby or cancel",
+      "who": "a stork and you",
+      "stakes": "the life you picture",
+      "device": "stork-delivery"
+    },
+    "mask": "looks like a fairy-tale delivery; Genii's locked guess on the classic family script versus a life of your own design (R3, T11)",
+    "ae": [
+      "D"
+    ],
+    "privacy": "intimate"
+  },
+  {
+    "id": "S-128",
+    "type": "sealed",
+    "primary": "R3",
+    "sq": "SQ-T21-1",
+    "world": "unusual",
+    "prompt": "The stadium kiss cam lands on you and your person. Someone behind you unrolls a banner: \"PROPOSE!\" Forty thousand people start chanting.",
+    "options": [
+      {
+        "t": "Kneel. Right there. The universe has spoken.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T21A",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Kiss, wave, never mention it again.",
+        "axes": {
+          "R3": -1
+        },
+        "tags": [
+          {
+            "id": "T21B",
+            "s": 1
+          }
+        ],
+        "emotion": "cringe"
+      },
+      {
+        "t": "Mouth to the camera: \"We don't need a stadium.\"",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T21B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Whisper to my person: \"Not here. But properly, soon.\"",
+        "axes": {
+          "R3": 1
+        },
+        "tags": [
+          {
+            "id": "T21A",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "At a stadium, the kiss camera finds you and your person. Someone behind you holds up a sign that says \"Propose.\" Forty thousand people start chanting.",
+      "options": [
+        "I kneel right there. It feels like a sign.",
+        "We kiss, wave, and never mention it again.",
+        "I tell the camera we do not need a stadium for that.",
+        "I whisper to my person: not here, but properly, and soon."
+      ]
+    },
+    "fp": {
+      "trigger": "a stadium crowd chants for a proposal",
+      "setting": "stadium kiss cam",
+      "ask": "propose in public or not",
+      "who": "your person and forty thousand strangers",
+      "stakes": "a big public yes versus your own way",
+      "device": "kiss-cam"
+    },
+    "mask": "looks like a jumbotron moment; Genii's locked guess on wanting the big official yes versus not needing the stamp (R3, T21)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "intimate"
+  },
+  {
+    "id": "S-129",
+    "type": "sealed",
+    "primary": "R3",
+    "sq": "SQ-T20-1",
+    "world": "unusual",
+    "prompt": "Month-long visit: your person's parent relabels every shelf in your home to match their own. Printed labels. Laminated.",
+    "options": [
+      {
+        "t": "Keep them. Honestly, the shelves have never looked better.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Peel off one a day. Quietly. They'll never notice.",
+        "axes": {
+          "R3": -1
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Sit everyone down: \"Our house, our system.\"",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Keep the kitchen labels. The rest come down.",
+        "axes": {
+          "R3": 1
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Your person's parent stays with you for a month and relabels every shelf in your home to match their own. The labels are printed and laminated.",
+      "options": [
+        "I keep them. The shelves have honestly never looked better.",
+        "I peel one off each day, quietly, hoping nobody notices.",
+        "I sit everyone down: this is our home, and our system.",
+        "I keep the kitchen labels and take the rest down."
+      ]
+    },
+    "fp": {
+      "trigger": "an in-law relabels your whole home",
+      "setting": "your home, a month-long visit",
+      "ask": "keep their system or restore yours",
+      "who": "your person's parent",
+      "stakes": "whose way the home runs",
+      "device": "label-maker"
+    },
+    "mask": "looks like in-law comedy; Genii's locked guess on running a home the way homes always ran versus your own design (R3, T20)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-80",
+    "type": "sealed",
+    "primary": "L1",
+    "sq": "SQ-L1-1",
+    "world": "absurd",
+    "prompt": "One blind swap, courtesy of Genii: your whole life (home, job, friends) for a random one. \"At least as good.\" No previews. Yours is honestly good.",
+    "options": [
+      {
+        "t": "Keep mine. I built it. I like it.",
+        "axes": {
+          "L1": 2
+        },
+        "tags": [
+          {
+            "id": "T22B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Swap. \"At least as good\" plus a surprise? Sold.",
+        "axes": {
+          "L1": -2
+        },
+        "tags": [
+          {
+            "id": "T22A",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Say no. Then wonder about it every night for a year.",
+        "axes": {
+          "L1": 1
+        },
+        "emotion": "longing"
+      },
+      {
+        "t": "Swap. Write everyone a very long goodbye letter.",
+        "axes": {
+          "L1": -1
+        },
+        "emotion": "longing"
+      }
+    ],
+    "heart": {
+      "prompt": "Genii offers to swap your whole life, home, job and friends, for a random one. It is promised to be at least as good, with no preview. Yours is good.",
+      "options": [
+        "I keep mine. I built it and I like it.",
+        "I swap. At least as good, plus a surprise, is enough.",
+        "I say no, then wonder about it every night for a year.",
+        "I swap, and write everyone a very long goodbye letter."
+      ]
+    },
+    "fp": {
+      "trigger": "blind life swap offered",
+      "setting": "Genii wish, no previews",
+      "ask": "keep your life or swap it blind",
+      "who": "just you",
+      "stakes": "a good life versus the unknown",
+      "device": "blind-life-swap"
+    },
+    "mask": "looks like a genie gamble; Genii's locked guess on keeping the sure good thing versus the unknown (L1), with T22 as a side guess",
+    "ae": [
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-110",
+    "type": "sealed",
+    "primary": "L1",
+    "sq": "SQ-T17-2",
+    "world": "absurd",
+    "prompt": "A scroll unrolls on your pillow: Genii's five-year contract. Your job, home and people stay exactly as they are now. Good, guaranteed. No surprises either way.",
+    "options": [
+      {
+        "t": "Sign it in pen. Five known-good years beat any gamble.",
+        "axes": {
+          "L1": 2
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 2
+          }
+        ],
+        "emotion": "relief"
+      },
+      {
+        "t": "Tear it up. I want the surprises, bad ones included.",
+        "axes": {
+          "L1": -2
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Sign only the home part. Leave the job wide open.",
+        "axes": {
+          "L1": 1
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Keep it unsigned under my pillow. Decide next year.",
+        "axes": {
+          "L1": -1
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 1
+          }
+        ],
+        "emotion": "worry"
+      }
+    ],
+    "heart": {
+      "prompt": "Genii leaves a contract on your pillow. If you sign, your job, home and people stay exactly as they are for five years. Good, guaranteed, with no surprises at all.",
+      "options": [
+        "I sign. Five known good years beat any gamble.",
+        "I tear it up. I want the surprises, even the bad ones.",
+        "I sign only the part about my home, not my work.",
+        "I keep it unsigned and decide next year."
+      ]
+    },
+    "fp": {
+      "trigger": "a contract would freeze the next five years",
+      "setting": "bedroom, magic scroll",
+      "ask": "sign, tear or wait",
+      "who": "you and Genii",
+      "stakes": "guaranteed calm versus every surprise",
+      "device": "five-year-contract"
+    },
+    "mask": "looks like a wish with a catch; Genii's locked guess on the known versus the new (L1), with locking it in versus keeping options open (T17) as a side guess",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-130",
+    "type": "sealed",
+    "primary": "L1",
+    "sq": "SQ-L1-3",
+    "world": "unusual",
+    "prompt": "A famous chef eats your cooking at a friend's barbecue and offers you a spot in their kitchen. One condition: quit your job by Friday. No trial.",
+    "options": [
+      {
+        "t": "Quit Friday morning. Aprons are cheaper than regrets.",
+        "axes": {
+          "L1": -2
+        },
+        "tags": [
+          {
+            "id": "T22A",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Keep the job. Cook for friends on weekends, happily.",
+        "axes": {
+          "L1": 2
+        },
+        "tags": [
+          {
+            "id": "T22B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Say no. Cook their signature dish every night, bitterly.",
+        "axes": {
+          "L1": 1
+        },
+        "emotion": "longing"
+      },
+      {
+        "t": "Quit, and sublet my place in case it flops.",
+        "axes": {
+          "L1": -1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "A famous chef tastes your cooking at a friend's barbecue and offers you a job. The condition: quit your current job by Friday, with no trial.",
+      "options": [
+        "I quit on Friday morning. I would rather risk it than wonder.",
+        "I keep my job and cook for friends on weekends.",
+        "I say no, then cook their signature dish nightly, a little bitter.",
+        "I quit, and sublet my place in case it fails."
+      ]
+    },
+    "fp": {
+      "trigger": "a famous chef offers a job if you quit by Friday",
+      "setting": "a friend's barbecue",
+      "ask": "quit the safe job or not",
+      "who": "a stranger chef",
+      "stakes": "a steady paycheck versus a dream kitchen",
+      "device": "chef-offer"
+    },
+    "mask": "looks like a big break; Genii's locked guess on keeping the safety net versus cutting it to go all in (L1)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-131",
+    "type": "sealed",
+    "primary": "L1",
+    "sq": "SQ-L1-2",
+    "world": "unusual",
+    "prompt": "A job offer: double your pay, starts Monday. The company won't say what the job is until you arrive. Sign by tonight.",
+    "options": [
+      {
+        "t": "Sign. I'll find out Monday like everyone else.",
+        "axes": {
+          "L1": -2
+        },
+        "tags": [
+          {
+            "id": "T22A",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Sign. Then stake out their lobby all weekend.",
+        "axes": {
+          "L1": -1
+        },
+        "emotion": "worry"
+      },
+      {
+        "t": "Ask for one hint. Any hint. Then decide.",
+        "axes": {
+          "L1": 1
+        }
+      },
+      {
+        "t": "Pass. I don't sign what I can't read.",
+        "axes": {
+          "L1": 2
+        },
+        "tags": [
+          {
+            "id": "T22B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "You are offered a job at double your pay, starting Monday. The company will not say what the job is until you arrive. You must sign tonight.",
+      "options": [
+        "I sign. I will find out on Monday.",
+        "I sign, then watch their lobby all weekend.",
+        "I ask for one hint, any hint, before deciding.",
+        "I say no. I do not sign what I cannot read."
+      ]
+    },
+    "fp": {
+      "trigger": "a double-pay job with a secret role",
+      "setting": "a job offer, sign tonight",
+      "ask": "sign blind or wait for details",
+      "who": "a mystery employer",
+      "stakes": "double pay versus knowing what you are in for",
+      "device": "mystery-job"
+    },
+    "mask": "looks like a too-good offer; Genii's locked guess on stepping in blind versus waiting to know more (L1, T22)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-101",
+    "type": "sealed",
+    "primary": "L2",
+    "sq": "SQ-T17-1",
+    "world": "unusual",
+    "prompt": "Mid-karaoke, a touring theater director hands you a card: a year-long role, answer before the song ends. Your band's first real gig is next month.",
+    "options": [
+      {
+        "t": "Yes before the chorus. A sure thing beats a maybe.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Yes, if they'll let me play the gig first.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Take the card. Decide after the gig. Risk it.",
+        "axes": {
+          "L2": -1
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "No. I want to see where the band goes.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 2
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Mid-karaoke, a touring theater director offers you a year-long role, answer before the song ends. Your band's first real show is next month.",
+      "options": [
+        "I say yes before the chorus. A sure thing beats a maybe.",
+        "I say yes, if they let me play the show first.",
+        "I take the card and decide after the show, offer or not.",
+        "I say no. I want to see where the band goes."
+      ]
+    },
+    "fp": {
+      "trigger": "sudden offer with a song-length deadline",
+      "setting": "karaoke bar",
+      "ask": "lock it in now or keep options open",
+      "who": "stranger with an offer, your band",
+      "stakes": "a sure thing versus an open door",
+      "device": "karaoke-offer"
+    },
+    "mask": "looks like a lucky break; Genii's locked guess on locking things in versus keeping doors open (L2, T17)",
+    "ae": [
+      "A"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-132",
+    "type": "sealed",
+    "primary": "L2",
+    "sq": "SQ-L2-2",
+    "world": "absurd",
+    "prompt": "At your school reunion, the name tags magically show everyone's biggest win since graduation. Yours is blank. Your old rival's says \"Bestselling author.\"",
+    "options": [
+      {
+        "t": "Leave early. Start a five-year plan in the parking lot.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 1
+          }
+        ],
+        "emotion": "envy"
+      },
+      {
+        "t": "Wear it blank. Proudly. My wins don't fit on tags.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Grab a marker. Write something impressive. Mostly true.",
+        "axes": {
+          "L2": 1
+        },
+        "emotion": "cringe"
+      },
+      {
+        "t": "Congratulate the rival. Mean it. Get another drink.",
+        "axes": {
+          "L2": -1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "At your school reunion, the name tags magically show everyone's biggest achievement since graduating. Yours is blank. Your old rival's says \"Bestselling author.\"",
+      "options": [
+        "I leave early and start a five-year plan in the parking lot.",
+        "I wear it blank, and I am proud of that.",
+        "I take a marker and write something impressive, mostly true.",
+        "I congratulate my rival, mean it, and get another drink."
+      ]
+    },
+    "fp": {
+      "trigger": "name tags show your biggest win and yours is blank",
+      "setting": "school reunion",
+      "ask": "how you answer a rival's win",
+      "who": "old classmates and a rival",
+      "stakes": "how you measure up",
+      "device": "reunion-name-tag"
+    },
+    "mask": "looks like reunion comedy; Genii's locked guess on setting your clock by others versus your own pace (L2, T17)",
+    "ae": [
+      "A",
+      "E"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-133",
+    "type": "sealed",
+    "primary": "L2",
+    "sq": "SQ-T16-1",
+    "world": "unusual",
+    "prompt": "The office installs a live leaderboard: who stays latest. You're #2. #1 is your closest friend at work.",
+    "options": [
+      {
+        "t": "Stay till I'm #1. The friendship will survive a ranking.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Leave on time. The board can think what it likes.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Stay late, but only on nights my friend does.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Unplug the leaderboard. Accidentally. Twice.",
+        "axes": {
+          "L2": -1
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      }
+    ],
+    "heart": {
+      "prompt": "Your workplace puts up a live board ranking who stays latest. You are second. First place is your closest friend at work.",
+      "options": [
+        "I stay until I am first. Our friendship can handle a ranking.",
+        "I leave on time and let the board show whatever it shows.",
+        "I stay late, but only on the nights my friend does.",
+        "I unplug the board, and I let it look like an accident."
+      ]
+    },
+    "fp": {
+      "trigger": "a board ranks who stays latest",
+      "setting": "office with a live leaderboard",
+      "ask": "chase first place or leave on time",
+      "who": "your closest work friend",
+      "stakes": "the top spot versus your evenings",
+      "device": "late-leaderboard"
+    },
+    "mask": "looks like office comedy; Genii's locked guess on work as a race to win versus a job that ends when it ends (L2, T16)",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-134",
+    "type": "sealed",
+    "primary": "L2",
+    "sq": "SQ-L2-3",
+    "world": "unusual",
+    "prompt": "A museum commissions your mosaic: 10,000 tiles. The picture stays under a sheet until the last tile goes in. Nobody sees progress.",
+    "options": [
+      {
+        "t": "Count tiles nightly. Post the percentage somewhere public.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T24A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "A few tiles when the mood strikes. It'll get there.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T24B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Lift the sheet every Friday. Just one corner.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T24A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Lose count by week two. Love it anyway.",
+        "axes": {
+          "L2": -1
+        },
+        "tags": [
+          {
+            "id": "T24B",
+            "s": 1
+          }
+        ],
+        "emotion": "warmth"
+      }
+    ],
+    "heart": {
+      "prompt": "A museum commissions a mosaic from you: 10,000 tiles. The finished picture stays covered by a sheet until the very last tile is placed.",
+      "options": [
+        "I count the tiles every night and post the percentage publicly.",
+        "A few tiles whenever I feel like it. It will get there.",
+        "I lift one corner of the sheet every Friday to check.",
+        "I lose count by the second week, and I love it anyway."
+      ]
+    },
+    "fp": {
+      "trigger": "a mosaic you cannot see until it is done",
+      "setting": "museum studio, covered wall",
+      "ask": "track progress or trust the slow build",
+      "who": "you and a museum",
+      "stakes": "proof it is working versus patience",
+      "device": "covered-mosaic"
+    },
+    "mask": "looks like an art commission; Genii's locked guess on needing visible progress versus trusting the slow road (L2, T24)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-90",
+    "type": "sealed",
+    "primary": "L3",
+    "sq": "SQ-L3-3",
+    "world": "absurd",
+    "prompt": "Genii's gift: a remote that freezes everyone but you. The line for the new coaster says four hours.",
+    "options": [
+      {
+        "t": "Freeze. Stroll to the front. Unfreeze looking innocent.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Stay put. Frozen people still got here first.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Freeze, then pass only the family who cut earlier.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 1
+          }
+        ],
+        "emotion": "irritation"
+      },
+      {
+        "t": "Freeze, then read the park rules. Is this even allowed?",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ],
+        "emotion": "cringe"
+      }
+    ],
+    "heart": {
+      "prompt": "Genii gives you a remote that freezes everyone except you. The line for the new roller coaster is four hours long.",
+      "options": [
+        "I freeze everyone, walk to the front, and act innocent.",
+        "I stay put. The people ahead still arrived first.",
+        "I freeze everyone, but only pass the family who cut earlier.",
+        "I freeze everyone, then check whether the park rules allow this."
+      ]
+    },
+    "fp": {
+      "trigger": "freeze remote meets a four-hour line",
+      "setting": "theme park, wish granted",
+      "ask": "skip unseen or wait your turn",
+      "who": "strangers in line",
+      "stakes": "four hours versus the fair order",
+      "device": "freeze-remote"
+    },
+    "mask": "looks like a superpower daydream; Genii's locked guess on the fair order versus the sensible shortcut when nobody can see (L3), with T25 as a side guess",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-81",
+    "type": "sealed",
+    "primary": "L3",
+    "sq": "SQ-L3-1",
+    "world": "unusual",
+    "prompt": "Jury duty. The evidence is clear: the defendant stole a bakery's birthday cake, for their kid's party. Eleven jurors turn to you.",
+    "options": [
+      {
+        "t": "Guilty. A stolen cake is a stolen cake.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Not guilty. I'll argue it all afternoon if I have to.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Guilty. Then think about it at every birthday, forever.",
+        "axes": {
+          "L3": 1
+        },
+        "emotion": "guilt"
+      },
+      {
+        "t": "First question: did the kid get a slice? That changes things.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "You are on a jury. The evidence clearly shows the defendant stole a birthday cake from a bakery, for their child's party. The other eleven jurors turn to you.",
+      "options": [
+        "Guilty. Taking a cake is still taking.",
+        "Not guilty, and I will argue it as long as it takes.",
+        "Guilty, and I will think about it at every birthday after.",
+        "I ask whether the child got a slice. That matters to me."
+      ]
+    },
+    "fp": {
+      "trigger": "cake thief on trial",
+      "setting": "jury room",
+      "ask": "which verdict you give",
+      "who": "a stranger and eleven jurors",
+      "stakes": "the rule versus the reason",
+      "device": "jury-duty"
+    },
+    "mask": "looks like a courtroom comedy; Genii's locked guess on the rule versus the situation (L3), with T25 as a side guess",
+    "ae": [
+      "C",
+      "A"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-100",
+    "type": "sealed",
+    "primary": "L3",
+    "sq": "SQ-T12-1",
+    "world": "absurd",
+    "prompt": "Your new roommate is a dragon sleeping on a mountain of gold. Rent is $1,800. The dragon says, \"Half each. Fair is fair.\"",
+    "options": [
+      {
+        "t": "Half each. Rules don't bend for hoards.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T12A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Split by hoard. You sleep on gold, I sleep on a futon.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T12B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Half each, but the dragon heats the whole flat.",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T12A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Half for now. Bring it up at the first flat meeting.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T12B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Your new roommate is a dragon who sleeps on a mountain of gold. The rent is $1,800, and the dragon says, \"Half each. That is fair.\"",
+      "options": [
+        "Half each. The rule is the rule, whatever the hoard.",
+        "I suggest we split by what we have. They sleep on gold.",
+        "Half each, as long as the dragon heats the whole flat.",
+        "I pay half for now and raise it at our first meeting."
+      ]
+    },
+    "fp": {
+      "trigger": "rich roommate insists on an even split",
+      "setting": "shared flat with a dragon",
+      "ask": "split rent evenly or by wealth",
+      "who": "roommate with a fortune",
+      "stakes": "fair as equal versus fair as felt",
+      "device": "dragon-roommate"
+    },
+    "mask": "looks like a fantasy flatshare; Genii's locked guess on fair as the rule versus fair as the situation (L3, T12)",
+    "ae": [
+      "A"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-135",
+    "type": "sealed",
+    "primary": "L3",
+    "sq": "SQ-L3-2",
+    "world": "unusual",
+    "prompt": "A comet is visible for twelve minutes tonight. One telescope on the roof, forty neighbors, and you hold the eyepiece schedule.",
+    "options": [
+      {
+        "t": "Alphabetical, eighteen seconds each. Stopwatch in hand.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "The kid who's talked comets all year gets a full minute.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 2
+          }
+        ],
+        "emotion": "warmth"
+      },
+      {
+        "t": "First up the stairs looks first. Run, neighbors.",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "The neighbor moving away tomorrow goes first.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "A comet will be visible for twelve minutes tonight. There is one telescope on the roof and forty neighbors, and you are in charge of the schedule.",
+      "options": [
+        "Alphabetical order, eighteen seconds each, timed on a stopwatch.",
+        "The child who has talked comets all year gets a full minute.",
+        "Whoever reaches the roof first looks first.",
+        "The neighbor who moves away tomorrow goes first."
+      ]
+    },
+    "fp": {
+      "trigger": "one telescope, forty neighbors, twelve minutes",
+      "setting": "apartment rooftop, comet night",
+      "ask": "who looks first and for how long",
+      "who": "the whole building",
+      "stakes": "equal turns versus the one who needs it most",
+      "device": "comet-telescope"
+    },
+    "mask": "looks like a rooftop sky party; Genii's locked guess on equal shares versus more for whoever needs it (L3, T25)",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal"
+  }
+]

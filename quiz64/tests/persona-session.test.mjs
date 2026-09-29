@@ -62,27 +62,32 @@ test("one bank for everyone: the setup never changes the route; Keep it light sk
   for (const c of KIT.chapters.flatMap((ch) => ch.cards)) assert.ok(!("teen" in c) && !("teenPrompt" in c), c.id);
 });
 
-test("C3-9 joins the pool only after a C3-8 pick that carries the kids-yes line", () => {
-  const at = reach("C3-8");
-  assert.ok(at, "some run serves C3-8");
-  assert.ok(!Session.poolFor(at).some((c) => c.id === "C3-9"), "gated before C3-8 is answered");
-  const pool = (picks) => Session.poolFor(Session.answerCard(at, "C3-8", picks, { ms: 3000, now: clock() })).map((c) => c.id);
-  assert.ok(pool([0, 3]).includes("C3-9"));
-  assert.ok(!pool([3, 4]).includes("C3-9"));
+// Build C removed the kids gate (C3-8/C3-9): no card is gated, so the pool is every open card after the depth filter
+// (feeling cards join after their moment). The scorer's gate support is tested on a fixture in the kit tests.
+test("no gated cards: the pool is every open chapter card and extra after the depth filter", () => {
+  const cards = [...KIT.chapters.flatMap((c) => c.cards), ...KIT.extras];
+  assert.deepEqual(cards.filter((c) => c.gateRule).map((c) => c.id), []);
+  const s = started(ADULT, "poolrun01", lobbyFor(["work"], "light"));
+  const open = new Set(Session.openChapterIds(s.lobby));
+  const want = cards.filter((c) => (c.chapter === "extra" || open.has(c.chapter)) && Session.depthAllows(c, "light") && c.type !== "feeling").map((c) => c.id).sort();
+  assert.deepEqual(Session.poolFor(s).map((c) => c.id).sort(), want);
 });
 
 test("a feeling card joins the pool after a picked moment; after an exit it is left out", () => {
-  const card = KIT.chapters.flatMap((c) => c.cards).find((c) => c.type === "feeling");
-  const before = reach(card.follows);
-  assert.ok(before, `some run serves ${card.follows}`);
+  // The first feeling card whose moment some run serves.
+  let card = null, before = null;
+  for (const f of KIT.chapters.flatMap((c) => c.cards).filter((c) => c.type === "feeling" && c.privacy === "normal")) {
+    before = reach(f.follows, { tries: 30 });
+    if (before) { card = f; break; }
+  }
+  assert.ok(before, "some run serves a moment with a feeling card");
   const at = (value) => {
     const s = Session.answerCard(before, card.follows, value, { ms: 3000, now: clock() });
     // Eligible after a picked moment; it plays next when the chapter still has a slot (see persona-picker tests).
     return Session.poolFor(s).some((c) => c.id === card.id);
   };
-  assert.equal(at(0), true);
-  assert.equal(at("skip"), false);
-  assert.equal(at("no_recent"), false);
+  assert.equal(at(S.cardById[card.follows].options.findIndex((o) => !o.circumstance)), true);
+  for (const exit of S.cardById[card.follows].exits) assert.equal(at(exit), false, exit);
 });
 
 test("answers are validated per card: exits, pick two, depends follow-ups, order and timing", () => {
@@ -91,13 +96,17 @@ test("answers are validated per card: exits, pick two, depends follow-ups, order
   assert.throws(() => Session.answerCard(s, first.id, "no_recent"), { code: "bad_answer" }, "no_recent only on real cards");
   assert.throws(() => Session.answerCard(s, first.id, 99), { code: "bad_answer" });
   assert.throws(() => Session.answerCard(s, first.id, 0, { ms: -5 }), { code: "bad_answer" });
-  assert.throws(() => Session.answerCard(s, "C7-10", 0), { code: "out_of_order" });
+  const notNow = KIT.chapters[6].cards.find((c) => c.id !== first.id);
+  assert.throws(() => Session.answerCard(s, notNow.id, 0), { code: "out_of_order" });
   const pickTwo = KIT.chapters.flatMap((c) => c.cards).find((c) => c.type === "pick_two");
   s = reach(pickTwo.id);
   assert.throws(() => Session.answerCard(s, pickTwo.id, [0]), { code: "bad_answer" });
   assert.throws(() => Session.answerCard(s, pickTwo.id, [1, 1]), { code: "bad_answer" });
   assert.throws(() => Session.answerCard(s, pickTwo.id, 0), { code: "bad_answer" });
+  // A follow-up flip belongs only to a "depends" option; on any other pick it is refused.
+  assert.throws(() => Session.answerCard(started(ADULT, "valrun001"), first.id, 0, { flip: 1 }), { code: "bad_answer" }, "flip only after a depends option");
   const depends = KIT.chapters.flatMap((c) => c.cards).filter((c) => c.flip).find((c) => reach(c.id));
+  if (!depends) return; // no depends card in this bank; the scorer's flip record is tested on a fixture in the kit tests
   const di = depends.options.findIndex((o) => o.depends);
   s = reach(depends.id);
   assert.throws(() => Session.answerCard(s, depends.id, 0, { flip: 1 }), { code: "bad_answer" }, "flip only after a depends option");
@@ -176,13 +185,32 @@ test("an unfinished side gets 1 or 2 extra cards for that side only, then Genii 
   assert.deepEqual([...offered].sort(), KIT.extras.filter((c) => c.axisFor === "R1").map((c) => c.id).sort(), "two extras when the side had no cards");
   assert.equal(Session.profileFor(s).axes.R1.unfinished, false);
 
-  // A side with one valid card needs just one extra.
-  const r1Cards = S.runCards(ADULT).filter((c) => c.options.some((o) => o.axes && o.axes.R1));
-  const keep = r1Cards[0].id;
-  let t = playUntil(started(ADULT, "extrarun2"), (card) => (card.id === keep ? firstOption(card) : skipAxis("R1")(card)), (st) => st.kind === "card" && st.phase === "extra");
+  // A side with one valid card needs just one extra: the first R1 card served is answered on R1, the rest skipped.
+  let keep = null;
+  const onR1 = (card) => {
+    const i = card.options.findIndex((o) => o.axes && o.axes.R1);
+    const rest = card.options.map((_, k) => k).filter((k) => k !== i);
+    return { value: card.type === "pick_two" ? [i, rest.find((k) => !card.options[k].none)] : card.type === "receipts" ? [i] : card.type === "rank" ? [i, ...rest] : i };
+  };
+  const keepOne = (card) => {
+    if (card.id.startsWith("X-") || !card.options.some((o) => o.axes && o.axes.R1)) return firstOption(card);
+    if (!keep || keep === card.id) { keep = card.id; return onR1(card); }
+    return skipAxis("R1")(card);
+  };
+  // The picker keeps its fixed run length, so only some routes reach the bonus cards with the side half done.
+  let t = null;
+  for (let k = 0; k < 40 && !t; k++) {
+    keep = null;
+    const x = playUntil(started(ADULT, `extraone${k}`), keepOne, (st) => st.kind !== "card" || st.phase !== "chapter");
+    const st = Session.currentStep(x);
+    if (st.kind === "card" && st.phase === "extra" && Session.profileFor(x).axes.R1.cards === 1) t = x;
+  }
+  assert.ok(t, "a route reaches the bonus cards with one valid R1 card");
   const offered2 = [];
   t = playUntil(t, (card, st) => { if (st.phase === "extra") offered2.push(card.id); return firstOption(card); }, (st) => st.kind === "lock");
   assert.equal(offered2.length, 1);
+  assert.equal(S.cardById[offered2[0]].axisFor, "R1");
+  assert.equal(Session.profileFor(t).axes.R1.unfinished, false);
 
   // Skipping both extras leaves the side unfinished: Genii passes on it and the code shows "?".
   let u = playUntil(started(ADULT, "extrarun3"), (card) => (card.id.startsWith("X-") ? { value: "skip" } : skipAxis("R1")(card)));
@@ -217,8 +245,15 @@ test("Genii locks its guesses once, before the finale, and a changed lock or ans
   assert.throws(() => Session.resultFor(guessChanged), { code: "tampered" });
 
   const answerChanged = structuredClone(s);
-  const id = Object.keys(answerChanged.answers).find((k) => Number.isInteger(answerChanged.answers[k]) && S.cardById[k].options.length > 2 && S.cardById[k].type === "scenario");
-  answerChanged.answers[id] = (answerChanged.answers[id] + 1) % 3;
+  // The last run card: changing its answer cannot change the route, so the run stays complete and only the lock objects.
+  const last = Session.routeFor(s).at(-1);
+  const id = last.id;
+  const v = answerChanged.answers[id];
+  const n = last.options.length;
+  const real = (i) => !last.options[i].none;
+  answerChanged.answers[id] = Array.isArray(v)
+    ? (last.type === "rank" ? [...v].reverse() : last.type === "pick_two" ? [v[0], [...Array(n).keys()].find((i) => !v.includes(i))] : [[...Array(n).keys()].find((i) => real(i) && !v.includes(i))])
+    : (v + 1) % n;
   assert.equal(Session.verifyLock(answerChanged).ok, false);
   assert.throws(() => Session.resultFor(answerChanged), { code: "tampered" });
 });

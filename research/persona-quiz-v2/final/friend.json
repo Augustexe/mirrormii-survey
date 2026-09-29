@@ -15,15 +15,9 @@
       "../library/tags.json"
     ],
     "chapters": {
-      "ch1.final.json": "2026-09-26 23:28",
-      "ch2.final.json": "2026-09-26 23:28",
-      "ch3.final.json": "2026-09-26 23:28",
-      "ch4.final.json": "2026-09-26 23:28",
-      "ch5.final.json": "2026-09-26 23:28",
-      "ch6.final.json": "2026-09-26 23:28",
-      "ch7.final.json": "2026-09-26 23:28"
+      "cards.json": "merged from bank/ch1.json to ch7.json (Build C, 2026-09-29)"
     },
-    "note": "Level 2 reads each card's `friend` field from the chapter files. level2.cards is a snapshot computed from the chapter files listed here; if a chapter changes, recompute it with level2.answerMapping (the rule is authoritative, the snapshot is a convenience)."
+    "note": "Level 2 reads each card's `friend` field from cards.json. level2.cards is a snapshot of those fields; node friend-snapshot.mjs checks it and --write recomputes it (level2.answerMapping is authoritative, the snapshot is a convenience)."
   },
   "rules": {
     "noFreeText": "No typing anywhere in the friend game, for the owner or the friend. Sally's 'why did you guess this?' field became one-tap reason chips (level2.whyChips); her roast box became 'pick the roast' (level4.pickTheRoast). The friend label is picked, not typed (tokens.friend).",
@@ -160,9 +154,9 @@
     ],
     "cardLevels": {
       "everyday": "Friends, money, school and work, family, play. Any relationship.",
-      "love": "About the owner's person or love life (a crush, partner or closest person). Partner, crush and bestie. Cards: C3-1, C3-2, C3-4, C3-5, C3-12.",
-      "couple": "Shared phones and a shared home with a partner. Partner and bestie only (Sally: the crush and friend versions drop Q14 and Q41; the bestie version keeps Q41). Cards: C1-2, C3-3.",
-      "never": "Privacy intimate or locked18 (C3-7, C3-8, C3-9, C6-9) and every card without a friend field (feeling, sealed, most pick_two). Never in any level."
+      "love": "About the owner's person or love life (a crush, partner, date or ex). Partner, crush and bestie. Cards: C1-120, C1-127, C1-13, C3-80, C3-91, C3-101, C3-81, C3-120, C3-121, C3-41, C3-126, C3-5, C3-123, C3-127, C4-126, C4-53.",
+      "couple": "Sharing a phone or a home with a partner. Partner and bestie only. Cards: C3-124.",
+      "never": "Privacy intimate, and every card without a friend field (feeling, receipts, rank, sealed). Never in any level."
     },
     "tagPairGroups": {
       "love": {
@@ -794,98 +788,150 @@
     ],
     "primary": {
       "friend": [
-        "C2-1",
-        "C4-1",
-        "C1-6",
-        "C7-1",
-        "C3-4",
-        "C5-4",
-        "C6-1",
-        "C2-7",
-        "C1-2",
-        "C6-2",
-        "C7-5",
-        "C2-3"
+        "C5-81",
+        "C1-131",
+        "C4-124",
+        "C7-121",
+        "C2-50",
+        "C6-91",
+        "C5-123",
+        "C1-124",
+        "C2-124",
+        "C4-2",
+        "C7-80",
+        "C6-120"
       ],
       "bestie": [
-        "C1-6",
-        "C4-1",
-        "C2-5",
-        "C3-4",
-        "C7-2",
-        "C6-8",
-        "C2-2",
+        "C1-100",
+        "C2-131",
         "C3-5",
-        "C6-2",
-        "C7-1",
-        "C5-7",
-        "C6-1"
+        "C4-5",
+        "C6-51",
+        "C1-120",
+        "C2-132",
+        "C3-127",
+        "C4-12",
+        "C5-129",
+        "C6-127",
+        "C7-130"
       ],
-      "why": "Both lists cover all six axes, 12 different tag pairs and at least 6 chapters, with no two neighbors from one chapter, so no pair or topic repeats (LESSONS-FROM-TEST-1: repetition). friend follows Sally's friend set (Q05, Q15/Q27 as one money-and-friends card, Q21/Q24 as one family card, Q25/Q37, Q33, Q41, Q45/Q20, Q46 swapped for everyday picks) with Q06 removed (intimate). bestie follows Sally's bestie set (Q05, Q08, Q23, Q24, Q25, Q26, Q28, Q29, Q33, plus Q48, Q02 and Q01 so every axis is covered); Q15, Q21 and Q36 moved to backup because they repeat a pair (T06, T19, T14)."
+      "why": "Both lists cover all six axes, 12 different tag pairs and at least 6 chapters, with no two neighbors from one chapter (friend-snapshot.mjs). friend serves partner, crush and friend or coworker, so it holds everyday cards only; bestie may hold love and couple cards and leans on did cards (real, bet)."
     },
     "backupOrder": [
-      "C1-1",
-      "C4-2",
-      "C1-8",
-      "C4-3",
-      "C5-4",
-      "C4-4",
-      "C7-3",
-      "C6-8",
-      "C5-10",
-      "C2-9",
-      "C3-3",
-      "C1-6",
-      "C1-11",
-      "C2-7",
-      "C2-3",
-      "C7-5",
-      "C6-3",
-      "C3-1",
-      "C6-10",
-      "C7-7",
-      "C3-12",
-      "C2-8",
-      "C2-1",
-      "C2-5",
-      "C6-6",
-      "C1-2",
-      "C3-2",
-      "C3-4",
-      "C6-2",
-      "C5-6",
-      "C5-2",
-      "C4-1",
-      "C5-7",
-      "C5-1",
-      "C5-9",
-      "C7-1",
-      "C7-4",
-      "C6-1",
-      "C2-2",
-      "C5-5",
-      "C7-6",
-      "C6-4",
-      "C4-7",
-      "C4-5",
-      "C7-2",
-      "C2-4",
-      "C1-4",
-      "C1-5",
-      "C1-7",
-      "C7-10",
-      "C3-5",
+      "C2-133",
+      "C4-121",
+      "C4-122",
+      "C1-122",
+      "C1-129",
+      "C2-121",
+      "C3-80",
+      "C3-101",
+      "C4-102",
+      "C4-127",
+      "C4-100",
+      "C5-110",
+      "C6-122",
+      "C7-125",
+      "C7-111",
+      "C1-92",
+      "C1-30",
+      "C1-130",
+      "C2-135",
+      "C3-81",
+      "C4-120",
+      "C5-128",
+      "C5-91",
+      "C5-130",
+      "C6-128",
+      "C7-122",
+      "C7-120",
+      "C7-133",
+      "C7-100",
+      "C1-123",
+      "C1-132",
+      "C1-125",
+      "C1-126",
+      "C1-127",
+      "C1-128",
       "C1-13",
-      "C2-12",
-      "C2-13",
-      "C3-13",
-      "C3-15",
+      "C1-90",
+      "C1-91",
+      "C1-1",
+      "C1-121",
+      "C2-91",
+      "C2-100",
+      "C2-90",
+      "C2-80",
+      "C2-120",
+      "C2-41",
+      "C2-123",
+      "C2-125",
+      "C2-126",
+      "C2-127",
+      "C2-129",
+      "C3-91",
+      "C3-120",
+      "C3-121",
+      "C3-41",
+      "C3-126",
+      "C3-124",
+      "C3-123",
+      "C4-123",
+      "C4-125",
+      "C4-30",
+      "C4-126",
+      "C4-82",
+      "C4-80",
+      "C4-53",
+      "C5-80",
+      "C5-121",
+      "C5-111",
+      "C5-124",
+      "C5-1",
+      "C5-51",
+      "C5-120",
+      "C5-125",
+      "C5-126",
+      "C6-81",
+      "C6-126",
+      "C6-110",
+      "C6-121",
+      "C6-125",
+      "C6-82",
+      "C7-112",
+      "C7-110",
+      "C7-136",
+      "C7-41",
+      "C7-135",
+      "C7-128",
+      "C7-134",
+      "C7-7",
+      "C1-100",
+      "C1-120",
+      "C1-131",
+      "C2-50",
+      "C2-131",
+      "C2-132",
+      "C3-5",
+      "C3-127",
+      "C4-5",
       "C4-12",
-      "C5-12",
-      "C7-11",
-      "C7-12"
+      "C5-129",
+      "C6-51",
+      "C6-127",
+      "C7-130",
+      "C1-124",
+      "C2-124",
+      "C4-124",
+      "C4-2",
+      "C5-123",
+      "C5-81",
+      "C6-91",
+      "C6-120",
+      "C7-121",
+      "C7-80"
     ],
-    "backupWhy": "Sally's fixed backup order, extended to every card with a friend field. Unused tag pairs come first, then cards that rescue an axis, then everything else.",
+    "backupWhy": "Every card with a friend field once: cards whose tag pairs no primary list uses first, then did cards, then the rest, in bank order (friend-snapshot.mjs).",
     "whyChips": {
       "prompt": "Why that guess? (optional)",
       "zh": "你為什麼這麼猜？（選填）",
@@ -918,80 +964,102 @@
       "t": "{name} kept most of these to {them}self, so this round sits out. On to the tags."
     },
     "cards": {
-      "C1-1": {
+      "C1-92": {
         "chapter": 1,
-        "type": "role",
+        "type": "bet",
         "sally": [],
         "axes": [],
         "pairs": [
-          "T04"
+          "T02"
         ],
         "level": "everyday",
-        "teenOk": true,
         "answerMap": [
-          null,
-          "a",
           "b",
-          null,
-          null,
+          "b",
+          "a",
+          "a",
           null
         ]
       },
-      "C1-2": {
+      "C1-100": {
         "chapter": 1,
-        "type": "scenario",
-        "sally": [
-          "Q41"
+        "type": "bet",
+        "sally": [],
+        "axes": [
+          "L2"
         ],
+        "pairs": [
+          "T16"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C1-120": {
+        "chapter": 1,
+        "type": "bet",
+        "sally": [],
         "axes": [
           "R1"
         ],
         "pairs": [
           "T01"
         ],
-        "level": "couple",
-        "teenOk": true,
+        "level": "love",
+        "answerMap": [
+          "b",
+          "b",
+          "a",
+          "a"
+        ]
+      },
+      "C1-30": {
+        "chapter": 1,
+        "type": "real",
+        "sally": [],
+        "axes": [
+          "R2"
+        ],
+        "pairs": [
+          "T07"
+        ],
+        "level": "everyday",
         "answerMap": [
           "a",
           "a",
           "b",
-          "b",
-          "b",
-          null
+          "b"
         ]
       },
-      "C1-4": {
+      "C1-130": {
         "chapter": 1,
         "type": "real",
-        "sally": [
-          "Q44"
+        "sally": [],
+        "axes": [
+          "L3"
         ],
+        "pairs": [],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C1-131": {
+        "chapter": 1,
+        "type": "real",
+        "sally": [],
         "axes": [],
         "pairs": [
           "T03"
         ],
         "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b",
-          null,
-          "b",
-          null
-        ]
-      },
-      "C1-5": {
-        "chapter": 1,
-        "type": "scenario",
-        "sally": [
-          "Q42"
-        ],
-        "axes": [],
-        "pairs": [
-          "T01"
-        ],
-        "level": "everyday",
-        "teenOk": true,
         "answerMap": [
           "a",
           "a",
@@ -999,88 +1067,250 @@
           "b"
         ]
       },
-      "C1-6": {
+      "C1-123": {
         "chapter": 1,
-        "type": "this_or_that",
-        "sally": [
-          "Q26"
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "L2"
         ],
+        "pairs": [],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C1-124": {
+        "chapter": 1,
+        "type": "scenario",
+        "sally": [],
         "axes": [],
         "pairs": [
           "T02"
         ],
         "level": "everyday",
-        "teenOk": true,
         "answerMap": [
           "a",
+          "a",
+          "b",
           "b"
         ]
       },
-      "C1-8": {
+      "C1-132": {
         "chapter": 1,
-        "type": "this_or_that",
-        "sally": [
-          "Q43"
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "L1"
         ],
-        "axes": [],
-        "pairs": [
-          "T03",
-          "T05"
-        ],
+        "pairs": [],
         "level": "everyday",
-        "teenOk": true,
         "answerMap": [
+          "b",
+          "a",
           "a",
           "b"
         ]
       },
-      "C1-7": {
+      "C1-122": {
         "chapter": 1,
-        "type": "this_or_that",
+        "type": "scenario",
         "sally": [],
         "axes": [],
         "pairs": [
           "T04"
         ],
         "level": "everyday",
-        "teenOk": true,
+        "answerMap": [
+          "b",
+          "a",
+          "b",
+          "a"
+        ]
+      },
+      "C1-125": {
+        "chapter": 1,
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "R3"
+        ],
+        "pairs": [
+          "T20"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C1-126": {
+        "chapter": 1,
+        "type": "reply",
+        "sally": [],
+        "axes": [
+          "L1"
+        ],
+        "pairs": [],
+        "level": "everyday",
+        "answerMap": [
+          "b",
+          "b",
+          "a",
+          "a"
+        ]
+      },
+      "C1-127": {
+        "chapter": 1,
+        "type": "reply",
+        "sally": [],
+        "axes": [
+          "R3"
+        ],
+        "pairs": [
+          "T20"
+        ],
+        "level": "love",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C1-128": {
+        "chapter": 1,
+        "type": "others",
+        "sally": [],
+        "axes": [
+          "R2"
+        ],
+        "pairs": [
+          "T07"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C1-13": {
+        "chapter": 1,
+        "type": "others",
+        "sally": [],
+        "axes": [
+          "R1"
+        ],
+        "pairs": [
+          "T01"
+        ],
+        "level": "love",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C1-90": {
+        "chapter": 1,
+        "type": "this_or_that",
+        "sally": [],
+        "axes": [
+          "R1"
+        ],
+        "pairs": [
+          "T01"
+        ],
+        "level": "everyday",
         "answerMap": [
           "a",
           "b"
         ]
       },
-      "C1-11": {
+      "C1-91": {
         "chapter": 1,
-        "type": "real",
+        "type": "this_or_that",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T03"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C1-1": {
+        "chapter": 1,
+        "type": "role",
+        "sally": [],
+        "axes": [
+          "L3"
+        ],
+        "pairs": [],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "a",
+          "b",
+          "b",
+          "b"
+        ]
+      },
+      "C1-129": {
+        "chapter": 1,
+        "type": "pick_two",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T03",
+          "T04"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b",
+          "b",
+          "a"
+        ]
+      },
+      "C1-121": {
+        "chapter": 1,
+        "type": "eyes",
         "sally": [],
         "axes": [],
         "pairs": [
           "T02"
         ],
         "level": "everyday",
-        "teenOk": true,
         "answerMap": [
+          "b",
+          "b",
           "a",
-          "b",
-          "b",
-          null,
-          null
+          "a"
         ]
       },
-      "C2-1": {
+      "C2-91": {
         "chapter": 2,
         "type": "scenario",
-        "sally": [
-          "Q37"
-        ],
-        "axes": [
-          "R2"
-        ],
+        "sally": [],
+        "axes": [],
         "pairs": [
-          "T07"
+          "T02"
         ],
         "level": "everyday",
-        "teenOk": true,
         "answerMap": [
           "a",
           "b",
@@ -1088,234 +1318,471 @@
           "a"
         ]
       },
-      "C2-2": {
-        "chapter": 2,
-        "type": "real",
-        "sally": [
-          "Q28"
-        ],
-        "axes": [],
-        "pairs": [
-          "T06",
-          "T05"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          null,
-          "b",
-          null
-        ]
-      },
-      "C2-3": {
+      "C2-100": {
         "chapter": 2,
         "type": "scenario",
-        "sally": [
-          "Q39"
+        "sally": [],
+        "axes": [
+          "R2"
         ],
+        "pairs": [
+          "T10"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C2-90": {
+        "chapter": 2,
+        "type": "reply",
+        "sally": [],
+        "axes": [
+          "R1"
+        ],
+        "pairs": [
+          "T01"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C2-80": {
+        "chapter": 2,
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "R2"
+        ],
+        "pairs": [
+          "T07"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C2-120": {
+        "chapter": 2,
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "R2"
+        ],
+        "pairs": [
+          "T07"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C2-121": {
+        "chapter": 2,
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "L2"
+        ],
+        "pairs": [
+          "T24"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "b",
+          "a",
+          "b",
+          "a"
+        ]
+      },
+      "C2-41": {
+        "chapter": 2,
+        "type": "reply",
+        "sally": [],
+        "axes": [
+          "L3",
+          "R2"
+        ],
+        "pairs": [
+          "T25",
+          "T06"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "b",
+          "b",
+          "a",
+          "a"
+        ]
+      },
+      "C2-123": {
+        "chapter": 2,
+        "type": "others",
+        "sally": [],
         "axes": [],
         "pairs": [
           "T08"
         ],
         "level": "everyday",
-        "teenOk": true,
+        "answerMap": [
+          "b",
+          "a",
+          "a",
+          "b"
+        ]
+      },
+      "C2-124": {
+        "chapter": 2,
+        "type": "others",
+        "sally": [],
+        "axes": [
+          "R3"
+        ],
+        "pairs": [
+          "T21"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C2-125": {
+        "chapter": 2,
+        "type": "this_or_that",
+        "sally": [],
+        "axes": [
+          "R1"
+        ],
+        "pairs": [
+          "T06"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C2-126": {
+        "chapter": 2,
+        "type": "this_or_that",
+        "sally": [],
+        "axes": [
+          "L1"
+        ],
+        "pairs": [
+          "T22"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "b",
+          "a"
+        ]
+      },
+      "C2-127": {
+        "chapter": 2,
+        "type": "role",
+        "sally": [],
+        "axes": [
+          "L1"
+        ],
+        "pairs": [],
+        "level": "everyday",
+        "answerMap": [
+          "b",
+          "a",
+          "b",
+          "a",
+          "b",
+          "a"
+        ]
+      },
+      "C2-129": {
+        "chapter": 2,
+        "type": "eyes",
+        "sally": [],
+        "axes": [
+          "R2"
+        ],
+        "pairs": [],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          "a"
+        ]
+      },
+      "C2-50": {
+        "chapter": 2,
+        "type": "bet",
+        "sally": [],
+        "axes": [
+          "L2"
+        ],
+        "pairs": [
+          "T16"
+        ],
+        "level": "everyday",
         "answerMap": [
           "a",
           "a",
           "b",
-          "b",
-          null
+          "b"
         ]
       },
-      "C2-4": {
+      "C2-131": {
         "chapter": 2,
-        "type": "pick_two",
+        "type": "real",
+        "sally": [],
+        "axes": [
+          "L3",
+          "R2"
+        ],
+        "pairs": [
+          "T06"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C2-132": {
+        "chapter": 2,
+        "type": "bet",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T08"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C2-133": {
+        "chapter": 2,
+        "type": "real",
         "sally": [],
         "axes": [],
         "pairs": [
           "T05"
         ],
         "level": "everyday",
-        "teenOk": true,
         "answerMap": [
           "a",
           "b",
-          null,
-          null,
           "b",
           "a"
         ]
       },
-      "C2-7": {
+      "C2-135": {
         "chapter": 2,
-        "type": "scenario",
-        "sally": [
-          "Q27"
+        "type": "bet",
+        "sally": [],
+        "axes": [
+          "R3"
         ],
-        "axes": [],
         "pairs": [
-          "T06"
+          "T20"
         ],
         "level": "everyday",
-        "teenOk": true,
         "answerMap": [
           "a",
-          "b",
-          "b",
           "a",
+          "b",
           "b"
         ]
       },
-      "C2-5": {
-        "chapter": 2,
-        "type": "real",
-        "sally": [
-          "Q25"
-        ],
+      "C3-80": {
+        "chapter": 3,
+        "type": "scenario",
+        "sally": [],
         "axes": [
+          "R1"
+        ],
+        "pairs": [
+          "T09"
+        ],
+        "level": "love",
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          "a"
+        ]
+      },
+      "C3-91": {
+        "chapter": 3,
+        "type": "scenario",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T08"
+        ],
+        "level": "love",
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          "a"
+        ]
+      },
+      "C3-101": {
+        "chapter": 3,
+        "type": "reply",
+        "sally": [],
+        "axes": [
+          "R1",
           "R2"
         ],
         "pairs": [
-          "T07"
+          "T09"
         ],
-        "level": "everyday",
-        "teenOk": true,
+        "level": "love",
         "answerMap": [
           "a",
           "b",
           "b",
-          null,
-          null
+          "a"
         ]
       },
-      "C2-9": {
-        "chapter": 2,
-        "type": "scenario",
-        "sally": [
-          "Q15"
-        ],
-        "axes": [],
-        "pairs": [
-          "T06",
-          "T12"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          null,
-          "a",
-          "b",
-          null
-        ]
-      },
-      "C2-8": {
-        "chapter": 2,
-        "type": "role",
+      "C3-81": {
+        "chapter": 3,
+        "type": "bet",
         "sally": [],
         "axes": [
           "R2"
         ],
         "pairs": [
-          "T07"
+          "T08"
         ],
-        "level": "everyday",
-        "teenOk": true,
+        "level": "love",
+        "answerMap": [
+          "b",
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C3-120": {
+        "chapter": 3,
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "R2"
+        ],
+        "pairs": [
+          "T10"
+        ],
+        "level": "love",
+        "answerMap": [
+          "b",
+          "a",
+          "a",
+          "b"
+        ]
+      },
+      "C3-121": {
+        "chapter": 3,
+        "type": "others",
+        "sally": [],
+        "axes": [
+          "R2"
+        ],
+        "pairs": [
+          "T10"
+        ],
+        "level": "love",
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C3-41": {
+        "chapter": 3,
+        "type": "this_or_that",
+        "sally": [],
+        "axes": [
+          "R1"
+        ],
+        "pairs": [
+          "T01"
+        ],
+        "level": "love",
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C3-126": {
+        "chapter": 3,
+        "type": "this_or_that",
+        "sally": [],
+        "axes": [
+          "L2",
+          "R1"
+        ],
+        "pairs": [],
+        "level": "love",
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C3-5": {
+        "chapter": 3,
+        "type": "real",
+        "sally": [],
+        "axes": [
+          "R2"
+        ],
+        "pairs": [
+          "T10"
+        ],
+        "level": "love",
         "answerMap": [
           "a",
           "a",
           "b",
-          null,
           "b"
         ]
       },
-      "C3-1": {
+      "C3-124": {
         "chapter": 3,
         "type": "scenario",
         "sally": [],
         "axes": [
           "R3"
         ],
-        "pairs": [],
-        "level": "love",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b",
-          "b",
-          "a"
-        ]
-      },
-      "C3-2": {
-        "chapter": 3,
-        "type": "real",
-        "sally": [],
-        "axes": [
-          "R1"
-        ],
         "pairs": [
-          "T09"
-        ],
-        "level": "love",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b",
-          "a",
-          "b"
-        ]
-      },
-      "C3-3": {
-        "chapter": 3,
-        "type": "scenario",
-        "sally": [
-          "Q14"
-        ],
-        "axes": [],
-        "pairs": [
-          "T12"
+          "T20"
         ],
         "level": "couple",
-        "teenOk": false,
-        "answerMap": [
-          "a",
-          "b",
-          "a",
-          "b",
-          null
-        ]
-      },
-      "C3-5": {
-        "chapter": 3,
-        "type": "real",
-        "sally": [
-          "Q08"
-        ],
-        "axes": [],
-        "pairs": [
-          "T10"
-        ],
-        "level": "love",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b",
-          "b",
-          "a",
-          "a"
-        ]
-      },
-      "C3-12": {
-        "chapter": 3,
-        "type": "real",
-        "sally": [],
-        "axes": [
-          "R2"
-        ],
-        "pairs": [],
-        "level": "love",
-        "teenOk": true,
         "answerMap": [
           "a",
           "a",
@@ -1323,35 +1790,94 @@
           "b"
         ]
       },
-      "C3-4": {
+      "C3-123": {
         "chapter": 3,
-        "type": "pick_two",
-        "sally": [
-          "Q05"
-        ],
+        "type": "scenario",
+        "sally": [],
         "axes": [
-          "R1"
+          "L2"
         ],
-        "pairs": [
-          "T09"
-        ],
+        "pairs": [],
         "level": "love",
-        "teenOk": true,
         "answerMap": [
           "a",
           "b",
-          null,
-          "b",
           "a",
-          null
+          "b"
         ]
       },
-      "C4-1": {
-        "chapter": 4,
-        "type": "scenario",
-        "sally": [
-          "Q33"
+      "C3-127": {
+        "chapter": 3,
+        "type": "real",
+        "sally": [],
+        "axes": [
+          "R3"
         ],
+        "pairs": [
+          "T20"
+        ],
+        "level": "love",
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C4-5": {
+        "chapter": 4,
+        "type": "real",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T14"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C4-12": {
+        "chapter": 4,
+        "type": "bet",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T15"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "b",
+          "a",
+          "a",
+          "b"
+        ]
+      },
+      "C4-120": {
+        "chapter": 4,
+        "type": "bet",
+        "sally": [],
+        "axes": [
+          "L2"
+        ],
+        "pairs": [
+          "T16"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C4-121": {
+        "chapter": 4,
+        "type": "bet",
+        "sally": [],
         "axes": [
           "L1"
         ],
@@ -1359,101 +1885,320 @@
           "T13"
         ],
         "level": "everyday",
-        "teenOk": true,
         "answerMap": [
           "a",
+          "a",
           "b",
-          null,
-          null
+          "b"
         ]
       },
-      "C4-5": {
+      "C4-122": {
         "chapter": 4,
         "type": "real",
-        "sally": [
-          "Q36"
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T13"
         ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C4-102": {
+        "chapter": 4,
+        "type": "scenario",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T14",
+          "T13"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C4-123": {
+        "chapter": 4,
+        "type": "scenario",
+        "sally": [],
         "axes": [],
         "pairs": [
           "T14"
         ],
         "level": "everyday",
-        "teenOk": true,
+        "answerMap": [
+          "b",
+          "a",
+          "a",
+          "b"
+        ]
+      },
+      "C4-124": {
+        "chapter": 4,
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "L3"
+        ],
+        "pairs": [
+          "T12"
+        ],
+        "level": "everyday",
         "answerMap": [
           "a",
           "b",
+          "a",
+          "b"
+        ]
+      },
+      "C4-125": {
+        "chapter": 4,
+        "type": "scenario",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T15"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C4-30": {
+        "chapter": 4,
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "R2"
+        ],
+        "pairs": [
+          "T12"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C4-126": {
+        "chapter": 4,
+        "type": "reply",
+        "sally": [],
+        "axes": [
+          "R3",
+          "R1"
+        ],
+        "pairs": [],
+        "level": "love",
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C4-127": {
+        "chapter": 4,
+        "type": "reply",
+        "sally": [],
+        "axes": [
+          "L1"
+        ],
+        "pairs": [
+          "T13"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "b",
+          "a",
+          "a",
+          "b"
+        ]
+      },
+      "C4-82": {
+        "chapter": 4,
+        "type": "others",
+        "sally": [],
+        "axes": [
+          "L3"
+        ],
+        "pairs": [
+          "T12"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C4-100": {
+        "chapter": 4,
+        "type": "others",
+        "sally": [],
+        "axes": [
+          "L1"
+        ],
+        "pairs": [
+          "T13"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "b",
+          "a",
           "b",
           "a"
         ]
       },
-      "C4-4": {
+      "C4-80": {
         "chapter": 4,
-        "type": "this_or_that",
-        "sally": [
-          "Q35"
+        "type": "role",
+        "sally": [],
+        "axes": [
+          "R1"
         ],
-        "axes": [],
-        "pairs": [
-          "T23"
-        ],
+        "pairs": [],
         "level": "everyday",
-        "teenOk": true,
         "answerMap": [
           "a",
+          "a",
+          "b",
+          "b",
           "b"
         ]
       },
       "C4-2": {
         "chapter": 4,
         "type": "this_or_that",
-        "sally": [
-          "Q13"
-        ],
+        "sally": [],
         "axes": [],
         "pairs": [
           "T15"
         ],
         "level": "everyday",
-        "teenOk": true,
         "answerMap": [
           "a",
           "b"
         ]
       },
-      "C4-3": {
+      "C4-53": {
         "chapter": 4,
         "type": "this_or_that",
-        "sally": [
-          "Q34"
+        "sally": [],
+        "axes": [
+          "R3"
         ],
-        "axes": [],
         "pairs": [
-          "T14"
+          "T12"
         ],
-        "level": "everyday",
-        "teenOk": true,
+        "level": "love",
         "answerMap": [
           "a",
           "b"
         ]
       },
-      "C4-7": {
-        "chapter": 4,
+      "C5-80": {
+        "chapter": 5,
         "type": "scenario",
-        "sally": [
-          "Q16"
+        "sally": [],
+        "axes": [
+          "L2"
         ],
-        "axes": [],
         "pairs": [
-          "T15"
+          "T16"
         ],
         "level": "everyday",
-        "teenOk": true,
         "answerMap": [
           "a",
           "b",
-          null,
-          null
+          "a",
+          "b"
+        ]
+      },
+      "C5-121": {
+        "chapter": 5,
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "L2"
+        ],
+        "pairs": [
+          "T17"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C5-128": {
+        "chapter": 5,
+        "type": "real",
+        "sally": [],
+        "axes": [
+          "L2"
+        ],
+        "pairs": [
+          "T16"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C5-111": {
+        "chapter": 5,
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "L3"
+        ],
+        "pairs": [
+          "T25"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C5-124": {
+        "chapter": 5,
+        "type": "reply",
+        "sally": [],
+        "axes": [
+          "L3"
+        ],
+        "pairs": [
+          "T25"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
         ]
       },
       "C5-1": {
@@ -1467,15 +2212,406 @@
           "T17"
         ],
         "level": "everyday",
-        "teenOk": true,
         "answerMap": [
           "a",
           "b"
         ]
       },
-      "C5-2": {
+      "C5-51": {
         "chapter": 5,
         "type": "this_or_that",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T16"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C5-120": {
+        "chapter": 5,
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "L1"
+        ],
+        "pairs": [],
+        "level": "everyday",
+        "answerMap": [
+          "b",
+          "b",
+          "a",
+          "a"
+        ]
+      },
+      "C5-125": {
+        "chapter": 5,
+        "type": "others",
+        "sally": [],
+        "axes": [
+          "L2"
+        ],
+        "pairs": [
+          "T16"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C5-91": {
+        "chapter": 5,
+        "type": "bet",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T08"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "b",
+          "b",
+          "a",
+          "a"
+        ]
+      },
+      "C5-123": {
+        "chapter": 5,
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "L3"
+        ],
+        "pairs": [
+          "T25"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C5-81": {
+        "chapter": 5,
+        "type": "eyes",
+        "sally": [],
+        "axes": [
+          "L2"
+        ],
+        "pairs": [
+          "T17"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C5-110": {
+        "chapter": 5,
+        "type": "reply",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T19"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C5-126": {
+        "chapter": 5,
+        "type": "others",
+        "sally": [],
+        "axes": [
+          "L1"
+        ],
+        "pairs": [],
+        "level": "everyday",
+        "answerMap": [
+          "b",
+          "a",
+          "a",
+          "b"
+        ]
+      },
+      "C5-129": {
+        "chapter": 5,
+        "type": "bet",
+        "sally": [],
+        "axes": [
+          "L1"
+        ],
+        "pairs": [
+          "T17"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "b",
+          "a",
+          "a",
+          "b"
+        ]
+      },
+      "C5-130": {
+        "chapter": 5,
+        "type": "real",
+        "sally": [],
+        "axes": [
+          "L1"
+        ],
+        "pairs": [],
+        "level": "everyday",
+        "answerMap": [
+          "b",
+          "a",
+          "a",
+          "b"
+        ]
+      },
+      "C6-81": {
+        "chapter": 6,
+        "type": "this_or_that",
+        "sally": [],
+        "axes": [
+          "R3"
+        ],
+        "pairs": [
+          "T20"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b"
+        ]
+      },
+      "C6-91": {
+        "chapter": 6,
+        "type": "others",
+        "sally": [],
+        "axes": [
+          "R2"
+        ],
+        "pairs": [
+          "T07"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          "a"
+        ]
+      },
+      "C6-126": {
+        "chapter": 6,
+        "type": "others",
+        "sally": [],
+        "axes": [
+          "R1"
+        ],
+        "pairs": [
+          "T21"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "b",
+          "a",
+          "a",
+          "b"
+        ]
+      },
+      "C6-110": {
+        "chapter": 6,
+        "type": "scenario",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T18"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C6-121": {
+        "chapter": 6,
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "L3"
+        ],
+        "pairs": [
+          "T12"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C6-122": {
+        "chapter": 6,
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "R3"
+        ],
+        "pairs": [
+          "T19"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "b",
+          "a",
+          "a",
+          "b"
+        ]
+      },
+      "C6-120": {
+        "chapter": 6,
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "R1"
+        ],
+        "pairs": [
+          "T18"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C6-125": {
+        "chapter": 6,
+        "type": "reply",
+        "sally": [],
+        "axes": [
+          "R1"
+        ],
+        "pairs": [],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C6-82": {
+        "chapter": 6,
+        "type": "reply",
+        "sally": [],
+        "axes": [
+          "R3"
+        ],
+        "pairs": [
+          "T20"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          "a"
+        ]
+      },
+      "C6-51": {
+        "chapter": 6,
+        "type": "real",
+        "sally": [],
+        "axes": [
+          "L3"
+        ],
+        "pairs": [
+          "T12"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C6-127": {
+        "chapter": 6,
+        "type": "real",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T18"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b",
+          "b",
+          "a"
+        ]
+      },
+      "C6-128": {
+        "chapter": 6,
+        "type": "real",
+        "sally": [],
+        "axes": [
+          "R3"
+        ],
+        "pairs": [
+          "T21"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "b",
+          "a",
+          "b"
+        ]
+      },
+      "C7-112": {
+        "chapter": 7,
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "L3"
+        ],
+        "pairs": [
+          "T25"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C7-130": {
+        "chapter": 7,
+        "type": "bet",
         "sally": [],
         "axes": [
           "L1"
@@ -1484,333 +2620,22 @@
           "T22"
         ],
         "level": "everyday",
-        "teenOk": false,
         "answerMap": [
           "a",
-          "b",
-          null
-        ]
-      },
-      "C5-10": {
-        "chapter": 5,
-        "type": "this_or_that",
-        "sally": [],
-        "axes": [],
-        "pairs": [
-          "T10"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b"
-        ]
-      },
-      "C5-4": {
-        "chapter": 5,
-        "type": "scenario",
-        "sally": [
-          "Q20"
-        ],
-        "axes": [
-          "L2"
-        ],
-        "pairs": [
-          "T16"
-        ],
-        "level": "everyday",
-        "teenOk": false,
-        "answerMap": [
-          "a",
-          "a",
-          "b",
-          "b"
-        ]
-      },
-      "C5-5": {
-        "chapter": 5,
-        "type": "real",
-        "sally": [
-          "Q18"
-        ],
-        "axes": [],
-        "pairs": [
-          "T06"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "a",
-          "b",
-          "b",
-          null
-        ]
-      },
-      "C5-9": {
-        "chapter": 5,
-        "type": "pick_two",
-        "sally": [
-          "Q45"
-        ],
-        "axes": [
-          "L2"
-        ],
-        "pairs": [
-          "T16"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "a",
-          "b",
           "b",
           "a",
           "b"
         ]
       },
-      "C5-6": {
-        "chapter": 5,
-        "type": "scenario",
-        "sally": [
-          "Q19",
-          "Q17"
-        ],
-        "axes": [
-          "L1"
-        ],
-        "pairs": [
-          "T13"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b",
-          "b",
-          "a"
-        ]
-      },
-      "C5-7": {
-        "chapter": 5,
-        "type": "real",
-        "sally": [
-          "Q48"
-        ],
-        "axes": [
-          "L2"
-        ],
-        "pairs": [
-          "T17",
-          "T16"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b",
-          "b",
-          "b"
-        ]
-      },
-      "C6-6": {
-        "chapter": 6,
-        "type": "scenario",
-        "sally": [
-          "Q21"
-        ],
-        "axes": [
-          "R1"
-        ],
-        "pairs": [
-          "T19"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b",
-          "b",
-          null,
-          null
-        ]
-      },
-      "C6-10": {
-        "chapter": 6,
-        "type": "this_or_that",
-        "sally": [],
-        "axes": [
-          "L3"
-        ],
-        "pairs": [
-          "T25"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b"
-        ]
-      },
-      "C6-3": {
-        "chapter": 6,
-        "type": "this_or_that",
-        "sally": [
-          "Q04"
-        ],
-        "axes": [
-          "R3"
-        ],
-        "pairs": [
-          "T20"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b"
-        ]
-      },
-      "C6-4": {
-        "chapter": 6,
-        "type": "scenario",
-        "sally": [
-          "Q22"
-        ],
-        "axes": [],
-        "pairs": [
-          "T18"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b",
-          "b",
-          "a",
-          null
-        ]
-      },
-      "C6-2": {
-        "chapter": 6,
-        "type": "real",
-        "sally": [
-          "Q24"
-        ],
-        "axes": [
-          "R1"
-        ],
-        "pairs": [
-          "T19"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "b",
-          "a",
-          "a",
-          "b",
-          null
-        ]
-      },
-      "C6-1": {
-        "chapter": 6,
-        "type": "scenario",
-        "sally": [
-          "Q01"
-        ],
-        "axes": [
-          "R3"
-        ],
-        "pairs": [
-          "T20"
-        ],
-        "level": "everyday",
-        "teenOk": false,
-        "answerMap": [
-          "a",
-          "b",
-          "b",
-          "b",
-          "a"
-        ]
-      },
-      "C6-8": {
-        "chapter": 6,
-        "type": "role",
-        "sally": [
-          "Q23"
-        ],
-        "axes": [],
-        "pairs": [
-          "T18"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b",
-          "a",
-          "a",
-          "b",
-          "b"
-        ]
-      },
-      "C7-1": {
+      "C7-121": {
         "chapter": 7,
         "type": "scenario",
-        "sally": [
-          "Q02"
-        ],
-        "axes": [
-          "L3"
-        ],
-        "pairs": [
-          "T25"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b",
-          "a",
-          "b"
-        ]
-      },
-      "C7-6": {
-        "chapter": 7,
-        "type": "real",
-        "sally": [
-          "Q47"
-        ],
+        "sally": [],
         "axes": [],
         "pairs": [
           "T23"
         ],
         "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b",
-          null,
-          null,
-          null
-        ]
-      },
-      "C7-5": {
-        "chapter": 7,
-        "type": "scenario",
-        "sally": [
-          "Q31",
-          "Q32"
-        ],
-        "axes": [],
-        "pairs": [
-          "T24"
-        ],
-        "level": "everyday",
-        "teenOk": true,
         "answerMap": [
           "a",
           "a",
@@ -1818,20 +2643,15 @@
           "b"
         ]
       },
-      "C7-4": {
+      "C7-122": {
         "chapter": 7,
         "type": "real",
-        "sally": [
-          "Q38"
-        ],
-        "axes": [
-          "L3"
-        ],
+        "sally": [],
+        "axes": [],
         "pairs": [
-          "T25"
+          "T23"
         ],
         "level": "everyday",
-        "teenOk": true,
         "answerMap": [
           "a",
           "a",
@@ -1839,12 +2659,10 @@
           "b"
         ]
       },
-      "C7-3": {
+      "C7-110": {
         "chapter": 7,
-        "type": "scenario",
-        "sally": [
-          "Q46"
-        ],
+        "type": "this_or_that",
+        "sally": [],
         "axes": [
           "L1"
         ],
@@ -1852,41 +2670,102 @@
           "T22"
         ],
         "level": "everyday",
-        "teenOk": true,
         "answerMap": [
           "a",
-          "b",
-          null,
-          null,
-          null
+          "b"
         ]
       },
-      "C7-2": {
+      "C7-136": {
         "chapter": 7,
-        "type": "role",
-        "sally": [
-          "Q29"
+        "type": "this_or_that",
+        "sally": [],
+        "axes": [
+          "R3"
         ],
-        "axes": [],
         "pairs": [
-          "T14"
+          "T20"
         ],
         "level": "everyday",
-        "teenOk": true,
         "answerMap": [
           "a",
-          "b",
-          "b",
-          null,
-          null
+          "b"
         ]
       },
-      "C7-7": {
+      "C7-41": {
         "chapter": 7,
         "type": "scenario",
-        "sally": [
-          "Q40"
+        "sally": [],
+        "axes": [
+          "L3",
+          "R2"
         ],
+        "pairs": [
+          "T25"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C7-125": {
+        "chapter": 7,
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "L2"
+        ],
+        "pairs": [
+          "T24"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C7-135": {
+        "chapter": 7,
+        "type": "reply",
+        "sally": [],
+        "axes": [],
+        "pairs": [
+          "T23"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C7-128": {
+        "chapter": 7,
+        "type": "others",
+        "sally": [],
+        "axes": [
+          "R3"
+        ],
+        "pairs": [
+          "T20"
+        ],
+        "level": "everyday",
+        "answerMap": [
+          "b",
+          "a",
+          "a",
+          "b"
+        ]
+      },
+      "C7-120": {
+        "chapter": 7,
+        "type": "bet",
+        "sally": [],
         "axes": [
           "L3"
         ],
@@ -1894,99 +2773,103 @@
           "T25"
         ],
         "level": "everyday",
-        "teenOk": true,
         "answerMap": [
+          "a",
           "a",
           "b",
-          "a",
-          null,
-          null
+          "b"
         ]
       },
-      "C7-10": {
+      "C7-80": {
         "chapter": 7,
-        "type": "scenario",
+        "type": "pick_two",
         "sally": [],
-        "axes": [],
+        "axes": [
+          "L1"
+        ],
         "pairs": [
-          "T08"
+          "T22"
         ],
         "level": "everyday",
-        "teenOk": true,
         "answerMap": [
+          "b",
+          "a",
           "a",
           "b",
           "a",
           "b"
         ]
       },
-      "C1-13": {
-        "chapter": 1,
+      "C7-134": {
+        "chapter": 7,
+        "type": "scenario",
+        "sally": [],
+        "axes": [
+          "R1"
+        ],
+        "pairs": [],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C7-111": {
+        "chapter": 7,
         "type": "others",
         "sally": [],
         "axes": [],
         "pairs": [
-          "T01"
+          "T24",
+          "T17"
         ],
         "level": "everyday",
-        "teenOk": true,
         "answerMap": [
           "a",
-          "b",
-          "b",
-          "a"
-        ]
-      },
-      "C2-12": {
-        "chapter": 2,
-        "type": "bet",
-        "sally": [],
-        "axes": [],
-        "pairs": [
-          "T08"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
           "a",
+          "b",
           "b"
         ]
       },
-      "C2-13": {
-        "chapter": 2,
+      "C7-7": {
+        "chapter": 7,
         "type": "reply",
-        "sally": [],
-        "axes": [],
-        "pairs": [
-          "T05"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b",
-          "a",
-          "b"
-        ]
-      },
-      "C3-13": {
-        "chapter": 3,
-        "type": "bet",
         "sally": [],
         "axes": [
-          "R3"
+          "L3"
         ],
-        "pairs": [],
-        "level": "love",
-        "teenOk": true,
+        "pairs": [
+          "T25"
+        ],
+        "level": "everyday",
         "answerMap": [
           "a",
+          "a",
+          "b",
           "b"
         ]
       },
-      "C3-15": {
-        "chapter": 3,
-        "type": "reply",
+      "C7-133": {
+        "chapter": 7,
+        "type": "real",
+        "sally": [],
+        "axes": [
+          "R1"
+        ],
+        "pairs": [],
+        "level": "everyday",
+        "answerMap": [
+          "a",
+          "a",
+          "b",
+          "b"
+        ]
+      },
+      "C7-100": {
+        "chapter": 7,
+        "type": "real",
         "sally": [],
         "axes": [
           "R2"
@@ -1994,89 +2877,19 @@
         "pairs": [
           "T10"
         ],
-        "level": "love",
-        "teenOk": true,
+        "level": "everyday",
         "answerMap": [
+          "a",
           "a",
           "b",
-          null,
-          "b"
-        ]
-      },
-      "C4-12": {
-        "chapter": 4,
-        "type": "bet",
-        "sally": [],
-        "axes": [],
-        "pairs": [
-          "T15"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b"
-        ]
-      },
-      "C5-12": {
-        "chapter": 5,
-        "type": "bet",
-        "sally": [],
-        "axes": [
-          "L2"
-        ],
-        "pairs": [
-          "T16"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b"
-        ]
-      },
-      "C7-11": {
-        "chapter": 7,
-        "type": "reply",
-        "sally": [],
-        "axes": [],
-        "pairs": [
-          "T24"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
-          "b",
-          null,
-          null
-        ]
-      },
-      "C7-12": {
-        "chapter": 7,
-        "type": "others",
-        "sally": [],
-        "axes": [
-          "L3"
-        ],
-        "pairs": [
-          "T25"
-        ],
-        "level": "everyday",
-        "teenOk": true,
-        "answerMap": [
-          "a",
           "b",
           "b"
         ]
       }
     },
     "cardNotes": [
-      "C7-3 friend prompt said '{they}'ve never been to' (broke for she and he). Fixed in verification: 'a year in a brand-new city'.",
-      "C1-4 side b, C1-8 side b and C1-2 side b used raw pronouns for the owner. Fixed in verification: '{their} closest person', '{Their} own version', 'Keeps {their} own'.",
-      "C2-9 friend sides are not one pair (a T06A, b T12A). The mapping rule still works; the card counts as touching both T06 and T12 for the no-repeat rule.",
-      "C3-3 and C6-1 have teen versions the friend prompt does not describe, so they are marked teenOk false. A teen friend field ('{name}'s day out' / 'parents away for the weekend') would let them back in.",
-      "C3-12 mentions '{name}'s person', so it is a love card even though it measures R2."
+      "Build C (2026-09-29): 112 bank cards carry a friend field. Each side copies the evidence of one of the card's own options (the strongest option on each side of the card's main axis or tag pair); only the third-person text is new.",
+      "C1-13 is a love card: side b pictures the owner's own relationship. C3-124 is a couple card (a shared home)."
     ]
   },
   "level3": {

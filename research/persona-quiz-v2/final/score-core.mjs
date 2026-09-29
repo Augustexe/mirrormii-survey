@@ -496,7 +496,8 @@ export function createScorer({ kit, lib, friend }) {
 
   // The finale for one run: CONFIG.finaleSize cards drawn from the sealed pool (kit.finale), deterministic from the seed
   // (the app seeds it from the run id). One card per axis where the pool has one, then 2 tag-pair cards (cards without
-  // a main axis first, then cards whose pairs are not covered yet), then the rest at random. Play order is shuffled,
+  // a main axis first, then cards whose pairs are not covered yet, never a third card on one axis where avoidable), then
+  // the rest at random. Play order is shuffled,
   // then no two neighbours share a main axis where that can be avoided. Returns card ids.
   function drawFinale(seed, n = CONFIG.finaleSize) {
     const r = rng(seed);
@@ -510,7 +511,9 @@ export function createScorer({ kit, lib, friend }) {
     for (let k = 0; k < 2; k++) {
       const covered = new Set(picked.flatMap(pairsOf));
       const cands = shuffle(pool.filter((c) => !picked.includes(c) && pairsOf(c).length), r);
-      const rankOf = (c) => (primaryOf(c) ? 2 : 0) + (pairsOf(c).some((q) => covered.has(q)) ? 1 : 0);
+      // A pool where every card has a main axis (Build C: 4 per axis) never gives one axis a third card.
+      const twice = (c) => primaryOf(c) && picked.filter((x) => primaryOf(x) === primaryOf(c)).length >= 2;
+      const rankOf = (c) => (twice(c) ? 4 : 0) + (primaryOf(c) ? 2 : 0) + (pairsOf(c).some((q) => covered.has(q)) ? 1 : 0);
       take([...cands].sort((a, b) => rankOf(a) - rankOf(b))[0]);
     }
     for (const c of shuffle(pool.filter((x) => !picked.includes(x)), r)) take(c);

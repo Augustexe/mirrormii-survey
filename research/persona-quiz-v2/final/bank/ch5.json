@@ -1,0 +1,1733 @@
+[
+  {
+    "id": "C5-80",
+    "type": "scenario",
+    "chapter": 5,
+    "prompt": "A deal from Genii: world famous at one thing of your choosing. The catch? You never get a lazy Sunday again.",
+    "options": [
+      {
+        "t": "Deal. I'll rest when the documentary comes out.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 2
+          }
+        ],
+        "emotion": "pride"
+      },
+      {
+        "t": "No deal. Lazy Sundays are my one true talent.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Deal, but only for something I'd grind at anyway.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Pass. Good at it quietly beats famous and tired.",
+        "axes": {
+          "L2": -1
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 1
+          }
+        ],
+        "emotion": "longing"
+      }
+    ],
+    "heart": {
+      "prompt": "Genii offers to make you world famous at one thing of your choice. The catch is that you will never have a slow, lazy Sunday again.",
+      "options": [
+        "I accept. I can rest once the work is known.",
+        "I decline. My slow Sundays matter more to me.",
+        "I accept, but only for something I would work at anyway.",
+        "I pass. Being good at it quietly is enough for me."
+      ]
+    },
+    "fp": {
+      "trigger": "fame offered at the cost of rest",
+      "setting": "Genii's deal",
+      "ask": "trade every Sunday for fame",
+      "who": "just you",
+      "stakes": "a visible win versus free time",
+      "device": "genie-fame-deal"
+    },
+    "mask": "looks like a genie bargain; measures trading rest for a win people can see versus keeping your time (L2, T16)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-L2-1",
+    "world": "absurd",
+    "friend": {
+      "prompt": "Genii offers {name} world fame at one thing. The catch: no lazy Sundays ever again. What does {name} do?",
+      "a": {
+        "t": "Deal. \"I'll rest when the documentary comes out.\"",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "No deal. \"Lazy Sundays are my one true talent.\"",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C5-121",
+    "type": "scenario",
+    "chapter": 5,
+    "prompt": "The office dog just got the manager job you applied for. It's your boss now. The whole team is thrilled.",
+    "options": [
+      {
+        "t": "Update my résumé tonight. I refuse to lose to a dog.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 1
+          }
+        ],
+        "emotion": "envy"
+      },
+      {
+        "t": "Book a one-on-one. Ask the dog how it did it.",
+        "axes": {
+          "L2": 1
+        }
+      },
+      {
+        "t": "Happy for it. Honestly, a very good dog.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 1
+          }
+        ],
+        "emotion": "warmth"
+      },
+      {
+        "t": "Shrug. Second place to a dog is still pretty good.",
+        "axes": {
+          "L2": -1
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "The office dog was given the manager job you applied for, so it is now your boss. Everyone on your team is delighted.",
+      "options": [
+        "I update my résumé tonight. I will not lose to a dog.",
+        "I ask for a one-on-one to learn how it got the job.",
+        "I am happy for it. It really is a very good dog.",
+        "I let it go. Coming second to a dog is still fine."
+      ]
+    },
+    "fp": {
+      "trigger": "someone unlikely gets the job you wanted",
+      "setting": "your office, new boss",
+      "ask": "speed up or keep your pace",
+      "who": "the office dog and your team",
+      "stakes": "your pride and your timeline",
+      "device": "promoted-office-dog"
+    },
+    "mask": "looks like office nonsense; measures letting someone else's jump set your clock versus keeping your own pace (L2, T17)",
+    "ae": [
+      "A",
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-L2-2",
+    "world": "absurd",
+    "friend": {
+      "prompt": "The office dog got the manager job {name} applied for. The team is thrilled. What does {name} do?",
+      "a": {
+        "t": "Updates {their} résumé tonight. Refuses to lose to a dog.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 1
+          }
+        ]
+      },
+      "b": {
+        "t": "Happy for it. \"Honestly, a very good dog.\"",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C5-122",
+    "type": "feeling",
+    "chapter": 5,
+    "follows": "C5-121",
+    "prompt": "The dog is your boss now. What hit first?",
+    "options": [
+      {
+        "t": "Happy for it. Truly."
+      },
+      {
+        "t": "A small sting. Why not me?"
+      },
+      {
+        "t": "Relief. Let the dog run the meetings."
+      },
+      {
+        "t": "Embarrassed, weirdly."
+      },
+      {
+        "t": "Fired up. Game on."
+      }
+    ],
+    "heart": {
+      "prompt": "The dog is your boss now. What was the first feeling?",
+      "options": [
+        "Real happiness for it.",
+        "A small sting, and the question of why it was not me.",
+        "Relief that someone else will run the meetings.",
+        "A strange kind of embarrassment.",
+        "Motivation to go after the next one."
+      ]
+    },
+    "fp": {
+      "trigger": "the dog got your job",
+      "setting": "right after the office dog card",
+      "ask": "first feeling",
+      "who": "you",
+      "stakes": "none, feeling only",
+      "device": "promoted-office-dog"
+    },
+    "mask": "looks like a quick check-in; records the first feeling after being passed over (emotion only)",
+    "ae": [
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-L2-2",
+    "world": "absurd"
+  },
+  {
+    "id": "C5-128",
+    "type": "real",
+    "chapter": 5,
+    "prompt": "The last free weekend you had with a big deadline hanging over it. What actually happened?",
+    "options": [
+      {
+        "t": "Worked both days. Loved it, honestly.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 2
+          }
+        ],
+        "emotion": "pride"
+      },
+      {
+        "t": "Brought the laptop to a birthday dinner. Everyone noticed.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 1
+          }
+        ],
+        "emotion": "cringe"
+      },
+      {
+        "t": "Didn't touch it. Future me handled it.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Told everyone I was working. Actually napped.",
+        "axes": {
+          "L2": -1
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 1
+          }
+        ],
+        "emotion": "guilt"
+      }
+    ],
+    "heart": {
+      "prompt": "Think of the last free weekend you had while a big deadline was coming. What actually happened?",
+      "options": [
+        "I worked both days, and honestly I enjoyed it.",
+        "I brought my laptop to a birthday dinner, and people noticed.",
+        "I did not touch it, and it worked out fine later.",
+        "I told people I was working, but I mostly rested."
+      ]
+    },
+    "fp": {
+      "trigger": "a free weekend with a deadline looming",
+      "setting": "your own weekend",
+      "ask": "work it or rest",
+      "who": "you, friends around",
+      "stakes": "rest versus getting ahead",
+      "device": "deadline-weekend"
+    },
+    "mask": "looks like a weekend confession; measures giving free time to the visible win versus logging off (L2, T16) from a thing actually done",
+    "ae": [
+      "A",
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-L2-1",
+    "world": "everyday",
+    "friend": {
+      "prompt": "{name}'s last free weekend, with a big deadline hanging over it. What did {name} actually do?",
+      "a": {
+        "t": "Worked both days. Loved it, honestly.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Didn't touch it. Future {name} handled it.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C5-111",
+    "type": "scenario",
+    "chapter": 5,
+    "prompt": "Blizzard. You run the only warm barn in town. The fair's 60 chocolate chip muffins booked it weeks ago. Now 60 cold chickens are at the door.",
+    "options": [
+      {
+        "t": "Muffins stay. They booked. Chickens get blankets and my apologies.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 2
+          }
+        ],
+        "emotion": "guilt"
+      },
+      {
+        "t": "Call the muffin baker. Nothing moves without permission.",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ],
+        "emotion": "worry"
+      },
+      {
+        "t": "Chickens in. Muffins out in the snow. Tell the fair later.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Squeeze the chickens between the muffin trays. Hope for the best.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      }
+    ],
+    "heart": {
+      "prompt": "There is a blizzard, and you run the only warm barn in town. The fair booked it weeks ago for 60 chocolate chip muffins. Now 60 cold chickens are at the door.",
+      "options": [
+        "The muffins stay because they booked first. The chickens get blankets and my apology.",
+        "I call the baker and move nothing until they agree.",
+        "The chickens come in, the muffins go out, and I tell the fair later.",
+        "I fit the chickens in between the muffin trays and hope it works."
+      ]
+    },
+    "fp": {
+      "trigger": "the booked space is needed by someone in need",
+      "setting": "only warm barn in a blizzard",
+      "ask": "honor the booking or the need",
+      "who": "a fair's muffins and 60 chickens",
+      "stakes": "a promise kept versus cold chickens",
+      "device": "barn-muffins-chickens"
+    },
+    "mask": "looks like pure nonsense; measures first-come fairness versus the right call for the case (T25, L3). The booking is the rule, the chickens are the need",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T25-2",
+    "world": "absurd",
+    "friend": {
+      "prompt": "Blizzard. {name} runs the only warm barn, booked by 60 muffins. Now 60 cold chickens knock. What does {name} do?",
+      "a": {
+        "t": "Muffins stay, they booked. Chickens get blankets and apologies.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Chickens in, muffins out in the snow. Tell the fair later.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C5-124",
+    "type": "reply",
+    "chapter": 5,
+    "prompt": "Wrong number. The CEO meant to text their assistant. Your closest work friend is on the design team.",
+    "thread": [
+      {
+        "from": "The CEO",
+        "text": "cancel design's offsite. we're letting that whole team go next week"
+      }
+    ],
+    "options": [
+      {
+        "t": "\"Wrong number! Deleted.\" Act shocked with everyone next week.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ],
+        "emotion": "guilt"
+      },
+      {
+        "t": "\"Wrong number. Heads up: check who else got this.\"",
+        "axes": {
+          "L3": 1
+        }
+      },
+      {
+        "t": "\"Wrong number!\" Then call my friend on the walk home.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 2
+          }
+        ],
+        "emotion": "worry"
+      },
+      {
+        "t": "No reply. Tell my friend, \"Maybe start looking.\" Nothing more.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "A text reaches you by mistake. The CEO meant to send it to their assistant. Your closest friend at work is on the design team.",
+      "thread": [
+        {
+          "from": "The CEO",
+          "text": "Please cancel the design team's offsite. We are letting that whole team go next week."
+        }
+      ],
+      "options": [
+        "\"Wrong person. I deleted it.\" Next week, I act surprised.",
+        "\"Wrong person. You may want to check who else got this.\"",
+        "\"Wrong person.\" Then I call my friend on the way home.",
+        "No reply. I tell my friend to start looking, and nothing more."
+      ]
+    },
+    "fp": {
+      "trigger": "a misdirected text reveals layoffs",
+      "setting": "work, a text from the CEO",
+      "ask": "keep the confidence or warn your friend",
+      "who": "the CEO and your closest work friend",
+      "stakes": "the company's trust versus your friend's warning",
+      "device": "wrong-number-text"
+    },
+    "mask": "looks like an office leak; measures holding a rule of confidence versus bending it for the person it hurts (L3, T25)",
+    "ae": [
+      "A",
+      "B",
+      "C"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-L3-1",
+    "world": "unusual",
+    "friend": {
+      "prompt": "Wrong-number text from the CEO: \"letting design go next week.\" {name}'s closest work friend is on design. What does {name} reply?",
+      "a": {
+        "t": "\"Wrong number! Deleted.\" Acts shocked with everyone next week.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ]
+      },
+      "b": {
+        "t": "\"Wrong number!\" Then calls the friend on the walk home.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C5-1",
+    "type": "this_or_that",
+    "chapter": 5,
+    "round": "ch5-r1",
+    "prompt": "A fortune cookie that's never been wrong. One bite and you'll know your whole career: every job, every title, how it ends.",
+    "options": [
+      {
+        "t": "Bite. I'd sleep so much better knowing.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 2
+          }
+        ],
+        "emotion": "relief"
+      },
+      {
+        "t": "Crush it. Finding out is the fun part.",
+        "axes": {
+          "L2": -1
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      }
+    ],
+    "heart": {
+      "prompt": "A fortune cookie that has never been wrong would tell you your whole working life in one bite: every job, every title and how it ends.",
+      "options": [
+        "I eat it. Knowing would help me rest.",
+        "I throw it away. Finding out is the best part."
+      ]
+    },
+    "fp": {
+      "trigger": "a chance to know your whole career in advance",
+      "setting": "a magic fortune cookie",
+      "ask": "know the ending or keep the surprise",
+      "who": "just you",
+      "stakes": "calm certainty versus the surprise",
+      "device": "never-wrong-fortune-cookie"
+    },
+    "mask": "looks like a snack dare; measures wanting it decided and known versus keeping it open (T17, L2)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T17-1",
+    "world": "absurd",
+    "friend": {
+      "prompt": "A fortune cookie that's never wrong would reveal {name}'s whole career in one bite. Which one is {name}?",
+      "a": {
+        "t": "Bites. \"I'd sleep so much better knowing.\"",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Crushes it. \"Finding out is the fun part.\"",
+        "axes": {
+          "L2": -1
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C5-51",
+    "type": "this_or_that",
+    "chapter": 5,
+    "round": "ch5-r1",
+    "prompt": "Genii grants one wish a year. You and your closest friend both wished for the same dream job. Genii says you pick who gets it.",
+    "options": [
+      {
+        "t": "Me. And I'm not apologizing at the party.",
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 2
+          }
+        ],
+        "emotion": "pride"
+      },
+      {
+        "t": "Them. Losing to them beats watching them lose.",
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 1
+          }
+        ],
+        "emotion": "warmth"
+      }
+    ],
+    "heart": {
+      "prompt": "Genii grants one wish a year. You and your closest friend both wished for the same dream job, and Genii leaves the choice to you.",
+      "options": [
+        "Me. I will not apologize for it at the celebration.",
+        "Them. Losing to them is easier than watching them lose."
+      ]
+    },
+    "fp": {
+      "trigger": "one dream job wished for by two friends",
+      "setting": "Genii's yearly wish",
+      "ask": "who gets the job",
+      "who": "your closest friend",
+      "stakes": "the win versus your friend's win",
+      "device": "shared-genie-wish"
+    },
+    "mask": "looks like a loyalty test; measures how much you want the visible win (T16)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T16-2",
+    "world": "absurd",
+    "friend": {
+      "prompt": "{name} and {their} closest friend wished for the same dream job. Genii lets {name} pick who gets it. Which one is {name}?",
+      "a": {
+        "t": "\"Me. And I'm not apologizing at the party.\"",
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "\"Them. Losing to them beats watching them lose.\"",
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C5-120",
+    "type": "scenario",
+    "chapter": 5,
+    "prompt": "The stranger you once gave directions to owns an island resort. They want you as manager, starting in three weeks. You just signed a two-year lease you love.",
+    "options": [
+      {
+        "t": "Yes. Break the lease. Sell the couch.",
+        "axes": {
+          "L1": -2
+        },
+        "emotion": "delight"
+      },
+      {
+        "t": "Yes, and keep paying for my place, just in case.",
+        "axes": {
+          "L1": -1
+        }
+      },
+      {
+        "t": "No. I finally have the life I worked for.",
+        "axes": {
+          "L1": 2
+        }
+      },
+      {
+        "t": "No. But I'm saving their number forever.",
+        "axes": {
+          "L1": 1
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 1
+          }
+        ],
+        "emotion": "longing"
+      }
+    ],
+    "heart": {
+      "prompt": "A stranger you once gave directions to owns an island resort and offers you the manager job, starting in three weeks. You just signed a two-year lease you love.",
+      "options": [
+        "I say yes, break the lease and sell the couch.",
+        "I say yes, and keep paying for my place just in case.",
+        "I say no. I finally have the life I worked for.",
+        "I say no, but I keep their number."
+      ]
+    },
+    "fp": {
+      "trigger": "a dream job offer from a stranger",
+      "setting": "island resort, three weeks away",
+      "ask": "leave the good life you have or stay",
+      "who": "a stranger you once helped",
+      "stakes": "a new home and lease versus the unknown",
+      "device": "island-resort-offer"
+    },
+    "mask": "looks like a lucky break; measures keeping a sure good life versus trading it for a great unknown (L1)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-L1-1",
+    "world": "unusual",
+    "friend": {
+      "prompt": "Island resort manager job, starts in three weeks. {name} just signed a two-year lease and loves it. What does {name} do?",
+      "a": {
+        "t": "No. \"I finally have the life I worked for.\"",
+        "axes": {
+          "L1": 2
+        }
+      },
+      "b": {
+        "t": "Yes. Breaks the lease, sells the couch.",
+        "axes": {
+          "L1": -2
+        }
+      }
+    }
+  },
+  {
+    "id": "C5-125",
+    "type": "others",
+    "chapter": 5,
+    "prompt": "Your teammate answered the CEO's email from their honeymoon. Three minutes flat. A week later, they got the promotion. First thought?",
+    "options": [
+      {
+        "t": "Respect. That's what wanting it looks like.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Great title. Shame about the honeymoon.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Three minutes? I'd have done it in one.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 1
+          }
+        ],
+        "emotion": "envy"
+      },
+      {
+        "t": "Cool. Now we're all expected to do that.",
+        "axes": {
+          "L2": -1
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 1
+          }
+        ],
+        "emotion": "resentment"
+      }
+    ],
+    "heart": {
+      "prompt": "Your teammate replied to the CEO's email within three minutes, during their honeymoon. A week later, they were promoted. What is your first thought?",
+      "options": [
+        "I respect it. That is what wanting something looks like.",
+        "The title is nice, but they lost part of their honeymoon.",
+        "I would have answered even faster.",
+        "Now the rest of us will be expected to do the same."
+      ]
+    },
+    "fp": {
+      "trigger": "a teammate works through their honeymoon and gets promoted",
+      "setting": "work email, a honeymoon",
+      "ask": "your first thought on it",
+      "who": "a teammate and the CEO",
+      "stakes": "the promotion versus time that never comes back",
+      "device": "honeymoon-work-email"
+    },
+    "mask": "looks like office gossip; measures your own line on work as a race to win versus a job that ends (T16, L2)",
+    "ae": [
+      "A",
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T16-1",
+    "world": "unusual",
+    "friend": {
+      "prompt": "{name}'s teammate answered the CEO's email mid-honeymoon, in three minutes. A week later: promoted. {name}'s first thought?",
+      "a": {
+        "t": "\"Three minutes? I'd have done it in one.\"",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 1
+          }
+        ]
+      },
+      "b": {
+        "t": "\"Great title. Shame about the honeymoon.\"",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C5-91",
+    "type": "bet",
+    "chapter": 5,
+    "prompt": "Hunch: your phone holds a screenshot of something a coworker said. Not to share. Just in case.",
+    "options": [
+      {
+        "t": "Guilty. Dated, labeled, in its own folder.",
+        "tags": [
+          {
+            "id": "T08B",
+            "s": 2
+          }
+        ],
+        "emotion": "pride"
+      },
+      {
+        "t": "Guilty. Forgot why I saved it. Keeping it anyway.",
+        "tags": [
+          {
+            "id": "T08B",
+            "s": 1
+          }
+        ],
+        "emotion": "cringe"
+      },
+      {
+        "t": "Guilty. Deleted it the day we were good again.",
+        "tags": [
+          {
+            "id": "T08A",
+            "s": 1
+          }
+        ],
+        "emotion": "relief"
+      },
+      {
+        "t": "Never. Once it's sorted, it's gone from my head too.",
+        "tags": [
+          {
+            "id": "T08A",
+            "s": 2
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Do you have a screenshot of something a coworker said, saved not to share, but just in case?",
+      "options": [
+        "Yes. It is dated and filed in its own folder.",
+        "Yes. I forget why I saved it, but I am keeping it.",
+        "I did, and I deleted it once things were good again.",
+        "No. Once something is settled, I let it go completely."
+      ]
+    },
+    "fp": {
+      "trigger": "saving proof of a coworker's words",
+      "setting": "phone, work or school",
+      "ask": "do you keep the receipt",
+      "who": "a coworker",
+      "stakes": "protection versus letting it go",
+      "device": "saved-screenshot"
+    },
+    "mask": "looks like office paranoia; measures forgive-and-forget versus forgive-and-file (T08) from a thing actually done",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T08-2",
+    "world": "everyday",
+    "friend": {
+      "prompt": "Genii bets {name} has a screenshot of a coworker's words, saved not to share, just in case. Guilty or not?",
+      "a": {
+        "t": "Never. Once it's sorted, it's gone from {their} head too.",
+        "tags": [
+          {
+            "id": "T08A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Guilty. Dated, labeled, in its own folder.",
+        "tags": [
+          {
+            "id": "T08B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C5-123",
+    "type": "scenario",
+    "chapter": 5,
+    "prompt": "You're a TA. Late essays get a zero. One came in four minutes late, from the student who rated your class 'mid.' Only you can see the timestamp.",
+    "options": [
+      {
+        "t": "Zero. The syllabus doesn't read reviews.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Accept it. Four minutes is a Wi-Fi hiccup.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Zero. Felt a little too good, honestly.",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Accept it. Then grade it very, very carefully.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 1
+          }
+        ],
+        "emotion": "irritation"
+      }
+    ],
+    "heart": {
+      "prompt": "You are a teaching assistant, and late essays get a zero. One arrived four minutes late from a student who rated your class as average. Only you see the time.",
+      "options": [
+        "It gets a zero. The rule does not depend on the review.",
+        "I accept it. Four minutes could be a connection problem.",
+        "It gets a zero, and I will admit that felt good.",
+        "I accept it, and then I grade it very closely."
+      ]
+    },
+    "fp": {
+      "trigger": "a late essay from a student who slighted you",
+      "setting": "grading as a TA",
+      "ask": "apply the zero or let it in",
+      "who": "a student who reviewed you badly",
+      "stakes": "the rule versus a grudge nobody would see",
+      "device": "late-essay-timestamp"
+    },
+    "mask": "looks like petty revenge; measures following the rule when nobody would ever check versus the sensible exception (L3, T25)",
+    "ae": [
+      "A",
+      "C",
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-L3-3",
+    "world": "unusual",
+    "friend": {
+      "prompt": "An essay arrives four minutes late, from the student who rated {name}'s class 'mid.' Late means zero. What does {name} do?",
+      "a": {
+        "t": "Zero. \"The syllabus doesn't read reviews.\"",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Accepts it. \"Four minutes is a Wi-Fi hiccup.\"",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C5-81",
+    "type": "eyes",
+    "chapter": 5,
+    "prompt": "A reality show is casting you. Your oldest friend is your reference. The producer asks: \"Whose clock do they run on?\"",
+    "options": [
+      {
+        "t": "Keeps a quiet scoreboard of everyone's milestones.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Their own. Hasn't noticed anyone else moved.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Hears one friend's news, rewrites the five-year plan overnight.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Happy for everyone. Changes nothing. Sleeps great.",
+        "axes": {
+          "L2": -1
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "A reality show is considering you, and your oldest friend is your reference. The producer asks whose timeline you live by. What does your friend say?",
+      "options": [
+        "They quietly keep track of where everyone is in life.",
+        "Their own. They have barely noticed anyone else moving.",
+        "One friend's news, and they rewrite their five-year plan overnight.",
+        "They are happy for everyone, change nothing and sleep well."
+      ]
+    },
+    "fp": {
+      "trigger": "producer asks your reference about your pace",
+      "setting": "reality show casting call",
+      "ask": "whose timeline you run on",
+      "who": "oldest friend and a producer",
+      "stakes": "your reputation on comparison",
+      "device": "reality-show-casting"
+    },
+    "mask": "looks like a casting call; measures setting your clock by others versus keeping your own pace (L2, T17)",
+    "ae": [
+      "A",
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-L2-2",
+    "world": "unusual",
+    "friend": {
+      "prompt": "A reality show asks {name}'s oldest friend: whose clock does {name} run on? Which line?",
+      "a": {
+        "t": "Keeps a quiet scoreboard of everyone's milestones.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 1
+          }
+        ]
+      },
+      "b": {
+        "t": "{Their} own. Hasn't noticed anyone else moved.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C5-127",
+    "type": "receipts",
+    "chapter": 5,
+    "prompt": "Work, school and big plans, lately. Tap everything that's true:",
+    "options": [
+      {
+        "t": "Something booked more than six months from now",
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "A big decision you've left on \"let's see\" for weeks",
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Picked a date for something just so it was decided",
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Answered a real opportunity with \"can I get back to you?\"",
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Asked for something in writing just to feel settled",
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Changed a plan you'd already told people about",
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "None of these",
+        "none": true
+      }
+    ],
+    "heart": {
+      "prompt": "Think about work, school and your bigger plans lately. Tap everything that is true.",
+      "options": [
+        "I have something booked more than six months from now.",
+        "I have left a big decision open for weeks.",
+        "I chose a date for something mainly so it would be decided.",
+        "I answered a real opportunity by asking for more time.",
+        "I asked for something in writing so it would feel settled.",
+        "I changed a plan I had already told people about.",
+        "None of these"
+      ]
+    },
+    "fp": {
+      "trigger": "a look back at recent plans",
+      "setting": "work, school and big plans",
+      "ask": "tap what's true",
+      "who": "just you",
+      "stakes": "certainty versus open doors",
+      "device": "plans-receipts"
+    },
+    "mask": "looks like a planning check; measures wanting it locked in versus keeping options open (T17) from things actually done",
+    "ae": [
+      "A"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T17-1",
+    "world": "everyday"
+  },
+  {
+    "id": "C5-110",
+    "type": "reply",
+    "chapter": 5,
+    "prompt": "You quit your job to open a food truck. You were telling the family Sunday. Your cousin posted it first.",
+    "thread": [
+      {
+        "from": "Your parent",
+        "text": "Your cousin just showed us. A FOOD TRUCK??"
+      },
+      {
+        "from": "Your parent",
+        "text": "Absolutely not. Call me. Now."
+      }
+    ],
+    "options": [
+      {
+        "t": "\"Truck's bought. Free tacos for whoever stops yelling first.\"",
+        "tags": [
+          {
+            "id": "T19A",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Heart the message. Keep painting the truck.",
+        "tags": [
+          {
+            "id": "T19A",
+            "s": 1
+          }
+        ],
+        "emotion": "irritation"
+      },
+      {
+        "t": "\"Calling now. Bringing the menu and a spreadsheet.\"",
+        "tags": [
+          {
+            "id": "T19B",
+            "s": 1
+          }
+        ],
+        "emotion": "worry"
+      },
+      {
+        "t": "\"Okay. The truck's on hold until we all talk.\"",
+        "tags": [
+          {
+            "id": "T19B",
+            "s": 2
+          }
+        ],
+        "emotion": "sting"
+      }
+    ],
+    "heart": {
+      "prompt": "You left your job to open a food truck and planned to tell your family on Sunday. Your cousin posted about it first, and now your parent is texting you.",
+      "thread": [
+        {
+          "from": "Your parent",
+          "text": "Your cousin just showed us. A food truck?"
+        },
+        {
+          "from": "Your parent",
+          "text": "Absolutely not. Please call me now."
+        }
+      ],
+      "options": [
+        "\"The truck is already bought. There are free tacos for whoever calms down first.\"",
+        "I react with a heart and go back to painting the truck.",
+        "\"I am calling now, and I am bringing the menu and the numbers.\"",
+        "\"Okay. I will put the truck on hold until we all talk.\""
+      ]
+    },
+    "fp": {
+      "trigger": "family learns you quit from a cousin's post",
+      "setting": "family text thread, new food truck",
+      "ask": "stand firm, negotiate or pause",
+      "who": "a parent, with a cousin around",
+      "stakes": "a new venture versus family peace",
+      "device": "food-truck-leak"
+    },
+    "mask": "looks like a family blowup; measures going ahead anyway versus pausing for family (T19)",
+    "ae": [
+      "A",
+      "B",
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T19-2",
+    "world": "unusual",
+    "friend": {
+      "prompt": "{name}'s cousin leaked {their} food truck plan. A parent texts: \"A FOOD TRUCK?? Absolutely not. Call me.\" What does {name} reply?",
+      "a": {
+        "t": "\"Truck's bought. Free tacos for whoever stops yelling first.\"",
+        "tags": [
+          {
+            "id": "T19A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "\"Okay. The truck's on hold until we all talk.\"",
+        "tags": [
+          {
+            "id": "T19B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C5-126",
+    "type": "others",
+    "chapter": 5,
+    "prompt": "Your roommate quit a steady job to apprentice with a real wizard. Pay: one enchanted sandwich a week. Rent is due in two weeks. First thought?",
+    "options": [
+      {
+        "t": "Legend. Somebody has to learn real magic.",
+        "axes": {
+          "L1": -2
+        },
+        "emotion": "delight"
+      },
+      {
+        "t": "Love it. What's the plan B if the magic doesn't take?",
+        "axes": {
+          "L1": 1
+        },
+        "emotion": "worry"
+      },
+      {
+        "t": "Great. Is the wizard covering their half of rent?",
+        "axes": {
+          "L1": 2
+        },
+        "emotion": "irritation"
+      },
+      {
+        "t": "Jealous. My job doesn't even come with lunch.",
+        "axes": {
+          "L1": -1
+        },
+        "emotion": "envy"
+      }
+    ],
+    "heart": {
+      "prompt": "Your roommate left a steady job to train with a real wizard for one enchanted sandwich a week. Rent is due in two weeks. What is your first thought?",
+      "options": [
+        "That is wonderful. Someone has to learn real magic.",
+        "I love it, but I want to know their backup plan.",
+        "I wonder how their half of the rent gets paid.",
+        "I am a little jealous. My job does not even include lunch."
+      ]
+    },
+    "fp": {
+      "trigger": "a roommate drops a steady job for a wild dream",
+      "setting": "shared apartment, rent coming",
+      "ask": "your first thought on the leap",
+      "who": "your roommate",
+      "stakes": "their dream versus the rent",
+      "device": "wizard-apprentice"
+    },
+    "mask": "looks like a roommate roast; measures your own line on keeping a safety net versus going all in (L1)",
+    "ae": [
+      "A",
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-L1-3",
+    "world": "absurd",
+    "friend": {
+      "prompt": "{name}'s roommate quit a steady job to apprentice with a wizard for one enchanted sandwich weekly. Rent's due. {name}'s first thought?",
+      "a": {
+        "t": "\"Great. Is the wizard covering their half of rent?\"",
+        "axes": {
+          "L1": 2
+        }
+      },
+      "b": {
+        "t": "\"Legend. Somebody has to learn real magic.\"",
+        "axes": {
+          "L1": -2
+        }
+      }
+    }
+  },
+  {
+    "id": "C5-129",
+    "type": "bet",
+    "chapter": 5,
+    "prompt": "Confession time: you've said yes to one job or school offer while secretly hoping another would call.",
+    "options": [
+      {
+        "t": "Guilty. Bailed on the first one when it did.",
+        "axes": {
+          "L1": -1
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 1
+          }
+        ],
+        "emotion": "guilt"
+      },
+      {
+        "t": "Guilty. Would do it again. A yes in hand is a yes.",
+        "axes": {
+          "L1": 1
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Never. Once I say yes, I stop looking.",
+        "axes": {
+          "L1": 1
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Never. I hold out for the one I actually want.",
+        "axes": {
+          "L1": -1
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 2
+          }
+        ],
+        "emotion": "pride"
+      }
+    ],
+    "heart": {
+      "prompt": "Have you ever accepted a job or school offer while privately hoping a different one would come through?",
+      "options": [
+        "Yes, and I backed out of the first when the other came.",
+        "Yes, and I would do it again. A sure offer counts.",
+        "No. Once I say yes, I stop looking.",
+        "No. I wait for the one I really want."
+      ]
+    },
+    "fp": {
+      "trigger": "accepting one offer while hoping for another",
+      "setting": "job or school offers",
+      "ask": "lock in or keep the door open",
+      "who": "whoever made the offers",
+      "stakes": "a sure yes versus the one you want",
+      "device": "backup-offer"
+    },
+    "mask": "looks like a small confession; measures locking it in versus keeping options open (T17, L1) from a thing actually done",
+    "ae": [
+      "A",
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T17-2",
+    "world": "everyday",
+    "friend": {
+      "prompt": "Has {name} ever said yes to one job or school offer while secretly hoping another would call?",
+      "a": {
+        "t": "Guilty. Would do it again. A yes in hand is a yes.",
+        "axes": {
+          "L1": 1
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 1
+          }
+        ]
+      },
+      "b": {
+        "t": "Guilty. Bailed on the first one when the other called.",
+        "axes": {
+          "L1": -1
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C5-130",
+    "type": "real",
+    "chapter": 5,
+    "prompt": "Think back to the last time you got thrown in way over your head: covering for the boss, running the event, teaching the class.",
+    "options": [
+      {
+        "t": "Winged it from minute one. Learned on the way.",
+        "axes": {
+          "L1": -2
+        },
+        "emotion": "delight"
+      },
+      {
+        "t": "Stayed up the night before learning everything.",
+        "axes": {
+          "L1": 2
+        },
+        "emotion": "worry"
+      },
+      {
+        "t": "Found someone who'd done it. Copied them exactly.",
+        "axes": {
+          "L1": 1
+        }
+      },
+      {
+        "t": "Said yes. Let everyone think I'd done it before.",
+        "axes": {
+          "L1": -1
+        },
+        "emotion": "pride"
+      }
+    ],
+    "heart": {
+      "prompt": "Think of the last time you were suddenly given something far beyond what you knew how to do, like covering for your boss, running an event or teaching a class.",
+      "options": [
+        "I improvised from the start and learned as I went.",
+        "I stayed up the night before and learned everything I could.",
+        "I found someone who had done it and followed their way closely.",
+        "I said yes and let people assume I had done it before."
+      ]
+    },
+    "fp": {
+      "trigger": "handed a role far beyond your experience",
+      "setting": "work or school, covering a role",
+      "ask": "step in blind or prepare first",
+      "who": "your boss, class or event crowd",
+      "stakes": "looking capable versus falling on your face",
+      "device": "over-your-head"
+    },
+    "mask": "looks like a war story; measures stepping in before you know how it ends versus preparing first (L1) from a thing actually done",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-L1-2",
+    "world": "unusual",
+    "friend": {
+      "prompt": "Last time {name} got thrown in way over {their} head: covering for the boss, running the event. What did {name} actually do?",
+      "a": {
+        "t": "Stayed up the night before learning everything.",
+        "axes": {
+          "L1": 2
+        }
+      },
+      "b": {
+        "t": "Winged it from minute one. Learned on the way.",
+        "axes": {
+          "L1": -2
+        }
+      }
+    }
+  }
+]

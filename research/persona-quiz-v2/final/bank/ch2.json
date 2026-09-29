@@ -1,0 +1,2132 @@
+[
+ {
+  "id": "C2-91",
+  "type": "scenario",
+  "chapter": 2,
+  "prompt": "Ten years asleep, thanks to one cursed nap. Your phone: 212 texts from your neighbor. Zero from your best friend.",
+  "options": [
+   {
+    "t": "Call my best friend first. That's just how we are.",
+    "tags": [
+     {
+      "id": "T02A",
+      "s": 2
+     }
+    ],
+    "emotion": "warmth"
+   },
+   {
+    "t": "Answer all 212 first. My best friend can wait ten years.",
+    "tags": [
+     {
+      "id": "T02B",
+      "s": 2
+     }
+    ],
+    "emotion": "resentment"
+   },
+   {
+    "t": "Text my best friend: \"Zero? Really? Anyway, hi.\"",
+    "tags": [
+     {
+      "id": "T02B",
+      "s": 1
+     }
+    ],
+    "emotion": "sting"
+   },
+   {
+    "t": "Ten years is ten years. Nobody owes anybody a text.",
+    "tags": [
+     {
+      "id": "T02A",
+      "s": 1
+     }
+    ],
+    "emotion": "relief"
+   }
+  ],
+  "heart": {
+   "prompt": "A cursed nap kept you asleep for ten years. Your phone shows 212 texts from your neighbor and none from your best friend.",
+   "options": [
+    "I call my best friend first. Silence is just how we are.",
+    "I answer all 212 first. My best friend can wait.",
+    "I text my best friend: none at all? Anyway, hello.",
+    "Ten years is a long time. Nobody owes anyone a message."
+   ]
+  },
+  "fp": {
+   "trigger": "waking from a ten-year magic sleep",
+   "setting": "your phone after a decade",
+   "ask": "who you answer first",
+   "who": "silent best friend, chatty neighbor",
+   "stakes": "the friendship versus your pride",
+   "device": "ten-year sleep"
+  },
+  "mask": "looks like a fairy-tale wake-up; measures whether a quiet stretch means fine or fading (T02)",
+  "ae": [
+   "A",
+   "E"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T02-1",
+  "world": "absurd",
+  "friend": {
+   "prompt": "{name} wakes from a cursed ten-year nap. 212 texts from the neighbor, zero from the best friend. What does {name} do?",
+   "a": {
+    "t": "Calls the best friend first: \"That's just how we are.\"",
+    "tags": [
+     {
+      "id": "T02A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Answers all 212 first: \"The best friend can wait ten years.\"",
+    "tags": [
+     {
+      "id": "T02B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-100",
+  "type": "scenario",
+  "chapter": 2,
+  "sq": "SQ-T10-1",
+  "world": "absurd",
+  "prompt": "A friendship repair shop opens next door. Any friendship fixed, but both people stay locked in until it's done. Your old best friend just booked you both.",
+  "options": [
+   {
+    "t": "Walk in with two sleeping bags. However long it takes.",
+    "tags": [
+     {
+      "id": "T10A",
+      "s": 2
+     }
+    ],
+    "emotion": "longing"
+   },
+   {
+    "t": "Go in, but I'm bringing a list. Page one: them.",
+    "axes": {
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T10A",
+      "s": 1
+     }
+    ],
+    "emotion": "resentment"
+   },
+   {
+    "t": "Cancel the booking. Some friendships end for a reason.",
+    "tags": [
+     {
+      "id": "T10B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Leave a thank-you card on the shop door. Walk on.",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T10B",
+      "s": 1
+     }
+    ],
+    "emotion": "warmth"
+   }
+  ],
+  "heart": {
+   "prompt": "A shop opens next door that can repair any friendship, but both people stay locked inside until it is fixed. Your former best friend has just booked a time for the two of you.",
+   "options": [
+    "I go in prepared to stay as long as it takes.",
+    "I go in, but I bring a list of everything they did.",
+    "I cancel. Some friendships end for a reason.",
+    "I leave a thank-you card at the door and keep walking."
+   ]
+  },
+  "fp": {
+   "trigger": "magic shop offers to fix a broken friendship",
+   "setting": "repair shop, locked in until fixed",
+   "ask": "go in and repair or walk away",
+   "who": "former best friend",
+   "stakes": "a lost friendship back, at a cost",
+   "device": "friendship repair shop"
+  },
+  "mask": "looks like a fairy tale; measures repairing a rocky bond versus letting it go (T10)",
+  "ae": [
+   "A",
+   "B",
+   "E"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "A friendship repair shop locks both people in until fixed. {name}'s old best friend just booked a slot. What does {name} do?",
+   "a": {
+    "t": "Goes in, but with a list. Page one: the old friend.",
+    "axes": {
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T10A",
+      "s": 1
+     }
+    ]
+   },
+   "b": {
+    "t": "Leaves a thank-you card on the shop door. Walks on.",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T10B",
+      "s": 1
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-90",
+  "type": "reply",
+  "chapter": 2,
+  "prompt": "Noor is cutting a documentary about your friend group. Everyone else already sent their old chats.",
+  "thread": [
+   {
+    "from": "Noor",
+    "text": "the doc is SO close. just need our old chats from you"
+   },
+   {
+    "from": "Noor",
+    "text": "easiest if I borrow your phone at brunch and scroll?"
+   }
+  ],
+  "options": [
+   {
+    "t": "\"Take it. Scroll back to the very beginning. Enjoy.\"",
+    "axes": {
+     "R1": 1
+    },
+    "tags": [
+     {
+      "id": "T01A",
+      "s": 2
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "\"I'll pick the screenshots. The phone stays with me.\"",
+    "axes": {
+     "R1": -1
+    },
+    "tags": [
+     {
+      "id": "T01B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "\"Deal, if I get to see everyone else's first.\"",
+    "axes": {
+     "R1": 1
+    },
+    "tags": [
+     {
+      "id": "T01A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "\"Love you. Cut me from the film.\"",
+    "axes": {
+     "R1": -2
+    },
+    "tags": [
+     {
+      "id": "T01B",
+      "s": 2
+     }
+    ],
+    "emotion": "guilt"
+   }
+  ],
+  "heart": {
+   "prompt": "Your friend Noor is making a documentary about your friend group, and everyone else has already sent their old chats.",
+   "thread": [
+    {
+     "from": "Noor",
+     "text": "The documentary is nearly done. I just need our old chats from you."
+    },
+    {
+     "from": "Noor",
+     "text": "Would it be easiest if I borrowed your phone at brunch and scrolled through?"
+    }
+   ],
+   "options": [
+    "I tell them to take my phone and scroll back as far as they like.",
+    "I say I will choose the screenshots myself, and my phone stays with me.",
+    "I say yes, if I can see what everyone else sent first.",
+    "I say I love them, and ask to be left out of the film."
+   ]
+  },
+  "fp": {
+   "trigger": "friend asks for your phone for a film",
+   "setting": "friend group documentary",
+   "ask": "hand over the phone or curate it",
+   "who": "friend making the film",
+   "stakes": "old chats seen versus being cut from the story",
+   "device": "friend-group documentary"
+  },
+  "mask": "looks like a fun group project; measures an open phone versus a private one when someone warm asks (T01), with shared versus separate (R1)",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T01-2",
+  "world": "unusual",
+  "friend": {
+   "prompt": "A friend making a documentary texts: \"just need our old chats. borrow your phone at brunch and scroll?\" What does {name} reply?",
+   "a": {
+    "t": "\"Take it. Scroll back to the very beginning. Enjoy.\"",
+    "axes": {
+     "R1": 1
+    },
+    "tags": [
+     {
+      "id": "T01A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "\"Love you. Cut me from the film.\"",
+    "axes": {
+     "R1": -2
+    },
+    "tags": [
+     {
+      "id": "T01B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-80",
+  "type": "scenario",
+  "chapter": 2,
+  "prompt": "A magic 8-ball that has never once been wrong says Jules's crush will say no. Jules confesses in five minutes, in front of everyone.",
+  "options": [
+   {
+    "t": "Pull Jules aside now: \"Don't. The ball said no.\"",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Show Jules the 8-ball. Their call after that.",
+    "axes": {
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Say nothing. Wait by the exit with fries for after.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 2
+     }
+    ],
+    "emotion": "guilt"
+   },
+   {
+    "t": "Float \"maybe not in front of everyone?\" and stop there.",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "A magic 8-ball that has never been wrong says your friend Jules's crush will turn them down. Jules is about to confess in front of everyone, in five minutes.",
+   "options": [
+    "I take Jules aside and say don't. The answer is no.",
+    "I show Jules what the 8-ball said and let them decide.",
+    "I say nothing, and wait nearby with food for afterward.",
+    "I gently suggest somewhere less public, and leave it there."
+   ]
+  },
+  "fp": {
+   "trigger": "oracle says friend will be rejected",
+   "setting": "crowded party, magic 8-ball",
+   "ask": "warn them or let it happen",
+   "who": "a friend and their crush",
+   "stakes": "friend's public embarrassment versus their hope",
+   "device": "magic 8-ball"
+  },
+  "mask": "looks like a magic party moment; measures saying the hard truth now versus protecting their hope first (R2, T07)",
+  "ae": [
+   "A",
+   "C"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-R2-1",
+  "world": "absurd",
+  "friend": {
+   "prompt": "A never-wrong magic 8-ball says Jules's crush will say no. Jules confesses to everyone in five minutes. What does {name} do?",
+   "a": {
+    "t": "Pulls Jules aside now: \"Don't. The ball said no.\"",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Says nothing. Waits by the exit with fries for after.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-120",
+  "type": "scenario",
+  "chapter": 2,
+  "prompt": "Your roommate quit their job for stand-up. The debut is tonight. They just ran the whole set for you. You didn't laugh once.",
+  "options": [
+   {
+    "t": "\"Honestly? Nothing landed. Want notes before tonight?\"",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 2
+     }
+    ],
+    "emotion": "guilt"
+   },
+   {
+    "t": "\"The landlord bit kills. The rest needs work.\"",
+    "axes": {
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "\"Open with the landlord bit.\" Say nothing else.",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "\"You're going to crush it.\" Front row, laughing loudest.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 2
+     }
+    ],
+    "emotion": "warmth"
+   }
+  ],
+  "heart": {
+   "prompt": "Your roommate left their job to try stand-up comedy. Their first show is tonight, and they just performed the whole set for you. You did not laugh once.",
+   "options": [
+    "I tell them nothing landed, and offer notes before the show.",
+    "I say the landlord joke works and the rest needs work.",
+    "I suggest opening with the landlord joke, and leave it there.",
+    "I tell them they will be great, and laugh loudest."
+   ]
+  },
+  "fp": {
+   "trigger": "roommate runs a bad stand-up set by you",
+   "setting": "apartment, hours before their debut",
+   "ask": "honest notes or pure hype",
+   "who": "roommate turned comic",
+   "stakes": "their first show versus their feelings",
+   "device": "stand-up debut"
+  },
+  "mask": "looks like a comedy moment; measures giving the truth raw versus wrapped when a friend is hopeful (T07, R2)",
+  "ae": [
+   "A",
+   "E"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T07-1",
+  "world": "unusual",
+  "friend": {
+   "prompt": "{name}'s roommate quit a job for stand-up. Debut's tonight. {name} heard the whole set and never laughed. What does {name} do?",
+   "a": {
+    "t": "\"Honestly? Nothing landed. Want notes before tonight?\"",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "\"You're going to crush it.\" Front row, laughing loudest.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-121",
+  "type": "scenario",
+  "chapter": 2,
+  "prompt": "The time capsule your friend group buried just got dug up. Your note: \"By now I'll run my own company.\" You don't. Everyone's reading theirs out loud.",
+  "options": [
+   {
+    "t": "Read it proudly. \"Still coming. Slow and steady.\"",
+    "axes": {
+     "L2": -2
+    },
+    "tags": [
+     {
+      "id": "T24B",
+      "s": 1
+     }
+    ],
+    "emotion": "pride"
+   },
+   {
+    "t": "\"The company's in stealth mode.\" Say nothing more.",
+    "axes": {
+     "L2": 1
+    },
+    "emotion": "cringe"
+   },
+   {
+    "t": "Laugh the loudest. Past me was adorable.",
+    "axes": {
+     "L2": -1
+    },
+    "emotion": "delight"
+   },
+   {
+    "t": "Drive home and start a business plan that night.",
+    "axes": {
+     "L2": 2
+    },
+    "tags": [
+     {
+      "id": "T24A",
+      "s": 1
+     }
+    ],
+    "emotion": "sting"
+   }
+  ],
+  "heart": {
+   "prompt": "Your friend group opens the time capsule you all buried years ago. Your note says, \"By now I will run my own company.\" You don't. Everyone is reading theirs aloud.",
+   "options": [
+    "I read it proudly and say it is still coming, slowly.",
+    "I say my company is in stealth mode, and leave it there.",
+    "I laugh the hardest. My past self was sweet.",
+    "I drive home and start a business plan that night."
+   ]
+  },
+  "fp": {
+   "trigger": "old time capsule note read aloud",
+   "setting": "friend group dig, years later",
+   "ask": "own the gap or cover it",
+   "who": "old friend group",
+   "stakes": "face versus your own pace",
+   "device": "time capsule"
+  },
+  "mask": "looks like a nostalgic reunion; measures needing visible progress versus trusting your own slow road (L2, T24)",
+  "ae": [
+   "A",
+   "E"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-L2-3",
+  "world": "unusual",
+  "friend": {
+   "prompt": "Time capsule day. {name}'s note: \"By now I'll run my own company.\" Not yet. Everyone reads aloud. What does {name} do?",
+   "a": {
+    "t": "Drives home and starts a business plan that night.",
+    "axes": {
+     "L2": 2
+    },
+    "tags": [
+     {
+      "id": "T24A",
+      "s": 1
+     }
+    ]
+   },
+   "b": {
+    "t": "Reads it proudly: \"Still coming. Slow and steady.\"",
+    "axes": {
+     "L2": -2
+    },
+    "tags": [
+     {
+      "id": "T24B",
+      "s": 1
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-122",
+  "type": "feeling",
+  "chapter": 2,
+  "follows": "C2-121",
+  "prompt": "Still holding that note. What hit first?",
+  "options": [
+   {
+    "t": "Cringe. Past me was so sure.",
+    "emotion": "cringe"
+   },
+   {
+    "t": "A sting. I really meant it.",
+    "emotion": "sting"
+   },
+   {
+    "t": "Pride. My real life beat the note.",
+    "emotion": "pride"
+   },
+   {
+    "t": "Relief. Nobody's holding me to it.",
+    "emotion": "relief"
+   },
+   {
+    "t": "Longing. I miss that version of me.",
+    "emotion": "longing"
+   }
+  ],
+  "heart": {
+   "prompt": "You are still holding your old note. What did you feel first?",
+   "options": [
+    "Embarrassed. I sounded so certain.",
+    "Hurt. I really meant it.",
+    "Proud. My real life turned out better than the note.",
+    "Relieved. Nobody is holding me to it.",
+    "Wistful. I miss who I was then."
+   ]
+  },
+  "fp": {
+   "trigger": "follows C2-121",
+   "setting": "the time capsule dig",
+   "ask": "first feeling reading your old note",
+   "who": "your past self and the group",
+   "stakes": "emotion only, no score",
+   "device": "time capsule"
+  },
+  "mask": "emotion only; no score",
+  "ae": [
+   "E"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-L2-3",
+  "world": "unusual"
+ },
+ {
+  "id": "C2-41",
+  "type": "reply",
+  "chapter": 2,
+  "prompt": "Riley's building bans pets. Riley has a very large dog named Biscuit.",
+  "thread": [
+   {
+    "from": "Riley",
+    "text": "ok weird favor. landlord's doing inspections tomorrow"
+   },
+   {
+    "from": "Riley",
+    "text": "if anyone asks, Biscuit is YOUR dog. just visiting. for like a year"
+   }
+  ],
+  "options": [
+   {
+    "t": "\"Done. Biscuit and I go way back.\"",
+    "axes": {
+     "L3": -2
+    },
+    "tags": [
+     {
+      "id": "T25B",
+      "s": 2
+     },
+     {
+      "id": "T06A",
+      "s": 1
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "\"Once. Then Biscuit needs a real plan.\"",
+    "axes": {
+     "L3": -1
+    },
+    "tags": [
+     {
+      "id": "T25B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "\"Not lying to a landlord. Find another way.\"",
+    "axes": {
+     "L3": 2,
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T25A",
+      "s": 1
+     }
+    ],
+    "emotion": "guilt"
+   },
+   {
+    "t": "\"Only if Biscuit actually moves in. Bring the bowl.\"",
+    "axes": {
+     "L3": 1
+    },
+    "tags": [
+     {
+      "id": "T25A",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "Riley's building does not allow pets, and Riley has a very large dog named Biscuit.",
+   "thread": [
+    {
+     "from": "Riley",
+     "text": "Strange favor. My landlord is doing inspections tomorrow."
+    },
+    {
+     "from": "Riley",
+     "text": "If anyone asks, Biscuit is your dog and is only visiting. For about a year."
+    }
+   ],
+   "options": [
+    "I agree. Biscuit and I go way back.",
+    "I agree to it once, then ask for a real plan.",
+    "I won't lie to a landlord. They need another way.",
+    "I say yes only if Biscuit really moves in with me."
+   ]
+  },
+  "fp": {
+   "trigger": "friend asks you to claim their dog",
+   "setting": "text thread, a no-pets building",
+   "ask": "lie for them or refuse",
+   "who": "friend and their landlord",
+   "stakes": "their home versus your word",
+   "device": "fake dog owner"
+  },
+  "mask": "looks like a funny favor; measures whether the rule or the person wins (L3, T25)",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-L3-1",
+  "world": "unusual",
+  "friend": {
+   "prompt": "Riley's building bans pets. Before inspection: \"if anyone asks, Biscuit is YOUR dog. for like a year\" What does {name} reply?",
+   "a": {
+    "t": "\"Not lying to a landlord. Find another way.\"",
+    "axes": {
+     "L3": 2,
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T25A",
+      "s": 1
+     }
+    ]
+   },
+   "b": {
+    "t": "\"Done. Biscuit and I go way back.\"",
+    "axes": {
+     "L3": -2
+    },
+    "tags": [
+     {
+      "id": "T25B",
+      "s": 2
+     },
+     {
+      "id": "T06A",
+      "s": 1
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-123",
+  "type": "others",
+  "chapter": 2,
+  "prompt": "Genii gave your friend one wish. They spent it on the ex-friend who leaked their secret: now that person can only speak in rhyme. Forever. First thought?",
+  "options": [
+   {
+    "t": "Legend. They had it coming.",
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 2
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "A whole wish on them? I'd have let it go.",
+    "tags": [
+     {
+      "id": "T08A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Fair. But lift it after a year.",
+    "tags": [
+     {
+      "id": "T08A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Rhyme only? I'd have made the rhymes bad.",
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 1
+     }
+    ],
+    "emotion": "delight"
+   }
+  ],
+  "heart": {
+   "prompt": "Genii gave your friend one wish. They used it on a former friend who shared their secret. Now that person can only speak in rhyme. Your first thought?",
+   "options": [
+    "They had it coming, and I respect it.",
+    "A whole wish on that person? I would have let it go.",
+    "It is fair, but I would lift it after a year.",
+    "I would have made the rhymes bad ones too."
+   ]
+  },
+  "fp": {
+   "trigger": "friend spends a wish on revenge",
+   "setting": "Genii wish, a rhyme curse",
+   "ask": "your take on their revenge",
+   "who": "a friend and the ex-friend who leaked",
+   "stakes": "a grudge versus letting go",
+   "device": "rhyme curse"
+  },
+  "mask": "looks like a fairy-tale revenge; measures forgive-and-forget versus forgive-and-file (T08), shown by how you judge a friend's grudge",
+  "ae": [
+   "A",
+   "E"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T08-2",
+  "world": "absurd",
+  "friend": {
+   "prompt": "A friend spent a Genii wish on the ex-friend who leaked the friend's secret: rhyme-only speech, forever. {name}'s first thought?",
+   "a": {
+    "t": "A whole wish on that one? I'd have let it go.",
+    "tags": [
+     {
+      "id": "T08A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Legend. That one had it coming.",
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-124",
+  "type": "others",
+  "chapter": 2,
+  "prompt": "Your closest friend just got married at a drive-through chapel. Told everyone after. No party, no speeches, ever. First thought?",
+  "options": [
+   {
+    "t": "Robbed. I've had that toast ready for years.",
+    "axes": {
+     "R3": 2
+    },
+    "tags": [
+     {
+      "id": "T21A",
+      "s": 2
+     }
+    ],
+    "emotion": "sting"
+   },
+   {
+    "t": "Icons. Weddings are just expensive chairs.",
+    "axes": {
+     "R3": -2
+    },
+    "tags": [
+     {
+      "id": "T21B",
+      "s": 2
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "Fine, but someone's throwing a party anyway.",
+    "axes": {
+     "R3": 1
+    },
+    "tags": [
+     {
+      "id": "T21A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Honestly jealous. Drive-through sounds perfect.",
+    "axes": {
+     "R3": -1
+    },
+    "tags": [
+     {
+      "id": "T21B",
+      "s": 1
+     }
+    ],
+    "emotion": "envy"
+   }
+  ],
+  "heart": {
+   "prompt": "Your closest friend just married at a drive-through chapel and told everyone afterward. There will be no party and no speeches. What do you think first?",
+   "options": [
+    "I feel robbed. I have had a toast ready for years.",
+    "I love it. Weddings are mostly expensive chairs.",
+    "That is fine, but someone should still throw a party.",
+    "I am a little jealous. That sounds perfect to me."
+   ]
+  },
+  "fp": {
+   "trigger": "closest friend elopes and tells you after",
+   "setting": "drive-through chapel",
+   "ask": "your take on skipping the big day",
+   "who": "closest friend",
+   "stakes": "a big moment you were never part of",
+   "device": "elopement"
+  },
+  "mask": "looks like wedding gossip; measures whether love needs a big public yes (T21, R3)",
+  "ae": [
+   "A",
+   "E"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T21-1",
+  "world": "unusual",
+  "friend": {
+   "prompt": "{name}'s closest friend married at a drive-through chapel, told everyone after. No party, no speeches, ever. {name}'s first thought?",
+   "a": {
+    "t": "Robbed. I've had that toast ready for years.",
+    "axes": {
+     "R3": 2
+    },
+    "tags": [
+     {
+      "id": "T21A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Icons. Weddings are just expensive chairs.",
+    "axes": {
+     "R3": -2
+    },
+    "tags": [
+     {
+      "id": "T21B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-125",
+  "type": "this_or_that",
+  "chapter": 2,
+  "round": "ch2-r125",
+  "prompt": "One ring of a magic bell and you appear beside your best friend. Anywhere. Instantly. You can break the bell today only.",
+  "options": [
+   {
+    "t": "Keep it. If it rings, I'm there. Pajamas and all.",
+    "axes": {
+     "R1": 1
+    },
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 2
+     }
+    ],
+    "emotion": "warmth"
+   },
+   {
+    "t": "Break it. Nobody summons me mid-shower.",
+    "axes": {
+     "R1": -1
+    },
+    "tags": [
+     {
+      "id": "T06B",
+      "s": 2
+     }
+    ],
+    "emotion": "relief"
+   }
+  ],
+  "heart": {
+   "prompt": "When your best friend rings a magic bell, you appear beside them, wherever they are. You can only break the bell today.",
+   "options": [
+    "I keep it. If it rings, I go, even in pajamas.",
+    "I break it. I don't want to be called away anytime."
+   ]
+  },
+  "fp": {
+   "trigger": "friend gets a bell that summons you",
+   "setting": "magic summoning bell",
+   "ask": "keep it or break it",
+   "who": "best friend",
+   "stakes": "always there versus your own time",
+   "device": "summoning bell"
+  },
+  "mask": "looks like a magic gadget; measures whether a friend's need beats your own reserves (T06), with close as shared versus close with space (R1)",
+  "ae": [
+   "A",
+   "D"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T06-1",
+  "world": "absurd",
+  "friend": {
+   "prompt": "One ring and {name} appears beside the best friend, anywhere. The bell can only be broken today. Which one is {name}?",
+   "a": {
+    "t": "Keeps it: \"If it rings, I'm there. Pajamas and all.\"",
+    "axes": {
+     "R1": 1
+    },
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Breaks it: \"Nobody summons me mid-shower.\"",
+    "axes": {
+     "R1": -1
+    },
+    "tags": [
+     {
+      "id": "T06B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-126",
+  "type": "this_or_that",
+  "chapter": 2,
+  "round": "ch2-r125",
+  "prompt": "A door in your friend's closet opens somewhere new every time. They go in an hour and saved you the only spot. You had the perfect weekend planned.",
+  "options": [
+   {
+    "t": "Through the door. The weekend can wait.",
+    "axes": {
+     "L1": -2
+    },
+    "tags": [
+     {
+      "id": "T22A",
+      "s": 1
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "My weekend. Send me a postcard from wherever.",
+    "axes": {
+     "L1": 2
+    },
+    "tags": [
+     {
+      "id": "T22B",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "A door in your friend's closet opens somewhere new each time. They leave in an hour and saved you the only spot. You had a perfect weekend planned.",
+   "options": [
+    "I go through the door. The weekend can wait.",
+    "I keep my weekend and ask for a postcard."
+   ]
+  },
+  "fp": {
+   "trigger": "friend invites you through a magic door",
+   "setting": "closet door to anywhere",
+   "ask": "go or keep your plan",
+   "who": "friend",
+   "stakes": "a sure good weekend versus the unknown",
+   "device": "magic door"
+  },
+  "mask": "looks like a portal fantasy; measures a sure good thing versus a great unknown (L1, T22)",
+  "ae": [
+   "A",
+   "D"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-L1-1",
+  "world": "absurd",
+  "friend": {
+   "prompt": "A friend's closet door opens somewhere new in an hour. {name} gets the only spot. Weekend's already planned. Which one is {name}?",
+   "a": {
+    "t": "\"My weekend. Send me a postcard from wherever.\"",
+    "axes": {
+     "L1": 2
+    },
+    "tags": [
+     {
+      "id": "T22B",
+      "s": 1
+     }
+    ]
+   },
+   "b": {
+    "t": "\"Through the door. The weekend can wait.\"",
+    "axes": {
+     "L1": -2
+    },
+    "tags": [
+     {
+      "id": "T22A",
+      "s": 1
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-127",
+  "type": "role",
+  "chapter": 2,
+  "prompt": "Your whole crew inherits a haunted mansion for one night. Something upstairs just knocked twice. In this crew, you're the...",
+  "options": [
+   {
+    "t": "Scout. First up the stairs. Two knocks is an invite.",
+    "axes": {
+     "L1": -2
+    }
+   },
+   {
+    "t": "Warden. Flashlight, exit map, headcount every ten minutes.",
+    "axes": {
+     "L1": 2
+    }
+   },
+   {
+    "t": "Splitter. \"Let's split up!\" Already gone.",
+    "axes": {
+     "L1": -1
+    }
+   },
+   {
+    "t": "Reader. Studying the house rules taped to the fridge.",
+    "axes": {
+     "L1": 1
+    }
+   },
+   {
+    "t": "Chatter. Knocking back three times. Starting a conversation.",
+    "axes": {
+     "L1": -1
+    }
+   },
+   {
+    "t": "Car camper. Doors locked, engine running. \"Nope.\"",
+    "axes": {
+     "L1": 1
+    }
+   }
+  ],
+  "heart": {
+   "prompt": "Your group of friends inherits a haunted mansion for one night. Something upstairs has just knocked twice. Which one are you?",
+   "options": [
+    "The first one up the stairs. Two knocks sounds like an invitation.",
+    "The one with the flashlight, the exit map and regular headcounts.",
+    "The one who suggests splitting up, and is already gone.",
+    "The one reading the house rules on the fridge, twice.",
+    "The one knocking back, to start a conversation.",
+    "The one waiting in the car with the doors locked."
+   ]
+  },
+  "fp": {
+   "trigger": "a knock upstairs in a haunted house",
+   "setting": "inherited haunted mansion, one night",
+   "ask": "your role in the group",
+   "who": "friend group",
+   "stakes": "the thrill versus getting out safe",
+   "device": "haunted house"
+  },
+  "mask": "looks like a spooky group bit; measures stepping into the unknown versus waiting until it is known (L1)",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-L1-2",
+  "world": "absurd",
+  "friend": {
+   "prompt": "Something upstairs in the crew's haunted mansion just knocked twice. In this crew, {name} is the...",
+   "a": {
+    "t": "Warden: flashlight, exit map, headcount every ten minutes.",
+    "axes": {
+     "L1": 2
+    }
+   },
+   "b": {
+    "t": "Scout: first up the stairs. Two knocks is an invite.",
+    "axes": {
+     "L1": -2
+    }
+   }
+  }
+ },
+ {
+  "id": "C2-128",
+  "type": "rank",
+  "chapter": 2,
+  "prompt": "Genii can bottle your love for your oldest friend four ways. They open one each year. Rank them, first to last:",
+  "options": [
+   {
+    "t": "My speech about them, sung at their door by a choir",
+    "tags": [
+     {
+      "id": "T05B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Their place deep-cleaned, fridge stocked, no note",
+    "tags": [
+     {
+      "id": "T05A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "A letter from me that rewrites itself every birthday",
+    "tags": [
+     {
+      "id": "T05B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Me, on call every time their car dies",
+    "tags": [
+     {
+      "id": "T05A",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "Genii can send your love to your oldest friend in four forms, one each year. Put them in the order you would send them.",
+   "options": [
+    "My speech about them, sung at their door by a choir.",
+    "Their home cleaned and their fridge filled, with no note.",
+    "A letter from me that rewrites itself every birthday.",
+    "Me, on call every time their car breaks down."
+   ]
+  },
+  "fp": {
+   "trigger": "Genii will deliver your love four ways",
+   "setting": "magic bottles, one opened a year",
+   "ask": "rank the ways you show love",
+   "who": "oldest friend",
+   "stakes": "being felt the way you mean it",
+   "device": "bottled love"
+  },
+  "mask": "looks like a magic gift list; measures showing love by doing versus by saying (T05)",
+  "ae": [
+   "A",
+   "D"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T05-1",
+  "world": "absurd"
+ },
+ {
+  "id": "C2-129",
+  "type": "eyes",
+  "chapter": 2,
+  "prompt": "A sphinx blocks the road: your best friend gets one true line about you, or you both turn to stone. They say:",
+  "options": [
+   {
+    "t": "\"Cross a line with them and you'll hear it that second.\"",
+    "axes": {
+     "R2": 2
+    }
+   },
+   {
+    "t": "\"Says 'it's fine.' It's fine. It's filed.\"",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "\"Lets things slide so long they forget them.\"",
+    "axes": {
+     "R2": -2
+    }
+   },
+   {
+    "t": "\"Calls you out, then buys the next round.\"",
+    "axes": {
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T08A",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "A sphinx stops you and your best friend. Your friend must describe you in one true sentence, or you both turn to stone. What do they say?",
+   "options": [
+    "Cross a line with them, and you hear about it right away.",
+    "They say it is fine, and they remember it.",
+    "They let things go for so long that they forget them.",
+    "They tell you directly, then buy the next round."
+   ]
+  },
+  "fp": {
+   "trigger": "sphinx demands one true line about you",
+   "setting": "mythic road, a stone curse",
+   "ask": "how your friend sums up your limits",
+   "who": "best friend",
+   "stakes": "how you are seen when someone crosses you",
+   "device": "sphinx"
+  },
+  "mask": "looks like a riddle; measures naming it when someone crosses a line versus absorbing it (R2), and whether it gets filed (T08)",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-R2-2",
+  "world": "absurd",
+  "friend": {
+   "prompt": "A sphinx makes {name}'s best friend say one true line about {them}, or both turn to stone. Which line?",
+   "a": {
+    "t": "\"Cross a line with {them} and you'll hear it that second.\"",
+    "axes": {
+     "R2": 2
+    }
+   },
+   "b": {
+    "t": "\"Lets things slide until even {name} can't remember them.\"",
+    "axes": {
+     "R2": -2
+    }
+   }
+  }
+ },
+ {
+  "id": "C2-50",
+  "type": "bet",
+  "chapter": 2,
+  "prompt": "Be honest: a friend's big plan flopped in public, and part of you felt relieved.",
+  "options": [
+   {
+    "t": "Guilty. We'd been neck and neck. Now we weren't.",
+    "axes": {
+     "L2": 2
+    },
+    "tags": [
+     {
+      "id": "T16A",
+      "s": 1
+     }
+    ],
+    "emotion": "relief"
+   },
+   {
+    "t": "Guilty. Then bought them dinner out of pure guilt.",
+    "axes": {
+     "L2": 1
+    },
+    "emotion": "guilt"
+   },
+   {
+    "t": "Never. Their wins feel like mine. So do the flops.",
+    "axes": {
+     "L2": -1
+    },
+    "emotion": "warmth"
+   },
+   {
+    "t": "Never. I don't track their plans that closely.",
+    "axes": {
+     "L2": -2
+    }
+   }
+  ],
+  "heart": {
+   "prompt": "Has a friend's big plan ever failed publicly, and part of you felt relieved?",
+   "options": [
+    "Yes. We had been even, and suddenly we weren't.",
+    "Yes, and then I bought them dinner out of guilt.",
+    "No. Their wins and their losses feel like mine.",
+    "No. I don't follow their plans that closely."
+   ]
+  },
+  "fp": {
+   "trigger": "friend's big plan flops publicly",
+   "setting": "friendship, afterward",
+   "ask": "admit the relief",
+   "who": "close friend",
+   "stakes": "rivalry versus loyalty",
+   "device": "rival flop"
+  },
+  "mask": "looks like a confession; measures whether someone else's timeline sets your clock (L2) from a thing actually felt",
+  "ae": [
+   "A",
+   "E"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-L2-2",
+  "world": "unusual",
+  "friend": {
+   "prompt": "Has {name} ever felt a little relieved when a friend's big plan flopped in public?",
+   "a": {
+    "t": "Guilty. We'd been neck and neck. Now we weren't.",
+    "axes": {
+     "L2": 2
+    },
+    "tags": [
+     {
+      "id": "T16A",
+      "s": 1
+     }
+    ]
+   },
+   "b": {
+    "t": "Never. I don't track friends' plans that closely.",
+    "axes": {
+     "L2": -2
+    }
+   }
+  }
+ },
+ {
+  "id": "C2-130",
+  "type": "bet",
+  "chapter": 2,
+  "prompt": "Confession time: you've known a friend's partner was cheating before your friend did.",
+  "options": [
+   {
+    "t": "Guilty. Told them that night. Lost them for a month.",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 2
+     }
+    ],
+    "emotion": "sting"
+   },
+   {
+    "t": "Guilty. Dropped hints until they figured it out.",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Guilty. Said nothing. Still carry it around.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 2
+     }
+    ],
+    "emotion": "guilt"
+   },
+   {
+    "t": "Guilty. Told the partner: \"You tell them, or I will.\"",
+    "axes": {
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Never. I'm always the last to know anything.",
+    "circumstance": true
+   }
+  ],
+  "heart": {
+   "prompt": "Have you ever known that a friend's partner was cheating before your friend knew?",
+   "options": [
+    "Yes. I told them that night. We didn't speak for a month.",
+    "Yes. I hinted until they worked it out.",
+    "Yes. I said nothing, and I still think about it.",
+    "Yes. I told the partner to tell them, or I would.",
+    "No. I am usually the last to know."
+   ]
+  },
+  "fp": {
+   "trigger": "you learn a friend's partner is cheating",
+   "setting": "real life, before your friend knows",
+   "ask": "tell, hint or stay silent",
+   "who": "friend and their partner",
+   "stakes": "the friendship versus being the messenger",
+   "device": "cheating secret"
+  },
+  "mask": "looks like a juicy confession; measures telling a friend the hard news now versus protecting them first (T07, R2), from a thing actually done",
+  "ae": [
+   "A",
+   "B",
+   "E"
+  ],
+  "privacy": "intimate",
+  "sq": "SQ-T07-2",
+  "world": "unusual"
+ },
+ {
+  "id": "C2-131",
+  "type": "real",
+  "chapter": 2,
+  "prompt": "Think back to the biggest amount a friend has ever asked to borrow. What did you actually do?",
+  "options": [
+   {
+    "t": "Sent it. Neither of us has mentioned it since.",
+    "axes": {
+     "L3": -1
+    },
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Sent it, with a payback date in writing.",
+    "axes": {
+     "L3": 1
+    },
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Said no, and told them exactly why.",
+    "axes": {
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T06B",
+      "s": 1
+     }
+    ],
+    "emotion": "guilt"
+   },
+   {
+    "t": "Said no, and invented a reason.",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T06B",
+      "s": 2
+     }
+    ],
+    "emotion": "relief"
+   }
+  ],
+  "heart": {
+   "prompt": "Think of the largest amount a friend has ever asked to borrow from you. What did you actually do?",
+   "options": [
+    "I sent it, and neither of us has mentioned it since.",
+    "I sent it, with a repayment date written down.",
+    "I said no, and told them honestly why.",
+    "I said no, and gave them a made-up reason."
+   ]
+  },
+  "fp": {
+   "trigger": "friend asks to borrow a big sum",
+   "setting": "real life, a money ask",
+   "ask": "lend or refuse, and how",
+   "who": "friend",
+   "stakes": "your money versus the friendship",
+   "device": "friend loan"
+  },
+  "mask": "looks like a money memory; measures whether your own rules bend for a friend (T06), with how you say no (R2) and terms versus trust (L3)",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T06-2",
+  "world": "unusual",
+  "friend": {
+   "prompt": "The biggest amount a friend has ever asked to borrow from {name}. What did {name} actually do?",
+   "a": {
+    "t": "Sent it. Neither of us has mentioned it since.",
+    "axes": {
+     "L3": -1
+    },
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Said no, and invented a reason.",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T06B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-132",
+  "type": "bet",
+  "chapter": 2,
+  "prompt": "Genii's guess: someone you swore you'd never speak to again is back in your life.",
+  "options": [
+   {
+    "t": "Guilty. We're closer now than before, honestly.",
+    "tags": [
+     {
+      "id": "T08A",
+      "s": 2
+     }
+    ],
+    "emotion": "warmth"
+   },
+   {
+    "t": "Guilty. Friendly now. On probation forever.",
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Guilty. One good apology and I folded.",
+    "tags": [
+     {
+      "id": "T08A",
+      "s": 1
+     }
+    ],
+    "emotion": "cringe"
+   },
+   {
+    "t": "Wrong. Never again means never again.",
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 2
+     }
+    ],
+    "emotion": "pride"
+   }
+  ],
+  "heart": {
+   "prompt": "Is someone you once swore never to speak to again now back in your life?",
+   "options": [
+    "Yes. We are closer now than before.",
+    "Yes. We are friendly, but I am still watching.",
+    "Yes. They apologized well, and I let them in.",
+    "No. When I say never again, I mean it."
+   ]
+  },
+  "fp": {
+   "trigger": "someone you cut off is back",
+   "setting": "real life, over time",
+   "ask": "did you let them back in",
+   "who": "someone who hurt you",
+   "stakes": "a second chance versus protecting yourself",
+   "device": "never-again vow"
+  },
+  "mask": "looks like a confession; measures whether someone who hurt you can get back in (T08), from a thing actually done",
+  "ae": [
+   "A",
+   "E"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T08-1",
+  "world": "everyday",
+  "friend": {
+   "prompt": "Genii bets {name} has someone back in {their} life {they} swore never to speak to again. Guilty or not?",
+   "a": {
+    "t": "Guilty. Closer now than before, honestly.",
+    "tags": [
+     {
+      "id": "T08A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Not guilty. Never again means never again.",
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-133",
+  "type": "real",
+  "chapter": 2,
+  "prompt": "The last time a friend's world fell apart and you couldn't fix it. What did you actually do first?",
+  "options": [
+   {
+    "t": "Showed up with food. Said almost nothing.",
+    "tags": [
+     {
+      "id": "T05A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Sent a long message. Rewrote it four times.",
+    "tags": [
+     {
+      "id": "T05B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Called, and stayed on till they hung up first.",
+    "tags": [
+     {
+      "id": "T05B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Did their laundry while they talked to my back.",
+    "tags": [
+     {
+      "id": "T05A",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "Think of the last time a friend's world fell apart and you could not fix it. What did you do first?",
+   "options": [
+    "I showed up with food and said very little.",
+    "I sent a long message and rewrote it four times.",
+    "I called, and stayed on until they hung up.",
+    "I did their laundry while they talked."
+   ]
+  },
+  "fp": {
+   "trigger": "friend's life falls apart",
+   "setting": "real life, the first day",
+   "ask": "how you showed up first",
+   "who": "friend",
+   "stakes": "being there in the way that lands",
+   "device": "rough-patch first move"
+  },
+  "mask": "looks like a support memory; measures showing love by doing versus by saying (T05), from a thing actually done",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T05-1",
+  "world": "everyday",
+  "friend": {
+   "prompt": "The last time a friend's world fell apart and {name} couldn't fix it. What did {name} actually do first?",
+   "a": {
+    "t": "Showed up with food. Said almost nothing.",
+    "tags": [
+     {
+      "id": "T05A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Sent a long message. Rewrote it four times.",
+    "tags": [
+     {
+      "id": "T05B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-134",
+  "type": "receipts",
+  "chapter": 2,
+  "prompt": "Friends, lately. Tap everything that's true:",
+  "options": [
+   {
+    "t": "Went to a friend's thing I'd have happily skipped",
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 2
+     },
+     {
+      "id": "T05A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Fixed, carried or assembled something for a friend",
+    "tags": [
+     {
+      "id": "T05A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Said \"I love you\" to a friend, out loud, unprompted",
+    "tags": [
+     {
+      "id": "T05B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Bailed on a friend and felt nothing but relief",
+    "tags": [
+     {
+      "id": "T06B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Sent a gift instead of going",
+    "tags": [
+     {
+      "id": "T05B",
+      "s": 1
+     },
+     {
+      "id": "T06B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Stayed out way past my limit for one friend",
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "None of these",
+    "none": true
+   }
+  ],
+  "heart": {
+   "prompt": "Think about your friends lately. Choose everything that is true.",
+   "options": [
+    "I went to a friend's event I would happily have skipped.",
+    "I fixed, carried or put together something for a friend.",
+    "I told a friend I love them, out loud, unasked.",
+    "I cancelled on a friend and felt only relief.",
+    "I sent a gift instead of going.",
+    "I stayed out well past my limit for one friend.",
+    "None of these."
+   ]
+  },
+  "fp": {
+   "trigger": "recent friend moments",
+   "setting": "the past few weeks",
+   "ask": "tick what you did",
+   "who": "friends",
+   "stakes": "showing up versus your energy",
+   "device": "friend receipts"
+  },
+  "mask": "looks like a quick checklist; measures showing up in person versus sending love from a distance (T05, T06), from things actually done",
+  "ae": [
+   "A"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T05-2",
+  "world": "everyday"
+ },
+ {
+  "id": "C2-135",
+  "type": "bet",
+  "chapter": 2,
+  "prompt": "I bet your friend group has a yearly tradition you secretly outgrew. You still go.",
+  "options": [
+   {
+    "t": "Guilty. It's tradition. Fun was never the point.",
+    "axes": {
+     "R3": 2
+    },
+    "tags": [
+     {
+      "id": "T20A",
+      "s": 1
+     }
+    ],
+    "emotion": "warmth"
+   },
+   {
+    "t": "Guilty. Went, smiled, counted the hours.",
+    "axes": {
+     "R3": 1
+    },
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 1
+     }
+    ],
+    "emotion": "irritation"
+   },
+   {
+    "t": "Wrong. Stopped going. Started my own.",
+    "axes": {
+     "R3": -2
+    },
+    "tags": [
+     {
+      "id": "T20B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Wrong. Pitched a new one. Nobody's forgiven me.",
+    "axes": {
+     "R3": -1,
+     "R2": 1
+    },
+    "emotion": "cringe"
+   }
+  ],
+  "heart": {
+   "prompt": "Does your friend group have a yearly tradition you have quietly outgrown, and do you still go?",
+   "options": [
+    "Yes. It is a tradition, and that is the point.",
+    "Yes. I go, I smile, and I count the hours.",
+    "No. I stopped going and started my own.",
+    "No. I suggested a new one. It did not go well."
+   ]
+  },
+  "fp": {
+   "trigger": "yearly friend tradition you outgrew",
+   "setting": "friend group, every year",
+   "ask": "keep going or break away",
+   "who": "friend group",
+   "stakes": "your place versus your own way",
+   "device": "friend tradition"
+  },
+  "mask": "looks like a confession; measures whether old rituals feel like home or a costume (R3, T20), from a thing actually done",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-R3-1",
+  "world": "everyday",
+  "friend": {
+   "prompt": "Genii bets {name} secretly outgrew a yearly friend-group tradition and still goes. Guilty or not?",
+   "a": {
+    "t": "Guilty. It's tradition. Fun was never the point.",
+    "axes": {
+     "R3": 2
+    },
+    "tags": [
+     {
+      "id": "T20A",
+      "s": 1
+     }
+    ]
+   },
+   "b": {
+    "t": "Not guilty. Stopped going. Started {their} own.",
+    "axes": {
+     "R3": -2
+    },
+    "tags": [
+     {
+      "id": "T20B",
+      "s": 1
+     }
+    ]
+   }
+  }
+ }
+]
