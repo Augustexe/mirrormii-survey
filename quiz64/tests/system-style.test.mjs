@@ -102,7 +102,7 @@ function shippedGraph() {
   return [...seen].map(rel);
 }
 // Pre-rebuild screens that other packages are replacing in this pass. Integration empties this list.
-const PENDING = new Set(["src/persona/FriendGame.jsx", "src/components/GeniiStage.jsx"]);
+const PENDING = new Set([]);
 
 test("the shipped app never references the retired library Genii renders or badges", (t) => {
   const graph = shippedGraph();
@@ -117,7 +117,7 @@ test("the shipped app never references the retired library Genii renders or badg
 });
 
 test("package A never draws Genii from the library: screens, system and the app shell", () => {
-  const files = [...walk(path.join(ROOT, "src/system")), ...walk(path.join(ROOT, "src/persona/screens")), path.join(ROOT, "src/PersonaApp.jsx"), path.join(ROOT, "src/persona/PersonaScreens.jsx"), path.join(ROOT, "src/persona/PersonaDialogs.jsx"), path.join(ROOT, "index.html")]
+  const files = [...walk(path.join(ROOT, "src/system")), ...walk(path.join(ROOT, "src/persona/screens")), path.join(ROOT, "src/PersonaApp.jsx"), path.join(ROOT, "src/persona/PersonaDialogs.jsx"), path.join(ROOT, "index.html")]
     .filter((f) => /\.(jsx?|css|html)$/.test(f));
   for (const f of files) {
     const src = fs.readFileSync(f, "utf8");

@@ -38,7 +38,7 @@ async function contentStripper() {
 }
 
 test("every card renders its prompt, options and only its own exits, in both voices; no age label anywhere", async () => {
-  const { PersonaCard } = await load("/src/persona/PersonaCard.jsx");
+  const { PersonaCard } = await load("/src/persona/play/index.js");
   const { S, KIT } = await load("/src/persona/kit.js");
   const strip = await contentStripper();
   const cards = [...KIT.chapters.flatMap((c) => c.cards), ...KIT.finale, ...KIT.extras];
@@ -62,7 +62,7 @@ test("every card renders its prompt, options and only its own exits, in both voi
 });
 
 test("voices on a card: Heart to heart text for heart, Make it fun otherwise, and Make it fun when a card has none", async () => {
-  const { PersonaCard } = await load("/src/persona/PersonaCard.jsx");
+  const { PersonaCard } = await load("/src/persona/play/index.js");
   const card = {
     id: "UI-1", type: "reply", chapter: 1, privacy: "normal", exits: ["skip", "not_my_life"], grade: "would", weight: 0.55,
     prompt: "Group chat, 11:40pm. Chaos.", thread: [{ from: "Sam", text: "who's booking??" }],
@@ -81,7 +81,7 @@ test("voices on a card: Heart to heart text for heart, Make it fun otherwise, an
 });
 
 test("new formats render: rank with a Done button and order hint, bet and eyes as one-tap lists", async () => {
-  const { PersonaCard } = await load("/src/persona/PersonaCard.jsx");
+  const { PersonaCard } = await load("/src/persona/play/index.js");
   const base = { chapter: 1, privacy: "normal", exits: ["skip", "not_my_life"] };
   const step = { phase: "chapter", chapter: 1, index: 1, size: 8, round: null };
   const rank = { ...base, id: "UI-R", type: "rank", prompt: "Rank what you'd cancel first.", options: ["Gym", "Date night", "Family dinner", "Group project"].map((t) => ({ t })) };
@@ -132,7 +132,7 @@ test("friend game screens: every level renders, the done screen shows counts onl
 });
 
 test("setup has no age screen: two questions, closest person then pronoun", async () => {
-  const { SetupView, SETUP_STEPS } = await load("/src/persona/PersonaScreens.jsx");
+  const { SetupView, SETUP_STEPS } = await load("/src/persona/screens/index.js");
   assert.deepEqual(SETUP_STEPS.map((s) => s.key), ["closest", "pronoun"]);
   const text = visible(renderToStaticMarkup(React.createElement(SetupView, { onDone() {}, onBack() {} })));
   assert.ok(text.includes(SETUP_STEPS[0].title));
@@ -141,8 +141,10 @@ test("setup has no age screen: two questions, closest person then pronoun", asyn
 });
 
 test("lobby screen renders its first question and options; the card screen's bubble follows the voice", async () => {
-  const { LobbyView, PersonaQuizView, interludeFor } = await load("/src/persona/PersonaScreens.jsx");
-  const { LOBBY_COPY, hostLine } = await load("/src/persona/lobby.js");
+  const { LobbyView, interludeFor } = await load("/src/persona/screens/index.js");
+  const { PersonaQuizView } = await load("/src/persona/play/index.js");
+  const { geniiLineFor } = await load("/src/persona/play/Quiz.jsx");
+  const { LOBBY_COPY } = await load("/src/persona/lobby.js");
   const Session = await load("/src/persona/session.js");
   const lobbyText = visible(renderToStaticMarkup(React.createElement(LobbyView, { onDone() {}, onBack() {} })));
   const first = LOBBY_COPY.steps[0];
@@ -158,14 +160,18 @@ test("lobby screen renders its first question and options; the card screen's bub
   let s = Session.chooseLobby(Session.startRun(Session.newRun({ runId: "uilobby01" }), ADULT), { voice: "fun", depth: "light", rooms: ["work"] });
   s = Session.answerCard(s, Session.currentStep(s).card.id, 0, { ms: 4000 });
   const step = Session.currentStep(s);
-  const render = (voice) => visible(renderToStaticMarkup(React.createElement(PersonaQuizView, { step, setup: ADULT, onAnswer() {}, onMap() {}, cardKey: "k", voice })));
-  const line = hostLine("fun", { phase: step.phase, index: step.index });
-  const heartLine = hostLine("heart", { phase: step.phase, index: step.index });
+  const seeds = { fun: "uilobby01", heart: "uilobby01h", cards: "uilobby01c" };
+  const render = (voice) => visible(renderToStaticMarkup(React.createElement(PersonaQuizView, { step, setup: ADULT, onAnswer() {}, onMap() {}, cardKey: "k", voice, seed: seeds[voice] })));
+  // Genii's line comes from the voice's own host lines (or a reaction); Just the cards shows none.
+  const line = geniiLineFor(step, "fun", { seed: seeds.fun });
+  const heartLine = geniiLineFor(step, "heart", { seed: seeds.heart });
+  assert.ok(LOBBY_COPY.host.fun.chapter.includes(line) && LOBBY_COPY.host.heart.chapter.includes(heartLine));
   assert.ok(render("fun").includes(line));
   assert.ok(render("heart").includes(heartLine) && !render("heart").includes(line), "Heart to heart has its own lines");
   assert.ok(!render("cards").includes(line) && !render("cards").includes(heartLine), "Just the cards hides Genii's between-card line");
   assert.ok(render("cards").includes(step.card.prompt.replace(/\s+/g, " ").slice(0, 20)), "Just the cards reads Make it fun wording");
-  assert.ok(render("fun").includes(LOBBY_COPY.runLabel(step.resolved + 1, Session.RUN_SIZE)));
+  const seen = visible(renderToStaticMarkup(React.createElement(PersonaQuizView, { step, setup: ADULT, onAnswer() {}, onMap() {}, cardKey: "k", voice: "fun", seed: seeds.fun })).replace(/<span class="pc-sr"[^>]*>[^<]*<\/span>/g, ""));
+  assert.doesNotMatch(seen, /Card \d+ of \d+|\d+ \/ 40 cards/, "one progress indicator: the shard rail, with its count for screen readers only");
   const intro = interludeFor(Session.currentStep(Session.chooseLobby(Session.startRun(Session.newRun({ runId: "uilobby02" }), ADULT), { voice: "cards", depth: "light", rooms: [] })), "cards");
   assert.equal(intro.kicker, LOBBY_COPY.chapterKicker(1, 4), "chapter numbering counts only open rooms");
 });

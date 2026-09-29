@@ -3,7 +3,7 @@ import { MotionConfigContext, useReducedMotion } from "motion/react";
 import { GeniiLight, geniiEvents, useTheme } from "../../system/index.js";
 import { MirrorArch, IslandScene, DeviceGlyph, deviceFor } from "../../art/index.js";
 import { hostLine, cardVoice, LOBBY_DEFAULTS } from "../lobby.js";
-import { reactionFor } from "../reactions.js";
+import { reactionFor, unit } from "../reactions.js";
 import { PersonaCard } from "./PersonaCard.jsx";
 import { ShardRail } from "./ShardRail.jsx";
 import { railGroups, filledShards } from "./rail-model.js";
@@ -28,23 +28,29 @@ export function rememberAnswer(seed, step, card, value) {
 
 // The line in Genii's row for this card: nothing on feeling and finale cards (the moment is the player's), nothing for
 // Just the cards, the speed nudge when rushing, a reaction on about 40% of cards, otherwise the voice's host line.
+// The voice's host lines rotate by the card's place in the whole run (not the chapter), offset by the run seed, so a
+// new chapter never restarts on the same line; the speed nudge shows once per rushed streak; and no line ever shows on
+// two cards in a row (a reload, a chapter break or a reaction pool can otherwise land on the same words).
 export function geniiLineFor(step, voice, { rushing = false, seed = "genii" } = {}) {
   if (!step || !step.card) return null;
   if (voice === "cards" || step.phase === "finale" || step.card.type === "feeling") return null;
-  if (rushing) return hostLine(voice, { phase: step.phase, index: step.index, rushing: true });
   const m = memoryFor(seed);
   const idx = step.resolved;
   const cached = m.lines.get(idx);
-  let reaction;
-  if (cached && cached.id === step.card.id) reaction = cached.line;
-  else {
-    const prev = m.answers.get(idx - 1);
-    reaction = prev
-      ? reactionFor({ card: prev.card, optionIndex: prev.value, voice, seed, cardIndex: idx, previousWasReaction: !!(m.lines.get(idx - 1) || {}).line, nextCard: step.card, phase: step.phase })
-      : null;
-    m.lines.set(idx, { id: step.card.id, line: reaction });
-  }
-  return reaction || hostLine(voice, { phase: step.phase, index: step.index, rushing: false });
+  if (cached && cached.id === step.card.id && cached.rushing === rushing) return cached.shown;
+  const before = m.lines.get(idx - 1) || {};
+  const prev = m.answers.get(idx - 1);
+  const reaction = prev
+    ? reactionFor({ card: prev.card, optionIndex: prev.value, voice, seed, cardIndex: idx, previousWasReaction: !!before.line, nextCard: step.card, phase: step.phase })
+    : null;
+  const nudge = rushing && !before.rushing ? hostLine(voice, { phase: step.phase, rushing: true }) : null;
+  const hostAt = (k) => hostLine(voice, { phase: step.phase, index: k, rushing: false });
+  const base = Math.floor(unit(seed, "host") * 4) + idx;
+  let shown = nudge || reaction || hostAt(base);
+  for (let k = 1; shown && shown === before.shown && k < 6; k++) shown = hostAt(base + k);
+  if (shown === before.shown) shown = null;
+  m.lines.set(idx, { id: step.card.id, line: nudge ? null : reaction, shown, nudge: !!nudge, rushing });
+  return shown;
 }
 
 const tintOf = (step) => (step.phase === "finale" ? "var(--tint-finale-rim)" : step.phase === "extra" ? "var(--tint-extras)" : `var(--tint-ch${step.chapter})`);
