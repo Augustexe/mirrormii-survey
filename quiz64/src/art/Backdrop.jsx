@@ -6,6 +6,7 @@
 import { Component, lazy, Suspense, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { tint, v } from "./palette.js";
 import { GRAIN_URL, SPECKS_URL } from "./textures.js";
+import { Depth } from "./Depth.jsx";
 
 const ShaderLayer = lazy(() => import("./BackdropShader.jsx"));
 
@@ -157,6 +158,8 @@ export function Backdrop({ scene = "day", animated = true, className }) {
         data-part="horizon"
         style={{ position: "absolute", left: 0, right: 0, top: "62%", height: 1, opacity: spec.night ? 0.3 : 0.2, background: `linear-gradient(90deg, transparent, ${v(spec.night ? "n-violet" : "c-violet")} 30%, ${v(spec.night ? "n-violet" : "c-violet")} 70%, transparent)` }}
       />
+      {/* Round 2: depth planes (far islands, light shafts, floating glass) over the glows, under the grain. */}
+      <Depth animated={Boolean(animated && motion)} night={spec.night} a={v(spec.a)} b={v(spec.b)} c={v(spec.c)} />
       <div data-part="grain" style={{ ...fill, backgroundImage: GRAIN_URL, backgroundSize: "var(--grain-size, 160px)", opacity: "var(--grain-opacity, 0.035)", mixBlendMode: "soft-light" }} />
     </div>
   );
