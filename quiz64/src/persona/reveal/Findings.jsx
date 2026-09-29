@@ -39,8 +39,8 @@ export function ClarityGem({ level = 1, size = 40, flex = false, className }) {
           <stop offset="1" stopColor="var(--rv-gem-hi, #FFFFFF)" />
         </linearGradient>
         <linearGradient id={`${rid}-f`} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="var(--rv-gem-frost, #FFFFFF)" stopOpacity="0.34" />
-          <stop offset="1" stopColor="var(--rv-gem-frost, #FFFFFF)" stopOpacity="0.12" />
+          <stop offset="0" stopColor="var(--rv-gem-frost, #FFFFFF)" stopOpacity="0.14" />
+          <stop offset="1" stopColor="var(--rv-gem-frost, #FFFFFF)" stopOpacity="0.04" />
         </linearGradient>
         <radialGradient id={`${rid}-g`} cx="0.5" cy="0.5" r="0.5">
           <stop offset="0" stopColor="var(--rv-gem-a, #B3AAF0)" stopOpacity="0.7" />
@@ -60,9 +60,9 @@ export function ClarityGem({ level = 1, size = 40, flex = false, className }) {
         </g>
       ) : null}
       <g fill="none" stroke="var(--rv-gem-edge, #FFFFFF)" strokeLinejoin="round">
-        <path d={OUTLINE} strokeWidth="2.4" strokeOpacity="0.95" />
+        <path d={OUTLINE} strokeWidth="2.4" strokeOpacity={lit(3) ? 0.95 : 0.5} strokeDasharray={lit(3) ? undefined : "3 4"} />
         <path d={poly(TABLE)} strokeWidth="1.2" strokeOpacity="0.8" />
-        {CROWN.map((d, i) => <path key={i} d={d} strokeWidth="0.8" strokeOpacity="0.55" />)}
+        {CROWN.map((d, i) => <path key={i} d={d} strokeWidth="0.8" strokeOpacity={lit(2) ? 0.55 : 0.28} />)}
       </g>
       {flex ? <line x1="50" y1="2" x2="50" y2="98" stroke="var(--rv-gem-edge, #FFFFFF)" strokeWidth="1.6" strokeOpacity="0.9" /> : null}
       {level >= 3 && !flex ? (

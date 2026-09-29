@@ -209,7 +209,7 @@ export function StoryDeck({ stories, friends, onFriendAction, onRestart, onDownl
               </section>
             ))}
           </div>
-          {!tapped && index > 0 && index < 3 && !wipe ? (
+          {!tapped && index === 1 && !wipe ? (
             <span className="rv-taphint" aria-hidden="true"><ChevronRight size={18} strokeWidth={2} /> {UI_COPY.tap}</span>
           ) : null}
         </div>

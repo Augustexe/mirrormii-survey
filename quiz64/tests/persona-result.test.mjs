@@ -196,7 +196,7 @@ test("Heart to heart reads the h variants; Make it fun and Just the cards read t
   const heart = buildStories({ result: syntheticResult(), profile: syntheticProfile(), sealed: null, lib: newLibrary(), voice: "heart" });
   assert.deepEqual(heart.slides.map((s) => s.id), ORDER_NO_CALLS, "no calls screen without a guess check");
   const html = visible(await render(heart));
-  for (const t of ["H-READ-PEOPLE", "H-READ-LIFE", "H-DESC-PEOPLE", "H-LINE-1", "H-LINE-2", "H-LINE-3", "H-INSIGHT-MINUS", "H-STING-PEOPLE", "H-STING-LIFE", "H-TAGSTING-1", "H-TAGHEART-1", "The tender part", "What came through most clearly"]) assert.ok(html.includes(t), t);
+  for (const t of ["H-READ-PEOPLE", "H-READ-LIFE", "H-DESC-PEOPLE", "H-LINE-1", "H-LINE-2", "H-LINE-3", "H-INSIGHT-MINUS", "H-STING-PEOPLE", "H-STING-LIFE", "H-TAGSTING-1", "H-TAGHEART-1", "The tender part", "What came through clearest"]) assert.ok(html.includes(t), t);
   for (const t of ["NEW-READ-PEOPLE", "NEW-LINE-1", "NEW-INSIGHT-MINUS", "OLD-STING-PEOPLE"]) assert.ok(!html.includes(t), `heart hides ${t}`);
   assert.equal(heart.slides.find((s) => s.id === "knows").findings[0].line, "H-You hold the person first.", "the clearest finding, in voice");
   assert.equal(heart.slides.find((s) => s.id === "names").hook, "H-You hold the person first.", "the plaque carries it too");

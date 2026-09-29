@@ -101,7 +101,7 @@ export const STORY_COPY = Object.freeze({
     map: { kicker: "Your map", title: "Where you land", people: "With your people", life: "With your life" },
     knows: {
       kicker: "What Genii knows best",
-      title: "What came through most clearly",
+      title: "What came through clearest",
       tiers: { clear: "Crystal clear", sharp: "Clear", forming: "Coming into focus", flex: "Both sides" },
       surest: "Clearest",
       both: "Both",

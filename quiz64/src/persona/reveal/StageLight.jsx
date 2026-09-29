@@ -144,7 +144,7 @@ export function lookUniforms(el, look, id) {
       u_glowC: vec4(token(el, "glow-c", "#C9B3F0"), 0.4 * glowStrength, "#C9B3F0"),
       u_focus: [0.5, 0.06],
       u_rays: 0.45,
-      u_shards: 0.5,
+      u_shards: 0.35,
       u_light: 1,
     };
   }
@@ -157,7 +157,7 @@ export function lookUniforms(el, look, id) {
       u_glowC: vec4(token(el, "tint-ch1", "#8FB8F2"), 0.3, "#8FB8F2"),
       u_focus: [0.5, id === "app" ? 0.22 : 0.12],
       u_rays: 0.6,
-      u_shards: 0.7,
+      u_shards: 0.5,
       u_light: 0.15,
     };
   }

@@ -663,32 +663,32 @@ function drawStoryBody(ctx, spec, p, W, H) {
           const leadLeft = lean && r.side === "left";
           const leadRight = lean && r.side === "right";
           const pole = (value, lead, align, x) => {
-            if (lead) { font(ctx, "display", 600, 56); lines(ctx, [value], x, y + 50, { lh: 0, align, color: p.ink }); }
-            else tracked(ctx, value, x, y + 48, { size: 24, color: p.ink3, align, track: 0.12 });
+            if (lead) { font(ctx, "display", 600, 66); lines(ctx, [value], x, y + 60, { lh: 0, align, color: p.ink }); }
+            else tracked(ctx, value, x, y + 56, { size: 26, color: p.ink3, align, track: 0.12 });
           };
           pole(r.left, leadLeft, "left", X);
           pole(r.right, leadRight, "right", X + width);
-          const ry = y + 76;
-          roundRect(ctx, X, ry, width, 34, 17);
+          const ry = y + 84;
+          roundRect(ctx, X, ry, width, 44, 22);
           ctx.fillStyle = rgba(N.ink, 0.12);
           ctx.fill();
-          ctx.strokeStyle = rgba(N.ink, 0.3);
+          ctx.strokeStyle = rgba(N.ink, 0.32);
           ctx.lineWidth = 2;
           ctx.stroke();
           const bx = X + (width * r.pos) / 100;
           if (lean) {
             const fx = Math.min(bx, X + width / 2);
             const fw = Math.abs(bx - (X + width / 2));
-            roundRect(ctx, fx, ry + 8, Math.max(8, fw), 18, 9);
+            roundRect(ctx, fx, ry + 10, Math.max(10, fw), 24, 12);
             ctx.fillStyle = N.violet;
             ctx.fill();
           }
-          glow(ctx, bx, ry + 17, 60, N.violet, 0.6);
+          glow(ctx, bx, ry + 22, 80, N.violet, 0.6);
           ctx.beginPath();
-          ctx.arc(bx, ry + 17, 26, 0, Math.PI * 2);
+          ctx.arc(bx, ry + 22, 32, 0, Math.PI * 2);
           ctx.fillStyle = r.unfinished ? rgba(N.ink, 0.1) : N.ink;
           ctx.fill();
-          y += 140;
+          y += 176;
         }
         y += 30;
       }
