@@ -1301,9 +1301,21 @@
     }
   }
   /* Start points: above the mirror on phone (the island sits over the card); desktop's island is to the mirror's left. */
-  .mm-assembly__shard { --ax: var(--fx); --ay: var(--fy); }
+  .mm-assembly__shard { --ax: var(--fx); --ay: min(var(--fy), var(--lift, -240px)); }
   @media (min-width: 1024px) {
     .mm-assembly__shard { --ax: calc(var(--fx) * -1.4 - 100px); --ay: calc(var(--fy) * 0.35 + 80px); }
+  }
+  /* Phone and tablet: the text sits between the island and the mirror, so the shards route round it (never across it):
+     up above the text, out past the left edge, down off screen, then in from the side (--lift and --out are measured). */
+  @media (max-width: 1023.98px) and (prefers-reduced-motion: no-preference) {
+    body:not([data-motion="off"]) .mm-assembly__shard { animation-name: mm-shard-home-round; }
+  }
+  @keyframes mm-shard-home-round {
+    0% { opacity: 0; transform: translate(var(--ax), var(--ay)) rotate(0deg) scale(1.3); }
+    10% { opacity: 1; }
+    38% { transform: translate(var(--out, -120px), var(--lift, -240px)) rotate(calc(var(--r) * 0.4)) scale(1.15); }
+    66% { opacity: 1; transform: translate(var(--out, -120px), 0) rotate(calc(var(--r) * 0.7)) scale(1.05); }
+    100% { opacity: 0; transform: translate(0, 0) rotate(var(--r)) scale(0.35); }
   }
   @keyframes mm-shard-home {
     0% { opacity: 0; transform: translate(var(--ax), var(--ay)) rotate(0deg) scale(1.3); }

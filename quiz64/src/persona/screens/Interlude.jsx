@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { IslandScene, MirrorArch, shapes } from "../../art/index.js";
 import { GeniiLight, Reflect } from "../../system/index.js";
@@ -38,7 +38,30 @@ export function justFinished(filled = []) {
 
 // Where each returning shard starts (px from the mirror), scattered over the island above it: seeded by index so a
 // screenshot is stable. Up to 10 shards fly; the rest arrive with them.
-const SCATTER = [[150, -420], [40, -330], [250, -380], [-10, -250], [200, -290], [110, -470], [290, -260], [70, -210], [230, -440], [0, -380]];
+const SCATTER = [[150, -420], [40, -330], [250, -380], [-10, -270], [200, -300], [110, -470], [290, -280], [70, -260], [230, -440], [0, -380]];
+
+// On phone the chapter's text (Genii's line, kicker, title) sits between the island and the mirror, so the shards must
+// never fly straight down. Each one rises off the island, sweeps out past the left edge above the text, drops down off
+// screen and slides into the mirror from the side. The two waypoints are measured from the live layout: --lift is the
+// highest text line's top minus a margin (relative to the mirror's center), --out is just past the screen's left edge.
+function useFlightPath(air) {
+  useLayoutEffect(() => {
+    const el = air.current;
+    if (!el) return;
+    const place = () => {
+      const o = el.getBoundingClientRect();
+      const copy = el.closest(".mm-interlude__copy");
+      const texts = copy ? copy.querySelectorAll(".mm-interlude__intro, .mm-kicker, .mm-interlude__title, .mm-interlude__sub") : [];
+      let top = Infinity;
+      texts.forEach((t) => { const b = t.getBoundingClientRect(); if (b.height) top = Math.min(top, b.top); });
+      if (Number.isFinite(top)) el.style.setProperty("--lift", `${Math.round(top - o.top - 34)}px`);
+      el.style.setProperty("--out", `${Math.round(-o.left - 48)}px`);
+    };
+    place();
+    window.addEventListener("resize", place);
+    return () => window.removeEventListener("resize", place);
+  }, [air]);
+}
 
 /**
  * The reassembly (round 2): the chapter you just finished comes home. Its shards rise off the island, tumble through the
@@ -50,11 +73,13 @@ function MirrorAssembly({ seed, filled, size }) {
   const fresh = justFinished(filled);
   const flying = Math.min(fresh, SCATTER.length);
   const start = filled.length - fresh;
+  const air = useRef(null);
+  useFlightPath(air);
   return (
     <div className={`mm-assembly${fresh ? " is-returning" : " is-empty"}`} style={{ "--fly": flying }}>
       <MirrorArch seed={seed} filled={filled} fresh={fresh} fog={0} glow={0.7} seams="dark" size={size} />
       {flying ? (
-        <span className="mm-assembly__air" aria-hidden="true">
+        <span ref={air} className="mm-assembly__air" aria-hidden="true">
           {Array.from({ length: flying }, (_, i) => {
             const [x, y] = SCATTER[i];
             const shard = filled[start + i] || filled[filled.length - 1];
