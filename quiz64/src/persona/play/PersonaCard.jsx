@@ -4,7 +4,7 @@ import { S, CHAPTERS } from "../kit.js";
 import { LOBBY_COPY } from "../lobby.js";
 import { DeviceGlyph, FormatGlyph, Sparkle, deviceFor } from "../../art/index.js";
 import { emotionTint } from "../../art/palette.js";
-import { motion as systemMotion } from "../../system/index.js";
+import { motion as systemMotion, tokens } from "../../system/index.js";
 import {
   EXIT_LABEL, EXIT_KEYS, exitOrder, toggleReceipt, receiptsValue, receiptsTally, togglePick,
   initialRank, rankTap, rankReorder, rankMove, rankReady, rankValue, promptSize,
@@ -19,10 +19,14 @@ import { Flip } from "./formats/Flip.jsx";
 import { ghost, burst } from "./flight.js";
 import "./play.css";
 
-// Base beats (ms, Day): the sheet leaves and the next card enters about 200 ms after a tap, so the next prompt is readable
-// about 440 ms after it (5.9). A pick two waits 600 ms so a second thought can cancel it; the last finale card holds
-// 600 ms for the "all panes etched" beat (5.11). Every beat scales with the voice's motion (Dusk slower, Clear quicker).
-export const BEATS = Object.freeze({ exit: 180, reply: 220, settle: 600, finaleEnd: 600 });
+// Base beats (ms, Day; round 2, section 23 ruling 3). Every format holds the picked answer on screen like the reply
+// does: the pick bounces and glows, its shard flies to the mirror, and the card leaves in the last `leave` ms of the
+// hold. A pick two first waits 600 ms so a second thought can cancel it, then holds a shorter beat; the last finale card
+// holds for the "all panes etched" beat (5.11). Every beat scales with the voice's motion (Dusk slower, Clear quicker).
+// A tap anywhere during a hold skips the rest of it (never block a tap).
+export const BEATS = Object.freeze({
+  hold: tokens.beats.hold, reply: tokens.beats.hold + 120, settle: 600, afterSettle: 480, receipt: 760, finaleEnd: 1000, leave: tokens.beats.leave,
+});
 
 const now = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
 const mark = (name) => { try { performance.mark(name); } catch { /* marks are best effort */ } };
@@ -101,6 +105,9 @@ export function PersonaCard({ card, step, voice = "fun", onAnswer, onPick = null
   const [settling, setSettling] = useState(false);
   const [kbdOn, setKbdOn] = useState(false);
   const [sentFrom, setSentFrom] = useState(null);
+  const [leaving, setLeaving] = useState(false);
+  const [torn, setTorn] = useState(false);
+  const leaveTimer = useRef(null);
   const type = card.type;
   const pickTwo = type === "pick_two";
   const receipts = type === "receipts";
@@ -121,12 +128,15 @@ export function PersonaCard({ card, step, voice = "fun", onAnswer, onPick = null
     setRank(initialRank(card));
     setGrabbed(null);
     setSettling(false);
+    setLeaving(false);
+    setTorn(false);
     heading.current?.focus({ preventScroll: true });
     window.scrollTo({ top: 0, behavior: "instant" });
     // A tap answers after a short beat; leaving the card first (Save and leave, a dialog) cancels it.
     return () => {
       clearTimeout(timer.current);
       clearTimeout(settleTimer.current);
+      clearTimeout(leaveTimer.current);
       if (pending.current && typeof window !== "undefined") window.removeEventListener("pointerdown", pending.current, true);
       timer.current = null;
       pending.current = null;
@@ -137,16 +147,18 @@ export function PersonaCard({ card, step, voice = "fun", onAnswer, onPick = null
   const elapsed = () => Math.max(0, Math.round(now() - shownAt.current));
 
   // Hand the answer in. Everything the player sees afterwards is decoration; the value and meta are final here.
-  const commit = (value, meta, { e = null, delay = BEATS.exit } = {}) => {
+  const commit = (value, meta, { e = null, delay = BEATS.hold } = {}) => {
     if (busy || sent.current) return;
     sent.current = true;
     setChosen(value);
     mark("play:answer");
-    onPick?.({ value, origin: originOf(e), card });
+    const el = e && e.currentTarget && e.currentTarget.nodeType === 1 ? e.currentTarget : null;
+    onPick?.({ value, origin: originOf(e), card, el });
     const go = () => {
       if (pending.current !== go) return;
       pending.current = null;
       clearTimeout(timer.current);
+      clearTimeout(leaveTimer.current);
       if (typeof window !== "undefined") window.removeEventListener("pointerdown", go, true);
       onAnswer(value, meta);
     };
@@ -155,7 +167,11 @@ export function PersonaCard({ card, step, voice = "fun", onAnswer, onPick = null
     if (!still && typeof window !== "undefined") window.addEventListener("pointerdown", go, true);
     const wait = finale && step.index === step.size ? Math.max(delay, BEATS.finaleEnd) : delay;
     if (still) go();
-    else timer.current = setTimeout(go, wait * scale());
+    else {
+      // The hold: the pick stays on screen, then the card leaves in the last beat of it.
+      timer.current = setTimeout(go, wait * scale());
+      leaveTimer.current = setTimeout(() => setLeaving(true), Math.max(0, wait - BEATS.leave) * scale());
+    }
   };
   // Never block a tap: a tap while an answer is on its way completes it now.
   const flush = () => { if (pending.current) pending.current(); };
@@ -173,7 +189,7 @@ export function PersonaCard({ card, step, voice = "fun", onAnswer, onPick = null
       if (other) burst(other.getBoundingClientRect(), 8);
     }
     if (type === "reply" && e && e.currentTarget) setSentFrom(e.currentTarget.getBoundingClientRect());
-    commit(i, { ms: elapsed() }, { e, delay: type === "reply" ? BEATS.reply : BEATS.exit });
+    commit(i, { ms: elapsed() }, { e, delay: type === "reply" ? BEATS.reply : BEATS.hold });
   };
 
   const togglePickTwo = (i) => {
@@ -195,7 +211,7 @@ export function PersonaCard({ card, step, voice = "fun", onAnswer, onPick = null
     const ms = elapsed();
     setSettling(true);
     clearTimeout(settleTimer.current);
-    settleTimer.current = setTimeout(() => { setSettling(false); commit([...next], { ms }); }, BEATS.settle);
+    settleTimer.current = setTimeout(() => { setSettling(false); commit([...next], { ms }, { delay: BEATS.afterSettle }); }, BEATS.settle);
   };
   const removeSlot = (k) => {
     if (sent.current) return;
@@ -217,9 +233,10 @@ export function PersonaCard({ card, step, voice = "fun", onAnswer, onPick = null
         { transform: "translateY(0) rotate(0deg)", opacity: 1, clipPath: `inset(0 0 0 0)` },
         { transform: "translateY(4px) rotate(-0.6deg)", opacity: 1, clipPath: `inset(0 0 0 0)`, offset: 0.25 },
         { transform: "translateY(20px) rotate(-1.4deg)", opacity: 0, clipPath: `inset(0 0 ${Math.round(h * 0.04)}px 0)` },
-      ], { className: "is-tearing" });
+      ], { className: "is-tearing", duration: BEATS.receipt * 0.7 * scale() });
+      setTorn(true);
     }
-    commit(receiptsValue(picks), { ms: elapsed() }, { e });
+    commit(receiptsValue(picks), { ms: elapsed() }, { e, delay: BEATS.receipt });
   };
 
   const exit = (id, e) => { if (!locked) commit(id, { ms: elapsed() }, { e }); };
@@ -316,7 +333,7 @@ export function PersonaCard({ card, step, voice = "fun", onAnswer, onPick = null
   return (
     <article
       ref={root}
-      className={`pc${chosen !== null ? " is-answered" : ""}${kbdOn ? " has-kbd" : ""}`}
+      className={`pc${chosen !== null ? " is-answered" : ""}${leaving ? " is-leaving" : ""}${torn ? " is-torn" : ""}${kbdOn ? " has-kbd" : ""}`}
       data-card-type={type}
       data-phase={step.phase}
       data-chapter={typeof step.chapter === "number" ? step.chapter : chapter}

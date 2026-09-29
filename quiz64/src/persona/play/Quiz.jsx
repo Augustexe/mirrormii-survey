@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { MotionConfigContext, useReducedMotion } from "motion/react";
-import { GeniiLight, geniiEvents, useTheme } from "../../system/index.js";
+import { GeniiLight, geniiEvents, useTheme, tokens } from "../../system/index.js";
 import { MirrorArch, IslandScene, DeviceGlyph, deviceFor } from "../../art/index.js";
 import { hostLine, cardVoice, LOBBY_DEFAULTS } from "../lobby.js";
 import { reactionFor, unit } from "../reactions.js";
 import { PersonaCard } from "./PersonaCard.jsx";
 import { ShardRail } from "./ShardRail.jsx";
 import { railGroups, filledShards } from "./rail-model.js";
-import { flyShard } from "./flight.js";
+import { flyShard, catchShard } from "./flight.js";
 import "./play.css";
 
 // Reactions need the previous answer and whether the previous card showed one. The quiz view unmounts at every
@@ -102,14 +102,28 @@ export function PersonaQuizView({ step, setup, onAnswer, onMap, busy, error, car
     return () => { live = false; };
   }, [cardKey, still]);
 
-  const onPick = ({ value, origin }) => {
+  // The answer's shard (5.9, round 2 Codex fix 2): it lifts off the picked answer's own shard mark (or the tap) just
+  // after the pick bounce, flies into the mirror at the head of the rail (desktop: the niche mirror), and the mirror
+  // flashes as it lands, while the pick holds on screen. The rail and mirror then gain the shard when the card leaves.
+  const onPick = ({ value, origin, el }) => {
     rememberAnswer(seed, step, card, value);
     geniiEvents.emit("noted");
-    if (still || !origin || typeof document === "undefined") return;
+    if (still || typeof document === "undefined") return;
+    const mark = el && el.querySelector ? el.querySelector(".pc-tile__shard") || el.querySelector(".pc-tile__lead") : null;
+    let from = origin;
+    if (mark) { const r = mark.getBoundingClientRect(); if (r.width) from = { x: r.left + r.width / 2, y: r.top + r.height / 2 }; }
+    if (!from) return;
     const wide = window.matchMedia && window.matchMedia("(min-width: 1024px)").matches;
-    const target = wide && nicheRef.current ? nicheRef.current.querySelector(".play-niche__arch") : document.querySelector('.shard-rail [data-rail-slot="current"]');
+    const target = wide && nicheRef.current
+      ? nicheRef.current.querySelector(".play-niche__arch")
+      : document.querySelector(".shard-rail .rail-mirror") || document.querySelector('.shard-rail [data-rail-slot="current"]');
     if (!target) return;
-    flyShard({ from: origin, to: target, color: tintOf(step), index: step.resolved, trail: theme === "day" });
+    const slot = document.querySelector('.shard-rail [data-rail-slot="current"]');
+    flyShard({
+      from, to: target, color: tintOf(step), index: step.resolved, trail: theme !== "clear", delay: tokens.beats.launch,
+      onLaunch: () => { if (mark) mark.classList.add("is-flown"); },
+      onLand: () => { catchShard(target); if (slot && slot !== target) catchShard(slot, "is-caught-slot"); },
+    });
   };
 
   return (

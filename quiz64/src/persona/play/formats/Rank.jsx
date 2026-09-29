@@ -21,6 +21,7 @@ function RankItem({ i, pos, text, placed, grabbed, locked, onTap, onGrab, onKeyM
       className={`pc-rank__item${grabbed ? " is-grabbed" : ""}${placed ? " is-placed" : ""}${cue ? " has-cue" : ""}`}
       whileDrag={{ scale: 1.02, y: -8, boxShadow: "var(--e3)", zIndex: 3 }}
       transition={{ duration: 0.2 }}
+      style={{ "--rank-pos": pos }}
       data-index={i}
     >
       <button type="button" className="pc-rank__tap" disabled={locked} onClick={() => onTap(i)} aria-label={placed ? `${text}, placed ${pos + 1}` : text}>

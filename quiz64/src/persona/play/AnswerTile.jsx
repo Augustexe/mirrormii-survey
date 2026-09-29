@@ -33,6 +33,7 @@ export function AnswerTile({ index = 0, selected = false, disabled = false, vari
       <span className="pc-tile__text">{children}</span>
       {kbd ? <kbd className="pc-kbd" aria-hidden="true">{kbd}</kbd> : null}
       <Check className="pc-tile__check" size={18} strokeWidth={2.5} aria-hidden="true" />
+      <span className="pc-tile__fx" aria-hidden="true" />
     </button>
   );
 }
