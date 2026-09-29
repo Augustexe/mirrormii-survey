@@ -307,7 +307,7 @@ function pearlMaterial(envMap) {
       float pF = clamp(dot(normal, normalize(vViewPosition)), 0.0, 1.0);
       vec3 pR = reflect(-normalize(vViewPosition), normal);
       totalEmissiveRadiance += vec3(0.86, 0.86, 0.98) * pow(pF, 2.0) * 0.32 * (0.75 + 0.25 * smoothstep(-0.6, 0.6, dot(normal, normalize(vec3(-0.5, 0.6, 0.6)))));
-      totalEmissiveRadiance += vec3(0.05, 0.25, 1.0) * pow(1.0 - pF, 1.5) * 1.1;
+      totalEmissiveRadiance += vec3(0.05, 0.25, 1.0) * pow(1.0 - pF, 1.3) * 1.5;
       diffuseColor.rgb *= mix(vec3(1.0), vec3(0.35, 0.5, 1.0), pow(1.0 - pF, 1.2));
       totalEmissiveRadiance += vec3(1.0) * smoothstep(0.93, 0.96, max(dot(pR, normalize(vec3(-0.45, 0.6, 0.66))), 0.0)) * 3.0;
       totalEmissiveRadiance += vec3(1.0) * pow(1.0 - pF, 10.0) * 0.8;

@@ -79,11 +79,11 @@ export const BODY = Object.freeze({
   tilt: 0.1, // radians, lifts the right shoulder
   tip: Object.freeze(normalize([0.5, 0.866, 0])),
   tipA: 0.1, tipK1: 6,
-  tipB: 0.15, tipK2: 40,
-  neckA: 0.11, neckK: 300, // a thin pulled neck that carries the bead
+  tipB: 0.1, tipK2: 40,
+  neckA: 0.035, neckK: 300, // a slight pinch under the bead, never a stalk
   base: 0.035, // the lower half spreads a little, like a settled jelly
   center: Object.freeze([0, -0.06, 0]),
-  bead: 0.22, // bead radius
+  bead: 0.17, // bead radius: about 17% of body width, small and hugging the tip like the canon
 });
 
 function normalize(v) {
@@ -110,7 +110,7 @@ export function radiusAt(d, drop, neck = drop) {
 /** Where the bead sits (body space) for a teardrop weight. */
 export function beadCenter(drop, neck = drop) {
   const r = radiusAt(BODY.tip, drop, neck);
-  const out = r + BODY.bead * 0.72;
+  const out = r + BODY.bead * 0.42; // sunk into the tip so the bead hugs it
   return [BODY.tip[0] * out, BODY.tip[1] * out, BODY.tip[2] * out];
 }
 
