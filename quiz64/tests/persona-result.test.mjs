@@ -7,6 +7,7 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { createServer } from "vite";
 import { fileURLToPath } from "node:url";
+import { STATS, endOf } from "../src/persona/stats.js";
 
 const visible = (html) => html.replace(/<[^>]*>/g, " ").replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, "\"").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/\s+/g, " ");
 const WORDS = /\b(?:evidence|axis|axes|sealed|score|scores)\b/i;
@@ -138,14 +139,20 @@ test("the screens render in order from a synthetic result, with only the first o
 
   const map = slideHtml(html, "map");
   assert.equal((map.match(/class="rv-pair"/g) || []).length, 6, "six labelled opposing pairs");
-  for (const a of AXES) { assert.ok(map.includes(`>${a.plus}<`), a.plus); assert.ok(map.includes(`>${a.minus}<`), a.minus); }
-  assert.ok(visible(map).includes("We over Me.") && visible(map).includes("Right between Own and Classic."), "each pair reads as a sentence");
+  // G6: the pairs read as game stats (src/persona/stats.js); the internal pole names never show.
+  for (const a of AXES) {
+    assert.ok(map.includes(`>${endOf(a.plus)}<`), endOf(a.plus));
+    assert.ok(map.includes(`>${endOf(a.minus)}<`), endOf(a.minus));
+    assert.ok(map.includes(STATS[a.id].stat), STATS[a.id].stat);
+    assert.ok(!map.includes(`>${a.plus}<`) && !map.includes(`>${a.minus}<`), `no bare ${a.plus} or ${a.minus}`);
+  }
+  assert.ok(visible(map).includes("Crew over Solo.") && visible(map).includes("Right between Old School and Own Lane."), "each stat reads as a sentence");
   assert.doesNotMatch(visible(map), /\d/, "no numbers on the map");
 
   const knows = visible(slideHtml(html, "knows"));
   assert.ok(knows.includes("What Genii knows best"));
   assert.ok(knows.includes("You hold the person first."), "the clearest lean first");
-  assert.ok(knows.includes("Crystal clear") || knows.includes("Clear"), "a clarity cue in words");
+  assert.ok(/Strong signal|Clear signal|Some signal/.test(knows), "a clarity cue in words");
 
   const traits = visible(slideHtml(html, "traits"));
   for (const i of [1, 2, 3]) assert.ok(traits.includes(`NEW-LINE-${i}`));
@@ -154,7 +161,7 @@ test("the screens render in order from a synthetic result, with only the first o
   assert.ok(stings.includes("OLD-STING-PEOPLE") && stings.includes("OLD-STING-LIFE") && stings.includes("OLD-TAGSTING-1") && stings.includes("Only you see this"));
 
   const calls = visible(slideHtml(html, "calls"));
-  assert.ok(calls.includes("4") && calls.includes("of 6") && calls.includes("Called it") && calls.includes("Missed") && calls.includes("Passed"));
+  assert.ok(calls.includes("4") && calls.includes("of 6") && calls.includes("Called it") && calls.includes("Surprised Genii") && calls.includes("Genii passed"));
 
   const share = slideHtml(html, "share");
   const card = share.slice(share.indexOf("data-card"), share.indexOf("</figure>"));
@@ -163,7 +170,7 @@ test("the screens render in order from a synthetic result, with only the first o
   assert.ok(visible(share).includes("Do you really know me?"));
 
   const app = visible(slideHtml(html, "app"));
-  for (const t of ["Genii has only met you on paper.", "Get MirrorMii", "Do you really know me?", "How Genii read you", "Your data"]) assert.ok(app.includes(t), t);
+  for (const t of ["Your real day powers the game.", "On the App Store", "Get MirrorMii", "Do you really know me?", "How Genii read you", "Your data"]) assert.ok(app.includes(t), t);
   for (const t of ["Start over", "Delete my data", "Download my data"]) assert.ok(!app.includes(t), `${t} waits behind Your data`);
   const { DataSheet } = await load("/src/persona/reveal/Sheets.jsx");
   const data = visible(renderToStaticMarkup(React.createElement(DataSheet, { storageOK: true, onDownload() {}, onRestart() {}, onDelete() {} })));

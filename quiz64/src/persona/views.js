@@ -4,6 +4,7 @@
 import { S, LIB, KIT } from "./kit.js";
 import { resultFor } from "./session.js";
 import { buildStories, voiceOf } from "./stories/story-data.js";
+import { sceneTitle } from "./scene-titles.js";
 
 // The share card: both archetype names, trait names with their heart lines, the invite. Never stings or answers.
 export function shareProjection(result, stories = null) {
@@ -42,7 +43,8 @@ export function mirrorFor(state) {
 
 // A locked guess, as the calls screen shows it: what the card tested (its main lean, by the library's topic name), and
 // for a hit the pole Genii guessed on that lean. The guess comes from the frozen predictions, never from the answer.
-// (Card fingerprints are authoring fields the web build strips, so the topic is the lean, not the card's scene.)
+// The title is the card's scene in a few words: kit-strip.mjs derives it at build time before the fingerprint is
+// stripped; node (the full kit) derives the same words from the fingerprint.
 export function callInfo(state, id) {
   const card = KIT.finale.find((c) => c.id === id);
   if (!card) return null;
@@ -50,7 +52,7 @@ export function callInfo(state, id) {
   const meta = axis ? LIB.axes.find((a) => a.id === axis) : null;
   const frozen = state && state.frozen && Array.isArray(state.frozen.predictions) ? state.frozen.predictions.find((p) => p.id === id) : null;
   const pole = frozen && meta && frozen.side ? (frozen.side > 0 ? meta.plus : meta.minus) : null;
-  return { topic: (meta && meta.topic) || "", pole, axis: axis || null };
+  return { topic: (meta && meta.topic) || "", title: card.title || sceneTitle(card.fp) || "", pole, axis: axis || null };
 }
 
 export const chapterOf = (id) => {

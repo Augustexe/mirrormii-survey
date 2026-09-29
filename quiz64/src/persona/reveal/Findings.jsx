@@ -4,7 +4,7 @@
 // glint); a flex finding is a gem split in two colors. The clearest finding opens as a large crystal card. No numbers:
 // the cue is the gem and a word.
 import React, { useId } from "react";
-import { UI_COPY } from "../stories/story-data.js";
+import { StatGlyph } from "./StatGlyph.jsx";
 
 const TAU = Math.PI * 2;
 const pt = (r, a) => [50 + r * Math.cos(a), 50 + r * Math.sin(a)];
@@ -21,12 +21,12 @@ const GIRDLE = Array.from({ length: N }, (_, k) => [
 ]).flat();
 const OUTLINE = poly(Array.from({ length: N }, (_, k) => pt(46, at(k))));
 
-export function ClarityGem({ level = 1, size = 40, flex = false, className }) {
+export function ClarityGem({ level = 1, size = 40, flex = false, className, art = "clarity-gem" }) {
   const rid = useId().replace(/:/g, "");
   const lit = (ring) => flex || level >= ring;
   const u = (k) => `url(#${rid}-${k})`;
   return (
-    <svg className={`rv-gem2 ${className || ""}`} data-art="clarity-gem" data-level={flex ? "flex" : level} viewBox="0 0 100 100" width={size} height={size} aria-hidden="true" focusable="false" overflow="visible">
+    <svg className={`rv-gem2 ${className || ""}`} data-art={art} data-level={flex ? "flex" : level} viewBox="0 0 100 100" width={size} height={size} aria-hidden="true" focusable="false" overflow="visible">
       <defs>
         <linearGradient id={`${rid}-a`} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0" stopColor="var(--rv-gem-hi, #FFFFFF)" />
@@ -72,23 +72,35 @@ export function ClarityGem({ level = 1, size = 40, flex = false, className }) {
   );
 }
 
+function Head({ f }) {
+  return (
+    <span className="rv-find__stat">
+      <StatGlyph axis={f.key} size={f.top ? 16 : 14} />
+      <span>{f.stat}</span>
+    </span>
+  );
+}
+
+// Round 3 (G6): the stat name and the end you lean to lead each finding (src/persona/stats.js), the lines sit on dark
+// glass for contrast, the tier words say how strong the signal is (never certainty), and one legend under the list
+// says how to read the gems, so the rows carry no small labels of their own.
 export function KnowsScreen({ s }) {
   const [top, ...rest] = s.findings;
+  const legend = s.legend || [];
   return (
     <div className="rv-body rv-body--knows">
       <p className="rv-kicker rv-in">{s.kicker}</p>
       <h2 className="rv-title rv-in" data-focus tabIndex="-1">{s.title}</h2>
       <ol className="rv-finds">
         {top ? (
-          <li className="rv-find rv-find--top" style={{ "--i": 0 }}>
-            <span className="rv-find__gem"><ClarityGem level={top.level} flex={top.kind === "flex"} size={78} /></span>
+          <li className="rv-find rv-find--top" style={{ "--i": 0 }} data-level={top.kind === "flex" ? "flex" : top.level}>
+            <span className="rv-find__gem"><ClarityGem level={top.level} flex={top.kind === "flex"} size={72} /></span>
             <span className="rv-find__head">
-              <span className="rv-find__badge">{s.surest}</span>
-              <span className="rv-find__topic">{top.topic}</span>
-              <strong className="rv-find__lead">{top.lead}<i> {top.kind === "flex" ? "" : `${UI_COPY.mapOver} ${top.other}`}</i></strong>
+              <Head f={{ ...top, top: true }} />
+              <strong className="rv-find__lead">{top.leadEnd || top.lead}</strong>
+              <span className="rv-find__tier">{top.tier}</span>
             </span>
             <span className="rv-find__line">{top.line}</span>
-            <span className="rv-find__tier">{top.tier}</span>
             <span className="rv-find__sweep" aria-hidden="true" />
           </li>
         ) : null}
@@ -96,13 +108,21 @@ export function KnowsScreen({ s }) {
           <li className="rv-find" key={f.key} style={{ "--i": i + 1 }} data-level={f.kind === "flex" ? "flex" : f.level}>
             <span className="rv-find__gem"><ClarityGem level={f.level} flex={f.kind === "flex"} size={34} /></span>
             <span className="rv-find__head">
-              <span className="rv-find__topic">{f.topic}</span>
-              <span className="rv-find__tier">{f.tier}</span>
+              <Head f={f} />
+              <span className="rv-find__end">{f.leadEnd || f.lead}</span>
+              <span className="sr-only">, {f.tier}</span>
             </span>
             <span className="rv-find__line">{f.short || f.line}</span>
           </li>
         ))}
       </ol>
+      {legend.length ? (
+        <ul className="rv-legend rv-in" aria-label={s.legendLabel}>
+          {legend.map((g) => (
+            <li key={g.key}><ClarityGem level={g.level} flex={g.flex} size={18} art="clarity-key" />{g.label}</li>
+          ))}
+        </ul>
+      ) : null}
     </div>
   );
 }

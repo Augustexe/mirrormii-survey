@@ -475,9 +475,10 @@
   }
   .rv-names__sub {
     margin: 0;
-    font: italic var(--type-genii-weight) 16px / 22px var(--font-display);
+    font: italic var(--type-genii-weight) 19px / 25px var(--font-display);
     font-variation-settings: var(--font-display-italic);
-    color: var(--n-ink-2);
+    color: var(--n-ink);
+    text-shadow: 0 0 18px color-mix(in srgb, var(--n-violet) 60%, transparent);
   }
 
   /* ---------------------------------------------------------------- story 3: the read */
@@ -519,39 +520,62 @@
   .rv-slide.is-current .rv-tablet { animation: rv-rise var(--d-base) var(--e-out) calc(var(--i) * var(--d-base) / 2) both; }
   .rv-slide.is-current .rv-tablet__sweep { animation: rv-sweep calc(var(--d-scene) * 0.86) var(--e-in-out) calc(var(--d-base) + var(--i) * var(--d-base) / 2) both; }
 
-  /* ---------------------------------------------------------------- story 4: the six pairs */
+  /* ---------------------------------------------------------------- story 4: the six stats (G6) */
 
-  .rv-body--map { justify-content: flex-start; gap: var(--s-2); }
+  .rv-body--map { justify-content: flex-start; gap: 6px; }
   .rv-body--map .rv-title { color: var(--n-ink); }
-  .rv-pairs { display: grid; gap: var(--s-5); inline-size: 100%; max-inline-size: 380px; margin-top: var(--s-4); text-align: left; }
-  .rv-pairs__group { display: grid; gap: var(--s-2); }
+  .rv-map__sub { color: var(--n-ink-2); }
+  .rv-pairs { display: grid; gap: 30px; inline-size: 100%; max-inline-size: 380px; margin-top: var(--s-5); text-align: left; }
+  .rv-pairs__group { display: grid; gap: 14px; }
   .rv-pairs__label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin: 0;
     font: var(--type-kicker-weight) var(--rv-micro) var(--font-text);
     letter-spacing: var(--type-kicker-track);
     text-transform: uppercase;
-    color: var(--n-ink-3);
-  }
-  .rv-pairs ul { display: grid; gap: 14px; margin: 0; padding: 0; list-style: none; }
-  .rv-pair { display: grid; gap: 7px; }
-  .rv-pair__poles { display: flex; justify-content: space-between; align-items: flex-end; min-block-size: 30px; }
-  /* R3 (Codex): both ends readable so the pair compares at a glance; the lead stays larger and lit. */
-  .rv-pair__poles b {
-    font: 700 13px / 17px var(--font-text);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
     color: var(--n-ink-2);
   }
-  .rv-pair__poles b.is-lead {
-    font: 600 23px / 28px var(--font-display);
-    font-variation-settings: var(--font-display-upright);
-    letter-spacing: -0.01em;
-    text-transform: none;
-    color: var(--n-ink);
-    text-shadow: 0 0 18px color-mix(in srgb, var(--n-violet) 70%, transparent);
+  .rv-pairs__label::after { content: ""; flex: 1; block-size: 1px; background: linear-gradient(90deg, color-mix(in srgb, var(--n-ink) 30%, transparent), transparent); }
+  .rv-pairs ul { display: grid; gap: 24px; margin: 0; padding: 0; list-style: none; }
+  .rv-pair { display: grid; gap: 8px; }
+  /* Both ends the same size and weight; the end you lean to is lit on a glass chip, the other stays readable. */
+  .rv-pair__poles { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 6px; min-block-size: 30px; }
+  .rv-pair__poles b {
+    justify-self: start;
+    white-space: nowrap;
+    padding: 4px 0;
+    font: 650 17px / 21px var(--font-text);
+    letter-spacing: 0;
+    color: var(--n-ink-2);
   }
-  .rv-pair[data-state="flex"] .rv-pair__poles b { color: var(--n-ink-2); }
-  .rv-pair__rod { position: relative; display: block; block-size: 18px; }
+  .rv-pair__poles b:last-child { justify-self: end; text-align: right; }
+  .rv-pair__poles b.is-lead {
+    padding: 4px 11px;
+    border-radius: var(--r-pill);
+    color: var(--n-900);
+    background: linear-gradient(180deg, var(--n-ink), color-mix(in srgb, var(--n-ink) 82%, var(--n-violet)));
+    box-shadow: 0 0 18px color-mix(in srgb, var(--n-violet) 75%, transparent), inset 0 -1px 0 color-mix(in srgb, var(--n-violet) 40%, transparent);
+  }
+  .rv-pair__stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font: 750 11px / 14px var(--font-text);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--n-violet);
+    white-space: nowrap;
+  }
+  .rv-pair__stat .rv-statglyph { flex: none; }
+  .rv-pair[data-state="flex"] .rv-pair__poles b { color: var(--n-ink); }
+  .rv-pair__rod { position: relative; display: block; block-size: 12px; }
+  .rv-pair__ticks {
+    inset: 3px 6%;
+    background: repeating-linear-gradient(90deg, color-mix(in srgb, var(--n-ink) 22%, transparent) 0 1px, transparent 1px 12.5%);
+    opacity: 0.8;
+  }
   .rv-pair__rod > i { position: absolute; display: block; }
   .rv-pair__glass {
     inset: 0;
@@ -562,8 +586,8 @@
     box-shadow: inset 0 1px 0 color-mix(in srgb, var(--n-ink) 50%, transparent), inset 0 -3px 6px color-mix(in srgb, var(--n-900) 55%, transparent), 0 10px 18px -12px color-mix(in srgb, var(--n-900) 90%, transparent);
   }
   .rv-pair__fill {
-    top: 4px;
-    bottom: 4px;
+    top: 2px;
+    bottom: 2px;
     left: var(--from);
     right: calc(100% - var(--to));
     border-radius: var(--r-pill);
@@ -577,14 +601,14 @@
   .rv-pair__bead {
     left: var(--pos);
     top: 50%;
-    inline-size: 28px;
-    block-size: 28px;
+    inline-size: 22px;
+    block-size: 22px;
     border-radius: 50%;
     transform: translate(-50%, -50%);
     background: radial-gradient(circle at 34% 30%, var(--n-ink) 0 12%, var(--n-violet) 46%, var(--c-violet-strong) 82%, var(--n-700));
     box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--n-ink) 85%, transparent), 0 0 22px 5px color-mix(in srgb, var(--n-violet) 60%, transparent), 0 6px 12px color-mix(in srgb, var(--n-900) 70%, transparent);
   }
-  .rv-pair__bead > i { position: absolute; left: 6px; top: 4px; inline-size: 9px; block-size: 6px; border-radius: 50%; background: var(--n-ink); opacity: 0.85; filter: blur(0.6px); }
+  .rv-pair__bead > i { position: absolute; left: 5px; top: 3px; inline-size: 7px; block-size: 5px; border-radius: 50%; background: var(--n-ink); opacity: 0.85; filter: blur(0.6px); }
   .rv-pair[data-state="flex"] .rv-pair__bead {
     background: radial-gradient(circle at 34% 30%, var(--n-ink) 0 10%, color-mix(in srgb, var(--n-violet) 70%, transparent) 50%, transparent 72%);
     box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--n-ink) 80%, transparent), 0 0 0 7px color-mix(in srgb, var(--n-violet) 26%, transparent), 0 0 0 12px color-mix(in srgb, var(--n-violet) 12%, transparent);
@@ -608,8 +632,14 @@
     gap: var(--s-1);
   }
   .rv-body--knows .rv-kicker { color: var(--n-ink); }
-  .rv-body--knows .rv-title { font: var(--type-display-weight) 26px / 31px var(--font-display); color: var(--n-ink); max-inline-size: 15em; }
-  .rv-finds { display: grid; gap: 8px; inline-size: 100%; max-inline-size: 390px; margin: var(--s-3) 0 0; padding: 0; list-style: none; text-align: left; }
+  .rv-body--knows .rv-title { font: var(--type-display-weight) 25px / 30px var(--font-display); color: var(--n-ink); max-inline-size: 15em; }
+  /* G6: the findings sit on dark glass (contrast over the bright deep light), the backdrop glow is calmed behind them. */
+  .rv-stage[data-current="knows"] .rv-bg__deep {
+    background:
+      radial-gradient(70% 34% at 50% 8%, color-mix(in srgb, var(--n-ink) 16%, transparent), transparent 70%),
+      linear-gradient(180deg, color-mix(in srgb, var(--c-violet-strong) 88%, var(--n-900)), color-mix(in srgb, var(--n-800) 70%, var(--c-violet-strong)) 70%);
+  }
+  .rv-finds { display: grid; gap: 6px; inline-size: 100%; max-inline-size: 390px; margin: 6px 0 0; padding: 0; list-style: none; text-align: left; }
   .rv-find {
     position: relative;
     display: grid;
@@ -617,54 +647,59 @@
     column-gap: 12px;
     row-gap: 1px;
     align-items: start;
-    padding: 10px 14px 11px 12px;
-    border-radius: 20px;
-    border: 1px solid color-mix(in srgb, var(--n-ink) 20%, transparent);
-    /* R3 (Codex): white type on the bright deep screen needs a darker glass under it. */
-    background: linear-gradient(160deg, color-mix(in srgb, var(--n-ink) 9%, transparent), color-mix(in srgb, var(--n-900) 38%, transparent));
-    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--n-ink) 22%, transparent);
+    padding: 8px 14px 9px 12px;
+    border-radius: 18px;
+    border: 1px solid color-mix(in srgb, var(--n-ink) 18%, transparent);
+    background: color-mix(in srgb, var(--n-900) 58%, transparent);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--n-ink) 16%, transparent);
     overflow: hidden;
   }
-  .rv-find__gem { grid-row: 1 / span 2; display: block; filter: drop-shadow(0 4px 8px color-mix(in srgb, var(--n-900) 45%, transparent)); }
+  .rv-find__gem { grid-row: 1 / span 2; display: block; align-self: center; filter: drop-shadow(0 4px 8px color-mix(in srgb, var(--n-900) 45%, transparent)); }
   .rv-find__gem svg { display: block; }
-  .rv-find__head { display: flex; justify-content: space-between; align-items: baseline; gap: var(--s-2); min-inline-size: 0; }
-  .rv-find__topic {
-    font: 750 10.5px / 14px var(--font-text);
-    letter-spacing: 0.12em;
+  .rv-find__head { display: flex; align-items: baseline; gap: 8px; min-inline-size: 0; }
+  .rv-find__stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    flex: none;
+    font: 750 11px / 14px var(--font-text);
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: color-mix(in srgb, var(--n-ink) 78%, transparent);
+    color: var(--n-violet);
   }
-  .rv-find__tier { flex: none; font: 650 11px / 14px var(--font-text); color: color-mix(in srgb, var(--n-ink) 70%, transparent); }
-  .rv-find[data-level="3"] .rv-find__tier { color: var(--n-ink); }
-  .rv-find__line { grid-column: 2; font: 560 15px / 20px var(--font-display); font-variation-settings: var(--font-display-upright); color: var(--n-ink); text-wrap: pretty; }
-  .rv-find[data-level="1"] .rv-find__line, .rv-find[data-level="flex"] .rv-find__line { color: color-mix(in srgb, var(--n-ink) 86%, transparent); }
+  .rv-find__stat .rv-statglyph { align-self: center; }
+  .rv-find__end { font: 700 13px / 16px var(--font-text); color: var(--n-ink); }
+  .rv-find__line { grid-column: 2; font: 560 15.5px / 20px var(--font-display); font-variation-settings: var(--font-display-upright); color: var(--n-ink); text-wrap: pretty; }
+  .rv-find[data-level="1"] .rv-find__line, .rv-find[data-level="flex"] .rv-find__line { color: color-mix(in srgb, var(--n-ink) 90%, transparent); }
   .rv-find--top {
-    grid-template-columns: 78px 1fr;
+    grid-template-columns: 60px 1fr;
     column-gap: 14px;
-    padding: 16px 16px 16px 14px;
+    padding: 14px 16px 14px 14px;
     border-radius: 28px;
-    border-color: color-mix(in srgb, var(--n-ink) 55%, transparent);
+    border-color: color-mix(in srgb, var(--n-ink) 45%, transparent);
     background:
-      radial-gradient(90% 120% at 0% 0%, color-mix(in srgb, var(--n-ink) 24%, transparent), transparent 60%),
-      linear-gradient(150deg, color-mix(in srgb, var(--n-ink) 12%, transparent), color-mix(in srgb, var(--n-900) 42%, transparent));
-    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--n-ink) 60%, transparent), 0 24px 44px -24px color-mix(in srgb, var(--n-900) 85%, transparent);
+      radial-gradient(90% 120% at 0% 0%, color-mix(in srgb, var(--n-violet) 30%, transparent), transparent 62%),
+      color-mix(in srgb, var(--n-900) 62%, transparent);
+    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--n-ink) 50%, transparent), 0 0 32px -8px color-mix(in srgb, var(--n-violet) 70%, transparent), 0 24px 44px -24px color-mix(in srgb, var(--n-900) 85%, transparent);
   }
-  .rv-find--top .rv-find__gem { grid-row: 1; align-self: center; }
-  .rv-find--top .rv-find__head { flex-direction: column; align-items: flex-start; justify-content: center; gap: 3px; align-self: center; }
-  .rv-find__badge {
+  .rv-find--top .rv-find__gem { grid-row: 1; }
+  .rv-find--top .rv-find__head { flex-direction: column; align-items: flex-start; justify-content: center; gap: 4px; align-self: center; }
+  .rv-find__lead { font: 600 30px / 32px var(--font-display); font-variation-settings: var(--font-display-upright); letter-spacing: -0.01em; color: var(--n-ink); text-shadow: 0 0 22px color-mix(in srgb, var(--n-violet) 70%, transparent); }
+  .rv-find__tier {
     display: inline-block;
     padding: 3px 9px;
     border-radius: var(--r-pill);
     background: var(--n-ink);
-    color: var(--c-violet-strong); /* the night deck swaps --c-violet-text to light violet; this pill is light */
-    font: 800 10px / 13px var(--font-text);
-    letter-spacing: 0.14em;
+    color: var(--c-violet-strong);
+    font: 800 10.5px / 13px var(--font-text);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
   }
-  .rv-find__lead { font: 600 27px / 30px var(--font-display); font-variation-settings: var(--font-display-upright); color: var(--n-ink); }
-  .rv-find__lead i { font: italic 420 16px / 20px var(--font-display); font-variation-settings: var(--font-display-italic); color: color-mix(in srgb, var(--n-ink) 80%, transparent); }
-  .rv-find--top .rv-find__line { grid-column: 1 / -1; margin-top: 12px; font-size: 18px; line-height: 24px; }
-  .rv-find--top .rv-find__tier { position: absolute; top: 14px; right: 16px; color: var(--n-ink); }
+  .rv-find--top .rv-find__line { grid-column: 1 / -1; margin-top: 10px; font-size: 18px; line-height: 23px; }
+  .rv-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 14px; margin: 4px 0 0; padding: 0; list-style: none; }
+  .rv-legend li { display: inline-flex; align-items: center; gap: 5px; font: 650 12px / 16px var(--font-text); color: var(--n-ink); }
   .rv-find__sweep {
     position: absolute;
     inset: 0;
@@ -681,6 +716,7 @@
   .rv-slide.is-current .rv-gem2__glint { transform-origin: 30px 28px; transform-box: view-box; animation: rv-glint var(--d-loop-shimmer, 4s) var(--e-in-out) var(--d-scene) infinite; }
 
   /* ---------------------------------------------------------------- story 6: room by room */
+  .rv-roomrow__end { padding: 2px 8px; border-radius: var(--r-pill); font: 700 11.5px / 15px var(--font-text); color: var(--c-on-deep); background: var(--g-deep); white-space: nowrap; }
 
   .rv-body--rooms { justify-content: flex-start; gap: var(--s-2); }
   .rv-body--rooms .rv-title { font: var(--type-display-weight) 28px / 33px var(--font-display); max-inline-size: 12em; }
@@ -904,8 +940,8 @@
   .rv-card {
     position: relative;
     block-size: 100%;
-    max-block-size: 560px;
-    max-inline-size: 84%;
+    max-block-size: 470px;
+    max-inline-size: 70%;
     aspect-ratio: 9 / 16;
     margin: 0;
     overflow: hidden;
@@ -913,7 +949,7 @@
     background: var(--n-900);
     box-shadow: 0 0 0 1px color-mix(in srgb, var(--c-surface-solid) 60%, transparent), var(--e3);
   }
-  .rv-card[data-format="post"] { aspect-ratio: 4 / 5; block-size: auto; inline-size: 84%; }
+  .rv-card[data-format="post"] { aspect-ratio: 4 / 5; block-size: auto; inline-size: 72%; }
   .rv-card canvas { display: block; inline-size: 100%; block-size: 100%; }
   .rv-card::after {
     content: "";
@@ -957,7 +993,8 @@
     cursor: pointer;
   }
   .rv-seg button.is-on { background: var(--c-surface-solid); color: var(--c-ink); box-shadow: var(--e1); }
-  .rv-body--share .rv-sub { font-size: 15px; }
+  .rv-body--share .rv-sub { font-size: 15px; line-height: 20px; margin-top: -4px; }
+  .rv-body--share .rv-cta--deep { min-block-size: 52px; box-shadow: inset 0 1px 0 color-mix(in srgb, var(--c-on-deep) 35%, transparent), 0 0 0 4px color-mix(in srgb, var(--c-violet) 18%, transparent), var(--e2); }
   .rv-actions { display: flex; justify-content: center; gap: var(--s-2); }
   /* Share image and Copy link as real pills right under the card: the card is the thing to send. */
   .rv-pillbtn {
@@ -971,7 +1008,7 @@
   }
   .rv-pillbtn--strong { background: var(--c-surface-solid); border-color: color-mix(in srgb, var(--c-violet-text) 55%, transparent); box-shadow: var(--e2); }
   .rv-pillbtn:disabled { opacity: 0.6; }
-  .rv-opposite { font-size: 14px; line-height: 19px; color: var(--c-ink-3); }
+  .rv-opposite { font-size: 14px; line-height: 19px; color: var(--c-ink-2); max-inline-size: 34ch; }
 
   /* ---------------------------------------------------------------- story 9: the app */
 
@@ -1107,46 +1144,113 @@
   .rv-charm--hero .rv-charm__private { color: color-mix(in srgb, var(--c-on-deep) 75%, transparent); }
   .rv-charm--hero .rv-charm__glyph { background: color-mix(in srgb, var(--c-on-deep) 92%, transparent); }
 
-  /* ---------------------------------------------------------------- story 10: Genii's calls */
+  /* ---------------------------------------------------------------- story 10: Genii's calls (G6) */
+  /* Genii beside the one number, the verdict line, then eight panes of glass in play order (two columns, read left to
+     right), each flipping into place: hit clear and lit, near half clear, miss frosted with a crack, pass and skip dim. */
 
-  .rv-body--calls { justify-content: flex-start; gap: var(--s-2); }
+  .rv-body--calls { justify-content: flex-start; gap: 6px; padding-inline: 18px; }
   .rv-body--calls .rv-kicker { color: var(--n-ink); }
-  .rv-body--calls .rv-title { font: var(--type-display-weight) 25px / 30px var(--font-display); color: var(--n-ink); max-inline-size: 13em; }
-  .rv-calls__score { margin: var(--s-1) 0 0; display: flex; align-items: baseline; justify-content: center; gap: 6px; color: var(--n-ink); }
-  .rv-calls__score strong { font: 600 64px / 60px var(--font-display); font-variation-settings: var(--font-display-upright); text-shadow: 0 0 30px color-mix(in srgb, var(--n-ink) 55%, transparent); }
-  .rv-calls__score span { font: 600 28px / 30px var(--font-display); }
-  .rv-calls__score em { font: italic 420 17px / 22px var(--font-display); font-variation-settings: var(--font-display-italic); color: color-mix(in srgb, var(--n-ink) 85%, transparent); }
-  .rv-calls__intro { margin: 0; max-inline-size: 30ch; font: 450 var(--rv-small) var(--font-text); color: color-mix(in srgb, var(--n-ink) 85%, transparent); }
-  .rv-calls { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; inline-size: 100%; max-inline-size: 390px; margin: var(--s-2) 0 0; padding: 0; list-style: none; text-align: left; }
-  .rv-call {
+  .rv-body--calls .rv-title { font: var(--type-display-weight) 24px / 29px var(--font-display); color: var(--n-ink); max-inline-size: 14em; }
+  .rv-calls__hero { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 2px; }
+  .rv-calls__genii { position: relative; display: grid; place-items: center; inline-size: 92px; block-size: 92px; flex: none; }
+  .rv-calls__genii .genii-light { --gl-size: 84px; position: relative; z-index: 1; }
+  .rv-calls__halo {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--n-ink) 55%, transparent), transparent);
+    opacity: 0.55;
+  }
+  .rv-calls__score { margin: 0; display: grid; grid-template-columns: auto auto; align-items: baseline; column-gap: 6px; color: var(--n-ink); text-align: left; }
+  .rv-calls__score strong {
+    grid-row: 1 / 3;
+    font: 600 96px / 84px var(--font-display);
+    font-variation-settings: var(--font-display-upright);
+    letter-spacing: -0.03em;
+    text-shadow: 0 0 36px color-mix(in srgb, var(--n-ink) 60%, transparent), 0 2px 0 color-mix(in srgb, var(--n-900) 18%, transparent);
+  }
+  .rv-calls__score span { align-self: end; font: 600 30px / 32px var(--font-display); }
+  .rv-calls__score em { align-self: start; font: italic 420 17px / 22px var(--font-display); font-variation-settings: var(--font-display-italic); color: var(--n-ink); }
+
+  .rv-calls { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; inline-size: 100%; max-inline-size: 390px; margin: 8px 0 0; padding: 0; list-style: none; text-align: left; perspective: 900px; }
+  .rv-call { position: relative; min-inline-size: 0; }
+  .rv-call__glass {
     position: relative;
     display: grid;
-    grid-template-columns: 30px 1fr;
-    gap: 9px;
-    align-items: center;
-    min-block-size: 66px;
-    padding: 9px 10px;
-    border-radius: 18px;
+    grid-template-rows: auto 1fr auto;
+    gap: 4px;
+    min-block-size: 104px;
+    padding: 9px 11px 10px;
+    border-radius: 20px;
     overflow: hidden;
-    border: 1px solid color-mix(in srgb, var(--n-ink) 22%, transparent);
-    background: color-mix(in srgb, var(--n-900) 24%, transparent);
+    border: 1px solid color-mix(in srgb, var(--n-ink) 26%, transparent);
+    background: color-mix(in srgb, var(--n-900) 30%, transparent);
+    color: var(--n-ink);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    transform-origin: 50% 50%;
+    backface-visibility: hidden;
   }
-  .rv-call__pane svg { display: block; }
-  .rv-call__text { display: grid; gap: 3px; min-inline-size: 0; }
-  .rv-call__topic { font: 600 12.5px / 16px var(--font-text); color: var(--n-ink); }
-  .rv-call__status { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 3px; font: 750 10.5px / 14px var(--font-text); letter-spacing: 0.06em; text-transform: uppercase; color: color-mix(in srgb, var(--n-ink) 70%, transparent); }
-  .rv-call__side { font: italic 450 13px / 16px var(--font-display); font-variation-settings: var(--font-display-italic); color: var(--n-ink); }
-  .rv-call--hit {
-    border-color: color-mix(in srgb, var(--n-ink) 70%, transparent);
-    background: linear-gradient(150deg, color-mix(in srgb, var(--n-ink) 30%, transparent), color-mix(in srgb, var(--n-ink) 10%, transparent));
-    box-shadow: 0 0 24px -6px color-mix(in srgb, var(--n-ink) 55%, transparent), inset 0 1px 0 color-mix(in srgb, var(--n-ink) 60%, transparent);
+  .rv-call__top { display: flex; align-items: center; justify-content: space-between; }
+  .rv-call__n {
+    display: grid;
+    place-items: center;
+    inline-size: 22px;
+    block-size: 22px;
+    border-radius: 50%;
+    font: 700 12px / 1 var(--font-text);
+    color: var(--n-ink);
+    background: color-mix(in srgb, var(--n-ink) 16%, transparent);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--n-ink) 30%, transparent);
   }
-  .rv-call--hit .rv-call__status { color: var(--n-ink); }
-  .rv-call--pass, .rv-call--skipped, .rv-call--unanswered { opacity: 0.66; }
-  .rv-call__frost { position: absolute; inset: 0; background: var(--rv-frost); opacity: 0; pointer-events: none; }
-  .rv-slide.is-current .rv-call__frost { animation: rv-defrost calc(var(--d-slow) * 1.2) var(--e-out) calc(var(--d-slow) + var(--i) * var(--d-instant) * 1.2) both; }
-  .rv-slide.is-current .rv-call--miss .rv-call__frost { animation: rv-refrost calc(var(--d-slow) * 1.6) var(--e-out) calc(var(--d-slow) + var(--i) * var(--d-instant) * 1.2) both; }
-  .rv-slide.is-current .rv-calls__score strong { animation: rv-count var(--d-scene) var(--e-out) var(--d-base) both; }
+  .rv-call__mark { display: grid; place-items: center; inline-size: 24px; block-size: 24px; border-radius: 50%; }
+  .rv-call__title { align-self: center; font: 600 17px / 21px var(--font-display); font-variation-settings: var(--font-display-upright); letter-spacing: -0.005em; text-wrap: balance; }
+  .rv-call__foot { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 6px; min-block-size: 20px; }
+  .rv-call__status { font: 750 11px / 14px var(--font-text); letter-spacing: 0.07em; text-transform: uppercase; color: var(--n-ink); }
+  .rv-call__side {
+    padding: 2px 8px;
+    border-radius: var(--r-pill);
+    font: 700 11.5px / 15px var(--font-text);
+    color: var(--c-violet-strong);
+    background: var(--n-ink);
+  }
+  .rv-call__glint { position: absolute; inset: 0; pointer-events: none; opacity: 0; background: linear-gradient(115deg, transparent 30%, color-mix(in srgb, var(--n-ink) 70%, transparent) 48%, transparent 62%) 130% 0 / 260% 100% no-repeat; }
+  .rv-call__crack { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; pointer-events: none; overflow: visible; }
+  .rv-call__crack path { fill: none; stroke: var(--n-ink); stroke-width: 1.3; vector-effect: non-scaling-stroke; stroke-linecap: round; stroke-linejoin: round; opacity: 0.75; stroke-dasharray: 1; stroke-dashoffset: 0; }
+  .rv-call__crack path + path { stroke-width: 1; opacity: 0.5; }
+
+  /* Called it: clear, lit glass with a white check. */
+  .rv-call[data-state="hit"] .rv-call__glass {
+    border-color: color-mix(in srgb, var(--n-ink) 85%, transparent);
+    background: linear-gradient(155deg, color-mix(in srgb, var(--n-ink) 42%, transparent), color-mix(in srgb, var(--n-ink) 14%, transparent) 70%);
+    box-shadow: 0 0 26px -4px color-mix(in srgb, var(--n-ink) 60%, transparent), inset 0 1px 0 var(--n-ink), inset 0 -10px 24px -14px color-mix(in srgb, var(--c-violet-strong) 60%, transparent);
+  }
+  .rv-call[data-state="hit"] .rv-call__mark { background: var(--n-ink); color: var(--c-violet-strong); box-shadow: 0 0 12px color-mix(in srgb, var(--n-ink) 80%, transparent); }
+  .rv-call[data-state="hit"] .rv-call__n { background: var(--n-ink); color: var(--c-violet-strong); box-shadow: none; }
+  /* Right side: half clear, half frost, a half-lit mark. */
+  .rv-call[data-state="near"] .rv-call__glass {
+    border-color: color-mix(in srgb, var(--n-ink) 55%, transparent);
+    background: linear-gradient(115deg, color-mix(in srgb, var(--n-ink) 32%, transparent), color-mix(in srgb, var(--n-ink) 16%, transparent) 45%, color-mix(in srgb, var(--n-900) 28%, transparent) 75%);
+  }
+  .rv-call__mark--half { border: 1.5px solid var(--n-ink); }
+  .rv-call__mark--half i { inline-size: 100%; block-size: 100%; border-radius: 50%; background: linear-gradient(90deg, var(--n-ink) 50%, transparent 50%); }
+  /* Surprised: frosted with a hairline crack. */
+  .rv-call[data-state="miss"] .rv-call__glass { background: color-mix(in srgb, var(--n-900) 42%, transparent); border-color: color-mix(in srgb, var(--n-ink) 30%, transparent); }
+  .rv-call__mark--miss { border: 1.5px solid color-mix(in srgb, var(--n-ink) 70%, transparent); }
+  .rv-call__mark--miss svg { fill: none; stroke: var(--n-ink); stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+  /* Passed or skipped: dim, dashed. */
+  .rv-call[data-state="dim"] .rv-call__glass { background: color-mix(in srgb, var(--n-900) 20%, transparent); border-style: dashed; }
+  .rv-call[data-state="dim"] .rv-call__title, .rv-call[data-state="dim"] .rv-call__status { opacity: 0.8; }
+  .rv-call__mark--dim { border: 1.5px dashed color-mix(in srgb, var(--n-ink) 60%, transparent); }
+  .rv-calls__more { margin-top: 2px; }
+
+  /* The reveal: each pane arrives face down and flips into place in play order; hits then glint, misses crack. */
+  .rv-slide.is-current .rv-call__glass { animation: rv-paneflip calc(var(--d-slow) * 1.5) var(--e-out) calc(var(--d-scene) * 0.55 + var(--i) * var(--d-quick)) both; }
+  .rv-slide.is-current .rv-call[data-state="hit"] .rv-call__glint { animation: rv-sweep calc(var(--d-slow) * 1.8) var(--e-out) calc(var(--d-scene) * 0.55 + var(--i) * var(--d-quick) + var(--d-slow)) both; }
+  .rv-slide.is-current .rv-call[data-state="hit"] .rv-call__mark { animation: rv-gemspin var(--d-slow) var(--e-out) calc(var(--d-scene) * 0.55 + var(--i) * var(--d-quick) + var(--d-slow) * 0.8) both; }
+  .rv-slide.is-current .rv-call__crack path { animation: rv-crackdraw calc(var(--d-slow) * 1.2) var(--e-out) calc(var(--d-scene) * 0.55 + var(--i) * var(--d-quick) + var(--d-slow)) both; }
+  .rv-slide.is-current .rv-calls__score strong { animation: rv-count var(--d-scene) var(--e-out) calc(var(--d-scene) * 0.55 + 8 * var(--d-quick)) both; }
+  .rv-slide.is-current .rv-calls__halo { animation: rv-breathe calc(var(--d-loop-breath) * 0.5) var(--e-in-out) infinite alternate; }
 
   /* ---------------------------------------------------------------- story 12: the app scene */
 
@@ -1154,6 +1258,9 @@
   .rv-appscene > svg { position: relative; display: block; overflow: visible; filter: drop-shadow(0 24px 36px color-mix(in srgb, var(--n-900) 50%, transparent)); }
   .rv-appscene__halo { position: absolute; inset: -6% -10% 10%; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--c-on-deep) 40%, transparent), color-mix(in srgb, var(--tint-ch3) 25%, transparent) 55%, transparent); }
   .rv-appscene__caps { position: absolute; inset: 0; pointer-events: none; }
+  .rv-appscene__genii { position: absolute; left: 34%; top: 60%; translate: -50% -50%; pointer-events: none; filter: drop-shadow(0 6px 10px color-mix(in srgb, var(--n-900) 40%, transparent)); }
+  .rv-appscene__genii .genii-light { --gl-size: 36px; }
+  .rv-slide.is-current .rv-appscene__genii { animation: rv-fade var(--d-slow) var(--e-out) calc(var(--d-scene) * 1.2) both; }
   .rv-appscene__cap {
     position: absolute;
     padding: 5px 11px;
@@ -1174,6 +1281,28 @@
   .rv-slide.is-current .rv-appscene__cap { animation: rv-fade var(--d-slow) var(--e-out) var(--d-scene) both; }
   .rv-body--app .rv-end__links { flex-wrap: wrap; justify-content: center; gap: 0 var(--s-1); }
   .rv-body--app .rv-end__links .rv-textbtn { font-size: 13px; color: color-mix(in srgb, var(--n-ink) 90%, transparent); }
+  /* G6: an App Store style button: dark, rounded, a store cue, a small line over the big one. */
+  .rv-store {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    inline-size: 100%;
+    max-inline-size: 300px;
+    min-block-size: 60px;
+    padding: 8px 22px;
+    border-radius: 16px;
+    background: var(--n-900);
+    color: var(--n-ink);
+    text-decoration: none;
+    box-shadow: 0 0 0 1px color-mix(in srgb, var(--n-ink) 40%, transparent), 0 0 0 5px color-mix(in srgb, var(--n-ink) 16%, transparent), 0 18px 40px -14px color-mix(in srgb, var(--n-900) 80%, transparent);
+    transition: transform var(--d-instant) var(--e-out);
+  }
+  .rv-store:active { transform: scale(0.985); }
+  .rv-store__text { display: grid; text-align: left; }
+  .rv-store__text small { font: 600 11.5px / 14px var(--font-text); letter-spacing: 0.02em; color: color-mix(in srgb, var(--n-ink) 82%, transparent); }
+  .rv-store__text b { font: 700 21px / 25px var(--font-text); letter-spacing: -0.01em; }
+  .rv-slide.is-current .rv-body--app .rv-store { animation: rv-rise var(--d-base) var(--e-out) calc(var(--rv-step) * 3) both, rv-ctaglow calc(var(--d-loop-breath) * 0.6) var(--e-in-out) var(--d-scene) infinite alternate; }
   .rv-body--app .rv-cta--white { min-block-size: 58px; font-size: 18px; box-shadow: 0 0 0 4px color-mix(in srgb, var(--n-ink) 25%, transparent), 0 18px 40px -14px color-mix(in srgb, var(--n-900) 70%, transparent); }
   .rv-slide.is-current .rv-body--app .rv-cta--white { animation: rv-rise var(--d-base) var(--e-out) calc(var(--rv-step) * 3) both, rv-ctaglow calc(var(--d-loop-breath) * 0.6) var(--e-in-out) var(--d-scene) infinite alternate; }
 
@@ -1446,7 +1575,7 @@
   .rv-room[data-reduced="true"] .rv-names[data-wipe="on"] .rv-mirror__wipe { opacity: 1; animation: rv-fade-out calc(var(--d-reduced) + var(--d-instant)) linear both; }
 
   @media (prefers-reduced-transparency: reduce) {
-    .rv-tablet, .rv-arrow, .rv-sheet-wrap { -webkit-backdrop-filter: none; backdrop-filter: none; }
+    .rv-tablet, .rv-arrow, .rv-sheet-wrap, .rv-find, .rv-call__glass { -webkit-backdrop-filter: none; backdrop-filter: none; }
   }
   @media (forced-colors: active) {
     .rv-bg, .rv-room__art, .rv-mirror__glass, .rv-mirror__fog, .rv-intro__fog, .rv-foxing { display: none; }
@@ -1493,6 +1622,8 @@
   @keyframes rv-glint { 0%, 70%, 100% { opacity: 0; transform: scale(0.4) rotate(0); } 80% { opacity: 1; transform: scale(1.1) rotate(20deg); } }
   @keyframes rv-bob { from { transform: translateY(2px); } to { transform: translateY(-3px); } }
   @keyframes rv-refrost { 0% { opacity: 1; } 45% { opacity: 0.2; } 100% { opacity: 0.55; } }
+  @keyframes rv-paneflip { 0% { opacity: 0; transform: rotateY(-100deg) scale(0.92); filter: blur(6px) brightness(1.6); } 55% { opacity: 1; filter: blur(0) brightness(1.25); } 80% { transform: rotateY(8deg) scale(1.02); } 100% { opacity: 1; transform: none; filter: none; } }
+  @keyframes rv-crackdraw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
   @keyframes rv-count { from { opacity: 0; transform: scale(0.6); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
   @keyframes rv-drop { from { opacity: 0; transform: translateY(-26px); } to { opacity: 1; transform: none; } }
   @keyframes rv-dash { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -36; } }

@@ -3,7 +3,7 @@
 // changes. The reveal art (the mirror, the pairs, the gems, the rooms, the flip, the panes, the card, the app scene)
 // lives in ../reveal.
 import React, { useEffect, useRef, useState } from "react";
-import { ArrowRight, Link2, Lock, Share, Sparkles, Users } from "lucide-react";
+import { Link2, Lock, Share, Users } from "lucide-react";
 import { ChapterGlyph, MirrorArch, Sigil } from "../../art/index.js";
 import { IntroScreen, NamesScreen } from "../reveal/MirrorReveal.jsx";
 import { MapScreen } from "../reveal/FacetScreen.jsx";
@@ -134,6 +134,8 @@ function Seg({ value, options, onChange, label }) {
   );
 }
 
+// Story 11 (G6): the card first, a little smaller; Share image is the one primary action; the friend game is a named
+// challenge with what it is under it; Copy link steps back to a text button.
 function ShareScreen({ s, active, onInvite, onShareImage, onCopy, copied, format, setFormat, cardTheme, setCardTheme, busy }) {
   return (
     <div className="rv-body rv-body--share">
@@ -144,32 +146,45 @@ function ShareScreen({ s, active, onInvite, onShareImage, onCopy, copied, format
         <Seg label="Card shape" value={format} onChange={setFormat} options={[["story", UI_COPY.shareFormats.story], ["post", UI_COPY.shareFormats.post]]} />
         <Seg label="Card light" value={cardTheme} onChange={setCardTheme} options={[["night", "Night"], ["day", "Day"]]} />
       </div>
+      <button type="button" className="rv-cta rv-cta--deep rv-in" onClick={onShareImage} disabled={busy}><Share size={18} aria-hidden="true" /> {UI_COPY.shareImage}</button>
       <div className="rv-actions rv-in">
-        <button type="button" className="rv-textbtn rv-pillbtn rv-pillbtn--strong" onClick={onShareImage} disabled={busy}><Share size={17} aria-hidden="true" /> {UI_COPY.shareImage}</button>
+        <button type="button" className="rv-textbtn rv-pillbtn rv-pillbtn--strong" onClick={onInvite}><Users size={17} aria-hidden="true" /> {s.challenge || s.share.invite}</button>
         <button type="button" className="rv-textbtn rv-pillbtn" onClick={onCopy}><Link2 size={17} aria-hidden="true" /> {copied ? UI_COPY.copied : UI_COPY.copyLink}</button>
       </div>
-      <button type="button" className="rv-cta rv-cta--deep rv-in" onClick={onInvite}>{s.share.invite} <ArrowRight size={18} aria-hidden="true" /></button>
       <p className="rv-sub rv-in">{s.sub}</p>
       {s.opposite && <p className="rv-opposite rv-in">{s.opposite}</p>}
     </div>
   );
 }
 
-// Story 12: get the app. One large in-game moment (you snap lunch, Miia lives it), then one job: Get MirrorMii. The
-// friend game and the guesses step back to small links; the data actions wait behind "Your data".
+// Story 12: get the app (G6). The loop in one picture (you snap lunch, Miia lives it, Genii on the island), a headline
+// that says what the game does with your real day, one App Store style button; the friend game and the guesses step
+// back to small links; the data actions wait behind "Your data".
+function StoreGlyph() {
+  // A plain phone with a download arrow: a store cue drawn in code, not a platform's mark.
+  return (
+    <svg className="rv-store__glyph" viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+      <rect x="6" y="2.5" width="12" height="19" rx="3" />
+      <path d="M12 7.5v7M9 11.8l3 3 3-3" />
+      <path d="M10.5 18.5h3" />
+    </svg>
+  );
+}
+
 function App({ s, stage, onFriends, onGuesses, hasGuesses, guessLabel, onData }) {
   const placeholder = s.link.startsWith("#");
   const h = stage ? stage.h : 844;
   const w = stage ? stage.w : 390;
-  const art = Math.round(Math.max(190, Math.min(300, (h - 470) * 0.8, w * 0.72)));
+  const art = Math.round(Math.max(180, Math.min(280, (h - 490) * 0.8, w * 0.7)));
   return (
     <div className="rv-body rv-body--app">
       <AppScene width={art} snap={s.snap} lives={s.lives} />
       <Kicker>{s.kicker}</Kicker>
       <h2 className="rv-title rv-in" data-focus tabIndex="-1">{s.title}</h2>
       <p className="rv-body-l rv-in">{s.body}</p>
-      <a className="rv-cta rv-cta--white rv-in" href={s.link} onClick={placeholder ? (e) => e.preventDefault() : undefined} data-placeholder={placeholder ? "true" : undefined}>
-        <Sparkles size={18} aria-hidden="true" /> {s.button}
+      <a className="rv-cta rv-store rv-in" href={s.link} onClick={placeholder ? (e) => e.preventDefault() : undefined} data-placeholder={placeholder ? "true" : undefined}>
+        <StoreGlyph />
+        <span className="rv-store__text"><small>{s.store}</small><b>{s.button}</b></span>
       </a>
       <p className="rv-note rv-in">{s.note}</p>
       <div className="rv-end rv-in">

@@ -3,16 +3,24 @@
 // translation notes and build notes. The Heart to heart text (heart) is player-facing and stays.
 // The web build drops them so the bundle does not ship what a card secretly measures. tests/persona-kit.test.mjs
 // proves the scorer returns identical results on the stripped and the full kit.
+import { sceneTitle } from "./src/persona/scene-titles.js";
+
 export const AUTHORING_KEYS = new Set([
   "mask", "ae", "triggers", "origin", "never", "sources", "cardNotes", "backupWhy", "optionsNote", "gate",
   "zhStatus", "zhSally", "fp",
 ]);
 
+// A card keeps a few words of its scene as `title` (Genii's calls screen names each locked guess by its scene) before
+// its fingerprint goes: sceneTitle() reads only the fingerprint's device, never what the card measures.
 export function stripAuthoring(value) {
   if (Array.isArray(value)) return value.map(stripAuthoring);
   if (!value || typeof value !== "object") return value;
   const out = {};
   for (const [key, item] of Object.entries(value)) if (!AUTHORING_KEYS.has(key)) out[key] = stripAuthoring(item);
+  if (value.fp && typeof value.id === "string" && typeof value.prompt === "string" && typeof out.title !== "string") {
+    const title = sceneTitle(value.fp);
+    if (title) out.title = title;
+  }
   return out;
 }
 

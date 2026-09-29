@@ -289,7 +289,7 @@ export function NamesScreen({ s, stage, active, reduced, wipe, onWiped, sparkles
           <span className="rv-plaque__line">{plaque}</span>
         </p>
       ) : null}
-      <div className="rv-names__under" style={{ top: box.bottom + (plaque ? 86 : 26) }}>
+      <div className="rv-names__under" style={{ top: box.bottom + (plaque ? 54 : 22) }}>
         <p className="rv-names__sub rv-in">{s.sub}</p>
       </div>
     </div>

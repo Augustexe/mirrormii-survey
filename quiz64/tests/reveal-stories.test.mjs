@@ -88,8 +88,8 @@ test("the facet: leans point to the right pole, people above the waterline, flex
   const map = slideHtml(html, "map");
   assert.equal((map.match(/class="rv-pair"/g) || []).length, 6, "six opposing pairs");
   for (const r of rows) {
-    const lead = r.side === "right" ? r.right : r.left;
-    if (!r.flex && !r.unfinished) assert.ok(visible(map).includes(`${lead} over`), `${r.key} reads as a sentence`);
+    // G6: the sentence names the stat's end (src/persona/stats.js), never the internal pole.
+    if (!r.flex && !r.unfinished) assert.ok(visible(map).includes(`${r.leadEnd} over`), `${r.key} reads as a sentence`);
   }
   assert.doesNotMatch(visible(map), /\d/);
 });

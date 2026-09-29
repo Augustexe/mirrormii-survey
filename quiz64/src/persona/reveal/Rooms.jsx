@@ -28,7 +28,8 @@ export function RoomsScreen({ s }) {
             <span className="rv-roomrow__text">
               <span className="rv-roomrow__head">
                 <strong className="rv-roomrow__name">{r.room}</strong>
-                <Dots level={r.level} />
+                {/* G6 (R3): the room's lean as its stat end (src/persona/stats.js) instead of unexplained dots. */}
+                {r.leadEnd ? <span className="rv-roomrow__end">{r.leadEnd}</span> : <Dots level={r.level} />}
                 {r.differs ? <span className="rv-roomrow__chip">{s.differs}</span> : null}
               </span>
               <span className="rv-roomrow__line">{r.line}</span>

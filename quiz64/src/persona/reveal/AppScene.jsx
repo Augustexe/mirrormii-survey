@@ -5,6 +5,7 @@
 // island art), no character art. Two captions carry the loop in words.
 import React, { useId } from "react";
 import { IslandScene, Sparkle } from "../../art/index.js";
+import { GeniiLight } from "../../system/index.js";
 
 // A bowl of ramen, drawn for the polaroid and for the island table. `k` scales it; `x`, `y` place its center.
 function Bowl({ x, y, k = 1, rid }) {
@@ -96,6 +97,8 @@ export function AppScene({ width = 300, snap, lives }) {
         <path className="rv-appscene__trail" d="M176 170 C 214 196 210 232 172 250" fill="none" stroke="var(--c-on-deep)" strokeWidth="2.4" strokeLinecap="round" strokeDasharray="2 7" />
         <g transform="translate(206 196)" className="rv-appscene__spark"><Sparkle size={18} /></g>
       </svg>
+      {/* Genii at home on its island, beside the lunch that just arrived (G6). */}
+      <span className="rv-appscene__genii"><GeniiLight size="s" mood="sure" evolution={1} expression="happy" voice="cards" /></span>
       <figcaption className="rv-appscene__caps">
         <span className="rv-appscene__cap rv-appscene__cap--snap">{snap}</span>
         <span className="rv-appscene__cap rv-appscene__cap--lives">{lives}</span>

@@ -6,6 +6,8 @@
 // believe-versus-did split, the calls from the guesses Genii locked before the final cards. Library fields are read
 // defensively so the screen works on the 2026-09-26 library (desc, heart) and on the Build C library.
 
+import { endOf, statOf, statRow } from "../stats.js";
+
 export const VOICES = Object.freeze(["fun", "heart", "cards"]);
 export const STORY_IDS = Object.freeze(["intro", "names", "read", "map", "knows", "rooms", "insight", "traits", "stings", "calls", "share", "app"]);
 
@@ -59,12 +61,13 @@ export const STORY_COPY = Object.freeze({
     intro: { kicker: "Genii's read", title: "40 answers in. Here's you.", sub: "Hold. Then let go." },
     names: { kicker: "You are", people: "With your people", life: "With your life", sub: "Two sides. Both you." },
     read: { kicker: "The read" },
-    map: { kicker: "Your map", title: "Where you land", people: "With your people", life: "With your life" },
+    map: { kicker: "Your map", title: "Where you land", sub: "Six stats, set by your answers.", people: "With your people", life: "With your life" },
     knows: {
       kicker: "What Genii knows best",
       title: "The clearest parts of you",
-      tiers: { clear: "Crystal clear", sharp: "Clear", forming: "Coming into focus", flex: "Both sides" },
+      tiers: { clear: "Strong signal", sharp: "Clear signal", forming: "Some signal", flex: "Both sides" },
       surest: "Surest",
+      legend: "How to read the gems",
       both: "Both",
     },
     rooms: { kicker: "Room by room", title: "Same you, different rooms", differs: "Your other side" },
@@ -76,15 +79,16 @@ export const STORY_COPY = Object.freeze({
       intro: "Before your last cards, Genii locked in a guess for each one.",
       titles: { most: "Genii saw most of you coming.", half: "Genii read you more often than not.", even: "Half called. Half surprised Genii.", some: "You kept Genii guessing.", none: "Genii held back on every guess this time." },
       of: "called exactly",
-      side: (pole) => `your ${pole} side`,
+      status: { hit: "Called it", near: "Right side", miss: "Surprised Genii", pass: "Genii passed", skipped: "Skipped", unanswered: "Skipped" },
       more: "See the cards",
     },
-    share: { kicker: "Your card", brand: "Genii · MirrorMii", sub: "Send it. See who actually knows you." },
+    share: { kicker: "Your card", brand: "Genii · MirrorMii", sub: "They guess your answers. You see who really knows you.", challenge: "Challenge a friend" },
     app: {
       kicker: "Get MirrorMii",
-      title: "Genii has only met you on paper.",
-      body: "MirrorMii is the cozy game where you snap a moment of your real day, and Miia, your digital twin, lives it.",
+      title: "Your real day powers the game.",
+      body: "Snap a moment of your day and Miia, your digital twin, lives it. Genii is waiting on the island.",
       button: "Get MirrorMii",
+      store: "On the App Store",
       note: "Free to join.",
       snap: "You snap lunch",
       lives: "Miia lives it",
@@ -98,12 +102,13 @@ export const STORY_COPY = Object.freeze({
     intro: { kicker: "Genii's read", title: "40 answers in. Here's you.", sub: "Take your time with this one." },
     names: { kicker: "You are", people: "With your people", life: "With your life", sub: "Two sides of you, both worth knowing." },
     read: { kicker: "The read" },
-    map: { kicker: "Your map", title: "Where you land", people: "With your people", life: "With your life" },
+    map: { kicker: "Your map", title: "Where you land", sub: "Six stats, set by your answers.", people: "With your people", life: "With your life" },
     knows: {
       kicker: "What Genii knows best",
       title: "What came through clearest",
-      tiers: { clear: "Crystal clear", sharp: "Clear", forming: "Coming into focus", flex: "Both sides" },
+      tiers: { clear: "Strong signal", sharp: "Clear signal", forming: "Some signal", flex: "Both sides" },
       surest: "Clearest",
+      legend: "How to read the gems",
       both: "Both",
     },
     rooms: { kicker: "Room by room", title: "How you show up, room by room", differs: "A different side" },
@@ -115,15 +120,16 @@ export const STORY_COPY = Object.freeze({
       intro: "Before your last cards, Genii quietly locked in a guess for each one.",
       titles: { most: "Genii understood you well.", half: "Genii understood you more often than not.", even: "Genii understood half of you. The other half surprised it.", some: "You surprised Genii, and that's good to know.", none: "Genii held back on every guess this time." },
       of: "called exactly",
-      side: (pole) => `your ${pole} side`,
+      status: { hit: "Called it", near: "Right side", miss: "A surprise", pass: "Genii passed", skipped: "Skipped", unanswered: "Skipped" },
       more: "See the cards",
     },
-    share: { kicker: "Your card", brand: "Genii · MirrorMii", sub: "Send it to someone who'd get it right." },
+    share: { kicker: "Your card", brand: "Genii · MirrorMii", sub: "They guess your answers. Send it to someone who'd get them right.", challenge: "Challenge a friend" },
     app: {
       kicker: "Get MirrorMii",
-      title: "Genii has only met you on paper.",
-      body: "In MirrorMii, you snap small moments of your real day, and Miia, your digital twin, lives them.",
+      title: "Your real day, turned into a cozy game.",
+      body: "Snap small moments of your day and Miia, your digital twin, lives them. Genii is waiting on the island.",
       button: "Get MirrorMii",
+      store: "On the App Store",
       note: "Free to join.",
       snap: "You snap lunch",
       lives: "Miia lives it",
@@ -310,9 +316,13 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
     // The facet reads lean from minus (-1) to plus (+1); a decided side never sits closer to the middle than a flex one.
     const lean = r.unfinished || r.flex ? 0 : s * Math.max(0.3, Math.min(1, strength || 0.5));
     const clarity = r.unfinished ? 0 : r.flex ? 0.1 : axisClarity(typeof p.norm === "number" ? p.norm : 0.5, typeof p.cards === "number" ? p.cards : 4);
+    const pos = dotPosition(r);
+    const lead = s > 0 ? r.right : r.left;
     return {
-      key: r.key, left: r.left, right: r.right, side: s > 0 ? "right" : "left", flex: r.flex, unfinished: r.unfinished, pos: dotPosition(r), strength, lean, clarity,
-      lead: s > 0 ? r.right : r.left, other: s > 0 ? r.left : r.right,
+      key: r.key, left: r.left, right: r.right, side: s > 0 ? "right" : "left", flex: r.flex, unfinished: r.unfinished, pos, strength, lean, clarity,
+      lead, other: s > 0 ? r.left : r.right,
+      // What the player sees: the game stat, its two ends (first pole on the left) and the end they lean to.
+      ...statRow(r.key, { lead: r.flex || r.unfinished ? null : lead, pos }),
       line: voiced(meta, s > 0 ? "plusLine" : "minusLine", wording),
     };
   });
@@ -321,7 +331,7 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
     { label: C.map.life, rows: mapHalf(lifeH) },
   ];
   const allRows = mapGroups.flatMap((g) => g.rows);
-  const facet = allRows.map((r) => ({ key: r.key, lean: r.lean, flex: r.flex, unfinished: r.unfinished, plus: r.right, minus: r.left }));
+  const facet = allRows.map((r) => ({ key: r.key, lean: r.lean, flex: r.flex, unfinished: r.unfinished, plus: endOf(r.right), minus: endOf(r.left) }));
 
   // What Genii knows best: every lean that came through, clearest first. A decided lean says what it knows; a flex lean
   // says so honestly at the bottom; an unfinished one is left out.
@@ -339,6 +349,7 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
       const level = r.flex ? 0 : clarityLevel(r.clarity);
       return {
         key: r.key, kind: r.flex ? "flex" : "axis", topic: str((axisMeta[r.key] || {}).topic) || `${r.right} or ${r.left}`,
+        stat: statOf(r.key).stat, leadEnd: r.flex ? C.knows.both : r.leadEnd, otherEnd: r.flex ? `${r.a} and ${r.b}` : r.otherEnd,
         lead: r.flex ? C.knows.both : r.lead, other: r.flex ? `${r.left} and ${r.right}` : r.other,
         line: knowsLine(r), short: splitInsight(knowsLine(r)).belief, clarity: r.clarity, level, tier: r.flex ? C.knows.tiers.flex : C.knows.tiers[TIER_OF[level]],
       };
@@ -380,7 +391,7 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
       const entry = copy[rm.axis];
       const line = voiced(entry, rm.sign > 0 ? "plus" : "minus", wording);
       const meta = axisMeta[rm.axis] || {};
-      return line ? { key: `${rm.chapter}`, chapter: rm.chapter, room: name, line, lead: rm.sign > 0 ? meta.plus : meta.minus, level: clarityLevel(rm.clarity), clarity: rm.clarity, differs: rm.differs, kind: "axis", axis: rm.axis, sign: rm.sign } : null;
+      return line ? { key: `${rm.chapter}`, chapter: rm.chapter, room: name, line, lead: rm.sign > 0 ? meta.plus : meta.minus, leadEnd: endOf(rm.sign > 0 ? meta.plus : meta.minus), level: clarityLevel(rm.clarity), clarity: rm.clarity, differs: rm.differs, kind: "axis", axis: rm.axis, sign: rm.sign } : null;
     }
     const lt = tagLib[rm.tag] || {};
     if (lt.locked18) return null;
@@ -445,8 +456,13 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
         key: r.id || String(i),
         prompt: (promptFor && promptFor(r.id)) || "",
         topic: str(info.topic) || "",
+        // The card's scene in a few words (derived at build time from the card's own scene, never its answers).
+        title: str(info.title) || "",
+        axis: str(info.axis) || null,
         pole: r.status === "hit" && str(info.pole) ? info.pole : null,
         status: r.status,
+        // An honest partial: Genii missed the exact answer but had the side right. It never counts as a hit.
+        near: r.status === "miss" && r.sideHit === true,
         label: GUESS_COPY.status[r.status] || GUESS_COPY.status.skipped,
       };
     });
@@ -457,25 +473,33 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
     };
   }
   const ratio = guesses && guesses.called ? guesses.exact / guesses.called : 0;
-  const callsTitle = !guesses || !guesses.called ? C.calls.titles.none : ratio >= 0.75 ? C.calls.titles.most : ratio > 0.5 ? C.calls.titles.half : ratio === 0.5 ? C.calls.titles.even : C.calls.titles.some;
+  const callsTier = !guesses || !guesses.called ? "none" : ratio >= 0.75 ? "most" : ratio > 0.5 ? "half" : ratio === 0.5 ? "even" : "some";
+  const callsTitle = C.calls.titles[callsTier];
+  // Genii's face on the calls screen: pleased when it read you, curious at half, delighted to be surprised below that.
+  const callsFace = { most: "happy", half: "happy", even: "curious", some: "alert", none: "thinking" }[callsTier];
 
   const slides = [
     { id: "intro", kicker: C.intro.kicker, title: C.intro.title, sub: C.intro.sub, mirror },
     { id: "names", kicker: C.names.kicker, sub: C.names.sub, hook, people, life, mirror },
     { id: "read", kicker: C.read.kicker, lines: readLines, bodies: readBodies, marks: readMarks },
-    { id: "map", kicker: C.map.kicker, title: C.map.title, groups: mapGroups, facet },
-    { id: "knows", kicker: C.knows.kicker, title: C.knows.title, surest: C.knows.surest, findings },
+    { id: "map", kicker: C.map.kicker, title: C.map.title, sub: C.map.sub, groups: mapGroups, facet },
+    { id: "knows", kicker: C.knows.kicker, title: C.knows.title, surest: C.knows.surest, findings,
+      legendLabel: C.knows.legend,
+      // How to read the gems: only the tiers this player's findings use, strongest first.
+      legend: [[3, "clear"], [2, "sharp"], [1, "forming"], [0, "flex"]]
+        .filter(([lv, k]) => findings.some((f) => (k === "flex" ? f.kind === "flex" : f.kind !== "flex" && f.level === lv)))
+        .map(([lv, k]) => ({ key: k, level: lv || 1, flex: k === "flex", label: C.knows.tiers[k] })) },
     roomRows.length >= 2 ? { id: "rooms", kicker: C.rooms.kicker, title: C.rooms.title, differs: C.rooms.differs, rows: roomRows } : null,
     { id: "insight", kicker: C.insight.kicker, line: insight, parts: splitInsight(insight), from: insightFrom },
     { id: "traits", kicker: C.traits.kicker, title: C.traits.title, tags, empty: noTraits },
     { id: "stings", kicker: C.stings.kicker, title: C.stings.title, badge: C.stings.badge, stings, private: true },
     guesses && guesses.rows.length ? {
-      id: "calls", kicker: C.calls.kicker, title: callsTitle, intro: C.calls.intro, of: C.calls.of, more: C.calls.more, exact: guesses.exact, called: guesses.called,
-      rows: guesses.rows.map((r) => ({ ...r, side: r.pole ? C.calls.side(r.pole) : null })),
+      id: "calls", kicker: C.calls.kicker, title: callsTitle, intro: C.calls.intro, of: C.calls.of, more: C.calls.more, exact: guesses.exact, called: guesses.called, face: callsFace,
+      rows: guesses.rows.map((r) => ({ ...r, side: r.pole ? endOf(r.pole) : null, shown: (r.near ? C.calls.status.near : C.calls.status[r.status]) || C.calls.status.skipped })),
       count: NUMBER_WORDS[guesses.rows.length] || String(guesses.rows.length),
     } : null,
-    { id: "share", kicker: C.share.kicker, sub: C.share.sub, share, opposite: opposite ? UI_COPY.opposite(opposite[0], opposite[1]) : null },
-    { id: "app", kicker: C.app.kicker, title: C.app.title, body: C.app.body, button: C.app.button, note: C.app.note, snap: C.app.snap, lives: C.app.lives, link: APP_LINK, mirror },
+    { id: "share", kicker: C.share.kicker, sub: C.share.sub, challenge: C.share.challenge, share, opposite: opposite ? UI_COPY.opposite(opposite[0], opposite[1]) : null },
+    { id: "app", kicker: C.app.kicker, title: C.app.title, body: C.app.body, button: C.app.button, store: C.app.store, note: C.app.note, snap: C.app.snap, lives: C.app.lives, link: APP_LINK, mirror },
   ].filter(Boolean).map((sl) => ({ ...sl, look: LOOKS[sl.id], tone: LOOKS[sl.id] }));
 
   return { voice, wording, slides, share, guesses };
@@ -493,8 +517,8 @@ export function printFor(slide) {
       const keep = slide.lines.map((line, i) => ({ line, body: (slide.bodies || [])[i] || "", mark: marks[i] || { kind: "none" } })).filter((x) => !(x.mark && x.mark.private));
       return { ...base, tablets: keep };
     }
-    case "map": return { ...base, title: slide.title, groups: slide.groups.map((g) => ({ label: g.label, rows: g.rows.map((r) => ({ left: r.left, right: r.right, pos: r.pos, side: r.side, flex: r.flex, unfinished: r.unfinished })) })) };
-    case "knows": return { ...base, title: slide.title, findings: slide.findings.map((f, i) => ({ topic: f.topic, lead: f.lead, other: f.other, kind: f.kind, line: i ? f.short || f.line : f.line, level: f.level, tier: f.tier })) };
+    case "map": return { ...base, title: slide.title, groups: slide.groups.map((g) => ({ label: g.label, rows: g.rows.map((r) => ({ stat: r.stat, left: r.a, right: r.b, pos: r.at, side: r.leadSide === "a" ? "left" : "right", flex: r.flex, unfinished: r.unfinished })) })) };
+    case "knows": return { ...base, title: slide.title, findings: slide.findings.map((f, i) => ({ topic: f.stat ? `${f.stat} · ${f.leadEnd}` : f.leadEnd, lead: f.leadEnd, other: f.otherEnd, kind: f.kind, line: i ? f.short || f.line : f.line, level: f.level, tier: f.tier })) };
     case "rooms": return { ...base, title: slide.title, rows: slide.rows.map((r) => ({ room: r.room, line: r.line, chapter: r.chapter, level: r.level })) };
     case "traits": {
       const items = slide.tags.filter((t) => !t.private).map((t) => ({ name: t.name, line: t.line, chapter: t.chapter }));
@@ -502,7 +526,7 @@ export function printFor(slide) {
     }
     case "insight": return { ...base, belief: slide.parts ? slide.parts.belief : slide.line, behavior: slide.parts ? slide.parts.behavior : null };
     case "stings": return { ...base, kicker: null, title: slide.title, badge: slide.badge, quotes: slide.stings, private: true };
-    case "calls": return { ...base, title: slide.title, exact: slide.exact, called: slide.called, of: slide.of, panes: slide.rows.map((r) => ({ topic: r.topic, status: r.status, label: r.label, side: r.side })) };
+    case "calls": return { ...base, title: slide.title, exact: slide.exact, called: slide.called, of: slide.of, panes: slide.rows.map((r) => ({ topic: r.title || r.topic, status: r.status, near: r.near, label: r.shown || r.label, side: r.side })) };
     case "share": return { ...base, card: slide.share };
     case "app": return { ...base, title: slide.title, lines: [slide.body, slide.note] };
     default: return base;
