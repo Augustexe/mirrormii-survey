@@ -1,256 +1,391 @@
-/* Persona quiz V2 surfaces. Built on the approved quiz64 tokens (styles.css :root) and card materials
-   (question-surfaces.css); only elements the V2 game adds are styled here. */
+/*
+ * The legacy layer after integration (2026-09-29): what the persona app still uses from the 13 stylesheets of
+ * earlier builds, tree-shaken by class usage. Lowest cascade layer; every named layer wins over it.
+ * Sections keep the name of the file each rule came from.
+ */
 
-/* ---------- cards ---------- */
-.persona-option {
-  width: 100%;
-  font: inherit;
-  text-align: left;
-  -webkit-tap-highlight-color: transparent;
+/* ---------- from src/styles.css ---------- */
+:root {
+  font-family:
+    Avenir Next,
+    Avenir,
+    Manrope,
+    ui-sans-serif,
+    system-ui,
+    sans-serif;
+  color: #091b39;
+  background: #fdfdff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --porcelain: #fdfdff;
+  --ink: #091b39;
+  --iris-text: #5958b1;
 }
-.persona-option:focus-visible {
-  outline: 3px solid #67449f;
+
+* {
+  box-sizing: border-box;
+}
+html {
+  min-width: 320px;
+  background: var(--porcelain);
+}
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at 85% 4%,
+      rgba(234, 227, 255, 0.6),
+      transparent 28rem
+    ),
+    var(--porcelain);
+}
+button,
+textarea,
+input {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #0588f0;
   outline-offset: 3px;
 }
-.persona-option:disabled {
-  cursor: default;
-  opacity: 1;
+img {
+  max-width: 100%;
+  height: auto;
 }
-.persona-option:disabled:not(.answer-option--selected) {
-  opacity: 0.55;
+.app-shell {
+  min-height: 100vh;
+  overflow-x: clip;
 }
-.persona-lock-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  margin-left: 8px;
-  padding: 2px 7px;
-  border: 1px solid rgba(105, 69, 168, 0.45);
-  border-radius: 999px;
-  color: #563591;
-  font-size: 10px;
-  letter-spacing: 0.04em;
+@supports (min-height: 100dvh) {
+  body,
+  .app-shell {
+    min-height: 100dvh;
+  }
 }
-.persona-pick-count {
-  margin-bottom: 4px;
-  color: #563591;
-  font-size: 14px;
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+h1,
+h2,
+h3 {
   font-weight: 600;
 }
-.persona-exits {
+h1 {
+  letter-spacing: -0.055em;
+}
+h1 em,
+h2 em {
+  color: var(--iris-text);
+  font-style: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+body[data-motion="off"] *,
+body[data-motion="off"] *::before,
+body[data-motion="off"] *::after {
+  animation: none !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* Genii studio layer
+   The survey stays a light, single-theme experience. These tokens add a
+   tactile pearl-and-orchid material without hiding text behind blur. */
+
+body {
+  background:
+    radial-gradient(
+      ellipse 62rem 35rem at 92% -6%,
+      rgba(224, 218, 255, 0.8),
+      transparent 67%
+    ),
+    radial-gradient(
+      ellipse 44rem 32rem at -14% 48%,
+      rgba(219, 231, 255, 0.42),
+      transparent 71%
+    ),
+    var(--porcelain);
+}
+
+.app-shell {
+  position: relative;
+}
+.app-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.26;
+  background-image: radial-gradient(
+    rgba(71, 57, 143, 0.12) 0.55px,
+    transparent 0.55px
+  );
+  background-size: 17px 17px;
+  mask-image: linear-gradient(180deg, #000, transparent 82%);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .app-shell::before {
+    display: none;
+  }
+}
+
+/* Contract surfaces: a single portrait with progressive detail. */
+.save-error {
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 18px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(132, 126, 189, 0.22);
+  margin: 8px 0 0;
+  color: #9a3f54;
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: right;
 }
-.persona-exit {
-  min-height: 44px;
-  padding: 8px 14px;
-  border: 1px solid rgba(114, 111, 172, 0.35);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.62);
-  color: #4c3f6c;
-  font: inherit;
-  font-size: 13px;
-  font-weight: 600;
-}
-.persona-exit:hover:not(:disabled) {
+
+/* ---------- from src/voice-polish.css ---------- */
+/* White canvas, orchid accents, graphite text. The glass reference belongs to
+   the character stage; answers and evidence use clear, opaque reading surfaces. */
+:root {
+  color-scheme: light;
+  --porcelain: #ffffff;
+  --ink: #272330;
+  --iris-text: #6143a9;
+  color: var(--ink);
   background: #fff;
-  border-color: #7352bb;
 }
-.persona-exit:focus-visible,
-.persona-link:focus-visible,
+html,
+body,
+.app-shell {
+  background: #fff;
+  color: var(--ink);
+}
+.app-shell::before {
+  display: none;
+}
+
+/* ---------- from src/launch.css ---------- */
+/* Launch art direction: white paper, violet optical glass, quiet chrome.
+   Art and motion live around the reading surface, never behind answer text. */
+:root {
+  font-family:
+    Satoshi,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  --ink: #292330;
+  --iris-text: #6643b0;
+}
+body,
+button,
+input,
+textarea,
+select {
+  font-family:
+    Satoshi,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
+h1,
+h2,
+h3 {
+  font-family:
+    Satoshi,
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  font-weight: 700;
+}
+html {
+  scroll-padding-top: 98px;
+}
+h1[tabindex="-1"]:focus {
+  outline: none;
+}
+.app-shell {
+  padding-top: 16px;
+}
+
+/* Answering remains a quiet, single-column reading task. */
+@media (max-width: 760px) {
+  .app-shell {
+    padding-top: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- from src/living-world.css ---------- */
+/* The living-world layer decorates the approved composition; all form geometry
+   and all survey data remain owned by the existing components. */
+.app-shell {
+  position: relative;
+  isolation: isolate;
+}
+.app-shell > :not(.ambient-world) {
+  position: relative;
+  z-index: 1;
+}
+.app-shell > dialog {
+  position: fixed;
+}
+
+/* Every Genii is lit by the same opal material. Two expressions share one rig. */
+dialog::backdrop {
+  backdrop-filter: blur(7px);
+  background: #30233e2e;
+}
+@media (prefers-reduced-transparency: reduce) {
+  dialog::backdrop {
+    backdrop-filter: none;
+    background: #30233e80;
+  }
+}
+
+/* ---------- from src/question-surfaces.css ---------- */
+/* Chapter-tuned opal glass for the existing question geometry. */
+
+.save-error {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- from src/micro-details.css ---------- */
+/* Precise accent lighting around the existing survey; data and geometry stay stable. */
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline-color: #7651a6;
+}
+
+dialog {
+  border: 1px solid #b6a2ce;
+  border-radius: 28px;
+  background:
+    radial-gradient(ellipse at 100% 0%, #d6e5ffb3, transparent 58%),
+    linear-gradient(145deg, #f1e8fa, #e9e1f5 76%, #f5e9f0);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    inset 0 -2px 0 #a998c347,
+    0 0 0 5px #ffffff80,
+    0 22px 100px #4930613d;
+}
+dialog[open] {
+  animation: panel-arrive 300ms cubic-bezier(0.18, 0.8, 0.25, 1) both;
+  transform-origin: 50% 30%;
+}
+dialog[open]::backdrop {
+  animation: scrim-arrive 260ms ease both;
+  backdrop-filter: blur(9px);
+  background: #30204038;
+}
+dialog button:focus-visible {
+  outline: 3px solid #8a62bd;
+  outline-offset: 4px;
+  box-shadow:
+    0 0 0 6px #ffffffd4,
+    0 0 22px #c7a3e747;
+}
+@keyframes panel-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.975);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes scrim-arrive {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 760px) {
+  dialog {
+    border-radius: 24px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  dialog[open],
+  dialog[open]::backdrop {
+    animation: none !important;
+  }
+}
+body[data-motion="off"] dialog[open],
+body[data-motion="off"] dialog[open]::backdrop {
+  animation: none !important;
+}
+@media (prefers-reduced-transparency: reduce) {
+  dialog {
+    background: #ede7f7;
+  }
+  dialog::backdrop {
+    backdrop-filter: none;
+    background: #30204080;
+  }
+}
+
+/* ---------- from src/persona/persona.css ---------- */
+
+/* ---------- cards ---------- */
 .fg-chip:focus-visible,
 .fg-tag:focus-visible {
   outline: 3px solid #67449f;
   outline-offset: 3px;
 }
-.persona-save-hint {
-  margin-top: 12px;
-}
-/* Indirect formats (2026-09-28): receipts chips + Done, rank order + Done, reply chat bubbles. Genii's bet and
-   friend's-eye cards use the regular answer list. */
-.persona-answers--receipts {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-.persona-chip.answer-option {
-  width: auto;
-  flex: 1 1 calc(50% - 8px);
-  min-height: 48px;
-  padding: 10px 14px;
-  border-radius: 999px;
-}
-.persona-chip--none.answer-option {
-  flex-basis: 100%;
-  justify-content: center;
-  text-align: center;
-  font-style: italic;
-}
-.persona-done {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 14px;
-}
-.persona-done .button {
-  min-width: 132px;
-  min-height: 48px;
-}
-/* Rank it: the token shows the place an item was given (empty until placed). */
-.persona-answers--rank .answer-token:empty::before {
-  content: "\00a0";
-}
-.persona-thread {
-  list-style: none;
-  margin: 14px 0 4px;
-  padding: 14px;
-  display: grid;
-  gap: 8px;
-  border-radius: 18px;
-  background: rgba(236, 229, 251, 0.6);
-  border: 1px solid rgba(132, 126, 189, 0.22);
-}
-.persona-bubble {
-  justify-self: start;
-  max-width: 85%;
-  padding: 9px 13px;
-  border-radius: 16px 16px 16px 4px;
-  background: #fff;
-  color: #2c2150;
-  font-size: 15px;
-  line-height: 1.35;
-  box-shadow: 0 1px 2px rgba(58, 42, 110, 0.08);
-}
-.persona-bubble--you {
-  justify-self: end;
-  border-radius: 16px 16px 4px 16px;
-  background: #6945a8;
-  color: #fff;
-}
-.persona-bubble__from {
-  display: block;
-  margin-bottom: 2px;
-  color: #6945a8;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-}
-.persona-flip {
-  position: relative;
-  z-index: 1;
-  margin-top: 14px;
-  display: grid;
-  gap: 12px;
-}
-.persona-flip__picked {
-  margin: 0;
-  padding: 12px 16px;
-  border-radius: 14px;
-  background: #ece5fb;
-  color: #3a2a6e;
-  font-weight: 600;
-}
-.persona-flip h2 {
-  margin: 4px 0 0;
-  font-size: 20px;
-  letter-spacing: -0.02em;
-}
-.persona-flip__options {
-  display: grid;
-  gap: 10px;
-}
-.persona-flip__options .button {
-  justify-content: flex-start;
-  text-align: left;
-  min-height: 48px;
-}
-.persona-link {
-  min-height: 44px;
-  justify-self: start;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 2px;
-  border: 0;
-  background: transparent;
-  color: #563591;
-  font: inherit;
-  font-size: 13px;
-  font-weight: 700;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-.persona-blocked {
-  min-height: 60vh;
-}
-.persona-blocked .interlude-copy {
-  max-width: 620px;
-  margin: 0 auto;
-}
-.storage-banner.persona-broken {
-  position: relative;
-  top: auto;
-  left: auto;
-  transform: none;
-  width: min(720px, calc(100% - 32px));
-  margin: 18px auto 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  font-size: 14px;
-}
-.persona-broken p {
-  margin: 0;
-  flex: 1 1 280px;
-}
-.persona-lock-code code {
-  font: 700 18px ui-monospace, SFMono-Regular, Menlo, monospace;
-  letter-spacing: 0.08em;
-  color: #332089;
-}
-.persona-lock-code details {
-  margin-top: 8px;
-  font-size: 13px;
-}
-.persona-lock-code summary {
-  cursor: pointer;
-  color: #563591;
-  font-weight: 700;
-  min-height: 32px;
-}
-.persona-lock-full {
-  word-break: break-all;
-  font-size: 12px !important;
-  letter-spacing: 0 !important;
-}
 
 /* ---------- result ---------- */
-.persona-result {
-  width: min(100%, 1120px);
-  margin: 0 auto;
-  padding: 34px 48px 90px;
-  display: grid;
-  gap: 28px;
-  color: var(--ink);
-}
-.pr-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 300px;
-  gap: 28px;
-  align-items: center;
-}
 
-.pr-panel,
-.pr-twist,
 .fp,
 .fr-zone {
   position: relative;
@@ -261,8 +396,6 @@
   box-shadow: 0 3px 0 rgba(213, 210, 247, 0.7), 0 18px 40px rgba(78, 68, 153, 0.08);
 }
 
-.pr-panel h2,
-.pr-twist h2,
 .fp h2,
 .fr-zone h2 {
   margin: 6px 0 10px;
@@ -271,7 +404,6 @@
   line-height: 1.1;
 }
 
-.pr-panel ul,
 .fr-zone ul {
   margin: 0;
   padding: 0;
@@ -279,42 +411,12 @@
   display: grid;
   gap: 10px;
 }
-.pr-panel li,
 .fr-zone li {
   display: flex;
   gap: 8px;
   color: #2c2540;
   font-size: 16px;
   line-height: 1.5;
-}
-.pr-panel li svg {
-  flex: none;
-  margin-top: 5px;
-  color: #c2458f;
-}
-
-.pr-twist {
-  background: linear-gradient(135deg, rgba(51, 32, 137, 0.94), rgba(114, 96, 210, 0.9));
-  color: #fff;
-  border-color: transparent;
-}
-.pr-twist h2,
-.pr-twist p {
-  color: #fff;
-}
-.pr-twist p {
-  margin: 8px 0 0;
-  font-size: clamp(18px, 2.2vw, 22px);
-  line-height: 1.45;
-}
-
-.pr-danger {
-  color: #9a2f2f !important;
-}
-.pr-danger-fill {
-  background: linear-gradient(180deg, #c24848, #a33434) !important;
-  border-color: #962e2e !important;
-  box-shadow: inset 0 1px 0 #ffffff50, 0 3px 0 #7c2323 !important;
 }
 
 /* ---------- friends panel (owner) ---------- */
@@ -569,7 +671,6 @@
   color: #5b4300;
   font-weight: 600;
 }
-.fg-age,
 .fg-why {
   position: relative;
   z-index: 1;
@@ -577,7 +678,6 @@
   padding: 0;
   border: 0;
 }
-.fg-age legend,
 .fg-why legend {
   margin-bottom: 8px;
   font-weight: 700;
@@ -669,9 +769,6 @@
   margin: 0;
   color: #3b3452;
 }
-.fg-done .interlude-copy h1 {
-  font-size: clamp(26px, 3.4vw, 40px);
-}
 
 /* ---------- owner view of one friend ---------- */
 .fr-back {
@@ -743,24 +840,15 @@
 
 /* ---------- small screens ---------- */
 @media (max-width: 900px) {
-  .pr-hero {
-    grid-template-columns: minmax(0, 1fr);
-  }
 
   .fp-rels {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 @media (max-width: 760px) {
-  .persona-result {
-    padding: 22px 16px 70px;
-    gap: 18px;
-  }
   .fr-zones {
     grid-template-columns: minmax(0, 1fr);
   }
-  .pr-panel,
-  .pr-twist,
   .fp,
   .fr-zone {
     padding: 20px 18px;
@@ -773,20 +861,9 @@
   .fg-tags {
     grid-template-columns: minmax(0, 1fr);
   }
-  .persona-exit {
-    flex: 1 1 auto;
-  }
-  .persona-chip.answer-option {
-    flex-basis: 100%;
-  }
 }
 @media (prefers-reduced-motion: reduce) {
-  .persona-option,
   .fg-tag {
     transition: none;
   }
 }
-
-/* Lobby (2026-09-28): room toggles show their open or closed state next to the name. */
-.persona-lobby .lobby-room-state { opacity: 0.62; font-weight: 500; margin-left: 0.35em; }
-.persona-lobby .question-actions { display: flex; gap: 0.75rem; justify-content: space-between; flex-wrap: wrap; }

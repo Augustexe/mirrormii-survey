@@ -33,9 +33,12 @@ export function setTheme(theme, { fade = false } = {}) {
 }
 
 // Shows a light on the whole page without committing it (lobby voice preview). previewTheme(null) goes back.
+// A preview paints at once, never through a View Transition: while one runs, Chrome sends every pointer event to the
+// transition overlay, so a tap whose press started the preview (touch) or a quick click right after hover lost its
+// click and the voice never got chosen (found in integration QA, 2026-09-29).
 export function previewTheme(theme) {
   const next = THEMES.includes(theme) ? theme : current;
-  paint(next, { fade: true });
+  paint(next);
   for (const fn of [...listeners]) fn(next);
   return next;
 }

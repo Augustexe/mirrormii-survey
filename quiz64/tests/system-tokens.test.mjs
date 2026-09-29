@@ -111,11 +111,11 @@ test("emotion beads map all 12 bank emotions; unknown falls back to the chapter 
   assert.equal(T.beadFor("nope", 3), T.chapterTint[3].tint);
 });
 
-test("layers.css declares the layer order and keeps the 13 legacy stylesheets in the legacy layer", () => {
+test("layers.css declares the layer order and keeps the one tree-shaken legacy stylesheet in the legacy layer", () => {
   const layers = read("src/system/layers.css");
   assert.match(layers, /@layer legacy, system, art, play, reveal, screens;/);
   const legacy = [...layers.matchAll(/@import url\("([^"]+)"\) layer\(legacy\);/g)].map((m) => m[1]);
-  assert.equal(legacy.length, 13);
+  assert.deepEqual(legacy, ["../legacy.css"], "integration folded the 13 earlier stylesheets into src/legacy.css");
   for (const rel of legacy) assert.ok(fs.existsSync(new URL(`../src/system/${rel}`, import.meta.url)), rel);
   for (const f of ["fonts.css", "tokens.css", "system.css"]) assert.match(layers, new RegExp(`@import url\\("\\./${f}"\\) layer\\(system\\);`));
   const app = read("src/PersonaApp.jsx");
