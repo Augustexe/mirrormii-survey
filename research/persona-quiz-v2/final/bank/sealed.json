@@ -1433,7 +1433,7 @@
     "primary": "L2",
     "sq": "SQ-L2-3",
     "world": "unusual",
-    "prompt": "A museum commissions your mosaic: 10,000 tiles. The picture stays under a sheet until the last tile goes in. Nobody sees progress.",
+    "prompt": "A museum hires you to place 10,000 mosaic tiles. Nobody sees the full picture until the last tile goes in.",
     "options": [
       {
         "t": "Count tiles nightly. Post the percentage somewhere public.",
@@ -1448,7 +1448,7 @@
         ]
       },
       {
-        "t": "A few tiles when the mood strikes. It'll get there.",
+        "t": "Place a few tiles when the mood strikes. It'll get there.",
         "axes": {
           "L2": -2
         },
@@ -1460,7 +1460,7 @@
         ]
       },
       {
-        "t": "Lift the sheet every Friday. Just one corner.",
+        "t": "Peek at one corner every Friday. Just one.",
         "axes": {
           "L2": 1
         },
@@ -1486,17 +1486,17 @@
       }
     ],
     "heart": {
-      "prompt": "A museum commissions a mosaic from you: 10,000 tiles. The finished picture stays covered by a sheet until the very last tile is placed.",
+      "prompt": "A museum hires you to place 10,000 mosaic tiles. Nobody will see the full picture until the last tile goes in.",
       "options": [
         "I count the tiles every night and post the percentage publicly.",
-        "A few tiles whenever I feel like it. It will get there.",
-        "I lift one corner of the sheet every Friday to check.",
+        "I place a few tiles when I like. It will get there.",
+        "I peek at one corner every Friday, just one.",
         "I lose count by the second week, and I love it anyway."
       ]
     },
     "fp": {
-      "trigger": "a mosaic you cannot see until it is done",
-      "setting": "museum studio, covered wall",
+      "trigger": "a mosaic nobody sees whole until it is done",
+      "setting": "museum studio, 10,000 tiles",
       "ask": "track progress or trust the slow build",
       "who": "you and a museum",
       "stakes": "proof it is working versus patience",
@@ -1594,15 +1594,15 @@
     "privacy": "normal"
   },
   {
-    "id": "S-81",
+    "id": "S-160",
     "type": "sealed",
     "primary": "L3",
     "sq": "SQ-L3-1",
     "world": "unusual",
-    "prompt": "Jury duty. The evidence is clear: the defendant stole a bakery's birthday cake, for their kid's party. Eleven jurors turn to you.",
+    "prompt": "You work the ferry ramp. Rule: it closes at departure, no exceptions. It just closed. A runner arrives, breathless: their best friend's wedding is on the island tomorrow.",
     "options": [
       {
-        "t": "Guilty. A stolen cake is a stolen cake.",
+        "t": "Closed is closed. Next ferry's at dawn.",
         "axes": {
           "L3": 2
         },
@@ -1614,7 +1614,7 @@
         ]
       },
       {
-        "t": "Not guilty. I'll argue it all afternoon if I have to.",
+        "t": "Drop the ramp. Thirty seconds won't sink anyone.",
         "axes": {
           "L3": -2
         },
@@ -1626,14 +1626,14 @@
         ]
       },
       {
-        "t": "Guilty. Then think about it at every birthday, forever.",
+        "t": "Say no, then call the island for a water taxi.",
         "axes": {
           "L3": 1
         },
-        "emotion": "guilt"
+        "emotion": "worry"
       },
       {
-        "t": "First question: did the kid get a slice? That changes things.",
+        "t": "Let them on, and anyone else still running.",
         "axes": {
           "L3": -1
         },
@@ -1646,23 +1646,23 @@
       }
     ],
     "heart": {
-      "prompt": "You are on a jury. The evidence clearly shows the defendant stole a birthday cake from a bakery, for their child's party. The other eleven jurors turn to you.",
+      "prompt": "You work the ferry ramp. It closes at departure, no exceptions, and it just closed. A passenger arrives out of breath: their best friend's wedding is on the island tomorrow.",
       "options": [
-        "Guilty. Taking a cake is still taking.",
-        "Not guilty, and I will argue it as long as it takes.",
-        "Guilty, and I will think about it at every birthday after.",
-        "I ask whether the child got a slice. That matters to me."
+        "Closed means closed. The next ferry leaves at dawn.",
+        "I lower the ramp. Thirty seconds will not hurt anyone.",
+        "I say no, then call ahead for a water taxi for them.",
+        "I let them on, and anyone else still running for it."
       ]
     },
     "fp": {
-      "trigger": "cake thief on trial",
-      "setting": "jury room",
-      "ask": "which verdict you give",
-      "who": "a stranger and eleven jurors",
+      "trigger": "a late runner after the ferry ramp closed",
+      "setting": "a ferry dock, last boat to the island",
+      "ask": "hold the rule or lower the ramp",
+      "who": "a stranger in a hurry",
       "stakes": "the rule versus the reason",
-      "device": "jury-duty"
+      "device": "ferry-ramp"
     },
-    "mask": "looks like a courtroom comedy; Genii's locked guess on the rule versus the situation (L3), with T25 as a side guess",
+    "mask": "looks like a dockside rush; Genii's locked guess on the rule versus the situation (L3), with T25 as a side guess",
     "ae": [
       "C",
       "A"

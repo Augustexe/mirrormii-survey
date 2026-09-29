@@ -55,15 +55,15 @@
     "world": "absurd"
   },
   {
-    "id": "C6-81",
+    "id": "C6-160",
     "type": "this_or_that",
     "chapter": 6,
     "sq": "SQ-R3-2",
     "world": "absurd",
-    "prompt": "A home robot shows up preset to run your future home exactly like the one you grew up in. Who cooks, who pays, all of it.",
+    "prompt": "Genii gives you and your person a magic board game of your life together. The squares, in order: move in, ring, wedding, house. Or a blank board.",
     "options": [
       {
-        "t": "Keep the settings. It already knows where the good scissors go.",
+        "t": "Play it as printed. Keys, ring, wedding, house.",
         "axes": {
           "R3": 2
         },
@@ -72,10 +72,11 @@
             "id": "T20A",
             "s": 2
           }
-        ]
+        ],
+        "emotion": "warmth"
       },
       {
-        "t": "Factory reset. Our house, our settings, from zero.",
+        "t": "Blank board. We draw every square ourselves.",
         "axes": {
           "R3": -2
         },
@@ -84,33 +85,34 @@
             "id": "T20B",
             "s": 2
           }
-        ]
+        ],
+        "emotion": "delight"
       }
     ],
     "heart": {
-      "prompt": "A household robot arrives set to run your future home exactly the way the home you grew up in was run, including who cooks and who pays.",
+      "prompt": "Genii gives you and your person a magic board game of your life together. The squares, in order: move in, ring, wedding, house. Or a blank board.",
       "options": [
-        "I keep the settings. It already knows how things should go.",
-        "I reset it, and we decide every setting ourselves."
+        "We play it as printed, one square after another.",
+        "We take the blank board and draw every square ourselves."
       ]
     },
     "fp": {
-      "trigger": "robot preset to your childhood home's ways",
-      "setting": "your future home",
-      "ask": "keep or wipe the settings",
-      "who": "you and whoever you live with",
-      "stakes": "the family script versus your own design",
-      "device": "home-robot"
+      "trigger": "a board game lays out a couple's milestones",
+      "setting": "Genii's board game of your future",
+      "ask": "follow the printed path or draw your own",
+      "who": "you and your person",
+      "stakes": "the classic script versus your own design",
+      "device": "life-board-game"
     },
-    "mask": "looks like a gadget choice; measures running a home the way it was always run versus designing your own (R3, T20)",
+    "mask": "looks like a game-night gift; measures running a couple's life the way it has always run versus designing your own (R3, T20)",
     "ae": [
       "D"
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "A robot will run {name}'s future home exactly like {their} childhood one: who cooks, who pays, everything. Which one is {name}?",
+      "prompt": "{name} and {their} person get a magic board game of their future: move in, ring, wedding, house, in order. Or a blank board. Which one is {name}?",
       "a": {
-        "t": "Keeps the settings. It knows where the good scissors go.",
+        "t": "Plays it as printed. Keys, ring, wedding, house.",
         "axes": {
           "R3": 2
         },
@@ -122,7 +124,7 @@
         ]
       },
       "b": {
-        "t": "Factory reset. Our house, our settings, from zero.",
+        "t": "Blank board. Draws every square with {their} person.",
         "axes": {
           "R3": -2
         },
@@ -368,13 +370,25 @@
     }
   },
   {
-    "id": "C6-142",
+    "id": "C6-161",
     "type": "others",
     "chapter": 6,
-    "prompt": "Your cousin was just knighted by a very serious kingdom of squirrels. Room for 300 guests. They brought one friend. First thought?",
+    "sq": "SQ-T21-2",
+    "world": "absurd",
+    "prompt": "Genii offers your friend a magic wedding: every relative, living or long gone, can attend. 900 seats. Your friend picks a courthouse, just the two of them. First thought?",
     "options": [
       {
-        "t": "Iconic. Big honors deserve a tiny crowd.",
+        "t": "Their great-grandparents could be there. Take the seats.",
+        "tags": [
+          {
+            "id": "T21A",
+            "s": 2
+          }
+        ],
+        "emotion": "sting"
+      },
+      {
+        "t": "Right call. That day belongs to the two of them.",
         "axes": {
           "R1": -1
         },
@@ -386,17 +400,7 @@
         ]
       },
       {
-        "t": "Our grandparents would've cried in the front row. Rude.",
-        "tags": [
-          {
-            "id": "T21A",
-            "s": 2
-          }
-        ],
-        "emotion": "sting"
-      },
-      {
-        "t": "Next time I'm filling all 300 seats. With snacks.",
+        "t": "I'd fill all 900 and cry through every hug.",
         "axes": {
           "R1": 1
         },
@@ -406,10 +410,10 @@
             "s": 1
           }
         ],
-        "emotion": "delight"
+        "emotion": "warmth"
       },
       {
-        "t": "Fair. Fewer guests, fewer speeches.",
+        "t": "A courthouse and a long lunch is still a big day.",
         "tags": [
           {
             "id": "T21B",
@@ -419,35 +423,33 @@
       }
     ],
     "heart": {
-      "prompt": "Your cousin was knighted by a very serious kingdom of squirrels. There was room for 300 guests, and they brought one friend. What is your first thought?",
+      "prompt": "Genii offers your friend a magic wedding with 900 seats, open to every relative, living or long gone. Your friend chooses a courthouse for two. Your first thought?",
       "options": [
-        "Perfect. A big honor deserves a small crowd.",
-        "Our grandparents would have loved to be in the front row.",
-        "When it is my turn, I am filling all 300 seats.",
-        "Fair enough. Fewer guests means fewer speeches."
+        "Their great-grandparents could be there. They should take the seats.",
+        "Good choice. That day belongs to the two of them.",
+        "I would fill all 900 seats and cry through every hug.",
+        "A courthouse and a long lunch is still a big day."
       ]
     },
     "fp": {
-      "trigger": "a cousin's big honor with one guest",
-      "setting": "a squirrel kingdom's knighting ceremony",
-      "ask": "your first thought on the tiny guest list",
-      "who": "your cousin and the whole family",
+      "trigger": "a friend turns down a wedding every relative could attend",
+      "setting": "Genii's magic wedding hall, a courthouse",
+      "ask": "your first thought on who belongs",
+      "who": "a friend, their person and every relative",
       "stakes": "who belongs at the big moment",
-      "device": "squirrel-knighting"
+      "device": "every-relative-wedding"
     },
-    "mask": "looks like a woodland fairy tale; measures whether big moments belong to the whole family or a chosen few (T21), with shared versus apart (R1)",
+    "mask": "looks like a wish story; measures whether big moments belong to the whole family or a chosen few (T21), with shared versus apart (R1)",
     "ae": [
       "A",
       "B",
       "E"
     ],
     "privacy": "normal",
-    "sq": "SQ-T21-2",
-    "world": "absurd",
     "friend": {
-      "prompt": "{name}'s cousin was knighted by a squirrel kingdom. Room for 300; they brought one friend. {name}'s first thought?",
+      "prompt": "Genii offers {name}'s friend a wedding every relative can attend, living or long gone. The friend picks a courthouse for two. {name}'s first thought?",
       "a": {
-        "t": "\"Next time I'm filling all 300 seats. With snacks.\"",
+        "t": "\"I'd fill all 900 and cry through every hug.\"",
         "axes": {
           "R1": 1
         },
@@ -459,7 +461,7 @@
         ]
       },
       "b": {
-        "t": "\"Iconic. Big honors deserve a tiny crowd.\"",
+        "t": "\"Right call. That day belongs to the two of them.\"",
         "axes": {
           "R1": -1
         },
@@ -1247,114 +1249,77 @@
     }
   },
   {
-    "id": "C6-145",
+    "id": "C6-162",
     "type": "real",
     "chapter": 6,
-    "prompt": "Last family group gift you chipped in on. How did you actually handle the split?",
+    "sq": "SQ-L3-2",
+    "world": "everyday",
+    "prompt": "Family under one roof, not enough beds. The most recent time, what did you actually do?",
     "options": [
       {
-        "t": "Even split. Same gift, same share, no footnotes.",
+        "t": "Strict rotation. One night in the bed each, me included.",
         "axes": {
           "L3": 2
-        },
-        "tags": [
-          {
-            "id": "T12A",
-            "s": 2
-          }
-        ]
+        }
       },
       {
-        "t": "Covered the cousin who was short. Told nobody.",
-        "axes": {
-          "L3": -2
-        },
-        "tags": [
-          {
-            "id": "T12B",
-            "s": 2
-          }
-        ],
-        "emotion": "warmth"
-      },
-      {
-        "t": "Suggested paying by what we each earn. Long pause.",
-        "axes": {
-          "L3": -1
-        },
-        "tags": [
-          {
-            "id": "T12B",
-            "s": 1
-          }
-        ],
-        "emotion": "cringe"
-      },
-      {
-        "t": "Made the spreadsheet. Chased everyone until it balanced.",
+        "t": "Rock, paper, scissors. Won it fair, slept great.",
         "axes": {
           "L3": 1
         },
-        "tags": [
-          {
-            "id": "T12A",
-            "s": 1
-          }
-        ],
-        "emotion": "irritation"
+        "emotion": "pride"
+      },
+      {
+        "t": "Gave the bed to whoever drove the farthest.",
+        "axes": {
+          "L3": -1
+        }
+      },
+      {
+        "t": "Gave the real bed to whoever had the roughest year.",
+        "axes": {
+          "L3": -2
+        },
+        "emotion": "warmth"
       }
     ],
     "heart": {
-      "prompt": "Think of the last family group gift you chipped in on. How did you actually handle the split?",
+      "prompt": "Think of the most recent time your family stayed under one roof and there were not enough beds. What did you actually do?",
       "options": [
-        "An even split. Same gift, same share for everyone.",
-        "I quietly covered a cousin who was short.",
-        "I suggested paying by what each of us earns. It went quiet.",
-        "I made the spreadsheet and followed up until it balanced."
+        "We rotated strictly, one night in the bed each, me included.",
+        "We played rock, paper, scissors. I won fairly and slept well.",
+        "I gave the bed to whoever had driven the farthest.",
+        "I gave the real bed to whoever was having the hardest year."
       ]
     },
     "fp": {
-      "trigger": "a family group gift to split",
-      "setting": "family, a shared present",
-      "ask": "split it evenly or by means",
-      "who": "relatives chipping in",
-      "stakes": "fairness versus who can afford it",
-      "device": "family-group-gift"
+      "trigger": "not enough beds for a family stay",
+      "setting": "one house, the whole family",
+      "ask": "who gets the beds",
+      "who": "relatives sharing a roof",
+      "stakes": "the same chance for all versus who needs it most",
+      "device": "short-on-beds"
     },
-    "mask": "looks like a family money story; measures fair as the same share for everyone versus fair as what each can give (L3, T12) from a thing actually done",
+    "mask": "looks like a family logistics story; measures fair as the same deal for everyone versus fair as what each person needs (L3), from a thing actually done",
     "ae": [
       "A",
       "B",
       "E"
     ],
     "privacy": "normal",
-    "sq": "SQ-L3-2",
-    "world": "everyday",
     "friend": {
-      "prompt": "The last family group gift {name} chipped in on. How did {name} handle the split?",
+      "prompt": "The last time {name}'s family stayed under one roof with too few beds. What did {name} actually do?",
       "a": {
-        "t": "Even split. Same gift, same share, no footnotes.",
+        "t": "Strict rotation. One night in the bed each.",
         "axes": {
           "L3": 2
-        },
-        "tags": [
-          {
-            "id": "T12A",
-            "s": 2
-          }
-        ]
+        }
       },
       "b": {
-        "t": "Covered the cousin who was short. Told nobody.",
+        "t": "Gave the real bed to whoever had the roughest year.",
         "axes": {
           "L3": -2
-        },
-        "tags": [
-          {
-            "id": "T12B",
-            "s": 2
-          }
-        ]
+        }
       }
     }
   },

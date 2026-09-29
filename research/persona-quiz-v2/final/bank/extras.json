@@ -352,15 +352,15 @@
     "privacy": "normal"
   },
   {
-    "id": "X-R3-40",
+    "id": "X-R3-50",
     "type": "this_or_that",
     "axisFor": "R3",
     "sq": "SQ-R3-2",
     "world": "absurd",
-    "prompt": "Genii hands you a lighthouse, free forever, plus the keepers' household rulebook: 300 years of how this home runs. Keep it, or erase it tonight?",
+    "prompt": "Genii's housewarming gift: a house that builds itself overnight. Pick the blueprint. The classic family home, or the strange one you'd design yourselves.",
     "options": [
       {
-        "t": "Keep it. Tea at four, lamp at dusk, forever.",
+        "t": "The classic. Fence, dining table, guest room for family.",
         "axes": {
           "R3": 2
         },
@@ -373,7 +373,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "Erase it. My lighthouse, my rules.",
+        "t": "Ours. No dining table, a slide, a reading pit.",
         "axes": {
           "R3": -2
         },
@@ -387,21 +387,21 @@
       }
     ],
     "heart": {
-      "prompt": "Genii gives you a lighthouse, free forever, along with the keepers' household rulebook: 300 years of how this home is run. Do you keep it, or erase it tonight?",
+      "prompt": "Genii's housewarming gift is a house that builds itself overnight. You pick the plan: the classic family home, or an unusual one you design yourselves.",
       "options": [
-        "I keep it. Tea at four and the lamp at dusk, always.",
-        "I erase it. My lighthouse runs on my own rules."
+        "The classic home: fence, dining table, guest room for family.",
+        "Our own design: no dining table, a slide and a reading nook."
       ]
     },
     "fp": {
-      "trigger": "a free home comes with 300 years of house rules",
-      "setting": "a lighthouse from Genii",
-      "ask": "keep the old household rules or write your own",
-      "who": "you and the keepers before you",
-      "stakes": "the way homes ran versus your own design",
-      "device": "lighthouse-rulebook"
+      "trigger": "a self-building house needs a blueprint",
+      "setting": "an empty lot, Genii's gift",
+      "ask": "the classic home or your own design",
+      "who": "you and whoever you live with",
+      "stakes": "the way homes run versus your own design",
+      "device": "self-building-house"
     },
-    "mask": "looks like a dream house with fine print; measures running a home the way it has always been run versus your own design (R3, T20)",
+    "mask": "looks like a dream-house pick; measures running a home the way it has always been run versus your own design (R3, T20)",
     "ae": [
       "D"
     ],
@@ -621,7 +621,7 @@
     "axisFor": "L2",
     "sq": "SQ-T16-2",
     "world": "absurd",
-    "prompt": "Genii will hang one thing on your wall, forever, where every guest sees it. Rank them, the one you'd pick first on top.",
+    "prompt": "Genii gives you one permanent display in your home, where every guest sees it. Rank what you'd pick first to last.",
     "options": [
       {
         "t": "Every trophy, medal and certificate I've ever won.",
@@ -660,25 +660,25 @@
         ]
       },
       {
-        "t": "An actual hammock. Guests may nap.",
+        "t": "A hammock guests can actually nap in.",
         "axes": {
           "L2": -1
         }
       }
     ],
     "heart": {
-      "prompt": "Genii will hang one thing on your wall forever, where every guest will see it. Put them in order, your first choice at the top.",
+      "prompt": "Genii gives you one permanent display in your home, where every guest will see it. Put them in order, your first choice at the top.",
       "options": [
         "Every trophy, medal and certificate I have ever received.",
         "A blurry photo of my laziest, happiest Sunday.",
         "My best piece of work, with the date I finished it.",
-        "A real hammock, where guests are welcome to nap."
+        "A hammock that guests can actually nap in."
       ]
     },
     "fp": {
-      "trigger": "one thing hangs on your wall forever",
+      "trigger": "one permanent display in your home",
       "setting": "your home, every guest looking",
-      "ask": "rank what goes on the wall",
+      "ask": "rank what goes on display",
       "who": "you and every guest",
       "stakes": "wins on display versus rest on display",
       "device": "genii-wall-frame"

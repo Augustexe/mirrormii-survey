@@ -4,9 +4,9 @@
     {
       "id": "S-134",
       "predicted": 1,
-      "predictedText": "A few tiles when the mood strikes. It'll get there.",
+      "predictedText": "Place a few tiles when the mood strikes. It'll get there.",
       "answer": 1,
-      "answerText": "A few tiles when the mood strikes. It'll get there.",
+      "answerText": "Place a few tiles when the mood strikes. It'll get there.",
       "status": "hit",
       "exact": true,
       "sideHit": true,
@@ -50,15 +50,15 @@
       "options": 4
     },
     {
-      "id": "S-81",
+      "id": "S-160",
       "predicted": 0,
-      "predictedText": "Guilty. A stolen cake is a stolen cake.",
+      "predictedText": "Closed is closed. Next ferry's at dawn.",
       "answer": 0,
-      "answerText": "Guilty. A stolen cake is a stolen cake.",
-      "status": "hit",
+      "answerText": "Closed is closed. Next ferry's at dawn.",
+      "status": "pass",
       "exact": true,
       "sideHit": true,
-      "passWhy": null,
+      "passWhy": "L3 is flex",
       "options": 4
     },
     {
@@ -98,14 +98,14 @@
       "options": 4
     }
   ],
-  "called": 8,
-  "exact": 6,
-  "exactRate": 0.75,
+  "called": 7,
+  "exact": 5,
+  "exactRate": 0.714,
   "exactChance": 0.25,
-  "side": 6,
-  "sideOf": 8,
-  "sideRate": 0.75,
+  "side": 5,
+  "sideOf": 7,
+  "sideRate": 0.714,
   "sideChance": 0.5,
-  "passes": 0,
-  "line": "Genii called 6 of 8 exactly (chance about 25%)."
+  "passes": 1,
+  "line": "Genii called 5 of 7 exactly (chance about 25%)."
 }

@@ -275,15 +275,15 @@
     }
   },
   {
-    "id": "C4-120",
+    "id": "C4-160",
     "type": "bet",
     "chapter": 4,
     "sq": "SQ-L2-1",
     "world": "everyday",
-    "prompt": "Genii suspects you've picked up extra work you didn't need, just to watch a number get bigger.",
+    "prompt": "Admit it: you've spent a whole weekend on a project mostly to post the \"done\" photo.",
     "options": [
       {
-        "t": "Guilty. The number was the whole reward.",
+        "t": "Guilty. Posted it Sunday night. Worth every hour.",
         "axes": {
           "L2": 2
         },
@@ -296,7 +296,7 @@
         "emotion": "pride"
       },
       {
-        "t": "Guilty. Then bought something loud to prove it happened.",
+        "t": "Guilty. Then bought myself something nice to celebrate.",
         "axes": {
           "L2": 1
         },
@@ -308,7 +308,7 @@
         ]
       },
       {
-        "t": "Never. My free time costs more than they pay.",
+        "t": "Never. A free weekend beats any done photo.",
         "axes": {
           "L2": -2
         },
@@ -320,39 +320,39 @@
         ]
       },
       {
-        "t": "Never. I'll take the smaller number and the nap.",
+        "t": "Never. I finish things slowly and tell nobody.",
         "axes": {
           "L2": -1
         }
       }
     ],
     "heart": {
-      "prompt": "Have you ever taken on extra work you did not need, mostly to see a number grow?",
+      "prompt": "Have you ever spent a whole weekend on a project mostly so you could post the finished photo?",
       "options": [
-        "Yes. Seeing the number grow was the whole reward.",
-        "Yes, and then I bought something noticeable to mark it.",
-        "No. My free time is worth more to me than the pay.",
-        "No. I would rather have the smaller number and the rest."
+        "Yes. I posted it Sunday night. It was worth every hour.",
+        "Yes, and then I bought myself something nice to celebrate.",
+        "No. A free weekend is worth more than any finished photo.",
+        "No. I finish things slowly and do not tell anyone."
       ]
     },
     "fp": {
-      "trigger": "optional extra work on offer",
-      "setting": "a side shift or side gig",
-      "ask": "take it for the number",
-      "who": "just you",
+      "trigger": "a project you could show off when done",
+      "setting": "a whole weekend at home",
+      "ask": "trade the weekend for the done photo",
+      "who": "just you and whoever sees the post",
       "stakes": "free time versus a win you can see",
-      "device": "extra-shift"
+      "device": "done-photo-weekend"
     },
-    "mask": "looks like a hustle confession; measures trading free time for a visible win versus your own pace (L2, T16)",
+    "mask": "looks like a weekend confession; measures trading free time for a visible win versus your own pace (L2, T16)",
     "ae": [
       "A",
       "D"
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "Genii bets {name} has taken extra work {they} didn't need, just to watch a number grow. Guilty or not?",
+      "prompt": "Genii bets {name} has given up a whole weekend on a project just to post the done photo. Guilty or not?",
       "a": {
-        "t": "Guilty. The number was the whole reward.",
+        "t": "Guilty. Posted it Sunday night. Worth every hour.",
         "axes": {
           "L2": 2
         },
@@ -364,7 +364,7 @@
         ]
       },
       "b": {
-        "t": "Never. My free time costs more than they pay.",
+        "t": "Never. A free weekend beats any done photo.",
         "axes": {
           "L2": -2
         },
@@ -381,10 +381,10 @@
     "id": "C4-142",
     "type": "bet",
     "chapter": 4,
-    "prompt": "Genii's guess: there's money in your life you pretend doesn't exist. Not for fun. Not for anything.",
+    "prompt": "Genii's guess: you've got money you try to treat as untouchable.",
     "options": [
       {
-        "t": "Guilty. Untouchable. Even I forget the number.",
+        "t": "Guilty. Even I forget the number.",
         "axes": {
           "L1": 1
         },
@@ -397,7 +397,7 @@
         "emotion": "pride"
       },
       {
-        "t": "Guilty. And I've raided it twice this year for fun.",
+        "t": "Guilty. I raided it twice this year for fun.",
         "axes": {
           "L1": -1
         },
@@ -410,7 +410,7 @@
         "emotion": "cringe"
       },
       {
-        "t": "Never. Money sitting still feels like money wasted.",
+        "t": "Wrong. Money sitting still feels wasted.",
         "axes": {
           "L1": -1
         },
@@ -422,7 +422,7 @@
         ]
       },
       {
-        "t": "Not yet. Starting one is next month's plan.",
+        "t": "Not yet. Starting next month.",
         "tags": [
           {
             "id": "T13B",
@@ -432,16 +432,16 @@
       }
     ],
     "heart": {
-      "prompt": "Do you have money set aside that you act as if does not exist, not for fun and not for anything else?",
+      "prompt": "Do you have money you try to treat as untouchable?",
       "options": [
-        "Yes. It is untouchable. I barely remember how much is there.",
+        "Yes. I barely remember how much is there.",
         "Yes, and I have dipped into it twice this year for fun.",
         "No. Money that just sits there feels wasted to me.",
-        "Not yet, but starting one is my plan for next month."
+        "Not yet. I am starting next month."
       ]
     },
     "fp": {
-      "trigger": "money you pretend isn't there",
+      "trigger": "money you try to treat as untouchable",
       "setting": "your savings, in your head",
       "ask": "do you keep an untouchable cushion",
       "who": "just you",
@@ -457,9 +457,9 @@
     "sq": "SQ-L1-3",
     "world": "everyday",
     "friend": {
-      "prompt": "Genii's guess: {name} has money set aside that {they} pretend doesn't exist. True?",
+      "prompt": "Genii's guess: {name} has money {they} try to treat as untouchable. True?",
       "a": {
-        "t": "Guilty. Untouchable. Even I forget the number.",
+        "t": "Guilty. Even I forget the number.",
         "axes": {
           "L1": 1
         },
@@ -471,7 +471,7 @@
         ]
       },
       "b": {
-        "t": "Never. Money sitting still feels like money wasted.",
+        "t": "Wrong. Money sitting still feels wasted.",
         "axes": {
           "L1": -1
         },
@@ -1223,7 +1223,7 @@
       },
       {
         "from": "Dev",
-        "text": "10% of the cat's merch for your savings? it could stop talking any day tho"
+        "text": "you in for ten percent? it could stop talking any day tho"
       }
     ],
     "options": [
@@ -1241,14 +1241,14 @@
         "emotion": "delight"
       },
       {
-        "t": "\"Send me the numbers first. Every single one.\"",
+        "t": "\"Send me every number before I decide.\"",
         "axes": {
           "L1": 2
         },
         "emotion": "worry"
       },
       {
-        "t": "\"$200. Friendship price. Not a cent more.\"",
+        "t": "\"I can put in $200 as a friend. No more.\"",
         "axes": {
           "L1": 1
         },
@@ -1260,7 +1260,7 @@
         ]
       },
       {
-        "t": "In. If it goes quiet, I still own part of a legend.",
+        "t": "\"I'll put in $5,000. Quiet or not, it's a legend.\"",
         "axes": {
           "L1": -1
         }
@@ -1275,14 +1275,14 @@
         },
         {
           "from": "Dev",
-          "text": "Would you put in your savings for ten percent of the cat's merchandise? It could stop talking any day."
+          "text": "Do you want in, for ten percent? It could stop talking any day."
         }
       ],
       "options": [
         "Here are my savings. I believe in this cat.",
-        "Please send me all the numbers before I decide.",
+        "Please send me every number before I decide.",
         "I can put in $200 as a friend, and no more.",
-        "I am in. Quiet or not, I own part of a legend."
+        "I will put in the $5,000. Quiet or not, it is legendary."
       ]
     },
     "fp": {
@@ -1300,9 +1300,9 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "Dev's talking cat has two million followers. Dev texts: \"10% of the cat's merch for your savings?\" What does {name} reply?",
+      "prompt": "Dev's talking cat has two million followers. Dev needs $5,000 for merch and offers ten percent. What does {name} reply?",
       "a": {
-        "t": "\"Send me the numbers first. Every single one.\"",
+        "t": "\"Send me every number before I decide.\"",
         "axes": {
           "L1": 2
         }
@@ -1432,15 +1432,15 @@
     }
   },
   {
-    "id": "C4-100",
+    "id": "C4-161",
     "type": "others",
     "chapter": 4,
     "sq": "SQ-T13-1",
     "world": "absurd",
-    "prompt": "Your friend's leprechaun gold doubles every year, but only if none of it is spent. Day two, they spent a coin on pizza. First thought?",
+    "prompt": "Your friend's new money tree grows one $100 bill a week. They pick each bill the minute it appears and spend it by dinner. First thought?",
     "options": [
       {
-        "t": "Icon. Best pizza anyone has ever eaten.",
+        "t": "Right call. Money that grows back is for now.",
         "axes": {
           "L1": -1
         },
@@ -1453,7 +1453,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Doubling forever. Traded for pizza. I need to lie down.",
+        "t": "Leave a few on the branch. Trees have bad years.",
         "axes": {
           "L1": 1
         },
@@ -1463,47 +1463,51 @@
             "s": 2
           }
         ],
-        "emotion": "irritation"
+        "emotion": "worry"
       },
       {
-        "t": "Same. I'd have lasted a day and a half.",
+        "t": "A round for the whole group, every week. Perfect.",
+        "axes": {
+          "L1": -1
+        },
         "tags": [
           {
             "id": "T13A",
             "s": 1
           }
         ],
-        "emotion": "cringe"
+        "emotion": "warmth"
       },
       {
-        "t": "I'd have buried it and drawn myself a map.",
+        "t": "Sell the tree. One big sure check, done.",
         "axes": {
-          "L1": 1
+          "L1": 2
         },
         "tags": [
           {
             "id": "T13B",
             "s": 1
           }
-        ]
+        ],
+        "emotion": "relief"
       }
     ],
     "heart": {
-      "prompt": "Your friend's leprechaun gold doubles every year, but only if none of it is spent. On day two, they spent a coin on pizza. Your first thought?",
+      "prompt": "Your friend's new money tree grows one $100 bill every week. They pick each bill the moment it appears and spend it by dinnertime. What is your first thought?",
       "options": [
-        "Good for them. Probably the best pizza of their life.",
-        "It could have doubled forever, and it went on pizza.",
-        "Honestly, I would have lasted about a day and a half myself.",
-        "I would have buried it somewhere and drawn myself a map."
+        "Good call. Money that grows back is meant for now.",
+        "They should leave a few on the branch. Trees have bad years.",
+        "I would treat the whole group every week. That is its purpose.",
+        "I would sell the tree for one large, certain payment."
       ]
     },
     "fp": {
-      "trigger": "friend spends a magic doubling pot on day two",
-      "setting": "leprechaun's gold, pizza night",
-      "ask": "judge joy now versus letting it grow",
-      "who": "friend",
+      "trigger": "a friend spends a magic weekly windfall at once",
+      "setting": "a money tree, a bill every week",
+      "ask": "judge joy now versus a cushion later",
+      "who": "a friend",
       "stakes": "a treat today versus a fortune later",
-      "device": "leprechaun-gold"
+      "device": "money-tree"
     },
     "mask": "looks like a fable; measures spending found money now versus saving it (T13, L1)",
     "ae": [
@@ -1512,9 +1516,9 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "A friend's leprechaun gold doubles yearly, but only if none is spent. Day two, the friend spends a coin on pizza. {name}'s first thought?",
+      "prompt": "{name}'s friend has a money tree: $100 a week, picked and spent by dinner. {name}'s first thought?",
       "a": {
-        "t": "Doubling forever. Traded for pizza. I need to lie down.",
+        "t": "\"Leave a few on the branch. Trees have bad years.\"",
         "axes": {
           "L1": 1
         },
@@ -1526,7 +1530,7 @@
         ]
       },
       "b": {
-        "t": "Icon. Best pizza anyone has ever eaten.",
+        "t": "\"Right call. Money that grows back is for now.\"",
         "axes": {
           "L1": -1
         },
@@ -1543,7 +1547,7 @@
     "id": "C4-144",
     "type": "role",
     "chapter": 4,
-    "prompt": "Your friend group wins $6,000 at a trivia final. The rule: one prize, spent together, on one thing. In this crew, you're the...",
+    "prompt": "Your crew wins $6,000 at trivia. One shared prize, one group decision. In this crew, you're the...",
     "options": [
       {
         "t": "Hype. Already picked the thing and the date.",
@@ -1571,7 +1575,7 @@
         ]
       },
       {
-        "t": "Partial. I'll join the parts I like.",
+        "t": "Partial. I'll enjoy the parts I like and sit out the rest.",
         "axes": {
           "R1": -1
         }
@@ -1584,17 +1588,17 @@
       }
     ],
     "heart": {
-      "prompt": "Your friend group wins $6,000 at a trivia final, and the rule is that it must be spent together, on one thing. Which one are you?",
+      "prompt": "Your crew wins $6,000 at trivia: one shared prize and one group decision. Which one are you?",
       "options": [
         "The one who has already picked the thing and the date.",
         "The one who wanted cash but goes along anyway.",
         "The one logging every dollar and every request.",
-        "The one who joins only the parts they like.",
+        "The one who enjoys the parts they like and skips the rest.",
         "The one who steps out and gives their part to the group."
       ]
     },
     "fp": {
-      "trigger": "a group prize that must be spent together",
+      "trigger": "a shared group prize and one group decision",
       "setting": "right after a trivia final win",
       "ask": "your part in spending it",
       "who": "your friend group",
@@ -1610,7 +1614,7 @@
     "sq": "SQ-R1-3",
     "world": "unusual",
     "friend": {
-      "prompt": "{name}'s friend group wins $6,000 at trivia, to be spent together on one thing. In this crew, {name} is the...",
+      "prompt": "{name}'s crew wins $6,000 at trivia: one shared prize, one group decision. In this crew, {name} is the...",
       "a": {
         "t": "Hype. Already picked the thing and the date.",
         "axes": {

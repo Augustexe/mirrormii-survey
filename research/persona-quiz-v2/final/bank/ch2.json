@@ -1,34 +1,14 @@
 [
  {
-  "id": "C2-140",
+  "id": "C2-160",
   "type": "scenario",
   "chapter": 2,
-  "sq": "SQ-T02-2",
+  "sq": "SQ-T02-1",
   "world": "absurd",
-  "prompt": "A street-market ring: while you wear it, every friend texts you first. Forever. You'd never know if they would have anyway.",
+  "prompt": "Your best friend is back from fourteen months on Mars. They had Wi-Fi. They sent nothing. Now they're at your door, holding a Mars rock.",
   "options": [
    {
-    "t": "Ring on. Finally, proof they want me around.",
-    "tags": [
-     {
-      "id": "T02B",
-      "s": 2
-     }
-    ],
-    "emotion": "relief"
-   },
-   {
-    "t": "Ring on. I'm done always going first.",
-    "tags": [
-     {
-      "id": "T02B",
-      "s": 1
-     }
-    ],
-    "emotion": "resentment"
-   },
-   {
-    "t": "Leave it. I text first. No scorecard.",
+    "t": "Hug. Grab the rock. Pick up mid-sentence.",
     "tags": [
      {
       "id": "T02A",
@@ -38,43 +18,63 @@
     "emotion": "warmth"
    },
    {
-    "t": "Leave it. Whoever's bored texts first. System works.",
+    "t": "Hug. Then: \"Mars has Wi-Fi. I checked.\"",
+    "tags": [
+     {
+      "id": "T02B",
+      "s": 1
+     }
+    ],
+    "emotion": "irritation"
+   },
+   {
+    "t": "Take the rock. Let them wait a week, like I did.",
+    "tags": [
+     {
+      "id": "T02B",
+      "s": 2
+     }
+    ],
+    "emotion": "resentment"
+   },
+   {
+    "t": "Laugh. I never texted Mars either.",
     "tags": [
      {
       "id": "T02A",
       "s": 1
      }
     ],
-    "emotion": "delight"
+    "emotion": "cringe"
    }
   ],
   "heart": {
-   "prompt": "A ring from a street market makes every friend message you first, forever, while you wear it. You would never know whether they would have anyway.",
+   "prompt": "Your best friend is back after fourteen months on Mars. They had Wi-Fi and sent you nothing. Now they are at your door with a rock from Mars.",
    "options": [
-    "I put it on. Finally, proof that they want me around.",
-    "I put it on. I am tired of always going first.",
-    "I leave it. I message first, and I do not keep score.",
-    "I leave it. Whoever is bored messages first, and that works."
+    "I hug them, take the rock and pick right back up.",
+    "I hug them, then mention that Mars had Wi-Fi. I checked.",
+    "I take the rock and make them wait, the way I did.",
+    "I laugh. I never sent anything to Mars either."
    ]
   },
   "fp": {
-   "trigger": "a ring makes friends always text first",
-   "setting": "a street market, a magic ring",
-   "ask": "wear it or leave it",
-   "who": "all your friends",
-   "stakes": "proof you are wanted versus never knowing",
-   "device": "text-first-ring"
+   "trigger": "a best friend returns after a silent year away",
+   "setting": "your doorstep, a rock from Mars",
+   "ask": "pick up or make the silence count",
+   "who": "your best friend",
+   "stakes": "an easy return versus the quiet you noticed",
+   "device": "mars-return"
   },
-  "mask": "looks like a magic trinket; measures keeping count of who reaches out first (T02)",
+  "mask": "looks like a space homecoming; measures whether a long quiet stretch means the friendship is fine or fading (T02)",
   "ae": [
    "A",
    "E"
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "A magic ring would make every friend text {name} first, forever. {name} would never know if they meant it. What does {name} do?",
+   "prompt": "{name}'s best friend is back from fourteen months on Mars. Had Wi-Fi, sent nothing. Now they're at the door. What does {name} do?",
    "a": {
-    "t": "Leaves it: \"I text first. No scorecard.\"",
+    "t": "Hugs them and picks up mid-sentence.",
     "tags": [
      {
       "id": "T02A",
@@ -83,7 +83,7 @@
     ]
    },
    "b": {
-    "t": "Puts it on: \"Finally, proof they want me around.\"",
+    "t": "Takes the rock. Lets them wait a week.",
     "tags": [
      {
       "id": "T02B",
@@ -808,13 +808,33 @@
   }
  },
  {
-  "id": "C2-123",
+  "id": "C2-161",
   "type": "others",
   "chapter": 2,
-  "prompt": "Genii gave your friend one wish. They spent it on the ex-friend who leaked their secret: now that person can only speak in rhyme. Forever. First thought?",
+  "sq": "SQ-T08-2",
+  "world": "absurd",
+  "prompt": "Your friend's grudges turn into stones they must carry. The oldest: six years, a roommate who read their diary aloud. The apology came in year one. First thought?",
   "options": [
    {
-    "t": "Legend. They had it coming.",
+    "t": "Drop it. The apology was the whole point.",
+    "tags": [
+     {
+      "id": "T08A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Forgiven, sure. The stone stays on the shelf.",
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Respect. I'd have carved the date into it.",
     "tags": [
      {
       "id": "T08B",
@@ -824,63 +844,42 @@
     "emotion": "delight"
    },
    {
-    "t": "A whole wish on them? I'd have let it go.",
-    "tags": [
-     {
-      "id": "T08A",
-      "s": 2
-     }
-    ]
-   },
-   {
-    "t": "Fair. But lift it after a year.",
+    "t": "Mine would weigh nothing. I forget by accident.",
     "tags": [
      {
       "id": "T08A",
       "s": 1
      }
     ]
-   },
-   {
-    "t": "Rhyme only? I'd have made the rhymes bad.",
-    "tags": [
-     {
-      "id": "T08B",
-      "s": 1
-     }
-    ],
-    "emotion": "delight"
    }
   ],
   "heart": {
-   "prompt": "Genii gave your friend one wish. They used it on a former friend who shared their secret. Now that person can only speak in rhyme. Your first thought?",
+   "prompt": "In your friend's world, every grudge is a stone they carry. The oldest: six years, a roommate who read their diary aloud and apologized in year one. Your first thought?",
    "options": [
-    "They had it coming, and I respect it.",
-    "A whole wish on that person? I would have let it go.",
-    "It is fair, but I would lift it after a year.",
-    "I would have made the rhymes bad ones too."
+    "They should put it down. The apology was the point.",
+    "Forgive, yes, but keep the stone on a shelf.",
+    "I respect it. I would have carved the date into it.",
+    "Mine would weigh nothing. I forget without trying."
    ]
   },
   "fp": {
-   "trigger": "friend spends a wish on revenge",
-   "setting": "Genii wish, a rhyme curse",
-   "ask": "your take on their revenge",
-   "who": "a friend and the ex-friend who leaked",
-   "stakes": "a grudge versus letting go",
-   "device": "rhyme curse"
+   "trigger": "a friend still carries a grudge from six years back",
+   "setting": "a world where grudges are stones",
+   "ask": "your take on keeping it",
+   "who": "a friend and an old roommate",
+   "stakes": "letting go versus keeping the record",
+   "device": "grudge-stone"
   },
-  "mask": "looks like a fairy-tale revenge; measures forgive-and-forget versus forgive-and-file (T08), shown by how you judge a friend's grudge",
+  "mask": "looks like a fable; measures forgive-and-forget versus forgive-and-file (T08), shown by how you judge a friend's grudge",
   "ae": [
    "A",
    "E"
   ],
   "privacy": "normal",
-  "sq": "SQ-T08-2",
-  "world": "absurd",
   "friend": {
-   "prompt": "A friend spent a Genii wish on the ex-friend who leaked the friend's secret: rhyme-only speech, forever. {name}'s first thought?",
+   "prompt": "{name}'s friend has carried a grudge stone for six years, though the roommate apologized in year one. {name}'s first thought?",
    "a": {
-    "t": "A whole wish on that one? I'd have let it go.",
+    "t": "\"Drop it. The apology was the whole point.\"",
     "tags": [
      {
       "id": "T08A",
@@ -889,7 +888,7 @@
     ]
    },
    "b": {
-    "t": "Legend. That one had it coming.",
+    "t": "\"Respect. I'd have carved the date into it.\"",
     "tags": [
      {
       "id": "T08B",
@@ -1264,7 +1263,7 @@
   "chapter": 2,
   "sq": "SQ-T05-1",
   "world": "absurd",
-  "prompt": "You slept through helping your best friend move. Genii offers four apologies, one a day. Rank them, first to last:",
+  "prompt": "You slept through helping your best friend move. Rank these apologies, from the one you'd choose first to last:",
   "options": [
    {
     "t": "The sky over their new place spells \"I'M SO SORRY\"",
@@ -1304,7 +1303,7 @@
    }
   ],
   "heart": {
-   "prompt": "You slept through helping your best friend move house. Genii offers four apologies, one each day. Put them in the order you would send them.",
+   "prompt": "You slept through helping your best friend move house. Put these apologies in order, from the one you would choose first to the last.",
    "options": [
     "The sky above their new home spells out that I am sorry.",
     "Every box unpacked overnight and the shelves put up, with no note.",
@@ -1988,13 +1987,15 @@
   "privacy": "normal"
  },
  {
-  "id": "C2-135",
+  "id": "C2-162",
   "type": "bet",
   "chapter": 2,
-  "prompt": "I bet your friend group has a yearly tradition you secretly outgrew. You still go.",
+  "sq": "SQ-R3-1",
+  "world": "everyday",
+  "prompt": "I bet you've quietly judged a birthday with no cake, no candles and no song.",
   "options": [
    {
-    "t": "Guilty. It's tradition. Fun was never the point.",
+    "t": "Guilty. Then ran out and bought the cake myself.",
     "axes": {
      "R3": 2
     },
@@ -2004,23 +2005,17 @@
       "s": 1
      }
     ],
-    "emotion": "warmth"
+    "emotion": "pride"
    },
    {
-    "t": "Guilty. Went, smiled, counted the hours.",
+    "t": "Guilty. Said nothing. Felt it all night.",
     "axes": {
      "R3": 1
     },
-    "tags": [
-     {
-      "id": "T06A",
-      "s": 1
-     }
-    ],
     "emotion": "irritation"
    },
    {
-    "t": "Wrong. Stopped going. Started my own.",
+    "t": "Wrong. No cake, no song, still a great night.",
     "axes": {
      "R3": -2
     },
@@ -2032,43 +2027,40 @@
     ]
    },
    {
-    "t": "Wrong. Pitched a new one. Nobody's forgiven me.",
+    "t": "Wrong. I threw that party. Tacos, zero singing.",
     "axes": {
-     "R3": -1,
-     "R2": 1
+     "R3": -1
     },
-    "emotion": "cringe"
+    "emotion": "delight"
    }
   ],
   "heart": {
-   "prompt": "Does your friend group have a yearly tradition you have quietly outgrown, and do you still go?",
+   "prompt": "Have you ever quietly judged a birthday that had no cake, no candles and no song?",
    "options": [
-    "Yes. It is a tradition, and that is the point.",
-    "Yes. I go, I smile, and I count the hours.",
-    "No. I stopped going and started my own.",
-    "No. I suggested a new one. It did not go well."
+    "Yes, and then I went out and bought a cake myself.",
+    "Yes. I said nothing, but I felt it all night.",
+    "No. Without cake or a song, it can still be great.",
+    "No. I threw that party, with tacos and no singing."
    ]
   },
   "fp": {
-   "trigger": "yearly friend tradition you outgrew",
-   "setting": "friend group, every year",
-   "ask": "keep going or break away",
-   "who": "friend group",
-   "stakes": "your place versus your own way",
-   "device": "friend tradition"
+   "trigger": "a birthday with no cake or song",
+   "setting": "a friend's birthday party",
+   "ask": "did the missing ritual bother you",
+   "who": "the host and the guests",
+   "stakes": "the classic ritual versus a party done your way",
+   "device": "no-cake-birthday"
   },
-  "mask": "looks like a confession; measures whether old rituals feel like home or a costume (R3, T20), from a thing actually done",
+  "mask": "looks like a party confession; measures whether old rituals feel like home or a costume (R3, T20), from a thing actually done",
   "ae": [
    "A",
    "B"
   ],
   "privacy": "normal",
-  "sq": "SQ-R3-1",
-  "world": "everyday",
   "friend": {
-   "prompt": "Genii bets {name} secretly outgrew a yearly friend-group tradition and still goes. Guilty or not?",
+   "prompt": "Genii bets {name} has quietly judged a birthday with no cake, no candles and no song. Guilty or not?",
    "a": {
-    "t": "Guilty. It's tradition. Fun was never the point.",
+    "t": "Guilty. Then ran out and bought the cake.",
     "axes": {
      "R3": 2
     },
@@ -2080,7 +2072,7 @@
     ]
    },
    "b": {
-    "t": "Not guilty. Stopped going. Started {their} own.",
+    "t": "Wrong. No cake, no song, still a great night.",
     "axes": {
      "R3": -2
     },

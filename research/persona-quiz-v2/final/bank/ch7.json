@@ -308,13 +308,15 @@
   }
  },
  {
-  "id": "C7-141",
+  "id": "C7-160",
   "type": "real",
   "chapter": 7,
-  "prompt": "The most recent time a friend moved and asked for help carrying boxes. What did you actually do?",
+  "sq": "SQ-T23-2",
+  "world": "everyday",
+  "prompt": "Someone asked a room for a volunteer, and the room went silent. The most recent time, what did you actually do?",
   "options": [
    {
-    "t": "Showed up first, with tape and my own dolly.",
+    "t": "Hand up before the silence got awkward.",
     "tags": [
      {
       "id": "T23A",
@@ -323,7 +325,26 @@
     ]
    },
    {
-    "t": "Came for the last hour, right as the pizza arrived.",
+    "t": "Waited it out. Someone always cracks.",
+    "tags": [
+     {
+      "id": "T23B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Volunteered the person next to me. Lovingly.",
+    "tags": [
+     {
+      "id": "T23B",
+      "s": 1
+     }
+    ],
+    "emotion": "cringe"
+   },
+   {
+    "t": "Held out, then caved when they looked at me.",
     "tags": [
      {
       "id": "T23A",
@@ -331,57 +352,36 @@
      }
     ],
     "emotion": "guilt"
-   },
-   {
-    "t": "Said I had plans. Made the plans afterward.",
-    "tags": [
-     {
-      "id": "T23B",
-      "s": 2
-     }
-    ],
-    "emotion": "cringe"
-   },
-   {
-    "t": "Sent them the number of a moving company I like.",
-    "tags": [
-     {
-      "id": "T23B",
-      "s": 1
-     }
-    ]
    }
   ],
   "heart": {
-   "prompt": "Think of the most recent time a friend moved and asked for help carrying boxes. What did you actually do?",
+   "prompt": "Think of the most recent time someone asked a room for a volunteer and nobody answered. What did you actually do?",
    "options": [
-    "I arrived first, with tape and my own dolly.",
-    "I came for the last hour, just as the pizza arrived.",
-    "I said I had plans, and made the plans afterward.",
-    "I sent them the number of a moving company I trust."
+    "I raised my hand before the silence became awkward.",
+    "I waited it out. Someone always gives in.",
+    "I suggested the person next to me, with affection.",
+    "I held out, then gave in when they looked at me."
    ]
   },
   "fp": {
-   "trigger": "a friend asks for help moving",
-   "setting": "moving day, real life",
-   "ask": "carry boxes or keep your day",
-   "who": "a friend moving house",
-   "stakes": "your day off versus being the one who shows",
-   "device": "moving-day-help"
+   "trigger": "a call for a volunteer meets silence",
+   "setting": "a meeting, class or club",
+   "ask": "raise your hand or wait it out",
+   "who": "a room of people and whoever asked",
+   "stakes": "your time versus the awkward silence",
+   "device": "silent-room-volunteer"
   },
-  "mask": "looks like a moving-day memory; measures whether you put your shoes on when someone needs hands (T23) from a thing actually done",
+  "mask": "looks like a meeting memory; measures whether you put your hand up when someone needs one (T23), from a thing actually done",
   "ae": [
    "A",
    "B",
    "E"
   ],
   "privacy": "normal",
-  "sq": "SQ-T23-2",
-  "world": "everyday",
   "friend": {
-   "prompt": "The last time a friend of {name}'s moved and asked for help with boxes. What did {name} actually do?",
+   "prompt": "The last time someone asked a room for a volunteer and it went silent. What did {name} actually do?",
    "a": {
-    "t": "Showed up first, with tape and a dolly.",
+    "t": "Hand up before the silence got awkward.",
     "tags": [
      {
       "id": "T23A",
@@ -390,7 +390,7 @@
     ]
    },
    "b": {
-    "t": "Said {they} had plans. Made the plans after.",
+    "t": "Waited it out. Someone always cracks.",
     "tags": [
      {
       "id": "T23B",
@@ -486,16 +486,16 @@
   }
  },
  {
-  "id": "C7-136",
+  "id": "C7-161",
   "type": "this_or_that",
   "chapter": 7,
   "round": "C7-r110",
   "sq": "SQ-R3-1",
   "world": "unusual",
-  "prompt": "Your birthday. Your family wants it the way it's always been: same restaurant, same cake, same off-key song. Your friends booked a surprise trip that weekend.",
+  "prompt": "Your degree is done. The ceremony: four hours, a $90 gown, your name read wrong by a stranger. Or the diploma just arrives by mail.",
   "options": [
    {
-    "t": "The family version. The off-key song is the gift.",
+    "t": "Walk the stage. Gown, hat toss, the whole thing.",
     "axes": {
      "R3": 2
     },
@@ -505,10 +505,10 @@
       "s": 1
      }
     ],
-    "emotion": "warmth"
+    "emotion": "pride"
    },
    {
-    "t": "The trip. New year, new way to celebrate.",
+    "t": "Mail it. I'll celebrate my own way.",
     "axes": {
      "R3": -2
     },
@@ -522,21 +522,21 @@
    }
   ],
   "heart": {
-   "prompt": "It is your birthday. Your family wants it the way it has always been: the same restaurant, cake and off-key song. Your friends booked a surprise trip that weekend.",
+   "prompt": "Your degree is finished. The ceremony means four hours, a $90 gown and your name read wrong by a stranger. Or the diploma simply arrives by mail.",
    "options": [
-    "The family version. The off-key song is the real gift.",
-    "The trip. A new year, and a new way to celebrate."
+    "I walk the stage, with the gown and the hat toss.",
+    "I have it mailed and celebrate in my own way."
    ]
   },
   "fp": {
-   "trigger": "birthday plans clash",
-   "setting": "family birthday ritual versus a surprise trip",
-   "ask": "keep the ritual or go your own way",
-   "who": "your family and your friends",
-   "stakes": "an old tradition versus a new one",
-   "device": "birthday-clash"
+   "trigger": "a graduation ceremony or a diploma by mail",
+   "setting": "a four-hour ceremony hall",
+   "ask": "walk the stage or skip the ritual",
+   "who": "you and a stranger reading names",
+   "stakes": "the classic milestone versus your own way",
+   "device": "graduation-walk"
   },
-  "mask": "looks like a scheduling clash; measures whether the old rituals feel like home or like a costume (R3, T20)",
+  "mask": "looks like a logistics choice; measures whether the old rituals feel like home or like a costume (R3, T20)",
   "ae": [
    "A",
    "B",
@@ -544,9 +544,9 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "{name}'s birthday: family wants the same restaurant, cake and off-key song. Friends booked a surprise trip. Which one is {name}?",
+   "prompt": "{name}'s degree is done. Four-hour ceremony and a $90 gown, or the diploma by mail. Which one is {name}?",
    "a": {
-    "t": "The family version. \"The off-key song is the gift.\"",
+    "t": "Walks the stage. Gown, hat toss, the whole thing.",
     "axes": {
      "R3": 2
     },
@@ -558,7 +558,7 @@
     ]
    },
    "b": {
-    "t": "The trip. \"New year, new way to celebrate.\"",
+    "t": "Mail it. Celebrates {their} own way.",
     "axes": {
      "R3": -2
     },
@@ -992,13 +992,15 @@
   }
  },
  {
-  "id": "C7-145",
+  "id": "C7-162",
   "type": "others",
   "chapter": 7,
-  "prompt": "Your cousin and their person flip a coin every Sunday: loser does all the chores that week. Four years running. They swear by it. First thought?",
+  "sq": "SQ-R3-2",
+  "world": "unusual",
+  "prompt": "Ari and Noor, married four years, sleep in separate bedrooms. By choice. They say it saved the marriage. First thought?",
   "options": [
    {
-    "t": "A house needs set jobs. Like the one I grew up in.",
+    "t": "A couple shares a bed. That's the whole point.",
     "axes": {
      "R3": 2
     },
@@ -1010,7 +1012,7 @@
     ]
    },
    {
-    "t": "Genius. Stealing it tonight.",
+    "t": "Genius. Nobody steals the blanket ever again.",
     "axes": {
      "R3": -2
     },
@@ -1023,7 +1025,7 @@
     "emotion": "delight"
    },
    {
-    "t": "Sweet. My family would call it chaos, and I'd agree.",
+    "t": "Sweet, but my family would ask what went wrong.",
     "axes": {
      "R3": 1
     },
@@ -1035,7 +1037,7 @@
     ]
    },
    {
-    "t": "Honestly beats our system: quiet resentment.",
+    "t": "Honestly smarter than most couples I know.",
     "axes": {
      "R3": -1
     },
@@ -1044,40 +1046,37 @@
       "id": "T20B",
       "s": 1
      }
-    ],
-    "emotion": "longing"
+    ]
    }
   ],
   "heart": {
-   "prompt": "Your cousin and their person flip a coin every Sunday; the loser does all the chores that week. Four years in, they swear by it. What is your first thought?",
+   "prompt": "Ari and Noor have been married four years and sleep in separate bedrooms, by choice. They say it saved their marriage. What is your first thought?",
    "options": [
-    "A home needs set roles, like the one I grew up in.",
-    "That is brilliant. I am trying it tonight.",
-    "Sweet, but my family would call it chaos, and I would agree.",
-    "Honestly, it beats our system of quiet resentment."
+    "A couple shares a bed. That is the point.",
+    "That is brilliant. Nobody steals the blanket again.",
+    "It is sweet, but my family would ask what went wrong.",
+    "Honestly, it sounds smarter than most couples I know."
    ]
   },
   "fp": {
-   "trigger": "a couple assigns chores by coin toss",
-   "setting": "a cousin's home, every Sunday",
+   "trigger": "a married couple chooses separate bedrooms",
+   "setting": "a couple's home with two bedrooms",
    "ask": "your first thought",
-   "who": "your cousin and their person",
-   "stakes": "set roles versus a system you invent",
-   "device": "chore-coin-flip"
+   "who": "a married couple you know",
+   "stakes": "the classic couple script versus a design they invented",
+   "device": "separate-bedrooms"
   },
-  "mask": "looks like family gossip; measures running a home the way homes always ran versus your own design (R3, T20), shown by how you judge theirs",
+  "mask": "looks like couple gossip; measures running a home the way homes always ran versus your own design (R3, T20), shown by how you judge theirs",
   "ae": [
    "A",
    "C",
    "D"
   ],
   "privacy": "normal",
-  "sq": "SQ-R3-2",
-  "world": "unusual",
   "friend": {
-   "prompt": "{name}'s cousin and their person flip a coin every Sunday; loser does all the chores. Four years running. {name}'s first thought?",
+   "prompt": "Ari and Noor, married four years, sleep in separate bedrooms by choice. They say it saved them. {name}'s first thought?",
    "a": {
-    "t": "\"A house needs set jobs. Like the one I grew up in.\"",
+    "t": "\"A couple shares a bed. That's the whole point.\"",
     "axes": {
      "R3": 2
     },
@@ -1089,7 +1088,7 @@
     ]
    },
    "b": {
-    "t": "\"Genius. Stealing it tonight.\"",
+    "t": "\"Genius. Nobody steals the blanket ever again.\"",
     "axes": {
      "R3": -2
     },
@@ -1557,10 +1556,10 @@
   "id": "C7-147",
   "type": "rank",
   "chapter": 7,
-  "prompt": "You wake up able to fix anything just by touching it. Rank what you'd do first, top to bottom.",
+  "prompt": "You wake up able to fix anything by touching it. Rank what you'd do first, top to bottom.",
   "options": [
    {
-    "t": "Fix the whole street's broken stuff. Start a sign-up sheet.",
+    "t": "Fix the street's broken stuff. Start a sign-up sheet.",
     "tags": [
      {
       "id": "T23A",
@@ -1578,7 +1577,7 @@
     ]
    },
    {
-    "t": "Fix my own ancient car first. Then the rest of my stuff.",
+    "t": "Fix my old car first, then the rest of my stuff.",
     "tags": [
      {
       "id": "T23B",
@@ -1587,7 +1586,7 @@
     ]
    },
    {
-    "t": "Tell nobody. Once they know, my weekends are gone.",
+    "t": "Fix nothing publicly. Once people know, my weekends are gone.",
     "tags": [
      {
       "id": "T23B",
@@ -1599,10 +1598,10 @@
   "heart": {
    "prompt": "You wake up able to repair anything simply by touching it. Put these in order, the first thing you would do at the top.",
    "options": [
-    "I fix the whole street's broken things, with a sign-up sheet.",
+    "I fix the street's broken things, with a sign-up sheet.",
     "I fix my friends' things, but only when they ask.",
-    "I fix my own old car first, then my other things.",
-    "I tell nobody. Once they know, my weekends are gone."
+    "I fix my old car first, then the rest of my things.",
+    "I fix nothing in public. Once people know, my weekends are gone."
    ]
   },
   "fp": {

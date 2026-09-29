@@ -1157,13 +1157,15 @@
     }
   },
   {
-    "id": "C5-142",
+    "id": "C5-160",
     "type": "eyes",
     "chapter": 5,
-    "prompt": "A famous garden wants you to shape its bonsai, a 20-year job. They call your best friend for a reference. Which line do they use?",
+    "sq": "SQ-L2-3",
+    "world": "unusual",
+    "prompt": "A famous perfumer offers you an apprenticeship: seven years before you make a single bottle. They call your best friend for a reference. Which line do they use?",
     "options": [
       {
-        "t": "They'll measure it every Sunday and send you a chart.",
+        "t": "\"They'll want a progress chart by week one.\"",
         "axes": {
           "L2": 1
         },
@@ -1175,19 +1177,7 @@
         ]
       },
       {
-        "t": "They'll talk to it for 20 years and never check.",
-        "axes": {
-          "L2": -2
-        },
-        "tags": [
-          {
-            "id": "T24B",
-            "s": 2
-          }
-        ]
-      },
-      {
-        "t": "They'll want visible proof by week two. Minimum.",
+        "t": "\"If nothing smells right by month three, they walk.\"",
         "axes": {
           "L2": 2
         },
@@ -1199,7 +1189,19 @@
         ]
       },
       {
-        "t": "They'll trim it once, then happily wait a year.",
+        "t": "\"They'll love the sniffing. The bottle's a bonus.\"",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T24B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "\"Seven years? They'll lose count and be happy.\"",
         "axes": {
           "L2": -1
         },
@@ -1212,21 +1214,21 @@
       }
     ],
     "heart": {
-      "prompt": "A famous garden wants you to shape its bonsai, a job that takes 20 years. They ask your best friend for a reference. What does your friend say?",
+      "prompt": "A famous perfumer offers you an apprenticeship: seven years before you make a single bottle. They ask your best friend for a reference. What does your friend say?",
       "options": [
-        "They will measure it every week and send you a chart.",
-        "They will tend it for years and never check on progress.",
-        "They will want to see clear progress within two weeks.",
-        "They will trim it once, then wait a year, happily."
+        "They will want a chart of their progress from the first week.",
+        "If nothing smells right after three months, they will leave.",
+        "They will love the learning itself. The bottle is a bonus.",
+        "Seven years? They will lose count, and they will be happy."
       ]
     },
     "fp": {
-      "trigger": "a garden asks for a reference on a 20-year job",
-      "setting": "a famous garden, a bonsai",
-      "ask": "how you handle slow progress",
-      "who": "your best friend and the garden",
+      "trigger": "a mentor asks for a reference on a seven-year apprenticeship",
+      "setting": "a perfumer's workshop",
+      "ask": "how you handle a slow build",
+      "who": "your best friend and a famous perfumer",
       "stakes": "your name for patience",
-      "device": "bonsai-reference"
+      "device": "perfume-apprenticeship"
     },
     "mask": "looks like a job reference; measures needing to see progress versus trusting the slow road (L2, T24)",
     "ae": [
@@ -1234,12 +1236,10 @@
       "D"
     ],
     "privacy": "normal",
-    "sq": "SQ-L2-3",
-    "world": "unusual",
     "friend": {
-      "prompt": "A famous garden wants {name} to shape a 20-year bonsai and calls for a reference. Which line fits {name}?",
+      "prompt": "A famous perfumer offers {name} a seven-year apprenticeship and calls for a reference. Which line fits {name}?",
       "a": {
-        "t": "Will measure it every Sunday and send a chart.",
+        "t": "Will want a progress chart by week one.",
         "axes": {
           "L2": 1
         },
@@ -1251,7 +1251,7 @@
         ]
       },
       "b": {
-        "t": "Will talk to it for 20 years and never check.",
+        "t": "Will love the sniffing. The bottle's a bonus.",
         "axes": {
           "L2": -2
         },
@@ -1265,31 +1265,15 @@
     }
   },
   {
-    "id": "C5-143",
+    "id": "C5-161",
     "type": "receipts",
     "chapter": 5,
-    "prompt": "Plans, lately. Tap everything that's true:",
+    "sq": "SQ-T17-2",
+    "world": "everyday",
+    "prompt": "Decisions, this year. Tap everything that's true:",
     "options": [
       {
-        "t": "Booked the next appointment before leaving the last one",
-        "tags": [
-          {
-            "id": "T17A",
-            "s": 2
-          }
-        ]
-      },
-      {
-        "t": "Picked month-to-month over a cheaper yearly deal",
-        "tags": [
-          {
-            "id": "T17B",
-            "s": 2
-          }
-        ]
-      },
-      {
-        "t": "Bought a ticket for something months away",
+        "t": "Paid more for the non-refundable option so I'd stop deciding",
         "tags": [
           {
             "id": "T17A",
@@ -1298,7 +1282,25 @@
         ]
       },
       {
-        "t": "Answered an invite with \"let's see\" and meant it",
+        "t": "Said \"maybe\" to a plan to see if something better came up",
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Chased a clear yes or no because not knowing kept me up",
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Left a big question open for months and slept fine",
         "tags": [
           {
             "id": "T17B",
@@ -1312,30 +1314,28 @@
       }
     ],
     "heart": {
-      "prompt": "Think about your plans lately. Choose everything that is true.",
+      "prompt": "Think about decisions you have made this year. Choose everything that is true.",
       "options": [
-        "I booked my next appointment before leaving the last one.",
-        "I chose month-to-month over a cheaper yearly deal.",
-        "I bought a ticket for something months away.",
-        "I answered an invite with \"let's see\" and meant it.",
+        "I paid extra for the non-refundable option so I would stop deciding.",
+        "I said \"maybe\" to a plan in case something better came up.",
+        "I pushed for a clear answer. Not knowing kept me up.",
+        "I left a big question open for months and slept fine.",
         "None of these."
       ]
     },
     "fp": {
-      "trigger": "a look back at how you book things",
-      "setting": "appointments, deals and invites",
+      "trigger": "a look back at this year's open questions",
+      "setting": "plans, offers and maybes",
       "ask": "tap what's true",
       "who": "just you",
       "stakes": "settled now versus free later",
-      "device": "booking-receipts"
+      "device": "maybe-receipts"
     },
-    "mask": "looks like a planning check; measures wanting it locked in versus keeping options open (T17) from things actually done",
+    "mask": "looks like a year-in-review; measures wanting it locked in versus keeping options open (T17), from things actually done",
     "ae": [
       "A"
     ],
-    "privacy": "normal",
-    "sq": "SQ-T17-2",
-    "world": "everyday"
+    "privacy": "normal"
   },
   {
     "id": "C5-110",

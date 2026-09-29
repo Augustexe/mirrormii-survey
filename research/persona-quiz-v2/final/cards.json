@@ -396,10 +396,10 @@
           "chapter": 1,
           "sq": "SQ-T04-1",
           "world": "everyday",
-          "prompt": "The last party you went to. Tap everything that's true:",
+          "prompt": "Think of the last party you went to. Tap what actually happened:",
           "options": [
             {
-              "t": "Talked to a total stranger for twenty minutes or more",
+              "t": "Talked to a stranger for twenty minutes or more",
               "tags": [
                 {
                   "id": "T04B",
@@ -408,7 +408,7 @@
               ]
             },
             {
-              "t": "Swapped numbers with someone I'd just met",
+              "t": "Swapped numbers with someone I had just met",
               "tags": [
                 {
                   "id": "T04B",
@@ -417,7 +417,7 @@
               ]
             },
             {
-              "t": "Introduced two people who'd never met",
+              "t": "Introduced two people who had never met",
               "tags": [
                 {
                   "id": "T04B",
@@ -426,7 +426,7 @@
               ]
             },
             {
-              "t": "Stuck with the one person I came with, most of the night",
+              "t": "Stayed with the person I came with most of the night",
               "tags": [
                 {
                   "id": "T04A",
@@ -444,19 +444,19 @@
               ]
             },
             {
-              "t": "None of these",
+              "t": "None of these happened",
               "none": true
             }
           ],
           "heart": {
-            "prompt": "Think of the last party you went to. Which of these are true?",
+            "prompt": "Think of the last party you went to. Which of these actually happened?",
             "options": [
-              "I talked to a complete stranger for twenty minutes or more.",
+              "I talked to a stranger for twenty minutes or more.",
               "I swapped numbers with someone I had just met.",
               "I introduced two people who had never met.",
               "I stayed with the person I came with, most of the night.",
               "I already knew nearly everyone there.",
-              "None of these."
+              "None of these happened."
             ]
           },
           "fp": {
@@ -562,73 +562,74 @@
           ]
         },
         {
-          "id": "C1-145",
+          "id": "C1-160",
           "type": "bet",
           "chapter": 1,
           "sq": "SQ-L3-3",
           "world": "everyday",
-          "prompt": "Genii suspects: something you stream right now runs on someone else's login.",
+          "prompt": "Genii's hunch: you've waited for the walk signal on an empty street while strangers crossed past you.",
           "options": [
             {
-              "t": "Guilty. An ex's. Still works. No questions asked.",
-              "axes": {
-                "L3": -2
-              },
-              "emotion": "delight"
-            },
-            {
-              "t": "Guilty. A friend's. I buy their coffee as rent.",
-              "axes": {
-                "L3": -1
-              }
-            },
-            {
-              "t": "Wrong. I pay for every one myself.",
+              "t": "Guilty. Stood there alone. Didn't budge. Light's the light.",
               "axes": {
                 "L3": 2
               },
               "emotion": "pride"
             },
             {
-              "t": "Wrong. Shared only inside my home, by the rules.",
+              "t": "Guilty. Faked a phone call so it looked on purpose.",
               "axes": {
                 "L3": 1
+              },
+              "emotion": "cringe"
+            },
+            {
+              "t": "Only when a kid's watching. Otherwise I cross.",
+              "axes": {
+                "L3": -1
               }
+            },
+            {
+              "t": "Never. Empty street, I walk. The light can catch up.",
+              "axes": {
+                "L3": -2
+              },
+              "emotion": "delight"
             }
           ],
           "heart": {
-            "prompt": "Does something you stream right now run on someone else's login?",
+            "prompt": "Have you ever waited for the walk signal on an empty street while strangers crossed right past you?",
             "options": [
-              "Yes. It is an ex's, and it still works.",
-              "Yes. It is a friend's, and I buy them coffee in return.",
-              "No. I pay for every one myself.",
-              "No. We share only within our home, as the rules allow."
+              "Yes. I stood there alone and did not move until it changed.",
+              "Yes, and I faked a phone call so it looked deliberate.",
+              "Only when a child is watching. Otherwise I cross.",
+              "No. If the street is empty, I walk."
             ]
           },
           "fp": {
-            "trigger": "a streaming login that isn't yours",
-            "setting": "your streaming at home",
-            "ask": "borrow the login or pay your own",
-            "who": "an ex, a friend or just you",
-            "stakes": "a free show versus doing it by the book",
-            "device": "borrowed-streaming-login"
+            "trigger": "a don't-walk light on an empty street",
+            "setting": "a crosswalk, strangers crossing",
+            "ask": "wait for the signal or cross",
+            "who": "strangers walking past you",
+            "stakes": "looking silly versus keeping the rule",
+            "device": "empty-crosswalk"
           },
-          "mask": "looks like a small streaming confession; measures following the rules when nobody is checking versus the harmless shortcut (L3), from a thing actually done",
+          "mask": "looks like a street-corner confession; measures following the process when nobody is checking versus the harmless shortcut (L3), from a thing actually done",
           "ae": [
             "A",
             "C"
           ],
           "privacy": "normal",
           "friend": {
-            "prompt": "Genii suspects something {name} streams runs on someone else's login. Guilty or not?",
+            "prompt": "Genii's hunch: {name} has waited for the walk signal on an empty street while strangers crossed. Guilty or not?",
             "a": {
-              "t": "Wrong. Pays for every single one.",
+              "t": "Guilty. Stood alone and didn't budge until it changed.",
               "axes": {
                 "L3": 2
               }
             },
             "b": {
-              "t": "Guilty. An ex's login. Still works. No questions.",
+              "t": "Never. Empty street, {they} walk.",
               "axes": {
                 "L3": -2
               }
@@ -1494,28 +1495,15 @@
           ]
         },
         {
-          "id": "C1-128",
+          "id": "C1-161",
           "type": "others",
           "chapter": 1,
           "sq": "SQ-T07-1",
           "world": "absurd",
-          "prompt": "A glitch hits a friend's phone: autocorrect now turns every text into the blunt truth. They refuse to fix it. First thought?",
+          "prompt": "Your friend bought a flea-market mirror that answers \"how do I look?\" out loud. Honestly. Their date heard it. They're keeping it. First thought?",
           "options": [
             {
-              "t": "Legend. I'd pay money for that glitch.",
-              "axes": {
-                "R2": 1
-              },
-              "tags": [
-                {
-                  "id": "T07A",
-                  "s": 1
-                }
-              ],
-              "emotion": "delight"
-            },
-            {
-              "t": "Mine already does that. No glitch required.",
+              "t": "Keep it. Better to hear it at home than after.",
               "axes": {
                 "R2": 2
               },
@@ -1528,20 +1516,20 @@
               "emotion": "pride"
             },
             {
-              "t": "Fix it before it ends a friendship. Or three.",
+              "t": "I'd borrow it before every big night out.",
               "axes": {
-                "R2": -2
+                "R2": 1
               },
               "tags": [
                 {
-                  "id": "T07B",
-                  "s": 2
+                  "id": "T07A",
+                  "s": 1
                 }
               ],
-              "emotion": "worry"
+              "emotion": "delight"
             },
             {
-              "t": "Stop asking them anything I don't want answered.",
+              "t": "Poor date. Some truths need a softer delivery.",
               "axes": {
                 "R2": -1
               },
@@ -1550,36 +1538,49 @@
                   "id": "T07B",
                   "s": 1
                 }
+              ],
+              "emotion": "cringe"
+            },
+            {
+              "t": "I'd tape a note to it: compliment first.",
+              "axes": {
+                "R2": -2
+              },
+              "tags": [
+                {
+                  "id": "T07B",
+                  "s": 2
+                }
               ]
             }
           ],
           "heart": {
-            "prompt": "A glitch on a friend's phone makes autocorrect turn every message into the blunt truth, and they refuse to fix it. What is your first thought?",
+            "prompt": "Your friend's flea-market mirror answers \"How do I look?\" out loud, and honestly. Their date heard it. They are keeping it. Your first thought?",
             "options": [
-              "I love it. I would pay for that glitch.",
-              "My messages already sound like that, glitch or not.",
-              "They should fix it before it costs them a friendship.",
-              "I would stop asking them questions I do not want answered."
+              "Keep it. Better to hear it at home first.",
+              "I would borrow it before every important night out.",
+              "I feel for the date. Some truths need a gentler delivery.",
+              "I would tape a note to it asking for a compliment first."
             ]
           },
           "fp": {
-            "trigger": "a friend's autocorrect turns texts brutally honest",
-            "setting": "a glitched phone",
-            "ask": "cheer the honesty or want it fixed",
-            "who": "a friend and everyone they text",
-            "stakes": "friendships versus the truth",
-            "device": "truth-autocorrect"
+            "trigger": "a friend's mirror answers honestly, out loud",
+            "setting": "a flea-market mirror at home",
+            "ask": "cheer the honest mirror or want it softer",
+            "who": "a friend and their date",
+            "stakes": "the truth versus how it lands",
+            "device": "honest-mirror"
           },
-          "mask": "looks like a glitch story; measures your own line on raw versus wrapped truth (T07, R2)",
+          "mask": "looks like a flea-market oddity; measures your own line on raw versus wrapped truth (T07, R2)",
           "ae": [
             "C",
             "D"
           ],
           "privacy": "normal",
           "friend": {
-            "prompt": "A glitch turns every text on a friend's phone into the blunt truth. The friend won't fix it. {name}'s first thought?",
+            "prompt": "A friend's flea-market mirror answers \"how do I look?\" out loud, honestly, even in front of a date. {name}'s first thought?",
             "a": {
-              "t": "\"Mine already does that. No glitch required.\"",
+              "t": "\"Keep it. Better to hear it at home than after.\"",
               "axes": {
                 "R2": 2
               },
@@ -1591,7 +1592,7 @@
               ]
             },
             "b": {
-              "t": "\"Fix it before it ends a friendship. Or three.\"",
+              "t": "\"Tape a note to it: compliment first.\"",
               "axes": {
                 "R2": -2
               },
@@ -1611,15 +1612,15 @@
           ]
         },
         {
-          "id": "C1-13",
+          "id": "C1-162",
           "type": "others",
           "chapter": 1,
           "sq": "SQ-T01-1",
           "world": "unusual",
-          "prompt": "A couple you know shares one phone. One. On purpose. It's been a year. First thought?",
+          "prompt": "Your friend and their twin have shared one photo library since their first phones. Every picture either takes lands on both, instantly. First thought?",
           "options": [
             {
-              "t": "Goals. Zero secrets, one charger.",
+              "t": "Iconic. Zero secrets, double the memories.",
               "axes": {
                 "R1": 2
               },
@@ -1632,7 +1633,7 @@
               "emotion": "warmth"
             },
             {
-              "t": "Honestly? I'd try it tomorrow.",
+              "t": "I'd try it with my closest person tomorrow.",
               "axes": {
                 "R1": 1
               },
@@ -1644,7 +1645,7 @@
               ]
             },
             {
-              "t": "Cute. But where do they complain about each other?",
+              "t": "Sweet. Also, where do they keep the unflattering ones?",
               "axes": {
                 "R1": -1
               },
@@ -1656,7 +1657,7 @@
               ]
             },
             {
-              "t": "I'd last one day. My group chats would end us.",
+              "t": "My photos are the last room that's only mine.",
               "axes": {
                 "R1": -2
               },
@@ -1670,32 +1671,32 @@
             }
           ],
           "heart": {
-            "prompt": "A couple you know has shared a single phone, on purpose, for a year. What is your first thought?",
+            "prompt": "Your friend and their twin have shared one photo library since their first phones. Every picture either one takes appears on both. Your first thought?",
             "options": [
-              "That sounds lovely. No secrets and one charger.",
-              "Honestly, I would try it tomorrow.",
-              "It is sweet, but where do they complain about each other?",
-              "I would last one day before my group chats ended us."
+              "I love it. No secrets, and twice the memories.",
+              "I would try it with my closest person tomorrow.",
+              "Sweet, but where do they keep the unflattering ones?",
+              "My photos are the one place that is only mine."
             ]
           },
           "fp": {
-            "trigger": "a couple shares a single phone on purpose",
-            "setting": "a couple you know",
-            "ask": "romantic or unthinkable",
-            "who": "a couple you know",
-            "stakes": "closeness versus a room of your own",
-            "device": "one-shared-phone"
+            "trigger": "twins share one photo library",
+            "setting": "two phones, one camera roll",
+            "ask": "sweet or unthinkable",
+            "who": "a friend and their twin",
+            "stakes": "closeness versus a corner of your own",
+            "device": "shared-photo-library"
           },
-          "mask": "looks like gossip about a couple; measures an open versus a private phone (T01) and whether close means shared (R1)",
+          "mask": "looks like a twin fun fact; measures an open versus a private phone (T01) and whether close means shared (R1)",
           "ae": [
             "B",
             "D"
           ],
           "privacy": "normal",
           "friend": {
-            "prompt": "A couple {name} knows has shared one phone, on purpose, for a whole year. {name}'s first thought?",
+            "prompt": "{name}'s friend and their twin have shared one photo library for years. Every photo lands on both phones. {name}'s first thought?",
             "a": {
-              "t": "\"Goals. Zero secrets, one charger.\"",
+              "t": "\"Iconic. Zero secrets, double the memories.\"",
               "axes": {
                 "R1": 2
               },
@@ -1707,7 +1708,7 @@
               ]
             },
             "b": {
-              "t": "\"I'd last one day. My group chats would end us.\"",
+              "t": "\"My photos are the last room that's only mine.\"",
               "axes": {
                 "R1": -2
               },
@@ -1987,7 +1988,7 @@
           "chapter": 1,
           "sq": "SQ-T03-2",
           "world": "absurd",
-          "prompt": "Genii tucks a tiny advisor in your ear for a week. Knows everything, never judges. Something's eating at you. Pick two.",
+          "prompt": "Genii tucks a tiny advisor in your ear for a week. It knows everything and never judges. Something's eating at you. Pick two.",
           "pick": 2,
           "options": [
             {
@@ -2040,7 +2041,7 @@
               ]
             },
             {
-              "t": "Call three friends and take a vote.",
+              "t": "Call three friends and ask what they think.",
               "tags": [
                 {
                   "id": "T03B",
@@ -2111,15 +2112,15 @@
           ]
         },
         {
-          "id": "C1-148",
+          "id": "C1-163",
           "type": "eyes",
           "chapter": 1,
           "sq": "SQ-T02-2",
           "world": "unusual",
-          "prompt": "Friendship trivia, final round. The host asks your best friend one question about you: \"Keeps score of who calls first?\" Their answer:",
+          "prompt": "Charity auction. Someone paid $500 to be your best friend for a month. They ask your actual best friend for the rules. The answer:",
           "options": [
             {
-              "t": "\"Keep score? There's a spreadsheet in their head.\"",
+              "t": "\"They keep a quiet tally. Don't fall behind.\"",
               "tags": [
                 {
                   "id": "T02B",
@@ -2128,16 +2129,7 @@
               ]
             },
             {
-              "t": "\"They'd never say it. But they notice. Every time.\"",
-              "tags": [
-                {
-                  "id": "T02B",
-                  "s": 1
-                }
-              ]
-            },
-            {
-              "t": "\"They call whoever, whenever. Zero math.\"",
+              "t": "\"Go silent for weeks. They'll pick up mid-sentence.\"",
               "tags": [
                 {
                   "id": "T02A",
@@ -2146,7 +2138,16 @@
               ]
             },
             {
-              "t": "\"They forget whose turn it is. Including their own.\"",
+              "t": "\"Text first sometimes. They notice more than they say.\"",
+              "tags": [
+                {
+                  "id": "T02B",
+                  "s": 1
+                }
+              ]
+            },
+            {
+              "t": "\"Don't wait on them. They lose track of turns.\"",
               "tags": [
                 {
                   "id": "T02A",
@@ -2156,32 +2157,32 @@
             }
           ],
           "heart": {
-            "prompt": "At a friendship trivia night, the host asks your best friend one last question about you: do you keep track of who calls first? What does your friend say?",
+            "prompt": "At a charity auction, someone paid $500 to be your best friend for a month. They ask your real best friend how you work. What do they say?",
             "options": [
-              "They keep track so closely it is like a spreadsheet.",
-              "They would never say so, but they notice every time.",
-              "They call whoever they like, whenever they like, without counting.",
-              "They lose track of whose turn it is, even their own."
+              "They keep a quiet count, so do not fall behind.",
+              "You can go quiet for weeks. They will pick right up.",
+              "Reach out first now and then. They notice more than they say.",
+              "Do not wait for them. They lose track of turns."
             ]
           },
           "fp": {
-            "trigger": "a trivia host asks your best friend about you",
-            "setting": "friendship trivia night, final round",
-            "ask": "do you keep score of who calls first",
-            "who": "your best friend and a room of teams",
-            "stakes": "how your friendships look out loud",
-            "device": "friendship-trivia-night"
+            "trigger": "someone buys a month as your best friend",
+            "setting": "a charity auction",
+            "ask": "how your best friend explains your rules",
+            "who": "your best friend and a paying stranger",
+            "stakes": "how your friendship math sounds out loud",
+            "device": "friendship-auction"
           },
-          "mask": "looks like a trivia bit; measures keeping count of who reaches out first (T02), through a friend's eyes",
+          "mask": "looks like an auction joke; measures keeping count of who reaches out first (T02), through a friend's eyes",
           "ae": [
             "B",
             "E"
           ],
           "privacy": "normal",
           "friend": {
-            "prompt": "Friendship trivia, final round: does {name} keep score of who calls first? Which line would {name}'s best friend give?",
+            "prompt": "Someone paid $500 at a charity auction to be {name}'s best friend for a month. Which rule would {name}'s real best friend hand over?",
             "a": {
-              "t": "\"Calls whoever, whenever. Zero math.\"",
+              "t": "\"Go quiet for weeks. It won't even register.\"",
               "tags": [
                 {
                   "id": "T02A",
@@ -2190,7 +2191,7 @@
               ]
             },
             "b": {
-              "t": "\"Keep score? There's a spreadsheet in {their} head.\"",
+              "t": "\"Keep up. There's a quiet tally.\"",
               "tags": [
                 {
                   "id": "T02B",
@@ -2214,35 +2215,15 @@
       "intro": "Your friends have seen your 2am face. Now it's my turn.",
       "cards": [
         {
-          "id": "C2-140",
+          "id": "C2-160",
           "type": "scenario",
           "chapter": 2,
-          "sq": "SQ-T02-2",
+          "sq": "SQ-T02-1",
           "world": "absurd",
-          "prompt": "A street-market ring: while you wear it, every friend texts you first. Forever. You'd never know if they would have anyway.",
+          "prompt": "Your best friend is back from fourteen months on Mars. They had Wi-Fi. They sent nothing. Now they're at your door, holding a Mars rock.",
           "options": [
             {
-              "t": "Ring on. Finally, proof they want me around.",
-              "tags": [
-                {
-                  "id": "T02B",
-                  "s": 2
-                }
-              ],
-              "emotion": "relief"
-            },
-            {
-              "t": "Ring on. I'm done always going first.",
-              "tags": [
-                {
-                  "id": "T02B",
-                  "s": 1
-                }
-              ],
-              "emotion": "resentment"
-            },
-            {
-              "t": "Leave it. I text first. No scorecard.",
+              "t": "Hug. Grab the rock. Pick up mid-sentence.",
               "tags": [
                 {
                   "id": "T02A",
@@ -2252,43 +2233,63 @@
               "emotion": "warmth"
             },
             {
-              "t": "Leave it. Whoever's bored texts first. System works.",
+              "t": "Hug. Then: \"Mars has Wi-Fi. I checked.\"",
+              "tags": [
+                {
+                  "id": "T02B",
+                  "s": 1
+                }
+              ],
+              "emotion": "irritation"
+            },
+            {
+              "t": "Take the rock. Let them wait a week, like I did.",
+              "tags": [
+                {
+                  "id": "T02B",
+                  "s": 2
+                }
+              ],
+              "emotion": "resentment"
+            },
+            {
+              "t": "Laugh. I never texted Mars either.",
               "tags": [
                 {
                   "id": "T02A",
                   "s": 1
                 }
               ],
-              "emotion": "delight"
+              "emotion": "cringe"
             }
           ],
           "heart": {
-            "prompt": "A ring from a street market makes every friend message you first, forever, while you wear it. You would never know whether they would have anyway.",
+            "prompt": "Your best friend is back after fourteen months on Mars. They had Wi-Fi and sent you nothing. Now they are at your door with a rock from Mars.",
             "options": [
-              "I put it on. Finally, proof that they want me around.",
-              "I put it on. I am tired of always going first.",
-              "I leave it. I message first, and I do not keep score.",
-              "I leave it. Whoever is bored messages first, and that works."
+              "I hug them, take the rock and pick right back up.",
+              "I hug them, then mention that Mars had Wi-Fi. I checked.",
+              "I take the rock and make them wait, the way I did.",
+              "I laugh. I never sent anything to Mars either."
             ]
           },
           "fp": {
-            "trigger": "a ring makes friends always text first",
-            "setting": "a street market, a magic ring",
-            "ask": "wear it or leave it",
-            "who": "all your friends",
-            "stakes": "proof you are wanted versus never knowing",
-            "device": "text-first-ring"
+            "trigger": "a best friend returns after a silent year away",
+            "setting": "your doorstep, a rock from Mars",
+            "ask": "pick up or make the silence count",
+            "who": "your best friend",
+            "stakes": "an easy return versus the quiet you noticed",
+            "device": "mars-return"
           },
-          "mask": "looks like a magic trinket; measures keeping count of who reaches out first (T02)",
+          "mask": "looks like a space homecoming; measures whether a long quiet stretch means the friendship is fine or fading (T02)",
           "ae": [
             "A",
             "E"
           ],
           "privacy": "normal",
           "friend": {
-            "prompt": "A magic ring would make every friend text {name} first, forever. {name} would never know if they meant it. What does {name} do?",
+            "prompt": "{name}'s best friend is back from fourteen months on Mars. Had Wi-Fi, sent nothing. Now they're at the door. What does {name} do?",
             "a": {
-              "t": "Leaves it: \"I text first. No scorecard.\"",
+              "t": "Hugs them and picks up mid-sentence.",
               "tags": [
                 {
                   "id": "T02A",
@@ -2297,7 +2298,7 @@
               ]
             },
             "b": {
-              "t": "Puts it on: \"Finally, proof they want me around.\"",
+              "t": "Takes the rock. Lets them wait a week.",
               "tags": [
                 {
                   "id": "T02B",
@@ -3070,13 +3071,33 @@
           ]
         },
         {
-          "id": "C2-123",
+          "id": "C2-161",
           "type": "others",
           "chapter": 2,
-          "prompt": "Genii gave your friend one wish. They spent it on the ex-friend who leaked their secret: now that person can only speak in rhyme. Forever. First thought?",
+          "sq": "SQ-T08-2",
+          "world": "absurd",
+          "prompt": "Your friend's grudges turn into stones they must carry. The oldest: six years, a roommate who read their diary aloud. The apology came in year one. First thought?",
           "options": [
             {
-              "t": "Legend. They had it coming.",
+              "t": "Drop it. The apology was the whole point.",
+              "tags": [
+                {
+                  "id": "T08A",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Forgiven, sure. The stone stays on the shelf.",
+              "tags": [
+                {
+                  "id": "T08B",
+                  "s": 1
+                }
+              ]
+            },
+            {
+              "t": "Respect. I'd have carved the date into it.",
               "tags": [
                 {
                   "id": "T08B",
@@ -3086,63 +3107,42 @@
               "emotion": "delight"
             },
             {
-              "t": "A whole wish on them? I'd have let it go.",
-              "tags": [
-                {
-                  "id": "T08A",
-                  "s": 2
-                }
-              ]
-            },
-            {
-              "t": "Fair. But lift it after a year.",
+              "t": "Mine would weigh nothing. I forget by accident.",
               "tags": [
                 {
                   "id": "T08A",
                   "s": 1
                 }
               ]
-            },
-            {
-              "t": "Rhyme only? I'd have made the rhymes bad.",
-              "tags": [
-                {
-                  "id": "T08B",
-                  "s": 1
-                }
-              ],
-              "emotion": "delight"
             }
           ],
           "heart": {
-            "prompt": "Genii gave your friend one wish. They used it on a former friend who shared their secret. Now that person can only speak in rhyme. Your first thought?",
+            "prompt": "In your friend's world, every grudge is a stone they carry. The oldest: six years, a roommate who read their diary aloud and apologized in year one. Your first thought?",
             "options": [
-              "They had it coming, and I respect it.",
-              "A whole wish on that person? I would have let it go.",
-              "It is fair, but I would lift it after a year.",
-              "I would have made the rhymes bad ones too."
+              "They should put it down. The apology was the point.",
+              "Forgive, yes, but keep the stone on a shelf.",
+              "I respect it. I would have carved the date into it.",
+              "Mine would weigh nothing. I forget without trying."
             ]
           },
           "fp": {
-            "trigger": "friend spends a wish on revenge",
-            "setting": "Genii wish, a rhyme curse",
-            "ask": "your take on their revenge",
-            "who": "a friend and the ex-friend who leaked",
-            "stakes": "a grudge versus letting go",
-            "device": "rhyme curse"
+            "trigger": "a friend still carries a grudge from six years back",
+            "setting": "a world where grudges are stones",
+            "ask": "your take on keeping it",
+            "who": "a friend and an old roommate",
+            "stakes": "letting go versus keeping the record",
+            "device": "grudge-stone"
           },
-          "mask": "looks like a fairy-tale revenge; measures forgive-and-forget versus forgive-and-file (T08), shown by how you judge a friend's grudge",
+          "mask": "looks like a fable; measures forgive-and-forget versus forgive-and-file (T08), shown by how you judge a friend's grudge",
           "ae": [
             "A",
             "E"
           ],
           "privacy": "normal",
-          "sq": "SQ-T08-2",
-          "world": "absurd",
           "friend": {
-            "prompt": "A friend spent a Genii wish on the ex-friend who leaked the friend's secret: rhyme-only speech, forever. {name}'s first thought?",
+            "prompt": "{name}'s friend has carried a grudge stone for six years, though the roommate apologized in year one. {name}'s first thought?",
             "a": {
-              "t": "A whole wish on that one? I'd have let it go.",
+              "t": "\"Drop it. The apology was the whole point.\"",
               "tags": [
                 {
                   "id": "T08A",
@@ -3151,7 +3151,7 @@
               ]
             },
             "b": {
-              "t": "Legend. That one had it coming.",
+              "t": "\"Respect. I'd have carved the date into it.\"",
               "tags": [
                 {
                   "id": "T08B",
@@ -3556,7 +3556,7 @@
           "chapter": 2,
           "sq": "SQ-T05-1",
           "world": "absurd",
-          "prompt": "You slept through helping your best friend move. Genii offers four apologies, one a day. Rank them, first to last:",
+          "prompt": "You slept through helping your best friend move. Rank these apologies, from the one you'd choose first to last:",
           "options": [
             {
               "t": "The sky over their new place spells \"I'M SO SORRY\"",
@@ -3596,7 +3596,7 @@
             }
           ],
           "heart": {
-            "prompt": "You slept through helping your best friend move house. Genii offers four apologies, one each day. Put them in the order you would send them.",
+            "prompt": "You slept through helping your best friend move house. Put these apologies in order, from the one you would choose first to the last.",
             "options": [
               "The sky above their new home spells out that I am sorry.",
               "Every box unpacked overnight and the shelves put up, with no note.",
@@ -4330,13 +4330,15 @@
           ]
         },
         {
-          "id": "C2-135",
+          "id": "C2-162",
           "type": "bet",
           "chapter": 2,
-          "prompt": "I bet your friend group has a yearly tradition you secretly outgrew. You still go.",
+          "sq": "SQ-R3-1",
+          "world": "everyday",
+          "prompt": "I bet you've quietly judged a birthday with no cake, no candles and no song.",
           "options": [
             {
-              "t": "Guilty. It's tradition. Fun was never the point.",
+              "t": "Guilty. Then ran out and bought the cake myself.",
               "axes": {
                 "R3": 2
               },
@@ -4346,23 +4348,17 @@
                   "s": 1
                 }
               ],
-              "emotion": "warmth"
+              "emotion": "pride"
             },
             {
-              "t": "Guilty. Went, smiled, counted the hours.",
+              "t": "Guilty. Said nothing. Felt it all night.",
               "axes": {
                 "R3": 1
               },
-              "tags": [
-                {
-                  "id": "T06A",
-                  "s": 1
-                }
-              ],
               "emotion": "irritation"
             },
             {
-              "t": "Wrong. Stopped going. Started my own.",
+              "t": "Wrong. No cake, no song, still a great night.",
               "axes": {
                 "R3": -2
               },
@@ -4374,43 +4370,40 @@
               ]
             },
             {
-              "t": "Wrong. Pitched a new one. Nobody's forgiven me.",
+              "t": "Wrong. I threw that party. Tacos, zero singing.",
               "axes": {
-                "R3": -1,
-                "R2": 1
+                "R3": -1
               },
-              "emotion": "cringe"
+              "emotion": "delight"
             }
           ],
           "heart": {
-            "prompt": "Does your friend group have a yearly tradition you have quietly outgrown, and do you still go?",
+            "prompt": "Have you ever quietly judged a birthday that had no cake, no candles and no song?",
             "options": [
-              "Yes. It is a tradition, and that is the point.",
-              "Yes. I go, I smile, and I count the hours.",
-              "No. I stopped going and started my own.",
-              "No. I suggested a new one. It did not go well."
+              "Yes, and then I went out and bought a cake myself.",
+              "Yes. I said nothing, but I felt it all night.",
+              "No. Without cake or a song, it can still be great.",
+              "No. I threw that party, with tacos and no singing."
             ]
           },
           "fp": {
-            "trigger": "yearly friend tradition you outgrew",
-            "setting": "friend group, every year",
-            "ask": "keep going or break away",
-            "who": "friend group",
-            "stakes": "your place versus your own way",
-            "device": "friend tradition"
+            "trigger": "a birthday with no cake or song",
+            "setting": "a friend's birthday party",
+            "ask": "did the missing ritual bother you",
+            "who": "the host and the guests",
+            "stakes": "the classic ritual versus a party done your way",
+            "device": "no-cake-birthday"
           },
-          "mask": "looks like a confession; measures whether old rituals feel like home or a costume (R3, T20), from a thing actually done",
+          "mask": "looks like a party confession; measures whether old rituals feel like home or a costume (R3, T20), from a thing actually done",
           "ae": [
             "A",
             "B"
           ],
           "privacy": "normal",
-          "sq": "SQ-R3-1",
-          "world": "everyday",
           "friend": {
-            "prompt": "Genii bets {name} secretly outgrew a yearly friend-group tradition and still goes. Guilty or not?",
+            "prompt": "Genii bets {name} has quietly judged a birthday with no cake, no candles and no song. Guilty or not?",
             "a": {
-              "t": "Guilty. It's tradition. Fun was never the point.",
+              "t": "Guilty. Then ran out and bought the cake.",
               "axes": {
                 "R3": 2
               },
@@ -4422,7 +4415,7 @@
               ]
             },
             "b": {
-              "t": "Not guilty. Stopped going. Started {their} own.",
+              "t": "Wrong. No cake, no song, still a great night.",
               "axes": {
                 "R3": -2
               },
@@ -5074,27 +5067,27 @@
           ]
         },
         {
-          "id": "C3-121",
+          "id": "C3-160",
           "type": "others",
           "chapter": 3,
           "sq": "SQ-T10-2",
           "world": "unusual",
-          "prompt": "Your coworker ended a two-year relationship with a slideshow. Title slide: \"Us: A Retrospective.\" First thought?",
+          "prompt": "Mina ended a three-year relationship by mailing back every borrowed book. One sticky note inside: \"Thanks for everything. Take care.\" First thought?",
           "options": [
             {
-              "t": "Clear, thorough, nobody's confused. Respect.",
+              "t": "Three years earns a sit-down. Not a sticky note.",
               "axes": {
                 "R2": 1
               },
               "tags": [
                 {
                   "id": "T10A",
-                  "s": 1
+                  "s": 2
                 }
               ]
             },
             {
-              "t": "That much talking? A quiet fade hurts less.",
+              "t": "Honestly elegant. Clear, final, no scene.",
               "axes": {
                 "R2": -1
               },
@@ -5106,7 +5099,55 @@
               ]
             },
             {
-              "t": "Two years, and not one slide about fixing it?",
+              "t": "Did anyone try to fix it before the books went back?",
+              "tags": [
+                {
+                  "id": "T10A",
+                  "s": 1
+                }
+              ]
+            },
+            {
+              "t": "Jealous. My last ending was a four-hour talk.",
+              "tags": [
+                {
+                  "id": "T10B",
+                  "s": 1
+                }
+              ],
+              "emotion": "longing"
+            }
+          ],
+          "heart": {
+            "prompt": "Mina ended a three-year relationship by mailing back every book they had borrowed, with one sticky note inside: \"Thanks for everything. Take care.\" What is your first thought?",
+            "options": [
+              "Three years deserves a real conversation, not a note.",
+              "It is graceful, in a way. Clear and final, with no scene.",
+              "Did either of them try to fix it before the books went?",
+              "I envy it a little. My last ending was a four-hour talk."
+            ]
+          },
+          "fp": {
+            "trigger": "someone ends a relationship by returning books with a note",
+            "setting": "a box of borrowed books in the mail",
+            "ask": "your line on how endings should go",
+            "who": "an acquaintance and their ex",
+            "stakes": "saying it out loud versus a quiet exit",
+            "device": "returned-books-note"
+          },
+          "mask": "looks like gossip; measures whether you think endings need a conversation, a fix, or a quiet exit (T10)",
+          "ae": [
+            "A",
+            "C"
+          ],
+          "privacy": "normal",
+          "friend": {
+            "prompt": "Mina ended a three-year relationship by mailing back the borrowed books with one sticky note: \"Take care.\" {name}'s first thought?",
+            "a": {
+              "t": "\"Three years earns a sit-down. Not a sticky note.\"",
+              "axes": {
+                "R2": 1
+              },
               "tags": [
                 {
                   "id": "T10A",
@@ -5114,56 +5155,8 @@
                 }
               ]
             },
-            {
-              "t": "I'd have ghosted. Then felt bad for a year.",
-              "tags": [
-                {
-                  "id": "T10B",
-                  "s": 1
-                }
-              ],
-              "emotion": "guilt"
-            }
-          ],
-          "heart": {
-            "prompt": "A coworker ended a two-year relationship by presenting a slideshow titled \"Us: A Retrospective.\" What is your first thought?",
-            "options": [
-              "It was clear and thorough, and I respect that.",
-              "That is a lot of talking. A quiet fade might hurt less.",
-              "Two years, and nothing in it about trying to fix things?",
-              "I would probably have disappeared, then felt bad for a year."
-            ]
-          },
-          "fp": {
-            "trigger": "a coworker ends a relationship with a slideshow",
-            "setting": "a breakup presentation",
-            "ask": "your line on how endings should go",
-            "who": "a coworker and their ex",
-            "stakes": "saying it out loud versus letting it fade",
-            "device": "breakup slideshow"
-          },
-          "mask": "looks like office gossip; measures whether you think endings need a conversation, a fix, or a fade (T10)",
-          "ae": [
-            "A",
-            "C"
-          ],
-          "privacy": "normal",
-          "friend": {
-            "prompt": "A coworker ended a two-year relationship with a slideshow titled \"Us: A Retrospective.\" {name}'s first thought?",
-            "a": {
-              "t": "Clear, thorough, nobody's confused. Respect.",
-              "axes": {
-                "R2": 1
-              },
-              "tags": [
-                {
-                  "id": "T10A",
-                  "s": 1
-                }
-              ]
-            },
             "b": {
-              "t": "That much talking? A quiet fade hurts less.",
+              "t": "\"Honestly elegant. Clear, final, no scene.\"",
               "axes": {
                 "R2": -1
               },
@@ -5433,10 +5426,10 @@
           "chapter": 3,
           "sq": "SQ-R3-2",
           "world": "absurd",
-          "prompt": "Your new place has a talking doorbell. It greets every guest using only your person's last name. You get one retrain.",
+          "prompt": "Your talking doorbell greets every guest with your person's last name, never yours. You get one chance to change its greeting.",
           "options": [
             {
-              "t": "Keep it. One home, one name. Sounds right.",
+              "t": "Keep their name. One home, one name sounds right.",
               "axes": {
                 "R3": 2
               },
@@ -5448,14 +5441,14 @@
               ]
             },
             {
-              "t": "Retrain it to say my name. Same rule, my turn.",
+              "t": "Switch it to my name. Same rule, my turn.",
               "axes": {
                 "R3": 1,
                 "R2": 1
               }
             },
             {
-              "t": "Both names. It'll take forever. Guests can wait.",
+              "t": "Teach it both names. Guests can wait through the greeting.",
               "axes": {
                 "R3": -1
               },
@@ -5467,7 +5460,7 @@
               ]
             },
             {
-              "t": "Invent a new family name. The doorbell learns it first.",
+              "t": "Invent a new shared name. The doorbell learns it first.",
               "axes": {
                 "R3": -2
               },
@@ -5481,16 +5474,16 @@
             }
           ],
           "heart": {
-            "prompt": "Your new home has a talking doorbell that greets every guest with only your person's last name. You can retrain it once.",
+            "prompt": "Your talking doorbell greets every guest with your person's last name, never yours. You get one chance to change what it says.",
             "options": [
-              "I keep it. One home and one name feels right.",
-              "I retrain it to use my name instead. Same idea, my turn.",
-              "I teach it both names, even though it takes longer.",
-              "I invent a new family name and teach it that."
+              "I keep their name. One home and one name feels right.",
+              "I switch it to my name. Same idea, my turn.",
+              "I teach it both names, even if guests wait a little longer.",
+              "We invent a new shared name, and the doorbell learns it first."
             ]
           },
           "fp": {
-            "trigger": "the doorbell uses only your person's last name",
+            "trigger": "the doorbell greets guests with only your person's last name",
             "setting": "new shared home with a talking doorbell",
             "ask": "whose name the home carries",
             "who": "your person",
@@ -5505,9 +5498,9 @@
           ],
           "privacy": "normal",
           "friend": {
-            "prompt": "{name} and {their} person's new doorbell greets guests using only the person's last name. One retrain allowed. What does {name} do?",
+            "prompt": "{name}'s talking doorbell greets guests with {their} person's last name, never {name}'s. One chance to change it. What does {name} do?",
             "a": {
-              "t": "Keeps it. One home, one name. Sounds right.",
+              "t": "Keeps their name. One home, one name sounds right.",
               "axes": {
                 "R3": 2
               },
@@ -5519,7 +5512,7 @@
               ]
             },
             "b": {
-              "t": "Invents a new family name. The doorbell learns it first.",
+              "t": "Invents a new shared name. The doorbell learns it first.",
               "axes": {
                 "R3": -2
               },
@@ -5539,13 +5532,25 @@
           ]
         },
         {
-          "id": "C3-143",
+          "id": "C3-161",
           "type": "reply",
           "chapter": 3,
-          "prompt": "Your person just won their company's paid year off. Then the texts start.",
+          "sq": "SQ-T11-2",
+          "world": "unusual",
+          "prompt": "Your person is volunteering at a farm sanctuary. A baby goat has followed them all morning. Then the texts start.",
+          "thread": [
+            {
+              "from": "Your person",
+              "text": "it picked me. it literally picked me"
+            },
+            {
+              "from": "Your person",
+              "text": "practice round? if we can raise a goat we can raise a tiny human"
+            }
+          ],
           "options": [
             {
-              "t": "Family year. The world will keep.",
+              "t": "\"Yes. Practice for the real thing. Name it Future.\"",
               "tags": [
                 {
                   "id": "T11A",
@@ -5555,17 +5560,17 @@
               "emotion": "warmth"
             },
             {
-              "t": "World year. And every year after that, too.",
+              "t": "\"Yes to the goat. The goat is the whole plan.\"",
               "tags": [
                 {
                   "id": "T11B",
-                  "s": 2
+                  "s": 1
                 }
               ],
               "emotion": "delight"
             },
             {
-              "t": "World first. Then home to start the other one.",
+              "t": "\"Goat first. The tiny human talk comes after.\"",
               "tags": [
                 {
                   "id": "T11A",
@@ -5574,62 +5579,49 @@
               ]
             },
             {
-              "t": "World. We can barely keep a plant alive.",
+              "t": "\"No goat, no human. I like us portable.\"",
               "tags": [
                 {
                   "id": "T11B",
-                  "s": 1
+                  "s": 2
                 }
-              ],
-              "emotion": "cringe"
+              ]
             }
           ],
           "heart": {
-            "prompt": "Your person has just won a paid year off from their company. Then the messages start.",
-            "options": [
-              "A family year. The world will still be there.",
-              "A world year, and honestly every year after it.",
-              "The world first, then we come home and start a family.",
-              "The world. We can hardly keep a plant alive."
-            ],
+            "prompt": "Your person is volunteering at a farm sanctuary, and a baby goat has followed them all morning. Then the messages start.",
             "thread": [
               {
                 "from": "Your person",
-                "text": "I got the paid year off."
+                "text": "It picked me. It really did."
               },
               {
                 "from": "Your person",
-                "text": "So, a year to see the world, or a year to start a family? You choose."
+                "text": "A practice round? If we can raise a goat, we can raise a tiny human."
               }
+            ],
+            "options": [
+              "Yes. It is practice for the real thing.",
+              "Yes to the goat. For me, the goat is the whole plan.",
+              "The goat first. We can talk about a child after that.",
+              "No goat and no child. I like us easy to pack up."
             ]
           },
           "fp": {
-            "trigger": "your person wins a paid year off and asks travel or family",
-            "setting": "texts right after big news",
-            "ask": "freedom year or family year",
+            "trigger": "your person wants a goat as practice for a kid",
+            "setting": "texts from a farm sanctuary",
+            "ask": "practice for a family or the whole plan",
             "who": "your person",
-            "stakes": "a family now versus a free life",
-            "device": "paid-year-off"
+            "stakes": "a family someday versus a free life",
+            "device": "baby-goat-practice"
           },
-          "mask": "looks like good-news texting; measures trading freedom for a family or a family for freedom (T11)",
+          "mask": "looks like a cute animal text; measures trading freedom for a family or a family for freedom (T11)",
           "ae": [
             "A",
             "B",
             "D"
           ],
           "privacy": "intimate",
-          "sq": "SQ-T11-2",
-          "world": "unusual",
-          "thread": [
-            {
-              "from": "Your person",
-              "text": "I GOT THE PAID YEAR OFF"
-            },
-            {
-              "from": "Your person",
-              "text": "so. see-the-world year, or start-a-family year? you pick"
-            }
-          ],
           "grade": "would",
           "weight": 0.55,
           "exits": [
@@ -5638,13 +5630,15 @@
           ]
         },
         {
-          "id": "C3-144",
+          "id": "C3-162",
           "type": "bet",
           "chapter": 3,
-          "prompt": "Genii's hunch: a friend's kid has fallen asleep on you, and you didn't dare move.",
+          "sq": "SQ-T11-1",
+          "world": "everyday",
+          "prompt": "Genii suspects you've already picked a name for a kid you don't have.",
           "options": [
             {
-              "t": "Guilty. Numb arm, full heart, pictured my own.",
+              "t": "Guilty. First and middle. Nobody's allowed to steal it.",
               "tags": [
                 {
                   "id": "T11A",
@@ -5654,17 +5648,16 @@
               "emotion": "warmth"
             },
             {
-              "t": "Guilty. Loved it. Loved handing them back more.",
+              "t": "Guilty. Years ago. Stopped picturing it since.",
               "tags": [
                 {
                   "id": "T11B",
-                  "s": 2
+                  "s": 1
                 }
-              ],
-              "emotion": "relief"
+              ]
             },
             {
-              "t": "Guilty. Then asked the parents what it's really like.",
+              "t": "Wrong. But I've pictured the school pickups.",
               "tags": [
                 {
                   "id": "T11A",
@@ -5673,40 +5666,39 @@
               ]
             },
             {
-              "t": "Never. I'm the fun one. Nobody naps on the fun one.",
+              "t": "Wrong. The life I picture has a lot more sleep.",
               "tags": [
                 {
                   "id": "T11B",
-                  "s": 1
+                  "s": 2
                 }
-              ]
+              ],
+              "emotion": "relief"
             }
           ],
           "heart": {
-            "prompt": "Has a friend's child ever fallen asleep on you, and you did not dare to move?",
+            "prompt": "Have you already chosen a name for a child you do not have?",
             "options": [
-              "Yes. My arm went numb, and I pictured having my own.",
-              "Yes. I loved it, and I loved handing them back even more.",
-              "Yes, and afterward I asked the parents what it is really like.",
-              "No. They play with me. They never sleep on me."
+              "Yes, first and middle, and nobody is allowed to take it.",
+              "Yes, years ago, though I have stopped picturing it since.",
+              "No, but I have pictured the school pickups.",
+              "No. The life I picture has a lot more sleep in it."
             ]
           },
           "fp": {
-            "trigger": "a friend's kid falls asleep on you",
-            "setting": "a visit or a gathering",
-            "ask": "what it stirred in you",
-            "who": "a friend's kid",
+            "trigger": "a name saved for a kid who doesn't exist",
+            "setting": "your own head, any day",
+            "ask": "have you picked a name",
+            "who": "a future kid, or none",
             "stakes": "a life with kids or without",
-            "device": "sleeping-kid"
+            "device": "saved-baby-name"
           },
-          "mask": "looks like a sweet confession; measures whether raising a kid is part of the life you picture (T11) from something that happened",
+          "mask": "looks like a sweet confession; measures whether raising a kid is part of the life you picture (T11), from something already done",
           "ae": [
             "A",
             "D"
           ],
           "privacy": "intimate",
-          "sq": "SQ-T11-1",
-          "world": "everyday",
           "grade": "did",
           "weight": 0.8,
           "exits": [
@@ -5918,13 +5910,15 @@
           ]
         },
         {
-          "id": "C3-146",
+          "id": "C3-163",
           "type": "others",
           "chapter": 3,
-          "prompt": "Your neighbors framed a certificate by their door: 2,190 nights together, not one apart. First thought?",
+          "sq": "SQ-T09-1",
+          "world": "unusual",
+          "prompt": "Your friend started dating a jazz drummer. Three months in, they own a hi-hat, quit their book club, and say \"we\" about every gig. First thought?",
           "options": [
             {
-              "t": "Goals. I want that certificate.",
+              "t": "Love that. Falling for someone means falling into their world.",
               "axes": {
                 "R1": 1
               },
@@ -5937,7 +5931,7 @@
               "emotion": "longing"
             },
             {
-              "t": "Six years without one night alone? I'd crack.",
+              "t": "Give it a year. They'll want their own thing back.",
               "axes": {
                 "R1": -1
               },
@@ -5949,7 +5943,7 @@
               ]
             },
             {
-              "t": "Sweet. I'd still want one weekend a year to myself.",
+              "t": "Cute. I'd still keep book club. That part's mine.",
               "tags": [
                 {
                   "id": "T09B",
@@ -5958,44 +5952,43 @@
               ]
             },
             {
-              "t": "Honestly, a night apart sounds lonely to me too.",
+              "t": "Same. I'd own drumsticks by week two.",
               "tags": [
                 {
                   "id": "T09A",
                   "s": 1
                 }
-              ]
+              ],
+              "emotion": "delight"
             }
           ],
           "heart": {
-            "prompt": "Your neighbors have framed a certificate beside their door: 2,190 nights together and not a single one apart. What is your first thought?",
+            "prompt": "Your friend started dating a jazz drummer. Three months later, they own a hi-hat, have left their book club and say \"we\" about every gig. What is your first thought?",
             "options": [
-              "That is the goal. I would want one like it.",
-              "Six years without a night alone? I could not do it.",
-              "Sweet, but I would still want one weekend a year alone.",
-              "Honestly, a night apart would feel lonely to me too."
+              "I love that. Falling for someone means stepping into their world.",
+              "Give it a year. They will want something of their own again.",
+              "Sweet, but I would keep the book club. That part is mine.",
+              "Honestly, same. I would own drumsticks by week two."
             ]
           },
           "fp": {
-            "trigger": "neighbors celebrate never spending a night apart",
-            "setting": "a framed certificate by their door",
-            "ask": "your first thought on never being apart",
-            "who": "a couple next door",
+            "trigger": "a friend's life merges into their new partner's",
+            "setting": "a jazz drummer's gigs",
+            "ask": "your take on folding into their world",
+            "who": "a friend and their new partner",
             "stakes": "togetherness versus a life of your own",
-            "device": "nights-together-certificate"
+            "device": "partner-hobby-takeover"
           },
-          "mask": "looks like neighbor gossip; measures whether love folds your life into theirs or keeps your own (T09, R1)",
+          "mask": "looks like friend gossip; measures whether love folds your life into theirs or keeps your own (T09, R1)",
           "ae": [
             "C",
             "D"
           ],
           "privacy": "normal",
-          "sq": "SQ-T09-1",
-          "world": "unusual",
           "friend": {
-            "prompt": "{name}'s neighbors framed a certificate: 2,190 nights together, not one apart. {name}'s first thought?",
+            "prompt": "{name}'s friend started dating a jazz drummer. Three months in: a hi-hat, no book club, \"we\" about every gig. {name}'s first thought?",
             "a": {
-              "t": "Goals. I want that certificate.",
+              "t": "\"Love that. Falling for someone means falling into their world.\"",
               "axes": {
                 "R1": 1
               },
@@ -6007,7 +6000,7 @@
               ]
             },
             "b": {
-              "t": "Six years without one night alone? I'd crack.",
+              "t": "\"Give it a year. They'll want their own thing back.\"",
               "axes": {
                 "R1": -1
               },
@@ -6534,15 +6527,15 @@
           ]
         },
         {
-          "id": "C4-120",
+          "id": "C4-160",
           "type": "bet",
           "chapter": 4,
           "sq": "SQ-L2-1",
           "world": "everyday",
-          "prompt": "Genii suspects you've picked up extra work you didn't need, just to watch a number get bigger.",
+          "prompt": "Admit it: you've spent a whole weekend on a project mostly to post the \"done\" photo.",
           "options": [
             {
-              "t": "Guilty. The number was the whole reward.",
+              "t": "Guilty. Posted it Sunday night. Worth every hour.",
               "axes": {
                 "L2": 2
               },
@@ -6555,7 +6548,7 @@
               "emotion": "pride"
             },
             {
-              "t": "Guilty. Then bought something loud to prove it happened.",
+              "t": "Guilty. Then bought myself something nice to celebrate.",
               "axes": {
                 "L2": 1
               },
@@ -6567,7 +6560,7 @@
               ]
             },
             {
-              "t": "Never. My free time costs more than they pay.",
+              "t": "Never. A free weekend beats any done photo.",
               "axes": {
                 "L2": -2
               },
@@ -6579,39 +6572,39 @@
               ]
             },
             {
-              "t": "Never. I'll take the smaller number and the nap.",
+              "t": "Never. I finish things slowly and tell nobody.",
               "axes": {
                 "L2": -1
               }
             }
           ],
           "heart": {
-            "prompt": "Have you ever taken on extra work you did not need, mostly to see a number grow?",
+            "prompt": "Have you ever spent a whole weekend on a project mostly so you could post the finished photo?",
             "options": [
-              "Yes. Seeing the number grow was the whole reward.",
-              "Yes, and then I bought something noticeable to mark it.",
-              "No. My free time is worth more to me than the pay.",
-              "No. I would rather have the smaller number and the rest."
+              "Yes. I posted it Sunday night. It was worth every hour.",
+              "Yes, and then I bought myself something nice to celebrate.",
+              "No. A free weekend is worth more than any finished photo.",
+              "No. I finish things slowly and do not tell anyone."
             ]
           },
           "fp": {
-            "trigger": "optional extra work on offer",
-            "setting": "a side shift or side gig",
-            "ask": "take it for the number",
-            "who": "just you",
+            "trigger": "a project you could show off when done",
+            "setting": "a whole weekend at home",
+            "ask": "trade the weekend for the done photo",
+            "who": "just you and whoever sees the post",
             "stakes": "free time versus a win you can see",
-            "device": "extra-shift"
+            "device": "done-photo-weekend"
           },
-          "mask": "looks like a hustle confession; measures trading free time for a visible win versus your own pace (L2, T16)",
+          "mask": "looks like a weekend confession; measures trading free time for a visible win versus your own pace (L2, T16)",
           "ae": [
             "A",
             "D"
           ],
           "privacy": "normal",
           "friend": {
-            "prompt": "Genii bets {name} has taken extra work {they} didn't need, just to watch a number grow. Guilty or not?",
+            "prompt": "Genii bets {name} has given up a whole weekend on a project just to post the done photo. Guilty or not?",
             "a": {
-              "t": "Guilty. The number was the whole reward.",
+              "t": "Guilty. Posted it Sunday night. Worth every hour.",
               "axes": {
                 "L2": 2
               },
@@ -6623,7 +6616,7 @@
               ]
             },
             "b": {
-              "t": "Never. My free time costs more than they pay.",
+              "t": "Never. A free weekend beats any done photo.",
               "axes": {
                 "L2": -2
               },
@@ -6646,10 +6639,10 @@
           "id": "C4-142",
           "type": "bet",
           "chapter": 4,
-          "prompt": "Genii's guess: there's money in your life you pretend doesn't exist. Not for fun. Not for anything.",
+          "prompt": "Genii's guess: you've got money you try to treat as untouchable.",
           "options": [
             {
-              "t": "Guilty. Untouchable. Even I forget the number.",
+              "t": "Guilty. Even I forget the number.",
               "axes": {
                 "L1": 1
               },
@@ -6662,7 +6655,7 @@
               "emotion": "pride"
             },
             {
-              "t": "Guilty. And I've raided it twice this year for fun.",
+              "t": "Guilty. I raided it twice this year for fun.",
               "axes": {
                 "L1": -1
               },
@@ -6675,7 +6668,7 @@
               "emotion": "cringe"
             },
             {
-              "t": "Never. Money sitting still feels like money wasted.",
+              "t": "Wrong. Money sitting still feels wasted.",
               "axes": {
                 "L1": -1
               },
@@ -6687,7 +6680,7 @@
               ]
             },
             {
-              "t": "Not yet. Starting one is next month's plan.",
+              "t": "Not yet. Starting next month.",
               "tags": [
                 {
                   "id": "T13B",
@@ -6697,16 +6690,16 @@
             }
           ],
           "heart": {
-            "prompt": "Do you have money set aside that you act as if does not exist, not for fun and not for anything else?",
+            "prompt": "Do you have money you try to treat as untouchable?",
             "options": [
-              "Yes. It is untouchable. I barely remember how much is there.",
+              "Yes. I barely remember how much is there.",
               "Yes, and I have dipped into it twice this year for fun.",
               "No. Money that just sits there feels wasted to me.",
-              "Not yet, but starting one is my plan for next month."
+              "Not yet. I am starting next month."
             ]
           },
           "fp": {
-            "trigger": "money you pretend isn't there",
+            "trigger": "money you try to treat as untouchable",
             "setting": "your savings, in your head",
             "ask": "do you keep an untouchable cushion",
             "who": "just you",
@@ -6722,9 +6715,9 @@
           "sq": "SQ-L1-3",
           "world": "everyday",
           "friend": {
-            "prompt": "Genii's guess: {name} has money set aside that {they} pretend doesn't exist. True?",
+            "prompt": "Genii's guess: {name} has money {they} try to treat as untouchable. True?",
             "a": {
-              "t": "Guilty. Untouchable. Even I forget the number.",
+              "t": "Guilty. Even I forget the number.",
               "axes": {
                 "L1": 1
               },
@@ -6736,7 +6729,7 @@
               ]
             },
             "b": {
-              "t": "Never. Money sitting still feels like money wasted.",
+              "t": "Wrong. Money sitting still feels wasted.",
               "axes": {
                 "L1": -1
               },
@@ -7543,7 +7536,7 @@
             },
             {
               "from": "Dev",
-              "text": "10% of the cat's merch for your savings? it could stop talking any day tho"
+              "text": "you in for ten percent? it could stop talking any day tho"
             }
           ],
           "options": [
@@ -7561,14 +7554,14 @@
               "emotion": "delight"
             },
             {
-              "t": "\"Send me the numbers first. Every single one.\"",
+              "t": "\"Send me every number before I decide.\"",
               "axes": {
                 "L1": 2
               },
               "emotion": "worry"
             },
             {
-              "t": "\"$200. Friendship price. Not a cent more.\"",
+              "t": "\"I can put in $200 as a friend. No more.\"",
               "axes": {
                 "L1": 1
               },
@@ -7580,7 +7573,7 @@
               ]
             },
             {
-              "t": "In. If it goes quiet, I still own part of a legend.",
+              "t": "\"I'll put in $5,000. Quiet or not, it's a legend.\"",
               "axes": {
                 "L1": -1
               }
@@ -7595,14 +7588,14 @@
               },
               {
                 "from": "Dev",
-                "text": "Would you put in your savings for ten percent of the cat's merchandise? It could stop talking any day."
+                "text": "Do you want in, for ten percent? It could stop talking any day."
               }
             ],
             "options": [
               "Here are my savings. I believe in this cat.",
-              "Please send me all the numbers before I decide.",
+              "Please send me every number before I decide.",
               "I can put in $200 as a friend, and no more.",
-              "I am in. Quiet or not, I own part of a legend."
+              "I will put in the $5,000. Quiet or not, it is legendary."
             ]
           },
           "fp": {
@@ -7620,9 +7613,9 @@
           ],
           "privacy": "normal",
           "friend": {
-            "prompt": "Dev's talking cat has two million followers. Dev texts: \"10% of the cat's merch for your savings?\" What does {name} reply?",
+            "prompt": "Dev's talking cat has two million followers. Dev needs $5,000 for merch and offers ten percent. What does {name} reply?",
             "a": {
-              "t": "\"Send me the numbers first. Every single one.\"",
+              "t": "\"Send me every number before I decide.\"",
               "axes": {
                 "L1": 2
               }
@@ -7764,15 +7757,15 @@
           ]
         },
         {
-          "id": "C4-100",
+          "id": "C4-161",
           "type": "others",
           "chapter": 4,
           "sq": "SQ-T13-1",
           "world": "absurd",
-          "prompt": "Your friend's leprechaun gold doubles every year, but only if none of it is spent. Day two, they spent a coin on pizza. First thought?",
+          "prompt": "Your friend's new money tree grows one $100 bill a week. They pick each bill the minute it appears and spend it by dinner. First thought?",
           "options": [
             {
-              "t": "Icon. Best pizza anyone has ever eaten.",
+              "t": "Right call. Money that grows back is for now.",
               "axes": {
                 "L1": -1
               },
@@ -7785,7 +7778,7 @@
               "emotion": "delight"
             },
             {
-              "t": "Doubling forever. Traded for pizza. I need to lie down.",
+              "t": "Leave a few on the branch. Trees have bad years.",
               "axes": {
                 "L1": 1
               },
@@ -7795,47 +7788,51 @@
                   "s": 2
                 }
               ],
-              "emotion": "irritation"
+              "emotion": "worry"
             },
             {
-              "t": "Same. I'd have lasted a day and a half.",
+              "t": "A round for the whole group, every week. Perfect.",
+              "axes": {
+                "L1": -1
+              },
               "tags": [
                 {
                   "id": "T13A",
                   "s": 1
                 }
               ],
-              "emotion": "cringe"
+              "emotion": "warmth"
             },
             {
-              "t": "I'd have buried it and drawn myself a map.",
+              "t": "Sell the tree. One big sure check, done.",
               "axes": {
-                "L1": 1
+                "L1": 2
               },
               "tags": [
                 {
                   "id": "T13B",
                   "s": 1
                 }
-              ]
+              ],
+              "emotion": "relief"
             }
           ],
           "heart": {
-            "prompt": "Your friend's leprechaun gold doubles every year, but only if none of it is spent. On day two, they spent a coin on pizza. Your first thought?",
+            "prompt": "Your friend's new money tree grows one $100 bill every week. They pick each bill the moment it appears and spend it by dinnertime. What is your first thought?",
             "options": [
-              "Good for them. Probably the best pizza of their life.",
-              "It could have doubled forever, and it went on pizza.",
-              "Honestly, I would have lasted about a day and a half myself.",
-              "I would have buried it somewhere and drawn myself a map."
+              "Good call. Money that grows back is meant for now.",
+              "They should leave a few on the branch. Trees have bad years.",
+              "I would treat the whole group every week. That is its purpose.",
+              "I would sell the tree for one large, certain payment."
             ]
           },
           "fp": {
-            "trigger": "friend spends a magic doubling pot on day two",
-            "setting": "leprechaun's gold, pizza night",
-            "ask": "judge joy now versus letting it grow",
-            "who": "friend",
+            "trigger": "a friend spends a magic weekly windfall at once",
+            "setting": "a money tree, a bill every week",
+            "ask": "judge joy now versus a cushion later",
+            "who": "a friend",
             "stakes": "a treat today versus a fortune later",
-            "device": "leprechaun-gold"
+            "device": "money-tree"
           },
           "mask": "looks like a fable; measures spending found money now versus saving it (T13, L1)",
           "ae": [
@@ -7844,9 +7841,9 @@
           ],
           "privacy": "normal",
           "friend": {
-            "prompt": "A friend's leprechaun gold doubles yearly, but only if none is spent. Day two, the friend spends a coin on pizza. {name}'s first thought?",
+            "prompt": "{name}'s friend has a money tree: $100 a week, picked and spent by dinner. {name}'s first thought?",
             "a": {
-              "t": "Doubling forever. Traded for pizza. I need to lie down.",
+              "t": "\"Leave a few on the branch. Trees have bad years.\"",
               "axes": {
                 "L1": 1
               },
@@ -7858,7 +7855,7 @@
               ]
             },
             "b": {
-              "t": "Icon. Best pizza anyone has ever eaten.",
+              "t": "\"Right call. Money that grows back is for now.\"",
               "axes": {
                 "L1": -1
               },
@@ -7881,7 +7878,7 @@
           "id": "C4-144",
           "type": "role",
           "chapter": 4,
-          "prompt": "Your friend group wins $6,000 at a trivia final. The rule: one prize, spent together, on one thing. In this crew, you're the...",
+          "prompt": "Your crew wins $6,000 at trivia. One shared prize, one group decision. In this crew, you're the...",
           "options": [
             {
               "t": "Hype. Already picked the thing and the date.",
@@ -7909,7 +7906,7 @@
               ]
             },
             {
-              "t": "Partial. I'll join the parts I like.",
+              "t": "Partial. I'll enjoy the parts I like and sit out the rest.",
               "axes": {
                 "R1": -1
               }
@@ -7922,17 +7919,17 @@
             }
           ],
           "heart": {
-            "prompt": "Your friend group wins $6,000 at a trivia final, and the rule is that it must be spent together, on one thing. Which one are you?",
+            "prompt": "Your crew wins $6,000 at trivia: one shared prize and one group decision. Which one are you?",
             "options": [
               "The one who has already picked the thing and the date.",
               "The one who wanted cash but goes along anyway.",
               "The one logging every dollar and every request.",
-              "The one who joins only the parts they like.",
+              "The one who enjoys the parts they like and skips the rest.",
               "The one who steps out and gives their part to the group."
             ]
           },
           "fp": {
-            "trigger": "a group prize that must be spent together",
+            "trigger": "a shared group prize and one group decision",
             "setting": "right after a trivia final win",
             "ask": "your part in spending it",
             "who": "your friend group",
@@ -7948,7 +7945,7 @@
           "sq": "SQ-R1-3",
           "world": "unusual",
           "friend": {
-            "prompt": "{name}'s friend group wins $6,000 at trivia, to be spent together on one thing. In this crew, {name} is the...",
+            "prompt": "{name}'s crew wins $6,000 at trivia: one shared prize, one group decision. In this crew, {name} is the...",
             "a": {
               "t": "Hype. Already picked the thing and the date.",
               "axes": {
@@ -9452,13 +9449,15 @@
           ]
         },
         {
-          "id": "C5-142",
+          "id": "C5-160",
           "type": "eyes",
           "chapter": 5,
-          "prompt": "A famous garden wants you to shape its bonsai, a 20-year job. They call your best friend for a reference. Which line do they use?",
+          "sq": "SQ-L2-3",
+          "world": "unusual",
+          "prompt": "A famous perfumer offers you an apprenticeship: seven years before you make a single bottle. They call your best friend for a reference. Which line do they use?",
           "options": [
             {
-              "t": "They'll measure it every Sunday and send you a chart.",
+              "t": "\"They'll want a progress chart by week one.\"",
               "axes": {
                 "L2": 1
               },
@@ -9470,19 +9469,7 @@
               ]
             },
             {
-              "t": "They'll talk to it for 20 years and never check.",
-              "axes": {
-                "L2": -2
-              },
-              "tags": [
-                {
-                  "id": "T24B",
-                  "s": 2
-                }
-              ]
-            },
-            {
-              "t": "They'll want visible proof by week two. Minimum.",
+              "t": "\"If nothing smells right by month three, they walk.\"",
               "axes": {
                 "L2": 2
               },
@@ -9494,7 +9481,19 @@
               ]
             },
             {
-              "t": "They'll trim it once, then happily wait a year.",
+              "t": "\"They'll love the sniffing. The bottle's a bonus.\"",
+              "axes": {
+                "L2": -2
+              },
+              "tags": [
+                {
+                  "id": "T24B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "\"Seven years? They'll lose count and be happy.\"",
               "axes": {
                 "L2": -1
               },
@@ -9507,21 +9506,21 @@
             }
           ],
           "heart": {
-            "prompt": "A famous garden wants you to shape its bonsai, a job that takes 20 years. They ask your best friend for a reference. What does your friend say?",
+            "prompt": "A famous perfumer offers you an apprenticeship: seven years before you make a single bottle. They ask your best friend for a reference. What does your friend say?",
             "options": [
-              "They will measure it every week and send you a chart.",
-              "They will tend it for years and never check on progress.",
-              "They will want to see clear progress within two weeks.",
-              "They will trim it once, then wait a year, happily."
+              "They will want a chart of their progress from the first week.",
+              "If nothing smells right after three months, they will leave.",
+              "They will love the learning itself. The bottle is a bonus.",
+              "Seven years? They will lose count, and they will be happy."
             ]
           },
           "fp": {
-            "trigger": "a garden asks for a reference on a 20-year job",
-            "setting": "a famous garden, a bonsai",
-            "ask": "how you handle slow progress",
-            "who": "your best friend and the garden",
+            "trigger": "a mentor asks for a reference on a seven-year apprenticeship",
+            "setting": "a perfumer's workshop",
+            "ask": "how you handle a slow build",
+            "who": "your best friend and a famous perfumer",
             "stakes": "your name for patience",
-            "device": "bonsai-reference"
+            "device": "perfume-apprenticeship"
           },
           "mask": "looks like a job reference; measures needing to see progress versus trusting the slow road (L2, T24)",
           "ae": [
@@ -9529,12 +9528,10 @@
             "D"
           ],
           "privacy": "normal",
-          "sq": "SQ-L2-3",
-          "world": "unusual",
           "friend": {
-            "prompt": "A famous garden wants {name} to shape a 20-year bonsai and calls for a reference. Which line fits {name}?",
+            "prompt": "A famous perfumer offers {name} a seven-year apprenticeship and calls for a reference. Which line fits {name}?",
             "a": {
-              "t": "Will measure it every Sunday and send a chart.",
+              "t": "Will want a progress chart by week one.",
               "axes": {
                 "L2": 1
               },
@@ -9546,7 +9543,7 @@
               ]
             },
             "b": {
-              "t": "Will talk to it for 20 years and never check.",
+              "t": "Will love the sniffing. The bottle's a bonus.",
               "axes": {
                 "L2": -2
               },
@@ -9566,31 +9563,15 @@
           ]
         },
         {
-          "id": "C5-143",
+          "id": "C5-161",
           "type": "receipts",
           "chapter": 5,
-          "prompt": "Plans, lately. Tap everything that's true:",
+          "sq": "SQ-T17-2",
+          "world": "everyday",
+          "prompt": "Decisions, this year. Tap everything that's true:",
           "options": [
             {
-              "t": "Booked the next appointment before leaving the last one",
-              "tags": [
-                {
-                  "id": "T17A",
-                  "s": 2
-                }
-              ]
-            },
-            {
-              "t": "Picked month-to-month over a cheaper yearly deal",
-              "tags": [
-                {
-                  "id": "T17B",
-                  "s": 2
-                }
-              ]
-            },
-            {
-              "t": "Bought a ticket for something months away",
+              "t": "Paid more for the non-refundable option so I'd stop deciding",
               "tags": [
                 {
                   "id": "T17A",
@@ -9599,7 +9580,25 @@
               ]
             },
             {
-              "t": "Answered an invite with \"let's see\" and meant it",
+              "t": "Said \"maybe\" to a plan to see if something better came up",
+              "tags": [
+                {
+                  "id": "T17B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Chased a clear yes or no because not knowing kept me up",
+              "tags": [
+                {
+                  "id": "T17A",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Left a big question open for months and slept fine",
               "tags": [
                 {
                   "id": "T17B",
@@ -9613,30 +9612,28 @@
             }
           ],
           "heart": {
-            "prompt": "Think about your plans lately. Choose everything that is true.",
+            "prompt": "Think about decisions you have made this year. Choose everything that is true.",
             "options": [
-              "I booked my next appointment before leaving the last one.",
-              "I chose month-to-month over a cheaper yearly deal.",
-              "I bought a ticket for something months away.",
-              "I answered an invite with \"let's see\" and meant it.",
+              "I paid extra for the non-refundable option so I would stop deciding.",
+              "I said \"maybe\" to a plan in case something better came up.",
+              "I pushed for a clear answer. Not knowing kept me up.",
+              "I left a big question open for months and slept fine.",
               "None of these."
             ]
           },
           "fp": {
-            "trigger": "a look back at how you book things",
-            "setting": "appointments, deals and invites",
+            "trigger": "a look back at this year's open questions",
+            "setting": "plans, offers and maybes",
             "ask": "tap what's true",
             "who": "just you",
             "stakes": "settled now versus free later",
-            "device": "booking-receipts"
+            "device": "maybe-receipts"
           },
-          "mask": "looks like a planning check; measures wanting it locked in versus keeping options open (T17) from things actually done",
+          "mask": "looks like a year-in-review; measures wanting it locked in versus keeping options open (T17), from things actually done",
           "ae": [
             "A"
           ],
           "privacy": "normal",
-          "sq": "SQ-T17-2",
-          "world": "everyday",
           "grade": "did",
           "weight": 0.4,
           "exits": [
@@ -10113,15 +10110,15 @@
           ]
         },
         {
-          "id": "C6-81",
+          "id": "C6-160",
           "type": "this_or_that",
           "chapter": 6,
           "sq": "SQ-R3-2",
           "world": "absurd",
-          "prompt": "A home robot shows up preset to run your future home exactly like the one you grew up in. Who cooks, who pays, all of it.",
+          "prompt": "Genii gives you and your person a magic board game of your life together. The squares, in order: move in, ring, wedding, house. Or a blank board.",
           "options": [
             {
-              "t": "Keep the settings. It already knows where the good scissors go.",
+              "t": "Play it as printed. Keys, ring, wedding, house.",
               "axes": {
                 "R3": 2
               },
@@ -10130,10 +10127,11 @@
                   "id": "T20A",
                   "s": 2
                 }
-              ]
+              ],
+              "emotion": "warmth"
             },
             {
-              "t": "Factory reset. Our house, our settings, from zero.",
+              "t": "Blank board. We draw every square ourselves.",
               "axes": {
                 "R3": -2
               },
@@ -10142,33 +10140,34 @@
                   "id": "T20B",
                   "s": 2
                 }
-              ]
+              ],
+              "emotion": "delight"
             }
           ],
           "heart": {
-            "prompt": "A household robot arrives set to run your future home exactly the way the home you grew up in was run, including who cooks and who pays.",
+            "prompt": "Genii gives you and your person a magic board game of your life together. The squares, in order: move in, ring, wedding, house. Or a blank board.",
             "options": [
-              "I keep the settings. It already knows how things should go.",
-              "I reset it, and we decide every setting ourselves."
+              "We play it as printed, one square after another.",
+              "We take the blank board and draw every square ourselves."
             ]
           },
           "fp": {
-            "trigger": "robot preset to your childhood home's ways",
-            "setting": "your future home",
-            "ask": "keep or wipe the settings",
-            "who": "you and whoever you live with",
-            "stakes": "the family script versus your own design",
-            "device": "home-robot"
+            "trigger": "a board game lays out a couple's milestones",
+            "setting": "Genii's board game of your future",
+            "ask": "follow the printed path or draw your own",
+            "who": "you and your person",
+            "stakes": "the classic script versus your own design",
+            "device": "life-board-game"
           },
-          "mask": "looks like a gadget choice; measures running a home the way it was always run versus designing your own (R3, T20)",
+          "mask": "looks like a game-night gift; measures running a couple's life the way it has always run versus designing your own (R3, T20)",
           "ae": [
             "D"
           ],
           "privacy": "normal",
           "friend": {
-            "prompt": "A robot will run {name}'s future home exactly like {their} childhood one: who cooks, who pays, everything. Which one is {name}?",
+            "prompt": "{name} and {their} person get a magic board game of their future: move in, ring, wedding, house, in order. Or a blank board. Which one is {name}?",
             "a": {
-              "t": "Keeps the settings. It knows where the good scissors go.",
+              "t": "Plays it as printed. Keys, ring, wedding, house.",
               "axes": {
                 "R3": 2
               },
@@ -10180,7 +10179,7 @@
               ]
             },
             "b": {
-              "t": "Factory reset. Our house, our settings, from zero.",
+              "t": "Blank board. Draws every square with {their} person.",
               "axes": {
                 "R3": -2
               },
@@ -10444,13 +10443,25 @@
           ]
         },
         {
-          "id": "C6-142",
+          "id": "C6-161",
           "type": "others",
           "chapter": 6,
-          "prompt": "Your cousin was just knighted by a very serious kingdom of squirrels. Room for 300 guests. They brought one friend. First thought?",
+          "sq": "SQ-T21-2",
+          "world": "absurd",
+          "prompt": "Genii offers your friend a magic wedding: every relative, living or long gone, can attend. 900 seats. Your friend picks a courthouse, just the two of them. First thought?",
           "options": [
             {
-              "t": "Iconic. Big honors deserve a tiny crowd.",
+              "t": "Their great-grandparents could be there. Take the seats.",
+              "tags": [
+                {
+                  "id": "T21A",
+                  "s": 2
+                }
+              ],
+              "emotion": "sting"
+            },
+            {
+              "t": "Right call. That day belongs to the two of them.",
               "axes": {
                 "R1": -1
               },
@@ -10462,17 +10473,7 @@
               ]
             },
             {
-              "t": "Our grandparents would've cried in the front row. Rude.",
-              "tags": [
-                {
-                  "id": "T21A",
-                  "s": 2
-                }
-              ],
-              "emotion": "sting"
-            },
-            {
-              "t": "Next time I'm filling all 300 seats. With snacks.",
+              "t": "I'd fill all 900 and cry through every hug.",
               "axes": {
                 "R1": 1
               },
@@ -10482,10 +10483,10 @@
                   "s": 1
                 }
               ],
-              "emotion": "delight"
+              "emotion": "warmth"
             },
             {
-              "t": "Fair. Fewer guests, fewer speeches.",
+              "t": "A courthouse and a long lunch is still a big day.",
               "tags": [
                 {
                   "id": "T21B",
@@ -10495,35 +10496,33 @@
             }
           ],
           "heart": {
-            "prompt": "Your cousin was knighted by a very serious kingdom of squirrels. There was room for 300 guests, and they brought one friend. What is your first thought?",
+            "prompt": "Genii offers your friend a magic wedding with 900 seats, open to every relative, living or long gone. Your friend chooses a courthouse for two. Your first thought?",
             "options": [
-              "Perfect. A big honor deserves a small crowd.",
-              "Our grandparents would have loved to be in the front row.",
-              "When it is my turn, I am filling all 300 seats.",
-              "Fair enough. Fewer guests means fewer speeches."
+              "Their great-grandparents could be there. They should take the seats.",
+              "Good choice. That day belongs to the two of them.",
+              "I would fill all 900 seats and cry through every hug.",
+              "A courthouse and a long lunch is still a big day."
             ]
           },
           "fp": {
-            "trigger": "a cousin's big honor with one guest",
-            "setting": "a squirrel kingdom's knighting ceremony",
-            "ask": "your first thought on the tiny guest list",
-            "who": "your cousin and the whole family",
+            "trigger": "a friend turns down a wedding every relative could attend",
+            "setting": "Genii's magic wedding hall, a courthouse",
+            "ask": "your first thought on who belongs",
+            "who": "a friend, their person and every relative",
             "stakes": "who belongs at the big moment",
-            "device": "squirrel-knighting"
+            "device": "every-relative-wedding"
           },
-          "mask": "looks like a woodland fairy tale; measures whether big moments belong to the whole family or a chosen few (T21), with shared versus apart (R1)",
+          "mask": "looks like a wish story; measures whether big moments belong to the whole family or a chosen few (T21), with shared versus apart (R1)",
           "ae": [
             "A",
             "B",
             "E"
           ],
           "privacy": "normal",
-          "sq": "SQ-T21-2",
-          "world": "absurd",
           "friend": {
-            "prompt": "{name}'s cousin was knighted by a squirrel kingdom. Room for 300; they brought one friend. {name}'s first thought?",
+            "prompt": "Genii offers {name}'s friend a wedding every relative can attend, living or long gone. The friend picks a courthouse for two. {name}'s first thought?",
             "a": {
-              "t": "\"Next time I'm filling all 300 seats. With snacks.\"",
+              "t": "\"I'd fill all 900 and cry through every hug.\"",
               "axes": {
                 "R1": 1
               },
@@ -10535,7 +10534,7 @@
               ]
             },
             "b": {
-              "t": "\"Iconic. Big honors deserve a tiny crowd.\"",
+              "t": "\"Right call. That day belongs to the two of them.\"",
               "axes": {
                 "R1": -1
               },
@@ -11377,114 +11376,77 @@
           ]
         },
         {
-          "id": "C6-145",
+          "id": "C6-162",
           "type": "real",
           "chapter": 6,
-          "prompt": "Last family group gift you chipped in on. How did you actually handle the split?",
+          "sq": "SQ-L3-2",
+          "world": "everyday",
+          "prompt": "Family under one roof, not enough beds. The most recent time, what did you actually do?",
           "options": [
             {
-              "t": "Even split. Same gift, same share, no footnotes.",
+              "t": "Strict rotation. One night in the bed each, me included.",
               "axes": {
                 "L3": 2
-              },
-              "tags": [
-                {
-                  "id": "T12A",
-                  "s": 2
-                }
-              ]
+              }
             },
             {
-              "t": "Covered the cousin who was short. Told nobody.",
-              "axes": {
-                "L3": -2
-              },
-              "tags": [
-                {
-                  "id": "T12B",
-                  "s": 2
-                }
-              ],
-              "emotion": "warmth"
-            },
-            {
-              "t": "Suggested paying by what we each earn. Long pause.",
-              "axes": {
-                "L3": -1
-              },
-              "tags": [
-                {
-                  "id": "T12B",
-                  "s": 1
-                }
-              ],
-              "emotion": "cringe"
-            },
-            {
-              "t": "Made the spreadsheet. Chased everyone until it balanced.",
+              "t": "Rock, paper, scissors. Won it fair, slept great.",
               "axes": {
                 "L3": 1
               },
-              "tags": [
-                {
-                  "id": "T12A",
-                  "s": 1
-                }
-              ],
-              "emotion": "irritation"
+              "emotion": "pride"
+            },
+            {
+              "t": "Gave the bed to whoever drove the farthest.",
+              "axes": {
+                "L3": -1
+              }
+            },
+            {
+              "t": "Gave the real bed to whoever had the roughest year.",
+              "axes": {
+                "L3": -2
+              },
+              "emotion": "warmth"
             }
           ],
           "heart": {
-            "prompt": "Think of the last family group gift you chipped in on. How did you actually handle the split?",
+            "prompt": "Think of the most recent time your family stayed under one roof and there were not enough beds. What did you actually do?",
             "options": [
-              "An even split. Same gift, same share for everyone.",
-              "I quietly covered a cousin who was short.",
-              "I suggested paying by what each of us earns. It went quiet.",
-              "I made the spreadsheet and followed up until it balanced."
+              "We rotated strictly, one night in the bed each, me included.",
+              "We played rock, paper, scissors. I won fairly and slept well.",
+              "I gave the bed to whoever had driven the farthest.",
+              "I gave the real bed to whoever was having the hardest year."
             ]
           },
           "fp": {
-            "trigger": "a family group gift to split",
-            "setting": "family, a shared present",
-            "ask": "split it evenly or by means",
-            "who": "relatives chipping in",
-            "stakes": "fairness versus who can afford it",
-            "device": "family-group-gift"
+            "trigger": "not enough beds for a family stay",
+            "setting": "one house, the whole family",
+            "ask": "who gets the beds",
+            "who": "relatives sharing a roof",
+            "stakes": "the same chance for all versus who needs it most",
+            "device": "short-on-beds"
           },
-          "mask": "looks like a family money story; measures fair as the same share for everyone versus fair as what each can give (L3, T12) from a thing actually done",
+          "mask": "looks like a family logistics story; measures fair as the same deal for everyone versus fair as what each person needs (L3), from a thing actually done",
           "ae": [
             "A",
             "B",
             "E"
           ],
           "privacy": "normal",
-          "sq": "SQ-L3-2",
-          "world": "everyday",
           "friend": {
-            "prompt": "The last family group gift {name} chipped in on. How did {name} handle the split?",
+            "prompt": "The last time {name}'s family stayed under one roof with too few beds. What did {name} actually do?",
             "a": {
-              "t": "Even split. Same gift, same share, no footnotes.",
+              "t": "Strict rotation. One night in the bed each.",
               "axes": {
                 "L3": 2
-              },
-              "tags": [
-                {
-                  "id": "T12A",
-                  "s": 2
-                }
-              ]
+              }
             },
             "b": {
-              "t": "Covered the cousin who was short. Told nobody.",
+              "t": "Gave the real bed to whoever had the roughest year.",
               "axes": {
                 "L3": -2
-              },
-              "tags": [
-                {
-                  "id": "T12B",
-                  "s": 2
-                }
-              ]
+              }
             }
           },
           "grade": "did",
@@ -12196,13 +12158,15 @@
           ]
         },
         {
-          "id": "C7-141",
+          "id": "C7-160",
           "type": "real",
           "chapter": 7,
-          "prompt": "The most recent time a friend moved and asked for help carrying boxes. What did you actually do?",
+          "sq": "SQ-T23-2",
+          "world": "everyday",
+          "prompt": "Someone asked a room for a volunteer, and the room went silent. The most recent time, what did you actually do?",
           "options": [
             {
-              "t": "Showed up first, with tape and my own dolly.",
+              "t": "Hand up before the silence got awkward.",
               "tags": [
                 {
                   "id": "T23A",
@@ -12211,7 +12175,26 @@
               ]
             },
             {
-              "t": "Came for the last hour, right as the pizza arrived.",
+              "t": "Waited it out. Someone always cracks.",
+              "tags": [
+                {
+                  "id": "T23B",
+                  "s": 2
+                }
+              ]
+            },
+            {
+              "t": "Volunteered the person next to me. Lovingly.",
+              "tags": [
+                {
+                  "id": "T23B",
+                  "s": 1
+                }
+              ],
+              "emotion": "cringe"
+            },
+            {
+              "t": "Held out, then caved when they looked at me.",
               "tags": [
                 {
                   "id": "T23A",
@@ -12219,57 +12202,36 @@
                 }
               ],
               "emotion": "guilt"
-            },
-            {
-              "t": "Said I had plans. Made the plans afterward.",
-              "tags": [
-                {
-                  "id": "T23B",
-                  "s": 2
-                }
-              ],
-              "emotion": "cringe"
-            },
-            {
-              "t": "Sent them the number of a moving company I like.",
-              "tags": [
-                {
-                  "id": "T23B",
-                  "s": 1
-                }
-              ]
             }
           ],
           "heart": {
-            "prompt": "Think of the most recent time a friend moved and asked for help carrying boxes. What did you actually do?",
+            "prompt": "Think of the most recent time someone asked a room for a volunteer and nobody answered. What did you actually do?",
             "options": [
-              "I arrived first, with tape and my own dolly.",
-              "I came for the last hour, just as the pizza arrived.",
-              "I said I had plans, and made the plans afterward.",
-              "I sent them the number of a moving company I trust."
+              "I raised my hand before the silence became awkward.",
+              "I waited it out. Someone always gives in.",
+              "I suggested the person next to me, with affection.",
+              "I held out, then gave in when they looked at me."
             ]
           },
           "fp": {
-            "trigger": "a friend asks for help moving",
-            "setting": "moving day, real life",
-            "ask": "carry boxes or keep your day",
-            "who": "a friend moving house",
-            "stakes": "your day off versus being the one who shows",
-            "device": "moving-day-help"
+            "trigger": "a call for a volunteer meets silence",
+            "setting": "a meeting, class or club",
+            "ask": "raise your hand or wait it out",
+            "who": "a room of people and whoever asked",
+            "stakes": "your time versus the awkward silence",
+            "device": "silent-room-volunteer"
           },
-          "mask": "looks like a moving-day memory; measures whether you put your shoes on when someone needs hands (T23) from a thing actually done",
+          "mask": "looks like a meeting memory; measures whether you put your hand up when someone needs one (T23), from a thing actually done",
           "ae": [
             "A",
             "B",
             "E"
           ],
           "privacy": "normal",
-          "sq": "SQ-T23-2",
-          "world": "everyday",
           "friend": {
-            "prompt": "The last time a friend of {name}'s moved and asked for help with boxes. What did {name} actually do?",
+            "prompt": "The last time someone asked a room for a volunteer and it went silent. What did {name} actually do?",
             "a": {
-              "t": "Showed up first, with tape and a dolly.",
+              "t": "Hand up before the silence got awkward.",
               "tags": [
                 {
                   "id": "T23A",
@@ -12278,7 +12240,7 @@
               ]
             },
             "b": {
-              "t": "Said {they} had plans. Made the plans after.",
+              "t": "Waited it out. Someone always cracks.",
               "tags": [
                 {
                   "id": "T23B",
@@ -12387,16 +12349,16 @@
           ]
         },
         {
-          "id": "C7-136",
+          "id": "C7-161",
           "type": "this_or_that",
           "chapter": 7,
           "round": "C7-r110",
           "sq": "SQ-R3-1",
           "world": "unusual",
-          "prompt": "Your birthday. Your family wants it the way it's always been: same restaurant, same cake, same off-key song. Your friends booked a surprise trip that weekend.",
+          "prompt": "Your degree is done. The ceremony: four hours, a $90 gown, your name read wrong by a stranger. Or the diploma just arrives by mail.",
           "options": [
             {
-              "t": "The family version. The off-key song is the gift.",
+              "t": "Walk the stage. Gown, hat toss, the whole thing.",
               "axes": {
                 "R3": 2
               },
@@ -12406,10 +12368,10 @@
                   "s": 1
                 }
               ],
-              "emotion": "warmth"
+              "emotion": "pride"
             },
             {
-              "t": "The trip. New year, new way to celebrate.",
+              "t": "Mail it. I'll celebrate my own way.",
               "axes": {
                 "R3": -2
               },
@@ -12423,21 +12385,21 @@
             }
           ],
           "heart": {
-            "prompt": "It is your birthday. Your family wants it the way it has always been: the same restaurant, cake and off-key song. Your friends booked a surprise trip that weekend.",
+            "prompt": "Your degree is finished. The ceremony means four hours, a $90 gown and your name read wrong by a stranger. Or the diploma simply arrives by mail.",
             "options": [
-              "The family version. The off-key song is the real gift.",
-              "The trip. A new year, and a new way to celebrate."
+              "I walk the stage, with the gown and the hat toss.",
+              "I have it mailed and celebrate in my own way."
             ]
           },
           "fp": {
-            "trigger": "birthday plans clash",
-            "setting": "family birthday ritual versus a surprise trip",
-            "ask": "keep the ritual or go your own way",
-            "who": "your family and your friends",
-            "stakes": "an old tradition versus a new one",
-            "device": "birthday-clash"
+            "trigger": "a graduation ceremony or a diploma by mail",
+            "setting": "a four-hour ceremony hall",
+            "ask": "walk the stage or skip the ritual",
+            "who": "you and a stranger reading names",
+            "stakes": "the classic milestone versus your own way",
+            "device": "graduation-walk"
           },
-          "mask": "looks like a scheduling clash; measures whether the old rituals feel like home or like a costume (R3, T20)",
+          "mask": "looks like a logistics choice; measures whether the old rituals feel like home or like a costume (R3, T20)",
           "ae": [
             "A",
             "B",
@@ -12445,9 +12407,9 @@
           ],
           "privacy": "normal",
           "friend": {
-            "prompt": "{name}'s birthday: family wants the same restaurant, cake and off-key song. Friends booked a surprise trip. Which one is {name}?",
+            "prompt": "{name}'s degree is done. Four-hour ceremony and a $90 gown, or the diploma by mail. Which one is {name}?",
             "a": {
-              "t": "The family version. \"The off-key song is the gift.\"",
+              "t": "Walks the stage. Gown, hat toss, the whole thing.",
               "axes": {
                 "R3": 2
               },
@@ -12459,7 +12421,7 @@
               ]
             },
             "b": {
-              "t": "The trip. \"New year, new way to celebrate.\"",
+              "t": "Mail it. Celebrates {their} own way.",
               "axes": {
                 "R3": -2
               },
@@ -12923,13 +12885,15 @@
           ]
         },
         {
-          "id": "C7-145",
+          "id": "C7-162",
           "type": "others",
           "chapter": 7,
-          "prompt": "Your cousin and their person flip a coin every Sunday: loser does all the chores that week. Four years running. They swear by it. First thought?",
+          "sq": "SQ-R3-2",
+          "world": "unusual",
+          "prompt": "Ari and Noor, married four years, sleep in separate bedrooms. By choice. They say it saved the marriage. First thought?",
           "options": [
             {
-              "t": "A house needs set jobs. Like the one I grew up in.",
+              "t": "A couple shares a bed. That's the whole point.",
               "axes": {
                 "R3": 2
               },
@@ -12941,7 +12905,7 @@
               ]
             },
             {
-              "t": "Genius. Stealing it tonight.",
+              "t": "Genius. Nobody steals the blanket ever again.",
               "axes": {
                 "R3": -2
               },
@@ -12954,7 +12918,7 @@
               "emotion": "delight"
             },
             {
-              "t": "Sweet. My family would call it chaos, and I'd agree.",
+              "t": "Sweet, but my family would ask what went wrong.",
               "axes": {
                 "R3": 1
               },
@@ -12966,7 +12930,7 @@
               ]
             },
             {
-              "t": "Honestly beats our system: quiet resentment.",
+              "t": "Honestly smarter than most couples I know.",
               "axes": {
                 "R3": -1
               },
@@ -12975,40 +12939,37 @@
                   "id": "T20B",
                   "s": 1
                 }
-              ],
-              "emotion": "longing"
+              ]
             }
           ],
           "heart": {
-            "prompt": "Your cousin and their person flip a coin every Sunday; the loser does all the chores that week. Four years in, they swear by it. What is your first thought?",
+            "prompt": "Ari and Noor have been married four years and sleep in separate bedrooms, by choice. They say it saved their marriage. What is your first thought?",
             "options": [
-              "A home needs set roles, like the one I grew up in.",
-              "That is brilliant. I am trying it tonight.",
-              "Sweet, but my family would call it chaos, and I would agree.",
-              "Honestly, it beats our system of quiet resentment."
+              "A couple shares a bed. That is the point.",
+              "That is brilliant. Nobody steals the blanket again.",
+              "It is sweet, but my family would ask what went wrong.",
+              "Honestly, it sounds smarter than most couples I know."
             ]
           },
           "fp": {
-            "trigger": "a couple assigns chores by coin toss",
-            "setting": "a cousin's home, every Sunday",
+            "trigger": "a married couple chooses separate bedrooms",
+            "setting": "a couple's home with two bedrooms",
             "ask": "your first thought",
-            "who": "your cousin and their person",
-            "stakes": "set roles versus a system you invent",
-            "device": "chore-coin-flip"
+            "who": "a married couple you know",
+            "stakes": "the classic couple script versus a design they invented",
+            "device": "separate-bedrooms"
           },
-          "mask": "looks like family gossip; measures running a home the way homes always ran versus your own design (R3, T20), shown by how you judge theirs",
+          "mask": "looks like couple gossip; measures running a home the way homes always ran versus your own design (R3, T20), shown by how you judge theirs",
           "ae": [
             "A",
             "C",
             "D"
           ],
           "privacy": "normal",
-          "sq": "SQ-R3-2",
-          "world": "unusual",
           "friend": {
-            "prompt": "{name}'s cousin and their person flip a coin every Sunday; loser does all the chores. Four years running. {name}'s first thought?",
+            "prompt": "Ari and Noor, married four years, sleep in separate bedrooms by choice. They say it saved them. {name}'s first thought?",
             "a": {
-              "t": "\"A house needs set jobs. Like the one I grew up in.\"",
+              "t": "\"A couple shares a bed. That's the whole point.\"",
               "axes": {
                 "R3": 2
               },
@@ -13020,7 +12981,7 @@
               ]
             },
             "b": {
-              "t": "\"Genius. Stealing it tonight.\"",
+              "t": "\"Genius. Nobody steals the blanket ever again.\"",
               "axes": {
                 "R3": -2
               },
@@ -13524,10 +13485,10 @@
           "id": "C7-147",
           "type": "rank",
           "chapter": 7,
-          "prompt": "You wake up able to fix anything just by touching it. Rank what you'd do first, top to bottom.",
+          "prompt": "You wake up able to fix anything by touching it. Rank what you'd do first, top to bottom.",
           "options": [
             {
-              "t": "Fix the whole street's broken stuff. Start a sign-up sheet.",
+              "t": "Fix the street's broken stuff. Start a sign-up sheet.",
               "tags": [
                 {
                   "id": "T23A",
@@ -13545,7 +13506,7 @@
               ]
             },
             {
-              "t": "Fix my own ancient car first. Then the rest of my stuff.",
+              "t": "Fix my old car first, then the rest of my stuff.",
               "tags": [
                 {
                   "id": "T23B",
@@ -13554,7 +13515,7 @@
               ]
             },
             {
-              "t": "Tell nobody. Once they know, my weekends are gone.",
+              "t": "Fix nothing publicly. Once people know, my weekends are gone.",
               "tags": [
                 {
                   "id": "T23B",
@@ -13566,10 +13527,10 @@
           "heart": {
             "prompt": "You wake up able to repair anything simply by touching it. Put these in order, the first thing you would do at the top.",
             "options": [
-              "I fix the whole street's broken things, with a sign-up sheet.",
+              "I fix the street's broken things, with a sign-up sheet.",
               "I fix my friends' things, but only when they ask.",
-              "I fix my own old car first, then my other things.",
-              "I tell nobody. Once they know, my weekends are gone."
+              "I fix my old car first, then the rest of my things.",
+              "I fix nothing in public. Once people know, my weekends are gone."
             ]
           },
           "fp": {
@@ -15613,7 +15574,7 @@
       "primary": "L2",
       "sq": "SQ-L2-3",
       "world": "unusual",
-      "prompt": "A museum commissions your mosaic: 10,000 tiles. The picture stays under a sheet until the last tile goes in. Nobody sees progress.",
+      "prompt": "A museum hires you to place 10,000 mosaic tiles. Nobody sees the full picture until the last tile goes in.",
       "options": [
         {
           "t": "Count tiles nightly. Post the percentage somewhere public.",
@@ -15628,7 +15589,7 @@
           ]
         },
         {
-          "t": "A few tiles when the mood strikes. It'll get there.",
+          "t": "Place a few tiles when the mood strikes. It'll get there.",
           "axes": {
             "L2": -2
           },
@@ -15640,7 +15601,7 @@
           ]
         },
         {
-          "t": "Lift the sheet every Friday. Just one corner.",
+          "t": "Peek at one corner every Friday. Just one.",
           "axes": {
             "L2": 1
           },
@@ -15666,17 +15627,17 @@
         }
       ],
       "heart": {
-        "prompt": "A museum commissions a mosaic from you: 10,000 tiles. The finished picture stays covered by a sheet until the very last tile is placed.",
+        "prompt": "A museum hires you to place 10,000 mosaic tiles. Nobody will see the full picture until the last tile goes in.",
         "options": [
           "I count the tiles every night and post the percentage publicly.",
-          "A few tiles whenever I feel like it. It will get there.",
-          "I lift one corner of the sheet every Friday to check.",
+          "I place a few tiles when I like. It will get there.",
+          "I peek at one corner every Friday, just one.",
           "I lose count by the second week, and I love it anyway."
         ]
       },
       "fp": {
-        "trigger": "a mosaic you cannot see until it is done",
-        "setting": "museum studio, covered wall",
+        "trigger": "a mosaic nobody sees whole until it is done",
+        "setting": "museum studio, 10,000 tiles",
         "ask": "track progress or trust the slow build",
         "who": "you and a museum",
         "stakes": "proof it is working versus patience",
@@ -15804,15 +15765,15 @@
       }
     },
     {
-      "id": "S-81",
+      "id": "S-160",
       "type": "sealed",
       "primary": "L3",
       "sq": "SQ-L3-1",
       "world": "unusual",
-      "prompt": "Jury duty. The evidence is clear: the defendant stole a bakery's birthday cake, for their kid's party. Eleven jurors turn to you.",
+      "prompt": "You work the ferry ramp. Rule: it closes at departure, no exceptions. It just closed. A runner arrives, breathless: their best friend's wedding is on the island tomorrow.",
       "options": [
         {
-          "t": "Guilty. A stolen cake is a stolen cake.",
+          "t": "Closed is closed. Next ferry's at dawn.",
           "axes": {
             "L3": 2
           },
@@ -15824,7 +15785,7 @@
           ]
         },
         {
-          "t": "Not guilty. I'll argue it all afternoon if I have to.",
+          "t": "Drop the ramp. Thirty seconds won't sink anyone.",
           "axes": {
             "L3": -2
           },
@@ -15836,14 +15797,14 @@
           ]
         },
         {
-          "t": "Guilty. Then think about it at every birthday, forever.",
+          "t": "Say no, then call the island for a water taxi.",
           "axes": {
             "L3": 1
           },
-          "emotion": "guilt"
+          "emotion": "worry"
         },
         {
-          "t": "First question: did the kid get a slice? That changes things.",
+          "t": "Let them on, and anyone else still running.",
           "axes": {
             "L3": -1
           },
@@ -15856,23 +15817,23 @@
         }
       ],
       "heart": {
-        "prompt": "You are on a jury. The evidence clearly shows the defendant stole a birthday cake from a bakery, for their child's party. The other eleven jurors turn to you.",
+        "prompt": "You work the ferry ramp. It closes at departure, no exceptions, and it just closed. A passenger arrives out of breath: their best friend's wedding is on the island tomorrow.",
         "options": [
-          "Guilty. Taking a cake is still taking.",
-          "Not guilty, and I will argue it as long as it takes.",
-          "Guilty, and I will think about it at every birthday after.",
-          "I ask whether the child got a slice. That matters to me."
+          "Closed means closed. The next ferry leaves at dawn.",
+          "I lower the ramp. Thirty seconds will not hurt anyone.",
+          "I say no, then call ahead for a water taxi for them.",
+          "I let them on, and anyone else still running for it."
         ]
       },
       "fp": {
-        "trigger": "cake thief on trial",
-        "setting": "jury room",
-        "ask": "which verdict you give",
-        "who": "a stranger and eleven jurors",
+        "trigger": "a late runner after the ferry ramp closed",
+        "setting": "a ferry dock, last boat to the island",
+        "ask": "hold the rule or lower the ramp",
+        "who": "a stranger in a hurry",
         "stakes": "the rule versus the reason",
-        "device": "jury-duty"
+        "device": "ferry-ramp"
       },
-      "mask": "looks like a courtroom comedy; Genii's locked guess on the rule versus the situation (L3), with T25 as a side guess",
+      "mask": "looks like a dockside rush; Genii's locked guess on the rule versus the situation (L3), with T25 as a side guess",
       "ae": [
         "C",
         "A"
@@ -16479,15 +16440,15 @@
       "chapter": "extra"
     },
     {
-      "id": "X-R3-40",
+      "id": "X-R3-50",
       "type": "this_or_that",
       "axisFor": "R3",
       "sq": "SQ-R3-2",
       "world": "absurd",
-      "prompt": "Genii hands you a lighthouse, free forever, plus the keepers' household rulebook: 300 years of how this home runs. Keep it, or erase it tonight?",
+      "prompt": "Genii's housewarming gift: a house that builds itself overnight. Pick the blueprint. The classic family home, or the strange one you'd design yourselves.",
       "options": [
         {
-          "t": "Keep it. Tea at four, lamp at dusk, forever.",
+          "t": "The classic. Fence, dining table, guest room for family.",
           "axes": {
             "R3": 2
           },
@@ -16500,7 +16461,7 @@
           "emotion": "warmth"
         },
         {
-          "t": "Erase it. My lighthouse, my rules.",
+          "t": "Ours. No dining table, a slide, a reading pit.",
           "axes": {
             "R3": -2
           },
@@ -16514,21 +16475,21 @@
         }
       ],
       "heart": {
-        "prompt": "Genii gives you a lighthouse, free forever, along with the keepers' household rulebook: 300 years of how this home is run. Do you keep it, or erase it tonight?",
+        "prompt": "Genii's housewarming gift is a house that builds itself overnight. You pick the plan: the classic family home, or an unusual one you design yourselves.",
         "options": [
-          "I keep it. Tea at four and the lamp at dusk, always.",
-          "I erase it. My lighthouse runs on my own rules."
+          "The classic home: fence, dining table, guest room for family.",
+          "Our own design: no dining table, a slide and a reading nook."
         ]
       },
       "fp": {
-        "trigger": "a free home comes with 300 years of house rules",
-        "setting": "a lighthouse from Genii",
-        "ask": "keep the old household rules or write your own",
-        "who": "you and the keepers before you",
-        "stakes": "the way homes ran versus your own design",
-        "device": "lighthouse-rulebook"
+        "trigger": "a self-building house needs a blueprint",
+        "setting": "an empty lot, Genii's gift",
+        "ask": "the classic home or your own design",
+        "who": "you and whoever you live with",
+        "stakes": "the way homes run versus your own design",
+        "device": "self-building-house"
       },
-      "mask": "looks like a dream house with fine print; measures running a home the way it has always been run versus your own design (R3, T20)",
+      "mask": "looks like a dream-house pick; measures running a home the way it has always been run versus your own design (R3, T20)",
       "ae": [
         "D"
       ],
@@ -16776,7 +16737,7 @@
       "axisFor": "L2",
       "sq": "SQ-T16-2",
       "world": "absurd",
-      "prompt": "Genii will hang one thing on your wall, forever, where every guest sees it. Rank them, the one you'd pick first on top.",
+      "prompt": "Genii gives you one permanent display in your home, where every guest sees it. Rank what you'd pick first to last.",
       "options": [
         {
           "t": "Every trophy, medal and certificate I've ever won.",
@@ -16815,25 +16776,25 @@
           ]
         },
         {
-          "t": "An actual hammock. Guests may nap.",
+          "t": "A hammock guests can actually nap in.",
           "axes": {
             "L2": -1
           }
         }
       ],
       "heart": {
-        "prompt": "Genii will hang one thing on your wall forever, where every guest will see it. Put them in order, your first choice at the top.",
+        "prompt": "Genii gives you one permanent display in your home, where every guest will see it. Put them in order, your first choice at the top.",
         "options": [
           "Every trophy, medal and certificate I have ever received.",
           "A blurry photo of my laziest, happiest Sunday.",
           "My best piece of work, with the date I finished it.",
-          "A real hammock, where guests are welcome to nap."
+          "A hammock that guests can actually nap in."
         ]
       },
       "fp": {
-        "trigger": "one thing hangs on your wall forever",
+        "trigger": "one permanent display in your home",
         "setting": "your home, every guest looking",
-        "ask": "rank what goes on the wall",
+        "ask": "rank what goes on display",
         "who": "you and every guest",
         "stakes": "wins on display versus rest on display",
         "device": "genii-wall-frame"

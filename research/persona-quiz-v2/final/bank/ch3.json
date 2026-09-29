@@ -589,27 +589,27 @@
     }
   },
   {
-    "id": "C3-121",
+    "id": "C3-160",
     "type": "others",
     "chapter": 3,
     "sq": "SQ-T10-2",
     "world": "unusual",
-    "prompt": "Your coworker ended a two-year relationship with a slideshow. Title slide: \"Us: A Retrospective.\" First thought?",
+    "prompt": "Mina ended a three-year relationship by mailing back every borrowed book. One sticky note inside: \"Thanks for everything. Take care.\" First thought?",
     "options": [
       {
-        "t": "Clear, thorough, nobody's confused. Respect.",
+        "t": "Three years earns a sit-down. Not a sticky note.",
         "axes": {
           "R2": 1
         },
         "tags": [
           {
             "id": "T10A",
-            "s": 1
+            "s": 2
           }
         ]
       },
       {
-        "t": "That much talking? A quiet fade hurts less.",
+        "t": "Honestly elegant. Clear, final, no scene.",
         "axes": {
           "R2": -1
         },
@@ -621,7 +621,55 @@
         ]
       },
       {
-        "t": "Two years, and not one slide about fixing it?",
+        "t": "Did anyone try to fix it before the books went back?",
+        "tags": [
+          {
+            "id": "T10A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Jealous. My last ending was a four-hour talk.",
+        "tags": [
+          {
+            "id": "T10B",
+            "s": 1
+          }
+        ],
+        "emotion": "longing"
+      }
+    ],
+    "heart": {
+      "prompt": "Mina ended a three-year relationship by mailing back every book they had borrowed, with one sticky note inside: \"Thanks for everything. Take care.\" What is your first thought?",
+      "options": [
+        "Three years deserves a real conversation, not a note.",
+        "It is graceful, in a way. Clear and final, with no scene.",
+        "Did either of them try to fix it before the books went?",
+        "I envy it a little. My last ending was a four-hour talk."
+      ]
+    },
+    "fp": {
+      "trigger": "someone ends a relationship by returning books with a note",
+      "setting": "a box of borrowed books in the mail",
+      "ask": "your line on how endings should go",
+      "who": "an acquaintance and their ex",
+      "stakes": "saying it out loud versus a quiet exit",
+      "device": "returned-books-note"
+    },
+    "mask": "looks like gossip; measures whether you think endings need a conversation, a fix, or a quiet exit (T10)",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "Mina ended a three-year relationship by mailing back the borrowed books with one sticky note: \"Take care.\" {name}'s first thought?",
+      "a": {
+        "t": "\"Three years earns a sit-down. Not a sticky note.\"",
+        "axes": {
+          "R2": 1
+        },
         "tags": [
           {
             "id": "T10A",
@@ -629,56 +677,8 @@
           }
         ]
       },
-      {
-        "t": "I'd have ghosted. Then felt bad for a year.",
-        "tags": [
-          {
-            "id": "T10B",
-            "s": 1
-          }
-        ],
-        "emotion": "guilt"
-      }
-    ],
-    "heart": {
-      "prompt": "A coworker ended a two-year relationship by presenting a slideshow titled \"Us: A Retrospective.\" What is your first thought?",
-      "options": [
-        "It was clear and thorough, and I respect that.",
-        "That is a lot of talking. A quiet fade might hurt less.",
-        "Two years, and nothing in it about trying to fix things?",
-        "I would probably have disappeared, then felt bad for a year."
-      ]
-    },
-    "fp": {
-      "trigger": "a coworker ends a relationship with a slideshow",
-      "setting": "a breakup presentation",
-      "ask": "your line on how endings should go",
-      "who": "a coworker and their ex",
-      "stakes": "saying it out loud versus letting it fade",
-      "device": "breakup slideshow"
-    },
-    "mask": "looks like office gossip; measures whether you think endings need a conversation, a fix, or a fade (T10)",
-    "ae": [
-      "A",
-      "C"
-    ],
-    "privacy": "normal",
-    "friend": {
-      "prompt": "A coworker ended a two-year relationship with a slideshow titled \"Us: A Retrospective.\" {name}'s first thought?",
-      "a": {
-        "t": "Clear, thorough, nobody's confused. Respect.",
-        "axes": {
-          "R2": 1
-        },
-        "tags": [
-          {
-            "id": "T10A",
-            "s": 1
-          }
-        ]
-      },
       "b": {
-        "t": "That much talking? A quiet fade hurts less.",
+        "t": "\"Honestly elegant. Clear, final, no scene.\"",
         "axes": {
           "R2": -1
         },
@@ -923,10 +923,10 @@
     "chapter": 3,
     "sq": "SQ-R3-2",
     "world": "absurd",
-    "prompt": "Your new place has a talking doorbell. It greets every guest using only your person's last name. You get one retrain.",
+    "prompt": "Your talking doorbell greets every guest with your person's last name, never yours. You get one chance to change its greeting.",
     "options": [
       {
-        "t": "Keep it. One home, one name. Sounds right.",
+        "t": "Keep their name. One home, one name sounds right.",
         "axes": {
           "R3": 2
         },
@@ -938,14 +938,14 @@
         ]
       },
       {
-        "t": "Retrain it to say my name. Same rule, my turn.",
+        "t": "Switch it to my name. Same rule, my turn.",
         "axes": {
           "R3": 1,
           "R2": 1
         }
       },
       {
-        "t": "Both names. It'll take forever. Guests can wait.",
+        "t": "Teach it both names. Guests can wait through the greeting.",
         "axes": {
           "R3": -1
         },
@@ -957,7 +957,7 @@
         ]
       },
       {
-        "t": "Invent a new family name. The doorbell learns it first.",
+        "t": "Invent a new shared name. The doorbell learns it first.",
         "axes": {
           "R3": -2
         },
@@ -971,16 +971,16 @@
       }
     ],
     "heart": {
-      "prompt": "Your new home has a talking doorbell that greets every guest with only your person's last name. You can retrain it once.",
+      "prompt": "Your talking doorbell greets every guest with your person's last name, never yours. You get one chance to change what it says.",
       "options": [
-        "I keep it. One home and one name feels right.",
-        "I retrain it to use my name instead. Same idea, my turn.",
-        "I teach it both names, even though it takes longer.",
-        "I invent a new family name and teach it that."
+        "I keep their name. One home and one name feels right.",
+        "I switch it to my name. Same idea, my turn.",
+        "I teach it both names, even if guests wait a little longer.",
+        "We invent a new shared name, and the doorbell learns it first."
       ]
     },
     "fp": {
-      "trigger": "the doorbell uses only your person's last name",
+      "trigger": "the doorbell greets guests with only your person's last name",
       "setting": "new shared home with a talking doorbell",
       "ask": "whose name the home carries",
       "who": "your person",
@@ -995,9 +995,9 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "{name} and {their} person's new doorbell greets guests using only the person's last name. One retrain allowed. What does {name} do?",
+      "prompt": "{name}'s talking doorbell greets guests with {their} person's last name, never {name}'s. One chance to change it. What does {name} do?",
       "a": {
-        "t": "Keeps it. One home, one name. Sounds right.",
+        "t": "Keeps their name. One home, one name sounds right.",
         "axes": {
           "R3": 2
         },
@@ -1009,7 +1009,7 @@
         ]
       },
       "b": {
-        "t": "Invents a new family name. The doorbell learns it first.",
+        "t": "Invents a new shared name. The doorbell learns it first.",
         "axes": {
           "R3": -2
         },
@@ -1023,13 +1023,25 @@
     }
   },
   {
-    "id": "C3-143",
+    "id": "C3-161",
     "type": "reply",
     "chapter": 3,
-    "prompt": "Your person just won their company's paid year off. Then the texts start.",
+    "sq": "SQ-T11-2",
+    "world": "unusual",
+    "prompt": "Your person is volunteering at a farm sanctuary. A baby goat has followed them all morning. Then the texts start.",
+    "thread": [
+      {
+        "from": "Your person",
+        "text": "it picked me. it literally picked me"
+      },
+      {
+        "from": "Your person",
+        "text": "practice round? if we can raise a goat we can raise a tiny human"
+      }
+    ],
     "options": [
       {
-        "t": "Family year. The world will keep.",
+        "t": "\"Yes. Practice for the real thing. Name it Future.\"",
         "tags": [
           {
             "id": "T11A",
@@ -1039,17 +1051,17 @@
         "emotion": "warmth"
       },
       {
-        "t": "World year. And every year after that, too.",
+        "t": "\"Yes to the goat. The goat is the whole plan.\"",
         "tags": [
           {
             "id": "T11B",
-            "s": 2
+            "s": 1
           }
         ],
         "emotion": "delight"
       },
       {
-        "t": "World first. Then home to start the other one.",
+        "t": "\"Goat first. The tiny human talk comes after.\"",
         "tags": [
           {
             "id": "T11A",
@@ -1058,71 +1070,60 @@
         ]
       },
       {
-        "t": "World. We can barely keep a plant alive.",
+        "t": "\"No goat, no human. I like us portable.\"",
         "tags": [
           {
             "id": "T11B",
-            "s": 1
+            "s": 2
           }
-        ],
-        "emotion": "cringe"
+        ]
       }
     ],
     "heart": {
-      "prompt": "Your person has just won a paid year off from their company. Then the messages start.",
-      "options": [
-        "A family year. The world will still be there.",
-        "A world year, and honestly every year after it.",
-        "The world first, then we come home and start a family.",
-        "The world. We can hardly keep a plant alive."
-      ],
+      "prompt": "Your person is volunteering at a farm sanctuary, and a baby goat has followed them all morning. Then the messages start.",
       "thread": [
         {
           "from": "Your person",
-          "text": "I got the paid year off."
+          "text": "It picked me. It really did."
         },
         {
           "from": "Your person",
-          "text": "So, a year to see the world, or a year to start a family? You choose."
+          "text": "A practice round? If we can raise a goat, we can raise a tiny human."
         }
+      ],
+      "options": [
+        "Yes. It is practice for the real thing.",
+        "Yes to the goat. For me, the goat is the whole plan.",
+        "The goat first. We can talk about a child after that.",
+        "No goat and no child. I like us easy to pack up."
       ]
     },
     "fp": {
-      "trigger": "your person wins a paid year off and asks travel or family",
-      "setting": "texts right after big news",
-      "ask": "freedom year or family year",
+      "trigger": "your person wants a goat as practice for a kid",
+      "setting": "texts from a farm sanctuary",
+      "ask": "practice for a family or the whole plan",
       "who": "your person",
-      "stakes": "a family now versus a free life",
-      "device": "paid-year-off"
+      "stakes": "a family someday versus a free life",
+      "device": "baby-goat-practice"
     },
-    "mask": "looks like good-news texting; measures trading freedom for a family or a family for freedom (T11)",
+    "mask": "looks like a cute animal text; measures trading freedom for a family or a family for freedom (T11)",
     "ae": [
       "A",
       "B",
       "D"
     ],
-    "privacy": "intimate",
-    "sq": "SQ-T11-2",
-    "world": "unusual",
-    "thread": [
-      {
-        "from": "Your person",
-        "text": "I GOT THE PAID YEAR OFF"
-      },
-      {
-        "from": "Your person",
-        "text": "so. see-the-world year, or start-a-family year? you pick"
-      }
-    ]
+    "privacy": "intimate"
   },
   {
-    "id": "C3-144",
+    "id": "C3-162",
     "type": "bet",
     "chapter": 3,
-    "prompt": "Genii's hunch: a friend's kid has fallen asleep on you, and you didn't dare move.",
+    "sq": "SQ-T11-1",
+    "world": "everyday",
+    "prompt": "Genii suspects you've already picked a name for a kid you don't have.",
     "options": [
       {
-        "t": "Guilty. Numb arm, full heart, pictured my own.",
+        "t": "Guilty. First and middle. Nobody's allowed to steal it.",
         "tags": [
           {
             "id": "T11A",
@@ -1132,7 +1133,25 @@
         "emotion": "warmth"
       },
       {
-        "t": "Guilty. Loved it. Loved handing them back more.",
+        "t": "Guilty. Years ago. Stopped picturing it since.",
+        "tags": [
+          {
+            "id": "T11B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Wrong. But I've pictured the school pickups.",
+        "tags": [
+          {
+            "id": "T11A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Wrong. The life I picture has a lot more sleep.",
         "tags": [
           {
             "id": "T11B",
@@ -1140,51 +1159,31 @@
           }
         ],
         "emotion": "relief"
-      },
-      {
-        "t": "Guilty. Then asked the parents what it's really like.",
-        "tags": [
-          {
-            "id": "T11A",
-            "s": 1
-          }
-        ]
-      },
-      {
-        "t": "Never. I'm the fun one. Nobody naps on the fun one.",
-        "tags": [
-          {
-            "id": "T11B",
-            "s": 1
-          }
-        ]
       }
     ],
     "heart": {
-      "prompt": "Has a friend's child ever fallen asleep on you, and you did not dare to move?",
+      "prompt": "Have you already chosen a name for a child you do not have?",
       "options": [
-        "Yes. My arm went numb, and I pictured having my own.",
-        "Yes. I loved it, and I loved handing them back even more.",
-        "Yes, and afterward I asked the parents what it is really like.",
-        "No. They play with me. They never sleep on me."
+        "Yes, first and middle, and nobody is allowed to take it.",
+        "Yes, years ago, though I have stopped picturing it since.",
+        "No, but I have pictured the school pickups.",
+        "No. The life I picture has a lot more sleep in it."
       ]
     },
     "fp": {
-      "trigger": "a friend's kid falls asleep on you",
-      "setting": "a visit or a gathering",
-      "ask": "what it stirred in you",
-      "who": "a friend's kid",
+      "trigger": "a name saved for a kid who doesn't exist",
+      "setting": "your own head, any day",
+      "ask": "have you picked a name",
+      "who": "a future kid, or none",
       "stakes": "a life with kids or without",
-      "device": "sleeping-kid"
+      "device": "saved-baby-name"
     },
-    "mask": "looks like a sweet confession; measures whether raising a kid is part of the life you picture (T11) from something that happened",
+    "mask": "looks like a sweet confession; measures whether raising a kid is part of the life you picture (T11), from something already done",
     "ae": [
       "A",
       "D"
     ],
-    "privacy": "intimate",
-    "sq": "SQ-T11-1",
-    "world": "everyday"
+    "privacy": "intimate"
   },
   {
     "id": "C3-145",
@@ -1378,13 +1377,15 @@
     }
   },
   {
-    "id": "C3-146",
+    "id": "C3-163",
     "type": "others",
     "chapter": 3,
-    "prompt": "Your neighbors framed a certificate by their door: 2,190 nights together, not one apart. First thought?",
+    "sq": "SQ-T09-1",
+    "world": "unusual",
+    "prompt": "Your friend started dating a jazz drummer. Three months in, they own a hi-hat, quit their book club, and say \"we\" about every gig. First thought?",
     "options": [
       {
-        "t": "Goals. I want that certificate.",
+        "t": "Love that. Falling for someone means falling into their world.",
         "axes": {
           "R1": 1
         },
@@ -1397,7 +1398,7 @@
         "emotion": "longing"
       },
       {
-        "t": "Six years without one night alone? I'd crack.",
+        "t": "Give it a year. They'll want their own thing back.",
         "axes": {
           "R1": -1
         },
@@ -1409,7 +1410,7 @@
         ]
       },
       {
-        "t": "Sweet. I'd still want one weekend a year to myself.",
+        "t": "Cute. I'd still keep book club. That part's mine.",
         "tags": [
           {
             "id": "T09B",
@@ -1418,44 +1419,43 @@
         ]
       },
       {
-        "t": "Honestly, a night apart sounds lonely to me too.",
+        "t": "Same. I'd own drumsticks by week two.",
         "tags": [
           {
             "id": "T09A",
             "s": 1
           }
-        ]
+        ],
+        "emotion": "delight"
       }
     ],
     "heart": {
-      "prompt": "Your neighbors have framed a certificate beside their door: 2,190 nights together and not a single one apart. What is your first thought?",
+      "prompt": "Your friend started dating a jazz drummer. Three months later, they own a hi-hat, have left their book club and say \"we\" about every gig. What is your first thought?",
       "options": [
-        "That is the goal. I would want one like it.",
-        "Six years without a night alone? I could not do it.",
-        "Sweet, but I would still want one weekend a year alone.",
-        "Honestly, a night apart would feel lonely to me too."
+        "I love that. Falling for someone means stepping into their world.",
+        "Give it a year. They will want something of their own again.",
+        "Sweet, but I would keep the book club. That part is mine.",
+        "Honestly, same. I would own drumsticks by week two."
       ]
     },
     "fp": {
-      "trigger": "neighbors celebrate never spending a night apart",
-      "setting": "a framed certificate by their door",
-      "ask": "your first thought on never being apart",
-      "who": "a couple next door",
+      "trigger": "a friend's life merges into their new partner's",
+      "setting": "a jazz drummer's gigs",
+      "ask": "your take on folding into their world",
+      "who": "a friend and their new partner",
       "stakes": "togetherness versus a life of your own",
-      "device": "nights-together-certificate"
+      "device": "partner-hobby-takeover"
     },
-    "mask": "looks like neighbor gossip; measures whether love folds your life into theirs or keeps your own (T09, R1)",
+    "mask": "looks like friend gossip; measures whether love folds your life into theirs or keeps your own (T09, R1)",
     "ae": [
       "C",
       "D"
     ],
     "privacy": "normal",
-    "sq": "SQ-T09-1",
-    "world": "unusual",
     "friend": {
-      "prompt": "{name}'s neighbors framed a certificate: 2,190 nights together, not one apart. {name}'s first thought?",
+      "prompt": "{name}'s friend started dating a jazz drummer. Three months in: a hi-hat, no book club, \"we\" about every gig. {name}'s first thought?",
       "a": {
-        "t": "Goals. I want that certificate.",
+        "t": "\"Love that. Falling for someone means falling into their world.\"",
         "axes": {
           "R1": 1
         },
@@ -1467,7 +1467,7 @@
         ]
       },
       "b": {
-        "t": "Six years without one night alone? I'd crack.",
+        "t": "\"Give it a year. They'll want their own thing back.\"",
         "axes": {
           "R1": -1
         },
