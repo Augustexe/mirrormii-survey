@@ -163,7 +163,7 @@ export function StoryDeck({ stories, friends, onFriendAction, onRestart, onDownl
               {slides.map((s, i) => <i key={s.id} className={i < index ? "is-done" : i === index ? "is-now" : ""}><b /></i>)}
             </div>
             <div className="rv-top__row">
-              <span className="rv-brand"><GeniiLight mood={slide.id === "stings" ? "hush" : "sure"} size="xs" /> Genii</span>
+              <span className="rv-brand"><GeniiLight mood={slide.id === "stings" ? "hush" : "sure"} size="xs" evolution={1} /> Genii</span>
               <span className="sr-only" aria-live="polite">{`Screen ${index + 1} of ${n}`}</span>
               {index > 0 && (
                 <button type="button" className="rv-icon" onClick={() => { setStatus(""); setSheet("share"); }} aria-label={slide.private ? UI_COPY.saveForMe : UI_COPY.shareSheet}>

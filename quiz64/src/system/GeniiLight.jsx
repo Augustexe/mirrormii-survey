@@ -1,6 +1,8 @@
-import React, { useEffect, useId, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { geniiEvents } from "./events.js";
 import { GENII_MOODS, geniiSizes } from "./tokens.js";
+import { GeniiForm } from "../genii/GeniiForm.jsx";
+import { clamp01, evolutionFor, expressionFor, formAt, stageOf } from "../genii/evolution.js";
 
 // Pause every Genii loop while the tab is hidden (one listener shared by all instances).
 let visibilityBound = false;
@@ -14,28 +16,39 @@ function bindVisibility() {
 
 // Four-point star (A-15 shape), drawn inline so Genii never waits on another module.
 const STAR = "M6 0 C6.5 3.6 8.4 5.5 12 6 C8.4 6.5 6.5 8.4 6 12 C5.5 8.4 3.6 6.5 0 6 C3.6 5.5 5.5 3.6 6 0 Z";
-// Lamp smoke: two soft curls that wrap the core (100 x 100 space, the core sits at 50, 50).
-const WISP_A = "M50 84 C30 80 18 62 24 44 C30 26 50 18 64 26 C76 33 76 50 64 56 C54 61 44 54 47 45";
-const WISP_B = "M52 16 C72 20 84 38 78 56 C72 74 52 82 38 74 C27 67 28 52 39 47 C48 43 56 50 52 58";
 
 const SPARKLES = { xs: 0, s: 0, m: 3, l: 5, xl: 7 };
+// Below this evolution Genii is still the orb: pure CSS light, and three.js is never loaded.
+const ORB_ONLY = 0.02;
+
+// `evolution` is a number 0..1, or the play state { answered, total, confidence, phase } (see evolutionFor).
+function evolutionOf(evolution) {
+  if (typeof evolution === "number") return Number.isFinite(evolution) ? clamp01(evolution) : null;
+  if (evolution && typeof evolution === "object") return evolutionFor(evolution);
+  return null;
+}
 
 /**
- * Genii as light (DESIGN-DIRECTION 3.3, asset A-07): a luminous core, a bloom, a curl of lamp smoke and orbiting
- * sparkles. No face, no body, no raster. Mood is motion only.
- * mood: listening | noted | thinking | hush | sure | idle. size: xs 24, s 32, m 72, l 160, xl 280.
+ * Genii (DESIGN-DIRECTION 3.3, asset A-07; LAUNCH-SPEC section 23, ruling 1). Without `evolution`, or at 0, Genii is
+ * the orb: a luminous core, a bloom and orbiting sparkles, pure CSS. With `evolution` in 0..1 the orb grows into
+ * Genii's real form (src/genii): droplet, then the bead at the tip, then the eyes, then full Genii with expressions.
+ * `evolution` also takes the play state, { answered, total, confidence, phase }; lock, finale and reveal are complete.
+ * Genii is a glass slime, never a genie and never a lamp.
+ * mood: listening | noted | thinking | hush | sure | idle (motion, and the face once Genii is complete).
+ * expression: optional face override (alert, curious, skeptical, happy, thinking). size: xs 24, s 32, m 72, l 160, xl 280.
  * line: one Genii line, set in Fraunces italic and announced politely. voice "cards" (Just the cards) shows no line.
  * placement: "row" (line beside the orb) or "below" (line under the orb, centered).
- * geniiEvents.emit("noted" | "thinking" | "sure") from anywhere makes every mounted light react.
+ * geniiEvents.emit("noted" | "thinking" | "sure") from anywhere makes every mounted Genii react.
  */
-export function GeniiLight({ mood = "listening", size = "xs", line = null, voice = "fun", placement = "row", className = "" }) {
-  const uid = useId().replace(/[^a-zA-Z0-9_-]/g, "");
+export function GeniiLight({ mood = "listening", size = "xs", line = null, voice = "fun", placement = "row", className = "", evolution = null, expression = null }) {
   const [pulse, setPulse] = useState(0);
+  const [react, setReact] = useState(0);
   const [eventMood, setEventMood] = useState(null);
   useEffect(() => {
     bindVisibility();
     return geniiEvents.on((name) => {
       if (name === "noted" || name === "sure") setPulse((n) => n + 1);
+      if (name === "noted") setReact((n) => n + 1);
       if (name === "thinking" || name === "sure") setEventMood(name);
     });
   }, []);
@@ -54,34 +67,23 @@ export function GeniiLight({ mood = "listening", size = "xs", line = null, voice
   const safeMood = eventMood || (GENII_MOODS.includes(mood) ? mood : "listening");
   const showLine = Boolean(line) && voice !== "cards";
   const sparkles = SPARKLES[safeSize];
-  const wisp = safeSize !== "xs";
+  const evo = evolutionOf(evolution);
+  const formed = evo !== null && evo > ORB_ONLY;
+  const form = formed ? formAt(evo) : null;
+  const face = form && form.expressive > 0.5 ? (expression || expressionFor(safeMood)) : "alert";
   return (
     <span
       className={`genii-light${pulse || safeMood === "noted" ? " is-pulse" : ""}${className ? ` ${className}` : ""}`}
       data-mood={safeMood}
       data-size={safeSize}
       data-placement={placement}
+      data-stage={evo === null ? "orb" : stageOf(evo)}
+      data-formed={formed ? "true" : undefined}
+      style={form ? { "--gl-light": form.glow.toFixed(3) } : undefined}
     >
       <span className="genii-light__orb" aria-hidden="true">
         <span className="genii-light__bloom" />
-        {wisp ? (
-          <svg className="genii-light__wisp" viewBox="0 0 100 100" focusable="false">
-            <defs>
-              <linearGradient id={`${uid}-wisp`} x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stopColor="var(--c-surface-solid)" stopOpacity="0.95" />
-                <stop offset="0.55" stopColor="var(--c-violet-300)" stopOpacity="0.8" />
-                <stop offset="1" stopColor="var(--c-violet)" stopOpacity="0" />
-              </linearGradient>
-              <filter id={`${uid}-soft`} x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation={safeSize === "s" ? 0.9 : 1.6} />
-              </filter>
-            </defs>
-            <g filter={`url(#${uid}-soft)`} fill="none" strokeLinecap="round">
-              <path className="genii-light__curl genii-light__curl--a" d={WISP_A} stroke={`url(#${uid}-wisp)`} strokeWidth="5" />
-              <path className="genii-light__curl genii-light__curl--b" d={WISP_B} stroke={`url(#${uid}-wisp)`} strokeWidth="3.4" />
-            </g>
-          </svg>
-        ) : null}
+        {formed ? <GeniiForm evolution={evo} expression={face} size={safeSize} pulse={pulse} react={react} /> : null}
         <span className="genii-light__core" key={pulse} />
         <span className="genii-light__glint" />
         {sparkles ? (

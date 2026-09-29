@@ -49,12 +49,12 @@ export function PersonaInterlude({ chapter, count, onContinue, filled = [], seed
         </div>
       </div>
       <div className="mm-interlude__genii mm-decor" aria-hidden="true">
-        <GeniiLight size="m" mood="listening" />
+        <GeniiLight size="m" mood="listening" evolution={{ answered: filled.length, total }} />
       </div>
       <div className="mm-interlude__copy">
         {chapter.intro ? (
           <div className="mm-interlude__intro mm-enter" style={{ "--step": 1 }}>
-            <GeniiLight size="xs" mood="listening" line={chapter.intro} voice={voice === "cards" ? "fun" : voice} />
+            <GeniiLight size="xs" mood="listening" line={chapter.intro} voice={voice === "cards" ? "fun" : voice} evolution={{ answered: filled.length, total }} />
           </div>
         ) : null}
         <p className="mm-kicker mm-enter" style={{ "--step": 0 }}>{chapter.kicker}</p>

@@ -396,7 +396,6 @@ h2[tabindex="-1"]:focus {
 .genii-light__bloom,
 .genii-light__core,
 .genii-light__glint,
-.genii-light__wisp,
 .genii-light__sparkles {
   position: absolute;
   pointer-events: none;
@@ -428,13 +427,6 @@ h2[tabindex="-1"]:focus {
   background: var(--c-surface-solid);
   filter: blur(calc(var(--gl-size) * 0.03));
   opacity: 0.9;
-}
-.genii-light__wisp {
-  inset: -18%;
-  inline-size: 136%;
-  block-size: 136%;
-  overflow: visible;
-  opacity: calc(0.35 + var(--gl-glow) * 0.6);
 }
 .genii-light__sparkles {
   inset: -30%;
@@ -488,15 +480,6 @@ h2[tabindex="-1"]:focus {
   body:not([data-motion="off"]) .genii-light[data-mood="listening"] .genii-light__orb {
     animation: genii-lean calc(var(--d-loop-breath) * 2) var(--e-in-out) infinite alternate;
   }
-  body:not([data-motion="off"]) .genii-light__wisp {
-    animation: genii-wisp var(--d-loop-wisp) linear infinite;
-  }
-  body:not([data-motion="off"]) .genii-light[data-mood="thinking"] .genii-light__wisp {
-    animation-duration: calc(var(--d-loop-wisp) / 3);
-  }
-  body:not([data-motion="off"]) .genii-light__curl--b {
-    animation: genii-curl var(--d-loop-bob) var(--e-in-out) infinite alternate;
-  }
   body:not([data-motion="off"]) .genii-light__sparkles {
     animation: genii-orbit var(--d-loop-orbit) linear infinite;
   }
@@ -523,13 +506,6 @@ html[data-hidden="true"] .genii-light__orb {
 @keyframes genii-lean {
   from { transform: translate(-3%, 1%); }
   to { transform: translate(4%, -2%); }
-}
-@keyframes genii-wisp {
-  to { transform: rotate(360deg); }
-}
-@keyframes genii-curl {
-  from { opacity: 0.55; }
-  to { opacity: 1; }
 }
 @keyframes genii-orbit {
   to { transform: rotate(360deg); }
@@ -589,7 +565,7 @@ html[data-hidden="true"] .genii-light__orb {
 
 @media (forced-colors: active) {
   .genii-light__core { background: CanvasText; box-shadow: none; }
-  .genii-light__bloom, .genii-light__wisp, .genii-light__sparkles, .reflect__mirror { display: none; }
+  .genii-light__bloom, .genii-light__sparkles, .reflect__mirror { display: none; }
   .mm-btn--primary { border: 2px solid ButtonText; }
 }
 @media (prefers-reduced-transparency: reduce) {

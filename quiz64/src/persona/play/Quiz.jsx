@@ -141,13 +141,13 @@ export function PersonaQuizView({ step, setup, onAnswer, onMap, busy, error, car
             {device ? <span className="play-niche__device"><DeviceGlyph id={device} size={96} /></span> : null}
           </div>
           <div className="play-niche__genii">
-            <GeniiLight mood={hush ? "hush" : "listening"} size="m" voice={voice} />
+            <GeniiLight mood={hush ? "hush" : "listening"} size="m" voice={voice} evolution={{ answered: step.resolved, total: step.total, phase: step.phase }} />
             {line ? <p className="play-niche__line" key={line}>{line}</p> : null}
           </div>
         </aside>
         <section className="play-col">
           <div className={`play-genii${hush ? " is-hush" : ""}`}>
-            <GeniiLight mood={hush ? "hush" : "listening"} size="s" voice={voice} />
+            <GeniiLight mood={hush ? "hush" : "listening"} size="s" voice={voice} evolution={{ answered: step.resolved, total: step.total, phase: step.phase }} />
             <p className="play-genii__line" aria-hidden="true" key={line || "none"}>{line || ""}</p>
           </div>
           <p className="pc-sr" aria-live="polite">{line || ""}</p>

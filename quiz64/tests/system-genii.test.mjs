@@ -1,5 +1,5 @@
-// Genii as light (DESIGN-DIRECTION 3.3, A-07; package A criterion 3): every mood and size renders as code-made light
-// with zero raster images, honors reduced motion, pauses when the tab is hidden, and reacts to geniiEvents.
+// Genii as light (DESIGN-DIRECTION 3.3, A-07; package A criterion 3): without an evolution, every mood and size renders
+// as code-made light with zero raster images, honors reduced motion, pauses when the tab is hidden, and reacts to geniiEvents.
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -30,10 +30,10 @@ test("GeniiLight renders every mood at every size with no raster and no face", a
     }
   }
   const big = renderToStaticMarkup(React.createElement(GeniiLight, { size: "xl", mood: "sure" }));
-  assert.match(big, /genii-light__wisp/, "lamp smoke from size s up");
+  assert.doesNotMatch(big, /wisp|curl|smoke|lamp/, "Genii is a slime, never a genie: no lamp smoke (LAUNCH-SPEC 23)");
   assert.equal((big.match(/genii-light__sparkle"/g) || []).length, 7, "xl carries seven sparkles");
   const tiny = renderToStaticMarkup(React.createElement(GeniiLight, { size: "xs" }));
-  assert.doesNotMatch(tiny, /genii-light__wisp|genii-light__sparkle"/, "xs is a clean dot of light");
+  assert.doesNotMatch(tiny, /genii-light__sparkle"/, "xs is a clean dot of light");
 });
 
 test("GeniiLight lines: Fraunces italic, polite, hidden for Just the cards", async () => {

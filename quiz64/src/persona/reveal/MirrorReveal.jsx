@@ -196,7 +196,7 @@ export function IntroScreen({ s, stage, active, reduced, phase, onStart, onDone 
             ? { left: box.cx, top: box.glassTop + box.glassH * 0.4 }
             : { left: stage.w / 2, top: Math.min(stage.h * 0.33, box.glassTop + box.glassH * 0.5) }} aria-hidden="true">
             <span className="rv-intro__halo" />
-            <GeniiLight mood={assembling ? "sure" : "listening"} size="l" />
+            <GeniiLight mood={assembling ? "sure" : "listening"} size="l" evolution={1} />
             <span className="rv-intro__core" />
           </span>
           <svg className="rv-shards" width={stage.w} height={stage.h} viewBox={`0 0 ${stage.w} ${stage.h}`} aria-hidden="true" focusable="false">
