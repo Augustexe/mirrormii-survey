@@ -654,7 +654,7 @@
     padding: 3px 9px;
     border-radius: var(--r-pill);
     background: var(--n-ink);
-    color: var(--c-violet-text);
+    color: var(--c-violet-strong); /* the night deck swaps --c-violet-text to light violet; this pill is light */
     font: 800 10px / 13px var(--font-text);
     letter-spacing: 0.14em;
     text-transform: uppercase;
@@ -1157,7 +1157,7 @@
     padding: 5px 11px;
     border-radius: var(--r-pill);
     background: var(--c-on-deep);
-    color: var(--c-violet-text);
+    color: var(--c-violet-strong); /* light pill on the deep screen: keep the dark violet */
     font: 750 11.5px / 14px var(--font-text);
     letter-spacing: 0.04em;
     white-space: nowrap;

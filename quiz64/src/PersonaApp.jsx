@@ -1,5 +1,5 @@
 import "./system/layers.css";
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { lazy, Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { MotionConfig } from "motion/react";
 import { Backdrop } from "./art/index.js";
 import { setTheme, setThemeForVoice } from "./system/index.js";
@@ -8,11 +8,20 @@ import * as Friend from "./persona/friend.js";
 import { readHash, linkFor, LinkError } from "./persona/links.js";
 import { loadRun, restoreRun, loadFriendPlays, saveFriendPlay, deleteAllGeniiData, MOTION_KEY } from "./persona/store.js";
 import { PersonaHeader, PersonaLanding, SetupView, LobbyView, PersonaInterlude, interludeFor, PersonaHowDialog, PersonaMoreDialog, ConfirmDialog, Toast } from "./persona/screens/index.js";
-import { PersonaQuizView, LockView, PersonaChapterMap, FriendGame, FriendResultsView } from "./persona/play/index.js";
-import { PersonaResult, resultView } from "./persona/reveal/index.js";
-import { mirrorFor } from "./persona/views.js";
+import { PersonaQuizView } from "./persona/play/Quiz.jsx";
+import { LockView } from "./persona/play/Lock.jsx";
+import { PersonaChapterMap } from "./persona/play/ChapterMapSheet.jsx";
+import { mirrorFor, resultView } from "./persona/views.js";
 import { bootIntent } from "./Boot.jsx";
 
+
+// Code split (G5): the reveal deck and the friend screens load as their own chunks. The reveal is preloaded while the
+// player is still on the lock and the final 8, so it is in memory before the last card is answered.
+const loadResult = () => import("./persona/PersonaResult.jsx");
+const PersonaResult = lazy(() => loadResult().then((m) => ({ default: m.PersonaResult })));
+const FriendGame = lazy(() => import("./persona/FriendGame.jsx").then((m) => ({ default: m.FriendGame })));
+const FriendResultsView = lazy(() => import("./persona/FriendResultsView.jsx").then((m) => ({ default: m.FriendResultsView })));
+const Pending = () => <main className="mm-screen" aria-busy="true" />;
 
 const storage = () => { try { return window.localStorage; } catch { return null; } };
 const nowISO = () => new Date().toISOString();
@@ -342,6 +351,8 @@ function PersonaAppInner() {
   }, [run]);
 
   const hasRun = Boolean(run && run.setup);
+  const nearEnd = screen === "lock" || screen === "result" || (step && step.kind === "card" && step.phase === "finale");
+  useEffect(() => { if (nearEnd) loadResult().catch(() => {}); }, [nearEnd]);
   // Backdrop scene (A-08): the voice's light on most screens, the chapter island on interludes, night for the lock.
   const lightScene = voice === "heart" ? "dusk" : voice === "cards" ? "clear" : "day";
   const islandScene = step && step.kind === "card" ? (step.phase === "extra" ? "island-8" : typeof step.chapter === "number" ? `island-${step.chapter}` : lightScene) : lightScene;
@@ -395,8 +406,10 @@ function PersonaAppInner() {
           <LockView locked={Boolean(run.frozen)} lockHash={run.lockHash} onLock={lock} onStart={() => setScreen("card")} onSave={goHome} busy={busy} error={error} progress={progress} seed={run.runId} shards={shards} />
         )}
         {screen === "result" && view && !view.error && (
-          <PersonaResult view={view} friends={friends} onFriendAction={friendAction} storageOK={storageOK}
-            onRestart={() => setDialog("restart")} onDownload={downloadData} onDelete={() => setDialog("delete")} />
+          <Suspense fallback={<Pending />}>
+            <PersonaResult view={view} friends={friends} onFriendAction={friendAction} storageOK={storageOK}
+              onRestart={() => setDialog("restart")} onDownload={downloadData} onDelete={() => setDialog("delete")} />
+          </Suspense>
         )}
         {screen === "result" && view && view.error && (
           <main className="mm-screen mm-notice-page"><div className="mm-panel mm-glass">
@@ -407,10 +420,14 @@ function PersonaAppInner() {
           </div></main>
         )}
         {screen === "friendResult" && friendView && (
-          <FriendResultsView view={friendView} onBack={() => setScreen("result")} onHideRoast={(hidden) => persist(Friend.setRoastHidden(run, friendViewId, hidden))} />
+          <Suspense fallback={<Pending />}>
+            <FriendResultsView view={friendView} onBack={() => setScreen("result")} onHideRoast={(hidden) => persist(Friend.setRoastHidden(run, friendViewId, hidden))} />
+          </Suspense>
         )}
         {screen === "friend" && friend && (
-          <FriendGame ch={friend.ch} play={friend.play} isOwnLink={friend.isOwnLink} onProgress={friendProgress} onYourTurn={yourTurn} onLeave={goHome} />
+          <Suspense fallback={<Pending />}>
+            <FriendGame ch={friend.ch} play={friend.play} isOwnLink={friend.isOwnLink} onProgress={friendProgress} onYourTurn={yourTurn} onLeave={goHome} />
+          </Suspense>
         )}
         {screen === "linkError" && (
           <main className="mm-screen mm-notice-page"><div className="mm-panel mm-glass">
