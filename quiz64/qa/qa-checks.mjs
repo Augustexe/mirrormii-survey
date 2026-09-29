@@ -219,7 +219,7 @@ for (const [vname, vp] of Object.entries(VIEWS)) {
           }
         }
         if (id === "app" && voice === "fun") {
-          const g = page.locator(".rv-slide.is-current .rv-end__links .rv-textbtn").nth(1);
+          const g = page.locator(".rv-slide.is-current .rv-end__links .rv-textbtn").nth(0);
           if (await g.count()) { await g.click(); await audit(page, `${vname} guess sheet`, { axe }); await page.keyboard.press("Escape"); await page.waitForTimeout(300); }
         }
       }
@@ -237,7 +237,7 @@ for (const [vname, vp] of Object.entries(VIEWS)) {
     await page.waitForSelector(".rv-room");
     await page.keyboard.press("End");
     await page.waitForTimeout(800);
-    await page.locator(".rv-slide.is-current .rv-textbtn", { hasText: /really know me/i }).click();
+    await page.locator(".rv-slide.is-current :is(.rv-textbtn, .rv-ghost)", { hasText: /really know me/i }).click();
     await page.waitForSelector(".fp-composer");
     await audit(page, `${vname} friends sheet`, { axe });
     await page.locator(".fp-rel").first().click();

@@ -525,7 +525,7 @@
   .rv-body--map { justify-content: flex-start; gap: 6px; }
   .rv-body--map .rv-title { color: var(--n-ink); }
   .rv-map__sub { color: var(--n-ink-2); }
-  .rv-pairs { display: grid; gap: 30px; inline-size: 100%; max-inline-size: 380px; margin-top: var(--s-5); text-align: left; }
+  .rv-pairs { display: grid; gap: 24px; inline-size: 100%; max-inline-size: 380px; margin-top: var(--s-4); text-align: left; }
   .rv-pairs__group { display: grid; gap: 14px; }
   .rv-pairs__label {
     display: flex;
@@ -538,10 +538,10 @@
     color: var(--n-ink-2);
   }
   .rv-pairs__label::after { content: ""; flex: 1; block-size: 1px; background: linear-gradient(90deg, color-mix(in srgb, var(--n-ink) 30%, transparent), transparent); }
-  .rv-pairs ul { display: grid; gap: 24px; margin: 0; padding: 0; list-style: none; }
-  .rv-pair { display: grid; gap: 8px; }
+  .rv-pairs ul { display: grid; gap: 18px; margin: 0; padding: 0; list-style: none; }
+  .rv-pair { display: grid; gap: 5px; }
   /* Both ends the same size and weight; the end you lean to is lit on a glass chip, the other stays readable. */
-  .rv-pair__poles { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 6px; min-block-size: 30px; }
+  .rv-pair__poles { display: flex; justify-content: space-between; align-items: center; gap: 10px; min-block-size: 30px; }
   .rv-pair__poles b {
     justify-self: start;
     white-space: nowrap;
@@ -570,12 +570,7 @@
   }
   .rv-pair__stat .rv-statglyph { flex: none; }
   .rv-pair[data-state="flex"] .rv-pair__poles b { color: var(--n-ink); }
-  .rv-pair__rod { position: relative; display: block; block-size: 12px; }
-  .rv-pair__ticks {
-    inset: 3px 6%;
-    background: repeating-linear-gradient(90deg, color-mix(in srgb, var(--n-ink) 22%, transparent) 0 1px, transparent 1px 12.5%);
-    opacity: 0.8;
-  }
+  .rv-pair__rod { position: relative; display: block; block-size: 10px; margin-top: 2px; }
   .rv-pair__rod > i { position: absolute; display: block; }
   .rv-pair__glass {
     inset: 0;
@@ -601,14 +596,14 @@
   .rv-pair__bead {
     left: var(--pos);
     top: 50%;
-    inline-size: 22px;
-    block-size: 22px;
+    inline-size: 18px;
+    block-size: 18px;
     border-radius: 50%;
     transform: translate(-50%, -50%);
     background: radial-gradient(circle at 34% 30%, var(--n-ink) 0 12%, var(--n-violet) 46%, var(--c-violet-strong) 82%, var(--n-700));
     box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--n-ink) 85%, transparent), 0 0 22px 5px color-mix(in srgb, var(--n-violet) 60%, transparent), 0 6px 12px color-mix(in srgb, var(--n-900) 70%, transparent);
   }
-  .rv-pair__bead > i { position: absolute; left: 5px; top: 3px; inline-size: 7px; block-size: 5px; border-radius: 50%; background: var(--n-ink); opacity: 0.85; filter: blur(0.6px); }
+  .rv-pair__bead > i { position: absolute; left: 4px; top: 3px; inline-size: 6px; block-size: 4px; border-radius: 50%; background: var(--n-ink); opacity: 0.85; filter: blur(0.6px); }
   .rv-pair[data-state="flex"] .rv-pair__bead {
     background: radial-gradient(circle at 34% 30%, var(--n-ink) 0 10%, color-mix(in srgb, var(--n-violet) 70%, transparent) 50%, transparent 72%);
     box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--n-ink) 80%, transparent), 0 0 0 7px color-mix(in srgb, var(--n-violet) 26%, transparent), 0 0 0 12px color-mix(in srgb, var(--n-violet) 12%, transparent);
@@ -643,7 +638,7 @@
   .rv-find {
     position: relative;
     display: grid;
-    grid-template-columns: 34px 1fr;
+    grid-template-columns: 26px 1fr;
     column-gap: 12px;
     row-gap: 1px;
     align-items: start;
@@ -671,6 +666,8 @@
   }
   .rv-find__stat .rv-statglyph { align-self: center; }
   .rv-find__end { font: 700 13px / 16px var(--font-text); color: var(--n-ink); }
+  .rv-find__tag { margin-inline-start: auto; flex: none; padding: 1px 8px; border-radius: var(--r-pill); font: 700 11px / 16px var(--font-text); color: var(--n-ink); background: color-mix(in srgb, var(--n-ink) 16%, transparent); }
+  .rv-find[data-level="3"] .rv-find__tag { background: var(--n-ink); color: var(--c-violet-strong); }
   .rv-find__line { grid-column: 2; font: 560 15.5px / 20px var(--font-display); font-variation-settings: var(--font-display-upright); color: var(--n-ink); text-wrap: pretty; }
   .rv-find[data-level="1"] .rv-find__line, .rv-find[data-level="flex"] .rv-find__line { color: color-mix(in srgb, var(--n-ink) 90%, transparent); }
   .rv-find--top {
@@ -698,8 +695,6 @@
     text-transform: uppercase;
   }
   .rv-find--top .rv-find__line { grid-column: 1 / -1; margin-top: 10px; font-size: 18px; line-height: 23px; }
-  .rv-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 14px; margin: 4px 0 0; padding: 0; list-style: none; }
-  .rv-legend li { display: inline-flex; align-items: center; gap: 5px; font: 650 12px / 16px var(--font-text); color: var(--n-ink); }
   .rv-find__sweep {
     position: absolute;
     inset: 0;
@@ -716,7 +711,7 @@
   .rv-slide.is-current .rv-gem2__glint { transform-origin: 30px 28px; transform-box: view-box; animation: rv-glint var(--d-loop-shimmer, 4s) var(--e-in-out) var(--d-scene) infinite; }
 
   /* ---------------------------------------------------------------- story 6: room by room */
-  .rv-roomrow__end { padding: 2px 8px; border-radius: var(--r-pill); font: 700 11.5px / 15px var(--font-text); color: var(--c-on-deep); background: var(--g-deep); white-space: nowrap; }
+  .rv-roomrow__end { margin-inline-start: auto; padding: 2px 8px; border-radius: var(--r-pill); font: 700 11.5px / 15px var(--font-text); color: var(--c-on-deep); background: var(--g-deep); white-space: nowrap; }
 
   .rv-body--rooms { justify-content: flex-start; gap: var(--s-2); }
   .rv-body--rooms .rv-title { font: var(--type-display-weight) 28px / 33px var(--font-display); max-inline-size: 12em; }
@@ -1177,9 +1172,11 @@
   .rv-call__glass {
     position: relative;
     display: grid;
-    grid-template-rows: auto 1fr auto;
-    gap: 4px;
-    min-block-size: 104px;
+    grid-template-rows: auto 42px auto;
+    align-content: space-between;
+    gap: 5px;
+    block-size: 100%;
+    min-block-size: 108px;
     padding: 9px 11px 10px;
     border-radius: 20px;
     overflow: hidden;
@@ -1204,7 +1201,7 @@
     box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--n-ink) 30%, transparent);
   }
   .rv-call__mark { display: grid; place-items: center; inline-size: 24px; block-size: 24px; border-radius: 50%; }
-  .rv-call__title { align-self: center; font: 600 17px / 21px var(--font-display); font-variation-settings: var(--font-display-upright); letter-spacing: -0.005em; text-wrap: balance; }
+  .rv-call__title { align-self: start; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font: 600 16px / 21px var(--font-display); font-variation-settings: var(--font-display-upright); letter-spacing: -0.005em; text-wrap: balance; }
   .rv-call__foot { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 6px; min-block-size: 20px; }
   .rv-call__status { font: 750 11px / 14px var(--font-text); letter-spacing: 0.07em; text-transform: uppercase; color: var(--n-ink); }
   .rv-call__side {
@@ -1242,7 +1239,8 @@
   .rv-call[data-state="dim"] .rv-call__glass { background: color-mix(in srgb, var(--n-900) 20%, transparent); border-style: dashed; }
   .rv-call[data-state="dim"] .rv-call__title, .rv-call[data-state="dim"] .rv-call__status { opacity: 0.8; }
   .rv-call__mark--dim { border: 1.5px dashed color-mix(in srgb, var(--n-ink) 60%, transparent); }
-  .rv-calls__more { margin-top: 2px; }
+  .rv-calls__more { margin-top: -4px; }
+  .rv-calls__key { margin: 4px 0 0; max-inline-size: 34ch; font: 500 12.5px / 17px var(--font-text); color: var(--n-ink); }
 
   /* The reveal: each pane arrives face down and flips into place in play order; hits then glint, misses crack. */
   .rv-slide.is-current .rv-call__glass { animation: rv-paneflip calc(var(--d-slow) * 1.5) var(--e-out) calc(var(--d-scene) * 0.55 + var(--i) * var(--d-quick)) both; }
@@ -1273,13 +1271,16 @@
     box-shadow: 0 8px 18px -8px color-mix(in srgb, var(--n-900) 60%, transparent);
   }
   .rv-appscene__cap--snap { left: 0; top: 18%; transform: rotate(-6deg); }
-  .rv-appscene__cap--lives { right: 0; bottom: 14%; transform: rotate(4deg); background: var(--n-900); color: var(--n-ink); }
+  /* Pinned to the island table, where the lunch landed (G6 R4). */
+  .rv-appscene__cap--lives { left: 58%; top: 80%; transform: rotate(4deg); background: var(--n-900); color: var(--n-ink); }
   .rv-appscene__trail { stroke-dashoffset: 0; }
   .rv-slide.is-current .rv-appscene__phone { animation: rv-rise var(--d-scene) var(--e-out) both; }
   .rv-slide.is-current .rv-appscene__photo { animation: rv-drop var(--d-scene) var(--e-out) var(--d-slow) both; }
   .rv-slide.is-current .rv-appscene__trail { animation: rv-dash calc(var(--d-loop-breath)) linear infinite; }
   .rv-slide.is-current .rv-appscene__cap { animation: rv-fade var(--d-slow) var(--e-out) var(--d-scene) both; }
   .rv-body--app .rv-end__links { flex-wrap: wrap; justify-content: center; gap: 0 var(--s-1); }
+  .rv-body--app .rv-end { gap: 2px; margin-top: 0; }
+  .rv-body--app .rv-end .rv-ghost { min-block-size: 44px; font-size: 14px; }
   .rv-body--app .rv-end__links .rv-textbtn { font-size: 13px; color: color-mix(in srgb, var(--n-ink) 90%, transparent); }
   /* G6: an App Store style button: dark, rounded, a store cue, a small line over the big one. */
   .rv-store {
@@ -1499,6 +1500,8 @@
   .rv-sheet--friends .fp-toggles,
   .rv-sheet--friends .fp-emoji,
   .rv-sheet--friends .fp-invites { display: grid; gap: var(--s-2); margin: var(--s-4) 0 0; padding: 0; border: 0; }
+  /* The sheet is a narrow dialog on desktop too: one relationship per row (the legacy four-column grid overflowed). */
+  .rv-sheet--friends .fp-rels { grid-template-columns: minmax(0, 1fr); }
   .rv-sheet--friends legend { margin-bottom: var(--s-2); font: var(--type-kicker-weight) var(--rv-kicker) var(--font-text); letter-spacing: var(--type-kicker-track); text-transform: uppercase; color: var(--c-violet-text); }
   .rv-sheet--friends .fp-rel,
   .rv-sheet--friends .fp-invite,

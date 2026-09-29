@@ -26,14 +26,13 @@ function Pair({ row, i }) {
   return (
     <li className="rv-pair" data-state={state} data-side={lead === "a" ? "left" : lead === "b" ? "right" : "none"} data-stat={row.key} style={{ "--i": i, "--pos": `${row.at}%`, "--from": `${from}%`, "--to": `${to}%` }}>
       <span className="sr-only">{sentence(row)}</span>
+      <span className="rv-pair__stat" aria-hidden="true"><StatGlyph axis={row.key} size={15} />{row.stat}</span>
       <span className="rv-pair__poles" aria-hidden="true">
         <b className={lead === "a" ? "is-lead" : ""}>{row.a}</b>
-        <span className="rv-pair__stat"><StatGlyph axis={row.key} size={15} />{row.stat}</span>
         <b className={lead === "b" ? "is-lead" : ""}>{row.b}</b>
       </span>
       <span className="rv-pair__rod" aria-hidden="true">
         <i className="rv-pair__glass" />
-        <i className="rv-pair__ticks" />
         <i className="rv-pair__fill" />
         <i className="rv-pair__mid" />
         <i className="rv-pair__bead"><i /></i>

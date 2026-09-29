@@ -188,8 +188,8 @@ function App({ s, stage, onFriends, onGuesses, hasGuesses, guessLabel, onData })
       </a>
       <p className="rv-note rv-in">{s.note}</p>
       <div className="rv-end rv-in">
+        <button type="button" className="rv-ghost" onClick={onFriends}><Users size={16} aria-hidden="true" /> Do you really know me?</button>
         <div className="rv-end__links">
-          <button type="button" className="rv-textbtn" onClick={onFriends}><Users size={15} aria-hidden="true" /> Do you really know me?</button>
           {hasGuesses && <button type="button" className="rv-textbtn" onClick={onGuesses}>{guessLabel}</button>}
           <button type="button" className="rv-textbtn" onClick={onData}>{UI_COPY.yourData}</button>
         </div>

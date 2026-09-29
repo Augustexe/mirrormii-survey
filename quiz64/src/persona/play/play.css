@@ -635,12 +635,10 @@
   /* ---------- reply: one chat window (A-24) ---------- */
   /* Received on the left (white, avatar, tail bottom-left), your drafts on the right (violet, send mark, tail
      bottom-right), a hairline between what was said and what you could say. */
+  /* G6 R4: no box around the thread; the bubbles carry it. */
   .pc-thread-panel {
     margin-top: 10px;
-    padding: 6px 6px 8px;
-    border-radius: 22px;
-    background: var(--c-canvas-2);
-    box-shadow: inset 0 1px 2px rgba(23, 22, 37, 0.06);
+    padding: 0;
   }
   .pc-thread { display: flex; flex-direction: column; gap: 3px; margin: 0; padding: 0; list-style: none; }
   .pc-bubble {
@@ -994,7 +992,8 @@
     font-variant-numeric: tabular-nums;
   }
   .rail-count b { font-weight: 750; color: var(--c-ink); }
-  .rail-group:not(.is-current) { display: none; }
+  /* G6 R4: on phone the header keeps the mirror and the count; the shard strip is desktop only. */
+  .rail-groups { display: none; }
   .rail-mirror { flex: none; display: block; line-height: 0; margin-inline-end: 2px; filter: drop-shadow(0 2px 4px rgba(86, 70, 192, 0.28)); }
   .rail-mirror svg { display: block; }
   .rail-mirror [data-fresh] { animation-delay: calc(var(--d-instant) * 0); }
@@ -1106,7 +1105,7 @@
     .pc-done .pc-primary { inline-size: auto; min-inline-size: 220px; }
     .shard-rail:not(.is-docked) { inset-inline: 0; margin-inline: auto; inline-size: max-content; }
     .rail-groups { gap: 8px; }
-    .rail-group:not(.is-current) { display: flex; }
+    .rail-groups { display: flex; }
     .rail-group .rail-shards { display: flex; }
     .rail-group .rail-capsule { display: none; }
     .rail-shard svg { inline-size: 9px; block-size: 14px; }

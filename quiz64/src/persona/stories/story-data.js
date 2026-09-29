@@ -66,8 +66,8 @@ export const STORY_COPY = Object.freeze({
       kicker: "What Genii knows best",
       title: "The clearest parts of you",
       tiers: { clear: "Strong signal", sharp: "Clear signal", forming: "Some signal", flex: "Both sides" },
+      short: { clear: "Strong", sharp: "Clear", forming: "Some", flex: "Both" },
       surest: "Surest",
-      legend: "How to read the gems",
       both: "Both",
     },
     rooms: { kicker: "Room by room", title: "Same you, different rooms", differs: "Your other side" },
@@ -79,7 +79,8 @@ export const STORY_COPY = Object.freeze({
       intro: "Before your last cards, Genii locked in a guess for each one.",
       titles: { most: "Genii saw most of you coming.", half: "Genii read you more often than not.", even: "Half called. Half surprised Genii.", some: "You kept Genii guessing.", none: "Genii held back on every guess this time." },
       of: "called exactly",
-      status: { hit: "Called it", near: "Right side", miss: "Surprised Genii", pass: "Genii passed", skipped: "Skipped", unanswered: "Skipped" },
+      status: { hit: "Called it", near: "Same side", miss: "Surprised Genii", pass: "Genii passed", skipped: "Skipped", unanswered: "Skipped" },
+      key: "Called it: your exact answer. Same side: the right lean, another move.",
       more: "See the cards",
     },
     share: { kicker: "Your card", brand: "Genii · MirrorMii", sub: "They guess your answers. You see who really knows you.", challenge: "Challenge a friend" },
@@ -107,8 +108,8 @@ export const STORY_COPY = Object.freeze({
       kicker: "What Genii knows best",
       title: "What came through clearest",
       tiers: { clear: "Strong signal", sharp: "Clear signal", forming: "Some signal", flex: "Both sides" },
+      short: { clear: "Strong", sharp: "Clear", forming: "Some", flex: "Both" },
       surest: "Clearest",
-      legend: "How to read the gems",
       both: "Both",
     },
     rooms: { kicker: "Room by room", title: "How you show up, room by room", differs: "A different side" },
@@ -120,7 +121,8 @@ export const STORY_COPY = Object.freeze({
       intro: "Before your last cards, Genii quietly locked in a guess for each one.",
       titles: { most: "Genii understood you well.", half: "Genii understood you more often than not.", even: "Genii understood half of you. The other half surprised it.", some: "You surprised Genii, and that's good to know.", none: "Genii held back on every guess this time." },
       of: "called exactly",
-      status: { hit: "Called it", near: "Right side", miss: "A surprise", pass: "Genii passed", skipped: "Skipped", unanswered: "Skipped" },
+      status: { hit: "Called it", near: "Same side", miss: "A surprise", pass: "Genii passed", skipped: "Skipped", unanswered: "Skipped" },
+      key: "Called it: your exact answer. Same side: the right lean, another move.",
       more: "See the cards",
     },
     share: { kicker: "Your card", brand: "Genii · MirrorMii", sub: "They guess your answers. Send it to someone who'd get them right.", challenge: "Challenge a friend" },
@@ -352,6 +354,7 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
         stat: statOf(r.key).stat, leadEnd: r.flex ? C.knows.both : r.leadEnd, otherEnd: r.flex ? `${r.a} and ${r.b}` : r.otherEnd,
         lead: r.flex ? C.knows.both : r.lead, other: r.flex ? `${r.left} and ${r.right}` : r.other,
         line: knowsLine(r), short: splitInsight(knowsLine(r)).belief, clarity: r.clarity, level, tier: r.flex ? C.knows.tiers.flex : C.knows.tiers[TIER_OF[level]],
+        tierShort: r.flex ? C.knows.short.flex : C.knows.short[TIER_OF[level]],
       };
     });
 
@@ -483,18 +486,13 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
     { id: "names", kicker: C.names.kicker, sub: C.names.sub, hook, people, life, mirror },
     { id: "read", kicker: C.read.kicker, lines: readLines, bodies: readBodies, marks: readMarks },
     { id: "map", kicker: C.map.kicker, title: C.map.title, sub: C.map.sub, groups: mapGroups, facet },
-    { id: "knows", kicker: C.knows.kicker, title: C.knows.title, surest: C.knows.surest, findings,
-      legendLabel: C.knows.legend,
-      // How to read the gems: only the tiers this player's findings use, strongest first.
-      legend: [[3, "clear"], [2, "sharp"], [1, "forming"], [0, "flex"]]
-        .filter(([lv, k]) => findings.some((f) => (k === "flex" ? f.kind === "flex" : f.kind !== "flex" && f.level === lv)))
-        .map(([lv, k]) => ({ key: k, level: lv || 1, flex: k === "flex", label: C.knows.tiers[k] })) },
+    { id: "knows", kicker: C.knows.kicker, title: C.knows.title, surest: C.knows.surest, findings },
     roomRows.length >= 2 ? { id: "rooms", kicker: C.rooms.kicker, title: C.rooms.title, differs: C.rooms.differs, rows: roomRows } : null,
     { id: "insight", kicker: C.insight.kicker, line: insight, parts: splitInsight(insight), from: insightFrom },
     { id: "traits", kicker: C.traits.kicker, title: C.traits.title, tags, empty: noTraits },
     { id: "stings", kicker: C.stings.kicker, title: C.stings.title, badge: C.stings.badge, stings, private: true },
     guesses && guesses.rows.length ? {
-      id: "calls", kicker: C.calls.kicker, title: callsTitle, intro: C.calls.intro, of: C.calls.of, more: C.calls.more, exact: guesses.exact, called: guesses.called, face: callsFace,
+      id: "calls", kicker: C.calls.kicker, title: callsTitle, intro: C.calls.intro, key: C.calls.key, of: C.calls.of, more: C.calls.more, exact: guesses.exact, called: guesses.called, face: callsFace,
       rows: guesses.rows.map((r) => ({ ...r, side: r.pole ? endOf(r.pole) : null, shown: (r.near ? C.calls.status.near : C.calls.status[r.status]) || C.calls.status.skipped })),
       count: NUMBER_WORDS[guesses.rows.length] || String(guesses.rows.length),
     } : null,

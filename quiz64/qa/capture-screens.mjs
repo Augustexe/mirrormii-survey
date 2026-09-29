@@ -231,7 +231,7 @@ for (const size of only) {
           await page.waitForTimeout(300);
         }
         if (id === "app" && voice === "fun") {
-          const g = page.locator(".rv-slide.is-current .rv-end__links .rv-textbtn").nth(1);
+          const g = page.locator(".rv-slide.is-current .rv-end__links .rv-textbtn").nth(0);
           if (await g.count()) { await g.click(); await snap("guess-sheet", 1200); await page.keyboard.press("Escape"); await page.waitForTimeout(300); }
         }
       }

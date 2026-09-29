@@ -56,7 +56,7 @@ export function Rank({ card, texts, rank, locked, grabbed, onGrab, onTap, onReor
   const n = texts.length;
   return (
     <div className="pc-rank">
-      <span className="pc-rank__end" aria-hidden="true">First <em className="pc-rank__hint">Drag the handle, or tap in order</em></span>
+      <span className="pc-rank__end" aria-hidden="true">First <em className="pc-rank__hint">Drag to reorder</em></span>
       <Reorder.Group as="ol" axis="y" values={rank.order} onReorder={onReorder} className="pc-rank__list" aria-label="Put these in order, first to last">
         {rank.order.map((i, pos) => (
           <RankItem

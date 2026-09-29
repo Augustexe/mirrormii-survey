@@ -79,6 +79,7 @@ export function CallsScreen({ s, onGuesses }) {
           );
         })}
       </ol>
+      {s.key ? <p className="rv-calls__key rv-in">{s.key}</p> : null}
       {onGuesses ? <button type="button" className="rv-textbtn rv-calls__more rv-in" onClick={onGuesses}>{s.more}</button> : null}
     </div>
   );

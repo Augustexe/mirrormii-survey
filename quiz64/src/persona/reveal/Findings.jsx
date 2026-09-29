@@ -82,11 +82,10 @@ function Head({ f }) {
 }
 
 // Round 3 (G6): the stat name and the end you lean to lead each finding (src/persona/stats.js), the lines sit on dark
-// glass for contrast, the tier words say how strong the signal is (never certainty), and one legend under the list
-// says how to read the gems, so the rows carry no small labels of their own.
+// glass for contrast, and every row carries its signal word ("Strong", "Clear", "Some", "Both") beside the gem, so
+// the gems never need a legend; tier words say how strong the signal is, never certainty.
 export function KnowsScreen({ s }) {
   const [top, ...rest] = s.findings;
-  const legend = s.legend || [];
   return (
     <div className="rv-body rv-body--knows">
       <p className="rv-kicker rv-in">{s.kicker}</p>
@@ -106,23 +105,16 @@ export function KnowsScreen({ s }) {
         ) : null}
         {rest.map((f, i) => (
           <li className="rv-find" key={f.key} style={{ "--i": i + 1 }} data-level={f.kind === "flex" ? "flex" : f.level}>
-            <span className="rv-find__gem"><ClarityGem level={f.level} flex={f.kind === "flex"} size={34} /></span>
+            <span className="rv-find__gem"><ClarityGem level={f.level} flex={f.kind === "flex"} size={26} /></span>
             <span className="rv-find__head">
               <Head f={f} />
               <span className="rv-find__end">{f.leadEnd || f.lead}</span>
-              <span className="sr-only">, {f.tier}</span>
+              <span className="rv-find__tag"><span className="sr-only">, </span>{f.tierShort || f.tier}</span>
             </span>
             <span className="rv-find__line">{f.short || f.line}</span>
           </li>
         ))}
       </ol>
-      {legend.length ? (
-        <ul className="rv-legend rv-in" aria-label={s.legendLabel}>
-          {legend.map((g) => (
-            <li key={g.key}><ClarityGem level={g.level} flex={g.flex} size={18} art="clarity-key" />{g.label}</li>
-          ))}
-        </ul>
-      ) : null}
     </div>
   );
 }

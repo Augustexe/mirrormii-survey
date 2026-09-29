@@ -56,7 +56,7 @@ export function Thread({ card, thread, texts, chosen, locked, onTap, kbd, still,
           </li>
         ) : null}
       </ol>
-      <p className="pc-drafts__cue" aria-hidden="true"><SendHorizontal size={13} strokeWidth={2.4} /> Tap a reply to send it</p>
+      <p className="pc-drafts__cue" aria-hidden="true">Your move. Tap one <SendHorizontal size={13} strokeWidth={2.4} /></p>
       <div className="pc-drafts" role="group" aria-label="Your reply">
         {texts.map((text, i) => (
           <button
