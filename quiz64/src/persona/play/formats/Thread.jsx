@@ -1,0 +1,61 @@
+import React, { useLayoutEffect, useRef } from "react";
+
+// Your reply (5.7): a real-feeling thread. Incoming bubbles arrive in sequence behind a typing indicator; the
+// answers are draft replies under it; tapping one sends it into the thread with "Delivered".
+export function Thread({ card, thread, texts, chosen, locked, onTap, kbd, still, from }) {
+  const sentRef = useRef(null);
+  useLayoutEffect(() => {
+    // The chosen draft flies up into the thread as the outgoing bubble (FLIP from the chip's place).
+    const bubble = sentRef.current;
+    if (!bubble || still || !from || typeof bubble.animate !== "function") return;
+    const r = bubble.getBoundingClientRect();
+    const dx = from.left + from.width - (r.left + r.width);
+    const dy = from.top - r.top;
+    bubble.animate(
+      [{ transform: `translate(${dx}px, ${dy}px) scale(0.96)`, opacity: 0.7 }, { transform: "translate(0, 0) scale(1)", opacity: 1 }],
+      { duration: 220, easing: "cubic-bezier(0.2, 0.8, 0.2, 1)" },
+    );
+  }, [chosen, still, from]);
+  return (
+    <>
+      <div className="pc-thread-panel">
+        <ol className="pc-thread" data-part="persona-thread" aria-label="The messages">
+          {thread.map((m, k) => {
+            const showFrom = m.from !== "you" && (k === 0 || thread[k - 1].from !== m.from);
+            return (
+              <li key={k} className={`pc-bubble${m.from === "you" ? " pc-bubble--you" : ""}`} style={{ "--k": k }}>
+                {showFrom ? <span className="pc-bubble__from">{m.from}</span> : null}
+                <span className="pc-bubble__body">
+                  {k > 0 ? <span className="pc-typing" aria-hidden="true"><i /><i /><i /></span> : null}
+                  <span className="pc-bubble__text">{m.text}</span>
+                </span>
+              </li>
+            );
+          })}
+          {chosen !== null && Number.isInteger(chosen) ? (
+            <li className="pc-bubble pc-bubble--sent" ref={sentRef}>
+              <span className="pc-bubble__body"><span className="pc-bubble__text">{texts[chosen]}</span></span>
+              <span className="pc-bubble__delivered">Delivered</span>
+            </li>
+          ) : null}
+        </ol>
+      </div>
+      <div className="pc-drafts" role="group" aria-label="Your reply">
+        {texts.map((text, i) => (
+          <button
+            type="button"
+            key={`${card.id}-${i}`}
+            className={`pc-draft${chosen === i ? " is-sent" : ""}`}
+            data-index={i}
+            disabled={locked}
+            onClick={(e) => onTap(i, e)}
+            style={{ "--i": i }}
+          >
+            {kbd && i < 9 ? <kbd className="pc-kbd" aria-hidden="true">{i + 1}</kbd> : null}
+            <span className="pc-draft__text">{text}</span>
+          </button>
+        ))}
+      </div>
+    </>
+  );
+}

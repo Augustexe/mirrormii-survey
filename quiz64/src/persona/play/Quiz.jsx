@@ -1,0 +1,133 @@
+import React, { useContext, useEffect, useMemo, useRef } from "react";
+import { MotionConfigContext, useReducedMotion } from "motion/react";
+import { GeniiLight, geniiEvents, useTheme } from "../../system/index.js";
+import { MirrorArch, IslandScene, DeviceGlyph, deviceFor } from "../../art/index.js";
+import { hostLine, cardVoice, LOBBY_DEFAULTS } from "../lobby.js";
+import { reactionFor } from "../reactions.js";
+import { PersonaCard } from "./PersonaCard.jsx";
+import { ShardRail } from "./ShardRail.jsx";
+import { railGroups, filledShards } from "./rail-model.js";
+import { flyShard } from "./flight.js";
+import "./play.css";
+
+// Reactions need the previous answer and whether the previous card showed one. The quiz view unmounts at every
+// chapter title card, so this memory lives at module level, per run seed.
+const MEMORY = new Map();
+function memoryFor(seed) {
+  if (!MEMORY.has(seed)) {
+    if (MEMORY.size > 8) MEMORY.delete(MEMORY.keys().next().value);
+    MEMORY.set(seed, { answers: new Map(), lines: new Map() });
+  }
+  return MEMORY.get(seed);
+}
+
+export function rememberAnswer(seed, step, card, value) {
+  if (!step || step.phase === "finale") return;
+  memoryFor(seed).answers.set(step.resolved, { card, value });
+}
+
+// The line in Genii's row for this card: nothing on feeling and finale cards (the moment is the player's), nothing for
+// Just the cards, the speed nudge when rushing, a reaction on about 40% of cards, otherwise the voice's host line.
+export function geniiLineFor(step, voice, { rushing = false, seed = "genii" } = {}) {
+  if (!step || !step.card) return null;
+  if (voice === "cards" || step.phase === "finale" || step.card.type === "feeling") return null;
+  if (rushing) return hostLine(voice, { phase: step.phase, index: step.index, rushing: true });
+  const m = memoryFor(seed);
+  const idx = step.resolved;
+  const cached = m.lines.get(idx);
+  let reaction;
+  if (cached && cached.id === step.card.id) reaction = cached.line;
+  else {
+    const prev = m.answers.get(idx - 1);
+    reaction = prev
+      ? reactionFor({ card: prev.card, optionIndex: prev.value, voice, seed, cardIndex: idx, previousWasReaction: !!(m.lines.get(idx - 1) || {}).line, nextCard: step.card, phase: step.phase })
+      : null;
+    m.lines.set(idx, { id: step.card.id, line: reaction });
+  }
+  return reaction || hostLine(voice, { phase: step.phase, index: step.index, rushing: false });
+}
+
+const tintOf = (step) => (step.phase === "finale" ? "var(--tint-finale-rim)" : step.phase === "extra" ? "var(--tint-extras)" : `var(--tint-ch${step.chapter})`);
+
+/**
+ * The card screen (5.5, 5.8, 5.9). Phone: shard rail in the header's centre, Genii's line, the card sheet.
+ * Desktop: the mirror niche (live mosaic, island, Genii) beside the sheet.
+ * voice: the lobby voice (fun, heart or cards). progress (chapterProgress) and seed (the run id) are optional; the
+ * rail and reactions fall back gracefully without them.
+ */
+export function PersonaQuizView({ step, setup, onAnswer, onMap, busy, error, cardKey, rushing = false, voice = LOBBY_DEFAULTS.voice, progress = null, seed = "genii" }) {
+  const card = step.card;
+  const reduced = useReducedMotion();
+  const { reducedMotion } = useContext(MotionConfigContext);
+  const still = reduced || reducedMotion === "always";
+  const { theme } = useTheme();
+  const line = geniiLineFor(step, voice, { rushing, seed });
+  const hush = step.phase === "finale" || card.type === "feeling";
+  const rail = useMemo(() => railGroups(step, progress), [step, progress]);
+  const filled = useMemo(() => filledShards(rail), [rail]);
+  const nicheRef = useRef(null);
+  const enterFrom = card.type === "this_or_that" && step.round && step.round.index > 1 ? "side" : "below";
+  const device = useMemo(() => { try { return card.world === "absurd" ? deviceFor(card) : null; } catch { return null; } }, [card]);
+  const chapterKey = step.phase === "finale" ? "finale" : step.phase === "extra" ? "extras" : step.chapter;
+
+  // Performance marks: how long from an answer tap until the next prompt is readable (5.9 and 7.4 B4).
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+    const el = document.querySelector(".play .pc");
+    const done = () => {
+      try {
+        performance.mark("play:prompt-ready");
+        const answers = performance.getEntriesByName("play:answer");
+        const last = answers[answers.length - 1];
+        if (last) {
+          const ms = performance.now() - last.startTime;
+          (window.__playTimings = window.__playTimings || []).push(Math.round(ms));
+          performance.clearMarks("play:answer");
+        }
+      } catch { /* marks are best effort */ }
+    };
+    if (!el || still) { done(); return undefined; }
+    const anims = el.getAnimations ? el.getAnimations() : [];
+    if (!anims.length) { done(); return undefined; }
+    let live = true;
+    Promise.all(anims.map((a) => a.finished.catch(() => null))).then(() => { if (live) done(); });
+    return () => { live = false; };
+  }, [cardKey, still]);
+
+  const onPick = ({ value, origin }) => {
+    rememberAnswer(seed, step, card, value);
+    geniiEvents.emit("noted");
+    if (still || !origin || typeof document === "undefined") return;
+    const wide = window.matchMedia && window.matchMedia("(min-width: 1024px)").matches;
+    const target = wide && nicheRef.current ? nicheRef.current.querySelector(".play-niche__arch") : document.querySelector('.shard-rail [data-rail-slot="current"]');
+    if (!target) return;
+    flyShard({ from: origin, to: target, color: tintOf(step), index: step.resolved, trail: theme === "day" });
+  };
+
+  return (
+    <main className="play" data-phase={step.phase} data-type={card.type} data-voice={voice} data-enter={enterFrom}>
+      <ShardRail step={step} progress={progress} onOpen={onMap} />
+      <div className="play-grid">
+        <aside className="play-niche" ref={nicheRef} aria-hidden="true">
+          <div className="play-niche__island"><IslandScene chapter={chapterKey} variant="ambient" size={460} /></div>
+          <div className="play-niche__arch">
+            <MirrorArch seed={seed} filled={filled} fog={step.phase === "finale" ? 0.55 : 0.08} glow={0.7} mullion={false} size={300} />
+            {device ? <span className="play-niche__device"><DeviceGlyph id={device} size={96} /></span> : null}
+          </div>
+          <div className="play-niche__genii">
+            <GeniiLight mood={hush ? "hush" : "listening"} size="m" voice={voice} />
+            {line ? <p className="play-niche__line" key={line}>{line}</p> : null}
+          </div>
+        </aside>
+        <section className="play-col">
+          <div className={`play-genii${hush ? " is-hush" : ""}`}>
+            <GeniiLight mood={hush ? "hush" : "listening"} size="xs" voice={voice} />
+            <p className="play-genii__line" aria-hidden="true" key={line || "none"}>{line || ""}</p>
+          </div>
+          <p className="pc-sr" aria-live="polite">{line || ""}</p>
+          <PersonaCard key={cardKey} card={card} step={step} voice={cardVoice(voice)} setup={setup} onAnswer={onAnswer} onPick={onPick} busy={busy} error={error} />
+        </section>
+      </div>
+    </main>
+  );
+}
