@@ -81,6 +81,18 @@ async function audit(page, label, { axe = true } = {}) {
   if (EM_DASH.test(info.text)) report.copy.push(`${label}: em dash on screen`);
   for (const re of [...NEVER, ...SYSTEM_WORDS]) { const m = info.text.match(re); if (m) report.copy.push(`${label}: "${m[0]}" in "${info.text.slice(Math.max(0, m.index - 40), m.index + 40).replace(/\s+/g, " ")}"`); }
   if (info.overflow > 1) report.overflow.push(`${label}: horizontal scroll ${info.overflow}px`);
+  // Fold: on phone and desktop the screen's main action is fully visible without scrolling (not at 200% zoom).
+  if (!label.startsWith("zoom200")) {
+    const fold = await page.evaluate(() => {
+      const sel = ".mm-landing__cta, .mm-interlude__start, .mm-panel__go, .pc-primary:not([disabled]), .lock .mm-btn--primary, .rv-slide.is-current .rv-cta";
+      const el = [...document.querySelectorAll(sel)].find((e) => { const b = e.getBoundingClientRect(); return b.width && b.height && getComputedStyle(e).visibility !== "hidden"; });
+      if (!el) return null;
+      const b = el.getBoundingClientRect();
+      return { cls: el.className.toString().split(" ")[0], bottom: Math.round(b.bottom), vh: innerHeight };
+    });
+    report.fold = report.fold || [];
+    if (fold) report.fold.push({ label, ...fold, ok: fold.bottom <= fold.vh });
+  }
   if (axe) {
     const res = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();
     for (const v of res.violations) {
@@ -135,9 +147,13 @@ for (const [vname, vp] of Object.entries(VIEWS)) {
   await page.waitForSelector(".mm-lobby");
   await audit(page, `${vname} lobby-voice`, { axe });
   await page.locator(".mm-voice").nth(1).click();
+  await page.waitForTimeout(1200); // the pick holds on screen before the next step (round 2)
+  if (await page.locator(".mm-lobby[data-step=voice]").count()) await page.locator(".mm-panel__go").click();
   await page.waitForSelector(".mm-lobby[data-step=depth]");
   await audit(page, `${vname} lobby-depth (dusk)`, { axe });
   await page.locator(".mm-depth").nth(1).click();
+  await page.waitForTimeout(1200);
+  if (await page.locator(".mm-lobby[data-step=depth]").count()) await page.locator(".mm-panel__go").click();
   await page.waitForSelector(".mm-lobby[data-step=rooms]");
   await audit(page, `${vname} lobby-rooms (dusk)`, { axe });
   await page.locator(".mm-panel__go").click();
@@ -172,7 +188,8 @@ for (const [vname, vp] of Object.entries(VIEWS)) {
     await open({ voice, stop: "result", id: `qaresult${voice}` });
     await page.waitForSelector(".rv-room");
     const seen = [];
-    for (let i = 0; i < 40 && seen.length < 9; i++) {
+    const slides = await page.locator(".rv-slide").count();
+    for (let i = 0; i < 80 && seen.length < slides; i++) {
       const id = await page.locator(".rv-slide.is-current").getAttribute("data-story");
       if (!seen.includes(id)) {
         seen.push(id);
@@ -202,14 +219,16 @@ for (const [vname, vp] of Object.entries(VIEWS)) {
           }
         }
         if (id === "app" && voice === "fun") {
-          const g = page.locator(".rv-slide.is-current .rv-textbtn").first();
+          const g = page.locator(".rv-slide.is-current .rv-end__links .rv-textbtn").nth(1);
           if (await g.count()) { await g.click(); await audit(page, `${vname} guess sheet`, { axe }); await page.keyboard.press("Escape"); await page.waitForTimeout(300); }
         }
       }
       await page.keyboard.press("ArrowRight");
       await page.waitForTimeout(200);
     }
-    if (seen.length !== 9) report.errors.push(`${vname} ${voice}: reveal ${seen.length} screens`);
+    report.reveal = report.reveal || {};
+    report.reveal[`${vname} ${voice}`] = seen;
+    if (seen.length !== slides || slides < 12) report.errors.push(`${vname} ${voice}: reveal ${seen.length} of ${slides} screens`);
   }
 
   // Friend link flow, once per view: owner makes a link, a friend plays it in a fresh browser, the reply comes home.
@@ -218,7 +237,7 @@ for (const [vname, vp] of Object.entries(VIEWS)) {
     await page.waitForSelector(".rv-room");
     await page.keyboard.press("End");
     await page.waitForTimeout(800);
-    await page.locator(".rv-slide.is-current .rv-ghost").click();
+    await page.locator(".rv-slide.is-current .rv-textbtn", { hasText: /really know me/i }).click();
     await page.waitForSelector(".fp-composer");
     await audit(page, `${vname} friends sheet`, { axe });
     await page.locator(".fp-rel").first().click();
@@ -264,4 +283,4 @@ for (const [vname, vp] of Object.entries(VIEWS)) {
 await browser.close();
 report.fonts = [...report.fonts].sort();
 fs.writeFileSync(path.join(OUT, "qa-report.json"), JSON.stringify(report, null, 1));
-console.log(JSON.stringify({ screens: report.screens.length, axe: Object.fromEntries(Object.entries(report.axe).map(([k, v]) => [k, v.screens.length])), fonts: report.fonts, copy: report.copy.length, overflow: report.overflow.length, share: report.share.length, friend: report.friend, perf: report.perf, errors: report.errors.length }, null, 1));
+console.log(JSON.stringify({ fold: (report.fold || []).filter((f) => !f.ok), reveal: report.reveal, screens: report.screens.length, axe: Object.fromEntries(Object.entries(report.axe).map(([k, v]) => [k, v.screens.length])), fonts: report.fonts, copy: report.copy.length, overflow: report.overflow.length, share: report.share.length, friend: report.friend, perf: report.perf, errors: report.errors.length }, null, 1));

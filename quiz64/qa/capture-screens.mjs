@@ -193,13 +193,14 @@ for (const size of only) {
     await snap("finale");
     await snap("card-sealed", 100);
   }
-  // The reveal: nine screens per voice, then the share sheet and the guess sheet.
+  // The reveal: every story screen per voice (twelve with rooms and calls, round 2), then the share and guess sheets.
   for (const voice of ["fun", "heart"]) {
     if (!want(`result-${voice}`) && !want("sheet")) continue;
     await open({ voice, stop: "result", id: `shotresult${voice}` });
     await page.waitForSelector(".rv-room", { timeout: 8000 });
     const seen = [];
-    for (let i = 0; i < 40 && seen.length < 9; i++) {
+    const slides = await page.locator(".rv-slide").count();
+    for (let i = 0; i < 80 && seen.length < slides; i++) {
       const id = await page.locator(".rv-slide.is-current").getAttribute("data-story");
       if (!seen.includes(id)) {
         seen.push(id);
@@ -211,14 +212,14 @@ for (const size of only) {
           await page.waitForTimeout(300);
         }
         if (id === "app" && voice === "fun") {
-          const g = page.locator(".rv-slide.is-current .rv-textbtn").first();
-          if (await g.count()) { await g.click(); await snap("guess-sheet", 1200); await page.keyboard.press("Escape"); }
+          const g = page.locator(".rv-slide.is-current .rv-end__links .rv-textbtn").nth(1);
+          if (await g.count()) { await g.click(); await snap("guess-sheet", 1200); await page.keyboard.press("Escape"); await page.waitForTimeout(300); }
         }
       }
       await page.keyboard.press("ArrowRight");
       await page.waitForTimeout(250);
     }
-    if (seen.length < 9) errors.push(`${size}: ${voice} reveal reached ${seen.length} screens (${seen.join(",")})`);
+    if (seen.length < slides || slides < 12) errors.push(`${size}: ${voice} reveal reached ${seen.length} of ${slides} screens (${seen.join(",")})`);
   }
   // Reduced motion and reduced transparency.
   if (want("reduced")) {

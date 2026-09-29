@@ -1,5 +1,5 @@
 // Play one complete run through the real UI: landing, setup, lobby, every interlude, 40 cards, the lock, the final 8
-// and all 9 reveal screens. Answers by mouse (default) or keys only (KEYS=1). Records Genii's line on every card and
+// and every reveal screen (12 with rooms and calls, round 2). Answers by mouse (default) or keys only (KEYS=1). Records Genii's line on every card and
 // fails on a back-to-back repeat, a console error or a stuck screen.
 //   PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node qa/play-through.mjs [baseUrl] [voice fun|heart|cards] [outDir]
 // Env: KEYS=1 keyboard only; VIEW=phone|desktop; SHOTS=1 writes a screenshot per step to outDir.
@@ -133,14 +133,15 @@ for (let guard = 0; guard < 400; guard++) {
   await page.waitForTimeout(500);
 }
 
-// The reveal: 9 screens.
+// The reveal: every story screen (12 when the rooms and the calls screens are in, round 2).
 await page.waitForSelector(".rv-room", { timeout: 8000 });
 const stories = [];
-for (let i = 0; i < 40 && stories.length < 9; i++) {
+const slides = await page.locator(".rv-slide").count();
+for (let i = 0; i < 80 && stories.length < slides; i++) {
   await page.waitForTimeout(i === 0 ? 1500 : 1100);
   const id = await page.locator(".rv-slide.is-current").getAttribute("data-story").catch(() => null);
   if (id && !stories.includes(id)) { stories.push(id); await shot(`reveal-${String(stories.length).padStart(2, "0")}-${id}`); }
-  if (stories.length === 9) break;
+  if (stories.length === slides) break;
   if (KEYS) await press("ArrowRight");
   else {
     const next = page.locator(".rv-arrow--next");
@@ -154,8 +155,8 @@ const sorted = [...timings].sort((a, b) => a - b);
 const tapToPrompt = sorted.length ? { median: sorted[Math.floor(sorted.length / 2)], p90: sorted[Math.floor(sorted.length * 0.9)] } : null;
 const repeats = lines.map((l, i) => (i && l && l === lines[i - 1] ? i : -1)).filter((i) => i >= 0);
 const distinct = new Set(lines.filter(Boolean)).size;
-const summary = { voice: VOICE, keys: KEYS, view: VIEW, cards, finale, interludes, locked, stories, distinctLines: distinct, backToBackRepeats: repeats.length, focusMisses, tapToPrompt, maxWebGL, errors };
+const summary = { voice: VOICE, keys: KEYS, view: VIEW, cards, finale, interludes, locked, slides, stories, distinctLines: distinct, backToBackRepeats: repeats.length, focusMisses, tapToPrompt, maxWebGL, errors };
 console.log(JSON.stringify(summary, null, 1));
 if (process.env.VERBOSE) for (const r of log) console.log(`${String(r.i).padStart(2)} ${r.phase.padEnd(7)} ${r.type.padEnd(12)} | ${r.line}`);
 await browser.close();
-if (cards !== 40 || finale !== 8 || stories.length !== 9 || repeats.length || errors.length || focusMisses.length) process.exitCode = 1;
+if (cards !== 40 || finale !== 8 || stories.length !== slides || slides < 12 || repeats.length || errors.length || focusMisses.length) process.exitCode = 1;

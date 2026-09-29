@@ -82,6 +82,7 @@ test("every reveal line, pole, trait, room and call comes from the player's own 
   let roomRows = 0;
   let splitInsights = 0;
   let hits = 0;
+  let partial = 0;
 
   for (const { label, run, voice } of list) {
     const { profile, result, sealed } = Session.resultFor(run);
@@ -219,6 +220,13 @@ test("every reveal line, pole, trait, room and call comes from the player's own 
       view, friends: null, onFriendAction() {}, onRestart() {}, onDownload() {}, onDelete() {}, storageOK: true,
     })));
     const text = visible(html);
+    // The calls score on screen is the sealed check's own count, never a fixed 8 of 8 (round 2 G5).
+    if (called.length) {
+      const score = visible((html.match(/rv-calls__score[^>]*>([\s\S]*?)<\/p>/) || [])[1] || "").trim();
+      const exact = sealed.rows.filter((r) => r.status === "hit").length;
+      assert.match(score, new RegExp(`^${exact} of ${called.length}\\b`), `${label}: calls score shows ${exact} of ${called.length}`);
+      if (exact > 0 && exact < called.length) partial++;
+    }
     const said = [];
     for (const [id, value] of Object.entries(run.answers)) {
       const card = S.cardById[id];
@@ -236,6 +244,7 @@ test("every reveal line, pole, trait, room and call comes from the player's own 
   assert.ok(seenArchetypes.size >= 5, `several archetype pairs covered (${[...seenArchetypes].join("; ")})`);
   assert.ok(roomRows >= 20, "rooms exercised");
   assert.ok(hits >= 10, "hits exercised");
+  assert.ok(partial >= 3, `noisy players show partial calls (${partial})`);
   assert.ok(splitInsights >= 1, "a split insight exercised");
 });
 
