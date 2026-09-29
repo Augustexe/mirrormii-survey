@@ -37,6 +37,10 @@ export const RANK_WEIGHTS = Object.freeze([1, 0.5, 0, -0.5]);
 export const LEGACY_TYPES = Object.freeze({ guilty: "bet" });
 
 export const PRIVACY = Object.freeze(["normal", "intimate"]);
+// Worlds (Jerry, 2026-09-29): everyday, unusual (possible but rare) or absurd (impossible, magic, Genii's wishes).
+// Absurd choices are weaker evidence than real life, so their weight is capped; "what you did" cards stay real.
+export const WORLDS = Object.freeze(["everyday", "unusual", "absurd"]);
+export const ABSURD_WEIGHT_CAP = 0.35;
 export const FP_FIELDS = Object.freeze(["trigger", "setting", "ask", "who", "stakes"]);
 
 // Grade, weight and exits come from the type, never from the writer.
@@ -44,7 +48,8 @@ export function fillFromType(card) {
   const type = LEGACY_TYPES[card.type] || card.type;
   const spec = TYPES[type];
   if (!spec) throw new Error(`${card.id}: unknown type "${card.type}"`);
-  return { ...card, type, grade: spec.grade, weight: spec.weight, exits: [...(type === "real" ? REAL_EXITS : EXITS)] };
+  const weight = card.world === "absurd" ? Math.min(spec.weight, ABSURD_WEIGHT_CAP) : spec.weight;
+  return { ...card, type, grade: spec.grade, weight, exits: [...(type === "real" ? REAL_EXITS : EXITS)] };
 }
 
 // Fields no card carries any more (no age screen, LAUNCH-SPEC section 22). locked18 privacy becomes intimate, so

@@ -14,7 +14,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { TYPES, LEGACY_TYPES, PRIVACY, FP_FIELDS, DID_TYPES, QUICK_TYPES, cardTexts } from "./card-schema.mjs";
+import { TYPES, LEGACY_TYPES, PRIVACY, FP_FIELDS, DID_TYPES, QUICK_TYPES, WORLDS, cardTexts } from "./card-schema.mjs";
 
 const DIR = path.dirname(fileURLToPath(import.meta.url));
 const AXES = ["R1", "R2", "R3", "L1", "L2", "L3"];
@@ -116,6 +116,11 @@ export function checkCards(cards, { lib, legacy = false } = {}) {
     if (c.friend && ["receipts", "rank"].includes(type)) err(id, `${type} cards never carry a friend version`);
     for (const k of ["teen", "teenPrompt"]) if (k in c) err(id, `"${k}" is gone (no age logic)`);
     if (!c.mask) warn(id, "no mask (what it looks like versus what it measures)");
+    // Sub-question first and worlds (Jerry, 2026-09-29).
+    if (c.world !== undefined && !WORLDS.includes(c.world)) err(id, `world "${c.world}" (everyday, unusual or absurd)`);
+    if (c.world === "absurd" && DID_TYPES.includes(type)) err(id, `${type} cards are what you did: they stay everyday or unusual, never absurd`);
+    if (group !== "kit" && !c.world) warn(id, "no world (everyday, unusual or absurd)");
+    if (group !== "kit" && type !== "feeling" && !c.sq) warn(id, "no sq (the sub-question id this card tests, from subquestions.json)");
 
     // Both voices.
     const h = c.heart;

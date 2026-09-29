@@ -291,6 +291,8 @@ Rulings from Jerry's grill rounds. Where they differ from earlier sections, this
 
 **Spice (Jerry, 2026-09-28: "super boring... need to be spicy... make you question things").** Every card clears at least 3 of 5 marks: real stakes, no safe answer, the unsaid (envy, pettiness, favoritism, keeping score), self-question, group-chat test. Logistics, preferences and polite dilemmas are rewritten. Full standard in the card-writer skill section 1b. Cards are chosen by an iteration round: several writers per angle, a judge panel keeps the best.
 
+**Sub-question first and worlds (Jerry, 2026-09-29).** Every card is built backward from a sub-question in `research/persona-quiz-v2/final/subquestions.json` (field `sq`). Every card has a `world`: absurd (impossible or magic, including Genii's wishes; weight capped at 0.35), unusual (possible but rare) or everyday (only for did formats). Mix about 40% absurd, 40% unusual, 20% everyday.
+
 **Card template** (codified in `skills/shared/genii-card-writer/`): Hook (one concrete scene-setter, 15 words or fewer, true detail) then Event (what just happened that forces a response; never an abstract opinion) then Ask (the format's stem, usually implied; never "what would you do when") then Moves (3 to 5 distinct actions, first person, action first, 12 words or fewer, equal charm, no ladders). Hidden: evidence per move, situation fingerprint, the two voice variants.
 
 **Formats.** 13: scenario, real moment, receipts, Genii's bet, reply, other people, this or that, role, pick two, rank it, friend's-eye view, feeling, sealed. Genii's bet has its own 3 to 5 answers per bet, never a fixed Guilty/Never pair. Receipts and every other format are answered from memory; never ask the player to open an app, account, bank, messages or photos, and never ask for anything sensitive.
@@ -371,6 +373,7 @@ Coverage: every axis carried by at least 15 scored cards, at least 6 of them in 
 
 ## Changes
 
+- 2026-09-29: Sub-question first and worlds (absurd, unusual, everyday) added; absurd weight cap 0.35 in card-schema.mjs; checker validates `sq` and `world`.
 - 2026-09-28: Spice standard added (section 21); variety rule for hook shapes enforced by check-bank.
 - 2026-09-28: Section 22 added: build decisions (no age question, 3-tap lobby, bet/rank/eyes), card and library schemas, bank targets, files and work packages.
 - 2026-09-28: Section 21 added from the grill (bank size, uniqueness, template, 13 formats, voices, no age screen, no sensitive asks, archetype names, final screen order).
