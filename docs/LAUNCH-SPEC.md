@@ -221,17 +221,17 @@ Teen-safe by default (18+ cards need 18+ setup; teens never get the marriage and
 
 ## 17. Status and known gaps
 
+Status as of 2026-09-29 (overnight build C, Jerry's go):
+
 | Part | Status |
 |---|---|
-| Setup, lobby, picker, 40 + 8 | Built, tested, played in the browser. Build C engine (09-28): no age screen, 2-tap setup, 3-tap lobby (voice, how personal, rooms), 8 sealed cards drawn per run from the sealed pool; tested, not yet played in the browser |
-| Cards and evidence | Built; gaps below |
-| Names, tags, result lines | Built as literal translations; to rewrite |
-| Voices | Engine built (card `heart` text, Heart to heart host lines, Just the cards); cards carry no `heart` text yet, so everyone reads Make it fun until the bank lands |
-| Formats bet, rank, eyes | Built in scorer and app (guilty renamed bet; the 6 legacy bets keep 2 answers until rewritten) |
-| Bank tooling | Built: `check-bank.mjs`, `merge-bank.mjs`, `audit.mjs` against section 22 targets; bank files not written yet |
-| Evidence page | Old template in the app; Stories drafted |
-| Friend game | Built |
-| Real-person validation | None |
+| Card bank | **Built: 174 cards** (138 chapter cards: 22, 22, 18, 20, 18, 18, 20; 12 extras; 24 sealed), all 13 formats, both voices, every card built from a sub-question in `subquestions.json` and set in a world (about 40% absurd, 40% unusual, 20% everyday). Three revision rounds; independent Codex judge rounds R1 and R2 (`bank/JUDGE-CODEX-R1.json`, `R2.json`): strong 50 to 66, cut 66 to 23, then the 23 replaced. 117 cards carry a friend version |
+| Evidence | Every axis 15+ cards; every tag fires (50 of 50); 17 tags sit at 3 supporting cards (target 4) and T11 at 2 (kids cap); sim: axis recovery 94.6%, Genii's sealed exact 67.5% (chance 25%), random tappers 47 to 54% per axis. Evidence lock covers all 174 cards and both voices |
+| Setup, lobby, picker, 40 + 8 | Built and tested: 2-tap setup, 3-tap lobby (voice, how personal, rooms), 40 picked cards, 8 sealed guesses drawn from the pool of 24 |
+| Result copy | Archetype names, plain tag names, confident read lines, stings, hearts and insights in both voices (`library.json`) |
+| Visual rebuild | Built (`quiz64/docs/DESIGN-DIRECTION.md`): design system (Fraunces and Figtree), Genii as light, mirror landing, lobby doors, island interludes, 13 distinct card formats, shard rail, lock ritual, The Reflection reveal (9 screens), mirror share image; all art made in code (`src/art`, 31 KB gzipped). Integration and visual QA in progress |
+| Friend game | Built; restyled |
+| Real-person validation | None (blind test 2 open) |
 
 **Evidence gaps (step B, 2026-09-28):** before and now. Numbers from `audit.mjs` and `persona-sim.mjs --acceptance` (3,000 consistent players with every room open; 4,000 random clickers).
 
@@ -373,6 +373,7 @@ Coverage: every axis carried by at least 15 scored cards, at least 6 of them in 
 
 ## Changes
 
+- 2026-09-29: Section 17 status updated after the overnight build: full 174-card bank, Codex judge rounds, visual rebuild.
 - 2026-09-29: Sub-question first and worlds (absurd, unusual, everyday) added; absurd weight cap 0.35 in card-schema.mjs; checker validates `sq` and `world`.
 - 2026-09-28: Spice standard added (section 21); variety rule for hook shapes enforced by check-bank.
 - 2026-09-28: Section 22 added: build decisions (no age question, 3-tap lobby, bet/rank/eyes), card and library schemas, bank targets, files and work packages.
