@@ -10,7 +10,7 @@ Earlier builds are listed in [history/BUILD-ITERATIONS.md](history/BUILD-ITERATI
 
 Maintained home for this project's decisions, evidence, questions, ICP and psychology. Updated 2026-09-21. This folder is Git-owned. All agents and humans use the same files.
 
-Read [STATE.md](STATE.md) first, then [WORKING-SET.md](WORKING-SET.md) for the exact files to edit. Read [DECISIONS.md](DECISIONS.md) for confirmed founder requirements, with [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) for unresolved choices and conflicts. Check [CODE-MAP.md](CODE-MAP.md) before any source edit or test.
+For earlier builds only: read [STATE.md](STATE.md), then [WORKING-SET.md](WORKING-SET.md) for the exact files to edit. Read [DECISIONS.md](DECISIONS.md) for confirmed founder requirements, with [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) for unresolved choices and conflicts. Check [CODE-MAP.md](CODE-MAP.md) before any source edit or test.
 
 | Work area | Start here | What belongs here |
 |---|---|---|
