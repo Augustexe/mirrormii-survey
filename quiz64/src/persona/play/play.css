@@ -750,7 +750,8 @@
   .pc-draft:hover:not(:disabled) { border-color: var(--c-violet); background: color-mix(in srgb, var(--c-violet) 22%, var(--c-surface-solid)); }
   .pc-draft:hover:not(:disabled) .pc-draft__send { background: var(--c-violet-strong); color: var(--c-on-deep); }
   .pc-draft:active:not(:disabled) { transform: scale(0.97); }
-  .pc-draft.is-sent { opacity: 0; }
+  /* The sent draft has flown into the thread as your bubble; its slot closes so the thread does not grow a gap. */
+  .pc-draft.is-sent { display: none; }
   .pc-draft:disabled:not(.is-sent) { opacity: 0.45; cursor: default; }
 
   /* ---------- this or that: the split ---------- */
@@ -894,7 +895,7 @@
   .pc-rank__item.is-placed { border-color: var(--c-violet-300); }
   .pc-rank__item.is-grabbed { box-shadow: var(--e3); border-color: var(--c-violet); }
   /* Done: the order locks in, row by row, top first. */
-  .pc.is-answered .pc-rank__item { border-color: var(--c-violet-300); box-shadow: var(--pick-glow); animation: mm-pick calc(var(--d-slow) * 0.86) var(--e-spring) both; animation-delay: calc(var(--rank-pos, 0) * var(--d-step)); }
+  .pc.is-answered .pc-rank__item { border-color: var(--c-violet); background: color-mix(in srgb, var(--c-violet) 10%, var(--tile-fill)); box-shadow: 0 0 18px -6px var(--c-violet); animation: mm-pick calc(var(--d-slow) * 0.86) var(--e-spring) both; animation-delay: calc(var(--rank-pos, 0) * var(--d-step)); }
   .pc.is-answered .pc-rank__badge { background: var(--g-deep); color: var(--c-on-deep); }
   .pc.is-answered :is(.pc-rank__tap, .pc-rank__grip):disabled { opacity: 1; color: var(--c-ink); }
   .pc-rank__tap {
