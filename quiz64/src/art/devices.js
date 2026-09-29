@@ -110,6 +110,16 @@ export const DEVICE_TABLE = {
   "freeze-remote": "machine",
   "portal-hamster-passport": "door",
   "achievement-mountain": "mountain",
+  // Round 2 card variety, second pass (G4b, landing while this table was updated; chapters as the bank sets them)
+  "probably-better-app": "machine",
+  "dragon-cave": "treasure", // a dragon's hoard
+  "memory-delete": "machine",
+  "pumpkin-curse": "scroll",
+  "talking-swans": "trace", // a feather, never an animal face
+  "gold-star-door": "door",
+  "time-agency": "time",
+  "anniversary-holiday": "chapter",
+  "floating-safety-net": "chapter",
 };
 
 // Keyword fallback for devices the table has not met yet (device string first, then the prompt), so a card the bank
