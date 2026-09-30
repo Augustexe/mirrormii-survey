@@ -31,7 +31,7 @@ function srLine(r) {
 export function CallsScreen({ s, onGuesses }) {
   const state = (r) => (r.status === "hit" ? "hit" : r.near ? "near" : r.status === "miss" ? "miss" : "dim");
   return (
-    <div className="rv-body rv-body--calls" data-tally={s.called ? Math.round((s.exact / s.called) * 4) : 0}>
+    <div className="rv-body rv-body--calls" tabIndex="0" data-tally={s.called ? Math.round((s.exact / s.called) * 4) : 0}>
       <Aura className="rv-calls__aura" />
       <p className="rv-kicker rv-in">{s.kicker}</p>
       <div className="rv-calls__hero rv-in">

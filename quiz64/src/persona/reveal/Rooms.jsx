@@ -15,7 +15,7 @@ function Dots({ level }) {
 
 export function RoomsScreen({ s }) {
   return (
-    <div className="rv-body rv-body--rooms">
+    <div className="rv-body rv-body--rooms" tabIndex="0">
       <p className="rv-kicker rv-in">{s.kicker}</p>
       <h2 className="rv-title rv-in" data-focus tabIndex="-1">{s.title}</h2>
       <ul className="rv-rooms" data-count={s.rows.length}>

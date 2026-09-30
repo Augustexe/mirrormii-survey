@@ -88,7 +88,9 @@ function Seg({ value, options, onChange, label }) {
 }
 
 // Story 11 (G6): the card first, a little smaller; Share image is the one primary action; the friend game is a named
-// challenge with what it is under it; Copy link steps back to a text button. Round 3: the card stands in light on the
+// challenge with what it is under it; Copy link steps back to a text button. Package L2: the friend game is a full-width
+// secondary pill under Share image, Copy link and Read the long version share one row of smaller pills (they wrap to
+// their own rows rather than squeeze). Round 3: the card stands in light on the
 // real MirrorMii World island, with the CGI Genii beside it (drawn into the card), and light blooms behind it.
 // "Read the long version": the Evidence Article (LAUNCH-SPEC 25 item 3), on the last two screens.
 function ReadMore({ label, onArticle, className = "" }) {
@@ -112,7 +114,7 @@ function ShareScreen({ s, active, onInvite, onShareImage, onCopy, copied, format
       </div>
       <button type="button" className="rv-cta rv-cta--deep rv-in" onClick={onShareImage} disabled={busy}><Share size={18} aria-hidden="true" /> {UI_COPY.shareImage}</button>
       <div className="rv-actions rv-in">
-        <button type="button" className="rv-textbtn rv-pillbtn rv-pillbtn--strong" onClick={onInvite}><Users size={17} aria-hidden="true" /> {s.challenge || s.share.invite}</button>
+        <button type="button" className="rv-textbtn rv-pillbtn rv-pillbtn--strong rv-actions__wide" onClick={onInvite}><Users size={17} aria-hidden="true" /> {s.challenge || s.share.invite}</button>
         <button type="button" className="rv-textbtn rv-pillbtn" onClick={onCopy}><Link2 size={17} aria-hidden="true" /> {copied ? UI_COPY.copied : UI_COPY.copyLink}</button>
         <ReadMore label={readMore} onArticle={onArticle} />
       </div>

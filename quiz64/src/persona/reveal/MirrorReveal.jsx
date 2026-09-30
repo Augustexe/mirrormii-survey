@@ -246,7 +246,9 @@ export function IntroScreen({ s, stage, active, reduced, phase, onStart, onDone 
 
 function Pane({ half, where, box, first, sparkle }) {
   const h = box.glassH / 2;
-  const style = { left: box.glassLeft, top: where === "up" ? box.glassTop : box.mullionY, width: box.glassW, height: h };
+  // Names set a step smaller in a small glass (short phones), so kicker, name and defining line fit their half.
+  const nameSize = Math.round(Math.max(26, Math.min(32, box.glassW * 0.15)));
+  const style = { left: box.glassLeft, top: where === "up" ? box.glassTop : box.mullionY, width: box.glassW, height: h, "--rv-name-size": `${nameSize}px` };
   return (
     <span className={`rv-pane rv-pane--${where}`} style={style}>
       <span className="rv-pane__label">
@@ -282,9 +284,12 @@ export function NamesScreen({ s, stage, active, reduced, wipe, onWiped, sparkles
   const clip = archClip(box);
   // The plaque carries the finding's first sentence; the whole line waits on the findings screen.
   const plaque = s.hook ? splitInsight(s.hook).belief : "";
+  // A small glass (short phones): the halves pad less and the plaque sits on the plinth below the glass, so a
+  // three-line name and its defining line never run under the plaque (package L2).
+  const compact = box.glassW < 210;
   const keys = (s.keywords || []).map((k) => (typeof k === "string" ? k : k && (k.keyword || k.name))).filter(Boolean).slice(0, stage.h < 720 ? 4 : 6);
   return (
-    <div className="rv-names" data-wipe={wiping ? "on" : "off"} data-plaque={plaque ? "true" : "false"}>
+    <div className="rv-names" data-wipe={wiping ? "on" : "off"} data-plaque={plaque ? "true" : "false"} data-compact={compact ? "true" : undefined}>
       <StandingMirror box={box} mirror={mirror} fog={0}>
         {/* Clear glass over the room, and a soft scrim behind each block of lettering so the names read while the glass
             stays glass around them. */}
@@ -301,7 +306,7 @@ export function NamesScreen({ s, stage, active, reduced, wipe, onWiped, sparkles
       {/* One line on the mirror's foot: Genii's clearest finding, etched on a glass plaque across the plinth, so the
           screenshot carries the names and the read together. */}
       {plaque ? (
-        <p className="rv-plaque" style={{ left: box.cx - Math.min(stage.w - 32, box.glassW * 1.42) / 2, width: Math.min(stage.w - 32, box.glassW * 1.42), top: box.bottom - 14 }}>
+        <p className="rv-plaque" style={{ left: box.cx - Math.min(stage.w - 32, box.glassW * 1.42) / 2, width: Math.min(stage.w - 32, box.glassW * 1.42), top: box.bottom - (compact ? -2 : 14) }}>
           <span className="rv-plaque__line">{plaque}</span>
         </p>
       ) : null}

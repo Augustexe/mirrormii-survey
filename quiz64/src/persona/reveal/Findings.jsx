@@ -87,7 +87,7 @@ function Head({ f }) {
 export function KnowsScreen({ s }) {
   const [top, ...rest] = s.findings;
   return (
-    <div className="rv-body rv-body--knows">
+    <div className="rv-body rv-body--knows" tabIndex="0">
       <p className="rv-kicker rv-in">{s.kicker}</p>
       <h2 className="rv-title rv-in" data-focus tabIndex="-1">{s.title}</h2>
       <ol className="rv-finds">

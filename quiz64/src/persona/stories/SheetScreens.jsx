@@ -57,7 +57,7 @@ export function SheetScreen({ s }) {
   let n = 0;
   const badges = { signature: s.signature, wild: s.wild };
   return (
-    <div className="rv-body rv-body--map rv-body--cs">
+    <div className="rv-body rv-body--map rv-body--cs" tabIndex="0">
       <p className="rv-kicker rv-in">{s.kicker}</p>
       <h2 className="rv-title rv-in" data-focus tabIndex="-1">{s.title}</h2>
       {s.sub ? <p className="rv-sub rv-cs__sub rv-in">{s.sub}</p> : null}
@@ -78,7 +78,7 @@ export function SheetScreen({ s }) {
 export function CoreTraitsScreen({ s }) {
   const core = s.core || [];
   return (
-    <div className="rv-body rv-body--traits rv-body--core">
+    <div className="rv-body rv-body--traits rv-body--core" tabIndex="0">
       <p className="rv-kicker rv-in">{s.kicker}</p>
       <h2 className="rv-title rv-in" data-focus tabIndex="-1">{s.title}</h2>
       {!core.length ? (
