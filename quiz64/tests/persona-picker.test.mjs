@@ -8,6 +8,7 @@ import { restoreRun } from "../src/persona/store.js";
 import { LOBBY_COPY, VOICE_IDS, DEPTH_IDS, ROOM_IDS, ROOM_CHAPTERS, hostLine, cardVoice } from "../src/persona/lobby.js";
 import { ADULT, OTHER, clock, started, playUntil, firstOption, leaning, OPEN_LOBBY, ROOM_SETS, DEPTHS, lobbyFor } from "./persona-helpers.mjs";
 import { makePlayer, makeRandomPlayer, playPicker, simulate } from "./persona-sim.mjs";
+import { sceneRefs } from "../../research/persona-quiz-v2/final/check-bank.mjs";
 
 const { RUN_SIZE, FINALE_SIZE } = Session;
 const AXES = S.AXES;
@@ -237,7 +238,7 @@ test("exit replacement: after Skip, Not my life or No recent example, the next f
 });
 
 // ------------------------------------------------------------------------------------------------ flow rules
-test("flow: chapters in order and whole, each opened by its first authored card, feeling cards right after their card", () => {
+test("flow: chapters in order and whole, each opened by its first authored card, no feeling cards served", () => {
   for (const c of COMBOS) {
     const { state, trace } = playTraced(c.setup, lobbyFor(c.rooms, c.depth), leaning(SIGNS[1]), "flowrun01");
     const cards = runCardsOf(state);
@@ -250,13 +251,87 @@ test("flow: chapters in order and whole, each opened by its first authored card,
     for (const g of groups) {
       assert.equal(g.first.step.index, 1, `${c.name}: chapter ${g.key} starts at card 1 (its intro shows)`);
       if (g.key === "extra") continue;
-      const eligible = KIT.chapters[g.key - 1].cards.filter((x) => Session.depthAllows(x, c.depth) && !x.gateRule && x.type !== "feeling");
+      // The first authored card whose sub-question is still unused (by the sealed cards or an earlier chapter).
+      const before = new Set([...Session.finaleFor(state), ...cards.slice(0, g.first.step.resolved)].map((x) => x.sq).filter(Boolean));
+      const eligible = KIT.chapters[g.key - 1].cards.filter((x) => Session.depthAllows(x, c.depth) && !x.gateRule && x.type !== "feeling" && !(x.sq && before.has(x.sq)));
       assert.equal(g.first.step.card.id, eligible[0].id, `${c.name}: chapter ${g.key} opener`);
       assert.equal(g.first.why.rule, "opener");
     }
-    cards.forEach((card, i) => {
-      if (card.type === "feeling") assert.equal(cards[i - 1].id, card.follows, `${c.name}: ${card.id} follows ${card.follows}`);
-    });
+    // Feeling cards are off (CONFIG.serveFeeling, 2026-09-30): no route serves one.
+    assert.deepEqual(cards.filter((x) => x.type === "feeling").map((x) => x.id), [], `${c.name}: a feeling card was served`);
+  }
+});
+
+// ------------------------------------------------------------------------------------------------ one card per sub-question
+// Jerry, 2026-09-29: "I see duplicates again. The questions aren't unique." A run never serves two cards on one
+// sub-question (sq), the 8 sealed cards included. The one exception is coverage: a second card on an sq whose axis would
+// otherwise end below MIN_AXIS_CARDS (the picker marks it why.sqRepeat), never a third, never right after the card it
+// repeats, never the last run card before a sealed card on the same sq.
+test("one card per sub-question: no run repeats an sq (sealed cards included) outside the documented coverage exception", () => {
+  let runs = 0, repeatRuns = 0, repeats = 0;
+  for (const c of COMBOS) {
+    for (const [i, signs] of SIGNS.entries()) {
+      const { state, trace } = playTraced(c.setup, lobbyFor(c.rooms, c.depth), leaning(signs), `sqrun${i}0001`);
+      const route = runCardsOf(state);
+      const finale = Session.finaleFor(state);
+      runs++;
+      const seen = new Map();
+      finale.forEach((f) => { if (f.sq) { assert.ok(!seen.has(f.sq), `${c.name}: two sealed cards on ${f.sq}`); seen.set(f.sq, 1); } });
+      let any = false;
+      route.forEach((card, k) => {
+        if (!card.sq) return;
+        const n = (seen.get(card.sq) || 0) + 1;
+        seen.set(card.sq, n);
+        if (n === 1) return;
+        any = true;
+        repeats++;
+        assert.equal(n, 2, `${c.name}: ${card.id} is a third card on ${card.sq}`);
+        assert.equal(trace[k].why.sqRepeat, card.sq, `${c.name}: ${card.id} repeats ${card.sq} without the coverage exception`);
+        if (k > 0) assert.notEqual(route[k - 1].sq, card.sq, `${c.name}: ${card.id} right after a card on ${card.sq}`);
+        const axes = Session.cardAxes(card);
+        assert.ok(axes.length, `${c.name}: ${card.id} carries no axis, so it can't be a coverage repeat`);
+      });
+      if (route.length && finale.length) assert.ok(route.at(-1).sq !== finale[0].sq || !route.at(-1).sq, `${c.name}: last run card and first sealed card share an sq`);
+      if (any) repeatRuns++;
+    }
+  }
+  // The exception is rare (thin L2 sub-questions in lobbies without the work room, see SIM-REPORT / the M2 report).
+  assert.ok(repeatRuns / runs <= 0.05, `coverage repeats in ${repeatRuns} of ${runs} runs (${repeats} cards)`);
+});
+
+test("one card per sub-question: the sealed draw never repeats an sq, and every run card avoids the sealed cards' sqs", () => {
+  for (let seed = 0; seed < 400; seed++) {
+    const ids = S.drawFinale(seed, FINALE_SIZE);
+    const sqs = ids.map((id) => S.cardById[id].sq).filter(Boolean);
+    assert.equal(new Set(sqs).size, sqs.length, `seed ${seed}: ${sqs}`);
+  }
+  for (const rooms of ROOM_SETS) {
+    const state = playPicker(ADULT, lobbyFor(rooms, "anything"), makePlayer(`sealed-sq-${rooms.join("+")}`), `sealsq${rooms.length}${rooms.join("").slice(0, 6)}`);
+    const trace = Session.routeFor(state);
+    const sealed = new Set(Session.finaleFor(state).map((c) => c.sq).filter(Boolean));
+    const clash = trace.filter((c) => c.sq && sealed.has(c.sq));
+    assert.ok(clash.length <= 1, `${rooms}: run cards on sealed sqs ${clash.map((c) => c.id)}`);
+  }
+});
+
+// Feeling cards (2026-09-30): off in runs (S.CONFIG.serveFeeling), kept in the bank untouched. Every scene link the
+// checker finds either involves a feeling card (not served) or is a soft prompt overlap; no served card shares a scene
+// device or points at another card.
+test("feeling cards are not served: the switch is off, they stay in the bank, and served cards carry no hard scene link", () => {
+  assert.equal(S.CONFIG.serveFeeling, false);
+  const all = [...KIT.chapters.flatMap((ch) => ch.cards), ...KIT.extras, ...KIT.finale];
+  const feelings = all.filter((c) => c.type === "feeling");
+  assert.equal(feelings.length, 7, "the 7 feeling cards stay in the bank");
+  for (const f of feelings) assert.ok(S.cardById[f.follows], `${f.id} keeps its follows link`);
+  const isFeeling = (id) => S.cardById[id] && S.cardById[id].type === "feeling";
+  const hard = sceneRefs(all).filter((r) => r.hard && !isFeeling(r.id) && !isFeeling(r.other));
+  assert.deepEqual(hard, [], hard.map((r) => `${r.id}: ${r.what}`).join("\n"));
+  for (const c of COMBOS) {
+    for (const [i, signs] of SIGNS.entries()) {
+      const { state } = playTraced(c.setup, lobbyFor(c.rooms, c.depth), leaning(signs), `nofeel${i}${c.name.length}`);
+      assert.deepEqual(Session.routeFor(state).filter((x) => x.type === "feeling").map((x) => x.id), [], c.name);
+      assert.deepEqual(Session.poolFor(state).filter((x) => x.type === "feeling").map((x) => x.id), [], c.name);
+    }
   }
 });
 

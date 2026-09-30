@@ -3,9 +3,19 @@
 // state; every write goes through the same step machine, and a restored save is replayed through it before use.
 //
 // The picker (2026-09-28) replaces the fixed chapter walk. It serves exactly RUN_SIZE cards from the eligible pool
-// (open chapters plus the extras, after depth, gate and feeling rules), then the 8 finale cards drawn from the sealed
-// pool. Picks are deterministic: the same run id and the same answers always give the same route and the same finale,
+// (open chapters plus the extras, after depth and gate rules; feeling cards only with S.CONFIG.serveFeeling), then the
+// 8 finale cards drawn from the sealed pool. Picks are deterministic: the same run id and the same answers always give the same route and the same finale,
 // so a save can be replayed. There is no age question and no age-based content (LAUNCH-SPEC section 22).
+//
+// One card per sub-question (M2, 2026-09-29): every card is built from a sub-question (`sq`, subquestions.json), and a
+// run never serves two cards on one sq, counting the 8 sealed cards (drawn first, so their sqs are taken before the
+// first pick). The only exception is coverage: when an axis would otherwise end below MIN_AXIS_CARDS, a second card on
+// an sq that carries that axis may be served, never right after the card it repeats.
+//
+// Feeling cards are not served (S.CONFIG.serveFeeling = false, score-core.mjs, 2026-09-30): they score nothing (weight
+// 0) and every option already records its emotion, so the picker leaves them out of every group. They stay in the bank
+// untouched. Setting the flag to true restores the earlier rule: a feeling card plays right after the picked card it
+// follows (`follows`), as a follow-up to that same moment, so it does not count as a second card on its sub-question.
 import { S, KIT, KIT_ID } from "./kit.js";
 import { sha256Hex, canonicalJSON } from "./sha256.js";
 import { VOICE_IDS, DEPTH_IDS, ROOM_IDS, ROOM_CHAPTERS, LOBBY_DEFAULTS, cardVoice } from "./lobby.js";
@@ -19,7 +29,7 @@ export const STORAGE_KEY = "genii.persona.v2.run";
 export const EXITS = Object.freeze(["skip", "not_my_life", "no_recent"]);
 export const MAX_MS = 600000;
 
-// Scored cards per run (feeling follow-ups included, see PERSONA-MVP.md), then the finale.
+// Scored cards per run (feeling follow-ups included when S.CONFIG.serveFeeling is on), then the finale.
 export const RUN_SIZE = 40;
 // Sealed cards per run, drawn from the sealed pool (kit.finale) by the run id.
 export const FINALE_SIZE = Math.min(S.CONFIG.finaleSize, KIT.finale.length);
@@ -173,7 +183,7 @@ function planFor(state) {
   const key = `${runId}|${lobby.depth}|${lobby.rooms.join(",")}`;
   const hit = PLANS.get(key);
   if (hit) return hit;
-  const allowed = S.runCards(setup).filter((c) => depthAllows(c, lobby.depth));
+  const allowed = S.runCards(setup).filter((c) => depthAllows(c, lobby.depth) && (S.CONFIG.serveFeeling || c.type !== "feeling"));
   const open = openChapterIds(lobby);
   const groups = open.map((n, i) => ({ key: n, ordinal: i + 1, cards: allowed.filter((c) => c.chapter === n) }));
   groups.push({ key: "extra", ordinal: null, cards: KIT.extras.filter((c) => depthAllows(c, lobby.depth)) });
@@ -183,7 +193,6 @@ function planFor(state) {
   // Rounds from every group the picker serves (chapters and extras), so a round id on any served card resolves.
   const rounds = new Map();
   for (const g of groups) for (const c of g.cards) if (c.round) rounds.set(c.round, [...(rounds.get(c.round) || []), c.id]);
-  const feelingFor = new Map(allowed.filter((c) => c.type === "feeling" && c.follows).map((c) => [c.follows, c]));
   const r = S.rng(parseInt(sha256Hex(`genii.picker|${runId}`).slice(0, 8), 16));
   const jitter = new Map();
   for (const g of groups) for (const c of g.cards) jitter.set(c.id, r());
@@ -194,7 +203,10 @@ function planFor(state) {
   const rf = S.rng(parseInt(sha256Hex(`genii.picker.focus|${runId}`).slice(0, 8), 16));
   const ranked = [...pairCards.keys()].sort().map((p) => [p, rf()]).sort((a, b) => b[1] - a[1]);
   const focus = new Map(ranked.map(([p], i) => [p, i < FOCUS_PAIRS ? 1 : 0]));
-  const plan = { groups, order, group, rounds, feelingFor, jitter, pairCards, focus, chapterCount: open.length, finaleFirst: finaleFor(state)[0] || null };
+  const feelingFor = new Map(allowed.filter((c) => c.type === "feeling" && c.follows).map((c) => [c.follows, c]));
+  // Sub-questions the sealed cards take (drawn before the run, so no run card may use them).
+  const finaleSq = new Set(finaleFor(state).map((c) => c.sq).filter(Boolean));
+  const plan = { groups, order, group, rounds, feelingFor, jitter, pairCards, focus, chapterCount: open.length, finaleFirst: finaleFor(state)[0] || null, finaleSq };
   if (PLANS.size > 64) PLANS.delete(PLANS.keys().next().value);
   PLANS.set(key, plan);
   return plan;
@@ -206,7 +218,7 @@ export const PICK_WEIGHTS = Object.freeze({
   coverage: 20, // per missing valid card on a short axis the card evidences
   urgent: 100, // a short axis only this group can still cover
   balance: 6, // divided by (1 + valid cards already on the axis) squared
-  pairPush: 8, // a tag pair the player leans on that has not fired yet (this card can push it over)
+  pairPush: 16, // a tag pair the player leans on that has not fired yet (this card can push it over); 8 before one card per sub-question
   pairOpen: 2, // a tag pair with no evidence yet that a later card can still complete
   pairDone: 0.5, // a tag pair that already has enough to fire
   exitSameAxis: 50, // after an exit: the card evidences the exited card's axis
@@ -232,10 +244,10 @@ function pairReach(card, pair) {
 export const FOCUS_PAIRS = 10;
 
 function freshCtx() {
-  return { served: [], ans: {}, valid: Object.fromEntries(AXES.map((a) => [a, 0])), pairs: {}, g: -1, gCount: 0, gQuota: 0, sizes: {}, round: null, timed: [] };
+  return { served: [], ans: {}, valid: Object.fromEntries(AXES.map((a) => [a, 0])), pairs: {}, g: -1, gCount: 0, gQuota: 0, sizes: {}, round: null, timed: [], sqs: {}, repeats: [] };
 }
 function cloneCtx(c) {
-  return { ...c, served: [...c.served], ans: { ...c.ans }, valid: { ...c.valid }, pairs: { ...c.pairs }, sizes: { ...c.sizes }, round: c.round ? { ...c.round, members: [...c.round.members] } : null, timed: [...c.timed] };
+  return { ...c, served: [...c.served], ans: { ...c.ans }, valid: { ...c.valid }, pairs: { ...c.pairs }, sizes: { ...c.sizes }, round: c.round ? { ...c.round, members: [...c.round.members] } : null, timed: [...c.timed], sqs: { ...c.sqs }, repeats: [...c.repeats] };
 }
 
 const needOf = (ctx) => Object.fromEntries(AXES.map((a) => [a, Math.max(0, MIN_AXIS_CARDS - ctx.valid[a])]));
@@ -245,24 +257,35 @@ function gateOk(card, ctx, state) {
   if (!ctx.ans[card.gateRule.card]) return false;
   return S.gateOpen(card, { [card.gateRule.card]: state.answers[card.gateRule.card] });
 }
-// A card the picker may still choose freely (feeling cards only ever follow their card).
-const choosable = (card, ctx, state) => !ctx.ans[card.id] && card.type !== "feeling" && gateOk(card, ctx, state);
+// A card the coverage exception could still serve: unserved, gate open, its sub-question used exactly once.
+const repeatable = (plan, card, ctx, state) => !ctx.ans[card.id] && card.type !== "feeling" && gateOk(card, ctx, state) && sqUses(plan, card, ctx) === SQ_MAX;
+// Cards already on this card's sub-question in the run: served cards plus the run's sealed cards.
+export const SQ_MAX = 1;
+const sqUses = (plan, card, ctx) => (card.sq ? (ctx.sqs[card.sq] || 0) + (plan.finaleSq.has(card.sq) ? 1 : 0) : 0);
+const sqFree = (plan, card, ctx) => sqUses(plan, card, ctx) < SQ_MAX;
+// A card the picker may still choose freely: unserved, its gate open, its sub-question unused (feeling cards are
+// served by their own rule, see pickInGroup).
+const choosable = (plan, card, ctx, state) => !ctx.ans[card.id] && card.type !== "feeling" && gateOk(card, ctx, state) && sqFree(plan, card, ctx);
 
-function supply(plan, ctx, state, from, to) {
+// repeatOk: also count cards the coverage exception could still serve (a second card on a used sub-question); used
+// for the bonus cards, which are the designed fallback for a short side.
+function supply(plan, ctx, state, from, to, repeatOk = false) {
   const out = Object.fromEntries(AXES.map((a) => [a, 0]));
   const sure = Object.fromEntries(AXES.map((a) => [a, 0]));
-  let count = 0;
+  // One card per sub-question: cards on one sq count once, with the best share any of them gives each axis.
+  const bySq = new Map();
   for (let gi = from; gi < to; gi++) {
     for (const c of plan.groups[gi].cards) {
-      if (!choosable(c, ctx, state)) continue;
-      count++;
+      if (!choosable(plan, c, ctx, state) && !(repeatOk && repeatable(plan, c, ctx, state))) continue;
+      const k = c.sq || c.id;
+      if (!bySq.has(k)) bySq.set(k, {});
+      const best = bySq.get(k);
       // An axis counts by how surely an answer to the card covers it (a card with the axis on 2 of 5 options is 0.4).
-      for (const a of infoOf(c).axes) {
-        out[a] += infoOf(c).share[a];
-        if (infoOf(c).share[a] === 1) sure[a]++;
-      }
+      for (const a of infoOf(c).axes) best[a] = Math.max(best[a] || 0, infoOf(c).share[a]);
     }
   }
+  const count = bySq.size;
+  for (const best of bySq.values()) for (const [a, v] of Object.entries(best)) { out[a] += v; if (v === 1) sure[a]++; }
   // axes: expected cover (by share); sure: cards whose every scoring answer covers the axis (used to reserve slots).
   return { axes: out, sure, count };
 }
@@ -276,11 +299,11 @@ function startGroup(plan, ctx, state, gi, R) {
   ctx.gCount = 0;
   ctx.round = null;
   const last = plan.groups.length - 1;
-  const here = supply(plan, ctx, state, gi, gi + 1);
+  const here = supply(plan, ctx, state, gi, gi + 1, gi === last);
   if (gi === last) { ctx.gQuota = Math.min(R, here.count); return; }
   const later = supply(plan, ctx, state, gi + 1, last);
   const chapters = supply(plan, ctx, state, gi, last);
-  const extras = supply(plan, ctx, state, last, last + 1);
+  const extras = supply(plan, ctx, state, last, last + 1, true);
   const need = needOf(ctx);
   const reserve = AXES.reduce((s, a) => s + Math.ceil(Math.min(extras.axes[a], Math.max(0, need[a] - chapters.sure[a]))), 0);
   const avail = R - reserve;
@@ -294,7 +317,10 @@ function quotaLeft(plan, ctx, state, R) {
   const last = plan.groups.length;
   const here = supply(plan, ctx, state, ctx.g, ctx.g + 1);
   const cur = here.axes;
-  const later = supply(plan, ctx, state, ctx.g + 1, last).axes;
+  // Later groups: the chapters' unused sub-questions, and the bonus cards including the coverage exception's repeats.
+  const laterCh = ctx.g + 1 < last - 1 ? supply(plan, ctx, state, ctx.g + 1, last - 1).axes : Object.fromEntries(AXES.map((a) => [a, 0]));
+  const laterX = ctx.g < last - 1 ? supply(plan, ctx, state, last - 1, last, true).axes : Object.fromEntries(AXES.map((a) => [a, 0]));
+  const later = Object.fromEntries(AXES.map((a) => [a, laterCh[a] + laterX[a]]));
   const need = needOf(ctx);
   // Slots kept for later groups: what this group cannot surely cover itself.
   const laterNeed = AXES.reduce((s, a) => s + Math.ceil(Math.min(later[a], Math.max(0, need[a] - here.sure[a]))), 0);
@@ -309,7 +335,7 @@ const clash = (a, b) => {
 
 function nextOpener(plan, ctx, state) {
   for (let gi = ctx.g + 1; gi < plan.groups.length - 1; gi++) {
-    const c = plan.groups[gi].cards.find((x) => choosable(x, ctx, state));
+    const c = plan.groups[gi].cards.find((x) => choosable(plan, x, ctx, state));
     if (c) return c;
   }
   return null;
@@ -333,23 +359,48 @@ function pickInGroup(plan, ctx, state, R) {
   const prevAns = prevId ? ctx.ans[prevId] : null;
   const shortfall = AXES.reduce((s, a) => s + q.need[a], 0);
 
-  // A feeling card plays right after the picked moment it follows, when the budget is not needed for coverage.
+  // Only with S.CONFIG.serveFeeling (off): a feeling card plays right after the picked moment it follows, when the
+  // budget is not needed for coverage. With the flag off, feelingFor is empty (planFor leaves feeling cards out).
   const feeling = prevId ? plan.feelingFor.get(prevId) : null;
   if (feeling && prevAns.picked && !ctx.ans[feeling.id] && plan.group.get(feeling.id) === ctx.g && R > shortfall) return mkPick(plan, ctx, feeling, size, null, { rule: "feeling" });
 
   const cands = [];
   for (const card of group.cards) {
-    if (!choosable(card, ctx, state)) continue;
+    if (!choosable(plan, card, ctx, state)) continue;
     if (card.round) {
-      const members = plan.rounds.get(card.round).filter((id) => plan.group.get(id) === ctx.g);
-      if (members[0] !== card.id || members.some((id) => ctx.ans[id])) continue;
+      const all = plan.rounds.get(card.round).filter((id) => plan.group.get(id) === ctx.g);
+      if (all.some((id) => ctx.ans[id])) continue;
+      // A round plays the cards whose sub-questions are still unused (and distinct), in authored order, from the first.
+      const seen = new Set();
+      const members = all.filter((id) => {
+        const m = S.cardById[id];
+        if (!choosable(plan, m, ctx, state) || (m.sq && seen.has(m.sq))) return false;
+        if (m.sq) seen.add(m.sq);
+        return true;
+      });
+      if (members[0] !== card.id) continue;
       // A round can be played whole or cut short (its first one or two cards), so chapters pack flexibly.
       for (let k = members.length; k >= 1; k--) cands.push({ card, members, k, round: true });
     } else cands.push({ card, members: [card.id], k: 1 });
   }
+  // Coverage exception: an axis whose unused sub-questions can no longer reach MIN_AXIS_CARDS may take a second card
+  // on a sub-question that carries it (never a third, never right after the card it repeats, never the last run card
+  // before a sealed card on the same sq).
+  const thin = new Set(AXES.filter((a) => q.need[a] > 0 && q.cur[a] + q.later[a] < q.need[a]));
+  if (thin.size) {
+    for (const card of group.cards) {
+      if (ctx.ans[card.id] || card.type === "feeling" || !gateOk(card, ctx, state) || sqFree(plan, card, ctx)) continue;
+      if (sqUses(plan, card, ctx) > SQ_MAX || (prev && prev.sq === card.sq)) continue;
+      if (card.round && plan.rounds.get(card.round).filter((id) => plan.group.get(id) === ctx.g)[0] !== card.id) continue;
+      if (R === 1 && plan.finaleFirst && plan.finaleFirst.sq === card.sq) continue;
+      if (![...infoOf(card).axes].some((a) => thin.has(a))) continue;
+      cands.push({ card, members: [card.id], k: 1, repeat: true });
+    }
+  }
   if (!cands.length) return null;
 
   const start = (u, k, why) => {
+    if (u.repeat) why = { ...why, sqRepeat: u.card.sq };
     if (k > 1) { ctx.round = { members: u.members.slice(0, k), pos: 0 }; return mkPick(plan, ctx, u.card, size, { index: 1, size: k }, why); }
     return mkPick(plan, ctx, u.card, size, u.card.round ? { index: 1, size: 1 } : null, why);
   };
@@ -401,26 +452,45 @@ function pickInGroup(plan, ctx, state, R) {
   const light = rushedStreak ? pool.filter((u) => F1(u) && LIGHT_TYPES.includes(u.card.type)) : [];
   if (light.length) pool = light;
   const why = { rule: "pick", rushed: rushedStreak, lightOffered: light.length > 0, exitAxes: exitAxes ? [...exitAxes] : [], sameAxisOffered: sameAxis.length > 0 };
+  // A repeat only when it is the one way left to cover a thin axis: drop repeat units whenever a fresh unit carries
+  // every thin axis they would.
+  if (thin.size && pool.some((u) => u.repeat)) {
+    const fresh = pool.filter((u) => !u.repeat);
+    const freshAxes = new Set(fresh.flatMap((u) => [...axesOf(u)]));
+    pool = pool.filter((u) => !u.repeat || [...infoOf(u.card).axes].some((a) => thin.has(a) && !freshAxes.has(a)));
+  }
   // Rarely a receipts card right after a bet (or back): preferred against whenever another unit keeps the rules.
   const F4 = (u) => !(prev && SPREAD_TYPES.includes(u.card.type) && SPREAD_TYPES.includes(prev.type));
   const strict = pool.filter((u) => F1(u) && F2(u) && F3(u));
-  const apart = strict.filter(F4);
-  if (apart.length) pool = apart;
-  else if (strict.length) pool = strict;
+  // One card per sub-question leaves chapters fewer cards: when nothing here keeps the flow rules, the chapter closes
+  // early and hands its slots on, as long as the later groups can still fill the run.
+  const canClose = group.key !== "extra" && !cands.some((u) => u.repeat) && supply(plan, ctx, state, ctx.g + 1, plan.groups.length).count >= R + CLOSE_SLACK;
+  const nextFirst = group.key === "extra" ? null : nextOpener(plan, ctx, state);
+  if (!strict.length && prev && canClose && !clash(prev, nextFirst)) return null;
+  if (strict.length) pool = strict;
   else {
     const typeFine = pool.filter((u) => F1(u) && F3(u));
     if (typeFine.length) pool = typeFine;
     else { const typeOnly = pool.filter(F1); if (typeOnly.length) pool = typeOnly; }
   }
-  // Sequencing: prefer a unit after which the rest of this chapter can still be ordered without breaking the type
-  // and neighbour rules, ending clear of the next chapter's opener (or the finale); failing that, without the border.
-  if (pool.length > 1) {
-    const border = group.key === "extra" || R <= left ? plan.finaleFirst : nextOpener(plan, ctx, state);
-    const clean = (withBorder) => pool.filter((u) => sequenceable(u, cands, left, withBorder ? border : null));
-    const withB = clean(true);
-    if (withB.length) pool = withB;
+  // Sequencing: prefer a unit after which the rest of this chapter can still be ordered without breaking the type,
+  // neighbour and spread rules, ending clear of the next chapter's opener (or the finale). Failing that, close the
+  // chapter here when its last card is clear of the next opener, or pick a unit after which it can close early, clear
+  // of it; failing that, drop the border.
+  const border = group.key === "extra" || R <= left ? plan.finaleFirst : nextFirst;
+  const recent = ctx.served.slice(-SPREAD_WINDOW).map((id) => S.cardById[id].type);
+  const clean = (withBorder, close = false) => pool.filter((u) => sequenceable(u, cands, left, withBorder ? border : null, close ? nextFirst : undefined, recent));
+  const withB = clean(true);
+  if (withB.length) pool = withB;
+  else {
+    if (canClose && prev && border === nextFirst && !clash(prev, nextFirst)) return null;
+    const early = canClose ? clean(true, true) : [];
+    if (early.length) pool = early;
     else { const noB = clean(false); if (noB.length) pool = noB; }
   }
+  // Rarely a receipts card right after a bet (or back): preferred against whenever another unit keeps the rules.
+  const apart = pool.filter(F4);
+  if (apart.length) pool = apart;
   let partial = false;
   if (!pool.length) { pool = cands.filter((u) => u.k > left); partial = true; why.rule = "partial"; }
   if (!pool.length) return null;
@@ -442,7 +512,7 @@ function pickInGroup(plan, ctx, state, R) {
       const pe = ctx.pairs[p];
       if (pe && Math.abs(pe.net) >= S.CONFIG.tagFire && pe.cards >= S.CONFIG.tagMinCards) return PICK.pairDone;
       if (pe && pe.net !== 0) return PICK.pairPush;
-      return (plan.pairCards.get(p) || []).some((x) => x.id !== c.id && choosable(x, ctx, state)) ? PICK.pairOpen : 0;
+      return (plan.pairCards.get(p) || []).some((x) => x.id !== c.id && choosable(plan, x, ctx, state)) ? PICK.pairOpen : 0;
     }).sort((a, b) => b - a);
     // Focus counts by how much this one card can move the focused pair (its best support toward either side, as a share
     // of what firing a tag takes), so the cards that evidence a pair best are the ones served for it.
@@ -478,26 +548,47 @@ function pickInGroup(plan, ctx, state, R) {
   return start(best, partial ? left : best.k, why);
 }
 
+// A chapter closes early only when the later groups keep CLOSE_SLACK spare cards beyond the slots left (their quotas
+// and flow rules rarely use every card). Without the margin a skip-heavy run in a four-chapter lobby closed chapter 1
+// after 3 cards, then served two bets in a row and ended a card short (P0, 2026-09-30).
+const CLOSE_SLACK = 2;
+
 // Can the chapter's remaining slots be filled, after unit u, by other units in an order that keeps both flow rules
 // between neighbours (rounds are whole and keep their authored inner order), and end clear of the border card? Depth-first with
 // memo; a chapter has at most 10 units.
-function sequenceable(u, cands, left, border) {
+// closeBorder (optional): the chapter may also end early, before its slots are used up, when its last card is clear
+// of this card (the next chapter's opener).
+const SEQ_BUDGET = 2000;
+function sequenceable(u, cands, left, border, closeBorder, recent = []) {
+  // One card per sub-question: units that share a sub-question with u, or with each other, never both fill slots.
+  const sqsOf = (v, k = v.k) => new Set(v.members.slice(0, k).map((id) => S.cardById[id].sq).filter(Boolean));
+  const uSq = sqsOf(u, Math.min(u.k, left));
+  const meets = (a, b) => [...a].some((x) => b.has(x));
   // Units that start at the same card (a round and its shorter cuts) are used at most once, together.
-  const units = cands.filter((v) => v.card !== u.card);
-  const groupUsed = (i) => units.reduce((m, v, j) => (v.card === units[i].card ? m | (1 << j) : m), 0);
+  const units = cands.filter((v) => v.card !== u.card && !v.repeat && !meets(sqsOf(v), uSq));
+  const unitSq = units.map((v) => sqsOf(v));
+  const masks = units.map((_, i) => units.reduce((m, v, j) => (v.card === units[i].card || meets(unitSq[i], unitSq[j]) ? m | (1 << j) : m), 0));
+  const groupUsed = (i) => masks[i];
   const lastOf = (v, k) => S.cardById[v.members[k - 1]];
-  const ok = (a, b) => a.type !== b.type && !flowShare(a, b);
+  // The spread rule too: no receipts or bet card within SPREAD_WINDOW cards of another one of its format.
+  const ok = (a, b, win) => a.type !== b.type && !flowShare(a, b) && !(SPREAD_TYPES.includes(b.type) && win.includes(b.type));
+  // The window only matters for the spread formats, so every other format is kept as "-" (a smaller search memo).
+  const push = (win, v, k) => [...win, ...v.members.slice(0, k).map((id) => (SPREAD_TYPES.includes(S.cardById[id].type) ? S.cardById[id].type : "-"))].slice(-SPREAD_WINDOW);
   const memo = new Map();
-  const dfs = (last, used, slots) => {
+  // A search budget keeps a crowded chapter from stalling the step machine: past it, the unit counts as not sequenceable.
+  let budget = SEQ_BUDGET;
+  const dfs = (last, used, slots, win) => {
     if (slots === 0) return !border || !clash(last, border);
-    const key = `${last.id}|${used}|${slots}`;
+    if (--budget < 0) return false;
+    if (closeBorder !== undefined && !clash(last, closeBorder)) return true;
+    const key = `${last.id}|${used}|${slots}|${win.join(",")}`;
     if (memo.has(key)) return memo.get(key);
     let found = false;
     for (let i = 0; i < units.length && !found; i++) {
       if (used & groupUsed(i)) continue;
       const v = units[i];
-      if (v.k > slots || !ok(last, v.card)) continue; // a round is only cut short when nothing else fits
-      found = dfs(lastOf(v, v.k), used | groupUsed(i), slots - v.k);
+      if (v.k > slots || !ok(last, v.card, win)) continue; // a round is only cut short when nothing else fits
+      found = dfs(lastOf(v, v.k), used | groupUsed(i), slots - v.k, push(win, v, v.k));
     }
     memo.set(key, found);
     return found;
@@ -505,8 +596,9 @@ function sequenceable(u, cands, left, border) {
   const k = Math.min(u.k, left);
   const after = left - k;
   const available = [...new Set(units.map((v) => v.card))].reduce((n, c) => n + Math.max(...units.filter((v) => v.card === c).map((v) => v.k)), 0);
+  // (an upper bound: units that share a sub-question are counted separately here; the search below keeps them apart)
   if (after > available) return false; // the chapter could no longer fill its slots (a round cut too short)
-  return dfs(lastOf(u, k), 0, after);
+  return dfs(lastOf(u, k), 0, after, push(recent.map((t) => (SPREAD_TYPES.includes(t) ? t : "-")), u, k));
 }
 
 function advance(plan, ctx, state) {
@@ -528,12 +620,31 @@ function advance(plan, ctx, state) {
     const pick = pickInGroup(plan, ctx, state, R);
     if (pick) return pick;
   }
-  return null;
+  return fillPick(plan, ctx, state);
+}
+
+// Safety net: every run serves exactly RUN_SIZE cards. When no group can serve a fresh card, the bonus group serves a
+// second card on a used sub-question (never a third, never right after the card it repeats), marked like a coverage
+// repeat. Not reached by any simulated lobby (P0, 2026-09-30); it only keeps the run length fixed.
+function fillPick(plan, ctx, state) {
+  const last = plan.groups.length - 1;
+  if (ctx.g !== last || plan.groups[last].key !== "extra") return null;
+  const prev = ctx.served.length ? S.cardById[ctx.served[ctx.served.length - 1]] : null;
+  const ok = plan.groups[last].cards.filter((c) => !ctx.ans[c.id] && c.type !== "feeling" && gateOk(c, ctx, state) && sqUses(plan, c, ctx) <= SQ_MAX && !(prev && c.sq && prev.sq === c.sq));
+  if (!ok.length) return null;
+  const rank = (c) => (prev && c.type === prev.type ? 2 : 0) + (prev && flowShare(prev, c) ? 1 : 0);
+  const card = [...ok].sort((a, b) => rank(a) - rank(b) || plan.jitter.get(a.id) - plan.jitter.get(b.id))[0];
+  return mkPick(plan, ctx, card, ctx.gCount + 1, card.round ? { index: 1, size: 1 } : null, { rule: "fill", ...(sqUses(plan, card, ctx) ? { sqRepeat: card.sq } : {}) });
 }
 
 // Records one answered card in the picker's running tallies (valid axis cards, tag pair evidence, exits, timing).
 function apply(plan, ctx, pick, raw, ms) {
   const card = pick.card;
+  // A feeling follow-up (only with S.CONFIG.serveFeeling) belongs to the moment it follows: not a second card on its sq.
+  if (card.sq && card.type !== "feeling") {
+    if (ctx.sqs[card.sq] || plan.finaleSq.has(card.sq)) ctx.repeats.push(card.id);
+    ctx.sqs[card.sq] = (ctx.sqs[card.sq] || 0) + 1;
+  }
   ctx.served.push(card.id);
   ctx.gCount++;
   if (ctx.round) ctx.round.pos++;
@@ -602,13 +713,17 @@ export function routeFor(state) {
 }
 
 // Every card this player could still be served or has been served: open chapters and extras after the depth filter,
-// gated cards only once their gate is open, feeling cards only after a picked moment they follow.
+// gated cards only once their gate is open, and no unserved card on a sub-question the run already used (the sealed
+// cards' included). The coverage exception (pickInGroup) can still serve one of those; routeFor shows it once served.
+// Feeling cards only with S.CONFIG.serveFeeling, and then only after a picked moment they follow.
 export function poolFor(state) {
   if (!state.setup || !state.lobby) return [];
   const plan = planFor(state);
   const w = walk(state);
   return plan.groups.flatMap((g) => g.cards).filter((c) => {
+    if (w.ctx.ans[c.id]) return true;
     if (c.type === "feeling") return !!w.ctx.ans[c.follows] && w.ctx.ans[c.follows].picked;
+    if (!sqFree(plan, c, w.ctx)) return false;
     return gateOk(c, w.ctx, state);
   });
 }

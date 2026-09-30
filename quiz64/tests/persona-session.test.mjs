@@ -62,32 +62,33 @@ test("one bank for everyone: the setup never changes the route; Keep it light sk
   for (const c of KIT.chapters.flatMap((ch) => ch.cards)) assert.ok(!("teen" in c) && !("teenPrompt" in c), c.id);
 });
 
-// Build C removed the kids gate (C3-8/C3-9): no card is gated, so the pool is every open card after the depth filter
-// (feeling cards join after their moment). The scorer's gate support is tested on a fixture in the kit tests.
-test("no gated cards: the pool is every open chapter card and extra after the depth filter", () => {
+// Build C removed the kids gate (C3-8/C3-9): no card is gated, so the pool is every open card after the depth filter,
+// less the cards on a sub-question the run's sealed cards already take (one card per sub-question, M2) and less the
+// feeling cards (not served, S.CONFIG.serveFeeling off). The scorer's gate support is tested on a fixture in the kit tests.
+test("no gated cards: the pool is every open chapter card and extra after the depth filter, less the sealed cards' sub-questions", () => {
   const cards = [...KIT.chapters.flatMap((c) => c.cards), ...KIT.extras];
   assert.deepEqual(cards.filter((c) => c.gateRule).map((c) => c.id), []);
   const s = started(ADULT, "poolrun01", lobbyFor(["work"], "light"));
   const open = new Set(Session.openChapterIds(s.lobby));
-  const want = cards.filter((c) => (c.chapter === "extra" || open.has(c.chapter)) && Session.depthAllows(c, "light") && c.type !== "feeling").map((c) => c.id).sort();
+  const sealed = new Set(Session.finaleFor(s).map((c) => c.sq).filter(Boolean));
+  assert.ok(sealed.size > 0);
+  const want = cards.filter((c) => (c.chapter === "extra" || open.has(c.chapter)) && Session.depthAllows(c, "light") && c.type !== "feeling" && !(c.sq && sealed.has(c.sq))).map((c) => c.id).sort();
   assert.deepEqual(Session.poolFor(s).map((c) => c.id).sort(), want);
 });
 
-test("a feeling card joins the pool after a picked moment; after an exit it is left out", () => {
-  // The first feeling card whose moment some run serves.
+test("feeling cards never join the pool, not even after a picked moment they follow (S.CONFIG.serveFeeling off)", () => {
+  assert.equal(S.CONFIG.serveFeeling, false);
   let card = null, before = null;
   for (const f of KIT.chapters.flatMap((c) => c.cards).filter((c) => c.type === "feeling" && c.privacy === "normal")) {
     before = reach(f.follows, { tries: 30 });
     if (before) { card = f; break; }
   }
-  assert.ok(before, "some run serves a moment with a feeling card");
-  const at = (value) => {
-    const s = Session.answerCard(before, card.follows, value, { ms: 3000, now: clock() });
-    // Eligible after a picked moment; it plays next when the chapter still has a slot (see persona-picker tests).
-    return Session.poolFor(s).some((c) => c.id === card.id);
-  };
-  assert.equal(at(S.cardById[card.follows].options.findIndex((o) => !o.circumstance)), true);
-  for (const exit of S.cardById[card.follows].exits) assert.equal(at(exit), false, exit);
+  assert.ok(before, "some run serves a moment that has a feeling card");
+  const moment = S.cardById[card.follows];
+  const s = Session.answerCard(before, moment.id, moment.options.findIndex((o) => !o.circumstance), { ms: 3000, now: clock() });
+  assert.equal(Session.poolFor(s).some((c) => c.id === card.id), false);
+  const next = Session.currentStep(s);
+  assert.ok(next.kind !== "card" || next.card.id !== card.id, `${card.id} served after ${moment.id}`);
 });
 
 test("answers are validated per card: exits, pick two, depends follow-ups, order and timing", () => {
@@ -188,7 +189,16 @@ function avoidAxis(axis) {
 }
 
 test("an unfinished side gets 1 or 2 extra cards for that side only, then Genii locks", () => {
-  let s = playUntil(started(ADULT, "extrarun1"), avoidAxis("R1"), (step) => step.kind === "card" && step.phase === "extra");
+  // One card per sub-question (M2) leaves some routes short on a second side too (then the extras rightly serve both),
+  // so the first run id where R1 is the only short side at the bonus cards is used.
+  let s = null;
+  for (let k = 1; k < 40 && !s; k++) {
+    const x = playUntil(started(ADULT, `extrarun${k}`), avoidAxis("R1"), (step) => step.kind === "card" && step.phase === "extra");
+    const p = Session.profileFor(x);
+    const at = Session.currentStep(x);
+    if (at.kind === "card" && at.resolved <= Session.RUN_SIZE - 2 && p.axes.R1.cards === 0 && S.AXES.filter((a) => p.axes[a].unfinished).join() === "R1") s = x;
+  }
+  assert.ok(s, "a route reaches the bonus cards with only R1 short, no R1 card yet and two slots left");
   const step = Session.currentStep(s);
   assert.equal(step.card.axisFor, "R1");
   assert.equal(Session.profileFor(s).axes.R1.unfinished, true);
@@ -215,12 +225,13 @@ test("an unfinished side gets 1 or 2 extra cards for that side only, then Genii 
     keep = null;
     const x = playUntil(started(ADULT, `extraone${k}`), keepOne, (st) => st.kind !== "card" || st.phase !== "chapter");
     const st = Session.currentStep(x);
-    if (st.kind === "card" && st.phase === "extra" && Session.profileFor(x).axes.R1.cards === 1) t = x;
+    const px = Session.profileFor(x);
+    if (st.kind === "card" && st.phase === "extra" && st.resolved === Session.RUN_SIZE - 1 && px.axes.R1.cards === 1 && S.AXES.filter((a) => px.axes[a].unfinished).join() === "R1") t = x;
   }
-  assert.ok(t, "a route reaches the bonus cards with one valid R1 card");
+  assert.ok(t, "a route reaches the bonus cards with one valid R1 card and no other short side");
   const offered2 = [];
   t = playUntil(t, (card, st) => { if (st.phase === "extra") offered2.push(card.id); return firstOption(card); }, (st) => st.kind === "lock");
-  assert.equal(offered2.length, 1);
+  assert.equal(offered2.length, 1, `offered ${offered2}`);
   assert.equal(S.cardById[offered2[0]].axisFor, "R1");
   assert.equal(Session.profileFor(t).axes.R1.unfinished, false);
 
