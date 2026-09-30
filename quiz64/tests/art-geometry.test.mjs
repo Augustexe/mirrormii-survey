@@ -139,7 +139,7 @@ test("deviceFor maps every fp.device in the bank to a family or an intentional c
   }
   if (unmapped.length) t.diagnostic(`absurd devices mapped by keyword, not yet in DEVICE_TABLE: ${[...new Set(unmapped)].join(", ")}`);
   for (const family of Object.values(DEVICE_TABLE)) assert.ok(family === "chapter" || DEVICE_FAMILIES.includes(family), family);
-  assert.equal(DEVICE_FAMILIES.length, 23);
+  assert.equal(DEVICE_FAMILIES.length, 24);
 });
 
 test("every device family has a glyph; removed cards' devices are gone; unknown devices still get a glyph or vignette", async (t) => {
@@ -161,6 +161,7 @@ test("every device family has a glyph; removed cards' devices are gone; unknown 
   assert.equal(deviceFor({ id: "S-132", type: "sealed", world: "absurd", fp: { device: "achievement-mountain" } }), "mountain");
   assert.equal(deviceFor({ id: "C3-80", chapter: 3, world: "absurd", fp: { device: "two-person-sweater" } }), "yarn");
   assert.equal(deviceFor({ id: "C5-126", chapter: 5, world: "absurd", fp: { device: "snail-racer" } }), "shell");
+  assert.equal(deviceFor({ id: "C4-53", chapter: 4, world: "absurd", fp: { device: "balloon-date-bill" } }), "balloon");
 });
 
 test("no lamp and no genie: Genii is a slime, so no device family, glyph or keyword draws a lamp (round 2)", () => {

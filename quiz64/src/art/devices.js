@@ -33,6 +33,7 @@ export const DEVICE_FAMILIES = [
   "mountain", // a peak with a summit flag: a hill that grows, a climb
   "yarn", // ball of yarn and needles: knitting, a shared sweater
   "shell", // a spiral shell with speed streaks: a snail race (never a face)
+  "balloon", // a hot-air balloon with its basket: a sky-high date (and the bill on landing)
 ];
 
 // Every absurd-world device in research/persona-quiz-v2/final/bank (2026-09-29, round 2 card variety included; devices of
@@ -59,7 +60,6 @@ export const DEVICE_TABLE = {
   // Chapter 3, Love and your person
   "memory-erase vending machine": "machine",
   "talking doorbell": "bell",
-  "statue-unveiling": "frame",
   "two-person-sweater": "yarn",
   "early-shadow": "house", // the shadow waits at home
   "relationship-progress-bar": "machine",
@@ -68,7 +68,6 @@ export const DEVICE_TABLE = {
   "mermaid-housemate": "water",
   "pirate-chest": "treasure",
   "talking-cat": "trace",
-  "pigeon-bill": "trace",
   "money-tree": "treasure",
   "stranger-castle": "treasure", // an inheritance turned hotel
   // Chapter 5, Work, school and ambition
@@ -111,6 +110,8 @@ export const DEVICE_TABLE = {
   "hero-code": "scroll", // the superhero code, rule one
   "moon-hotel": "dream", // a night on the Moon: cloud and crescent
   "statue-posing": "frame", // posed like a statue, framed
+  // Round 3 bank legibility (4eb53c8)
+  "balloon-date-bill": "balloon", // a hot-air balloon date, and the bill on landing
 };
 
 // Keyword fallback for devices the table has not met yet (device string first, then the prompt), so a card the bank
@@ -121,6 +122,7 @@ export const DEVICE_KEYWORDS = [
   [/\b(?:envelope|letter|invitation|invite\w*|postcard|advisor|whisper\w*|secret\w*|note|mailbox|mail|owl)\b/, "envelope"],
   [/(?:8-ball|fortune|crystal ball|palm reader|snow ?globe)/, "fortune"],
   [/\b(?:mountain|hill|peak|summit|climb\w*)\b/, "mountain"],
+  [/\b(?:balloons?|hot-air)\b/, "balloon"],
   [/\b(?:knit\w*|sweater|yarn|scarf|tailor)\b/, "yarn"],
   [/\b(?:snails?|shell)\b/, "shell"],
   [/\b(?:robot|machine|fridge|remote|app|autocorrect|scoreboard|gadget)\b/, "machine"],
