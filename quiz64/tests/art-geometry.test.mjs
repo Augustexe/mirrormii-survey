@@ -18,33 +18,34 @@ const digest = (o) => createHash("sha256").update(JSON.stringify(o)).digest("hex
 
 // ------------------------------------------------------------------ archPath and mosaic
 
-test("archPath snapshot: a semicircle of radius w/2 over a rectangle", () => {
-  assert.equal(archPath(100, 160), "M0,160 L0,50 A50,50 0 0 1 100,50 L100,160 Z");
-  assert.equal(archPath(320, 512), "M0,512 L0,160 A160,160 0 0 1 320,160 L320,512 Z");
-  assert.equal(archPath(220, 360), "M0,360 L0,110 A110,110 0 0 1 220,110 L220,360 Z");
+// Round 4 (LAUNCH-SPEC 25): the World Mirror is a tall oval, a half circle of radius w/2 at the top and at the bottom.
+test("archPath snapshot: the World Mirror's oval glass, a pill with half circles of radius w/2", () => {
+  assert.equal(archPath(100, 200), "M0,50 A50,50 0 0 1 100,50 L100,150 A50,50 0 0 1 0,150 Z");
+  assert.equal(archPath(320, 640), "M0,160 A160,160 0 0 1 320,160 L320,480 A160,160 0 0 1 0,480 Z");
+  assert.equal(archPath(220, 360), "M0,110 A110,110 0 0 1 220,110 L220,250 A110,110 0 0 1 0,250 Z");
 });
 
 test("mosaic snapshots: identical seeds give identical polygons", () => {
-  const a = mosaic("run-7f3a", 40, { w: 100, h: 160 });
-  assert.deepEqual(a, mosaic("run-7f3a", 40, { w: 100, h: 160 }));
-  assert.equal(digest(a), "96308a01b44e6373");
-  assert.deepEqual(a.impact, [59.95, 70.48]);
-  assert.equal(a.cells[0].path, "M59.95,70.48 L86.31,61.4 L69.94,91.14 Z");
-  assert.equal(digest(mosaic(12345, 40, { w: 100, h: 160 })), "065dd4ab587d93d0");
-  assert.equal(digest(mosaic("run-7f3a", 8, { w: 100, h: 160 })), "6d01d1d153546ffe");
+  const a = mosaic("run-7f3a", 40, { w: 100, h: 200 });
+  assert.deepEqual(a, mosaic("run-7f3a", 40, { w: 100, h: 200 }));
+  assert.equal(digest(a), "5b0e945426a65239");
+  assert.deepEqual(a.impact, [59.95, 88.09]);
+  assert.equal(a.cells[0].path, "M59.95,88.09 L91.19,77.34 L71.79,112.58 Z");
+  assert.equal(digest(mosaic(12345, 40, { w: 100, h: 200 })), "78b221941877a522");
+  assert.equal(digest(mosaic("run-7f3a", 8, { w: 100, h: 200 })), "f171dc3bc1a7caf0");
 });
 
 test("mosaic: different seeds crack differently", () => {
   const seen = new Set();
-  for (let i = 0; i < 50; i++) seen.add(digest(mosaic(`run-${i}`, 40, { w: 100, h: 160 }).cells));
+  for (let i = 0; i < 50; i++) seen.add(digest(mosaic(`run-${i}`, 40, { w: 100, h: 200 }).cells));
   assert.equal(seen.size, 50);
 });
 
-test("mosaic: exactly `count` cells that tile the arch, ordered center out", () => {
-  const archArea = Math.abs(polygonArea(archPolygon(100, 160)));
+test("mosaic: exactly `count` cells that tile the oval glass, ordered center out", () => {
+  const archArea = Math.abs(polygonArea(archPolygon(100, 200)));
   for (let s = 0; s < 60; s++) {
     for (const count of [0, 1, 2, 3, 5, 8, 12, 40, 48]) {
-      const m = mosaic(`seed-${s}`, count, { w: 100, h: 160 });
+      const m = mosaic(`seed-${s}`, count, { w: 100, h: 200 });
       assert.equal(m.cells.length, count, `seed-${s} count ${count}`);
       if (!count) continue;
       const area = m.cells.reduce((sum, c) => sum + Math.abs(polygonArea(c.points)), 0);
@@ -53,7 +54,7 @@ test("mosaic: exactly `count` cells that tile the arch, ordered center out", () 
       m.cells.forEach((c, i) => {
         assert.equal(c.index, i);
         assert.match(c.path, /^M[\d.,\sL-]+ Z$/);
-        for (const [x, y] of c.points) assert.ok(x >= -0.01 && x <= 100.01 && y >= -0.01 && y <= 160.01);
+        for (const [x, y] of c.points) assert.ok(x >= -0.01 && x <= 100.01 && y >= -0.01 && y <= 200.01);
       });
     }
   }
@@ -229,7 +230,7 @@ test("src/art/index.js exports every 7.3 component and function; each renders ar
     assert.equal(typeof art.shapes.SPARKLE, "string");
     const cases = {
       MirrorArch: { seed: "run-1", filled: [{ chapter: 1 }, { chapter: 2 }], fog: 0.5, glow: 0.6, mullion: true, size: 320 },
-      IslandScene: { chapter: 3, variant: "scene" },
+      Islet: { chapter: 3, size: 120 },
       ChapterGlyph: { chapter: "finale" },
       FormatGlyph: { type: "receipts" },
       DeviceGlyph: { id: "bell" },
@@ -241,7 +242,6 @@ test("src/art/index.js exports every 7.3 component and function; each renders ar
       Sparkle: {},
       SparkleBurst: { count: 6, origin: { x: 10, y: 20 } },
       LockPane: { state: "sealed" },
-      AppTablet: {},
       Backdrop: { scene: "island-2", animated: false },
     };
     for (const [name, props] of Object.entries(cases)) {
@@ -251,10 +251,10 @@ test("src/art/index.js exports every 7.3 component and function; each renders ar
       assert.match(html, /class="probe"/, `${name} className passthrough`);
       assert.ok(!/<text\b/.test(html), `${name} bakes no text`);
     }
-    for (const variant of ["scene", "ambient", "vignette"]) renderToStaticMarkup(React.createElement(art.IslandScene, { chapter: "extras", variant }));
+    for (const chapter of [1, 7, "extras", "finale"]) assert.match(renderToStaticMarkup(React.createElement(art.Islet, { chapter })), /assets\/island\/(?:ch\d|hero-portrait)-\d+\.webp/);
     for (const state of ["clear", "frosted", "sealed", "hit", "miss", "pass"]) renderToStaticMarkup(React.createElement(art.LockPane, { state }));
     for (const scene of ["day", "dusk", "clear", "night", "island-9"]) renderToStaticMarkup(React.createElement(art.Backdrop, { scene }));
-    assert.match(renderToStaticMarkup(React.createElement(art.DeviceGlyph, { id: "chapter-4" })), /tint-ch4/);
+    assert.match(renderToStaticMarkup(React.createElement(art.DeviceGlyph, { id: "chapter-4" })), /assets\/island\/ch4-360\.webp/);
   } finally {
     await server.close();
   }

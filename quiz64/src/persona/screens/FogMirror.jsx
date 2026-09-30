@@ -1,15 +1,22 @@
 import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
-import { IslandScene, geometry } from "../../art/index.js";
-import { WORLD } from "../../art/world.js";
+import { geometry } from "../../art/index.js";
+import { OpalFrame } from "../../art/MirrorArch.jsx";
+import { OPAL } from "../../art/palette.js";
+import { ISLAND, MIRROR } from "../../art/world.js";
 import { GeniiLight, tokens } from "../../system/index.js";
 
-const W = 100;
-const H = 160;
+const W = MIRROR.w;
+const H = MIRROR.h;
+const F = MIRROR.frame;
 const ARCH = geometry.archPath(W, H);
 const BRUSH = 36; // px radius of the clearing brush (DESIGN-DIRECTION 5.1)
-// Mosaic cells that carry a colored piece on the landing (one per chapter tint), spread over the arch.
+// Mosaic cells already rebuilt on the landing: seven clear shards with an opal edge, spread over the glass, so the
+// mirror reads as "your answers become this" before the first tap.
 const PIECES = [5, 11, 17, 22, 28, 33, 38];
+const pct = (n, of) => `${((n / of) * 100).toFixed(3)}%`;
+// Where the glass sits in the frame render, as percentages of the whole mirror (frame and plinth).
+const GLASS_BOX = { left: pct(-F.x, F.w), top: pct(-F.y, F.h), width: pct(W, F.w), height: pct(H, F.h) };
 
 function cssVar(name, fallback) {
   if (typeof window === "undefined") return fallback;
@@ -35,8 +42,8 @@ function paintFog(ctx, w, h, seed) {
   // frost stays thick at the rim.
   ctx.save();
   ctx.globalCompositeOperation = "destination-out";
-  ctx.translate(W / 2, H * 0.52);
-  ctx.scale(1, 1.6);
+  ctx.translate(W / 2, H * 0.5);
+  ctx.scale(1, 2);
   const breath = ctx.createRadialGradient(0, 0, 0, 0, 0, W * 0.48);
   breath.addColorStop(0, "rgba(0, 0, 0, 0.8)");
   breath.addColorStop(0.6, "rgba(0, 0, 0, 0.5)");
@@ -44,7 +51,7 @@ function paintFog(ctx, w, h, seed) {
   ctx.fillStyle = breath;
   ctx.fillRect(-W, -H, W * 2, H * 2);
   ctx.restore();
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < 11; i++) {
     const x = rand() * W;
     const y = rand() * H;
     const r = 14 + rand() * 26;
@@ -58,10 +65,14 @@ function paintFog(ctx, w, h, seed) {
 }
 
 /**
- * The fogged mirror on the landing (DESIGN-DIRECTION 5.1, A-01 geometry, A-14 fog). The arch stands on a small glass
- * plinth over still water with Genii's light glowing behind the frost. A finger or cursor clears the fog along its
- * path (36 px brush) and it refills over 2.5 s; the first wipe makes Genii brighten for a second. A tap shows the
- * inside for 1.5 s (the only interaction under reduced motion). Purely decorative: aria-hidden, never required.
+ * The fogged World Mirror on the landing (DESIGN-DIRECTION 5.1; LAUNCH-SPEC 25: the oval opal mirror of GDD v0.2
+ * section 3.4). The mirror stands where it stands in the game, at the center of Genii's floating island (the hero render
+ * behind it is aligned so the island's own mirror hides behind this one). Inside the glass: the room the mirror looks
+ * into, Genii's light glowing behind the frost. A finger or cursor clears the fog along its path (36 px brush) and it
+ * refills over 2.5 s; the first wipe makes Genii brighten for a second. A tap shows the inside for 1.5 s (the only
+ * interaction under reduced motion). Loading: the room (mirror-inside-360, preloaded by index.html) and the frame render
+ * are small; a code-drawn sky and opal frame of the same shape stand in until they decode, so nothing shifts. The island
+ * loads last, at low priority, and fades in. Purely decorative: aria-hidden, never required.
  */
 export function FogMirror({ seed = "mirrormii", className = "" }) {
   const rid = useId().replace(/[^a-zA-Z0-9_-]/g, "");
@@ -71,11 +82,20 @@ export function FogMirror({ seed = "mirrormii", className = "" }) {
   const reducedOS = useReducedMotion();
   const [noticed, setNoticed] = useState(false);
   const [peek, setPeek] = useState(false);
-  // Round 3: the glass shows the real MirrorMii city (a small preloaded WebP); the code-drawn island stands in until
-  // it has loaded, and again if it fails, so the arch never shows an empty or shifting frame.
+  // The room inside the glass, the frame render and the island each fade in once decoded (absolutely placed, so their
+  // arrival never moves anything); until then the code-drawn sky and opal frame stand in.
   const [world, setWorld] = useState(false);
+  const [framed, setFramed] = useState(false);
+  const [island, setIsland] = useState(false);
   const photo = useRef(null);
-  useEffect(() => { if (photo.current && photo.current.complete && photo.current.naturalWidth) setWorld(true); }, []);
+  const frameImg = useRef(null);
+  const islandImg = useRef(null);
+  useEffect(() => {
+    const ok = (r) => Boolean(r.current && r.current.complete && r.current.naturalWidth);
+    if (ok(photo)) setWorld(true);
+    if (ok(frameImg)) setFramed(true);
+    if (ok(islandImg)) setIsland(true);
+  }, []);
   const cells = useMemo(() => geometry.mosaic(seed, 40, { w: W, h: H }).cells, [seed]);
   const motionOff = () => Boolean(reducedOS) || (typeof document !== "undefined" && document.body.dataset.motion === "off");
 
@@ -207,97 +227,82 @@ export function FogMirror({ seed = "mirrormii", className = "" }) {
   };
   const onPointerLeave = () => { state.current.last = null; state.current.down = false; };
 
+  const rid2 = `${rid}f`;
   return (
     <div className={`mm-fogmirror${peek ? " is-peek" : ""}${className ? ` ${className}` : ""}`} aria-hidden="true">
       <div className="mm-fogmirror__glow" />
-      <div className="mm-fogmirror__arch" ref={box}>
-        <svg className="mm-fogmirror__glass" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" focusable="false">
-          <defs>
-            <clipPath id={`${rid}-clip`}><path d={ARCH} /></clipPath>
-            <linearGradient id={`${rid}-sky`} x1="0" y1="0" x2="0.4" y2="1">
-              <stop offset="0" stopColor="var(--c-violet)" />
-              <stop offset="0.5" stopColor="var(--glow-c)" />
-              <stop offset="1" stopColor="var(--glow-b)" />
-            </linearGradient>
-            <radialGradient id={`${rid}-halo`} cx="0.5" cy="0.36" r="0.55">
-              <stop offset="0" stopColor="var(--c-surface-solid)" stopOpacity="0.55" />
-              <stop offset="1" stopColor="var(--c-surface-solid)" stopOpacity="0" />
-            </radialGradient>
-          </defs>
-          <g clipPath={`url(#${rid}-clip)`}>
-            <rect width={W} height={H} fill={`url(#${rid}-sky)`} />
-            <rect width={W} height={H} fill={`url(#${rid}-halo)`} />
-            <g className="mm-fogmirror__cracks" fill="none" stroke="var(--c-surface-solid)" strokeWidth="0.35" strokeOpacity="0.55">
-              {cells.map((c) => <path key={c.index} d={c.path} />)}
-            </g>
-          </g>
+      <img ref={islandImg} className="mm-fogmirror__island" data-loaded={island ? "true" : "false"} src={ISLAND.hero.src} srcSet={ISLAND.hero.srcSet}
+        sizes="(min-width: 1024px) 1120px, 800px" alt="" decoding="async" fetchpriority="low" onLoad={() => setIsland(true)} />
+      <div className="mm-fogmirror__object">
+        <svg className="mm-fogmirror__framecode" viewBox={`${F.x} ${F.y} ${F.w} ${F.h}`} preserveAspectRatio="none" focusable="false" data-hidden={framed ? "true" : "false"}>
+          <OpalFrame rid={rid2} />
         </svg>
-        <div className="mm-fogmirror__inside">
-          {world ? null : <span className="mm-fogmirror__world"><IslandScene chapter={6} variant="scene" size={200} /></span>}
-          <img ref={photo} className="mm-fogmirror__photo" data-loaded={world ? "true" : "false"} src={WORLD.mirror.small} srcSet={WORLD.mirror.srcSet}
-            sizes="(min-width: 1024px) 420px, 300px" alt="" decoding="async" fetchpriority="high" onLoad={() => setWorld(true)} onError={() => setWorld(false)} />
-          <span className="mm-fogmirror__drift mm-fogmirror__drift--a" />
-          <span className="mm-fogmirror__drift mm-fogmirror__drift--b" />
-          <span className="mm-fogmirror__drift mm-fogmirror__drift--c" />
-          <GeniiLight size="l" mood={noticed ? "sure" : "listening"} className="mm-fogmirror__genii" />
-        </div>
-        <canvas
-          ref={canvasRef}
-          className="mm-fogmirror__fog"
-          onPointerDown={onPointerDown}
-          onPointerMove={onPointerMove}
-          onPointerUp={onPointerUp}
-          onPointerCancel={onPointerLeave}
-          onPointerLeave={onPointerLeave}
-        />
-        {/* The seams sit over the frost, so the crack pattern reads before any wipe: a deep violet line with a white
-            catch-light beside it. */}
-        <svg className="mm-fogmirror__seams" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" focusable="false">
-          <defs>
-            <linearGradient id={`${rid}-piece`} x1="0" y1="0" x2="0.8" y2="1">
-              <stop offset="0" stopColor="var(--c-surface-solid)" stopOpacity="0.9" />
-              <stop offset="0.5" stopColor="var(--c-surface-solid)" stopOpacity="0" />
-            </linearGradient>
-          </defs>
-          {/* Round 2 (Codex fix 1): seven colored pieces, one per chapter, already sit in the glass, so the mirror reads
-              as "your answers become this" before the first tap. They fly in with the landing and glint now and then. */}
-          <g clipPath={`url(#${rid}-clip)`} className="mm-fogmirror__pieces">
-            {PIECES.map((cell, k) => cells[cell] ? (
-              <g key={cell} className="mm-fogmirror__piece" style={{ "--k": k, "--tint": `var(--tint-ch${k + 1})` }}>
-                <path d={cells[cell].path} fill={`var(--tint-ch${k + 1})`} fillOpacity="0.82" />
-                <path d={cells[cell].path} fill={`url(#${rid}-piece)`} />
+        <div className="mm-fogmirror__arch" ref={box} style={GLASS_BOX}>
+          <svg className="mm-fogmirror__glass" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" focusable="false">
+            <defs>
+              <clipPath id={`${rid}-clip`}><path d={ARCH} /></clipPath>
+              <linearGradient id={`${rid}-sky`} x1="0" y1="0" x2="0.3" y2="1">
+                <stop offset="0" stopColor={OPAL.sky[0]} />
+                <stop offset="0.55" stopColor={OPAL.sky[1]} />
+                <stop offset="1" stopColor={OPAL.sky[2]} />
+              </linearGradient>
+              <radialGradient id={`${rid}-halo`} cx="0.5" cy="0.4" r="0.55">
+                <stop offset="0" stopColor="var(--c-surface-solid)" stopOpacity="0.55" />
+                <stop offset="1" stopColor="var(--c-surface-solid)" stopOpacity="0" />
+              </radialGradient>
+            </defs>
+            <g clipPath={`url(#${rid}-clip)`}>
+              <rect width={W} height={H} fill={`url(#${rid}-sky)`} />
+              <rect width={W} height={H} fill={`url(#${rid}-halo)`} />
+            </g>
+          </svg>
+          <div className="mm-fogmirror__inside">
+            <img ref={photo} className="mm-fogmirror__photo" data-loaded={world ? "true" : "false"} src={ISLAND.inside.small} srcSet={`${ISLAND.inside.small} 360w, ${ISLAND.inside.src} 720w`}
+              sizes="(min-width: 1024px) 260px, 150px" alt="" decoding="async" fetchpriority="high" onLoad={() => setWorld(true)} onError={() => setWorld(false)} />
+            <span className="mm-fogmirror__drift mm-fogmirror__drift--a" />
+            <span className="mm-fogmirror__drift mm-fogmirror__drift--b" />
+            <span className="mm-fogmirror__drift mm-fogmirror__drift--c" />
+            <GeniiLight size="l" mood={noticed ? "sure" : "listening"} className="mm-fogmirror__genii" />
+          </div>
+          <canvas
+            ref={canvasRef}
+            className="mm-fogmirror__fog"
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={onPointerUp}
+            onPointerCancel={onPointerLeave}
+            onPointerLeave={onPointerLeave}
+          />
+          {/* The shard lines sit over the frost as fine white hairlines; seven shards are already rebuilt: clear glass with
+              an opal edge that fly in with the landing and glint now and then (never colored stained glass). */}
+          <svg className="mm-fogmirror__seams" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" focusable="false">
+            <defs>
+              <linearGradient id={`${rid}-piece`} x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stopColor="var(--c-surface-solid)" stopOpacity="0.7" />
+                <stop offset="0.5" stopColor="var(--c-surface-solid)" stopOpacity="0.06" />
+                <stop offset="1" stopColor="var(--c-surface-solid)" stopOpacity="0.3" />
+              </linearGradient>
+              <linearGradient id={`${rid}-edge`} x1="0" y1="0" x2="1" y2="1">
+                {OPAL.edge.map((c, i) => <stop key={i} offset={[0, 0.35, 0.65, 1][i]} stopColor={c} />)}
+              </linearGradient>
+            </defs>
+            <g clipPath={`url(#${rid}-clip)`} className="mm-fogmirror__pieces">
+              {PIECES.map((cell, k) => cells[cell] ? (
+                <g key={cell} className="mm-fogmirror__piece" style={{ "--k": k }}>
+                  <path d={cells[cell].path} fill={`url(#${rid}-piece)`} stroke={`url(#${rid}-edge)`} strokeWidth="1.6" vectorEffect="non-scaling-stroke" strokeLinejoin="round" />
+                </g>
+              ) : null)}
+            </g>
+            <g clipPath={`url(#${rid}-clip)`} fill="none" strokeLinejoin="round">
+              <g stroke="var(--c-surface-solid)" strokeOpacity="0.3" strokeWidth="0.6">
+                {cells.map((c) => <path key={c.index} d={c.path} vectorEffect="non-scaling-stroke" />)}
               </g>
-            ) : null)}
-          </g>
-          <g clipPath={`url(#${rid}-clip)`} fill="none" strokeLinejoin="round">
-            <g stroke="var(--c-violet-text)" strokeOpacity="0.46" strokeWidth="1.3" vectorEffect="non-scaling-stroke">
-              {cells.map((c) => <path key={c.index} d={c.path} vectorEffect="non-scaling-stroke" />)}
             </g>
-            <g stroke="var(--c-surface-solid)" strokeOpacity="0.75" strokeWidth="0.8" transform="translate(0.45 0.45)">
-              {cells.map((c) => <path key={c.index} d={c.path} vectorEffect="non-scaling-stroke" />)}
-            </g>
-          </g>
-        </svg>
-        <svg className="mm-fogmirror__rim" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" focusable="false">
-          <defs>
-            <linearGradient id={`${rid}-rim`} x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stopColor="var(--c-surface-solid)" />
-              <stop offset="0.3" stopColor="var(--mirror-silver-2)" />
-              <stop offset="0.65" stopColor="var(--c-violet-300)" />
-              <stop offset="1" stopColor="var(--c-violet)" />
-            </linearGradient>
-          </defs>
-          <path d={ARCH} fill="none" stroke="var(--c-violet-text)" strokeOpacity="0.55" strokeWidth="8.5" vectorEffect="non-scaling-stroke" />
-          <path d={ARCH} fill="none" stroke={`url(#${rid}-rim)`} strokeWidth="6" vectorEffect="non-scaling-stroke" />
-          <path d={ARCH} fill="none" stroke="var(--c-surface-solid)" strokeOpacity="0.9" strokeWidth="1.2" vectorEffect="non-scaling-stroke" />
-        </svg>
-        <span className="mm-fogmirror__sheen" />
-      </div>
-      <div className="mm-fogmirror__plinth" />
-      <div className="mm-fogmirror__reflection">
-        <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" focusable="false">
-          <path d={ARCH} fill={`url(#${rid}-sky)`} />
-        </svg>
+          </svg>
+          <span className="mm-fogmirror__sheen" />
+        </div>
+        <img ref={frameImg} className="mm-fogmirror__frame" data-loaded={framed ? "true" : "false"} src={ISLAND.frame.src} srcSet={ISLAND.frame.srcSet}
+          sizes="(min-width: 1024px) 420px, 250px" alt="" decoding="async" fetchpriority="high" onLoad={() => setFramed(true)} />
       </div>
     </div>
   );

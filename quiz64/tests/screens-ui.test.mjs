@@ -55,8 +55,12 @@ test("landing: hook, reflection line, one primary action, the fogged mirror, chi
   assert.match(html, /class="mm-fogmirror[^"]*" aria-hidden="true"/);
   assert.match(html, /<canvas[^>]*mm-fogmirror__fog/);
   for (const chip of LOBBY_COPY.landing.chips) assert.ok(text.includes(chip), chip);
-  // Round 3 (LAUNCH-SPEC 24 item 7): the mirror's glass shows the real MirrorMii city; no other raster on the landing.
-  assert.doesNotMatch(html, /<img(?![^>]*(?:wordmark|assets\/world\/mirror-world))/, "no raster art on the landing but the mirror world");
+  // Round 4 (LAUNCH-SPEC 25): the landing's only rasters are the canon island renders: the World Mirror's frame, the
+  // room inside its glass and Genii's island behind it. Nothing from the landing page or the asset library.
+  const imgs = [...html.matchAll(/<img[^>]*\ssrc="([^"]+)"/g)].map((m) => m[1]);
+  assert.deepEqual(imgs.map((src) => src.replace(/^.*\/assets\/island\/([a-z-]+)-\d+\.webp$/, "$1")).sort(), ["hero-portrait", "mirror-frame", "mirror-inside"], "only the canon island renders");
+  assert.match(html, /class="mm-fogmirror__photo"[^>]*fetchpriority="high"/, "the room in the glass loads first");
+  assert.match(html, /class="mm-fogmirror__island"[^>]*fetchpriority="low"/, "the island loads last");
   assert.ok(visible(render(PersonaLanding, { progress: "run", onBegin() {}, onHow() {} })).includes("Pick up where I left off"));
   assert.ok(visible(render(PersonaLanding, { progress: "result", onBegin() {}, onHow() {} })).includes("See my result"));
   assert.doesNotMatch(text, INTERNAL);
@@ -112,14 +116,14 @@ test("interlude: island scene, chapter kicker in text type, reflected title, sha
   assert.ok(first.sub, "chapter 1 keeps the tap-what-you'd-do line");
   const html = render(PersonaInterlude, { chapter: first, count: 6, onContinue() {}, filled: [{ chapter: 1 }, { chapter: 1 }], seed: "scrinter01", voice: "fun" });
   const text = visible(html);
-  assert.match(html, /data-art="island"/);
+  assert.match(html, /data-art="islet"[^>]*src="[^"]*assets\/island\/ch1-/, "chapter 1's canon islet");
   assert.match(html, /data-art="mirror-arch"/);
   assert.match(html, /class="reflect__mirror"/);
   assert.ok(text.includes(first.kicker) && text.includes(first.title) && text.includes(first.intro));
   assert.equal((html.match(/<path d="M/g) || []).length >= 6, true);
   assert.ok(text.includes("Start"));
   assert.doesNotMatch(text, /Save and leave/, "save lives in the menu");
-  assert.doesNotMatch(html, /monospace|genii-opal|<img/);
+  assert.doesNotMatch(html, /monospace|genii-opal|assets\/world\//);
   // Later chapters drop the repeated sub line.
   for (let g = 0; g < 80; g++) {
     const st = Session.currentStep(s);

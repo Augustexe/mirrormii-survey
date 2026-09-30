@@ -9,7 +9,7 @@ import {
   CHAPTER_GLYPHS, DEVICE_GLYPHS, FORMAT_GLYPHS, GLYPH_VIEWBOX, PANE, PANE_SHEEN, PANE_VIEWBOX,
   SEAL, SEAL_RING, SETUP_GLYPHS, SPARKLE, SPARKLE_VIEWBOX, star,
 } from "./shapes.js";
-import { IslandScene } from "./islands/index.jsx";
+import { Islet } from "./Islet.jsx";
 import { Svg, safeId } from "./Svg.jsx";
 
 // Stroke stays near 1.75 px on screen at 16 to 24 px and thickens gently above.
@@ -41,14 +41,14 @@ export function FormatGlyph({ type, size = 16, className }) {
   return <Glyph g={g} size={size} line={v("c-violet-text")} accent={v("c-violet-300")} className={className} art="format-glyph" id={type} />;
 }
 
-// A-05: world-device glyphs. id is a family from DEVICE_FAMILIES, or "chapter-<key>" for the chapter
-// vignette (the island's hero object), which is what unusual cards and unmapped absurd devices show.
+// A-05: world-device glyphs. id is a family from DEVICE_FAMILIES, or "chapter-<key>" for the chapter's islet (a small
+// canon render, src/art/Islet.jsx), which is what unusual cards and unmapped absurd devices show.
 export function DeviceGlyph({ id, size = 48, className }) {
   if (!id) return null;
   if (isChapterDevice(id)) {
     const key = id.slice("chapter-".length);
     const chapter = /^\d$/.test(key) ? Number(key) : key;
-    return <IslandScene chapter={chapter} variant="vignette" size={size} className={className} data-device={id} />;
+    return <Islet chapter={chapter} size={size} className={className} data-device={id} />;
   }
   return <Glyph g={DEVICE_GLYPHS[id] || DEVICE_GLYPHS.frame} size={size} line={v("c-violet-text")} accent={v("c-violet-300")} className={className} art="device-glyph" id={id} />;
 }

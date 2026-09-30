@@ -279,7 +279,8 @@
     overflow: visible;
     filter: drop-shadow(0 0 6px color-mix(in srgb, var(--n-violet) 55%, transparent));
   }
-  .rv-shard { stroke: var(--n-ink); stroke-opacity: 0.75; stroke-width: 1px; vector-effect: non-scaling-stroke; }
+  /* Answers fly in as clear glass with an opal edge (LAUNCH-SPEC 25 item 2), never colored stained glass. */
+  .rv-shard { fill: url(#rv-shard-glass); stroke: url(#rv-shard-edge); stroke-width: 1.3px; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 3px color-mix(in srgb, var(--c-on-deep) 70%, transparent)); }
   .rv-shards__outline {
     fill: none;
     stroke: var(--mirror-silver-1);
@@ -338,9 +339,10 @@
   .rv-mirror__glass {
     position: absolute;
     inset: 0;
+    /* A light tint over the room in the glass: the room stays bright, the names get contrast from their scrims. */
     background:
-      linear-gradient(180deg, color-mix(in srgb, var(--n-900) 30%, transparent), color-mix(in srgb, var(--n-900) 58%, transparent) 50%, color-mix(in srgb, var(--n-900) 34%, transparent)),
-      linear-gradient(-20deg, transparent 38%, color-mix(in srgb, var(--n-ink) 12%, transparent) 50%, transparent 62%);
+      linear-gradient(180deg, color-mix(in srgb, var(--n-900) 10%, transparent), color-mix(in srgb, var(--n-900) 30%, transparent) 50%, color-mix(in srgb, var(--n-900) 14%, transparent)),
+      linear-gradient(-20deg, transparent 38%, color-mix(in srgb, var(--n-ink) 16%, transparent) 50%, transparent 62%);
   }
   .rv-mirror__fog { position: absolute; inset: 0; background: var(--rv-frost); transition: opacity var(--d-slow) var(--e-out); }
   .rv-mirror__floor {
@@ -386,7 +388,6 @@
   }
   .rv-pane--up { justify-content: flex-end; padding-bottom: var(--s-6); }
   .rv-pane--down { justify-content: flex-start; padding-top: var(--s-6); }
-  .rv-pane--echo { justify-content: flex-start; padding-top: var(--s-6); }
   .rv-pane__label {
     display: inline-flex;
     align-items: center;
@@ -421,17 +422,9 @@
   .rv-pane__sparks i:nth-child(1) { left: -14px; top: -6px; }
   .rv-pane__sparks i:nth-child(2) { right: -12px; top: 4px; }
   .rv-pane__sparks i:nth-child(3) { left: 30%; bottom: -12px; }
-  .rv-names__reflection { position: absolute; inset: 0; transform: scaleY(-1); opacity: 0.2; pointer-events: none; }
-  .rv-names__reflection .rv-mirror__art svg { filter: none; }
-  .rv-mirror__panes {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg,
-      color-mix(in srgb, var(--tint-ch3-deep) 24%, transparent) var(--t),
-      color-mix(in srgb, var(--tint-ch3-deep) 40%, transparent) var(--m),
-      color-mix(in srgb, var(--tint-ch1-deep) 30%, transparent) var(--m),
-      color-mix(in srgb, var(--tint-ch1-deep) 48%, transparent) var(--b));
-  }
+  /* The oval glass is narrower than the old arch: names set a step smaller and closer to the rim. */
+  .rv-names .rv-pane { padding: 0 var(--s-2); }
+  .rv-names .rv-pane__name { font-size: 34px; line-height: 36px; }
   .rv-mirror__scrim {
     position: absolute;
     background:

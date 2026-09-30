@@ -3,7 +3,7 @@
 // Every room floats on its own chapter island; the dots are the same clarity cue as the findings. When a room leans
 // the other way from the player's overall map, it says so: that split is real, it came from their answers.
 import React from "react";
-import { IslandScene } from "../../art/index.js";
+import { Islet } from "../../art/index.js";
 
 function Dots({ level }) {
   return (
@@ -23,7 +23,7 @@ export function RoomsScreen({ s }) {
           <li key={r.key} className="rv-roomrow" style={{ "--i": i }} data-chapter={r.chapter} data-differs={r.differs ? "true" : "false"}>
             <span className="rv-roomrow__isle" aria-hidden="true">
               <i className="rv-roomrow__halo" />
-              <IslandScene chapter={r.chapter} size={92} />
+              <Islet chapter={r.chapter} size={92} />
             </span>
             <span className="rv-roomrow__text">
               <span className="rv-roomrow__head">

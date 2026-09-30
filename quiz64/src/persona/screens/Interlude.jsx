@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { ArrowRight } from "lucide-react";
-import { IslandScene, MirrorArch, shapes } from "../../art/index.js";
+import { Islet, MirrorArch, shapes } from "../../art/index.js";
 import { GeniiLight, Reflect } from "../../system/index.js";
 import { CHAPTERS } from "../kit.js";
 import { LOBBY_COPY, LOBBY_DEFAULTS, chapterIntro } from "../lobby.js";
@@ -106,7 +106,7 @@ export function PersonaInterlude({ chapter, count, onContinue, filled = [], seed
     <main className="mm-screen mm-interlude" data-chapter={String(scene)} style={{ "--ch-tint": `var(--tint-${tint})`, "--ch-deep": `var(--tint-${tint}-deep)` }}>
       <div className="mm-interlude__scene mm-decor" aria-hidden="true">
         <div className="mm-interlude__island">
-          <IslandScene chapter={scene} variant="scene" />
+          <Islet chapter={scene} size={320} eager />
         </div>
       </div>
       <div className="mm-interlude__genii mm-decor" aria-hidden="true">

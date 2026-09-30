@@ -37,8 +37,8 @@ export function ShardRail(props) {
   return host ? createPortal(rail, host) : rail;
 }
 
-// The mirror itself, small, at the head of the rail: every answer lands in it as a shard in its chapter's tint, in the
-// run's own crack pattern, so the finale mirror is the one the player watched fill.
+// The World Mirror itself, small, at the head of the rail: every answer lands in it as a clear glass shard with an opal
+// edge, in the run's own shard pattern, so the finale mirror is the one the player watched rebuild.
 // Only shards added while the rail is on screen play their landing (a remount after a chapter title shows them still).
 function RailMirror({ shards, seed, fog = 0 }) {
   const seen = useRef({ len: null, fresh: 0 });

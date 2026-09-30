@@ -3,7 +3,7 @@ import { MotionConfigContext, useReducedMotion } from "motion/react";
 import { ArrowRight, Lock, X } from "lucide-react";
 import { useDialogFocus } from "../../components/useDialogFocus.js";
 import { MirrorArch, LockPane } from "../../art/index.js";
-import { WORLD } from "../../art/world.js";
+import { ISLAND } from "../../art/world.js";
 import { GeniiLight, geniiEvents } from "../../system/index.js";
 import { LOBBY_COPY } from "../lobby.js";
 import "./play.css";
@@ -88,7 +88,9 @@ export function LockView({ locked, lockHash, onLock, onStart, onSave, busy, erro
         <div className="lock__scene" aria-hidden="true">
           <span className="lock__horizon" />
           <div className="lock__mirror">
-            <MirrorArch seed={seed} filled={filled} fog={locked ? 0.35 : 0.05} glow={0.9} size={150} world={WORLD.mirror.small} />
+            {/* Genii's island at night stands behind the mirror, placed so the island's own mirror hides behind this one. */}
+            <img className="lock__island" src={ISLAND.night.src} alt="" width="720" height="1080" decoding="async" loading="lazy" />
+            <MirrorArch seed={seed} filled={filled} fog={locked ? 0.35 : 0.05} glow={0.9} size={170} />
           </div>
           <span className="lock__light"><GeniiLight mood={ritual ? "thinking" : locked ? "sure" : "listening"} size="s" voice="cards" evolution={1} /></span>
           <div className="lock__panes">

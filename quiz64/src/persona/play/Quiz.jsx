@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useMemo, useRef } from "react";
 import { MotionConfigContext, useReducedMotion } from "motion/react";
 import { GeniiLight, geniiEvents, useTheme, tokens } from "../../system/index.js";
-import { MirrorArch, IslandScene, DeviceGlyph, deviceFor } from "../../art/index.js";
+import { MirrorArch, Islet, DeviceGlyph, deviceFor } from "../../art/index.js";
 import { hostLine, cardVoice, LOBBY_DEFAULTS } from "../lobby.js";
 import { reactionFor, unit } from "../reactions.js";
 import { PersonaCard } from "./PersonaCard.jsx";
@@ -131,11 +131,11 @@ export function PersonaQuizView({ step, setup, onAnswer, onMap, busy, error, car
       <ShardRail step={step} progress={progress} onOpen={onMap} shards={filled} seed={seed} />
       <div className="play-world" aria-hidden="true" data-chapter={String(chapterKey)} style={{ "--world-tint": tintOf(step) }}>
         <span className="play-world__glow" />
-        <span className="play-world__island"><IslandScene chapter={chapterKey} variant="scene" size={300} /></span>
+        <span className="play-world__island"><Islet chapter={chapterKey} size={260} /></span>
       </div>
       <div className="play-grid">
         <aside className="play-niche" ref={nicheRef} aria-hidden="true">
-          <div className="play-niche__island"><IslandScene chapter={chapterKey} variant="ambient" size={460} /></div>
+          <div className="play-niche__island"><Islet chapter={chapterKey} size={460} /></div>
           <div className="play-niche__arch">
             <MirrorArch seed={seed} filled={filled} fog={step.phase === "finale" ? 0.55 : 0.08} glow={0.7} mullion={false} size={300} />
             {device ? <span className="play-niche__device"><DeviceGlyph id={device} size={96} /></span> : null}

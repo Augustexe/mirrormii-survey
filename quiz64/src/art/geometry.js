@@ -98,30 +98,36 @@ export function clipPolygon(subject, clip) {
   return out;
 }
 
-// ---------------------------------------------------------------- A-01 the arch
+// ---------------------------------------------------------------- A-01 the World Mirror's glass
 
-// Arch outline in a w x h box: a semicircle of radius w/2 on top of a rectangle. Origin top-left.
-export function archPath(w = 100, h = 160) {
-  const r = w / 2;
-  const top = Math.min(r, h);
-  return `M0,${round(h)} L0,${round(top)} A${round(r)},${round(r)} 0 0 1 ${round(w)},${round(top)} L${round(w)},${round(h)} Z`;
+// The World Mirror (GDD v0.2 section 3.4, LAUNCH-SPEC 25): a tall oval, a pill with a half circle at the top and at the
+// bottom, in a w x h box. Origin top-left. (The name stays archPath: every mirror, clip and canvas path reads it.)
+export function archPath(w = 100, h = 200) {
+  const r = Math.min(w / 2, h / 2);
+  const top = r;
+  const bottom = Math.max(r, h - r);
+  return `M0,${round(top)} A${round(r)},${round(r)} 0 0 1 ${round(w)},${round(top)} L${round(w)},${round(bottom)} A${round(r)},${round(r)} 0 0 1 0,${round(bottom)} Z`;
 }
 
-// Polygon approximation of the arch (clockwise in screen space), used for clipping and hit tests.
-export function archPolygon(w = 100, h = 160, segments = 32) {
-  const r = w / 2;
-  const cy = Math.min(r, h);
-  const pts = [[0, h], [0, cy]];
-  for (let i = 1; i < segments; i++) {
-    const a = Math.PI - (Math.PI * i) / segments;
-    pts.push([r + r * Math.cos(a), cy - r * Math.sin(a)]);
+// Polygon approximation of the pill (clockwise in screen space), used for clipping and hit tests.
+export function archPolygon(w = 100, h = 200, segments = 32) {
+  const r = Math.min(w / 2, h / 2);
+  const cyTop = r;
+  const cyBottom = Math.max(r, h - r);
+  const pts = [];
+  for (let i = 0; i <= segments; i++) {
+    const a = Math.PI + (Math.PI * i) / segments;
+    pts.push([r + r * Math.cos(a), cyTop + r * Math.sin(a)]);
   }
-  pts.push([w, cy], [w, h]);
+  for (let i = 0; i <= segments; i++) {
+    const a = (Math.PI * i) / segments;
+    pts.push([r + r * Math.cos(a), cyBottom + r * Math.sin(a)]);
+  }
   return pts;
 }
 
-// Mullion (the thin silver bar between the two panes), as a line at `at` of the arch height.
-export function archMullion(w = 100, h = 160, at = 0.5) {
+// A line across the glass at `at` of its height (the old mullion; the World Mirror has none, layouts still use it).
+export function archMullion(w = 100, h = 200, at = 0.5) {
   const y = round(h * at);
   return { x1: 0, y1: y, x2: round(w), y2: y };
 }
@@ -138,14 +144,14 @@ function splitPolygon(points, rand) {
 }
 
 /**
- * Seeded crack pattern clipped to the arch, split until exactly `count` cells exist.
+ * Seeded shard pattern clipped to the mirror's glass, split until exactly `count` cells exist.
  * Returns cells ordered from the impact point outward (so shards fill center out):
  *   { index, points: [[x, y], ...], path, centroid: [x, y], distance }
  * plus the impact point and the arch box. Identical seeds give identical polygons.
  */
 export function mosaic(seed, count = 40, arch = {}) {
   const w = arch.w ?? arch.width ?? 100;
-  const h = arch.h ?? arch.height ?? 160;
+  const h = arch.h ?? arch.height ?? 200;
   const target = Math.max(0, Math.floor(count));
   const rand = mulberry32(seed);
   const clip = archPolygon(w, h);

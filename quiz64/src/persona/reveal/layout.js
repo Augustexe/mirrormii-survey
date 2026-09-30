@@ -2,36 +2,40 @@
 // story 2 (where the fog clears), so both screens compute it from the stage size with archBox.
 import { useEffect, useLayoutEffect, useState } from "react";
 import { useReducedMotionConfig } from "motion/react";
+import { MIRROR } from "../../art/world.js";
 
-// MirrorArch draws the glass in a 100 x 160 box inside a viewBox padded by 6 on every side (src/art/MirrorArch.jsx).
-export const ARCH = Object.freeze({ w: 100, h: 160, pad: 6 });
+// The World Mirror (src/art/MirrorArch.jsx, LAUNCH-SPEC 25): the glass is a 100 x 200 pill, and the SVG element spans
+// the frame render around it (MIRROR.frame, glass units) down to the foot of the plinth (MIRROR.bottom).
+export const ARCH = Object.freeze({ w: MIRROR.w, h: MIRROR.h, frame: MIRROR.frame, foot: MIRROR.bottom });
 export const MULLION_AT = 0.5;
 
 const clamp = (lo, v, hi) => Math.max(lo, Math.min(hi, v));
 
-// Pixel box of the mirror for a stage of w x h. `glass*` is the arch itself; `svg*` is the MirrorArch element box.
+// Pixel box of the mirror for a stage of w x h. `glass*` is the oval glass itself; `svg*` is the MirrorArch element box
+// (frame and plinth); `foot` is the bottom of the plinth.
 export function archBox(w = 390, h = 844, { scale = 1 } = {}) {
-  const glassW = clamp(180, Math.min(w * 0.72, h * 0.52 * (ARCH.w / ARCH.h)), 320) * scale;
+  const glassW = clamp(150, Math.min(w * 0.6, h * 0.56 * (ARCH.w / ARCH.h)), 280) * scale;
   const u = glassW / ARCH.w;
   const glassH = ARCH.h * u;
-  const glassTop = Math.max(64, h * 0.115);
+  const glassTop = Math.max(56, h * 0.095);
   const glassLeft = (w - glassW) / 2;
-  const svgW = (ARCH.w + ARCH.pad * 2) * u;
+  const F = ARCH.frame;
   return {
     u, glassW, glassH, glassTop, glassLeft,
-    svgW, svgH: (ARCH.h + ARCH.pad * 2) * u, svgLeft: glassLeft - ARCH.pad * u, svgTop: glassTop - ARCH.pad * u,
+    svgW: F.w * u, svgH: F.h * u, svgLeft: glassLeft + F.x * u, svgTop: glassTop + F.y * u,
     mullionY: glassTop + glassH * MULLION_AT,
     bottom: glassTop + glassH,
+    foot: glassTop + ARCH.foot * u,
     cx: w / 2,
   };
 }
 
-// The arch outline as a CSS path() in stage pixels, for clip-path on fog and glass layers.
+// The oval glass as a CSS path() in stage pixels, for clip-path on fog and glass layers.
 export function archClip(box) {
   const { glassLeft: x, glassTop: y, glassW: w, glassH: h } = box;
   const r = w / 2;
   const f = (n) => Math.round(n * 10) / 10;
-  return `path("M${f(x)},${f(y + h)} L${f(x)},${f(y + r)} A${f(r)},${f(r)} 0 0 1 ${f(x + w)},${f(y + r)} L${f(x + w)},${f(y + h)} Z")`;
+  return `path("M${f(x)},${f(y + r)} A${f(r)},${f(r)} 0 0 1 ${f(x + w)},${f(y + r)} L${f(x + w)},${f(y + h - r)} A${f(r)},${f(r)} 0 0 1 ${f(x)},${f(y + h - r)} Z")`;
 }
 
 const useIso = typeof window === "undefined" ? useEffect : useLayoutEffect;

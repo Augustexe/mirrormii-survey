@@ -3,6 +3,8 @@
 // the sigils) and the colors from src/system/tokens.js, so the image is the page's mirror, not a lookalike.
 // Never drawn on the mirror card: stings, answers, numbers, the guess check, the words the spec keeps off the page.
 import { geometry } from "../art/index.js";
+import { MIRROR } from "../art/world.js";
+import { OPAL } from "../art/palette.js";
 import { tokens } from "../system/index.js";
 
 export const FORMATS = Object.freeze({ story: { w: 1080, h: 1920 }, post: { w: 1080, h: 1350 } });
@@ -166,7 +168,7 @@ function background(ctx, W, H, p) {
 function mosaicOf(mirror) {
   const filled = mirror && Array.isArray(mirror.filled) && mirror.filled.length ? mirror.filled : Array.from({ length: 40 }, (_, i) => ({ chapter: 1 + (Math.floor(i / 6) % 7) }));
   const seed = (mirror && mirror.seed) || "mirror";
-  return { filled, cells: geometry.mosaic(seed, Math.max(40, filled.length), { w: 100, h: 160 }).cells };
+  return { filled, cells: geometry.mosaic(seed, Math.max(40, filled.length), { w: MIRROR.w, h: MIRROR.h }).cells };
 }
 
 export function drawSigil(ctx, code, x, y, size, color) {
@@ -289,18 +291,24 @@ function loadWordmark() {
   return wordmark;
 }
 
-// Round 3 (LAUNCH-SPEC 24 item 7): the real MirrorMii world on the card. The city from the world style key shows
-// through the mirror's stained glass, the mirror stands on the MirrorMii World island, and the CGI glass Genii sits
-// beside it. Loaded once, in parallel with the fonts; anything that fails or is late (1.5 s) is simply left out, so
-// the card always draws, and the tests' recording canvas never sees an image.
-const worldArt = { mirror: null, island: null, genii: null };
+// The canon world on the card (LAUNCH-SPEC 25 item 1): the room the World Mirror looks into, the mirror's opal frame
+// render, Genii's island by day and by night behind it, and a still of our own three.js Genii (qa/capture-genii.mjs).
+// Loaded once, in parallel with the fonts; anything that fails or is late (1.5 s) is simply left out (the code-drawn
+// opal frame and a plain field stand in), so the card always draws, and the tests' recording canvas never sees an image.
+const worldArt = { inside: null, frame: null, hero: null, night: null, genii: null };
 let worldLoading = null;
 function loadWorld(timeout = 1500) {
   if (!worldLoading) {
     worldLoading = new Promise((resolve) => {
       if (typeof Image === "undefined") { resolve(worldArt); return; }
       const base = (import.meta.env && import.meta.env.BASE_URL) || "./";
-      const files = { mirror: "world/mirror-world-526.webp", island: "world/island-1440.webp", genii: "world/genii-480.webp" };
+      const files = {
+        inside: "island/mirror-inside-720.webp",
+        frame: "island/mirror-frame-900.webp",
+        hero: "island/hero-portrait-1080.webp",
+        night: "island/hero-night-1080.webp",
+        genii: "island/genii-still.png",
+      };
       let left = Object.keys(files).length;
       const done = () => { left -= 1; if (left === 0) resolve(worldArt); };
       for (const [key, file] of Object.entries(files)) {
@@ -317,66 +325,51 @@ function loadWorld(timeout = 1500) {
   return Promise.race([worldLoading, late]).finally(() => clearTimeout(timer));
 }
 
-// Light behind the mirror: a wide bloom in the brand violet with warm and cool edges, and soft rays from the dome.
+// Light behind the mirror: a wide bloom in the brand violet with warm and cool edges.
 function aura(ctx, cx, cy, r, p) {
   const night = p.dark;
-  glow(ctx, cx, cy, r * 1.15, night ? N.violet : C.violet300, night ? 0.5 : 0.55);
-  glow(ctx, cx - r * 0.5, cy + r * 0.35, r * 0.75, tokens.chapterTint[3].tint, night ? 0.26 : 0.34);
-  glow(ctx, cx + r * 0.5, cy - r * 0.3, r * 0.75, tokens.chapterTint[1].tint, night ? 0.26 : 0.34);
-  ctx.save();
-  ctx.translate(cx, cy - r * 0.35);
-  for (let i = 0; i < 16; i++) {
-    const a = (i / 16) * Math.PI * 2 + 0.12;
-    const g = ctx.createRadialGradient(0, 0, r * 0.1, 0, 0, r * 1.25);
-    g.addColorStop(0, rgba(tokens.color.surfaceSolid, night ? 0.16 : 0.3));
-    g.addColorStop(1, rgba(tokens.color.surfaceSolid, 0));
-    ctx.fillStyle = g;
-    ctx.beginPath();
-    ctx.moveTo(0, 0);
-    ctx.arc(0, 0, r * 1.25, a, a + 0.1);
-    ctx.closePath();
-    ctx.fill();
-  }
-  ctx.restore();
+  glow(ctx, cx, cy, r * 1.15, night ? N.violet : C.violet300, night ? 0.42 : 0.4);
+  glow(ctx, cx - r * 0.5, cy + r * 0.35, r * 0.75, tokens.chapterTint[3].tint, night ? 0.18 : 0.22);
+  glow(ctx, cx + r * 0.5, cy - r * 0.3, r * 0.75, tokens.chapterTint[1].tint, night ? 0.18 : 0.22);
 }
 
-// The island under the mirror's plinth, faded at its cut edges; returns nothing when the image is not there.
-function drawIsland(ctx, cx, top, width, alpha = 1) {
-  const img = worldArt.island;
-  if (!img || !ctx.drawImage || typeof document === "undefined") return;
-  const w = Math.round(width);
-  const h = Math.round((width * img.height) / img.width);
+// Genii's island behind everything, cover-fit to the card (the render's own mirror, at 49.2% x 40.7%, lands behind
+// the card's mirror), under a veil that keeps the lettering readable. Night cards use the night render.
+function drawIslandBackdrop(ctx, W, H, p) {
+  const img = (p.dark ? worldArt.night : worldArt.hero) || null;
+  if (!img || !ctx.drawImage) return;
   try {
-    const off = document.createElement("canvas");
-    off.width = w;
-    off.height = h;
-    const o = off.getContext("2d");
-    o.drawImage(img, 0, 0, w, h);
-    // Soft oval mask: the crop's straight left edge and the diorama's rim melt into the card.
-    o.globalCompositeOperation = "destination-in";
-    o.save();
-    o.translate(w / 2, h * 0.44);
-    o.scale(1, (h * 0.62) / (w * 0.5));
-    const m = o.createRadialGradient(0, 0, 0, 0, 0, w * 0.5);
-    m.addColorStop(0, "rgba(0, 0, 0, 1)");
-    m.addColorStop(0.74, "rgba(0, 0, 0, 1)");
-    m.addColorStop(1, "rgba(0, 0, 0, 0)");
-    o.fillStyle = m;
-    o.fillRect(-w, -w, w * 2, w * 2);
-    o.restore();
-    ctx.save();
-    ctx.globalAlpha = alpha;
-    ctx.drawImage(off, cx - w / 2, top);
-    ctx.restore();
+    const k = Math.max(W / img.width, H / img.height);
+    const w = img.width * k;
+    const h = img.height * k;
+    ctx.drawImage(img, (W - w) / 2, (H - h) / 2, w, h);
+    const veil = ctx.createLinearGradient(0, 0, 0, H);
+    const ink = p.dark ? N.n900 : tokens.color.surfaceSolid;
+    veil.addColorStop(0, rgba(ink, p.dark ? 0.42 : 0.3));
+    veil.addColorStop(0.55, rgba(ink, p.dark ? 0.3 : 0.16));
+    veil.addColorStop(0.78, rgba(ink, p.dark ? 0.72 : 0.62));
+    veil.addColorStop(1, rgba(ink, p.dark ? 0.9 : 0.86));
+    ctx.fillStyle = veil;
+    ctx.fillRect(0, 0, W, H);
   } catch { /* the island is decoration */ }
 }
 
+// Our own Genii (a still of the three.js scene), standing on the ground at `bottom`.
 function drawGenii(ctx, x, bottom, width) {
   const img = worldArt.genii;
   if (!img || !ctx.drawImage) return;
   const h = (width * img.height) / img.width;
   ctx.save();
-  glow(ctx, x + width / 2, bottom - h * 0.5, width * 0.9, tokens.color.surfaceSolid, 0.35);
+  glow(ctx, x + width / 2, bottom - h * 0.5, width * 0.9, tokens.color.surfaceSolid, 0.3);
+  ctx.save();
+  ctx.translate(x + width / 2, bottom - 2);
+  ctx.scale(1, 0.18);
+  const sh = ctx.createRadialGradient(0, 0, 0, 0, 0, width * 0.46);
+  sh.addColorStop(0, rgba(N.n900, 0.35));
+  sh.addColorStop(1, rgba(N.n900, 0));
+  ctx.fillStyle = sh;
+  ctx.fillRect(-width, -width, width * 2, width * 2);
+  ctx.restore();
   ctx.drawImage(img, x, bottom - h, width, h);
   ctx.restore();
 }
@@ -401,11 +394,11 @@ function drawWordmark(ctx, img, cx, y, width, p) {
 
 // ---------------------------------------------------------------- the hero mirror (share card, stories 1 and 2)
 
-// The completed mirror at full strength, the way it stands on story 2: silver frame, every shard in its chapter tint,
-// the two panes lit differently (people warm, life cool), and a soft scrim inside the glass behind each block of
-// lettering so the names read at feed size while the glass stays glass around them (VISUAL-JUDGE top fixes 1 and 2).
-const SILVER = ["#EEF0FA", "#C9CCE0"];
-const PANE_HUE = { people: { night: "#8A4FB8", day: "#F2A7C3", rim: "#F2A7C3" }, life: { night: "#3D6FC4", day: "#8FB8F2", rim: "#8FB8F2" } };
+// The World Mirror as it stands on story 2 (GDD v0.2 section 3.4): the oval glass showing the room it looks into, every
+// shard rebuilt in clear glass with an opal edge, the opal frame render on its marble plinth, and a soft scrim inside
+// the glass behind each block of lettering so the names read at feed size while the glass stays glass around them.
+// `x, y, w` are the glass box (the frame and plinth reach beyond it: MIRROR.frame, in glass units).
+const PANE_HUE = { people: { rim: "#F2A7C3" }, life: { rim: "#8FB8F2" } };
 
 function cellBox(cell) {
   const xs = cell.points.map((q) => q[0]);
@@ -413,12 +406,13 @@ function cellBox(cell) {
   return [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)];
 }
 
-// Where the lettering sits in each pane, so the scrims can be drawn under it before the text goes on top. Each block
-// is a label pill (the half's sigil and "With your people" / "With your life") over the name.
+// Where the lettering sits in the glass, so the scrims can be drawn under it before the text goes on top. Each block
+// is a label pill (the half's sigil and "With your people" / "With your life") over the name; the two blocks meet at
+// the middle of the oval, where the glass is widest.
 function paneLayout(ctx, { x, y, w, h, names }) {
   const k = w / 600;
   const [people, life] = names;
-  const fitName = (name) => fit(ctx, name || "", { face: "display", weight: 600, max: 124 * k, min: 72 * k, width: w - 96 * k, maxLines: 2 });
+  const fitName = (name) => fit(ctx, name || "", { face: "display", weight: 600, max: 124 * k, min: 64 * k, width: w - 90 * k, maxLines: 2 });
   const pill = 66 * k;
   const gap = 30 * k;
   const block = (name) => pill + gap + name.lines.length * name.size * 1.0;
@@ -426,9 +420,8 @@ function paneLayout(ctx, { x, y, w, h, names }) {
   const low = fitName(life && life.name);
   const upH = block(up);
   const lowH = block(low);
-  // Upper pane: the block ends just above the mullion, so the dome stays open glass; lower pane: centered.
-  const upTop = y + h * 0.5 - 44 * k - upH;
-  const lowTop = y + h * 0.75 - lowH / 2 - 4 * k;
+  const upTop = y + h * 0.5 - 50 * k - upH;
+  const lowTop = y + h * 0.5 + 50 * k;
   return {
     k, pill, gap,
     panes: [
@@ -438,81 +431,104 @@ function paneLayout(ctx, { x, y, w, h, names }) {
   };
 }
 
+// The code-drawn opal frame and plinth (glass units): the frame render stands in front of it when it has loaded.
+function drawOpalFrame(ctx) {
+  const ring = MIRROR.ring;
+  const marble = (y0, y1) => { const g = ctx.createLinearGradient(0, y0, 0, y1); g.addColorStop(0, OPAL.marble.hi); g.addColorStop(1, OPAL.marble.lo); return g; };
+  const disc = (cy, rx, ry, h, top, side) => {
+    ctx.fillStyle = side;
+    ctx.beginPath(); ctx.ellipse(50, cy + h, rx, ry, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = marble(cy, cy + h);
+    ctx.fillRect(50 - rx, cy, rx * 2, h);
+    ctx.fillStyle = top;
+    ctx.beginPath(); ctx.ellipse(50, cy, rx, ry, 0, 0, Math.PI * 2); ctx.fill();
+  };
+  disc(224, 79.5, 8, 16, OPAL.marble.top, OPAL.marble.side);
+  disc(207, 68, 7, 12, OPAL.marble.top2, OPAL.marble.side2);
+  const g = ctx.createLinearGradient(-ring, -ring, 100 + ring, 200 + ring);
+  OPAL.ring.forEach((c, i) => g.addColorStop(i / (OPAL.ring.length - 1), c));
+  const outline = path(geometry.archPath(100 + ring, 200 + ring));
+  if (outline) {
+    ctx.save();
+    ctx.translate(-ring / 2, -ring / 2);
+    ctx.strokeStyle = g;
+    ctx.lineWidth = ring - 1;
+    ctx.stroke(outline);
+    ctx.restore();
+  }
+}
+
 export function drawHeroMirror(ctx, { x, y, w, mirror, p, layout = null, fog = 0 }) {
-  const s = w / 100;
-  const h = 160 * s;
-  const arch = path(geometry.archPath(100, 160));
-  const frame = path(geometry.archPath(110, 165));
+  const s = w / MIRROR.w;
+  const h = MIRROR.h * s;
+  const F = MIRROR.frame;
+  const arch = path(geometry.archPath(MIRROR.w, MIRROR.h));
+  const bleed = path(geometry.archPath(MIRROR.w + 3, MIRROR.h + 3));
   const { filled, cells } = mosaicOf(mirror);
   const night = p.dark;
-  // Light behind the mirror.
-  glow(ctx, x + w / 2, y + h * 0.42, w * 1.1, night ? N.violet : C.violet300, night ? 0.42 : 0.5);
+  const white = tokens.color.surfaceSolid;
+  glow(ctx, x + w / 2, y + h * 0.46, w * 1.3, night ? N.violet : C.violet300, night ? 0.4 : 0.42);
   ctx.save();
   ctx.translate(x, y);
   ctx.scale(s, s);
-  // Silver frame, with a soft shadow under it.
+  const frameImg = worldArt.frame && ctx.drawImage ? worldArt.frame : null;
+  // A soft shadow on the ground under the plinth.
   ctx.save();
-  ctx.shadowColor = rgba(N.n900, night ? 0.7 : 0.25);
-  ctx.shadowBlur = 40 / s;
-  ctx.shadowOffsetY = 18 / s;
-  const fr = ctx.createLinearGradient(-5, 0, 105, 40);
-  fr.addColorStop(0, SILVER[1]);
-  fr.addColorStop(0.2, tokens.color.surfaceSolid);
-  fr.addColorStop(0.45, SILVER[0]);
-  fr.addColorStop(0.65, SILVER[1]);
-  fr.addColorStop(0.85, tokens.color.surfaceSolid);
-  fr.addColorStop(1, SILVER[1]);
-  ctx.fillStyle = fr;
-  if (frame) { ctx.translate(-5, -5); ctx.fill(frame); ctx.translate(5, 5); }
+  ctx.translate(50, MIRROR.bottom - 2);
+  ctx.scale(1, 0.12);
+  const floor = ctx.createRadialGradient(0, 0, 0, 0, 0, 96);
+  floor.addColorStop(0, rgba(N.n900, night ? 0.6 : 0.28));
+  floor.addColorStop(1, rgba(N.n900, 0));
+  ctx.fillStyle = floor;
+  ctx.fillRect(-100, -100, 200, 200);
   ctx.restore();
-  // The glass.
+  if (!frameImg) drawOpalFrame(ctx);
+  // The glass: the room the mirror looks into, cropped to the oval.
   ctx.save();
-  if (arch) ctx.clip(arch);
-  const base = ctx.createLinearGradient(0, 0, 0, 160);
-  base.addColorStop(0, night ? N.n600 : C.violet100);
-  base.addColorStop(1, night ? N.n900 : tokens.color.surfaceSolid);
+  if (bleed) { ctx.translate(-1.5, -1.5); ctx.clip(bleed); ctx.translate(1.5, 1.5); }
+  const base = ctx.createLinearGradient(0, 0, 0, MIRROR.h);
+  base.addColorStop(0, OPAL.glass[0]);
+  base.addColorStop(0.55, OPAL.glass[1]);
+  base.addColorStop(1, OPAL.glass[2]);
   ctx.fillStyle = base;
-  ctx.fillRect(0, 0, 100, 160);
-  // The real MirrorMii city behind the stained glass (round 3).
-  const city = worldArt.mirror && ctx.drawImage ? worldArt.mirror : null;
-  if (city) {
-    ctx.save();
-    ctx.globalAlpha = night ? 0.85 : 0.95;
-    ctx.drawImage(city, 0, 0, 100, 160);
-    ctx.restore();
+  ctx.fillRect(-2, -2, MIRROR.w + 4, MIRROR.h + 4);
+  const room = worldArt.inside && ctx.drawImage ? worldArt.inside : null;
+  if (room) {
+    const sw = room.height * (MIRROR.w / MIRROR.h);
+    ctx.drawImage(room, (room.width - sw) * 0.58, 0, sw, room.height, -2, -2, MIRROR.w + 4, MIRROR.h + 4);
   }
+  // A light tint, so the lettering has something to stand on at night.
+  ctx.fillStyle = rgba(N.n900, night ? 0.22 : 0.05);
+  ctx.fillRect(0, 0, MIRROR.w, MIRROR.h);
+  // Shards: earned ones clear with an opal edge, missing ones frosted.
+  const edge = ctx.createLinearGradient(0, 0, MIRROR.w, MIRROR.h);
+  OPAL.edge.forEach((c, i) => edge.addColorStop(i / 3, c));
+  ctx.lineJoin = "round";
   for (let i = 0; i < cells.length; i++) {
     const cell = cells[i];
     const shard = filled[i];
     const d = path(cell.path);
     if (!d) continue;
-    if (shard && cell.points) {
+    if (!shard) {
+      ctx.fillStyle = rgba(white, night ? 0.5 : 0.62);
+      ctx.fill(d);
+      continue;
+    }
+    if (cell.points) {
       const [x0, y0, x1, y1] = cellBox(cell);
-      const t = tokens.chapterTint[shard.chapter] || tokens.chapterTint[Number(shard.chapter)] || tokens.chapterTint.extras;
-      const g = ctx.createLinearGradient(x0, y0, x0 + (x1 - x0) * 0.8, y1);
-      g.addColorStop(0, rgba(tokens.color.surfaceSolid, night ? 0.55 : 0.85));
-      g.addColorStop(0.45, t.tint);
-      g.addColorStop(1, rgba(t.deep, night ? 0.9 : 0.6));
-      ctx.globalAlpha = (shard.skipped ? 0.45 : 1) * (night ? 0.94 : 0.9) * (city ? 0.6 : 1);
+      const g = ctx.createLinearGradient(x0, y0, x1, y1);
+      g.addColorStop(0, rgba(white, 0.3));
+      g.addColorStop(0.45, rgba(white, 0.02));
+      g.addColorStop(1, rgba(white, 0.12));
       ctx.fillStyle = g;
       ctx.fill(d);
     }
+    ctx.globalAlpha = shard.skipped ? 0.45 : 0.9;
+    ctx.strokeStyle = edge;
+    ctx.lineWidth = 0.55;
+    ctx.stroke(d);
+    ctx.globalAlpha = 1;
   }
-  ctx.globalAlpha = 1;
-  // Two panes, two characters: people warm above the mullion, life cool below.
-  for (const [which, top] of [["people", 0], ["life", 80]]) {
-    const hue = PANE_HUE[which][night ? "night" : "day"];
-    const pg = ctx.createLinearGradient(0, top, 0, top + 80);
-    pg.addColorStop(0, rgba(hue, night ? 0.26 : 0.2));
-    pg.addColorStop(1, rgba(hue, night ? 0.42 : 0.3));
-    ctx.fillStyle = pg;
-    ctx.fillRect(0, top, 100, 80);
-  }
-  // Crack lines.
-  ctx.strokeStyle = rgba(tokens.color.surfaceSolid, night ? 0.55 : 0.85);
-  ctx.lineWidth = 0.45;
-  ctx.lineJoin = "round";
-  for (const cell of cells) { const d = path(cell.path); if (d) ctx.stroke(d); }
   // Scrims: a soft dark (Night) or light (Day) zone behind each block of lettering.
   if (layout) {
     for (const pane of layout.panes) {
@@ -522,7 +538,7 @@ export function drawHeroMirror(ctx, { x, y, w, mirror, p, layout = null, fog = 0
       ctx.translate(50, cy);
       ctx.scale(1, ry / 58);
       const sg = ctx.createRadialGradient(0, 0, 0, 0, 0, 58);
-      const ink = night ? N.n900 : tokens.color.surfaceSolid;
+      const ink = night ? N.n900 : white;
       sg.addColorStop(0, rgba(ink, night ? 0.86 : 0.9));
       sg.addColorStop(0.6, rgba(ink, night ? 0.7 : 0.74));
       sg.addColorStop(1, rgba(ink, 0));
@@ -531,43 +547,34 @@ export function drawHeroMirror(ctx, { x, y, w, mirror, p, layout = null, fog = 0
       ctx.restore();
     }
   }
-  // Genii's light resting at the top of the dome, and one specular sweep.
-  const inner = ctx.createRadialGradient(50, 18, 0, 50, 18, 34);
-  inner.addColorStop(0, rgba(tokens.color.surfaceSolid, night ? 0.5 : 0.7));
-  inner.addColorStop(1, rgba(tokens.color.surfaceSolid, 0));
+  // Genii's light high in the glass, and one specular sweep.
+  const inner = ctx.createRadialGradient(50, 40, 0, 50, 40, 40);
+  inner.addColorStop(0, rgba(white, night ? 0.4 : 0.55));
+  inner.addColorStop(1, rgba(white, 0));
   ctx.fillStyle = inner;
-  ctx.fillRect(0, 0, 100, 160);
+  ctx.fillRect(0, 0, MIRROR.w, MIRROR.h);
   ctx.save();
   ctx.rotate((-20 * Math.PI) / 180);
   const sweep = ctx.createLinearGradient(-30, 0, 10, 0);
-  sweep.addColorStop(0, rgba(tokens.color.surfaceSolid, 0));
-  sweep.addColorStop(0.5, rgba(tokens.color.surfaceSolid, night ? 0.14 : 0.3));
-  sweep.addColorStop(1, rgba(tokens.color.surfaceSolid, 0));
+  sweep.addColorStop(0, rgba(white, 0));
+  sweep.addColorStop(0.5, rgba(white, night ? 0.14 : 0.26));
+  sweep.addColorStop(1, rgba(white, 0));
   ctx.fillStyle = sweep;
-  ctx.fillRect(-30, -40, 40, 260);
+  ctx.fillRect(-30, -40, 40, 300);
   ctx.restore();
   if (fog > 0) {
-    ctx.fillStyle = rgba(night ? N.ink2 : tokens.color.surfaceSolid, 0.7 * fog);
-    ctx.fillRect(0, 0, 100, 160);
+    ctx.fillStyle = rgba(night ? N.ink2 : white, 0.72 * fog);
+    ctx.fillRect(0, 0, MIRROR.w, MIRROR.h);
   }
   ctx.restore();
-  // Inner rim, mullion with its jewel, plinth and finial.
-  ctx.strokeStyle = rgba(tokens.color.surfaceSolid, 0.95);
-  ctx.lineWidth = 0.9;
+  ctx.strokeStyle = rgba(white, 0.7);
+  ctx.lineWidth = 0.6;
   if (arch) ctx.stroke(arch);
-  ctx.fillStyle = fr;
-  ctx.fillRect(0, 78.4, 100, 3.2);
-  ctx.strokeStyle = SILVER[1];
-  ctx.lineWidth = 0.3;
-  ctx.strokeRect(0, 78.4, 100, 3.2);
-  ctx.beginPath(); ctx.arc(50, 80, 3.6, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
-  ctx.fillStyle = fr;
-  roundRect(ctx, -8, 158.5, 116, 7, 2.5);
-  ctx.fill();
-  ctx.stroke();
-  ctx.beginPath(); ctx.arc(50, -5, 4.4, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  if (frameImg) {
+    try { ctx.drawImage(frameImg, F.x, F.y, F.w, F.h); } catch { drawOpalFrame(ctx); }
+  }
   ctx.restore();
-  return { h, s };
+  return { h, s, foot: y + MIRROR.bottom * s };
 }
 
 // The lettering on the panes: a label pill edged in that pane's hue, carrying the half's sigil and its label, then the
@@ -610,13 +617,14 @@ function drawPaneText(ctx, { x, w, layout, p }) {
   }
 }
 
-// The whole mirror with both names: layout, glass, lettering. Returns the glass height.
+// The whole mirror with both names: layout, glass, lettering. Returns { h, foot }: the glass height and the y of the
+// plinth's foot.
 export function drawNamedMirror(ctx, { x, y, w, names, mirror, p, fog = 0 }) {
-  const h = w * 1.6;
+  const h = w * (MIRROR.h / MIRROR.w);
   const layout = names && names.length ? paneLayout(ctx, { x, y, w, h, names }) : null;
-  drawHeroMirror(ctx, { x, y, w, mirror, p, layout, fog });
+  const { foot } = drawHeroMirror(ctx, { x, y, w, mirror, p, layout, fog });
   if (layout) drawPaneText(ctx, { x, w, layout, p });
-  return h;
+  return { h, foot };
 }
 
 // One trait for the card: a glass pill with the chapter dot and the name, big enough to read at story size. Returns
@@ -685,15 +693,15 @@ export function drawShareCard(ctx, card, { format = "story", theme = "night", li
   background(ctx, W, H, p);
   const names = card.names || [];
   const items = (card.tags || []).filter((t) => t && t.name).slice(0, SHARE_TRAITS);
+  drawIslandBackdrop(ctx, W, H, p);
   if (format === "post") {
     drawWordmark(ctx, wordmarkImage, W / 2, 30, 170, p);
-    const aw = 560;
-    const ay = 110;
-    aura(ctx, W / 2, ay + aw * 0.72, aw * 0.95, p);
-    drawIsland(ctx, W / 2, ay + aw * 1.6 - 200, 880);
-    const h = drawNamedMirror(ctx, { x: (W - aw) / 2, y: ay, w: aw, names, mirror: card.mirror, p });
-    drawGenii(ctx, (W + aw) / 2 + 6, ay + h + 10, 150);
-    drawPillRows(ctx, { items, y: ay + h + 30, W, p, size: 34, maxW: W - 100, maxRows: 2, gap: 16, rowGap: 14 });
+    const aw = 340;
+    const ay = 104;
+    aura(ctx, W / 2, ay + aw, aw * 1.5, p);
+    const { foot } = drawNamedMirror(ctx, { x: (W - aw) / 2, y: ay, w: aw, names, mirror: card.mirror, p });
+    drawGenii(ctx, W / 2 + aw * 1.12, foot + 4, 128);
+    drawPillRows(ctx, { items, y: foot + 26, W, p, size: 34, maxW: W - 100, maxRows: 2, gap: 16, rowGap: 14 });
     font(ctx, "display", 420, 48, true);
     lines(ctx, [card.invite || ""], W / 2, H - 72, { lh: 0, align: "center", color: p.accent });
     font(ctx, "text", 600, 24);
@@ -701,13 +709,12 @@ export function drawShareCard(ctx, card, { format = "story", theme = "night", li
     return;
   }
   drawWordmark(ctx, wordmarkImage, W / 2, 64, 220, p);
-  const aw = 780;
-  const ay = 168;
-  aura(ctx, W / 2, ay + aw * 0.72, aw * 0.9, p);
-  drawIsland(ctx, W / 2, ay + aw * 1.6 - 250, 1240);
-  const h = drawNamedMirror(ctx, { x: (W - aw) / 2, y: ay, w: aw, names, mirror: card.mirror, p });
-  drawGenii(ctx, (W + aw) / 2 - 70, ay + h + 60, 190);
-  drawPillRows(ctx, { items, y: ay + h + 44, W, p, size: 46, maxW: W - 140, maxRows: 2 });
+  const aw = 520;
+  const ay = 196;
+  aura(ctx, W / 2, ay + aw, aw * 1.4, p);
+  const { foot } = drawNamedMirror(ctx, { x: (W - aw) / 2, y: ay, w: aw, names, mirror: card.mirror, p });
+  drawGenii(ctx, W / 2 + aw * 0.96, foot + 6, 176);
+  drawPillRows(ctx, { items, y: foot + 34, W, p, size: 46, maxW: W - 140, maxRows: 2 });
   font(ctx, "display", 420, 58, true);
   lines(ctx, [card.invite || ""], W / 2, 1800, { lh: 0, align: "center", color: p.accent });
   font(ctx, "text", 600, 28);
@@ -724,18 +731,19 @@ function drawStoryBody(ctx, spec, p, W, H) {
   switch (spec.id) {
     case "intro":
     case "names": {
-      const aw = 800;
-      const top = 210;
-      const h = drawNamedMirror(ctx, { x: (W - aw) / 2, y: top, w: aw, names: spec.names || [], mirror: spec.mirror, p, fog: spec.id === "intro" ? 1 : 0 });
-      y = top + h + 60;
+      const aw = 480;
+      const top = 236;
+      const { foot } = drawNamedMirror(ctx, { x: (W - aw) / 2, y: top, w: aw, names: spec.names || [], mirror: spec.mirror, p, fog: spec.id === "intro" ? 1 : 0 });
+      y = foot + 70;
       if (spec.title) y = block(ctx, spec.title, W / 2, y, { face: "display", weight: 600, max: 80, min: 56, width, maxLines: 2, color: p.ink, align: "center", lh: 1.08 });
       if (spec.hook) {
-        // The plaque on the frame's foot, as on the screen: the clearest finding's first sentence.
+        // The plaque across the mirror's foot, as on the screen: the clearest finding's first sentence.
         const first = String(spec.hook).split(/(?<=[.!?])\s+/)[0];
-        const fitted = fit(ctx, first, { face: "display", weight: 450, italic: true, max: 44, min: 34, width: aw - 120, maxLines: 3 });
+        const pw = 720;
+        const fitted = fit(ctx, first, { face: "display", weight: 450, italic: true, max: 44, min: 34, width: pw - 80, maxLines: 3 });
         const ph = fitted.lines.length * fitted.size * 1.28 + 56;
-        const py = top + h - 40;
-        roundRect(ctx, (W - aw + 40) / 2, py, aw - 40, ph, 36);
+        const py = top + aw * 2 - 30;
+        roundRect(ctx, (W - pw) / 2, py, pw, ph, 36);
         ctx.fillStyle = rgba(N.n800, 0.94);
         ctx.fill();
         ctx.strokeStyle = rgba(tokens.color.surfaceSolid, 0.75);
@@ -743,7 +751,7 @@ function drawStoryBody(ctx, spec, p, W, H) {
         ctx.stroke();
         font(ctx, "display", 450, fitted.size, true);
         lines(ctx, fitted.lines, W / 2, py + 28 + fitted.size * 0.92, { lh: fitted.size * 1.28, align: "center", color: N.ink });
-        y = py + ph + 60;
+        y = Math.max(y, py + ph + 60);
       }
       for (const l of spec.lines || []) block(ctx, l, W / 2, y, { face: "display", weight: 420, italic: true, max: 40, min: 32, width, maxLines: 2, color: p.ink2, align: "center" });
       return;
@@ -967,6 +975,7 @@ export function drawStory(ctx, spec, { lightTheme = "day", wordmarkImage = null 
   const p = paletteFor(spec.look || "night", lightTheme);
   ctx.textBaseline = "alphabetic";
   background(ctx, W, H, p);
+  if (spec.id === "intro" || spec.id === "names") drawIslandBackdrop(ctx, W, H, p);
   drawWordmark(ctx, wordmarkImage, W / 2, 118, 200, p);
   drawStoryBody(ctx, spec, p, W, H);
 }

@@ -113,9 +113,11 @@ test("the app screen has one primary job; the stings sheet only saves; the guess
     const app = slideHtml(html, "app");
     assert.equal((app.match(/class="rv-cta /g) || []).length, 1, `${voice}: one primary button`);
     assert.ok(visible(app).includes("Your data"));
-    assert.match(app, /class="rv-world"[^>]*aria-hidden="true"/, `${voice}: one large in-game moment on the real island`);
-    assert.match(app, /assets\/world\/island-/, `${voice}: the MirrorMii World diorama`);
-    assert.match(app, /assets\/world\/genii-/, `${voice}: the CGI Genii`);
+    assert.match(app, /class="rv-world"[^>]*aria-hidden="true"/, `${voice}: one large in-game moment on the canon island`);
+    // Round 4 (LAUNCH-SPEC 25 item 1): Genii's island from the GDD and our own 3D Genii; no library or phone mockup art.
+    assert.match(app, /assets\/island\/hero-portrait-/, `${voice}: Genii's island (GDD v0.2 render)`);
+    assert.match(app, /class="genii-light/, `${voice}: our own Genii`);
+    assert.doesNotMatch(app, /assets\/world\/|data-art="app-tablet"/, `${voice}: no retired world or phone mockup art`);
     assert.ok(visible(app).includes("Get MirrorMii"));
     const share = slideHtml(html, "share");
     assert.match(share, /Your opposite: .+ and .+\. Know one\?/);
@@ -151,7 +153,7 @@ test("the findings, the rooms and the calls render their cues", async () => {
     assert.equal((knows.match(/data-art="clarity-gem"/g) || []).length, n, `${voice}: one gem per finding`);
     assert.equal((knows.match(/class="rv-find rv-find--top"/g) || []).length, 1, `${voice}: one clearest card`);
     const rooms = view.slides.find((s) => s.id === "rooms");
-    if (rooms) assert.equal((slideHtml(html, "rooms").match(/data-art="island"/g) || []).length, rooms.rows.length, `${voice}: an island per room`);
+    if (rooms) assert.equal((slideHtml(html, "rooms").match(/data-art="islet"/g) || []).length, rooms.rows.length, `${voice}: an islet per room`);
     const calls = slideHtml(html, "calls");
     const c = view.slides.find((s) => s.id === "calls");
     assert.equal((calls.match(/class="rv-call rv-call--/g) || []).length, c.rows.length);

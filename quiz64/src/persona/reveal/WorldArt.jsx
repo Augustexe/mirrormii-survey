@@ -1,13 +1,14 @@
-// Round 3 reveal craft (LAUNCH-SPEC section 24 items 6 and 7): the light behind the frames and the real MirrorMii
-// world on the product screens. Aura is the glow that stands behind a mirror, a card or a grid of panes: a breathing
-// bloom, slow rays and one ring of light when the frame lands, all transform and opacity only (compositor work, no
-// blur filters). WorldScene is the get-the-app picture: the MirrorMii World diorama with the CGI glass Genii floating
-// over its plaza, the photo you snapped of lunch arriving on a trail of light, and the city from the world style key
-// as the sky behind; layers drift at different depths. The rasters load only when the reveal mounts them (the reveal
-// is its own lazy chunk) and decode off the main thread. Reduced motion: every layer holds still.
+// Round 3 reveal craft (LAUNCH-SPEC section 24 item 6) and the canon world (section 25 item 1). Aura is the glow that
+// stands behind a mirror, a card or a grid of panes: a breathing bloom, slow rays and one ring of light when the frame
+// lands, all transform and opacity only (compositor work, no blur filters). WorldScene is the get-the-app picture:
+// Genii's floating island from the GDD (white marble terraces, waterfalls, the lavender tree and the World Mirror at
+// its center), our own 3D Genii waiting beside the mirror, and the photo you snapped of lunch arriving on a trail of
+// light. The render loads only when the reveal mounts it (the reveal is its own lazy chunk) and decodes off the main
+// thread. Reduced motion: every layer holds still.
 import React, { useId } from "react";
 import { Sparkle } from "../../art/index.js";
-import { WORLD } from "../../art/world.js";
+import { ISLAND } from "../../art/world.js";
+import { GeniiLight } from "../../system/index.js";
 
 export function Aura({ className = "", tone = "violet", style, ring = true }) {
   return (
@@ -16,23 +17,6 @@ export function Aura({ className = "", tone = "violet", style, ring = true }) {
       <i className="rv-aura__rays" />
       {ring ? <i className="rv-aura__ring" /> : null}
     </span>
-  );
-}
-
-export function GeniiCgi({ width = 120, className = "", eager = false }) {
-  return (
-    <img className={`rv-genii-cgi ${className}`} src={WORLD.genii.src} srcSet={WORLD.genii.srcSet} sizes={`${Math.round(width)}px`}
-      width={Math.round(width)} height={Math.round((width * WORLD.genii.h) / WORLD.genii.w)} alt="" decoding="async" loading={eager ? "eager" : "lazy"} />
-  );
-}
-
-export function IslandImg({ width, className = "" }) {
-  return (
-    <picture className={`rv-island ${className}`}>
-      <source type="image/avif" srcSet={`${WORLD.island.avif} 1440w`} sizes={`${Math.round(width)}px`} />
-      <img src={WORLD.island.src} srcSet={WORLD.island.srcSet} sizes={`${Math.round(width)}px`} width={Math.round(width)} height={Math.round((width * WORLD.island.h) / WORLD.island.w)}
-        alt="" decoding="async" loading="lazy" />
-    </picture>
   );
 }
 
@@ -73,40 +57,45 @@ function Polaroid() {
   );
 }
 
-// The get-the-app picture. `width` is the stage width (the scene bleeds edge to edge); `height` the room it has.
-// Positions come from the diorama itself: Genii floats over the middle of the town, clear of the MirrorMii World sign.
+// The get-the-app picture. `width` is the stage width (the island bleeds edge to edge); `height` the room it has.
+// The render is cropped around the island (the mirror sits at 50% across, about 38% down the 2:3 render); Genii floats
+// on the plaza to the right of the mirror, and the snapped photo leans in at the top left with its trail landing on him.
 export function WorldScene({ width = 390, height = 300, snap, lives }) {
-  const iw = Math.round(Math.min(width * 1.34, height * 2));
-  const ih = Math.round((iw * WORLD.island.h) / WORLD.island.w);
+  const img = ISLAND.hero;
+  const iw = Math.round(Math.max(width, height * 1.02));
+  const ih = Math.round((iw * img.h) / img.w);
   const il = Math.round((width - iw) / 2);
-  const it = height - ih;
-  const gw = Math.round(Math.max(72, Math.min(104, iw * 0.17)));
-  const gx = il + iw * 0.5;
-  const gy = it + ih * 0.5; // Genii's feet
-  // The snapped photo leans in at the top right, clear of the MirrorMii World sign; its trail of light lands on Genii.
-  const px = width - 92 - Math.max(10, width * 0.04);
-  const py = 6;
+  // The island's plaza (image y about 0.42) sits at 58% of the picture's height.
+  const it = Math.round(height * 0.58 - ih * 0.42);
+  const mx = il + iw * 0.5; // the mirror's foot
+  const my = it + ih * 0.46;
+  const gs = 72; // GeniiLight size m
+  const gx = mx + Math.min(iw * 0.2, 86);
+  const gy = my - 4;
+  const px = Math.max(10, width * 0.04);
+  const py = 8;
   const f = (n) => Math.round(n);
-  const trail = `M${f(px + 8)} ${f(py + 74)} C ${f(px - 40)} ${f(py + 70)} ${f(gx + gw * 0.9)} ${f(gy - gw * 0.95)} ${f(gx + gw * 0.46)} ${f(gy - gw * 0.52)}`;
+  const trail = `M${f(px + 84)} ${f(py + 70)} C ${f(px + 150)} ${f(py + 96)} ${f(gx - gs * 0.9)} ${f(gy - gs * 1.3)} ${f(gx - gs * 0.2)} ${f(gy - gs * 0.62)}`;
   return (
     <figure className="rv-world" style={{ "--w": `${width}px`, "--h": `${height}px` }} aria-hidden="true">
-      <span className="rv-world__sky"><img src={WORLD.mirror.small} srcSet={WORLD.mirror.srcSet} sizes={`${Math.round(width)}px`} alt="" decoding="async" loading="lazy" /></span>
-      <Aura className="rv-world__aura" tone="world" ring={false} style={{ left: gx, top: gy - gw * 0.3, width: iw * 1.05, height: ih * 1.5 }} />
-      <span className="rv-world__land" style={{ left: il, top: it, width: iw, height: ih }}><IslandImg width={iw} /></span>
-      <span className="rv-world__genii" style={{ left: gx, top: gy, width: gw }}>
+      <span className="rv-world__land" style={{ left: il, top: it, width: iw, height: ih }}>
+        <img src={img.src} srcSet={img.srcSet} sizes={`${iw}px`} width={iw} height={ih} alt="" decoding="async" loading="lazy" />
+      </span>
+      <Aura className="rv-world__aura" tone="world" ring={false} style={{ left: mx, top: my - ih * 0.1, width: iw * 0.7, height: ih * 0.34 }} />
+      <span className="rv-world__genii" style={{ left: gx, top: gy }}>
         <i className="rv-world__gglow" />
         <i className="rv-world__gshadow" />
-        <GeniiCgi width={gw} />
+        <span className="rv-world__gform"><GeniiLight size="m" evolution={1} mood="sure" /></span>
       </span>
       <svg className="rv-world__trail" width={width} height={height} viewBox={`0 0 ${width} ${height}`} focusable="false">
         <path d={trail} />
       </svg>
       <span className="rv-world__snap" style={{ left: px, top: py }}><Polaroid /></span>
-      <span className="rv-world__spark rv-world__spark--a" style={{ left: gx - gw * 0.6, top: gy - gw * 1.05 }}><Sparkle size={16} /></span>
-      <span className="rv-world__spark rv-world__spark--b" style={{ left: gx + gw * 0.75, top: gy - gw * 0.2 }}><Sparkle size={11} /></span>
+      <span className="rv-world__spark rv-world__spark--a" style={{ left: gx - gs * 0.7, top: gy - gs * 1.2 }}><Sparkle size={16} /></span>
+      <span className="rv-world__spark rv-world__spark--b" style={{ left: mx - iw * 0.16, top: my - ih * 0.14 }}><Sparkle size={11} /></span>
       <figcaption className="rv-world__caps">
-        <span className="rv-world__cap rv-world__cap--snap" style={{ right: Math.max(10, width * 0.04) - 4, top: py + 100 }}>{snap}</span>
-        <span className="rv-world__cap rv-world__cap--lives" style={{ left: Math.max(12, il + iw * 0.16), top: it + ih * 0.66 }}>{lives}</span>
+        <span className="rv-world__cap rv-world__cap--snap" style={{ left: px + 4, top: py + 104 }}>{snap}</span>
+        <span className="rv-world__cap rv-world__cap--lives" style={{ right: Math.max(12, width * 0.05), top: Math.min(height - 36, my + 26) }}>{lives}</span>
       </figcaption>
     </figure>
   );

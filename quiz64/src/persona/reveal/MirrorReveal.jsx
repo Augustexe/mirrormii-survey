@@ -1,12 +1,13 @@
-// The Reflection (DESIGN-DIRECTION 3.2, 5.12 stories 1 and 2). Story 1: every answered card is a shard in its
-// chapter's tint, orbiting Genii's light; hold to speed them up, let go (or tap) and they rush in, chapter by chapter,
-// and fuse into your mirror, whose crack pattern is seeded by your run. Story 2: the fog wipes from the center out and
-// your two names resolve in the two panes of the arch. Names and titles are in the DOM from the first frame.
+// The Reflection (DESIGN-DIRECTION 3.2, 5.12 stories 1 and 2; LAUNCH-SPEC 25 item 2). Story 1: every answered card is
+// a shard of clear glass with an opal edge, orbiting Genii's light; hold to speed them up, let go (or tap) and they rush
+// in, chapter by chapter, and rebuild the World Mirror (the oval opal mirror at the center of Genii's island), whose
+// shard pattern is seeded by your run. Story 2: the fog wipes from the center out and your two names resolve in the
+// glass, over the room the mirror looks into. Names and titles are in the DOM from the first frame.
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion as m } from "motion/react";
 import { MirrorArch, Sigil, Sparkle, geometry } from "../../art/index.js";
-import { tint } from "../../art/palette.js";
-import { WORLD } from "../../art/world.js";
+import { MIRROR } from "../../art/world.js";
+import { OPAL } from "../../art/palette.js";
 import { Aura } from "./WorldArt.jsx";
 import { GeniiLight, tokens } from "../../system/index.js";
 import { archBox, archClip, durationMs } from "./layout.js";
@@ -25,12 +26,12 @@ function mirrorOf(slide) {
 
 function useCells(mirror) {
   const count = Math.max(mirror.filled.length, 40);
-  return useMemo(() => geometry.mosaic(mirror.seed, count, { w: 100, h: 160 }).cells, [mirror.seed, count]);
+  return useMemo(() => geometry.mosaic(mirror.seed, count, { w: MIRROR.w, h: MIRROR.h }).cells, [mirror.seed, count]);
 }
 
-// The mirror as it stands after the shards land: D's MirrorArch (the real MirrorMii city behind the stained glass,
-// round 3) plus the glass, fog and silver floor line, a breathing aura of light behind the frame and a bead of light
-// that travels round the rim.
+// The mirror as it stands after the shards land: the World Mirror (MirrorArch: opal frame render, round plinth, the room
+// inside the clear glass) plus a light tint and fog over the glass, a breathing aura of light behind the frame and a
+// bead of light that travels round the rim.
 function StandingMirror({ box, mirror, fog = 0, children, className = "" }) {
   const clip = archClip(box);
   const pad = 6;
@@ -39,7 +40,7 @@ function StandingMirror({ box, mirror, fog = 0, children, className = "" }) {
       <Aura className="rv-mirror__aura" style={{ left: box.cx, top: box.glassTop + box.glassH * 0.46, width: box.glassW * 2.5, height: box.glassH * 1.55 }} />
       <span className="rv-mirror__halo" style={{ left: box.cx, top: box.glassTop + box.glassH * 0.42, width: box.glassW * 1.9, height: box.glassH * 1.2 }} />
       <span className="rv-mirror__art" style={{ left: box.svgLeft, top: box.svgTop }}>
-        <MirrorArch seed={mirror.seed} filled={mirror.filled} mullion glow={0.8} fog={0} size={box.svgW} world={WORLD.mirror.src} />
+        <MirrorArch seed={mirror.seed} filled={mirror.filled} glow={0.8} fog={0} size={box.svgW} />
       </span>
       <span className="rv-mirror__glass" style={{ clipPath: clip }} />
       <span className="rv-mirror__fog" style={{ clipPath: clip, opacity: fog }} />
@@ -48,7 +49,7 @@ function StandingMirror({ box, mirror, fog = 0, children, className = "" }) {
         <path className="rv-mirror__rimglow" d={geometry.archPath(box.glassW, box.glassH)} pathLength="1" />
         <path className="rv-mirror__rimcore" d={geometry.archPath(box.glassW, box.glassH)} pathLength="1" />
       </svg>
-      <span className="rv-mirror__floor" style={{ top: box.bottom, left: box.glassLeft - box.glassW * 0.35, width: box.glassW * 1.7 }} />
+      <span className="rv-mirror__floor" style={{ top: box.foot, left: box.glassLeft - box.glassW * 0.45, width: box.glassW * 1.9 }} />
       {children}
     </div>
   );
@@ -212,17 +213,27 @@ export function IntroScreen({ s, stage, active, reduced, phase, onStart, onDone 
             <span className="rv-intro__core" />
           </span>
           <svg className="rv-shards" width={stage.w} height={stage.h} viewBox={`0 0 ${stage.w} ${stage.h}`} aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="rv-shard-glass" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stopColor={OPAL.marble.hi} stopOpacity="0.78" />
+                <stop offset="0.5" stopColor={OPAL.edge[3]} stopOpacity="0.32" />
+                <stop offset="1" stopColor={OPAL.marble.hi} stopOpacity="0.6" />
+              </linearGradient>
+              <linearGradient id="rv-shard-edge" x1="0" y1="0" x2="1" y2="1">
+                {OPAL.edge.map((c, i) => <stop key={i} offset={[0, 0.35, 0.65, 1][i]} stopColor={c} />)}
+              </linearGradient>
+            </defs>
             <path className="rv-shards__outline" d={geometry.archPath(box.glassW, box.glassH)} transform={`translate(${box.glassLeft} ${box.glassTop})`} pathLength="1" />
             {shards.map((sh) => (
               <path key={sh.i} ref={(el) => { paths.current[sh.i] = el; }} d={sh.cell.path} className="rv-shard"
-                style={{ fill: tint(sh.chapter) }} transform={`translate(${stage.w / 2} ${stage.h * 0.3}) scale(0.01)`} />
+                transform={`translate(${stage.w / 2} ${stage.h * 0.3}) scale(0.01)`} />
             ))}
           </svg>
           <span className="rv-intro__fog" style={{ clipPath: archClip(box) }} aria-hidden="true" />
           <span className="rv-intro__flash" style={{ left: box.cx, top: box.glassTop + box.glassH * 0.5, width: box.glassW * 2.2, height: box.glassW * 2.2 }} aria-hidden="true" />
         </>
       )}
-      <div className="rv-intro__copy" style={still ? { top: box.bottom + 28 } : undefined}>
+      <div className="rv-intro__copy" style={still ? { top: box.foot + 18 } : undefined}>
         <p className="rv-kicker rv-in">{s.kicker}</p>
         <h2 className="rv-title rv-in" data-focus tabIndex="-1">{s.title}</h2>
         {!still && <p className="rv-intro__sub rv-in">{s.sub}</p>}
@@ -274,20 +285,11 @@ export function NamesScreen({ s, stage, active, reduced, wipe, onWiped, sparkles
   return (
     <div className="rv-names" data-wipe={wiping ? "on" : "off"} data-plaque={plaque ? "true" : "false"}>
       <StandingMirror box={box} mirror={mirror} fog={0}>
-        {/* Two panes, two characters (people warm, life cool), and a soft scrim behind each block of lettering so the
-            names read while the glass stays glass around them. */}
-        <span className="rv-mirror__panes" style={{ clipPath: clip, "--t": `${box.glassTop}px`, "--m": `${box.mullionY}px`, "--b": `${box.bottom}px` }} />
+        {/* Clear glass over the room, and a soft scrim behind each block of lettering so the names read while the glass
+            stays glass around them. */}
         <span className="rv-mirror__scrim" style={{ clipPath: clip, left: 0, top: 0, width: stage.w, height: stage.h, "--up": `${box.mullionY - box.glassH * 0.2}px`, "--down": `${box.mullionY + box.glassH * 0.25}px`, "--rx": `${box.glassW * 0.62}px`, "--ry": `${box.glassH * 0.2}px`, "--cx": `${box.cx}px` }} />
         <span className="rv-mirror__wipe" style={{ clipPath: clip }} />
         <span className="rv-mirror__pass" style={{ clipPath: clip }} />
-        <span className="rv-names__reflection" style={{ transformOrigin: `0 ${box.bottom}px`, WebkitMaskImage: `linear-gradient(to bottom, transparent ${box.bottom - 150}px, black ${box.bottom}px, transparent ${box.bottom}px)`, maskImage: `linear-gradient(to bottom, transparent ${box.bottom - 150}px, black ${box.bottom}px, transparent ${box.bottom}px)` }}>
-          <span className="rv-mirror__art" style={{ left: box.svgLeft, top: box.svgTop }}>
-            <MirrorArch seed={mirror.seed} filled={mirror.filled} mullion glow={0} fog={0} size={box.svgW} world={WORLD.mirror.src} />
-          </span>
-          <span className="rv-pane rv-pane--echo" style={{ left: box.glassLeft, top: box.mullionY, width: box.glassW, height: box.glassH / 2 }}>
-            <span className="rv-pane__name">{s.life.name}</span>
-          </span>
-        </span>
       </StandingMirror>
       <span className="rv-names__genii" style={{ left: box.cx, top: box.glassTop + box.glassW * 0.16 }} aria-hidden="true" />
       <h2 className="rv-names__panes" data-focus tabIndex="-1">
@@ -295,14 +297,14 @@ export function NamesScreen({ s, stage, active, reduced, wipe, onWiped, sparkles
         <span className="sr-only">. </span>
         <Pane half={s.life} where="down" box={box} first={active && wipe ? settle + 0.12 : 0} sparkle={sparkles && active && wipe} />
       </h2>
-      {/* One line inside the frame: Genii's clearest finding, etched on a glass plaque at the foot of the lower pane,
-          so the screenshot carries the names and the read together. */}
+      {/* One line on the mirror's foot: Genii's clearest finding, etched on a glass plaque across the plinth, so the
+          screenshot carries the names and the read together. */}
       {plaque ? (
-        <p className="rv-plaque" style={{ left: box.glassLeft + 10, width: box.glassW - 20, top: box.bottom - 22 }}>
+        <p className="rv-plaque" style={{ left: box.cx - Math.min(stage.w - 32, box.glassW * 1.42) / 2, width: Math.min(stage.w - 32, box.glassW * 1.42), top: box.bottom - 14 }}>
           <span className="rv-plaque__line">{plaque}</span>
         </p>
       ) : null}
-      <div className="rv-names__under" style={{ top: box.bottom + (plaque ? 54 : 22) }}>
+      <div className="rv-names__under" style={{ top: box.foot + 14 }}>
         <p className="rv-names__sub rv-in">{s.sub}</p>
         {/* Round 3: the shareable core traits as keyword pills (story-data.js, the same list the card draws). */}
         {keys.length ? (

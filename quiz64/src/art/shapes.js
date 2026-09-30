@@ -46,21 +46,6 @@ export const DOOR_PLAQUE = "M20,36 L40,36 Q42,36 42,38 L42,44 Q42,46 40,46 L20,4
 export const DOOR_WINDOW = "M22,50 L22,38 A8,8 0 0 1 38,38 L38,50 Z";
 export const DOOR_WINDOW_BARS = "M30,30 L30,50 M22,42 L38,42";
 
-// A-03: island base (a glass lens) and its water line, in a 320 x 320 viewBox.
-export const ISLAND_VIEWBOX = "0 0 320 320";
-export const ISLAND_TOP = "M40,188 C40,173 100,166 160,166 C220,166 280,173 280,188 C280,203 220,210 160,210 C100,210 40,203 40,188 Z";
-export const ISLAND_BODY = "M40,188 C40,203 100,210 160,210 C220,210 280,203 280,188 C272,212 238,234 196,246 L160,258 L124,246 C82,234 48,212 40,188 Z";
-export const ISLAND_FACETS = "M40,188 L124,246 L100,206 Z M280,188 L196,246 L222,206 Z M100,206 L124,246 L160,258 L160,210 Z";
-export const ISLAND_CRACKS = "M100,206 L124,246 M160,210 L160,258 M222,206 L196,246 M130,209 L142,252 M190,209 L178,252";
-export const ISLAND_DROP = "M160,258 L166,266 L160,280 L154,266 Z";
-export const ISLAND_WATER_Y = 286;
-
-// A-18: app tablet (a glass phone outline) in a 150 x 300 viewBox.
-export const TABLET_VIEWBOX = "0 0 150 300";
-export const TABLET = "M24,2 L126,2 Q148,2 148,24 L148,276 Q148,298 126,298 L24,298 Q2,298 2,276 L2,24 Q2,2 24,2 Z";
-export const TABLET_SCREEN = "M28,14 L122,14 Q136,14 136,28 L136,272 Q136,286 122,286 L28,286 Q14,286 14,272 L14,28 Q14,14 28,14 Z";
-export const TABLET_ISLAND = "M60,22 L90,22 Q95,22 95,27 Q95,32 90,32 L60,32 Q55,32 55,27 Q55,22 60,22 Z";
-
 // A-16: CSS mask for zigzag receipt edges (top and bottom), as a data URL for `mask-image` / `-webkit-mask`.
 // Use with `mask-size: <tooth*2>px 100%` style tiling: `receiptMask(tooth)` returns { top, bottom }.
 export function receiptMask(tooth = 8) {

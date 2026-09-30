@@ -110,9 +110,8 @@
   .rv-cardopts, .rv-body--share .rv-cta, .rv-actions, .rv-body--share .rv-sub, .rv-opposite { position: relative; }
   .rv-cardstage { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
   .rv-cardstage__aura { left: 50%; top: 46%; inline-size: 125%; block-size: 105%; }
-  .rv-genii-cgi { display: block; block-size: auto; }
 
-  /* ---------------------------------------------------------------- get the app: the real MirrorMii World */
+  /* ---------------------------------------------------------------- get the app: Genii's island (GDD v0.2, 3.2) */
 
   .rv-world {
     position: relative;
@@ -121,26 +120,18 @@
     block-size: var(--h);
     margin: -18px -24px 0;
     pointer-events: none;
+    overflow: hidden;
   }
   .rv-world > * { position: absolute; }
-  .rv-world__sky { inset: 0 0 18% 0; overflow: hidden; }
-  .rv-world__sky img {
-    inline-size: 100%;
-    block-size: 100%;
-    object-fit: cover;
-    object-position: 50% 26%;
-    opacity: 0.5;
-    -webkit-mask-image: radial-gradient(ellipse 60% 58% at 50% 44%, black 30%, transparent 100%);
-    mask-image: radial-gradient(ellipse 60% 58% at 50% 44%, black 30%, transparent 100%);
-  }
+  /* The island render, full bleed; its sky melts into the screen at the top and the bottom. */
   .rv-world__land {
-    -webkit-mask-image: radial-gradient(ellipse 52% 62% at 50% 44%, black 66%, transparent 100%);
-    mask-image: radial-gradient(ellipse 52% 62% at 50% 44%, black 66%, transparent 100%);
-    filter: drop-shadow(0 22px 26px color-mix(in srgb, var(--n-900) 45%, transparent));
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 12%, black 74%, transparent 96%);
+    mask-image: linear-gradient(to bottom, transparent 0, black 12%, black 74%, transparent 96%);
   }
-  .rv-island, .rv-island img { display: block; inline-size: 100%; block-size: auto; }
-  .rv-world__genii { translate: -50% -100%; }
-  .rv-world__genii .rv-genii-cgi { position: relative; inline-size: 100%; }
+  .rv-world__land img { display: block; inline-size: 100%; block-size: 100%; }
+  .rv-world__genii { translate: -50% -100%; inline-size: 72px; block-size: 72px; }
+  .rv-world__gform { position: relative; display: block; inline-size: 72px; block-size: 72px; }
   .rv-world__gglow {
     position: absolute;
     inset: -40% -45% -10%;
@@ -176,10 +167,9 @@
   .rv-world__cap--snap { transform: rotate(4deg); }
   .rv-world__cap--lives { transform: rotate(-3deg); background: var(--n-900); color: var(--n-ink); }
 
-  .rv-slide.is-current .rv-world__sky img { animation: rv-fade calc(var(--d-scene) * 1.4) var(--e-out) both, rv-drift calc(var(--d-loop-breath) * 3) var(--e-in-out) calc(var(--d-scene) * 1.4) infinite alternate; }
-  .rv-slide.is-current .rv-world__land { animation: rv-rise calc(var(--d-scene) * 1.1) var(--e-out) both, rv-float-s calc(var(--d-loop-breath) * 1.6) var(--e-in-out) calc(var(--d-scene) * 1.1) infinite alternate; }
+  .rv-slide.is-current .rv-world__land img { animation: rv-fade calc(var(--d-scene) * 1.2) var(--e-out) both, rv-float-s calc(var(--d-loop-breath) * 1.6) var(--e-in-out) calc(var(--d-scene) * 1.2) infinite alternate; }
   .rv-slide.is-current .rv-world__genii { animation: rv-pop var(--d-scene) var(--e-out) calc(var(--d-scene) * 0.6) both; }
-  .rv-slide.is-current .rv-world__genii .rv-genii-cgi { animation: rv-float calc(var(--d-loop-breath) * 0.9) var(--e-in-out) calc(var(--d-scene) * 1.3) infinite alternate; }
+  .rv-slide.is-current .rv-world__gform { animation: rv-float calc(var(--d-loop-breath) * 0.9) var(--e-in-out) calc(var(--d-scene) * 1.3) infinite alternate; }
   .rv-slide.is-current .rv-world__gshadow { animation: rv-shadow calc(var(--d-loop-breath) * 0.9) var(--e-in-out) calc(var(--d-scene) * 1.3) infinite alternate; }
   .rv-slide.is-current .rv-world__snap { animation: rv-snap var(--d-scene) var(--e-out) calc(var(--d-slow)) both; }
   .rv-slide.is-current .rv-world__trail path { animation: rv-fade var(--d-slow) var(--e-out) var(--d-scene) both, rv-dash var(--d-loop-breath) linear var(--d-scene) infinite; }
@@ -192,7 +182,7 @@
   .rv-room[data-reduced="true"] .rv-slide.is-current :is(.rv-aura *, .rv-mirror__rimlight path, .rv-intro__flash, .rv-call__bloom, .rv-cardstage *, .rv-world *) { animation: none !important; }
 
   @media (prefers-reduced-transparency: reduce) {
-    .rv-aura__rays, .rv-world__sky { display: none; }
+    .rv-aura__rays { display: none; }
   }
 
   @keyframes rv-aura-breathe { from { opacity: 0.7; transform: scale(0.95); } to { opacity: 1; transform: scale(1.05); } }

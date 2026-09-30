@@ -112,3 +112,15 @@ export function emotionTint(emotion, chapter) {
 
 // Rooms (lobby doors) borrow their chapter's light.
 export const ROOM_CHAPTER = { love: 3, work: 5, family: 6 };
+
+// The World Mirror's materials (LAUNCH-SPEC 25), sampled from the canon frame render: the iridescent opal ring (pearl
+// white with pink, peach, sky and lilac lights), the opal edge of a rebuilt shard, the marble plinth, and the pastel sky
+// that stands in the glass before the room render decodes. Shared by MirrorArch, the landing mirror and the canvas card.
+export const OPAL = Object.freeze({
+  ring: ["#F7F1FF", "#FFD6EA", "#FFFFFF", "#CFE3FF", "#E6D8FF", "#FFE9D6", "#FFFFFF", "#D9CCFF"],
+  edge: ["#FFD6EA", "#FFFFFF", "#CFE3FF", "#E6D8FF"],
+  glass: ["#E9DDFB", "#FBE8F1", "#E4DEF7"],
+  sky: ["#D9C8F6", "#F8DCE8", "#E9DDF6"],
+  rim: "#B7A8E4",
+  marble: { hi: "#FFFFFF", lo: "#E4DDF3", top: "#FBF9FF", side: "#D8D0EA", top2: "#FFFFFF", side2: "#DDD5EE" },
+});

@@ -51,7 +51,7 @@ test("src/art bundles to 45 KB gzipped or less (react and the shader package ext
 
 test("no scene component is over 7 KB minified", async () => {
   const scenes = [
-    ...fs.readdirSync(path.join(ART, "islands")).map((f) => path.join("islands", f)),
+    "Islet.jsx",
     "MirrorArch.jsx",
     "Backdrop.jsx",
     "BackdropShader.jsx",
@@ -104,8 +104,8 @@ test("assets render deterministically: same props, same markup; different seeds,
   assert.equal(a, b);
   assert.notEqual(a, c);
   for (const chapter of art.shapes.CHAPTER_KEYS) {
-    const once = stripIds(renderToStaticMarkup(h(art.IslandScene, { chapter })));
-    assert.equal(once, stripIds(renderToStaticMarkup(h(art.IslandScene, { chapter }))));
+    const once = renderToStaticMarkup(h(art.Islet, { chapter }));
+    assert.equal(once, renderToStaticMarkup(h(art.Islet, { chapter })));
   }
   assert.equal(art.textures.foxingSvg("x"), art.textures.foxingSvg("x"));
   assert.notEqual(art.textures.foxingSvg("x"), art.textures.foxingSvg("y"));
@@ -113,7 +113,7 @@ test("assets render deterministically: same props, same markup; different seeds,
 
 test("gradient ids are unique within one React root and change with their content", () => {
   const html = renderToStaticMarkup(h("div", null,
-    h(art.IslandScene, { chapter: 1 }), h(art.IslandScene, { chapter: 1 }),
+    h(art.MirrorArch, { seed: "a" }), h(art.MirrorArch, { seed: "a" }),
     h(art.RoomDoor, { room: "love" }), h(art.RoomDoor, { room: "work" }),
     h(art.EmotionBead, { emotion: "worry" }), h(art.EmotionBead, { emotion: "worry" }),
     h(art.Facet, { axes: [{ key: "R1", lean: 1 }] }), h(art.Facet, { axes: [{ key: "R1", lean: -1 }] })));
@@ -124,13 +124,10 @@ test("gradient ids are unique within one React root and change with their conten
 
 // ------------------------------------------------------------------ every variant renders, no raster, no text
 
-test("every asset and variant renders aria-hidden art with no <text>, no <image> and no raster reference", () => {
+test("every code-drawn asset renders aria-hidden art with no <text>, no <image> and no raster reference", () => {
   const { CHAPTER_KEYS, FORMAT_TYPES, SETUP_IDS, ROOMS } = art.shapes;
   const els = [];
-  for (const chapter of CHAPTER_KEYS) {
-    for (const variant of ["scene", "ambient", "vignette"]) els.push(h(art.IslandScene, { chapter, variant }));
-    els.push(h(art.ChapterGlyph, { chapter }));
-  }
+  for (const chapter of CHAPTER_KEYS) els.push(h(art.ChapterGlyph, { chapter }));
   for (const type of FORMAT_TYPES) els.push(h(art.FormatGlyph, { type }));
   for (const id of art.DEVICE_FAMILIES) els.push(h(art.DeviceGlyph, { id }));
   for (const id of SETUP_IDS) els.push(h(art.SetupGlyph, { id }));
@@ -138,7 +135,7 @@ test("every asset and variant renders aria-hidden art with no <text>, no <image>
   for (const state of ["clear", "frosted", "sealed", "hit", "miss", "pass"]) els.push(h(art.LockPane, { state }));
   for (const theme of ["night", "light"]) els.push(h(art.Facet, { axes: [{ key: "R1", lean: 0.4 }, { key: "L2", flex: true }], theme }));
   for (const scene of ["day", "dusk", "clear", "night", ...Array.from({ length: 9 }, (_, i) => `island-${i + 1}`)]) els.push(h(art.Backdrop, { scene }));
-  els.push(h(art.AppTablet, {}), h(art.MirrorArch, { seed: 1 }), h(art.Sparkle, {}), h(art.SparkleBurst, { count: 12 }), h(art.EmotionBead, { emotion: "sting" }));
+  els.push(h(art.Sparkle, {}), h(art.SparkleBurst, { count: 12 }), h(art.EmotionBead, { emotion: "sting" }));
   for (const el of els) {
     const html = renderToStaticMarkup(el);
     const name = `${el.type.name} ${JSON.stringify(el.props)}`;
@@ -148,6 +145,26 @@ test("every asset and variant renders aria-hidden art with no <text>, no <image>
   // Backdrop never mounts WebGL on the server or before the client decides.
   assert.match(renderToStaticMarkup(h(art.Backdrop, { scene: "night" })), /data-shader="off"/);
   assert.equal(art.deviceFor({ world: "absurd", id: "C2-1", chapter: 2, fp: { device: "magic door" } }), "door");
+});
+
+// Round 4 (LAUNCH-SPEC 25 item 1): the World Mirror and the chapter islets are the canon renders. Their only rasters
+// are the files in public/assets/island/ (never the retired world/ library cuts), and they stay aria-hidden with no text.
+test("the World Mirror and the islets reference only the canon island renders", () => {
+  const els = [h(art.MirrorArch, { seed: 1 }), h(art.MirrorArch, { seed: 2, size: 24 }), h(art.MirrorArch, { seed: 3, size: 600, world: false })];
+  for (const chapter of art.shapes.CHAPTER_KEYS) els.push(h(art.Islet, { chapter }), h(art.DeviceGlyph, { id: `chapter-${String(chapter).replace(/^ch/, "")}` }));
+  for (const el of els) {
+    const html = renderToStaticMarkup(el);
+    const name = `${el.type.name} ${JSON.stringify(el.props)}`;
+    assert.match(html, /^<[a-z]+[^>]*aria-hidden="true"/, name);
+    assert.ok(!/<text\b/.test(html), `${name} bakes no text`);
+    const refs = [...html.matchAll(/(?:href|src)="([^"]+)"/g)].map((m) => m[1]);
+    assert.ok(refs.length, `${name} shows a canon render`);
+    for (const r of refs) assert.match(r, /\/assets\/island\/[a-z0-9-]+\.webp$/, `${name}: ${r}`);
+  }
+  const mirror = renderToStaticMarkup(h(art.MirrorArch, { seed: 1 }));
+  assert.match(mirror, /mirror-frame-\d+\.webp/, "the opal frame render");
+  assert.match(mirror, /mirror-inside-\d+\.webp/, "the room inside the glass");
+  assert.ok(!fs.existsSync(path.join(root, "public/assets/world")), "the retired library cuts are gone");
 });
 
 test("the shader package is only reached through the lazy BackdropShader chunk", () => {
