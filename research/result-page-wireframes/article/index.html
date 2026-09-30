@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evidence Article Concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Figtree:wght@400..800&display=swap" rel="stylesheet">
+<style>
+:root { --paper: #F8F8FF; --pearl: #E9E6FB; --ink: #1E1B2E; --ink-2: #4A4560; --ink-3: #6E6987; --vt: #5646C0; --line: #E2DEF7; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 400 16.5px/1.55 "Figtree", system-ui, sans-serif; }
+main { max-width: 1120px; margin: 0 auto; padding: 28px 16px 60px; }
+h1 { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: clamp(34px, 8vw, 56px); line-height: 1; letter-spacing: -.025em; margin: 0 0 10px; }
+.lead { color: var(--ink-2); max-width: 40rem; margin: 0 0 26px; }
+.grid { display: grid; gap: 14px; }
+.c { border-radius: 24px; background: #fff; box-shadow: 0 0 0 1px var(--line); padding: 20px; }
+.c h2 { font-family: "Fraunces", Georgia, serif; font-weight: 600; font-size: 26px; margin: 0 0 6px; }
+.c p { margin: 0 0 12px; color: var(--ink-2); }
+.c .score { font: 700 13px/1.4 "Figtree"; color: var(--ink-3); }
+.c a { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 16px; border-radius: 999px; font-weight: 700; text-decoration: none; margin: 4px 6px 0 0; }
+.c a.go { background: var(--ink); color: #fff; }
+.c a.alt { background: var(--pearl); color: var(--vt); }
+.rec { box-shadow: 0 0 0 2px var(--vt); }
+img.sheet { width: 100%; height: auto; border-radius: 18px; margin-top: 26px; box-shadow: 0 0 0 1px var(--line); }
+.note { font-size: 14px; color: var(--ink-3); margin-top: 18px; }
+@media (min-width: 860px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+</style>
+</head>
+<body>
+<main>
+  <h1>The Evidence Article, three ways</h1>
+  <p class="lead">After the Stories reveal, the result opens into a long-read the player can come back to. One real demo player (Golden Retriever, The Slow Burner), run through the app's own scorer. Every line is library copy picked by that player's evidence, plus a few new frames listed in ARTICLE-DESIGN.md. Try both voices.</p>
+  <div class="grid">
+    <div class="c"><h2>A. Mirror Magazine</h2><p>A glossy cover story: masthead, the mirror arch over it, stat cards that turn to show the other end, pull quotes you can save as a story.</p><p class="score">Codex jury 7.50. Self 7.58.</p><a class="go" href="concept-a.html">Open</a><a class="alt" href="concept-a.html?voice=heart">Heart to heart</a></div>
+    <div class="c"><h2>B. Night to Morning</h2><p>A cinematic scroll from the night of the reveal into the island's morning: fog to wipe, a stat gem, a reflection that turns upright.</p><p class="score">Codex jury 7.21. Self 7.48.</p><a class="go" href="concept-b.html">Open</a><a class="alt" href="concept-b.html?voice=heart">Heart to heart</a></div>
+    <div class="c"><h2>C. The Codex</h2><p>A cozy game codex: stat block with drawers, holo trait cards, an island map of your rooms, achievements, and a party with a slot for a friend.</p><p class="score">Codex jury 7.54. Self 7.59.</p><a class="go" href="concept-c.html">Open</a><a class="alt" href="concept-c.html?voice=heart">Heart to heart</a></div>
+  </div>
+  <div class="c rec" style="margin-top:14px"><h2>Recommendation: A's skin on C's bones</h2><p>Build the editorial look of A, with C's review structure (section tabs, stat drawers that keep your end in view, the room map, the party slots) and one signature from B (the sky moving from night to morning). Details, goods and bads in quiz64/docs/ARTICLE-DESIGN.md.</p></div>
+  <img class="sheet" src="CONCEPTS.png" alt="Contact sheet: six phone screens from each concept" width="2460" height="2852" loading="lazy">
+  <p class="note">Data: data.json, built by build-data.mjs from quiz64 session.js and views.js. New copy: article-copy.json. Shared model: shared.js.</p>
+</main>
+</body>
+</html>
