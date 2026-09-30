@@ -9,7 +9,8 @@ import { oppositeOf, sheetLine, voiced } from "../stories/story-data.js";
 
 export const ARTICLE_TABS = Object.freeze(["stats", "traits", "surprise", "rooms", "book", "record", "party"]);
 // Where each chapter's islet floats on the rooms map, in percent of the map (x, y of the islet's center), and how wide
-// it is. Love, work and home sit forward; the phone and play sit back.
+// it is. Love, work and home sit forward; the phone and play sit back. `lift` raises a pin above its islet (percent of
+// the map): money and home sit side by side, so home's pin stands higher and their labels never collide on a phone.
 export const ISLETS = Object.freeze({
   1: { x: 20, y: 22, w: 30 },
   7: { x: 78, y: 20, w: 32 },
@@ -17,7 +18,7 @@ export const ISLETS = Object.freeze({
   3: { x: 18, y: 60, w: 36 },
   5: { x: 80, y: 58, w: 34 },
   4: { x: 36, y: 84, w: 30 },
-  6: { x: 66, y: 86, w: 36 },
+  6: { x: 66, y: 86, w: 36, lift: 8 },
 });
 
 const NUMBER_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight"];

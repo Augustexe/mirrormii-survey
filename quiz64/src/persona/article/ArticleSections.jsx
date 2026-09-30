@@ -306,7 +306,7 @@ export function Rooms({ A }) {
               const p = ISLETS[r.chapter];
               return (
                 <button key={r.chapter} type="button" className="ea-pin" data-flip={r.differs ? "true" : undefined} aria-pressed={sel === r.chapter}
-                  onClick={() => setSel(r.chapter)} style={{ left: `${p.x}%`, top: `${p.y - p.w * 0.36}%`, "--c": TINTS[r.chapter], "--i": i }}>
+                  onClick={() => setSel(r.chapter)} style={{ left: `${p.x}%`, top: `${p.y - p.w * 0.36 - (p.lift || 0)}%`, "--c": TINTS[r.chapter], "--i": i }}>
                   <span>{r.room}</span>
                 </button>
               );

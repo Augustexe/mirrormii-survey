@@ -10,8 +10,10 @@
 @layer legacy, system, art, play, reveal, screens;
 
 @layer screens {
-  /* The app shell pads anchor scrolls for its own header; the article has its own sticky tab bar instead. */
-  html:has(.ea) { scroll-padding-top: 0; }
+  /* The app shell pads anchor scrolls for its own header; the article pads them for its own sticky tab bar, so a
+     section tab, a deep link and keyboard focus all land clear of the bar (--ea-bar is the bar's real height). */
+  html:has(.ea) { --ea-bar: 54px; scroll-padding-top: calc(var(--ea-bar) + 8px); }
+  @media (min-width: 900px) { html:has(.ea) { --ea-bar: 60px; } }
   .ea {
     --ea-ink: #1E1B2E;
     --ea-ink-2: #4A4560;
@@ -107,7 +109,6 @@
     --ea-t-8500: 8500ms;
     --ea-gut: 16px;
     --ea-max: 1240px;
-    --ea-bar: 58px;
     --ea-e: cubic-bezier(0.2, 0.8, 0.2, 1);
     --ea-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
     position: relative;
@@ -138,7 +139,7 @@
   }
   .ea-intro { margin-top: 16px; max-width: 34em; color: var(--ea-ink-2); font-size: 17.5px; line-height: 1.6; text-wrap: pretty; }
   .ea-head { margin-bottom: 34px; }
-  .ea-sec { position: relative; padding: 72px 0 80px; scroll-margin-top: var(--ea-bar); }
+  .ea-sec { position: relative; padding: 72px 0 80px; }
   .ea-hint { margin: 4px 14px 12px; font: 600 15px/1.4 var(--font-text); color: var(--ea-ink-2); }
   .ea-sheetkey { display: flex; align-items: flex-start; gap: 12px; margin: 12px 8px 4px; padding: 14px; border-radius: 18px; background: rgba(233, 230, 251, 0.6); font: 500 15px/1.45 var(--font-text); color: var(--ea-ink); }
   .ea-sheetkey .ea-pips { flex: none; margin-top: 2px; }
@@ -203,7 +204,8 @@
   .ea-readtime { font: 600 13.5px/1 var(--font-text); color: var(--ea-ink-3); }
 
   /* ---------- sticky section tabs ---------- */
-  .ea-tabs { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--c-canvas, var(--ea-tone-ar)) 84%, transparent); backdrop-filter: blur(18px) saturate(1.5); -webkit-backdrop-filter: blur(18px) saturate(1.5); box-shadow: 0 1px 0 var(--ea-line), 0 10px 30px -24px rgba(86, 70, 192, 0.6); }
+  /* A solid frosted backing: the long read slides under the bar, never shows through it (package L2). */
+  .ea-tabs { position: sticky; top: 0; z-index: 20; min-height: var(--ea-bar); background: color-mix(in srgb, var(--c-canvas, var(--ea-tone-ar)) 95%, transparent); backdrop-filter: blur(22px) saturate(1.5); -webkit-backdrop-filter: blur(22px) saturate(1.5); box-shadow: 0 1px 0 var(--ea-line), 0 10px 30px -24px rgba(86, 70, 192, 0.6); }
   .ea-tabs__strip {
     display: none; gap: 4px; max-width: var(--ea-max); margin: 0 auto; padding: 8px var(--ea-gut); overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none;
   }
@@ -525,10 +527,13 @@
     .ea-cover__art::after { height: 30%; }
     .ea-cover__genii { left: auto; right: 7%; bottom: 17%; }
     .ea-cover__genii .genii-light { --gl-size: 210px; }
-    .ea-cover__text { position: absolute; inset: 0; margin: 0 auto; padding: 120px var(--ea-gut) 64px; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-content: end; column-gap: 56px; }
+    /* Art and text share one grid cell: the cover grows when the names run long, and the text starts below the
+       masthead (its top, plus its 0.9 line box, plus air), so names and masthead never collide (package L2). */
+    .ea-cover__art { grid-area: 1 / 1; align-self: start; }
+    .ea-cover__text { grid-area: 1 / 1; position: relative; margin: 0 auto; padding: calc(104px + clamp(90px, 9.6vw, 150px) * 0.9 + 28px) var(--ea-gut) 64px; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-content: end; column-gap: 56px; }
     .ea-mast { top: 104px; left: 50%; right: auto; width: 100%; max-width: var(--ea-max); transform: translateX(-50%); padding: 0 var(--ea-gut); text-align: left; font-size: clamp(90px, 9.6vw, 150px); }
     .ea-names { grid-column: 1; }
-    .ea-names__name { font-size: clamp(72px, 7.6vw, 124px); }
+    .ea-names__name { font-size: clamp(64px, 6.6vw, 112px); }
     .ea-cover__foot { grid-column: 1; margin-top: 30px; grid-template-columns: 1fr auto; align-items: end; }
     .ea-dek { font-size: 23px; }
     .ea-covertags { grid-column: 1 / -1; }
