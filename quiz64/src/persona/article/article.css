@@ -10,6 +10,8 @@
 @layer legacy, system, art, play, reveal, screens;
 
 @layer screens {
+  /* The app shell pads anchor scrolls for its own header; the article has its own sticky tab bar instead. */
+  html:has(.ea) { scroll-padding-top: 0; }
   .ea {
     --ea-ink: #1E1B2E;
     --ea-ink-2: #4A4560;
