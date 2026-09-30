@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](../LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 > Maintained working document, promoted 2026-09-18. [Original run snapshot](../../../../hall/data/jobs/mirrormii-genie-survey/20260918T024222Z-c25e30eace25/output/RESEARCH-SOURCES.md) remains immutable. Original status and limitations below still apply; promotion is filing, not product approval.
 
 # Evidence acquisition shortlist

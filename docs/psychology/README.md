@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](../LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # Psychology, interpretation and host voice
 
 The editable model is [IDENTITY-EVIDENCE-FRAMEWORK.md](../IDENTITY-EVIDENCE-FRAMEWORK.md), with [ALPHA-ONTOLOGY-AND-FLOW.md](../ALPHA-ONTOLOGY-AND-FLOW.md) for proposed flow and [GLOSSARY.md](../GLOSSARY.md) for shared language. Use [HOST-EXPERIENCE.md](../HOST-EXPERIENCE.md) for the relationship/voice intent and [CONVERSATION-EVIDENCE.md](CONVERSATION-EVIDENCE.md) for the existing research rationale.

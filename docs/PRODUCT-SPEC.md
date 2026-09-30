@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 > Reconciled 2026-09-18 from the approved R6 release documentation. Implementation/team instructions below describe that historical task; read [STATE.md](STATE.md) for the current build.
 
 # Genii Personality and Health Survey: Product Spec

@@ -1,6 +1,6 @@
 # Proposed API (for Desmond)
 
-Status: **proposed, nothing built.** Desmond owns the final design; this is a starting point that fits the code as it is. Rulings it respects: no accounts, no health data, storage SQLite when a backend exists (LAUNCH-SPEC section 16), friend answers private to the owner, stings owner only, backend before real players for the friend game (section 19 item 8).
+Status: **proposed, nothing built.** Desmond owns the final design; this is a starting point that fits the code as it is. Rulings it respects: no accounts, no health data, storage SQLite when a backend exists (LAUNCH-SPEC section 9), friend answers private to the owner, stings owner only, backend before real players for the friend game (section 19 item 8).
 
 ## Shape
 
@@ -48,7 +48,7 @@ Return `429 rate_limited` with `Retry-After`.
 - Answers are personal data even without a name: encrypt the database at rest, keep runs 12 months unless Jerry sets another window, delete on request, and expire links (30 days proposed).
 - Stings, Level 4 answers and friend replies are owner only; `publicChallenge` and `friendSafeResult` never contain them.
 - Tokens only in the `Authorization: Bearer` header or the path, never in query strings; do not log paths with tokens in full.
-- No age question and no age inference (teens are an open decision); no health data; no identity inference (LAUNCH-SPEC section 15).
+- No age question and no age inference (teens are an open decision); no health data; no identity inference (LAUNCH-SPEC section 2).
 - CORS: allow only the static host's origin. HTTPS only.
 
 ## Migration from today's links

@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](../LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # Evidence
 
 Read the [glossary](../GLOSSARY.md), [current engine review](../EVIDENCE-REVIEW.md), [identity/evidence framework](../IDENTITY-EVIDENCE-FRAMEWORK.md), and [acquisition checklist](EVIDENCE-CHECKLIST.md). [RESEARCH-SOURCES.md](RESEARCH-SOURCES.md) is an existing bounded shortlist with explicit access/correction gaps, not a freshly verified systematic review.

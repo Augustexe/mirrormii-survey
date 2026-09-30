@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # Genii survey: product handoff
 
 Status: implemented, verified and live on GitHub Pages since 2026-09-23; ready for product review. Approved survey graphics and the dimensional result layout are retained. This pass tightens copy and the presentation inside each evidence facet.

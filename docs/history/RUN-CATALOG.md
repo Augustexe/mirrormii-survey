@@ -554,10 +554,10 @@ Consolidate all run documents into maintained project context and agent routing
 
 Cleanup deliverable: [CLEANUP-REPORT.md](../../../../hall/data/jobs/mirrormii-genie-survey/20260918T183120Z-c0d3445e10e4/output/CLEANUP-REPORT.md). Its receipt is generated at finalization.
 
-- `20260921T082434Z-bab08a2bcfea` — restore official pre-result visuals; expand final personality-game packet with 3D stage, interactive objects/facets/scenes and grounded editorial copy. 85 tests/build pass; local only. [Handoff](/Users/jerryzhang/Workspace-Draft/hall/data/jobs/mirrormii-genie-survey/20260921T082434Z-bab08a2bcfea/output/FINAL-HANDOFF.md).
+- `20260921T082434Z-bab08a2bcfea`: restore official pre-result visuals; expand final personality-game packet with 3D stage, interactive objects/facets/scenes and grounded editorial copy. 85 tests/build pass; local only. [Handoff](/Users/jerryzhang/Workspace-Draft/hall/data/jobs/mirrormii-genie-survey/20260921T082434Z-bab08a2bcfea/output/FINAL-HANDOFF.md).
 
-- `20260921T090615Z-5961d04b0ec0` — approved-layout refinement: language/identity variation, reveal mechanics, share card, placeholder handoff; 89 tests/build pass; local only.
+- `20260921T090615Z-5961d04b0ec0`: approved-layout refinement: language/identity variation, reveal mechanics, share card, placeholder handoff; 89 tests/build pass; local only.
 
-- `20260921T092946Z-4bc2cb0594ca` — final full-demo pass, single prediction reveal, sharper language, review/recovery fixes; 94 tests/build pass; full-flow browser verification; user-authorized commit. Handoff: /Users/jerryzhang/Workspace-Draft/hall/data/jobs/mirrormii-genie-survey/20260921T092946Z-4bc2cb0594ca/output/FINAL-DEMO-HANDOFF.md
+- `20260921T092946Z-4bc2cb0594ca`: final full-demo pass, single prediction reveal, sharper language, review/recovery fixes; 94 tests/build pass; full-flow browser verification; user-authorized commit. Handoff: /Users/jerryzhang/Workspace-Draft/hall/data/jobs/mirrormii-genie-survey/20260921T092946Z-4bc2cb0594ca/output/FINAL-DEMO-HANDOFF.md
 
-20260921T183726Z-f823a2b3afe9 — product language handoff, v2 names, section formats and final source push; 95 tests/build pass. See PRODUCT-HANDOFF.md.
+20260921T183726Z-f823a2b3afe9, product language handoff, v2 names, section formats and final source push; 95 tests/build pass. See PRODUCT-HANDOFF.md.

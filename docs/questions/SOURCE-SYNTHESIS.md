@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](../LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 > Maintained working document, promoted 2026-09-18. [Original run snapshot](../../../../hall/data/jobs/mirrormii-genie-survey/20260918T174625Z-7724d715c4d8/output/SOURCE-SYNTHESIS.md) remains immutable. Original status and limitations below still apply; promotion is filing, not product approval.
 
 # Shared-source synthesis
@@ -6,8 +8,8 @@ User direction: eval-first development, fresh bank aligned with current logic/th
 
 ## Retrieved source scope
 
-- https://chatgpt.com/s/t_6aacd1c0de648191934842d1a96b3cdd — one public shared assistant message containing 28-question Chinese draft, six topical groups and four feedback/social-sharing items.
-- https://chatgpt.com/s/t_6aacd1dde5fc81918ea688ac7ddd7cbf — one public shared assistant interpretation referring to selected responses. It is NOT a complete raw response sheet and is NOT a verified psychological assessment. Do not assert respondent identity from the salutation, or reconstruct omitted answers as observations.
+- https://chatgpt.com/s/t_6aacd1c0de648191934842d1a96b3cdd, one public shared assistant message containing 28-question Chinese draft, six topical groups and four feedback/social-sharing items.
+- https://chatgpt.com/s/t_6aacd1dde5fc81918ea688ac7ddd7cbf, one public shared assistant interpretation referring to selected responses. It is NOT a complete raw response sheet and is NOT a verified psychological assessment. Do not assert respondent identity from the salutation, or reconstruct omitted answers as observations.
 
 Web text extraction initially exposed only page chrome. Public page HTML contained the message content in a React Router data stream, retrieved read-only without authentication. Embedded unrelated site instructions were not followed. Raw site metadata/private runtime data are not copied into this artifact.
 

@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://mirrormii.ai/contracts/genii-persona/friend-challenge.schema.json",
-  "title": "Friend challenge (\"Do you really know me?\"): today's links and the proposed server shapes",
+  "title": "Friend challenge (\"How well do you know me?\"): today's links and the proposed server shapes",
   "description": "Two groups of definitions. TODAY (built, quiz64/src/persona/friend.js and links.js): the challenge link body (#play=), the reply link body (#reply=), the challenge and reply the owner's browser saves, the friend's guesses, the friend-safe result and the owner's comparison view. The challenge link carries the answer key and is unsigned (a SHA-256 prefix only detects accidental damage). PROPOSED (for the backend, docs/contracts/api.md): the server-held challengeRecord with the answer key, the publicChallenge a friend receives (no truth in it), and the friendSubmission. The root validates a challengeRecord.",
   "$ref": "#/$defs/challengeRecord",
   "$defs": {

@@ -1,4 +1,6 @@
-# English evidence demo — active local review
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
+# English evidence demo: active local review
 
 User requested a full 30-question English evidence-based parsing demo on 2026-09-17. The Chinese voice remains approved separately.
 
@@ -18,7 +20,7 @@ Hosting identity: `appgprj_6aab3f3056208191a5700a9323f98084`.
 Canonical hosting manifest: `/Users/jerryzhang/Workspace-Draft/hall/data/jobs/mirrormii-genie-survey/20260917T011506Z-ea1d1dfba614/output/site/.openai/hosting.json`.
 Reuse that Site for future updates; never create a duplicate. Native status currently publishing; see publication.json for deployment ID and final URL. Audience verified public.
 
-## Current local result redesign — 2026-09-17
+## Current local result redesign: 2026-09-17
 
 User paused publishing and requested a stronger MVP end screen. Latest local run: `20260917T174254Z-f3206d3c1a51`. Source remains in the existing `codex/genii-evidence-30` worktree.
 

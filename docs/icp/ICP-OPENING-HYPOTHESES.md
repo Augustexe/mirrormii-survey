@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](../LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 > Maintained working document, promoted 2026-09-18. [Original run snapshot](../../../../hall/data/jobs/mirrormii-genie-survey/20260918T015043Z-b1b26c2a04de/output/ICP-OPENING-HYPOTHESES.md) remains immutable. Original status and limitations below still apply; promotion is filing, not product approval.
 
 # Genii first ICP and opening hypotheses
@@ -38,7 +40,7 @@ The questions should behave as five small, testable predictions about the partic
 | 4. Desired answer | What does the person most want explained or changed? | “If Jeannie could make one confusing thing less confusing tonight, would it be why connection feels hard, why you feel behind, why your body feels off, or something else?” | The result’s promise and the next-question priority |
 | 5. Conversation permission | What tone and depth earns a continued conversation? | “When something is tender, do you want gentle wording, clean directness, a little absurdity, or room to describe it first?” | Rapport controls, not personality classification |
 
-After question 2 or 3, Jeannie can make one bounded reflection: “You are not saying you have no people. You are saying being around them has not reliably felt like landing anywhere.” Only show this when the selected responses literally support it, and show it as a checkable reflection—not an authoritative discovery.
+After question 2 or 3, Jeannie can make one bounded reflection: “You are not saying you have no people. You are saying being around them has not reliably felt like landing anywhere.” Only show this when the selected responses literally support it, and show it as a checkable reflection, not an authoritative discovery.
 
 ## Four launchable creative territories
 
@@ -47,14 +49,14 @@ Use one as the first paid/organic creative hypothesis, not four audiences within
 1. **“I have people. Why do I still feel outside?”**
    - Best match to the proposed ICP and companion promise.
    - Opening friction: belonging versus visibility.
-   - Health bridge: social depletion, sleep/recovery, eating/routine under pressure—only through direct questions.
+   - Health bridge: social depletion, sleep/recovery, eating/routine under pressure, only through direct questions.
 
 2. **“I am functioning. Why does everything feel harder than it looks?”**
    - Broad but still concrete; captures hidden strain without clinical framing.
    - Opening friction: effort-to-output mismatch.
    - Health bridge: rest, routine continuity, movement, meals, emotional recovery.
 
-3. **“I do not know whether I want to leave—or whether I am just tired.”**
+3. **“I do not know whether I want to leave, or whether I am just tired.”**
    - Career/money chapter for early-career participants.
    - Opening friction: work meaning, security, time, recognition.
    - Must have an equivalent branch for users not in paid work; never assume employment from age.

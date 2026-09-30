@@ -1,6 +1,8 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 > Older prototype design. The approved R6 source and visual ancestry are identified in [CODE-MAP.md](CODE-MAP.md); preserve that baseline for current evidence work.
 
-# Genii — a personality game in your pocket
+# Genii: a personality game in your pocket
 
 Version 0.3 · 2026-09-14 · Local design expansion for founder review
 

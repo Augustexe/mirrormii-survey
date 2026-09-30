@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # Genii Alpha Ontology, Psychology, and Current Survey Flow
 
 Status: **current-state synthesis plus proposed alpha framing** · 2026-09-18
@@ -82,7 +84,7 @@ Landing / purpose
   → export/review or future MirrorMe continuation
 ```
 
-The dashboard already orders health/routine data before the broader portrait. It covers sleep, eating, movement, recovery, hydration, body and skin. Its routine cards are descriptive—not a global health score—and display evidence coverage separately. The portrait is provisional; shown claims expose source scenes and True/False feedback does not change the original result.
+The dashboard already orders health/routine data before the broader portrait. It covers sleep, eating, movement, recovery, hydration, body and skin. Its routine cards are descriptive, not a global health score, and display evidence coverage separately. The portrait is provisional; shown claims expose source scenes and True/False feedback does not change the original result.
 
 ### 4. Alpha synthesis without changing the current structure
 

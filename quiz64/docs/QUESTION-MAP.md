@@ -18,7 +18,7 @@ This map is generated from the v4 authoring packet. Profile/support items feed t
 - Heldout: 8
 - Total authored items: 52
 
-## V4-001 — desired result style
+## V4-001: desired result style
 
 - Kind: profile_support
 - Section: Frame and literal preferences
@@ -40,9 +40,9 @@ Options:
 - E: Surprise me if the evidence is clear | neutral: Permits evidence-led result framing | tags: desire:surprise_if_supported
 
 Visible exits:
-- skip: Skip this preference — No result-style preference recorded.
+- skip: Skip this preference, No result-style preference recorded.
 
-## V4-002 — tone boundary
+## V4-002: tone boundary
 
 - Kind: profile_support
 - Section: Frame and literal preferences
@@ -64,9 +64,9 @@ Options:
 - E: Show receipts before commentary | neutral: Prefers evidence-first wording | tags: support_preference:receipts_first
 
 Visible exits:
-- skip: Skip this preference — No tone boundary recorded.
+- skip: Skip this preference, No tone boundary recorded.
 
-## V4-003 — off-limit topics
+## V4-003: off-limit topics
 
 - Kind: profile_support
 - Section: Frame and literal preferences
@@ -89,9 +89,9 @@ Options:
 - F: No special boundary for this round | neutral: No selected topic boundary | tags: support_preference:none
 
 Visible exits:
-- prefer_not: Prefer not to set a topic boundary — No boundary recorded; still may use item-level exits.
+- prefer_not: Prefer not to set a topic boundary, No boundary recorded; still may use item-level exits.
 
-## V4-004 — finish value
+## V4-004: finish value
 
 - Kind: profile_support
 - Section: Frame and literal preferences
@@ -113,9 +113,9 @@ Options:
 - E: It gives me something fun to compare | neutral: Wants socially shareable comparison | tags: desire:compare_fun
 
 Visible exits:
-- skip: Skip this preference — No finish-value preference recorded.
+- skip: Skip this preference, No finish-value preference recorded.
 
-## V4-005 — credit response
+## V4-005: credit response
 
 - Kind: profile_support
 - Section: Status / recognition / jealousy
@@ -137,10 +137,10 @@ Options:
 - E: Put less effort into the next shared thing | neutral: Reduces future investment after unfair credit | tags: reported_action:reduce_future_investment
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-006 — credit motive
+## V4-006: credit motive
 
 - Kind: profile_support
 - Section: Status / recognition / jealousy
@@ -164,10 +164,10 @@ Options:
 - F: I am not sure yet | neutral: Motive not specified | tags: value:unknown
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-007 — response to close peer win
+## V4-007: response to close peer win
 
 - Kind: profile_support
 - Section: Status / recognition / jealousy
@@ -189,10 +189,10 @@ Options:
 - E: Use it as fuel for your own next move | neutral: Channels comparison into future effort | tags: reported_action:turn_to_fuel
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-008 — copied idea response
+## V4-008: copied idea response
 
 - Kind: profile_support
 - Section: Status / recognition / jealousy
@@ -214,10 +214,10 @@ Options:
 - E: Save examples in case it matters later | neutral: Preserves evidence without immediate action | tags: reported_action:save_examples
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-009 — recent recognition response
+## V4-009: recent recognition response
 
 - Kind: profile_support
 - Section: Status / recognition / jealousy
@@ -239,11 +239,11 @@ Options:
 - E: Reduced what I contributed next time | neutral: Reports reduced future contribution | tags: reported_action:reduced_contribution
 
 Visible exits:
-- no_recent_example: No recent example — No recalled event; unknown, not negative evidence.
-- prefer_not: Prefer not to answer — Boundary; no profile evidence.
-- other_unscored: Other / it was complicated — Literal context only; unscored by default.
+- no_recent_example: No recent example, No recalled event; unknown, not negative evidence.
+- prefer_not: Prefer not to answer, Boundary; no profile evidence.
+- other_unscored: Other / it was complicated, Literal context only; unscored by default.
 
-## V4-010 — credit visibility shift
+## V4-010: credit visibility shift
 
 - Kind: profile_support
 - Section: Status / recognition / jealousy
@@ -265,10 +265,10 @@ Options:
 - E: Ask that person to back me up later if needed | neutral: Uses witness for contingent support | tags: decision_pattern:contingent_backup
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-011 — public correction first action
+## V4-011: public correction first action
 
 - Kind: profile_support
 - Section: Embarrassment / criticism / repair
@@ -290,10 +290,10 @@ Options:
 - E: Use a small joke to reset the room | neutral: Uses humor to regulate public moment | tags: reported_action:joke_reset
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-012 — inside/outside correction pairing
+## V4-012: inside/outside correction pairing
 
 - Kind: profile_support
 - Section: Embarrassment / criticism / repair
@@ -317,10 +317,10 @@ Options:
 - F: I would not know until later | neutral: Reports unknown immediate inside/outside pairing | tags: emotion_expression:unknown_until_later
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-013 — joke impact repair
+## V4-013: joke impact repair
 
 - Kind: profile_support
 - Section: Embarrassment / criticism / repair
@@ -342,10 +342,10 @@ Options:
 - E: Stop joking with them for now | neutral: Changes future behavior with that person | tags: interpersonal_response:reduce_joking
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-014 — repair motive
+## V4-014: repair motive
 
 - Kind: profile_support
 - Section: Embarrassment / criticism / repair
@@ -369,10 +369,10 @@ Options:
 - F: I am not sure | neutral: Motive not specified | tags: value:unknown
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-015 — visible mistake recovery
+## V4-015: visible mistake recovery
 
 - Kind: profile_support
 - Section: Embarrassment / criticism / repair
@@ -394,10 +394,10 @@ Options:
 - E: Use humor after the fix is underway | neutral: Uses humor only after repair starts | tags: visible mistake recovery:humor_after_fix
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-016 — correction source contrast
+## V4-016: correction source contrast
 
 - Kind: profile_support
 - Section: Embarrassment / criticism / repair
@@ -419,10 +419,10 @@ Options:
 - E: I document the point before moving on | neutral: Authority source triggers record-keeping | tags: decision_pattern:document_point
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-017 — not invited response
+## V4-017: not invited response
 
 - Kind: profile_support
 - Section: Exclusion / neglect / closeness
@@ -444,10 +444,10 @@ Options:
 - E: Plan something separate with people who show up | neutral: Redirects effort toward available ties | tags: not invited response:redirect_to_available_ties
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-018 — first interpretation
+## V4-018: first interpretation
 
 - Kind: profile_support
 - Section: Exclusion / neglect / closeness
@@ -471,10 +471,10 @@ Options:
 - F: I am not sure | neutral: No clear interpretation reported | tags: emotion_trigger:unknown
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-019 — important delayed reply response
+## V4-019: important delayed reply response
 
 - Kind: profile_support
 - Section: Exclusion / neglect / closeness
@@ -496,10 +496,10 @@ Options:
 - E: Ask a neutral third party for context | neutral: Seeks context through another source | tags: important delayed reply response:third_party_context
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-020 — reply target context
+## V4-020: reply target context
 
 - Kind: profile_support
 - Section: Exclusion / neglect / closeness
@@ -523,10 +523,10 @@ Options:
 - F: Power or safety makes directness costly | neutral: Direct action is constrained by power/safety | tags: reply target context:power_safety_constrained
 
 Visible exits:
-- prefer_not: Prefer not to specify — No target scope; restrict claims.
-- not_enough_experience: Not enough experience with this situation — No target evidence; unknown.
+- prefer_not: Prefer not to specify, No target scope; restrict claims.
+- not_enough_experience: Not enough experience with this situation, No target evidence; unknown.
 
-## V4-021 — reassurance request strategy
+## V4-021: reassurance request strategy
 
 - Kind: profile_support
 - Section: Exclusion / neglect / closeness
@@ -548,11 +548,11 @@ Options:
 - E: Decide the cost is not worth it right now | neutral: Chooses not to seek reassurance in this moment | tags: reassurance request strategy:not_worth_cost_now
 
 Visible exits:
-- not_enough_experience: Not enough experience with this situation — No reassurance-strategy evidence; unknown.
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- not_enough_experience: Not enough experience with this situation, No reassurance-strategy evidence; unknown.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-022 — reassurance closeness contrast
+## V4-022: reassurance closeness contrast
 
 - Kind: profile_support
 - Section: Exclusion / neglect / closeness
@@ -574,10 +574,10 @@ Options:
 - E: I drop it unless the pattern repeats | neutral: Uses repetition threshold before action | tags: decision_pattern:drop_until_repeat
 
 Visible exits:
-- not_enough_experience: Not enough experience with this contrast — Unknown; no profile evidence.
-- prefer_not: Prefer not to answer — Boundary; no profile evidence.
+- not_enough_experience: Not enough experience with this contrast, Unknown; no profile evidence.
+- prefer_not: Prefer not to answer, Boundary; no profile evidence.
 
-## V4-023 — instruction-framed advice response
+## V4-023: instruction-framed advice response
 
 - Kind: profile_support
 - Section: Power / autonomy / control
@@ -599,10 +599,10 @@ Options:
 - E: Pause before I accidentally push back | neutral: Recognizes pushback impulse and delays action | tags: instruction-framed advice response:pause_pushback
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-024 — instruction response motive
+## V4-024: instruction response motive
 
 - Kind: profile_support
 - Section: Power / autonomy / control
@@ -626,10 +626,10 @@ Options:
 - F: Nothing about it bothered me much | neutral: Reports low friction | tags: value:low_friction
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-025 — last-minute plan change
+## V4-025: last-minute plan change
 
 - Kind: profile_support
 - Section: Power / autonomy / control
@@ -651,10 +651,10 @@ Options:
 - E: Reduce my investment to my own part | neutral: Narrows ownership after override | tags: last-minute plan change:narrow_ownership
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-026 — group drift response
+## V4-026: group drift response
 
 - Kind: profile_support
 - Section: Power / autonomy / control
@@ -676,10 +676,10 @@ Options:
 - E: Nominate the best-fit person to decide | neutral: Delegates leadership intentionally | tags: group drift response:nominate_decider
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-027 — entitled authority request
+## V4-027: entitled authority request
 
 - Kind: profile_support
 - Section: Power / autonomy / control
@@ -701,12 +701,12 @@ Options:
 - E: Get advice or coverage before responding | neutral: Safety/power branch: seeks backup before action | tags: entitled authority request:seek_coverage_first
 
 Visible exits:
-- unsafe_to_answer: Too safety- or power-loaded to answer as written — Safety/power constraint; no trait evidence.
-- capacity_not_comparable: My capacity would decide this, not the request style — Capacity constraint; restrict claims.
-- prefer_not: Prefer not to answer — Boundary; no profile evidence.
-- other_unscored: Other / depends — Literal context only; unscored by default.
+- unsafe_to_answer: Too safety- or power-loaded to answer as written, Safety/power constraint; no trait evidence.
+- capacity_not_comparable: My capacity would decide this, not the request style, Capacity constraint; restrict claims.
+- prefer_not: Prefer not to answer, Boundary; no profile evidence.
+- other_unscored: Other / depends, Literal context only; unscored by default.
 
-## V4-028 — choice-rationale contrast
+## V4-028: choice-rationale contrast
 
 - Kind: profile_support
 - Section: Power / autonomy / control
@@ -729,10 +729,10 @@ Options:
 - E: My safety/power answer stays the same | neutral: Safety/power branch unchanged by better framing | tags: decision_pattern:safety_power_same
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-029 — recent help under cost
+## V4-029: recent help under cost
 
 - Kind: profile_support
 - Section: Generosity / boundary / resentment
@@ -754,11 +754,11 @@ Options:
 - E: Avoided answering until the moment passed | neutral: Reports non-response to costly ask | tags: recent help under cost:nonresponse
 
 Visible exits:
-- no_recent_example: No recent example — No recalled event; unknown, not negative evidence.
-- prefer_not: Prefer not to answer — Boundary; no profile evidence.
-- other_unscored: Other / it was complicated — Literal context only; unscored by default.
+- no_recent_example: No recent example, No recalled event; unknown, not negative evidence.
+- prefer_not: Prefer not to answer, Boundary; no profile evidence.
+- other_unscored: Other / it was complicated, Literal context only; unscored by default.
 
-## V4-030 — help motive
+## V4-030: help motive
 
 - Kind: profile_support
 - Section: Generosity / boundary / resentment
@@ -782,10 +782,10 @@ Options:
 - F: I am not sure | neutral: Motive not specified | tags: value:unknown
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-031 — close-friend inconvenient help
+## V4-031: close-friend inconvenient help
 
 - Kind: profile_support
 - Section: Generosity / boundary / resentment
@@ -807,10 +807,10 @@ Options:
 - E: Make the timing or exchange explicit | neutral: Makes timing/resource trade explicit | tags: close-friend inconvenient help:explicit_time_trade
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-032 — acquaintance help contrast
+## V4-032: acquaintance help contrast
 
 - Kind: profile_support
 - Section: Generosity / boundary / resentment
@@ -833,10 +833,10 @@ Options:
 - E: Make the time trade explicit | neutral: Makes timing/resource trade explicit with acquaintance | tags: acquaintance help contrast:explicit_time_trade
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-033 — favor for difficult person
+## V4-033: favor for difficult person
 
 - Kind: profile_support
 - Section: Generosity / boundary / resentment
@@ -858,10 +858,10 @@ Options:
 - E: Stay cordial and keep distance | neutral: Maintains civility without taking favor | tags: favor for difficult person:civil_distance
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-034 — yes-with-friction condition
+## V4-034: yes-with-friction condition
 
 - Kind: profile_support
 - Section: Generosity / boundary / resentment
@@ -883,11 +883,11 @@ Options:
 - E: I wanted the effort noticed | neutral: Cost included recognition/acknowledgment | tags: yes-with-friction condition:wanted_noticed
 
 Visible exits:
-- no_recent_example: No recent example — No recent yes-with-friction event; unknown, not negative evidence.
-- prefer_not: Prefer not to answer — Boundary; no profile evidence.
-- other_unscored: Other / complicated — Literal context only; unscored by default.
+- no_recent_example: No recent example, No recent yes-with-friction event; unknown, not negative evidence.
+- prefer_not: Prefer not to answer, Boundary; no profile evidence.
+- other_unscored: Other / complicated, Literal context only; unscored by default.
 
-## V4-035 — fun versus tomorrow cost
+## V4-035: fun versus tomorrow cost
 
 - Kind: profile_support
 - Section: Desire / risk / self-protection
@@ -909,10 +909,10 @@ Options:
 - E: Decide based on who is involved | neutral: Social context determines choice | tags: fun versus tomorrow cost:depends_people
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-036 — temptation motive
+## V4-036: temptation motive
 
 - Kind: profile_support
 - Section: Desire / risk / self-protection
@@ -936,10 +936,10 @@ Options:
 - F: I am not sure | neutral: Motive not specified | tags: value:unknown
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-037 — information-management strategy under conflict
+## V4-037: information-management strategy under conflict
 
 - Kind: profile_support
 - Section: Desire / risk / self-protection
@@ -961,10 +961,10 @@ Options:
 - E: Check with an appropriate safer person first | neutral: Information-management strategy: consult before disclosure | tags: information-management strategy under conflict:consult_safer_person
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-038 — subtle embarrassment response
+## V4-038: subtle embarrassment response
 
 - Kind: profile_support
 - Section: Desire / risk / self-protection
@@ -986,10 +986,10 @@ Options:
 - E: Save the pattern in case it repeats | neutral: Tracks pattern without immediate response | tags: subtle embarrassment response:track_pattern
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-039 — private advantage decision
+## V4-039: private advantage decision
 
 - Kind: profile_support
 - Section: Desire / risk / self-protection
@@ -1011,10 +1011,10 @@ Options:
 - E: Ask the responsible person how to handle it | neutral: Escalates ambiguous rule to responsible person | tags: private advantage decision:ask_responsible_person
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-040 — private advantage audience contrast
+## V4-040: private advantage audience contrast
 
 - Kind: profile_support
 - Section: Desire / risk / self-protection
@@ -1037,10 +1037,10 @@ Options:
 - E: I explain my reasoning before acting | neutral: Audience adds explanation step | tags: private advantage audience contrast:explain_reasoning
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-041 — pattern commentary style
+## V4-041: pattern commentary style
 
 - Kind: profile_support
 - Section: Support preference module
@@ -1063,10 +1063,10 @@ Options:
 - F: Do not comment unless I ask | neutral: Prefers no unsolicited commentary | tags: support_preference:only_if_asked
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-042 — ignored-nudge retry frequency
+## V4-042: ignored-nudge retry frequency
 
 - Kind: profile_support
 - Section: Support preference module
@@ -1088,10 +1088,10 @@ Options:
 - E: Ask me to set the retry count | neutral: Prefers explicit user-set frequency | tags: ignored-nudge retry frequency:user_sets_count
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-043 — least-annoying support type
+## V4-043: least-annoying support type
 
 - Kind: profile_support
 - Section: Support preference module
@@ -1114,10 +1114,10 @@ Options:
 - F: Hands off unless I ask | neutral: Prefers user-initiated support | tags: least-annoying support type:hands_off
 
 Visible exits:
-- prefer_not: Prefer not to answer — Boundary or privacy choice; no profile evidence.
-- other_unscored: Other / depends — Literal custom context only; unscored by default.
+- prefer_not: Prefer not to answer, Boundary or privacy choice; no profile evidence.
+- other_unscored: Other / depends, Literal custom context only; unscored by default.
 
-## V4-044 — explicit-no and topic pause boundaries
+## V4-044: explicit-no and topic pause boundaries
 
 - Kind: profile_support
 - Section: Support preference module
@@ -1140,10 +1140,10 @@ Options:
 - F: Before any sensitive inference | neutral: Ask permission before sensitive interpretation | tags: explicit-no and topic pause boundaries:sensitive_inference_permission
 
 Visible exits:
-- prefer_not: Prefer not to set this boundary — No extra pause boundary recorded; item-level exits still apply.
-- other_unscored: Other boundary / custom wording — Literal boundary text only; unscored by default.
+- prefer_not: Prefer not to set this boundary, No extra pause boundary recorded; item-level exits still apply.
+- other_unscored: Other boundary / custom wording, Literal boundary text only; unscored by default.
 
-## V4-H01 — credit response transfer
+## V4-H01: credit response transfer
 
 - Kind: heldout (heldout P-only)
 - Section: Held-out P checks
@@ -1165,12 +1165,12 @@ Options:
 - E: Ask someone neutral how they read it | neutral: Seeks external read before acting | tags: heldout:credit_neutral_read
 
 Visible exits:
-- abstain: Abstain / not enough to choose — Answered as abstention; excluded from exact-match denominator and preserved in denominator report.
-- prefer_not: Prefer not to answer — Boundary; excluded from profile and exact-match denominator.
+- abstain: Abstain / not enough to choose, Answered as abstention; excluded from exact-match denominator and preserved in denominator report.
+- prefer_not: Prefer not to answer, Boundary; excluded from profile and exact-match denominator.
 
 Heldout baseline: C; scoring: Exact option ID match over attempted answered checks only. Baseline scored on the same denominator. Abstain and prefer_not are reported separately.
 
-## V4-H02 — awkward repair transfer
+## V4-H02: awkward repair transfer
 
 - Kind: heldout (heldout P-only)
 - Section: Held-out P checks
@@ -1192,12 +1192,12 @@ Options:
 - E: Check in after the conversation | neutral: Uses delayed private repair | tags: heldout:emb_after_checkin
 
 Visible exits:
-- abstain: Abstain / not enough to choose — Answered as abstention; excluded from exact-match denominator and preserved in denominator report.
-- prefer_not: Prefer not to answer — Boundary; excluded from profile and exact-match denominator.
+- abstain: Abstain / not enough to choose, Answered as abstention; excluded from exact-match denominator and preserved in denominator report.
+- prefer_not: Prefer not to answer, Boundary; excluded from profile and exact-match denominator.
 
 Heldout baseline: A; scoring: Exact option ID match over attempted answered checks only. Baseline scored on the same denominator. Abstain and prefer_not are reported separately.
 
-## V4-H03 — ambiguous exclusion transfer
+## V4-H03: ambiguous exclusion transfer
 
 - Kind: heldout (heldout P-only)
 - Section: Held-out P checks
@@ -1219,12 +1219,12 @@ Options:
 - E: Step back from the plan and the topic | neutral: Reduces engagement immediately | tags: heldout:excl_step_back
 
 Visible exits:
-- abstain: Abstain / not enough to choose — Answered as abstention; excluded from exact-match denominator and preserved in denominator report.
-- prefer_not: Prefer not to answer — Boundary; excluded from profile and exact-match denominator.
+- abstain: Abstain / not enough to choose, Answered as abstention; excluded from exact-match denominator and preserved in denominator report.
+- prefer_not: Prefer not to answer, Boundary; excluded from profile and exact-match denominator.
 
 Heldout baseline: A; scoring: Exact option ID match over attempted answered checks only. Baseline scored on the same denominator. Abstain and prefer_not are reported separately.
 
-## V4-H04 — instruction response transfer
+## V4-H04: instruction response transfer
 
 - Kind: heldout (heldout P-only)
 - Section: Held-out P checks
@@ -1246,12 +1246,12 @@ Options:
 - E: Pause before responding | neutral: Delays response to avoid unhelpful pushback | tags: heldout:auto_pause
 
 Visible exits:
-- abstain: Abstain / not enough to choose — Answered as abstention; excluded from exact-match denominator and preserved in denominator report.
-- prefer_not: Prefer not to answer — Boundary; excluded from profile and exact-match denominator.
+- abstain: Abstain / not enough to choose, Answered as abstention; excluded from exact-match denominator and preserved in denominator report.
+- prefer_not: Prefer not to answer, Boundary; excluded from profile and exact-match denominator.
 
 Heldout baseline: A; scoring: Exact option ID match over attempted answered checks only. Baseline scored on the same denominator. Abstain and prefer_not are reported separately.
 
-## V4-H05 — costly help transfer
+## V4-H05: costly help transfer
 
 - Kind: heldout (heldout P-only)
 - Section: Held-out P checks
@@ -1273,12 +1273,12 @@ Options:
 - E: Say no clearly for this block | neutral: Protects time block with refusal | tags: heldout:help_no_block
 
 Visible exits:
-- abstain: Abstain / not enough to choose — Answered as abstention; excluded from exact-match denominator and preserved in denominator report.
-- prefer_not: Prefer not to answer — Boundary; excluded from profile and exact-match denominator.
+- abstain: Abstain / not enough to choose, Answered as abstention; excluded from exact-match denominator and preserved in denominator report.
+- prefer_not: Prefer not to answer, Boundary; excluded from profile and exact-match denominator.
 
 Heldout baseline: C; scoring: Exact option ID match over attempted answered checks only. Baseline scored on the same denominator. Abstain and prefer_not are reported separately.
 
-## V4-H06 — temptation transfer
+## V4-H06: temptation transfer
 
 - Kind: heldout (heldout P-only)
 - Section: Held-out P checks
@@ -1300,12 +1300,12 @@ Options:
 - E: Decide based on who is going | neutral: Social composition determines choice | tags: heldout:desire_who_going
 
 Visible exits:
-- abstain: Abstain / not enough to choose — Answered as abstention; excluded from exact-match denominator and preserved in denominator report.
-- prefer_not: Prefer not to answer — Boundary; excluded from profile and exact-match denominator.
+- abstain: Abstain / not enough to choose, Answered as abstention; excluded from exact-match denominator and preserved in denominator report.
+- prefer_not: Prefer not to answer, Boundary; excluded from profile and exact-match denominator.
 
 Heldout baseline: B; scoring: Exact option ID match over attempted answered checks only. Baseline scored on the same denominator. Abstain and prefer_not are reported separately.
 
-## V4-H07 — truth management transfer
+## V4-H07: truth management transfer
 
 - Kind: heldout (heldout P-only)
 - Section: Held-out P checks
@@ -1327,12 +1327,12 @@ Options:
 - E: Talk to a safer person first | neutral: Third-party processing before disclosure | tags: heldout:truth_safe_person_first
 
 Visible exits:
-- abstain: Abstain / not enough to choose — Answered as abstention; excluded from exact-match denominator and preserved in denominator report.
-- prefer_not: Prefer not to answer — Boundary; excluded from profile and exact-match denominator.
+- abstain: Abstain / not enough to choose, Answered as abstention; excluded from exact-match denominator and preserved in denominator report.
+- prefer_not: Prefer not to answer, Boundary; excluded from profile and exact-match denominator.
 
 Heldout baseline: B; scoring: Exact option ID match over attempted answered checks only. Baseline scored on the same denominator. Abstain and prefer_not are reported separately.
 
-## V4-H08 — applied support preference consistency
+## V4-H08: applied support preference consistency
 
 - Kind: heldout (heldout P-only)
 - Section: Held-out P checks
@@ -1354,7 +1354,7 @@ Options:
 - E: Save the next question unless I ask | neutral: Prefers no unsolicited follow-up | tags: heldout:support_save_question
 
 Visible exits:
-- abstain: Abstain / not enough to choose — Answered as abstention; excluded from exact-match denominator and preserved in denominator report.
-- prefer_not: Prefer not to answer — Boundary; excluded from profile and exact-match denominator.
+- abstain: Abstain / not enough to choose, Answered as abstention; excluded from exact-match denominator and preserved in denominator report.
+- prefer_not: Prefer not to answer, Boundary; excluded from profile and exact-match denominator.
 
 Heldout baseline: B; scoring: Exact option ID match over attempted answered checks only. Baseline scored on the same denominator. Abstain and prefer_not are reported separately.

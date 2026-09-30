@@ -8,6 +8,8 @@ source_basis: pilot/bank.js (genii-tag-pilot-v1, 32 tags, H01 to H08); five adde
 companion: ../../research/gauntlet-2026-09-26/winners.json (raw writer and judge files in the same folder)
 ---
 
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](../LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # Question gauntlet spec V1
 
 ## a. Verdict in five lines

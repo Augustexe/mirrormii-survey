@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](../LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # ICP and thesis
 
 Edit [ALPHA-ICP-THESIS.md](../ALPHA-ICP-THESIS.md) as the current proposed thesis. The [earlier opening hypotheses](ICP-OPENING-HYPOTHESES.md) preserve the rationale, alternative creative territories and discovery suggestions.

@@ -1,7 +1,7 @@
 # MirrorMii launch survey: the Genii persona game (quiz64)
 
 **Start here.** This is the one entry page for a developer. The product rules live in
-[../docs/LAUNCH-SPEC.md](../docs/LAUNCH-SPEC.md) (the only spec; where anything below differs, the spec wins).
+[../docs/LAUNCH-SPEC.md](../docs/LAUNCH-SPEC.md) (the one locked spec; read it first; where anything below differs, the spec wins).
 
 ## What the app is
 
@@ -10,7 +10,7 @@ cards in seven chapters (13 card formats, two voices: "Make it fun" and "Heart t
 player plays those 8 sealed cards, then gets a 12-screen Stories reveal: two archetype names, a game character sheet
 (six stats with pips and a level word, no percentages), what Genii knows best, room by room, the core traits (5 to 6),
 the stings, Genii's calls, a share image and the get-the-app screen. Genii itself evolves from an orb to the full slime
-as cards are answered. The friend game ("Do you really know me?") runs on links.
+as cards are answered. The friend game ("How well do you know me?") runs on links.
 
 It is entertainment and self-discovery, not a validated scale. Answers stay in the browser: no backend, account,
 analytics or survey API.
@@ -75,7 +75,7 @@ quiz64/
     persona/
       session.js        run state machine: setup, lobby, picker, answers, lock (sha256), finale, result, save and restore
       kit.js            binds cards.json, library.json, friend.json and the shared scorer
-      stats.js          the one source for scale labels: half kickers, the six stats and their ends, retired labels (LAUNCH-SPEC 26)
+      stats.js          the one source for scale labels: half kickers, the six stats and their ends, retired labels (LAUNCH-SPEC section 6)
       lobby.js          lobby ids and copy, host lines per voice
       reactions.js      Genii's between-card reactions
       views.js          player-facing projections of a finished run (resultView, share projection, mirror shards)
@@ -89,7 +89,7 @@ quiz64/
                         StoryScreens, SheetScreens (character sheet, core traits, stings)
       FriendsPanel.jsx, FriendGame.jsx, FriendResultsView.jsx, PersonaDialogs.jsx
     legacy.css          the few rules still used from earlier builds, lowest cascade layer (tree-shaken; keep)
-  public/assets/island/ canon GDD v0.2 renders (LAUNCH-SPEC 25): island day, wide and night, the World Mirror frame, the
+  public/assets/island/ canon GDD v0.2 renders (LAUNCH-SPEC section 7): island day, wide and night, the World Mirror frame, the
                         room inside it, seven chapter islets, a still of our 3D Genii; sizes in MANIFEST.json
   tests/                node tests (logic, kit parity, picker, friend links, render, reveal accuracy, style and asset guards)
   qa/                   browser QA scripts (above); qa/evidence holds an older report
@@ -113,11 +113,11 @@ the app bundle (PersonaApp chunk)
 ```
 
 Change a card in `bank/`, merge, run the kit checks, then `npm test` here (the kit parity test proves the stripped
-kit scores the same as the full one). Card rules, formats and the evidence layer: LAUNCH-SPEC sections 5 to 12 and 21.
+kit scores the same as the full one). Card rules, formats and the evidence layer: LAUNCH-SPEC sections 4 and 5.
 
-**Scoring overview.** Six axes in two halves (R1 to R3 "with your people", L1 to L3 "with your life"), tags from
+**Scoring overview.** Six axes in two halves (R1 to R3 the people half, L1 to L3 the life half), tags from
 option evidence, grades and weights per format (`card-schema.mjs`), the picker in `session.js` (coverage first, then
-flow and value), Genii's 8 sealed guesses frozen and hashed before the final cards. Read LAUNCH-SPEC sections 7 to 12,
+flow and value), Genii's 8 sealed guesses frozen and hashed before the final cards. Read LAUNCH-SPEC section 4,
 `score-core.mjs`, and `docs/PERSONA-MVP.md` for the picker and storage details. Every line on the reveal traces to the
 player's own scores: `tests/reveal-accuracy.test.mjs`.
 
@@ -160,7 +160,7 @@ older dossier build (`../docs/STATE.md`).
 
 ## Known gaps
 
-- No real-person validation yet (blind test 2 open, LAUNCH-SPEC section 17).
+- No real-person validation yet (blind test 2 open, LAUNCH-SPEC section 10).
 - Two chunks are over 500 kB minified: `PersonaApp` (the kit JSON and app, about 207 kB gzip) and `scene` (three.js
   for Genii, lazy, about 146 kB gzip). The landing paints from the small `main` chunk first.
 - `public/fonts/Satoshi-Variable.woff2` and its license files are unused leftovers (Satoshi is aliased to Figtree and
@@ -174,7 +174,7 @@ older dossier build (`../docs/STATE.md`).
 | Doc | Use it for |
 |---|---|
 | [../docs/HANDOFF-DESMOND.md](../docs/HANDOFF-DESMOND.md) | the backend and friend game handoff: contracts, API, events, question pack, deployment, open decisions |
-| [../docs/LAUNCH-SPEC.md](../docs/LAUNCH-SPEC.md) | the spec: rules, rulings, numbers, status (section 17), rounds (sections 23 and 24) |
+| [../docs/LAUNCH-SPEC.md](../docs/LAUNCH-SPEC.md) | the locked spec: rulings (section 2), flow, scoring, copy, gates with commands (section 8), open decisions (section 10) |
 | [docs/DESIGN-DIRECTION.md](docs/DESIGN-DIRECTION.md) | the visual system, screen by screen (section 5), QA checklist (section 7) |
 | [docs/PERSONA-MVP.md](docs/PERSONA-MVP.md) | engine notes: picker, storage, friend links (older sections are marked) |
 | [docs/QA-REPORT.md](docs/QA-REPORT.md), `docs/VISUAL-JUDGE-CODEX-R*.json` | QA and independent visual judge rounds |

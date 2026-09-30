@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # Genii Alpha Question Bank Template and Recommended Steps
 
 Status: **proposed authoring template** · 2026-09-18
@@ -57,7 +59,7 @@ The following is an authoring allocation, not an approved visible count:
 ### 3. Example: belonging route
 
 1. **Social reality:** “When your brain says ‘I need a human,’ how quickly does an actual person come to mind?”
-2. **Belonging:** “With your usual people, are you relaxed—or on guest Wi-Fi?”
+2. **Belonging:** “With your usual people, are you relaxed, or on guest Wi-Fi?”
 3. **Cost:** “After a social thing with people you like, what does your brain charge you for?”
 4. **Protection:** “When you feel slightly outside the circle, does your internal PR team get funny, useful, quiet, or gone?”
 5. **Desired shift:** “If one social splinter disappeared, would you want to know where you stand, be less edited, let people closer, have more energy, or find people who feel like yours?”

@@ -9,8 +9,8 @@ Example: [examples/result.json](examples/result.json).
 
 | Field | From | Notes |
 |---|---|---|
-| `archetype.people`, `archetype.life` | names screen, library | `code` is the internal id (never shown), plus the kicker, the name, its one-line `define` (every title card shows kicker, name and define; LAUNCH-SPEC 26), read and desc in voice. `opposite` is the share screen's "Your opposite" line (copy not yet approved) |
-| `axes[6]` | map screen (character sheet) | `stat` (Closeness, Hard truths, Traditions, New things, Pace, Rules; LAUNCH-SPEC 26), `pole` (internal) and `end` (player-facing), `sign`, `strength` (abs normalized score, 0 to 1), `cards`, `pips` 0 to 5, `level` (1 to 5, `both`, `open`), `levelWord`, `flex`, `unfinished`, `badge` (signature or wild), `line` |
+| `archetype.people`, `archetype.life` | names screen, library | `code` is the internal id (never shown), plus the kicker, the name, its one-line `define` (every title card shows kicker, name and define; LAUNCH-SPEC section 6), read and desc in voice. `opposite` is the share screen's "Your opposite" line (copy not yet approved) |
+| `axes[6]` | map screen (character sheet) | `stat` (Closeness, Hard truths, Traditions, New things, Pace, Rules; LAUNCH-SPEC section 6), `pole` (internal) and `end` (player-facing), `sign`, `strength` (abs normalized score, 0 to 1), `cards`, `pips` 0 to 5, `level` (1 to 5, `both`, `open`), `levelWord`, `flex`, `unfinished`, `badge` (signature or wild), `line` |
 | `findings` | what Genii knows best | up to 6, clearest first |
 | `tags` | top traits | up to 5 shown tags, rank order, with `strength` (strong, showing, leaning) and `private` (marriage and kids) |
 | `coreTraits` | core traits | 5 to 6 keywords when evidence allows; `source` is the tag or axis behind each |

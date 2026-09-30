@@ -26,7 +26,7 @@ flowchart LR
   SE --> RUN
 ```
 
-- **Chapters** (LAUNCH-SPEC section 5): 1 Your phone (22), 2 Friends (22), 3 Love and your person (18, room: love), 4 Money and treats (20), 5 Work, school and ambition (18, room: work), 6 Family and home (18, room: family), 7 Play, rules and you (20). A closed room drops its chapter; the run stays 40 cards. Each chapter opens with its first authored card.
+- **Chapters** (LAUNCH-SPEC section 3): 1 Your phone (22), 2 Friends (22), 3 Love and your person (18, room: love), 4 Money and treats (20), 5 Work, school and ambition (18, room: work), 6 Family and home (18, room: family), 7 Play, rules and you (20). A closed room drops its chapter; the run stays 40 cards. Each chapter opens with its first authored card.
 - **Extras** (12): two per axis, used by the picker to finish an axis a closed room leaves thin.
 - **Sealed** (24): the finale pool. Genii locks a guess for 8 of them (seeded by the run id) before the player answers; they are checked against `checks.primary` and `checks.pairs` and never feed the profile.
 - **Sub-questions** (`sq`, `subquestions.json`): every card is built backward from one of 68 questions (18 on the axes, 50 on the tags), so each option lands on a side. Feeling cards have none.
@@ -56,7 +56,7 @@ flowchart LR
 
 Grade, weight and exits come from the format (`card-schema.mjs`), never from the writer.
 
-## Evidence model (summary; full rules in LAUNCH-SPEC sections 7 to 12)
+## Evidence model (summary; full rules in LAUNCH-SPEC section 4)
 
 - **Every option carries its own evidence**; the scorer only adds up what options say. `axes`: -2 to +2 on up to two of six axes (+ is the first pole). `tags`: strength 1 to 3 on up to three of 50 tags in 25 opposite pairs; support for a tag counts against its pair. `emotion` is recorded, never scored.
 - **Weight of a pick** = format weight (above), x 0.3 if answered in under 1.5 s (rushed). Exits (Skip, Not my life, No recent example), `circumstance`, `depends` and "None of these" score nothing.

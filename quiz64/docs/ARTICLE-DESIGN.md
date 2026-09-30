@@ -7,6 +7,8 @@ source_basis: Jerry's brief 2026-09-29 (story first, then a larger article page;
 prototypes: research/result-page-wireframes/article/ (index.html, concept-a.html, concept-b.html, concept-c.html, data.json, CONCEPTS.png)
 ---
 
+> **Design record (built).** The locked spec [LAUNCH-SPEC.md](../../docs/LAUNCH-SPEC.md) wins (sections 3 and 7); current labels are in its section 6, so the stat and archetype labels in the examples below are retired. Section numbers cited below refer to the pre-lock spec, now [history](../../docs/history/LAUNCH-SPEC-2026-09-29-full.md).
+
 # The Evidence Article
 
 **What this is.** The Stories deck stays the reveal. When the player reaches its end, the result opens into a long-read page, the Evidence Article, where they review everything at their own pace and find more than the story showed. This file sets the bar (section 1), the references (section 2), what the article says and where each line comes from (sections 3 to 5), how it talks (section 6), three visual concepts built as clickable prototypes (section 7), their scores (section 8), the recommendation (section 9), the build plan (section 10) and what Jerry decides (section 12).

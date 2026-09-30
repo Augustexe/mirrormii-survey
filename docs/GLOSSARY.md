@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # Genii survey evidence glossary
 
 The stable language for answers, evidence, provisional interpretations, projections and results. See [EVIDENCE-FRAMEWORK.md](EVIDENCE-FRAMEWORK.md) for the executable contract.

@@ -1,20 +1,20 @@
 ---
 title: Handoff for Desmond, the friend game and backend
-status: current (round 4 lock-in, 2026-09-29)
+status: current (checked against the locked spec, 2026-09-29)
 owner: jerry
 for: Desmond (developer, friend game backend)
 ---
 
 # Handoff for Desmond: the friend game and backend
 
-**What you are picking up.** The MirrorMii launch survey: a phone-first web game where Genii (a glass slime) serves 40 quick cards, locks 8 guesses, plays 8 sealed cards, then reveals a 12-screen Stories result, an Evidence Article and a friend challenge ("Do you really know me?"). Everything runs in the browser today: no backend, accounts or analytics. Your part is the backend that makes the friend game safe and synced, plus deployment. The game, the question pack, the scorer, the evidence and the result copy are done and tested.
+**What you are picking up.** The MirrorMii launch survey: a phone-first web game where Genii (a glass slime) serves 40 quick cards, locks 8 guesses, plays 8 sealed cards, then reveals a 12-screen Stories result, an Evidence Article and a friend challenge ("How well do you know me?"). Everything runs in the browser today: no backend, accounts or analytics. Your part is the backend that makes the friend game safe and synced, plus deployment. The game, the question pack, the scorer, the evidence and the result copy are done and tested.
 
 Read in this order (about 30 minutes):
 
 1. This page.
 2. [contracts/README.md](contracts/README.md), then [contracts/api.md](contracts/api.md) and [contracts/friend-challenge.md](contracts/friend-challenge.md).
 3. [../quiz64/README.md](../quiz64/README.md): run, test, build, QA, folder map.
-4. [LAUNCH-SPEC.md](LAUNCH-SPEC.md) sections 1, 4, 7, 14, 15, 17 and 25 (the product rules; the spec wins over anything else).
+4. [LAUNCH-SPEC.md](LAUNCH-SPEC.md), the locked spec (about 10 minutes; sections 1 to 4 and 9 matter most for you; the spec wins over anything else, including this page).
 5. [question-pack/QUESTION-PACK.md](question-pack/QUESTION-PACK.md) if you touch content.
 
 ```sh
@@ -66,8 +66,8 @@ Solid lines exist today; dotted lines are yours ([contracts/api.md](contracts/ap
 
 | Yours | Not yours (ask Jerry) |
 |---|---|
-| The backend service, storage (SQLite, LAUNCH-SPEC section 16), signed links, reply sync, delete-my-data on the server | Card content, tags, archetype names, result copy (Jerry changes them freely; ids stay) |
-| The app's network layer (new modules; reuse [contracts/records.mjs](contracts/records.mjs)) | Scoring rules and thresholds (`score-core.mjs` `CONFIG`, LAUNCH-SPEC section 11) |
+| The backend service, storage (SQLite, LAUNCH-SPEC section 9), signed links, reply sync, delete-my-data on the server | Card content, tags, archetype names, result copy (Jerry changes them freely; ids stay) |
+| The app's network layer (new modules; reuse [contracts/records.mjs](contracts/records.mjs)) | Scoring rules and thresholds (`score-core.mjs` `CONFIG`, LAUNCH-SPEC section 4) |
 | Analytics wiring per [contracts/events.md](contracts/events.md) | Visual design (quiz64/docs/DESIGN-DIRECTION.md) |
 | Hosting, domain, deployment, the placeholders below | Pushing or publishing anything: needs Jerry's go |
 
@@ -97,7 +97,7 @@ Tooling line (proposals, build over buy): Node 22 with Fastify or Hono, `better-
 
 ## Known limits today
 
-- **Unsigned links, answer key in the link.** `#play=` carries the Level 1 to 4 truth; a friend who decodes the base64 can cheat, and the 8-hex SHA-256 is a damage check, not a signature. Approved for testing only (LAUNCH-SPEC section 19 item 8): a backend is needed before real players.
+- **Unsigned links, answer key in the link.** `#play=` carries the Level 1 to 4 truth; a friend who decodes the base64 can cheat, and the 8-hex SHA-256 is a damage check, not a signature. Approved for testing only (LAUNCH-SPEC section 9): a backend is needed before real players.
 - **No sync.** A reply must be opened in the browser that holds the owner's run. Clearing storage loses the run and every link.
 - **No accounts, no analytics, no server.** Storage is `localStorage` only (`genii.persona.v2.run`, `genii.persona.friend-play.v1`, `genii.motion.v1`); "Download my data" and "Delete my data" work locally.
 - **Kit pinning.** Every save and link carries `KIT_ID`; any bank merge changes it and old saves and links are refused (by design, so evidence never mixes).
@@ -112,16 +112,7 @@ Tooling line (proposals, build over buy): Node 22 with Fastify or Hono, `better-
 
 ## Open decisions
 
-**Jerry holds these:**
-
-| Decision | Where it stands |
-|---|---|
-| T02 tag (friendship silence, who reaches out first) | Round 4 moved two cards off T02 under the two-cards-per-concept rule; T02 now has 2 cards and still fires. Revert if Jerry prefers 4 T02 cards (`research/persona-quiz-v2/final/bank/ROUND4-LOG.md`) |
-| "Your opposite: X and Y. Know one?" line on the share screen | Proposed (DESIGN-DIRECTION section 8 D3) and in the build; needs Jerry's yes or a cut |
-| Copy approvals | LAUNCH-SPEC records Jerry's approval of the eight people archetype names only. The eight life names are Claude's working picks; the Heart to heart wording, tag names and Evidence Article copy have no recorded sign-off |
-| Blind test 2 | Open: Jerry plus 3 to 5 real people, accuracy and "that's me" per line (LAUNCH-SPEC section 18 step B item 6) |
-| Teens 13 to 17 | Open (conflicts with PRODUCT-TRUTH). The build has no age question and no age content; the backend must not collect or infer age |
-| Public app link, share domain, when to push and deploy | Pending; the placeholders above wait on it |
+**Jerry holds these:** the list lives in one place, [LAUNCH-SPEC.md](LAUNCH-SPEC.md) section 10 (among them: blind test 2, teens, the public app link and share domain, when to push and deploy, copy sign-off). Until he rules, the build ships the defaults listed there; the backend must not collect or infer age.
 
 **Desmond decides (proposals in api.md):** one accepted friend submission per link or last-wins (today last-wins per browser); run and link retention (proposed 12 months and 30 days); server-issued or client-made run ids; host and collector; whether to add a public share page.
 

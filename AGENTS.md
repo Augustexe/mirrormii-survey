@@ -1,10 +1,14 @@
 ## Shared current context - required startup
 
-We are finishing one build, the launch survey (persona quiz V2). Before any survey work read `docs/LAUNCH-SPEC.md`: it is the only spec (rules, rulings, numbers, status, plan, open decisions). Update it in place; never start a parallel build or a second spec. Before code or tests read **`quiz64/README.md`**, the one developer entry for the web game (run, test, build, QA, folder map, content flow, the friend game and backend boundary, known gaps); `docs/CODE-MAP.md` is the short source map. Backend, friend game server, contracts, question pack or deployment work starts at **`docs/HANDOFF-DESMOND.md`** (the developer handoff: data flow, what is built, build order, placeholders, open decisions) and `docs/contracts/` (JSON Schemas checked by `node scripts/validate-contracts.mjs`, part of `npm test --prefix quiz64`). Historical worktree docs do not override this maintained context.
+We are finishing one build, the launch survey (persona quiz V2). Read in this order before any survey work:
 
-Older builds are history only (`docs/history/BUILD-ITERATIONS.md`); their code (App.jsx, DossierApp.jsx, data.js, respondent-copy.js) is gone from `quiz64/src`, and their docs in `quiz64/docs` are marked superseded.
+1. **`docs/LAUNCH-SPEC.md`**, the one locked spec (about 10 minutes): Jerry's rulings, flow, scoring, question bank, result copy and names, visuals, quality gates with commands, open decisions. Every rule appears once. Change it only by a dated ruling from Jerry (its section 0); never start a parallel build or a second spec, and never add a "round" section on top.
+2. **`quiz64/README.md`**, the developer entry for the web game (run, test, build, QA, folder map, content flow).
+3. **`docs/HANDOFF-DESMOND.md`** for backend, friend game server, contracts (`docs/contracts/`), question pack or deployment work.
 
-Keep ongoing evidence, questions, ICP and psychology work in the listed masters. Runs retain frozen experiments and receipts. At task completion, update the maintained current-state/decision pages and catalog the run; do not leave the only current context in a run output. Never promote an experiment to an approved requirement merely because it is recent or finalized.
+`docs/CODE-MAP.md` is the short source map; `docs/STATE.md` is the one-page status. Other docs in `docs/` and `quiz64/docs/` carry superseded, background or dated banners and never override the spec; the pre-lock spec is `docs/history/LAUNCH-SPEC-2026-09-29-full.md`. `node scripts/check-docs.mjs` (inside `npm test --prefix quiz64`) guards the spec and the no-em-dash rule. Card writing follows the workspace skill `skills/shared/genii-card-writer/SKILL.md`, which follows the spec.
+
+Keep ongoing evidence, questions, ICP and psychology work in the listed masters. Runs retain frozen experiments and receipts. At task completion, update the spec (numbers with their date, one line in its Changes log) and catalog the run; do not leave the only current context in a run output. Never promote an experiment to an approved requirement merely because it is recent or finalized.
 
 # Genie survey project instructions
 
@@ -13,7 +17,7 @@ This is the canonical source for project `mirrormii-genie-survey`. The user auth
 ## Begin here
 
 - Inside Jerry's central workspace, the root contract and this project entry are already loaded before this file; do not re-route to them from here. Outside that workspace, follow this repository's own instructions without requiring Jerry's local paths.
-- Read `docs/DECISIONS.md`, then the sections of `docs/PRODUCT-SPEC.md` relevant to the task.
+- For the launch survey, follow the reading order above. `docs/DECISIONS.md` and `docs/PRODUCT-SPEC.md` are earlier-build history.
 - Keep execution pinned to this project. General MirrorMii keywords add company context; they do not move source edits to another project.
 - In the central workspace, allocate a unique run with `python3 /Users/jerryzhang/Workspace-Draft/system/bin/workspace.py new-run mirrormii-genie-survey codex "Task" --packet PACKET-ID`. Use its scratch/output/logs and finalize output for a receipt. Source edits are permitted when the task intends them; `--cwd project` is only for those edits.
 - Execute CLIs through `/Users/jerryzhang/Workspace-Draft/system/bin/dev COMMAND` from the allocated cwd to select the managed toolchain. `dev --project mirrormii-genie-survey COMMAND` changes cwd to source and is for intended source work. Read `docs/CLI-ACCESS.md` before diagnosing setup/auth failures: distinguish PATH, native login presence, verified remote access, and sandbox restrictions.

@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # Genii Evidence Display V1
 
 Status: **display principles still apply; the implemented result is the personality dossier below (live since 2026-09-23)**  

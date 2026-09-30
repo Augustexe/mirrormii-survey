@@ -7,6 +7,8 @@ updated: 2026-09-25
 source_basis: SYNTH-30 synthetic persona study (2026-09-23) and TAM-01 v0.1 model by John (Hermes), 2026-09-23; MirrorMii OS Base ICPs and Product Truths read live 2026-09-22
 ---
 
+> **Background only, not part of the spec.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); where this page disagrees, the spec wins.
+
 # Synthetic segment fit and market model
 
 Status: **planning research, not company canon and not customer data.** Every persona, photo and biometric below is invented; fit scores are model judgment. Validate against real Genii survey responses and install analytics before quoting any of it.

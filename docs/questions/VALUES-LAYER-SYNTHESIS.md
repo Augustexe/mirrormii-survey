@@ -7,6 +7,8 @@ updated: 2026-09-26
 source_basis: research/sally-values-2026-09-26 (Sally's 48-question tag map, 60 debate topics, ChatGPT thread); SURVEY-SPEC-V3.md; Jerry's 2026-09-26 grill rulings (multiple choice only, masked, onion layers, end feelings); PRODUCT-TRUTH emotion rule
 ---
 
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](../LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # Values layer synthesis
 
 Status: **proposed.** How Sally's research feeds the survey, what has to change before any of it reaches a respondent, and the tone and emotion rules for converting it.

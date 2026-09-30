@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # Genii Playful Disclosure Question Bank V1
 
 Status: **local review candidate; not approved, merged, deployed or human-validated**  
@@ -36,12 +38,12 @@ The five held-out items exercise the freeze/evaluation lifecycle. One item per a
 
 ### Sections
 
-1. **Before Genii gets nosy** — result style, disclosure mode and topic permission; no personality predicates.
-2. **Social theater** — recognition, exclusion, delayed replies and repair; dry observational humor.
-3. **The secret menu** — a gradual sequence from a recent low-stakes temptation to optional fantasies and desired understanding.
-4. **When it got real** — recent visible behavior; warmer and plainer language.
-5. **Your operating mode** — plans, ambiguity, group decisions and unfamiliar opportunities.
-6. **Genii puts its cards down** — materially different held-out transfer contexts after freeze.
+1. **Before Genii gets nosy**: result style, disclosure mode and topic permission; no personality predicates.
+2. **Social theater**: recognition, exclusion, delayed replies and repair; dry observational humor.
+3. **The secret menu**: a gradual sequence from a recent low-stakes temptation to optional fantasies and desired understanding.
+4. **When it got real**: recent visible behavior; warmer and plainer language.
+5. **Your operating mode**: plans, ambiguity, group decisions and unfamiliar opportunities.
+6. **Genii puts its cards down**: materially different held-out transfer contexts after freeze.
 
 ## Consent and routing
 
@@ -87,13 +89,13 @@ Projective prompts explicitly prohibit inference about morality, attachment, dia
 
 The maintained [Evidence Display V1](RESULT-DISPLAY-V1.md) and `RESULT_DISPLAY_V1` define one progressive result:
 
-1. **Your current Genii read** — provisional identity and central tension from audited claims.
-2. **Patterns that actually showed up** — supported, mixed and context-dependent patterns.
-3. **What happened outside / inside** — actions, emotions, fantasies, temptations and desires remain labeled separately.
-4. **Why Genii thinks this** — plain receipts by default; exact private receipts on request.
-5. **What Genii is not claiming** — unknowns, thin signals and prohibited inference.
-6. **Did Genii call it?** — frozen held-out outcomes versus baseline, explicitly exploratory in this base bank.
-7. **Your right of reply** — accurate, partly accurate, inaccurate or prefer not to say as an immutable overlay.
+1. **Your current Genii read**: provisional identity and central tension from audited claims.
+2. **Patterns that actually showed up**: supported, mixed and context-dependent patterns.
+3. **What happened outside / inside**: actions, emotions, fantasies, temptations and desires remain labeled separately.
+4. **Why Genii thinks this**: plain receipts by default; exact private receipts on request.
+5. **What Genii is not claiming**: unknowns, thin signals and prohibited inference.
+6. **Did Genii call it?**: frozen held-out outcomes versus baseline, explicitly exploratory in this base bank.
+7. **Your right of reply**: accurate, partly accurate, inaccurate or prefer not to say as an immutable overlay.
 
 Public axes and claim templates are empty allowlists in this bank. Share-safe results remain disabled until founder and human review approve exact public language.
 

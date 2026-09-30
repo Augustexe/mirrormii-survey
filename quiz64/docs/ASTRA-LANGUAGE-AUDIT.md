@@ -1,6 +1,6 @@
 > **Superseded, history only.** This describes an earlier survey build or visual pass whose code has been removed. The current app starts at [../README.md](../README.md); the visual system is [DESIGN-DIRECTION.md](DESIGN-DIRECTION.md).
 
-# Astra language audit — before implementation
+# Astra language audit: before implementation
 
 Status: verified source review; implementation and independent Council review pending.
 Base: `533c3da` (`codex/personality-game-council-v4`), fast-forwarded into isolated branch `fm/genii-language-astra`. Local `main` is an ancestor. No remote operations.

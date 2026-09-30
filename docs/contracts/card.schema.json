@@ -12,7 +12,7 @@
     "sources": { "type": "object" },
     "weights": {
       "type": "object",
-      "description": "Card weight per format plus the rushed rule and rank position weights (LAUNCH-SPEC section 7).",
+      "description": "Card weight per format plus the rushed rule and rank position weights (LAUNCH-SPEC section 4).",
       "required": ["rushedMs", "rushedFactor", "rankPositions"],
       "properties": {
         "rushedMs": { "type": "integer", "minimum": 0 },

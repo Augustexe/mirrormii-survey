@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # Core files to edit and build on
 
 **Launch survey (persona quiz V2):** use the file table in [STATE.md](STATE.md) and the launch section of [CODE-MAP.md](CODE-MAP.md). The rows below belong to earlier builds.

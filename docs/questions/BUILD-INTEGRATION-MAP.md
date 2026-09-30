@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](../LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 > Maintained working document, promoted 2026-09-18. [Original run snapshot](../../../../hall/data/jobs/mirrormii-genie-survey/20260918T174625Z-7724d715c4d8/output/BUILD-INTEGRATION-MAP.md) remains immutable. Original status and limitations below still apply; promotion is filing, not product approval.
 
 # Experimental bank to current engine: integration map

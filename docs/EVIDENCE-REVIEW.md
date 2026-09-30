@@ -1,4 +1,6 @@
-# Evidence review — interview checkpoint 1
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
+# Evidence review: interview checkpoint 1
 
 Status: source behavior verified; proposed changes await interview decisions. No runtime changes.
 
@@ -43,9 +45,9 @@ The full existing author map is copied into this run's output/QUESTION-MAP.md fo
 
 Confirmed: visual baseline locked; playful voice retained; direct facts versus interpretations distinct; usual/recent separate; Other unscored; True/False feedback only.
 
-Q1 — Evidence structure: separate routine, contextual behavior, and emotion facets before aggregating. Recommended: yes, preserve relationships between facets without collapsing them into one trait.
-Q2 — Evidence strength: prefer corroborating reports of actual events over hypothetical choices when making behavior claims. Recommended: yes, retain both source types; numerical weights remain a later decision and self-report is not ground truth.
-Q3 — Conflicting answers: preserve the contextual difference and soften or withhold a broad claim; use a follow-up when context does not explain it. Recommended: this approach rather than simple majority or treating changes as dishonest.
+Q1, Evidence structure: separate routine, contextual behavior, and emotion facets before aggregating. Recommended: yes, preserve relationships between facets without collapsing them into one trait.
+Q2, Evidence strength: prefer corroborating reports of actual events over hypothetical choices when making behavior claims. Recommended: yes, retain both source types; numerical weights remain a later decision and self-report is not ground truth.
+Q3, Conflicting answers: preserve the contextual difference and soften or withhold a broad claim; use a follow-up when context does not explain it. Recommended: this approach rather than simple majority or treating changes as dishonest.
 
 Downstream after Q1–Q3: precise facets, source independence and confidence criteria; targeted follow-up budget; prediction targets and validation coverage. Do not choose dependent thresholds prematurely.
 

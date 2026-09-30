@@ -7,6 +7,8 @@ updated: 2026-09-26
 source_basis: Sally's 48-question tag map (research/sally-values-2026-09-26); team transcript 2026-09-26 (tags, AI-written personality article, friend loop, 80% target); VALUES-LAYER-SYNTHESIS.md; EVIDENCE-FRAMEWORK.md source weights; Jerry's rulings 2026-09-26 (web game, multiple choice only, masked, gender neutral, answer screen deferred)
 ---
 
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](../LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # Tag validation spec
 
 Status: **proposed.** Scope is the evidence, the framework and the questions only. The answer screen, the article and the visuals are deferred (Jerry, 2026-09-26). The survey stays a web game.

@@ -1,3 +1,5 @@
+> **Background only, not part of the spec.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); where this page disagrees, the spec wins.
+
 # Reference mechanics and research limits
 
 Research date: 2026-09-14. These external examples inform proposals; they do not verify MirrorMii product truth or prove the proposed campaign will spread.

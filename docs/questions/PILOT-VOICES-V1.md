@@ -7,6 +7,8 @@ updated: 2026-09-26
 source_basis: pilot/bank.js (genii-tag-pilot-v1) items and levels; live build voices (Be kind / Make it fun / Call me out); team transcript 2026-09-26; Jerry's feedback 2026-09-26 (answers must be short, clear, legible)
 ---
 
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](../LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # Pilot voices V1
 
 Status: **proposed examples.** Every question below is an item already in `pilot/bank.js`. The voice changes the words only; each row is the same answer in three deliveries and records the same tag level.

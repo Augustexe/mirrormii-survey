@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](../LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 > Maintained working document, promoted 2026-09-18. [Original run snapshot](../../../../hall/data/jobs/mirrormii-genie-survey/20260918T024222Z-c25e30eace25/output/EVIDENCE-CHECKLIST.md) remains immutable. Original status and limitations below still apply; promotion is filing, not product approval.
 
 # Genii thesis evidence allocation and acquisition checklist
@@ -45,7 +47,7 @@ No source moves lanes silently. A Reddit phrase is not a clinical construct; a s
 
 ## 4. Thesis-linked acquisition checklist
 
-### A. ICP and the initial reason to begin — P0
+### A. ICP and the initial reason to begin: P0
 
 - [ ] Collect life stage and current friction separately from age/gender.
 - [ ] Recruit contrast cases: high access/low belonging; high access/high belonging; low access/wants connection; non-social primary concern.
@@ -59,7 +61,7 @@ Audience discovery phrases: `I have friends but feel lonely`, `friend group outs
 Sources: consented interviews, transparent representative datasets with age/geography breakdowns, dated public comments sampled beyond top-liked posts. Avoid treating campus convenience samples as all 21–25-year-olds or targeting distress as a buying signal.
 Decision: keep, narrow or abandon the initial cohort based on problem recognition AND fulfillable app value.
 
-### B. Context-specific belonging and protective behavior — P0
+### B. Context-specific belonging and protective behavior: P0
 
 - [ ] Identify the actual group/person: close friend, newer group, work, family, dating.
 - [ ] Ask what occurred and what the person did, not only what they would do.
@@ -72,7 +74,7 @@ Audience phrases: `always the planner friend`, `if I stop texting first`, `perfo
 Example: “Last time you took over planning with that newer group, was it mostly fun, easier than waiting, or a way to make sure you had a place? Something else is allowed.”
 Claim gate: action plus directly reported motive plus context and counterexample review. These are proposed authoring gates, not validated item-count thresholds. Do not diagnose attachment or rejection sensitivity from custom items.
 
-### C. Insecurity → meaning → chosen goal — P0
+### C. Insecurity → meaning → chosen goal: P0
 
 - [ ] Offer an optional tender-point question, not a compulsory flaw confession.
 - [ ] Separate the concern from its feared meaning: appearance versus “people will not want me there.”
@@ -86,7 +88,7 @@ Audience phrases: `I feel replaceable`, `I need reassurance but don't ask`, `I d
 Example: “When that insecurity gets loud, what do you worry it says about you?” Follow with “What would you like to feel more able to do?”
 Decision: a private user-selected continuation, not a promise to solve insecurity. More disclosure alone is not success.
 
-### D. Emotional experience, action and recovery — P0
+### D. Emotional experience, action and recovery: P0
 
 - [ ] For a selected scene, ask feeling, outward action and recovery separately.
 - [ ] Record intensity/duration only if actually asked with comprehensible anchors.
@@ -97,7 +99,7 @@ Keywords: `emotion regulation experience expression daily diary`, `expressive su
 Example: “You said ‘all good.’ Was it actually all good, or did your internal review need another business day?” Literal answer choices must not bundle anger with concealment or a recovery time.
 Decision: earn a behavioral contrast such as Resting Nice Face only when internal frustration AND restrained expression are reported across relevant scenes.
 
-### E. Social/emotional context ↔ routine bridge — P0 if retained in thesis
+### E. Social/emotional context ↔ routine bridge: P0 if retained in thesis
 
 - [ ] Link both observations to the same event/day, rather than joining unrelated monthly answers.
 - [ ] Record timing: social event, feeling/behavior, bedtime/meal occurrence, next-day energy.
@@ -110,7 +112,7 @@ Keywords: `ecological momentary assessment social stress sleep`, `daily diary be
 Example: “Thinking of that evening specifically, did bedtime change? If so, what kept you up?”
 Decision: support “on the evenings you described…” only with linked records. A cross-sectional population paper cannot fill a missing personal event link; diary correlations alone cannot prove causation.
 
-### F. Literal health/routine dashboard — P0
+### F. Literal health/routine dashboard: P0
 
 - [ ] Sleep: independently collect timing, duration, variation, restoration and usual/recent windows. A usual band is not every night's duration.
 - [ ] Eating: distinguish timing, appetite, access, convenience, intake and goals. Takeout is not a nutritional verdict.
@@ -122,7 +124,7 @@ Decision: support “on the evenings you described…” only with linked record
 Keywords: `Consensus Sleep Diary`, `self reported sleep duration actigraphy agreement`, `meal timing dietary assessment validity`, `physical activity self report accelerometry agreement`, `patient reported skin symptoms measurement validity`.
 Decision: keep current descriptive cards; acquire validated measurement and appropriate specialist review only if moving toward condition/quality assessment. Do not collect photos, diagnoses or wearable records just because available.
 
-### G. Recognition, humor and the feeling of being understood — P0
+### G. Recognition, humor and the feeling of being understood: P0
 
 - [ ] Compare personalized interpretation against a generic plausible reading and an accurate literal recap.
 - [ ] Keep tone/length comparable so writing quality does not explain all preference.
@@ -135,7 +137,7 @@ Decision: keep current descriptive cards; acquire validated measurement and appr
 Keywords: `Forer personal validation fallacy`, `Barnum effect personality feedback`, `perceived partner responsiveness feeling understood`, `personalized feedback generic control`, `humor questionnaire response bias`, `cognitive interviewing response options`.
 Decision: determine whether contextual synthesis adds value beyond repeating answers in charming language. “Feels accurate” alone is not prediction validation.
 
-### H. Prediction beyond recap — P0
+### H. Prediction beyond recap: P0
 
 - [ ] Specify target: unseen hypothetical option, later self-reported event, or independently observed outcome.
 - [ ] Freeze train/test membership, mappings, exclusions, baseline and predictions before outcomes.
@@ -150,7 +152,7 @@ Decision: determine whether contextual synthesis adds value beyond repeating ans
 Keywords: `incremental predictive validity baseline`, `prospective behavioral prediction`, `selective prediction coverage risk`, `calibration categorical predictions`, `LLM as judge self preference bias`, `clustered repeated measures validation`.
 Decision: establish incremental value over baseline before using accuracy language. No defensible required sample size until target metric, baseline, expected effect, precision and clustering are specified.
 
-### I. Survey → app → companion continuity — P0 before promising it
+### I. Survey → app → companion continuity: P0 before promising it
 
 - [ ] Ask what the user expects the app to remember and do next, before showing a sales explanation.
 - [ ] Verify selected goal/tone/context can be transferred with explicit permission.
@@ -162,7 +164,7 @@ Decision: establish incremental value over baseline before using accuracy langua
 Keywords: `conversational agent perceived responsiveness`, `AI companion longitudinal randomized trial`, `human AI relationship dependency`, `onboarding expectation disconfirmation`, `self disclosure conversational agent privacy`, `cross device onboarding continuity`.
 Decision: narrow CTA to verified delivery. Company context route failed in this turn; direct Lark was not refreshed. This checklist does not claim canonical app capabilities are unavailable or verified.
 
-### J. Claim substantiation and sensitive-data boundaries — P0 before public pilot
+### J. Claim substantiation and sensitive-data boundaries: P0 before public pilot
 
 - [ ] Inventory exact ad, question, result, dashboard and CTA claims, including overall implied meaning.
 - [ ] Record evidence required for each claim and review proposed jurisdiction/age scope with qualified counsel.

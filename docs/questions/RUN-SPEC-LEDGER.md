@@ -6,6 +6,8 @@ created: 2026-09-26
 updated: 2026-09-28
 source_basis: Jerry's rulings in the 2026-09-26 and 2026-09-28 sessions; 2026-09-26 (survey spec, grill rounds, Sally's research, team transcript, gauntlet, internal-run grill round 1)
 ---
+
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](../LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
 > **Superseded by [docs/LAUNCH-SPEC.md](../LAUNCH-SPEC.md) on 2026-09-28.** That file is the only spec. This page is history.
 
 # Run spec ledger

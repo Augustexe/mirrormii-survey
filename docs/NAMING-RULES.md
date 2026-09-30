@@ -1,7 +1,7 @@
 # Naming rules for the result
 
 Every label a player reads on the result (archetype names, kickers, stat names and ends, level words, trait keywords,
-tag names, room labels, section titles, tabs, chips and buttons) follows these rules. LAUNCH-SPEC section 26 holds the
+tag names, room labels, section titles, tabs, chips and buttons) follows these rules. LAUNCH-SPEC section 6 holds the
 locked tables; `docs/NAMING-PANEL.json` holds the scores. Written 2026-09-29 after Jerry: "Nobody understands what a
 slow burner is" and "If they're progressive and you label them traditional, that's just bad."
 
@@ -15,7 +15,7 @@ slow burner is" and "If they're progressive and you label them traditional, that
    heart" read as politics or gender roles. "Keeps family traditions" describes what someone does at the holidays.
 4. **Both ends of every scale are flattering and shareable.** No end is the failing grade of the other: "Says it
    straight / Says it gently", never "Blunt / Soft". Test: would each person happily post their own end?
-5. **Every title card is kicker + name + one plain line.** The kicker says the scope ("With your people", "Day to
+5. **Every title card is kicker + name + one plain line.** The kicker says the scope ("With the people you love", "Day to
    day"), the name is the hook, and the line directly under the name defines it in plain words ("Plans ahead and sees
    it through."). A name never stands alone.
 6. **One grammar.** Labels that describe the player (names, ends, keywords, tag names, defining lines) are subjectless

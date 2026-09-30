@@ -13,6 +13,8 @@ source_status: "unclassified"
 promotion_decision: "CONTEXT-01 sweep; Jerry approves by merging"
 ---
 
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](../LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # Routed question bank V2 author guide
 
 Status: live bank since 2026-09-23 (the deployed `codex/final-survey-dossier`

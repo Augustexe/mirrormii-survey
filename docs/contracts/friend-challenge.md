@@ -1,6 +1,6 @@
 # Friend challenge (`friend-challenge.schema.json`, `friend-content.schema.json`)
 
-"Do you really know me?" Game rules: [LAUNCH-SPEC section 14](../LAUNCH-SPEC.md). Content: `friend.json` ([friend-content.schema.json](friend-content.schema.json)). Code: `quiz64/src/persona/friend.js`, `links.js`; deck and scoring in `score-core.mjs` (`buildFriendDeck`, `scoreFriendGame`, `rankFriends`).
+"How well do you know me?" Game rules: [LAUNCH-SPEC section 3](../LAUNCH-SPEC.md). Content: `friend.json` ([friend-content.schema.json](friend-content.schema.json)). Code: `quiz64/src/persona/friend.js`, `links.js`; deck and scoring in `score-core.mjs` (`buildFriendDeck`, `scoreFriendGame`, `rankFriends`).
 
 ## Today (built, browser only)
 
@@ -26,7 +26,7 @@ sequenceDiagram
 | `friendSafeResult` | what the friend sees: counts only, never which ones, never Level 4, the owner's type only if allowed |
 | `ownerComparison` | "You, through {friend}'s eyes": owner only |
 
-Known limits (approved for testing only, LAUNCH-SPEC section 19 item 8): the answer key rides in the link, so a friend who decodes it can cheat; the SHA-256 prefix is not a signature, so a link can be edited or forged (content is limited to kit ids plus a 24-letter name); replies do not sync across devices; nothing expires.
+Known limits (approved for testing only, LAUNCH-SPEC section 9): the answer key rides in the link, so a friend who decodes it can cheat; the SHA-256 prefix is not a signature, so a link can be edited or forged (content is limited to kit ids plus a 24-letter name); replies do not sync across devices; nothing expires.
 
 ## Proposed (backend)
 

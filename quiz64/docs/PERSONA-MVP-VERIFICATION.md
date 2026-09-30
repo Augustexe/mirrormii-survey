@@ -5,6 +5,8 @@ branch: claude/survey-mvp-finish-20260927
 status: local verification only; no human players, no deployment
 ---
 
+> **Dated record, not the spec.** Current gates and numbers are in the locked spec [LAUNCH-SPEC.md](../../docs/LAUNCH-SPEC.md) section 8; section numbers cited below refer to the pre-lock spec, now [history](../../docs/history/LAUNCH-SPEC-2026-09-29-full.md).
+
 > Dated verification record (2026-09-27, before build C and rounds 2 and 3). Current gate numbers: LAUNCH-SPEC section 17; entry page: [../README.md](../README.md).
 
 

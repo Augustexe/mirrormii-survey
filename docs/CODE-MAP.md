@@ -1,8 +1,8 @@
 # Source map
 
-## Launch survey (persona quiz V2), verified 2026-09-29 (round 3 handoff)
+## Launch survey (persona quiz V2), verified 2026-09-29 (locked spec)
 
-Developer entry: **[quiz64/README.md](../quiz64/README.md)** (run, test, build, QA, full folder map, content flow, friend game and backend boundary, known gaps). This table is the short version.
+Spec: **[LAUNCH-SPEC.md](LAUNCH-SPEC.md)** (read first). Developer entry: **[quiz64/README.md](../quiz64/README.md)** (run, test, build, QA, full folder map, content flow, friend game and backend boundary, known gaps). This table is the short version.
 
 | Part | Where |
 |---|---|
@@ -10,12 +10,12 @@ Developer entry: **[quiz64/README.md](../quiz64/README.md)** (run, test, build, 
 | Web game | This checkout, branch `survey/launch`. `quiz64/src/main.jsx` paints `Boot.jsx`, then lazy loads `PersonaApp.jsx` |
 | Kit binding and build-time strip of authoring fields | `quiz64/src/persona/kit.js`, `quiz64/kit-strip.mjs`, `quiz64/vite.config.js` |
 | Run state machine, picker, lock, save and replay-validated restore | `quiz64/src/persona/session.js`, `store.js`, `sha256.js` |
-| Game stats, half kickers and retired labels (Closeness, Hard truths, Traditions, New things, Pace, Rules; LAUNCH-SPEC 26) | `quiz64/src/persona/stats.js` |
+| Game stats, half kickers and retired labels (Closeness, Hard truths, Traditions, New things, Pace, Rules; LAUNCH-SPEC section 6) | `quiz64/src/persona/stats.js` |
 | Friend challenge and reply links, friend and owner views | `quiz64/src/persona/friend.js`, `links.js` |
 | Result: the 12-screen Stories reveal and share image | `quiz64/src/persona/views.js`, `stories/` (story-data.js is the pure projection), `reveal/`, `share-image.js` |
 | Screens and play | `quiz64/src/persona/screens/`, `play/` (card and 13 formats, lock) |
-| Design system, art, Genii | `quiz64/src/system/`, `quiz64/src/art/` (code-made art, device table), `quiz64/src/genii/` (evolution, three.js), `quiz64/public/assets/world/` (real MirrorMii world renders) |
-| Tests and browser QA | `quiz64/tests/*.test.mjs` (`npm test` in `quiz64`), `quiz64/qa/capture-screens.mjs`, `qa-checks.mjs`, `play-through.mjs`, `tests/visual/fold.mjs` |
+| Design system, art, Genii | `quiz64/src/system/`, `quiz64/src/art/` (code-made art, device table), `quiz64/src/genii/` (evolution, three.js), `quiz64/public/assets/island/` (canon GDD island, World Mirror and chapter islet renders; `MANIFEST.json`) |
+| Tests and browser QA | `quiz64/tests/*.test.mjs` (`npm test` in `quiz64`, includes the contracts and the docs check), `quiz64/qa/capture-screens.mjs`, `qa-checks.mjs`, `play-through.mjs`, `layout-guard.mjs`, `tests/visual/fold.mjs` |
 | Backend handoff and contracts | **[HANDOFF-DESMOND.md](HANDOFF-DESMOND.md)**; `docs/contracts/` (run, result, card, library, friend content and friend challenge schemas, events, API, `records.mjs`, examples); `scripts/validate-contracts.mjs` (run by `quiz64/tests/contracts.test.mjs`) |
 | Question pack export | `docs/question-pack/` (QUESTION-PACK.md, generated CSV and counts); `scripts/export-question-pack.mjs` |
 | Preview configs (workspace `.claude/launch.json`) | `persona-mvp` (web game, port 5174), `result-wireframes` (port 8793) |

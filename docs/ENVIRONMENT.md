@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 > Dated environment snapshot. Use [CODE-MAP.md](CODE-MAP.md) for the actual app and [CURRENT.md](CURRENT.md) for later handoff/deployment receipts. Old sandbox/access failures are not current diagnostics.
 
 # Project environment

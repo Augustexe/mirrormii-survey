@@ -7,6 +7,8 @@ updated: 2026-09-26
 source_basis: research/sally-values-2026-09-26/Tag-Pairs-and-Friend-Game-v1.md (Sally, received 2026-09-26); pilot/bank.js and research/blind-test-kit/cards.json tag ids; RUN-SPEC-LEDGER.md rulings
 ---
 
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](../LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # Persona tags V1
 
 Status: **proposed.** Sally's library adds the layer the result was missing: **named, meme-style personality types** built from combinations of our tags, each with a sting line (only the owner sees it) and a 💛 "I love my imperfection" line. Her friend game is the viral loop, and it can run on a static page with no backend.

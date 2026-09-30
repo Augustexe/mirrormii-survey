@@ -2,21 +2,21 @@
 
 ## Start here: the launch survey
 
-We are finishing one build. Its only spec is **[LAUNCH-SPEC.md](LAUNCH-SPEC.md)**: rules, rulings, numbers, status, plan and open decisions. Developers start the web game at **[quiz64/README.md](../quiz64/README.md)**.
+We are finishing one build. Its only spec is **[LAUNCH-SPEC.md](LAUNCH-SPEC.md)**, locked 2026-09-29: rulings, flow, scoring, question bank, result copy, visuals, gates and open decisions, each rule once. Read it first, then **[quiz64/README.md](../quiz64/README.md)** (developers), then **[HANDOFF-DESMOND.md](HANDOFF-DESMOND.md)** (backend). Status on one page: [STATE.md](STATE.md). Naming rules for result labels: [NAMING-RULES.md](NAMING-RULES.md).
 
-Earlier builds are listed in [history/BUILD-ITERATIONS.md](history/BUILD-ITERATIONS.md). They do not govern the launch survey.
+Everything else in this folder, except `contracts/` and `question-pack/`, is from earlier builds and carries a superseded or background banner. The pre-lock spec with every superseded ruling is [history/LAUNCH-SPEC-2026-09-29-full.md](history/LAUNCH-SPEC-2026-09-29-full.md); earlier builds are listed in [history/BUILD-ITERATIONS.md](history/BUILD-ITERATIONS.md). None of them govern the launch survey.
 
 ## The wider wiki (mostly earlier builds)
 
 Maintained home for this project's decisions, evidence, questions, ICP and psychology. Updated 2026-09-21. This folder is Git-owned. All agents and humans use the same files.
 
-For earlier builds only: read [STATE.md](STATE.md), then [WORKING-SET.md](WORKING-SET.md) for the exact files to edit. Read [DECISIONS.md](DECISIONS.md) for confirmed founder requirements, with [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) for unresolved choices and conflicts. Check [CODE-MAP.md](CODE-MAP.md) before any source edit or test.
+For earlier builds only: read [WORKING-SET.md](WORKING-SET.md) for the exact files to edit. Read [DECISIONS.md](DECISIONS.md) for confirmed founder requirements, with [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) for unresolved choices and conflicts. Check [CODE-MAP.md](CODE-MAP.md) before any source edit or test.
 
 | Work area | Start here | What belongs here |
 |---|---|---|
 | Evidence framework | [Stable contract](EVIDENCE-FRAMEWORK.md) | Question adapters → events → claims → immutable snapshot → projections → result cards |
 | Evidence and evaluation | [Evidence guide](evidence/README.md) | Literal response → observation → bounded interpretation; existing failed and successful checks |
-| Questions and result | [Playful-disclosure bank V1](QUESTION-BANK-V1.md), [Evidence Display V1](RESULT-DISPLAY-V1.md), [question guide](questions/README.md) | Earlier banks and result contracts. The launch bank is [questions/PERSONA-QUIZ-SPEC-V2.md](questions/PERSONA-QUIZ-SPEC-V2.md) |
+| Questions and result | [Playful-disclosure bank V1](QUESTION-BANK-V1.md), [Evidence Display V1](RESULT-DISPLAY-V1.md), [question guide](questions/README.md) | Earlier banks and result contracts. The launch bank rules are in [LAUNCH-SPEC.md](LAUNCH-SPEC.md) section 5 |
 | ICP and product thesis | [ICP guide](icp/README.md) | Broad audience versus proposed launch cohort; what has not been validated |
 | Psychology and voice | [Psychology guide](psychology/README.md) | Facets, context, motives, humor and research limitations |
 | Product contracts | [Product spec](PRODUCT-SPEC.md), [personality/health](PERSONALITY-HEALTH-SPEC.md), [host](HOST-EXPERIENCE.md) | Confirmed requirements plus clearly marked proposals; older implementation-status sentences are checkpoints |

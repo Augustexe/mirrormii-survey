@@ -1,4 +1,6 @@
-# Identity, evidence and question format — discussion draft
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
+# Identity, evidence and question format: discussion draft
 
 Status: proposed framework for interview; no runtime, scoring, UI or remote changes. Visual baseline remains approved and locked at b0d7a89. Published handoff branch release/genii-approved-design at b8cf8ec remains unchanged.
 
@@ -71,7 +73,7 @@ Conditional clarification for C: What did you ultimately do? Do not award sleep-
 7. Language: sharpen behavior rather than claiming a disorder, moral worth or an unreported identity. “Jock/footballer” needs directly reported interest/activity, not inferred gender or confidence. “Narcissist” is too broad and loaded for the intended answer evidence; use the specific evidenced behavior instead.
 8. Honest uncertainty: a funny epithet can be provisional. Weak evidence must not trigger a stronger invented story. Count-based confidence remains a known current limitation.
 
-## Naming direction — authored creative candidates
+## Naming direction: authored creative candidates
 
 These are not validated types, finalized names or inferred facts. Each would need an explicit inclusion/exclusion rule after the evidence model is agreed.
 

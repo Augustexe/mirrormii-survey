@@ -1,3 +1,5 @@
+> **Engine notes only.** The rules are in the locked spec [LAUNCH-SPEC.md](../../docs/LAUNCH-SPEC.md) (sections 3 and 4: flow, scoring, picker). Section numbers cited below refer to the pre-lock spec, now [history](../../docs/history/LAUNCH-SPEC-2026-09-29-full.md).
+
 > **Developer entry: [../README.md](../README.md).** This page keeps the engine notes (picker, storage, friend links). Blocks at the top are newer than the sections below them; where they disagree the newer block and LAUNCH-SPEC win. The result is now the 12-screen Stories reveal (LAUNCH-SPEC sections 21, 23 and 24), not the result page described under "The player journey as built".
 
 > Picker weights and rules changed in step B (2026-09-28): see docs/LAUNCH-SPEC.md section 10 and quiz64/src/persona/session.js; the picker notes below predate step B.

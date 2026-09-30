@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://mirrormii.ai/contracts/genii-persona/friend-content.schema.json",
   "title": "Friend game content (friend.json)",
-  "description": "research/persona-quiz-v2/final/friend.json: the copy and rules of \"Do you really know me?\". Only the parts score-core.mjs and quiz64/src/persona/friend.js read are required here; notes, zh and rule prose are free. Line objects carry `t` (English) and may carry zh fields. Tokens: {name} {they} {them} {their} {They} {Their} {friend} {N} {x} {y} {z}.",
+  "description": "research/persona-quiz-v2/final/friend.json: the copy and rules of \"How well do you know me?\". Only the parts score-core.mjs and quiz64/src/persona/friend.js read are required here; notes, zh and rule prose are free. Line objects carry `t` (English) and may carry zh fields. Tokens: {name} {they} {them} {their} {They} {Their} {friend} {N} {x} {y} {z}.",
   "type": "object",
   "required": ["id", "version", "title", "relationships", "invites", "preGame", "level1", "level2", "level3", "level4", "results", "ranking"],
   "properties": {

@@ -1,6 +1,6 @@
 > **Superseded, history only.** This describes an earlier survey build or visual pass whose code has been removed. The current app starts at [../README.md](../README.md); the visual system is [DESIGN-DIRECTION.md](DESIGN-DIRECTION.md).
 
-# V4 English voice — Astra language candidate
+# V4 English voice: Astra language candidate
 
 Status: local implementation candidate, awaiting sequential Council audit. This replaces the v3 voice guidance for this branch only.
 

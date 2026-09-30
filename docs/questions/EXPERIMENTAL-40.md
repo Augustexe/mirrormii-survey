@@ -1,6 +1,8 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](../LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 > Maintained working document, promoted 2026-09-18. [Original run snapshot](../../../../hall/data/jobs/mirrormii-genie-survey/20260918T174625Z-7724d715c4d8/output/QUESTION-BANK.md) remains immutable. Original status and limitations below still apply; promotion is filing, not product approval.
 
-# Genii fresh question bank — experimental 40
+# Genii fresh question bank: experimental 40
 
 Status: candidate for evaluation, not installed in the current64-question build. English copy adapts the shared Chinese design principles. No completion-time claim.
 
@@ -8,7 +10,7 @@ Status: candidate for evaluation, not installed in the current64-question build.
 
 ## Discovery and context
 
-### n01 — conversation_route
+### n01: conversation_route
 
 What has been taking up the most room in your head lately?
 
@@ -26,7 +28,7 @@ Route only. Route tags never become personality evidence.
 
 Cannot establish: A selected topic is not a diagnosis, trait, or proof of a problem.
 
-### n02 — social_context
+### n02: social_context
 
 Which sounds closest to your social life these days?
 
@@ -44,7 +46,7 @@ Present-day context only; do not universalize to every relationship.
 
 Cannot establish: Does not establish loneliness, belonging insecurity, or relationship quality.
 
-### n03 — chosen_goal
+### n03: chosen_goal
 
 If this chat got one thing right about you, what would you want it to help with?
 
@@ -62,7 +64,7 @@ Preference signal only, never a scored trait.
 
 Cannot establish: A desired kind of help is not evidence that the person needs or received it.
 
-### n04 — optional_tender_topic
+### n04: optional_tender_topic
 
 Optional, and you can keep it broad: is there something you feel a bit tender or unsure about lately?
 
@@ -80,7 +82,7 @@ Explicit, optional private context. Never a score, public label, or prerequisite
 
 Cannot establish: Do not infer universal insecurity, pathology, or a stable self-esteem trait.
 
-### n05 — consensual_friend_challenge
+### n05: consensual_friend_challenge
 
 Would you want an optional feature where you invite one chosen friend to guess or gently challenge one of your reads? Nothing would be shared unless you chose to invite them.
 
@@ -97,7 +99,7 @@ Feature preference only; this response is not consent to contact a friend or sha
 
 Cannot establish: Does not establish relationship trust or sharing consent.
 
-### n06 — fit_feedback_tone_and_permission
+### n06: fit_feedback_tone_and_permission
 
 If Genii checks whether a read fits, what approach would feel right to you?
 
@@ -114,7 +116,7 @@ Interaction preference only. Any later fit feedback remains separate from profil
 
 Cannot establish: Does not establish agreement, disagreement, or current fit of any interpretation.
 
-### n07 — social_purpose_vs_enjoyment
+### n07: social_purpose_vs_enjoyment
 
 Think of the latest social invitation this past month where the occasion's purpose and your own excitement didn't quite match. The group chat had opinions. What did you actually do?
 
@@ -132,7 +134,7 @@ Actual report; retain event purpose and attendance. Follow-up n08 applies only w
 
 Cannot establish: Purpose and enjoyment are separate; neither attendance nor refusal establishes sociability, selfishness, or people-pleasing.
 
-### n08 — social_motive
+### n08: social_motive
 
 What mattered most in that choice?
 
@@ -151,7 +153,7 @@ Ask only after an authored n07 response. Skip for Other, Skip, no-example, or om
 
 Cannot establish: Direct motive report for one event, not a hidden motive diagnosis.
 
-### n09 — friend_context_shift
+### n09: friend_context_shift
 
 A close friend asks you to come along to a low-key thing. You like them, but the event itself is not your scene. What's your move?
 
@@ -168,7 +170,7 @@ Hypothetical intention, distinct from reported behavior.
 
 Cannot establish: Does not establish what the respondent does in real events.
 
-### n10 — accompaniment_context_shift
+### n10: accompaniment_context_shift
 
 Same low-key event, but the person asking is someone you know only a little. What would you most likely do?
 
@@ -185,7 +187,7 @@ Paired with n09 to preserve relationship-target contrast. Intended choice only.
 
 Cannot establish: Difference from n09 may reflect event comfort, not a global closeness trait.
 
-### n11 — recognition_motive
+### n11: recognition_motive
 
 In the past month, think of a recent moment when you contributed to something other people would notice. What did you most want from it?
 
@@ -202,7 +204,7 @@ Self-reported motive about a recent contribution; select no-example if none.
 
 Cannot establish: Wanting credit or visibility is not proof of insecurity, vanity, or narcissism.
 
-### n12 — recognition_comparison
+### n12: recognition_comparison
 
 Think of a recent time this month someone around you got praise for something you also care about. Your inner scoreboard might wake up. What did you actually do next?
 
@@ -219,7 +221,7 @@ Action-only response; any feeling or comparison thought is not measured by this 
 
 Cannot establish: A single action does not imply envy, competitiveness, or insecurity.
 
-### n13 — response_to_credible_criticism
+### n13: response_to_credible_criticism
 
 Think of feedback you received this month that, after considering it, you felt had a fair point. The notes app is open. What did you do first?
 
@@ -236,7 +238,7 @@ Concern is follow-through on feedback the respondent considers credible, not rea
 
 Cannot establish: Does not measure openness, resilience, or establish that every criticism was accurate.
 
-### n14 — repair_after_impact
+### n14: repair_after_impact
 
 In the past month, was there a moment you realized something you said or did landed badly with someone? What happened next? The tiny repair department is open.
 
@@ -253,7 +255,7 @@ No-example is a separate sentinel from authored choices and Skip. Ask only about
 
 Cannot establish: A single repair episode does not establish empathy, fault, or relationship outcome.
 
-### n15 — chosen_person_reply_context
+### n15: chosen_person_reply_context
 
 Think of a recent time this month a particular person's reply mattered to you and took longer than you'd hoped. What did you actually do while waiting? You do not need to name them.
 
@@ -270,7 +272,7 @@ Target-specific actual event; no assumption that every delayed reply is meaningf
 
 Cannot establish: A wait response alone does not imply attachment style, rejection fear, or the other person's intent.
 
-### n16 — need_expression
+### n16: need_expression
 
 In the past month, when you wanted something from a person whose opinion mattered to you, how did you let them know?
 
@@ -287,7 +289,7 @@ Keep the target and recent situation available for interpretation.
 
 Cannot establish: Does not establish a universal communication style or the reason for withholding.
 
-### n17 — receiving_help
+### n17: receiving_help
 
 Think of the latest time someone offered you practical help this month. Did you take the assist?
 
@@ -304,7 +306,7 @@ Actual event, no assumption that help was needed or that refusal was pride. Use 
 
 Cannot establish: One response does not show dependency, independence, or comfort with all help.
 
-### n18 — recovery_after_explanation
+### n18: recovery_after_explanation
 
 After a recent awkward conversation this month, once you had said your piece, what happened next for you?
 
@@ -322,7 +324,7 @@ Conditional on a recent awkward conversation and having said something; otherwis
 
 Cannot establish: Does not establish emotional regulation or recovery time unless directly measured elsewhere.
 
-### n19 — helping_boundary
+### n19: helping_boundary
 
 In the past month, think of a request for help that competed with your time or energy. Your calendar is a witness. What did you do?
 
@@ -339,7 +341,7 @@ Actual trade-off, target retained; note urgency and available capacity where kno
 
 Cannot establish: Saying no is not selfishness; saying yes is not proof of generosity or coercion.
 
-### n20 — helping_motive
+### n20: helping_motive
 
 What mattered most in that choice, whether you helped or not?
 
@@ -357,7 +359,7 @@ Ask only after an authored n19 response. Skip for Other, Skip, no-example, or om
 
 Cannot establish: Directly reported motive for one event; not a moral judgment.
 
-### n21 — control_and_delegation
+### n21: control_and_delegation
 
 For a shared plan or task you cared about this month, what role did you actually take?
 
@@ -374,7 +376,7 @@ Actual role, not hypothetical preference. Use no-example sentinel if no shared p
 
 Cannot establish: Organizing does not imply controlling; adapting does not imply passivity.
 
-### n22 — response_to_changed_plan
+### n22: response_to_changed_plan
 
 If that plan changed, what did you do first when you found out?
 
@@ -392,7 +394,7 @@ Context follow-up only when the n21 plan changed; otherwise use the explicit no-
 
 Cannot establish: One changed plan does not establish rigidity or flexibility as a trait.
 
-### n23 — inner_feeling_vs_outward_action
+### n23: inner_feeling_vs_outward_action
 
 Think of a recent moment this month you felt irritated with someone. What did you show on the outside?
 
@@ -409,7 +411,7 @@ Only outward action here; n24 separately asks about the felt experience. No-exam
 
 Cannot establish: A quiet exterior is not evidence of low intensity or calmness.
 
-### n24 — inner_feeling_intensity
+### n24: inner_feeling_intensity
 
 How strong did the irritation feel inside at the time?
 
@@ -426,7 +428,7 @@ Ask only if n23 references an actual event; skip for Other, Skip, no-example, or
 
 Cannot establish: Retrospective self-rating for one event, not a stable emotional-intensity scale.
 
-### n25 — chosen_risk_control
+### n25: chosen_risk_control
 
 This month, when a decision felt uncertain but reversible, what did you actually do?
 
@@ -443,7 +445,7 @@ Scope is a reversible decision; do not generalize to major or high-risk choices.
 
 Cannot establish: Does not establish decisiveness, anxiety, or control in other stakes.
 
-### n26 — goal_response
+### n26: goal_response
 
 Think of a goal you cared about that felt behind schedule this month. Your calendar has entered the chat. What was your next move?
 
@@ -460,7 +462,7 @@ A missed or delayed goal is not presumed to be failure; no-example is a separate
 
 Cannot establish: Does not establish motivation or ability from one goal episode.
 
-### n27 — sleep_restoration_usual
+### n27: sleep_restoration_usual
 
 Over the past month, how often did your usual sleep leave you feeling restored when you woke up?
 
@@ -477,7 +479,7 @@ Direct subjective routine anchor; ordinal wording is not a sleep-quality score.
 
 Cannot establish: Do not infer duration, adequacy, cause, or medical status.
 
-### n28 — sleep_restoration_recent
+### n28: sleep_restoration_recent
 
 And over just the last seven days, how often did sleep leave you feeling restored when you woke up?
 
@@ -494,7 +496,7 @@ Pair with n27; usual and recent remain separate reports, not a trend claim.
 
 Cannot establish: No sleep cause, duration, or clinical conclusion.
 
-### n29 — meal_regular_usual
+### n29: meal_regular_usual
 
 Over the past month, how steady was your usual meal timing from day to day?
 
@@ -511,7 +513,7 @@ Direct meal-timing report only, not meal amount or nutrition quality.
 
 Cannot establish: Do not infer eating disorder, adequacy, body state, or health cause.
 
-### n30 — meal_regular_recent
+### n30: meal_regular_recent
 
 And over just the last seven days, how steady was your meal timing from day to day?
 
@@ -528,7 +530,7 @@ Pair with n29; descriptive contrast only.
 
 Cannot establish: No diet-quality, adequacy, medical, or causal claim.
 
-### n31 — daytime_energy_usual
+### n31: daytime_energy_usual
 
 Over the past month, how often did you have enough energy for the things you wanted or needed to do?
 
@@ -545,7 +547,7 @@ Direct subjective report of energy, not performance or cause.
 
 Cannot establish: No medical, sleep, nutrition, or mental-health cause inferred.
 
-### n32 — daytime_energy_recent
+### n32: daytime_energy_recent
 
 And over just the last seven days, how often did you have enough energy for the things you wanted or needed to do?
 
@@ -562,9 +564,9 @@ Pair with n31; not a validated measure or a diagnosis.
 
 Cannot establish: No medical, sleep, nutrition, or mental-health cause inferred.
 
-## Sealed checks — only after prediction freeze
+## Sealed checks: only after prediction freeze
 
-### h01 — social_purpose_vs_enjoyment
+### h01: social_purpose_vs_enjoyment
 
 Your group has already picked a restaurant you don't care about, but you'd enjoy the company. What's your likeliest move?
 
@@ -581,7 +583,7 @@ Freeze any prediction before showing or recording this answer. Same target and s
 
 Cannot establish: No inference about actual event behavior; check answer must not update the frozen profile.
 
-### h02 — friend_accompaniment_context
+### h02: friend_accompaniment_context
 
 A close friend is nervous about giving a short talk and asks you to sit in the audience. What would you most likely do?
 
@@ -598,7 +600,7 @@ Near-transfer check for close-friend accompaniment in a support task rather than
 
 Cannot establish: Held out from profile; one hypothetical answer is not validated prediction accuracy.
 
-### h03 — recognition_and_comparison
+### h03: recognition_and_comparison
 
 A teammate gets public credit for work you also helped with. What would you most likely do next?
 
@@ -615,7 +617,7 @@ Same recognition/comparison family and peer target; scenario and action differ f
 
 Cannot establish: Does not reveal motive, insecurity, or fairness of the situation.
 
-### h04 — response_to_credible_criticism
+### h04: response_to_credible_criticism
 
 A reviewer points out a concrete flaw in a draft you care about. What's your first move?
 
@@ -632,7 +634,7 @@ Near-transfer hypothetical for follow-through on credible feedback; freeze predi
 
 Cannot establish: Hypothetical intent only; heldout answer never enters profile evidence.
 
-### h05 — repair_after_impact
+### h05: repair_after_impact
 
 You notice a joke you made left someone quieter than before. What would you most likely do?
 
@@ -649,7 +651,7 @@ Same repair facet and affected-person target as n14, but hypothetical scenario. 
 
 Cannot establish: Does not establish actual repair or the impact of a real interaction.
 
-### h06 — chosen_person_reply_context
+### h06: chosen_person_reply_context
 
 Someone whose reply matters has not answered your invitation to meet this weekend. What would you most likely do next?
 
@@ -666,7 +668,7 @@ Near-transfer check for waiting on a chosen person's reply; does not combine ask
 
 Cannot establish: Does not infer rejection fear or the other person's intention.
 
-### h07 — receiving_help
+### h07: receiving_help
 
 A trusted friend offers to pick up one errand for you this week. What would you most likely do?
 
@@ -683,7 +685,7 @@ Near-transfer hypothetical for receiving help; no added recovery/awkward-convers
 
 Cannot establish: Does not imply dependence, refusal discomfort, or actual recovery.
 
-### h08 — helping_boundary
+### h08: helping_boundary
 
 A friend asks you to help them move a shelf tonight, but you had planned a quiet evening. What would you most likely do?
 

@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 > Older prototype and proposed backend contract; not evidence of current production persistence. Current app/evidence boundaries are in [CODE-MAP.md](CODE-MAP.md) and [EVIDENCE-REVIEW.md](EVIDENCE-REVIEW.md).
 
 # Survey data: local MVP and production contract

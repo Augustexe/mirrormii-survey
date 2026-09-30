@@ -7,6 +7,8 @@ updated: 2026-09-26
 source_basis: generated from products/survey/pilot/bank.js (genii-tag-pilot-v1); Sally's research in research/sally-values-2026-09-26; TAG-VALIDATION-SPEC.md
 ---
 
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](../LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # Tag pilot bank V1
 
 Generated from `pilot/bank.js` by `pilot/build-doc.cjs`. Edit the bank, not this page.

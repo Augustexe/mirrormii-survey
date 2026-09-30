@@ -8,6 +8,8 @@ source_basis: 76 screenshots of the current build (scratchpad screens-before, ph
 supersedes: the 2026-09-17 version of this file (dossier build; kept in git at commit 8eff355). Its still-valid rules (reduced motion and transparency, dialog focus, 320 px support) are folded into section 4.
 ---
 
+> **Partly superseded (2026-09-29).** The locked spec [LAUNCH-SPEC.md](../../docs/LAUNCH-SPEC.md) wins; its section 7 lists what this page no longer governs (the arched mirror, Genii as light only, code-made islands, the facet gem, the old stat labels and invite line). Section numbers cited below refer to the pre-lock spec, now [history](../../docs/history/LAUNCH-SPEC-2026-09-29-full.md).
+
 # Mirror, Mirror: design direction for the MirrorMii launch survey
 
 **How to use this file.** Section 3 is the idea. Section 4 is the system every package shares. Section 5 is the per-screen contract (phone first, then desktop). Section 6 lists every asset to make in code. Section 7 splits the work into four parallel packages with file ownership, contracts and acceptance checks. Section 8 lists what is held for Jerry. LAUNCH-SPEC.md still wins on content, evidence and flow; this file wins on how it looks, moves and reads.

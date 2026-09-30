@@ -1,3 +1,5 @@
+> **Dated record, not the spec.** Current gates and numbers are in the locked spec [LAUNCH-SPEC.md](../../docs/LAUNCH-SPEC.md) section 8; section numbers cited below refer to the pre-lock spec, now [history](../../docs/history/LAUNCH-SPEC-2026-09-29-full.md).
+
 # Integration and visual QA report (2026-09-29)
 
 Branch `survey/launch`, app `quiz64/`, after visual packages A to D and the 174-card bank. Checklist: DESIGN-DIRECTION

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://mirrormii.ai/contracts/genii-persona/library.schema.json",
   "title": "Result copy library (library.json)",
-  "description": "research/persona-quiz-v2/final/library.json: the six axes, the 16 archetype halves, the 50 tags in 25 pairs, rooms, insights and every result line in both voices. Everything is keyed by id, so names and lines can be rewritten without touching evidence (LAUNCH-SPEC sections 7, 21 and 22). Fields under `h` are the Heart to heart voice. zh fields are Sally's source text, kept for reference only.",
+  "description": "research/persona-quiz-v2/final/library.json: the six axes, the 16 archetype halves, the 50 tags in 25 pairs, rooms, insights and every result line in both voices. Everything is keyed by id, so names and lines can be rewritten without touching evidence (LAUNCH-SPEC sections 4 to 6). Fields under `h` are the Heart to heart voice. zh fields are Sally's source text, kept for reference only.",
   "type": "object",
   "required": ["version", "built", "axes", "relationship", "life", "flex", "unfinished", "tags", "insights", "insightFallback", "rooms"],
   "properties": {
@@ -77,7 +77,7 @@
     "articleRule": { "type": "string" },
     "article": {
       "type": "object",
-      "description": "Evidence Article frames (LAUNCH-SPEC section 25 item 3): section titles and connective copy, each leaf a { fun, heart } pair. Frames carry no claim about the player; claims come from the lines above, picked by evidence."
+      "description": "Evidence Article frames (LAUNCH-SPEC section 3): section titles and connective copy, each leaf a { fun, heart } pair. Frames carry no claim about the player; claims come from the lines above, picked by evidence."
     },
     "crossover": {
       "type": "object",
@@ -153,7 +153,7 @@
         "R1": { "enum": [1, -1] }, "R2": { "enum": [1, -1] }, "R3": { "enum": [1, -1] },
         "L1": { "enum": [1, -1] }, "L2": { "enum": [1, -1] }, "L3": { "enum": [1, -1] },
         "name": { "type": "string", "minLength": 1 },
-        "define": { "type": "string", "minLength": 1, "description": "The one plain line under the name on every title card (LAUNCH-SPEC 26). Both voices." },
+        "define": { "type": "string", "minLength": 1, "description": "The one plain line under the name on every title card (LAUNCH-SPEC section 6). Both voices." },
         "zh": { "type": "string" },
         "desc": { "type": "string" },
         "read": { "type": "string" },

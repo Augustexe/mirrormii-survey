@@ -1,6 +1,8 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # Launch survey
 
-Open decisions for the launch survey are in [LAUNCH-SPEC.md](LAUNCH-SPEC.md) section 19. Everything below concerns older builds.
+Open decisions for the launch survey are in [LAUNCH-SPEC.md](LAUNCH-SPEC.md) section 10. Everything below concerns older builds.
 
 # Remaining validation after local integration: 2026-09-21
 

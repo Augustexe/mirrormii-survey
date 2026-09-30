@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # Live deployment of the final dossier: 2026-09-23
 
 Jerry identified `codex/final-survey-dossier` as the intended public survey after an earlier deployment published the wrong version (publication `main` at `112bf44`). That branch is now live on GitHub Pages from `Augustexe/Mirrormii-survey-main-publication-`; the Pages environment allows exactly `main` and this branch. This supersedes the 2026-09-21 "no publication" boundary for this branch only. Merging into `main`, backend work and business writes remain unauthorized. Current details: [STATE.md](STATE.md).

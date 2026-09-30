@@ -1,6 +1,6 @@
 # Analytics events (proposed)
 
-Status: **proposed; nothing is wired.** The app has no analytics today (LAUNCH-SPEC section 15). These are the events we recommend so the launch can answer: do people finish, where do they drop, which screens get shared, does the friend loop spread, does anyone tap through to the app. Transport: `POST /v1/events` ([api.md](api.md)) or any self-hosted collector.
+Status: **proposed; nothing is wired.** The app has no analytics today (LAUNCH-SPEC section 2). These are the events we recommend so the launch can answer: do people finish, where do they drop, which screens get shared, does the friend loop spread, does anyone tap through to the app. Transport: `POST /v1/events` ([api.md](api.md)) or any self-hosted collector.
 
 ## Rules (no personal data)
 

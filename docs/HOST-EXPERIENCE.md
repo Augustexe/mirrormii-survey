@@ -1,3 +1,5 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 > Reconciled 2026-09-18 from the approved release documentation: [consolidation handoff](../../../hall/data/jobs/mirrormii-genie-survey/20260918T011159Z-16d23238fdf9/output/HANDOFF.md). Implementation/team instructions below describe that historical task. Read [CURRENT.md](CURRENT.md) and [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) for later identity/ICP work and the experimental bank. Earlier canonical versions are preserved in the consolidation receipt.
 
 # Genii: a conversation worth coming back to
@@ -44,7 +46,7 @@ The desired “撩” quality is attentive, playful rapport. It is not a require
 
 This flow now guides the authorized quiz64 implementation. See the implementation handoff for what is verified. Roughly 60 refers to respondent questions, not a license to hide large extra response burdens inside cards. Relevant replacement items should preserve intended evidence coverage.
 
-## English voice samples — drafts for author review
+## English voice samples: drafts for author review
 
 These are examples of host behavior, not a new approved bank or statistical claims about North Americans. Each response set would also provide Other, Skip and, for actual events, no recent example. The ordinary details below are optional creative directions, not a required checklist.
 
@@ -94,7 +96,7 @@ Supported: that reported event's appetite/comfort relationship. Do not label eve
 **Prompt:** “You're in the middle of something and need to pee. How many ‘one more things’ usually happen first?”
 
 - “None. I take the break.”
-- “Usually one—I finish the bit I'm on.”
+- “Usually one, I finish the bit I'm on.”
 - “Several. I tend to keep putting it off.”
 - “It depends whether I can step away.”
 

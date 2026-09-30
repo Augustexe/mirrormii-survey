@@ -7,6 +7,8 @@ updated: 2026-09-26
 source_basis: live bank quiz64/src/question-bank-v2.js and game-outcome.js at ebaac09 (codex/final-survey-dossier, the deployed build); EVIDENCE-FRAMEWORK.md; onboarding 04-genii-survey.md; PRODUCT-TRUTH.md (target, couples angle, emotions); SYNTH-30 persona SYN-23; 2026-09-26 simulation of the live scoring code
 ---
 
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
 # Genii survey spec V3: evidence and question parsing
 
 Status: **proposed.** Answers the team's 2026-09-26 feedback (evidence parsing and question parsing). Nothing here changes the live build until Jerry approves it. Visual companion: [Genii Evidence Map](https://claude.ai/artifact/1XxJSjdr1Fbim1o14a8r9H) (private until shared from its Share menu).
