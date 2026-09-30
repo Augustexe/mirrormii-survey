@@ -2,7 +2,7 @@
 title: Genii survey state
 status: current
 owner: jerry
-updated: 2026-09-28
+updated: 2026-09-29
 source_basis: questions/RUN-SPEC-LEDGER.md; questions/PERSONA-QUIZ-SPEC-V2.md; git state read 2026-09-28; 2026-09-28 audit of the persona MVP run (hall/data/jobs/mirrormii-genie-survey/20260928T014509Z-survey-mvp-02-ce97f3); Jerry's rulings 2026-09-28
 ---
 
@@ -10,7 +10,9 @@ source_basis: questions/RUN-SPEC-LEDGER.md; questions/PERSONA-QUIZ-SPEC-V2.md; g
 
 ## The launch survey
 
-Everything about the launch survey (rules, numbers, status, rulings, plan, open decisions) is in **[LAUNCH-SPEC.md](LAUNCH-SPEC.md)**, the only spec. This page keeps only the live site and repository facts below.
+Everything about the launch survey (rules, numbers, status, rulings, plan, open decisions) is in **[LAUNCH-SPEC.md](LAUNCH-SPEC.md)**, the only spec. The developer entry for the web game is **[quiz64/README.md](../quiz64/README.md)**.
+
+The launch build (branch `survey/launch`, local only, not deployed) is at round 3 (2026-09-29): 174-card bank in two voices, 40 cards plus 8 sealed guesses, Genii evolving from orb to slime, a 12-screen Stories reveal with a game character sheet (pips and level words, no percentages), 5 to 6 core traits, rooms, Genii's calls, and the real MirrorMii world on the mirrors, share and app screens. It is being handed to Desmond for the friend game backend. This page keeps only the live site and repository facts below.
 
 ## Live site (older build, still public)
 
@@ -30,7 +32,7 @@ Preserve the approved pre-result graphic baseline (App components, styles and as
 
 ## Source
 
-The project checkout is on branch `survey/tag-pilot-2026-09-26` (`5c47928`), which contains `main` plus the V2 kit. `main` (`c412671`) holds the live dossier app, merged 2026-09-25. The old dossier workbench worktree still exists under `hall/data/jobs/mirrormii-genie-survey/20260921T072033Z-b5c7e4bdfdb4/scratch/worktree`; [CODE-MAP.md](CODE-MAP.md) lists every worktree.
+The project checkout is on branch `survey/launch` (the launch build, local commits only). `main` (`c412671`) holds the live dossier app, merged 2026-09-25. The old dossier workbench worktree still exists under `hall/data/jobs/mirrormii-genie-survey/20260921T072033Z-b5c7e4bdfdb4/scratch/worktree`; [CODE-MAP.md](CODE-MAP.md) lists every worktree.
 
 ## Repositories
 

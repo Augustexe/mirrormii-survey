@@ -1,3 +1,5 @@
+> **Superseded, history only.** This describes an earlier survey build or visual pass whose code has been removed. The current app starts at [../README.md](../README.md); the visual system is [DESIGN-DIRECTION.md](DESIGN-DIRECTION.md).
+
 # Genii launch visual refinement
 
 2026-09-17 · `codex/genii-launch-visuals` · based on `4c7b4f87`.

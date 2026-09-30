@@ -1,3 +1,5 @@
+> **Superseded, history only.** This describes an earlier survey build or visual pass whose code has been removed. The current app starts at [../README.md](../README.md); the visual system is [DESIGN-DIRECTION.md](DESIGN-DIRECTION.md).
+
 # Genii personality-game v4 question map
 
 **Frozen authoring reference.** The original packet wording below is retained for comparison. The Astra candidate renders `src/respondent-copy.js`; its unchanged meanings and metadata are checked against `tests/fixtures/v4-semantics-533c3da.json`. See `ASTRA-IMPLEMENTATION.md` for wording/version boundaries and validation.

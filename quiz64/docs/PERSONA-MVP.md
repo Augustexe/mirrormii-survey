@@ -1,3 +1,5 @@
+> **Developer entry: [../README.md](../README.md).** This page keeps the engine notes (picker, storage, friend links). Blocks at the top are newer than the sections below them; where they disagree the newer block and LAUNCH-SPEC win. The result is now the 12-screen Stories reveal (LAUNCH-SPEC sections 21, 23 and 24), not the result page described under "The player journey as built".
+
 > Picker weights and rules changed in step B (2026-09-28): see docs/LAUNCH-SPEC.md section 10 and quiz64/src/persona/session.js; the picker notes below predate step B.
 
 > Build C engine (2026-09-28, LAUNCH-SPEC sections 21 and 22). Where the notes below still mention an age band, teen
@@ -61,7 +63,7 @@ they live in git history (before commit 2ac2fc6).
 | Design system, art | `src/system/` (tokens, fonts, layers, GeniiLight, theme), `src/art/` (asset library) |
 | Legacy CSS (what the app still uses from 13 earlier stylesheets, tree-shaken) | `src/legacy.css`, lowest cascade layer |
 | Tests | `tests/*.test.mjs` (logic, kit parity, friend links, render, style guards, art); browser: `tests/visual/fold.mjs`, `tests/visual/play-evidence.mjs` |
-| Browser QA | `qa/play-through.mjs` (real UI, 40 + lock + 8 + 9 screens, mouse or `KEYS=1`), `qa/capture-screens.mjs` (screenshot matrix), `qa/qa-checks.mjs` (axe, fonts, copy, overflow, share PNGs, friend flow); report in `docs/QA-REPORT.md` |
+| Browser QA | `qa/play-through.mjs` (real UI, 40 + lock + 8 + 12 screens, mouse or `KEYS=1`), `qa/capture-screens.mjs` (screenshot matrix), `qa/qa-checks.mjs` (axe, fonts, copy, overflow, share PNGs, friend flow); report in `docs/QA-REPORT.md` |
 
 ## The player journey as built
 
@@ -235,4 +237,4 @@ the picker. `node --test tests.mjs` in the kit: 27 pass (unchanged).
   without pulling in the kit). The landing it draws is replaced by PersonaApp's landing with `settled` (no replayed
   entrance).
 - No `min-width` on html or body: at 200% zoom a 390 px phone lays out at 195 CSS px.
-- Retired Genii renders and badge PNGs stay on disk under `public/assets/` (D1); nothing in the build references them.
+- Retired Genii renders, badge PNGs and the lockup PNG were deleted from `public/assets/` in the round 3 handoff cleanup (H4); only `genii-opal-alert.webp` (the canon reference for `qa/genii-lab`) and the wordmark remain beside `world/`.

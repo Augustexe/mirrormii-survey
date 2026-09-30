@@ -1,19 +1,21 @@
 # Source map
 
-## Launch survey (persona quiz V2), verified 2026-09-28
+## Launch survey (persona quiz V2), verified 2026-09-29 (round 3 handoff)
+
+Developer entry: **[quiz64/README.md](../quiz64/README.md)** (run, test, build, QA, full folder map, content flow, friend game and backend boundary, known gaps). This table is the short version.
 
 | Part | Where |
 |---|---|
-| Content and scoring kit | `research/persona-quiz-v2/final/` in this checkout: `cards.json`, `library.json`, `friend.json`, `score.mjs`, `tests.mjs` (`node --test tests.mjs`, 27 pass). The web game's shared scorer `score-core.mjs` is on the MVP branch |
-| Web game | This checkout, branch `survey/launch`. `quiz64/src/main.jsx` mounts `PersonaApp.jsx`. Contract: [quiz64/docs/PERSONA-MVP.md](../quiz64/docs/PERSONA-MVP.md) |
-| Scorer shared by kit CLI, sim, kit tests and the web app | `research/persona-quiz-v2/final/score-core.mjs` (`score.mjs` is the Node wrapper) |
+| Content and scoring kit | `research/persona-quiz-v2/final/`: `bank/*.json` merged into `cards.json` (174 cards), `library.json`, `friend.json`, `score-core.mjs` (the one scorer, shared by the web app, CLI, sim and tests), `tests.mjs` (`node --test tests.mjs`), `check-bank.mjs`, `evidence-lock.json` |
+| Web game | This checkout, branch `survey/launch`. `quiz64/src/main.jsx` paints `Boot.jsx`, then lazy loads `PersonaApp.jsx` |
 | Kit binding and build-time strip of authoring fields | `quiz64/src/persona/kit.js`, `quiz64/kit-strip.mjs`, `quiz64/vite.config.js` |
-| Run state machine, lock, save and replay-validated restore | `quiz64/src/persona/session.js`, `store.js`, `sha256.js` |
+| Run state machine, picker, lock, save and replay-validated restore | `quiz64/src/persona/session.js`, `store.js`, `sha256.js` |
+| Game stats (six axes as Orbit, Delivery, Blueprint, Compass, Engine, Code) | `quiz64/src/persona/stats.js` |
 | Friend challenge and reply links, friend and owner views | `quiz64/src/persona/friend.js`, `links.js` |
-| Result and share projections | `quiz64/src/persona/views.js` |
-| Screens and styles | `quiz64/src/PersonaApp.jsx`, `quiz64/src/persona/*.jsx`, `persona.css` |
-| Tests and browser QA | `quiz64/tests/persona-*.test.mjs` (`npm test` in `quiz64`), `quiz64/qa/persona-browser-qa.mjs` |
-| Result page drafts | `research/result-page-wireframes/` (static HTML, shared `data.js`) |
+| Result: the 12-screen Stories reveal and share image | `quiz64/src/persona/views.js`, `stories/` (story-data.js is the pure projection), `reveal/`, `share-image.js` |
+| Screens and play | `quiz64/src/persona/screens/`, `play/` (card and 13 formats, lock) |
+| Design system, art, Genii | `quiz64/src/system/`, `quiz64/src/art/` (code-made art, device table), `quiz64/src/genii/` (evolution, three.js), `quiz64/public/assets/world/` (real MirrorMii world renders) |
+| Tests and browser QA | `quiz64/tests/*.test.mjs` (`npm test` in `quiz64`), `quiz64/qa/capture-screens.mjs`, `qa-checks.mjs`, `play-through.mjs`, `tests/visual/fold.mjs` |
 | Preview configs (workspace `.claude/launch.json`) | `persona-mvp` (web game, port 5174), `result-wireframes` (port 8793) |
 
 Other worktrees of this repository: `/private/tmp/claude-501/survey-quiz-v2-wt` (`quiz-v2-fix-pass`, same commit as this checkout, removable) and older run worktrees for rows 5 to 7 of [history/BUILD-ITERATIONS.md](history/BUILD-ITERATIONS.md).

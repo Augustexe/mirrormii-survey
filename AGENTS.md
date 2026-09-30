@@ -1,8 +1,8 @@
 ## Shared current context - required startup
 
-We are finishing one build, the launch survey (persona quiz V2). Before any survey work read `docs/LAUNCH-SPEC.md`: it is the only spec (rules, rulings, numbers, status, plan, open decisions). Update it in place; never start a parallel build or a second spec. Read `docs/CODE-MAP.md` before code or tests. Historical worktree docs do not override this maintained context.
+We are finishing one build, the launch survey (persona quiz V2). Before any survey work read `docs/LAUNCH-SPEC.md`: it is the only spec (rules, rulings, numbers, status, plan, open decisions). Update it in place; never start a parallel build or a second spec. Before code or tests read **`quiz64/README.md`**, the one developer entry for the web game (run, test, build, QA, folder map, content flow, the friend game and backend boundary, known gaps); `docs/CODE-MAP.md` is the short source map. Historical worktree docs do not override this maintained context.
 
-Older builds (history only, see `docs/history/BUILD-ITERATIONS.md`): For the V4 language candidate based on `533c3da`, read `quiz64/docs/ASTRA-IMPLEMENTATION.md` before changing wording, saved-state compatibility or result generation. `quiz64/src/respondent-copy.js` is the respondent wording layer; `data.js` retains the frozen authoring semantics. This candidate is local-only and awaits Council audit.
+Older builds are history only (`docs/history/BUILD-ITERATIONS.md`); their code (App.jsx, DossierApp.jsx, data.js, respondent-copy.js) is gone from `quiz64/src`, and their docs in `quiz64/docs` are marked superseded.
 
 Keep ongoing evidence, questions, ICP and psychology work in the listed masters. Runs retain frozen experiments and receipts. At task completion, update the maintained current-state/decision pages and catalog the run; do not leave the only current context in a run output. Never promote an experiment to an approved requirement merely because it is recent or finalized.
 

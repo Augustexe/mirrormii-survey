@@ -1,3 +1,5 @@
+> **Superseded, history only.** This describes an earlier survey build or visual pass whose code has been removed. The current app starts at [../README.md](../README.md); the visual system is [DESIGN-DIRECTION.md](DESIGN-DIRECTION.md).
+
 # Switch Modes v3 implementation contract
 
 **Historical v3 contract.** For the V4 language candidate based on `533c3da`, use `ASTRA-IMPLEMENTATION.md`, the V4 question map and the executable bank/engine contracts. The v3 counts and storage keys below are not current for that candidate.

@@ -1,3 +1,5 @@
+> **Superseded, history only.** This describes an earlier survey build or visual pass whose code has been removed. The current app starts at [../README.md](../README.md); the visual system is [DESIGN-DIRECTION.md](DESIGN-DIRECTION.md).
+
 # Genii luminous details
 
 This presentation pass starts at `d04d866`, whose layout and visual direction Jerry approved. It concentrates on the questionnaire and small interaction details, keeping the English host voice, survey structure, and evidence behavior intact. White remains primary, with lavender and violet accents.

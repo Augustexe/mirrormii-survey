@@ -1,3 +1,5 @@
+> **Superseded, history only.** This describes an earlier survey build or visual pass whose code has been removed. The current app starts at [../README.md](../README.md); the visual system is [DESIGN-DIRECTION.md](DESIGN-DIRECTION.md).
+
 # Astra V4 language implementation
 
 Status: **implemented and locally verified; ready for sequential Council audit**. This is not production readiness, human validation or deployment approval.

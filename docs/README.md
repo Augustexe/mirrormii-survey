@@ -2,7 +2,7 @@
 
 ## Start here: the launch survey
 
-We are finishing one build. Its only spec is **[LAUNCH-SPEC.md](LAUNCH-SPEC.md)**: rules, rulings, numbers, status, plan and open decisions.
+We are finishing one build. Its only spec is **[LAUNCH-SPEC.md](LAUNCH-SPEC.md)**: rules, rulings, numbers, status, plan and open decisions. Developers start the web game at **[quiz64/README.md](../quiz64/README.md)**.
 
 Earlier builds are listed in [history/BUILD-ITERATIONS.md](history/BUILD-ITERATIONS.md). They do not govern the launch survey.
 

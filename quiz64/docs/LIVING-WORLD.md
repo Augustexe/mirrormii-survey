@@ -1,3 +1,5 @@
+> **Superseded, history only.** This describes an earlier survey build or visual pass whose code has been removed. The current app starts at [../README.md](../README.md); the visual system is [DESIGN-DIRECTION.md](DESIGN-DIRECTION.md).
+
 # Genii living world
 
 This visual evolution begins at approved commit `8eff355`. Jerry asked to lock the questionnaire, functionality and composition while making the art, character quality and motion more expressive. White remains the main color, purple the accent. Nothing was deployed or published.
