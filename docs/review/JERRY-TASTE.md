@@ -40,3 +40,4 @@ The standing brief for the card review loop. Every proposal in a `BATCH-*.md` is
 
 - 2026-09-30, BATCH-01 verdicts: approved 1, 6, 7; kept 3 and 4 originals; redo 2, 5, 8, 9, 10; "Keep going. Keep iterating."
 - 2026-09-30, BATCH-02 pass (Jerry delegated it): applied A1 to A5, B1 to B4 and B6 as proposed, kept B5, "your partner" everywhere (C), cut C1-161 and C7-142 (D); Heart to heart and friend text written for each applied card. Open decision 12 resolved ("fun money").
+- 2026-09-30, voice pass per VOICE.md (approved): 30 cards got new Make it fun text, Heart to heart rewritten on all 172, chapter intros carry Genii's angle, chapter 4 renamed "Money and spending"; evidence unchanged.

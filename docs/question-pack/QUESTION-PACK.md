@@ -26,7 +26,7 @@ flowchart LR
   SE --> RUN
 ```
 
-- **Chapters** (LAUNCH-SPEC section 3): 1 Your phone (21), 2 Friends (22), 3 Love and dating (18, room: love), 4 Money and treats (20), 5 Work, school and ambition (18, room: work), 6 Family and home (18, room: family), 7 Play, rules and you (19). A closed room drops its chapter; the run stays 40 cards. Each chapter opens with its first authored card.
+- **Chapters** (LAUNCH-SPEC section 3): 1 Your phone (21), 2 Friends (22), 3 Love and dating (18, room: love), 4 Money and spending (20), 5 Work, school and ambition (18, room: work), 6 Family and home (18, room: family), 7 Play, rules and you (19). A closed room drops its chapter; the run stays 40 cards. Each chapter opens with its first authored card.
 - **Extras** (12): two per axis, used by the picker to finish an axis a closed room leaves thin.
 - **Sealed** (24): the finale pool. Genii locks a guess for 8 of them (seeded by the run id) before the player answers; they are checked against `checks.primary` and `checks.pairs` and never feed the profile.
 - **Sub-questions** (`sq`, `subquestions.json`): every card is built backward from one of 68 questions (18 on the axes, 50 on the tags; 67 in use), so each option lands on a side. Feeling cards have none.

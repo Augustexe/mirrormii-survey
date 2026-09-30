@@ -51,7 +51,7 @@ One list, final wording. Dates are 2026.
 4. Local only. Push, deploy or publish only on Jerry's go (09-28).
 5. Keep spend tight: small crews, then one integration and judge pass (09-29).
 
-**Voice and copy**
+**Voice and copy** (the voice source for every card and chapter intro is `docs/VOICE.md`; the rulings below still bind)
 6. Result voice is smooth and natural, like a perceptive friend saying it warmly. Spicy in content, never in snark (09-28).
 7. No gotcha lines ("You'd say X. Last three times, you did Y.") and no sitcom or announcer lines ("Genii called this before you answered") (09-28).
 8. Never quote the player's answers on the result, and show no data list. The read is written as fact, never as a science or accuracy claim (09-28).
@@ -59,7 +59,7 @@ One list, final wording. Dates are 2026.
 10. Never-say list: PRODUCT-TRUTH section 8 (diagnose, treat, cure, prevent, clinically proven, anti-aging; streaks or absence guilt; "predicts"; DNA or genomics; wearable sync; competitor names; fabricated counts, ratings or reviews; "free forever"; 2.0 features described as live). Player screens also never show "evidence", "axis", "sealed", "run id", "hash", genie or lamp. The app screen promises only what the app does today (09-28).
 11. No em dashes anywhere: copy, code comments and docs (standing).
 12. Sally's v2 system (`research/sally-v2-2026-09-26`) is a template for structure and humor, never a translation source. English names and tags are written natively (09-28).
-13. Two voices with identical meaning: Make it fun and Heart to heart (09-28).
+13. Two voices with identical meaning: Make it fun and Heart to heart (09-28). How each one sounds, and Genii's angle per chapter, live in `docs/VOICE.md` sections 4 and 6 (09-30).
 14. Multiple choice only, never free text (09-26).
 
 **Questions**
@@ -115,7 +115,7 @@ flowchart LR
 | 8 | Evidence Article | Opens after the last story and from "Read the long version"; 3 to 5 minutes | `persona/article/`, `library.json` `article` |
 | 9 | Share, friend, app | Share image (story and post), "How well do you know me?" challenge, Get MirrorMii | `share-image.js`, `friend.js`, `story-data.js` |
 
-**Chapters** (rooms): 1 Your phone (21 cards), 2 Friends (22), 4 Money and treats (20), 7 Play, rules and you (19) are always on. 3 Love and dating (18; intro "Partner, crush or situationship: I just want the gossip."), 5 Work, school and ambition (18), 6 Family and home (18) are rooms the player can close; the run stays 40 cards. Extras: 12 axis cards (2 per axis). Sealed pool: 24 (4 per axis).
+**Chapters** (rooms): 1 Your phone (21 cards), 2 Friends (22), 4 Money and spending (20), 7 Play, rules and you (19) are always on. 3 Love and dating (18; intro "Partner, crush or situationship: I just want the gossip."), 5 Work, school and ambition (18), 6 Family and home (18) are rooms the player can close; the run stays 40 cards. Extras: 12 axis cards (2 per axis). Sealed pool: 24 (4 per axis).
 
 **The 12 Stories screens** (order in `STORY_IDS`; screens 6 and 10 show only when they have content):
 
@@ -388,10 +388,11 @@ Only real open decisions. The build ships the default until Jerry rules.
 | 15 | Random clickers on L3 at 40 cards | As is | 55.3% on the first pole (bar 45 to 55%; 55.1% before BATCH-02, so the lean predates it); the full walk is 45.7 to 53.8%. The most-served leaning card is C2-144 (+0.25 on L3 per random pick). Choose: re-derive C2-144's evidence, accept, or a picker balance tweak |
 | 16 | One name or two (package N1) | Two archetype names | `docs/NAMES-64-REVIEW.md` and `naming/names-64.json` hold 64 single names with lines in both voices, panel-tested and not wired (The Glue becomes Team Captain; Go-To Friend held as a Comfort Person swap). Choose: ship two names, or wire the 64 |
 | 17 | Everyday worlds on any format | Rule 18 as written | `docs/review/CARD-AUDIT.md` pattern 3: everyday scored best, and rule 18 allows it only on did formats. Choose: keep, or allow everyday on any format when the card rides a specific micro-behavior |
-| 18 | "Money and treats" chapter title | As written | The chapter 4 title and interlude say "treats"; the article test bans the word as never-say (medical "treat"), the chapter title is outside that test. Choose: keep, or rename (e.g. "Money and fun") |
+| 18 | "Money and treats" chapter title | Resolved 2026-09-30 | Renamed "Money and spending" per `docs/VOICE.md` section 6 (voice pass); the intro no longer says "treat" |
 
 ## 11. Changes
 
+- 2026-09-30: Voice pass per `docs/VOICE.md` (package Z2): 30 weak cards got new Make it fun text, Heart to heart rewritten on all 172 cards, each chapter intro now carries Genii's angle (VOICE.md section 6), chapter 4 is "Money and spending". Text only: evidence unchanged (lock re-confirmed on 172 cards, 0 evidence differences; sim identical at 94.9% axis recovery, 66.8% sealed exact, 50 of 50 tags). Decision 18 resolved; section 2's voice rulings point to `docs/VOICE.md`.
 - 2026-09-30: BATCH-02 pass and full gate (package Z1; Jerry delegated the verdicts: "One more time, pass on all these new things we built, as well as these cards, then implement it fully to spec"). Applied A1 to A5, B1 to B4 and B6 as proposed (C7-147, X-L1-40, C6-110, C5-51, C4-142, C3-123, C1-1, C6-162, C4-82, C7-143) with Heart to heart and friend text; B5 (C6-125) kept. C7-147 rank to scenario; C5-51 this or that to scenario with evidence re-derived as listed; C6-110 and C5-51 absurd to unusual. Rule 25: "your partner" replaces "your person" on every player surface (25 cards in both voices and friend texts, the library calls and room label, the lobby label, the setup note); text threads name their sender (Robin C3-101, Alex C3-161, Jordan C4-126); chapter 3 is "Love and dating"; `check-bank.mjs` and the kit tests fail "your person", and `qa-checks.mjs` reports it with the never-say copy. Cut C1-161 and C7-142 (text kept in `bank/ROUND4-LOG.md`); C5-1 and C7-161 lost their round partners and play as single cards. Decision 12 resolved ("fun money"). Engineering: the layout guard and qa-checks report formats no run reaches (feeling while off, rank) as notes; the play-through no longer waits on a leaving receipts card; the device table dropped cut and unusual cards' devices and learned `parachute-jackets`; `qa/qa-report/` is ignored; the change flow lists every regeneration step. Numbers in sections 4, 5 and 8 re-measured; decisions 15 to 18 added.
 
 - 2026-09-30: Package P0 (engine only, no player text changed). One card per sub-question per run, sealed draw included, with the coverage exception; feeling cards off (`SERVE_FEELING` in `score-core.mjs`); tagFire 2.25 to 2.0; the checker's scene-link rule; chapters close early only with 2 spare later cards, and a fill step keeps every run at 40.
