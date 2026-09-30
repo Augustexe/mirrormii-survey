@@ -179,7 +179,8 @@ test("every article line, name, stat, trait, room, flip, two-sides cell, call an
         const a = P[k.axis];
         assert.ok(!a.flex && !a.unfinished, `${label}: ${k.keyword} from a decided stat`);
         assert.ok(k.from.includes(STATS[k.axis].stat) && k.from.includes(endName(k.axis, a.pole > 0 ? axisMeta[k.axis].plus : axisMeta[k.axis].minus)), `${label}: ${k.keyword} names its stat end`);
-        if (k.back) assert.equal(k.back, inVoice(axisMeta[k.axis], a.pole > 0 ? "plusKnow" : "minusKnow", w), `${label}: ${k.keyword} finding`);
+        assert.equal(k.line, inVoice(axisMeta[k.axis], a.pole > 0 ? "plusKnow" : "minusKnow", w), `${label}: ${k.keyword} reads its stat end's finding`);
+        assert.ok(!rows.some((r) => r.note === k.line), `${label}: ${k.keyword} never repeats a sheet line`);
         statCores++;
       }
       assert.ok(text.includes(k.keyword), `${label}: ${k.keyword} on the page`);

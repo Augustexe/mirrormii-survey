@@ -50,7 +50,11 @@ for (const [size, input] of [["desktop", "wheel"], ["phone", "touch"]]) {
   if (backwards) failures.push(`${size} (${input}): the page moved backwards ${backwards} time(s) on its own`);
   // A tab tap is the one allowed programmatic scroll: it lands on its section and the page stays there.
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: "instant" }));
-  await page.locator('.ea-tabs a[data-id="record"]').click();
+  if (vp.mobile) {
+    // Phone: the section menu names the current section and lists them all.
+    await page.locator(".ea-tabs__menu").click();
+    await page.locator('.ea-tabs__list a[href="#article/record"]').click();
+  } else await page.locator('.ea-tabs__strip a[data-id="record"]').click();
   await page.waitForTimeout(1400);
   const landed = await page.evaluate(() => Math.round(document.getElementById("record").getBoundingClientRect().top));
   results[size].tabLanding = landed;

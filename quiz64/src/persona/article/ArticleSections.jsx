@@ -4,7 +4,7 @@
 // sides (two Genii at one table), the open book (the room inside the mirror), the record (eight panes of glass), the
 // party and the closing (the island in daylight). Every word shown comes from article-data.js.
 import React, { useCallback, useEffect, useId, useRef, useState } from "react";
-import { Check, Copy, Download, Plus, Share } from "lucide-react";
+import { Check, Copy, Download, Plus, Sparkles } from "lucide-react";
 import { GeniiLight } from "../../system/index.js";
 import { GeniiSvg } from "../../genii/GeniiSvg.jsx";
 import { StatGlyph } from "../reveal/StatGlyph.jsx";
@@ -115,9 +115,10 @@ function StatRow({ r, open, onToggle, S }) {
   return (
     <li className="ea-stat" data-badge={r.badge || undefined} data-open={open ? "true" : undefined} data-state={decided ? "lean" : r.flex ? "flex" : "open"}>
       <button type="button" className="ea-stat__btn" aria-expanded={open} aria-controls={id} onClick={onToggle} disabled={!hasDrawer}>
-        <span className="ea-stat__name"><StatGlyph axis={r.key} size={16} />{r.stat}{r.badgeLabel ? <span className="ea-stat__badge">{r.badgeLabel}</span> : null}</span>
-        <span className="ea-stat__end"><b>{end}</b><em>{r.level}</em></span>
+        <span className="ea-stat__name"><StatGlyph axis={r.key} size={16} />{r.stat}</span>
+        <span className="ea-stat__end">{end}</span>
         <Pips n={r.pips} split={r.split} />
+        <span className="ea-stat__level" aria-hidden="true">{r.level}</span>
         <span className="sr-only">{spoken}</span>
         <span className="ea-stat__chev" aria-hidden="true" />
       </button>
@@ -128,7 +129,7 @@ function StatRow({ r, open, onToggle, S }) {
             {r.otherLine ? <div className="ea-cmp__them"><p className="ea-cmp__h">{`${S.other}: ${r.otherEnd}`}</p><p>{r.otherLine}</p></div> : null}
           </div>
           {r.know ? <p className="ea-know">{r.know}</p> : null}
-          {r.badgeNote ? <p className="ea-badgenote">{r.badgeNote}</p> : null}
+          {r.badgeNote ? <p className="ea-badgenote"><span className="ea-stat__badge">{r.badgeLabel}</span> {r.badgeNote}</p> : null}
         </div>
       </div>
     </li>
@@ -178,7 +179,8 @@ function TraitCard({ k, i, n, T }) {
   };
   const onLeave = () => { if (ref.current) { ref.current.style.setProperty("--rx", "0deg"); ref.current.style.setProperty("--ry", "0deg"); } };
   return (
-    <li className="ea-card" ref={ref} data-flipped={flipped ? "true" : undefined} data-kind={k.kind} style={{ "--i": i, "--tint": CARD_TINTS[i % CARD_TINTS.length] }} onPointerMove={onMove} onPointerLeave={onLeave}>
+    <li className="ea-card" ref={ref} data-flipped={flipped ? "true" : undefined} data-kind={k.kind} data-flips={k.back ? "true" : undefined} data-i={i} style={{ "--i": i, "--tint": CARD_TINTS[i % CARD_TINTS.length] }}
+      onPointerMove={onMove} onPointerLeave={onLeave} onClick={k.back ? (e) => { if (!e.target.closest("button")) setFlipped((v) => !v); } : undefined}>
       <div className="ea-card__inner">
         <article className="ea-card__face ea-card__front" aria-hidden={flipped ? "true" : undefined}>
           <span className="ea-card__art" aria-hidden="true">
@@ -200,7 +202,7 @@ function TraitCard({ k, i, n, T }) {
         ) : null}
       </div>
       {k.back ? (
-        <button type="button" className="ea-card__turn" aria-pressed={flipped} onClick={() => setFlipped((v) => !v)}>
+        <button type="button" className="ea-card__turn" aria-pressed={flipped} onClick={(e) => { e.stopPropagation(); setFlipped((v) => !v); }}>
           <span className="sr-only">{`${k.keyword}: `}</span>{T.turn}
         </button>
       ) : null}
@@ -211,14 +213,32 @@ function TraitCard({ k, i, n, T }) {
 export function Traits({ A }) {
   const T = A.traits;
   const items = T.items;
+  const deck = useRef(null);
+  const [at, setAt] = useState(0);
+  // Which card is in view in the phone carousel (the deck's own sideways scroll; the page never moves).
+  useEffect(() => {
+    const el = deck.current;
+    if (!el || typeof IntersectionObserver === "undefined") return undefined;
+    const io = new IntersectionObserver((es) => { for (const e of es) if (e.isIntersecting) setAt(Number(e.target.dataset.i)); }, { root: el, threshold: 0.6 });
+    el.querySelectorAll(".ea-card").forEach((c) => io.observe(c));
+    return () => io.disconnect();
+  }, [items.length]);
+  const show = (i) => { const el = deck.current; const c = el && el.querySelectorAll(".ea-card")[i]; if (c) el.scrollTo({ left: c.offsetLeft - el.offsetLeft - 16, behavior: "smooth" }); };
   return (
     <section id="traits" className="ea-sec ea-traits" data-tab="traits" aria-labelledby="ea-h-traits">
       <div className="ea-wrap">
         <Head id="ea-h-traits" label={A.tabs.find((t) => t.id === "traits").label} title={T.title} intro={items.length ? T.intro : null} />
         {items.length ? (
-          <ul className="ea-deck" data-count={items.length} data-reveal="">
-            {items.map((k, i) => <TraitCard key={k.key} k={k} i={i} n={items.length} T={T} />)}
-          </ul>
+          <>
+            <ul className="ea-deck" data-count={items.length} data-reveal="" ref={deck}>
+              {items.map((k, i) => <TraitCard key={k.key} k={k} i={i} n={items.length} T={T} />)}
+            </ul>
+            <div className="ea-dots" role="group" aria-label={T.title}>
+              {items.map((k, i) => (
+                <button key={k.key} type="button" aria-label={k.keyword} aria-current={i === at ? "true" : undefined} onClick={() => show(i)}><i /></button>
+              ))}
+            </div>
+          </>
         ) : <p className="ea-intro">{T.empty}</p>}
       </div>
     </section>
@@ -331,7 +351,7 @@ export function TwoSides({ A }) {
           {s.cells.map((c) => (
             <article key={c.type} className="ea-cell" data-type={c.type} data-reveal="">
               <h3 className="ea-cell__label">{c.label}</h3>
-              <p className="ea-cell__pair"><span>{c.a}</span><i aria-hidden="true">{c.type === "team" ? "+" : "\u00d7"}</i><span className="sr-only">{c.type === "team" ? " and " : " against "}</span><span>{c.b}</span></p>
+              <p className="ea-cell__pair"><span><small>{c.aStat}</small>{c.a}</span><i aria-hidden="true">{c.type === "team" ? "+" : "\u00d7"}</i><span className="sr-only">{c.type === "team" ? " and " : " against "}</span><span><small>{c.bStat}</small>{c.b}</span></p>
               <p className="ea-cell__line">{c.line}</p>
             </article>
           ))}
@@ -389,7 +409,7 @@ export function Record({ A }) {
         <ol className="ea-panes" data-reveal="">
           {r.rows.map((x, i) => (
             <li key={x.key} className="ea-pane" data-status={x.near ? "near" : x.status} style={{ "--i": i }}>
-              <span className="ea-pane__glass" aria-hidden="true"><i /></span>
+              <span className="ea-pane__glass" aria-hidden="true"><i />{x.status === "hit" ? <Check size={18} strokeWidth={2.5} /> : x.near ? null : <Sparkles size={16} strokeWidth={1.75} />}</span>
               <span className="ea-pane__title">{x.title}</span>
               <span className="ea-pane__status">{x.shown}{x.side ? <em>{x.side}</em> : null}</span>
             </li>
@@ -419,13 +439,13 @@ export function Party({ A, onChallenge }) {
           <li className="ea-slot ea-slot--you" style={{ "--i": 0 }}>
             <span className="ea-slot__genii" aria-hidden="true"><GeniiSvg evolution={1} expression="happy" /></span>
             <p className="ea-slot__label">{p.you}</p>
-            <p className="ea-slot__name">{p.halves.people}<br />{p.halves.life}</p>
+            <p className="ea-slot__name">{p.halves.people}<small>{`${p.with} ${p.halves.life}`}</small></p>
           </li>
           {p.click ? (
             <li className="ea-slot ea-slot--click" style={{ "--i": 1 }}>
               <span className="ea-slot__genii ea-slot__genii--tilt" aria-hidden="true"><GeniiSvg evolution={1} expression="curious" /></span>
               <p className="ea-slot__label">{p.click.label}</p>
-              <p className="ea-slot__name">{p.click.pair[0]}<br />{p.click.pair[1]}</p>
+              <p className="ea-slot__name">{p.click.name}<small>{`${p.with} ${p.click.side === "life" ? p.halves.people : p.halves.life}`}</small></p>
               <p className="ea-slot__line">{p.click.line}</p>
             </li>
           ) : null}
@@ -433,7 +453,7 @@ export function Party({ A, onChallenge }) {
             <li className="ea-slot ea-slot--opp" style={{ "--i": 2 }}>
               <span className="ea-slot__genii ea-slot__genii--flip" aria-hidden="true"><GeniiSvg evolution={1} expression="skeptical" /></span>
               <p className="ea-slot__label">{p.opposite.label}</p>
-              <p className="ea-slot__name">{p.opposite.a}<br />{p.opposite.b}</p>
+              <p className="ea-slot__name">{p.opposite.a}<small>{`${p.with} ${p.opposite.b}`}</small></p>
               <p className="ea-slot__line">{p.opposite.line}</p>
             </li>
           ) : null}
@@ -492,9 +512,8 @@ export function Closing({ A, onChallenge }) {
                 <a className="ea-store" href={app.link} onClick={placeholder ? (e) => e.preventDefault() : undefined} data-placeholder={placeholder ? "true" : undefined}>
                   <StoreGlyph /><span><small>{app.store}</small><b>{app.button}</b></span>
                 </a>
-                <button type="button" className="ea-btn ea-btn--light" onClick={onChallenge}><Share size={17} aria-hidden="true" /> {c.challenge}</button>
               </div>
-              <p className="ea-app__note">{app.note}</p>
+              <p className="ea-app__note">{app.note} <button type="button" className="ea-textbtn" onClick={onChallenge}>{c.challenge}</button></p>
             </div>
           </div>
         </div>

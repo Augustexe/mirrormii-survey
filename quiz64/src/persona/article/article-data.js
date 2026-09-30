@@ -156,12 +156,14 @@ export function buildArticle({ stories, lib }) {
       } else {
         const row = sheetRows.find((r) => r.key === k.axis);
         from = f("core.statFrom", { stat: row ? row.stat : "", end: row ? row.leadEnd : "" });
-        back = knowOf(k.axis);
         backLabel = f("core.backStat");
       }
-      if (back && (back === k.line || used.has(back))) back = null;
+      // A stat-backed card reads the stat end's finding, not the sheet line the character sheet already shows.
+      const line = k.kind === "stat" ? knowOf(k.axis) || k.line : k.line;
+      if (back && (back === line || used.has(back))) back = null;
       if (back) used.add(back);
-      return { key: k.key, kind: k.kind, keyword: k.keyword, from, line: k.line, back, backLabel, chapter: k.chapter ?? null, axis: k.axis || null, private: Boolean(k.private) };
+      used.add(line);
+      return { key: k.key, kind: k.kind, keyword: k.keyword, from, line, back, backLabel, chapter: k.chapter ?? null, axis: k.axis || null, private: Boolean(k.private) };
     }),
   };
 
@@ -221,7 +223,7 @@ export function buildArticle({ stories, lib }) {
   const click = clickWith(L, halves, map.wild, sheetRows);
   const share = by.share;
   const party = {
-    title: f("party.title"), you: f("party.you"), halves,
+    title: f("party.title"), you: f("party.you"), with: f("party.withLabel"), halves,
     click: click ? { ...click, label: f("party.clickLabel"), line: f("party.click", { stat: click.stat, end: click.end }) } : null,
     opposite: opp ? { a: opp[0], b: opp[1], label: f("party.oppositeLabel"), line: f("party.opposite") } : null,
     challenge: share ? share.challenge : "", challengeSub: share ? share.sub : "",
@@ -243,7 +245,7 @@ export function buildArticle({ stories, lib }) {
     .map((id) => ({ id, label: f(`tabs.${id}`) }));
 
   return {
-    wording, voice: stories.voice, back: f("back"), readMore: f("readMore"), tabsLabel: f("tabs.label"),
+    wording, voice: stories.voice, back: f("back"), readMore: f("readMore"), tabsLabel: f("tabs.label"), allSections: f("tabs.all"),
     tabs, cover, sheet, traits, surprise, rooms, sides, book, record, party, bio, closing,
     tagLib, // for the owner-only mark on private traits
   };

@@ -4,7 +4,7 @@
 // and slides the tab strip itself sideways (ul.scrollTo), never the page; concept C's bug was scrollIntoView on the
 // active tab, which scrolled the document too and cancelled the reader's scroll.
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { ChevronLeft } from "lucide-react";
+import { ChevronDown, ChevronLeft } from "lucide-react";
 import { buildArticle } from "./article-data.js";
 import { Closing, Cover, Lede, OpenBook, Party, Record, Rooms, Stats, Surprise, Traits, TwoSides } from "./ArticleSections.jsx";
 import "./article.css";
@@ -51,6 +51,8 @@ export function ArticlePage({ stories, lib, section = null, onBack, onChallenge,
   const root = useRef(null);
   const strip = useRef(null);
   const [current, setCurrent] = useState(null);
+  const [menu, setMenu] = useState(false);
+  const menuRef = useRef(null);
   useReveal(root);
   useSpy(root, A.tabs, setCurrent);
 
@@ -74,8 +76,19 @@ export function ArticlePage({ stories, lib, section = null, onBack, onChallenge,
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // The phone section menu closes on Escape and on a tap outside it.
+  useEffect(() => {
+    if (!menu) return undefined;
+    const onKey = (e) => { if (e.key === "Escape") setMenu(false); };
+    const onDown = (e) => { if (menuRef.current && !menuRef.current.contains(e.target)) setMenu(false); };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("pointerdown", onDown);
+    return () => { window.removeEventListener("keydown", onKey); window.removeEventListener("pointerdown", onDown); };
+  }, [menu]);
+
   const go = (id) => (e) => {
     e.preventDefault();
+    setMenu(false);
     const target = document.getElementById(id);
     if (!target) return;
     target.scrollIntoView({ block: "start", behavior: reducedMotion() ? "auto" : "smooth" });
@@ -92,8 +105,19 @@ export function ArticlePage({ stories, lib, section = null, onBack, onChallenge,
       </header>
       <main className="ea-main">
         <Cover A={A} />
-        <nav className="ea-tabs" aria-label={A.tabsLabel}>
-          <ul ref={strip}>
+        <nav className="ea-tabs" aria-label={A.tabsLabel} ref={menuRef}>
+          <button type="button" className="ea-tabs__menu" aria-expanded={menu} aria-controls="ea-sections" onClick={() => setMenu((m) => !m)}>
+            <i aria-hidden="true" /><span>{(A.tabs.find((t) => t.id === current) || {}).label || A.tabsLabel}</span>
+            <small>{A.allSections}</small><ChevronDown size={18} strokeWidth={2} aria-hidden="true" />
+          </button>
+          <ul className="ea-tabs__list" id="ea-sections" data-open={menu ? "true" : undefined}>
+            {A.tabs.map((t) => (
+              <li key={t.id}>
+                <a href={`#article/${t.id}`} aria-current={current === t.id ? "location" : undefined} onClick={go(t.id)}><i aria-hidden="true" />{t.label}</a>
+              </li>
+            ))}
+          </ul>
+          <ul className="ea-tabs__strip" ref={strip}>
             {A.tabs.map((t) => (
               <li key={t.id}>
                 <a href={`#article/${t.id}`} data-id={t.id} aria-current={current === t.id ? "location" : undefined} onClick={go(t.id)} data-tab-link={t.id}>
@@ -102,6 +126,7 @@ export function ArticlePage({ stories, lib, section = null, onBack, onChallenge,
               </li>
             ))}
           </ul>
+          <span className="ea-tabs__progress" aria-hidden="true" />
         </nav>
         <Lede A={A} />
         <Stats A={A} />
