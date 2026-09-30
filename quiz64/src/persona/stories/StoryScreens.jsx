@@ -3,7 +3,7 @@
 // changes. The reveal art (the mirror, the pairs, the gems, the rooms, the flip, the panes, the card, the app scene)
 // lives in ../reveal.
 import React, { useEffect, useRef, useState } from "react";
-import { Link2, Share, Users } from "lucide-react";
+import { BookOpen, Link2, Share, Users } from "lucide-react";
 import { ChapterGlyph, MirrorArch, Sigil } from "../../art/index.js";
 import { IntroScreen, NamesScreen } from "../reveal/MirrorReveal.jsx";
 import { CoreTraitsScreen, SheetScreen, StingsScreen } from "./SheetScreens.jsx";
@@ -90,7 +90,13 @@ function Seg({ value, options, onChange, label }) {
 // Story 11 (G6): the card first, a little smaller; Share image is the one primary action; the friend game is a named
 // challenge with what it is under it; Copy link steps back to a text button. Round 3: the card stands in light on the
 // real MirrorMii World island, with the CGI Genii beside it (drawn into the card), and light blooms behind it.
-function ShareScreen({ s, active, onInvite, onShareImage, onCopy, copied, format, setFormat, cardTheme, setCardTheme, busy }) {
+// "Read the long version": the Evidence Article (LAUNCH-SPEC 25 item 3), on the last two screens.
+function ReadMore({ label, onArticle, className = "" }) {
+  if (!label || !onArticle) return null;
+  return <button type="button" className={`rv-textbtn rv-pillbtn rv-readmore ${className}`} onClick={onArticle}><BookOpen size={17} aria-hidden="true" /> {label}</button>;
+}
+
+function ShareScreen({ s, active, onInvite, onShareImage, onCopy, copied, format, setFormat, cardTheme, setCardTheme, busy, onArticle, readMore }) {
   return (
     <div className="rv-body rv-body--share">
       <Kicker>{s.kicker}</Kicker>
@@ -108,6 +114,7 @@ function ShareScreen({ s, active, onInvite, onShareImage, onCopy, copied, format
       <div className="rv-actions rv-in">
         <button type="button" className="rv-textbtn rv-pillbtn rv-pillbtn--strong" onClick={onInvite}><Users size={17} aria-hidden="true" /> {s.challenge || s.share.invite}</button>
         <button type="button" className="rv-textbtn rv-pillbtn" onClick={onCopy}><Link2 size={17} aria-hidden="true" /> {copied ? UI_COPY.copied : UI_COPY.copyLink}</button>
+        <ReadMore label={readMore} onArticle={onArticle} />
       </div>
       <p className="rv-sub rv-in">{s.sub}</p>
       {s.opposite && <p className="rv-opposite rv-in">{s.opposite}</p>}
@@ -129,7 +136,7 @@ function StoreGlyph() {
   );
 }
 
-function App({ s, stage, onFriends, onGuesses, hasGuesses, guessLabel, onData }) {
+function App({ s, stage, onFriends, onGuesses, hasGuesses, guessLabel, onData, onArticle, readMore }) {
   const placeholder = s.link.startsWith("#");
   const h = stage ? stage.h : 844;
   const w = stage ? stage.w : 390;
@@ -145,6 +152,7 @@ function App({ s, stage, onFriends, onGuesses, hasGuesses, guessLabel, onData })
         <span className="rv-store__text"><small>{s.store}</small><b>{s.button}</b></span>
       </a>
       <p className="rv-note rv-in">{s.note}</p>
+      <ReadMore label={readMore} onArticle={onArticle} className="rv-pillbtn--strong rv-in" />
       <div className="rv-end rv-in">
         <div className="rv-end__links">
           <button type="button" className="rv-textbtn" onClick={onFriends}><Users size={15} aria-hidden="true" /> Do you really know me?</button>

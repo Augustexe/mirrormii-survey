@@ -2544,5 +2544,436 @@
     }
   },
   "roomsRule": "Round 2 reveal (LAUNCH-SPEC section 23): one line per room the player played, chosen from that room's own answers; keys are chapter, axis, pole (plus, minus); h holds Heart to heart.",
-  "sheetRule": "Round 3 reveal (LAUNCH-SPEC section 24): each axis is a game stat on a character sheet. plusKeyword and minusKeyword are the core-trait keyword for each end (both voices); sheet[end][band] is the plain line for that end at a band (light 1 to 2 pips, clear 3, strong 4 to 5), sheet.both is the near-even line; h.sheet holds Heart to heart. tags[].keyword is the tag's core-trait keyword (both voices). tags[].echo names the stat end a tag restates (axis:plus or axis:minus); when that tag is a top trait, the stat end's keyword is left out of the core traits so the same trait never shows twice."
+  "sheetRule": "Round 3 reveal (LAUNCH-SPEC section 24): each axis is a game stat on a character sheet. plusKeyword and minusKeyword are the core-trait keyword for each end (both voices); sheet[end][band] is the plain line for that end at a band (light 1 to 2 pips, clear 3, strong 4 to 5), sheet.both is the near-even line; h.sheet holds Heart to heart. tags[].keyword is the tag's core-trait keyword (both voices). tags[].echo names the stat end a tag restates (axis:plus or axis:minus); when that tag is a top trait, the stat end's keyword is left out of the core traits so the same trait never shows twice.",
+  "articleRule": "Evidence Article frames (LAUNCH-SPEC section 25 item 3, quiz64/docs/ARTICLE-DESIGN.md). Frames carry no claim about the player by themselves; every claim on the page is a library line picked by the player's evidence. Placeholders in braces are filled with archetype names, stat names, stat ends and room names only. crossover: the strongest decided end of each people stat crossed with each life stat (key 'R?+|L?-', plus is the first pole of the stat), typed team or clash; the article shows the strongest team cell and the strongest clash cell.",
+  "article": {
+    "readMore": {
+      "fun": "Read the long version",
+      "heart": "Read the long version"
+    },
+    "back": {
+      "fun": "Back to the story",
+      "heart": "Back to the story"
+    },
+    "masthead": {
+      "fun": "The long version",
+      "heart": "The long version"
+    },
+    "readTime": {
+      "fun": "About four minutes",
+      "heart": "About four minutes, at your pace"
+    },
+    "cover": {
+      "people": {
+        "fun": "With your people",
+        "heart": "With your people"
+      },
+      "life": {
+        "fun": "With your life",
+        "heart": "With your life"
+      },
+      "dek": {
+        "fun": "Forty answers, one read. The story was the trailer. This is the whole film.",
+        "heart": "Forty answers, read slowly. The story was the first look. This one is yours to keep."
+      },
+      "keywords": {
+        "fun": "In a word or six",
+        "heart": "The words that fit you"
+      }
+    },
+    "tabs": {
+      "stats": {
+        "fun": "Stats",
+        "heart": "Stats"
+      },
+      "traits": {
+        "fun": "Traits",
+        "heart": "Traits"
+      },
+      "surprise": {
+        "fun": "Surprise",
+        "heart": "Surprise"
+      },
+      "rooms": {
+        "fun": "Rooms",
+        "heart": "Rooms"
+      },
+      "book": {
+        "fun": "Open book",
+        "heart": "Open book"
+      },
+      "record": {
+        "fun": "Record",
+        "heart": "Record"
+      },
+      "party": {
+        "fun": "Party",
+        "heart": "Party"
+      },
+      "label": {
+        "fun": "Sections",
+        "heart": "Sections"
+      }
+    },
+    "sheet": {
+      "title": {
+        "fun": "Your character sheet",
+        "heart": "Your six stats, up close"
+      },
+      "intro": {
+        "fun": "Six stats, two ends each. Here's where you land, and what the other end looks like, so you can spot it in your friends.",
+        "heart": "Six stats, each with two sides. Here's where you sit, and what the other side looks like, so you can recognize it in the people you love."
+      },
+      "yours": {
+        "fun": "Your end",
+        "heart": "Your side"
+      },
+      "other": {
+        "fun": "The other end",
+        "heart": "The other side"
+      },
+      "hint": {
+        "fun": "Tap a stat to see the other end.",
+        "heart": "Tap a stat to see the other side."
+      }
+    },
+    "core": {
+      "title": {
+        "fun": "Your core traits",
+        "heart": "Your core traits"
+      },
+      "intro": {
+        "fun": "The words that sum you up, and the part of you each one comes from. Tap a card to turn it over.",
+        "heart": "The words that fit you best, and what each one grows from. Tap a card to turn it over."
+      },
+      "from": {
+        "fun": "Comes from",
+        "heart": "Grows from"
+      },
+      "statFrom": {
+        "fun": "Your {stat} stat, {end}",
+        "heart": "Your {stat} stat, {end}"
+      },
+      "backTag": {
+        "fun": "In your own words",
+        "heart": "In your own words"
+      },
+      "backStat": {
+        "fun": "What Genii noticed",
+        "heart": "What Genii noticed"
+      },
+      "turn": {
+        "fun": "Turn over",
+        "heart": "Turn over"
+      },
+      "kept": {
+        "fun": "Kept off your card",
+        "heart": "Kept off your card"
+      }
+    },
+    "surprise": {
+      "save": {
+        "fun": "Save as a story",
+        "heart": "Keep this one"
+      },
+      "saved": {
+        "fun": "Saved",
+        "heart": "Kept"
+      }
+    },
+    "rooms": {
+      "title": {
+        "fun": "Same you, different rooms",
+        "heart": "How you show up, room by room"
+      },
+      "intro": {
+        "fun": "Same person, different rooms. Here's how you show up in the ones that came through clearest. Tap a pin.",
+        "heart": "You're the same person everywhere, and each room brings something out. Here's what came through clearest. Tap a pin."
+      },
+      "mapLabel": {
+        "fun": "The island, with a pin on each room",
+        "heart": "The island, with a pin on each room"
+      },
+      "flipTitle": {
+        "fun": "The room where you flip",
+        "heart": "The room where you change"
+      },
+      "flipLine": {
+        "fun": "Everywhere else you lean {overall}. {room}, you're {roomEnd}.",
+        "heart": "Most of the time you lean {overall}. {room}, you lean {roomEnd}, and that's worth knowing."
+      }
+    },
+    "sides": {
+      "title": {
+        "fun": "Your two sides at one table",
+        "heart": "Where your two sides meet"
+      },
+      "intro": {
+        "fun": "{people} and {life} are both you. Here's where they team up, and where they get in each other's way.",
+        "heart": "{people} and {life} live side by side in you. Here's where they help each other, and where they pull apart."
+      },
+      "team": {
+        "fun": "Where they team up",
+        "heart": "Where they help each other"
+      },
+      "clash": {
+        "fun": "Where they get in each other's way",
+        "heart": "Where they pull apart"
+      }
+    },
+    "book": {
+      "intro": {
+        "fun": "Everyone has a part like this. Here's yours, out in the open, because it's more charming than you think.",
+        "heart": "Everyone carries a part like this. Here's yours, said gently and out in the open."
+      },
+      "saidTitle": {
+        "fun": "In your own words",
+        "heart": "Things your heart already knows"
+      },
+      "saidIntro": {
+        "fun": "Nobody says these out loud. So here they are, in your voice.",
+        "heart": "The quiet things underneath, in words that sound like you."
+      }
+    },
+    "record": {
+      "title": {
+        "fun": "The record",
+        "heart": "The record"
+      },
+      "order": {
+        "fun": "In the order you played them",
+        "heart": "In the order you played them"
+      }
+    },
+    "party": {
+      "title": {
+        "fun": "Your people, sorted",
+        "heart": "Who you'd find your way to"
+      },
+      "you": {
+        "fun": "You",
+        "heart": "You"
+      },
+      "clickLabel": {
+        "fun": "You click with",
+        "heart": "You'd feel at home with"
+      },
+      "click": {
+        "fun": "Same you, with your {stat} swung to {end}.",
+        "heart": "They're you, on the days your {stat} leans {end}."
+      },
+      "oppositeLabel": {
+        "fun": "Your opposite",
+        "heart": "Your opposite"
+      },
+      "opposite": {
+        "fun": "Everything you lean, they lean the other way. Know one? Send them this.",
+        "heart": "Where you lean one way, they lean the other. If you know one, they'd love to see this."
+      }
+    },
+    "bio": {
+      "title": {
+        "fun": "Your one-line bio",
+        "heart": "A line for your bio"
+      },
+      "copy": {
+        "fun": "Copy",
+        "heart": "Copy"
+      },
+      "copied": {
+        "fun": "Copied",
+        "heart": "Copied"
+      }
+    },
+    "closing": {
+      "fun": "That's the long version. The short one fits on a card, and the real test is whether your friends can guess it.",
+      "heart": "That's you, read slowly. The short version fits on a card, and the people who love you can find out how well they know it."
+    },
+    "foot": {
+      "fun": "Genii keeps your answers on this device.",
+      "heart": "Genii keeps your answers on this device."
+    }
+  },
+  "crossover": {
+    "R1+|L1+": {
+      "type": "team",
+      "fun": "Same people, same places, for years. You're the reason the group still has a standing Thursday.",
+      "heart": "You keep your people and your places close. Friendships that last for years usually have someone like you holding them."
+    },
+    "R1+|L1-": {
+      "type": "team",
+      "fun": "You want new places and your people in them. You're the one who turns someday into a booked trip.",
+      "heart": "New places mean the most to you when your people come along. You're often the one who makes the someday trip happen."
+    },
+    "R1+|L2+": {
+      "type": "clash",
+      "fun": "You want everyone at the table, and you also want the win. Some weeks the group chat loses to the goal, and you feel it.",
+      "heart": "You want your people close, and you want to get somewhere. Some weeks one of them has to wait, and you feel it either way."
+    },
+    "R1+|L2-": {
+      "type": "team",
+      "fun": "You want everyone there and nobody stressed. Your plans stay loose on purpose, so anyone can tag along.",
+      "heart": "You love having people around and you keep things easy, so time with you never feels like work."
+    },
+    "R1+|L3+": {
+      "type": "clash",
+      "fun": "You want everyone in and everything fair. When a friend bends the rules, you're stuck between loyalty and keeping score.",
+      "heart": "You want everyone included and everything fair. When someone you love bends the rules, both of those pull at you."
+    },
+    "R1+|L3-": {
+      "type": "team",
+      "fun": "You watch the group, not the plan. If someone's gone quiet, the night quietly changes around them.",
+      "heart": "You notice how everyone is doing, and you'll change the plan so the quiet one feels included."
+    },
+    "R1-|L1+": {
+      "type": "team",
+      "fun": "Your own space, your own routine, your own corner of the world. Your ideal weekend is a nest, and you guard it.",
+      "heart": "You need your own space and a steady place to come back to. Home is where you recharge, and you protect it."
+    },
+    "R1-|L1-": {
+      "type": "team",
+      "fun": "You'd happily take the trip alone. A new city, no group vote, nobody asking where to eat.",
+      "heart": "You're happy exploring on your own. New places feel freest when you don't have to plan around anyone."
+    },
+    "R1-|L2+": {
+      "type": "team",
+      "fun": "Alone time is where the work gets done. Your best progress happens with the phone face down and the door shut.",
+      "heart": "Your time alone is where you do your best work. Quiet and focus take you further than a crowd ever does."
+    },
+    "R1-|L2-": {
+      "type": "clash",
+      "fun": "You like your space and you like it easy. The catch: a quiet week can turn into a quiet month before you notice.",
+      "heart": "You need space and you like life gentle. Sometimes the quiet stretches longer than you meant, and the people who love you start to miss you."
+    },
+    "R1-|L3+": {
+      "type": "team",
+      "fun": "You run your life on your own rules, and you keep them. Nobody has to check on you, which is exactly how you like it.",
+      "heart": "You set your own standards and you keep them. People trust you to handle things without being asked."
+    },
+    "R1-|L3-": {
+      "type": "clash",
+      "fun": "You read the room perfectly, then leave it early. People feel seen by you, turn around, and you're gone.",
+      "heart": "You notice how people feel, and then you slip away to recharge. They feel understood by you, and a little left behind."
+    },
+    "R2+|L1+": {
+      "type": "team",
+      "fun": "You say what you think and you stick with what works. People always know where they stand with you, and where to find you.",
+      "heart": "You're honest and you're steady. People know where they stand with you, and they know you'll still be there."
+    },
+    "R2+|L1-": {
+      "type": "clash",
+      "fun": "You'll say the plan is boring out loud, then pitch a wilder one. Great for the trip, rough on whoever made the first plan.",
+      "heart": "You speak up when something feels stale, and you reach for something new. It opens doors, and sometimes bruises whoever planned the old way."
+    },
+    "R2+|L2+": {
+      "type": "clash",
+      "fun": "You want the win and you'll say exactly what's in the way. It gets things moving, and it leaves a few people blinking.",
+      "heart": "You aim high and you name what's blocking you. Things move, and sometimes people need a moment to catch up with how direct you were."
+    },
+    "R2+|L2-": {
+      "type": "team",
+      "fun": "You say it straight, then let it go. No grudges, no drama, no three-day sulk.",
+      "heart": "You say what you mean, and then you let it rest. People love that nothing lingers with you."
+    },
+    "R2+|L3+": {
+      "type": "clash",
+      "fun": "You call it when someone breaks the rules. You're right, and you're also why the group chat went quiet.",
+      "heart": "When something isn't fair, you say so. You're usually right, and sometimes the room goes quiet after."
+    },
+    "R2+|L3-": {
+      "type": "team",
+      "fun": "You're honest, but you pick your moment. The truth from you lands because you waited until it could.",
+      "heart": "You tell the truth, and you choose when. People can hear hard things from you because you read the moment first."
+    },
+    "R2-|L1+": {
+      "type": "team",
+      "fun": "Soft and steady, you're the friend people call when everything else is moving. Your kitchen is where hard weeks go to calm down.",
+      "heart": "You're gentle and steady. When life gets loud, people come to you because being near you feels safe."
+    },
+    "R2-|L1-": {
+      "type": "clash",
+      "fun": "You'd love to go, and you'd hate to upset anyone by leaving. Half your adventures are waiting on someone else's feelings.",
+      "heart": "You long for new places, and you worry about who you'd leave behind. Sometimes your adventures wait until everyone else is okay."
+    },
+    "R2-|L2+": {
+      "type": "clash",
+      "fun": "You're soft on everyone's feelings and hard on your own goals. Everyone gets your patience except you.",
+      "heart": "You're gentle with everyone else and demanding with yourself. The kindness you give so easily is the kindness you're slowest to give you."
+    },
+    "R2-|L2-": {
+      "type": "team",
+      "fun": "Easy on people, easy on life. Time with you feels like a Sunday, and people keep finding reasons to stay.",
+      "heart": "You're gentle with people and easy with life. Time with you feels unhurried, and people tend to stay longer than they planned."
+    },
+    "R2-|L3+": {
+      "type": "clash",
+      "fun": "You believe in the rules, and you'd rather not be the one enforcing them. So you drop hints and hope someone else says it.",
+      "heart": "You care about doing things fairly, and you'd rather not confront anyone about it. So you hope, quietly, that someone else will."
+    },
+    "R2-|L3-": {
+      "type": "team",
+      "fun": "You read the room and you say things kindly. People walk out of hard conversations with you feeling better than they walked in.",
+      "heart": "You notice what people need and you speak with care. Hard conversations with you tend to end softer than they started."
+    },
+    "R3+|L1+": {
+      "type": "team",
+      "fun": "Same traditions, same table, same recipe every year. You keep how things are done, and people count on it.",
+      "heart": "You love traditions and a steady home. The rituals you keep are how the people around you feel held."
+    },
+    "R3+|L1-": {
+      "type": "team",
+      "fun": "You love doing things properly, and you love new places. So you travel with rituals: the same first coffee, a new city every time.",
+      "heart": "You love the classic way of doing things, and you love somewhere new. So you carry your rituals with you, wherever you go."
+    },
+    "R3+|L2+": {
+      "type": "team",
+      "fun": "You respect the ladder and you climb it fast. Titles, milestones, the proper way up: you want every rung.",
+      "heart": "You believe in the proper path, and you work hard on it. The milestones matter to you, and you earn each one."
+    },
+    "R3+|L2-": {
+      "type": "clash",
+      "fun": "You want things done the proper way, just not this week. The thank-you card is perfect, and three weeks late.",
+      "heart": "You care about doing things properly, and you like an unhurried pace. The thoughtful gesture always comes, sometimes a little after the moment."
+    },
+    "R3+|L3+": {
+      "type": "clash",
+      "fun": "Traditions and rules, both taken seriously. When a friend wants to do it differently, you fight the urge to hand them the manual.",
+      "heart": "You honor how things are done, and you keep things fair. When someone you love wants a different way, letting them can take real effort."
+    },
+    "R3+|L3-": {
+      "type": "team",
+      "fun": "You know the proper way to do everything, and exactly when to skip it. Your traditions bend so people don't have to.",
+      "heart": "You know the traditional way, and you can tell when it would hurt someone. You'll bend a custom so a person doesn't have to."
+    },
+    "R3-|L1+": {
+      "type": "team",
+      "fun": "You make your own rules and live them close to home. Invented holidays, house rules, a routine nobody else would pick.",
+      "heart": "You build your own way of living, close to home. Your routines and rituals are yours, made up and kept with love."
+    },
+    "R3-|L1-": {
+      "type": "team",
+      "fun": "No script and no map. You'd rather get lost somewhere new than follow anyone's itinerary, and you have the stories to prove it.",
+      "heart": "You follow your own path, and you love the unknown. The best parts of your life came from roads nobody told you to take."
+    },
+    "R3-|L2+": {
+      "type": "team",
+      "fun": "You want to win, just not the way anyone told you to. You'd rather build your own ladder than climb theirs.",
+      "heart": "You're driven, and you want to get there your own way. You'd rather make a new path than follow the expected one."
+    },
+    "R3-|L2-": {
+      "type": "clash",
+      "fun": "You live on your own terms and you take it easy. Freeing, right up until someone asks about your five-year plan.",
+      "heart": "You live your own way and at your own pace. It feels free, and it can unsettle people who want to know what's next."
+    },
+    "R3-|L3+": {
+      "type": "clash",
+      "fun": "You make your own rules and follow them to the letter. Other people's rules, though? Those are suggestions.",
+      "heart": "You write your own rules and keep them faithfully. Rules someone else wrote feel more like suggestions to you."
+    },
+    "R3-|L3-": {
+      "type": "team",
+      "fun": "You don't follow scripts, and you can tell when a rule is hurting someone. Put together, you're the one who rewrites the plan so it works for everyone in it.",
+      "heart": "You make your own way, and you notice when a rule is hurting someone. Together, that makes you the one who quietly rewrites the plan so it fits the people in it."
+    }
+  }
 }

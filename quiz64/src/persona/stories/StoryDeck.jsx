@@ -12,6 +12,7 @@ import { MirrorArch } from "../../art/index.js";
 import { GeniiLight, setThemeForVoice, useTheme } from "../../system/index.js";
 import { StoryScreen } from "./StoryScreens.jsx";
 import { GUESS_COPY, UI_COPY, printFor } from "./story-data.js";
+import { LIB } from "../kit.js";
 import { shareText } from "../views.js";
 import { downloadStoryImage, shareImage } from "../share-image.js";
 import { FriendsPanel } from "../FriendsPanel.jsx";
@@ -23,6 +24,15 @@ import "../reveal/craft.css";
 export { GuessSheet };
 
 const StageLight = lazy(() => import("../reveal/StageLight.jsx"));
+// The Evidence Article (LAUNCH-SPEC 25 item 3): its own chunk, prefetched near the end of the deck. It opens when the
+// deck ends and from "Read the long version"; #article (or #article/<section>) reopens it, and back returns here.
+const loadArticle = () => import("../article/ArticlePage.jsx");
+const ArticlePage = lazy(loadArticle);
+const articleFromHash = () => {
+  if (typeof window === "undefined") return null;
+  const m = /^#article(?:\/([a-z]+))?$/.exec(window.location.hash || "");
+  return m ? m[1] || "" : null;
+};
 const LEAVE_MS = 560;
 
 const FRIEND_SHEET_TITLE = "Send it to a friend";
@@ -46,6 +56,8 @@ export function StoryDeck({ stories, friends, onFriendAction, onRestart, onDownl
   const [dir, setDir] = useState("fwd");
   const [tapped, setTapped] = useState(start > 1);
   const [light, setLight] = useState(false);
+  const [article, setArticle] = useState(articleFromHash);
+  const pushed = useRef(false);
   const leaveTimer = useRef(0);
   const stageRef = useRef(null);
   const stage = useElementSize(stageRef);
@@ -76,14 +88,32 @@ export function StoryDeck({ stories, friends, onFriendAction, onRestart, onDownl
   useEffect(() => { const id = setTimeout(() => setLight(true), 60); return () => clearTimeout(id); }, []);
 
   const assembled = useCallback(() => { setReveal("set"); setWipe(true); go(1); }, [go]);
+  const openArticle = useCallback(() => {
+    if (typeof window !== "undefined") { window.history.pushState(null, "", "#article"); pushed.current = true; }
+    setSheet(null);
+    setArticle("");
+  }, []);
+  const closeArticle = useCallback(() => {
+    if (pushed.current && typeof window !== "undefined") { pushed.current = false; window.history.back(); return; }
+    if (typeof window !== "undefined") window.history.replaceState(null, "", window.location.pathname + window.location.search);
+    setArticle(null);
+  }, []);
+  // The browser's back and forward buttons move between the deck and the article.
+  useEffect(() => {
+    const sync = () => { const a = articleFromHash(); if (a === null) pushed.current = false; setArticle(a); };
+    window.addEventListener("popstate", sync);
+    return () => window.removeEventListener("popstate", sync);
+  }, []);
+  useEffect(() => { if (index >= Math.max(0, n - 4)) loadArticle().catch(() => {}); }, [index, n]);
   const next = useCallback(() => {
     if (index === 0 && reveal === "orbit" && !reduced) { setReveal("assemble"); return; }
     if (index === 0 && reveal === "assemble") { assembled(); return; }
     if (index === 0) { setWipe(true); go(1); return; }
     if (index === 1 && wipe) { setWipe(false); return; }
     setWipe(false);
+    if (index === n - 1) { openArticle(); return; }
     go((i) => i + 1);
-  }, [index, reveal, reduced, wipe, assembled, go]);
+  }, [index, n, reveal, reduced, wipe, assembled, go, openArticle]);
   const back = useCallback(() => { setWipe(false); go((i) => i - 1); }, [go]);
 
   // Focus follows the screen, so screen readers hear each one; the first render keeps the page at the top.
@@ -95,6 +125,7 @@ export function StoryDeck({ stories, friends, onFriendAction, onRestart, onDownl
 
   useEffect(() => {
     const onKey = (e) => {
+      if (article !== null) return;
       if (sheet) { if (e.key === "Escape") setSheet(null); return; }
       const t = e.target;
       if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
@@ -107,7 +138,7 @@ export function StoryDeck({ stories, friends, onFriendAction, onRestart, onDownl
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [sheet, next, back, go, n]);
+  }, [sheet, next, back, go, n, article]);
 
   // Press and hold pauses the screen's motion; a long press never counts as a tap.
   const onDown = (e) => {
@@ -173,9 +204,48 @@ export function StoryDeck({ stories, friends, onFriendAction, onRestart, onDownl
     setFormat,
     cardTheme,
     setCardTheme,
+    onArticle: openArticle,
+    readMore: LIB.article ? LIB.article.readMore[stories.wording === "heart" ? "heart" : "fun"] : null,
   };
 
   const closeThen = (fn) => () => { setSheet(null); fn && fn(); };
+  const sheets = (
+    <>
+      {sheet === "friends" && (
+          <Sheet title={FRIEND_SHEET_TITLE} onClose={() => setSheet(null)} className="rv-sheet--friends" tone="light">
+            {friends ? <FriendsPanel friends={friends} onAction={onFriendAction} /> : <p>The friend game opens once your result is saved.</p>}
+          </Sheet>
+        )}
+        {sheet === "guesses" && guesses && (
+          <Sheet title={GUESS_COPY.title} onClose={() => setSheet(null)}>
+            <GuessSheet guesses={guesses} />
+          </Sheet>
+        )}
+        {sheet === "data" && (
+          <Sheet title={UI_COPY.dataTitle} onClose={() => setSheet(null)}>
+            <DataSheet storageOK={storageOK} onDownload={onDownload} onRestart={closeThen(onRestart)} onDelete={closeThen(onDelete)} />
+          </Sheet>
+        )}
+        {sheet === "share" && (
+          <Sheet title={slide.private ? UI_COPY.stingsSheet : UI_COPY.shareSheet} onClose={() => setSheet(null)}>
+            <ShareSheet slide={slide} busy={busy} status={status} onShare={() => deliver(true)} onSave={() => deliver(false)} />
+          </Sheet>
+        )}
+    </>
+  );
+  if (article !== null) {
+    return (
+      <>
+        <Suspense fallback={<main className="rv-pending" aria-busy="true" />}>
+          <ArticlePage stories={stories} lib={LIB} section={article || null} onBack={closeArticle}
+            onChallenge={() => setSheet("friends")} onData={() => setSheet("data")}
+            onSave={(sl) => downloadStoryImage(printFor(sl), `my-mirror-${sl.id}.png`, { share: true })}
+            onSection={(id) => window.history.replaceState(null, "", `#article/${id}`)} />
+        </Suspense>
+        {sheets}
+      </>
+    );
+  }
   return (
     <main className="rv-room" data-reduced={reduced ? "true" : "false"} data-voice={stories.wording} aria-label="Your result">
       <div className="rv-room__art" aria-hidden="true">
@@ -216,30 +286,11 @@ export function StoryDeck({ stories, friends, onFriendAction, onRestart, onDownl
         </div>
         <nav className="rv-arrows" aria-label="Screens">
           <button type="button" className="rv-arrow rv-arrow--back" onClick={back} disabled={index === 0} aria-label="Previous screen"><ChevronLeft size={22} strokeWidth={1.75} /></button>
-          <button type="button" className="rv-arrow rv-arrow--next" onClick={next} disabled={index === n - 1} aria-label="Next screen"><ChevronRight size={22} strokeWidth={1.75} /></button>
+          <button type="button" className="rv-arrow rv-arrow--next" onClick={next} aria-label={index === n - 1 ? (screenProps.readMore || "Next screen") : "Next screen"}><ChevronRight size={22} strokeWidth={1.75} /></button>
         </nav>
       </div>
 
-      {sheet === "friends" && (
-        <Sheet title={FRIEND_SHEET_TITLE} onClose={() => setSheet(null)} className="rv-sheet--friends" tone="light">
-          {friends ? <FriendsPanel friends={friends} onAction={onFriendAction} /> : <p>The friend game opens once your result is saved.</p>}
-        </Sheet>
-      )}
-      {sheet === "guesses" && guesses && (
-        <Sheet title={GUESS_COPY.title} onClose={() => setSheet(null)}>
-          <GuessSheet guesses={guesses} />
-        </Sheet>
-      )}
-      {sheet === "data" && (
-        <Sheet title={UI_COPY.dataTitle} onClose={() => setSheet(null)}>
-          <DataSheet storageOK={storageOK} onDownload={onDownload} onRestart={closeThen(onRestart)} onDelete={closeThen(onDelete)} />
-        </Sheet>
-      )}
-      {sheet === "share" && (
-        <Sheet title={slide.private ? UI_COPY.stingsSheet : UI_COPY.shareSheet} onClose={() => setSheet(null)}>
-          <ShareSheet slide={slide} busy={busy} status={status} onShare={() => deliver(true)} onSave={() => deliver(false)} />
-        </Sheet>
-      )}
+      {sheets}
     </main>
   );
 }
