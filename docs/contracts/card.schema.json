@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mirrormii.ai/contracts/genii-persona/card.schema.json",
+  "title": "Question pack (cards.json)",
+  "description": "The merged card bank of the launch survey: research/persona-quiz-v2/final/cards.json, built by merge-bank.mjs from bank/*.json. Validates the full kit and the build-stripped kit the app ships (quiz64/kit-strip.mjs drops mask, fp, ae and other authoring fields and adds title and device). Format rules (grade, weight, option counts) live in card-schema.mjs; this schema checks shape, not the bank rules check-bank.mjs enforces.",
+  "type": "object",
+  "required": ["version", "built", "weights", "exits", "flow", "chapters", "finale", "extras"],
+  "additionalProperties": false,
+  "properties": {
+    "version": { "const": "persona-quiz-v2" },
+    "built": { "$ref": "#/$defs/date" },
+    "sources": { "type": "object" },
+    "weights": {
+      "type": "object",
+      "description": "Card weight per format plus the rushed rule and rank position weights (LAUNCH-SPEC section 7).",
+      "required": ["rushedMs", "rushedFactor", "rankPositions"],
+      "properties": {
+        "rushedMs": { "type": "integer", "minimum": 0 },
+        "rushedFactor": { "type": "number", "minimum": 0, "maximum": 1 },
+        "rankPositions": { "type": "array", "items": { "type": "number" }, "minItems": 4, "maxItems": 4 }
+      },
+      "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 }
+    },
+    "exits": {
+      "type": "object",
+      "description": "The three exits a card may offer. None of them ever scores.",
+      "required": ["skip", "not_my_life", "no_recent"],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^(skip|not_my_life|no_recent)$": {
+          "type": "object",
+          "required": ["t", "scores"],
+          "properties": { "t": { "type": "string" }, "scores": { "const": false }, "research": { "type": "string" }, "onlyOn": { "type": "string" } },
+          "additionalProperties": false
+        }
+      }
+    },
+    "flow": { "type": "array", "items": { "type": "string" } },
+    "chapters": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": {
+        "type": "object",
+        "required": ["n", "title", "intro", "cards"],
+        "additionalProperties": false,
+        "properties": {
+          "n": { "type": "integer", "minimum": 1, "maximum": 7 },
+          "title": { "type": "string", "minLength": 1 },
+          "intro": { "type": "string", "minLength": 1 },
+          "cards": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/chapterCard" } }
+        }
+      }
+    },
+    "extras": { "type": "array", "items": { "$ref": "#/$defs/extraCard" } },
+    "finale": { "type": "array", "minItems": 8, "items": { "$ref": "#/$defs/sealedCard" } }
+  },
+  "$defs": {
+    "date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "axisId": { "enum": ["R1", "R2", "R3", "L1", "L2", "L3"] },
+    "tagId": { "type": "string", "pattern": "^T\\d{2}[AB]$" },
+    "pairId": { "type": "string", "pattern": "^T\\d{2}$" },
+    "cardId": { "type": "string", "pattern": "^(C[1-7]-\\d+|X-[RL][1-3]-\\d+|S-\\d+)$" },
+    "format": { "enum": ["scenario", "real", "receipts", "bet", "reply", "others", "this_or_that", "role", "pick_two", "rank", "eyes", "feeling", "sealed"] },
+    "grade": { "enum": ["did", "would", "believe", "emotion", "none"] },
+    "world": { "enum": ["everyday", "unusual", "absurd"] },
+    "emotion": { "type": "string", "pattern": "^[a-z]+$" },
+    "axes": {
+      "type": "object",
+      "description": "Signed evidence -2 to +2 per axis; + is the first pole (We, Direct, Classic, Steady, Push, Rules). At most two axes per option.",
+      "propertyNames": { "$ref": "#/$defs/axisId" },
+      "additionalProperties": { "enum": [-2, -1, 1, 2] },
+      "maxProperties": 2
+    },
+    "tags": {
+      "type": "array",
+      "description": "Tag evidence, strength 1 to 3. Support for a tag counts against its pair. At most three per option.",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["id", "s"],
+        "additionalProperties": false,
+        "properties": { "id": { "$ref": "#/$defs/tagId" }, "s": { "type": "integer", "minimum": 1, "maximum": 3 } }
+      }
+    },
+    "option": {
+      "type": "object",
+      "required": ["t"],
+      "additionalProperties": false,
+      "properties": {
+        "t": { "type": "string", "minLength": 1, "description": "Make it fun text. The Heart to heart text is heart.options[i]." },
+        "axes": { "$ref": "#/$defs/axes" },
+        "tags": { "$ref": "#/$defs/tags" },
+        "emotion": { "$ref": "#/$defs/emotion" },
+        "none": { "const": true, "description": "Receipts only: None of these. Exclusive, scores nothing." },
+        "circumstance": { "const": true, "description": "A situation, not a choice. Scores nothing." },
+        "depends": { "const": true, "description": "Scores nothing; opens the flip follow-up." }
+      }
+    },
+    "message": {
+      "type": "object",
+      "required": ["from", "text"],
+      "additionalProperties": false,
+      "properties": { "from": { "type": "string" }, "text": { "type": "string" } }
+    },
+    "heart": {
+      "type": "object",
+      "description": "The Heart to heart voice: same meaning, same option order, same evidence.",
+      "required": ["prompt", "options"],
+      "additionalProperties": false,
+      "properties": {
+        "prompt": { "type": "string", "minLength": 1 },
+        "options": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "thread": { "type": "array", "items": { "$ref": "#/$defs/message" } }
+      }
+    },
+    "fp": {
+      "type": "object",
+      "description": "Authoring only (stripped from the app build): the situation fingerprint used by the uniqueness check.",
+      "required": ["trigger", "setting", "ask", "who", "stakes"],
+      "additionalProperties": false,
+      "properties": { "trigger": { "type": "string" }, "setting": { "type": "string" }, "ask": { "type": "string" }, "who": { "type": "string" }, "stakes": { "type": "string" }, "device": { "type": "string" } }
+    },
+    "friendSide": {
+      "type": "object",
+      "required": ["t"],
+      "additionalProperties": false,
+      "properties": { "t": { "type": "string", "minLength": 1 }, "axes": { "$ref": "#/$defs/axes" }, "tags": { "$ref": "#/$defs/tags" } }
+    },
+    "friend": {
+      "type": "object",
+      "description": "Friend game Level 2: the card in third person with two sides. Tokens {name} {they} {them} {their} {They} {Their}.",
+      "required": ["prompt", "a", "b"],
+      "additionalProperties": false,
+      "properties": { "prompt": { "type": "string" }, "a": { "$ref": "#/$defs/friendSide" }, "b": { "$ref": "#/$defs/friendSide" } }
+    },
+    "cardBase": {
+      "type": "object",
+      "required": ["id", "type", "prompt", "options", "heart", "privacy", "grade", "weight", "exits", "world"],
+      "properties": {
+        "id": { "$ref": "#/$defs/cardId" },
+        "type": { "$ref": "#/$defs/format" },
+        "chapter": { "anyOf": [{ "type": "integer", "minimum": 1, "maximum": 7 }, { "const": "extra" }], "description": "Chapter 1 to 7; extras carry \"extra\"." },
+        "sq": { "type": "string", "pattern": "^SQ-[A-Z0-9]+-\\d+$", "description": "Sub-question the card was built from (subquestions.json). Feeling cards may omit it." },
+        "world": { "$ref": "#/$defs/world" },
+        "prompt": { "type": "string", "minLength": 1 },
+        "thread": { "type": "array", "items": { "$ref": "#/$defs/message" } },
+        "options": { "type": "array", "minItems": 2, "maxItems": 8, "items": { "$ref": "#/$defs/option" } },
+        "heart": { "$ref": "#/$defs/heart" },
+        "fp": { "$ref": "#/$defs/fp" },
+        "mask": { "type": "string", "description": "Authoring only: what the card looks like versus what it measures. Stripped from the app build." },
+        "ae": { "type": "array", "items": { "enum": ["A", "B", "C", "D", "E"] }, "description": "Authoring only: spice marks the card clears." },
+        "privacy": { "enum": ["normal", "intimate"], "description": "intimate cards are skipped when the player picks Keep it light." },
+        "friend": { "$ref": "#/$defs/friend" },
+        "grade": { "$ref": "#/$defs/grade" },
+        "weight": { "type": "number", "minimum": 0, "maximum": 0.8 },
+        "exits": { "type": "array", "minItems": 2, "maxItems": 3, "uniqueItems": true, "items": { "enum": ["skip", "not_my_life", "no_recent"] } },
+        "follows": { "$ref": "#/$defs/cardId", "description": "Feeling cards: the card this one plays right after." },
+        "round": { "type": "string", "description": "Quick-round id: cards sharing it play back to back (up to 3)." },
+        "pick": { "const": 2, "description": "pick_two only." },
+        "axisFor": { "$ref": "#/$defs/axisId", "description": "Extras: the axis this card finishes." },
+        "primary": { "$ref": "#/$defs/axisId" },
+        "checks": {
+          "type": "object",
+          "description": "Sealed cards: what Genii's locked guess is checked on.",
+          "required": ["primary", "axes", "pairs"],
+          "additionalProperties": false,
+          "properties": {
+            "primary": { "anyOf": [{ "$ref": "#/$defs/axisId" }, { "type": "null" }] },
+            "axes": { "type": "array", "items": { "$ref": "#/$defs/axisId" } },
+            "pairs": { "type": "array", "items": { "$ref": "#/$defs/pairId" } }
+          }
+        },
+        "flip": {
+          "type": "object",
+          "required": ["prompt", "options"],
+          "properties": { "prompt": { "type": "string" }, "options": { "type": "array", "items": { "type": "string" } } }
+        },
+        "gateRule": {
+          "type": "object",
+          "required": ["card", "anyTag"],
+          "properties": { "card": { "$ref": "#/$defs/cardId" }, "anyTag": { "$ref": "#/$defs/tagId" } }
+        },
+        "title": { "type": "string", "description": "Build only: a few words of the scene, added by kit-strip.mjs from fp.device." },
+        "device": { "type": "string", "description": "Build only: the scene prop that picks the card art, added by kit-strip.mjs." }
+      },
+      "additionalProperties": false
+    },
+    "chapterCard": {
+      "allOf": [
+        { "$ref": "#/$defs/cardBase" },
+        { "required": ["chapter"], "properties": { "chapter": { "type": "integer" }, "type": { "not": { "const": "sealed" } } } }
+      ]
+    },
+    "extraCard": {
+      "allOf": [
+        { "$ref": "#/$defs/cardBase" },
+        { "required": ["axisFor"], "properties": { "type": { "not": { "enum": ["sealed", "feeling"] } } } }
+      ]
+    },
+    "sealedCard": {
+      "allOf": [
+        { "$ref": "#/$defs/cardBase" },
+        { "required": ["checks"], "properties": { "type": { "const": "sealed" }, "grade": { "const": "none" }, "weight": { "const": 0 } } }
+      ]
+    }
+  }
+}

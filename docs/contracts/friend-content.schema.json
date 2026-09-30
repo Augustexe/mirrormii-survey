@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mirrormii.ai/contracts/genii-persona/friend-content.schema.json",
+  "title": "Friend game content (friend.json)",
+  "description": "research/persona-quiz-v2/final/friend.json: the copy and rules of \"Do you really know me?\". Only the parts score-core.mjs and quiz64/src/persona/friend.js read are required here; notes, zh and rule prose are free. Line objects carry `t` (English) and may carry zh fields. Tokens: {name} {they} {them} {their} {They} {Their} {friend} {N} {x} {y} {z}.",
+  "type": "object",
+  "required": ["id", "version", "title", "relationships", "invites", "preGame", "level1", "level2", "level3", "level4", "results", "ranking"],
+  "properties": {
+    "id": { "type": "string" },
+    "version": { "type": "string", "minLength": 1, "description": "Part of KIT_ID: a link or save made with another version is refused." },
+    "title": { "type": "string" },
+    "relationships": {
+      "type": "object",
+      "required": ["options", "privacyToggles", "tagPairGroups"],
+      "properties": {
+        "options": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "label", "level1Set", "level2Primary", "cardLevels", "level4"],
+            "properties": {
+              "id": { "$ref": "#/$defs/relId" },
+              "label": { "type": "string" },
+              "level1Set": { "enum": ["friend", "everyday", "bestie"] },
+              "level2Primary": { "enum": ["friend", "bestie"] },
+              "cardLevels": { "type": "array", "items": { "enum": ["everyday", "love", "couple"] } },
+              "level4": { "type": ["boolean", "string"], "description": "false, or a note on when Level 4 is offered (bestie: only with sting lines on)." }
+            }
+          }
+        },
+        "privacyToggles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "label", "default"],
+            "properties": {
+              "id": { "enum": ["loveTags", "marriageKidsTags", "stingLines", "showType"] },
+              "label": { "type": "string" },
+              "confirm": { "type": "string" },
+              "default": {
+                "type": "object",
+                "description": "Per relationship: true or false is the default; null means the switch is not offered.",
+                "propertyNames": { "$ref": "#/$defs/relId" },
+                "additionalProperties": { "type": ["boolean", "null"] }
+              }
+            }
+          }
+        },
+        "tagPairGroups": {
+          "type": "object",
+          "required": ["open", "love", "marriageKids"],
+          "additionalProperties": {
+            "type": "object",
+            "required": ["pairs"],
+            "properties": { "pairs": { "type": "array", "items": { "type": "string", "pattern": "^T\\d{2}$" } } }
+          }
+        }
+      }
+    },
+    "invites": {
+      "type": "object",
+      "required": ["partner", "crush", "friendOrCoworker", "bestie"],
+      "properties": {
+        "partner": { "$ref": "#/$defs/inviteList" },
+        "crush": { "$ref": "#/$defs/inviteList" },
+        "friendOrCoworker": { "$ref": "#/$defs/inviteList" },
+        "bestie": { "$ref": "#/$defs/inviteList" }
+      }
+    },
+    "preGame": {
+      "type": "object",
+      "required": ["friend", "bestie", "cta", "useFor"],
+      "properties": { "friend": { "$ref": "#/$defs/line" }, "bestie": { "$ref": "#/$defs/line" }, "cta": { "type": "string" }, "useFor": { "type": "object" } }
+    },
+    "level1": {
+      "type": "object",
+      "required": ["questions"],
+      "properties": {
+        "questions": {
+          "type": "object",
+          "required": ["friend", "everyday", "bestie"],
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 6,
+            "maxItems": 6,
+            "items": {
+              "type": "object",
+              "required": ["axis", "prompt", "options"],
+              "properties": {
+                "axis": { "enum": ["R1", "R2", "R3", "L1", "L2", "L3"] },
+                "prompt": { "type": "string" },
+                "options": {
+                  "type": "array",
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "items": { "type": "object", "required": ["pole", "label", "t"], "properties": { "pole": { "enum": [1, -1] }, "label": { "type": "string" }, "t": { "type": "string" } } }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "level2": {
+      "type": "object",
+      "required": ["primary", "backupOrder", "whyChips", "skippedLine", "cards"],
+      "properties": {
+        "primary": {
+          "type": "object",
+          "required": ["friend", "bestie"],
+          "properties": {
+            "friend": { "type": "array", "items": { "$ref": "#/$defs/cardId" } },
+            "bestie": { "type": "array", "items": { "$ref": "#/$defs/cardId" } }
+          }
+        },
+        "backupOrder": { "type": "array", "items": { "$ref": "#/$defs/cardId" } },
+        "whyChips": {
+          "type": "object",
+          "required": ["options"],
+          "properties": {
+            "options": { "type": "array", "items": { "type": "object", "required": ["id", "t"], "properties": { "id": { "type": "string", "pattern": "^[a-z]+$" }, "t": { "type": "string" } } } }
+          }
+        },
+        "skippedLine": { "$ref": "#/$defs/line" },
+        "cards": {
+          "type": "object",
+          "description": "Snapshot of every card's friend side (friend-snapshot.mjs): axes, tag pairs, level and the owner answer map.",
+          "propertyNames": { "$ref": "#/$defs/cardId" },
+          "additionalProperties": {
+            "type": "object",
+            "required": ["chapter", "type", "axes", "pairs", "level", "answerMap"],
+            "properties": {
+              "chapter": { "type": "integer", "minimum": 1, "maximum": 7 },
+              "type": { "type": "string" },
+              "axes": { "type": "array", "items": { "enum": ["R1", "R2", "R3", "L1", "L2", "L3"] } },
+              "pairs": { "type": "array", "items": { "type": "string", "pattern": "^T\\d{2}$" } },
+              "level": { "enum": ["everyday", "love", "couple"] },
+              "answerMap": { "type": "array", "items": { "enum": ["a", "b", null] } }
+            }
+          }
+        }
+      }
+    },
+    "level3": {
+      "type": "object",
+      "required": ["prompt", "fewTagsLine", "skippedLine"],
+      "properties": {
+        "prompt": { "type": "object", "required": ["friend", "bestie"], "properties": { "friend": { "$ref": "#/$defs/line" }, "bestie": { "$ref": "#/$defs/line" } } },
+        "fewTagsLine": { "$ref": "#/$defs/line" },
+        "skippedLine": { "$ref": "#/$defs/line" }
+      }
+    },
+    "level4": {
+      "type": "object",
+      "required": ["stingPick", "pickTheRoast", "results"],
+      "properties": {
+        "stingPick": { "type": "object", "required": ["prompt"], "properties": { "prompt": { "$ref": "#/$defs/line" } } },
+        "pickTheRoast": {
+          "type": "object",
+          "required": ["prompt", "roasts"],
+          "properties": {
+            "prompt": { "$ref": "#/$defs/line" },
+            "roasts": { "type": "array", "items": { "type": "object", "required": ["id", "tag", "t"], "properties": { "id": { "type": "string", "pattern": "^R\\d{2}$" }, "tag": { "type": "string", "pattern": "^T\\d{2}[AB]$" }, "t": { "type": "string" } } } }
+          }
+        },
+        "results": {
+          "type": "object",
+          "required": ["stingHit", "stingMiss", "roastHeader", "roastOnTrueTag", "roastOnOpposite", "roastOther", "roastSkipped", "hide"]
+        }
+      }
+    },
+    "results": {
+      "type": "object",
+      "required": ["owner", "friend"],
+      "properties": {
+        "owner": { "type": "object", "required": ["title", "typeComparison", "scoreBands", "zones", "level2Score", "level3Score", "biggestMiss"] },
+        "friend": { "type": "object", "required": ["title", "score", "counts", "typeReveal", "yourTurn"] }
+      }
+    },
+    "ranking": { "type": "object", "required": ["title", "sub", "locked", "row", "topBadge"] }
+  },
+  "$defs": {
+    "relId": { "enum": ["partner", "crush", "friendOrCoworker", "bestie"] },
+    "cardId": { "type": "string", "pattern": "^(C[1-7]-\\d+|X-[RL][1-3]-\\d+)$" },
+    "line": { "type": "object", "required": ["t"], "properties": { "t": { "type": "string", "minLength": 1 } } },
+    "inviteList": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["t"],
+        "properties": { "t": { "type": "string" }, "requires": { "type": "string" }, "fallback": { "$ref": "#/$defs/line" } }
+      }
+    }
+  }
+}

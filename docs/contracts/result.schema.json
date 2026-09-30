@@ -1,0 +1,303 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mirrormii.ai/contracts/genii-persona/result.schema.json",
+  "title": "Result record (genii.persona.result/1)",
+  "description": "The finished result of one run, as a backend stores and serves it. Built by docs/contracts/records.mjs buildResultRecord(state) from the app's own resultView (quiz64/src/persona/views.js, the Stories deck) and resultFor (session.js, the scorer), so every line is exactly what the player saw, in the player's voice. Ids (archetype code, axis, tag, chapter, sealed card) let a server join and re-render; the copy lets a share page or an image render without the library. No answer text, no option index, no raw scorer evidence: those stay in the stored run. $defs/resultView describes the app object the record is built from (its main fields), so a change there is caught too.",
+  "type": "object",
+  "required": ["schema", "kit", "runId", "completedAt", "voice", "lobby", "archetype", "axes", "findings", "tags", "coreTraits", "rooms", "insight", "stings", "calls", "share", "counts", "empty"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "genii.persona.result/1" },
+    "kit": { "$ref": "run.schema.json#/$defs/kitId" },
+    "runId": { "type": "string", "pattern": "^[a-z0-9]{6,32}$" },
+    "completedAt": { "$ref": "run.schema.json#/$defs/time" },
+    "voice": { "enum": ["fun", "heart", "cards"], "description": "Lobby voice. cards reads Make it fun wording." },
+    "lobby": {
+      "type": "object",
+      "required": ["depth", "rooms"],
+      "additionalProperties": false,
+      "properties": {
+        "depth": { "enum": ["light", "anything"] },
+        "rooms": { "type": "array", "uniqueItems": true, "items": { "enum": ["love", "work", "family"] } }
+      }
+    },
+    "archetype": {
+      "type": "object",
+      "description": "Two classic archetypes, one per half, shown side by side (never glued into one phrase).",
+      "required": ["people", "life", "opposite"],
+      "additionalProperties": false,
+      "properties": {
+        "people": { "$ref": "#/$defs/half" },
+        "life": { "$ref": "#/$defs/half" },
+        "opposite": { "type": ["string", "null"], "description": "The \"Your opposite: X and Y. Know one?\" line on the share screen (every pole flipped). Copy still awaiting Jerry's approval." }
+      }
+    },
+    "axes": {
+      "type": "array",
+      "description": "The six stats of the character sheet, people half first (R1 Orbit, R2 Delivery, R3 Blueprint), then life (L1 Compass, L2 Engine, L3 Code).",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": { "$ref": "#/$defs/axis" }
+    },
+    "findings": {
+      "type": "array",
+      "description": "What Genii knows best: up to 6 leans, clearest first; a flex lean comes last.",
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["axis", "kind", "end", "level", "tier", "line"],
+        "additionalProperties": false,
+        "properties": {
+          "axis": { "$ref": "#/$defs/axisId" },
+          "kind": { "enum": ["axis", "flex"] },
+          "end": { "type": ["string", "null"] },
+          "level": { "type": "integer", "minimum": 0, "maximum": 3, "description": "Clarity facets lit: 3 strong, 2 clear, 1 some; 0 for flex." },
+          "tier": { "type": "string" },
+          "line": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "description": "Top traits: the scorer's shown tags in rank order (up to 5), each with its confident line.",
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "chapter", "strength", "level", "private", "line", "heart"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string", "pattern": "^T\\d{2}[AB]$" },
+          "name": { "type": "string", "minLength": 1 },
+          "chapter": { "type": ["integer", "null"], "minimum": 1, "maximum": 7 },
+          "strength": { "enum": ["strong", "showing", "leaning"] },
+          "level": { "type": "integer", "minimum": 1, "maximum": 3 },
+          "private": { "type": "boolean", "description": "Marriage and kids tags: shown to the owner, never on anything shareable." },
+          "line": { "type": "string" },
+          "heart": { "type": "string" }
+        }
+      }
+    },
+    "coreTraits": {
+      "type": "array",
+      "description": "Core traits: 5 to 6 keywords when the evidence allows (fewer for thin or rushed runs), alternating top traits and the strongest stat ends.",
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["keyword", "kind", "source", "line", "private"],
+        "additionalProperties": false,
+        "properties": {
+          "keyword": { "type": "string", "minLength": 1 },
+          "kind": { "enum": ["tag", "stat"] },
+          "source": { "type": "string", "pattern": "^(T\\d{2}[AB]|[RL][1-3])$", "description": "The tag id or axis id behind the keyword." },
+          "line": { "type": "string" },
+          "private": { "type": "boolean" }
+        }
+      }
+    },
+    "rooms": {
+      "type": "array",
+      "description": "Room by room: one line per room the player walked through, from that room's own answers. Empty when fewer than 2 rooms have a line (the screen is then skipped).",
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["chapter", "room", "kind", "axis", "tag", "end", "level", "differs", "line"],
+        "additionalProperties": false,
+        "properties": {
+          "chapter": { "type": "integer", "minimum": 1, "maximum": 7 },
+          "room": { "type": "string" },
+          "kind": { "enum": ["axis", "tag"] },
+          "axis": { "anyOf": [{ "$ref": "#/$defs/axisId" }, { "type": "null" }] },
+          "tag": { "type": ["string", "null"], "pattern": "^T\\d{2}[AB]$" },
+          "end": { "type": ["string", "null"] },
+          "level": { "type": "integer", "minimum": 1, "maximum": 3 },
+          "differs": { "type": "boolean", "description": "This room leans the other way from the overall stat." },
+          "line": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "insight": {
+      "type": "object",
+      "description": "The thing you didn't know: from a real believe-versus-did split on an axis, else the half fallback, else an unused call.",
+      "required": ["line", "from"],
+      "additionalProperties": false,
+      "properties": {
+        "line": { "type": "string", "minLength": 1 },
+        "from": {
+          "type": "object",
+          "required": ["kind"],
+          "additionalProperties": false,
+          "properties": {
+            "kind": { "enum": ["split", "fallback", "call"] },
+            "dim": { "$ref": "#/$defs/axisId" },
+            "believe": { "enum": [-1, 1] },
+            "code": { "type": "string" }
+          }
+        }
+      }
+    },
+    "stings": {
+      "type": "array",
+      "description": "Open book lines (both halves, then the strongest shareable trait). Shown to the owner; kept off share cards.",
+      "maxItems": 3,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "calls": {
+      "type": "object",
+      "description": "Genii's calls: the 8 guesses locked (sha256) before the sealed cards, against the answers. The one count shown to players.",
+      "required": ["called", "exact", "rows"],
+      "additionalProperties": false,
+      "properties": {
+        "called": { "type": "integer", "minimum": 0, "maximum": 8 },
+        "exact": { "type": "integer", "minimum": 0, "maximum": 8 },
+        "rows": {
+          "type": "array",
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "required": ["card", "axis", "status", "near", "end"],
+            "additionalProperties": false,
+            "properties": {
+              "card": { "type": "string", "pattern": "^S-\\d+$" },
+              "axis": { "anyOf": [{ "$ref": "#/$defs/axisId" }, { "type": "null" }] },
+              "status": { "enum": ["hit", "miss", "pass", "skipped", "unanswered"] },
+              "near": { "type": "boolean", "description": "A miss with the right side: never counted as a hit." },
+              "end": { "type": ["string", "null"], "description": "For a hit: the stat end Genii called." }
+            }
+          }
+        }
+      }
+    },
+    "share": {
+      "type": "object",
+      "description": "Exactly what the share card and share text carry. Never stings, answers, marriage or kids traits, or numbers.",
+      "required": ["names", "keywords", "tags", "invite", "url"],
+      "additionalProperties": false,
+      "properties": {
+        "names": {
+          "type": "array", "minItems": 2, "maxItems": 2,
+          "items": { "type": "object", "required": ["label", "name"], "additionalProperties": false, "properties": { "label": { "type": "string" }, "name": { "type": "string", "minLength": 1 } } }
+        },
+        "keywords": { "type": "array", "maxItems": 6, "items": { "type": "string" } },
+        "tags": {
+          "type": "array", "maxItems": 6,
+          "items": { "type": "object", "required": ["name", "line", "kind"], "additionalProperties": false, "properties": { "name": { "type": "string" }, "line": { "type": "string" }, "kind": { "enum": ["tag", "stat"] } } }
+        },
+        "invite": { "type": "string", "minLength": 1 },
+        "url": { "type": "string", "description": "SHARE_URL_LABEL, printed on the image. Placeholder: mirrormii.ai." }
+      }
+    },
+    "counts": {
+      "type": "object",
+      "description": "Run quality counts from the scorer profile (research and analytics; never shown).",
+      "required": ["run", "answered", "skipped", "notMyLife", "noRecent", "unanswered", "rushed", "circumstance"],
+      "additionalProperties": false,
+      "patternProperties": { "^[a-zA-Z]+$": { "type": "integer", "minimum": 0 } }
+    },
+    "empty": { "type": ["string", "null"], "description": "The no-traits line when a run is too thin or rushed for traits, else null." }
+  },
+  "$defs": {
+    "axisId": { "enum": ["R1", "R2", "R3", "L1", "L2", "L3"] },
+    "half": {
+      "type": "object",
+      "required": ["code", "name", "read", "desc"],
+      "additionalProperties": false,
+      "properties": {
+        "code": { "type": "string", "pattern": "^((We|Me)·(Direct|Soft)·(Classic|Own)|(Steady|Venture)·(Push|Easy)·(Rules|Context))$", "description": "Internal id (library.json code). Never shown to players." },
+        "name": { "type": "string", "minLength": 1 },
+        "read": { "type": "string" },
+        "desc": { "type": "string" }
+      }
+    },
+    "axis": {
+      "type": "object",
+      "required": ["axis", "half", "stat", "pole", "end", "sign", "strength", "cards", "pips", "level", "levelWord", "flex", "unfinished", "badge", "line"],
+      "additionalProperties": false,
+      "properties": {
+        "axis": { "$ref": "#/$defs/axisId" },
+        "half": { "enum": ["people", "life"] },
+        "stat": { "enum": ["Orbit", "Delivery", "Blueprint", "Compass", "Engine", "Code"] },
+        "pole": { "anyOf": [{ "enum": ["We", "Me", "Direct", "Soft", "Classic", "Own", "Steady", "Venture", "Push", "Easy", "Rules", "Context"] }, { "type": "null" }], "description": "Internal pole name (never shown). null when flex or unfinished." },
+        "end": { "type": ["string", "null"], "description": "The player-facing end (Crew, Solo, Blunt, Gentle, Old School, Own Lane, Home Base, Wanderlust, Full Send, Cruise Control, By the Book, Read the Room)." },
+        "sign": { "enum": [-1, 0, 1] },
+        "strength": { "type": "number", "minimum": 0, "maximum": 1, "description": "|normalized score|: how far the answers on this stat lean. Never shown as a number." },
+        "cards": { "type": "integer", "minimum": 0 },
+        "pips": { "type": "integer", "minimum": 0, "maximum": 5 },
+        "level": { "anyOf": [{ "type": "integer", "minimum": 1, "maximum": 5 }, { "enum": ["both", "open"] }] },
+        "levelWord": { "type": "string" },
+        "flex": { "type": "boolean" },
+        "unfinished": { "type": "boolean" },
+        "badge": { "enum": ["signature", "wild", null] },
+        "line": { "type": "string" }
+      }
+    },
+    "slide": {
+      "type": "object",
+      "required": ["id", "look"],
+      "properties": {
+        "id": { "enum": ["intro", "names", "read", "map", "knows", "rooms", "insight", "traits", "stings", "calls", "share", "app"] },
+        "look": { "enum": ["night", "light", "deep"] }
+      },
+      "allOf": [
+        { "if": { "properties": { "id": { "const": "names" } } }, "then": { "required": ["people", "life", "keywords"] } },
+        {
+          "if": { "properties": { "id": { "const": "map" } } },
+          "then": {
+            "required": ["groups", "signature", "wild"],
+            "properties": {
+              "groups": {
+                "type": "array", "minItems": 2, "maxItems": 2,
+                "items": {
+                  "type": "object", "required": ["label", "rows"],
+                  "properties": {
+                    "rows": {
+                      "type": "array", "minItems": 3, "maxItems": 3,
+                      "items": { "type": "object", "required": ["key", "stat", "a", "b", "leadEnd", "pips", "levelKey", "level", "flex", "unfinished", "note", "badge", "side", "lead", "right", "left"] }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        { "if": { "properties": { "id": { "const": "knows" } } }, "then": { "required": ["findings"] } },
+        { "if": { "properties": { "id": { "const": "rooms" } } }, "then": { "required": ["rows"] } },
+        { "if": { "properties": { "id": { "const": "insight" } } }, "then": { "required": ["line", "from"] } },
+        { "if": { "properties": { "id": { "const": "traits" } } }, "then": { "required": ["tags", "core", "empty"] } },
+        { "if": { "properties": { "id": { "const": "stings" } } }, "then": { "required": ["stings"] } },
+        { "if": { "properties": { "id": { "const": "calls" } } }, "then": { "required": ["rows", "exact", "called"] } },
+        { "if": { "properties": { "id": { "const": "share" } } }, "then": { "required": ["share", "opposite"] } },
+        { "if": { "properties": { "id": { "const": "app" } } }, "then": { "required": ["link"] } }
+      ]
+    },
+    "resultView": {
+      "type": "object",
+      "description": "The app's own result object: views.resultView(state) = buildStories(...) plus the share projection (quiz64/src/persona/stories/story-data.js). Presentation data: the 12 Stories screens in order (rooms and calls are skipped when empty), the share card and the guess sheet. Extra fields are allowed here; the fields listed are the ones buildResultRecord reads.",
+      "required": ["voice", "wording", "slides", "share", "guesses"],
+      "properties": {
+        "voice": { "enum": ["fun", "heart", "cards"] },
+        "wording": { "enum": ["fun", "heart"] },
+        "slides": { "type": "array", "minItems": 10, "maxItems": 12, "items": { "$ref": "#/$defs/slide" } },
+        "share": {
+          "type": "object",
+          "required": ["brand", "names", "tags", "keywords", "invite", "facet", "url"],
+          "properties": {
+            "names": { "type": "array", "minItems": 2, "maxItems": 2 },
+            "keywords": { "type": "array", "items": { "type": "string" } },
+            "tags": { "type": "array", "items": { "type": "object", "required": ["name", "heart", "kind"] } },
+            "facet": { "type": "array", "minItems": 6, "maxItems": 6 }
+          }
+        },
+        "guesses": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object",
+              "required": ["called", "exact", "rows"],
+              "properties": { "rows": { "type": "array", "items": { "type": "object", "required": ["key", "axis", "pole", "status", "near"] } } }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

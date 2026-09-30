@@ -1,0 +1,349 @@
+{
+  "schema": "genii.persona.challenge/1",
+  "id": "example01",
+  "kit": "persona-quiz-v2@2026-09-30/2026-09-26/v2-2026-09-26",
+  "rel": "bestie",
+  "owner": {
+    "name": "Sam",
+    "pronoun": "they"
+  },
+  "emoji": 0,
+  "invite": 0,
+  "level1": [
+    {
+      "axis": "R1",
+      "prompt": "Sam with a crush or a partner is…",
+      "options": [
+        {
+          "pole": 1,
+          "t": "Clingy mode: wants to see them daily and share every detail."
+        },
+        {
+          "pole": -1,
+          "t": "Solo mode: loves hard, still guards solo nights and bestie nights."
+        }
+      ],
+      "eitherCounts": false
+    },
+    {
+      "axis": "R2",
+      "prompt": "You show Sam the angry text you're about to send. Bad idea. Sam…",
+      "options": [
+        {
+          "pole": 1,
+          "t": "\"Absolutely not. Hand me your phone.\""
+        },
+        {
+          "pole": -1,
+          "t": "\"I get why you're mad.\" Holds you first, talks you down later."
+        }
+      ],
+      "eitherCounts": false
+    },
+    {
+      "axis": "R3",
+      "prompt": "Picture Sam's future home on a big holiday. It's…",
+      "options": [
+        {
+          "pole": -1,
+          "t": "A remix: their own rituals, their own rules, no template."
+        },
+        {
+          "pole": 1,
+          "t": "The classic: rituals, the family table, parents at ease."
+        }
+      ],
+      "eitherCounts": false
+    },
+    {
+      "axis": "L1",
+      "prompt": "Sam gets a surprise bonus. By Friday…",
+      "options": [
+        {
+          "pole": 1,
+          "t": "It's in savings. Safety first."
+        },
+        {
+          "pole": -1,
+          "t": "A flight is booked. Life is short."
+        }
+      ],
+      "eitherCounts": false
+    },
+    {
+      "axis": "L2",
+      "prompt": "Talking plans and life progress, Sam is…",
+      "options": [
+        {
+          "pole": -1,
+          "t": "Unbothered: who gets promoted or married when is not their business."
+        },
+        {
+          "pole": 1,
+          "t": "Ambitious: wants real wins and a direction, soon."
+        }
+      ],
+      "eitherCounts": false
+    },
+    {
+      "axis": "L3",
+      "prompt": "Lines, house rules, what's fair: Sam is…",
+      "options": [
+        {
+          "pole": 1,
+          "t": "Rulebook: the same rules for everyone is the only fair way."
+        },
+        {
+          "pole": -1,
+          "t": "Case by case: rules are fixed, people aren't."
+        }
+      ],
+      "eitherCounts": false
+    }
+  ],
+  "level2": {
+    "skipped": false,
+    "cards": [
+      {
+        "id": "C1-140",
+        "prompt": "Genii bets there's a friend Sam stopped inviting, just to see if the friend ever invites them. True?",
+        "a": "Invites whoever Sam misses. Tests are exhausting.",
+        "b": "Three months in, still waiting, still counting.",
+        "order": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "id": "C2-41",
+        "prompt": "Riley's building bans pets. Before inspection: \"if anyone asks, Biscuit is YOUR pig. for like a year\" What does Sam reply?",
+        "a": "\"Not lying to a landlord. Find another way.\"",
+        "b": "\"Done. Biscuit and I go way back.\"",
+        "order": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "id": "C1-131",
+        "prompt": "Sam's last big message: a breakup, a resignation, a real apology. Who actually wrote it?",
+        "a": "An AI drafted it. I changed three words. Sent.",
+        "b": "Me. Nine drafts. Sent the tenth.",
+        "order": [
+          "b",
+          "a"
+        ]
+      },
+      {
+        "id": "C2-160",
+        "prompt": "Every word Sam says now costs $5. Sam's best friend is shaking before a huge presentation. What does Sam do?",
+        "a": "Zero words. Drives them there and holds their coffee.",
+        "b": "$50 on ten perfect words. Worth every cent.",
+        "order": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "id": "C6-127",
+        "prompt": "A relative recently asked Sam: \"can you help me with something?\" What did Sam actually do?",
+        "a": "Said yes before the relative finished the sentence.",
+        "b": "Said yes for Saturday. Not every Saturday.",
+        "order": [
+          "b",
+          "a"
+        ]
+      },
+      {
+        "id": "C5-128",
+        "prompt": "The last time friends invited Sam out on a night they had saved for a big project. What won?",
+        "a": "Stayed in and worked. Told them \"next time.\"",
+        "b": "Closed the place down with them.",
+        "order": [
+          "b",
+          "a"
+        ]
+      },
+      {
+        "id": "C2-132",
+        "prompt": "Genii bets Sam has someone back in their life they swore never to speak to again. Guilty or not?",
+        "a": "Back, and honestly closer than before.",
+        "b": "Not a chance. Never again means never again.",
+        "order": [
+          "b",
+          "a"
+        ]
+      },
+      {
+        "id": "C3-80",
+        "prompt": "A tailor knits Sam and their person one sweater with two necks. It only comes off if one of them asks. What does Sam do?",
+        "a": "Never asks. Learns to cook in it.",
+        "b": "Asks on day one. Needs their own sleeves.",
+        "order": [
+          "b",
+          "a"
+        ]
+      },
+      {
+        "id": "C4-82",
+        "prompt": "Sam's friends fine lateness $10. Mo works a second job for rent and is always late. Jae says fines are fines. Sam's take?",
+        "a": "Same fine for every person, every time.",
+        "b": "Mo's second job pays the rent. Waive it.",
+        "order": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "id": "C2-126",
+        "prompt": "A friend's closet door opens somewhere random, and Sam is invited through in an hour. Sam's weekend was already planned. Which one is Sam?",
+        "a": "\"My weekend. Send me a postcard from wherever.\"",
+        "b": "\"Through the door. The weekend can wait.\"",
+        "order": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "id": "C4-127",
+        "prompt": "Dev's talking cat has two million followers. Dev needs $5,000 for merch and offers ten percent. What does Sam reply?",
+        "a": "\"No. A cat can stop talking any day.\"",
+        "b": "\"Here's my savings. I believe in this cat.\"",
+        "order": [
+          "b",
+          "a"
+        ]
+      },
+      {
+        "id": "C1-125",
+        "prompt": "Same holiday photo, same stairs, 25 years running. Sam is abroad, and the family wants them photoshopped in. What does Sam do?",
+        "a": "Sends a selfie at the exact angle. The stairs must be honored.",
+        "b": "Sends a beach photo instead. New tradition starts now.",
+        "order": [
+          "b",
+          "a"
+        ]
+      }
+    ]
+  },
+  "level3": {
+    "skipped": false,
+    "pick": 4,
+    "prompt": "Which of these 12 are the real Sam? Pick 4.",
+    "fewTagsLine": null,
+    "cards": [
+      {
+        "id": "T08A",
+        "name": "Gives second chances",
+        "heart": "I believe people can change, because I have."
+      },
+      {
+        "id": "T17A",
+        "name": "Wants it locked in",
+        "heart": "Wanting solid ground is how I take care of myself."
+      },
+      {
+        "id": "T03B",
+        "name": "Writes it myself",
+        "heart": "My messy real words are the truest version of me."
+      },
+      {
+        "id": "T25B",
+        "name": "Bends rules for people",
+        "heart": "I look at the person, not the form."
+      },
+      {
+        "id": "T23A",
+        "name": "First to volunteer",
+        "heart": "I love the world, and I'm practicing loving me too."
+      },
+      {
+        "id": "T23B",
+        "name": "Saturdays are for me",
+        "heart": "My own growth is a contribution too."
+      },
+      {
+        "id": "T08B",
+        "name": "Keeps the receipts",
+        "heart": "I look after the person who got hurt first."
+      },
+      {
+        "id": "T06B",
+        "name": "Social battery first",
+        "heart": "I charge myself first, so I have more to give."
+      },
+      {
+        "id": "T16A",
+        "name": "In it to win",
+        "heart": "Wanting to build something big isn't too much."
+      },
+      {
+        "id": "T20B",
+        "name": "Makes my own traditions",
+        "heart": "No script is the gift I gave myself."
+      },
+      {
+        "id": "T20A",
+        "name": "Classic at heart",
+        "heart": "I can hold new ideas and old wishes at the same time."
+      },
+      {
+        "id": "T16B",
+        "name": "Logs off on time",
+        "heart": "A good life is the whole point, not the reward for later."
+      }
+    ]
+  },
+  "level4": {
+    "stingPick": {
+      "prompt": "Which of these 4 lines would leave Sam speechless for three seconds?",
+      "lines": [
+        {
+          "tag": "T22A",
+          "t": "You love your life here. Only ever knowing here scares you more than leaving."
+        },
+        {
+          "tag": "T08A",
+          "t": "You'd give a second chance to someone who hasn't finished asking."
+        },
+        {
+          "tag": "T13A",
+          "t": "The math on your big yeses happens after the booking email."
+        },
+        {
+          "tag": "T01B",
+          "t": "Your privacy is just a habit. Someone you love still takes it personally."
+        }
+      ]
+    },
+    "pickTheRoast": {
+      "prompt": "Pick the roast Sam would laugh at hardest.",
+      "lines": [
+        {
+          "id": "R13",
+          "t": "Bragged about a $12 dupe for a full week. Unprompted."
+        },
+        {
+          "id": "R02",
+          "t": "Knows the barista's name, the barista's dog's name and its birthday."
+        },
+        {
+          "id": "R05",
+          "t": "Forgave everyone years ago. The screenshots folder did not."
+        },
+        {
+          "id": "R07",
+          "t": "Sent me a payment request for $3.47. For fries. With a fries emoji."
+        },
+        {
+          "id": "R09",
+          "t": "Calls it 'just a side project.' It has a logo and a five-year plan."
+        },
+        {
+          "id": "R08",
+          "t": "Booked the flight first. Checked the bank app second. Maybe."
+        }
+      ]
+    }
+  }
+}

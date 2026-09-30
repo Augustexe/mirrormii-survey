@@ -1,0 +1,455 @@
+{
+  "schema": "genii.persona.result/1",
+  "kit": "persona-quiz-v2@2026-09-30/2026-09-26/v2-2026-09-26",
+  "runId": "contract01",
+  "completedAt": "2026-09-30T09:00:51.000Z",
+  "voice": "fun",
+  "lobby": {
+    "depth": "anything",
+    "rooms": [
+      "love",
+      "work",
+      "family"
+    ]
+  },
+  "archetype": {
+    "people": {
+      "code": "We·Direct·Own",
+      "name": "Ride-or-Die",
+      "read": "You're the one who shows up first and tells the truth once you're there.",
+      "desc": "You're in it with your people all the way, and you'll tell them the truth on the way in. Your loyalty is loud, honest and done your way."
+    },
+    "life": {
+      "code": "Steady·Push·Rules",
+      "name": "The Planner",
+      "read": "You're the one with a plan, a backup plan and a date for both.",
+      "desc": "You want big wins, and you like the steps to them mapped, checked and done properly. Your calendar is a love letter to future you."
+    },
+    "opposite": "Your opposite: Old Soul and The Wanderer. Know one?"
+  },
+  "axes": [
+    {
+      "axis": "R1",
+      "half": "people",
+      "stat": "Orbit",
+      "pole": "We",
+      "end": "Crew",
+      "sign": 1,
+      "strength": 0.848,
+      "cards": 3,
+      "pips": 4,
+      "level": 4,
+      "levelWord": "Strong",
+      "flex": false,
+      "unfinished": false,
+      "badge": null,
+      "line": "If there's a group plan, you started it. If there isn't, you're starting one."
+    },
+    {
+      "axis": "R2",
+      "half": "people",
+      "stat": "Delivery",
+      "pole": "Direct",
+      "end": "Blunt",
+      "sign": 1,
+      "strength": 0.725,
+      "cards": 5,
+      "pips": 4,
+      "level": 4,
+      "levelWord": "Strong",
+      "flex": false,
+      "unfinished": false,
+      "badge": null,
+      "line": "Ask for your opinion and you'll get it, straight, no garnish."
+    },
+    {
+      "axis": "R3",
+      "half": "people",
+      "stat": "Blueprint",
+      "pole": "Own",
+      "end": "Own Lane",
+      "sign": -1,
+      "strength": 0.904,
+      "cards": 4,
+      "pips": 5,
+      "level": 5,
+      "levelWord": "Off the charts",
+      "flex": false,
+      "unfinished": false,
+      "badge": null,
+      "line": "How it's always been done has zero pull on you. You build your own."
+    },
+    {
+      "axis": "L1",
+      "half": "life",
+      "stat": "Compass",
+      "pole": "Steady",
+      "end": "Home Base",
+      "sign": 1,
+      "strength": 0.891,
+      "cards": 4,
+      "pips": 5,
+      "level": 5,
+      "levelWord": "Off the charts",
+      "flex": false,
+      "unfinished": false,
+      "badge": null,
+      "line": "Same order, same seat, same people. You found what works and you guard it."
+    },
+    {
+      "axis": "L2",
+      "half": "life",
+      "stat": "Engine",
+      "pole": "Push",
+      "end": "Full Send",
+      "sign": 1,
+      "strength": 0.945,
+      "cards": 4,
+      "pips": 5,
+      "level": 5,
+      "levelWord": "Off the charts",
+      "flex": false,
+      "unfinished": false,
+      "badge": null,
+      "line": "Finish line spotted, brakes off. Coasting makes you itchy."
+    },
+    {
+      "axis": "L3",
+      "half": "life",
+      "stat": "Code",
+      "pole": "Rules",
+      "end": "By the Book",
+      "sign": 1,
+      "strength": 1,
+      "cards": 3,
+      "pips": 5,
+      "level": 5,
+      "levelWord": "Off the charts",
+      "flex": false,
+      "unfinished": false,
+      "badge": "signature",
+      "line": "You read the terms and hold the line, even when it's awkward."
+    }
+  ],
+  "findings": [
+    {
+      "axis": "L2",
+      "kind": "axis",
+      "end": "Full Send",
+      "level": 3,
+      "tier": "Strong signal",
+      "line": "You need proof you're getting somewhere. A finished list, a goal ticked, a door you pushed open."
+    },
+    {
+      "axis": "R3",
+      "kind": "axis",
+      "end": "Own Lane",
+      "level": 3,
+      "tier": "Strong signal",
+      "line": "How it's always been done is a suggestion to you. Your home, holidays and love life are custom builds."
+    },
+    {
+      "axis": "L1",
+      "kind": "axis",
+      "end": "Home Base",
+      "level": 3,
+      "tier": "Strong signal",
+      "line": "Your boldest moves come after boring homework. Nobody sees the prep, so they call it luck."
+    },
+    {
+      "axis": "L3",
+      "kind": "axis",
+      "end": "By the Book",
+      "level": 3,
+      "tier": "Strong signal",
+      "line": "Fair is how you keep people safe. You read the fine print and hold the line, awkward or not."
+    },
+    {
+      "axis": "R2",
+      "kind": "axis",
+      "end": "Blunt",
+      "level": 3,
+      "tier": "Strong signal",
+      "line": "You say the hard thing early so nobody walks into a wall later. Blunt, yes. Also care."
+    },
+    {
+      "axis": "R1",
+      "kind": "axis",
+      "end": "Crew",
+      "level": 3,
+      "tier": "Strong signal",
+      "line": "You love in logistics. Shared calendars, the spare key, the group order: close means together."
+    }
+  ],
+  "tags": [
+    {
+      "id": "T08A",
+      "name": "Gives second chances",
+      "chapter": 2,
+      "strength": "strong",
+      "level": 3,
+      "private": false,
+      "line": "You believe people can change, and you'll leave the door open while they try.",
+      "heart": "I believe people can change, because I have."
+    },
+    {
+      "id": "T16A",
+      "name": "In it to win",
+      "chapter": 5,
+      "strength": "strong",
+      "level": 3,
+      "private": false,
+      "line": "You want wins people can see, and you keep a quiet tally of every one.",
+      "heart": "Wanting to build something big isn't too much."
+    },
+    {
+      "id": "T20B",
+      "name": "Makes my own traditions",
+      "chapter": 6,
+      "strength": "showing",
+      "level": 2,
+      "private": false,
+      "line": "No script for how a home should run. You're writing your own.",
+      "heart": "No script is the gift I gave myself."
+    },
+    {
+      "id": "T23A",
+      "name": "First to volunteer",
+      "chapter": 7,
+      "strength": "showing",
+      "level": 2,
+      "private": false,
+      "line": "Someone says they need hands and you're already putting on your shoes.",
+      "heart": "I love the world, and I'm practicing loving me too."
+    }
+  ],
+  "coreTraits": [
+    {
+      "keyword": "Forgiving",
+      "kind": "tag",
+      "source": "T08A",
+      "line": "You believe people can change, and you'll leave the door open while they try.",
+      "private": false
+    },
+    {
+      "keyword": "Principled",
+      "kind": "stat",
+      "source": "L3",
+      "line": "You read the terms and hold the line, even when it's awkward.",
+      "private": false
+    },
+    {
+      "keyword": "Competitive",
+      "kind": "tag",
+      "source": "T16A",
+      "line": "You want wins people can see, and you keep a quiet tally of every one.",
+      "private": false
+    },
+    {
+      "keyword": "Grounded",
+      "kind": "stat",
+      "source": "L1",
+      "line": "Same order, same seat, same people. You found what works and you guard it.",
+      "private": false
+    },
+    {
+      "keyword": "Trailblazer",
+      "kind": "tag",
+      "source": "T20B",
+      "line": "No script for how a home should run. You're writing your own.",
+      "private": false
+    },
+    {
+      "keyword": "Loyal",
+      "kind": "stat",
+      "source": "R1",
+      "line": "If there's a group plan, you started it. If there isn't, you're starting one.",
+      "private": false
+    }
+  ],
+  "rooms": [
+    {
+      "chapter": 5,
+      "room": "At work",
+      "kind": "axis",
+      "axis": "L2",
+      "tag": null,
+      "end": "Full Send",
+      "level": 2,
+      "differs": false,
+      "line": "You want the win on the record: the credit, the next step, the bigger title."
+    },
+    {
+      "chapter": 6,
+      "room": "At home",
+      "kind": "axis",
+      "axis": "R3",
+      "tag": null,
+      "end": "Own Lane",
+      "level": 3,
+      "differs": false,
+      "line": "You love your family and you run your own life. They've stopped arguing about it."
+    },
+    {
+      "chapter": 2,
+      "room": "With friends",
+      "kind": "axis",
+      "axis": "R2",
+      "tag": null,
+      "end": "Blunt",
+      "level": 2,
+      "differs": false,
+      "line": "Bad haircut, bad ex, bad idea: you're the friend who says so, and they come back for it."
+    },
+    {
+      "chapter": 4,
+      "room": "With money",
+      "kind": "tag",
+      "axis": null,
+      "tag": "T12A",
+      "end": null,
+      "level": 1,
+      "differs": false,
+      "line": "Love is love and a tab is a tab, and you'd rather owe nobody."
+    }
+  ],
+  "insight": {
+    "line": "Nobody has to decode you. People always know where they stand, and that's exactly why they relax around you.",
+    "from": {
+      "kind": "fallback",
+      "code": "We·Direct·Own"
+    }
+  },
+  "stings": [
+    "You'd go to war for your people. Letting them fight for you is the part you skip.",
+    "You hit the goal and start the next list before you celebrate.",
+    "You'd give a second chance to someone who hasn't finished asking."
+  ],
+  "calls": {
+    "called": 8,
+    "exact": 7,
+    "rows": [
+      {
+        "card": "S-129",
+        "axis": "R3",
+        "status": "hit",
+        "near": false,
+        "end": "Own Lane"
+      },
+      {
+        "card": "S-120",
+        "axis": "R1",
+        "status": "hit",
+        "near": false,
+        "end": "Crew"
+      },
+      {
+        "card": "S-142",
+        "axis": "L2",
+        "status": "hit",
+        "near": false,
+        "end": "Full Send"
+      },
+      {
+        "card": "S-126",
+        "axis": "R2",
+        "status": "hit",
+        "near": false,
+        "end": "Blunt"
+      },
+      {
+        "card": "S-130",
+        "axis": "L1",
+        "status": "miss",
+        "near": true,
+        "end": null
+      },
+      {
+        "card": "S-121",
+        "axis": "R1",
+        "status": "hit",
+        "near": false,
+        "end": "Crew"
+      },
+      {
+        "card": "S-111",
+        "axis": "R3",
+        "status": "hit",
+        "near": false,
+        "end": "Own Lane"
+      },
+      {
+        "card": "S-160",
+        "axis": "L3",
+        "status": "hit",
+        "near": false,
+        "end": "By the Book"
+      }
+    ]
+  },
+  "share": {
+    "names": [
+      {
+        "label": "With your people",
+        "name": "Ride-or-Die"
+      },
+      {
+        "label": "With your life",
+        "name": "The Planner"
+      }
+    ],
+    "keywords": [
+      "Forgiving",
+      "Principled",
+      "Competitive",
+      "Grounded",
+      "Trailblazer",
+      "Loyal"
+    ],
+    "tags": [
+      {
+        "name": "Forgiving",
+        "line": "You believe people can change, and you'll leave the door open while they try.",
+        "kind": "tag"
+      },
+      {
+        "name": "Principled",
+        "line": "You read the terms and hold the line, even when it's awkward.",
+        "kind": "stat"
+      },
+      {
+        "name": "Competitive",
+        "line": "You want wins people can see, and you keep a quiet tally of every one.",
+        "kind": "tag"
+      },
+      {
+        "name": "Grounded",
+        "line": "Same order, same seat, same people. You found what works and you guard it.",
+        "kind": "stat"
+      },
+      {
+        "name": "Trailblazer",
+        "line": "No script for how a home should run. You're writing your own.",
+        "kind": "tag"
+      },
+      {
+        "name": "Loyal",
+        "line": "If there's a group plan, you started it. If there isn't, you're starting one.",
+        "kind": "stat"
+      }
+    ],
+    "invite": "Do you really know me?",
+    "url": "mirrormii.ai"
+  },
+  "counts": {
+    "run": 138,
+    "answered": 39,
+    "skipped": 1,
+    "notMyLife": 0,
+    "noRecent": 0,
+    "unanswered": 98,
+    "rushed": 2,
+    "circumstance": 0
+  },
+  "empty": null
+}

@@ -22,7 +22,7 @@ Node 22 (the kit JSON uses import attributes). Commands run from `products/surve
 ```sh
 npm ci --prefix quiz64
 npm run dev --prefix quiz64 -- --port 5195        # http://127.0.0.1:5195/
-npm test --prefix quiz64                          # node --test tests/*.test.mjs (142 tests)
+npm test --prefix quiz64                          # node --test tests/*.test.mjs (includes the contract checks)
 npm run build --prefix quiz64                     # dist/ (static, base "./")
 cd quiz64 && npx vite preview --port 5196         # serve the production build
 ```
@@ -119,6 +119,8 @@ player's own scores: `tests/reveal-accuracy.test.mjs`.
 
 ## The friend game and backend boundary (Desmond)
 
+**Desmond's entry is [../docs/HANDOFF-DESMOND.md](../docs/HANDOFF-DESMOND.md)**: data flow, build order, the backend contracts in [../docs/contracts/](../docs/contracts/) (JSON Schemas for the stored run, the result record, the question pack, the library and the friend links, plus the proposed API and analytics events), placeholders, deployment and open decisions. `node ../scripts/validate-contracts.mjs` checks the contracts against real runs; `tests/contracts.test.mjs` runs it inside `npm test`.
+
 What exists today, all in the browser:
 
 - **Friend game v1** on two URL-fragment links: challenge `#play=<payload>` and reply `#reply=<payload>` (base64url
@@ -167,6 +169,7 @@ older dossier build (`../docs/STATE.md`).
 
 | Doc | Use it for |
 |---|---|
+| [../docs/HANDOFF-DESMOND.md](../docs/HANDOFF-DESMOND.md) | the backend and friend game handoff: contracts, API, events, question pack, deployment, open decisions |
 | [../docs/LAUNCH-SPEC.md](../docs/LAUNCH-SPEC.md) | the spec: rules, rulings, numbers, status (section 17), rounds (sections 23 and 24) |
 | [docs/DESIGN-DIRECTION.md](docs/DESIGN-DIRECTION.md) | the visual system, screen by screen (section 5), QA checklist (section 7) |
 | [docs/PERSONA-MVP.md](docs/PERSONA-MVP.md) | engine notes: picker, storage, friend links (older sections are marked) |

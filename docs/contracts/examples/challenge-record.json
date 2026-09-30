@@ -1,0 +1,138 @@
+{
+  "schema": "genii.persona.challenge/1",
+  "id": "example01",
+  "kit": "persona-quiz-v2@2026-09-30/2026-09-26/v2-2026-09-26",
+  "ownerRunId": "contract01",
+  "rel": "bestie",
+  "name": "Sam",
+  "pronoun": "they",
+  "emoji": 0,
+  "invite": 0,
+  "seed": 424242,
+  "toggles": {
+    "love": true,
+    "mk": false,
+    "stings": true,
+    "showType": true
+  },
+  "answerKey": {
+    "level1": [
+      {
+        "truth": 1,
+        "either": false
+      },
+      {
+        "truth": 1,
+        "either": false
+      },
+      {
+        "truth": -1,
+        "either": false
+      },
+      {
+        "truth": 1,
+        "either": false
+      },
+      {
+        "truth": 1,
+        "either": false
+      },
+      {
+        "truth": 1,
+        "either": false
+      }
+    ],
+    "level2": [
+      {
+        "card": "C1-140",
+        "side": "a"
+      },
+      {
+        "card": "C2-41",
+        "side": "a"
+      },
+      {
+        "card": "C1-131",
+        "side": "a"
+      },
+      {
+        "card": "C2-160",
+        "side": "a"
+      },
+      {
+        "card": "C6-127",
+        "side": "a"
+      },
+      {
+        "card": "C5-128",
+        "side": "a"
+      },
+      {
+        "card": "C2-132",
+        "side": "a"
+      },
+      {
+        "card": "C3-80",
+        "side": "a"
+      },
+      {
+        "card": "C4-82",
+        "side": "a"
+      },
+      {
+        "card": "C2-126",
+        "side": "a"
+      },
+      {
+        "card": "C4-127",
+        "side": "a"
+      },
+      {
+        "card": "C1-125",
+        "side": "b"
+      }
+    ],
+    "level3": {
+      "cards": [
+        "T08A",
+        "T17A",
+        "T03B",
+        "T25B",
+        "T23A",
+        "T23B",
+        "T08B",
+        "T06B",
+        "T16A",
+        "T20B",
+        "T20A",
+        "T16B"
+      ],
+      "truth": [
+        "T08A",
+        "T23A",
+        "T16A",
+        "T20B"
+      ]
+    },
+    "level4": {
+      "lines": [
+        "T22A",
+        "T08A",
+        "T13A",
+        "T01B"
+      ],
+      "truth": "T08A",
+      "roasts": [
+        "R13",
+        "R02",
+        "R05",
+        "R07",
+        "R09",
+        "R08"
+      ]
+    }
+  },
+  "createdAt": "2026-09-30T09:05:00.000Z",
+  "expiresAt": "2026-10-30T09:05:00.000Z",
+  "status": "open"
+}

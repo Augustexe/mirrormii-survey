@@ -16,6 +16,8 @@ Developer entry: **[quiz64/README.md](../quiz64/README.md)** (run, test, build, 
 | Screens and play | `quiz64/src/persona/screens/`, `play/` (card and 13 formats, lock) |
 | Design system, art, Genii | `quiz64/src/system/`, `quiz64/src/art/` (code-made art, device table), `quiz64/src/genii/` (evolution, three.js), `quiz64/public/assets/world/` (real MirrorMii world renders) |
 | Tests and browser QA | `quiz64/tests/*.test.mjs` (`npm test` in `quiz64`), `quiz64/qa/capture-screens.mjs`, `qa-checks.mjs`, `play-through.mjs`, `tests/visual/fold.mjs` |
+| Backend handoff and contracts | **[HANDOFF-DESMOND.md](HANDOFF-DESMOND.md)**; `docs/contracts/` (run, result, card, library, friend content and friend challenge schemas, events, API, `records.mjs`, examples); `scripts/validate-contracts.mjs` (run by `quiz64/tests/contracts.test.mjs`) |
+| Question pack export | `docs/question-pack/` (QUESTION-PACK.md, generated CSV and counts); `scripts/export-question-pack.mjs` |
 | Preview configs (workspace `.claude/launch.json`) | `persona-mvp` (web game, port 5174), `result-wireframes` (port 8793) |
 
 Other worktrees of this repository: `/private/tmp/claude-501/survey-quiz-v2-wt` (`quiz-v2-fix-pass`, same commit as this checkout, removable) and older run worktrees for rows 5 to 7 of [history/BUILD-ITERATIONS.md](history/BUILD-ITERATIONS.md).

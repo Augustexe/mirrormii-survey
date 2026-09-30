@@ -1,0 +1,317 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mirrormii.ai/contracts/genii-persona/friend-challenge.schema.json",
+  "title": "Friend challenge (\"Do you really know me?\"): today's links and the proposed server shapes",
+  "description": "Two groups of definitions. TODAY (built, quiz64/src/persona/friend.js and links.js): the challenge link body (#play=), the reply link body (#reply=), the challenge and reply the owner's browser saves, the friend's guesses, the friend-safe result and the owner's comparison view. The challenge link carries the answer key and is unsigned (a SHA-256 prefix only detects accidental damage). PROPOSED (for the backend, docs/contracts/api.md): the server-held challengeRecord with the answer key, the publicChallenge a friend receives (no truth in it), and the friendSubmission. The root validates a challengeRecord.",
+  "$ref": "#/$defs/challengeRecord",
+  "$defs": {
+    "relId": { "enum": ["partner", "crush", "friendOrCoworker", "bestie"] },
+    "challengeId": { "type": "string", "pattern": "^[a-z0-9]{8,16}$" },
+    "cardId": { "type": "string", "pattern": "^(C[1-7]-\\d+|X-[RL][1-3]-\\d+)$" },
+    "tagId": { "type": "string", "pattern": "^T\\d{2}[AB]$" },
+    "roastId": { "type": "string", "pattern": "^R\\d{2}$" },
+    "chipId": { "enum": ["seen", "told", "gut", "me"] },
+    "axisId": { "enum": ["R1", "R2", "R3", "L1", "L2", "L3"] },
+    "ownerName": { "type": "string", "maxLength": 24, "pattern": "^([\\p{L}\\p{M}][\\p{L}\\p{M} .'’-]*)?$", "description": "Optional display name: letters, spaces and . ' - only. Empty reads as \"your friend\"." },
+    "kitId": { "$ref": "run.schema.json#/$defs/kitId" },
+
+    "linkPayload": {
+      "type": "string",
+      "description": "TODAY. base64url(UTF-8 JSON) + \".\" + first 8 hex of its SHA-256, in the URL fragment (#play=... or #reply=...), so it never reaches a server log. 6000 characters max. The checksum is not a signature: anyone can edit the body and recompute it.",
+      "maxLength": 6000,
+      "pattern": "^[A-Za-z0-9_-]+\\.[0-9a-f]{8}$"
+    },
+    "challengeLinkBody": {
+      "type": "object",
+      "description": "TODAY. Friend.challengeBody(state, challenge): the only fields that leave the owner's device in a challenge link. a, b, c.t and d.t are the answer key.",
+      "required": ["v", "k", "i", "r", "n", "p", "e", "s", "w", "o", "a", "b", "c", "d"],
+      "additionalProperties": false,
+      "properties": {
+        "v": { "const": 1 },
+        "k": { "$ref": "#/$defs/kitId" },
+        "i": { "$ref": "#/$defs/challengeId" },
+        "r": { "$ref": "#/$defs/relId" },
+        "n": { "$ref": "#/$defs/ownerName" },
+        "p": { "enum": ["she", "he", "they"] },
+        "e": { "type": "integer", "minimum": 0, "maximum": 11, "description": "Emoji index (FRIEND_EMOJI) that labels the link for the owner." },
+        "s": { "type": "integer", "minimum": 0, "maximum": 4294967295, "description": "Deck seed (option order, decoys)." },
+        "w": { "type": "integer", "minimum": 0, "description": "Invite line index (friend.json invites[rel])." },
+        "o": { "type": "array", "minItems": 4, "maxItems": 4, "items": { "enum": [0, 1] }, "description": "Toggles: love tags, marriage and kids tags, sting lines, show type." },
+        "a": {
+          "type": "array", "minItems": 6, "maxItems": 6,
+          "description": "ANSWER KEY. Level 1 per axis (R1..L3): [truth pole 1|-1, 0 decided | 1 flex | 2 unfinished]; flex and unfinished accept either guess.",
+          "items": { "type": "array", "prefixItems": [{ "enum": [1, -1] }, { "enum": [0, 1, 2] }], "minItems": 2, "maxItems": 2 }
+        },
+        "b": {
+          "type": "array", "maxItems": 12,
+          "description": "ANSWER KEY. Level 2: [card id, the side the owner's own answer maps to]. Empty (skipped) or 6 to 12 cards.",
+          "items": { "type": "array", "prefixItems": [{ "$ref": "#/$defs/cardId" }, { "enum": ["a", "b"] }], "minItems": 2, "maxItems": 2 }
+        },
+        "c": {
+          "description": "Level 3: the 12 tag cards shown (d) and, as ANSWER KEY, the owner's true tags (t, n of them). null when the owner has no shown tag.",
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object", "required": ["n", "d", "t"], "additionalProperties": false,
+              "properties": {
+                "n": { "type": "integer", "minimum": 1, "maximum": 5 },
+                "d": { "type": "array", "minItems": 12, "maxItems": 12, "uniqueItems": true, "items": { "$ref": "#/$defs/tagId" } },
+                "t": { "type": "array", "minItems": 1, "maxItems": 5, "uniqueItems": true, "items": { "$ref": "#/$defs/tagId" } }
+              }
+            }
+          ]
+        },
+        "d": {
+          "description": "Level 4 (bestie with sting lines on): 4 sting lines by tag (l), the true one (t, ANSWER KEY), up to 6 preset roasts (r). null otherwise.",
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object", "required": ["l", "t", "r"], "additionalProperties": false,
+              "properties": {
+                "l": { "type": "array", "maxItems": 4, "uniqueItems": true, "items": { "$ref": "#/$defs/tagId" } },
+                "t": { "type": "string", "pattern": "^(T\\d{2}[AB])?$" },
+                "r": { "type": "array", "maxItems": 6, "uniqueItems": true, "items": { "$ref": "#/$defs/roastId" } }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "replyLinkBody": {
+      "type": "object",
+      "description": "TODAY. Friend.replyPayload(...): the friend's guesses, sent back to the owner as a #reply= link. The owner must open it in the browser that holds their run (no sync).",
+      "required": ["v", "k", "i", "a", "b", "c", "d"],
+      "additionalProperties": false,
+      "properties": {
+        "v": { "const": 1 },
+        "k": { "$ref": "#/$defs/kitId" },
+        "i": { "$ref": "#/$defs/challengeId" },
+        "a": { "type": "array", "minItems": 6, "maxItems": 6, "items": { "enum": [1, -1] }, "description": "Level 1 guess per axis, R1..L3." },
+        "b": {
+          "type": "array", "maxItems": 12,
+          "items": { "type": "array", "prefixItems": [{ "$ref": "#/$defs/cardId" }, { "enum": ["a", "b"] }, { "enum": ["", "seen", "told", "gut", "me"] }], "minItems": 3, "maxItems": 3 }
+        },
+        "c": { "type": "array", "maxItems": 5, "uniqueItems": true, "items": { "$ref": "#/$defs/tagId" } },
+        "d": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "array", "prefixItems": [{ "type": "string", "pattern": "^(T\\d{2}[AB])?$" }, { "type": "string", "pattern": "^(R\\d{2})?$" }], "minItems": 2, "maxItems": 2 }
+          ]
+        }
+      }
+    },
+    "savedChallenge": {
+      "type": "object",
+      "description": "TODAY. One link the owner made, saved in their run (state.challenges, 20 max). The deck and answer key are rebuilt from the run and the seed, never stored.",
+      "required": ["id", "rel", "love", "mk", "stings", "showType", "emoji", "invite", "name", "seed", "createdAt", "sentBefore"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/$defs/challengeId" },
+        "rel": { "$ref": "#/$defs/relId" },
+        "love": { "type": "boolean" },
+        "mk": { "type": "boolean" },
+        "stings": { "type": "boolean" },
+        "showType": { "type": "boolean" },
+        "emoji": { "type": "integer", "minimum": 0, "maximum": 11 },
+        "invite": { "type": "integer", "minimum": 0 },
+        "name": { "$ref": "#/$defs/ownerName" },
+        "seed": { "type": "integer", "minimum": 0, "maximum": 4294967295 },
+        "createdAt": { "type": "string" },
+        "sentBefore": { "type": "boolean" }
+      }
+    },
+    "guesses": {
+      "type": "object",
+      "description": "A friend's guesses, cleaned against the deck they played (Friend.cleanGuesses). The same shape score-core scoreFriendGame reads.",
+      "required": ["level1", "level2", "why", "level3", "level4"],
+      "additionalProperties": false,
+      "properties": {
+        "level1": { "type": "object", "propertyNames": { "$ref": "#/$defs/axisId" }, "additionalProperties": { "enum": [1, -1] } },
+        "level2": { "type": "object", "propertyNames": { "$ref": "#/$defs/cardId" }, "additionalProperties": { "enum": ["a", "b"] } },
+        "why": { "type": "object", "propertyNames": { "$ref": "#/$defs/cardId" }, "additionalProperties": { "$ref": "#/$defs/chipId" } },
+        "level3": { "type": "array", "maxItems": 5, "uniqueItems": true, "items": { "$ref": "#/$defs/tagId" } },
+        "level4": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object", "required": ["sting", "roast"], "additionalProperties": false,
+              "properties": { "sting": { "anyOf": [{ "$ref": "#/$defs/tagId" }, { "type": "null" }] }, "roast": { "anyOf": [{ "$ref": "#/$defs/roastId" }, { "type": "null" }] } }
+            }
+          ]
+        }
+      }
+    },
+    "savedReply": {
+      "type": "object",
+      "description": "TODAY. A friend's reply imported by the owner (state.friendResults). hideRoast is the owner's switch for the Level 4 roast.",
+      "required": ["challengeId", "receivedAt", "guesses", "hideRoast"],
+      "additionalProperties": false,
+      "properties": {
+        "challengeId": { "$ref": "#/$defs/challengeId" },
+        "receivedAt": { "type": "string" },
+        "guesses": { "$ref": "#/$defs/guesses" },
+        "hideRoast": { "type": "boolean" }
+      }
+    },
+    "friendSafeResult": {
+      "type": "object",
+      "description": "TODAY. What the friend sees after playing (Friend.friendSafeResult): counts only, never which ones, never Level 4; the owner's type only when showType is on.",
+      "required": ["x", "guessedType", "y", "total", "z", "N", "scoreLine", "countsLine", "typeLine", "yourTurn"],
+      "additionalProperties": false,
+      "properties": {
+        "x": { "type": "integer", "minimum": 0, "maximum": 6 },
+        "guessedType": { "type": ["string", "null"] },
+        "y": { "type": "integer", "minimum": 0, "maximum": 12 },
+        "total": { "type": "integer", "minimum": 0, "maximum": 12 },
+        "z": { "type": "integer", "minimum": 0, "maximum": 5 },
+        "N": { "type": "integer", "minimum": 0, "maximum": 5 },
+        "scoreLine": { "type": "string" },
+        "countsLine": { "type": "string" },
+        "typeLine": { "type": ["string", "null"] },
+        "yourTurn": { "type": "string" }
+      }
+    },
+    "ownerComparison": {
+      "type": "object",
+      "description": "TODAY. The owner's view of one friend's reply (Friend.ownerFriendView): You, through {friend}'s eyes. Owner only.",
+      "required": ["challengeId", "friend", "rel", "receivedAt", "title", "comparison", "flexNotes", "band", "x", "zones", "level2Line", "level3Line", "biggestMiss", "level4", "score"],
+      "properties": {
+        "challengeId": { "$ref": "#/$defs/challengeId" },
+        "rel": { "$ref": "#/$defs/relId" },
+        "x": { "type": "integer", "minimum": 0, "maximum": 6 },
+        "zones": { "type": "object", "required": ["getYou", "dontSee", "thinkYouAre", "otherGuesses"] },
+        "score": { "type": "object", "required": ["relationship", "level1", "level2", "level3", "level4", "band", "bandSet", "rate"] }
+      }
+    },
+
+    "publicChallenge": {
+      "type": "object",
+      "description": "PROPOSED. GET /v1/challenges/{token} response: the deck a friend plays, with no truth in it (no Level 1 truth, no Level 2 answer, no Level 3 role, no true sting). Built by records.mjs buildPublicChallenge from the app's friendDeckView.",
+      "required": ["schema", "id", "kit", "rel", "owner", "emoji", "invite", "level1", "level2", "level3", "level4"],
+      "additionalProperties": false,
+      "properties": {
+        "schema": { "const": "genii.persona.challenge/1" },
+        "id": { "$ref": "#/$defs/challengeId" },
+        "kit": { "$ref": "#/$defs/kitId" },
+        "rel": { "$ref": "#/$defs/relId" },
+        "owner": { "type": "object", "required": ["name", "pronoun"], "additionalProperties": false, "properties": { "name": { "$ref": "#/$defs/ownerName" }, "pronoun": { "enum": ["she", "he", "they"] } } },
+        "emoji": { "type": "integer", "minimum": 0, "maximum": 11 },
+        "invite": { "type": "integer", "minimum": 0 },
+        "level1": {
+          "type": "array", "minItems": 6, "maxItems": 6,
+          "items": {
+            "type": "object", "required": ["axis", "prompt", "options", "eitherCounts"], "additionalProperties": false,
+            "properties": {
+              "axis": { "$ref": "#/$defs/axisId" },
+              "prompt": { "type": "string" },
+              "options": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "type": "object", "required": ["pole", "t"], "additionalProperties": false, "properties": { "pole": { "enum": [1, -1] }, "t": { "type": "string" } } } },
+              "eitherCounts": { "type": "boolean", "description": "Flex or unfinished: either guess counts. Revealing this leaks no pole." }
+            }
+          }
+        },
+        "level2": {
+          "type": "object", "required": ["skipped", "cards"],
+          "properties": {
+            "skipped": { "type": "boolean" },
+            "line": { "type": "string" },
+            "cards": {
+              "type": "array", "maxItems": 12,
+              "items": {
+                "type": "object", "required": ["id", "prompt", "a", "b", "order"], "additionalProperties": false,
+                "properties": { "id": { "$ref": "#/$defs/cardId" }, "prompt": { "type": "string" }, "a": { "type": "string" }, "b": { "type": "string" }, "order": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "enum": ["a", "b"] } } }
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "level3": {
+          "type": "object", "required": ["skipped", "cards"],
+          "properties": {
+            "skipped": { "type": "boolean" },
+            "line": { "type": "string" },
+            "pick": { "type": "integer", "minimum": 1, "maximum": 5 },
+            "prompt": { "type": "string" },
+            "fewTagsLine": { "type": ["string", "null"] },
+            "cards": {
+              "type": "array", "maxItems": 12,
+              "items": { "type": "object", "required": ["id", "name", "heart"], "additionalProperties": false, "properties": { "id": { "$ref": "#/$defs/tagId" }, "name": { "type": "string" }, "heart": { "type": "string" } } }
+            }
+          },
+          "additionalProperties": false
+        },
+        "level4": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object", "required": ["stingPick", "pickTheRoast"], "additionalProperties": false,
+              "properties": {
+                "stingPick": {
+                  "oneOf": [
+                    { "type": "null" },
+                    { "type": "object", "required": ["prompt", "lines"], "additionalProperties": false, "properties": { "prompt": { "type": "string" }, "lines": { "type": "array", "items": { "type": "object", "required": ["tag", "t"], "additionalProperties": false, "properties": { "tag": { "$ref": "#/$defs/tagId" }, "t": { "type": "string" } } } } } }
+                  ]
+                },
+                "pickTheRoast": { "type": "object", "required": ["prompt", "lines"], "additionalProperties": false, "properties": { "prompt": { "type": "string" }, "lines": { "type": "array", "items": { "type": "object", "required": ["id", "t"], "additionalProperties": false, "properties": { "id": { "$ref": "#/$defs/roastId" }, "t": { "type": "string" } } } } } }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "friendSubmission": {
+      "type": "object",
+      "description": "PROPOSED. POST /v1/challenges/{token}/answers body: the friend's guesses. The server scores them against the answerKey it holds (score-core scoreFriendGame) and returns a friendSafeResult.",
+      "required": ["challengeId", "kit", "guesses"],
+      "additionalProperties": false,
+      "properties": {
+        "challengeId": { "$ref": "#/$defs/challengeId" },
+        "kit": { "$ref": "#/$defs/kitId" },
+        "guesses": { "$ref": "#/$defs/guesses" }
+      }
+    },
+    "challengeRecord": {
+      "type": "object",
+      "description": "PROPOSED. What the server stores for one challenge. answerKey is exactly what today's link carries in a, b, c.t and d.t, moved server-side. Never sent to the friend. Built by records.mjs buildChallengeRecord.",
+      "required": ["schema", "id", "kit", "ownerRunId", "rel", "name", "pronoun", "emoji", "invite", "seed", "toggles", "answerKey", "createdAt", "expiresAt", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "schema": { "const": "genii.persona.challenge/1" },
+        "id": { "$ref": "#/$defs/challengeId" },
+        "kit": { "$ref": "#/$defs/kitId" },
+        "ownerRunId": { "type": "string", "pattern": "^[a-z0-9]{6,32}$" },
+        "rel": { "$ref": "#/$defs/relId" },
+        "name": { "$ref": "#/$defs/ownerName" },
+        "pronoun": { "enum": ["she", "he", "they"] },
+        "emoji": { "type": "integer", "minimum": 0, "maximum": 11 },
+        "invite": { "type": "integer", "minimum": 0 },
+        "seed": { "type": "integer", "minimum": 0, "maximum": 4294967295 },
+        "toggles": {
+          "type": "object", "required": ["love", "mk", "stings", "showType"], "additionalProperties": false,
+          "properties": { "love": { "type": "boolean" }, "mk": { "type": "boolean" }, "stings": { "type": "boolean" }, "showType": { "type": "boolean" } }
+        },
+        "answerKey": {
+          "type": "object", "required": ["level1", "level2", "level3", "level4"], "additionalProperties": false,
+          "properties": {
+            "level1": { "type": "array", "minItems": 6, "maxItems": 6, "items": { "type": "object", "required": ["truth", "either"], "additionalProperties": false, "properties": { "truth": { "enum": [1, -1] }, "either": { "type": "boolean" } } } },
+            "level2": { "type": "array", "maxItems": 12, "items": { "type": "object", "required": ["card", "side"], "additionalProperties": false, "properties": { "card": { "$ref": "#/$defs/cardId" }, "side": { "enum": ["a", "b"] } } } },
+            "level3": {
+              "oneOf": [
+                { "type": "null" },
+                { "type": "object", "required": ["cards", "truth"], "additionalProperties": false, "properties": { "cards": { "type": "array", "minItems": 12, "maxItems": 12, "items": { "$ref": "#/$defs/tagId" } }, "truth": { "type": "array", "minItems": 1, "maxItems": 5, "items": { "$ref": "#/$defs/tagId" } } } }
+              ]
+            },
+            "level4": {
+              "oneOf": [
+                { "type": "null" },
+                { "type": "object", "required": ["lines", "truth", "roasts"], "additionalProperties": false, "properties": { "lines": { "type": "array", "maxItems": 4, "items": { "$ref": "#/$defs/tagId" } }, "truth": { "anyOf": [{ "$ref": "#/$defs/tagId" }, { "type": "null" }] }, "roasts": { "type": "array", "maxItems": 6, "items": { "$ref": "#/$defs/roastId" } } } }
+              ]
+            }
+          }
+        },
+        "createdAt": { "type": "string" },
+        "expiresAt": { "type": "string" },
+        "status": { "enum": ["open", "played", "revoked", "expired"] }
+      }
+    }
+  }
+}

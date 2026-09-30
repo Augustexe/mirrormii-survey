@@ -12,7 +12,7 @@ source_basis: questions/RUN-SPEC-LEDGER.md; questions/PERSONA-QUIZ-SPEC-V2.md; g
 
 Everything about the launch survey (rules, numbers, status, rulings, plan, open decisions) is in **[LAUNCH-SPEC.md](LAUNCH-SPEC.md)**, the only spec. The developer entry for the web game is **[quiz64/README.md](../quiz64/README.md)**.
 
-The launch build (branch `survey/launch`, local only, not deployed) is at round 3 (2026-09-29): 174-card bank in two voices, 40 cards plus 8 sealed guesses, Genii evolving from orb to slime, a 12-screen Stories reveal with a game character sheet (pips and level words, no percentages), 5 to 6 core traits, rooms, Genii's calls, and the real MirrorMii world on the mirrors, share and app screens. It is being handed to Desmond for the friend game backend. This page keeps only the live site and repository facts below.
+The launch build (branch `survey/launch`, local only, not deployed) is at round 3 (2026-09-29): 174-card bank in two voices, 40 cards plus 8 sealed guesses, Genii evolving from orb to slime, a 12-screen Stories reveal with a game character sheet (pips and level words, no percentages), 5 to 6 core traits, rooms, Genii's calls, and the real MirrorMii world on the mirrors, share and app screens. It is being handed to Desmond for the friend game backend: his entry is **[HANDOFF-DESMOND.md](HANDOFF-DESMOND.md)** (data flow, what exists, build order, backend contracts in [contracts/](contracts/), the question pack export in [question-pack/](question-pack/), placeholders, unsigned links and no sync, deployment, open decisions). This page keeps only the live site and repository facts below.
 
 ## Live site (older build, still public)
 

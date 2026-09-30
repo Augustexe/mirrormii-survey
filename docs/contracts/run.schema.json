@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://mirrormii.ai/contracts/genii-persona/run.schema.json",
+  "title": "Stored run (genii.persona.run/3)",
+  "description": "One player's run exactly as the web game stores it: Session.serialize(state) in quiz64/src/persona/session.js, kept in localStorage under genii.persona.v2.run and exported by Download my data. It holds the answers (picks), timings, Genii's lock and the friend links; everything else (route, profile, result) is derived by replaying it through the same step machine (Session.restore), so a server that stores this object can re-score it with the same code instead of trusting a client result. Restore refuses unknown fields, another kit, answers off the route and a broken lock.",
+  "type": "object",
+  "required": ["schema", "kit", "runId", "createdAt", "updatedAt", "setup", "lobby", "answers", "ms", "frozen", "lockHash", "finale", "challenges", "friendResults", "returnTo"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "genii.persona.run/3", "description": "Run format version. /1 and /2 saves fail closed." },
+    "kit": { "$ref": "#/$defs/kitId" },
+    "runId": { "type": "string", "pattern": "^[a-z0-9]{6,32}$", "description": "Random id (12 chars in the app). Seeds the picker and the finale draw." },
+    "createdAt": { "$ref": "#/$defs/time" },
+    "updatedAt": { "$ref": "#/$defs/time" },
+    "setup": {
+      "description": "Two setup taps. No age question. pronoun is used by the friend game only.",
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "required": ["closest", "pronoun"],
+          "additionalProperties": false,
+          "properties": {
+            "closest": { "enum": ["best_friend", "partner", "crush", "sibling", "parent", "someone_else"] },
+            "pronoun": { "enum": ["she", "he", "they"] }
+          }
+        }
+      ]
+    },
+    "lobby": {
+      "description": "Three unscored lobby taps. voice changes wording only; depth light skips intimate cards; rooms lists the optional rooms left open (love = chapter 3, work = 5, family = 6).",
+      "oneOf": [
+        { "type": "null" },
+        { "$ref": "#/$defs/lobby" }
+      ]
+    },
+    "answers": {
+      "type": "object",
+      "description": "Scored cards (chapters and extras), by card id, in the order they were answered. <id>.flip holds a depends follow-up.",
+      "maxProperties": 80,
+      "patternProperties": {
+        "^(C[1-7]-\\d+|X-[RL][1-3]-\\d+)$": { "$ref": "#/$defs/response" },
+        "^(C[1-7]-\\d+|X-[RL][1-3]-\\d+)\\.flip$": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "ms": {
+      "type": "object",
+      "description": "Answer time per scored card in ms (capped at 600000). Under 1500 counts as rushed (weight x 0.3).",
+      "patternProperties": { "^(C[1-7]-\\d+|X-[RL][1-3]-\\d+)$": { "type": "integer", "minimum": 0, "maximum": 600000 } },
+      "additionalProperties": false
+    },
+    "frozen": {
+      "description": "Genii's locked guesses for the 8 sealed cards, frozen before the finale.",
+      "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/frozen" }]
+    },
+    "lockHash": {
+      "description": "sha256 of canonicalJSON(frozen). A mismatch refuses to score.",
+      "oneOf": [{ "type": "null" }, { "$ref": "#/$defs/sha256" }]
+    },
+    "finale": {
+      "type": "object",
+      "description": "Sealed card answers by id. Never scored into the profile.",
+      "maxProperties": 8,
+      "patternProperties": { "^S-\\d+$": { "$ref": "#/$defs/response" } },
+      "additionalProperties": false
+    },
+    "challenges": { "type": "array", "maxItems": 20, "items": { "$ref": "friend-challenge.schema.json#/$defs/savedChallenge" } },
+    "friendResults": { "type": "array", "maxItems": 20, "items": { "$ref": "friend-challenge.schema.json#/$defs/savedReply" } },
+    "returnTo": {
+      "description": "Set when this run was started from a friend's challenge: who to send the owner's own link back to.",
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "required": ["rel", "name"],
+          "additionalProperties": false,
+          "properties": { "rel": { "enum": ["partner", "crush", "friendOrCoworker", "bestie"] }, "name": { "type": "string", "maxLength": 24 } }
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "time": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$", "description": "ISO 8601 UTC timestamp." },
+    "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "kitId": {
+      "type": "string",
+      "pattern": "^persona-quiz-v2@\\d{4}-\\d{2}-\\d{2}/\\d{4}-\\d{2}-\\d{2}/.+$",
+      "description": "KIT_ID from quiz64/src/persona/kit.js: cards.version@cards.built/library.built/friend.version. Every save and link is valid only against the kit that made it."
+    },
+    "lobby": {
+      "type": "object",
+      "required": ["voice", "depth", "rooms"],
+      "additionalProperties": false,
+      "properties": {
+        "voice": { "enum": ["fun", "heart", "cards"] },
+        "depth": { "enum": ["light", "anything"] },
+        "rooms": { "type": "array", "uniqueItems": true, "maxItems": 3, "items": { "enum": ["love", "work", "family"] } }
+      }
+    },
+    "response": {
+      "description": "One card's answer: an option index; a list of indexes (pick_two: 2 picks; receipts: ticked items, sorted, or the lone None of these; rank: every option once, first to last); or an exit. Exits never score.",
+      "oneOf": [
+        { "type": "integer", "minimum": 0, "maximum": 7 },
+        { "type": "array", "maxItems": 8, "uniqueItems": true, "items": { "type": "integer", "minimum": 0, "maximum": 7 } },
+        { "enum": ["skip", "not_my_life", "no_recent"] }
+      ]
+    },
+    "prediction": {
+      "type": "object",
+      "required": ["id", "primary", "pass", "why", "predicted", "predictedText", "side", "scores"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^S-\\d+$" },
+        "primary": { "type": ["string", "null"], "pattern": "^([RL][1-3]|T\\d{2})$" },
+        "pass": { "type": "boolean", "description": "Genii passes when the card's main axis is flex or unfinished." },
+        "why": { "type": ["string", "null"] },
+        "predicted": { "type": "integer", "minimum": 0 },
+        "predictedText": { "type": "string" },
+        "side": { "enum": [-1, 0, 1] },
+        "scores": { "type": "array", "items": { "type": "number" } }
+      }
+    },
+    "frozen": {
+      "type": "object",
+      "required": ["version", "predictions", "frozenAt", "profileSha256"],
+      "additionalProperties": false,
+      "properties": {
+        "version": { "const": "persona-quiz-v2" },
+        "predictions": { "type": "array", "minItems": 1, "maxItems": 8, "items": { "$ref": "#/$defs/prediction" } },
+        "frozenAt": { "$ref": "#/$defs/time" },
+        "profileSha256": { "$ref": "#/$defs/sha256" }
+      }
+    }
+  }
+}
