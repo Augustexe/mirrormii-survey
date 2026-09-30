@@ -36,6 +36,11 @@ const SIZES = {
 const sizes = process.env.SIZES ? process.env.SIZES.split(",") : Object.keys(SIZES);
 const voices = process.env.VOICES ? process.env.VOICES.split(",") : ["fun", "heart"];
 const TYPES = ["scenario", "real", "this_or_that", "role", "pick_two", "receipts", "bet", "reply", "others", "feeling", "rank", "eyes"];
+// Formats a run cannot reach are notes, not errors (LAUNCH-SPEC sections 4 and 10): feeling cards while SERVE_FEELING
+// is off, and rank, whose one chapter card (C2-142) sits on the sub-question the chapter 2 opener takes, so only the
+// extra X-L2-40 can serve it, and only for L2 coverage. tests/visual/fold.mjs still renders every card of both.
+const { SERVE_FEELING } = await import("../../research/persona-quiz-v2/final/score-core.mjs");
+const UNSERVED = { ...(SERVE_FEELING ? {} : { feeling: "feeling cards are off: SERVE_FEELING" }), rank: "rank cards are served only for coverage: one card per sub-question" };
 
 // Justified exceptions: { kind, sel: RegExp on the selector, reason }. Keep this list short and explained.
 const EXCEPTIONS = [];
@@ -264,7 +269,7 @@ function focusWalk(scope) {
 }
 
 // ------------------------------------------------------------------------------------------------ the walk
-const report = { base: BASE, player: process.env.PLAYER || "a", at: new Date().toISOString(), sizes, voices, steps: 0, failures: [], exceptions: [], errors: [] };
+const report = { base: BASE, player: process.env.PLAYER || "a", at: new Date().toISOString(), sizes, voices, steps: 0, failures: [], exceptions: [], errors: [], notes: [] };
 const excepted = (f) => EXCEPTIONS.find((e) => e.kind === f.kind && e.sel.test(f.sel));
 
 async function check(page, meta, label, { focus = null } = {}) {
@@ -357,7 +362,11 @@ async function walk(browser, size, voice) {
       const label = `card-${type.replace(/_/g, "")}`;
       if (!want(label)) continue;
       const ok = await openRun(page, BASE, { voice, stop: "type", type, id: `lg${tag}${type.replace(/_/g, "")}`, tries: 30 });
-      if (!ok) { report.errors.push(`${meta.size} ${voice}: no ${type} card reached`); continue; }
+      if (!ok) {
+        if (UNSERVED[type]) report.notes.push(`${meta.size} ${voice}: no ${type} card reached (${UNSERVED[type]})`);
+        else report.errors.push(`${meta.size} ${voice}: no ${type} card reached`);
+        continue;
+      }
       await page.waitForSelector(`article.pc[data-card-type=${type}]`, { timeout: 8000 }).catch(() => report.errors.push(`${meta.size} ${voice}: ${type} card not on screen`));
       await page.waitForTimeout(900);
       await check(page, meta, label, { focus: true });
@@ -443,10 +452,11 @@ await browser.close();
 
 const byKind = {};
 for (const f of report.failures) byKind[f.kind] = (byKind[f.kind] || 0) + 1;
-report.summary = { steps: report.steps, failures: report.failures.length, byKind, exceptions: report.exceptions.length, errors: report.errors.length };
+report.summary = { steps: report.steps, failures: report.failures.length, byKind, exceptions: report.exceptions.length, errors: report.errors.length, notes: report.notes.length };
 fs.writeFileSync(path.join(OUT, "report.json"), JSON.stringify(report, null, 1));
 console.log(JSON.stringify(report.summary));
 for (const f of report.failures.slice(0, 60)) console.log(`${f.size} ${f.voice} ${f.step} ${f.kind}: ${f.sel} "${f.text}"${f.other ? ` / ${f.other}` : ""}${f.note ? ` (${f.note})` : ""}`);
 if (report.failures.length > 60) console.log(`... ${report.failures.length - 60} more in ${path.join(OUT, "report.json")}`);
+if (report.notes.length) console.log(`notes (not failures):\n${report.notes.join("\n")}`);
 if (report.errors.length) console.log(report.errors.join("\n"));
 if (report.failures.length || report.errors.length) process.exitCode = 1;

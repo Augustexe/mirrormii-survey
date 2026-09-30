@@ -36,7 +36,7 @@ export const DEVICE_FAMILIES = [
   "balloon", // a hot-air balloon with its basket: a sky-high date (and the bill on landing)
 ];
 
-// Every absurd-world device in research/persona-quiz-v2/final/bank (2026-09-29, round 2 card variety included; devices of
+// Every absurd-world device in research/persona-quiz-v2/final/bank (2026-09-30, after BATCH-02; devices of
 // removed cards deleted). "chapter" marks an intentional fallback to the chapter vignette. A device the bank adds before
 // this table learns it falls back to DEVICE_KEYWORDS, then the chapter vignette, so a new card never breaks the card;
 // tests/art-geometry.test.mjs derives the device list from the bank and reports any device mapped by keyword only.
@@ -44,11 +44,9 @@ export const DEVICE_TABLE = {
   // Chapter 1, Your phone
   "life-billboard": "frame",
   "friendship-houseplants": "chapter",
-  "rogue-map-app": "machine",
   "unlockable-phone": "machine", // a stall phone that never dies
   "ghost-poet": "house",
   "ear-advisor": "envelope",
-  "honest-mirror": "frame",
   // Chapter 2, Friends
   "friendship repair shop": "shop",
   "magic 8-ball": "fortune",
@@ -56,8 +54,7 @@ export const DEVICE_TABLE = {
   "magic door": "door",
   "haunted house": "house",
   sphinx: "riddle",
-  "four-apologies": "scroll",
-  // Chapter 3, Love and your person
+  // Chapter 3, Love and dating
   "memory-erase vending machine": "machine",
   "talking doorbell": "bell",
   "two-person-sweater": "yarn",
@@ -74,13 +71,10 @@ export const DEVICE_TABLE = {
   "promoted-office-dog": "trace",
   "never-wrong-fortune-cookie": "fortune",
   "eighth-day": "time",
-  "weather-booking-desk": "weather",
-  "carrier-owl-offer": "envelope", // an offer letter
   "snail-racer": "shell",
   // Chapter 6, Family and home
   "magic-portrait": "frame",
   "life-board-game": "gift", // Genii's gift
-  "lost-things-mailbox": "envelope",
   "pocket-parent": "house", // moving out, coming home
   // Chapter 7, Play, rules and you
   "kitten-referee": "trace",
@@ -88,7 +82,6 @@ export const DEVICE_TABLE = {
   "superhero-chat": "chapter",
   clone: "frame",
   "feeling-after-clone": "frame",
-  "vacation-globe": "fortune",
   "vanishing-lists": "scroll",
   "fix-touch-power": "machine",
   // Extras
@@ -106,7 +99,7 @@ export const DEVICE_TABLE = {
   "priced-words": "treasure", // every word costs coins
   "goldfish-year": "water", // a bowl, a fin
   "sky-ring": "gift", // a ring that arrives out of the sky
-  "training-wheels": "mountain", // the final, a climb to the flag
+  "parachute-jackets": "balloon", // a canopy over a basket: the parachute in every jacket (BATCH-02, 2026-09-30)
   "hero-code": "scroll", // the superhero code, rule one
   "moon-hotel": "dream", // a night on the Moon: cloud and crescent
   "statue-posing": "frame", // posed like a statue, framed

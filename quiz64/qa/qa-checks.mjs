@@ -18,9 +18,15 @@ void require;
 // PRODUCT-TRUTH section 8 never-say list, plus the words the result must never show (LAUNCH-SPEC 13, DESIGN 7.5).
 const NEVER = [/\bdiagnos/i, /\btreat(ment|ed|ing)?\b/i, /\bcure\b/i, /\bprevent/i, /clinically proven/i, /anti-aging/i, /skin age/i, /before and after/i, /\bstreak/i, /\bpredicts?\b/i, /\bDNA\b/, /genomic/i, /free forever/i];
 const SYSTEM_WORDS = [/\bevidence\b/i, /\baxis\b/i, /\baxes\b/i, /\bsealed\b/i, /run id/i, /\bhash\b/i];
+// Retired player wording: "your person" became "your partner" (LAUNCH-SPEC rule 25, 2026-09-30).
+const RETIRED_COPY = [/\b(?:your|my|their) person\b/i];
+// Formats a run cannot reach are notes, not errors: feeling cards while SERVE_FEELING is off, and rank (served only for
+// coverage; LAUNCH-SPEC sections 4 and 10). tests/visual/fold.mjs still renders every card of both.
+const { SERVE_FEELING } = await import("../../research/persona-quiz-v2/final/score-core.mjs");
+const UNSERVED = new Set([...(SERVE_FEELING ? [] : ["feeling"]), "rank"]);
 const EM_DASH = /\u2014/;
 
-const report = { screens: [], axe: {}, fonts: new Set(), copy: [], overflow: [], share: [], friend: {}, perf: {}, errors: [] };
+const report = { screens: [], axe: {}, fonts: new Set(), copy: [], overflow: [], share: [], friend: {}, perf: {}, errors: [], notes: [] };
 
 async function seed(page, cfg) {
   return page.evaluate(async (cfg) => {
@@ -79,7 +85,7 @@ async function audit(page, label, { axe = true } = {}) {
   info.loaded.forEach((f) => report.fonts.add(`loaded:${f}`));
   if (info.mono) report.copy.push(`${label}: monospace text on screen`);
   if (EM_DASH.test(info.text)) report.copy.push(`${label}: em dash on screen`);
-  for (const re of [...NEVER, ...SYSTEM_WORDS]) { const m = info.text.match(re); if (m) report.copy.push(`${label}: "${m[0]}" in "${info.text.slice(Math.max(0, m.index - 40), m.index + 40).replace(/\s+/g, " ")}"`); }
+  for (const re of [...NEVER, ...SYSTEM_WORDS, ...RETIRED_COPY]) { const m = info.text.match(re); if (m) report.copy.push(`${label}: "${m[0]}" in "${info.text.slice(Math.max(0, m.index - 40), m.index + 40).replace(/\s+/g, " ")}"`); }
   if (info.overflow > 1) report.overflow.push(`${label}: horizontal scroll ${info.overflow}px`);
   // Fold: on phone and desktop the screen's main action is fully visible without scrolling (not at 200% zoom).
   if (!label.startsWith("zoom200")) {
@@ -167,7 +173,7 @@ for (const [vname, vp] of Object.entries(VIEWS)) {
   for (const voice of ["fun", "heart", "cards"]) {
     for (const type of ["scenario", "real", "this_or_that", "role", "pick_two", "receipts", "bet", "reply", "others", "feeling", "rank", "eyes"]) {
       if (voice === "cards" && type !== "scenario") continue;
-      if (!(await open({ voice, stop: "type", type, id: `qa${voice}${type.replace(/_/g, "")}`, tries: 30 }))) { report.errors.push(`${vname}: no ${voice} ${type}`); continue; }
+      if (!(await open({ voice, stop: "type", type, id: `qa${voice}${type.replace(/_/g, "")}`, tries: 30 }))) { (UNSERVED.has(type) ? report.notes : report.errors).push(`${vname}: no ${voice} ${type}`); continue; }
       await page.waitForSelector("article.pc", { timeout: 6000 }).catch(() => {});
       await audit(page, `${vname} card ${type} (${voice})`, { axe });
     }
@@ -283,4 +289,5 @@ for (const [vname, vp] of Object.entries(VIEWS)) {
 await browser.close();
 report.fonts = [...report.fonts].sort();
 fs.writeFileSync(path.join(OUT, "qa-report.json"), JSON.stringify(report, null, 1));
-console.log(JSON.stringify({ fold: (report.fold || []).filter((f) => !f.ok), reveal: report.reveal, screens: report.screens.length, axe: Object.fromEntries(Object.entries(report.axe).map(([k, v]) => [k, v.screens.length])), fonts: report.fonts, copy: report.copy.length, overflow: report.overflow.length, share: report.share.length, friend: report.friend, perf: report.perf, errors: report.errors.length }, null, 1));
+console.log(JSON.stringify({ fold: (report.fold || []).filter((f) => !f.ok), reveal: report.reveal, screens: report.screens.length, axe: Object.fromEntries(Object.entries(report.axe).map(([k, v]) => [k, v.screens.length])), fonts: report.fonts, copy: report.copy.length, overflow: report.overflow.length, share: report.share.length, friend: report.friend, perf: report.perf, errors: report.errors.length, notes: report.notes.length }, null, 1));
+if (report.errors.length) console.log(report.errors.join("\n"));

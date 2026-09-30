@@ -141,7 +141,10 @@ for (let guard = 0; guard < 400; guard++) {
       await tiles.nth(0).click(); await tiles.nth(1).click(); await page.waitForTimeout(900);
     } else if (type === "receipts") {
       await art.locator("button[data-index]").first().click();
-      await art.locator(".pc-primary--tear").click();
+      // The type can be read off a receipts card that is already leaving; when the next card has no tear button,
+      // the loop looks again next turn instead of waiting 30 s for it.
+      const tear = art.locator(".pc-primary--tear");
+      if (await tear.count()) await tear.click({ timeout: 5000 }).catch(() => {});
     } else if (type === "rank") {
       const k = await art.locator(".pc-rank__tap").count();
       for (let i = 0; i < k; i++) await art.locator(".pc-rank__item:not(.is-placed) .pc-rank__tap").first().click();

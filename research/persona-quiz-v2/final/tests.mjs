@@ -281,6 +281,17 @@ test("never-say words: no player-facing copy in the kit, library or friend game"
   assert.deepEqual(hits, []);
 });
 
+test("\"your partner\", never \"your person\": no copy in the kit, library or friend game (LAUNCH-SPEC rule 25, 2026-09-30)", () => {
+  const RE = /\b(?:your|my|their|our) person\b|\}(?:'s)? person\b/i;
+  const hits = [];
+  const walk = (o, where) => {
+    if (typeof o === "string") { if (RE.test(o)) hits.push(`${where}: ${o}`); return; }
+    if (o && typeof o === "object") for (const [k, v] of Object.entries(o)) walk(v, `${where}.${k}`);
+  };
+  for (const f of ["cards.json", "library.json", "friend.json"]) walk(JSON.parse(fs.readFileSync(path.join(DIR, f), "utf8")), f);
+  assert.deepEqual(hits, []);
+});
+
 // ------------------------------------------------------------ no age (LAUNCH-SPEC section 22)
 test("no age logic: no card carries teen, teenPrompt or locked18; everyone gets the same pool", () => {
   for (const c of everyCard) {
@@ -1052,6 +1063,9 @@ test("check-bank: a clean bank passes; every rule catches its break", () => {
     ["sealed primary", (b) => { b.sealed[0].primary = "L3"; }, /no option carries its primary axis L3/],
     ["genie trope", (b) => { b.ch1[0].prompt = "A genie offers you three wishes."; }, /genie, lamp or wish-granting/],
     ["genie in a friend text", (b) => { b.ch1[0].friend = { prompt: "{name} rubs a lamp. What does {name} do?", a: { t: "Rubs it", axes: { R1: 2 } }, b: { t: "Leaves it", axes: { R1: -2 } } }; }, /friend text: genie, lamp/],
+    ["your person", (b) => { b.ch1[0].prompt = "Your person texts you a photo of the fridge."; }, /"your person" is retired/],
+    ["your person in a friend text", (b) => { b.ch1[0].friend = { prompt: "{name}'s person texts. What does {name} do?", a: { t: "Replies", axes: { R1: 2 } }, b: { t: "Waits", axes: { R1: -2 } } }; }, /friend text: "your person" is retired/],
+    ["your person as a thread sender", (b) => { const r = b.ch1.find((c) => c.type === "reply"); r.thread[0].from = "Your person"; }, /thread sender: "your person" is retired/],
     ["one answer opener", (b) => { b.ch1[0].options.forEach((o) => { o.t = `Keep ${o.t}`; }); }, /4 of 4 answers open with "keep"/],
     ["heart answers all open alike", (b) => { b.ch1[0].heart.options = b.ch1[0].heart.options.map((t) => `I say ${t}`); }, /every Heart to heart answer opens with "i"/],
     ["verdict answers", (b) => { b.ch1[0].options.forEach((o, i) => { o.t = `${["Nope.", "Sure.", "Fine.", "Deal."][i]} ${o.t}.`; }); }, /answers are "Verdict\. Reason\."/],

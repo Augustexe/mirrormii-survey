@@ -44,11 +44,12 @@ const EM_DASH = String.fromCharCode(0x2014);
 export const BANS = Object.freeze([
   { id: "what-would-you-do", re: /\bwhat would you do\b/i, why: "never ask \"what would you do\"" },
   { id: "open-private", re: /\b(open|check|scroll|go (in)?to|look (at|through)|pull up)\s+(up\s+)?(your|ur)\s+(\w+\s+)?(app|apps|bank|banking|account|messages|texts|dms|inbox|email|photos|camera roll|gallery|screen time|notes app|browser history|search history|wallet)\b/i, why: "never ask the player to open an app, account or private data" },
-  { id: "gendered", re: /\b(he|she|him|her|his|hers|himself|herself|boyfriend|girlfriend|bf|gf|husband|wife|hubby|wifey|guy|guys|girl|girls|boy|boys|man|woman|men|women|dude|bro|lady|ladies|gentleman|gentlemen|king|queen)\b/i, why: "gendered word (use \"your person\", \"they\")" },
+  { id: "gendered", re: /\b(he|she|him|her|his|hers|himself|herself|boyfriend|girlfriend|bf|gf|husband|wife|hubby|wifey|guy|guys|girl|girls|boy|boys|man|woman|men|women|dude|bro|lady|ladies|gentleman|gentlemen|king|queen)\b/i, why: "gendered word (use \"your partner\", \"they\")" },
   { id: "grading", re: /\b(kind(?!\s+of\b)|kindness|brave|bravery|healthy|unhealthy|responsible|irresponsible|mature|immature|selfish|selfless)\b/i, why: "grading word" },
   { id: "age", re: /\b(teen|teens|teenager|teenagers|adult|adults|minor|minors|under ?18|over ?18|18\+|21\+|years? old|your age|underage|grown-?up)\b/i, why: "age reference" },
   { id: "brand-never-say", re: /\b(streaks?|gacha|lottery|jackpot|predicts?|clinically|diagnose|treat(?:ment|ed|ing)?|cures?|prevent\w*|dna|genomic|anti-aging|skin age|free forever)\b/i, why: "brand never-say word (PRODUCT-TRUTH section 8: no streaks, no gacha or lottery words, never \"predicts\", no treat, cure or prevent)" },
   { id: "genie-trope", re: /\b(genies?|lamps?|fairy god\w*|wizards?|wishing wells?|wish-grant\w*|grant(?:s|ed|ing)? (?:a |one |your |three )?wish(?:es)?|(?:a|one|three|your|the) wish(?:es)?|wished for)\b/i, why: "genie, lamp or wish-granting trope (Genii is a slime, never a genie: LAUNCH-SPEC section 23 ruling 2)" },
+  { id: "your-person", re: /\b(?:your|my|their|our) person\b|(?:\}|\bx)(?:'s)? person\b/i, why: "\"your person\" is retired: say \"your partner\" (LAUNCH-SPEC rule 25, 2026-09-30)" },
   { id: "health", re: /\b(diet|dieting|calories|weight loss|lose weight|therapy|therapist|diagnos\w*|medication|meds|depress\w*|anxiety disorder|adhd|autis\w*)\b/i, why: "health or diagnosis content" },
 ]);
 // Family roles are gendered but often the true detail; flagged for a second look, never failed.
@@ -164,6 +165,8 @@ export function checkCards(cards, { lib, legacy = false, serveFeeling = SERVE_FE
     } else if (nones.length) err(id, "only receipts cards have a none option");
     if (type === "reply") {
       if (!Array.isArray(c.thread) || c.thread.length < 1 || c.thread.length > 3 || !c.thread.every((m) => m && m.from && m.text)) err(id, "reply needs a thread of 1 to 3 { from, text }");
+      // Senders are player-facing too (the name above each bubble).
+      for (const m of [...(c.thread || []), ...((c.heart && c.heart.thread) || [])]) for (const b of BANS) { const mb = m && typeof m.from === "string" && m.from.match(b.re); if (mb) err(id, `thread sender: ${b.why} ("${mb[0]}")`); }
     } else if (c.thread !== undefined) err(id, "only reply cards have a thread");
     if (type === "pick_two" && c.pick !== undefined && c.pick !== 2) err(id, "pick_two picks 2");
     if (type === "this_or_that" && !c.round) warn(id, "this_or_that without a round id");
