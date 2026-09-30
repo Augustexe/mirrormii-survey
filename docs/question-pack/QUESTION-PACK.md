@@ -34,7 +34,7 @@ flowchart LR
 - **Voices**: every card exists in Make it fun (top-level `prompt`, `options[].t`) and Heart to heart (`heart.prompt`, `heart.options`, same order and meaning). The lobby's "Just the cards" reads Make it fun.
 - **Privacy**: 7 `intimate` cards are skipped under "Keep it light". No age gating and no age content.
 - **Friend cards**: 117 cards carry a `friend` field (third person, sides a and b) for friend game Level 2. Receipts and rank cards never do.
-- **Rounds and follows**: cards sharing a `round` play back to back (quick rounds of up to 3); a `feeling` card plays right after the card in `follows`.
+- **Rounds and follows**: cards sharing a `round` play back to back (quick rounds of up to 3). `feeling` cards are not served in runs (`SERVE_FEELING` off in `score-core.mjs`, 2026-09-30); they stay in the pack, and with the switch on each plays right after the card in `follows`.
 
 ## Formats (13)
 

@@ -3,7 +3,7 @@ title: MirrorMii launch survey, the locked spec
 status: locked 2026-09-29 (Jerry, "First, lock your docs, tighten them up"); changes only by a dated ruling (section 0)
 owner: jerry
 created: 2026-09-28
-updated: 2026-09-29
+updated: 2026-09-30
 history: docs/history/LAUNCH-SPEC-2026-09-29-full.md (the 26-section spec this replaces, with every superseded ruling)
 ---
 
@@ -179,18 +179,22 @@ People half = R1 x R2 x R3 (8 archetypes); life half = L1 x L2 x L3 (8 archetype
 
 Absurd cards are capped at 0.35 (`ABSURD_WEIGHT_CAP`). Answers under 1.5 s count at 0.3.
 
-**Tags.** 50 tags in 25 opposite pairs across the 7 chapters (`library.json` `tags`). A tag fires with net support of at least 2.25 from at least 2 separate cards, one of them calm; "strong" at 3.0; if nothing fires, the best candidate above 1.25 shows. Up to 5 shown, spread over at least 3 chapters where possible, ranked strong first, then by coverage share.
+**Tags.** 50 tags in 25 opposite pairs across the 7 chapters (`library.json` `tags`). A tag fires with net support of at least 2.0 (2026-09-30; 2.25 before one card per sub-question) from at least 2 separate cards, one of them calm; "strong" at 3.0; if nothing fires, the best candidate above 1.25 shows. Up to 5 shown, spread over at least 3 chapters where possible, ranked strong first, then by coverage share.
 
-**Scorer settings** (`score-core.mjs` `CONFIG`, set by simulation): rushedMs 1500, rushedFactor 0.3, minAxisCards 2, flexBand 0.12, tagFire 2.25, tagStrong 3.0, tagFloor 1.25, tagMinCards 2, maxTags 5, minChapters 3, tagRank "share", receiptsCap 3, splitMin 0.4, sealedTagWeight 0.6, sealedPairScale 1.2, finaleSize 8.
+**Scorer settings** (`score-core.mjs` `CONFIG`, set by simulation): rushedMs 1500, rushedFactor 0.3, minAxisCards 2, flexBand 0.12, tagFire 2.0, tagStrong 3.0, tagFloor 1.25, tagMinCards 2, maxTags 5, minChapters 3, tagRank "share", receiptsCap 3, splitMin 0.4, sealedTagWeight 0.6, sealedPairScale 1.2, finaleSize 8.
 
 **Sealed guesses.** Before the finale Genii picks, for each of the 8 drawn sealed cards, the option that best fits the profile, or passes when the card's main axis is in the middle or unfinished. The 8 guesses are hashed and cannot change; a tampered save refuses to score. Sealed answers never feed the profile. Exact hits (chance about 25%) and right-side hits (chance 50%) are counted.
 
-**The picker** (`session.js`). Every player answers exactly 40 cards (`RUN_SIZE`) then the 8 sealed cards. Deterministic: the only randomness is seeded from the run id, and a restored save replays the same route. Pool: open chapters plus the 12 extras, after the depth filter, the C3-9 gate (shown only if the C3-8 picks include a T11A line) and feeling-card rules (a feeling card plays right after the card it follows). Chapters play in order, each opening with its first authored card. Per pick, in priority order:
+**The picker** (`session.js`). Every player answers exactly 40 cards (`RUN_SIZE`) then the 8 sealed cards. Deterministic: the only randomness is seeded from the run id, and a restored save replays the same route. Pool: open chapters plus the 12 extras, after the depth filter, the C3-9 gate (shown only if the C3-8 picks include a T11A line); feeling cards are never served (below). Chapters play in order, each opening with its first authored card. Per pick, in priority order:
 1. **Coverage:** every axis gets at least 2 valid cards; if a closed room carries an axis, other chapters and extras cover it.
 2. **Retention:** after an exit, the next card targets the same axis; after 3 rushed taps, the next card is a quick one.
 3. **Flow:** no two cards of the same type in a row (except this-or-that rounds); no two neighbors on the same axis or tag pair; receipts and bet cards spread out.
 4. **Value:** balance the axes and favor tag pairs the player leans on; each run focuses on 10 of the 25 tag pairs (seeded).
-5. One card per sub-question per run (M2, in progress).
+5. **One card per sub-question:** a run never serves two cards on one `sq`, the 8 sealed cards included (the sealed draw never repeats an sq either); the only exception is coverage, a second card (never a third, never right after its twin) when an axis could not otherwise reach 2 valid cards.
+
+**Feeling cards are off** (2026-09-30): the picker never serves them. They score nothing and every option already records its emotion. They stay in the bank untouched, with their `follows` links; the one switch is `SERVE_FEELING` in `score-core.mjs` (read as `CONFIG.serveFeeling`); set to true, each plays right after the picked card it follows.
+
+Measured 2026-09-30 (`node quiz64/tests/sq-measure.mjs --n 100`, 1,600 runs over 8 room sets x 2 depths): 22 runs (1.4%) serve one coverage repeat (2 cards on one sq), none serve 3, 0 back-to-back cards on one sq, 0 feeling cards, 5 sealed cards on a played sq. Before (commit f288cd5): every run repeated, 23.9 cards per run shared an sq, up to 6 on one sq, 1,911 back-to-back.
 
 **Coverage targets and where they stand** (2026-09-29, `node audit.mjs` in `research/persona-quiz-v2/final`):
 
@@ -198,11 +202,11 @@ Absurd cards are capped at 0.35 (`ABSURD_WEIGHT_CAP`). Answers under 1.5 s count
 |---|---|
 | Every axis on 15+ pool cards, 6+ in the always-on chapters | Met: 17 to 22 cards, 7 to 13 always-on |
 | Every tag on 4+ cards, 1+ of them "did" | 38 of 50 met; every tag has did evidence. Short: T01A/B, T03A/B, T15A/B (3 cards), T06B, T14B (3), T02A/B (2, concept cap), T11A/B (2, kids cards) |
-| Random clickers 45 to 55% on every axis | Met: 45.9 to 54.3% on the full walk; 48.0 to 53.1% at 40 cards |
+| Random clickers 45 to 55% on every axis | Met: 45.9 to 54.3% on the full walk; 49.6 to 54.8% at 40 cards (2026-09-30) |
 
-**Simulation** (2026-09-29):
-- Full walk (`node sim.mjs`, `SIM-REPORT.md`, 640 consistent players): axis recovery 94.9%, 100% get 3 to 5 tags, 0 get none, shown tags match the hidden profile 86.4%, sealed exact 67.6% (random clickers 25.5%, chance), all 50 tags reachable.
-- Web picker at 40 cards (`node quiz64/tests/persona-sim.mjs --acceptance`, 2,000 consistent players, every room open): sealed exact 64.2%, 0% with no tags, mean 4.30 tags shown, T12B fires for 0.4% (the one tag under 1%). With a room closed, that room's tags stay silent, as designed.
+**Simulation**:
+- Full walk (`node sim.mjs`, `SIM-REPORT.md`, 640 consistent players, 2026-09-29; `node sim.mjs --quick` gives the same at tagFire 2.0 on 2026-09-30): axis recovery 94.9%, 100% get 3 to 5 tags, 0 get none, shown tags match the hidden profile 86.4%, sealed exact 67.5% (random clickers 25.5%, chance), all 50 tags reachable.
+- Web picker at 40 cards (`node quiz64/tests/persona-sim.mjs --acceptance`, 2,000 consistent players, every room open, 2026-09-30, one card per sub-question, tagFire 2.0): sealed exact 63.9%, 0% with no tags, mean 4.05 tags shown; random clickers 49.6 to 54.8%. Under 1%: T05A/B never fire (the chapter 2 opener C2-160 always takes SQ-T05-1, so at most one more T05 card, the receipts card, can follow) and T21A/B at 0.2 to 0.4%. At tagFire 2.25 the mean falls to 3.63 and T22A/B never fire too, hence 2.0. With a room closed, that room's tags stay silent, as designed.
 
 **Evidence lock.** `evidence-lock.json` holds a SHA-256 of every normalized card text (both voices, threads, friend sides) next to the evidence it carries; the kit tests fail while any text or evidence differs from its entry. After re-reading a changed card, `node lock-evidence.mjs --confirm <cardId>` re-locks it (no flag lists what changed). Library renames never reach it.
 
@@ -223,7 +227,7 @@ Absurd cards are capped at 0.35 (`ABSURD_WEIGHT_CAP`). Answers under 1.5 s count
 | Pick two | 2 of 6 short lines most like them | believe | 4 |
 | Rank it | Orders 4 items | believe | 3 |
 | Friend's-eye view | The line their best friend would use about them | believe | 4 |
-| Feeling | Right after a card: the first feeling | emotion | 7 |
+| Feeling | Right after a card: the first feeling (not served in runs, section 4) | emotion | 7 |
 | Sealed | A new moment for Genii's locked guess | never scored | 24 |
 
 **Card template.** Hook (one concrete scene-setter, 15 words or fewer, one true detail) then Event (what just happened that forces a response) then Ask (the format's stem, usually implied) then Moves (3 or 4 distinct actions, first person, action first, 12 words or fewer, equally charming, no ladders). Prompt under about 30 words.
@@ -236,7 +240,7 @@ Absurd cards are capped at 0.35 (`ABSURD_WEIGHT_CAP`). Answers under 1.5 s count
 
 **Change flow.** Edit `bank/*.json` (never `cards.json`), then `node merge-bank.mjs`, `node check-bank.mjs --kit`, `node shape-audit.mjs --limits`, re-lock changed cards, `node --test tests.mjs`, then `npm test --prefix quiz64` (the kit parity test proves the stripped kit scores the same). Record concept or evidence moves in a bank log (latest: `bank/ROUND4-LOG.md`).
 
-**Checker** (`check-bank.mjs`): schema and format rules, `sq` and `world` present and valid, everyday only on did formats, unique fingerprints, no repeated answer lines, shape limits (opening words, "Verdict. Reason." share, prompt openers and closers, clock-time hooks, crutch words), genie words in both voices and friend texts, bans. Last run: 174 of 174 cards, 0 errors, 6 warnings (this-or-that cards without a round id).
+**Checker** (`check-bank.mjs`): schema and format rules, `sq` and `world` present and valid, everyday only on did formats, unique fingerprints, no repeated answer lines, shape limits (opening words, "Verdict. Reason." share, prompt openers and closers, clock-time hooks, crutch words), genie words in both voices and friend texts, bans, scene links (a shared `fp.device`, a fingerprint that points at a card, a prompt that replays another card: errors, only warnings on feeling cards while they are not served). Last run (2026-09-30): 174 of 174 cards, 0 errors, 20 warnings (6 this-or-that cards without a round id, 13 scene links on the unserved feeling cards, 1 soft prompt overlap C7-134 and C7-161).
 
 ## 6. Result copy and names
 
@@ -323,18 +327,18 @@ Also `quiz64/public/assets/mirrormii-wordmark.svg` (used as is) and `genii-opal-
 
 ## 8. Quality gates
 
-Commands run from `products/survey/` unless noted. "Last" is the latest verified result with its date or source; the 2026-09-29 numbers in sections 4, 5 and 8 were measured on the bank and picker at commit 556cf94, before package M2 (one card per sub-question) landed.
+Commands run from `products/survey/` unless noted. "Last" is the latest verified result with its date or source; the 2026-09-29 numbers in sections 4, 5 and 8 were measured at commit 556cf94; the 2026-09-30 numbers on the same bank with one card per sub-question and feeling cards off (package P0).
 
 | Gate | Command | Pass bar | Last |
 |---|---|---|---|
-| App tests | `npm test --prefix quiz64` | all pass | 151 of 151 at 556cf94, plus the 2 docs-check tests (153 in all) |
-| Kit tests | `node --test tests.mjs` in `research/persona-quiz-v2/final` | all pass | 45 of 45 (2026-09-29) |
-| Bank checker | `node check-bank.mjs --kit` (same folder) | 0 errors | 174 cards, 0 errors, 6 warnings (2026-09-29) |
+| App tests | `npm test --prefix quiz64` | all pass | 155 of 156 (2026-09-30). The one failure: `article-accuracy` never-say, the frozen `library.json` room line for L1 in Spending and saving ("Treats come after...", both voices) now reaches the golden Heart to heart player; see section 10 |
+| Kit tests | `node --test tests.mjs` in `research/persona-quiz-v2/final` | all pass | 45 of 45 (2026-09-30) |
+| Bank checker | `node check-bank.mjs --kit` (same folder) | 0 errors | 174 cards, 0 errors, 20 warnings (2026-09-30) |
 | Shape audit | `node shape-audit.mjs --limits` (same folder) | passes | enforced inside check-bank |
 | Evidence audit | `node audit.mjs` (same folder) | section 4 targets | axes met, 12 tags short (2026-09-29) |
 | Evidence lock | `node lock-evidence.mjs` (same folder) | nothing changed unconfirmed | enforced by the kit tests |
 | Kit simulation | `node sim.mjs` (same folder) | SIM-REPORT targets | all pass except random strong tags on the full walk (reported only) |
-| Picker simulation | `node quiz64/tests/persona-sim.mjs --acceptance` | no player with 0 tags; random clickers 45 to 55% | 0%, 48.0 to 53.1%, sealed exact 64.2% (2026-09-29) |
+| Picker simulation | `node quiz64/tests/persona-sim.mjs --acceptance` | no player with 0 tags; random clickers 45 to 55% | 0%, 49.6 to 54.8%, sealed exact 63.9%, T05A/B never fire (2026-09-30) |
 | Contracts | `node scripts/validate-contracts.mjs` (also in `npm test`) | all checks pass | pass (2026-09-29) |
 | Docs | `node scripts/check-docs.mjs` (also in `npm test`) | no retired labels here, no em dash in `docs/` | pass (2026-09-29) |
 | Retired labels, title cards | `quiz64/tests/naming-retired.test.mjs` (in `npm test`) | pass | pass |
@@ -378,9 +382,13 @@ Only real open decisions. The build ships the default until Jerry rules.
 | 9 | Push and the Pages workflow | Local only | The Pages workflow still deploys the older dossier branch; shipping means pointing it at `survey/launch` or merging, on Jerry's go |
 | 10 | Lone Wolf | Kept (approved, exempt) | The panel reads it as antisocial (hurt over the line); keep or rename |
 | 11 | Virality pass on the mirror text | Not started | The words on the names mirror and the share image; proposed, scope to set |
+| 12 | "Treats" in the Spending and saving line | As written (fails the never-say test) | `library.json` room 4 L1 plus line says "treats" in both voices; the article test bans the word. A rewording ("fun money") waits for Jerry's text review |
+| 13 | T05 under one card per sub-question | T05A/B never fire in runs | Its cards sit on 2 sub-questions and the chapter 2 opener C2-160 takes one. Choose: a third T05 sub-question card, re-tag a card, or accept |
+| 14 | Feeling cards | Off (`SERVE_FEELING`) | Standalone rewrites of the 7 were drafted, not applied (text frozen); turn back on only with reviewed text |
 
 ## 11. Changes
 
+- 2026-09-30: Package P0 (engine only, no player text changed). One card per sub-question per run, sealed draw included, with the coverage exception; feeling cards off (`SERVE_FEELING` in `score-core.mjs`); tagFire 2.25 to 2.0; the checker's scene-link rule; chapters close early only with 2 spare later cards, and a fill step keeps every run at 40.
 - 2026-09-29: Locked. Rewritten from the 26-section spec into this one (every rule once, final form); the old file moved to `docs/history/LAUNCH-SPEC-2026-09-29-full.md`; `scripts/check-docs.mjs` added to `npm test`. Superseded content removed here: the round 2 map stat labels (Orbit, Delivery, Blueprint, Compass, Engine, Code), the first life names (The Slow Burner, Creature of Habit, The Easygoer, The Wanderer), "With your people" and "With your life", "Do you really know me?", round 3's library assets on product screens (`quiz64/public/assets/world/`), the gothic arch and stained glass mirror, Genii as light only, the 9-screen deck, the ending-style lobby tap, the age question and teen prompts, the facet gem.
 - 2026-09-29: Plain names (history section 26): naming rules, cold-reader gate and panel; new life names, kickers, stats, level words, badges, calls, rooms, keywords and tag names; every title card shows kicker, name and defining line.
 - 2026-09-29: Round 4 (history section 25): canon GDD world and oval World Mirror; Evidence Article (C with A's type); Desmond's handoff, contracts and question pack.
