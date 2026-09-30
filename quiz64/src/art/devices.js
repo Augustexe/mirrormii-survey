@@ -173,7 +173,7 @@ export function deviceFor(card) {
   const world = card.world;
   if (world === "everyday") return null;
   if (world === "unusual") return chapterDeviceId(card);
-  const device = card.fp?.device;
+  const device = card.fp?.device ?? card.device;
   // Legacy cards with no world and no device: only a clear keyword earns a glyph.
   if (!world && !device) {
     const family = keywordFamily(card.prompt);

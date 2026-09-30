@@ -387,6 +387,18 @@ Coverage: every axis carried by at least 15 scored cards, at least 6 of them in 
 5. **The reveal gets ten times the content and craft:** more screens and more to read, higher-quality 3D-feeling assets, and "what Genii knows best" shows 5 to 6 findings instead of one. Every displayed claim must trace to the score (no line shown without the evidence behind it).
 6. **Accuracy of display:** a test proves that each reveal line comes from the player's actual scores and tags.
 
+
+**Map stat labels (Jerry, 2026-09-29 evening):** the map keeps its graph but players never see internal pole names. Each axis shows as a game stat:
+
+| Axis | Stat | Ends |
+|---|---|---|
+| R1 We/Me | Orbit | Crew / Solo |
+| R2 Direct/Soft | Delivery | Blunt / Gentle |
+| R3 Classic/Own | Blueprint | Old School / Own Lane |
+| L1 Steady/Venture | Compass | Home Base / Wanderlust |
+| L2 Push/Easy | Engine | Full Send / Cruise Control |
+| L3 Rules/Context | Code | By the Book / Read the Room |
+
 **Packages (Opus crew, disjoint files, one repo, commit own paths only):**
 
 | Package | Owns |
@@ -399,6 +411,7 @@ Coverage: every axis carried by at least 15 scored cards, at least 6 of them in 
 
 ## Changes
 
+- 2026-09-29: Section 23: map stat labels (Orbit, Delivery, Blueprint, Compass, Engine, Code) replace internal pole names on player surfaces.
 - 2026-09-29: Round 2 closed (G5): section 21 final screen order is the 12-screen deck; section 17 status adds round 2 with the gate numbers.
 - 2026-09-29: Section 23 added: round 2 rulings (Genii evolves from the orb, no lamps, motion finish, card variety, reveal x10, display accuracy) and packages G1 to G5.
 - 2026-09-29: Section 17 status updated after the overnight build: full 174-card bank, Codex judge rounds, visual rebuild.

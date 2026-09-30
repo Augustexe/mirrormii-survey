@@ -21,6 +21,9 @@ export function stripAuthoring(value) {
     const title = sceneTitle(value.fp);
     if (title) out.title = title;
   }
+  // The device is a scene prop (e.g. "carrier-owl-offer"), not what the card measures: keep it so the card art
+  // resolves from DEVICE_TABLE instead of falling back to keywords.
+  if (value.fp?.device && typeof value.id === "string" && typeof out.device !== "string") out.device = value.fp.device;
   return out;
 }
 
