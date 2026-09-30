@@ -124,12 +124,13 @@ export function MirrorArch({ seed, filled = [], fog = 0, glow = 0.6, mullion = f
             const isFresh = fresh > 0 && i >= filled.length - fresh;
             return (
               <path key={cell.index} data-index={cell.index} data-fresh={isFresh ? "true" : undefined} style={isFresh ? { "--fresh-i": i - (filled.length - fresh) } : undefined}
-                d={cell.path} fill={u("shard")} stroke={u("edge")} strokeWidth="0.7" strokeOpacity={shard.skipped ? 0.45 : 0.95} strokeLinejoin="round" />
+                d={cell.path} fill={u("shard")} stroke={u("edge")} strokeWidth="0.55" strokeOpacity={shard.skipped ? 0.3 : 0.55} strokeLinejoin="round" />
             );
           })}
         </g>
         {seams === "dark" ? <path d={lines} fill="none" stroke={v("c-violet-text")} strokeOpacity="0.28" strokeWidth="0.7" strokeLinejoin="round" /> : null}
-        <path d={lines} fill="none" stroke={white} strokeOpacity={filled.length ? 0.55 : 0.4} strokeWidth="0.35" strokeLinejoin="round" />
+        {/* Hairline seams: clear where the mirror is whole again, a touch stronger over the frost still to rebuild. */}
+        <path d={lines} fill="none" stroke={white} strokeOpacity={filled.length >= count ? 0.18 : 0.4} strokeWidth="0.3" strokeLinejoin="round" />
         <path data-part="sweep" d="M8,-4 L30,-4 L-4,210 L-26,210 Z" fill={u("sweep")} opacity="0.5" />
         <g data-part="fog" opacity={f}>
           <rect x="0" y="0" width={W} height={H} fill={u("fog")} />

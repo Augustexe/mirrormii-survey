@@ -342,6 +342,11 @@
       grid-column: 7 / span 6;
       padding-block: var(--s-7) 0;
     }
+    /* Desktop: the island stays on the mirror's side of the page, clear of the copy. */
+    .mm-landing .mm-fogmirror__island {
+      -webkit-mask-image: radial-gradient(30% 22% at 49.2% 47%, black 50%, transparent 100%), linear-gradient(to bottom, transparent 27%, black 36%);
+      mask-image: radial-gradient(30% 22% at 49.2% 47%, black 50%, transparent 100%), linear-gradient(to bottom, transparent 27%, black 36%);
+    }
     .mm-landing__title {
       margin-block-start: var(--s-4);
     }

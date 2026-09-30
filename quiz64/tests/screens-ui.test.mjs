@@ -58,9 +58,10 @@ test("landing: hook, reflection line, one primary action, the fogged mirror, chi
   // Round 4 (LAUNCH-SPEC 25): the landing's only rasters are the canon island renders: the World Mirror's frame, the
   // room inside its glass and Genii's island behind it. Nothing from the landing page or the asset library.
   const imgs = [...html.matchAll(/<img[^>]*\ssrc="([^"]+)"/g)].map((m) => m[1]);
-  assert.deepEqual(imgs.map((src) => src.replace(/^.*\/assets\/island\/([a-z-]+)-\d+\.webp$/, "$1")).sort(), ["hero-portrait", "mirror-frame", "mirror-inside"], "only the canon island renders");
+  // The island joins after the page load event, so the first render carries only the mirror's two small pictures.
+  assert.deepEqual(imgs.map((src) => src.replace(/^.*\/assets\/island\/([a-z-]+)-\d+\.webp$/, "$1")).sort(), ["mirror-frame", "mirror-inside"], "only the canon mirror renders");
   assert.match(html, /class="mm-fogmirror__photo"[^>]*fetchpriority="high"/, "the room in the glass loads first");
-  assert.match(html, /class="mm-fogmirror__island"[^>]*fetchpriority="low"/, "the island loads last");
+  assert.match(fs.readFileSync(new URL("../src/persona/screens/FogMirror.jsx", import.meta.url), "utf8"), /mm-fogmirror__island[\s\S]*hero-?|ISLAND\.hero/, "Genii's island stands behind the mirror");
   assert.ok(visible(render(PersonaLanding, { progress: "run", onBegin() {}, onHow() {} })).includes("Pick up where I left off"));
   assert.ok(visible(render(PersonaLanding, { progress: "result", onBegin() {}, onHow() {} })).includes("See my result"));
   assert.doesNotMatch(text, INTERNAL);

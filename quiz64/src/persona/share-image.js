@@ -523,9 +523,9 @@ export function drawHeroMirror(ctx, { x, y, w, mirror, p, layout = null, fog = 0
       ctx.fillStyle = g;
       ctx.fill(d);
     }
-    ctx.globalAlpha = shard.skipped ? 0.45 : 0.9;
+    ctx.globalAlpha = shard.skipped ? 0.2 : 0.42;
     ctx.strokeStyle = edge;
-    ctx.lineWidth = 0.55;
+    ctx.lineWidth = 0.45;
     ctx.stroke(d);
     ctx.globalAlpha = 1;
   }
@@ -713,7 +713,7 @@ export function drawShareCard(ctx, card, { format = "story", theme = "night", li
   const ay = 196;
   aura(ctx, W / 2, ay + aw, aw * 1.4, p);
   const { foot } = drawNamedMirror(ctx, { x: (W - aw) / 2, y: ay, w: aw, names, mirror: card.mirror, p });
-  drawGenii(ctx, W / 2 + aw * 0.96, foot + 6, 176);
+  drawGenii(ctx, W - 176 - 44, foot + 8, 176);
   drawPillRows(ctx, { items, y: foot + 34, W, p, size: 46, maxW: W - 140, maxRows: 2 });
   font(ctx, "display", 420, 58, true);
   lines(ctx, [card.invite || ""], W / 2, 1800, { lh: 0, align: "center", color: p.accent });

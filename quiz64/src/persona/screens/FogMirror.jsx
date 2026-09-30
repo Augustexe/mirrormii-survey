@@ -90,12 +90,19 @@ export function FogMirror({ seed = "mirrormii", className = "" }) {
   const photo = useRef(null);
   const frameImg = useRef(null);
   const islandImg = useRef(null);
+  // The island is the heaviest picture on the page: it is only requested once the page has loaded, so the mirror (and
+  // the game chunk) never wait for it.
+  const [wantIsland, setWantIsland] = useState(false);
   useEffect(() => {
     const ok = (r) => Boolean(r.current && r.current.complete && r.current.naturalWidth);
     if (ok(photo)) setWorld(true);
     if (ok(frameImg)) setFramed(true);
-    if (ok(islandImg)) setIsland(true);
+    if (typeof document === "undefined" || document.readyState === "complete") { setWantIsland(true); return undefined; }
+    const go = () => setWantIsland(true);
+    window.addEventListener("load", go, { once: true });
+    return () => window.removeEventListener("load", go);
   }, []);
+  useEffect(() => { if (wantIsland && islandImg.current && islandImg.current.complete && islandImg.current.naturalWidth) setIsland(true); }, [wantIsland]);
   const cells = useMemo(() => geometry.mosaic(seed, 40, { w: W, h: H }).cells, [seed]);
   const motionOff = () => Boolean(reducedOS) || (typeof document !== "undefined" && document.body.dataset.motion === "off");
 
@@ -231,8 +238,10 @@ export function FogMirror({ seed = "mirrormii", className = "" }) {
   return (
     <div className={`mm-fogmirror${peek ? " is-peek" : ""}${className ? ` ${className}` : ""}`} aria-hidden="true">
       <div className="mm-fogmirror__glow" />
-      <img ref={islandImg} className="mm-fogmirror__island" data-loaded={island ? "true" : "false"} src={ISLAND.hero.src} srcSet={ISLAND.hero.srcSet}
-        sizes="(min-width: 1024px) 1120px, 800px" alt="" decoding="async" fetchpriority="low" onLoad={() => setIsland(true)} />
+      {wantIsland ? (
+        <img ref={islandImg} className="mm-fogmirror__island" data-loaded={island ? "true" : "false"} src={ISLAND.hero.src} srcSet={ISLAND.hero.srcSet}
+          sizes="(min-width: 1024px) 1250px, 340px" alt="" decoding="async" fetchpriority="low" onLoad={() => setIsland(true)} />
+      ) : null}
       <div className="mm-fogmirror__object">
         <svg className="mm-fogmirror__framecode" viewBox={`${F.x} ${F.y} ${F.w} ${F.h}`} preserveAspectRatio="none" focusable="false" data-hidden={framed ? "true" : "false"}>
           <OpalFrame rid={rid2} />
@@ -302,7 +311,7 @@ export function FogMirror({ seed = "mirrormii", className = "" }) {
           <span className="mm-fogmirror__sheen" />
         </div>
         <img ref={frameImg} className="mm-fogmirror__frame" data-loaded={framed ? "true" : "false"} src={ISLAND.frame.src} srcSet={ISLAND.frame.srcSet}
-          sizes="(min-width: 1024px) 420px, 250px" alt="" decoding="async" fetchpriority="high" onLoad={() => setFramed(true)} />
+          sizes="(min-width: 1024px) 380px, 210px" alt="" decoding="async" fetchpriority="high" onLoad={() => setFramed(true)} />
       </div>
     </div>
   );
