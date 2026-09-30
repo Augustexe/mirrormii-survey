@@ -1,0 +1,784 @@
+{
+  "note": "Codex judge round 5 (package H3, bank legibility, 2026-09-29). One judge pass on the 26 cards changed in the legibility pass plus 30 unchanged cards drawn at random (seeded). Rubric (RULES.md in the judge folder): legibility, spice, uniqueness and language 1 to 5 per card, verdict strong, ok or fix, per-card flags. Codex read both voices. Flags were then fixed once (resolution below); evidence was unchanged by every fix. Log: ROUND4-LOG.md, section Round 5 legibility.",
+  "command": "system/bin/codex exec --skip-git-repo-check --ephemeral -s read-only -C <judge dir> -o out-r5.json <prompt> < /dev/null",
+  "sample": {
+    "changed": [
+      "C1-160",
+      "C1-123",
+      "C1-161",
+      "C1-1",
+      "C2-100",
+      "C2-124",
+      "C2-126",
+      "C3-101",
+      "C3-81",
+      "C3-120",
+      "C3-140",
+      "C3-145",
+      "C4-123",
+      "C4-124",
+      "C4-53",
+      "C5-141",
+      "C5-51",
+      "C5-160",
+      "C5-126",
+      "C6-140",
+      "C6-91",
+      "C6-110",
+      "C6-122",
+      "C6-162",
+      "X-R2-30",
+      "X-R3-50"
+    ],
+    "unchanged": [
+      "C6-121",
+      "C3-91",
+      "S-111",
+      "C3-163",
+      "X-L2-30",
+      "C2-141",
+      "C5-120",
+      "C4-144",
+      "C4-161",
+      "C2-132",
+      "C2-50",
+      "C7-112",
+      "C3-161",
+      "C7-120",
+      "C2-122",
+      "C1-126",
+      "C2-121",
+      "C5-125",
+      "C4-143",
+      "C1-146",
+      "C1-144",
+      "S-142",
+      "C5-140",
+      "X-R3-30",
+      "C1-124",
+      "S-140",
+      "C1-90",
+      "C6-144",
+      "S-122",
+      "S-123"
+    ]
+  },
+  "scores": {
+    "codex_overall": {
+      "legibility": 4,
+      "spice": 3,
+      "uniqueness": 4,
+      "language": 4
+    },
+    "mean_all": {
+      "legibility": 4.11,
+      "spice": 3.55,
+      "uniqueness": 3.46,
+      "language": 3.93
+    },
+    "mean_changed": {
+      "legibility": 4.12,
+      "spice": 3.54,
+      "uniqueness": 3.85,
+      "language": 3.77
+    },
+    "mean_unchanged": {
+      "legibility": 4.1,
+      "spice": 3.57,
+      "uniqueness": 3.13,
+      "language": 4.07
+    }
+  },
+  "verdicts": {
+    "all": {
+      "fix": 32,
+      "ok": 15,
+      "strong": 9
+    },
+    "changed": {
+      "fix": 17,
+      "ok": 6,
+      "strong": 3
+    },
+    "unchanged": {
+      "fix": 15,
+      "ok": 9,
+      "strong": 6
+    }
+  },
+  "cards": [
+    {
+      "id": "C1-160",
+      "legibility": 4,
+      "spice": 2,
+      "uniqueness": 2,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"Stood there alone\" and \"Waited, felt every stare\" describe overlapping choices. Make the first explicitly about believing the rule matters and the second about feeling unable to cross.",
+        "\"The light can catch up\" is a scripted punchline. Replace with \"If nobody's coming, I cross.\""
+      ]
+    },
+    {
+      "id": "C1-123",
+      "legibility": 5,
+      "spice": 4,
+      "uniqueness": 4,
+      "language": 4,
+      "verdict": "ok",
+      "flags": [
+        "\"Seventh feels comfortable. Nobody expects much from seventh\" lacks the required first-person framing. Use \"I feel comfortable in seventh. Nobody expects much from me.\""
+      ]
+    },
+    {
+      "id": "C1-161",
+      "legibility": 4,
+      "spice": 3,
+      "uniqueness": 4,
+      "language": 3,
+      "verdict": "fix",
+      "flags": [
+        "\"Better to hear it at home than after\" misses the actual tension: the date already heard. Use \"I'd keep it. I want the truth, even with company.\"",
+        "\"In front of their date? That needed to be softer\" is neither a full first-person answer nor especially natural. Use \"I would want it to say that more gently.\""
+      ]
+    },
+    {
+      "id": "C1-1",
+      "legibility": 4,
+      "spice": 4,
+      "uniqueness": 3,
+      "language": 3,
+      "verdict": "fix",
+      "flags": [
+        "\"Giver: my voucher\" assumes the player already received a scarce voucher. Establish that in the prompt.",
+        "\"Line keeper\", \"Name drawer\", and \"Sweet-talker\" are role labels rather than first-person answers. Rewrite as parallel actions such as \"I keep the queue in order. First twelve get rooms.\"",
+        "\"Obviously\" makes one choice sound endorsed. Delete it."
+      ]
+    },
+    {
+      "id": "C2-100",
+      "legibility": 5,
+      "spice": 5,
+      "uniqueness": 5,
+      "language": 4,
+      "verdict": "strong",
+      "flags": []
+    },
+    {
+      "id": "C2-124",
+      "legibility": 5,
+      "spice": 3,
+      "uniqueness": 3,
+      "language": 4,
+      "verdict": "ok",
+      "flags": [
+        "\"Eloping was the right call\" introduces grading in heart. Use \"I would choose that too. Big weddings do not appeal to me.\""
+      ]
+    },
+    {
+      "id": "C2-126",
+      "legibility": 4,
+      "spice": 3,
+      "uniqueness": 3,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"Opens somewhere random\" leaves return and safety unclear, so the choice may measure fear of being stranded rather than spontaneity. Specify that the door opens onto a safe place and allows a return.",
+        "\"My weekend stays\" sounds unnatural. Use \"I keep my weekend plans and ask for a postcard.\""
+      ]
+    },
+    {
+      "id": "C3-101",
+      "legibility": 5,
+      "spice": 5,
+      "uniqueness": 4,
+      "language": 4,
+      "verdict": "ok",
+      "flags": [
+        "\"Both my loves in one room. Please save me a seat\" uses a fragment in heart. Use \"I love having you both together. Please save me a seat.\""
+      ]
+    },
+    {
+      "id": "C3-81",
+      "legibility": 3,
+      "spice": 3,
+      "uniqueness": 2,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"I never said any of it\", \"The argument keeps coming back\", and \"it no longer mattered\" overlap. Distinguish unresolved silence, ongoing rehearsal, and genuinely letting it go."
+      ]
+    },
+    {
+      "id": "C3-120",
+      "legibility": 3,
+      "spice": 5,
+      "uniqueness": 4,
+      "language": 3,
+      "verdict": "fix",
+      "flags": [
+        "\"They get the real talk\" and \"one long, honest dinner\" can describe the same choice. Make one a definite breakup and the other an attempt to repair things.",
+        "\"Yours is fading\" follows a description of a person in heart, leaving the referent unclear. Use \"Your relationship is fading.\"",
+        "\"Buy two: one for them, one for me\" assumes the machine can erase the buyer's memories too. Establish that capability in the prompt."
+      ]
+    },
+    {
+      "id": "C3-140",
+      "legibility": 5,
+      "spice": 4,
+      "uniqueness": 5,
+      "language": 5,
+      "verdict": "strong",
+      "flags": []
+    },
+    {
+      "id": "C3-145",
+      "legibility": 4,
+      "spice": 2,
+      "uniqueness": 3,
+      "language": 3,
+      "verdict": "fix",
+      "flags": [
+        "\"You're the...\" does not grammatically lead into \"Joined another couple's card game\" or \"Running couples' charades\". Ask \"How did you spend the weekend?\" and use parallel first-person actions.",
+        "\"Did the dishes as a duet\" sounds written for a punchline. Use \"We even washed the dishes together.\""
+      ]
+    },
+    {
+      "id": "C4-123",
+      "legibility": 2,
+      "spice": 2,
+      "uniqueness": 5,
+      "language": 3,
+      "verdict": "fix",
+      "flags": [
+        "\"Asks to take everything\" allows \"No deal\" without any cost, making refusal an escape hatch. Establish an unavoidable loss or a meaningful benefit for agreeing.",
+        "\"One thing\" conflicts with \"wearing everything I can fit on\" unless worn possessions are exempt. Clarify the rule or replace that option.",
+        "\"Starting over with one thing sounds light. Take it all\" is awkward and internally inconsistent. Use \"I keep one bag. I want a fresh start.\""
+      ]
+    },
+    {
+      "id": "C4-124",
+      "legibility": 4,
+      "spice": 4,
+      "uniqueness": 4,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"Same home, same rent\" and \"Pay half, and never mention the gold\" overlap unless the latter admits resentment. Use \"I pay half, but privately resent it.\"",
+        "\"It is fair\" grades the choice in heart. Use \"I want us to pay the same for the same home.\""
+      ]
+    },
+    {
+      "id": "C4-53",
+      "legibility": 4,
+      "spice": 4,
+      "uniqueness": 3,
+      "language": 3,
+      "verdict": "fix",
+      "flags": [
+        "\"Mine's mine, theirs is theirs. No script\" obscures the payment choice. Use \"I ask them to split it. We each pay $320.\""
+      ]
+    },
+    {
+      "id": "C5-141",
+      "legibility": 3,
+      "spice": 3,
+      "uniqueness": 5,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"Monday's rain plus my apology\" offers an apparent solution for everyone because the farmer's deadline is unspecified. State why rain must come Saturday and remove the easy rescheduling option.",
+        "\"The festival booked first\" and \"Rain. The crops matter more\" lack first-person framing. Use \"I honor the festival's booking\" and \"I choose rain. The crops matter more to me.\""
+      ]
+    },
+    {
+      "id": "C5-51",
+      "legibility": 5,
+      "spice": 4,
+      "uniqueness": 4,
+      "language": 4,
+      "verdict": "ok",
+      "flags": [
+        "\"No apologies\" is a fragment in heart. Use \"I feed it first. I want the job enough to race.\""
+      ]
+    },
+    {
+      "id": "C5-160",
+      "legibility": 4,
+      "spice": 3,
+      "uniqueness": 4,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"They will\" throughout both sets violates the first-person answer rule. Ask which description the player recognizes and use answers such as \"I want a progress chart from the first week.\"",
+        "\"Love the learning\" and \"lose count, and they will be happy\" both describe contented patience. Give the last option a distinct motive, such as devotion to the eventual perfume."
+      ]
+    },
+    {
+      "id": "C5-126",
+      "legibility": 5,
+      "spice": 4,
+      "uniqueness": 5,
+      "language": 4,
+      "verdict": "ok",
+      "flags": [
+        "\"Great. Is Gary covering their half of rent?\" sounds like a sitcom comeback. Use \"I'm worried I'll end up covering their rent.\""
+      ]
+    },
+    {
+      "id": "C6-140",
+      "legibility": 5,
+      "spice": 4,
+      "uniqueness": 5,
+      "language": 5,
+      "verdict": "strong",
+      "flags": []
+    },
+    {
+      "id": "C6-91",
+      "legibility": 3,
+      "spice": 4,
+      "uniqueness": 3,
+      "language": 3,
+      "verdict": "fix",
+      "flags": [
+        "\"They asked for honest\" and \"The truth belongs in toasts too\" offer nearly identical approval. Distinguish reluctant acceptance from actively supporting the warning.",
+        "\"Good\" grades the response in heart. Replace with \"I want concerns said aloud, even during a toast.\"",
+        "\"They asked for honesty, and they got it\" lacks first-person framing. Use \"I accept it because they asked for honesty.\""
+      ]
+    },
+    {
+      "id": "C6-110",
+      "legibility": 4,
+      "spice": 4,
+      "uniqueness": 5,
+      "language": 4,
+      "verdict": "ok",
+      "flags": [
+        "\"Your sibling's mailbox does the same\" leaves unclear why every item reaches yours. Specify that items appear in whichever sibling's mailbox the family contacts.",
+        "\"Their mailbox needs practice\" is a sitcom-style punchline. Use \"I forward half to my sibling. We can share the work.\""
+      ]
+    },
+    {
+      "id": "C6-122",
+      "legibility": 4,
+      "spice": 4,
+      "uniqueness": 5,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"Turn it to face the wall\" and \"Hang it in the guest bathroom\" both preserve the move while relocating the disapproval. Make one explicitly hide the conflict and the other openly accept it.",
+        "\"Wait for a smile\" leaves unclear whether the move waits too. Use \"I delay the move until my family approves.\""
+      ]
+    },
+    {
+      "id": "C6-162",
+      "legibility": 3,
+      "spice": 2,
+      "uniqueness": 2,
+      "language": 3,
+      "verdict": "fix",
+      "flags": [
+        "\"The last time that happened\" demands a very specific memory, and \"I won fairly\" forces a particular outcome. Make this hypothetical and offer \"I suggest rock, paper, scissors.\"",
+        "\"Strict order: whoever had not had a slice yet\" is not a full first-person answer. Use \"I give it to someone who has not had any.\"",
+        "\"Won fairly\" adds grading in heart. Delete \"fairly\"."
+      ]
+    },
+    {
+      "id": "X-R2-30",
+      "legibility": 5,
+      "spice": 5,
+      "uniqueness": 5,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"For the record, I laugh better\" is a staged comeback rather than natural speech. Use \"I take the mic and imitate them back\" in both voices."
+      ]
+    },
+    {
+      "id": "X-R3-50",
+      "legibility": 5,
+      "spice": 2,
+      "uniqueness": 3,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"Someone kneels\" and \"One of us kneels\" do not state the player's own choice directly. Use \"I want one of us to kneel.\"",
+        "\"Breakfast, pajamas, our own script\" is slogan-like. Use \"I'd rather exchange the ring over breakfast in our pajamas.\""
+      ]
+    },
+    {
+      "id": "C6-121",
+      "legibility": 3,
+      "spice": 4,
+      "uniqueness": 5,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"The curse does not make exceptions\" contradicts options allowing someone else to take the turn. State that turns can be traded, then use \"I stick to the rota, even this week.\"",
+        "\"Not always me\" becomes \"Often, that is not me\", changing a boundary into a frequency claim. Use \"I will not always be the one who swaps.\""
+      ]
+    },
+    {
+      "id": "C3-91",
+      "legibility": 4,
+      "spice": 4,
+      "uniqueness": 3,
+      "language": 4,
+      "verdict": "ok",
+      "flags": [
+        "\"Suggest coffee\" and \"hug them and tell my friends we are fine\" leave the relationship outcome overlapping. Specify whether coffee means considering reconciliation and the hug means closure."
+      ]
+    },
+    {
+      "id": "S-111",
+      "legibility": 5,
+      "spice": 5,
+      "uniqueness": 3,
+      "language": 5,
+      "verdict": "strong",
+      "flags": []
+    },
+    {
+      "id": "C3-163",
+      "legibility": 4,
+      "spice": 4,
+      "uniqueness": 4,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"Love that\" and \"I'd own drumsticks by week two\" both endorse immersion, while \"never hand over my whole calendar\" and \"keep book club\" both preserve independence. Differentiate approval of the friend from what the player would actually sacrifice.",
+        "\"Give it a year\" is an incomplete sentence in heart. Use \"I doubt it will last. I would keep my own plans.\""
+      ]
+    },
+    {
+      "id": "X-L2-30",
+      "legibility": 5,
+      "spice": 4,
+      "uniqueness": 3,
+      "language": 5,
+      "verdict": "strong",
+      "flags": []
+    },
+    {
+      "id": "C2-141",
+      "legibility": 5,
+      "spice": 3,
+      "uniqueness": 3,
+      "language": 4,
+      "verdict": "ok",
+      "flags": [
+        "\"Yes, and house dinners every Sunday are mandatory\" lacks first-person framing. Use \"I join, and I insist on house dinners every Sunday.\""
+      ]
+    },
+    {
+      "id": "C5-120",
+      "legibility": 5,
+      "spice": 4,
+      "uniqueness": 3,
+      "language": 5,
+      "verdict": "strong",
+      "flags": []
+    },
+    {
+      "id": "C4-144",
+      "legibility": 3,
+      "spice": 3,
+      "uniqueness": 3,
+      "language": 3,
+      "verdict": "fix",
+      "flags": [
+        "\"Picked the beach\", \"keep the budget\", and \"join only for the last three days\" can all describe the same person. Make the options competing decisions about the shared prize.",
+        "\"Hype machine\", \"Budget keeper\", and \"Part-timer\" are labels rather than first-person answers. Rewrite as parallel \"I\" statements."
+      ]
+    },
+    {
+      "id": "C4-161",
+      "legibility": 4,
+      "spice": 3,
+      "uniqueness": 3,
+      "language": 3,
+      "verdict": "fix",
+      "flags": [
+        "\"Spending it makes sense\" and \"They should leave a few\" judge the friend, while \"I would buy\" and \"I would sell\" answer a different question. Ask what the player would do with the tree and make every option first person.",
+        "\"Sell the tree\" assumes the friend is considering a sale despite asking for a reaction to weekly spending. Establish ownership by the player if retaining this option."
+      ]
+    },
+    {
+      "id": "C2-132",
+      "legibility": 3,
+      "spice": 4,
+      "uniqueness": 2,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"They apologized well\" can apply to either \"closer now\" or \"friendly, but I am still watching\". Replace it with a distinct current relationship state.",
+        "\"On probation forever\" becomes \"I am still watching\", losing the permanent limit. Use \"I let them back in, but I will never fully relax.\""
+      ]
+    },
+    {
+      "id": "C2-50",
+      "legibility": 4,
+      "spice": 5,
+      "uniqueness": 2,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"We had been even, and suddenly we were not\" does not explicitly convey relief in heart. Use \"Yes. I felt relieved to be ahead of them.\"",
+        "\"Felt relieved\" from rivalry and \"bought them dinner out of guilt\" can both be true. Give the first a contrasting reaction, such as relief without guilt."
+      ]
+    },
+    {
+      "id": "C7-112",
+      "legibility": 5,
+      "spice": 3,
+      "uniqueness": 5,
+      "language": 4,
+      "verdict": "ok",
+      "flags": [
+        "\"It keeps playing. The crowd came for the kitten, not the rulebook\" lacks first-person framing and sounds like a rehearsed line. Use \"I let it keep playing because the crowd loves it.\""
+      ]
+    },
+    {
+      "id": "C3-161",
+      "legibility": 4,
+      "spice": 4,
+      "uniqueness": 5,
+      "language": 3,
+      "verdict": "fix",
+      "flags": [
+        "\"Name it Future\" is a sitcom-style tag. Delete it.",
+        "\"I like us easy to pack up\" sounds unnatural in heart. Use \"I want us free to travel without dependents.\"",
+        "\"Yes. It is practice for the real thing\" lacks first-person framing. Use \"I want to raise the goat before we have a child.\""
+      ]
+    },
+    {
+      "id": "C7-120",
+      "legibility": 3,
+      "spice": 2,
+      "uniqueness": 2,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"Had it marked\" and \"then I lost\" are compatible events, while \"house rules\" and \"keeps the game fun\" can mean the same thing. Replace these with distinct responses to one rule dispute.",
+        "\"Just to win an argument\" becomes \"to settle an argument\", softening the motive. Keep \"to win an argument\" in heart."
+      ]
+    },
+    {
+      "id": "C2-122",
+      "legibility": 2,
+      "spice": 3,
+      "uniqueness": 1,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"Your old note\" supplies neither its content nor the occasion. Include the time capsule and the old ambition so this card stands alone.",
+        "\"Your old note\" repeats C2-121's situation. Explicitly attach this as its follow-up or choose a different scene."
+      ]
+    },
+    {
+      "id": "C1-126",
+      "legibility": 4,
+      "spice": 4,
+      "uniqueness": 5,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"Work thinks something came up\" and \"I'm calling work\" do not clearly distinguish deception from honest disclosure. Use \"I invent an emergency\" versus \"I tell work exactly why I'm leaving.\"",
+        "\"Has never texted anyone\" becomes \"has never spoken before\", changing the premise. Keep the same texting claim in heart."
+      ]
+    },
+    {
+      "id": "C2-121",
+      "legibility": 4,
+      "spice": 4,
+      "uniqueness": 2,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"Three clients, one logo\" invents progress absent from the prompt and may already describe running a company. Replace with \"I tell them what I've tried so far.\"",
+        "\"Still coming, slowly\" and \"It will come, whenever it comes\" need a clearer difference between active pursuit and indefinite postponement."
+      ]
+    },
+    {
+      "id": "C5-125",
+      "legibility": 5,
+      "spice": 5,
+      "uniqueness": 3,
+      "language": 4,
+      "verdict": "ok",
+      "flags": [
+        "\"The title is nice\" and \"Now the rest of us will be expected\" lack first-person framing. Use \"I would rather protect my honeymoon\" and \"I worry this becomes the expectation for all of us.\""
+      ]
+    },
+    {
+      "id": "C4-143",
+      "legibility": 5,
+      "spice": 4,
+      "uniqueness": 2,
+      "language": 4,
+      "verdict": "ok",
+      "flags": [
+        "\"Left the money to future me\" is awkward in heart. Use \"I booked it and decided to worry about money later.\"",
+        "\"Going meant skipping every other plan\" lacks first-person framing. Use \"I went, then skipped every other plan for a month.\""
+      ]
+    },
+    {
+      "id": "C1-146",
+      "legibility": 5,
+      "spice": 3,
+      "uniqueness": 4,
+      "language": 5,
+      "verdict": "strong",
+      "flags": []
+    },
+    {
+      "id": "C1-144",
+      "legibility": 5,
+      "spice": 3,
+      "uniqueness": 2,
+      "language": 4,
+      "verdict": "ok",
+      "flags": [
+        "\"Two can play\" conveys retaliation, but \"I picked up my own phone too\" loses that motive. Use \"I picked up my phone so they would feel ignored too.\""
+      ]
+    },
+    {
+      "id": "S-142",
+      "legibility": 4,
+      "spice": 2,
+      "uniqueness": 3,
+      "language": 4,
+      "verdict": "ok",
+      "flags": [
+        "\"Weekends only. Second is fine, first is better\" implies first remains an option despite \"first would mean weeding every evening\". Use \"I weed on weekends and accept that I will not win.\""
+      ]
+    },
+    {
+      "id": "C5-140",
+      "legibility": 3,
+      "spice": 3,
+      "uniqueness": 2,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"Be everyone's boss by spring\" and \"Work it quietly\" can describe the same strategy. Distinguish extra career work from using the day to reduce the normal week's workload.",
+        "\"Be everyone's boss by spring\" promises a cartoonish outcome. Use \"I spend it working toward a promotion.\""
+      ]
+    },
+    {
+      "id": "X-R3-30",
+      "legibility": 5,
+      "spice": 3,
+      "uniqueness": 5,
+      "language": 4,
+      "verdict": "ok",
+      "flags": [
+        "\"Fastest exit in fair history\" sounds like an announcer line. Use \"I wear the suit, ring the bell, and leave immediately.\""
+      ]
+    },
+    {
+      "id": "C1-124",
+      "legibility": 5,
+      "spice": 4,
+      "uniqueness": 4,
+      "language": 5,
+      "verdict": "strong",
+      "flags": []
+    },
+    {
+      "id": "S-140",
+      "legibility": 4,
+      "spice": 3,
+      "uniqueness": 2,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"City this year, cabin next. We alternate\" avoids the forced choice by promising both. Replace with a city vote that accepts losing the annual cabin tradition.",
+        "\"Ten years was a wonderful run\" drops \"Retire it\", leaving heart less final. Use \"I vote for the city. I want the cabin tradition to end.\"",
+        "\"Your friends have taken the same cabin\" is unnatural. Use \"Your friends have rented the same cabin every year.\""
+      ]
+    },
+    {
+      "id": "C1-90",
+      "legibility": 5,
+      "spice": 4,
+      "uniqueness": 4,
+      "language": 4,
+      "verdict": "ok",
+      "flags": [
+        "\"Anyone can scroll it. Nothing in there bites\" lacks a clear first-person decision and adds a scripted flourish. Use \"I take it. I don't mind people looking through my phone.\""
+      ]
+    },
+    {
+      "id": "C6-144",
+      "legibility": 1,
+      "spice": 3,
+      "uniqueness": 2,
+      "language": 3,
+      "verdict": "fix",
+      "flags": [
+        "\"Your love story, front page\" does not explain who published it or whether the player agreed. Supply the missing event.",
+        "\"Could be on the front page\" changes actual publication into a possibility. Use the same situation in both voices.",
+        "\"What my person hoped I'd say\" refers to an unstated question. Include that question or replace the option."
+      ]
+    },
+    {
+      "id": "S-122",
+      "legibility": 5,
+      "spice": 3,
+      "uniqueness": 4,
+      "language": 5,
+      "verdict": "strong",
+      "flags": []
+    },
+    {
+      "id": "S-123",
+      "legibility": 4,
+      "spice": 4,
+      "uniqueness": 3,
+      "language": 4,
+      "verdict": "fix",
+      "flags": [
+        "\"Go to theirs, then take my own friends out later\" calls an explicitly joint party theirs and supplies a both-parties escape hatch. Replace with a distinct decision about the booked party.",
+        "\"One banner with both names sounds right\" and \"A joint party this year, yes\" need full first-person phrasing. Use \"I want one party for everyone\" and \"I agree this year, but I want a say next time.\""
+      ]
+    }
+  ],
+  "resolution": {
+    "fixed_after_judge": [
+      "C1-160",
+      "C1-161",
+      "C1-1",
+      "C2-126",
+      "C3-81",
+      "C3-120",
+      "C3-145",
+      "C4-123",
+      "C4-124",
+      "C4-53",
+      "C5-141",
+      "C5-160",
+      "C6-91",
+      "C6-122",
+      "C6-162",
+      "X-R3-50",
+      "C6-121",
+      "C3-161",
+      "C4-161",
+      "S-123",
+      "X-R3-30",
+      "C1-144",
+      "C2-124",
+      "C1-126",
+      "C6-144",
+      "C6-110"
+    ],
+    "declined": {
+      "first-person framing": "Codex asked many answers to open with \"I\". The card-writer skill (section 2b) and check-bank shape rules require varied openers (a detail, a verdict, a quote) and fail cards whose Heart answers all open with I, so these flags were declined where the answer is already clear.",
+      "eyes and role labels": "eyes answers are the best friend describing the player (third person by format) and role answers are short archetype labels by format (skill section 4); declined.",
+      "feeling follow-ups": "C2-122 and C6-144 are feeling cards served right after their parent card (follows), so the parent supplies the scene; C6-144 still got both voices aligned to the same moment.",
+      "unchanged cards not about legibility": "overlap and spice flags on unchanged cards C2-132, C2-50, C2-121, C3-163, C4-144, C5-140, C7-120, S-140, S-142, C3-91, C5-125, C5-126, C7-112, C2-141, C1-90, C4-143 were not legibility faults; left for a spice or variety pass."
+    }
+  }
+}

@@ -347,7 +347,7 @@
     "id": "C5-141",
     "type": "scenario",
     "chapter": 5,
-    "prompt": "First week as the town's weather booker. A kite festival reserved Saturday's sunshine a year ago. Now a farmer is begging for rain.",
+    "prompt": "New job: you decide the town's weather. A kite festival booked Saturday's sunshine a year ago. A farmer's crops die without rain that day.",
     "options": [
       {
         "t": "The kites booked first, so sunshine.",
@@ -362,7 +362,7 @@
         ]
       },
       {
-        "t": "Sunshine, and the farmer gets Monday's rain plus my apology.",
+        "t": "Sunshine. Then I go apologize to the farmer myself.",
         "axes": {
           "L3": 1
         },
@@ -401,10 +401,10 @@
       }
     ],
     "heart": {
-      "prompt": "In your first week booking the town's weather, you see a kite festival reserved Saturday's sunshine a year ago. Now a farmer is asking you for rain.",
+      "prompt": "In your new job, you decide the town's weather. A kite festival booked sunshine for Saturday a year ago. A farmer's crops will die without rain that day.",
       "options": [
         "The festival booked first, so it gets the sunshine.",
-        "Sunshine. The farmer gets rain on Monday, with my apology.",
+        "Sunshine, and then I apologize to the farmer in person.",
         "Rain. The crops matter more than the kites.",
         "Rain, and I let people blame the forecast."
       ]
@@ -427,7 +427,7 @@
     "sq": "SQ-T25-2",
     "world": "absurd",
     "friend": {
-      "prompt": "{name} books the town's weather. A kite festival reserved Saturday's sun a year ago. A farmer begs for rain. What does {name} do?",
+      "prompt": "{name} decides the town's weather. A kite festival booked Saturday's sun a year ago, and a farmer's crops die without rain that day. What does {name} do?",
       "a": {
         "t": "Sunshine. \"The kites booked first.\"",
         "axes": {
@@ -664,7 +664,7 @@
     "prompt": "A carrier owl lands between your desk and your closest friend's: one dream-job offer, seventy-hour weeks. Whoever feeds it first gets it.",
     "options": [
       {
-        "t": "Feed the owl. I'm not apologizing at the party.",
+        "t": "Feed it first. It's a race, and I'm not sorry.",
         "tags": [
           {
             "id": "T16A",
@@ -687,7 +687,7 @@
     "heart": {
       "prompt": "A carrier owl lands between your desk and your closest friend's with one dream-job offer: seventy-hour weeks. Whoever feeds it first gets it.",
       "options": [
-        "I feed the owl, and I will not apologize at the celebration.",
+        "I feed it first. It is a race. No apologies.",
         "They feed it. I like my evenings, and my friend."
       ]
     },
@@ -710,7 +710,7 @@
     "friend": {
       "prompt": "An owl lands between {name} and {their} closest friend with one dream-job offer. First to feed it gets the job. What does {name} do?",
       "a": {
-        "t": "Feeds the owl. Not apologizing at the party.",
+        "t": "Feeds it first. It's a race, and no apologies.",
         "tags": [
           {
             "id": "T16A",
@@ -1152,7 +1152,7 @@
     "chapter": 5,
     "sq": "SQ-L2-3",
     "world": "unusual",
-    "prompt": "Seven years before your first bottle: that's the apprenticeship a famous perfumer just offered you. Your best friend gets the reference call. What do they say?",
+    "prompt": "Famous perfumer, one offer: a seven-year apprenticeship before you make your first perfume. Your best friend gets the reference call. What do they say?",
     "options": [
       {
         "t": "\"They'll want a progress chart by week one.\"",
@@ -1179,7 +1179,7 @@
         ]
       },
       {
-        "t": "\"They'll love the sniffing. The bottle's a bonus.\"",
+        "t": "\"They'll love the learning. The perfume's a bonus.\"",
         "axes": {
           "L2": -2
         },
@@ -1191,7 +1191,7 @@
         ]
       },
       {
-        "t": "\"Seven years? They'll lose count and be happy.\"",
+        "t": "\"They won't track a single day. It's done when it's done.\"",
         "axes": {
           "L2": -1
         },
@@ -1204,12 +1204,12 @@
       }
     ],
     "heart": {
-      "prompt": "A famous perfumer offers you an apprenticeship: seven years before your first bottle. They ask your best friend for a reference. What does your friend say?",
+      "prompt": "A famous perfumer offers you an apprenticeship: seven years of training before your first perfume. They call your best friend for a reference. What does your friend say?",
       "options": [
         "They will want a chart of their progress from the first week.",
         "If they see no progress by month three, they will leave.",
-        "They will love the learning itself. The bottle is a bonus.",
-        "Seven years? They will lose count, and they will be happy."
+        "They will love the learning itself. The perfume is a bonus.",
+        "They will not count days. It is done when it is done."
       ]
     },
     "fp": {
@@ -1241,7 +1241,7 @@
         ]
       },
       "b": {
-        "t": "Will love the sniffing. The bottle's a bonus.",
+        "t": "Will love the learning. The perfume's a bonus.",
         "axes": {
           "L2": -2
         },
@@ -1446,7 +1446,7 @@
     "id": "C5-126",
     "type": "others",
     "chapter": 5,
-    "prompt": "Six straight losses for Gary, the snail your roommate quit a steady job to race. Prize money only. Rent's due in two weeks. Honest take?",
+    "prompt": "Gary the snail has lost six races in a row. Your roommate quit a steady job to race it for prize money. Rent's due in two weeks. Honest take?",
     "options": [
       {
         "t": "Somebody has to believe in Gary. Legend.",

@@ -1,4 +1,4 @@
-# Concept map (round 4, 2026-09-29)
+# Concept map (round 4, 2026-09-29; round 5 legibility device and situation updates)
 
 One line per card, sorted by sub-question: card, format, world, device, situation. Used to find concept clusters over the two-card limit (LAUNCH-SPEC section 21, card-writer skill 2c).
 
@@ -79,7 +79,7 @@ One line per card, sorted by sub-question: card, format, world, device, situatio
 | SQ-R2-3 | X-R2-31 | eyes | unusual | league-mediator | a mediator asks your friend how you fight; bowling league blowup |
 | SQ-R3-1 | C1-125 | scenario | unusual | holiday-stairs-photo | family wants you edited into the yearly photo; abroad over the holidays |
 | SQ-R3-1 | C2-162 | bet | everyday | no-cake-birthday | a birthday with no cake or song; a friend's birthday party |
-| SQ-R3-1 | C4-53 | this_or_that | absurd | pigeon-bill | the first-date bill arrives after you did the asking; hot-air balloon landing |
+| SQ-R3-1 | C4-53 | this_or_that | absurd | balloon-date-bill | the first-date bill arrives after you did the asking; hot-air balloon landing, the pilot hands it over |
 | SQ-R3-1 | C6-141 | pick_two | unusual | makeover-show-house | a TV show will gut your childhood home; the house you grew up in, a makeover show |
 | SQ-R3-1 | C6-82 | reply | unusual | inheritance-clause | inheritance with a hosting condition; grandparent's house, cousin's text |
 | SQ-R3-1 | C7-161 | this_or_that | unusual | graduation-walk | a graduation ceremony or a diploma by mail; a four-hour ceremony hall |
@@ -135,7 +135,7 @@ One line per card, sorted by sub-question: card, format, world, device, situatio
 | SQ-T13-2 | C4-145 | this_or_that | absurd | moon-hotel | a once-ever night costs your savings; the only hotel on the Moon |
 | SQ-T14-1 | C4-102 | scenario | unusual | test-pressing | a rare version of something you love costs far more than the free one; a record shop, one of twelve pressings |
 | SQ-T14-1 | C4-5 | real | everyday | one-more-duplicate | wanting a duplicate of a collection item; a store or online cart |
-| SQ-T14-2 | C4-123 | scenario | absurd | polite-tornado | offer to lose everything but one thing; your home, a tornado at the door |
+| SQ-T14-2 | C4-123 | scenario | absurd | polite-tornado | a tornado will take everything but one thing you keep; your home, a tornado at the door |
 | SQ-T15-1 | C4-141 | bet | everyday | must-be-nice | someone else's big win; a conversation about their success |
 | SQ-T15-1 | C4-2 | this_or_that | absurd | stranger-castle | a friend sells an inherited windfall as hustle; a castle hotel and a paid course |
 | SQ-T15-2 | C4-125 | scenario | absurd | pirate-chest | shared treasure, unequal effort; a dig site with a pirate chest |

@@ -18,7 +18,7 @@
         ]
       },
       {
-        "t": "My person, since the family I'm building gets the fish.",
+        "t": "My person. The home we're building is my home now.",
         "axes": {
           "R3": -2
         },
@@ -265,7 +265,7 @@
     "chapter": 6,
     "sq": "SQ-T07-1",
     "world": "unusual",
-    "prompt": "The couple asked for an honest toast. Their best friend, meaning every word: \"I give it two years. Prove me wrong.\" Your verdict?",
+    "prompt": "At the wedding, the couple asked for honest toasts. Their best friend, meaning every word: \"I give it two years. Prove me wrong.\" Your verdict?",
     "options": [
       {
         "t": "They asked for honest. That was honest.",
@@ -305,7 +305,7 @@
         ]
       },
       {
-        "t": "Good. The truth belongs in toasts too.",
+        "t": "Brutal, but someone had to say it out loud.",
         "axes": {
           "R2": 1
         },
@@ -319,12 +319,12 @@
       }
     ],
     "heart": {
-      "prompt": "The couple asked for an honest toast. Their best friend, meaning every word, says, \"I give it two years. Prove me wrong.\" What is your verdict?",
+      "prompt": "At the wedding, the couple asked for honest toasts. Their best friend, meaning every word, says: \"I give it two years. Prove me wrong.\" What is your verdict?",
       "options": [
         "They asked for honesty, and they got it.",
         "True or not, that belongs in a private conversation, not a speech.",
         "The message could stay, but it needed a softer way in.",
-        "Good. The truth belongs in a toast too."
+        "It was harsh, but someone needed to say it out loud."
       ]
     },
     "fp": {
@@ -342,7 +342,7 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "The couple wanted an honest toast. The best friend: \"I give it two years. Prove me wrong.\" {name}'s first thought?",
+      "prompt": "At the wedding, the couple wanted honest toasts. The best friend: \"I give it two years. Prove me wrong.\" {name}'s first thought?",
       "a": {
         "t": "The couple asked for honest. That was honest. Respect.",
         "axes": {
@@ -478,7 +478,7 @@
     "chapter": 6,
     "sq": "SQ-T18-1",
     "world": "absurd",
-    "prompt": "Since your birthday, anything your family loses turns up in your mailbox. Week one: 23 lost things, 23 calls. Your sibling's mailbox works too. Nobody calls them.",
+    "prompt": "Anything your family loses can now turn up in your mailbox or your sibling's. Everyone picks yours: 23 lost things, 23 calls this week.",
     "options": [
       {
         "t": "Return all 23 by Sunday. This is my calling now.",
@@ -522,7 +522,7 @@
       }
     ],
     "heart": {
-      "prompt": "Since your birthday, anything your family loses turns up in your mailbox: 23 lost things and 23 calls in week one. Your sibling's mailbox works too, but nobody calls them.",
+      "prompt": "Anything your family loses can now turn up in your mailbox or your sibling's, and everyone picks yours: 23 lost things and 23 calls this week.",
       "options": [
         "I return all 23 by Sunday. This feels like my job now.",
         "I return every one, then mention it at dinners for a year.",
@@ -546,7 +546,7 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "Anything {name}'s family loses now turns up in {their} mailbox. Week one: 23 calls. A sibling's mailbox works too. What does {name} do?",
+      "prompt": "Anything {name}'s family loses can turn up in {their} mailbox or a sibling's, and everyone picks {name}'s: 23 calls in a week. What does {name} do?",
       "a": {
         "t": "Returns all 23 by Sunday: \"This is my calling now.\"",
         "tags": [
@@ -573,10 +573,10 @@
     "chapter": 6,
     "sq": "SQ-L3-2",
     "world": "absurd",
-    "prompt": "Family curse: every winter, one sibling spends a week as a pumpkin. It's your youngest sibling's turn, the same week they move into their first place.",
+    "prompt": "Family curse: every winter, one sibling spends a week as a pumpkin. Swaps are allowed. It's your youngest sibling's turn, the week they move into their first place.",
     "options": [
       {
-        "t": "Their turn is their turn. Curses don't do exceptions.",
+        "t": "Their turn is their turn. No swaps from me.",
         "axes": {
           "L3": 2
         },
@@ -625,12 +625,12 @@
       }
     ],
     "heart": {
-      "prompt": "Your family has a curse: each winter, one sibling spends a week as a pumpkin. It is your youngest sibling's turn, the week they move into their first place.",
+      "prompt": "Each winter, a family curse turns one sibling into a pumpkin for a week, and swaps are allowed. It is your youngest sibling's turn, the week they move out.",
       "options": [
-        "It is their turn. The curse does not make exceptions.",
+        "It is their turn, and I do not swap.",
         "I take the week instead. Their big week matters more.",
         "It stays their turn. I carry them up the new stairs myself.",
-        "Whoever has the quietest week takes it. Often, that is not me."
+        "Whoever has the quietest week takes it, not always me."
       ]
     },
     "fp": {
@@ -651,7 +651,7 @@
     "friend": {
       "prompt": "{name}'s family curse turns one sibling into a pumpkin each winter. It's the youngest's turn, the week they move out. What does {name} do?",
       "a": {
-        "t": "Their turn is their turn. Curses don't do exceptions.",
+        "t": "Their turn is their turn. No swaps.",
         "axes": {
           "L3": 2
         },
@@ -697,7 +697,7 @@
         ]
       },
       {
-        "t": "Call home and ask what they think. Wait for a smile.",
+        "t": "Call home first. The move waits for their smile.",
         "axes": {
           "R3": 1
         },
@@ -710,7 +710,7 @@
         "emotion": "worry"
       },
       {
-        "t": "Unpack. I can't live under that face.",
+        "t": "Cancel the move. I can't live under that face.",
         "axes": {
           "R3": 2
         },
@@ -740,8 +740,8 @@
       "prompt": "The family portrait in your hallway now frowns at any choice your family would not make, and guests can see it. You just agreed to move across the country.",
       "options": [
         "I turn it to the wall. My move, my decision.",
-        "I call home, ask their view, and wait for a smile.",
-        "The boxes get unpacked. I cannot live under that frown.",
+        "I call home and hold the move until they smile.",
+        "The move is off. I cannot live under that frown.",
         "I move it to the guest bathroom to frown at visitors."
       ]
     },
@@ -762,7 +762,7 @@
     "friend": {
       "prompt": "{name}'s portrait frowns at choices the family wouldn't make. Guests see it. {name} just agreed to move cross-country. What does {name} do?",
       "a": {
-        "t": "Unpacks: \"I can't live under that face.\"",
+        "t": "Cancels the move: \"I can't live under that face.\"",
         "axes": {
           "R3": 2
         },
@@ -869,7 +869,7 @@
     "type": "feeling",
     "chapter": 6,
     "follows": "C6-143",
-    "prompt": "Your love story, front page. Which feeling got there first?",
+    "prompt": "Your love story on the front page, your answer due tonight. Which feeling got there first?",
     "options": [
       {
         "t": "Giddy, against my will."
@@ -888,7 +888,7 @@
       }
     ],
     "heart": {
-      "prompt": "Your love story could be on the front page. Which feeling came first?",
+      "prompt": "Your love story might run on the front page, and your answer is due tonight. Which feeling came first?",
       "options": [
         "I feel giddy, against my will.",
         "I feel exposed. The whole town would read it.",
@@ -1251,20 +1251,19 @@
     "chapter": 6,
     "sq": "SQ-L3-2",
     "world": "everyday",
-    "prompt": "Family under one roof, not enough beds. Last time it happened, who got the bed?",
+    "prompt": "One slice of the family's famous pie left, five relatives eyeing it. Think of the last time. Who got it?",
     "options": [
       {
-        "t": "Strict order: whoever hadn't had one yet. Me included.",
+        "t": "Strict order: whoever hadn't had a slice yet. Me included.",
         "axes": {
           "L3": 2
         }
       },
       {
-        "t": "Rock, paper, scissors. Won it fair, ate it proudly.",
+        "t": "Rock, paper, scissors decided it. Winner eats.",
         "axes": {
           "L3": 1
-        },
-        "emotion": "pride"
+        }
       },
       {
         "t": "Gave it to whoever drove the farthest to get there.",
@@ -1281,10 +1280,10 @@
       }
     ],
     "heart": {
-      "prompt": "The most recent time your family stayed under one roof without enough beds, who got the bed?",
+      "prompt": "The most recent time your family was down to the last slice of a favorite pie, with several relatives wanting it, who got it?",
       "options": [
-        "We went in strict order, and I waited my turn too.",
-        "We played rock, paper, scissors. I won fairly and ate it.",
+        "Strict order: whoever had not had a slice yet, me included.",
+        "We played rock, paper, scissors, and the winner ate it.",
         "I gave it to whoever had driven the farthest to get there.",
         "I gave it to whoever was having the hardest year."
       ]
@@ -1305,9 +1304,9 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "The last time {name}'s family stayed under one roof with too few beds. Who got the bed?",
+      "prompt": "The last time {name}'s family was down to one slice of the famous pie, who got it?",
       "a": {
-        "t": "Strict order: whoever hadn't had one yet.",
+        "t": "Strict order: whoever hadn't had a slice yet.",
         "axes": {
           "L3": 2
         }

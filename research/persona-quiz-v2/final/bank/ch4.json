@@ -680,10 +680,10 @@
     "chapter": 4,
     "sq": "SQ-T14-2",
     "world": "absurd",
-    "prompt": "Knock, knock. It's a polite tornado. It will take everything you own and leave one perfect thing of your choice. It can't wait long.",
+    "prompt": "Knock, knock. A polite tornado apologizes: tonight it blows away everything you own, except one thing you pick. Your reaction?",
     "options": [
       {
-        "t": "Keep my old armchair. The rest can blow away.",
+        "t": "My old armchair. Everything else was just stuff.",
         "tags": [
           {
             "id": "T14B",
@@ -693,7 +693,7 @@
         "emotion": "relief"
       },
       {
-        "t": "No. Every chipped mug in there has a story.",
+        "t": "Every chipped mug in here has a story. I'm devastated.",
         "tags": [
           {
             "id": "T14A",
@@ -703,7 +703,7 @@
         "emotion": "longing"
       },
       {
-        "t": "Deal, but I'm wearing everything I can fit on.",
+        "t": "The photo box, and I'll miss the rest for months.",
         "tags": [
           {
             "id": "T14A",
@@ -712,7 +712,7 @@
         ]
       },
       {
-        "t": "Deal. Starting over with one perfect thing sounds light.",
+        "t": "Honestly? Starting over with one thing sounds light.",
         "tags": [
           {
             "id": "T14B",
@@ -722,32 +722,32 @@
       }
     ],
     "heart": {
-      "prompt": "A friendly tornado arrives at your door. It offers to take everything you own and leave behind one perfect thing of your choosing. It needs your answer soon.",
+      "prompt": "A polite tornado knocks and apologizes: tonight it will blow away everything you own, except one thing you choose. What is your reaction?",
       "options": [
-        "I agree and keep my old armchair. Everything else can go.",
-        "Every chipped mug I own has a story, so no.",
-        "I agree, but I put on everything I can wear first.",
-        "I agree. Starting over with one perfect thing sounds light."
+        "I keep my old armchair. Everything else was just things.",
+        "Every chipped mug I own has a story. It breaks my heart.",
+        "I keep the photos, and I miss the rest for months.",
+        "Honestly, starting over with one thing sounds light."
       ]
     },
     "fp": {
-      "trigger": "offer to lose everything but one thing",
+      "trigger": "a tornado will take everything but one thing",
       "setting": "your home, a tornado at the door",
-      "ask": "trade all your stuff for one perfect thing",
+      "ask": "what you keep and how the loss feels",
       "who": "just you",
       "stakes": "memories in objects versus a lighter life",
       "device": "polite-tornado"
     },
-    "mask": "looks like a silly weather fable; measures whether less stuff feels like freedom or loss (T14)",
+    "mask": "looks like a silly weather fable; measures whether losing your stuff feels like freedom or loss (T14)",
     "ae": [
       "A",
       "E"
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "A polite tornado offers to take everything {name} owns and leave one perfect thing {name} picks. What does {name} do?",
+      "prompt": "A polite tornado will blow away everything {name} owns tonight, except one thing. What's {name}'s reaction?",
       "a": {
-        "t": "No. Every chipped mug in there has a story.",
+        "t": "\"Every chipped mug in there has a story. Devastated.\"",
         "tags": [
           {
             "id": "T14A",
@@ -756,7 +756,7 @@
         ]
       },
       "b": {
-        "t": "Deal. Keeps the old armchair. The rest can blow away.",
+        "t": "Keeps the old armchair. Everything else was just stuff.",
         "tags": [
           {
             "id": "T14B",
@@ -772,10 +772,10 @@
     "chapter": 4,
     "sq": "SQ-T12-1",
     "world": "absurd",
-    "prompt": "Rent day with your new housemate: a mermaid sitting on a sunken ship's worth of gold. They insist it stays exactly fifty-fifty.",
+    "prompt": "New housemate: a mermaid with a sunken ship's worth of gold, while you live on a normal paycheck. They want rent split exactly fifty-fifty.",
     "options": [
       {
-        "t": "One bathtub, half each. Fair.",
+        "t": "Same home, same rent. Fair.",
         "axes": {
           "L3": 1
         },
@@ -799,7 +799,7 @@
         ]
       },
       {
-        "t": "Pay half, and never mention the gold.",
+        "t": "Pay half, say nothing, and quietly resent it.",
         "tags": [
           {
             "id": "T12A",
@@ -823,11 +823,11 @@
       }
     ],
     "heart": {
-      "prompt": "Your new housemate is a mermaid with a sunken ship full of gold. On rent day, they insist the rent is split exactly in half.",
+      "prompt": "Your new housemate is a mermaid with a sunken ship full of gold, and you earn an ordinary paycheck. They want the rent split exactly in half.",
       "options": [
-        "It is fair. We share one bathtub, so we pay half each.",
+        "Half each. We share one home, so we pay the same.",
         "I suggest we each pay according to what we have.",
-        "I pay half and never mention the gold.",
+        "I pay half, say nothing, and quietly resent it.",
         "I pay half and hint about their gold every rent day."
       ]
     },
@@ -847,9 +847,9 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "{name}'s new housemate is a mermaid with a sunken ship's worth of gold, and insists rent stays fifty-fifty. What does {name} do?",
+      "prompt": "{name}'s new housemate is a mermaid with a sunken ship's worth of gold, and wants rent split fifty-fifty. What does {name} do?",
       "a": {
-        "t": "Fair. One bathtub, half each.",
+        "t": "Fair. Same home, same rent.",
         "axes": {
           "L3": 1
         },
@@ -1476,7 +1476,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "Sell the tree, bank the whole check.",
+        "t": "I'd sell the tree and bank the whole check.",
         "axes": {
           "L1": 2
         },
@@ -1705,7 +1705,7 @@
     "sq": "SQ-R3-1",
     "world": "absurd",
     "round": "ch4-r120",
-    "prompt": "You invited someone on a first date in a hot-air balloon. On landing, a pigeon drops off the $640 bill.",
+    "prompt": "First date, your idea: a hot-air balloon ride. On landing, the pilot hands you the bill. $640.",
     "options": [
       {
         "t": "I asked, so I pay. That's how dates work.",
@@ -1714,7 +1714,7 @@
         }
       },
       {
-        "t": "Mine's mine, theirs is theirs. No script.",
+        "t": "We split it. $320 each, no script.",
         "axes": {
           "R3": -2
         },
@@ -1727,10 +1727,10 @@
       }
     ],
     "heart": {
-      "prompt": "You invited someone on a first date in a hot-air balloon. When you land, a pigeon delivers the bill for $640.",
+      "prompt": "You invited someone on a first date in a hot-air balloon. When you land, the pilot hands you the bill: $640.",
       "options": [
         "I asked, so I pay. That is how dates work.",
-        "We each pay for our own. That feels right to me."
+        "We each pay half. That feels right to me."
       ]
     },
     "fp": {
@@ -1739,7 +1739,7 @@
       "ask": "the asker pays or split it",
       "who": "a first date",
       "stakes": "the dating script versus your own rules",
-      "device": "pigeon-bill"
+      "device": "balloon-date-bill"
     },
     "mask": "looks like a silly date; measures whether the old dating ritual feels like home or like a costume (R3)",
     "ae": [
@@ -1748,7 +1748,7 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "{name} invited someone on a first date in a hot-air balloon. On landing, a pigeon drops off the $640 bill. Which one is {name}?",
+      "prompt": "{name} invited someone on a first date in a hot-air balloon. On landing, the pilot hands over the $640 bill. Which one is {name}?",
       "a": {
         "t": "I asked, so I pay. That's how dates work.",
         "axes": {
@@ -1756,7 +1756,7 @@
         }
       },
       "b": {
-        "t": "I pay mine, they pay theirs. No script.",
+        "t": "Splits it: $320 each. No script.",
         "axes": {
           "R3": -2
         },

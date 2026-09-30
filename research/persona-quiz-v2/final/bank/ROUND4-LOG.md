@@ -127,3 +127,39 @@ Three Codex judge rounds ran on the whole bank (R4, R5, R6; verdicts in JUDGE-CO
 | C3-141 | birthday removed (third birthday card) and the trade is now free time: a statue needs every weekend of posing; answer openers varied (check-bank shape rules) | no |
 | C3-142 | option 1 now keeps a repair intention | no |
 | S-141 | the downside of answering wrong is stated; clearer wording | no |
+
+## Round 5 legibility (package H3, 2026-09-29 night)
+
+LAUNCH-SPEC section 24, ruling 5. Jerry: "Some of the questions and events are still kind of weird." All 174 cards were read in both voices as a first-time player on a phone and scored 1 to 5 for legibility (can you picture it at once, is the ask clear, is each option a clear, distinct choice, does any word read odd, stiff or translated). 26 cards scored under 4 and were fixed; the Codex judge (JUDGE-CODEX-R5.json) then flagged 8 more, fixed once. No premise needed replacing: every weird card could be made legible on its own sub-question. **Evidence is unchanged on all 34 cards** (axes, tags, strengths, grade, weight); each was re-read and re-locked with `lock-evidence.mjs --confirm`. One non-locked field moved: C6-162 option 1 lost its `pride` emotion because it no longer says who won.
+
+| Card | Why it read weird | Fix | Evidence changed |
+|---|---|---|---|
+| C6-162 | prompt asked who got the bed; the options were about eating the last slice (round 4 swapped the situation but left the old prompt, Heart prompt and friend prompt) | prompt, Heart and friend now ask who got the last slice of the family pie; option 1 says the game decided it, not that you won | no |
+| C1-160 | "empty street" while strangers cross read as a contradiction; the fake-phone-call answer was a riddle | no cars in sight while everyone else crosses; option 1 is wanting to cross and not managing to | no |
+| C1-123 | "your nine closest friends, ranked... you're seventh" left unclear whether you are on the list | you and your eight closest friends; option 1 copies whoever is first | no |
+| C1-161 | long premise; "tape a note on it" was a puzzle | mirror, date night, date heard, they keep it; option 0 takes the truth even with company; option 3 wants one nice thing first | no |
+| C1-1 | "Swapper" and "Hat holder" were odd labels; "whoever flies out earliest" had the need backwards | Name drawer, Giver (if I get one, it goes to whoever is stuck longest); "Obviously" dropped from the advocate | no |
+| C2-100 | "thank-you card on the door" was unclear | skip it, with a note: glad we were friends | no |
+| C2-124 | "expensive chairs. Icons." was slang nobody parses | smart move, big weddings are overrated | no |
+| C2-126 | "opens somewhere random... saved you the only spot" | the door opens somewhere random, back by Sunday, room for you | no |
+| C3-81 | "Shower confession, I'm guessing" was a stiff stem | Genii's sure: you've rehearsed a whole fight in the shower. Then what? Heart options 0 and 2 no longer overlap | no |
+| C3-101 | "Thursdays next?" was opaque | then I'm joining your Thursday thing too | no |
+| C3-120 | "Clean Breaks, $5 at the mall vending machine:" read backwards; "buy two" needed the machine to work on you | $5 buys a Clean Break for whoever you pick; option 2 is a dinner to see if it's worth saving | no |
+| C3-140 | "shadow got home... ready to tell everything" was vague | it's on your couch, happy to tell you everything they did | no |
+| C3-145 | "you're the..." did not lead into the answers; "Car reader" was an odd label | "which one were you?"; every option is a label plus an action (Inseparable half, Escape artist, Charades captain, Free agent, Night owl) | no |
+| C4-123 | "leave one perfect thing of your choice" was unclear (new thing or one of yours?), and saying no to a tornado cost nothing | the tornado will take everything tonight except one thing you pick; options are how the loss lands (armchair and relief, devastation, the photo box and months of missing things, starting light). Same tags and strengths: T14A for loss, T14B for freedom | no |
+| C4-124 | "a mermaid sitting on a sunken ship's worth of gold" plus "one bathtub" confused; option 2 overlapped option 0 | the mermaid has the gold, you have a paycheck, they want fifty-fifty; option 2 pays half and quietly resents it | no |
+| C4-53 | a pigeon delivering the bill was a surreal detail that revealed nothing | the balloon pilot hands you the $640 bill; option 1 names the $320 split. Device renamed `balloon-date-bill` | no |
+| C5-51 | "I'm not apologizing at the party": which party? | feed it first, it's a race, not sorry | no |
+| C5-141 | "the town's weather booker" was an unclear job; the Monday-rain option was a free rescue | you decide the town's weather; the crops die without rain that day; option 1 apologizes in person | no |
+| C5-160 | "Seven years before your first bottle: that's the apprenticeship..." read backwards; "sniffing"; options 2 and 3 overlapped | a seven-year apprenticeship before your first perfume; option 2 loves the learning, option 3 won't track a single day | no |
+| C5-126 | "Six straight losses for Gary, the snail your roommate quit..." read backwards | Gary the snail has lost six in a row; your roommate quit a steady job to race it | no |
+| C6-110 | who gets the calls and why was tangled | anything lost can land in your mailbox or your sibling's, and everyone picks yours | no |
+| C6-140 | "since the family I'm building gets the fish" was awkward | my person, the home we're building is my home now | no |
+| C6-122 | "Unpack" did not follow from a move you just agreed to; "wait for a smile" left the move unclear | cancel the move; the move waits for their smile | no |
+| C6-91 | the prompt never said it was a wedding; options 0 and 3 were the same approval | at the wedding; option 3 is "brutal, but someone had to say it out loud" | no |
+| C6-121 | "curses don't do exceptions" contradicted the swap options | swaps are allowed; option 0 is "no swaps from me" | no |
+| X-R3-50 | "swap it over breakfast" (one ring, who swaps?) | one of you kneels the classic way, or you hand it over at breakfast | no |
+| X-R2-30 | "Text my feelings tomorrow" was stiff | smile for the photos, mention it later, maybe | no |
+
+Fixed from Codex R5 flags on cards that read fine in the first pass (wording only): C3-161 ("Name it Future" tag cut), C4-161 (option 3 now reads as what you'd do), S-123 ("theirs" was a joint party), X-R3-30 (announcer line cut), C1-144 (Heart keeps the "two can play" motive), C2-124 (Heart grading "right call" removed), C1-126 (Heart says texted, not spoken), C6-144 (both voices on the same moment: answer due tonight). No fix added a clock time, a repeated prop, a genie trope or an em dash; check-bank passes with 0 errors.

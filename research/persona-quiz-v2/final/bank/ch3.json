@@ -305,7 +305,7 @@
         ]
       },
       {
-        "t": "\"Amazing! Thursdays next? I want in on yours too.\"",
+        "t": "\"Amazing! Then I'm joining your Thursday thing too.\"",
         "axes": {
           "R1": 1
         },
@@ -329,7 +329,7 @@
         "Both my loves in one room. Please save me a seat.",
         "Congratulations. Can I still keep one night that is only mine?",
         "I say I am proud, then quietly join a club across town.",
-        "That is wonderful. Can I join your Thursday plans too?"
+        "That is wonderful. Then I am joining your Thursday plans too."
       ]
     },
     "fp": {
@@ -380,7 +380,7 @@
     "id": "C3-81",
     "type": "bet",
     "chapter": 3,
-    "prompt": "Shower confession, I'm guessing: you've rehearsed a whole argument with your person in there.",
+    "prompt": "Genii's sure: you've rehearsed a whole fight with your person in the shower. Then what?",
     "options": [
       {
         "t": "None of it ever left the shower.",
@@ -436,11 +436,11 @@
       }
     ],
     "heart": {
-      "prompt": "Have you ever rehearsed a whole argument with your person in your head, in the shower? What happened next?",
+      "prompt": "Have you ever rehearsed a whole argument with your person in the shower? What happened next?",
       "options": [
-        "Yes, and I never said any of it to them.",
+        "Yes, and none of it ever reached them.",
         "Yes, and I said the best part to them that same night.",
-        "Yes, and I never said it. The argument keeps coming back.",
+        "Yes, and I still rehearse it. It keeps coming back.",
         "No. If something bothers me, I tell them the first time.",
         "By the time I dried off, it no longer mattered."
       ]
@@ -489,7 +489,7 @@
     "chapter": 3,
     "sq": "SQ-T10-2",
     "world": "absurd",
-    "prompt": "Clean Breaks, $5 at the mall vending machine: they forget the whole situationship and just think you're lovely. Yours is fizzling.",
+    "prompt": "$5 at the mall vending machine buys a Clean Break: whoever you pick forgets the whole situationship and just remembers you fondly. Yours is fizzling.",
     "options": [
       {
         "t": "$5 in, and nobody has to have the talk.",
@@ -517,7 +517,7 @@
         ]
       },
       {
-        "t": "No machine. One long, honest dinner, however it ends.",
+        "t": "No machine. One long dinner to see if it's worth saving.",
         "tags": [
           {
             "id": "T10A",
@@ -538,11 +538,11 @@
       }
     ],
     "heart": {
-      "prompt": "For five dollars, a mall vending machine makes someone forget the whole thing and just think well of you. Your situationship is fading.",
+      "prompt": "A mall vending machine sells Clean Breaks for five dollars: whoever you choose forgets the whole situationship and only remembers you fondly. Your own situationship is fading.",
       "options": [
         "I pay, so neither of us has to have the talk.",
         "They get the real talk, in person. I walk past it.",
-        "No machine. We have one long, honest dinner, however it ends.",
+        "No machine. One long dinner to see if it is worth saving.",
         "I buy one for them, and one for myself."
       ]
     },
@@ -695,7 +695,7 @@
     "id": "C3-140",
     "type": "this_or_that",
     "chapter": 3,
-    "prompt": "Your person's shadow got home from their weekend away an hour before they did. It's on your couch, ready to tell everything.",
+    "prompt": "Your person's shadow came home from their weekend away an hour before they did. It's on your couch, happy to tell you everything they did.",
     "options": [
       {
         "t": "Pour the shadow a drink. I want the whole weekend.",
@@ -713,7 +713,7 @@
       }
     ],
     "heart": {
-      "prompt": "Your person's shadow came home from their weekend away an hour before they did. It is sitting on your couch, ready to tell you everything.",
+      "prompt": "Your person's shadow came home from their weekend away an hour before they did. It is on your couch, happy to tell you everything they did.",
       "options": [
         "I sit down with it. I want to hear the whole weekend.",
         "Their weekend is theirs. I ask the shadow to wait outside."
@@ -1041,7 +1041,7 @@
     ],
     "options": [
       {
-        "t": "\"Yes. Practice for the real thing. Name it Future.\"",
+        "t": "\"Yes. The goat is practice for a tiny human.\"",
         "tags": [
           {
             "id": "T11A",
@@ -1189,10 +1189,10 @@
     "id": "C3-145",
     "type": "role",
     "chapter": 3,
-    "prompt": "Four couples, one rented cabin, one long weekend. By Sunday, you're the...",
+    "prompt": "Four couples, one rented cabin, one long weekend. By Sunday, which one were you?",
     "options": [
       {
-        "t": "Inseparable half. We even did the dishes as a duet.",
+        "t": "Inseparable half: we even did the dishes together.",
         "axes": {
           "R1": 1
         },
@@ -1205,7 +1205,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "Car reader. An hour alone each day, with a book.",
+        "t": "Escape artist: an hour alone in the car each day, reading.",
         "axes": {
           "R1": -1
         },
@@ -1218,7 +1218,7 @@
         "emotion": "relief"
       },
       {
-        "t": "Running couples' charades, and we're winning.",
+        "t": "Charades captain: running couples' charades, and we're winning.",
         "tags": [
           {
             "id": "T09A",
@@ -1228,7 +1228,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Joined another couple's card game. Solo. By choice.",
+        "t": "Free agent: joined another couple's card game, solo, by choice.",
         "tags": [
           {
             "id": "T09B",
@@ -1273,9 +1273,9 @@
     "sq": "SQ-T09-2",
     "world": "unusual",
     "friend": {
-      "prompt": "Four couples, one rented cabin, one long weekend. By Sunday, {name} is the...",
+      "prompt": "Four couples, one rented cabin, one long weekend. By Sunday, which one was {name}?",
       "a": {
-        "t": "Inseparable half. We even did the dishes as a duet.",
+        "t": "Inseparable half: we even did the dishes together.",
         "axes": {
           "R1": 1
         },
@@ -1287,7 +1287,7 @@
         ]
       },
       "b": {
-        "t": "Car reader. An hour alone each day, with a book.",
+        "t": "Escape artist: an hour alone in the car each day, reading.",
         "axes": {
           "R1": -1
         },

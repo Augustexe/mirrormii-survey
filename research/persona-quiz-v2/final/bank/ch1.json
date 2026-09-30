@@ -425,7 +425,7 @@
    "options": [
     "\"Hello, I am right here,\" I said out loud.",
     "I stopped mid-sentence and said, \"Take your time. I will wait.\"",
-    "I picked up my own phone too.",
+    "I picked up my own phone so they would feel it too.",
     "I kept talking as if I had not noticed."
    ]
   },
@@ -465,7 +465,7 @@
   "chapter": 1,
   "sq": "SQ-L3-3",
   "world": "everyday",
-  "prompt": "Genii's hunch: you've waited for the walk signal on an empty street while strangers crossed past you.",
+  "prompt": "Genii's hunch: you've waited for the walk signal with zero cars in sight, while everyone else crossed.",
   "options": [
    {
     "t": "Stood there alone till it changed. Light's the light.",
@@ -475,7 +475,7 @@
     "emotion": "pride"
    },
    {
-    "t": "Yes, with a fake phone call so it looked on purpose.",
+    "t": "Wanted to cross so badly. Couldn't make my feet go.",
     "axes": {
      "L3": 1
     },
@@ -488,7 +488,7 @@
     }
    },
    {
-    "t": "Empty street? I walk. The light can catch up.",
+    "t": "No cars coming? I cross. Every time.",
     "axes": {
      "L3": -2
     },
@@ -496,17 +496,17 @@
    }
   ],
   "heart": {
-   "prompt": "Have you ever waited for the walk signal on an empty street while strangers crossed right past you?",
+   "prompt": "Have you ever waited for the walk signal with no cars in sight, while everyone else crossed?",
    "options": [
     "Yes. I stood there alone and did not move until it changed.",
-    "Yes, and I faked a phone call so it looked deliberate.",
+    "Yes. I wanted to cross, but I could not make myself go.",
     "Only when a child is watching. Otherwise I cross.",
-    "No. If the street is empty, I walk."
+    "No. If no cars are coming, I cross."
    ]
   },
   "fp": {
-   "trigger": "a don't-walk light on an empty street",
-   "setting": "a crosswalk, strangers crossing",
+   "trigger": "a don't-walk light with no cars coming",
+   "setting": "a crosswalk, everyone else crossing",
    "ask": "wait for the signal or cross",
    "who": "strangers walking past you",
    "stakes": "looking silly versus keeping the rule",
@@ -519,7 +519,7 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "Genii's hunch: {name} has waited for the walk signal on an empty street while strangers crossed. Guilty or not?",
+   "prompt": "Genii's hunch: {name} has waited for the walk signal with no cars in sight while everyone else crossed. Guilty or not?",
    "a": {
     "t": "Guilty. Stood alone and didn't budge until it changed.",
     "axes": {
@@ -527,7 +527,7 @@
     }
    },
    "b": {
-    "t": "Never. Empty street, {they} walk.",
+    "t": "Never. No cars coming, {they} cross.",
     "axes": {
      "L3": -2
     }
@@ -632,7 +632,7 @@
   "chapter": 1,
   "sq": "SQ-L2-2",
   "world": "absurd",
-  "prompt": "Overnight, a billboard goes up outside your window: your nine closest friends, ranked by how life is going. You're seventh.",
+  "prompt": "Overnight, a billboard goes up outside your window ranking you and your eight closest friends by how well life is going. You're seventh.",
   "options": [
    {
     "t": "\"Seventh?\" I'm taking third by next summer.",
@@ -642,7 +642,7 @@
     "emotion": "pride"
    },
    {
-    "t": "Study whoever's first. Walk past again tomorrow.",
+    "t": "Find out what number one is doing. Copy it.",
     "axes": {
      "L2": 1
     },
@@ -663,10 +663,10 @@
    }
   ],
   "heart": {
-   "prompt": "A billboard appears outside your window overnight. It ranks your nine closest friends by how well life is going, and you are seventh.",
+   "prompt": "Overnight, a billboard appears outside your window. It ranks you and your eight closest friends by how well life is going, and you are seventh.",
    "options": [
     "\"Seventh?\" I will be third by next summer.",
-    "I study whoever is first, and I walk past again tomorrow.",
+    "I find out what the leader is doing, and copy it.",
     "Seventh feels comfortable. Nobody expects much from seventh.",
     "I close the curtains. My life is not a leaderboard."
    ]
@@ -675,7 +675,7 @@
    "trigger": "a billboard ranks your friends' lives",
    "setting": "outside your window, in public",
    "ask": "race up the ranks or shrug it off",
-   "who": "your nine closest friends",
+   "who": "you and your eight closest friends",
    "stakes": "pride and peace versus envy",
    "device": "life-billboard"
   },
@@ -686,7 +686,7 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "A billboard outside {name}'s window ranks {their} nine closest friends by how life is going. {name} is seventh. What does {name} do?",
+   "prompt": "A billboard outside {name}'s window ranks {name} and {their} eight closest friends by how life is going. {name} is seventh. What does {name} do?",
    "a": {
     "t": "\"Seventh? Give me one year. I'm taking third.\"",
     "axes": {
@@ -1169,7 +1169,7 @@
    }
   ],
   "heart": {
-   "prompt": "You are driving to work when your map app, which has never spoken before, sends you a message.",
+   "prompt": "You are driving to work when your map app, which has never texted anyone before, sends you a message.",
    "thread": [
     {
      "from": "Your map app",
@@ -1335,10 +1335,10 @@
   "chapter": 1,
   "sq": "SQ-T07-1",
   "world": "absurd",
-  "prompt": "Your friend's flea-market mirror answers \"how do I look?\" out loud. On date night it said, \"Not that shirt.\" Their date heard. They're keeping it. Your take?",
+  "prompt": "Your friend's flea-market mirror answers \"How do I look?\" out loud. On date night it said \"Not that shirt,\" and their date heard. They're keeping the mirror. Your take?",
   "options": [
    {
-    "t": "Better to hear it at home than after. Keep it.",
+    "t": "Keep it. I'd rather hear the truth, even with company.",
     "axes": {
      "R2": 2
     },
@@ -1377,7 +1377,7 @@
     "emotion": "cringe"
    },
    {
-    "t": "I'd tape a note on it: soften the blow first.",
+    "t": "I'd want it to say one nice thing first.",
     "axes": {
      "R2": -2
     },
@@ -1390,12 +1390,12 @@
    }
   ],
   "heart": {
-   "prompt": "A flea-market mirror tells your friend, out loud, how they look. On date night it said \"Not that shirt,\" and their date heard. They keep it. Your view?",
+   "prompt": "Your friend's flea-market mirror answers \"How do I look?\" out loud. On date night it said \"Not that shirt,\" and their date heard. They are keeping it. Your view?",
    "options": [
-    "They should keep it. It is better to hear it at home.",
+    "They should keep it. The truth is worth it, even with company.",
     "I would say it too, just not in front of the date.",
     "In front of their date? That needed to be softer.",
-    "I would tape on a note: soften the blow first."
+    "I would want a compliment first, then the truth."
    ]
   },
   "fp": {
@@ -1415,7 +1415,7 @@
   "friend": {
    "prompt": "A friend's flea-market mirror answers \"how do I look?\" out loud, honestly, even in front of a date. {name}'s first thought?",
    "a": {
-    "t": "\"Keep it. Better to hear it at home than after.\"",
+    "t": "\"Keep it. The truth is worth it, even with company.\"",
     "axes": {
      "R2": 2
     },
@@ -1427,7 +1427,7 @@
     ]
    },
    "b": {
-    "t": "\"Tape a note to it: compliment first.\"",
+    "t": "\"I'd want it to say one nice thing first.\"",
     "axes": {
      "R2": -2
     },
@@ -1722,7 +1722,7 @@
     }
    },
    {
-    "t": "Hat holder. \"Every name in a hat. Same odds for all.\"",
+    "t": "Name drawer: \"Every name in a hat. Same odds for all.\"",
     "axes": {
      "L3": 1
     }
@@ -1734,13 +1734,13 @@
     }
    },
    {
-    "t": "Swapper: my own voucher goes to whoever flies out earliest.",
+    "t": "Giver: if I get one, it goes to whoever's stuck longest.",
     "axes": {
      "L3": -1
     }
    },
    {
-    "t": "Advocate: \"The family with the baby gets one. Obviously.\"",
+    "t": "Advocate: \"The family with the baby gets one first.\"",
     "axes": {
      "L3": -2
     }
@@ -1752,7 +1752,7 @@
     "The first twelve in line get them. That is how lines work.",
     "I suggest drawing names so everyone has the same chance.",
     "I persuade the desk to give a room to whoever is crying.",
-    "I give my own voucher to whoever flies out earliest.",
+    "If I get a voucher, it goes to whoever is stuck longest.",
     "I say the family with the baby should get one first."
    ]
   },
@@ -1779,7 +1779,7 @@
     }
    },
    "b": {
-    "t": "Advocate: \"The family with the baby gets one. Obviously.\"",
+    "t": "Advocate: \"The family with the baby gets one first.\"",
     "axes": {
      "L3": -2
     }

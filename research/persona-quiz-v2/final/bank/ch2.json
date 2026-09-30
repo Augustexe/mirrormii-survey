@@ -131,7 +131,7 @@
     ]
    },
    {
-    "t": "Leave a thank-you card on the door and keep walking.",
+    "t": "Skip it, with a note: glad we were friends.",
     "axes": {
      "R2": -1
     },
@@ -150,7 +150,7 @@
     "I go in prepared to stay as long as it takes.",
     "I go in, but I bring a list of everything they did.",
     "Some friendships end for a reason, so I cancel.",
-    "I leave a thank-you card at the door and keep walking."
+    "I skip it, with a note: I am glad we were friends."
    ]
   },
   "fp": {
@@ -183,7 +183,7 @@
     ]
    },
    "b": {
-    "t": "Leaves a thank-you card on the shop door. Walks on.",
+    "t": "Skips it, with a note: glad we were friends.",
     "axes": {
      "R2": -1
     },
@@ -915,7 +915,7 @@
     "emotion": "sting"
    },
    {
-    "t": "Weddings are just expensive chairs. Icons.",
+    "t": "Smart move. Big weddings are overrated anyway.",
     "axes": {
      "R3": -2
     },
@@ -957,7 +957,7 @@
    "prompt": "Your closest friend just married at a drive-through chapel and told everyone afterward. There will be no party and no speeches. What do you think first?",
    "options": [
     "I feel robbed. I wanted to celebrate them with everyone.",
-    "Weddings are overrated, I think. Eloping was the right call.",
+    "Weddings are overrated, I think. I would elope too.",
     "I am happy for them, but I will always miss that party.",
     "I am a little jealous. A drive-through sounds right to me."
    ]
@@ -993,7 +993,7 @@
     ]
    },
    "b": {
-    "t": "Icons. Weddings are just expensive chairs.",
+    "t": "Smart move. Big weddings are overrated anyway.",
     "axes": {
      "R3": -2
     },
@@ -1096,7 +1096,7 @@
   "type": "this_or_that",
   "chapter": 2,
   "round": "ch2-r125",
-  "prompt": "Your friend's closet door opens somewhere random. They leave in an hour and saved you the only spot. You had the perfect weekend planned.",
+  "prompt": "Your friend's closet door now opens somewhere random on Earth, back by Sunday. They leave in an hour, with room for you. You had a perfect weekend planned.",
   "options": [
    {
     "t": "Through the door, and the weekend can wait.",
@@ -1125,10 +1125,10 @@
    }
   ],
   "heart": {
-   "prompt": "Your friend's closet door opens somewhere new each time. They leave in an hour and saved you the only place. You had a perfect weekend planned.",
+   "prompt": "Your friend's closet door now opens somewhere random in the world, back by Sunday. They leave in an hour, with room for you. You had a perfect weekend planned.",
    "options": [
     "I go through the door. The weekend can wait.",
-    "My weekend stays. I ask for a postcard."
+    "My weekend plans stay, and I ask for a postcard."
    ]
   },
   "fp": {
@@ -1148,7 +1148,7 @@
   "sq": "SQ-L1-1",
   "world": "absurd",
   "friend": {
-   "prompt": "A friend's closet door opens somewhere new in an hour. {name} gets the only spot. Weekend's already planned. Which one is {name}?",
+   "prompt": "A friend's closet door opens somewhere random, and {name} is invited through in an hour. {name}'s weekend was already planned. Which one is {name}?",
    "a": {
     "t": "\"My weekend. Send me a postcard from wherever.\"",
     "axes": {
