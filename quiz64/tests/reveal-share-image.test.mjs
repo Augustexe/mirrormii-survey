@@ -56,7 +56,7 @@ test("the mirror card draws names, traits, the invite and the address, and nothi
         drawShareCard(ctx, view.share, { format, theme });
         const all = ctx.texts.join(" | ");
         for (const n of view.share.names) assert.ok(all.includes(n.name.split(" ")[0]), `${voice} ${format} ${theme}: ${n.name}`);
-        assert.ok(all.includes("Do you really know me?"));
+        assert.ok(all.includes("How well do you know me?"));
         assert.ok(all.includes("mirrormii.ai"));
         assert.doesNotMatch(all, /\d/, `${format} ${theme}: no numbers`);
         assert.doesNotMatch(all, BANNED);
@@ -92,7 +92,7 @@ test("marriage and kids traits never reach the card or a story image", async () 
   const lib = {
     axes: [["R1", "We", "Me"], ["R2", "Direct", "Soft"], ["R3", "Classic", "Own"], ["L1", "Steady", "Venture"], ["L2", "Push", "Easy"], ["L3", "Rules", "Context"]].map(([id, plus, minus]) => ({ id, plus, minus, plusLine: `${plus} line.`, minusLine: `${minus} line.` })),
     relationship: [{ code: "We·Soft·Own", name: "Golden Retriever", read: "PEOPLE-READ", sting: "PEOPLE-STING", heart: "p" }, { code: "Me·Direct·Classic", name: "Straight Shooter", read: "x" }],
-    life: [{ code: "Steady·Push·Rules", name: "The Planner", read: "LIFE-READ", sting: "LIFE-STING", heart: "l" }, { code: "Venture·Easy·Context", name: "The Wanderer", read: "y" }],
+    life: [{ code: "Steady·Push·Rules", name: "The Planner", read: "LIFE-READ", sting: "LIFE-STING", heart: "l" }, { code: "Venture·Easy·Context", name: "The Spontaneous One", read: "y" }],
     tags: [
       { id: "T11A", name: "Wants kids someday", line: "KIDS-LINE", heart: "KIDS-HEART", sting: "KIDS-STING", chapter: 6, locked18: true },
       { id: "T02A", name: "Yes first", line: "YES-LINE", heart: "YES-HEART", chapter: 2 },
@@ -112,7 +112,7 @@ test("marriage and kids traits never reach the card or a story image", async () 
   assert.ok(hook && !/KIDS|kids/.test(hook), "a kids trait never becomes the story 2 line");
   assert.ok(view.slides.find((s) => s.id === "traits").tags[0].private, "the owner still sees it, marked private");
   assert.deepEqual(view.share.tags.map((t) => t.name), ["Yes first"]);
-  assert.equal(view.slides.find((s) => s.id === "share").opposite, "Your opposite: Straight Shooter and The Wanderer. Know one?");
+  assert.equal(view.slides.find((s) => s.id === "share").opposite, "Your opposite: Straight Shooter and The Spontaneous One. Know one?");
   const card = recorder();
   drawShareCard(card, view.share, { format: "story" });
   assert.ok(!card.texts.join(" ").includes("kids"));

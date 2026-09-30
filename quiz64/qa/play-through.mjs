@@ -92,7 +92,7 @@ for (let guard = 0; guard < 400; guard++) {
   maxWebGL = Math.max(maxWebGL, await page.locator('[data-part="shader"] canvas').count());
   if (await page.locator("main.lock").count()) {
     const lockBtn = page.getByRole("button", { name: /lock in genii/i });
-    const playBtn = page.getByRole("button", { name: /play the final 8/i });
+    const playBtn = page.getByRole("button", { name: /play the last eight cards/i });
     if (await lockBtn.count()) { await shot("lock"); await activate(lockBtn); locked = true; await page.waitForTimeout(1600); continue; }
     if (await playBtn.count()) { await shot("locked"); await activate(playBtn); await page.waitForSelector(".play", { timeout: 5000 }); continue; }
     await page.waitForTimeout(300);

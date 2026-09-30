@@ -50,7 +50,8 @@ test("reduced motion: the assembled, fogged mirror and both names are there at o
   assert.match(intro, /data-phase="set"/, "no orbit, the finished mirror");
   assert.match(intro, /data-art="mirror-arch"/);
   const names = slideHtml(html, "names");
-  for (const s of [view.slides[1].people.name, view.slides[1].life.name, "With your people", "With your life"]) assert.ok(visible(names).includes(s), s);
+  const { HALVES } = await load("/src/persona/stats.js");
+  for (const s of [view.slides[1].people.name, view.slides[1].life.name, view.slides[1].people.define, view.slides[1].life.define, HALVES.people.kicker, HALVES.life.kicker]) assert.ok(visible(names).includes(s), s);
   assert.ok(!names.includes("We·"), "no type code, even in attributes");
   const motion = await render(view, "never");
   assert.match(slideHtml(motion, "intro"), /data-phase="orbit"/, "with motion, story 1 opens on the orbit");
@@ -89,7 +90,7 @@ test("the facet: leans point to the right pole, people above the waterline, flex
   assert.equal((map.match(/class="rv-stat"/g) || []).length, 6, "six stats on the character sheet");
   for (const r of rows) {
     // Round 3: the sentence names the level and the stat's end (src/persona/stats.js), never the internal pole.
-    if (!r.flex && !r.unfinished) assert.ok(visible(map).includes(`${r.stat}: ${r.level} ${r.leadEnd},`), `${r.key} reads as a sentence`);
+    if (!r.flex && !r.unfinished) assert.ok(visible(map).includes(`${r.stat}: ${r.leadEnd}, ${r.level},`), `${r.key} reads as a sentence`);
   }
   assert.doesNotMatch(visible(map), /\d/);
 });
@@ -107,12 +108,13 @@ test("the insight flips at its sentence boundary and sits whole when it is one s
 });
 
 test("the app screen has one primary job; the stings sheet only saves; the guess sheet defrosts every pane", async () => {
+  const { UI_COPY } = await load("/src/persona/stories/story-data.js");
   for (const voice of ["fun", "heart"]) {
     const view = await realView(voice);
     const html = await render(view);
     const app = slideHtml(html, "app");
     assert.equal((app.match(/class="rv-cta /g) || []).length, 1, `${voice}: one primary button`);
-    assert.ok(visible(app).includes("Your data"));
+    assert.ok(visible(app).includes(UI_COPY.yourData));
     assert.match(app, /class="rv-world"[^>]*aria-hidden="true"/, `${voice}: one large in-game moment on the canon island`);
     // Round 4 (LAUNCH-SPEC 25 item 1): Genii's island from the GDD and our own 3D Genii; no library or phone mockup art.
     assert.match(app, /assets\/island\/hero-portrait-/, `${voice}: Genii's island (GDD v0.2 render)`);
@@ -124,7 +126,7 @@ test("the app screen has one primary job; the stings sheet only saves; the guess
   }
   const { ShareSheet, GuessSheet } = await load("/src/persona/reveal/Sheets.jsx");
   const stings = visible(renderToStaticMarkup(React.createElement(ShareSheet, { slide: { id: "stings", private: true }, onShare() {}, onSave() {} })));
-  assert.ok(stings.includes("Save for me"));
+  assert.ok(stings.includes(UI_COPY.saveForMe));
   assert.ok(!stings.includes("Share image"));
   const other = visible(renderToStaticMarkup(React.createElement(ShareSheet, { slide: { id: "read" }, onShare() {}, onSave() {} })));
   assert.ok(other.includes("Share image") && other.includes("Save image"));

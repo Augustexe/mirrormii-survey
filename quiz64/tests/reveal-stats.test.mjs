@@ -1,5 +1,5 @@
-// The six leans as game stats (Jerry, 2026-09-29 evening; LAUNCH-SPEC 23 "Map stat labels"; src/persona/stats.js).
-// The labels come from one app-side table, every end lands where its pole does (Crew where We lands), and no bare
+// The six leans as game stats (LAUNCH-SPEC 26 "Plain names", which supersedes the section 23 table; src/persona/stats.js).
+// The labels come from one app-side table, every end lands where its pole does (Stays close where We lands), and no bare
 // internal pole name (We, Me, Direct, Soft, Classic, Own, Steady, Venture, Push, Easy, Rules, Context) renders on any
 // reveal screen or reaches the data a saved screen image draws. Also: Genii's calls name each locked guess by a short
 // scene title, in play order, with honest partials.
@@ -33,22 +33,22 @@ test("the stat table: one entry per axis, first end on the library's plus pole, 
   const lib = readJSON("library.json");
   assert.deepEqual(Object.keys(STATS), lib.axes.map((a) => a.id));
   const expected = {
-    R1: ["Orbit", "Crew", "Solo"], R2: ["Delivery", "Blunt", "Gentle"], R3: ["Blueprint", "Old School", "Own Lane"],
-    L1: ["Compass", "Home Base", "Wanderlust"], L2: ["Engine", "Full Send", "Cruise Control"], L3: ["Code", "By the Book", "Read the Room"],
+    R1: ["Closeness", "Stays close", "Keeps some space"], R2: ["Hard truths", "Says it straight", "Says it gently"], R3: ["Traditions", "Carries them on", "Starts new ones"],
+    L1: ["New things", "Sticks with favorites", "Tries new things"], L2: ["Pace", "Goes fast", "Takes it slow and steady"], L3: ["Rules", "By the book", "Case by case"],
   };
   for (const a of lib.axes) {
     const s = STATS[a.id];
     assert.equal(s.first, a.plus, `${a.id}: the first pole of the code name is the library's plus`);
     assert.equal(s.second, a.minus, `${a.id}: second pole`);
     assert.deepEqual([s.stat, endOf(a.plus), endOf(a.minus)], expected[a.id], `${a.id}: stat and ends`);
-    // The end sits on the pole whose line it matches (Crew where "Your people are your happy place", We).
+    // The end sits on the pole whose line it matches (Stays close where "Your people are your happy place", We).
     assert.ok(a.plusLine && a.minusLine, `${a.id}: both pole lines exist`);
   }
   // A lean to the plus pole lights the left end; the bead mirrors the story data's position (measured from minus).
   const r = statRow("R1", { lead: "We", pos: 80 });
-  assert.deepEqual([r.a, r.b, r.leadEnd, r.otherEnd, r.leadSide, r.at], ["Crew", "Solo", "Crew", "Solo", "a", 20]);
+  assert.deepEqual([r.a, r.b, r.leadEnd, r.otherEnd, r.leadSide, r.at], ["Stays close", "Keeps some space", "Stays close", "Keeps some space", "a", 20]);
   const l = statRow("L2", { lead: "Easy", pos: 30 });
-  assert.deepEqual([l.leadEnd, l.leadSide, l.at], ["Cruise Control", "b", 70]);
+  assert.deepEqual([l.leadEnd, l.leadSide, l.at], ["Takes it slow and steady", "b", 70]);
 });
 
 test("no bare internal pole name renders on the reveal, in either voice, for several players", async () => {
@@ -74,7 +74,8 @@ test("no bare internal pole name renders on the reveal, in either voice, for sev
         if (!slide) continue;
         // Every text run on the screen (not whole lines of copy, which may use "me" as a word): a label is a text node
         // of its own, so a bare pole shows up as a node that is exactly a pole name, or as "X over Y", "your X side".
-        const endWords = Object.values(STATS).flatMap((x) => Object.values(x.ends)).sort((a, b) => b.length - a.length);
+        // Stat ends and stat names are labels (the L3 stat is named Rules, like its plus pole), so they are masked first.
+        const endWords = Object.values(STATS).flatMap((x) => [...Object.values(x.ends), x.stat]).sort((a, b) => b.length - a.length);
         const nodes = text(slide).split("\n").map((t) => t.trim()).filter(Boolean).map((t) => endWords.reduce((acc, e) => acc.split(e).join("END"), t));
         for (const n of nodes) {
           assert.ok(!POLE_NAMES.includes(n.replace(/[.,:;]$/, "")), `${voice} ${k} ${id}: bare label "${n}"`);
@@ -92,8 +93,8 @@ test("no bare internal pole name renders on the reveal, in either voice, for sev
         for (const g of spec.groups || []) for (const r of g.rows) labels.push(r.left, r.right);
         for (const f of spec.findings || []) labels.push(f.lead, f.topic);
         for (const p of spec.panes || []) labels.push(p.side, p.topic);
-        // A label is a stat end or a scene; ends such as "Own Lane" contain a pole word, so check the label as a whole.
-        const ends = new Set(Object.values(STATS).flatMap((x) => Object.values(x.ends)));
+        // A label is a stat end, a stat name or a scene; a stat such as Rules shares a pole word, so check the label as a whole.
+        const ends = new Set(Object.values(STATS).flatMap((x) => [...Object.values(x.ends), x.stat]));
         for (const l of labels.filter(Boolean).map(String)) {
           const parts = l.split(" · ");
           for (const part of parts) assert.ok(ends.has(part) || !bare.test(part), `${voice} ${sl.id} image label "${l}"`);

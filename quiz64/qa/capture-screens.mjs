@@ -206,7 +206,7 @@ for (const size of only) {
     await page.getByRole("button", { name: /lock in genii/i }).click();
     await snap("lock-locked", 2600);
     await open({ voice: "fun", stop: "finale", id: "shotfinalerun" });
-    const play = page.getByRole("button", { name: /play the final 8/i });
+    const play = page.getByRole("button", { name: /play the last eight cards/i });
     if (await play.count()) await play.click();
     await page.waitForSelector("article.pc[data-phase=finale]", { timeout: 6000 }).catch(() => {});
     await snap("finale");

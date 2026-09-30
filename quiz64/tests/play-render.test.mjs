@@ -77,13 +77,13 @@ test("lock: no code on the main screen, the full code only in the disclosure she
   const { LockView } = await load("/src/persona/play/Lock.jsx");
   const hash = "d36a79071138cfda8e2b4c1d9f0a7b3c5e6d7f8091a2b3c4d5e6f708192a3b4c";
   const open = renderToStaticMarkup(React.createElement(LockView, { locked: false, lockHash: null, onLock() {}, onStart() {}, onSave() {} }));
-  assert.ok(visible(open).includes("Eight cards.") && visible(open).includes("Lock in Genii's guesses"));
+  assert.ok(visible(open).includes("your last eight answers.") && visible(open).includes("Lock in Genii's guesses"));
   const locked = renderToStaticMarkup(React.createElement(LockView, { locked: true, lockHash: hash, onLock() {}, onStart() {}, onSave() {} }));
   const main = locked.slice(0, locked.indexOf("<dialog"));
   const sheet = locked.slice(locked.indexOf("<dialog"));
   assert.ok(!main.includes(hash.slice(0, 4)), "no code on the main screen");
   assert.ok(visible(main).includes("How do I know Genii can't cheat?"));
-  assert.ok(visible(main).includes("Play the final 8"));
+  assert.ok(visible(main).includes("Play the last eight cards"));
   assert.ok(sheet.includes("d36a 7907 1138 cfda"), "grouped in fours");
   assert.doesNotMatch(locked, /<code|monospace/);
   assert.equal((main.match(/data-art="lock-pane"/g) || []).length, 8);

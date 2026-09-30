@@ -83,7 +83,7 @@ function syntheticResult({ tags = 3 } = {}) {
     tags: tagRows,
     calls: [{ line: "CALL-1A", fromTag: "T01A" }, { line: "CALL-2A", fromTag: "T02A" }],
     plotTwist: { line: `You'd say: ‘${QUOTES[2]}’ Last time, you did: ‘${QUOTES[3]}’`, dim: "L2", said: { card: "C4-1", text: QUOTES[2] }, did: { card: "C4-2", text: QUOTES[3], grade: "did" } },
-    share: { typeName: "Golden Retriever × The Planner", tags: tagRows.map((t) => ({ name: t.name, heart: t.heart })), invite: "Do you really know me?" },
+    share: { typeName: "Golden Retriever × The Planner", tags: tagRows.map((t) => ({ name: t.name, heart: t.heart })), invite: "How well do you know me?" },
   };
 }
 
@@ -119,7 +119,8 @@ const slideHtml = (html, id) => {
 
 // ---------------------------------------------------------------- tests
 test("the screens render in order from a synthetic result, with only the first one showing", async () => {
-  const { buildStories } = await load("/src/persona/stories/story-data.js");
+  const { buildStories, STORY_COPY, UI_COPY, GUESS_COPY } = await load("/src/persona/stories/story-data.js");
+  const C = STORY_COPY.fun;
   const view = buildStories({ result: syntheticResult(), profile: syntheticProfile(), sealed: SEALED, lib: newLibrary(), voice: "fun", promptFor: (id) => `PROMPT ${id.length}` });
   assert.deepEqual(view.slides.map((s) => s.id), ORDER);
   const html = await render(view);
@@ -127,7 +128,7 @@ test("the screens render in order from a synthetic result, with only the first o
   assert.deepEqual(found, ORDER);
   assert.equal((html.match(/<section[^>]*hidden=""/g) || []).length, ORDER.length - 1, "every screen but the first starts hidden");
   const text = visible(html);
-  assert.ok(text.includes("40 answers in. Here's you."));
+  assert.ok(text.includes(C.intro.title));
 
   const names = visible(slideHtml(html, "names"));
   assert.ok(names.includes("Golden Retriever") && names.includes("The Planner"));
@@ -143,35 +144,37 @@ test("the screens render in order from a synthetic result, with only the first o
   for (const a of AXES) {
     assert.ok(map.includes(endOf(a.plus)) || map.includes(endOf(a.minus)), `${a.id}: an end shows`);
     assert.ok(map.includes(STATS[a.id].stat), STATS[a.id].stat);
-    assert.ok(!map.includes(`>${a.plus}<`) && !map.includes(`>${a.minus}<`), `no bare ${a.plus} or ${a.minus}`);
+    // The L3 stat is named Rules, like its internal plus pole; the stat name is the label, never the pole.
+    assert.ok((a.plus === STATS[a.id].stat || !map.includes(`>${a.plus}<`)) && !map.includes(`>${a.minus}<`), `no bare ${a.plus} or ${a.minus}`);
   }
-  assert.ok(/Orbit: (Slight|Mild|Clear|Strong|Off the charts) Crew, \w+ pips of five\./.test(visible(map)) && visible(map).includes("Blueprint: Both, Old School and Own Lane."), "each stat reads as a sentence");
+  const lv = Object.values(C.map.levels).join("|");
+  assert.ok(new RegExp(`Closeness: Stays close, (${lv}), \\w+ pips of five\\.`).test(visible(map)) && visible(map).includes("Traditions: Right in the middle, Carries them on and starts new ones."), "each stat reads as a sentence");
   assert.doesNotMatch(visible(map), /%/, "no percentage on the map");
   assert.doesNotMatch(visible(map), /\d/, "no numbers on the map");
 
   const knows = visible(slideHtml(html, "knows"));
-  assert.ok(knows.includes("What Genii knows best"));
+  assert.ok(knows.includes(C.knows.kicker));
   assert.ok(knows.includes("You hold the person first."), "the clearest lean first");
-  assert.ok(/Strong signal|Clear signal|Some signal/.test(knows), "a clarity cue in words");
+  assert.ok(Object.values(C.knows.tiers).some((t) => knows.includes(t)), "a clarity cue in words");
 
   const traits = visible(slideHtml(html, "traits"));
   for (const i of [1, 2, 3]) assert.ok(traits.includes(`NEW-LINE-${i}`));
   assert.ok(visible(slideHtml(html, "insight")).includes("NEW-INSIGHT-MINUS"), "believe minus, acted plus");
   const stings = visible(slideHtml(html, "stings"));
-  assert.ok(stings.includes("OLD-STING-PEOPLE") && stings.includes("OLD-STING-LIFE") && stings.includes("OLD-TAGSTING-1") && stings.includes("Open book") && !stings.includes("Only you see this"), "open book: no hiding frame");
+  assert.ok(stings.includes("OLD-STING-PEOPLE") && stings.includes("OLD-STING-LIFE") && stings.includes("OLD-TAGSTING-1") && stings.includes(C.stings.title) && !stings.includes("Only you see this"), "open book: no hiding frame");
 
   const calls = visible(slideHtml(html, "calls"));
-  assert.ok(calls.includes("4") && calls.includes("of 6") && calls.includes("Called it") && calls.includes("Surprised Genii") && calls.includes("Genii passed"));
+  assert.ok(calls.includes("4") && calls.includes("of 6") && calls.includes(C.calls.status.hit) && calls.includes(C.calls.status.miss) && calls.includes(C.calls.status.pass));
 
   const share = slideHtml(html, "share");
   const card = share.slice(share.indexOf("data-card"), share.indexOf("</figure>"));
   // Round 3: the card carries the core traits as keywords (a pre-round-3 library lets the trait name stand in) with their evidence line.
   for (const t of ["Here, scroll my phone", "NEW-LINE-1", "Golden Retriever", "The Planner"]) assert.ok(card.includes(t), t);
   for (const s of ["OLD-STING-PEOPLE", "OLD-STING-LIFE", "OLD-TAGSTING-1", "NEW-READ-PEOPLE"]) assert.ok(!card.includes(s), `no ${s} on the share card`);
-  assert.ok(visible(share).includes("Do you really know me?"));
+  assert.ok(visible(share).includes(UI_COPY.invite));
 
   const app = visible(slideHtml(html, "app"));
-  for (const t of ["Your real day powers the game.", "On the App Store", "Get MirrorMii", "Do you really know me?", "How Genii read you", "Your data"]) assert.ok(app.includes(t), t);
+  for (const t of [C.app.title, "On the App Store", "Get MirrorMii", UI_COPY.invite, GUESS_COPY.button, UI_COPY.yourData]) assert.ok(app.includes(t), t);
   for (const t of ["Start over", "Delete my data", "Download my data"]) assert.ok(!app.includes(t), `${t} waits behind Your data`);
   const { DataSheet } = await load("/src/persona/reveal/Sheets.jsx");
   const data = visible(renderToStaticMarkup(React.createElement(DataSheet, { storageOK: true, onDownload() {}, onRestart() {}, onDelete() {} })));
@@ -200,15 +203,15 @@ test("no quoted answers, ids, numbers, scores or system words reach the main scr
 });
 
 test("Heart to heart reads the h variants; Make it fun and Just the cards read the defaults", async () => {
-  const { buildStories, voiceOf } = await load("/src/persona/stories/story-data.js");
+  const { buildStories, voiceOf, STORY_COPY, GUESS_COPY } = await load("/src/persona/stories/story-data.js");
   const heart = buildStories({ result: syntheticResult(), profile: syntheticProfile(), sealed: null, lib: newLibrary(), voice: "heart" });
   assert.deepEqual(heart.slides.map((s) => s.id), ORDER_NO_CALLS, "no calls screen without a guess check");
   const html = visible(await render(heart));
-  for (const t of ["H-READ-PEOPLE", "H-READ-LIFE", "H-DESC-PEOPLE", "H-LINE-1", "H-LINE-2", "H-LINE-3", "H-INSIGHT-MINUS", "H-STING-PEOPLE", "H-STING-LIFE", "H-TAGSTING-1", "The tender part", "What came through clearest"]) assert.ok(html.includes(t), t);
+  for (const t of ["H-READ-PEOPLE", "H-READ-LIFE", "H-DESC-PEOPLE", "H-LINE-1", "H-LINE-2", "H-LINE-3", "H-INSIGHT-MINUS", "H-STING-PEOPLE", "H-STING-LIFE", "H-TAGSTING-1", STORY_COPY.heart.stings.title, STORY_COPY.heart.knows.title]) assert.ok(html.includes(t), t);
   for (const t of ["NEW-READ-PEOPLE", "NEW-LINE-1", "NEW-INSIGHT-MINUS", "OLD-STING-PEOPLE"]) assert.ok(!html.includes(t), `heart hides ${t}`);
   assert.equal(heart.slides.find((s) => s.id === "knows").findings[0].line, "H-You hold the person first.", "the clearest finding, in voice");
   assert.equal(heart.slides.find((s) => s.id === "names").hook, "H-You hold the person first.", "the plaque carries it too");
-  assert.ok(!html.includes("How Genii read you"), "no guess button without a guess check");
+  assert.ok(!html.includes(GUESS_COPY.button), "no guess button without a guess check");
 
   for (const voice of ["fun", "cards"]) {
     const v = buildStories({ result: syntheticResult(), profile: syntheticProfile(), sealed: null, lib: newLibrary(), voice });
@@ -281,12 +284,12 @@ test("the map places each dot on its side: decided sides off center, flex near t
 });
 
 test("the optional guess sheet shows the guess check without answers", async () => {
-  const { buildStories } = await load("/src/persona/stories/story-data.js");
+  const { buildStories, GUESS_COPY } = await load("/src/persona/stories/story-data.js");
   const { GuessSheet } = await load("/src/persona/stories/StoryDeck.jsx");
   const view = buildStories({ result: syntheticResult(), profile: syntheticProfile(), sealed: SEALED, lib: oldLibrary(), promptFor: (id) => `Prompt for ${id === "C1-S1" ? "one" : "another"}` });
   const text = visible(renderToStaticMarkup(React.createElement(GuessSheet, { guesses: view.guesses })));
   assert.ok(text.includes("4 of 6"));
-  assert.ok(text.includes("Called it") && text.includes("Missed") && text.includes("Passed"));
+  assert.ok(text.includes(GUESS_COPY.status.hit) && text.includes(GUESS_COPY.status.miss) && text.includes(GUESS_COPY.status.pass));
   for (const q of QUOTES) assert.ok(!text.includes(q));
   assert.doesNotMatch(text, WORDS);
 });

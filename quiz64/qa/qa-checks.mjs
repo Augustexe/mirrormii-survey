@@ -181,7 +181,7 @@ for (const [vname, vp] of Object.entries(VIEWS)) {
   await page.getByRole("button", { name: /lock in genii/i }).click();
   await page.waitForTimeout(2200);
   await audit(page, `${vname} locked`, { axe });
-  await page.getByRole("button", { name: /play the final 8/i }).click();
+  await page.getByRole("button", { name: /play the last eight cards/i }).click();
   await audit(page, `${vname} finale card`, { axe });
 
   for (const voice of ["fun", "heart"]) {

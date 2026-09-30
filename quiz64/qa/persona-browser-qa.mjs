@@ -109,14 +109,14 @@ async function playToResult(page, { choose, wait = 1600, flow, shots = {}, befor
         check(flow, !/Genii guessed|Called it/.test(text), "no guess is shown before the finale");
         if (shots.lock) await shot(page, `${shots.lock}-before`);
         await lockBtn.click();
-        await page.getByRole("button", { name: /Play the final 8/ }).waitFor();
+        await page.getByRole("button", { name: /Play the last eight cards/ }).waitFor();
         lockCode = await page.locator(".persona-lock-code code").first().innerText();
         const stored = await page.evaluate(() => JSON.parse(localStorage.getItem("genii.persona.v2.run")).lockHash);
         check(flow, stored && stored.startsWith(lockCode.replace(/\s/g, "")), "the lock code on screen matches the stored lock hash, before any finale card", { lockCode, stored });
         if (shots.lock) await shot(page, `${shots.lock}-after`);
       }
       const before = { screen, title: await h1(page) };
-      await page.getByRole("button", { name: /Play the final 8/ }).click();
+      await page.getByRole("button", { name: /Play the last eight cards/ }).click();
       await waitChange(page, before);
       if (shots.finale) await shot(page, shots.finale);
     } else throw new Error(`unexpected screen ${screen}`);

@@ -178,7 +178,7 @@ test("every article line, name, stat, trait, room, flip, two-sides cell, call an
       } else {
         const a = P[k.axis];
         assert.ok(!a.flex && !a.unfinished, `${label}: ${k.keyword} from a decided stat`);
-        assert.ok(k.from.includes(STATS[k.axis].stat) && k.from.includes(endName(k.axis, a.pole > 0 ? axisMeta[k.axis].plus : axisMeta[k.axis].minus)), `${label}: ${k.keyword} names its stat end`);
+        assert.ok(k.from.includes(endName(k.axis, a.pole > 0 ? axisMeta[k.axis].plus : axisMeta[k.axis].minus)), `${label}: ${k.keyword} names its stat end`);
         assert.equal(k.line, inVoice(axisMeta[k.axis], a.pole > 0 ? "plusKnow" : "minusKnow", w), `${label}: ${k.keyword} reads its stat end's finding`);
         assert.ok(!rows.some((r) => r.note === k.line), `${label}: ${k.keyword} never repeats a sheet line`);
         const row = rows.find((r) => r.key === k.axis);
@@ -209,7 +209,8 @@ test("every article line, name, stat, trait, room, flip, two-sides cell, call an
         const roomEnd = endName(want.axis, want.sign > 0 ? axisMeta[want.axis].plus : axisMeta[want.axis].minus);
         assert.notEqual(overall, roomEnd);
         assert.equal(f.chapter, want.chapter);
-        assert.ok(f.line.includes(overall) && f.line.includes(roomEnd) && f.line.includes(want.room), `${label}: flip sentence names ${overall}, ${roomEnd} and ${want.room}`);
+        const lowerLine = f.line.toLowerCase();
+        assert.ok(lowerLine.includes(overall.toLowerCase()) && lowerLine.includes(roomEnd.toLowerCase()) && f.line.includes(want.room), `${label}: flip sentence names ${overall}, ${roomEnd} and ${want.room}`);
         assert.ok(text.includes(f.line), `${label}: the flip is on the page`);
       }
     }
@@ -288,6 +289,8 @@ test("every article line, name, stat, trait, room, flip, two-sides cell, call an
     // Scene titles name a card's scene ("The dating profile"), not the page's mechanics; the footer holds "Your data".
     let body = visible(html.replace(/<footer[\s\S]*<\/footer>/, ""));
     for (const r of A.record ? A.record.rows : []) body = body.split(r.title).join(" ");
+    // The trait card's own label ("Based on", the cold-reader pick in LAUNCH-SPEC 26) names the card's source, not an analysis.
+    body = body.split(A.traits.fromLabel).join(" ");
     assert.doesNotMatch(body, /(?<!keep(?:ing|s)? )\bscore\b|\b(analysis|result|profile|evidence|axis|based on|indicates)\b/i, `${label}: no system words ("keeping score" is an idiom)`);
     const digits = body.replace(new RegExp(`\\b${A.record ? A.record.exact : "x"} of ${A.record ? A.record.called : "x"}\\b`), "");
     assert.doesNotMatch(digits, /\d/, `${label}: no numbers but the calls count`);
