@@ -453,7 +453,7 @@ export function createScorer({ kit, lib, friend }) {
       share: {
         typeName: T.name,
         tags: shown.map((t) => ({ name: t.name, heart: t.heart })),
-        invite: "Do you really know me?",
+        invite: "How well do you know me?",
       },
     };
   }

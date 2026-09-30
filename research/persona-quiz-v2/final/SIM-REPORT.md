@@ -59,58 +59,58 @@ Share of consistent respondents (640) for whom each tag fires and is shown. Flag
 
 | tag | name | chapter | fires | shown | random fires | flag |
 |---|---|---|---|---|---|---|
-| T01A | Open phone policy | 1 | 26.4% | 0.3% | 9.8% |  |
-| T01B | Private phone policy | 1 | 27.2% | 0.2% | 9.5% |  |
-| T02A | Texts back eventually | 1 | 23.6% | 0% | 5.5% |  |
-| T02B | Notices who texts first | 1 | 20% | 0% | 8% |  |
-| T03A | Asks the AI first | 1 | 29.8% | 0.6% | 12.3% |  |
-| T03B | Writes it myself | 1 | 34.4% | 0.6% | 14.8% |  |
-| T04A | Small circle only | 1 | 31.9% | 3.4% | 5% |  |
-| T04B | Friends with everyone | 1 | 29.1% | 3% | 5% |  |
-| T05A | Says it with actions | 2 | 34.7% | 11.7% | 10.3% |  |
-| T05B | Says it with words | 2 | 34.7% | 14.8% | 13.3% |  |
-| T06A | Friends come first | 2 | 30.3% | 1.4% | 10% |  |
-| T06B | Social battery first | 2 | 21.7% | 0.9% | 9% |  |
-| T07A | No sugarcoating | 2 | 36.6% | 21.3% | 11.5% |  |
-| T07B | Gentle with the truth | 2 | 39.2% | 21.1% | 10.5% |  |
-| T08A | Gives second chances | 2 | 38.9% | 20.9% | 12.5% |  |
-| T08B | Keeps the receipts | 2 | 38% | 25.5% | 20% |  |
-| T09A | All in on us | 3 | 36.4% | 24.5% | 11.3% |  |
-| T09B | Me first, then us | 3 | 36.7% | 22.3% | 17.5% |  |
-| T10A | Works it out | 3 | 33.4% | 1.7% | 8.8% |  |
-| T10B | Lets it go | 3 | 25.6% | 2.5% | 11% |  |
-| T11A | Wants kids someday | 3 | 23.3% | 0% | 6.3% |  |
-| T11B | Full life without kids | 3 | 20.8% | 0% | 5.8% |  |
-| T12A | Splits to the cent | 4 | 28.9% | 5.9% | 8.8% |  |
-| T12B | Splits by income | 4 | 7.2% | 0.2% | 0.5% |  |
-| T13A | Books first, thinks later | 4 | 35% | 19.4% | 13.5% |  |
+| T01A | An open book with loved ones | 1 | 26.4% | 0.3% | 9.8% |  |
+| T01B | Keeps some things private | 1 | 27.2% | 0.2% | 9.5% |  |
+| T02A | Replies when free | 1 | 23.6% | 0% | 5.5% |  |
+| T02B | Loves hearing from friends | 1 | 20% | 0% | 8% |  |
+| T03A | Uses AI to think things out | 1 | 29.8% | 0.6% | 12.3% |  |
+| T03B | Writes without AI | 1 | 34.4% | 0.6% | 14.8% |  |
+| T04A | Close-knit circle | 1 | 31.9% | 3.4% | 5% |  |
+| T04B | Makes friends easily | 1 | 29.1% | 3% | 5% |  |
+| T05A | Shows care through actions | 2 | 34.7% | 11.7% | 10.3% |  |
+| T05B | Puts feelings into words | 2 | 34.7% | 14.8% | 13.3% |  |
+| T06A | Shows up for friends | 2 | 30.3% | 1.4% | 10% |  |
+| T06B | Knows when to recharge | 2 | 21.7% | 0.9% | 9% |  |
+| T07A | Honest, even when it's hard | 2 | 36.6% | 21.3% | 11.5% |  |
+| T07B | Honest, but gentle | 2 | 39.2% | 21.1% | 10.5% |  |
+| T08A | Believes in second chances | 2 | 38.9% | 20.9% | 12.5% |  |
+| T08B | Remembers the details | 2 | 38% | 25.5% | 20% |  |
+| T09A | Loves deeply | 3 | 36.4% | 24.5% | 11.3% |  |
+| T09B | Independent, even in love | 3 | 36.7% | 22.3% | 17.5% |  |
+| T10A | Talks problems through | 3 | 33.4% | 1.7% | 8.8% |  |
+| T10B | Knows when to move on | 3 | 25.6% | 2.5% | 11% |  |
+| T11A | Wants kids one day | 3 | 23.3% | 0% | 6.3% |  |
+| T11B | Child-free and happy | 3 | 20.8% | 0% | 5.8% |  |
+| T12A | Splits the bill evenly | 4 | 28.9% | 5.9% | 8.8% |  |
+| T12B | Splits costs by income | 4 | 7.2% | 0.2% | 0.5% |  |
+| T13A | Up for last-minute plans | 4 | 35% | 19.4% | 13.5% |  |
 | T13B | Saves first, spends later | 4 | 28% | 14.8% | 12.5% |  |
-| T14A | Buys the nice one | 4 | 33.1% | 3.8% | 16.3% |  |
-| T14B | Minimalist on purpose | 4 | 24.5% | 0.6% | 7.8% |  |
-| T15A | Earned, not given | 4 | 17.8% | 0% | 6.3% |  |
-| T15B | Luck counts too | 4 | 24.4% | 0% | 7% |  |
-| T16A | In it to win | 5 | 40.3% | 28.8% | 21% |  |
-| T16B | Logs off on time | 5 | 35.2% | 25.9% | 14% |  |
-| T17A | Wants it locked in | 5 | 26.3% | 3.1% | 8.3% |  |
-| T17B | Keeps options open | 5 | 25.3% | 4.4% | 10.8% |  |
-| T18A | Family's first call | 6 | 29.7% | 4.4% | 11% |  |
-| T18B | Helps with limits | 6 | 26.7% | 5% | 11.8% |  |
-| T19A | My life, my call | 6 | 29.2% | 3.1% | 9.8% |  |
-| T19B | Family gets a vote | 6 | 24.1% | 3.1% | 11.5% |  |
-| T20A | Classic at heart | 6 | 41.7% | 33.9% | 14.3% |  |
-| T20B | Makes my own traditions | 6 | 45.6% | 39.5% | 18% |  |
-| T21A | Big family wedding | 6 | 25.2% | 4.4% | 11.5% |  |
-| T21B | No wedding needed | 6 | 28.4% | 8.9% | 13.8% |  |
-| T22A | Always somewhere new | 7 | 27.8% | 3.3% | 10.8% |  |
-| T22B | Same order, every time | 7 | 19.8% | 0.3% | 5% |  |
+| T14A | Buys what lasts | 4 | 33.1% | 3.8% | 16.3% |  |
+| T14B | Owns less on purpose | 4 | 24.5% | 0.6% | 7.8% |  |
+| T15A | Proud of hard work | 4 | 17.8% | 0% | 6.3% |  |
+| T15B | Knows luck plays a part | 4 | 24.4% | 0% | 7% |  |
+| T16A | Loves a win | 5 | 40.3% | 28.8% | 21% |  |
+| T16B | Work stays at work | 5 | 35.2% | 25.9% | 14% |  |
+| T17A | Likes plans set early | 5 | 26.3% | 3.1% | 8.3% |  |
+| T17B | Goes with the flow | 5 | 25.3% | 4.4% | 10.8% |  |
+| T18A | First to help family | 6 | 29.7% | 4.4% | 11% |  |
+| T18B | Helps and sets limits | 6 | 26.7% | 5% | 11.8% |  |
+| T19A | Makes own choices | 6 | 29.2% | 3.1% | 9.8% |  |
+| T19B | Values family advice | 6 | 24.1% | 3.1% | 11.5% |  |
+| T20A | Keeps family traditions | 6 | 41.7% | 33.9% | 14.3% |  |
+| T20B | Starts new traditions | 6 | 45.6% | 39.5% | 18% |  |
+| T21A | Dreams of a big wedding | 6 | 25.2% | 4.4% | 11.5% |  |
+| T21B | Happy without a wedding | 6 | 28.4% | 8.9% | 13.8% |  |
+| T22A | Loves new places | 7 | 27.8% | 3.3% | 10.8% |  |
+| T22B | Orders the usual | 7 | 19.8% | 0.3% | 5% |  |
 | T23A | First to volunteer | 7 | 32.3% | 10.6% | 9% |  |
-| T23B | Saturdays are for me | 7 | 35.9% | 10.6% | 10.5% |  |
-| T24A | Tracks everything | 7 | 28% | 6.7% | 7.3% |  |
-| T24B | Goes by feel | 7 | 23.8% | 5% | 4.3% |  |
-| T25A | Plays by the rules | 7 | 46.3% | 38.8% | 12.3% |  |
-| T25B | Bends rules for people | 7 | 44.5% | 38.6% | 22% |  |
+| T23B | Protects free time | 7 | 35.9% | 10.6% | 10.5% |  |
+| T24A | Plans with lists | 7 | 28% | 6.7% | 7.3% |  |
+| T24B | Trusts gut feeling | 7 | 23.8% | 5% | 4.3% |  |
+| T25A | Fair to everyone | 7 | 46.3% | 38.8% | 12.3% |  |
+| T25B | Makes room for exceptions | 7 | 44.5% | 38.6% | 22% |  |
 
-50 of 50 tags fire at least once. Rare: none. Common: none. Random clickers' most-fired tag: Bends rules for people (T25B) at 22% (flag line 35%).
+50 of 50 tags fire at least once. Rare: none. Common: none. Random clickers' most-fired tag: Makes room for exceptions (T25B) at 22% (flag line 35%).
 
 ## Shown-tag ranking
 
