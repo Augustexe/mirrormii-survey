@@ -108,10 +108,9 @@ export function KnowsScreen({ s }) {
             <span className="rv-find__gem"><ClarityGem level={f.level} flex={f.kind === "flex"} size={26} /></span>
             <span className="rv-find__head">
               <Head f={f} />
-              <span className="rv-find__end">{f.leadEnd || f.lead}</span>
               <span className="rv-find__tag"><span className="sr-only">, </span>{f.tierShort || f.tier}</span>
             </span>
-            <span className="rv-find__line">{f.short || f.line}</span>
+            <span className="rv-find__line"><b className="rv-find__end">{f.leadEnd || f.lead}.</b> {f.short || f.line}</span>
           </li>
         ))}
       </ol>

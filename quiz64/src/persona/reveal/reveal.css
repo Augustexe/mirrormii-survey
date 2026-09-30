@@ -665,7 +665,7 @@
     color: var(--n-violet);
   }
   .rv-find__stat .rv-statglyph { align-self: center; }
-  .rv-find__end { font: 700 13px / 16px var(--font-text); color: var(--n-ink); }
+  .rv-find__end { font-weight: 700; color: var(--n-violet); }
   .rv-find__tag { margin-inline-start: auto; flex: none; padding: 1px 8px; border-radius: var(--r-pill); font: 700 11px / 16px var(--font-text); color: var(--n-ink); background: color-mix(in srgb, var(--n-ink) 16%, transparent); }
   .rv-find[data-level="3"] .rv-find__tag { background: var(--n-ink); color: var(--c-violet-strong); }
   .rv-find__line { grid-column: 2; font: 560 15.5px / 20px var(--font-display); font-variation-settings: var(--font-display-upright); color: var(--n-ink); text-wrap: pretty; }
@@ -1212,9 +1212,6 @@
     background: var(--n-ink);
   }
   .rv-call__glint { position: absolute; inset: 0; pointer-events: none; opacity: 0; background: linear-gradient(115deg, transparent 30%, color-mix(in srgb, var(--n-ink) 70%, transparent) 48%, transparent 62%) 130% 0 / 260% 100% no-repeat; }
-  .rv-call__crack { position: absolute; inset: 0; inline-size: 100%; block-size: 100%; pointer-events: none; overflow: visible; }
-  .rv-call__crack path { fill: none; stroke: var(--n-ink); stroke-width: 1.3; vector-effect: non-scaling-stroke; stroke-linecap: round; stroke-linejoin: round; opacity: 0.75; stroke-dasharray: 1; stroke-dashoffset: 0; }
-  .rv-call__crack path + path { stroke-width: 1; opacity: 0.5; }
 
   /* Called it: clear, lit glass with a white check. */
   .rv-call[data-state="hit"] .rv-call__glass {
@@ -1240,14 +1237,13 @@
   .rv-call[data-state="dim"] .rv-call__title, .rv-call[data-state="dim"] .rv-call__status { opacity: 0.8; }
   .rv-call__mark--dim { border: 1.5px dashed color-mix(in srgb, var(--n-ink) 60%, transparent); }
   .rv-calls__more { margin-top: -4px; }
-  .rv-calls__key { margin: 4px 0 0; max-inline-size: 34ch; font: 500 12.5px / 17px var(--font-text); color: var(--n-ink); }
+  .rv-calls__key { margin: 0; max-inline-size: 36ch; font: 500 12.5px / 17px var(--font-text); color: var(--n-ink); }
 
   /* The reveal: each pane arrives face down and flips into place in play order; hits then glint, misses crack. */
-  .rv-slide.is-current .rv-call__glass { animation: rv-paneflip calc(var(--d-slow) * 1.5) var(--e-out) calc(var(--d-scene) * 0.55 + var(--i) * var(--d-quick)) both; }
-  .rv-slide.is-current .rv-call[data-state="hit"] .rv-call__glint { animation: rv-sweep calc(var(--d-slow) * 1.8) var(--e-out) calc(var(--d-scene) * 0.55 + var(--i) * var(--d-quick) + var(--d-slow)) both; }
-  .rv-slide.is-current .rv-call[data-state="hit"] .rv-call__mark { animation: rv-gemspin var(--d-slow) var(--e-out) calc(var(--d-scene) * 0.55 + var(--i) * var(--d-quick) + var(--d-slow) * 0.8) both; }
-  .rv-slide.is-current .rv-call__crack path { animation: rv-crackdraw calc(var(--d-slow) * 1.2) var(--e-out) calc(var(--d-scene) * 0.55 + var(--i) * var(--d-quick) + var(--d-slow)) both; }
-  .rv-slide.is-current .rv-calls__score strong { animation: rv-count var(--d-scene) var(--e-out) calc(var(--d-scene) * 0.55 + 8 * var(--d-quick)) both; }
+  .rv-slide.is-current .rv-call__glass { animation: rv-paneflip calc(var(--d-slow) * 1.5) var(--e-out) calc(var(--d-scene) * 0.55 + var(--i) * var(--d-instant)) both; }
+  .rv-slide.is-current .rv-call[data-state="hit"] .rv-call__glint { animation: rv-sweep calc(var(--d-slow) * 1.8) var(--e-out) calc(var(--d-scene) * 0.55 + var(--i) * var(--d-instant) + var(--d-slow)) both; }
+  .rv-slide.is-current .rv-call[data-state="hit"] .rv-call__mark { animation: rv-gemspin var(--d-slow) var(--e-out) calc(var(--d-scene) * 0.55 + var(--i) * var(--d-instant) + var(--d-slow) * 0.8) both; }
+  .rv-slide.is-current .rv-calls__score strong { animation: rv-count var(--d-scene) var(--e-out) calc(var(--d-scene) * 0.55 + 8 * var(--d-instant)) both; }
   .rv-slide.is-current .rv-calls__halo { animation: rv-breathe calc(var(--d-loop-breath) * 0.5) var(--e-in-out) infinite alternate; }
 
   /* ---------------------------------------------------------------- story 12: the app scene */
@@ -1626,7 +1622,6 @@
   @keyframes rv-bob { from { transform: translateY(2px); } to { transform: translateY(-3px); } }
   @keyframes rv-refrost { 0% { opacity: 1; } 45% { opacity: 0.2; } 100% { opacity: 0.55; } }
   @keyframes rv-paneflip { 0% { opacity: 0; transform: rotateY(-100deg) scale(0.92); filter: blur(6px) brightness(1.6); } 55% { opacity: 1; filter: blur(0) brightness(1.25); } 80% { transform: rotateY(8deg) scale(1.02); } 100% { opacity: 1; transform: none; filter: none; } }
-  @keyframes rv-crackdraw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
   @keyframes rv-count { from { opacity: 0; transform: scale(0.6); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
   @keyframes rv-drop { from { opacity: 0; transform: translateY(-26px); } to { opacity: 1; transform: none; } }
   @keyframes rv-dash { from { stroke-dashoffset: 0; } to { stroke-dashoffset: -36; } }
