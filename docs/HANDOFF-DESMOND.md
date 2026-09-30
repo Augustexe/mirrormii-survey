@@ -1,6 +1,6 @@
 ---
 title: Handoff for Desmond, the friend game and backend
-status: current (checked against the locked spec, 2026-09-29)
+status: current (checked against the locked spec, 2026-09-30)
 owner: jerry
 for: Desmond (developer, friend game backend)
 ---
@@ -30,7 +30,7 @@ node scripts/validate-contracts.mjs            # the backend contracts against r
 
 ```mermaid
 flowchart TD
-  BANK["bank/*.json<br/>authored cards, both voices"] -->|merge-bank.mjs<br/>check-bank, evidence lock| CARDS["cards.json<br/>174 cards"]
+  BANK["bank/*.json<br/>authored cards, both voices"] -->|merge-bank.mjs<br/>check-bank, evidence lock| CARDS["cards.json<br/>172 cards"]
   LIB["library.json<br/>result copy"] --> KIT
   FRJ["friend.json<br/>friend game copy"] --> KIT
   CARDS --> KIT["kit.js + score-core.mjs<br/>KIT_ID pins the version"]
@@ -54,7 +54,7 @@ Solid lines exist today; dotted lines are yours ([contracts/api.md](contracts/ap
 
 | Part | Where | Notes |
 |---|---|---|
-| Question pack | `research/persona-quiz-v2/final/bank/`, merged `cards.json` | 174 cards (138 chapter, 12 extras, 24 sealed), 13 formats, two voices. Export: [question-pack/](question-pack/) |
+| Question pack | `research/persona-quiz-v2/final/bank/`, merged `cards.json` | 172 cards (136 chapter, 12 extras, 24 sealed), 13 formats, two voices. Export: [question-pack/](question-pack/) |
 | Evidence and scorer | `score-core.mjs`, `card-schema.mjs`, `evidence-lock.json` | One deterministic scorer for app, CLI, sim and tests. Sim: axis recovery about 95%, Genii's sealed guesses about 67% exact (chance 25%) |
 | Result copy | `library.json` | Archetypes, stats, tags, rooms, insights, article frames, both voices |
 | Web game | `quiz64/` | Setup, lobby, picker (40 + 8), lock, Stories reveal, share image, friend game v1 |
@@ -105,7 +105,7 @@ Tooling line (proposals, build over buy): Node 22 with Fastify or Hono, `better-
 
 ## Deployment
 
-- **Build:** `npm ci --prefix quiz64 && npm run build --prefix quiz64` gives a static `quiz64/dist` (Vite, `base: "./"`, so it serves from any path). The build reads the kit from `research/persona-quiz-v2/final/`, so deploy from a full checkout. Main chunk about 80 kB gzip; the three.js Genii scene loads lazily.
+- **Build:** `npm ci --prefix quiz64 && npm run build --prefix quiz64` gives a static `quiz64/dist` (Vite, `base: "./"`, so it serves from any path). The build reads the kit from `research/persona-quiz-v2/final/`, so deploy from a full checkout. Main chunk about 74 kB gzip (2026-09-30); the three.js Genii scene loads lazily.
 - **Host:** the live site today is the older dossier build on GitHub Pages (`Augustexe/Mirrormii-survey-main-publication-`, branch `codex/final-survey-dossier`, workflow `.github/workflows/deploy-pages.yml`, [STATE.md](STATE.md)). The launch build is branch `survey/launch`, **local only, never pushed**. Shipping it means pointing that workflow at the launch branch or merging, with Jerry's go.
 - **Environment:** none today. The only build variable is Vite's `BASE_URL`. When the backend lands, add `VITE_API_BASE` (the service origin) and keep the app working without it (static-only mode). Server side: `TOKEN_KEYS` (HMAC keys by `kid`), `DATABASE_PATH`, `ALLOWED_ORIGIN`, `KIT_DIR`.
 - **Checks before any deploy:** `npm test --prefix quiz64`, `node scripts/validate-contracts.mjs`, the kit tests, and the browser QA in quiz64/README.md.

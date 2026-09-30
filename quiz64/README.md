@@ -46,9 +46,9 @@ with the app's own session module). Set `PLAYWRIGHT_MODULE=/path/to/playwright/i
 | Script | What it does |
 |---|---|
 | `qa/capture-screens.mjs [base] [outDir]` | Screenshot matrix: every screen, card format and reveal screen in both voices at 390x844, 375x667 and 1440x900 (`SIZES`, `ONLY`, `PLAYER` env) |
-| `qa/layout-guard.mjs [base] [outDir]` (`npm run qa:layout -- [base]`) | Layout guard: walks landing, setup, lobby, interlude, a card of each format, lock, finale, every Stories screen (scrolled in steps) and the whole Evidence Article (scrolled in steps, section menu, every tab) at 375x667, 390x844 and 1440x900 in both voices. Fails on text over text, icons or controls; text showing through a fixed or sticky bar without a solid backing; text clipped by overflow, ellipsis or line clamp; text or controls off the left or right edge; labels squeezed into round pills; controls a sticky bar covers once focused. Writes `report.json` and a marked screenshot per failing step to outDir (default `qa/layout-report/`, ignored); exit 1 on any failure. Justified exceptions live in its `EXCEPTIONS` list (none today). Env: `SIZES`, `VOICES`, `ONLY`, `PLAYER=a\|b\|c`. Run it after any CSS or layout change |
+| `qa/layout-guard.mjs [base] [outDir]` (`npm run qa:layout -- [base]`) | Layout guard: walks landing, setup, lobby, interlude, a card of each format, lock, finale, every Stories screen (scrolled in steps) and the whole Evidence Article (scrolled in steps, section menu, every tab) at 375x667, 390x844 and 1440x900 in both voices. Fails on text over text, icons or controls; text showing through a fixed or sticky bar without a solid backing; text clipped by overflow, ellipsis or line clamp; text or controls off the left or right edge; labels squeezed into round pills; controls a sticky bar covers once focused. Writes `report.json` and a marked screenshot per failing step to outDir (default `qa/layout-report/`, ignored); exit 1 on any failure or error. A format no run can reach (feeling cards while `SERVE_FEELING` is off; rank, served only for coverage) is a printed note, not an error; `tests/visual/fold.mjs` still renders every card of both. Justified exceptions live in its `EXCEPTIONS` list (none today). Env: `SIZES`, `VOICES`, `ONLY`, `PLAYER=a\|b\|c`. Run it after any CSS or layout change |
 | `qa/capture-layout-fixes.mjs before\|after\|sheet [base] [outDir]` | Before and after of the package L2 layout bugs; `sheet` writes `docs/LAYOUT-FIXES.png` |
-| `qa/qa-checks.mjs [base] [outDir]` | axe (WCAG 2 AA) on every screen, fonts, never-say copy, overflow at 390 px and 200% zoom, share PNGs, friend link flow, landing LCP and CLS |
+| `qa/qa-checks.mjs [base] [outDir]` | axe (WCAG 2 AA) on every screen, fonts, never-say copy (and the retired "your person"), overflow at 390 px and 200% zoom, share PNGs, friend link flow, landing LCP and CLS. Default outDir `qa/qa-report/` (ignored); unreachable formats are notes, as in the layout guard |
 | `qa/play-through.mjs [base] [fun\|heart\|cards] [outDir]` | One full run through the real UI (40 + lock + 8 + 12 reveal screens), mouse or `KEYS=1` keyboard only |
 | `tests/visual/fold.mjs` | Every card of the bank in the real card screen: all options and exits above the fold at 390x844 |
 | `tests/visual/play-evidence.mjs` | Proves the card sends the same answers as the pre-rebuild card for the same taps |
@@ -102,7 +102,7 @@ quiz64/
 research/persona-quiz-v2/final/bank/*.json   card bank, authored per chapter (plus extras and sealed)
         | node merge-bank.mjs  (checked by check-bank.mjs, evidence locked by lock-evidence.mjs -> evidence-lock.json)
         v
-research/persona-quiz-v2/final/cards.json    the merged bank: 138 chapter cards, 12 extras, 24 sealed (174)
+research/persona-quiz-v2/final/cards.json    the merged bank: 136 chapter cards, 12 extras, 24 sealed (172)
 research/persona-quiz-v2/final/library.json  result copy: archetype names, tag names, lines, stings, hearts (both voices)
 research/persona-quiz-v2/final/friend.json   friend game levels, relationships, privacy switches, invites
 research/persona-quiz-v2/final/score-core.mjs  the one deterministic scorer (shared by the web app, CLI, sim and tests)
@@ -113,7 +113,8 @@ the app bundle (PersonaApp chunk)
 ```
 
 Change a card in `bank/`, merge, run the kit checks, then `npm test` here (the kit parity test proves the stripped
-kit scores the same as the full one). Card rules, formats and the evidence layer: LAUNCH-SPEC sections 4 and 5.
+kit scores the same as the full one). The full change flow, with the friend snapshot, the sim example, the contract
+examples and the question pack, is LAUNCH-SPEC section 5. Card rules, formats and the evidence layer: LAUNCH-SPEC sections 4 and 5.
 
 **Scoring overview.** Six axes in two halves (R1 to R3 the people half, L1 to L3 the life half), tags from
 option evidence, grades and weights per format (`card-schema.mjs`), the picker in `session.js` (coverage first, then
@@ -161,7 +162,7 @@ older dossier build (`../docs/STATE.md`).
 ## Known gaps
 
 - No real-person validation yet (blind test 2 open, LAUNCH-SPEC section 10).
-- Two chunks are over 500 kB minified: `PersonaApp` (the kit JSON and app, about 207 kB gzip) and `scene` (three.js
+- Two chunks are over 500 kB minified: `PersonaApp` (the kit JSON and app, about 212 kB gzip, 2026-09-30) and `scene` (three.js
   for Genii, lazy, about 146 kB gzip). The landing paints from the small `main` chunk first.
 - `public/fonts/Satoshi-Variable.woff2` and its license files are unused leftovers (Satoshi is aliased to Figtree and
   never fetched); left in place pending a decision.

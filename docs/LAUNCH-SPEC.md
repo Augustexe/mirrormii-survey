@@ -73,7 +73,7 @@ One list, final wording. Dates are 2026.
 22. Masked and legible: never name the trait being measured, never ask "what would you do when"; every premise reads instantly (09-26, 09-29).
 23. No sensitive asks: never ask the player to open an app, account, bank, messages or photos; nothing about health, body, politics, religion, orientation or party; no explicit sexual content (09-28).
 24. No age screen and no age-based content: everyone plays the same bank. Marriage and kids cards are written so anyone can answer or skip (09-28).
-25. Gender-neutral wording ("your person", "they") (09-26).
+25. Gender-neutral wording: "your partner" (never "your person"), "they" (09-26; "your partner" 09-30). A text thread names its sender in the prompt ("Then Robin, your partner, texts.").
 
 **Visuals**
 26. Canon world only, from the GDD v0.2 (company/marketing/docs/10-product-specs/mirrormii-v2-gdd-v0.2, sections 3.2 and 3.4): a floating island of white pearl marble terraces, pools and waterfalls, the lavender tree, an arch pavilion and fountain, and at the center the World Mirror, a tall oval mirror with an iridescent opal frame on a round marble plinth (09-29).
@@ -106,8 +106,8 @@ flowchart LR
 | # | Screen | What happens | Copy lives in |
 |---|---|---|---|
 | 1 | Landing | The World Mirror in the canon island; promise, "48 cards", "About 8 minutes" | `lobby.js` `LOBBY_COPY.landing` |
-| 2 | Setup (2 taps) | Closest person (my best friend, my partner, a crush, a sibling, a parent, someone else; "your person" in cards means them) and pronoun (she, he, they; friend game only). No age question | `screens/Setup.jsx`, `session.js` |
-| 3 | Lobby (3 taps, unscored) | "How should Genii talk to you?" Make it fun / Heart to heart / Just the cards (Make it fun wording, reactions hidden). "How personal can Genii get?" Keep it light (skips `intimate` cards) / Ask me anything. "Which rooms can Genii visit?" love, work, family (each can be closed) | `lobby.js` `LOBBY_COPY` |
+| 2 | Setup (2 taps) | Closest person (my best friend, my partner, a crush, a sibling, a parent, someone else) and pronoun (she, he, they; friend game only). No age question | `screens/Setup.jsx`, `session.js` |
+| 3 | Lobby (3 taps, unscored) | "How should Genii talk to you?" Make it fun / Heart to heart / Just the cards (Make it fun wording, reactions hidden). "How personal can Genii get?" Keep it light (skips `intimate` cards) / Ask me anything. "Which rooms can Genii visit?" Love and dating, Work, school and ambition, Family and home (each can be closed) | `lobby.js` `LOBBY_COPY` |
 | 4 | Play | 40 cards ("Card N of 40"), chapters in order, each opened by an island interlude; extras arrive as "A few bonus cards". Genii reacts between cards per voice. Every answer holds a beat, then flies home as a shard | `session.js`, `play/`, `reactions.js` |
 | 5 | Lock | Genii locks its 8 guesses with a SHA-256 before the finale and cannot change them | `play/` lock ritual |
 | 6 | Finale | 8 sealed cards ("Final N of 8"), drawn per run from the pool of 24 | `session.js` |
@@ -115,7 +115,7 @@ flowchart LR
 | 8 | Evidence Article | Opens after the last story and from "Read the long version"; 3 to 5 minutes | `persona/article/`, `library.json` `article` |
 | 9 | Share, friend, app | Share image (story and post), "How well do you know me?" challenge, Get MirrorMii | `share-image.js`, `friend.js`, `story-data.js` |
 
-**Chapters** (rooms): 1 Your phone (22 cards), 2 Friends (22), 4 Money and treats (20), 7 Play, rules and you (20) are always on. 3 Love and your person (18), 5 Work, school and ambition (18), 6 Family and home (18) are rooms the player can close; the run stays 40 cards. Extras: 12 axis cards (2 per axis). Sealed pool: 24 (4 per axis).
+**Chapters** (rooms): 1 Your phone (21 cards), 2 Friends (22), 4 Money and treats (20), 7 Play, rules and you (19) are always on. 3 Love and dating (18; intro "Partner, crush or situationship: I just want the gossip."), 5 Work, school and ambition (18), 6 Family and home (18) are rooms the player can close; the run stays 40 cards. Extras: 12 axis cards (2 per axis). Sealed pool: 24 (4 per axis).
 
 **The 12 Stories screens** (order in `STORY_IDS`; screens 6 and 10 show only when they have content):
 
@@ -156,12 +156,12 @@ Every answer option carries its own evidence; the scorer only adds up what optio
 
 **Axes** (internal pole names never reach a player; the player sees the stats in section 6):
 
-| Axis | + pole | - pole | Meaning | Cards carrying it (pool of 143, `audit.mjs`) |
+| Axis | + pole | - pole | Meaning | Cards carrying it (pool of 141, `audit.mjs`, 2026-09-30) |
 |---|---|---|---|---|
 | R1 | We | Me | close means shared, versus close still means space | 22 |
-| R2 | Direct | Soft | says the hard thing now, versus holds the person first | 22 |
+| R2 | Direct | Soft | says the hard thing now, versus holds the person first | 21 |
 | R3 | Classic | Own | the traditional script for love, home and holidays, versus writing your own | 19 |
-| L1 | Steady | Venture | the known, versus the new | 17 |
+| L1 | Steady | Venture | the known, versus the new | 16 |
 | L2 | Push | Easy | visible progress, versus your own pace | 17 |
 | L3 | Rules | Context | the fair process, versus the situation and the need | 18 |
 
@@ -194,38 +194,38 @@ Absurd cards are capped at 0.35 (`ABSURD_WEIGHT_CAP`). Answers under 1.5 s count
 
 **Feeling cards are off** (2026-09-30): the picker never serves them. They score nothing and every option already records its emotion. They stay in the bank untouched, with their `follows` links; the one switch is `SERVE_FEELING` in `score-core.mjs` (read as `CONFIG.serveFeeling`); set to true, each plays right after the picked card it follows.
 
-Measured 2026-09-30 (`node quiz64/tests/sq-measure.mjs --n 100`, 1,600 runs over 8 room sets x 2 depths): 22 runs (1.4%) serve one coverage repeat (2 cards on one sq), none serve 3, 0 back-to-back cards on one sq, 0 feeling cards, 5 sealed cards on a played sq. Before (commit f288cd5): every run repeated, 23.9 cards per run shared an sq, up to 6 on one sq, 1,911 back-to-back.
+Measured 2026-09-30 after BATCH-02 (`node quiz64/tests/sq-measure.mjs --n 100`, 1,600 runs over 8 room sets x 2 depths): 31 runs (1.9%) serve one coverage repeat (2 cards on one sq), none serve 3, 0 back-to-back cards on one sq, 0 feeling cards, 16 sealed cards on a played sq (package P0: 22 runs, 5 sealed; the cut of C1-161 leaves R2 one card thinner). Before one card per sub-question (commit f288cd5): every run repeated, 23.9 cards per run shared an sq, up to 6 on one sq, 1,911 back-to-back.
 
-**Coverage targets and where they stand** (2026-09-29, `node audit.mjs` in `research/persona-quiz-v2/final`):
+**Coverage targets and where they stand** (2026-09-30 after BATCH-02, `node audit.mjs` in `research/persona-quiz-v2/final`):
 
 | Target | Now |
 |---|---|
-| Every axis on 15+ pool cards, 6+ in the always-on chapters | Met: 17 to 22 cards, 7 to 13 always-on |
-| Every tag on 4+ cards, 1+ of them "did" | 38 of 50 met; every tag has did evidence. Short: T01A/B, T03A/B, T15A/B (3 cards), T06B, T14B (3), T02A/B (2, concept cap), T11A/B (2, kids cards) |
-| Random clickers 45 to 55% on every axis | Met: 45.9 to 54.3% on the full walk; 49.6 to 54.8% at 40 cards (2026-09-30) |
+| Every axis on 15+ pool cards, 6+ in the always-on chapters | Met: 16 to 22 cards, 7 to 12 always-on |
+| Every tag on 4+ cards, 1+ of them "did" | 37 of 50 met; every tag has did evidence. Short: T01A/B, T03A/B, T15A/B (3 cards), T06B, T14B, T22B (3; T22B lost the cut C7-142), T02A/B (2, concept cap), T11A/B (2, kids cards) |
+| Random clickers 45 to 55% on every axis | Full walk met: 45.7 to 53.8% (`audit.mjs`). At 40 cards 49.5 to 55.3%: L3 is 0.3 points over (55.1% at 89bb012, before BATCH-02; the most-served leaning card is C2-144, +0.25 on L3 per random pick, in about two thirds of runs). Decision 15 |
 
 **Simulation**:
-- Full walk (`node sim.mjs`, `SIM-REPORT.md`, 640 consistent players, 2026-09-29; `node sim.mjs --quick` gives the same at tagFire 2.0 on 2026-09-30): axis recovery 94.9%, 100% get 3 to 5 tags, 0 get none, shown tags match the hidden profile 86.4%, sealed exact 67.5% (random clickers 25.5%, chance), all 50 tags reachable.
-- Web picker at 40 cards (`node quiz64/tests/persona-sim.mjs --acceptance`, 2,000 consistent players, every room open, 2026-09-30, one card per sub-question, tagFire 2.0): sealed exact 63.9%, 0% with no tags, mean 4.05 tags shown; random clickers 49.6 to 54.8%. Under 1%: T05A/B never fire (the chapter 2 opener C2-160 always takes SQ-T05-1, so at most one more T05 card, the receipts card, can follow) and T21A/B at 0.2 to 0.4%. At tagFire 2.25 the mean falls to 3.63 and T22A/B never fire too, hence 2.0. With a room closed, that room's tags stay silent, as designed.
+- Full walk (`node sim.mjs`, `SIM-REPORT.md`, 640 consistent players, 2026-09-30 after BATCH-02): axis recovery 94.9%, 100% get 3 to 5 tags, 0 get none, shown tags match the hidden profile 86.8%, sealed exact 66.8% (random clickers 24.8%, chance), all 50 tags fire. The report's 400 random clickers land 47.3 to 56.8% on the first pole; L3's 56.8% is that fixed seed's sampling (4,000 random clickers on the same walk: 46.5 to 52.7%; `audit.mjs`: 45.7 to 53.8%).
+- Web picker at 40 cards (`node quiz64/tests/persona-sim.mjs --acceptance`, 2,000 consistent players, every room open, 2026-09-30 after BATCH-02, one card per sub-question, tagFire 2.0): sealed exact 63.7%, 0% with no tags, mean 4.09 tags shown; random clickers 49.5 to 55.3% (L3 over, decision 15). Under 1%: T05A/B never fire (the chapter 2 opener C2-160 always takes SQ-T05-1, so at most one more T05 card, the receipts card, can follow) and T21A/B at 0.1%. At tagFire 2.25 the mean falls to 3.63 and T22A/B never fire too, hence 2.0 (measured before BATCH-02). With a room closed, that room's tags stay silent, as designed.
 
 **Evidence lock.** `evidence-lock.json` holds a SHA-256 of every normalized card text (both voices, threads, friend sides) next to the evidence it carries; the kit tests fail while any text or evidence differs from its entry. After re-reading a changed card, `node lock-evidence.mjs --confirm <cardId>` re-locks it (no flag lists what changed). Library renames never reach it.
 
 ## 5. Question bank
 
-**Formats** (13; counts from `cards.json`, 2026-09-29):
+**Formats** (13; counts from `cards.json`, 2026-09-30 after BATCH-02):
 
 | Format | The player | Grade | Count |
 |---|---|---|---|
-| Scenario | Picks a move in a vivid imagined moment | would | 41 |
+| Scenario | Picks a move in a vivid imagined moment | would | 43 |
 | Real moment | "The last time..." picks what they actually did | did | 16 |
 | Receipts | Taps every ordinary fact that is true, or "None of these" | did | 7 |
 | Genii's bet | Genii bets on a specific thing they did; 3 to 5 answers written for that bet, never Guilty/Never | did | 18 |
 | Reply | Picks the reply they'd send in a mock text thread | would | 14 |
-| Other people | First thought about what someone else did | believe | 14 |
-| This or that | 2 punchy options, in quick rounds of 2 or 3 | believe | 17 |
+| Other people | First thought about what someone else did | believe | 13 |
+| This or that | 2 punchy options, in quick rounds of 2 or 3 | believe | 15 |
 | Role | "In your group chat, you're the..." | believe | 5 |
 | Pick two | 2 of 6 short lines most like them | believe | 4 |
-| Rank it | Orders 4 items | believe | 3 |
+| Rank it | Orders 4 items (C2-142 and X-L2-40; runs almost never reach one, decision 13) | believe | 2 |
 | Friend's-eye view | The line their best friend would use about them | believe | 4 |
 | Feeling | Right after a card: the first feeling (not served in runs, section 4) | emotion | 7 |
 | Sealed | A new moment for Genii's locked guess | never scored | 24 |
@@ -236,11 +236,11 @@ Measured 2026-09-30 (`node quiz64/tests/sq-measure.mjs --n 100`, 1,600 runs over
 
 **Schema.** One card: skill section 7 (`skills/shared/genii-card-writer/SKILL.md`); build-time grades in `card-schema.mjs`; the published shape in `docs/contracts/` (card schema) and the export in `docs/question-pack/`. `privacy` is `normal` or `intimate`.
 
-**Bank** (targets met, 2026-09-29): 174 cards = 138 chapter (22, 22, 18, 20, 18, 18, 20) + 12 extras + 24 sealed. Worlds: absurd 61 (35%), unusual 74 (43%), everyday 39 (22%). Both voices on all 174; friend versions on 117; 67 of 68 sub-questions used. Ids: new cards continue each chapter's numbering; kept cards keep their ids.
+**Bank** (2026-09-30 after BATCH-02): 172 cards = 136 chapter (21, 22, 18, 20, 18, 18, 19) + 12 extras + 24 sealed. Worlds: absurd 54 (31%), unusual 79 (46%), everyday 39 (23%). Both voices on all 172; friend versions on 115; 67 of 68 sub-questions used. Against `check-bank.mjs` `TARGETS` (reported, never failed) the cuts and format moves leave chapter 1 at 21 (others 1 of 2), chapter 5 quick 2 of 3 and chapter 7 at 19 (quick 2 of 4); decision 3. Cut cards are recorded with their full text in `bank/ROUND4-LOG.md`. Ids: new cards continue each chapter's numbering; kept cards keep their ids.
 
-**Change flow.** Edit `bank/*.json` (never `cards.json`), then `node merge-bank.mjs`, `node check-bank.mjs --kit`, `node shape-audit.mjs --limits`, re-lock changed cards, `node --test tests.mjs`, then `npm test --prefix quiz64` (the kit parity test proves the stripped kit scores the same). Record concept or evidence moves in a bank log (latest: `bank/ROUND4-LOG.md`).
+**Change flow.** Edit `bank/*.json` (never `cards.json`; chapter titles and intros live in `cards.json` and carry over on merge), then `node merge-bank.mjs`, `node check-bank.mjs --kit`, `node shape-audit.mjs --limits`, re-lock changed cards, `node friend-snapshot.mjs --write`, `node sim.mjs` (refreshes `SIM-REPORT.md` and the `sim-example/` the kit tests read), `node --test tests.mjs`, then from `products/survey/` `node scripts/validate-contracts.mjs --write-examples` and `node scripts/export-question-pack.mjs`, then `npm test --prefix quiz64` (the kit parity test proves the stripped kit scores the same). Record concept or evidence moves in a bank log (latest: `bank/ROUND4-LOG.md`).
 
-**Checker** (`check-bank.mjs`): schema and format rules, `sq` and `world` present and valid, everyday only on did formats, unique fingerprints, no repeated answer lines, shape limits (opening words, "Verdict. Reason." share, prompt openers and closers, clock-time hooks, crutch words), genie words in both voices and friend texts, bans, scene links (a shared `fp.device`, a fingerprint that points at a card, a prompt that replays another card: errors, only warnings on feeling cards while they are not served). Last run (2026-09-30): 174 of 174 cards, 0 errors, 20 warnings (6 this-or-that cards without a round id, 13 scene links on the unserved feeling cards, 1 soft prompt overlap C7-134 and C7-161).
+**Checker** (`check-bank.mjs`): schema and format rules, `sq` and `world` present and valid, everyday only on did formats, unique fingerprints, no repeated answer lines, shape limits (opening words, "Verdict. Reason." share, prompt openers and closers, clock-time hooks, crutch words), genie words and "your person" in both voices, friend texts and thread senders, bans, scene links (a shared `fp.device`, a fingerprint that points at a card, a prompt that replays another card: errors, only warnings on feeling cards while they are not served). Last run (2026-09-30 after BATCH-02): 172 of 172 cards, 0 errors, 31 warnings (8 this-or-that cards without a round id, among them C5-1 and C7-161, whose round partners left; 13 scene links on the unserved feeling cards; 1 soft prompt overlap C7-134 and C7-161; 9 length warnings on the approved C5-141 and C1-126 text).
 
 ## 6. Result copy and names
 
@@ -327,30 +327,30 @@ Also `quiz64/public/assets/mirrormii-wordmark.svg` (used as is) and `genii-opal-
 
 ## 8. Quality gates
 
-Commands run from `products/survey/` unless noted. "Last" is the latest verified result with its date or source; the 2026-09-29 numbers in sections 4, 5 and 8 were measured at commit 556cf94; the 2026-09-30 numbers on the same bank with one card per sub-question and feeling cards off (package P0).
+Commands run from `products/survey/` unless noted. "Last" is the latest verified result with its date or source; the 2026-09-29 numbers in sections 4, 5 and 8 were measured at commit 556cf94; the 2026-09-30 numbers after BATCH-02 (package Z1, the full gate) on the 172-card bank with one card per sub-question and feeling cards off.
 
 | Gate | Command | Pass bar | Last |
 |---|---|---|---|
-| App tests | `npm test --prefix quiz64` | all pass | 155 of 156 (2026-09-30). The one failure: `article-accuracy` never-say, the frozen `library.json` room line for L1 in Spending and saving ("Treats come after...", both voices) now reaches the golden Heart to heart player; see section 10 |
-| Kit tests | `node --test tests.mjs` in `research/persona-quiz-v2/final` | all pass | 45 of 45 (2026-09-30) |
-| Bank checker | `node check-bank.mjs --kit` (same folder) | 0 errors | 174 cards, 0 errors, 20 warnings (2026-09-30) |
+| App tests | `npm test --prefix quiz64` | all pass | 156 of 156 (2026-09-30; the "treats" failure is gone, decision 12) |
+| Kit tests | `node --test tests.mjs` in `research/persona-quiz-v2/final` | all pass | 46 of 46 (2026-09-30) |
+| Bank checker | `node check-bank.mjs --kit` (same folder) | 0 errors | 172 cards, 0 errors, 31 warnings (2026-09-30) |
 | Shape audit | `node shape-audit.mjs --limits` (same folder) | passes | enforced inside check-bank |
-| Evidence audit | `node audit.mjs` (same folder) | section 4 targets | axes met, 12 tags short (2026-09-29) |
-| Evidence lock | `node lock-evidence.mjs` (same folder) | nothing changed unconfirmed | enforced by the kit tests |
-| Kit simulation | `node sim.mjs` (same folder) | SIM-REPORT targets | all pass except random strong tags on the full walk (reported only) |
-| Picker simulation | `node quiz64/tests/persona-sim.mjs --acceptance` | no player with 0 tags; random clickers 45 to 55% | 0%, 49.6 to 54.8%, sealed exact 63.9%, T05A/B never fire (2026-09-30) |
-| Contracts | `node scripts/validate-contracts.mjs` (also in `npm test`) | all checks pass | pass (2026-09-29) |
-| Docs | `node scripts/check-docs.mjs` (also in `npm test`) | no retired labels here, no em dash in `docs/` | pass (2026-09-29) |
+| Evidence audit | `node audit.mjs` (same folder) | section 4 targets | axes met, 13 tags short, random clickers 45.7 to 53.8% (2026-09-30) |
+| Evidence lock | `node lock-evidence.mjs` (same folder) | nothing changed unconfirmed | holds, 172 cards (2026-09-30) |
+| Kit simulation | `node sim.mjs` (same folder) | SIM-REPORT targets | all pass except random strong tags on the full walk (reported only): axis recovery 94.9%, sealed exact 66.8%, 50 of 50 tags (2026-09-30) |
+| Picker simulation | `node quiz64/tests/persona-sim.mjs --acceptance` | no player with 0 tags; random clickers 45 to 55% | 0%; 49.5 to 55.3% (L3 over, decision 15); sealed exact 63.7%; T05A/B never fire (2026-09-30) |
+| Contracts | `node scripts/validate-contracts.mjs` (also in `npm test`) | all checks pass | 43 of 43, examples rewritten from a real run, question pack regenerated (2026-09-30) |
+| Docs | `node scripts/check-docs.mjs` (also in `npm test`) | no retired labels here, no em dash in `docs/` | pass (2026-09-30) |
 | Retired labels, title cards | `quiz64/tests/naming-retired.test.mjs` (in `npm test`) | pass | pass |
 | Display accuracy | `quiz64/tests/reveal-accuracy.test.mjs`, `article-accuracy.test.mjs` (in `npm test`) | pass | pass |
 | Naming panel | `node scripts/naming-inventory.mjs`, then the Codex panel | section 6 gate | 193 of 278 pass (NAMING-PANEL.json) |
-| Layout guard | `npm run qa:layout --prefix quiz64 -- <dev url>` (dev server, `PLAYWRIGHT_MODULE` set) | 0 failures | built 2026-09-29 (commit 94996db); rerun after CSS changes |
-| Fold | `node quiz64/tests/visual/fold.mjs` | every option above the fold | 348 renders, 0 failures (round 3) |
-| axe, CLS, LCP, never-say, share PNGs | `node quiz64/qa/qa-checks.mjs <dev url>`; article: `quiz64/qa/article-axe.mjs` | axe 0, CLS under 0.02, LCP 2.0 s or less on a mid phone | axe 0 on 205 screens, CLS 0, LCP 276 ms fast and 3.1 s cold slow 4G (round 3) |
-| Play-through | `node quiz64/qa/play-through.mjs <dev url> fun\|heart\|cards` (`KEYS=1` for keyboard) | no errors | mouse and keyboard clean (round 3) |
+| Layout guard | `npm run qa:layout --prefix quiz64 -- <dev url>` (dev server, `PLAYWRIGHT_MODULE` set) | 0 failures, 0 errors | 376 steps, 0 failures, 0 errors; feeling and rank not reached are notes (2026-09-30); rerun after CSS changes |
+| Fold | `node quiz64/tests/visual/fold.mjs` | every option above the fold | 344 renders, 0 failures (2026-09-30) |
+| axe, CLS, LCP, never-say, share PNGs | `node quiz64/qa/qa-checks.mjs <dev url>`; article: `quiz64/qa/article-axe.mjs` | axe 0, CLS under 0.02, LCP 2.0 s or less on a mid phone | axe 0 on 193 screens (the feeling and rank screens are unreachable notes), never-say and "your person" 0, overflow 0, 5 share PNGs, friend flow on phone and desktop, dev-server CLS 0 (2026-09-30); article axe clean; LCP 276 ms fast and 3.1 s cold slow 4G (round 3, production build) |
+| Play-through | `node quiz64/qa/play-through.mjs <dev url> fun\|heart\|cards` (`KEYS=1` for keyboard) | no errors | fun, heart, cards and keyboard clean (2026-09-30) |
 | Codex judges | `codex exec -s read-only -o out.json "prompt" -i imgs... < /dev/null` | target 8 | visual 6.8 (`quiz64/docs/VISUAL-JUDGE-CODEX-R5.json`); article 7.73 and 7.64 (`ARTICLE-JUDGE.json`); bank rounds in `research/persona-quiz-v2/final/bank/JUDGE-CODEX-R*.json` |
 
-Known gaps: the cold slow-4G first paint (about 3 s) comes from bundle size (PersonaApp about 207 kB gzip, three.js scene about 146 kB gzip, lazy); no real-person validation.
+Known gaps: the cold slow-4G first paint (about 3 s) comes from bundle size (PersonaApp about 212 kB gzip, three.js scene about 146 kB gzip, lazy, main 74 kB; 2026-09-30); no real-person validation.
 
 ## 9. Handoff
 
@@ -373,7 +373,7 @@ Only real open decisions. The build ships the default until Jerry rules.
 |---|---|---|---|
 | 1 | People kicker | "With the people you love" | Jerry locked "With your people"; it failed the gate three times (read as an ethnic or political group, clear 4.0). The replacement passed; needs his yes |
 | 2 | Hard truths wording | "Hard truths: Says it straight / Says it gently" | Sits just under the gate on hurt; "Giving feedback: Direct / Gentle" passed once. Pick one |
-| 3 | T02 and short tags | T02 on 2 cards | The 2-per-concept rule moved two T02 cards to T04 and T05 (`bank/ROUND4-LOG.md`); T02 still fires. The 4-cards-per-tag target is unmet for 12 tags (section 4). Choose: concept rule wins, or write more cards for the short tags |
+| 3 | T02, short tags and thin formats | T02 on 2 cards | The 2-per-concept rule moved two T02 cards to T04 and T05 (`bank/ROUND4-LOG.md`); T02 still fires. The 4-cards-per-tag target is unmet for 13 tags (section 4; T22B joined after the C7-142 cut). The BATCH-02 cuts and format moves leave chapter 1 one others card short, chapter 5 one quick card short and chapter 7 two quick cards short (section 5). Choose: concept rule wins, or write more cards for the short tags and formats |
 | 4 | "Your opposite: X and Y. Know one?" on the share screen and in the article | In | Proposed by Claude; needs a yes or a cut |
 | 5 | Copy sign-off | Shipping as written | No recorded sign-off for the eight life names, the Heart to heart wording, the tag names, the Evidence Article copy and the DESIGN-DIRECTION D6 proposed copy |
 | 6 | Blind test 2 | Not run | Jerry plus 3 to 5 real people: accuracy and "that's me" per line |
@@ -382,11 +382,17 @@ Only real open decisions. The build ships the default until Jerry rules.
 | 9 | Push and the Pages workflow | Local only | The Pages workflow still deploys the older dossier branch; shipping means pointing it at `survey/launch` or merging, on Jerry's go |
 | 10 | Lone Wolf | Kept (approved, exempt) | The panel reads it as antisocial (hurt over the line); keep or rename |
 | 11 | Virality pass on the mirror text | Not started | The words on the names mirror and the share image; proposed, scope to set |
-| 12 | "Treats" in the Spending and saving line | As written (fails the never-say test) | `library.json` room 4 L1 plus line says "treats" in both voices; the article test bans the word. A rewording ("fun money") waits for Jerry's text review |
-| 13 | T05 under one card per sub-question | T05A/B never fire in runs | Its cards sit on 2 sub-questions and the chapter 2 opener C2-160 takes one. Choose: a third T05 sub-question card, re-tag a card, or accept |
+| 12 | "Treats" in the Spending and saving line | Resolved 2026-09-30 | BATCH-02 pass (delegated by Jerry): "Savings first, fun money second." and "You like a cushion first. Fun money comes after the saving is done."; the article never-say test passes |
+| 13 | T05 under one card per sub-question | T05A/B never fire in runs | Its cards sit on 2 sub-questions and the chapter 2 opener C2-160 takes one. That sub-question also holds C2-142, the only chapter rank card, so since C7-147 became a scenario (BATCH-02) runs almost never show a rank card (only the extra X-L2-40, for L2 coverage); the layout guard and qa-checks report rank as a note. Choose: a third T05 sub-question card, re-tag a card, or accept |
 | 14 | Feeling cards | Off (`SERVE_FEELING`) | Standalone rewrites of the 7 were drafted, not applied (text frozen); turn back on only with reviewed text |
+| 15 | Random clickers on L3 at 40 cards | As is | 55.3% on the first pole (bar 45 to 55%; 55.1% before BATCH-02, so the lean predates it); the full walk is 45.7 to 53.8%. The most-served leaning card is C2-144 (+0.25 on L3 per random pick). Choose: re-derive C2-144's evidence, accept, or a picker balance tweak |
+| 16 | One name or two (package N1) | Two archetype names | `docs/NAMES-64-REVIEW.md` and `naming/names-64.json` hold 64 single names with lines in both voices, panel-tested and not wired (The Glue becomes Team Captain; Go-To Friend held as a Comfort Person swap). Choose: ship two names, or wire the 64 |
+| 17 | Everyday worlds on any format | Rule 18 as written | `docs/review/CARD-AUDIT.md` pattern 3: everyday scored best, and rule 18 allows it only on did formats. Choose: keep, or allow everyday on any format when the card rides a specific micro-behavior |
+| 18 | "Money and treats" chapter title | As written | The chapter 4 title and interlude say "treats"; the article test bans the word as never-say (medical "treat"), the chapter title is outside that test. Choose: keep, or rename (e.g. "Money and fun") |
 
 ## 11. Changes
+
+- 2026-09-30: BATCH-02 pass and full gate (package Z1; Jerry delegated the verdicts: "One more time, pass on all these new things we built, as well as these cards, then implement it fully to spec"). Applied A1 to A5, B1 to B4 and B6 as proposed (C7-147, X-L1-40, C6-110, C5-51, C4-142, C3-123, C1-1, C6-162, C4-82, C7-143) with Heart to heart and friend text; B5 (C6-125) kept. C7-147 rank to scenario; C5-51 this or that to scenario with evidence re-derived as listed; C6-110 and C5-51 absurd to unusual. Rule 25: "your partner" replaces "your person" on every player surface (25 cards in both voices and friend texts, the library calls and room label, the lobby label, the setup note); text threads name their sender (Robin C3-101, Alex C3-161, Jordan C4-126); chapter 3 is "Love and dating"; `check-bank.mjs` and the kit tests fail "your person", and `qa-checks.mjs` reports it with the never-say copy. Cut C1-161 and C7-142 (text kept in `bank/ROUND4-LOG.md`); C5-1 and C7-161 lost their round partners and play as single cards. Decision 12 resolved ("fun money"). Engineering: the layout guard and qa-checks report formats no run reaches (feeling while off, rank) as notes; the play-through no longer waits on a leaving receipts card; the device table dropped cut and unusual cards' devices and learned `parachute-jackets`; `qa/qa-report/` is ignored; the change flow lists every regeneration step. Numbers in sections 4, 5 and 8 re-measured; decisions 15 to 18 added.
 
 - 2026-09-30: Package P0 (engine only, no player text changed). One card per sub-question per run, sealed draw included, with the coverage exception; feeling cards off (`SERVE_FEELING` in `score-core.mjs`); tagFire 2.25 to 2.0; the checker's scene-link rule; chapters close early only with 2 spare later cards, and a fill step keeps every run at 40.
 - 2026-09-29: Locked. Rewritten from the 26-section spec into this one (every rule once, final form); the old file moved to `docs/history/LAUNCH-SPEC-2026-09-29-full.md`; `scripts/check-docs.mjs` added to `npm test`. Superseded content removed here: the round 2 map stat labels (Orbit, Delivery, Blueprint, Compass, Engine, Code), the first life names (The Slow Burner, Creature of Habit, The Easygoer, The Wanderer), "With your people" and "With your life", "Do you really know me?", round 3's library assets on product screens (`quiz64/public/assets/world/`), the gothic arch and stained glass mirror, Genii as light only, the 9-screen deck, the ending-style lobby tap, the age question and teen prompts, the facet gem.
