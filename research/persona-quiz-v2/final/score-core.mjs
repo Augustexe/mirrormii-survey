@@ -10,6 +10,12 @@
 // version in `heart` (prompt, options as strings in the same order, optional thread); its evidence is the card's own.
 import { RANK_WEIGHTS, NO_FRIEND_TYPES } from "./card-schema.mjs";
 
+// Feeling cards in web runs (the picker, quiz64 session.js), the one switch. Off (2026-09-30): feeling cards score
+// nothing (weight 0) and every option already records its emotion, so runs never serve them; they stay in the bank
+// untouched (check-bank.mjs then only warns on their scene links). true serves each one right after the picked card it
+// follows. Read as CONFIG.serveFeeling.
+export const SERVE_FEELING = false;
+
 export function createScorer({ kit, lib, friend }) {
   let friendCache = null;
   const friendLib = () => (typeof friend === "function" ? (friendCache ||= friend()) : friend);
@@ -20,7 +26,7 @@ export function createScorer({ kit, lib, friend }) {
     rushedFactor: 0.3,
     minAxisCards: 2, // fewer valid cards on an axis: "this side isn't finished yet"
     flexBand: 0.12, // |normalized axis score| below this: Flex badge, tie broken by real cards then the first card
-    tagFire: 2.25, // net support (tag minus its pair) needed to fire
+    tagFire: 2.0, // net support (tag minus its pair) needed to fire (2.25 before one card per sub-question, M2 2026-09-29)
     tagStrong: 3.0, // net support that marks a fired tag "strong"
     tagFloor: 1.25, // nobody leaves with 0 tags: if none fire, the best candidate above this (same card rules) shows as "leaning"
     tagMinCards: 2, // separate cards that must support a tag
@@ -38,6 +44,7 @@ export function createScorer({ kit, lib, friend }) {
     sealedPairScale: 1.2, // tag-pair net support that counts as a full-strength profile position for sealed guesses
     sealedTagWeight: 0.6, // tag evidence weight relative to axis evidence in sealed guesses
     finaleSize: 8, // sealed cards drawn per run from the sealed pool (kit.finale)
+    serveFeeling: SERVE_FEELING, // feeling cards in web runs: see SERVE_FEELING above
   };
 
   const AXES = lib.axes.map((a) => a.id);
@@ -498,25 +505,30 @@ export function createScorer({ kit, lib, friend }) {
   // (the app seeds it from the run id). One card per axis where the pool has one, then 2 tag-pair cards (cards without
   // a main axis first, then cards whose pairs are not covered yet, never a third card on one axis where avoidable), then
   // the rest at random. Play order is shuffled,
-  // then no two neighbours share a main axis where that can be avoided. Returns card ids.
+  // then no two neighbours share a main axis where that can be avoided. Never two cards on one sub-question (`sq`):
+  // a player meets each underlying question once per run (M2, 2026-09-29), unless the pool has too few sub-questions
+  // to fill the finale. Returns card ids.
   function drawFinale(seed, n = CONFIG.finaleSize) {
     const r = rng(seed);
     const pool = kit.finale;
     const size = Math.min(n, pool.length);
     const picked = [];
-    const take = (c) => { if (c && picked.length < size && !picked.includes(c)) picked.push(c); };
+    const sqTaken = (c) => !!c.sq && picked.some((x) => x.sq === c.sq);
+    const take = (c) => { if (c && picked.length < size && !picked.includes(c) && !sqTaken(c)) picked.push(c); };
     const primaryOf = (c) => (c.checks && c.checks.primary) || null;
     const pairsOf = (c) => (c.checks && c.checks.pairs) || [];
-    for (const ax of AXES) take(shuffle(pool.filter((c) => primaryOf(c) === ax), r)[0]);
+    for (const ax of AXES) take(shuffle(pool.filter((c) => primaryOf(c) === ax), r).find((c) => !sqTaken(c)));
     for (let k = 0; k < 2; k++) {
       const covered = new Set(picked.flatMap(pairsOf));
-      const cands = shuffle(pool.filter((c) => !picked.includes(c) && pairsOf(c).length), r);
+      const cands = shuffle(pool.filter((c) => !picked.includes(c) && !sqTaken(c) && pairsOf(c).length), r);
       // A pool where every card has a main axis (Build C: 4 per axis) never gives one axis a third card.
       const twice = (c) => primaryOf(c) && picked.filter((x) => primaryOf(x) === primaryOf(c)).length >= 2;
       const rankOf = (c) => (twice(c) ? 4 : 0) + (primaryOf(c) ? 2 : 0) + (pairsOf(c).some((q) => covered.has(q)) ? 1 : 0);
       take([...cands].sort((a, b) => rankOf(a) - rankOf(b))[0]);
     }
     for (const c of shuffle(pool.filter((x) => !picked.includes(x)), r)) take(c);
+    // A pool with fewer sub-questions than finale slots: fill the rest regardless (never for the shipped bank).
+    for (const c of pool) if (picked.length < size && !picked.includes(c)) picked.push(c);
     const order = shuffle(picked, r);
     for (let i = 1; i < order.length; i++) {
       const same = (a, b) => a && b && primaryOf(a) && primaryOf(a) === primaryOf(b);

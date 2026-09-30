@@ -16,6 +16,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { TYPES, LEGACY_TYPES, PRIVACY, FP_FIELDS, DID_TYPES, QUICK_TYPES, WORLDS, cardTexts } from "./card-schema.mjs";
 import { checkShapes } from "./shape-audit.mjs";
+import { SERVE_FEELING } from "./score-core.mjs";
 
 const DIR = path.dirname(fileURLToPath(import.meta.url));
 const AXES = ["R1", "R2", "R3", "L1", "L2", "L3"];
@@ -73,7 +74,7 @@ const fpKey = (fp) => FP_FIELDS.map((k) => normLine(fp[k])).join("|");
 // ---------------------------------------------------------------- the checker
 // cards: [{ ...card, _group }] (group: ch1..ch7, extras, sealed, or "kit"). lib: library.json. opts.legacy relaxes the
 // bank-only rules (option counts, both voices, fingerprints) for an assembled kit that still holds pre-Build C cards.
-export function checkCards(cards, { lib, legacy = false } = {}) {
+export function checkCards(cards, { lib, legacy = false, serveFeeling = SERVE_FEELING } = {}) {
   const errors = [];
   const warnings = [];
   const err = (id, what) => errors.push({ id, what });
@@ -245,6 +246,9 @@ export function checkCards(cards, { lib, legacy = false } = {}) {
     if (sim >= LIMITS.fpNear) warn(b.id, `situation close to ${a.id} (fingerprint similarity ${sim.toFixed(2)}); same trigger, ask and who is the same situation`);
   }
 
+  // Uniqueness across the bank: no card references another card's scene (M2, 2026-09-29).
+  checkSceneRefs(cards, err, warn, serveFeeling);
+
   // Uniqueness across the bank: answer lines, per voice ("None of these" excepted).
   for (const voice of ["fun", "heart"]) {
     const lines = [];
@@ -280,6 +284,47 @@ export function checkCards(cards, { lib, legacy = false } = {}) {
   if (!legacy) checkShapes(cards, err);
 
   return { errors, warnings, counts: countCards(cards) };
+}
+
+// A card that references another card's scene: the same fp.device (one device, one scene), a fingerprint that points
+// at another card ("after the ... card", "follows C1-2"), or a prompt that shares two or more distinctive words
+// (words no other prompt in the bank uses) with one other card's prompt. The last is an error for feeling cards, which
+// were the cards that replayed a scene, and a warning for the rest (two scenes may share a prop).
+// Feeling cards (2026-09-30): while SERVE_FEELING is off no run serves them, so any hit on one is a warning; with it on,
+// a feeling card may replay the card it follows (it plays right after it, as a follow-up to that moment).
+const CARD_ID = "(?:C[1-7]|S|X-[A-Z]\\d)-\\d+";
+const REF_FP = new RegExp(`\\b(follows\\s+${CARD_ID}|follow-up to|(?:right )?after the [\\w' -]+ (?:card|choice)|${CARD_ID})\\b`, "i");
+const stemWord = (w) => w.replace(/'s$/, "").replace(/ies$/, "y").replace(/s$/, "");
+export const distinctWords = (prompt) => new Set([...tokens(prompt)].map(stemWord).filter((w) => w.length > 2 && !/^\d+$/.test(w)));
+export function sceneRefs(cards) {
+  const out = [];
+  const list = cards.filter((c) => c && typeof c.id === "string" && typeof c.prompt === "string");
+  const byDevice = new Map();
+  for (const c of list) {
+    const d = c.fp && typeof c.fp.device === "string" ? normLine(c.fp.device) : "";
+    if (d) { if (byDevice.has(d)) out.push({ id: c.id, other: byDevice.get(d), hard: true, what: `same scene device "${c.fp.device}" as ${byDevice.get(d)}` }); else byDevice.set(d, c.id); }
+    for (const k of FP_FIELDS) if (c.fp && typeof c.fp[k] === "string" && REF_FP.test(c.fp[k])) out.push({ id: c.id, other: null, hard: true, what: `fp.${k} points at another card ("${c.fp[k]}")` });
+  }
+  const words = list.map((c) => ({ c, w: distinctWords(c.prompt) }));
+  const df = new Map();
+  for (const x of words) for (const w of x.w) df.set(w, (df.get(w) || 0) + 1);
+  for (let i = 0; i < words.length; i++) for (let j = i + 1; j < words.length; j++) {
+    const shared = [...words[i].w].filter((w) => df.get(w) === 2 && words[j].w.has(w));
+    if (shared.length < 2) continue;
+    const a = words[i].c, b = words[j].c;
+    const hard = a.type === "feeling" || b.type === "feeling";
+    const id = b.type === "feeling" && a.type !== "feeling" ? b.id : a.type === "feeling" ? a.id : b.id;
+    out.push({ id, other: id === a.id ? b.id : a.id, hard, what: `prompt replays ${id === a.id ? b.id : a.id}'s scene (shares ${shared.join(", ")}, used by no other prompt)` });
+  }
+  return out;
+}
+function checkSceneRefs(cards, err, warn, serveFeeling = SERVE_FEELING) {
+  const byId = new Map(cards.map((c) => [c && c.id, c]));
+  for (const r of sceneRefs(cards)) {
+    const f = [byId.get(r.id), byId.get(r.other)].find((c) => c && c.type === "feeling");
+    const hard = r.hard && (!f || (serveFeeling && f.follows !== (f.id === r.id ? r.other : r.id)));
+    (hard ? err : warn)(r.id, f && !serveFeeling ? `${r.what} (feeling card, not served while SERVE_FEELING is off)` : r.what);
+  }
 }
 
 const CLOCK = /\b\d{1,2}(:\d{2})?\s?(am|pm)\b|\b\d{1,2}:\d{2}\b|\bmidnight\b|\bnoon\b/i;

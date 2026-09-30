@@ -1045,6 +1045,8 @@ test("check-bank: a clean bank passes; every rule catches its break", () => {
     ["age field", (b) => { b.ch1[0].teenPrompt = "x"; }, /"teenPrompt" is gone/],
     ["wrong chapter", (b) => { b.ch2[0].chapter = 3; }, /chapter 3 in ch2\.json/],
     ["feeling follows", (b) => { b.ch1[1].follows = "C2-30"; }, /not in ch1/],
+    ["same scene device", (b) => { b.ch1[0].fp.device = "billboard"; b.ch1[2].fp.device = "billboard"; }, /same scene device "billboard" as C1-30/],
+    ["fingerprint points at a card", (b) => { b.ch1[2].fp.setting = "right after the billboard card"; }, /fp\.setting points at another card/],
     ["legacy type", (b) => { b.ch1[4].type = "guilty"; }, /"guilty" is now "bet"/],
     ["friend on rank", (b) => { b.ch1[2].friend = { prompt: "x", a: { t: "a" }, b: { t: "b" } }; }, /rank cards never carry a friend version/],
     ["sealed primary", (b) => { b.sealed[0].primary = "L3"; }, /no option carries its primary axis L3/],
@@ -1060,6 +1062,16 @@ test("check-bank: a clean bank passes; every rule catches its break", () => {
     const r = checkCards(asCards(b), { lib });
     assert.ok(r.errors.some((e) => want.test(e.what)), `${label}: expected ${want}, got ${JSON.stringify(r.errors.map((e) => e.what))}`);
   }
+  // Scene links on a feeling card (2026-09-30): only warnings while feeling cards are not served (CONFIG.serveFeeling
+  // off); served, a feeling card may replay the card it follows but no other card.
+  assert.equal(CONFIG.serveFeeling, false, "feeling cards are off in runs");
+  const replay = (other) => { const b = fixtureBank(); b.ch1[other].prompt = "A billboard outside your window ranks you seventh among friends."; b.ch1[1].prompt = "Your name, seventh, on that billboard. First feeling?"; return asCards(b); };
+  const off = checkCards(replay(0), { lib });
+  assert.deepEqual(off.errors, [], JSON.stringify(off.errors));
+  assert.ok(off.warnings.some((x) => x.id === "C1-31" && /replays C1-30's scene.*not served/.test(x.what)));
+  assert.deepEqual(checkCards(replay(0), { lib, serveFeeling: true }).errors, [], "served, a feeling card may replay the card it follows");
+  assert.ok(checkCards(replay(2), { lib, serveFeeling: true }).errors.some((e) => e.id === "C1-31" && /replays C1-32's scene/.test(e.what)), "served, replaying another card fails");
+  assert.deepEqual(checkCards(replay(2), { lib }).errors, [], "unserved, it only warns");
   const long = fixtureBank();
   long.ch1[0].options[0].t = "Take a very long and winding answer that runs well past the twelve word limit";
   const lr = checkCards(asCards(long), { lib });

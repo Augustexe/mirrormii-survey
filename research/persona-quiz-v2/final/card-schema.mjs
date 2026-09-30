@@ -37,7 +37,7 @@ export const RANK_WEIGHTS = Object.freeze([1, 0.5, 0, -0.5]);
 export const LEGACY_TYPES = Object.freeze({ guilty: "bet" });
 
 export const PRIVACY = Object.freeze(["normal", "intimate"]);
-// Worlds (Jerry, 2026-09-29): everyday, unusual (possible but rare) or absurd (impossible, magic, Genii's wishes).
+// Worlds (Jerry, 2026-09-29): everyday, unusual (possible but rare) or absurd (impossible or magic: cursed objects, impossible trades, powers with a price).
 // Absurd choices are weaker evidence than real life, so their weight is capped; "what you did" cards stay real.
 export const WORLDS = Object.freeze(["everyday", "unusual", "absurd"]);
 export const ABSURD_WEIGHT_CAP = 0.35;
