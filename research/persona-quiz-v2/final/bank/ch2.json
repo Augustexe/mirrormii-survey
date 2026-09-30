@@ -8,7 +8,7 @@
   "prompt": "Every word you say out loud now costs $5. Your best friend has the biggest presentation of their life in an hour, and they're shaking.",
   "options": [
    {
-    "t": "$50 on ten perfect words. Worth every cent.",
+    "t": "Blow $200 in the parking lot. Forty words, zero filler.",
     "tags": [
      {
       "id": "T05B",
@@ -17,7 +17,7 @@
     ]
    },
    {
-    "t": "Zero words. I drive them there and hold their coffee.",
+    "t": "Not one word. Drive them, carry their laptop, fix their collar.",
     "tags": [
      {
       "id": "T05A",
@@ -26,7 +26,7 @@
     ]
    },
    {
-    "t": "\"You've got this.\" Best $15 I'll ever spend.",
+    "t": "Write \"you've got this\" on their hand. Ink is free.",
     "tags": [
      {
       "id": "T05B",
@@ -35,7 +35,7 @@
     ]
    },
    {
-    "t": "One thumbs up, then I quietly fix their slides.",
+    "t": "Front row, nodding at every slide like I wrote it.",
     "tags": [
      {
       "id": "T05A",
@@ -45,12 +45,12 @@
    }
   ],
   "heart": {
-   "prompt": "Every word you say out loud now costs $5. Your best friend has the most important presentation of their life in an hour, and they are shaking.",
+   "prompt": "Every word you say out loud now costs $5. Your best friend has the biggest presentation of their life in an hour, and they're shaking.",
    "options": [
-    "I spend $50 on ten perfect words. It is worth it.",
-    "I say nothing, drive them there and hold their coffee.",
-    "I say \"You've got this,\" and the $15 is well spent.",
-    "One thumbs up, and then I quietly fix their slides."
+    "I spend $200 in the parking lot on forty words that count.",
+    "No words. I drive, carry their laptop, fix their collar.",
+    "Writing's free, so \"you've got this\" goes on their hand in pen.",
+    "Front row, nodding at every single slide."
    ]
   },
   "fp": {
@@ -71,7 +71,7 @@
   "friend": {
    "prompt": "Every word {name} says now costs $5. {name}'s best friend is shaking before a huge presentation. What does {name} do?",
    "a": {
-    "t": "Zero words. Drives them there and holds their coffee.",
+    "t": "Not one word. Drives them, carries the laptop, fixes their collar.",
     "tags": [
      {
       "id": "T05A",
@@ -80,7 +80,7 @@
     ]
    },
    "b": {
-    "t": "$50 on ten perfect words. Worth every cent.",
+    "t": "Blows $200 in the parking lot. Forty words, zero filler.",
     "tags": [
      {
       "id": "T05B",
@@ -145,12 +145,12 @@
    }
   ],
   "heart": {
-   "prompt": "A new shop next door can repair any friendship, but both people stay locked inside until it is fixed. Your former best friend has booked you both.",
+   "prompt": "A new shop next door fixes any friendship, but you're both locked in until it's done. Your old best friend just booked you both.",
    "options": [
-    "I go in prepared to stay as long as it takes.",
-    "I go in, but I bring a list of everything they did.",
-    "Some friendships end for a reason, so I cancel.",
-    "I skip it, with a note: I am glad we were friends."
+    "I walk in with two sleeping bags. However long it takes.",
+    "I'll go, but I'm bringing a list. They're page one.",
+    "Canceling. Some friendships end for a reason.",
+    "I skip it and leave a note: glad we were friends."
    ]
   },
   "fp": {
@@ -247,18 +247,18 @@
    "thread": [
     {
      "from": "Maya",
-     "text": "We found it. Six bedrooms, one kitchen, all of us. The lease starts in June."
+     "text": "We found it. Six bedrooms, one kitchen, all of us. Lease starts in June."
     },
     {
      "from": "Theo",
-     "text": "The room draw is on Sunday. You are in, right?"
+     "text": "Room draw's Sunday. You're in, right?"
     }
    ],
    "options": [
-    "I am in, and I call the room next to the kitchen.",
-    "Yes, and house dinners every Sunday are mandatory.",
-    "I am in for a year, then back to my own place.",
-    "I love you all, and I will visit often."
+    "I'm in. And I want the room by the kitchen.",
+    "Yes, and Sunday house dinners are mandatory.",
+    "In for a year. Then I want my own place back.",
+    "Love you all so much. I'll visit all the time."
    ]
   },
   "fp": {
@@ -348,12 +348,12 @@
    }
   ],
   "heart": {
-   "prompt": "An 8-ball that has never been wrong says your friend Jules's crush will turn them down. Jules is about to confess in front of everyone, in five minutes.",
+   "prompt": "An 8-ball that's never once been wrong says Jules's crush will say no. Jules is confessing in five minutes, in front of everyone.",
    "options": [
-    "\"Don't. The answer is no.\" I take Jules aside and say it.",
-    "I show Jules what the 8-ball said and let them decide.",
-    "I say nothing, and I wait near the exit for afterward.",
-    "I gently suggest somewhere less public, and leave it there."
+    "I pull Jules aside right now: \"Don't. The ball said no.\"",
+    "Jules sees the 8-ball, and then it's their call.",
+    "I say nothing, and I'm waiting by the exit after.",
+    "\"Maybe not in front of everyone?\" I float it and stop there."
    ]
   },
   "fp": {
@@ -407,7 +407,7 @@
   "prompt": "Stand-up debut, tonight: your roommate quit their job for this. They run the whole set for you. Only the landlord joke gets a laugh.",
   "options": [
    {
-    "t": "\"Honestly? One joke landed. Want notes before tonight?\"",
+    "t": "\"Honestly? One laugh. Minute nine. The landlord bit.\"",
     "axes": {
      "R2": 2
     },
@@ -420,7 +420,7 @@
     "emotion": "guilt"
    },
    {
-    "t": "\"The landlord bit kills, the rest needs work.\"",
+    "t": "Ask if they want the honest version or the roommate version.",
     "axes": {
      "R2": 1
     },
@@ -432,7 +432,7 @@
     ]
    },
    {
-    "t": "\"Open with the landlord bit.\" Say nothing else.",
+    "t": "Quietly invite ten friends who laugh at everything.",
     "axes": {
      "R2": -1
     },
@@ -458,12 +458,12 @@
    }
   ],
   "heart": {
-   "prompt": "Your roommate left their job to try stand-up comedy. Their first show is tonight, and they perform the whole set for you. Only the landlord joke makes you laugh.",
+   "prompt": "Your roommate quit their job to do stand-up, and the first show's tonight. They run the whole set for you. Only the landlord joke makes you laugh.",
    "options": [
-    "One joke landed, I tell them, and I offer notes.",
-    "I say the landlord joke works and the rest needs work.",
-    "I suggest opening with the landlord joke, and leave it there.",
-    "I tell them they will crush it, then laugh the loudest."
+    "\"Honestly? You got one laugh, at minute nine. The landlord bit.\"",
+    "I ask if they want the honest version or the roommate version.",
+    "Ten friends who laugh at everything get a quiet invite from me.",
+    "\"You'll crush it.\" Then I laugh loudest from the front row."
    ]
   },
   "fp": {
@@ -485,7 +485,7 @@
   "friend": {
    "prompt": "{name}'s roommate quit a job for stand-up. Debut's tonight. Of the whole set, only the landlord joke made {name} laugh. What does {name} do?",
    "a": {
-    "t": "\"Honestly? One joke landed. Want notes before tonight?\"",
+    "t": "\"Honestly? One laugh. Minute nine. The landlord bit.\"",
     "axes": {
      "R2": 2
     },
@@ -517,7 +517,7 @@
   "prompt": "Time capsule, opened in front of the whole friend group. Your note: \"By now I'll run my own company.\" You don't. Everyone's reading theirs aloud.",
   "options": [
    {
-    "t": "Read it proudly. \"Still coming. Slow and steady.\"",
+    "t": "Read it like a poem. Bow. Sit down.",
     "axes": {
      "L2": -2
     },
@@ -530,14 +530,14 @@
     "emotion": "pride"
    },
    {
-    "t": "\"Three clients, one logo, zero office. That's progress.\"",
+    "t": "\"Technically, I have three clients.\" Nobody asked.",
     "axes": {
      "L2": 1
     },
     "emotion": "cringe"
    },
    {
-    "t": "Laugh along. It's coming, whenever it comes.",
+    "t": "Laugh the hardest. Past me was adorable.",
     "axes": {
      "L2": -1
     },
@@ -558,12 +558,12 @@
    }
   ],
   "heart": {
-   "prompt": "Your friend group opens its old time capsule. Your note says, \"By now I will run my own company.\" You don't. Everyone is reading theirs aloud.",
+   "prompt": "Your friend group opens its old time capsule. Your note says, \"By now I'll run my own company.\" You don't. Everyone's reading theirs out loud.",
    "options": [
-    "I read it proudly and say it is still coming, slowly.",
-    "\"Three clients, one logo, no office yet,\" I say. \"That is progress.\"",
-    "I laugh along. It will come, whenever it comes.",
-    "I drive home and make a milestone chart that night."
+    "I read it like a poem, take a bow and sit down.",
+    "\"Technically, I have three clients,\" I say. Nobody asked.",
+    "Laughing hardest, honestly. Past me was adorable.",
+    "That night I drive home and make a milestone chart."
    ]
   },
   "fp": {
@@ -597,7 +597,7 @@
     ]
    },
    "b": {
-    "t": "Reads it proudly: \"Still coming. Slow and steady.\"",
+    "t": "Reads it like a poem, bows, sits down.",
     "axes": {
      "L2": -2
     },
@@ -639,13 +639,13 @@
    }
   ],
   "heart": {
-   "prompt": "You read your old note aloud while the whole group grins. Which feeling wins?",
+   "prompt": "Your old note gets read out loud while the whole group grins. Which feeling wins?",
    "options": [
-    "I cringe. Past me sounded so certain.",
+    "Cringe. Past me was so sure.",
     "It stings, because I really meant it.",
-    "Pride wins. My real life turned out better.",
-    "I feel relieved that nobody is holding me to it.",
-    "Longing wins. I miss who I was then."
+    "Pride. Real life turned out better.",
+    "Relief that nobody's holding me to it.",
+    "Longing. I miss that version of me."
    ]
   },
   "fp": {
@@ -672,16 +672,16 @@
   "thread": [
    {
     "from": "Riley",
-    "text": "ok weird favor. landlord's doing inspections tomorrow"
+    "text": "ok weird favor. landlord inspects my place tomorrow at 10"
    },
    {
     "from": "Riley",
-    "text": "if anyone asks, Biscuit is YOUR pig. just visiting. for like a year"
+    "text": "can you come over and say Biscuit is YOUR pig?? just visiting. for like a year 🐷"
    }
   ],
   "options": [
    {
-    "t": "\"Done. Biscuit and I go way back.\"",
+    "t": "\"Omw. Biscuit and I have matching sweaters now.\"",
     "axes": {
      "L3": -2
     },
@@ -698,7 +698,7 @@
     "emotion": "delight"
    },
    {
-    "t": "\"Once. Then Biscuit needs a real plan.\"",
+    "t": "Fine, once. Biscuit needs a real plan by Friday.",
     "axes": {
      "L3": -1
     },
@@ -710,7 +710,7 @@
     ]
    },
    {
-    "t": "\"Not lying to a landlord. Find another way.\"",
+    "t": "\"Not lying to your landlord. Love you. Love Biscuit.\"",
     "axes": {
      "L3": 2,
      "R2": 1
@@ -724,7 +724,7 @@
     "emotion": "guilt"
    },
    {
-    "t": "\"I won't lie. I'll just be very busy tomorrow.\"",
+    "t": "Sent \"sorry, just saw this!!\" at 10:45.",
     "axes": {
      "L3": 1
     },
@@ -737,22 +737,22 @@
    }
   ],
   "heart": {
-   "prompt": "Riley's building does not allow pets. Riley's pig, Biscuit, is very large.",
+   "prompt": "Riley's building bans pets. Riley's pig, Biscuit, is very large.",
    "thread": [
     {
      "from": "Riley",
-     "text": "Strange favor. My landlord is doing inspections tomorrow."
+     "text": "Weird favor. My landlord's inspecting my place tomorrow at 10."
     },
     {
      "from": "Riley",
-     "text": "If anyone asks, Biscuit is your pig and is only visiting. For about a year."
+     "text": "Can you come over and say Biscuit's your pig? Just visiting. For about a year."
     }
    ],
    "options": [
-    "I agree. Biscuit and I go way back.",
-    "Once, yes. After that, Biscuit needs a real plan.",
-    "I won't lie to a landlord. They need another way.",
-    "I will not lie, but I will be very busy tomorrow."
+    "\"On my way. Biscuit and I have matching sweaters now.\"",
+    "Fine, once. After that, Biscuit needs a real plan.",
+    "\"I won't lie to your landlord. I love you. I love Biscuit.\"",
+    "\"Sorry, just saw this,\" I send, at 10:45."
    ]
   },
   "fp": {
@@ -772,9 +772,9 @@
   "sq": "SQ-L3-1",
   "world": "unusual",
   "friend": {
-   "prompt": "Riley's building bans pets. Before inspection: \"if anyone asks, Biscuit is YOUR pig. for like a year\" What does {name} reply?",
+   "prompt": "Riley's building bans pets. Inspection's tomorrow: \"can you come over and say Biscuit is YOUR pig??\" What does {name} reply?",
    "a": {
-    "t": "\"Not lying to a landlord. Find another way.\"",
+    "t": "\"Not lying to your landlord. Love you. Love Biscuit.\"",
     "axes": {
      "L3": 2,
      "R2": 1
@@ -787,7 +787,7 @@
     ]
    },
    "b": {
-    "t": "\"Done. Biscuit and I go way back.\"",
+    "t": "\"Omw. Biscuit and I have matching sweaters now.\"",
     "axes": {
      "L3": -2
     },
@@ -850,12 +850,12 @@
    }
   ],
   "heart": {
-   "prompt": "Your friend can now delete one memory a year. They deleted the time their sibling sold their guitar and lied. Now the two are close again. Your take?",
+   "prompt": "Your friend can delete one memory a year. They deleted the time their sibling sold their guitar and lied about it, and now they're close again. What do you think?",
    "options": [
-    "It was the best possible use: forgiven and forgotten.",
-    "That is fine, though I would still lock up my guitar.",
-    "I would keep that memory. It teaches you who to trust.",
-    "Without deleting anything, I would have forgotten it by summer."
+    "Best use of the year. Forgiven, forgotten, done.",
+    "Fine, but I'd still lock up my guitar.",
+    "I'd keep that memory. It's how you learn who to trust.",
+    "Wouldn't need to delete it. I'd forget by summer."
    ]
   },
   "fp": {
@@ -915,7 +915,7 @@
     "emotion": "sting"
    },
    {
-    "t": "Smart move. Big weddings are overrated anyway.",
+    "t": "Smartest thing they've ever done. Zero seating charts.",
     "axes": {
      "R3": -2
     },
@@ -928,7 +928,7 @@
     "emotion": "delight"
    },
    {
-    "t": "Happy for them, but I'll mourn that party forever.",
+    "t": "Throw them a party anyway. Someone's giving a speech.",
     "axes": {
      "R3": 1
     },
@@ -940,7 +940,7 @@
     ]
    },
    {
-    "t": "Drive-through sounds perfect, honestly. I'm jealous.",
+    "t": "Already looking up the nearest drive-through. For me.",
     "axes": {
      "R3": -1
     },
@@ -954,12 +954,12 @@
    }
   ],
   "heart": {
-   "prompt": "Your closest friend just married at a drive-through chapel and told everyone afterward. There will be no party and no speeches. What do you think first?",
+   "prompt": "Your closest friend just got married at a drive-through chapel and told everyone after. No party, no speeches, ever. What's your first thought?",
    "options": [
-    "I feel robbed. I wanted to celebrate them with everyone.",
-    "Weddings are overrated, I think. I would elope too.",
-    "I am happy for them, but I will always miss that party.",
-    "I am a little jealous. A drive-through sounds right to me."
+    "Honestly, robbed. I had a dance routine ready for years.",
+    "Smartest thing they've done. No seating chart, no stress.",
+    "I'm throwing them a party anyway, speeches and all.",
+    "Part of me's already looking up the nearest drive-through."
    ]
   },
   "fp": {
@@ -993,7 +993,7 @@
     ]
    },
    "b": {
-    "t": "Smart move. Big weddings are overrated anyway.",
+    "t": "Smartest thing they've ever done. Zero seating charts.",
     "axes": {
      "R3": -2
     },
@@ -1041,10 +1041,10 @@
    }
   ],
   "heart": {
-   "prompt": "Your best friend now has a brass bell. When they need you, one ring makes you appear beside them, even mid-nap. You can only break it today.",
+   "prompt": "Your best friend has a brass bell now. One ring when they need you, and you appear, even mid-nap. You can only break it today.",
    "options": [
-    "The bell stays whole. If it rings, I appear, even in pajamas.",
-    "I break it today. Nobody should be able to summon me mid-shower."
+    "It stays whole. If it rings, I'm there, pajamas and all.",
+    "I break it today. Nobody summons me mid-shower."
    ]
   },
   "fp": {
@@ -1125,10 +1125,10 @@
    }
   ],
   "heart": {
-   "prompt": "Your friend's closet door now opens somewhere random in the world, back by Sunday. They leave in an hour, with room for you. You had a perfect weekend planned.",
+   "prompt": "Your friend's closet door opens somewhere random on Earth, back by Sunday. They're leaving in an hour, and there's room for you. You'd planned a perfect weekend.",
    "options": [
-    "I go through the door. The weekend can wait.",
-    "My weekend plans stay, and I ask for a postcard."
+    "Through the door I go. The weekend can wait.",
+    "I'm keeping my weekend. Send me a postcard from wherever."
    ]
   },
   "fp": {
@@ -1213,13 +1213,13 @@
    }
   ],
   "heart": {
-   "prompt": "Your group of friends spends one night in a haunted mansion. Something upstairs has just knocked twice. Which one are you?",
+   "prompt": "You and your friends are spending one night in a haunted mansion. Something upstairs just knocked twice. Which one are you?",
    "options": [
-    "I am first up the stairs. Two knocks sounds like an invitation.",
-    "I hold the flashlight and the exit map, and I count heads.",
-    "I suggest splitting up, and I am already gone.",
-    "I read the house rules on the fridge, twice.",
-    "The front door is mine to hold open, one foot outside."
+    "First up the stairs. Two knocks sounds like an invite.",
+    "I've got the flashlight and the exit map, and I'm counting heads.",
+    "\"Let's split up,\" I say, and I'm already gone.",
+    "I'm reading the house rules taped to the fridge.",
+    "I hold the front door open, one foot outside."
    ]
   },
   "fp": {
@@ -1300,12 +1300,12 @@
    }
   ],
   "heart": {
-   "prompt": "You slept through your best friend's moving day, and they carried a dresser down five floors with a stranger. Put these apologies in order, your first choice at the top.",
+   "prompt": "You slept through your best friend's moving day. They carried a dresser down five floors with a stranger. How do you make it up to them? Rank these:",
    "options": [
-    "A voice message eleven minutes long, most of it apologizing.",
-    "Their whole kitchen, unpacked while they are at work, with no note.",
-    "A handwritten card, one full page, with no jokes in it.",
-    "Me at their door every Saturday this month, with a drill."
+    "A long voice note. I'm sorry for most of it",
+    "I unpack their whole kitchen while they're at work, no note",
+    "A handwritten card, a full page, no jokes",
+    "I show up every Saturday this month with a drill"
    ]
   },
   "fp": {
@@ -1361,12 +1361,12 @@
    }
   ],
   "heart": {
-   "prompt": "A sphinx stops you and your best friend. Your friend must describe you in one true sentence, or you both turn to stone. What do they say?",
+   "prompt": "A sphinx stops you and your best friend. Your friend has to say one true line about you, or you both turn to stone. What do they say?",
    "options": [
-    "Cross them, and they tell you right then.",
-    "They smile, say all is well, then go quiet for a day.",
-    "Things slide for so long that they forget them.",
-    "They call you out once, and never bring it up again."
+    "\"Cross them and they'll tell you, right then.\"",
+    "\"They smile, say it's all good, then go quiet for a day.\"",
+    "\"They let things slide so long they forget them.\"",
+    "\"They call you out once, then never bring it up again.\""
    ]
   },
   "fp": {
@@ -1442,12 +1442,12 @@
    }
   ],
   "heart": {
-   "prompt": "Has a friend's big plan ever failed publicly, and part of you felt relieved?",
+   "prompt": "Has a friend's big plan ever flopped in public, and part of you felt relieved?",
    "options": [
-    "Yes. We had been even, and suddenly we were not.",
-    "For a moment, and then I bought them dinner out of guilt.",
-    "No. Their losses feel like mine.",
-    "I do not follow their plans that closely."
+    "Yes. We'd been neck and neck, and then we weren't.",
+    "For a second. Then I bought them dinner out of guilt.",
+    "No. Their flops hit me like my own do.",
+    "I don't follow their plans closely enough to feel anything."
    ]
   },
   "fp": {
@@ -1548,12 +1548,12 @@
    }
   ],
   "heart": {
-   "prompt": "Have you heard what others say about a friend behind their back, and never told them?",
+   "prompt": "Ever heard what people say about a friend behind their back, and never told them?",
    "options": [
-    "Yes. I kept it to myself, and I still do.",
+    "I kept it to myself, and I still am.",
     "I hinted until they asked the right question.",
-    "No. I told them that night, names included.",
-    "No. I told them, then told everyone that I had."
+    "Told them that same night, names and all.",
+    "Told them, then told everyone I'd told them."
    ]
   },
   "fp": {
@@ -1605,10 +1605,10 @@
   "chapter": 2,
   "sq": "SQ-T06-2",
   "world": "everyday",
-  "prompt": "The last time a friend asked to borrow something you'd rather not lend: your car, the good jacket. What happened?",
+  "prompt": "The last time a friend asked to borrow your good stuff: the car, the nice jacket, the good speaker. What happened?",
   "options": [
    {
-    "t": "Handed it over. The rule doesn't apply to them.",
+    "t": "Handed it over before they finished the sentence.",
     "axes": {
      "L3": -2
     },
@@ -1621,7 +1621,7 @@
     "emotion": "warmth"
    },
    {
-    "t": "Lent it, with a return date I actually enforced.",
+    "t": "Lent it, after photographing every scratch first.",
     "axes": {
      "L3": 1
     },
@@ -1633,7 +1633,7 @@
     ]
    },
    {
-    "t": "Said no. Same rule for everyone, even them.",
+    "t": "Said no. My rule doesn't come with a friends list.",
     "axes": {
      "L3": 2
     },
@@ -1645,7 +1645,7 @@
     ]
    },
    {
-    "t": "Said no, and felt bad about it all week.",
+    "t": "Kept it, then offered them my backup one. Guilt tax.",
     "tags": [
      {
       "id": "T06B",
@@ -1656,12 +1656,12 @@
    }
   ],
   "heart": {
-   "prompt": "A friend recently asked to borrow something you would rather not lend, like your car or your good jacket. What did you do?",
+   "prompt": "The last time a friend asked to borrow your good stuff, like the car, the nice jacket or the good speaker, what happened?",
    "options": [
-    "They got it. My rule does not apply to them.",
-    "I lent it, with a return date that I enforced.",
-    "I said no. The same rule applies to everyone, even them.",
-    "I said no, and felt bad about it all week."
+    "They had it before they finished asking.",
+    "I lent it, after taking photos of every scratch.",
+    "I said no. My rule doesn't have a friends list.",
+    "It stayed home. I felt bad, so they got my backup."
    ]
   },
   "fp": {
@@ -1679,9 +1679,9 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "The last time a friend asked to borrow something {name} would rather not lend. What did {name} actually do?",
+   "prompt": "The last time a friend asked to borrow {name}'s good stuff. What did {name} actually do?",
    "a": {
-    "t": "Handed it over. The rule doesn't apply to that friend.",
+    "t": "Handed it over before the friend finished the sentence.",
     "axes": {
      "L3": -2
     },
@@ -1693,7 +1693,7 @@
     ]
    },
    "b": {
-    "t": "Said no. Same rule for everyone, even that friend.",
+    "t": "Said no. The rule doesn't come with a friends list.",
     "axes": {
      "L3": 2
     },
@@ -1713,7 +1713,7 @@
   "prompt": "Genii's guess: someone you swore you'd never speak to again is back in your life.",
   "options": [
    {
-    "t": "Back, and honestly closer than before.",
+    "t": "Back, and now they're my emergency contact.",
     "tags": [
      {
       "id": "T08A",
@@ -1723,7 +1723,7 @@
     "emotion": "warmth"
    },
    {
-    "t": "Friendly again. On probation forever.",
+    "t": "Back in the group chat. Never in my DMs.",
     "tags": [
      {
       "id": "T08B",
@@ -1732,7 +1732,7 @@
     ]
    },
    {
-    "t": "One good apology and I folded.",
+    "t": "One decent apology and I folded like a lawn chair.",
     "tags": [
      {
       "id": "T08A",
@@ -1742,7 +1742,7 @@
     "emotion": "cringe"
    },
    {
-    "t": "Not a chance. Never again means never again.",
+    "t": "Blocked on four apps. Considering a fifth.",
     "tags": [
      {
       "id": "T08B",
@@ -1753,12 +1753,12 @@
    }
   ],
   "heart": {
-   "prompt": "Is someone you once swore never to speak to again now back in your life?",
+   "prompt": "Is someone you once swore you'd never speak to again back in your life now?",
    "options": [
-    "Yes. We are closer now than before.",
-    "Yes. We are friendly, but I am still watching.",
-    "They apologized well, and I let them back in.",
-    "No. When I say never again, I mean it."
+    "Yes, and now they're my emergency contact.",
+    "They're back in the group chat. Not in my messages.",
+    "One decent apology, and I folded.",
+    "Still blocked, on every app I have."
    ]
   },
   "fp": {
@@ -1780,7 +1780,7 @@
   "friend": {
    "prompt": "Genii bets {name} has someone back in {their} life {they} swore never to speak to again. Guilty or not?",
    "a": {
-    "t": "Back, and honestly closer than before.",
+    "t": "Back, and now they're {their} emergency contact.",
     "tags": [
      {
       "id": "T08A",
@@ -1789,7 +1789,7 @@
     ]
    },
    "b": {
-    "t": "Not a chance. Never again means never again.",
+    "t": "Blocked on four apps. Considering a fifth.",
     "tags": [
      {
       "id": "T08B",
@@ -1846,12 +1846,12 @@
    }
   ],
   "heart": {
-   "prompt": "When a friend last had big news, like a new job, a new home or an acceptance, what did you do first?",
+   "prompt": "The last time a friend had big good news, like a new job, a new place or an acceptance, what did you do first?",
    "options": [
-    "I sent a message in capitals with far too many exclamation marks.",
-    "I called and had them tell me the whole story twice.",
-    "I showed up with flowers and said very little.",
-    "Boxes and forms were my department. I offered to help."
+    "A wall of caps and way too many exclamation marks.",
+    "I called and made them tell me the whole story twice.",
+    "I showed up with flowers and barely said a word.",
+    "I offered to help with the boring part, the boxes and forms."
    ]
   },
   "fp": {
@@ -1896,10 +1896,10 @@
   "chapter": 2,
   "sq": "SQ-T05-2",
   "world": "everyday",
-  "prompt": "A friend's last rough week. Tap everything you actually did:",
+  "prompt": "The group chat wants receipts: a friend's last rough week. Tap everything you actually did:",
   "options": [
    {
-    "t": "Did one of their chores without being asked",
+    "t": "Showed up and did their dishes, no questions",
     "tags": [
      {
       "id": "T05A",
@@ -1908,7 +1908,7 @@
     ]
    },
    {
-    "t": "Sent a long message about how much they matter",
+    "t": "Sent a paragraph so long it needed a \"read more\"",
     "tags": [
      {
       "id": "T05B",
@@ -1917,7 +1917,7 @@
     ]
    },
    {
-    "t": "Stayed on the phone way past my bedtime",
+    "t": "Canceled my own plans to sit on their floor",
     "tags": [
      {
       "id": "T06A",
@@ -1926,7 +1926,7 @@
     ]
    },
    {
-    "t": "Muted them for a night to recharge",
+    "t": "Muted their chat for a night so I could sleep",
     "tags": [
      {
       "id": "T06B",
@@ -1935,7 +1935,7 @@
     ]
    },
    {
-    "t": "Sent something funny instead of asking how they were",
+    "t": "Sent a meme instead of asking \"how are you, really?\"",
     "tags": [
      {
       "id": "T05B",
@@ -1953,14 +1953,14 @@
    }
   ],
   "heart": {
-   "prompt": "The last time a friend had a rough week, which of these did you do? Select every one that is true.",
+   "prompt": "Think of the last time a friend had a rough week. Which of these did you really do?",
    "options": [
-    "I did one of their chores without being asked.",
-    "I sent a long message about how much they matter to me.",
-    "I stayed on the phone long past my bedtime.",
-    "I muted their messages for one night to recharge.",
-    "Instead of asking how they were, I sent something funny.",
-    "None of these are true."
+    "I showed up and did their dishes, no questions asked.",
+    "I sent a paragraph so long it needed a \"read more\".",
+    "I canceled my own plans to sit on their floor.",
+    "I muted their chat for a night so I could sleep.",
+    "A meme, instead of asking how they really were.",
+    "None of these."
    ]
   },
   "fp": {
@@ -2026,12 +2026,12 @@
    }
   ],
   "heart": {
-   "prompt": "Have you ever quietly judged a birthday that had no cake, no candles and no song?",
+   "prompt": "Be honest. Ever quietly judged a birthday with no cake, no candles and no song?",
    "options": [
-    "Yes, and then I went out and bought a cake myself.",
-    "Yes. I said nothing, but I felt it all night.",
-    "No. Without cake or a song, it can still be great.",
-    "No. I threw that party, with tacos and no singing."
+    "Judged it, then went out and bought a cake myself.",
+    "I didn't say a word, but I felt it all night.",
+    "No cake, no song, and it was still a great night.",
+    "Judge it? That was my party. Tacos, no singing."
    ]
   },
   "fp": {

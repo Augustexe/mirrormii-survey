@@ -97,7 +97,7 @@ export const CHAPTER_GLYPHS = {
     f: star(19.5, 4.5, 3),
     h: "M5.6,9.2 C5.8,8 6.7,7.3 7.8,7.3 L7.8,8.4 C7.2,8.4 6.7,8.8 6.6,9.4 Z",
   },
-  // 4 Money and treats: two coins
+  // 4 Money and spending: two coins
   4: {
     a: circle(15, 9.5, 6),
     l: `${circle(9.5, 14.5, 6.5)} ${circle(9.5, 14.5, 3.4)}`,

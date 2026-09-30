@@ -5,10 +5,10 @@
   "chapter": 1,
   "sq": "SQ-T02-2",
   "world": "everyday",
-  "prompt": "Prove me wrong: there's a friend you've stopped inviting, just to see if they'll ever invite you.",
+  "prompt": "Prove me wrong: somewhere in your chats is a friend you stopped inviting, just to see if they'd ever invite you.",
   "options": [
    {
-    "t": "It's been three months. I'm still counting.",
+    "t": "Three months and counting. Their birthday's next. We'll see.",
     "tags": [
      {
       "id": "T02B",
@@ -18,7 +18,7 @@
     "emotion": "resentment"
    },
    {
-    "t": "Tried it for two weeks, then caved and invited them.",
+    "t": "Lasted two weeks, then caved and sent \"drinks?\" at midnight.",
     "tags": [
      {
       "id": "T02B",
@@ -28,7 +28,7 @@
     "emotion": "cringe"
    },
    {
-    "t": "I invite whoever I miss. Tests are exhausting.",
+    "t": "Whoever I miss gets the invite. Scorekeeping is a second job.",
     "tags": [
      {
       "id": "T02A",
@@ -38,7 +38,7 @@
     "emotion": "warmth"
    },
    {
-    "t": "No test. Whose turn is it? No idea. I invite anyway.",
+    "t": "Wait. I might be the friend who never invites. Oh no.",
     "tags": [
      {
       "id": "T02A",
@@ -48,12 +48,12 @@
    }
   ],
   "heart": {
-   "prompt": "Is there a friend you have stopped inviting, just to see whether they will ever invite you?",
+   "prompt": "Is there a friend you've stopped inviting, just to see if they'll ever invite you first?",
    "options": [
-    "Yes. It has been three months, and I am still counting.",
-    "I tried, but after two weeks I invited them anyway.",
-    "No. I invite whoever I miss, without testing anyone.",
-    "No. Whose turn is it? I never know, so I invite."
+    "Three months now, and yes, I'm counting. Their birthday's next.",
+    "For two weeks. Then I caved and texted them at midnight.",
+    "Whoever I miss, I invite. Keeping score sounds exhausting.",
+    "Honestly, I might be the one who never invites. Oh no."
    ]
   },
   "fp": {
@@ -73,7 +73,7 @@
   "friend": {
    "prompt": "Genii bets there's a friend {name} stopped inviting, just to see if the friend ever invites {them}. True?",
    "a": {
-    "t": "Invites whoever {name} misses. Tests are exhausting.",
+    "t": "Whoever {name} misses gets the invite. Scorekeeping is a second job.",
     "tags": [
      {
       "id": "T02A",
@@ -82,7 +82,7 @@
     ]
    },
    "b": {
-    "t": "Three months in, still waiting, still counting.",
+    "t": "Three months and counting. Their birthday's next.",
     "tags": [
      {
       "id": "T02B",
@@ -147,12 +147,12 @@
    }
   ],
   "heart": {
-   "prompt": "Genii guesses that you have deleted a post because it did not get enough likes. Is that true?",
+   "prompt": "Ever deleted a post because it didn't get enough likes?",
    "options": [
-    "Yes. Eleven likes in an hour meant it had to go.",
-    "Yes, and I posted it again later, when more people were online.",
-    "No. I post something and forget it exists.",
-    "No. A post with few likes stays up anyway."
+    "Yes. Eleven likes in an hour, so it had to go.",
+    "Deleted it, then posted it again when more people were awake.",
+    "Honestly, I post and forget it's even there.",
+    "Never. The quiet ones stay up, like little monuments."
    ]
   },
   "fp": {
@@ -203,10 +203,10 @@
   "chapter": 1,
   "sq": "SQ-T01-2",
   "world": "everyday",
-  "prompt": "Calling it: at least one person can see your live location right now.",
+  "prompt": "Calling it: at least one person can watch your little dot move around right now.",
   "options": [
    {
-    "t": "Three friends and my partner. Wave hi.",
+    "t": "Four people. They narrate my errands back to me.",
     "axes": {
      "R1": 1
     },
@@ -219,7 +219,7 @@
     "emotion": "warmth"
    },
    {
-    "t": "Just one friend, and nobody else gets the dot.",
+    "t": "Shared it for one concert years ago. Still on. Nobody's said anything.",
     "tags": [
      {
       "id": "T01A",
@@ -228,7 +228,7 @@
     ]
    },
    {
-    "t": "Turned it on once. Off by dinner.",
+    "t": "Only on for the walk home. Off the second I'm inside.",
     "tags": [
      {
       "id": "T01B",
@@ -237,7 +237,7 @@
     ]
    },
    {
-    "t": "Nobody gets my location. Not even my partner, and they've asked.",
+    "t": "Nobody. My partner asked twice. Still a lovely no.",
     "axes": {
      "R1": -1
     },
@@ -251,12 +251,12 @@
    }
   ],
   "heart": {
-   "prompt": "Can at least one person see your live location right now?",
+   "prompt": "Can anyone see your live location right now?",
    "options": [
-    "Yes. Three friends and my partner can see it.",
-    "Just one friend can, and nobody else.",
-    "I turned it on once and had it off by dinner.",
-    "No. Nobody sees my location, not even my partner, who has asked."
+    "Four people can. They narrate my errands back to me.",
+    "I shared it for one concert years ago, and it's still on.",
+    "Only on the walk home. It's off the second I'm inside.",
+    "Nobody. My partner's asked twice, and it's still no."
    ]
   },
   "fp": {
@@ -276,7 +276,7 @@
   "friend": {
    "prompt": "Genii bets at least one person can see {name}'s live location right now. Guilty or not?",
    "a": {
-    "t": "Three friends and {their} partner. Wave hi.",
+    "t": "Four people. They narrate {their} errands back to {them}.",
     "axes": {
      "R1": 1
     },
@@ -288,7 +288,7 @@
     ]
    },
    "b": {
-    "t": "Nobody gets {their} location. Not even {their} partner.",
+    "t": "Nobody. Not even {their} partner, who's asked twice.",
     "axes": {
      "R1": -1
     },
@@ -307,10 +307,10 @@
   "chapter": 1,
   "sq": "SQ-T04-1",
   "world": "everyday",
-  "prompt": "Think of the last party you went to. Tap what actually happened:",
+  "prompt": "I've seen the photos from your last party. Tap everything that actually happened:",
   "options": [
    {
-    "t": "Talked to a stranger for twenty minutes or more",
+    "t": "Heard a stranger's whole life story by the snack table",
     "tags": [
      {
       "id": "T04B",
@@ -319,7 +319,7 @@
     ]
    },
    {
-    "t": "Swapped numbers with someone I had just met",
+    "t": "Left with a new number saved as \"green jacket, party\"",
     "tags": [
      {
       "id": "T04B",
@@ -328,7 +328,7 @@
     ]
    },
    {
-    "t": "Invited someone I'd just met to the next thing",
+    "t": "Invited someone I'd met an hour ago to my next thing",
     "tags": [
      {
       "id": "T04B",
@@ -337,7 +337,7 @@
     ]
    },
    {
-    "t": "Stayed with the person I came with most of the night",
+    "t": "Stayed glued to the friend I came with all night",
     "tags": [
      {
       "id": "T04A",
@@ -346,7 +346,7 @@
     ]
    },
    {
-    "t": "Left before anyone new could start a conversation",
+    "t": "Irish exit before anyone new learned my name",
     "tags": [
      {
       "id": "T04A",
@@ -360,13 +360,13 @@
    }
   ],
   "heart": {
-   "prompt": "Go back to the last party you went to. Which of these actually happened?",
+   "prompt": "Think back to the last party you went to. Which of these really happened?",
    "options": [
-    "I talked to a stranger for twenty minutes or more.",
-    "I swapped numbers with someone I had just met.",
-    "Someone I had just met got an invite to the next thing.",
-    "I stayed with the person I came with, most of the night.",
-    "I left before anyone new could start a conversation.",
+    "A stranger told me their whole life story by the snack table.",
+    "I left with a new number saved as \"green jacket, party\".",
+    "Someone I'd met an hour earlier got invited to my next thing.",
+    "I stuck to the friend I came with all night.",
+    "I slipped out before anyone new learned my name.",
     "None of these happened."
    ]
   },
@@ -421,12 +421,12 @@
    }
   ],
   "heart": {
-   "prompt": "The last time someone scrolled on their phone while you were telling them something, how did you handle it?",
+   "prompt": "The last time someone scrolled their phone while you were telling them something, what did you do?",
    "options": [
-    "\"Hello, I am right here,\" I said out loud.",
-    "I stopped mid-sentence and said, \"Take your time. I will wait.\"",
-    "I picked up my own phone so they would feel it too.",
-    "I kept talking as if I had not noticed."
+    "\"Hello? I'm right here,\" I said, out loud.",
+    "Stopped mid-sentence: \"Take your time. I'll wait.\"",
+    "My phone came out too. If they could, I could.",
+    "I kept going like I hadn't noticed."
    ]
   },
   "fp": {
@@ -465,30 +465,30 @@
   "chapter": 1,
   "sq": "SQ-L3-3",
   "world": "everyday",
-  "prompt": "Genii's hunch: you've waited for the walk signal with zero cars in sight, while everyone else crossed.",
+  "prompt": "Genii's hunch: zero cars, a red hand, and you stayed on the curb while the whole crowd crossed.",
   "options": [
    {
-    "t": "Stood there alone till it changed. Light's the light.",
+    "t": "Waited alone till it turned. The light and I have an understanding.",
     "axes": {
      "L3": 2
     },
     "emotion": "pride"
    },
    {
-    "t": "Wanted to cross so badly. Couldn't make my feet go.",
+    "t": "Took one step, felt watched, stepped right back.",
     "axes": {
      "L3": 1
     },
     "emotion": "cringe"
    },
    {
-    "t": "Only when a kid's watching. Otherwise I cross.",
+    "t": "If the crowd goes, I go. Never first, though.",
     "axes": {
      "L3": -1
     }
    },
    {
-    "t": "No cars coming? I cross. Every time.",
+    "t": "Zero cars? I'm across before the crowd even moves.",
     "axes": {
      "L3": -2
     },
@@ -496,12 +496,12 @@
    }
   ],
   "heart": {
-   "prompt": "Have you ever waited for the walk signal with no cars in sight, while everyone else crossed?",
+   "prompt": "Zero cars, a red hand, and everyone else crossing. Ever stayed on the curb anyway?",
    "options": [
-    "Yes. I stood there alone and did not move until it changed.",
-    "Yes. I wanted to cross, but I could not make myself go.",
-    "Only when a child is watching. Otherwise I cross.",
-    "No. If no cars are coming, I cross."
+    "Yes. I waited alone till it turned, and felt weirdly proud.",
+    "I took one step, felt watched, and stepped right back.",
+    "If the crowd goes, I go. I just won't go first.",
+    "No cars? I'm across before anyone else moves."
    ]
   },
   "fp": {
@@ -519,15 +519,15 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "Genii's hunch: {name} has waited for the walk signal with no cars in sight while everyone else crossed. Guilty or not?",
+   "prompt": "Genii's hunch: zero cars, a red hand, and {name} stayed on the curb while everyone crossed. Guilty or not?",
    "a": {
-    "t": "Guilty. Stood alone and didn't budge until it changed.",
+    "t": "Waited alone till it turned. {name} and the light have an understanding.",
     "axes": {
      "L3": 2
     }
    },
    "b": {
-    "t": "Never. No cars coming, {they} cross.",
+    "t": "Zero cars? Across before the crowd even moves.",
     "axes": {
      "L3": -2
     }
@@ -582,12 +582,12 @@
    }
   ],
   "heart": {
-   "prompt": "Your most recent important message, such as a breakup, a resignation or a real apology: who wrote it?",
+   "prompt": "Think of your last big message, like a breakup, a resignation or a real apology. Who actually wrote it?",
    "options": [
-    "An AI drafted it, and I changed a few words before sending.",
-    "An AI wrote a draft, then I rewrote it my way.",
-    "I did. I wrote nine drafts and sent the tenth.",
-    "I did, first try, typos and all, before I lost my nerve."
+    "An AI drafted it. I changed three words and sent it.",
+    "An AI wrote it. Then I rewrote it to sound like me.",
+    "Nine drafts, all mine. I sent the tenth.",
+    "Me, first try, typos and all, before I lost my nerve."
    ]
   },
   "fp": {
@@ -663,12 +663,12 @@
    }
   ],
   "heart": {
-   "prompt": "Overnight, a billboard appears outside your window. It ranks you and your eight closest friends by how well life is going, and you are seventh.",
+   "prompt": "Overnight, a billboard goes up outside your window ranking you and your eight closest friends by how life's going. You're seventh.",
    "options": [
-    "\"Seventh?\" I will be third by next summer.",
-    "I find out what the leader is doing, and copy it.",
-    "Seventh feels comfortable. Nobody expects much from seventh.",
-    "I close the curtains. My life is not a leaderboard."
+    "\"Seventh?\" Give me till next summer. I'm taking third.",
+    "I'd find out what number one is doing, and copy it.",
+    "Seventh's kind of cozy. Nobody expects much from seventh.",
+    "Curtains closed. My life isn't a leaderboard."
    ]
   },
   "fp": {
@@ -731,13 +731,13 @@
    }
   ],
   "heart": {
-   "prompt": "Your name sits seventh on a billboard the whole street can see. Which feeling arrives before any thought?",
+   "prompt": "Your name's up there, seventh, where the whole street can see it. What's the first feeling, before any thought?",
    "options": [
-    "Envy comes first, sharp and specific.",
-    "Relief comes first. It could have been worse.",
-    "Strangely, I feel proud.",
-    "I worry that it will stay with me.",
-    "It barely touches me. I get on with my day."
+    "Envy, sharp and really specific.",
+    "Relief. It could've been worse.",
+    "Weirdly, a little proud.",
+    "Worry that it'll stick to me.",
+    "Not much. I get on with my day."
    ]
   },
   "fp": {
@@ -803,12 +803,12 @@
    }
   ],
   "heart": {
-   "prompt": "Every friendship you have becomes a houseplant on your windowsill, and each one wilts when nobody texts. The plant for your oldest friend has turned brown.",
+   "prompt": "Every friendship you have is a houseplant on your windowsill, and it wilts when nobody texts. Your oldest friend's plant has gone brown.",
    "options": [
-    "It can wait. We go quiet for months, and it always recovers.",
-    "I send a meme like no time passed. It turns green.",
-    "I send them a photo of the plant, with no message.",
-    "I move it behind the green ones. That is where we are."
+    "It'll perk up. We go quiet for months and always come back.",
+    "I send a meme like no time passed. Green by dinner.",
+    "They get a photo of the plant. No caption.",
+    "It goes behind the green ones. That's where we are now."
    ]
   },
   "fp": {
@@ -856,37 +856,37 @@
   "prompt": "A new app called Probably Better has one button: swap your job, city and apartment for ones it picked, sight unseen. Your life right now is good.",
   "options": [
    {
-    "t": "Press it. \"Probably better\" beats \"fine\" every time.",
+    "t": "Smash it before my coffee's cold. \"Fine\" was never the goal.",
     "axes": {
      "L1": -2
     }
    },
    {
-    "t": "Good took me years to build. Deleting the app.",
+    "t": "Delete the app, then hug my radiator. Took years to get here.",
     "axes": {
      "L1": 2
     }
    },
    {
-    "t": "No, and I spend a week wondering where I'd be.",
+    "t": "Keep it. Never press it. Stare at it on bad days.",
     "axes": {
      "L1": 1
     }
    },
    {
-    "t": "Press it, with my stomach in knots.",
+    "t": "Hand my phone to my best friend: \"You press it.\"",
     "axes": {
      "L1": -1
     }
    }
   ],
   "heart": {
-   "prompt": "A new app called Probably Better has one button: it swaps your job, your city and your apartment for ones it chooses, sight unseen. Your life right now is good.",
+   "prompt": "A new app called Probably Better has one button. It swaps your job, your city and your apartment for ones it picks, sight unseen. Your life right now is good.",
    "options": [
-    "Probably better beats fine, so I press it.",
-    "I delete the app. A good life took me years to build.",
-    "No, though I spend a week wondering where I would be.",
-    "Yes, I press it, with my stomach in knots."
+    "I'd press it before my coffee's cold. Fine was never the goal.",
+    "Deleted. Then I hug my radiator. It took years to get here.",
+    "It stays, unpressed. I stare at it on bad days.",
+    "I hand my best friend the phone. Their call."
    ]
   },
   "fp": {
@@ -907,13 +907,13 @@
   "friend": {
    "prompt": "An app offers to swap {name}'s job, city and apartment for ones it picked, sight unseen. {name}'s life is good. What does {name} do?",
    "a": {
-    "t": "Deletes it. A good life took years to build.",
+    "t": "Deletes it, then hugs the radiator. Took years to get here.",
     "axes": {
      "L1": 2
     }
    },
    "b": {
-    "t": "Presses it. \"Probably better\" beats \"fine.\"",
+    "t": "Smashes it before the coffee's cold. \"Fine\" was never the goal.",
     "axes": {
      "L1": -2
     }
@@ -968,12 +968,12 @@
    }
   ],
   "heart": {
-   "prompt": "Someone slips a note under your door. It is from the neighbor you have nodded to for two years, asking if you want to be real friends.",
+   "prompt": "Someone slid a note under your door. It's from the neighbor you've nodded at for two years: \"Want to be actual friends?\"",
    "options": [
-    "That evening I knock on their door. Friendship starts now.",
-    "I invite them along next time I go out with friends.",
-    "I write back yes, and keep it to chats in the hallway.",
-    "I keep nodding and act as if the note never came."
+    "I knock that night. We're friends starting now.",
+    "Next time I go out with my friends, they're coming too.",
+    "I slide back a yes and keep it to hallway chats.",
+    "Honestly, I keep nodding and act like it never came."
    ]
   },
   "fp": {
@@ -1018,10 +1018,10 @@
   "chapter": 1,
   "sq": "SQ-R3-1",
   "world": "unusual",
-  "prompt": "Every holiday for 25 years, your family takes the same photo on the same stairs. This year you're abroad. They want you photoshopped in.",
+  "prompt": "Every holiday for 25 years, your family takes the same photo on the same stairs. This year you're abroad. The family chat wants you photoshopped in.",
   "options": [
    {
-    "t": "Send a selfie at the exact angle. The stairs must be honored.",
+    "t": "Change my flight. I'm not the one who breaks 25 years.",
     "axes": {
      "R3": 2
     },
@@ -1033,7 +1033,7 @@
     ]
    },
    {
-    "t": "Photoshop me in. Sweater and all.",
+    "t": "Photoshop me in. Use last year's face, my hair was better.",
     "axes": {
      "R3": 1
     },
@@ -1046,7 +1046,7 @@
     "emotion": "warmth"
    },
    {
-    "t": "Skip one year. The stairs will survive.",
+    "t": "Skip this one. The stairs aren't going anywhere.",
     "axes": {
      "R3": -1
     },
@@ -1059,7 +1059,7 @@
     "emotion": "guilt"
    },
    {
-    "t": "Send a beach photo instead. New tradition starts now.",
+    "t": "Send a beach photo. Tell them this is the new stairs.",
     "axes": {
      "R3": -2
     },
@@ -1073,12 +1073,12 @@
    }
   ],
   "heart": {
-   "prompt": "Every holiday for 25 years, your family has taken the same photo on the same stairs. This year you are abroad, and they want to edit you into it.",
+   "prompt": "For 25 years, your family's taken the same holiday photo on the same stairs. This year you're abroad, and the family chat wants to edit you in.",
    "options": [
-    "I send a selfie from the exact same angle.",
-    "They can edit me in, sweater and all.",
-    "I skip it this year. The tradition will survive.",
-    "I send a beach photo and start a new tradition."
+    "I change my flight. I won't be the one who breaks it.",
+    "Edit me in. Use last year's face, my hair was better.",
+    "Skipping one year. The stairs aren't going anywhere.",
+    "A beach photo from me. Maybe that's our new stairs."
    ]
   },
   "fp": {
@@ -1098,7 +1098,7 @@
   "friend": {
    "prompt": "Same holiday photo, same stairs, 25 years running. {name} is abroad, and the family wants {them} photoshopped in. What does {name} do?",
    "a": {
-    "t": "Sends a selfie at the exact angle. The stairs must be honored.",
+    "t": "Changes {their} flight. Not the one who breaks 25 years.",
     "axes": {
      "R3": 2
     },
@@ -1110,7 +1110,7 @@
     ]
    },
    "b": {
-    "t": "Sends a beach photo instead. New tradition starts now.",
+    "t": "Sends a beach photo: \"This is the new stairs.\"",
     "axes": {
      "R3": -2
     },
@@ -1169,12 +1169,12 @@
    }
   ],
   "heart": {
-   "prompt": "Two years after your breakup, your ex's parent sends you a message.",
+   "prompt": "Two years after your breakup, your ex's parent texts you.",
    "options": [
-    "I call right away, before I can think about it.",
-    "I say yes, ask for two minutes, and pace the kitchen.",
-    "Before I agree, I ask whether everything is all right, and what it is about.",
-    "I do not answer yet. My friends see it first and tell me what to do."
+    "I call before I can overthink it.",
+    "\"Of course, two minutes?\" Then I pace the kitchen the whole time.",
+    "\"Is everything okay? What's it about?\" I ask before saying yes.",
+    "Not yet. My friends see it first and make the call."
    ]
   },
   "fp": {
@@ -1265,22 +1265,22 @@
    }
   ],
   "heart": {
-   "prompt": "You have dated Sam for four months. Your parent adds Sam to the family group chat without asking either of you.",
+   "prompt": "You've been dating Sam for four months. Your parent adds Sam to the family group chat without asking either of you.",
    "thread": [
     {
      "from": "Your parent",
-     "text": "Please say hello to Sam, our newest member."
+     "text": "Say hi to Sam, our newest member 🎉"
     },
     {
      "from": "Your sibling",
-     "text": "Welcome, Sam. There is no leaving now."
+     "text": "Welcome, Sam. There's no leaving."
     }
    ],
    "options": [
-    "\"Welcome, Sam. You are family now.\"",
-    "I share the holiday schedule with Sam and say everyone comes.",
-    "I privately ask my parent to check with us next time.",
-    "I remove Sam myself. We will join when we decide to."
+    "\"Welcome, Sam. You're family now.\"",
+    "I send Sam the holiday schedule. Everyone comes, that's the rule.",
+    "I text my parent on the side: \"Next time, ask us first.\"",
+    "I take Sam out myself. We'll join when we're ready."
    ]
   },
   "fp": {
@@ -1328,7 +1328,7 @@
   "prompt": "Every Sunday, Dani and their partner read each other's journals aloud. Every page, no skipping. Dani calls it the best hour of the week. Honest reaction?",
   "options": [
    {
-    "t": "Journals, phones, passwords. Love has no locked drawers.",
+    "t": "Forwarding this to my partner: \"We're starting Sunday.\"",
     "axes": {
      "R1": 2
     },
@@ -1340,7 +1340,7 @@
     ]
    },
    {
-    "t": "Cute. I'd trade journals and maybe skip a page.",
+    "t": "Cute. I'm in. The 2019 pages get read very fast.",
     "axes": {
      "R1": 1
     },
@@ -1352,7 +1352,7 @@
     ]
    },
    {
-    "t": "Sweet for them. My journal stays in the drawer.",
+    "t": "Grocery list, read with feeling. That's all they're getting.",
     "axes": {
      "R1": -1
     },
@@ -1364,7 +1364,7 @@
     ]
    },
    {
-    "t": "My private pages stay private, even from my partner.",
+    "t": "Hard pass. My partner doesn't know my journal exists.",
     "axes": {
      "R1": -2
     },
@@ -1377,12 +1377,12 @@
    }
   ],
   "heart": {
-   "prompt": "Every Sunday, Dani and their partner read each other's journals aloud, every page, without skipping. Dani says it is the best hour of the week. What is your honest reaction?",
+   "prompt": "Every Sunday, Dani and their partner read each other's journals out loud, every page, no skipping. Dani says it's the best hour of the week. What's your honest reaction?",
    "options": [
-    "Journals, phones, passwords: in love, I would keep no locked drawers.",
-    "It is sweet. I would trade journals, maybe skipping a page.",
-    "It suits them, but my journal would stay in the drawer.",
-    "My private pages stay private, even with the person I love."
+    "I'd send it to my partner and say we're starting Sunday.",
+    "Cute. I'd do it, and read the 2019 pages very fast.",
+    "They'd get my grocery list, read with feeling.",
+    "Not for me. My partner doesn't even know my journal exists."
    ]
   },
   "fp": {
@@ -1403,7 +1403,7 @@
   "friend": {
    "prompt": "Every Sunday, {name}'s friend and their partner read each other's journals aloud, every page. {name}'s first thought?",
    "a": {
-    "t": "Journals, phones, passwords. Love has no locked drawers.",
+    "t": "Forwards it to {their} partner: \"We're starting Sunday.\"",
     "axes": {
      "R1": 2
     },
@@ -1415,7 +1415,7 @@
     ]
    },
    "b": {
-    "t": "Private pages stay private, even with someone you love.",
+    "t": "Hard pass. The partner doesn't even know the journal exists.",
     "axes": {
      "R1": -2
     },
@@ -1463,10 +1463,10 @@
    }
   ],
   "heart": {
-   "prompt": "A phone from a street stall never breaks and never runs out of battery. The seller's one rule is that it can never be locked.",
+   "prompt": "A phone from a street stall never cracks and never dies. The seller's one rule: it can never be locked.",
    "options": [
-    "I take it. Anyone can look through it, and that is fine.",
-    "My cracked phone stays. Nothing to hide, and it stays locked."
+    "I'd take it. Anyone can scroll, and nothing in there bites.",
+    "My cracked one stays, at 9%. Nothing to hide, still locked."
    ]
   },
   "fp": {
@@ -1542,10 +1542,10 @@
    }
   ],
   "heart": {
-   "prompt": "The ghost of a poet lives in your laptop and offers to write your farewell toast for your best friend, who is moving away. Tears are guaranteed.",
+   "prompt": "There's a ghost poet in your laptop. It offers to write your goodbye toast for your best friend, and tears are guaranteed.",
    "options": [
-    "The ghost writes it, and I add one inside joke.",
-    "I write it myself, shaky, too long and all mine."
+    "The ghost writes it, and I sneak in one inside joke.",
+    "I write it myself, shaky and too long, every word mine."
    ]
   },
   "fp": {
@@ -1626,13 +1626,13 @@
    }
   ],
   "heart": {
-   "prompt": "Your flight is canceled. There are 140 stranded people and 12 hotel vouchers, and the gate agent says, \"Figure it out among yourselves.\" Which role do you take?",
+   "prompt": "Your flight's canceled. 140 stranded people, 12 hotel vouchers, and the gate agent says, \"Figure it out among yourselves.\" Which one are you?",
    "options": [
-    "The first twelve in line get them. That is how lines work.",
+    "\"First twelve in line get them. That's how lines work.\"",
     "Every boarding pass goes in a hat. Same odds for everyone.",
-    "I charm the desk into a room for whoever is crying.",
-    "If I get a voucher, it goes to whoever looks most exhausted.",
-    "\"Locals go home. The rooms go to people far from home.\""
+    "Back at the desk, I charm a room for whoever's crying.",
+    "If I get one, it goes to whoever looks most wrecked.",
+    "\"Locals go home. Rooms go to whoever's far from home.\""
    ]
   },
   "fp": {
@@ -1738,14 +1738,14 @@
    }
   ],
   "heart": {
-   "prompt": "A tiny AI advisor lives in your ear for a week. It knows everything and never judges. Something is bothering you. Which two are most like you?",
+   "prompt": "A tiny AI moves into your ear for a week, rent-free. It knows everything and never judges. Something's eating at you. Which two sound like you?",
    "options": [
-    "On the first day, I tell it what I have told nobody.",
-    "I practice the difficult conversation with it first.",
-    "I let it choose which friend I should call.",
-    "I use it for directions. My feelings go to my best friend.",
+    "Day one, I tell it the thing I've told nobody.",
+    "I rehearse the hard conversation with it first.",
+    "It gets to pick which friend I call.",
+    "It's for directions. My feelings go to my best friend.",
     "I mute it and walk it off alone.",
-    "I call three friends and ask what they think."
+    "Three friends get a call, and I ask what they think."
    ]
   },
   "fp": {
@@ -1834,12 +1834,12 @@
    }
   ],
   "heart": {
-   "prompt": "Someone new wants to join your friend group, and your best friend gives them one honest tip about you. What is it?",
+   "prompt": "Someone new wants into your friend group, and your best friend gives them one honest tip about you. Which one?",
    "options": [
-    "\"Give it a year. They do not hand out trust quickly.\"",
-    "\"Just show up. They will adopt you by dessert.\"",
-    "\"After three hangouts, you get the inside jokes.\"",
-    "\"By next week, they will invite you to everything.\""
+    "\"Give it a year. They don't hand out trust fast.\"",
+    "\"Just show up. They'll adopt you by dessert.\"",
+    "\"Three hangouts, and you'll get the inside jokes.\"",
+    "\"They'll invite you to everything by next week.\""
    ]
   },
   "fp": {

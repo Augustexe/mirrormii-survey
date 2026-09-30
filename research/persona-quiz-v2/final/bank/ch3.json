@@ -6,7 +6,7 @@
     "prompt": "A street tailor knits you and your partner one sweater with two necks. It only comes off when one of you asks. They won't be the one.",
     "options": [
       {
-        "t": "Nobody's asking. We'll learn to cook in it.",
+        "t": "Nobody's asking. It's going on this year's holiday card.",
         "axes": {
           "R1": 2
         },
@@ -19,7 +19,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "Ask on day one. I need my own sleeves.",
+        "t": "Ask before the wool's even dry. I need my own sleeves.",
         "axes": {
           "R1": -2
         },
@@ -32,7 +32,7 @@
         "emotion": "relief"
       },
       {
-        "t": "Ask by day three. That's plenty of us.",
+        "t": "Ask, then climb back in for movie nights.",
         "axes": {
           "R1": -1
         },
@@ -44,7 +44,7 @@
         ]
       },
       {
-        "t": "Stay in. We were basically one person already.",
+        "t": "Fall asleep in it. Honestly, I've wanted this since date one.",
         "axes": {
           "R1": 1
         },
@@ -58,12 +58,12 @@
       }
     ],
     "heart": {
-      "prompt": "A street tailor knits you and your partner one sweater with two necks. It only comes off when one of you asks, and your partner will not ask.",
+      "prompt": "A street tailor knits you and your partner one sweater with two necks. It only comes off if one of you asks, and they won't.",
       "options": [
-        "Nobody is asking. We will learn to cook in it together.",
-        "I ask on the first day. I need my own sleeves.",
-        "I ask by the third day. That is plenty of us.",
-        "We stay in it. We were nearly one person already."
+        "Nobody's asking. We're putting it on this year's holiday card.",
+        "I ask before the wool's even dry. I need my own sleeves.",
+        "I ask, then I climb back in for movie nights.",
+        "I fall asleep in it. I've wanted this since our first date."
       ]
     },
     "fp": {
@@ -85,7 +85,7 @@
     "friend": {
       "prompt": "A tailor knits {name} and {their} partner one sweater with two necks. It only comes off if one of them asks. What does {name} do?",
       "a": {
-        "t": "Never asks. Learns to cook in it.",
+        "t": "Never asks. Puts it on the holiday card.",
         "axes": {
           "R1": 2
         },
@@ -97,7 +97,7 @@
         ]
       },
       "b": {
-        "t": "Asks on day one. Needs {their} own sleeves.",
+        "t": "Asks before the wool's dry. Needs {their} own sleeves.",
         "axes": {
           "R1": -2
         },
@@ -157,12 +157,12 @@
       }
     ],
     "heart": {
-      "prompt": "An elevator is stuck between floors, and it has been two hours. Your ex uses the time to apologize, properly.",
+      "prompt": "You're stuck in an elevator between floors 14 and 15, two hours in. Your ex uses the time to apologize. A real apology.",
       "options": [
-        "I thank them and suggest coffee after, so we can really talk.",
+        "I thank them. Coffee once we're out, so we can really talk.",
         "\"Accepted.\" Then I stare at the buttons for another hour.",
-        "I forgive them and unblock them, but keep them muted.",
-        "I hug them and tell my friends we are fine now."
+        "I forgive them and unblock them. They stay muted, though.",
+        "We hug, and I tell my friends we're fine now."
       ]
     },
     "fp": {
@@ -228,13 +228,13 @@
       }
     ],
     "heart": {
-      "prompt": "After two hours stuck and one real apology, the doors are still shut. What is rising in you?",
+      "prompt": "Two hours stuck, one real apology, and the doors still won't open. What's rising in you?",
       "options": [
-        "At last, I feel relief.",
-        "I feel suspicious. Why now?",
-        "The old hurt comes back, as fresh as ever.",
-        "I feel a little smug that it took them this long.",
-        "Honestly, I just want the doors to open."
+        "Relief, finally.",
+        "Suspicion. Why now, of all times?",
+        "The old sting, as fresh as it ever was.",
+        "I'm a little smug it took them this long.",
+        "Nothing. I just want the doors open."
       ]
     },
     "fp": {
@@ -318,18 +318,18 @@
       }
     ],
     "heart": {
-      "prompt": "Chess club has been your one night to yourself for three years. Then Robin, your partner, sends you a message.",
+      "prompt": "Chess club's been your one night to yourself for three years. Then Robin, your partner, texts you.",
       "thread": [
         {
           "from": "Robin",
-          "text": "Surprise. I joined your chess club, and they have just voted me president. See you tonight."
+          "text": "Surprise. I joined your chess club, and they just voted me president. See you tonight."
         }
       ],
       "options": [
-        "Both my loves in one room. Please save me a seat.",
-        "Congratulations. Can I still keep one night that is only mine?",
-        "I say I am proud, then quietly join a club across town.",
-        "That is wonderful. Then I am joining your Thursday plans too."
+        "Both my loves in one room. Save me the seat beside you.",
+        "Congratulations. Can I still keep one night that's only mine, though?",
+        "I tell them I'm proud, then quietly join a club across town.",
+        "That's wonderful. Then I'm joining your Thursday thing too."
       ]
     },
     "fp": {
@@ -436,13 +436,13 @@
       }
     ],
     "heart": {
-      "prompt": "Have you ever rehearsed a whole argument with your partner in the shower? What happened next?",
+      "prompt": "I'm guessing you've rehearsed a whole fight with your partner in the shower. What happened after?",
       "options": [
-        "Yes, and none of it ever reached them.",
-        "Yes, and I said the best part to them that same night.",
-        "Yes, and I still rehearse it. It keeps coming back.",
-        "No. If something bothers me, I tell them the first time.",
-        "By the time I dried off, it no longer mattered."
+        "None of it ever made it out of the shower.",
+        "I said the best line to their face that same night.",
+        "The shower's heard it forty times. I'm still going.",
+        "I don't rehearse. If something bugs me, they hear it.",
+        "By the time I'd dried off, it didn't matter anymore."
       ]
     },
     "fp": {
@@ -538,12 +538,12 @@
       }
     ],
     "heart": {
-      "prompt": "A mall vending machine sells Clean Breaks for five dollars: whoever you choose forgets the whole situationship and only remembers you fondly. Your own situationship is fading.",
+      "prompt": "A mall vending machine sells Clean Breaks for $5. Whoever you pick forgets the whole situationship and just remembers you fondly. Yours is fading.",
       "options": [
         "I pay, so neither of us has to have the talk.",
-        "They get the real talk, in person. I walk past it.",
-        "No machine. One long dinner to see if it is worth saving.",
-        "I buy one for them, and one for myself."
+        "I walk past it. They get the real talk, face to face.",
+        "No machine. One long dinner to see if it's worth saving.",
+        "I buy two: one for them, and one for me."
       ]
     },
     "fp": {
@@ -597,7 +597,7 @@
     "prompt": "Mina ended a three-year relationship by mailing back every borrowed book. One sticky note inside: \"Thanks for everything. Take care.\" First thought?",
     "options": [
       {
-        "t": "Three years earns a sit-down. Not a sticky note.",
+        "t": "Text Mina: \"You owe them one real conversation.\"",
         "axes": {
           "R2": 1
         },
@@ -609,7 +609,7 @@
         ]
       },
       {
-        "t": "Honestly elegant. Clear, final, no scene.",
+        "t": "Saving that move for later. Clear, final, no scene.",
         "axes": {
           "R2": -1
         },
@@ -621,7 +621,7 @@
         ]
       },
       {
-        "t": "Fine, but a two-minute talk at the door was owed.",
+        "t": "\"Take care\"? Three years earns at least a paragraph.",
         "tags": [
           {
             "id": "T10A",
@@ -630,7 +630,7 @@
         ]
       },
       {
-        "t": "My last ending was a four-hour talk. Jealous.",
+        "t": "Jealous. My last ending was four hours in a parked car.",
         "tags": [
           {
             "id": "T10B",
@@ -641,12 +641,12 @@
       }
     ],
     "heart": {
-      "prompt": "Mina ended a three-year relationship by mailing back every book they had borrowed, with one sticky note inside: \"Thanks for everything. Take care.\" What is your first thought?",
+      "prompt": "Mina ended a three-year relationship by mailing back every book they'd borrowed. Inside, one sticky note: \"Thanks for everything. Take care.\" What's your first thought?",
       "options": [
-        "Three years deserves a real conversation, not a note.",
-        "It is graceful, in a way. Clear and final, with no scene.",
-        "That is fine, but they owed a two-minute talk at the door.",
-        "I envy it a little. My last ending was a four-hour talk."
+        "I'd text Mina. They owe that person one real conversation.",
+        "I'm saving that one for later. Clear, final, no scene.",
+        "\"Take care\"? After three years, I'd want at least a paragraph.",
+        "Jealous, honestly. My last ending was four hours in a parked car."
       ]
     },
     "fp": {
@@ -666,7 +666,7 @@
     "friend": {
       "prompt": "Mina ended a three-year relationship by mailing back the borrowed books with one sticky note: \"Take care.\" {name}'s first thought?",
       "a": {
-        "t": "\"Three years earns a sit-down. Not a sticky note.\"",
+        "t": "Texts Mina: \"You owe them one real conversation.\"",
         "axes": {
           "R2": 1
         },
@@ -678,7 +678,7 @@
         ]
       },
       "b": {
-        "t": "\"Honestly elegant. Clear, final, no scene.\"",
+        "t": "Saves the move for later. Clear, final, no scene.",
         "axes": {
           "R2": -1
         },
@@ -713,10 +713,10 @@
       }
     ],
     "heart": {
-      "prompt": "Your partner's shadow came home from their weekend away an hour before they did. It is on your couch, happy to tell you everything they did.",
+      "prompt": "Your partner's shadow got home from their weekend away an hour before they did. It's on your couch, happy to tell you everything they did.",
       "options": [
         "I sit down with it. I want to hear the whole weekend.",
-        "Their weekend is theirs. I ask the shadow to wait outside."
+        "Their weekend's theirs. I ask the shadow to wait outside."
       ]
     },
     "fp": {
@@ -775,10 +775,10 @@
       }
     ],
     "heart": {
-      "prompt": "Your city wants a statue of you in the main square. You would pose every weekend for a year, and your partner dislikes weekends apart.",
+      "prompt": "Your city wants a statue of you in the main square. You'd have to pose every weekend for a year, and your partner hates weekends apart.",
       "options": [
-        "I pose. A statue lasts forever, and weekends do not.",
-        "No statue. Our weekends matter more than any bronze."
+        "I pose. A statue's forever, and weekends aren't.",
+        "No statue. Our weekends mean more than any bronze."
       ]
     },
     "fp": {
@@ -820,10 +820,10 @@
     "id": "C3-142",
     "type": "real",
     "chapter": 3,
-    "prompt": "Round three of the same fight with someone close: a partner, roommate or friend. The last time it happened, your move?",
+    "prompt": "Round three of the same fight, same spot on the couch, with a partner, roommate or friend. Last time it got there, your move?",
     "options": [
       {
-        "t": "Called a proper sit-down. Brought a new idea.",
+        "t": "Said \"we're fixing this tonight\" and grabbed a notepad.",
         "axes": {
           "R2": 1
         },
@@ -835,7 +835,7 @@
         ]
       },
       {
-        "t": "Said sorry first. Some things matter more than winning.",
+        "t": "Apologized first, even though I'm pretty sure I was right.",
         "axes": {
           "R2": -1
         },
@@ -848,7 +848,7 @@
         "emotion": "guilt"
       },
       {
-        "t": "Started quietly showing up less.",
+        "t": "Found reasons to be out whenever they got home.",
         "tags": [
           {
             "id": "T10B",
@@ -857,7 +857,7 @@
         ]
       },
       {
-        "t": "Decided round three was the last round, and ended it.",
+        "t": "Called it. There was no round four.",
         "tags": [
           {
             "id": "T10B",
@@ -868,12 +868,12 @@
       }
     ],
     "heart": {
-      "prompt": "The last time you had the same fight a third time with someone close, like a partner, roommate or friend, what did you do?",
+      "prompt": "It's the same fight for the third time, with a partner, a roommate or a friend. The last time it got that far, what did you do?",
       "options": [
-        "I asked for a real conversation and brought a new idea.",
-        "I apologized first. Some things matter more than winning.",
-        "I quietly started showing up less.",
-        "That was the last round. I ended it."
+        "I said we're fixing this tonight, and I got out a notepad.",
+        "I apologized first, even though I'm pretty sure I was right.",
+        "Suddenly I had reasons to be out whenever they got home.",
+        "There was no round four. I ended it."
       ]
     },
     "fp": {
@@ -895,7 +895,7 @@
     "friend": {
       "prompt": "Round three of the same fight with someone close. The most recent time, what did {name} actually do?",
       "a": {
-        "t": "Called a proper sit-down. Brought a new idea.",
+        "t": "Said \"we're fixing this tonight\" and grabbed a notepad.",
         "axes": {
           "R2": 1
         },
@@ -907,7 +907,7 @@
         ]
       },
       "b": {
-        "t": "Decided round three was the last round. For all of it.",
+        "t": "Called it. There was no round four.",
         "tags": [
           {
             "id": "T10B",
@@ -973,10 +973,10 @@
     "heart": {
       "prompt": "Your talking doorbell greets every guest with your partner's last name, never yours. You get one chance to change what it says.",
       "options": [
-        "I keep their name. One home and one name feels right.",
-        "I switch it to my name. Same idea, my turn.",
+        "I keep their name. One home, one name feels right to me.",
+        "It gets my name instead. Same rule, my turn.",
         "I teach it both names, even if guests wait a little longer.",
-        "We invent a new shared name, and the doorbell learns it first."
+        "We make up a shared name, and the doorbell learns it first."
       ]
     },
     "fp": {
@@ -1028,20 +1028,20 @@
     "chapter": 3,
     "sq": "SQ-T11-2",
     "world": "unusual",
-    "prompt": "A farm sanctuary baby goat won't leave your partner Alex's side.",
+    "prompt": "A baby goat at the farm sanctuary won't leave your partner Alex's side. Then Alex texts from the petting pen.",
     "thread": [
       {
         "from": "Alex",
-        "text": "it literally picked me"
+        "text": "it literally picked me. can we adopt it??"
       },
       {
         "from": "Alex",
-        "text": "practice round? if we can raise a goat we can raise a tiny human"
+        "text": "practice round. if we can raise a goat we can raise a tiny human"
       }
     ],
     "options": [
       {
-        "t": "\"Yes. The goat is practice for a tiny human.\"",
+        "t": "\"Yes, and a tiny human by our five-year anniversary.\"",
         "tags": [
           {
             "id": "T11A",
@@ -1051,7 +1051,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "\"Yes to the goat. The goat is the whole plan.\"",
+        "t": "\"Adopt it. That goat's our only kid, and it's perfect.\"",
         "tags": [
           {
             "id": "T11B",
@@ -1061,7 +1061,7 @@
         "emotion": "delight"
       },
       {
-        "t": "\"Goat first. The tiny human talk comes after.\"",
+        "t": "\"Goat first. If we survive a year, we'll talk tiny humans.\"",
         "tags": [
           {
             "id": "T11A",
@@ -1070,7 +1070,7 @@
         ]
       },
       {
-        "t": "\"No goat, no baby. I like us portable.\"",
+        "t": "\"No goat, no baby. I like our life fitting in one carry-on.\"",
         "tags": [
           {
             "id": "T11B",
@@ -1080,22 +1080,22 @@
       }
     ],
     "heart": {
-      "prompt": "At the farm sanctuary, a baby goat will not leave your partner Alex's side. Then the messages start.",
+      "prompt": "At the farm sanctuary, a baby goat won't leave your partner Alex's side. Then Alex texts you from the petting pen.",
       "thread": [
         {
           "from": "Alex",
-          "text": "It picked me. It really did."
+          "text": "It picked me. It really did. Can we adopt it?"
         },
         {
           "from": "Alex",
-          "text": "A practice round? If we can raise a goat, we can raise a tiny human."
+          "text": "A practice round. If we can raise a goat, we can raise a tiny human."
         }
       ],
       "options": [
-        "Yes. It is practice for the real thing.",
-        "I want the goat. For me, the goat is the whole plan.",
-        "We get the goat first, and talk about a child after that.",
-        "I say no to both. I like us easy to pack up."
+        "Yes. The goat now, and a tiny human by our five-year anniversary.",
+        "Let's adopt it. But the goat's our only kid, and that's perfect.",
+        "Goat first. If we survive a year, we'll talk tiny humans.",
+        "No goat, no baby. I like that we fit in one carry-on."
       ]
     },
     "fp": {
@@ -1162,12 +1162,12 @@
       }
     ],
     "heart": {
-      "prompt": "Have you already chosen a name for a child you do not have?",
+      "prompt": "Tell me if I'm wrong: you've already picked a name for a kid you don't have.",
       "options": [
-        "I have a first and middle name, and nobody can take it.",
-        "I picked one years ago, though I have stopped picturing it since.",
-        "Not yet, but I have pictured the school pickups.",
-        "No. The life I picture has no kids and more sleep."
+        "First and middle. Nobody's allowed to take it.",
+        "I picked one years ago, but I've stopped picturing it since.",
+        "No name yet, but I've pictured the school pickups.",
+        "The life I picture has no kids, and a lot more sleep."
       ]
     },
     "fp": {
@@ -1247,13 +1247,13 @@
       }
     ],
     "heart": {
-      "prompt": "Four couples share a rented cabin for a long weekend. By Sunday, which one are you?",
+      "prompt": "Four couples, one rented cabin, a long weekend. By Sunday, which one were you?",
       "options": [
-        "I did everything with my partner, even the dishes.",
+        "My partner and I did everything together, even the dishes.",
         "I spent an hour alone in the car each day, reading.",
-        "We ran couples' charades as a team, and we won.",
+        "We ran couples' charades, and we were winning.",
         "I joined another couple's card game on my own, by choice.",
-        "I stayed up late talking with others while my partner slept."
+        "I stayed up talking with the others while my partner slept."
       ]
     },
     "fp": {
@@ -1337,12 +1337,12 @@
       }
     ],
     "heart": {
-      "prompt": "A loading bar floats above you and your partner. It reads \"Moving in: 31%.\" A button under it would skip to 100 percent, and past everything in between.",
+      "prompt": "A loading bar floats above you and your partner: \"Moving in: 31%.\" A button under it skips to 100%, and past everything in between.",
       "options": [
-        "I press it. I have watched enough loading screens.",
-        "I leave it alone. The waiting is the good part.",
+        "I press it. I've watched enough loading screens.",
+        "I leave it alone. The waiting's the good part.",
         "It stays, but I refresh it every morning.",
-        "A towel goes over it. We will know when it is done."
+        "A towel goes over it. We'll know when it's done."
       ]
     },
     "fp": {
@@ -1430,12 +1430,12 @@
       }
     ],
     "heart": {
-      "prompt": "Three months into dating a jazz drummer, your friend owns a hi-hat, has left their book club and says \"we\" about every gig. What is your read?",
+      "prompt": "Three months into dating a jazz drummer, your friend owns a hi-hat, has quit their book club and says \"we\" about every gig. What's your read?",
       "options": [
-        "I love that. Falling for someone means stepping into their world.",
-        "Give it a year. I would never hand over my whole calendar.",
-        "I would keep the book club, though. That part is mine.",
-        "I would do the same. I would own drumsticks by week two."
+        "I love that. Falling for someone means falling into their world.",
+        "Give it a year. I'd never hand over my whole calendar.",
+        "It's sweet, but I'd keep the book club. That part's mine.",
+        "Honestly, I'd own drumsticks by week two too."
       ]
     },
     "fp": {
@@ -1532,12 +1532,12 @@
       }
     ],
     "heart": {
-      "prompt": "The most recent weekend your partner had plans without you, how did you spend yours?",
+      "prompt": "The most recent weekend your partner had plans without you, how'd you spend yours?",
       "options": [
         "I tagged along for part of it anyway.",
         "I missed them within hours and started planning our next weekend.",
-        "My own plans were booked before they even left.",
-        "I went on my own to the restaurant they refuse to try."
+        "My own plans were booked before they'd even left.",
+        "I went on my own to the restaurant they won't try."
       ]
     },
     "fp": {
@@ -1647,14 +1647,14 @@
       }
     ],
     "heart": {
-      "prompt": "Which of these have happened with your partner this month? Choose every one that is true.",
+      "prompt": "This month with your partner, which of these happened? Choose every one that's true.",
       "options": [
-        "I said \"we\" about a plan before asking them.",
+        "I said \"we\" about a plan before I'd asked them.",
         "I let them plan my whole weekend, and I liked it.",
         "I canceled on a friend to stay in with them.",
-        "I have a friend they have never met, and I like that.",
-        "My plans stayed, even after I said \"I miss you.\"",
-        "None of these are true."
+        "They've never met one of my friends, and I like that.",
+        "I said \"I miss you\" and kept my plans anyway.",
+        "None of these."
       ]
     },
     "fp": {

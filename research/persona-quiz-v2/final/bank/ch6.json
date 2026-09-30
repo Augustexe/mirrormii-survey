@@ -31,10 +31,10 @@
       }
     ],
     "heart": {
-      "prompt": "You wake up as a goldfish for one year. Your parent and your partner both come to take your bowl home, and you choose.",
+      "prompt": "You wake up as a goldfish for a whole year. Your parent and your partner both show up to take your bowl home. You have to pick.",
       "options": [
-        "I go with my parent. They know which little castle I like.",
-        "My partner takes me. I belong with the family I am building."
+        "My parent. They know which little castle I like.",
+        "Home with my partner. What we're building is my home now."
       ]
     },
     "fp": {
@@ -90,10 +90,10 @@
       }
     ],
     "heart": {
-      "prompt": "A board game turns up on your doorstep: your life with your partner, square by square, in order: move in, ring, wedding, house. There is also a blank board.",
+      "prompt": "A board game turns up at your door: your life with your partner, square by square. Move in, ring, wedding, house, in that order. Or there's a blank board.",
       "options": [
-        "Printed squares suit us. We play it in order.",
-        "We take the blank board and draw every square ourselves."
+        "We'd play it as printed. Keys, ring, wedding, house.",
+        "The blank one. We'd rather draw every square ourselves."
       ]
     },
     "fp": {
@@ -210,14 +210,14 @@
       }
     ],
     "heart": {
-      "prompt": "A home makeover show bought the house you grew up in and will gut it on TV next week, but your family gets one last day inside. Choose two.",
+      "prompt": "A home makeover show bought the house you grew up in. They're gutting it on TV next week, and your family gets one last day inside. Pick two.",
       "options": [
-        "I take the doorframe, and our height marks continue at my place.",
-        "I ask them to keep the porch where we hung holiday lights.",
-        "We have one last holiday dinner there, in our usual seats.",
-        "I feel relieved. A new house means new holiday traditions.",
-        "We start a new tradition: watching the episode together, and loudly.",
-        "I shrug. I stopped doing the old holidays years ago."
+        "I'm taking the doorframe. Our height marks keep going at my place.",
+        "I'd beg them to keep the porch with the holiday lights.",
+        "One last holiday dinner there, everyone in their usual seat.",
+        "Honestly, relief. New house, new holiday traditions.",
+        "We start a new tradition: watching the episode together, loudly.",
+        "I'd shrug. I stopped doing the old holidays years ago."
       ]
     },
     "fp": {
@@ -319,12 +319,12 @@
       }
     ],
     "heart": {
-      "prompt": "At the wedding, the couple asked for honest toasts. Their best friend, meaning every word, says: \"I give it two years. Prove me wrong.\" What is your verdict?",
+      "prompt": "The couple asked for honest toasts. Their best friend, meaning every word, says: \"I give it two years. Prove me wrong.\" What's your verdict?",
       "options": [
-        "They asked for honesty, and they got it.",
-        "True or not, that belongs in a private conversation, not a speech.",
-        "The message could stay, but it needed a softer way in.",
-        "It was harsh, but someone needed to say it out loud."
+        "They asked for honest, and that's what they got.",
+        "True or not, that's a car conversation, not a mic one.",
+        "The point could stay. It just needed a softer way in.",
+        "It was brutal, but someone had to say it out loud."
       ]
     },
     "fp": {
@@ -375,10 +375,10 @@
     "chapter": 6,
     "sq": "SQ-T21-2",
     "world": "absurd",
-    "prompt": "Your town made your friend's anniversary an official holiday: parade, fireworks, day off. Your friend and their partner plan to spend it alone, blinds down. Your take?",
+    "prompt": "Your town made your friend's anniversary a public holiday. Parade, fireworks, a float with their faces on it. They're inside with the blinds down. Your take?",
     "options": [
       {
-        "t": "The whole town wants in. Open the blinds and wave.",
+        "t": "The town built them a float. Least they can do is wave.",
         "tags": [
           {
             "id": "T21A",
@@ -387,7 +387,7 @@
         ]
       },
       {
-        "t": "Right call. That day belongs to the two of them.",
+        "t": "Good. Someone tell the tuba section to go home.",
         "axes": {
           "R1": -1
         },
@@ -399,7 +399,7 @@
         ]
       },
       {
-        "t": "In their place, I'd march at the front of the parade.",
+        "t": "If it were mine, I'd be on that float throwing candy.",
         "axes": {
           "R1": 1
         },
@@ -411,7 +411,7 @@
         ]
       },
       {
-        "t": "A quiet anniversary is still a big day.",
+        "t": "Takeout in pajamas still counts as a big anniversary.",
         "tags": [
           {
             "id": "T21B",
@@ -421,12 +421,12 @@
       }
     ],
     "heart": {
-      "prompt": "Your town made your friend's anniversary a holiday, with a parade, fireworks and a day off. Your friend and their partner will spend it alone, blinds down. Your take?",
+      "prompt": "Your town made your friend's anniversary a public holiday: parade, fireworks, a float with their faces on it. They're staying in, blinds down. What do you think?",
       "options": [
-        "The whole town wants to celebrate. They should open the blinds.",
-        "That day belongs to the two of them, and they are right.",
-        "In their place, I would march at the front of the parade.",
-        "A quiet anniversary is still a big day."
+        "They built them a float. They could at least wave.",
+        "Good for them. That day's theirs, tuba section or not.",
+        "If it were my anniversary, I'd be up on that float.",
+        "Takeout in pajamas is still a big anniversary."
       ]
     },
     "fp": {
@@ -445,9 +445,9 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "The town made {name}'s friend's anniversary a holiday. The couple plans to spend it alone, blinds down. {name}'s take?",
+      "prompt": "The town made {name}'s friend's anniversary a holiday, float and all. The couple stays in, blinds down. {name}'s take?",
       "a": {
-        "t": "\"In their place, I'd march at the front of the parade.\"",
+        "t": "\"If it were mine, I'd be on that float throwing candy.\"",
         "axes": {
           "R1": 1
         },
@@ -459,7 +459,7 @@
         ]
       },
       "b": {
-        "t": "\"Right call. That day belongs to the two of them.\"",
+        "t": "\"Good. Someone tell the tuba section to go home.\"",
         "axes": {
           "R1": -1
         },
@@ -522,12 +522,12 @@
       }
     ],
     "heart": {
-      "prompt": "Your family held a vote and made you Head of Family Problems, nine to zero. Nobody told you there was a vote.",
+      "prompt": "Your family held a vote and made you Head of Family Problems. Nine to zero. Nobody told you there was a vote.",
       "options": [
-        "I accept, order the lanyard, and let the problems come to me.",
-        "Everything gets fixed, and every holiday card is signed Head of Problems.",
-        "A recount, please. Half of the problems belong to my sibling.",
-        "Fine. Office hours are Sundays from two to four, with no walk-ins."
+        "I accept. The lanyard's already ordered, so bring me your problems.",
+        "I fix everything, then sign every holiday card \"Head of Problems.\"",
+        "I'm asking for a recount. Half of these belong to my sibling.",
+        "Fine. Office hours are Sundays, two to four, no walk-ins."
       ]
     },
     "fp": {
@@ -625,12 +625,12 @@
       }
     ],
     "heart": {
-      "prompt": "Each winter, a family curse turns one sibling into a pumpkin for a week, and swaps are allowed. It is your youngest sibling's turn, the week they move out.",
+      "prompt": "A family curse: every winter, one sibling spends a week as a pumpkin, and swaps are allowed. It's your youngest sibling's turn, the week they move into their first place.",
       "options": [
-        "It is their turn, and I do not swap.",
-        "I take the week instead. Their big week matters more.",
-        "It stays their turn. I carry them up the new stairs myself.",
-        "Whoever has the quietest week takes it, not always me."
+        "It's their turn. I'm not swapping.",
+        "I'll take the week. Their big move matters more.",
+        "Still their turn, but I'll carry them up the new stairs myself.",
+        "Whoever has the quietest week takes it. It can't always be me."
       ]
     },
     "fp": {
@@ -737,12 +737,12 @@
       }
     ],
     "heart": {
-      "prompt": "The family portrait in your hallway now frowns at any choice your family would not make, and guests can see it. You just agreed to move across the country.",
+      "prompt": "The family portrait in your hallway now frowns at any choice your family wouldn't make, and guests can see it. You just said yes to a move across the country.",
       "options": [
-        "I turn it to the wall. My move, my decision.",
-        "I call home and hold the move until they smile.",
-        "The move is off. I cannot live under that frown.",
-        "I move it to the guest bathroom to frown at visitors."
+        "I'd turn it to face the wall. My move, my call.",
+        "I'd call home first. The move waits until they're smiling.",
+        "The move's off. I can't live under that face.",
+        "It's going in the guest bathroom to frown at strangers."
       ]
     },
     "fp": {
@@ -837,12 +837,12 @@
       }
     ],
     "heart": {
-      "prompt": "The local paper wants your love story on its front page on Sunday, with photos. Your partner has already said yes, and the paper needs your answer tonight.",
+      "prompt": "The local paper wants your love story on Sunday's front page, photos and all. Your partner's already said yes, and they need your answer tonight.",
       "options": [
-        "Front page and a big photo. I will buy twenty copies.",
-        "Yes, and I will mail a copy to both families.",
-        "The story can run, but my face stays out of it.",
-        "No. Our story is not news. It belongs to us."
+        "Front page, big photo. I'm buying twenty copies.",
+        "Yes, and I'm mailing a copy to both our families.",
+        "The story can run. My face stays out of it.",
+        "No. Our story isn't news. It's just ours."
       ]
     },
     "fp": {
@@ -888,13 +888,13 @@
       }
     ],
     "heart": {
-      "prompt": "Your love story might run on the front page, and your answer is due tonight. Which feeling came first?",
+      "prompt": "Your love story might be on the front page, and your answer's due tonight. What did you feel first?",
       "options": [
-        "I feel giddy, against my will.",
-        "I feel exposed. The whole town would read it.",
-        "I worry about what my partner hoped I would say.",
-        "Quietly, I feel proud.",
-        "Strangely, I feel calm."
+        "Giddy, even though I didn't want to be.",
+        "Exposed. The whole town would read it.",
+        "Worried about what my partner hoped I'd say.",
+        "Honestly, proud.",
+        "Strangely calm."
       ]
     },
     "fp": {
@@ -970,12 +970,12 @@
       }
     ],
     "heart": {
-      "prompt": "Your sibling moved onto your air mattress for what they said would be two weeks. It is now the fifth month, and they have just bought it a fitted sheet.",
+      "prompt": "Your sibling said two weeks. It's month five on your air mattress, and they've just bought it a fitted sheet.",
       "options": [
-        "I give them a key. They can stay as long as needed.",
+        "Here's a real key. Stay as long as it takes.",
         "A move-out date goes on the fridge, circled twice.",
-        "I give them my bed and take the air mattress myself.",
-        "I leave apartment listings on the new sheet and say nothing."
+        "They can have my bed. I'll take the air mattress.",
+        "I'd leave apartment listings on the new sheet and say nothing."
       ]
     },
     "fp": {
@@ -1071,18 +1071,18 @@
       "thread": [
         {
           "from": "Your parent",
-          "text": "A small problem, literally. The science museum's shrink ray got me, for a month."
+          "text": "Small problem. Literally. The science museum's shrink ray got me, for a month."
         },
         {
           "from": "Your parent",
-          "text": "I am coming to stay with you. I will ride in your pocket everywhere."
+          "text": "So I'm coming to stay with you. I'll ride in your pocket everywhere."
         }
       ],
       "options": [
-        "My front pocket is yours. You are coming everywhere with me.",
+        "The front pocket's yours. You're coming to everything.",
         "Welcome. You get the shelf by the window, not my pocket.",
-        "Come and stay, but please sit out date nights.",
-        "I love you. Please stay home until you are full-size again."
+        "Come stay, but you're sitting out date nights.",
+        "Love you. Please stay home until you're full-size again."
       ]
     },
     "fp": {
@@ -1185,22 +1185,22 @@
       }
     ],
     "heart": {
-      "prompt": "Your grandparent has left you their house, on one condition. Your cousin Ana messages you.",
+      "prompt": "Your grandparent left you the house, with one condition. Your cousin Ana texts you.",
       "thread": [
         {
           "from": "Ana",
-          "text": "The lawyer just read it to everyone."
+          "text": "The lawyer just read it out to everyone."
         },
         {
           "from": "Ana",
-          "text": "The house is yours if the big yearly dinner stays there. Same date, same menu, every year."
+          "text": "The house is yours, but only if the yearly dinner stays there. Same date, same menu, forever?"
         }
       ],
       "options": [
-        "Every year. I am even keeping the old tablecloth with the stain.",
-        "Yes to all of it, and my friends join the dinner too.",
-        "Someone else should take it. I will start our own tradition.",
-        "Same date and same menu, always. It will not end with me."
+        "Every year. The tablecloth with the gravy stain stays too.",
+        "Yes to all of it, and my friends come to dinner too.",
+        "Someone else should take it. I'll start our own thing.",
+        "Same date, same menu. It's not ending with me."
       ]
     },
     "fp": {
@@ -1280,12 +1280,12 @@
       }
     ],
     "heart": {
-      "prompt": "When your family last divided up the holiday leftovers, how did it go?",
+      "prompt": "Holiday leftovers: the last time your family divided them up, how did it go?",
       "options": [
         "Every household got the same number of containers. I counted.",
-        "First come, first served, and I brought my own containers.",
-        "I packed extra for the cousin who had just moved out.",
-        "The rest went home with whoever had the hardest year."
+        "First come, first served, and I'd brought my own containers.",
+        "I packed extra for the cousin who'd just moved out.",
+        "The rest went with whoever had the roughest year."
       ]
     },
     "fp": {
@@ -1325,10 +1325,10 @@
     "chapter": 6,
     "sq": "SQ-T18-1",
     "world": "everyday",
-    "prompt": "\"Can you help me with something this weekend?\" The last time a relative asked you for a big favor, how did you answer?",
+    "prompt": "\"Can you help me with something this weekend?\" No details. The last time a relative texted you that, what happened?",
     "options": [
       {
-        "t": "Said yes before they finished the sentence.",
+        "t": "Said \"what time?\" before asking what it was. A fourth-floor couch.",
         "tags": [
           {
             "id": "T18A",
@@ -1337,7 +1337,7 @@
         ]
       },
       {
-        "t": "Asked what \"something\" meant. Got it in writing.",
+        "t": "Asked for details first. \"Something\" is never something small.",
         "tags": [
           {
             "id": "T18B",
@@ -1346,7 +1346,7 @@
         ]
       },
       {
-        "t": "Yes for Saturday. Not every Saturday.",
+        "t": "Two hours, tops. Then I \"had a thing.\" There was no thing.",
         "tags": [
           {
             "id": "T18B",
@@ -1355,7 +1355,7 @@
         ]
       },
       {
-        "t": "Yes, and I lied that I was free.",
+        "t": "Skipped a friend's birthday dinner for it. Blamed traffic.",
         "tags": [
           {
             "id": "T18A",
@@ -1366,12 +1366,12 @@
       }
     ],
     "heart": {
-      "prompt": "The last time a relative asked, \"Can you help me with something this weekend?\", how did you answer?",
+      "prompt": "A relative texts, \"Can you help me with something this weekend?\" and nothing else. Last time that happened, what did you do?",
       "options": [
-        "I said yes before they had finished asking.",
-        "I asked exactly what it was, and got the details in writing.",
-        "I said yes for one Saturday, not every Saturday.",
-        "Yes, and I claimed I was free when I was not."
+        "I said \"what time?\" before I knew. It was a fourth-floor couch.",
+        "Details first, because \"something\" is never small.",
+        "Two hours, then I said I had a thing. I didn't.",
+        "I skipped a friend's birthday dinner for it and blamed traffic."
       ]
     },
     "fp": {
@@ -1389,9 +1389,9 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "A relative recently asked {name}: \"can you help me with something?\" What did {name} actually do?",
+      "prompt": "A relative texted {name}: \"can you help me with something this weekend?\" No details. What did {name} actually do?",
       "a": {
-        "t": "Said yes before the relative finished the sentence.",
+        "t": "Said \"what time?\" before asking what it was. A fourth-floor couch.",
         "tags": [
           {
             "id": "T18A",
@@ -1400,7 +1400,7 @@
         ]
       },
       "b": {
-        "t": "Said yes for Saturday. Not every Saturday.",
+        "t": "Two hours, tops. Then {they} \"had a thing.\" There was no thing.",
         "tags": [
           {
             "id": "T18B",
@@ -1461,12 +1461,12 @@
       }
     ],
     "heart": {
-      "prompt": "Think of the last time you started seeing someone. How did people find out?",
+      "prompt": "When you last started seeing someone, how did people find out?",
       "options": [
-        "I posted a photo within the month. It was official.",
-        "I brought them to a family dinner. That was the announcement.",
-        "I never announced it. People worked it out.",
-        "Only when someone asked me directly, months later."
+        "I posted a photo within the month. Official is official.",
+        "They came to a family dinner. That was the announcement.",
+        "I never announced it. People just worked it out.",
+        "Only when someone asked me straight out, months later."
       ]
     },
     "fp": {
@@ -1534,12 +1534,12 @@
       }
     ],
     "heart": {
-      "prompt": "Have you ever removed the price tag from something big before a family visit, so nobody would ask about it?",
+      "prompt": "Be honest: have you ever cut the price tag off something big before a family visit, so nobody would ask?",
       "options": [
-        "Yes. What they do not see, they cannot weigh in on.",
-        "Yes, and then I gave in and asked what they thought.",
-        "No. For something that big, I would ask them first.",
-        "No. I tell them the price and let them react."
+        "Yes. What they don't see, they can't weigh in on.",
+        "I cut it, then caved and asked what they thought anyway.",
+        "No. Something that big, I'd run past them first.",
+        "I'd rather say the price out loud and watch them gasp."
       ]
     },
     "fp": {
@@ -1585,10 +1585,10 @@
     "id": "C6-148",
     "type": "receipts",
     "chapter": 6,
-    "prompt": "In your home these days: tap every line that's happened.",
+    "prompt": "The family would have notes on your place. Tap everything that happened lately:",
     "options": [
       {
-        "t": "Said \"in this house, we...\" and heard my parent's voice",
+        "t": "Said \"in this house, we...\" in my parent's exact voice",
         "axes": {
           "R3": 1
         },
@@ -1600,7 +1600,7 @@
         ]
       },
       {
-        "t": "Split the chores in a way my family would find strange",
+        "t": "Ran the chores on a system my family would find deeply weird",
         "axes": {
           "R3": -1
         },
@@ -1612,7 +1612,7 @@
         ]
       },
       {
-        "t": "Kept a rule from my childhood home, like shoes off",
+        "t": "Made a guest take their shoes off, like home taught me",
         "tags": [
           {
             "id": "T20A",
@@ -1621,7 +1621,7 @@
         ]
       },
       {
-        "t": "Started a weekly home ritual nobody taught me",
+        "t": "Invented a weekly home ritual with a name. Soup Sunday counts",
         "tags": [
           {
             "id": "T20B",
@@ -1635,13 +1635,13 @@
       }
     ],
     "heart": {
-      "prompt": "Which of these have happened in your home recently? Choose all that apply.",
+      "prompt": "At your place lately, which of these have happened? Pick all that fit.",
       "options": [
-        "I said \"in this house, we...\" and heard my parent's voice.",
-        "I split the chores in a way my family would find strange.",
-        "A rule from my childhood home stayed, like shoes off.",
-        "I started a weekly ritual at home that nobody taught me.",
-        "None of these are true."
+        "I said \"in this house, we...\" and heard my parent's exact voice.",
+        "Our chores run on a system my family would find really odd.",
+        "A guest had to take their shoes off. House rule since childhood.",
+        "There's a weekly ritual at home I made up. Soup Sunday counts.",
+        "None of these."
       ]
     },
     "fp": {

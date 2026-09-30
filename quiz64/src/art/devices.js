@@ -60,7 +60,7 @@ export const DEVICE_TABLE = {
   "two-person-sweater": "yarn",
   "early-shadow": "house", // the shadow waits at home
   "relationship-progress-bar": "machine",
-  // Chapter 4, Money and treats
+  // Chapter 4, Money and spending
   "polite-tornado": "weather",
   "mermaid-housemate": "water",
   "pirate-chest": "treasure",
