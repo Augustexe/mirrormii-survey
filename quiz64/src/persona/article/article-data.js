@@ -20,6 +20,7 @@ export const ISLETS = Object.freeze({
   6: { x: 66, y: 86, w: 36 },
 });
 
+const NUMBER_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight"];
 const str = (v) => (typeof v === "string" && v.trim() ? v : null);
 const fill = (t, vars = {}) => String(t || "").replace(/\{(\w+)\}/g, (_, k) => (vars[k] == null ? "" : String(vars[k])));
 
@@ -132,7 +133,7 @@ export function buildArticle({ stories, lib }) {
     };
   });
   const sheet = {
-    kicker: map.kicker, title: f("sheet.title"), intro: f("sheet.intro"), hint: f("sheet.hint"),
+    kicker: map.kicker, title: f("sheet.title"), intro: f("sheet.intro"), hint: f("sheet.hint"), key: f("sheet.key"),
     yours: f("sheet.yours"), other: f("sheet.other"),
     groups: map.groups.map((g) => ({ label: g.label, rows: sheetRows.filter((r) => r.group === g.label) })),
     signature: map.signature, wild: map.wild,
@@ -142,12 +143,14 @@ export function buildArticle({ stories, lib }) {
   const tags = (by.traits && by.traits.tags) || [];
   const used = new Set();
   const traits = {
-    title: f("core.title"), intro: f("core.intro"), fromLabel: f("core.from"), turn: f("core.turn"), kept: f("core.kept"),
+    title: f("core.title"), intro: f("core.intro"), fromLabel: f("core.from"), turn: f("core.turn"), turnBack: f("core.turnBack"), kept: f("core.kept"),
+    position: (n, total) => f("core.position", { n: NUMBER_WORDS[n] || n, total: NUMBER_WORDS[total] || total }),
     empty: (by.traits && by.traits.empty) || null,
     items: core.map((k) => {
       let from;
       let back = null;
       let backLabel;
+      let backName = k.keyword;
       if (k.kind === "tag") {
         from = k.source;
         const t = tags.find((x) => x.key === k.tag);
@@ -156,14 +159,17 @@ export function buildArticle({ stories, lib }) {
       } else {
         const row = sheetRows.find((r) => r.key === k.axis);
         from = f("core.statFrom", { stat: row ? row.stat : "", end: row ? row.leadEnd : "" });
+        // The back of a stat card: what the other end of that stat looks like, so you can spot it in a friend.
+        back = row ? row.otherLine : null;
+        backName = row ? row.otherEnd : k.keyword;
         backLabel = f("core.backStat");
       }
       // A stat-backed card reads the stat end's finding, not the sheet line the character sheet already shows.
       const line = k.kind === "stat" ? knowOf(k.axis) || k.line : k.line;
-      if (back && (back === line || used.has(back))) back = null;
-      if (back) used.add(back);
+      if (back && back === line) back = null;
+      if (back && k.kind === "tag") used.add(back);
       used.add(line);
-      return { key: k.key, kind: k.kind, keyword: k.keyword, from, line, back, backLabel, chapter: k.chapter ?? null, axis: k.axis || null, private: Boolean(k.private) };
+      return { key: k.key, kind: k.kind, keyword: k.keyword, from, line, back, backLabel, backName, chapter: k.chapter ?? null, axis: k.axis || null, private: Boolean(k.private) };
     }),
   };
 
@@ -184,7 +190,7 @@ export function buildArticle({ stories, lib }) {
     line: f("rooms.flipLine", { overall: lead[flipRow.axis].leadEnd, room: flipRow.room, roomEnd: flipRow.leadEnd }),
   } : null;
   const rooms = roomRows.length ? {
-    kicker: by.rooms.kicker, title: f("rooms.title"), intro: f("rooms.intro"), mapLabel: f("rooms.mapLabel"), differs: by.rooms.differs,
+    kicker: by.rooms.kicker, title: f("rooms.title"), intro: f("rooms.intro"), mapLabel: f("rooms.mapLabel"), quiet: f("rooms.quiet"), differs: by.rooms.differs,
     rows: roomRows.map((r) => ({ chapter: r.chapter, room: r.room, line: r.line, end: r.kind === "axis" ? r.leadEnd : r.lead, stat: r.kind === "axis" && lead[r.axis] ? lead[r.axis].stat : null, differs: Boolean(flip && flip.chapter === r.chapter), level: r.level })),
     flip,
   } : null;
@@ -257,12 +263,12 @@ export function articleText(A) {
   const add = (...xs) => xs.forEach((x) => { if (typeof x === "string" && x.trim()) out.push(x); });
   const c = A.cover;
   add(c.masthead, c.readTime, c.dek, c.people.label, c.people.name, c.people.read, c.people.desc, c.life.label, c.life.name, c.life.read, c.life.desc, ...c.keywords);
-  add(A.sheet.title, A.sheet.intro, A.sheet.hint);
+  add(A.sheet.title, A.sheet.intro, A.sheet.hint, A.sheet.key);
   for (const g of A.sheet.groups) for (const r of g.rows) add(r.stat, r.leadEnd, r.level, r.note, r.otherLine, r.know, r.badgeLabel, r.badgeNote);
   add(A.traits.title, A.traits.intro);
   for (const k of A.traits.items) add(k.keyword, k.from, k.line, k.back);
   if (A.surprise) add(A.surprise.belief, A.surprise.behavior);
-  if (A.rooms) { add(A.rooms.title, A.rooms.intro); for (const r of A.rooms.rows) add(r.room, r.line); if (A.rooms.flip) add(A.rooms.flip.title, A.rooms.flip.line); }
+  if (A.rooms) { add(A.rooms.title, A.rooms.intro, A.rooms.quiet); for (const r of A.rooms.rows) add(r.room, r.line); if (A.rooms.flip) add(A.rooms.flip.title, A.rooms.flip.line); }
   if (A.sides) { add(A.sides.title, A.sides.intro); for (const x of A.sides.cells) add(x.label, x.line); }
   if (A.book) { add(A.book.title, A.book.intro, ...A.book.stings, A.book.saidTitle, A.book.saidIntro); for (const h of A.book.hearts) add(h.line); }
   if (A.record) { add(A.record.headline, A.record.intro, A.record.key); for (const r of A.record.rows) add(r.title, r.shown); }

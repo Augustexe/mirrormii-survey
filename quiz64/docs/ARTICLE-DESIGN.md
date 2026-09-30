@@ -1,6 +1,6 @@
 ---
 title: The Evidence Article (design direction and three concepts)
-status: proposed 2026-09-29, for Jerry; design only, nothing in quiz64/src changes until a concept is picked
+status: built 2026-09-29 (round 4, C with A type) in quiz64/src/persona/article; copy in library.json article and crossover; tests in quiz64/tests/article-accuracy.test.mjs and tests/visual/article-scroll.mjs; jury in ARTICLE-JUDGE.json, sheet ARTICLE-FINAL.png. Sections below are the design record
 owner: jerry
 created: 2026-09-29
 source_basis: Jerry's brief 2026-09-29 (story first, then a larger article page; award level; not robotic); LAUNCH-SPEC.md sections 13, 21, 23, 24; DESIGN-DIRECTION.md sections 1, 3, 4; REVEAL-R3-CONTENT.png and REVEAL-R3-VISUAL.png; src/persona/stories/story-data.js, stats.js, views.js; research/persona-quiz-v2/final/library.json; research/result-page-wireframes (gazette, stories, stars, WRAPPED-RESEARCH.md); Awwwards evaluation pages and scorecards (section 1); Codex jury 2026-09-29 (section 8)

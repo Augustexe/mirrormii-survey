@@ -155,6 +155,7 @@ export function Stats({ A }) {
               <ul>{g.rows.map((r) => <StatRow key={r.key} r={r} S={S} open={open.has(r.key)} onToggle={() => toggle(r.key)} />)}</ul>
             </div>
           ))}
+          <p className="ea-sheetkey"><Pips n={5} /><span>{S.key}</span></p>
           <p className="ea-hint">{S.hint}</p>
         </div>
       </div>
@@ -197,13 +198,13 @@ function TraitCard({ k, i, n, T }) {
           <div className="ea-card__face ea-card__back" aria-hidden={flipped ? undefined : "true"}>
             <p className="ea-card__backlabel">{k.backLabel}</p>
             <p className="ea-card__quote">{k.back}</p>
-            <p className="ea-card__backkw">{k.keyword}</p>
+            <p className="ea-card__backkw">{k.backName}</p>
           </div>
         ) : null}
       </div>
       {k.back ? (
         <button type="button" className="ea-card__turn" aria-pressed={flipped} onClick={(e) => { e.stopPropagation(); setFlipped((v) => !v); }}>
-          <span className="sr-only">{`${k.keyword}: `}</span>{T.turn}
+          <span className="sr-only">{`${k.keyword}: `}</span>{flipped ? T.turnBack : T.turn}
         </button>
       ) : null}
     </li>
@@ -233,6 +234,7 @@ export function Traits({ A }) {
             <ul className="ea-deck" data-count={items.length} data-reveal="" ref={deck}>
               {items.map((k, i) => <TraitCard key={k.key} k={k} i={i} n={items.length} T={T} />)}
             </ul>
+            <p className="ea-dots__label" aria-live="polite">{T.position(at + 1, items.length)}</p>
             <div className="ea-dots" role="group" aria-label={T.title}>
               {items.map((k, i) => (
                 <button key={k.key} type="button" aria-label={k.keyword} aria-current={i === at ? "true" : undefined} onClick={() => show(i)}><i /></button>
@@ -310,6 +312,8 @@ export function Rooms({ A }) {
               );
             })}
           </div>
+          <div className="ea-rooms__side">
+          <p className="ea-rooms__quiet">{R.quiet}</p>
           <ul className="ea-roomlist">
             {R.rows.map((r) => {
               const art = islet(r.chapter);
@@ -325,6 +329,7 @@ export function Rooms({ A }) {
               );
             })}
           </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -404,6 +409,7 @@ export function Record({ A }) {
             <span className="ea-score__genii" aria-hidden="true"><GeniiLight size="m" evolution={1} mood="sure" expression={r.face || "happy"} /></span>
             <p className="ea-score__text"><b>{r.exact}</b><span>{` of ${r.called} ${r.of}`}</span></p>
           </div>
+          <p className="ea-key">{r.key}</p>
         </div>
         <p className="ea-record__order">{r.order}</p>
         <ol className="ea-panes" data-reveal="">
@@ -411,11 +417,10 @@ export function Record({ A }) {
             <li key={x.key} className="ea-pane" data-status={x.near ? "near" : x.status} style={{ "--i": i }}>
               <span className="ea-pane__glass" aria-hidden="true"><i />{x.status === "hit" ? <Check size={18} strokeWidth={2.5} /> : x.near ? null : <Sparkles size={16} strokeWidth={1.75} />}</span>
               <span className="ea-pane__title">{x.title}</span>
-              <span className="ea-pane__status">{x.shown}{x.side ? <em>{x.side}</em> : null}</span>
+              <span className="ea-pane__status"><span className="ea-pane__chip">{x.shown}</span>{x.side ? <em>{x.side}</em> : null}</span>
             </li>
           ))}
         </ol>
-        <p className="ea-key">{r.key}</p>
       </div>
     </section>
   );
