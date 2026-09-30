@@ -15,7 +15,7 @@ export const RESULT_SCHEMA = "genii.persona.result/1";
 export const CHALLENGE_SCHEMA = "genii.persona.challenge/1";
 
 const slideOf = (view, id) => view.slides.find((s) => s.id === id) || null;
-const half = (h) => ({ code: h.code, name: h.name, read: h.read, desc: h.desc });
+const half = (h) => ({ code: h.code, kicker: h.label, name: h.name, define: h.define, read: h.read, desc: h.desc });
 
 // The finished result of one run. Everything the reveal and the long read show is here, keyed by ids a backend can
 // join on (archetype code, axis id, tag id, chapter, sealed card id), with the copy in the player's voice. Never any
@@ -79,7 +79,7 @@ export function buildResultRecord(state) {
       }),
     },
     share: {
-      names: view.share.names.map((n) => ({ label: n.label, name: n.name })),
+      names: view.share.names.map((n) => ({ label: n.label, name: n.name, define: n.define || "" })),
       keywords: [...view.share.keywords],
       tags: view.share.tags.map((t) => ({ name: t.name, line: t.heart, kind: t.kind })),
       invite: view.share.invite,

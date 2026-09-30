@@ -34,7 +34,7 @@
     },
     "axes": {
       "type": "array",
-      "description": "The six stats of the character sheet, people half first (R1 Orbit, R2 Delivery, R3 Blueprint), then life (L1 Compass, L2 Engine, L3 Code).",
+      "description": "The six stats of the character sheet, people half first (R1 Closeness, R2 Hard truths, R3 Traditions), then life (L1 New things, L2 Pace, L3 Rules).",
       "minItems": 6,
       "maxItems": 6,
       "items": { "$ref": "#/$defs/axis" }
@@ -175,7 +175,7 @@
       "properties": {
         "names": {
           "type": "array", "minItems": 2, "maxItems": 2,
-          "items": { "type": "object", "required": ["label", "name"], "additionalProperties": false, "properties": { "label": { "type": "string" }, "name": { "type": "string", "minLength": 1 } } }
+          "items": { "type": "object", "required": ["label", "name", "define"], "additionalProperties": false, "properties": { "label": { "type": "string" }, "name": { "type": "string", "minLength": 1 }, "define": { "type": "string" } } }
         },
         "keywords": { "type": "array", "maxItems": 6, "items": { "type": "string" } },
         "tags": {
@@ -199,11 +199,13 @@
     "axisId": { "enum": ["R1", "R2", "R3", "L1", "L2", "L3"] },
     "half": {
       "type": "object",
-      "required": ["code", "name", "read", "desc"],
+      "required": ["code", "kicker", "name", "define", "read", "desc"],
       "additionalProperties": false,
       "properties": {
         "code": { "type": "string", "pattern": "^((We|Me)·(Direct|Soft)·(Classic|Own)|(Steady|Venture)·(Push|Easy)·(Rules|Context))$", "description": "Internal id (library.json code). Never shown to players." },
+        "kicker": { "type": "string", "minLength": 1, "description": "The scope shown above the name on every title card (stats.js HALVES: With the people you love, Day to day)." },
         "name": { "type": "string", "minLength": 1 },
+        "define": { "type": "string", "minLength": 1, "description": "The one plain line shown directly under the name (library.json define)." },
         "read": { "type": "string" },
         "desc": { "type": "string" }
       }
@@ -215,9 +217,9 @@
       "properties": {
         "axis": { "$ref": "#/$defs/axisId" },
         "half": { "enum": ["people", "life"] },
-        "stat": { "enum": ["Orbit", "Delivery", "Blueprint", "Compass", "Engine", "Code"] },
+        "stat": { "enum": ["Closeness", "Hard truths", "Traditions", "New things", "Pace", "Rules"] },
         "pole": { "anyOf": [{ "enum": ["We", "Me", "Direct", "Soft", "Classic", "Own", "Steady", "Venture", "Push", "Easy", "Rules", "Context"] }, { "type": "null" }], "description": "Internal pole name (never shown). null when flex or unfinished." },
-        "end": { "type": ["string", "null"], "description": "The player-facing end (Crew, Solo, Blunt, Gentle, Old School, Own Lane, Home Base, Wanderlust, Full Send, Cruise Control, By the Book, Read the Room)." },
+        "end": { "type": ["string", "null"], "description": "The player-facing end (stats.js: Stays close, Keeps some space, Says it straight, Says it gently, Carries them on, Starts new ones, Sticks with favorites, Tries new things, Goes fast, Takes it slow and steady, By the book, Case by case)." },
         "sign": { "enum": [-1, 0, 1] },
         "strength": { "type": "number", "minimum": 0, "maximum": 1, "description": "|normalized score|: how far the answers on this stat lean. Never shown as a number." },
         "cards": { "type": "integer", "minimum": 0 },

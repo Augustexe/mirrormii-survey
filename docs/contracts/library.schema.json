@@ -147,12 +147,13 @@
     "half": {
       "type": "object",
       "description": "One archetype half (8 people archetypes, 8 life archetypes). Code is the internal id, never shown.",
-      "required": ["code", "name", "desc", "read", "sting", "heart", "h"],
+      "required": ["code", "name", "define", "desc", "read", "sting", "heart", "h"],
       "properties": {
         "code": { "$ref": "#/$defs/halfCode" },
         "R1": { "enum": [1, -1] }, "R2": { "enum": [1, -1] }, "R3": { "enum": [1, -1] },
         "L1": { "enum": [1, -1] }, "L2": { "enum": [1, -1] }, "L3": { "enum": [1, -1] },
         "name": { "type": "string", "minLength": 1 },
+        "define": { "type": "string", "minLength": 1, "description": "The one plain line under the name on every title card (LAUNCH-SPEC 26). Both voices." },
         "zh": { "type": "string" },
         "desc": { "type": "string" },
         "read": { "type": "string" },
