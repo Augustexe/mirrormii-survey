@@ -356,7 +356,7 @@
     "axisFor": "R3",
     "sq": "SQ-R3-2",
     "world": "absurd",
-    "prompt": "A ring falls from the sky, engraved with your name and your person's. Does one of you kneel, the classic way, or do you just hand it over at breakfast?",
+    "prompt": "A ring falls from the sky, engraved with your name and your partner's. Does one of you kneel, the classic way, or do you just hand it over at breakfast?",
     "options": [
       {
         "t": "Someone kneels. Some scripts exist for a reason.",
@@ -384,7 +384,7 @@
       }
     ],
     "heart": {
-      "prompt": "A ring falls from the sky, engraved with your name and your person's. One of you could kneel the traditional way, or you could hand it over at breakfast.",
+      "prompt": "A ring falls from the sky, engraved with your name and your partner's. One of you could kneel the traditional way, or you could hand it over at breakfast.",
       "options": [
         "One of us kneels. Some scripts exist for a reason.",
         "We hand it over at breakfast, in pajamas, our own way."
@@ -394,7 +394,7 @@
       "trigger": "a ring arrives and the proposal script is yours to follow or skip",
       "setting": "your home, a ring from the sky",
       "ask": "the classic proposal or your own way",
-      "who": "you and your person",
+      "who": "you and your partner",
       "stakes": "the way couples always did it versus your own design",
       "device": "sky-ring"
     },
@@ -481,37 +481,37 @@
     "axisFor": "L1",
     "sq": "SQ-L1-3",
     "world": "absurd",
-    "prompt": "You're a pro cyclist who never took the training wheels off. Never fallen once. The final is tomorrow, and nobody has ever won with them.",
+    "prompt": "Every jacket you own has a parachute sewn in. You look like a turtle. You've never once needed it.",
     "options": [
       {
-        "t": "The wheels stay. I've never fallen, and won't start now.",
+        "t": "Turtle for life. The day I need it, who's laughing?",
         "axes": {
           "L1": 2
         }
       },
       {
-        "t": "Off tonight. I didn't come this far to play safe.",
+        "t": "Cutting them out tonight. I'll take my chances, looking great.",
         "axes": {
           "L1": -2
         }
       }
     ],
     "heart": {
-      "prompt": "You are a professional cyclist who never took the training wheels off, and you have never fallen. The final is tomorrow, and nobody has ever won with them.",
+      "prompt": "Every jacket you own has a parachute sewn into it. You look a little like a turtle, and you have never once needed it.",
       "options": [
-        "The wheels stay. I have never fallen, and will not start now.",
-        "They come off tonight. I refuse to play it safe now."
+        "The turtle look stays. Someday I may be glad of it.",
+        "I cut them out tonight and take my chances, looking my best."
       ]
     },
     "fp": {
-      "trigger": "the backup that kept you safe may cost you the win",
-      "setting": "a bike race final",
-      "ask": "keep the backup or cut it",
+      "trigger": "a safety net sewn into everything you wear",
+      "setting": "your closet, every jacket",
+      "ask": "keep the backup or cut it out",
       "who": "just you",
-      "stakes": "never falling versus ever winning",
-      "device": "training-wheels"
+      "stakes": "never falling versus looking like yourself",
+      "device": "parachute-jackets"
     },
-    "mask": "looks like a silly sports image; measures keeping the safety net versus cutting it to go all in (L1)",
+    "mask": "looks like a silly fashion image; measures keeping the safety net versus cutting it to go without one (L1)",
     "ae": [
       "B",
       "D"

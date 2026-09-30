@@ -575,7 +575,6 @@
     "id": "C5-1",
     "type": "this_or_that",
     "chapter": 5,
-    "round": "ch5-r1",
     "prompt": "One bite of a never-wrong fortune cookie and you'll know your whole career: every job, every title, how it ends.",
     "options": [
       {
@@ -658,13 +657,12 @@
   },
   {
     "id": "C5-51",
-    "type": "this_or_that",
+    "type": "scenario",
     "chapter": 5,
-    "round": "ch5-r1",
-    "prompt": "A carrier owl lands between your desk and your closest friend's: one dream-job offer, seventy-hour weeks. Whoever feeds it first gets it.",
+    "prompt": "A gold-star sticker chart just went up at work. One star per finished task. Jo has 41. You have 6.",
     "options": [
       {
-        "t": "Feed it first. It's a race, and I'm not sorry.",
+        "t": "Forty-two by Friday. I'm skipping lunch all week.",
         "tags": [
           {
             "id": "T16A",
@@ -674,43 +672,63 @@
         "emotion": "pride"
       },
       {
-        "t": "My friend feeds it. I like my evenings, and my friend.",
+        "t": "Six stars, home by six. The chart can't see my evenings.",
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 2
+          }
+        ],
+        "emotion": "relief"
+      },
+      {
+        "t": "Not racing. Just quietly passing the intern.",
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "I'm here for the paycheck, not the stickers.",
         "tags": [
           {
             "id": "T16B",
             "s": 1
           }
-        ],
-        "emotion": "warmth"
+        ]
       }
     ],
     "heart": {
-      "prompt": "A carrier owl lands between your desk and your closest friend's with one dream-job offer: seventy-hour weeks. Whoever feeds it first gets it.",
+      "prompt": "A gold-star sticker chart has gone up at work, one star for each finished task. Jo has 41 stars, and you have 6.",
       "options": [
-        "I feed it first. It is a race. No apologies.",
-        "They feed it. I like my evenings, and my friend."
+        "Forty-two by Friday, even if I skip lunch all week.",
+        "Six stars, home by six. The chart cannot see my evenings.",
+        "I am not racing. I am just quietly passing the intern.",
+        "I come for the paycheck, not the stickers."
       ]
     },
     "fp": {
-      "trigger": "one dream-job offer for two friends",
-      "setting": "an owl at the window",
-      "ask": "take the job or let them have it",
-      "who": "your closest friend",
-      "stakes": "the dream job versus watching them lose it",
-      "device": "carrier-owl-offer"
+      "trigger": "a sticker chart ranks everyone's finished tasks",
+      "setting": "the office wall",
+      "ask": "race for stars or keep your pace",
+      "who": "coworkers, Jo in the lead",
+      "stakes": "winning the chart versus your evenings",
+      "device": "gold-star-chart"
     },
-    "mask": "looks like a whimsical race; measures whether you keep a quiet tally of wins (T16)",
+    "mask": "looks like office silliness; measures whether you keep a quiet tally of wins (T16)",
     "ae": [
       "A",
       "B"
     ],
     "privacy": "normal",
     "sq": "SQ-T16-1",
-    "world": "absurd",
+    "world": "unusual",
     "friend": {
-      "prompt": "An owl lands between {name} and {their} closest friend with one dream-job offer. First to feed it gets the job. What does {name} do?",
+      "prompt": "A gold-star chart goes up at {name}'s work: Jo has 41 stars, {name} has 6. What does {name} do?",
       "a": {
-        "t": "Feeds it first. It's a race, and no apologies.",
+        "t": "Aims for 42 by Friday. Skips lunch all week.",
         "tags": [
           {
             "id": "T16A",
@@ -719,11 +737,11 @@
         ]
       },
       "b": {
-        "t": "Lets the friend feed it: \"I like my evenings, and my friend.\"",
+        "t": "Six stars, home by six: \"The chart can't see my evenings.\"",
         "tags": [
           {
             "id": "T16B",
-            "s": 1
+            "s": 2
           }
         ]
       }

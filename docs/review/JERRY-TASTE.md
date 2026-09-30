@@ -12,7 +12,7 @@ The standing brief for the card review loop. Every proposal in a `BATCH-*.md` is
 
 - **Realistic rewrites that went boring.** The apartment abroad (X-L1-40: "a lot better, but a little bit boring"), family tech support (C6-110: "bland and boring"), the emergency fund (C4-142: "concept boring, answers boring"). Real is only good when it stings or embarrasses; plain adult life admin is not a card.
 - **Draining the fun out of absurd cards.** The audit's WEAK_ABSURD flag was wrong for his taste. He kept both absurd originals over their realistic rewrites. Fix a weak absurd card's execution, keep its premise.
-- **"Your person."** "I really hate the 'your person' thing." Every proposal uses another term (see the BATCH-02 proposal until he rules).
+- **"Your person."** "I really hate the 'your person' thing." Settled 2026-09-30 (BATCH-02 pass, delegated): "your partner" everywhere, and a text thread names its sender in the prompt; LAUNCH-SPEC rule 25 and the checker ban "your person".
 - **Confusing lines.** One odd line kills a card: "these hands are closed on weekends", "couch, phone off" in a ranking (C7-147: "just confusing overall").
 - **Thin two-option cards whose answers don't read.** C5-51: "only two option answers and they don't read as legible." He wants 3 to 5 clear options where the choice matters.
 - **Bland answers.** Every answer must be legible, distinct and funny or sharp. A sensible middle answer with no joke is a bland answer.
@@ -39,3 +39,4 @@ The standing brief for the card review loop. Every proposal in a `BATCH-*.md` is
 ## Log
 
 - 2026-09-30, BATCH-01 verdicts: approved 1, 6, 7; kept 3 and 4 originals; redo 2, 5, 8, 9, 10; "Keep going. Keep iterating."
+- 2026-09-30, BATCH-02 pass (Jerry delegated it): applied A1 to A5, B1 to B4 and B6 as proposed, kept B5, "your partner" everywhere (C), cut C1-161 and C7-142 (D); Heart to heart and friend text written for each applied card. Open decision 12 resolved ("fun money").

@@ -90,7 +90,7 @@ export const CHAPTER_GLYPHS = {
     l: "M5,4 H13.5 a2,2 0 0 1 2,2 V11 a2,2 0 0 1 -2,2 H8.5 L5.5,15.5 V13 H5 a2,2 0 0 1 -2,-2 V6 a2,2 0 0 1 2,-2 Z",
     f: `${circle(6.8, 8.5, 0.95)} ${circle(9.25, 8.5, 0.95)} ${circle(11.7, 8.5, 0.95)}`,
   },
-  // 3 Love and your person: a heart with a small sparkle
+  // 3 Love and dating: a heart with a small sparkle
   3: {
     a: "M11,20.5 C5.5,16.4 3,13.6 3,10.3 a4.2,4.2 0 0 1 8,-1.8 a4.2,4.2 0 0 1 8,1.8 C19,13.6 16.5,16.4 11,20.5 Z",
     l: "M11,20.5 C5.5,16.4 3,13.6 3,10.3 a4.2,4.2 0 0 1 8,-1.8 a4.2,4.2 0 0 1 8,1.8 C19,13.6 16.5,16.4 11,20.5 Z",

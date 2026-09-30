@@ -77,7 +77,7 @@ export function randomId(length = 12) {
   return [...bytes].map((b) => alphabet[b % alphabet.length]).join("");
 }
 
-// Setup is two taps: closest person (the cards' "your person") and pronoun (the friend game). No age question.
+// Setup is two taps: closest person and pronoun (the friend game). No age question.
 export function validSetup(setup) {
   if (!isObj(setup)) return false;
   const keys = Object.keys(setup);

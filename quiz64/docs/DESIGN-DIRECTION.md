@@ -262,7 +262,7 @@ Brand-canonical values: violet #8071E4, gradient #988DEA to #5B8BEB, near-white 
 |---|---|---|
 | 1 Your phone | Sky #8FB8F2 | #3D6FC4 |
 | 2 Friends | Peach #F4B8A0 | #B5603F |
-| 3 Love and your person | Rose #F2A7C3 | #B0426E |
+| 3 Love and dating | Rose #F2A7C3 | #B0426E |
 | 4 Money and treats | Butter #F2D48A | #9A7419 |
 | 5 Work, school and ambition | Mint #96D8C4 | #2E8A6E |
 | 6 Family and home | Lilac #C9B3F0 | #6A4BB8 |
@@ -396,7 +396,7 @@ Every screen spec gives: purpose, phone layout (390 x 844 reference, 16 px gutte
 **Tap 3, "Which rooms can Genii visit?"** (keep). Three **doors** (D asset A-10, one per room: love = rose door with a heart knocker; work = mint door with a small plaque; family = lilac door with a lit window). Open state: door ajar, warm light spilling, label "Open"; closed state: door shut, desaturated to 40%, label "Closed". Tap toggles with a 240 ms door swing (rotateY 0 to -28 degrees on the door leaf, perspective 600). Below: the always-open chapters as four small island chips ("Your phone, Friends, Money, Play are always in", from the existing note). Continue button right aligned (phone: full width at bottom). Three doors side by side at 390: each 112 x 150, fits.
 **Progress.** Three dots, not "Question 1 of 3".
 **Desktop.** Same sheet 720 wide, doors 180 x 240.
-**Accessibility.** Doors are toggle buttons with `aria-pressed` and labels "Love and your person, open"; preview-on-hover does not trigger on focus alone (it triggers on focus plus 400 ms, so keyboard users get it without flashing).
+**Accessibility.** Doors are toggle buttons with `aria-pressed` and labels "Love and dating, open"; preview-on-hover does not trigger on focus alone (it triggers on focus plus 400 ms, so keyboard users get it without flashing).
 
 ### 5.4 Chapter interludes (7 chapters, extras, finale)
 

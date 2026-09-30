@@ -115,10 +115,30 @@
         ]
       },
       {
-        "id": "C2-41",
-        "prompt": "Riley's building bans pets. Before inspection: \"if anyone asks, Biscuit is YOUR pig. for like a year\" What does Sam reply?",
-        "a": "\"Not lying to a landlord. Find another way.\"",
-        "b": "\"Done. Biscuit and I go way back.\"",
+        "id": "C4-5",
+        "prompt": "Last time Sam wanted the pricier version of something they owned plenty of already. How did it end?",
+        "a": "Bought it on the spot. Always room for one more.",
+        "b": "Left it in the cart until the feeling passed.",
+        "order": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "id": "C1-144",
+        "prompt": "The last time someone scrolled their phone while Sam was talking. How did Sam handle it?",
+        "a": "Said it: \"Hello? I'm right here.\"",
+        "b": "Kept talking like they hadn't noticed.",
+        "order": [
+          "b",
+          "a"
+        ]
+      },
+      {
+        "id": "C6-127",
+        "prompt": "A relative recently asked Sam: \"can you help me with something?\" What did Sam actually do?",
+        "a": "Said yes before the relative finished the sentence.",
+        "b": "Said yes for Saturday. Not every Saturday.",
         "order": [
           "a",
           "b"
@@ -135,80 +155,60 @@
         ]
       },
       {
-        "id": "C2-160",
-        "prompt": "Every word Sam says now costs $5. Sam's best friend is shaking before a huge presentation. What does Sam do?",
-        "a": "Zero words. Drives them there and holds their coffee.",
-        "b": "$50 on ten perfect words. Worth every cent.",
+        "id": "C2-50",
+        "prompt": "Has Sam ever felt a little relieved when a friend's big plan flopped in public?",
+        "a": "Guilty. We'd been neck and neck. Now we weren't.",
+        "b": "Never. I don't track friends' plans that closely.",
+        "order": [
+          "b",
+          "a"
+        ]
+      },
+      {
+        "id": "C4-143",
+        "prompt": "Friends planned a trip that was a stretch for Sam's budget. What did Sam actually do?",
+        "a": "Booked it that night. Future me can deal.",
+        "b": "Did the math, then said \"next one.\"",
+        "order": [
+          "b",
+          "a"
+        ]
+      },
+      {
+        "id": "C3-147",
+        "prompt": "Sam's partner recently had a weekend of plans without Sam. How did Sam spend it?",
+        "a": "Tagged along for part of it anyway.",
+        "b": "Booked my own plans before they'd even left.",
+        "order": [
+          "b",
+          "a"
+        ]
+      },
+      {
+        "id": "C1-163",
+        "prompt": "Someone new wants into Sam's friend group. Sam's best friend gives one honest tip. Which one?",
+        "a": "\"Give it a year. They don't hand out trust.\"",
+        "b": "\"Just show up. They'll adopt you by dessert.\"",
         "order": [
           "a",
           "b"
         ]
       },
       {
-        "id": "C6-127",
-        "prompt": "A relative recently asked Sam: \"can you help me with something?\" What did Sam actually do?",
-        "a": "Said yes before the relative finished the sentence.",
-        "b": "Said yes for Saturday. Not every Saturday.",
-        "order": [
-          "b",
-          "a"
-        ]
-      },
-      {
-        "id": "C5-128",
-        "prompt": "The last time friends invited Sam out on a night they had saved for a big project. What won?",
-        "a": "Stayed in and worked. Told them \"next time.\"",
-        "b": "Closed the place down with them.",
-        "order": [
-          "b",
-          "a"
-        ]
-      },
-      {
-        "id": "C2-132",
-        "prompt": "Genii bets Sam has someone back in their life they swore never to speak to again. Guilty or not?",
-        "a": "Back, and honestly closer than before.",
-        "b": "Not a chance. Never again means never again.",
-        "order": [
-          "b",
-          "a"
-        ]
-      },
-      {
-        "id": "C3-80",
-        "prompt": "A tailor knits Sam and their person one sweater with two necks. It only comes off if one of them asks. What does Sam do?",
-        "a": "Never asks. Learns to cook in it.",
-        "b": "Asks on day one. Needs their own sleeves.",
-        "order": [
-          "b",
-          "a"
-        ]
-      },
-      {
-        "id": "C4-82",
-        "prompt": "Sam's friends fine lateness $10. Mo works a second job for rent and is always late. Jae says fines are fines. Sam's take?",
-        "a": "Same fine for every person, every time.",
-        "b": "Mo's second job pays the rent. Waive it.",
+        "id": "C5-129",
+        "prompt": "Has Sam ever said yes to one job or school offer while secretly hoping another would call?",
+        "a": "Guilty. Would do it again. A yes in hand is a yes.",
+        "b": "Guilty. Bailed on the first one when the other called.",
         "order": [
           "a",
           "b"
         ]
       },
       {
-        "id": "C2-126",
-        "prompt": "A friend's closet door opens somewhere random, and Sam is invited through in an hour. Sam's weekend was already planned. Which one is Sam?",
-        "a": "\"My weekend. Send me a postcard from wherever.\"",
-        "b": "\"Through the door. The weekend can wait.\"",
-        "order": [
-          "a",
-          "b"
-        ]
-      },
-      {
-        "id": "C4-127",
-        "prompt": "Dev's talking cat has two million followers. Dev needs $5,000 for merch and offers ten percent. What does Sam reply?",
-        "a": "\"No. A cat can stop talking any day.\"",
-        "b": "\"Here's my savings. I believe in this cat.\"",
+        "id": "C4-124",
+        "prompt": "Sam's new housemate is a mermaid with a sunken ship's worth of gold, and wants rent split fifty-fifty. What does Sam do?",
+        "a": "Fair. Same home, same rent.",
+        "b": "Pitch it: we each pay by what we have.",
         "order": [
           "b",
           "a"
@@ -233,14 +233,9 @@
     "fewTagsLine": null,
     "cards": [
       {
-        "id": "T08A",
-        "name": "Believes in second chances",
-        "heart": "I believe people can change, because I have."
-      },
-      {
-        "id": "T17A",
-        "name": "Likes plans set early",
-        "heart": "Wanting solid ground is how I take care of myself."
+        "id": "T19B",
+        "name": "Values family advice",
+        "heart": "My family is part of my 'we', and I like it that way."
       },
       {
         "id": "T03B",
@@ -248,29 +243,34 @@
         "heart": "My messy real words are the truest version of me."
       },
       {
+        "id": "T03A",
+        "name": "Uses AI to think things out",
+        "heart": "Feeling understood counts, wherever it comes from."
+      },
+      {
+        "id": "T02A",
+        "name": "Replies when free",
+        "heart": "Missing you doesn't need a daily check-in."
+      },
+      {
+        "id": "T05B",
+        "name": "Puts feelings into words",
+        "heart": "If I feel it, you're going to read it."
+      },
+      {
+        "id": "T17A",
+        "name": "Likes plans set early",
+        "heart": "Wanting solid ground is how I take care of myself."
+      },
+      {
+        "id": "T17B",
+        "name": "Goes with the flow",
+        "heart": "My timeline is mine to write."
+      },
+      {
         "id": "T25B",
         "name": "Makes room for exceptions",
         "heart": "I look at the person, not the form."
-      },
-      {
-        "id": "T23A",
-        "name": "First to volunteer",
-        "heart": "I love the world, and I'm practicing loving me too."
-      },
-      {
-        "id": "T23B",
-        "name": "Protects free time",
-        "heart": "My own growth is a contribution too."
-      },
-      {
-        "id": "T08B",
-        "name": "Remembers the details",
-        "heart": "I look after the person who got hurt first."
-      },
-      {
-        "id": "T06B",
-        "name": "Knows when to recharge",
-        "heart": "I charge myself first, so I have more to give."
       },
       {
         "id": "T16A",
@@ -278,19 +278,19 @@
         "heart": "Wanting to build something big isn't too much."
       },
       {
-        "id": "T20B",
-        "name": "Starts new traditions",
-        "heart": "No script is the gift I gave myself."
-      },
-      {
-        "id": "T20A",
-        "name": "Keeps family traditions",
-        "heart": "I can hold new ideas and old wishes at the same time."
+        "id": "T02B",
+        "name": "Loves hearing from friends",
+        "heart": "Wanting to be thought of isn't embarrassing."
       },
       {
         "id": "T16B",
         "name": "Work stays at work",
         "heart": "A good life is the whole point, not the reward for later."
+      },
+      {
+        "id": "T15A",
+        "name": "Proud of hard work",
+        "heart": "I like knowing I earned my spot."
       }
     ]
   },
@@ -299,20 +299,20 @@
       "prompt": "Which of these 4 lines would leave Sam speechless for three seconds?",
       "lines": [
         {
-          "tag": "T22A",
-          "t": "You love your life here. Only ever knowing here scares you more than leaving."
+          "tag": "T09A",
+          "t": "You love being in their whole day, so the days apart drag."
         },
         {
-          "tag": "T08A",
-          "t": "You'd give a second chance to someone who hasn't finished asking."
+          "tag": "T23A",
+          "t": "You'll say yes to one more good cause before you say yes to a nap."
         },
         {
-          "tag": "T13A",
-          "t": "The math on your big yeses happens after the booking email."
+          "tag": "T20B",
+          "t": "No script means every choice at home is yours to make, and to explain."
         },
         {
-          "tag": "T01B",
-          "t": "Your privacy is just a habit. Someone you love still takes it personally."
+          "tag": "T03A",
+          "t": "An AI may have heard more about your feelings than your friends have."
         }
       ]
     },
@@ -320,28 +320,28 @@
       "prompt": "Pick the roast Sam would laugh at hardest.",
       "lines": [
         {
-          "id": "R13",
-          "t": "Bragged about a $12 dupe for a full week. Unprompted."
+          "id": "R03",
+          "t": "Asked for a quick opinion once. Got notes, bullet points and a follow-up."
         },
         {
-          "id": "R02",
-          "t": "Knows the barista's name, the barista's dog's name and its birthday."
+          "id": "R11",
+          "t": "Made a spreadsheet for the group trip. It has tabs. Plural."
         },
         {
-          "id": "R05",
-          "t": "Forgave everyone years ago. The screenshots folder did not."
+          "id": "R01",
+          "t": "Answers texts on a three-to-five business day schedule. Still my favorite."
         },
         {
-          "id": "R07",
-          "t": "Sent me a payment request for $3.47. For fries. With a fries emoji."
+          "id": "R06",
+          "t": "Says 'we're keeping it casual.' Already knows their coffee order by heart."
         },
         {
           "id": "R09",
           "t": "Calls it 'just a side project.' It has a logo and a five-year plan."
         },
         {
-          "id": "R08",
-          "t": "Booked the flight first. Checked the bank app second. Maybe."
+          "id": "R13",
+          "t": "Bragged about a $12 dupe for a full week. Unprompted."
         }
       ]
     }

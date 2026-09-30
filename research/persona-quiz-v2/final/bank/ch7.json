@@ -401,95 +401,9 @@
   }
  },
  {
-  "id": "C7-142",
-  "type": "this_or_that",
-  "chapter": 7,
-  "round": "C7-r110",
-  "prompt": "Pick one travel rule for life: every vacation goes to the town you already love, or wherever a spinning globe lands.",
-  "options": [
-   {
-    "t": "The town I love. I already know which café.",
-    "axes": {
-     "L1": 1
-    },
-    "tags": [
-     {
-      "id": "T22B",
-      "s": 2
-     }
-    ],
-    "emotion": "relief"
-   },
-   {
-    "t": "Spin the globe, even if it lands somewhere boring.",
-    "axes": {
-     "L1": -1
-    },
-    "tags": [
-     {
-      "id": "T22A",
-      "s": 2
-     }
-    ],
-    "emotion": "delight"
-   }
-  ],
-  "heart": {
-   "prompt": "You pick one travel rule for life: every vacation goes to the one town you already love, or wherever a spinning globe lands.",
-   "options": [
-    "The town I love wins. I already know my café there.",
-    "I spin the globe, even if it lands somewhere dull."
-   ]
-  },
-  "fp": {
-   "trigger": "a deal fixes where every vacation goes",
-   "setting": "every vacation, forever",
-   "ask": "the town you love or a random spin",
-   "who": "just you",
-   "stakes": "a sure favorite versus endless new places",
-   "device": "vacation-globe"
-  },
-  "mask": "looks like a travel riddle; measures the place you know you love versus the place nobody has tried (T22, L1)",
-  "ae": [
-   "A",
-   "D"
-  ],
-  "privacy": "normal",
-  "sq": "SQ-T22-1",
-  "world": "absurd",
-  "friend": {
-   "prompt": "One travel rule for life: every vacation goes to one beloved town, or wherever a spinning globe lands. Which one is {name}?",
-   "a": {
-    "t": "The town {they} love. \"I already know which café.\"",
-    "axes": {
-     "L1": 1
-    },
-    "tags": [
-     {
-      "id": "T22B",
-      "s": 2
-     }
-    ]
-   },
-   "b": {
-    "t": "The globe. \"Even if it lands on a parking lot.\"",
-    "axes": {
-     "L1": -1
-    },
-    "tags": [
-     {
-      "id": "T22A",
-      "s": 2
-     }
-    ]
-   }
-  }
- },
- {
   "id": "C7-161",
   "type": "this_or_that",
   "chapter": 7,
-  "round": "C7-r110",
   "sq": "SQ-R3-1",
   "world": "unusual",
   "prompt": "The ceremony: four hours, a $90 gown, your whole family in the stands. Or the diploma just arrives by mail. Your degree is done.",
@@ -690,7 +604,7 @@
   "id": "C7-143",
   "type": "scenario",
   "chapter": 7,
-  "prompt": "Every list, note and calendar entry you write vanishes the moment you finish it. You're running your best friend's surprise party: 40 guests, three weeks.",
+  "prompt": "Everything you write down vanishes the second you finish it. You're planning your best friend's surprise party: 40 guests.",
   "options": [
    {
     "t": "Recite the guest list every night. Out loud. In order.",
@@ -718,7 +632,7 @@
     "emotion": "delight"
    },
    {
-    "t": "Appoint one friend my walking calendar.",
+    "t": "Appoint a friend as my walking calendar. They did not volunteer.",
     "tags": [
      {
       "id": "T24A",
@@ -727,7 +641,7 @@
     ]
    },
    {
-    "t": "Trust my memory. It's never perfect, but it's close.",
+    "t": "Trust my gut. Anyone I forget gets a great apology.",
     "tags": [
      {
       "id": "T24B",
@@ -738,12 +652,12 @@
    }
   ],
   "heart": {
-   "prompt": "Every list, note and calendar entry you write vanishes the moment you finish it. You are planning your best friend's surprise party: 40 guests, in three weeks.",
+   "prompt": "Everything you write down vanishes the second you finish it. You are planning your best friend's surprise party, with 40 guests.",
    "options": [
     "I recite the guest list every night, out loud, in order.",
     "Surprise parties are a little chaotic anyway, so I improvise.",
-    "I ask one friend to be my calendar for three weeks.",
-    "I trust my memory. It is never perfect, but it is close."
+    "A friend becomes my walking calendar, though they never volunteered.",
+    "I trust my instincts, and anyone I forget gets a good apology."
    ]
   },
   "fp": {
@@ -763,7 +677,7 @@
   "sq": "SQ-T24-1",
   "world": "absurd",
   "friend": {
-   "prompt": "A spell erases every list {name} writes. {name} is running a best friend's surprise party for 40. What does {name} do?",
+   "prompt": "Everything {name} writes down vanishes. {name} is planning a best friend's surprise party for 40. What does {name} do?",
    "a": {
     "t": "Recites the guest list nightly. Out loud. In order.",
     "axes": {
@@ -1548,21 +1462,22 @@
  },
  {
   "id": "C7-147",
-  "type": "rank",
+  "type": "scenario",
   "chapter": 7,
-  "prompt": "You wake up able to fix anything by touching it. Rank what you'd do first, top to bottom.",
+  "prompt": "Word got out that you can fix anything by touching it. Saturday morning, there's a line outside your door.",
   "options": [
    {
-    "t": "Every broken thing on the street, via a sign-up sheet.",
+    "t": "Put the coffee on. First in line, first fixed.",
     "tags": [
      {
       "id": "T23A",
       "s": 2
      }
-    ]
+    ],
+    "emotion": "pride"
    },
    {
-    "t": "Whatever my friends have broken, one by one.",
+    "t": "Fix until lunch, then flip the sign to CLOSED. The line boos.",
     "tags": [
      {
       "id": "T23A",
@@ -1571,39 +1486,41 @@
     ]
    },
    {
-    "t": "My old car first, then the rest of my stuff.",
+    "t": "My own wobbly table first. Then back to bed.",
     "tags": [
      {
       "id": "T23B",
       "s": 1
      }
-    ]
+    ],
+    "emotion": "relief"
    },
    {
-    "t": "Fixes by appointment, weekdays only. Weekends are mine.",
+    "t": "Pretend I'm not home. Whisper \"nobody's home\" through the mail slot.",
     "tags": [
      {
       "id": "T23B",
       "s": 2
      }
-    ]
+    ],
+    "emotion": "guilt"
    }
   ],
   "heart": {
-   "prompt": "You wake up able to repair anything simply by touching it. Put these in order, the first thing you would do at the top.",
+   "prompt": "Word has spread that you can repair anything just by touching it. On Saturday morning, there is a line outside your door.",
    "options": [
-    "I fix every broken thing on the street, with a sign-up sheet.",
-    "My friends' broken things come first, one by one.",
-    "I fix my old car first, then the rest of my things.",
-    "Fixes by appointment, on weekdays only. My weekends stay mine."
+    "I put the coffee on. First in line is fixed first.",
+    "Fixing until lunch, then the sign says closed, and the line groans.",
+    "My own wobbly table comes first. Then I go back to bed.",
+    "Pretending I am out, I whisper \"nobody's home\" through the slot."
    ]
   },
   "fp": {
-   "trigger": "you can suddenly fix anything by touch",
-   "setting": "a new power, your street",
-   "ask": "rank who gets your fixing first",
-   "who": "neighbors, friends, just you",
-   "stakes": "your weekends versus everyone's broken things",
+   "trigger": "word spreads that you can fix anything by touch",
+   "setting": "your front door, Saturday morning",
+   "ask": "open up for the line or keep your day",
+   "who": "a line of neighbors",
+   "stakes": "your Saturday versus everyone's broken things",
    "device": "fix-touch-power"
   },
   "mask": "looks like a superpower daydream; measures whose your free time is once people know you can help (T23)",

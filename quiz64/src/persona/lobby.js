@@ -67,7 +67,7 @@ export const LOBBY_COPY = Object.freeze({
       title: "Which rooms can Genii visit?",
       note: "Your phone, friends, money and play are always in. Tap a room to close it.",
       options: [
-        { id: "love", text: "Love and your person" },
+        { id: "love", text: "Love and dating" },
         { id: "work", text: "Work, school and ambition" },
         { id: "family", text: "Family and home" },
       ],

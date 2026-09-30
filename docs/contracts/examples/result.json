@@ -39,15 +39,15 @@
       "pole": "We",
       "end": "Stays close",
       "sign": 1,
-      "strength": 0.848,
-      "cards": 3,
-      "pips": 4,
-      "level": 4,
-      "levelWord": "Strongly",
+      "strength": 0.5,
+      "cards": 2,
+      "pips": 3,
+      "level": 3,
+      "levelWord": "Moderately",
       "flex": false,
       "unfinished": false,
-      "badge": null,
-      "line": "If there's a group plan, you started it. If there isn't, you're starting one."
+      "badge": "wild",
+      "line": "Plans get better when your people are in them, so you make sure they are."
     },
     {
       "axis": "R2",
@@ -56,15 +56,15 @@
       "pole": "Direct",
       "end": "Says it straight",
       "sign": 1,
-      "strength": 0.725,
-      "cards": 5,
-      "pips": 4,
-      "level": 4,
-      "levelWord": "Strongly",
+      "strength": 0.82,
+      "cards": 2,
+      "pips": 3,
+      "level": 3,
+      "levelWord": "Moderately",
       "flex": false,
       "unfinished": false,
       "badge": null,
-      "line": "Ask for your opinion and you'll get it, straight, no garnish."
+      "line": "You'd rather have one awkward talk than a month of hints."
     },
     {
       "axis": "R3",
@@ -73,15 +73,15 @@
       "pole": "Own",
       "end": "Starts new ones",
       "sign": -1,
-      "strength": 0.904,
-      "cards": 4,
-      "pips": 5,
-      "level": 5,
-      "levelWord": "Very strongly",
+      "strength": 1,
+      "cards": 2,
+      "pips": 3,
+      "level": 3,
+      "levelWord": "Moderately",
       "flex": false,
       "unfinished": false,
       "badge": null,
-      "line": "How it's always been done has zero pull on you. You build your own."
+      "line": "Love, home, holidays: you'd rather design it than inherit it."
     },
     {
       "axis": "L1",
@@ -90,14 +90,14 @@
       "pole": "Steady",
       "end": "Sticks with favorites",
       "sign": 1,
-      "strength": 0.891,
+      "strength": 0.784,
       "cards": 4,
-      "pips": 5,
-      "level": 5,
-      "levelWord": "Very strongly",
+      "pips": 4,
+      "level": 4,
+      "levelWord": "Strongly",
       "flex": false,
       "unfinished": false,
-      "badge": null,
+      "badge": "signature",
       "line": "Same order, same seat, same people. You found what works and you guard it."
     },
     {
@@ -107,15 +107,15 @@
       "pole": "Push",
       "end": "Goes fast",
       "sign": 1,
-      "strength": 0.945,
-      "cards": 4,
-      "pips": 5,
-      "level": 5,
-      "levelWord": "Very strongly",
+      "strength": 0.885,
+      "cards": 2,
+      "pips": 3,
+      "level": 3,
+      "levelWord": "Moderately",
       "flex": false,
       "unfinished": false,
       "badge": null,
-      "line": "Finish line spotted, brakes off. Coasting makes you itchy."
+      "line": "You want proof you're getting somewhere, and you keep going until you see it."
     },
     {
       "axis": "L3",
@@ -124,34 +124,18 @@
       "pole": "Rules",
       "end": "By the book",
       "sign": 1,
-      "strength": 1,
-      "cards": 3,
-      "pips": 5,
-      "level": 5,
-      "levelWord": "Very strongly",
+      "strength": 0.72,
+      "cards": 4,
+      "pips": 4,
+      "level": 4,
+      "levelWord": "Strongly",
       "flex": false,
       "unfinished": false,
-      "badge": "signature",
+      "badge": null,
       "line": "You read the terms and hold the line, even when it's awkward."
     }
   ],
   "findings": [
-    {
-      "axis": "L2",
-      "kind": "axis",
-      "end": "Goes fast",
-      "level": 3,
-      "tier": "Came through clearly",
-      "line": "You need proof you're getting somewhere. A finished list, a goal ticked, a door you pushed open."
-    },
-    {
-      "axis": "R3",
-      "kind": "axis",
-      "end": "Starts new ones",
-      "level": 3,
-      "tier": "Came through clearly",
-      "line": "How it's always been done is a suggestion to you. Your home, holidays and love life are custom builds."
-    },
     {
       "axis": "L1",
       "kind": "axis",
@@ -169,84 +153,96 @@
       "line": "Fair is how you keep people safe. You read the fine print and hold the line, awkward or not."
     },
     {
+      "axis": "R3",
+      "kind": "axis",
+      "end": "Starts new ones",
+      "level": 2,
+      "tier": "Genii is fairly sure",
+      "line": "How it's always been done is a suggestion to you. Your home, holidays and love life are custom builds."
+    },
+    {
+      "axis": "L2",
+      "kind": "axis",
+      "end": "Goes fast",
+      "level": 2,
+      "tier": "Genii is fairly sure",
+      "line": "You need proof you're getting somewhere. A finished list, a goal ticked, a door you pushed open."
+    },
+    {
       "axis": "R2",
       "kind": "axis",
       "end": "Says it straight",
-      "level": 3,
-      "tier": "Came through clearly",
+      "level": 2,
+      "tier": "Genii is fairly sure",
       "line": "You say the hard thing early so nobody walks into a wall later. Blunt, yes. Also care."
     },
     {
       "axis": "R1",
       "kind": "axis",
       "end": "Stays close",
-      "level": 3,
-      "tier": "Came through clearly",
+      "level": 1,
+      "tier": "Genii has a hunch",
       "line": "You love in logistics. Shared calendars, the spare key, the group order: close means together."
     }
   ],
   "tags": [
     {
-      "id": "T08A",
-      "name": "Believes in second chances",
-      "chapter": 2,
-      "strength": "strong",
-      "level": 3,
+      "id": "T03A",
+      "name": "Uses AI to think things out",
+      "chapter": 1,
+      "strength": "showing",
+      "level": 2,
       "private": false,
-      "line": "You believe people can change, and you'll leave the door open while they try.",
-      "heart": "I believe people can change, because I have."
+      "line": "When something's on your mind, an AI hears about it before your friends do.",
+      "heart": "Feeling understood counts, wherever it comes from."
     },
     {
       "id": "T16A",
       "name": "Loves a win",
       "chapter": 5,
-      "strength": "strong",
-      "level": 3,
+      "strength": "showing",
+      "level": 2,
       "private": false,
       "line": "You want wins people can see, and you keep a quiet tally of every one.",
       "heart": "Wanting to build something big isn't too much."
     },
     {
-      "id": "T20B",
-      "name": "Starts new traditions",
-      "chapter": 6,
+      "id": "T02A",
+      "name": "Replies when free",
+      "chapter": 1,
       "strength": "showing",
-      "level": 2,
+      "level": 1,
       "private": false,
-      "line": "No script for how a home should run. You're writing your own.",
-      "heart": "No script is the gift I gave myself."
+      "line": "You can go months without texting and pick up right where you left off.",
+      "heart": "Missing you doesn't need a daily check-in."
     },
     {
-      "id": "T23A",
-      "name": "First to volunteer",
-      "chapter": 7,
+      "id": "T17A",
+      "name": "Likes plans set early",
+      "chapter": 5,
       "strength": "showing",
-      "level": 2,
+      "level": 1,
       "private": false,
-      "line": "Someone says they need hands and you're already putting on your shoes.",
-      "heart": "I love the world, and I'm practicing loving me too."
+      "line": "You relax the moment something is booked, signed or decided.",
+      "heart": "Wanting solid ground is how I take care of myself."
+    },
+    {
+      "id": "T11A",
+      "name": "Wants kids one day",
+      "chapter": 3,
+      "strength": "showing",
+      "level": 1,
+      "private": true,
+      "line": "You want kids someday, and you've already thought about how to share the load.",
+      "heart": "I want it, and I want to be held up while I do it."
     }
   ],
   "coreTraits": [
     {
-      "keyword": "Forgiving",
+      "keyword": "Tech-savvy",
       "kind": "tag",
-      "source": "T08A",
-      "line": "You believe people can change, and you'll leave the door open while they try.",
-      "private": false
-    },
-    {
-      "keyword": "Plays fair",
-      "kind": "stat",
-      "source": "L3",
-      "line": "You read the terms and hold the line, even when it's awkward.",
-      "private": false
-    },
-    {
-      "keyword": "Ambitious",
-      "kind": "tag",
-      "source": "T16A",
-      "line": "You want wins people can see, and you keep a quiet tally of every one.",
+      "source": "T03A",
+      "line": "When something's on your mind, an AI hears about it before your friends do.",
       "private": false
     },
     {
@@ -257,64 +253,78 @@
       "private": false
     },
     {
-      "keyword": "Creative",
+      "keyword": "Ambitious",
       "kind": "tag",
-      "source": "T20B",
-      "line": "No script for how a home should run. You're writing your own.",
+      "source": "T16A",
+      "line": "You want wins people can see, and you keep a quiet tally of every one.",
       "private": false
     },
     {
-      "keyword": "Loyal",
+      "keyword": "Plays fair",
       "kind": "stat",
-      "source": "R1",
-      "line": "If there's a group plan, you started it. If there isn't, you're starting one.",
+      "source": "L3",
+      "line": "You read the terms and hold the line, even when it's awkward.",
+      "private": false
+    },
+    {
+      "keyword": "Easygoing",
+      "kind": "tag",
+      "source": "T02A",
+      "line": "You can go months without texting and pick up right where you left off.",
+      "private": false
+    },
+    {
+      "keyword": "One of a kind",
+      "kind": "stat",
+      "source": "R3",
+      "line": "Love, home, holidays: you'd rather design it than inherit it.",
       "private": false
     }
   ],
   "rooms": [
     {
-      "chapter": 5,
-      "room": "Work and school",
-      "kind": "axis",
-      "axis": "L2",
-      "tag": null,
-      "end": "Goes fast",
-      "level": 2,
-      "differs": false,
-      "line": "You want the win on the record: the credit, the next step, the bigger title."
-    },
-    {
       "chapter": 6,
       "room": "Family and home",
-      "kind": "axis",
-      "axis": "R3",
-      "tag": null,
-      "end": "Starts new ones",
-      "level": 3,
+      "kind": "tag",
+      "axis": null,
+      "tag": "T20B",
+      "end": null,
+      "level": 1,
       "differs": false,
-      "line": "You love your family and you run your own life. They've stopped arguing about it."
+      "line": "No script for how a home should run. You're writing your own."
     },
     {
       "chapter": 2,
       "room": "Friends",
-      "kind": "axis",
-      "axis": "R2",
-      "tag": null,
-      "end": "Says it straight",
+      "kind": "tag",
+      "axis": null,
+      "tag": "T06A",
+      "end": null,
       "level": 2,
       "differs": false,
-      "line": "Bad haircut, bad ex, bad idea: you're the friend who says so, and they come back for it."
+      "line": "One ask from a friend and your own rules quietly step aside."
     },
     {
       "chapter": 4,
       "room": "Spending and saving",
+      "kind": "axis",
+      "axis": "L1",
+      "tag": null,
+      "end": "Sticks with favorites",
+      "level": 2,
+      "differs": false,
+      "line": "Savings first, fun money second. Your cushion is how you sleep at night."
+    },
+    {
+      "chapter": 7,
+      "room": "Free time",
       "kind": "tag",
       "axis": null,
-      "tag": "T12A",
+      "tag": "T25A",
       "end": null,
       "level": 1,
       "differs": false,
-      "line": "Love is love and a tab is a tab, and you'd rather owe nobody."
+      "line": "You've read the rulebook, and fair to you means the same rules for everyone."
     }
   ],
   "insight": {
@@ -327,21 +337,56 @@
   "stings": [
     "You'd go to war for your people. Letting them fight for you is the part you skip.",
     "You hit the goal and start the next list before you celebrate.",
-    "You'd give a second chance to someone who hasn't finished asking."
+    "An AI may have heard more about your feelings than your friends have."
   ],
   "calls": {
     "called": 8,
-    "exact": 7,
+    "exact": 8,
     "rows": [
       {
-        "card": "S-129",
+        "card": "S-160",
+        "axis": "L3",
+        "status": "hit",
+        "near": false,
+        "end": "By the book"
+      },
+      {
+        "card": "S-120",
+        "axis": "R1",
+        "status": "hit",
+        "near": false,
+        "end": "Stays close"
+      },
+      {
+        "card": "S-130",
+        "axis": "L1",
+        "status": "hit",
+        "near": false,
+        "end": "Sticks with favorites"
+      },
+      {
+        "card": "S-126",
+        "axis": "R2",
+        "status": "hit",
+        "near": false,
+        "end": "Says it straight"
+      },
+      {
+        "card": "S-134",
+        "axis": "L2",
+        "status": "hit",
+        "near": false,
+        "end": "Goes fast"
+      },
+      {
+        "card": "S-111",
         "axis": "R3",
         "status": "hit",
         "near": false,
         "end": "Starts new ones"
       },
       {
-        "card": "S-120",
+        "card": "S-121",
         "axis": "R1",
         "status": "hit",
         "near": false,
@@ -353,41 +398,6 @@
         "status": "hit",
         "near": false,
         "end": "Goes fast"
-      },
-      {
-        "card": "S-126",
-        "axis": "R2",
-        "status": "hit",
-        "near": false,
-        "end": "Says it straight"
-      },
-      {
-        "card": "S-130",
-        "axis": "L1",
-        "status": "miss",
-        "near": true,
-        "end": null
-      },
-      {
-        "card": "S-121",
-        "axis": "R1",
-        "status": "hit",
-        "near": false,
-        "end": "Stays close"
-      },
-      {
-        "card": "S-111",
-        "axis": "R3",
-        "status": "hit",
-        "near": false,
-        "end": "Starts new ones"
-      },
-      {
-        "card": "S-160",
-        "axis": "L3",
-        "status": "hit",
-        "near": false,
-        "end": "By the book"
       }
     ]
   },
@@ -405,27 +415,17 @@
       }
     ],
     "keywords": [
-      "Forgiving",
-      "Plays fair",
-      "Ambitious",
+      "Tech-savvy",
       "Down-to-earth",
-      "Creative",
-      "Loyal"
+      "Ambitious",
+      "Plays fair",
+      "Easygoing",
+      "One of a kind"
     ],
     "tags": [
       {
-        "name": "Forgiving",
-        "line": "You believe people can change, and you'll leave the door open while they try.",
-        "kind": "tag"
-      },
-      {
-        "name": "Plays fair",
-        "line": "You read the terms and hold the line, even when it's awkward.",
-        "kind": "stat"
-      },
-      {
-        "name": "Ambitious",
-        "line": "You want wins people can see, and you keep a quiet tally of every one.",
+        "name": "Tech-savvy",
+        "line": "When something's on your mind, an AI hears about it before your friends do.",
         "kind": "tag"
       },
       {
@@ -434,13 +434,23 @@
         "kind": "stat"
       },
       {
-        "name": "Creative",
-        "line": "No script for how a home should run. You're writing your own.",
+        "name": "Ambitious",
+        "line": "You want wins people can see, and you keep a quiet tally of every one.",
         "kind": "tag"
       },
       {
-        "name": "Loyal",
-        "line": "If there's a group plan, you started it. If there isn't, you're starting one.",
+        "name": "Plays fair",
+        "line": "You read the terms and hold the line, even when it's awkward.",
+        "kind": "stat"
+      },
+      {
+        "name": "Easygoing",
+        "line": "You can go months without texting and pick up right where you left off.",
+        "kind": "tag"
+      },
+      {
+        "name": "One of a kind",
+        "line": "Love, home, holidays: you'd rather design it than inherit it.",
         "kind": "stat"
       }
     ],
@@ -448,12 +458,12 @@
     "url": "mirrormii.ai"
   },
   "counts": {
-    "run": 138,
-    "answered": 39,
+    "run": 136,
+    "answered": 37,
     "skipped": 1,
-    "notMyLife": 0,
+    "notMyLife": 2,
     "noRecent": 0,
-    "unanswered": 98,
+    "unanswered": 96,
     "rushed": 2,
     "circumstance": 0
   },

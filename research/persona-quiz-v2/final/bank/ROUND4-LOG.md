@@ -180,3 +180,237 @@ Not in BATCH-01, done to keep each card whole (no new evidence):
 - `fp` and `mask` rewritten for the new situations; devices `quiet-room-booking` and `ex-parent-text` are new, `four-apologies` kept.
 
 Bank mix after: absurd 58 (33%), unusual 77 (44%), everyday 39 (22%). Checker: 0 errors, 29 warnings (20 before, plus 9 length warnings on the approved text: C5-141 options 1 and 2 at 14 and 15 words, its Heart prompt at 34 words and all four Heart options at 13 to 15 words; C1-126 Heart options 2 and 3 at 15 and 16 words). Kit tests 45 of 45. Kit sim (`node sim.mjs`): axis recovery 94.8% (94.9% before), sealed exact 67.5% (same), 50 of 50 tags fire, every target passes. App tests 155 of 156 (the known `article-accuracy` never-say failure, LAUNCH-SPEC section 10 decision 12). Contracts 43 of 43; question pack regenerated.
+
+## Batch 02 (delegated pass, 2026-09-30)
+
+Package Z1. Jerry delegated the [BATCH-02](../../../../docs/review/BATCH-02.md) verdicts ("One more time, pass on all these new things we built, as well as these cards, then implement it fully to spec"). Applied as proposed, Make it fun exactly as in BATCH-02; Heart to heart and friend text written for each applied card (calmer, full sentences, same meaning, same order). Every changed card was re-read and re-locked with `lock-evidence.mjs --confirm`.
+
+| Item | Card | Change | World and weight | Evidence changed |
+|---|---|---|---|---|
+| A1 | C7-147 | the fix-by-touch power, now a Saturday line outside your door; rank to scenario | absurd, 0.35 | no (type and grade only: believe to would) |
+| A2 | X-L1-40 | training wheels replaced by a parachute sewn into every jacket; device `parachute-jackets` | absurd, 0.35 | no |
+| A3 | C6-110 | lost-things mailbox replaced by the family vote for Head of Family Problems; device `family-problems-vote` | absurd to unusual, 0.35 to 0.55 | no |
+| A4 | C5-51 | carrier owl replaced by the gold-star sticker chart; this or that to scenario; device `gold-star-chart` | absurd to unusual, 0.35 to 0.55 | **re-derived** as BATCH-02 lists: T16A:2, T16B:2, T16A:1, T16B:1 (friend side b follows option 1 to T16B:2) |
+| A5 | C4-142 | untouchable money replaced by the savings account nickname; device `savings-nickname` | everyday, 0.80 | no |
+| B1 | C3-123 | progress bar replaced by the MOVING IN loading bar | absurd, 0.35 | no |
+| B2 | C1-1 | the gate agent says "figure it out"; raffle runner, charmer, locals advocate | unusual, 0.45 | no |
+| B3 | C6-162 | last slice replaced by the great leftover divide; device `leftover-divide` | everyday, 0.80 | no |
+| B4 | C4-82 | lateness fine replaced by the even pizza split; device `pizza-split` | unusual, 0.45 | no |
+| B5 | C6-125 | kept as is | | |
+| B6 | C7-143 | tightened; walking calendar and gut answers rewritten | absurd, 0.35 | no |
+
+**"Your partner" (item C).** "Your person" became "your partner" on 25 cards in both voices and friend texts ("my partner", "{their} partner", "{name}'s partner", "their partner" for a friend's partner). Text threads name the sender in the prompt: Robin (C3-101), Alex (C3-161), Jordan (C4-126). Fingerprints and masks follow; `fp.device` of C3-101 now reads "solo club joined by your partner". Chapter 3 is "Love and dating", intro "Partner, crush or situationship: I just want the gossip." (`cards.json`). No evidence moved. `check-bank.mjs` now fails "your person" in both voices, friend texts and thread senders.
+
+**Rounds.** C5-51 left round `ch5-r1` and C7-142's cut emptied round `C7-r110`; C5-1 and C7-161 each played as a one-card round, so their round ids were removed (they now play as single quick picks, as before).
+
+Bank after: 172 cards (136 chapter: 21, 22, 18, 20, 18, 18, 19; 12 extras; 24 sealed). Worlds: absurd 54, unusual 79, everyday 39. Checker: 0 errors, 31 warnings. Tags short: 13 (T22B joined, 3 cards).
+
+### Cut (item D), kept here so the cut is reversible
+
+Both are removed from the bank and the evidence lock. To restore one, paste its JSON back into its chapter file at the position given, restore its round id on the partner card, merge, re-lock and rerun the change flow (LAUNCH-SPEC section 5).
+
+**C1-161** (others, SQ-T07-1, absurd), was at `bank/ch1.json`, after C1-127 (index 15). Why: a mirror judging looks clashes with the World Mirror; same premise as C6-91 and C2-120.
+
+```json
+{
+ "id": "C1-161",
+ "type": "others",
+ "chapter": 1,
+ "sq": "SQ-T07-1",
+ "world": "absurd",
+ "prompt": "Your friend's flea-market mirror answers \"How do I look?\" out loud. On date night it said \"Not that shirt,\" and their date heard. They're keeping the mirror. Your take?",
+ "options": [
+  {
+   "t": "Keep it. I'd rather hear the truth, even with company.",
+   "axes": {
+    "R2": 2
+   },
+   "tags": [
+    {
+     "id": "T07A",
+     "s": 2
+    }
+   ],
+   "emotion": "pride"
+  },
+  {
+   "t": "Fair. I'd say it too, just not in front of the date.",
+   "axes": {
+    "R2": 1
+   },
+   "tags": [
+    {
+     "id": "T07A",
+     "s": 1
+    }
+   ],
+   "emotion": "delight"
+  },
+  {
+   "t": "Poor friend, in front of their date. Softer next time.",
+   "axes": {
+    "R2": -1
+   },
+   "tags": [
+    {
+     "id": "T07B",
+     "s": 1
+    }
+   ],
+   "emotion": "cringe"
+  },
+  {
+   "t": "I'd want it to say one nice thing first.",
+   "axes": {
+    "R2": -2
+   },
+   "tags": [
+    {
+     "id": "T07B",
+     "s": 2
+    }
+   ]
+  }
+ ],
+ "heart": {
+  "prompt": "Your friend's flea-market mirror answers \"How do I look?\" out loud. On date night it said \"Not that shirt,\" and their date heard. They are keeping it. Your view?",
+  "options": [
+   "They should keep it. The truth is worth it, even with company.",
+   "I would say it too, just not in front of the date.",
+   "In front of their date? That needed to be softer.",
+   "I would want a compliment first, then the truth."
+  ]
+ },
+ "fp": {
+  "trigger": "a friend's mirror answers honestly, out loud",
+  "setting": "a flea-market mirror at home",
+  "ask": "cheer the honest mirror or want it softer",
+  "who": "a friend and their date",
+  "stakes": "the truth versus how it lands",
+  "device": "honest-mirror"
+ },
+ "mask": "looks like a flea-market oddity; measures your own line on raw versus wrapped truth (T07, R2)",
+ "ae": [
+  "C",
+  "D"
+ ],
+ "privacy": "normal",
+ "friend": {
+  "prompt": "A friend's flea-market mirror answers \"how do I look?\" out loud, honestly, even in front of a date. {name}'s first thought?",
+  "a": {
+   "t": "\"Keep it. The truth is worth it, even with company.\"",
+   "axes": {
+    "R2": 2
+   },
+   "tags": [
+    {
+     "id": "T07A",
+     "s": 2
+    }
+   ]
+  },
+  "b": {
+   "t": "\"I'd want it to say one nice thing first.\"",
+   "axes": {
+    "R2": -2
+   },
+   "tags": [
+    {
+     "id": "T07B",
+     "s": 2
+    }
+   ]
+  }
+ }
+}
+```
+
+**C7-142** (this_or_that, SQ-T22-1, absurd), was at `bank/ch7.json`, after C7-160 (index 4), round `C7-r110` with C7-161. Why: bland poll; same sub-question as C7-140 ("the usual?").
+
+```json
+{
+ "id": "C7-142",
+ "type": "this_or_that",
+ "chapter": 7,
+ "round": "C7-r110",
+ "prompt": "Pick one travel rule for life: every vacation goes to the town you already love, or wherever a spinning globe lands.",
+ "options": [
+  {
+   "t": "The town I love. I already know which café.",
+   "axes": {
+    "L1": 1
+   },
+   "tags": [
+    {
+     "id": "T22B",
+     "s": 2
+    }
+   ],
+   "emotion": "relief"
+  },
+  {
+   "t": "Spin the globe, even if it lands somewhere boring.",
+   "axes": {
+    "L1": -1
+   },
+   "tags": [
+    {
+     "id": "T22A",
+     "s": 2
+    }
+   ],
+   "emotion": "delight"
+  }
+ ],
+ "heart": {
+  "prompt": "You pick one travel rule for life: every vacation goes to the one town you already love, or wherever a spinning globe lands.",
+  "options": [
+   "The town I love wins. I already know my café there.",
+   "I spin the globe, even if it lands somewhere dull."
+  ]
+ },
+ "fp": {
+  "trigger": "a deal fixes where every vacation goes",
+  "setting": "every vacation, forever",
+  "ask": "the town you love or a random spin",
+  "who": "just you",
+  "stakes": "a sure favorite versus endless new places",
+  "device": "vacation-globe"
+ },
+ "mask": "looks like a travel riddle; measures the place you know you love versus the place nobody has tried (T22, L1)",
+ "ae": [
+  "A",
+  "D"
+ ],
+ "privacy": "normal",
+ "sq": "SQ-T22-1",
+ "world": "absurd",
+ "friend": {
+  "prompt": "One travel rule for life: every vacation goes to one beloved town, or wherever a spinning globe lands. Which one is {name}?",
+  "a": {
+   "t": "The town {they} love. \"I already know which café.\"",
+   "axes": {
+    "L1": 1
+   },
+   "tags": [
+    {
+     "id": "T22B",
+     "s": 2
+    }
+   ]
+  },
+  "b": {
+   "t": "The globe. \"Even if it lands on a parking lot.\"",
+   "axes": {
+    "L1": -1
+   },
+   "tags": [
+    {
+     "id": "T22A",
+     "s": 2
+    }
+   ]
+  }
+ }
+}
+```

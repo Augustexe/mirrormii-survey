@@ -154,7 +154,7 @@
     ],
     "cardLevels": {
       "everyday": "Friends, money, school and work, family, play. Any relationship.",
-      "love": "About the owner's person or love life (a crush, partner, date or ex). Partner, crush and bestie. Cards: C1-120, C1-127, C1-13, C3-80, C3-91, C3-101, C3-81, C3-120, C3-121, C3-41, C3-126, C3-5, C3-123, C3-127, C4-126, C4-53.",
+      "love": "About the owner's partner or love life (a crush, partner, date or ex). Partner, crush and bestie. Cards: C1-120, C1-127, C1-13, C3-80, C3-91, C3-101, C3-81, C3-120, C3-121, C3-41, C3-126, C3-5, C3-123, C3-127, C4-126, C4-53.",
       "couple": "Sharing a phone or a home with a partner. Partner and bestie only. Cards: C3-124.",
       "never": "Privacy intimate, and every card without a friend field (feeling, receipts, rank, sealed). Never in any level."
     },
@@ -855,7 +855,6 @@
       "C1-125",
       "C1-126",
       "C1-127",
-      "C1-161",
       "C1-162",
       "C1-90",
       "C1-1",
@@ -905,7 +904,6 @@
       "C6-82",
       "C7-112",
       "C7-121",
-      "C7-142",
       "C7-161",
       "C7-41",
       "C7-135",
@@ -1178,24 +1176,6 @@
           "T20"
         ],
         "level": "love",
-        "answerMap": [
-          "a",
-          "a",
-          "b",
-          "b"
-        ]
-      },
-      "C1-161": {
-        "chapter": 1,
-        "type": "others",
-        "sally": [],
-        "axes": [
-          "R2"
-        ],
-        "pairs": [
-          "T07"
-        ],
-        "level": "everyday",
         "answerMap": [
           "a",
           "a",
@@ -2283,7 +2263,7 @@
       },
       "C5-51": {
         "chapter": 5,
-        "type": "this_or_that",
+        "type": "scenario",
         "sally": [],
         "axes": [],
         "pairs": [
@@ -2291,6 +2271,8 @@
         ],
         "level": "everyday",
         "answerMap": [
+          "a",
+          "b",
           "a",
           "b"
         ]
@@ -2739,22 +2721,6 @@
           "b",
           "b",
           "a"
-        ]
-      },
-      "C7-142": {
-        "chapter": 7,
-        "type": "this_or_that",
-        "sally": [],
-        "axes": [
-          "L1"
-        ],
-        "pairs": [
-          "T22"
-        ],
-        "level": "everyday",
-        "answerMap": [
-          "a",
-          "b"
         ]
       },
       "C7-161": {

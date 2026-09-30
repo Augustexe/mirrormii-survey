@@ -3,7 +3,7 @@
     "id": "C6-140",
     "type": "this_or_that",
     "chapter": 6,
-    "prompt": "You wake up as a goldfish, for one year. Your parent and your person both show up to take your bowl home. You pick.",
+    "prompt": "You wake up as a goldfish, for one year. Your parent and your partner both show up to take your bowl home. You pick.",
     "options": [
       {
         "t": "Back to my parent. They know which little castle I like.",
@@ -18,7 +18,7 @@
         ]
       },
       {
-        "t": "My person. The home we're building is my home now.",
+        "t": "My partner. The home we're building is my home now.",
         "axes": {
           "R3": -2
         },
@@ -31,17 +31,17 @@
       }
     ],
     "heart": {
-      "prompt": "You wake up as a goldfish for one year. Your parent and your person both come to take your bowl home, and you choose.",
+      "prompt": "You wake up as a goldfish for one year. Your parent and your partner both come to take your bowl home, and you choose.",
       "options": [
         "I go with my parent. They know which little castle I like.",
-        "My person takes me. I belong with the family I am building."
+        "My partner takes me. I belong with the family I am building."
       ]
     },
     "fp": {
       "trigger": "you become a goldfish and two homes want your bowl",
       "setting": "a year as a goldfish",
       "ask": "whose home you go to first",
-      "who": "your parent and your person",
+      "who": "your parent and your partner",
       "stakes": "which bond comes first",
       "device": "goldfish-year"
     },
@@ -60,7 +60,7 @@
     "chapter": 6,
     "sq": "SQ-R3-2",
     "world": "absurd",
-    "prompt": "A board game turns up on your doorstep: your life with your person, square by square. Move in, ring, wedding, house, in order. Or a blank board.",
+    "prompt": "A board game turns up on your doorstep: your life with your partner, square by square. Move in, ring, wedding, house, in order. Or a blank board.",
     "options": [
       {
         "t": "Play it as printed. Keys, ring, wedding, house.",
@@ -90,7 +90,7 @@
       }
     ],
     "heart": {
-      "prompt": "A board game turns up on your doorstep: your life with your person, square by square, in order: move in, ring, wedding, house. There is also a blank board.",
+      "prompt": "A board game turns up on your doorstep: your life with your partner, square by square, in order: move in, ring, wedding, house. There is also a blank board.",
       "options": [
         "Printed squares suit us. We play it in order.",
         "We take the blank board and draw every square ourselves."
@@ -100,7 +100,7 @@
       "trigger": "a board game lays out a couple's milestones",
       "setting": "Genii's board game of your future",
       "ask": "follow the printed path or draw your own",
-      "who": "you and your person",
+      "who": "you and your partner",
       "stakes": "the classic script versus your own design",
       "device": "life-board-game"
     },
@@ -110,7 +110,7 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "{name} and {their} person get a board game of their future, in order: move in, ring, wedding, house. Or a blank board. Which one is {name}?",
+      "prompt": "{name} and {their} partner get a board game of their future, in order: move in, ring, wedding, house. Or a blank board. Which one is {name}?",
       "a": {
         "t": "Plays it as printed. Keys, ring, wedding, house.",
         "axes": {
@@ -124,7 +124,7 @@
         ]
       },
       "b": {
-        "t": "Blank board. Draws every square with {their} person.",
+        "t": "Blank board. Draws every square with {their} partner.",
         "axes": {
           "R3": -2
         },
@@ -375,7 +375,7 @@
     "chapter": 6,
     "sq": "SQ-T21-2",
     "world": "absurd",
-    "prompt": "Your town made your friend's anniversary an official holiday: parade, fireworks, day off. Your friend and their person plan to spend it alone, blinds down. Your take?",
+    "prompt": "Your town made your friend's anniversary an official holiday: parade, fireworks, day off. Your friend and their partner plan to spend it alone, blinds down. Your take?",
     "options": [
       {
         "t": "The whole town wants in. Open the blinds and wave.",
@@ -421,7 +421,7 @@
       }
     ],
     "heart": {
-      "prompt": "Your town made your friend's anniversary a holiday, with a parade, fireworks and a day off. Your friend and their person will spend it alone, blinds down. Your take?",
+      "prompt": "Your town made your friend's anniversary a holiday, with a parade, fireworks and a day off. Your friend and their partner will spend it alone, blinds down. Your take?",
       "options": [
         "The whole town wants to celebrate. They should open the blinds.",
         "That day belongs to the two of them, and they are right.",
@@ -433,7 +433,7 @@
       "trigger": "a friend's anniversary becomes a town holiday",
       "setting": "a parade outside drawn blinds",
       "ask": "everyone or just us",
-      "who": "a friend and their person",
+      "who": "a friend and their partner",
       "stakes": "a public celebration versus a private day",
       "device": "anniversary-holiday"
     },
@@ -477,11 +477,11 @@
     "type": "scenario",
     "chapter": 6,
     "sq": "SQ-T18-1",
-    "world": "absurd",
-    "prompt": "Anything your family loses can now turn up in your mailbox or your sibling's. Everyone picks yours: 23 lost things, 23 calls this week.",
+    "world": "unusual",
+    "prompt": "Family vote: you're now Head of Family Problems. Nine to zero. Nobody told you there was a vote.",
     "options": [
       {
-        "t": "Return all 23 by Sunday. This is my calling now.",
+        "t": "Accept. Lanyard ordered. Send me your problems.",
         "tags": [
           {
             "id": "T18A",
@@ -491,7 +491,7 @@
         "emotion": "pride"
       },
       {
-        "t": "Return every one, and bring it up at dinner for a year.",
+        "t": "Fix it all. Then sign every holiday card \"Head of Problems.\"",
         "tags": [
           {
             "id": "T18A",
@@ -501,7 +501,7 @@
         "emotion": "resentment"
       },
       {
-        "t": "Forward half to my sibling. Their mailbox needs practice.",
+        "t": "Demand a recount. Half the problems go to my sibling.",
         "tags": [
           {
             "id": "T18B",
@@ -511,7 +511,7 @@
         "emotion": "irritation"
       },
       {
-        "t": "Mailbox hours: Sundays, two to four. Lost keys can wait.",
+        "t": "Fine. Office hours are Sundays, two to four. No walk-ins.",
         "tags": [
           {
             "id": "T18B",
@@ -522,23 +522,23 @@
       }
     ],
     "heart": {
-      "prompt": "Anything your family loses can now turn up in your mailbox or your sibling's, and everyone picks yours: 23 lost things and 23 calls this week.",
+      "prompt": "Your family held a vote and made you Head of Family Problems, nine to zero. Nobody told you there was a vote.",
       "options": [
-        "I return all 23 by Sunday. This feels like my job now.",
-        "I return every one, then mention it at dinners for a year.",
-        "I forward half the lost things to my sibling's mailbox.",
-        "Sundays from two to four are mailbox hours. Lost keys can wait."
+        "I accept, order the lanyard, and let the problems come to me.",
+        "Everything gets fixed, and every holiday card is signed Head of Problems.",
+        "A recount, please. Half of the problems belong to my sibling.",
+        "Fine. Office hours are Sundays from two to four, with no walk-ins."
       ]
     },
     "fp": {
-      "trigger": "everything the family loses arrives in your mailbox",
-      "setting": "your mailbox, week one",
-      "ask": "take every call or share the load",
-      "who": "relatives and a sibling",
+      "trigger": "the family votes you Head of Family Problems",
+      "setting": "a family vote you missed",
+      "ask": "take every problem or set limits",
+      "who": "the whole family and a sibling",
       "stakes": "being the family's go-to versus your limits",
-      "device": "lost-things-mailbox"
+      "device": "family-problems-vote"
     },
-    "mask": "looks like a magic chore; measures whether you are the family's first call or help with limits (T18)",
+    "mask": "looks like a family joke; measures whether you are the family's first call or help with limits (T18)",
     "ae": [
       "A",
       "B",
@@ -546,9 +546,9 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "Anything {name}'s family loses can turn up in {their} mailbox or a sibling's, and everyone picks {name}'s: 23 calls in a week. What does {name} do?",
+      "prompt": "{name}'s family voted {them} Head of Family Problems, nine to zero, without telling {them}. What does {name} do?",
       "a": {
-        "t": "Returns all 23 by Sunday: \"This is my calling now.\"",
+        "t": "Accepts. Lanyard ordered: \"Send me your problems.\"",
         "tags": [
           {
             "id": "T18A",
@@ -557,7 +557,7 @@
         ]
       },
       "b": {
-        "t": "Forwards half to the sibling. Their mailbox needs practice.",
+        "t": "Demands a recount. Half the problems go to the sibling.",
         "tags": [
           {
             "id": "T18B",
@@ -791,7 +791,7 @@
     "id": "C6-143",
     "type": "scenario",
     "chapter": 6,
-    "prompt": "The local paper wants your love story on its front page Sunday, photos included. Your person already said yes. They need your answer tonight.",
+    "prompt": "The local paper wants your love story on its front page Sunday, photos included. Your partner already said yes. They need your answer tonight.",
     "options": [
       {
         "t": "Front page, big photo. Buy me twenty copies.",
@@ -837,7 +837,7 @@
       }
     ],
     "heart": {
-      "prompt": "The local paper wants your love story on its front page on Sunday, with photos. Your person has already said yes, and the paper needs your answer tonight.",
+      "prompt": "The local paper wants your love story on its front page on Sunday, with photos. Your partner has already said yes, and the paper needs your answer tonight.",
       "options": [
         "Front page and a big photo. I will buy twenty copies.",
         "Yes, and I will mail a copy to both families.",
@@ -849,7 +849,7 @@
       "trigger": "a newspaper wants your love story",
       "setting": "the front page, photos included",
       "ask": "go public or keep it yours",
-      "who": "you and your person",
+      "who": "you and your partner",
       "stakes": "a public yes versus a private love",
       "device": "front-page-love"
     },
@@ -878,7 +878,7 @@
         "t": "Exposed. The whole town?"
       },
       {
-        "t": "Worried what my person hoped I'd say."
+        "t": "Worried what my partner hoped I'd say."
       },
       {
         "t": "Proud, honestly."
@@ -892,7 +892,7 @@
       "options": [
         "I feel giddy, against my will.",
         "I feel exposed. The whole town would read it.",
-        "I worry about what my person hoped I would say.",
+        "I worry about what my partner hoped I would say.",
         "Quietly, I feel proud.",
         "Strangely, I feel calm."
       ]
@@ -901,7 +901,7 @@
       "trigger": "a newspaper asks for your love story",
       "setting": "right after the front-page card",
       "ask": "first feeling",
-      "who": "you and your person",
+      "who": "you and your partner",
       "stakes": "none, feeling only",
       "device": "front-page-love"
     },
@@ -1251,28 +1251,28 @@
     "chapter": 6,
     "sq": "SQ-L3-2",
     "world": "everyday",
-    "prompt": "One slice of the family's famous pie left, five relatives eyeing it. Think of the last time. Who got it?",
+    "prompt": "The great leftover divide: the last time your family split up the holiday leftovers, how did it go?",
     "options": [
       {
-        "t": "Strict order: whoever hadn't had a slice yet. Me included.",
+        "t": "Same containers per household. I counted.",
         "axes": {
           "L3": 2
         }
       },
       {
-        "t": "Rock, paper, scissors decided it. Winner eats.",
+        "t": "First come, first served. I brought my own containers.",
         "axes": {
           "L3": 1
         }
       },
       {
-        "t": "Gave it to whoever drove the farthest to get there.",
+        "t": "Packed extra for the cousin who just moved out.",
         "axes": {
           "L3": -1
         }
       },
       {
-        "t": "Gave it to whoever had the roughest year.",
+        "t": "Sent the rest home with whoever had the roughest year.",
         "axes": {
           "L3": -2
         },
@@ -1280,23 +1280,23 @@
       }
     ],
     "heart": {
-      "prompt": "The most recent time your family was down to the last slice of a favorite pie, with several relatives wanting it, who got it?",
+      "prompt": "When your family last divided up the holiday leftovers, how did it go?",
       "options": [
-        "Strict order: whoever had not had a slice yet, me included.",
-        "We played rock, paper, scissors, and the winner ate it.",
-        "I gave it to whoever had driven the farthest to get there.",
-        "I gave it to whoever was having the hardest year."
+        "Every household got the same number of containers. I counted.",
+        "First come, first served, and I brought my own containers.",
+        "I packed extra for the cousin who had just moved out.",
+        "The rest went home with whoever had the hardest year."
       ]
     },
     "fp": {
-      "trigger": "one last slice and five relatives",
-      "setting": "a family gathering, the famous pie",
-      "ask": "who gets the last slice",
+      "trigger": "the holiday leftovers get divided",
+      "setting": "a family holiday, the kitchen after",
+      "ask": "the same share for all or more for who needs it",
       "who": "relatives",
       "stakes": "the same rule for all versus the one who needs it",
-      "device": "last-slice"
+      "device": "leftover-divide"
     },
-    "mask": "looks like a family logistics story; measures fair as the same deal for everyone versus fair as what each person needs (L3), from a thing actually done",
+    "mask": "looks like a family food story; measures fair as the same deal for everyone versus fair as what each person needs (L3), from a thing actually done",
     "ae": [
       "A",
       "B",
@@ -1304,15 +1304,15 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "The last time {name}'s family was down to one slice of the famous pie, who got it?",
+      "prompt": "The last time {name}'s family split up the holiday leftovers, how did it go?",
       "a": {
-        "t": "Strict order: whoever hadn't had a slice yet.",
+        "t": "Same containers per household, counted.",
         "axes": {
           "L3": 2
         }
       },
       "b": {
-        "t": "Gave it to whoever had the roughest year.",
+        "t": "Sent the rest home with whoever had the roughest year.",
         "axes": {
           "L3": -2
         }
@@ -1473,7 +1473,7 @@
       "trigger": "starting to see someone new",
       "setting": "friends, family and online",
       "ask": "announce it or let people notice",
-      "who": "your new person and everyone else",
+      "who": "your new partner and everyone else",
       "stakes": "going public versus keeping it yours",
       "device": "relationship-reveal"
     },

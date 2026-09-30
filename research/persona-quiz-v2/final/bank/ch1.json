@@ -206,7 +206,7 @@
   "prompt": "Calling it: at least one person can see your live location right now.",
   "options": [
    {
-    "t": "Three friends and my person. Wave hi.",
+    "t": "Three friends and my partner. Wave hi.",
     "axes": {
      "R1": 1
     },
@@ -237,7 +237,7 @@
     ]
    },
    {
-    "t": "Nobody gets my location. Not even my person, and they've asked.",
+    "t": "Nobody gets my location. Not even my partner, and they've asked.",
     "axes": {
      "R1": -1
     },
@@ -253,17 +253,17 @@
   "heart": {
    "prompt": "Can at least one person see your live location right now?",
    "options": [
-    "Yes. Three friends and my person can see it.",
+    "Yes. Three friends and my partner can see it.",
     "Just one friend can, and nobody else.",
     "I turned it on once and had it off by dinner.",
-    "No. Nobody sees my location, not even my person, who has asked."
+    "No. Nobody sees my location, not even my partner, who has asked."
    ]
   },
   "fp": {
    "trigger": "sharing your live location",
    "setting": "your phone's map, always on",
    "ask": "who gets to see where you are",
-   "who": "friends and your person",
+   "who": "friends and your partner",
    "stakes": "closeness versus a private life",
    "device": "live-location-sharing"
   },
@@ -276,7 +276,7 @@
   "friend": {
    "prompt": "Genii bets at least one person can see {name}'s live location right now. Guilty or not?",
    "a": {
-    "t": "Three friends and {their} person. Wave hi.",
+    "t": "Three friends and {their} partner. Wave hi.",
     "axes": {
      "R1": 1
     },
@@ -288,7 +288,7 @@
     ]
    },
    "b": {
-    "t": "Nobody gets {their} location. Not even {their} person.",
+    "t": "Nobody gets {their} location. Not even {their} partner.",
     "axes": {
      "R1": -1
     },
@@ -1320,123 +1320,12 @@
   }
  },
  {
-  "id": "C1-161",
-  "type": "others",
-  "chapter": 1,
-  "sq": "SQ-T07-1",
-  "world": "absurd",
-  "prompt": "Your friend's flea-market mirror answers \"How do I look?\" out loud. On date night it said \"Not that shirt,\" and their date heard. They're keeping the mirror. Your take?",
-  "options": [
-   {
-    "t": "Keep it. I'd rather hear the truth, even with company.",
-    "axes": {
-     "R2": 2
-    },
-    "tags": [
-     {
-      "id": "T07A",
-      "s": 2
-     }
-    ],
-    "emotion": "pride"
-   },
-   {
-    "t": "Fair. I'd say it too, just not in front of the date.",
-    "axes": {
-     "R2": 1
-    },
-    "tags": [
-     {
-      "id": "T07A",
-      "s": 1
-     }
-    ],
-    "emotion": "delight"
-   },
-   {
-    "t": "Poor friend, in front of their date. Softer next time.",
-    "axes": {
-     "R2": -1
-    },
-    "tags": [
-     {
-      "id": "T07B",
-      "s": 1
-     }
-    ],
-    "emotion": "cringe"
-   },
-   {
-    "t": "I'd want it to say one nice thing first.",
-    "axes": {
-     "R2": -2
-    },
-    "tags": [
-     {
-      "id": "T07B",
-      "s": 2
-     }
-    ]
-   }
-  ],
-  "heart": {
-   "prompt": "Your friend's flea-market mirror answers \"How do I look?\" out loud. On date night it said \"Not that shirt,\" and their date heard. They are keeping it. Your view?",
-   "options": [
-    "They should keep it. The truth is worth it, even with company.",
-    "I would say it too, just not in front of the date.",
-    "In front of their date? That needed to be softer.",
-    "I would want a compliment first, then the truth."
-   ]
-  },
-  "fp": {
-   "trigger": "a friend's mirror answers honestly, out loud",
-   "setting": "a flea-market mirror at home",
-   "ask": "cheer the honest mirror or want it softer",
-   "who": "a friend and their date",
-   "stakes": "the truth versus how it lands",
-   "device": "honest-mirror"
-  },
-  "mask": "looks like a flea-market oddity; measures your own line on raw versus wrapped truth (T07, R2)",
-  "ae": [
-   "C",
-   "D"
-  ],
-  "privacy": "normal",
-  "friend": {
-   "prompt": "A friend's flea-market mirror answers \"how do I look?\" out loud, honestly, even in front of a date. {name}'s first thought?",
-   "a": {
-    "t": "\"Keep it. The truth is worth it, even with company.\"",
-    "axes": {
-     "R2": 2
-    },
-    "tags": [
-     {
-      "id": "T07A",
-      "s": 2
-     }
-    ]
-   },
-   "b": {
-    "t": "\"I'd want it to say one nice thing first.\"",
-    "axes": {
-     "R2": -2
-    },
-    "tags": [
-     {
-      "id": "T07B",
-      "s": 2
-     }
-    ]
-   }
-  }
- },
- {
   "id": "C1-162",
   "type": "others",
   "chapter": 1,
   "sq": "SQ-T01-1",
   "world": "unusual",
-  "prompt": "Every Sunday, Dani and their person read each other's journals aloud. Every page, no skipping. Dani calls it the best hour of the week. Honest reaction?",
+  "prompt": "Every Sunday, Dani and their partner read each other's journals aloud. Every page, no skipping. Dani calls it the best hour of the week. Honest reaction?",
   "options": [
    {
     "t": "Journals, phones, passwords. Love has no locked drawers.",
@@ -1475,7 +1364,7 @@
     ]
    },
    {
-    "t": "My private pages stay private, even from my person.",
+    "t": "My private pages stay private, even from my partner.",
     "axes": {
      "R1": -2
     },
@@ -1488,7 +1377,7 @@
    }
   ],
   "heart": {
-   "prompt": "Every Sunday, Dani and their person read each other's journals aloud, every page, without skipping. Dani says it is the best hour of the week. What is your honest reaction?",
+   "prompt": "Every Sunday, Dani and their partner read each other's journals aloud, every page, without skipping. Dani says it is the best hour of the week. What is your honest reaction?",
    "options": [
     "Journals, phones, passwords: in love, I would keep no locked drawers.",
     "It is sweet. I would trade journals, maybe skipping a page.",
@@ -1500,7 +1389,7 @@
    "trigger": "a couple reads each other's journals aloud every week",
    "setting": "a friend's Sunday ritual",
    "ask": "sweet or too much",
-   "who": "a friend and their person",
+   "who": "a friend and their partner",
    "stakes": "privacy inside love",
    "device": "journal-swap"
   },
@@ -1512,7 +1401,7 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "Every Sunday, {name}'s friend and their person read each other's journals aloud, every page. {name}'s first thought?",
+   "prompt": "Every Sunday, {name}'s friend and their partner read each other's journals aloud, every page. {name}'s first thought?",
    "a": {
     "t": "Journals, phones, passwords. Love has no locked drawers.",
     "axes": {
@@ -1703,54 +1592,54 @@
   "chapter": 1,
   "sq": "SQ-L3-2",
   "world": "unusual",
-  "prompt": "Flight canceled. 140 stranded strangers, one airline desk, and 12 hotel vouchers. In that crowd, you're the...",
+  "prompt": "Flight canceled. 140 stranded people, 12 hotel vouchers. The gate agent: \"Figure it out among yourselves.\" You're the...",
   "options": [
    {
-    "t": "Line keeper: \"First twelve at the desk. That's how lines work.\"",
+    "t": "Line keeper: \"First twelve in line. That's how lines work.\"",
     "axes": {
      "L3": 2
     }
    },
    {
-    "t": "Name drawer: \"Every name in a hat. Same odds for all.\"",
+    "t": "Raffle runner: every boarding pass in a hat, same odds.",
     "axes": {
      "L3": 1
     }
    },
    {
-    "t": "Sweet-talker, getting the desk to find a room for whoever's crying.",
+    "t": "Charmer, back at the desk, sweet-talking a room for whoever's crying.",
     "axes": {
      "L3": -1
     }
    },
    {
-    "t": "Giver: if I get one, it goes to whoever's stuck longest.",
+    "t": "Giver: if I get one, it goes to whoever looks most wrecked.",
     "axes": {
      "L3": -1
     }
    },
    {
-    "t": "Advocate: \"The family with the baby gets one first.\"",
+    "t": "Advocate: \"Locals go home. Rooms go to whoever's far from home.\"",
     "axes": {
      "L3": -2
     }
    }
   ],
   "heart": {
-   "prompt": "Your flight is canceled. There are 140 stranded passengers, one airline desk and only 12 hotel vouchers. Which role do you take?",
+   "prompt": "Your flight is canceled. There are 140 stranded people and 12 hotel vouchers, and the gate agent says, \"Figure it out among yourselves.\" Which role do you take?",
    "options": [
     "The first twelve in line get them. That is how lines work.",
-    "I suggest drawing names so everyone has the same chance.",
-    "I persuade the desk to give a room to whoever is crying.",
-    "If I get a voucher, it goes to whoever is stuck longest.",
-    "I say the family with the baby should get one first."
+    "Every boarding pass goes in a hat. Same odds for everyone.",
+    "I charm the desk into a room for whoever is crying.",
+    "If I get a voucher, it goes to whoever looks most exhausted.",
+    "\"Locals go home. The rooms go to people far from home.\""
    ]
   },
   "fp": {
-   "trigger": "12 hotel vouchers for 140 stranded passengers",
-   "setting": "an airport desk, a crowd of stranded strangers",
+   "trigger": "12 hotel vouchers for 140 stranded passengers, and no rule given",
+   "setting": "an airport gate, a crowd of stranded strangers",
    "ask": "who deserves the rooms",
-   "who": "140 strangers and an airline desk",
+   "who": "140 strangers and a gate agent",
    "stakes": "a bed tonight and what fair means",
    "device": "stranded-flight-chat"
   },
@@ -1761,15 +1650,15 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "Flight canceled: 140 stranded strangers, one airline desk, 12 hotel vouchers. In that crowd, {name} is the...",
+   "prompt": "Flight canceled: 140 stranded people, 12 hotel vouchers, and the gate agent says \"figure it out.\" In that crowd, {name} is the...",
    "a": {
-    "t": "Line keeper: \"First twelve at the desk. That's how lines work.\"",
+    "t": "Line keeper: \"First twelve in line. That's how lines work.\"",
     "axes": {
      "L3": 2
     }
    },
    "b": {
-    "t": "Advocate: \"The family with the baby gets one first.\"",
+    "t": "Advocate: \"Locals go home. Rooms go to whoever's far from home.\"",
     "axes": {
      "L3": -2
     }

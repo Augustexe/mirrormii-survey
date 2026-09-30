@@ -44,7 +44,7 @@ node audit.mjs                           # coverage against LAUNCH-SPEC section 
 |---|---|---|
 | 1 Your phone | 8 / 8 | C1-4, C1-11 |
 | 2 Friends | 9 / 9 | C2-2, C2-5 |
-| 3 Love and your person | 9 / 7 | C3-2, C3-5, C3-12 |
+| 3 Love and dating | 9 / 7 | C3-2, C3-5, C3-12 |
 | 4 Money and treats | 7 / 7 | C4-5 |
 | 5 Work, school and ambition | 9 / 9 | C5-5, C5-7 |
 | 6 Family and home | 10 / 8 | C6-2 |

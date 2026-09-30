@@ -8,7 +8,7 @@ import { Dots } from "./Dots.jsx";
 
 // Setup: two taps, closest person and pronoun. There is no age question (LAUNCH-SPEC section 22).
 export const SETUP_STEPS = [
-  { key: "closest", eyebrow: "Before we start", title: "Who’s your closest person right now?", note: "“Your person” in the cards means them. It can be a crush, a partner or your closest friend.", options: CLOSEST_OPTIONS },
+  { key: "closest", eyebrow: "Before we start", title: "Who’s your closest person right now?", note: "It can be a crush, a partner or your closest friend.", options: CLOSEST_OPTIONS },
   { key: "pronoun", eyebrow: "Before we start", title: "When friends play about you, Genii should say…", note: "Only used in the friend game.", options: PRONOUN_OPTIONS },
 ];
 

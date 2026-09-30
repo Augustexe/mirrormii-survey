@@ -3,7 +3,7 @@
     "id": "C3-80",
     "type": "scenario",
     "chapter": 3,
-    "prompt": "A street tailor knits you and your person one sweater with two necks. It only comes off when one of you asks. They won't be the one.",
+    "prompt": "A street tailor knits you and your partner one sweater with two necks. It only comes off when one of you asks. They won't be the one.",
     "options": [
       {
         "t": "Nobody's asking. We'll learn to cook in it.",
@@ -58,7 +58,7 @@
       }
     ],
     "heart": {
-      "prompt": "A street tailor knits you and your person one sweater with two necks. It only comes off when one of you asks, and your person will not ask.",
+      "prompt": "A street tailor knits you and your partner one sweater with two necks. It only comes off when one of you asks, and your partner will not ask.",
       "options": [
         "Nobody is asking. We will learn to cook in it together.",
         "I ask on the first day. I need my own sleeves.",
@@ -70,7 +70,7 @@
       "trigger": "a two-person sweater that only comes off if you ask",
       "setting": "home, stuck together in one sweater",
       "ask": "stay in it or be the one who asks out",
-      "who": "your person",
+      "who": "your partner",
       "stakes": "closeness versus your own space, and being the one who asks",
       "device": "two-person-sweater"
     },
@@ -83,7 +83,7 @@
     "sq": "SQ-R1-1",
     "world": "absurd",
     "friend": {
-      "prompt": "A tailor knits {name} and {their} person one sweater with two necks. It only comes off if one of them asks. What does {name} do?",
+      "prompt": "A tailor knits {name} and {their} partner one sweater with two necks. It only comes off if one of them asks. What does {name} do?",
       "a": {
         "t": "Never asks. Learns to cook in it.",
         "axes": {
@@ -257,10 +257,10 @@
     "chapter": 3,
     "sq": "SQ-T09-2",
     "world": "unusual",
-    "prompt": "Chess club has been your one night alone for three years. Then your person texts.",
+    "prompt": "Chess club has been your one night alone for three years. Then Robin, your partner, texts.",
     "thread": [
       {
-        "from": "Your person",
+        "from": "Robin",
         "text": "SURPRISE!! I joined your chess club. they just voted me president?? see you tonight"
       }
     ],
@@ -318,10 +318,10 @@
       }
     ],
     "heart": {
-      "prompt": "Chess club has been your one night to yourself for three years. Then your person sends you a message.",
+      "prompt": "Chess club has been your one night to yourself for three years. Then Robin, your partner, sends you a message.",
       "thread": [
         {
-          "from": "Your person",
+          "from": "Robin",
           "text": "Surprise. I joined your chess club, and they have just voted me president. See you tonight."
         }
       ],
@@ -333,12 +333,12 @@
       ]
     },
     "fp": {
-      "trigger": "your person joins your solo club and becomes its president",
+      "trigger": "your partner joins your solo club and becomes its president",
       "setting": "your weekly chess night",
       "ask": "share your one night or protect it",
-      "who": "your person",
+      "who": "your partner",
       "stakes": "the only thing that is yours",
-      "device": "solo club joined by your person"
+      "device": "solo club joined by your partner"
     },
     "mask": "looks like a cute surprise; measures keeping a corner of your own inside love (T09) and whether you say so (R2)",
     "ae": [
@@ -348,7 +348,7 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "Chess night is {name}'s one solo night, three years running. {name}'s person texts: \"Joined your club! Voted president!\" What does {name} reply?",
+      "prompt": "Chess night is {name}'s one solo night, three years running. {name}'s partner texts: \"Joined your club! Voted president!\" What does {name} reply?",
       "a": {
         "t": "\"My two loves, one room. Save me the seat next to yours.\"",
         "axes": {
@@ -380,7 +380,7 @@
     "id": "C3-81",
     "type": "bet",
     "chapter": 3,
-    "prompt": "Genii's sure: you've rehearsed a whole fight with your person in the shower. Then what?",
+    "prompt": "Genii's sure: you've rehearsed a whole fight with your partner in the shower. Then what?",
     "options": [
       {
         "t": "None of it ever left the shower.",
@@ -436,7 +436,7 @@
       }
     ],
     "heart": {
-      "prompt": "Have you ever rehearsed a whole argument with your person in the shower? What happened next?",
+      "prompt": "Have you ever rehearsed a whole argument with your partner in the shower? What happened next?",
       "options": [
         "Yes, and none of it ever reached them.",
         "Yes, and I said the best part to them that same night.",
@@ -449,7 +449,7 @@
       "trigger": "rehearsed argument in the shower",
       "setting": "the shower",
       "ask": "what happened to it next",
-      "who": "your person",
+      "who": "your partner",
       "stakes": "a scene versus quiet resentment",
       "device": "shower argument"
     },
@@ -462,9 +462,9 @@
     "sq": "SQ-R2-2",
     "world": "everyday",
     "friend": {
-      "prompt": "Has {name} ever rehearsed a whole argument with {their} person in the shower? What happened next?",
+      "prompt": "Has {name} ever rehearsed a whole argument with {their} partner in the shower? What happened next?",
       "a": {
-        "t": "Never. If it bugs me, my person hears it right away.",
+        "t": "Never. If it bugs me, my partner hears it right away.",
         "axes": {
           "R2": 2
         }
@@ -695,7 +695,7 @@
     "id": "C3-140",
     "type": "this_or_that",
     "chapter": 3,
-    "prompt": "Your person's shadow came home from their weekend away an hour before they did. It's on your couch, happy to tell you everything they did.",
+    "prompt": "Your partner's shadow came home from their weekend away an hour before they did. It's on your couch, happy to tell you everything they did.",
     "options": [
       {
         "t": "Pour the shadow a drink. I want the whole weekend.",
@@ -713,7 +713,7 @@
       }
     ],
     "heart": {
-      "prompt": "Your person's shadow came home from their weekend away an hour before they did. It is on your couch, happy to tell you everything they did.",
+      "prompt": "Your partner's shadow came home from their weekend away an hour before they did. It is on your couch, happy to tell you everything they did.",
       "options": [
         "I sit down with it. I want to hear the whole weekend.",
         "Their weekend is theirs. I ask the shadow to wait outside."
@@ -723,7 +723,7 @@
       "trigger": "their shadow offers the untold weekend",
       "setting": "your couch, before they are home",
       "ask": "hear the whole story or leave the gaps",
-      "who": "your person",
+      "who": "your partner",
       "stakes": "knowing everything versus trusting what you don't know",
       "device": "early-shadow"
     },
@@ -736,7 +736,7 @@
     "sq": "SQ-R1-2",
     "world": "absurd",
     "friend": {
-      "prompt": "{name}'s person's shadow gets home early from a weekend away, ready to tell everything. What does {name} do?",
+      "prompt": "{name}'s partner's shadow gets home early from a weekend away, ready to tell everything. What does {name} do?",
       "a": {
         "t": "Pours it a drink. Wants the whole weekend.",
         "axes": {
@@ -755,7 +755,7 @@
     "id": "C3-141",
     "type": "this_or_that",
     "chapter": 3,
-    "prompt": "Your city wants a statue of you in the main square. Catch: you pose every weekend for a year, and your person hates weekends apart.",
+    "prompt": "Your city wants a statue of you in the main square. Catch: you pose every weekend for a year, and your partner hates weekends apart.",
     "options": [
       {
         "t": "Pose. A statue is forever. Weekends aren't.",
@@ -775,7 +775,7 @@
       }
     ],
     "heart": {
-      "prompt": "Your city wants a statue of you in the main square. You would pose every weekend for a year, and your person dislikes weekends apart.",
+      "prompt": "Your city wants a statue of you in the main square. You would pose every weekend for a year, and your partner dislikes weekends apart.",
       "options": [
         "I pose. A statue lasts forever, and weekends do not.",
         "No statue. Our weekends matter more than any bronze."
@@ -785,11 +785,11 @@
       "trigger": "a statue in your honor needs a year of weekends",
       "setting": "a sculptor's studio, the main square",
       "ask": "trade your weekends for the statue",
-      "who": "your person",
+      "who": "your partner",
       "stakes": "public recognition versus your time together",
       "device": "statue-posing"
     },
-    "mask": "looks like a vanity fable; measures trading time with your person for a win people can see (L2, R1)",
+    "mask": "looks like a vanity fable; measures trading time with your partner for a win people can see (L2, R1)",
     "ae": [
       "A",
       "B",
@@ -799,7 +799,7 @@
     "sq": "SQ-L2-1",
     "world": "absurd",
     "friend": {
-      "prompt": "{name}'s city wants a statue of {them}, if {they} pose every weekend for a year. {their} person hates weekends apart. Which one is {name}?",
+      "prompt": "{name}'s city wants a statue of {them}, if {they} pose every weekend for a year. {their} partner hates weekends apart. Which one is {name}?",
       "a": {
         "t": "Pose. A statue is forever. Weekends aren't.",
         "axes": {
@@ -923,7 +923,7 @@
     "chapter": 3,
     "sq": "SQ-R3-2",
     "world": "absurd",
-    "prompt": "Ding-dong. Your talking doorbell greets every guest with your person's last name, never yours. You get one chance to change its greeting.",
+    "prompt": "Ding-dong. Your talking doorbell greets every guest with your partner's last name, never yours. You get one chance to change its greeting.",
     "options": [
       {
         "t": "Keep their name. One home, one name sounds right.",
@@ -971,7 +971,7 @@
       }
     ],
     "heart": {
-      "prompt": "Your talking doorbell greets every guest with your person's last name, never yours. You get one chance to change what it says.",
+      "prompt": "Your talking doorbell greets every guest with your partner's last name, never yours. You get one chance to change what it says.",
       "options": [
         "I keep their name. One home and one name feels right.",
         "I switch it to my name. Same idea, my turn.",
@@ -980,10 +980,10 @@
       ]
     },
     "fp": {
-      "trigger": "the doorbell greets guests with only your person's last name",
+      "trigger": "the doorbell greets guests with only your partner's last name",
       "setting": "new shared home with a talking doorbell",
       "ask": "whose name the home carries",
-      "who": "your person",
+      "who": "your partner",
       "stakes": "one family name versus a design of your own",
       "device": "talking doorbell"
     },
@@ -995,7 +995,7 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "{name}'s talking doorbell greets guests with {their} person's last name, never {name}'s. One chance to change it. What does {name} do?",
+      "prompt": "{name}'s talking doorbell greets guests with {their} partner's last name, never {name}'s. One chance to change it. What does {name} do?",
       "a": {
         "t": "Keeps their name. One home, one name sounds right.",
         "axes": {
@@ -1028,14 +1028,14 @@
     "chapter": 3,
     "sq": "SQ-T11-2",
     "world": "unusual",
-    "prompt": "A farm sanctuary baby goat won't leave your person's side.",
+    "prompt": "A farm sanctuary baby goat won't leave your partner Alex's side.",
     "thread": [
       {
-        "from": "Your person",
+        "from": "Alex",
         "text": "it literally picked me"
       },
       {
-        "from": "Your person",
+        "from": "Alex",
         "text": "practice round? if we can raise a goat we can raise a tiny human"
       }
     ],
@@ -1080,14 +1080,14 @@
       }
     ],
     "heart": {
-      "prompt": "At the farm sanctuary, a baby goat will not leave your person's side. Then the messages start.",
+      "prompt": "At the farm sanctuary, a baby goat will not leave your partner Alex's side. Then the messages start.",
       "thread": [
         {
-          "from": "Your person",
+          "from": "Alex",
           "text": "It picked me. It really did."
         },
         {
-          "from": "Your person",
+          "from": "Alex",
           "text": "A practice round? If we can raise a goat, we can raise a tiny human."
         }
       ],
@@ -1099,10 +1099,10 @@
       ]
     },
     "fp": {
-      "trigger": "your person wants a goat as practice for a kid",
+      "trigger": "your partner wants a goat as practice for a kid",
       "setting": "texts from a farm sanctuary",
       "ask": "practice for a family or the whole plan",
-      "who": "your person",
+      "who": "your partner",
       "stakes": "a family someday versus a free life",
       "device": "baby-goat-practice"
     },
@@ -1237,7 +1237,7 @@
         ]
       },
       {
-        "t": "Night owl, up talking with others while my person sleeps.",
+        "t": "Night owl, up talking with others while my partner sleeps.",
         "tags": [
           {
             "id": "T09B",
@@ -1249,22 +1249,22 @@
     "heart": {
       "prompt": "Four couples share a rented cabin for a long weekend. By Sunday, which one are you?",
       "options": [
-        "I did everything with my person, even the dishes.",
+        "I did everything with my partner, even the dishes.",
         "I spent an hour alone in the car each day, reading.",
         "We ran couples' charades as a team, and we won.",
         "I joined another couple's card game on my own, by choice.",
-        "I stayed up late talking with others while my person slept."
+        "I stayed up late talking with others while my partner slept."
       ]
     },
     "fp": {
       "trigger": "a long weekend away with other couples",
       "setting": "a rented cabin for eight",
-      "ask": "how you and your person spend it",
-      "who": "your person and three other couples",
+      "ask": "how you and your partner spend it",
+      "who": "your partner and three other couples",
       "stakes": "being a unit versus being yourself in a group",
       "device": "couples-cabin"
     },
-    "mask": "looks like a trip recap; measures folding into your person versus keeping your own orbit (T09, R1)",
+    "mask": "looks like a trip recap; measures folding into your partner versus keeping your own orbit (T09, R1)",
     "ae": [
       "A",
       "D"
@@ -1306,30 +1306,30 @@
     "chapter": 3,
     "sq": "SQ-L2-3",
     "world": "absurd",
-    "prompt": "A progress bar floats over you and your person: 30%, one pixel a month. Beside it, a button: \"Skip to 80%.\" It skips everything in between.",
+    "prompt": "A loading bar floats over you and your partner: \"MOVING IN: 31%.\" A button under it skips to 100%, and everything in between.",
     "options": [
       {
-        "t": "Press it. I need to see we're getting somewhere.",
+        "t": "Press it. I've watched enough loading screens.",
         "axes": {
           "L2": 2
         }
       },
       {
-        "t": "The slow pixels are the good part. Leave it.",
+        "t": "Don't touch it. The buffering is the good part.",
         "axes": {
           "L2": -2
         },
         "emotion": "warmth"
       },
       {
-        "t": "Leave it, but check the bar every morning.",
+        "t": "Leave it, but refresh it every morning.",
         "axes": {
           "L2": 1
         },
         "emotion": "envy"
       },
       {
-        "t": "Cover the bar with a sticky note. We'll know when we know.",
+        "t": "Throw a towel over it. We'll know when it's done.",
         "axes": {
           "L2": -1
         },
@@ -1337,19 +1337,19 @@
       }
     ],
     "heart": {
-      "prompt": "A progress bar floats above you and your person: 30 percent, one pixel a month. A button beside it says \"Skip to 80%.\" It would skip everything in between.",
+      "prompt": "A loading bar floats above you and your partner. It reads \"Moving in: 31%.\" A button under it would skip to 100 percent, and past everything in between.",
       "options": [
-        "I press it. I need to see that we are getting somewhere.",
-        "I leave it. The slow pixels are the best part.",
-        "I leave it, but I check the bar every morning.",
-        "A sticky note covers the bar. We will know when we know."
+        "I press it. I have watched enough loading screens.",
+        "I leave it alone. The waiting is the good part.",
+        "It stays, but I refresh it every morning.",
+        "A towel goes over it. We will know when it is done."
       ]
     },
     "fp": {
-      "trigger": "a button that skips your relationship ahead",
-      "setting": "a progress bar over you two",
+      "trigger": "a button that skips moving in together to the end",
+      "setting": "a loading bar over you two",
       "ask": "skip ahead or take the slow way",
-      "who": "your person",
+      "who": "your partner",
       "stakes": "milestones versus the in-between",
       "device": "relationship-progress-bar"
     },
@@ -1361,15 +1361,15 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "A progress bar floats over {name} and {their} person, with a button: \"Skip to 80%.\" What does {name} do?",
+      "prompt": "A loading bar floats over {name} and {their} partner: \"MOVING IN: 31%,\" with a skip button. What does {name} do?",
       "a": {
-        "t": "Presses it. Needs to see they're getting somewhere.",
+        "t": "Presses it. Enough loading screens.",
         "axes": {
           "L2": 2
         }
       },
       "b": {
-        "t": "Leaves it. The slow pixels are the good part.",
+        "t": "Leaves it: \"The buffering is the good part.\"",
         "axes": {
           "L2": -2
         }
@@ -1484,7 +1484,7 @@
     "id": "C3-147",
     "type": "real",
     "chapter": 3,
-    "prompt": "Most recent weekend your person had plans without you: how did you spend yours?",
+    "prompt": "Most recent weekend your partner had plans without you: how did you spend yours?",
     "options": [
       {
         "t": "Tagged along for part of it anyway.",
@@ -1532,7 +1532,7 @@
       }
     ],
     "heart": {
-      "prompt": "The most recent weekend your person had plans without you, how did you spend yours?",
+      "prompt": "The most recent weekend your partner had plans without you, how did you spend yours?",
       "options": [
         "I tagged along for part of it anyway.",
         "I missed them within hours and started planning our next weekend.",
@@ -1541,10 +1541,10 @@
       ]
     },
     "fp": {
-      "trigger": "your person has a weekend of plans without you",
+      "trigger": "your partner has a weekend of plans without you",
       "setting": "your weekend on your own",
       "ask": "what you did with your time",
-      "who": "your person",
+      "who": "your partner",
       "stakes": "folding in versus keeping your own life",
       "device": "weekend-apart"
     },
@@ -1557,7 +1557,7 @@
     "sq": "SQ-T09-1",
     "world": "everyday",
     "friend": {
-      "prompt": "{name}'s person recently had a weekend of plans without {name}. How did {name} spend it?",
+      "prompt": "{name}'s partner recently had a weekend of plans without {name}. How did {name} spend it?",
       "a": {
         "t": "Tagged along for part of it anyway.",
         "axes": {
@@ -1647,7 +1647,7 @@
       }
     ],
     "heart": {
-      "prompt": "Which of these have happened with your person this month? Choose every one that is true.",
+      "prompt": "Which of these have happened with your partner this month? Choose every one that is true.",
       "options": [
         "I said \"we\" about a plan before asking them.",
         "I let them plan my whole weekend, and I liked it.",
@@ -1658,10 +1658,10 @@
       ]
     },
     "fp": {
-      "trigger": "you and your person lately",
+      "trigger": "you and your partner lately",
       "setting": "the last few weeks",
       "ask": "tick what is true",
-      "who": "your person",
+      "who": "your partner",
       "stakes": "folding in versus keeping your own",
       "device": "couple-receipts"
     },

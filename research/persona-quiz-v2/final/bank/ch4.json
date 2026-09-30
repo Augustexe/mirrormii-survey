@@ -162,7 +162,7 @@
       ]
     },
     "fp": {
-      "trigger": "shared costs with friends, roommates or your person",
+      "trigger": "shared costs with friends, roommates or your partner",
       "setting": "recent weeks, real life",
       "ask": "tick what is true",
       "who": "people you split costs with",
@@ -381,10 +381,10 @@
     "id": "C4-142",
     "type": "bet",
     "chapter": 4,
-    "prompt": "Somewhere, you've got money you try to keep untouchable. Right?",
+    "prompt": "Bet your savings account has a nickname. Go on, what is it?",
     "options": [
       {
-        "t": "It's there. Never touched it, not once.",
+        "t": "\"DO NOT TOUCH,\" in caps, and so far nobody has.",
         "axes": {
           "L1": 1
         },
@@ -397,7 +397,7 @@
         "emotion": "pride"
       },
       {
-        "t": "Raided it twice this year, for fun.",
+        "t": "\"Rainy Day.\" It has paid for four last-minute beach trips.",
         "axes": {
           "L1": -1
         },
@@ -410,7 +410,7 @@
         "emotion": "cringe"
       },
       {
-        "t": "No. Money sitting still is fun not happening.",
+        "t": "No account to name. My money is always free tonight.",
         "axes": {
           "L1": -1
         },
@@ -422,7 +422,7 @@
         ]
       },
       {
-        "t": "A small stash. It grows about $20 a month.",
+        "t": "It's called Someday, and it gets twenty bucks a month.",
         "tags": [
           {
             "id": "T13B",
@@ -432,23 +432,23 @@
       }
     ],
     "heart": {
-      "prompt": "Do you have money you try to keep untouchable?",
+      "prompt": "Does your savings account have a nickname? What do you call it?",
       "options": [
-        "Yes, and I have never touched it, not once.",
-        "Yes, and I have dipped into it twice this year for fun.",
-        "No. Money sitting still is fun that is not happening.",
-        "I keep a small stash that grows about $20 a month."
+        "It is called Do Not Touch, and so far nobody has.",
+        "Rainy Day, though it has paid for four last-minute beach trips.",
+        "I have no account to name. My money stays free for tonight.",
+        "Someday. It gets twenty dollars every month."
       ]
     },
     "fp": {
-      "trigger": "money you try to keep untouchable",
-      "setting": "your savings, in your head",
-      "ask": "do you keep an untouchable cushion",
+      "trigger": "a bet on your savings account's nickname",
+      "setting": "your savings, by name",
+      "ask": "what the account is called and what it pays for",
       "who": "just you",
       "stakes": "a safety net versus money in use",
-      "device": "invisible-savings"
+      "device": "savings-nickname"
     },
-    "mask": "looks like a money secret; measures keeping a safety net versus putting money to use (L1, T13)",
+    "mask": "looks like a money confession; measures keeping a safety net versus putting money to use (L1, T13)",
     "ae": [
       "A",
       "D"
@@ -457,9 +457,9 @@
     "sq": "SQ-L1-3",
     "world": "everyday",
     "friend": {
-      "prompt": "Somewhere, {name} has money {they} try to keep untouchable. True?",
+      "prompt": "Bet {name}'s savings account has a nickname. What is it?",
       "a": {
-        "t": "Never touched it, not once.",
+        "t": "\"DO NOT TOUCH,\" in caps, and nobody has.",
         "axes": {
           "L1": 1
         },
@@ -471,7 +471,7 @@
         ]
       },
       "b": {
-        "t": "Money sitting still is fun not happening.",
+        "t": "No account to name. The money is always free tonight.",
         "axes": {
           "L1": -1
         },
@@ -1122,10 +1122,10 @@
     "chapter": 4,
     "sq": "SQ-R3-2",
     "world": "unusual",
-    "prompt": "At your person's grandparents' 60th anniversary, one of them stands and shares the secret: \"One bank account. Never two.\" Then a text from across the table.",
+    "prompt": "At your partner Jordan's grandparents' 60th anniversary, one of them stands and shares the secret: \"One bank account. Never two.\" Then Jordan texts from across the table.",
     "thread": [
       {
-        "from": "Your person",
+        "from": "Jordan",
         "text": "that's gonna be us right?? one account, forever"
       }
     ],
@@ -1161,10 +1161,10 @@
       }
     ],
     "heart": {
-      "prompt": "At your person's grandparents' sixtieth anniversary, one of them stands and shares their secret: one bank account, never two. Your person texts you from across the table.",
+      "prompt": "At your partner Jordan's grandparents' sixtieth anniversary, one of them stands and shares their secret: one bank account, never two. Jordan texts you from across the table.",
       "thread": [
         {
-          "from": "Your person",
+          "from": "Jordan",
           "text": "That is going to be us, right? One account, forever?"
         }
       ],
@@ -1179,7 +1179,7 @@
       "trigger": "grandparents credit sixty years to one shared account",
       "setting": "a sixtieth anniversary party",
       "ask": "run couple money the old way or your own",
-      "who": "your person, texting across the table",
+      "who": "your partner, texting across the table",
       "stakes": "how your money works as a couple",
       "device": "one-account-secret"
     },
@@ -1191,7 +1191,7 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "{name}'s person's grandparents credit 60 years to \"one bank account, never two.\" The person texts: \"that's us, right??\" What does {name} reply?",
+      "prompt": "{name}'s partner's grandparents credit 60 years to \"one bank account, never two.\" The partner texts: \"that's us, right??\" What does {name} reply?",
       "a": {
         "t": "\"Obviously. One account, one team, sixty years.\"",
         "axes": {
@@ -1325,10 +1325,10 @@
     "chapter": 4,
     "sq": "SQ-L3-2",
     "world": "unusual",
-    "prompt": "Lateness costs $10 in your friend group, paid into the vacation pot. Mo works a second job for rent and is late weekly. Jae: fines are fines. Your take?",
+    "prompt": "Pizza night always splits evenly. Mo, fresh from their second job, had one slice. Your take?",
     "options": [
       {
-        "t": "Jae's right. Same fine, every person, every time.",
+        "t": "Even is even. One slice or six, same price.",
         "axes": {
           "L3": 2
         },
@@ -1340,7 +1340,7 @@
         ]
       },
       {
-        "t": "Mo's second job pays the rent. Waive it.",
+        "t": "Mo pays for one slice. Second jobs get a discount.",
         "axes": {
           "L3": -2
         },
@@ -1352,7 +1352,7 @@
         ]
       },
       {
-        "t": "Mo pays this year. Next year, we rewrite the rule.",
+        "t": "Even split, but Mo takes the leftovers home.",
         "axes": {
           "L3": 1
         },
@@ -1364,7 +1364,7 @@
         ]
       },
       {
-        "t": "Mo pays whatever works, and Jae never finds out.",
+        "t": "Mo pays even. I slip them a ten on the way out.",
         "axes": {
           "L3": -1
         },
@@ -1377,23 +1377,23 @@
       }
     ],
     "heart": {
-      "prompt": "Your friends fine lateness $10, for the vacation fund. Mo works a second job for rent and is late weekly. Jae says fines are fines. What do you think?",
+      "prompt": "Pizza night is always split evenly. Mo came straight from their second job and had one slice. What do you think?",
       "options": [
-        "Jae is right. The same fine applies to everyone, every time.",
-        "Mo's second job pays the rent, so the fine should go.",
-        "Mo pays this year, and next year we rewrite the rule together.",
-        "Whatever Mo can manage is enough, and Jae never needs to know."
+        "Even is even. One slice or six, the price is the same.",
+        "Mo pays for the one slice. A second job earns a discount.",
+        "We split it evenly, but Mo takes the leftovers home.",
+        "Mo pays evenly. I quietly slip them ten on the way out."
       ]
     },
     "fp": {
-      "trigger": "a flat lateness fine hits the friend working a second job",
-      "setting": "a friend group's vacation pot",
-      "ask": "the same fine for all or adjusted for need",
-      "who": "a friend group",
+      "trigger": "an even split lands on the friend who ate one slice",
+      "setting": "pizza night with friends",
+      "ask": "the same split for all or adjusted for need",
+      "who": "a friend group, Mo off a second job",
       "stakes": "fairness versus a friend's wallet",
-      "device": "late-fine-pot"
+      "device": "pizza-split"
     },
-    "mask": "looks like group chat money; measures fair as the same rule for everyone versus fair as what each person can manage (L3, T12)",
+    "mask": "looks like group dinner money; measures fair as the same rule for everyone versus fair as what each person can manage (L3, T12)",
     "ae": [
       "B",
       "C",
@@ -1401,9 +1401,9 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "{name}'s friends fine lateness $10. Mo works a second job for rent and is always late. Jae says fines are fines. {name}'s take?",
+      "prompt": "{name}'s pizza night always splits evenly. Mo, fresh from a second job, had one slice. {name}'s take?",
       "a": {
-        "t": "Same fine for every person, every time.",
+        "t": "Even is even. One slice or six, same price.",
         "axes": {
           "L3": 2
         },
@@ -1415,7 +1415,7 @@
         ]
       },
       "b": {
-        "t": "Mo's second job pays the rent. Waive it.",
+        "t": "Mo pays for one slice. Second jobs get a discount.",
         "axes": {
           "L3": -2
         },

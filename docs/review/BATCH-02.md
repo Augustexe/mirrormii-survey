@@ -1,6 +1,6 @@
 # BATCH-02
 
-Package B2, 2026-09-30. Written against [JERRY-TASTE.md](JERRY-TASTE.md). **Nothing here is applied.** Your BATCH-01 approvals (C5-141, C2-142, C1-126) are in the bank (commit `e3a7711`).
+Package B2, 2026-09-30. Written against [JERRY-TASTE.md](JERRY-TASTE.md). **Applied 2026-09-30** (package Z1; Jerry delegated the verdicts): A1 to A5, B1 to B4 and B6 applied, B5 kept, C applied, D cut C1-161 and C7-142. Log: `research/persona-quiz-v2/final/bank/ROUND4-LOG.md`, "Batch 02". The proposal text below is kept as written. Your BATCH-01 approvals (C5-141, C2-142, C1-126) are in the bank (commit `e3a7711`).
 
 Answer one line per item, e.g. `A1 yes, A2 no, C yes, D cut 4 and 7`. Heart to heart gets written only for what you approve. Same sub-question and evidence unless noted; checker passes with all proposals applied (scratch copy).
 
