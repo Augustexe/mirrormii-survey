@@ -51,7 +51,7 @@ with the app's own session module). Set `PLAYWRIGHT_MODULE=/path/to/playwright/i
 | `tests/visual/fold.mjs` | Every card of the bank in the real card screen: all options and exits above the fold at 390x844 |
 | `tests/visual/play-evidence.mjs` | Proves the card sends the same answers as the pre-rebuild card for the same taps |
 | `qa/capture-genii.mjs`, `qa/genii-lab.html` | Genii evolution stage sheet and a side-by-side lab against the canon render |
-| `qa/make-world-assets.py` | Rebuilds `public/assets/world/` from the MirrorMii asset library (needs the library on disk) |
+| `qa/capture-genii.mjs` with `STILL=1` | Saves the transparent still of our own 3D Genii that the share image draws (`public/assets/island/genii-still.png`) |
 
 `qa/persona-browser-qa.mjs` is **superseded** (it drives the pre-lobby flow); use `play-through.mjs` and `qa-checks.mjs`.
 
@@ -66,8 +66,9 @@ quiz64/
     main.jsx, Boot.jsx  first paint: the landing from a tiny chunk, then PersonaApp loads lazily
     PersonaApp.jsx      the app shell and screen router (setup, lobby, play, lock, finale, reveal, friend game)
     system/             design system: tokens (CSS and JS), fonts, cascade layers, motion, GeniiLight, theme, Sheet
-    art/                all art made in code: mirror arch, islands, backdrop and shader, glyphs (chapters, formats,
-                        devices), device table (devices.js), palette, geometry, textures, world.js (real world assets)
+    art/                the World Mirror (MirrorArch: canon frame render over a code-drawn opal ring), chapter islets
+                        (Islet), backdrop and shader, glyphs (chapters, formats, devices), device table (devices.js),
+                        palette, geometry, textures, world.js (the canon island renders and the mirror's geometry)
     genii/              Genii's evolution: orb to droplet to slime (three.js scene, lazy; SVG fallback), stages in evolution.js
     persona/
       session.js        run state machine: setup, lobby, picker, answers, lock (sha256), finale, result, save and restore
@@ -86,7 +87,8 @@ quiz64/
                         StoryScreens, SheetScreens (character sheet, core traits, stings)
       FriendsPanel.jsx, FriendGame.jsx, FriendResultsView.jsx, PersonaDialogs.jsx
     legacy.css          the few rules still used from earlier builds, lowest cascade layer (tree-shaken; keep)
-  public/assets/world/  real MirrorMii world and CGI Genii renders (mirror city, island, Genii), made by make-world-assets.py
+  public/assets/island/ canon GDD v0.2 renders (LAUNCH-SPEC 25): island day, wide and night, the World Mirror frame, the
+                        room inside it, seven chapter islets, a still of our 3D Genii; sizes in MANIFEST.json
   tests/                node tests (logic, kit parity, picker, friend links, render, reveal accuracy, style and asset guards)
   qa/                   browser QA scripts (above); qa/evidence holds an older report
   docs/                 design direction, verification, judge rounds, sheets (see "Docs" below)
