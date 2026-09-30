@@ -39,9 +39,9 @@ flowchart TD
   RUN -->|Session.resultFor<br/>buildProfile, checkSealed| SCORE["profile + sealed check"]
   SCORE -->|views.resultView| RESULT["result: 12 Stories screens,<br/>Evidence Article, share card<br/>result.schema.json"]
   RESULT --> SHARE["share image and text<br/>no stings, no numbers"]
-  RESULT --> LINK["friend challenge link<br/>today: #play= with answer key"]
+  RESULT --> LINK["friend challenge link<br/>today: play= fragment with answer key"]
   LINK --> FRIEND["friend plays, gets counts only"]
-  FRIEND -->|today: #reply= link| RUN
+  FRIEND -->|today: reply= fragment link| RUN
   RUN -.->|PUT /v1/runs: server replays and re-scores| API[("backend (yours)<br/>SQLite, signed tokens")]
   LINK -.->|POST /v1/challenges: answer key stays server-side| API
   FRIEND -.->|GET challenge, POST answers| API
@@ -127,4 +127,4 @@ Tooling line (proposals, build over buy): Node 22 with Fastify or Hono, `better-
 
 ## Round 4 note
 
-Crews K1 (Evidence Article) and K2 (canon world assets) change the result presentation this round. The contracts are built from the code and re-validated on the latest tree; if `resultView` gains article fields, add them to `result.schema.json` `$defs/resultView`. The record already carries every claim the article can show.
+Crews K1 (Evidence Article, canon world) and K2 (world assets) changed the result presentation this round. The contracts were re-validated on the tree after both landed: the Evidence Article (`quiz64/src/persona/article/`) is a pure projection of `resultView` plus `library.json`, so the result record already carries every claim it shows and the server can rebuild it from the stored run.

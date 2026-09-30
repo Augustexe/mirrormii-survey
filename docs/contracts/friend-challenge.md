@@ -9,10 +9,10 @@ sequenceDiagram
   participant O as Owner browser
   participant F as Friend browser
   O->>O: createChallenge(rel, toggles, name) saved in run.challenges
-  O->>F: link #play=payload (body + answer key, unsigned)
+  O->>F: challenge link, play=payload (body + answer key, unsigned)
   F->>F: parseChallenge, friendDeckView, play 3 or 4 levels
   F->>F: friendSafeResult (counts only)
-  F->>O: link #reply=payload (guesses)
+  F->>O: reply link, reply=payload (guesses)
   O->>O: importReply (must be the browser holding the run), ownerFriendView, ranking
 ```
 

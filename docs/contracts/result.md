@@ -25,4 +25,4 @@ Rules the schema enforces: no answer text or option index anywhere, share carrie
 
 **Voice.** Copy is in the voice the player picked (`cards` reads Make it fun wording). A server that wants another voice re-renders from the stored run with the other lobby voice; ids are voice-free.
 
-**The Evidence Article** (round 4, in progress by K1) reads the same evidence plus `library.json` `article` and `crossover` frames. When it lands in `resultView`, add its fields to `$defs/resultView`; the record already carries every claim it can show.
+**The Evidence Article** (round 4, `quiz64/src/persona/article/article-data.js` `buildArticle({ stories, lib })`) is a pure projection of the same `resultView` plus `library.json` `article` and `crossover` frames: it adds no evidence of its own. A server holding the stored run can rebuild it exactly; the validator checks that it builds on every synthetic run.

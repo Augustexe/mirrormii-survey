@@ -203,11 +203,11 @@ function playerChooser(p) {
 
 async function appModules() {
   const q = (p) => import(url(path.join(ROOT, "quiz64", p)));
-  const [Session, Friend, Links, Views, Strip, Records] = await Promise.all([
-    q("src/persona/session.js"), q("src/persona/friend.js"), q("src/persona/links.js"), q("src/persona/views.js"), q("kit-strip.mjs"),
+  const [Session, Friend, Links, Views, Strip, Article, Records] = await Promise.all([
+    q("src/persona/session.js"), q("src/persona/friend.js"), q("src/persona/links.js"), q("src/persona/views.js"), q("kit-strip.mjs"), q("src/persona/article/article-data.js"),
     import(url(path.join(CONTRACTS, "records.mjs"))),
   ]);
-  return { Session, Friend, Links, Views, Strip, Records };
+  return { Session, Friend, Links, Views, Strip, Article, Records };
 }
 
 let tick = 0;
@@ -282,6 +282,13 @@ export async function runChecks() {
     add(`${p.runId}: stored run against run.schema.json`, () => check(reg, "run.schema.json", JSON.parse(M.Session.serialize(state))));
     add(`${p.runId}: result record against result.schema.json`, () => check(reg, "result.schema.json", M.Records.buildResultRecord(state)));
     add(`${p.runId}: the app's resultView against result.schema.json#/$defs/resultView`, () => check(reg, "result.schema.json#/$defs/resultView", JSON.parse(JSON.stringify(M.Views.resultView(state)))));
+
+    // The Evidence Article is a pure projection of resultView plus library.json, so the record and the stored run are
+    // enough to rebuild it anywhere.
+    add(`${p.runId}: the Evidence Article builds from resultView and library.json alone`, () => {
+      const A = M.Article.buildArticle({ stories: M.Views.resultView(state), lib: library });
+      return M.Article.articleText(A).length > 20 ? [] : [{ at: "/", error: "the article model came out empty" }];
+    });
 
     // Friend game: the owner makes a link, a friend plays it and sends a reply, the owner imports it.
     let owner, ch, payload, view, guesses, reply;
