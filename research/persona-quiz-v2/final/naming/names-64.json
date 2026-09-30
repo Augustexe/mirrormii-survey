@@ -1,0 +1,3982 @@
+{
+ "version": 1,
+ "built": "2026-09-29",
+ "package": "N1",
+ "rule": [
+  "One name per player: the day-to-day half as an adjective, then the people archetype as the noun.",
+  "Override the default only when a clearly better phrase exists (redundancy, awkward sound, a known phrase).",
+  "Every name carries one line under it that merges both halves, in both voices (fun and heart)."
+ ],
+ "adjectives": {
+  "Steady·Push·Rules": "Organized",
+  "Steady·Push·Context": "Quietly Ambitious",
+  "Steady·Easy·Rules": "Cozy",
+  "Steady·Easy·Context": "Calm",
+  "Venture·Push·Rules": "Strategic",
+  "Venture·Push·Context": "Ambitious",
+  "Venture·Easy·Rules": "Curious",
+  "Venture·Easy·Context": "Spontaneous"
+ },
+ "nouns": {
+  "We·Soft·Own": "Golden Retriever",
+  "We·Soft·Classic": "Comfort Person",
+  "We·Direct·Own": "Ride-or-Die",
+  "We·Direct·Classic": "Team Captain",
+  "Me·Direct·Own": "Lone Wolf",
+  "Me·Direct·Classic": "Straight Shooter",
+  "Me·Soft·Own": "Free Spirit",
+  "Me·Soft·Classic": "Old Soul"
+ },
+ "glue": {
+  "pick": "Team Captain",
+  "replaces": "The Glue",
+  "why": "Clearest and least hurtful noun across all 8 adjectives in both the bare-name and on-card runs, the only people noun that passes the gate on its own (clear 4.94, hurt 1.39, would-post 3.78, 18 readers), gender-neutral. Group Anchor read as holding the group back or a news anchor (clear 3.1 to 3.2); Group Mom was clearest in meaning but hurt 3.2 (gender, parent role).",
+  "exception": "Cozy Group Host for the Cozy cell (see overrides).",
+  "evidence": {
+   "r1_standalone": {
+    "Group Host": {
+     "clear": 3.73,
+     "hurt": 1.27,
+     "wouldPost": 3.0,
+     "pass8": 1
+    },
+    "Team Captain": {
+     "clear": 4.32,
+     "hurt": 1.23,
+     "wouldPost": 3.6,
+     "pass8": 3
+    },
+    "Group Mom": {
+     "clear": 4.15,
+     "hurt": 3.23,
+     "wouldPost": 2.43,
+     "pass8": 0
+    },
+    "Group Anchor": {
+     "clear": 3.1,
+     "hurt": 1.35,
+     "wouldPost": 2.76,
+     "pass8": 0
+    },
+    "Group Captain": {
+     "clear": 3.8,
+     "hurt": 1.7,
+     "wouldPost": 3.17,
+     "pass8": 0
+    },
+    "Group Heart": {
+     "clear": 2.75,
+     "hurt": 1.52,
+     "wouldPost": 2.51,
+     "pass8": 0
+    },
+    "Group Organizer": {
+     "clear": 4.05,
+     "hurt": 1.21,
+     "wouldPost": 3.06,
+     "pass8": 2
+    }
+   },
+   "r2_card": {
+    "Team Captain": {
+     "clear": 4.31,
+     "hurt": 1.21,
+     "wouldPost": 3.48,
+     "pass8": 4
+    },
+    "Group Host": {
+     "clear": 4.01,
+     "hurt": 1.16,
+     "wouldPost": 3.19,
+     "pass8": 2
+    },
+    "Group Anchor": {
+     "clear": 3.24,
+     "hurt": 1.49,
+     "wouldPost": 2.88,
+     "pass8": 0
+    },
+    "Group Organizer": {
+     "clear": 4.38,
+     "hurt": 1.26,
+     "wouldPost": 3.05,
+     "pass8": 3
+    }
+   }
+  }
+ },
+ "overrides": [
+  {
+   "key": "Me·Soft·Own|Venture·Easy·Context",
+   "default": "Spontaneous Free Spirit",
+   "name": "Certified Free Spirit",
+   "why": "Spontaneous and Free Spirit say the same thing twice. Certified is the clever fix with the lowest hurt (1.33); Unstoppable, the first idea, read as reckless (hurt 1.94, lowest clarity). Spontaneous Free Spirit stays the fallback: clearest, but redundant.",
+   "evidence": {
+    "r2_card_12readers": {
+     "Certified Free Spirit": {
+      "clear": 4.5,
+      "hurt": 1.5,
+      "wouldPost": 3.83
+     },
+     "Spontaneous Free Spirit": {
+      "clear": 4.75,
+      "hurt": 1.58,
+      "wouldPost": 3.75
+     },
+     "Total Free Spirit": {
+      "clear": 4.33,
+      "hurt": 1.67,
+      "wouldPost": 3.42
+     }
+    },
+    "f1_card_18readers": {
+     "Cozy Group Host": {
+      "clear": 4.0,
+      "hurt": 1.0,
+      "wouldPost": 3.0
+     },
+     "Spontaneous Free Spirit": {
+      "clear": 4.33,
+      "hurt": 1.61,
+      "wouldPost": 3.5
+     },
+     "Certified Free Spirit": {
+      "clear": 4.06,
+      "hurt": 1.33,
+      "wouldPost": 3.44
+     },
+     "Unstoppable Free Spirit": {
+      "clear": 4.0,
+      "hurt": 1.94,
+      "wouldPost": 3.22
+     }
+    }
+   }
+  },
+  {
+   "key": "We·Direct·Classic|Steady·Easy·Rules",
+   "default": "Cozy Team Captain",
+   "name": "Cozy Group Host",
+   "why": "Cozy Team Captain read as a sports captain who stays home (clear 3.67); Cozy Group Host names what this player does (hosts every holiday) and scored clear 4.39, hurt 1.0 in the same run.",
+   "evidence": {
+    "Cozy Group Host": {
+     "clear": 4.39,
+     "hurt": 1.0,
+     "wouldPost": 3.56
+    },
+    "Cozy Team Captain": {
+     "clear": 3.67,
+     "hurt": 1.06,
+     "wouldPost": 3.06
+    }
+   }
+  }
+ ],
+ "gate": {
+  "name": "clear >= 4.5, hurt <= 2 (scored on the card, with the fun line printed under the name)",
+  "line": "clear >= 4.5, hurt <= 2, would-post >= 3.5",
+  "tell": "clear >= 4.5, hurt <= 2",
+  "panel": "Codex cold-reader panel of 6 readers aged 20 to 35, US and Canada (progressive activist, religious conservative, ESL speaker, Gen Z TikTok user, nurse, engineer); 18 readers (3 shuffled runs) for every final score",
+  "rounds": [
+   {
+    "round": "r1",
+    "readers": 12,
+    "what": "first draft: 64 names bare, 7 Glue nouns x 8 adjectives, 4 Free Spirit alternatives, 128 lines, 100 tells"
+   },
+   {
+    "round": "r2",
+    "readers": 12,
+    "what": "names on the card with the line under them, 3 more Glue nouns, rewrites"
+   },
+   {
+    "round": "f1",
+    "readers": 18,
+    "what": "full final set rescored: 64 names on card, 9 nouns alone as baseline, 128 lines, 100 tells"
+   },
+   {
+    "round": "f2 to f5",
+    "readers": 18,
+    "what": "rewrites of the f1 failures, Go-To Friend probe, Cozy Group Host check"
+   }
+  ]
+ },
+ "combos": [
+  {
+   "key": "We·Soft·Own|Steady·Push·Rules",
+   "people": {
+    "code": "We·Soft·Own",
+    "archetype": "Golden Retriever",
+    "noun": "Golden Retriever"
+   },
+   "life": {
+    "code": "Steady·Push·Rules",
+    "archetype": "The Planner",
+    "adjective": "Organized"
+   },
+   "name": "Organized Golden Retriever",
+   "override": false,
+   "line": {
+    "fun": "The warm friend who actually plans the fun.",
+    "heart": "Warm with everyone, and the one who makes plans actually happen."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.5,
+     "hurt": 2.44,
+     "wouldPost": 2.83,
+     "readers": 18,
+     "reading": "Friendly, enthusiastic person who keeps things organized",
+     "misread": "An obedient, eager-to-please dog",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.94,
+     "hurt": 1.11,
+     "wouldPost": 4.28,
+     "readers": 18,
+     "reading": "Warm friend who organizes enjoyable time together",
+     "misread": "Other friends are unreliable planners",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.94,
+     "hurt": 1.33,
+     "wouldPost": 4.11,
+     "readers": 18,
+     "reading": "Friendly to everyone and follows through on plans",
+     "misread": "Expected to organize everything for everyone",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Golden Retriever",
+    "clear": 3.78,
+    "hurt": 2.11,
+    "wouldPost": 3.22
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Soft·Own|Steady·Push·Context",
+   "people": {
+    "code": "We·Soft·Own",
+    "archetype": "Golden Retriever",
+    "noun": "Golden Retriever"
+   },
+   "life": {
+    "code": "Steady·Push·Context",
+    "archetype": "The Quiet Achiever",
+    "adjective": "Quietly Ambitious"
+   },
+   "name": "Quietly Ambitious Golden Retriever",
+   "override": false,
+   "line": {
+    "fun": "Everyone's biggest fan, and quietly chasing big goals.",
+    "heart": "Cheers everyone on while quietly working toward something big."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.39,
+     "hurt": 2.44,
+     "wouldPost": 2.67,
+     "readers": 18,
+     "reading": "Friendly supporter with understated personal ambition",
+     "misread": "Eager to please, obedient, and hiding ambition",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.83,
+     "hurt": 1.44,
+     "wouldPost": 3.83,
+     "readers": 18,
+     "reading": "Supports others while pursuing personal ambitions quietly",
+     "misread": "People pleaser who hides their own needs",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.94,
+     "hurt": 1.0,
+     "wouldPost": 4.0,
+     "readers": 18,
+     "reading": "Encourages others while privately pursuing a major goal",
+     "misread": "Secretly planning something they will not disclose",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Golden Retriever",
+    "clear": 3.78,
+    "hurt": 2.11,
+    "wouldPost": 3.22
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Soft·Own|Steady·Easy·Rules",
+   "people": {
+    "code": "We·Soft·Own",
+    "archetype": "Golden Retriever",
+    "noun": "Golden Retriever"
+   },
+   "life": {
+    "code": "Steady·Easy·Rules",
+    "archetype": "The Routine Lover",
+    "adjective": "Cozy"
+   },
+   "name": "Cozy Golden Retriever",
+   "override": false,
+   "line": {
+    "fun": "The warmest friend, happiest on a slow Sunday.",
+    "heart": "Warm with everyone, and happiest with a cozy routine."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.67,
+     "hurt": 2.28,
+     "wouldPost": 3.11,
+     "readers": 18,
+     "reading": "Warm friendly person who enjoys comfortable downtime",
+     "misread": "Clingy people pleaser compared to a pet",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.94,
+     "hurt": 1.06,
+     "wouldPost": 3.94,
+     "readers": 18,
+     "reading": "Affectionate and happiest during relaxed downtime",
+     "misread": "Lazy or available mainly for comforting others",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.89,
+     "hurt": 1.17,
+     "wouldPost": 4.0,
+     "readers": 18,
+     "reading": "Friendly with people and enjoys familiar comforts",
+     "misread": "A people pleaser who avoids change",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Golden Retriever",
+    "clear": 3.78,
+    "hurt": 2.11,
+    "wouldPost": 3.22
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Soft·Own|Steady·Easy·Context",
+   "people": {
+    "code": "We·Soft·Own",
+    "archetype": "Golden Retriever",
+    "noun": "Golden Retriever"
+   },
+   "life": {
+    "code": "Steady·Easy·Context",
+    "archetype": "The Calm One",
+    "adjective": "Calm"
+   },
+   "name": "Calm Golden Retriever",
+   "override": false,
+   "line": {
+    "fun": "The friendliest face and the calmest voice in the room.",
+    "heart": "Warm, gentle and the calmest person in any room."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.5,
+     "hurt": 2.39,
+     "wouldPost": 2.94,
+     "readers": 18,
+     "reading": "Relaxed, friendly person who makes others comfortable",
+     "misread": "Obedient, naive, or being compared to a pet",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 5.0,
+     "hurt": 1.11,
+     "wouldPost": 3.83,
+     "readers": 18,
+     "reading": "Welcoming and reassuring around other people",
+     "misread": "Always expected to smile and soothe everyone",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.5,
+     "wouldPost": 3.5,
+     "readers": 18,
+     "reading": "Friendly, gentle, exceptionally calm",
+     "misread": "Never gets upset or has emotional needs",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Golden Retriever",
+    "clear": 3.78,
+    "hurt": 2.11,
+    "wouldPost": 3.22
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Soft·Own|Venture·Push·Rules",
+   "people": {
+    "code": "We·Soft·Own",
+    "archetype": "Golden Retriever",
+    "noun": "Golden Retriever"
+   },
+   "life": {
+    "code": "Venture·Push·Rules",
+    "archetype": "The Strategist",
+    "adjective": "Strategic"
+   },
+   "name": "Strategic Golden Retriever",
+   "override": false,
+   "line": {
+    "fun": "Makes friends everywhere, and a plan for every big goal.",
+    "heart": "Warm with everyone, and always has a smart plan."
+   },
+   "panel": {
+    "name": {
+     "clear": 2.94,
+     "hurt": 2.33,
+     "wouldPost": 2.44,
+     "readers": 18,
+     "reading": "Friendly and enthusiastic with deliberate plans",
+     "misread": "Manipulatively friendly or an unusually calculating dog",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.78,
+     "hurt": 1.0,
+     "wouldPost": 3.72,
+     "readers": 18,
+     "reading": "Socially outgoing and organized about ambitions",
+     "misread": "Collects friends while relentlessly chasing success",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.94,
+     "hurt": 1.0,
+     "wouldPost": 3.89,
+     "readers": 18,
+     "reading": "Welcomes people and plans ahead intelligently",
+     "misread": "Acts friendly to get people following their plans",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Golden Retriever",
+    "clear": 3.78,
+    "hurt": 2.11,
+    "wouldPost": 3.22
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Soft·Own|Venture·Push·Context",
+   "people": {
+    "code": "We·Soft·Own",
+    "archetype": "Golden Retriever",
+    "noun": "Golden Retriever"
+   },
+   "life": {
+    "code": "Venture·Push·Context",
+    "archetype": "The Go-Getter",
+    "adjective": "Ambitious"
+   },
+   "name": "Ambitious Golden Retriever",
+   "override": false,
+   "line": {
+    "fun": "Chases big dreams and still says hi to everyone.",
+    "heart": "Goes after big goals and cheers everyone else on too."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.39,
+     "hurt": 2.33,
+     "wouldPost": 2.83,
+     "readers": 18,
+     "reading": "Friendly, enthusiastic person with big goals",
+     "misread": "An eager-to-please person chasing approval",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.89,
+     "hurt": 1.0,
+     "wouldPost": 3.83,
+     "readers": 18,
+     "reading": "Ambitious and friendly to everyone",
+     "misread": "Saying hello is their entire social contribution",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.94,
+     "hurt": 1.0,
+     "wouldPost": 4.11,
+     "readers": 18,
+     "reading": "Pursues ambitions while encouraging other people",
+     "misread": "Expected to stay positive and support everyone",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Golden Retriever",
+    "clear": 3.78,
+    "hurt": 2.11,
+    "wouldPost": 3.22
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Soft·Own|Venture·Easy·Rules",
+   "people": {
+    "code": "We·Soft·Own",
+    "archetype": "Golden Retriever",
+    "noun": "Golden Retriever"
+   },
+   "life": {
+    "code": "Venture·Easy·Rules",
+    "archetype": "The Explorer",
+    "adjective": "Curious"
+   },
+   "name": "Curious Golden Retriever",
+   "override": false,
+   "line": {
+    "fun": "Wants to try every new place, with every friend.",
+    "heart": "Loves new places most when friends come too."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.5,
+     "hurt": 2.11,
+     "wouldPost": 3.06,
+     "readers": 18,
+     "reading": "Friendly, enthusiastic, and eager to explore",
+     "misread": "Naive, obedient, or being called a dog",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 3.72,
+     "readers": 18,
+     "reading": "Wants to explore new places with friends",
+     "misread": "Exhaustingly social and unable to choose",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 4.0,
+     "readers": 18,
+     "reading": "Enjoys exploring most with friends",
+     "misread": "Cannot enjoy travel or exploration alone",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Golden Retriever",
+    "clear": 3.78,
+    "hurt": 2.11,
+    "wouldPost": 3.22
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Soft·Own|Venture·Easy·Context",
+   "people": {
+    "code": "We·Soft·Own",
+    "archetype": "Golden Retriever",
+    "noun": "Golden Retriever"
+   },
+   "life": {
+    "code": "Venture·Easy·Context",
+    "archetype": "The Spontaneous One",
+    "adjective": "Spontaneous"
+   },
+   "name": "Spontaneous Golden Retriever",
+   "override": false,
+   "line": {
+    "fun": "Always first in the car for a last-minute trip.",
+    "heart": "Warm, open and always up for a last-minute adventure."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.56,
+     "hurt": 2.17,
+     "wouldPost": 3.11,
+     "readers": 18,
+     "reading": "Friendly, enthusiastic person who acts on impulse",
+     "misread": "An impulsive, needy or unintelligent people pleaser",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 5.0,
+     "hurt": 1.06,
+     "wouldPost": 3.72,
+     "readers": 18,
+     "reading": "Eager to join spontaneous trips",
+     "misread": "Impulsive and always available to drop responsibilities",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.94,
+     "hurt": 1.22,
+     "wouldPost": 3.83,
+     "readers": 18,
+     "reading": "Friendly, receptive person who enjoys spontaneous adventures",
+     "misread": "Always available and unable to decline plans",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Golden Retriever",
+    "clear": 3.78,
+    "hurt": 2.11,
+    "wouldPost": 3.22
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Soft·Classic|Steady·Push·Rules",
+   "people": {
+    "code": "We·Soft·Classic",
+    "archetype": "Comfort Person",
+    "noun": "Comfort Person"
+   },
+   "life": {
+    "code": "Steady·Push·Rules",
+    "archetype": "The Planner",
+    "adjective": "Organized"
+   },
+   "name": "Organized Comfort Person",
+   "override": false,
+   "line": {
+    "fun": "Remembers every birthday and already bought the card.",
+    "heart": "Takes care of people, and never lets the little things slip."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.72,
+     "hurt": 2.17,
+     "wouldPost": 3.11,
+     "readers": 18,
+     "reading": "Dependable, caring person who plans thoughtful gestures",
+     "misread": "Assigned to manage other people's emotional needs",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 5.0,
+     "hurt": 1.28,
+     "wouldPost": 4.0,
+     "readers": 18,
+     "reading": "Thoughtful friend who plans ahead for birthdays",
+     "misread": "Expected to remember and care for everyone",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.78,
+     "hurt": 1.83,
+     "wouldPost": 3.61,
+     "readers": 18,
+     "reading": "Cares for others and handles small details",
+     "misread": "Responsible for everyone and never allowed mistakes",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Comfort Person",
+    "clear": 4.06,
+    "hurt": 1.94,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Soft·Classic|Steady·Push·Context",
+   "people": {
+    "code": "We·Soft·Classic",
+    "archetype": "Comfort Person",
+    "noun": "Comfort Person"
+   },
+   "life": {
+    "code": "Steady·Push·Context",
+    "archetype": "The Quiet Achiever",
+    "adjective": "Quietly Ambitious"
+   },
+   "name": "Quietly Ambitious Comfort Person",
+   "override": false,
+   "line": {
+    "fun": "Takes care of friends and quietly works toward big goals.",
+    "heart": "Kind and caring, and steadily working toward a big goal."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.06,
+     "hurt": 1.78,
+     "wouldPost": 2.61,
+     "readers": 18,
+     "reading": "Quietly pursues goals while supporting others",
+     "misread": "Quietly wants to become everyone's emotional caretaker",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 5.0,
+     "hurt": 1.17,
+     "wouldPost": 3.94,
+     "readers": 18,
+     "reading": "Supports friends while pursuing personal ambitions",
+     "misread": "Expected to care for everyone while achieving more",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 3.56,
+     "readers": 18,
+     "reading": "Caring and consistently pursuing an important goal",
+     "misread": "none",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Comfort Person",
+    "clear": 4.06,
+    "hurt": 1.94,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Soft·Classic|Steady·Easy·Rules",
+   "people": {
+    "code": "We·Soft·Classic",
+    "archetype": "Comfort Person",
+    "noun": "Comfort Person"
+   },
+   "life": {
+    "code": "Steady·Easy·Rules",
+    "archetype": "The Routine Lover",
+    "adjective": "Cozy"
+   },
+   "name": "Cozy Comfort Person",
+   "override": false,
+   "line": {
+    "fun": "Hosts the best nights in, leftovers packed to go.",
+    "heart": "Kind and caring, and makes every night in feel special."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.33,
+     "hurt": 1.72,
+     "wouldPost": 3.06,
+     "readers": 18,
+     "reading": "Warm person who makes others feel comfortable",
+     "misread": "A homebody who needs constant comforting",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.61,
+     "hurt": 1.17,
+     "wouldPost": 4.33,
+     "readers": 18,
+     "reading": "Welcoming host who sends guests home with food",
+     "misread": "Expected to cook and care for everyone",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.94,
+     "hurt": 1.17,
+     "wouldPost": 3.89,
+     "readers": 18,
+     "reading": "A caring person who makes home gatherings enjoyable",
+     "misread": "Expected to host and care for everyone",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Comfort Person",
+    "clear": 4.06,
+    "hurt": 1.94,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Soft·Classic|Steady·Easy·Context",
+   "people": {
+    "code": "We·Soft·Classic",
+    "archetype": "Comfort Person",
+    "noun": "Comfort Person"
+   },
+   "life": {
+    "code": "Steady·Easy·Context",
+    "archetype": "The Calm One",
+    "adjective": "Calm"
+   },
+   "name": "Calm Comfort Person",
+   "override": false,
+   "line": {
+    "fun": "The first call when everything goes wrong.",
+    "heart": "A calm, kind voice when people need it most."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.33,
+     "hurt": 1.83,
+     "wouldPost": 2.78,
+     "readers": 18,
+     "reading": "Soothing person others feel safe around",
+     "misread": "Passive person whose job is comforting everyone",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.89,
+     "hurt": 1.72,
+     "wouldPost": 3.56,
+     "readers": 18,
+     "reading": "Trusted person others call during a crisis",
+     "misread": "Everyone dumps their problems on them",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.28,
+     "wouldPost": 3.94,
+     "readers": 18,
+     "reading": "Offers steady kindness when people need support",
+     "misread": "Expected to be everyone else's emotional support",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Comfort Person",
+    "clear": 4.06,
+    "hurt": 1.94,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Soft·Classic|Venture·Push·Rules",
+   "people": {
+    "code": "We·Soft·Classic",
+    "archetype": "Comfort Person",
+    "noun": "Comfort Person"
+   },
+   "life": {
+    "code": "Venture·Push·Rules",
+    "archetype": "The Strategist",
+    "adjective": "Strategic"
+   },
+   "name": "Strategic Comfort Person",
+   "override": false,
+   "line": {
+    "fun": "Looks after friends, and plans every big move with care.",
+    "heart": "Caring with people, and clear-headed about big decisions."
+   },
+   "panel": {
+    "name": {
+     "clear": 2.78,
+     "hurt": 2.22,
+     "wouldPost": 2.17,
+     "readers": 18,
+     "reading": "Plans carefully and makes others feel supported",
+     "misread": "Uses comfort strategically to influence people",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.5,
+     "hurt": 1.22,
+     "wouldPost": 3.78,
+     "readers": 18,
+     "reading": "Cares for friends and makes thoughtful plans",
+     "misread": "Overthinks every major decision",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.5,
+     "hurt": 1.0,
+     "wouldPost": 3.61,
+     "readers": 18,
+     "reading": "Kind to others and sensible about major choices",
+     "misread": "Keeps emotions out of important decisions",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Comfort Person",
+    "clear": 4.06,
+    "hurt": 1.94,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Soft·Classic|Venture·Push·Context",
+   "people": {
+    "code": "We·Soft·Classic",
+    "archetype": "Comfort Person",
+    "noun": "Comfort Person"
+   },
+   "life": {
+    "code": "Venture·Push·Context",
+    "archetype": "The Go-Getter",
+    "adjective": "Ambitious"
+   },
+   "name": "Ambitious Comfort Person",
+   "override": false,
+   "line": {
+    "fun": "Chases big goals and still checks on everyone.",
+    "heart": "Goes after big goals and never forgets a friend."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.17,
+     "hurt": 1.67,
+     "wouldPost": 2.78,
+     "readers": 18,
+     "reading": "Pursues goals while making others feel supported",
+     "misread": "Ambitious about becoming everyone's emotional caretaker",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.94,
+     "hurt": 1.22,
+     "wouldPost": 4.0,
+     "readers": 18,
+     "reading": "Pursues ambitions while caring about other people",
+     "misread": "Expected to look after everyone despite personal demands",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.06,
+     "wouldPost": 4.06,
+     "readers": 18,
+     "reading": "Pursues ambitions while staying loyal to friends",
+     "misread": "Must stay available to every friend forever",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Comfort Person",
+    "clear": 4.06,
+    "hurt": 1.94,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Soft·Classic|Venture·Easy·Rules",
+   "people": {
+    "code": "We·Soft·Classic",
+    "archetype": "Comfort Person",
+    "noun": "Comfort Person"
+   },
+   "life": {
+    "code": "Venture·Easy·Rules",
+    "archetype": "The Explorer",
+    "adjective": "Curious"
+   },
+   "name": "Curious Comfort Person",
+   "override": false,
+   "line": {
+    "fun": "Brings back a souvenir for every friend.",
+    "heart": "Kind and caring, and loves exploring new places with friends."
+   },
+   "panel": {
+    "name": {
+     "clear": 2.94,
+     "hurt": 1.83,
+     "wouldPost": 2.5,
+     "readers": 18,
+     "reading": "An inquisitive person who makes others feel safe",
+     "misread": "A curious phrase for someone's emotional support person",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.94,
+     "hurt": 1.0,
+     "wouldPost": 3.94,
+     "readers": 18,
+     "reading": "Thoughtfully brings friends gifts from trips",
+     "misread": "Must buy gifts for everyone to show care",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 3.72,
+     "readers": 18,
+     "reading": "Caring person who enjoys adventures with friends",
+     "misread": "none",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Comfort Person",
+    "clear": 4.06,
+    "hurt": 1.94,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Soft·Classic|Venture·Easy·Context",
+   "people": {
+    "code": "We·Soft·Classic",
+    "archetype": "Comfort Person",
+    "noun": "Comfort Person"
+   },
+   "life": {
+    "code": "Venture·Easy·Context",
+    "archetype": "The Spontaneous One",
+    "adjective": "Spontaneous"
+   },
+   "name": "Spontaneous Comfort Person",
+   "override": false,
+   "line": {
+    "fun": "Kind, fun and always up for a spur-of-the-moment plan.",
+    "heart": "Kind, easygoing and always there when it counts."
+   },
+   "panel": {
+    "name": {
+     "clear": 2.72,
+     "hurt": 1.67,
+     "wouldPost": 2.33,
+     "readers": 18,
+     "reading": "Warm person who offers comfort spontaneously",
+     "misread": "Unpredictable person who needs spontaneous reassurance",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.72,
+     "hurt": 1.11,
+     "wouldPost": 3.78,
+     "readers": 18,
+     "reading": "A kind friend who enjoys last-minute plans",
+     "misread": "Always available and expected to say yes",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.94,
+     "hurt": 1.06,
+     "wouldPost": 3.89,
+     "readers": 18,
+     "reading": "Kind, relaxed, dependable when needed",
+     "misread": "none",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Comfort Person",
+    "clear": 4.06,
+    "hurt": 1.94,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Direct·Own|Steady·Push·Rules",
+   "people": {
+    "code": "We·Direct·Own",
+    "archetype": "Ride-or-Die",
+    "noun": "Ride-or-Die"
+   },
+   "life": {
+    "code": "Steady·Push·Rules",
+    "archetype": "The Planner",
+    "adjective": "Organized"
+   },
+   "name": "Organized Ride-or-Die",
+   "override": false,
+   "line": {
+    "fun": "Always shows up for friends, and always on time.",
+    "heart": "Always there, always honest, always prepared."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.56,
+     "hurt": 2.17,
+     "wouldPost": 3.0,
+     "readers": 18,
+     "reading": "A dependable, punctual and loyal friend",
+     "misread": "Schedules extreme loyalty or dangerous commitments",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.89,
+     "hurt": 1.28,
+     "wouldPost": 3.94,
+     "readers": 18,
+     "reading": "Reliable friend who arrives on time",
+     "misread": "Never allowed to be late or unavailable",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.44,
+     "wouldPost": 4.17,
+     "readers": 18,
+     "reading": "Dependable, honest, and prepared",
+     "misread": "Expected to be available and perfect constantly",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Ride-or-Die",
+    "clear": 3.89,
+    "hurt": 2.33,
+    "wouldPost": 3.39
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Direct·Own|Steady·Push·Context",
+   "people": {
+    "code": "We·Direct·Own",
+    "archetype": "Ride-or-Die",
+    "noun": "Ride-or-Die"
+   },
+   "life": {
+    "code": "Steady·Push·Context",
+    "archetype": "The Quiet Achiever",
+    "adjective": "Quietly Ambitious"
+   },
+   "name": "Quietly Ambitious Ride-or-Die",
+   "override": false,
+   "line": {
+    "fun": "Always there for friends, and quietly working toward big goals.",
+    "heart": "Loyal and honest, and steadily building toward big goals."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.17,
+     "hurt": 2.22,
+     "wouldPost": 2.67,
+     "readers": 18,
+     "reading": "Quietly driven and fiercely loyal",
+     "misread": "Secretly competitive and loyal without limits",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.94,
+     "hurt": 1.22,
+     "wouldPost": 4.28,
+     "readers": 18,
+     "reading": "Loyal friend quietly pursuing ambitious goals",
+     "misread": "none",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.89,
+     "hurt": 1.0,
+     "wouldPost": 3.94,
+     "readers": 18,
+     "reading": "Loyal, truthful and consistently pursuing major goals",
+     "misread": "none",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Ride-or-Die",
+    "clear": 3.89,
+    "hurt": 2.33,
+    "wouldPost": 3.39
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Direct·Own|Steady·Easy·Rules",
+   "people": {
+    "code": "We·Direct·Own",
+    "archetype": "Ride-or-Die",
+    "noun": "Ride-or-Die"
+   },
+   "life": {
+    "code": "Steady·Easy·Rules",
+    "archetype": "The Routine Lover",
+    "adjective": "Cozy"
+   },
+   "name": "Cozy Ride-or-Die",
+   "override": false,
+   "line": {
+    "fun": "Loyal to the end, and home by nine.",
+    "heart": "Loyal, honest and happiest in a familiar routine."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.67,
+     "hurt": 2.17,
+     "wouldPost": 3.33,
+     "readers": 18,
+     "reading": "Loyal friend who prefers comfortable nights at home",
+     "misread": "Will support wrongdoing out of unconditional loyalty",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.78,
+     "hurt": 1.22,
+     "wouldPost": 4.44,
+     "readers": 18,
+     "reading": "Deeply loyal but prefers an early night home",
+     "misread": "Boring friend who leaves when others need them",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.17,
+     "wouldPost": 3.78,
+     "readers": 18,
+     "reading": "Loyal, honest and comfortable with familiar habits",
+     "misread": "Resistant to change and stuck in routines",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Ride-or-Die",
+    "clear": 3.89,
+    "hurt": 2.33,
+    "wouldPost": 3.39
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Direct·Own|Steady·Easy·Context",
+   "people": {
+    "code": "We·Direct·Own",
+    "archetype": "Ride-or-Die",
+    "noun": "Ride-or-Die"
+   },
+   "life": {
+    "code": "Steady·Easy·Context",
+    "archetype": "The Calm One",
+    "adjective": "Calm"
+   },
+   "name": "Calm Ride-or-Die",
+   "override": false,
+   "line": {
+    "fun": "Always shows up, never panics.",
+    "heart": "Steady, loyal and calm when others need it most."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.61,
+     "hurt": 1.94,
+     "wouldPost": 3.28,
+     "readers": 18,
+     "reading": "Relaxed friend who stays fiercely loyal",
+     "misread": "Loyal even during dangerous or harmful behavior",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 5.0,
+     "hurt": 1.67,
+     "wouldPost": 3.94,
+     "readers": 18,
+     "reading": "Dependable and calm under pressure",
+     "misread": "Never feels fear or anxiety",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.22,
+     "wouldPost": 4.11,
+     "readers": 18,
+     "reading": "Reliable friend who stays composed during difficulty",
+     "misread": "Must suppress their own feelings to support others",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Ride-or-Die",
+    "clear": 3.89,
+    "hurt": 2.33,
+    "wouldPost": 3.39
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Direct·Own|Venture·Push·Rules",
+   "people": {
+    "code": "We·Direct·Own",
+    "archetype": "Ride-or-Die",
+    "noun": "Ride-or-Die"
+   },
+   "life": {
+    "code": "Venture·Push·Rules",
+    "archetype": "The Strategist",
+    "adjective": "Strategic"
+   },
+   "name": "Strategic Ride-or-Die",
+   "override": false,
+   "line": {
+    "fun": "Loyal to the core, with a backup plan for everyone.",
+    "heart": "Loyal, honest and always thinking ahead for friends."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.22,
+     "hurt": 2.44,
+     "wouldPost": 2.78,
+     "readers": 18,
+     "reading": "Fiercely loyal person who thinks ahead",
+     "misread": "Calculates loyalty or enables friends' harmful behavior",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.78,
+     "hurt": 1.33,
+     "wouldPost": 4.0,
+     "readers": 18,
+     "reading": "Deeply loyal friend who prepares for problems",
+     "misread": "Manages everyone's life or expects things to fail",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.89,
+     "hurt": 1.0,
+     "wouldPost": 4.0,
+     "readers": 18,
+     "reading": "Dependable honest friend who anticipates others' needs",
+     "misread": "Makes decisions for friends without asking",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Ride-or-Die",
+    "clear": 3.89,
+    "hurt": 2.33,
+    "wouldPost": 3.39
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Direct·Own|Venture·Push·Context",
+   "people": {
+    "code": "We·Direct·Own",
+    "archetype": "Ride-or-Die",
+    "noun": "Ride-or-Die"
+   },
+   "life": {
+    "code": "Venture·Push·Context",
+    "archetype": "The Go-Getter",
+    "adjective": "Ambitious"
+   },
+   "name": "Ambitious Ride-or-Die",
+   "override": false,
+   "line": {
+    "fun": "Goes all in on big goals and on friends.",
+    "heart": "Loyal to friends and fully committed to big goals."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.72,
+     "hurt": 2.06,
+     "wouldPost": 3.22,
+     "readers": 18,
+     "reading": "Driven person fiercely loyal to loved ones",
+     "misread": "Supports friends even when they do wrong",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.72,
+     "hurt": 1.17,
+     "wouldPost": 3.89,
+     "readers": 18,
+     "reading": "Fully committed to ambitions and friendships",
+     "misread": "Intense, obsessive, or lacking personal boundaries",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 3.94,
+     "readers": 18,
+     "reading": "Dedicated to friends and ambitious personal goals",
+     "misread": "none",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Ride-or-Die",
+    "clear": 3.89,
+    "hurt": 2.33,
+    "wouldPost": 3.39
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Direct·Own|Venture·Easy·Rules",
+   "people": {
+    "code": "We·Direct·Own",
+    "archetype": "Ride-or-Die",
+    "noun": "Ride-or-Die"
+   },
+   "life": {
+    "code": "Venture·Easy·Rules",
+    "archetype": "The Explorer",
+    "adjective": "Curious"
+   },
+   "name": "Curious Ride-or-Die",
+   "override": false,
+   "line": {
+    "fun": "First to say yes to the trip, and first to pack.",
+    "heart": "Loyal and honest, and always ready to explore with friends."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.33,
+     "hurt": 2.11,
+     "wouldPost": 2.78,
+     "readers": 18,
+     "reading": "Adventurous and fiercely loyal",
+     "misread": "Nosy and loyal even to dangerous choices",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 4.0,
+     "readers": 18,
+     "reading": "Eager traveler who prepares quickly",
+     "misread": "Rushes into trips without thinking",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 4.28,
+     "readers": 18,
+     "reading": "Honest, loyal friend who enjoys shared adventures",
+     "misread": "none",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Ride-or-Die",
+    "clear": 3.89,
+    "hurt": 2.33,
+    "wouldPost": 3.39
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Direct·Own|Venture·Easy·Context",
+   "people": {
+    "code": "We·Direct·Own",
+    "archetype": "Ride-or-Die",
+    "noun": "Ride-or-Die"
+   },
+   "life": {
+    "code": "Venture·Easy·Context",
+    "archetype": "The Spontaneous One",
+    "adjective": "Spontaneous"
+   },
+   "name": "Spontaneous Ride-or-Die",
+   "override": false,
+   "line": {
+    "fun": "Up for any adventure, and never leaves a friend behind.",
+    "heart": "Loyal, honest and ready for anything with friends."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.83,
+     "hurt": 2.11,
+     "wouldPost": 3.17,
+     "readers": 18,
+     "reading": "An adventurous friend who stays fiercely loyal",
+     "misread": "Recklessly follows friends into dangerous situations",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.94,
+     "hurt": 1.06,
+     "wouldPost": 4.22,
+     "readers": 18,
+     "reading": "Adventurous friend who stays loyal to others",
+     "misread": "Takes reckless risks and expects friends to follow",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.94,
+     "hurt": 1.17,
+     "wouldPost": 4.17,
+     "readers": 18,
+     "reading": "A loyal, honest friend open to adventures",
+     "misread": "Will go along with anything friends suggest",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Ride-or-Die",
+    "clear": 3.89,
+    "hurt": 2.33,
+    "wouldPost": 3.39
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Direct·Classic|Steady·Push·Rules",
+   "people": {
+    "code": "We·Direct·Classic",
+    "archetype": "The Glue",
+    "noun": "Team Captain"
+   },
+   "life": {
+    "code": "Steady·Push·Rules",
+    "archetype": "The Planner",
+    "adjective": "Organized"
+   },
+   "name": "Organized Team Captain",
+   "override": false,
+   "line": {
+    "fun": "Made the group chat, the plan and the backup plan.",
+    "heart": "Holds everyone together, one thoughtful plan at a time."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.89,
+     "hurt": 1.44,
+     "wouldPost": 3.72,
+     "readers": 18,
+     "reading": "Organized leader who coordinates the group",
+     "misread": "Bossy person who takes charge without asking",
+     "pass": true
+    },
+    "lineFun": {
+     "clear": 5.0,
+     "hurt": 1.22,
+     "wouldPost": 4.22,
+     "readers": 18,
+     "reading": "Organizes the group and prepares alternatives",
+     "misread": "Controls the group and overplans everything",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.56,
+     "hurt": 1.5,
+     "wouldPost": 3.72,
+     "readers": 18,
+     "reading": "Keeps people united through thoughtful planning",
+     "misread": "Responsible for managing everyone else's lives",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Team Captain",
+    "clear": 4.94,
+    "hurt": 1.39,
+    "wouldPost": 3.78
+   },
+   "pass": {
+    "name": true,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Direct·Classic|Steady·Push·Context",
+   "people": {
+    "code": "We·Direct·Classic",
+    "archetype": "The Glue",
+    "noun": "Team Captain"
+   },
+   "life": {
+    "code": "Steady·Push·Context",
+    "archetype": "The Quiet Achiever",
+    "adjective": "Quietly Ambitious"
+   },
+   "name": "Quietly Ambitious Team Captain",
+   "override": false,
+   "line": {
+    "fun": "Keeps the group together, and quietly chases big goals.",
+    "heart": "Keeps friends together, and makes quiet progress on big goals."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.83,
+     "hurt": 1.28,
+     "wouldPost": 3.44,
+     "readers": 18,
+     "reading": "An understated leader with big ambitions",
+     "misread": "Secretly competitive while appearing modest",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.83,
+     "hurt": 1.06,
+     "wouldPost": 3.83,
+     "readers": 18,
+     "reading": "Supports group unity while pursuing personal ambitions",
+     "misread": "Responsible for managing everyone's relationships",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.94,
+     "hurt": 1.11,
+     "wouldPost": 4.06,
+     "readers": 18,
+     "reading": "Maintains friendships while steadily pursuing ambitious goals",
+     "misread": "none",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Team Captain",
+    "clear": 4.94,
+    "hurt": 1.39,
+    "wouldPost": 3.78
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Direct·Classic|Steady·Easy·Rules",
+   "people": {
+    "code": "We·Direct·Classic",
+    "archetype": "The Glue",
+    "noun": "Team Captain"
+   },
+   "life": {
+    "code": "Steady·Easy·Rules",
+    "archetype": "The Routine Lover",
+    "adjective": "Cozy"
+   },
+   "name": "Cozy Group Host",
+   "override": true,
+   "line": {
+    "fun": "Hosts every holiday, and everyone keeps coming back.",
+    "heart": "Keeps friends together with traditions everyone loves."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.39,
+     "hurt": 1.0,
+     "wouldPost": 3.56,
+     "readers": 18,
+     "reading": "Warm person who hosts gatherings for their circle",
+     "misread": "Runs a group or organizes group trips",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 5.0,
+     "hurt": 1.17,
+     "wouldPost": 3.89,
+     "readers": 18,
+     "reading": "Reliable holiday host whose guests enjoy returning",
+     "misread": "Always responsible for hosting and entertaining everyone",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.89,
+     "hurt": 1.17,
+     "wouldPost": 3.72,
+     "readers": 18,
+     "reading": "Maintains friendships through shared traditions",
+     "misread": "Expects everyone to follow established traditions",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Team Captain",
+    "clear": 4.94,
+    "hurt": 1.39,
+    "wouldPost": 3.78
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Direct·Classic|Steady·Easy·Context",
+   "people": {
+    "code": "We·Direct·Classic",
+    "archetype": "The Glue",
+    "noun": "Team Captain"
+   },
+   "life": {
+    "code": "Steady·Easy·Context",
+    "archetype": "The Calm One",
+    "adjective": "Calm"
+   },
+   "name": "Calm Team Captain",
+   "override": false,
+   "line": {
+    "fun": "The calm voice every group chat needs.",
+    "heart": "Keeps the group calm and brings everyone together."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.83,
+     "hurt": 1.06,
+     "wouldPost": 3.89,
+     "readers": 18,
+     "reading": "A composed leader who steadies the group",
+     "misread": "Emotionally detached or controlling",
+     "pass": true
+    },
+    "lineFun": {
+     "clear": 4.94,
+     "hurt": 1.28,
+     "wouldPost": 3.72,
+     "readers": 18,
+     "reading": "Keeps group conversations grounded and calm",
+     "misread": "Acts as the group chat's unpaid mediator",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.22,
+     "wouldPost": 3.89,
+     "readers": 18,
+     "reading": "Helps groups stay calm and connected",
+     "misread": "Responsible for managing everyone else's emotions",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Team Captain",
+    "clear": 4.94,
+    "hurt": 1.39,
+    "wouldPost": 3.78
+   },
+   "pass": {
+    "name": true,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Direct·Classic|Venture·Push·Rules",
+   "people": {
+    "code": "We·Direct·Classic",
+    "archetype": "The Glue",
+    "noun": "Team Captain"
+   },
+   "life": {
+    "code": "Venture·Push·Rules",
+    "archetype": "The Strategist",
+    "adjective": "Strategic"
+   },
+   "name": "Strategic Team Captain",
+   "override": false,
+   "line": {
+    "fun": "Runs the group trip like a mission, and it works.",
+    "heart": "Brings people together with a plan that actually works."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.83,
+     "hurt": 1.33,
+     "wouldPost": 3.67,
+     "readers": 18,
+     "reading": "Group leader who plans carefully for success",
+     "misread": "Bossy person who treats friends like subordinates",
+     "pass": true
+    },
+    "lineFun": {
+     "clear": 4.83,
+     "hurt": 2.0,
+     "wouldPost": 3.78,
+     "readers": 18,
+     "reading": "Organizes group travel with effective precision",
+     "misread": "Bossy and makes vacations feel like work",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.22,
+     "wouldPost": 3.94,
+     "readers": 18,
+     "reading": "Unites people through effective planning",
+     "misread": "Thinks their plans are better than everyone else's",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Team Captain",
+    "clear": 4.94,
+    "hurt": 1.39,
+    "wouldPost": 3.78
+   },
+   "pass": {
+    "name": true,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Direct·Classic|Venture·Push·Context",
+   "people": {
+    "code": "We·Direct·Classic",
+    "archetype": "The Glue",
+    "noun": "Team Captain"
+   },
+   "life": {
+    "code": "Venture·Push·Context",
+    "archetype": "The Go-Getter",
+    "adjective": "Ambitious"
+   },
+   "name": "Ambitious Team Captain",
+   "override": false,
+   "line": {
+    "fun": "Aims high and brings the whole group along.",
+    "heart": "Brings people together and goes after big goals."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.89,
+     "hurt": 1.39,
+     "wouldPost": 3.83,
+     "readers": 18,
+     "reading": "A driven leader who brings others along",
+     "misread": "Competitive, bossy and hungry for status",
+     "pass": true
+    },
+    "lineFun": {
+     "clear": 4.83,
+     "hurt": 1.22,
+     "wouldPost": 4.0,
+     "readers": 18,
+     "reading": "Pursues ambitious goals while including everyone",
+     "misread": "Pushes the whole group toward personal ambitions",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 3.83,
+     "readers": 18,
+     "reading": "Unites people and pursues ambitious goals",
+     "misread": "none",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Team Captain",
+    "clear": 4.94,
+    "hurt": 1.39,
+    "wouldPost": 3.78
+   },
+   "pass": {
+    "name": true,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Direct·Classic|Venture·Easy·Rules",
+   "people": {
+    "code": "We·Direct·Classic",
+    "archetype": "The Glue",
+    "noun": "Team Captain"
+   },
+   "life": {
+    "code": "Venture·Easy·Rules",
+    "archetype": "The Explorer",
+    "adjective": "Curious"
+   },
+   "name": "Curious Team Captain",
+   "override": false,
+   "line": {
+    "fun": "Plans the group trip to somewhere nobody's been.",
+    "heart": "Brings friends together to try new places."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.22,
+     "hurt": 1.06,
+     "wouldPost": 3.17,
+     "readers": 18,
+     "reading": "An inquisitive leader who enjoys new experiences",
+     "misread": "Nosy leader who questions everyone's business",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.94,
+     "hurt": 1.0,
+     "wouldPost": 4.11,
+     "readers": 18,
+     "reading": "Organizes trips to new places with friends",
+     "misread": "none",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 3.83,
+     "readers": 18,
+     "reading": "Organizes friends to explore new places",
+     "misread": "none",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Team Captain",
+    "clear": 4.94,
+    "hurt": 1.39,
+    "wouldPost": 3.78
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "We·Direct·Classic|Venture·Easy·Context",
+   "people": {
+    "code": "We·Direct·Classic",
+    "archetype": "The Glue",
+    "noun": "Team Captain"
+   },
+   "life": {
+    "code": "Venture·Easy·Context",
+    "archetype": "The Spontaneous One",
+    "adjective": "Spontaneous"
+   },
+   "name": "Spontaneous Team Captain",
+   "override": false,
+   "line": {
+    "fun": "Turns any free evening into a group night out.",
+    "heart": "Brings everyone together at a moment's notice."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.0,
+     "hurt": 1.5,
+     "wouldPost": 3.56,
+     "readers": 18,
+     "reading": "Group leader who starts spontaneous social plans",
+     "misread": "Pushes everyone into plans without consulting them",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 5.0,
+     "hurt": 1.17,
+     "wouldPost": 3.72,
+     "readers": 18,
+     "reading": "Organizes spontaneous social outings for friends",
+     "misread": "Pushes everyone to socialize instead of resting",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.5,
+     "hurt": 1.06,
+     "wouldPost": 3.56,
+     "readers": 18,
+     "reading": "Quickly gathers people for shared activities",
+     "misread": "Expects everyone to drop their plans immediately",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Team Captain",
+    "clear": 4.94,
+    "hurt": 1.39,
+    "wouldPost": 3.78
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Direct·Own|Steady·Push·Rules",
+   "people": {
+    "code": "Me·Direct·Own",
+    "archetype": "Lone Wolf",
+    "noun": "Lone Wolf"
+   },
+   "life": {
+    "code": "Steady·Push·Rules",
+    "archetype": "The Planner",
+    "adjective": "Organized"
+   },
+   "name": "Organized Lone Wolf",
+   "override": false,
+   "line": {
+    "fun": "Enjoys time alone, and has every plan sorted.",
+    "heart": "Independent, organized and clear about what matters."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.56,
+     "hurt": 2.39,
+     "wouldPost": 2.94,
+     "readers": 18,
+     "reading": "Prefers working alone and keeps plans organized",
+     "misread": "Antisocial, calculating or potentially dangerous",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.83,
+     "hurt": 1.5,
+     "wouldPost": 3.83,
+     "readers": 18,
+     "reading": "Likes solitude and keeps plans well organized",
+     "misread": "Rigid loner who needs total control",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.94,
+     "hurt": 1.0,
+     "wouldPost": 3.94,
+     "readers": 18,
+     "reading": "Self-reliant, organized, and knows their priorities",
+     "misread": "Rigid and unwilling to consider others' priorities",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Lone Wolf",
+    "clear": 4.78,
+    "hurt": 2.56,
+    "wouldPost": 2.78
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Direct·Own|Steady·Push·Context",
+   "people": {
+    "code": "Me·Direct·Own",
+    "archetype": "Lone Wolf",
+    "noun": "Lone Wolf"
+   },
+   "life": {
+    "code": "Steady·Push·Context",
+    "archetype": "The Quiet Achiever",
+    "adjective": "Quietly Ambitious"
+   },
+   "name": "Quietly Ambitious Lone Wolf",
+   "override": false,
+   "line": {
+    "fun": "Building something big, will announce it when it's done.",
+    "heart": "Independent and focused, steadily working toward a big goal."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.17,
+     "hurt": 2.39,
+     "wouldPost": 3.11,
+     "readers": 18,
+     "reading": "Independent person privately pursuing big goals",
+     "misread": "Antisocial outsider who puts success before relationships",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.67,
+     "hurt": 1.0,
+     "wouldPost": 3.5,
+     "readers": 18,
+     "reading": "Privately working toward an ambitious accomplishment",
+     "misread": "Secretive boast about an unspecified future success",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 4.11,
+     "readers": 18,
+     "reading": "Self-directed and consistently pursuing an important goal",
+     "misread": "Prioritizes personal goals over relationships",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Lone Wolf",
+    "clear": 4.78,
+    "hurt": 2.56,
+    "wouldPost": 2.78
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Direct·Own|Steady·Easy·Rules",
+   "people": {
+    "code": "Me·Direct·Own",
+    "archetype": "Lone Wolf",
+    "noun": "Lone Wolf"
+   },
+   "life": {
+    "code": "Steady·Easy·Rules",
+    "archetype": "The Routine Lover",
+    "adjective": "Cozy"
+   },
+   "name": "Cozy Lone Wolf",
+   "override": false,
+   "line": {
+    "fun": "A quiet night in is the whole plan, not the backup.",
+    "heart": "Loves having space and a comfortable routine."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.28,
+     "hurt": 2.44,
+     "wouldPost": 3.22,
+     "readers": 18,
+     "reading": "Independent person who enjoys comfortable time alone",
+     "misread": "Antisocial loner who does not want friends",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.83,
+     "hurt": 1.0,
+     "wouldPost": 4.39,
+     "readers": 18,
+     "reading": "Genuinely prefers relaxing at home",
+     "misread": "Avoids social life or lacks exciting options",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.94,
+     "hurt": 1.0,
+     "wouldPost": 4.11,
+     "readers": 18,
+     "reading": "Values personal space and familiar daily habits",
+     "misread": "Avoids people and resists change",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Lone Wolf",
+    "clear": 4.78,
+    "hurt": 2.56,
+    "wouldPost": 2.78
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Direct·Own|Steady·Easy·Context",
+   "people": {
+    "code": "Me·Direct·Own",
+    "archetype": "Lone Wolf",
+    "noun": "Lone Wolf"
+   },
+   "life": {
+    "code": "Steady·Easy·Context",
+    "archetype": "The Calm One",
+    "adjective": "Calm"
+   },
+   "name": "Calm Lone Wolf",
+   "override": false,
+   "line": {
+    "fun": "Calm under pressure, and happiest with a peaceful solo day.",
+    "heart": "Independent, unhurried and completely at ease solo."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.5,
+     "hurt": 2.5,
+     "wouldPost": 3.06,
+     "readers": 18,
+     "reading": "Relaxed person who prefers independence and solitude",
+     "misread": "Emotionally detached person with no friends",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.94,
+     "hurt": 1.22,
+     "wouldPost": 4.22,
+     "readers": 18,
+     "reading": "Handles stress well and enjoys peaceful solitude",
+     "misread": "Dislikes people or avoids close relationships",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.83,
+     "hurt": 1.39,
+     "wouldPost": 3.78,
+     "readers": 18,
+     "reading": "Comfortable alone and living at their own pace",
+     "misread": "Doesn't need or want close relationships",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Lone Wolf",
+    "clear": 4.78,
+    "hurt": 2.56,
+    "wouldPost": 2.78
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Direct·Own|Venture·Push·Rules",
+   "people": {
+    "code": "Me·Direct·Own",
+    "archetype": "Lone Wolf",
+    "noun": "Lone Wolf"
+   },
+   "life": {
+    "code": "Venture·Push·Rules",
+    "archetype": "The Strategist",
+    "adjective": "Strategic"
+   },
+   "name": "Strategic Lone Wolf",
+   "override": false,
+   "line": {
+    "fun": "Makes big plans alone, and pulls them off.",
+    "heart": "Independent, thoughtful and always a few steps ahead."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.11,
+     "hurt": 2.5,
+     "wouldPost": 2.94,
+     "readers": 18,
+     "reading": "Independent person who pursues carefully planned goals",
+     "misread": "Calculating loner who avoids cooperation",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.83,
+     "hurt": 1.78,
+     "wouldPost": 3.67,
+     "readers": 18,
+     "reading": "Independently plans and accomplishes ambitious goals",
+     "misread": "Rejects help and takes all the credit",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.83,
+     "hurt": 1.5,
+     "wouldPost": 3.94,
+     "readers": 18,
+     "reading": "Independent planner who anticipates what comes next",
+     "misread": "Calculating and thinks they're smarter than others",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Lone Wolf",
+    "clear": 4.78,
+    "hurt": 2.56,
+    "wouldPost": 2.78
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Direct·Own|Venture·Push·Context",
+   "people": {
+    "code": "Me·Direct·Own",
+    "archetype": "Lone Wolf",
+    "noun": "Lone Wolf"
+   },
+   "life": {
+    "code": "Venture·Push·Context",
+    "archetype": "The Go-Getter",
+    "adjective": "Ambitious"
+   },
+   "name": "Ambitious Lone Wolf",
+   "override": false,
+   "line": {
+    "fun": "Goes after big goals without waiting for a group.",
+    "heart": "Independent and driven, choosing a path with confidence."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.56,
+     "hurt": 2.44,
+     "wouldPost": 3.28,
+     "readers": 18,
+     "reading": "Driven person who pursues goals independently",
+     "misread": "Selfish loner who refuses teamwork or help",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 5.0,
+     "hurt": 1.44,
+     "wouldPost": 3.67,
+     "readers": 18,
+     "reading": "Pursues ambitious goals independently",
+     "misread": "Does not value teamwork or other people",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.06,
+     "wouldPost": 3.89,
+     "readers": 18,
+     "reading": "Confidently pursues goals on a self-chosen path",
+     "misread": "Does not need or welcome other people's input",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Lone Wolf",
+    "clear": 4.78,
+    "hurt": 2.56,
+    "wouldPost": 2.78
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Direct·Own|Venture·Easy·Rules",
+   "people": {
+    "code": "Me·Direct·Own",
+    "archetype": "Lone Wolf",
+    "noun": "Lone Wolf"
+   },
+   "life": {
+    "code": "Venture·Easy·Rules",
+    "archetype": "The Explorer",
+    "adjective": "Curious"
+   },
+   "name": "Curious Lone Wolf",
+   "override": false,
+   "line": {
+    "fun": "Books the solo trip and loves every minute.",
+    "heart": "Independent and curious, happy to explore new places solo."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.89,
+     "hurt": 2.44,
+     "wouldPost": 2.89,
+     "readers": 18,
+     "reading": "Independent person who likes exploring and learning",
+     "misread": "Nosy loner who avoids other people",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 3.89,
+     "readers": 18,
+     "reading": "Enjoys traveling alone and arranging independent adventures",
+     "misread": "Never gets lonely or needs other people",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 3.89,
+     "readers": 18,
+     "reading": "Enjoys discovering new places independently",
+     "misread": "Prefers being alone over having friends",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Lone Wolf",
+    "clear": 4.78,
+    "hurt": 2.56,
+    "wouldPost": 2.78
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Direct·Own|Venture·Easy·Context",
+   "people": {
+    "code": "Me·Direct·Own",
+    "archetype": "Lone Wolf",
+    "noun": "Lone Wolf"
+   },
+   "life": {
+    "code": "Venture·Easy·Context",
+    "archetype": "The Spontaneous One",
+    "adjective": "Spontaneous"
+   },
+   "name": "Spontaneous Lone Wolf",
+   "override": false,
+   "line": {
+    "fun": "Takes the solo road trip on a whim, and loves it.",
+    "heart": "Independent and adventurous, happy to go where the day leads."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.06,
+     "hurt": 2.56,
+     "wouldPost": 2.94,
+     "readers": 18,
+     "reading": "Independent person who enjoys unplanned solo adventures",
+     "misread": "Impulsive loner who disappears without considering others",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.78,
+     "hurt": 1.28,
+     "wouldPost": 3.78,
+     "readers": 18,
+     "reading": "Enjoys spontaneous road trips alone",
+     "misread": "Avoids people and takes unnecessary travel risks",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.89,
+     "hurt": 1.17,
+     "wouldPost": 3.83,
+     "readers": 18,
+     "reading": "Independent adventurer comfortable following spontaneous plans",
+     "misread": "Unreliable person who avoids commitments",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Lone Wolf",
+    "clear": 4.78,
+    "hurt": 2.56,
+    "wouldPost": 2.78
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Direct·Classic|Steady·Push·Rules",
+   "people": {
+    "code": "Me·Direct·Classic",
+    "archetype": "Straight Shooter",
+    "noun": "Straight Shooter"
+   },
+   "life": {
+    "code": "Steady·Push·Rules",
+    "archetype": "The Planner",
+    "adjective": "Organized"
+   },
+   "name": "Organized Straight Shooter",
+   "override": false,
+   "line": {
+    "fun": "Clear words, clear calendar, zero confusion.",
+    "heart": "Honest, organized and easy to rely on."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.06,
+     "hurt": 1.67,
+     "wouldPost": 3.33,
+     "readers": 18,
+     "reading": "Organized person who communicates honestly and directly",
+     "misread": "Blunt, tactless person who always thinks they're right",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.61,
+     "hurt": 1.44,
+     "wouldPost": 3.56,
+     "readers": 18,
+     "reading": "Communicates clearly and keeps plans organized",
+     "misread": "Rigid and intolerant of ambiguity",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 4.06,
+     "readers": 18,
+     "reading": "Honest, organized, dependable",
+     "misread": "none",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Straight Shooter",
+    "clear": 4.39,
+    "hurt": 1.61,
+    "wouldPost": 3.5
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Direct·Classic|Steady·Push·Context",
+   "people": {
+    "code": "Me·Direct·Classic",
+    "archetype": "Straight Shooter",
+    "noun": "Straight Shooter"
+   },
+   "life": {
+    "code": "Steady·Push·Context",
+    "archetype": "The Quiet Achiever",
+    "adjective": "Quietly Ambitious"
+   },
+   "name": "Quietly Ambitious Straight Shooter",
+   "override": false,
+   "line": {
+    "fun": "Says little, means all of it, gets a lot done.",
+    "heart": "Honest, steady and quietly doing big things."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.83,
+     "hurt": 1.67,
+     "wouldPost": 3.44,
+     "readers": 18,
+     "reading": "Reserved, driven, and direct",
+     "misread": "Secretly competitive and blunt",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.83,
+     "hurt": 1.17,
+     "wouldPost": 4.28,
+     "readers": 18,
+     "reading": "Speaks sparingly, sincerely, and gets things done",
+     "misread": "Quiet because they are cold or unapproachable",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.72,
+     "hurt": 1.0,
+     "wouldPost": 3.67,
+     "readers": 18,
+     "reading": "Reliable, honest person succeeding without showing off",
+     "misread": "Vague claim of impressive achievements",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Straight Shooter",
+    "clear": 4.39,
+    "hurt": 1.61,
+    "wouldPost": 3.5
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Direct·Classic|Steady·Easy·Rules",
+   "people": {
+    "code": "Me·Direct·Classic",
+    "archetype": "Straight Shooter",
+    "noun": "Straight Shooter"
+   },
+   "life": {
+    "code": "Steady·Easy·Rules",
+    "archetype": "The Routine Lover",
+    "adjective": "Cozy"
+   },
+   "name": "Cozy Straight Shooter",
+   "override": false,
+   "line": {
+    "fun": "Knows what works, sticks with it, and gives honest advice.",
+    "heart": "Honest, grounded and happy with the familiar."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.72,
+     "hurt": 1.56,
+     "wouldPost": 3.17,
+     "readers": 18,
+     "reading": "Comfort-loving person who speaks honestly",
+     "misread": "Blunt person who may be rude",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.94,
+     "hurt": 1.56,
+     "wouldPost": 3.61,
+     "readers": 18,
+     "reading": "Practical, consistent person who gives honest advice",
+     "misread": "Stubborn person who resists change",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.78,
+     "hurt": 1.22,
+     "wouldPost": 3.61,
+     "readers": 18,
+     "reading": "Honest, practical, comfortable with familiar things",
+     "misread": "Resists change and lacks curiosity",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Straight Shooter",
+    "clear": 4.39,
+    "hurt": 1.61,
+    "wouldPost": 3.5
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Direct·Classic|Steady·Easy·Context",
+   "people": {
+    "code": "Me·Direct·Classic",
+    "archetype": "Straight Shooter",
+    "noun": "Straight Shooter"
+   },
+   "life": {
+    "code": "Steady·Easy·Context",
+    "archetype": "The Calm One",
+    "adjective": "Calm"
+   },
+   "name": "Calm Straight Shooter",
+   "override": false,
+   "line": {
+    "fun": "Stays calm and says what everyone needed to hear.",
+    "heart": "Honest, calm and easy to trust."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.28,
+     "hurt": 1.5,
+     "wouldPost": 3.72,
+     "readers": 18,
+     "reading": "Calm and direct when speaking",
+     "misread": "Calmly blunt or associated with guns",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.83,
+     "hurt": 1.78,
+     "wouldPost": 3.72,
+     "readers": 18,
+     "reading": "Calm person who speaks up when needed",
+     "misread": "Assumes their opinion is what everyone needs",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 3.89,
+     "readers": 18,
+     "reading": "Truthful, composed, and dependable",
+     "misread": "none",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Straight Shooter",
+    "clear": 4.39,
+    "hurt": 1.61,
+    "wouldPost": 3.5
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Direct·Classic|Venture·Push·Rules",
+   "people": {
+    "code": "Me·Direct·Classic",
+    "archetype": "Straight Shooter",
+    "noun": "Straight Shooter"
+   },
+   "life": {
+    "code": "Venture·Push·Rules",
+    "archetype": "The Strategist",
+    "adjective": "Strategic"
+   },
+   "name": "Strategic Straight Shooter",
+   "override": false,
+   "line": {
+    "fun": "Honest advice, solid plan, no fluff.",
+    "heart": "Clear-headed, honest and careful with every big step."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.89,
+     "hurt": 1.83,
+     "wouldPost": 3.28,
+     "readers": 18,
+     "reading": "Thoughtful planner who gives direct, honest advice",
+     "misread": "Calculating person who uses bluntness to control others",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.67,
+     "hurt": 1.56,
+     "wouldPost": 3.89,
+     "readers": 18,
+     "reading": "Gives direct advice backed by practical plans",
+     "misread": "Blunt and dismissive of feelings",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.83,
+     "hurt": 1.0,
+     "wouldPost": 3.94,
+     "readers": 18,
+     "reading": "Honest, levelheaded person who makes major decisions carefully",
+     "misread": "Overcautious person who overthinks every major decision",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Straight Shooter",
+    "clear": 4.39,
+    "hurt": 1.61,
+    "wouldPost": 3.5
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Direct·Classic|Venture·Push·Context",
+   "people": {
+    "code": "Me·Direct·Classic",
+    "archetype": "Straight Shooter",
+    "noun": "Straight Shooter"
+   },
+   "life": {
+    "code": "Venture·Push·Context",
+    "archetype": "The Go-Getter",
+    "adjective": "Ambitious"
+   },
+   "name": "Ambitious Straight Shooter",
+   "override": false,
+   "line": {
+    "fun": "Names the goal out loud, then goes and gets it.",
+    "heart": "Honest about big goals and determined to reach them."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.22,
+     "hurt": 1.78,
+     "wouldPost": 3.33,
+     "readers": 18,
+     "reading": "Driven and direct about what they want",
+     "misread": "Aggressive or insensitive in pursuing success",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.83,
+     "hurt": 1.11,
+     "wouldPost": 3.78,
+     "readers": 18,
+     "reading": "States ambitions clearly and acts to achieve them",
+     "misread": "Boasts about goals and guarantees success",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 3.89,
+     "readers": 18,
+     "reading": "Openly ambitious and persistent about personal goals",
+     "misread": "none",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Straight Shooter",
+    "clear": 4.39,
+    "hurt": 1.61,
+    "wouldPost": 3.5
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Direct·Classic|Venture·Easy·Rules",
+   "people": {
+    "code": "Me·Direct·Classic",
+    "archetype": "Straight Shooter",
+    "noun": "Straight Shooter"
+   },
+   "life": {
+    "code": "Venture·Easy·Rules",
+    "archetype": "The Explorer",
+    "adjective": "Curious"
+   },
+   "name": "Curious Straight Shooter",
+   "override": false,
+   "line": {
+    "fun": "Tries everything once and gives an honest review.",
+    "heart": "Loves trying new things and sharing honest thoughts."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.17,
+     "hurt": 1.67,
+     "wouldPost": 3.28,
+     "readers": 18,
+     "reading": "Inquisitive person who speaks honestly and directly",
+     "misread": "Blunt critic or someone interested in guns",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 5.0,
+     "hurt": 1.17,
+     "wouldPost": 4.0,
+     "readers": 18,
+     "reading": "Adventurous and candid about what they try",
+     "misread": "Will try dangerous things and criticize everything",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.17,
+     "wouldPost": 3.89,
+     "readers": 18,
+     "reading": "Enjoys new experiences and speaks honestly",
+     "misread": "Offers unsolicited opinions about everything",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Straight Shooter",
+    "clear": 4.39,
+    "hurt": 1.61,
+    "wouldPost": 3.5
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Direct·Classic|Venture·Easy·Context",
+   "people": {
+    "code": "Me·Direct·Classic",
+    "archetype": "Straight Shooter",
+    "noun": "Straight Shooter"
+   },
+   "life": {
+    "code": "Venture·Easy·Context",
+    "archetype": "The Spontaneous One",
+    "adjective": "Spontaneous"
+   },
+   "name": "Spontaneous Straight Shooter",
+   "override": false,
+   "line": {
+    "fun": "Loves a last-minute adventure and an honest conversation.",
+    "heart": "Honest, easygoing and open to whatever the day brings."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.94,
+     "hurt": 2.0,
+     "wouldPost": 3.0,
+     "readers": 18,
+     "reading": "Acts on impulse and speaks directly",
+     "misread": "Impulsive and says things without considering feelings",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.94,
+     "hurt": 1.0,
+     "wouldPost": 4.0,
+     "readers": 18,
+     "reading": "Enjoys spontaneous adventures and candid conversations",
+     "misread": "none",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.89,
+     "hurt": 1.0,
+     "wouldPost": 3.78,
+     "readers": 18,
+     "reading": "Truthful, relaxed, and receptive to spontaneous experiences",
+     "misread": "Drifts through the day without goals or boundaries",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Straight Shooter",
+    "clear": 4.39,
+    "hurt": 1.61,
+    "wouldPost": 3.5
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Soft·Own|Steady·Push·Rules",
+   "people": {
+    "code": "Me·Soft·Own",
+    "archetype": "Free Spirit",
+    "noun": "Free Spirit"
+   },
+   "life": {
+    "code": "Steady·Push·Rules",
+    "archetype": "The Planner",
+    "adjective": "Organized"
+   },
+   "name": "Organized Free Spirit",
+   "override": false,
+   "line": {
+    "fun": "Loves freedom, and always packs a day early.",
+    "heart": "Loves freedom, and feels best with a clear plan."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.72,
+     "hurt": 1.0,
+     "wouldPost": 3.56,
+     "readers": 18,
+     "reading": "Independent and unconventional, yet organized",
+     "misread": "Contradictory label combining planning with impulsiveness",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 3.83,
+     "readers": 18,
+     "reading": "Enjoys independence while preparing ahead",
+     "misread": "Packing early supposedly proves an entire personality",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.94,
+     "hurt": 1.0,
+     "wouldPost": 4.11,
+     "readers": 18,
+     "reading": "Values independence and the reassurance of planning",
+     "misread": "Only feels comfortable when everything is controlled",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Free Spirit",
+    "clear": 4.17,
+    "hurt": 1.44,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Soft·Own|Steady·Push·Context",
+   "people": {
+    "code": "Me·Soft·Own",
+    "archetype": "Free Spirit",
+    "noun": "Free Spirit"
+   },
+   "life": {
+    "code": "Steady·Push·Context",
+    "archetype": "The Quiet Achiever",
+    "adjective": "Quietly Ambitious"
+   },
+   "name": "Quietly Ambitious Free Spirit",
+   "override": false,
+   "line": {
+    "fun": "Looks laid-back, and quietly gets big things done.",
+    "heart": "Gentle, independent and making real progress without a fuss."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.39,
+     "hurt": 1.11,
+     "wouldPost": 3.33,
+     "readers": 18,
+     "reading": "Independent dreamer with understated ambition",
+     "misread": "Directionless person pretending to be ambitious",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.83,
+     "hurt": 1.06,
+     "wouldPost": 4.39,
+     "readers": 18,
+     "reading": "Appears relaxed while accomplishing substantial goals",
+     "misread": "none",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.78,
+     "hurt": 1.17,
+     "wouldPost": 3.72,
+     "readers": 18,
+     "reading": "Kind, self-reliant, quietly making progress",
+     "misread": "Keeps needs quiet and avoids speaking up",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Free Spirit",
+    "clear": 4.17,
+    "hurt": 1.44,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Soft·Own|Steady·Easy·Rules",
+   "people": {
+    "code": "Me·Soft·Own",
+    "archetype": "Free Spirit",
+    "noun": "Free Spirit"
+   },
+   "life": {
+    "code": "Steady·Easy·Rules",
+    "archetype": "The Routine Lover",
+    "adjective": "Cozy"
+   },
+   "name": "Cozy Free Spirit",
+   "override": false,
+   "line": {
+    "fun": "One of a kind, and happiest on a cozy night in.",
+    "heart": "Gentle, independent and at home in simple routines."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.61,
+     "hurt": 1.33,
+     "wouldPost": 3.61,
+     "readers": 18,
+     "reading": "Independent and unconventional, but enjoys home comforts",
+     "misread": "Lazy or the words contradict each other",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.89,
+     "hurt": 1.11,
+     "wouldPost": 3.72,
+     "readers": 18,
+     "reading": "Unique person who prefers comfortable nights at home",
+     "misread": "none",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.83,
+     "hurt": 1.11,
+     "wouldPost": 3.67,
+     "readers": 18,
+     "reading": "Gentle, self-directed and comfortable with everyday routines",
+     "misread": "Unadventurous and stuck in a rut",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Free Spirit",
+    "clear": 4.17,
+    "hurt": 1.44,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Soft·Own|Steady·Easy·Context",
+   "people": {
+    "code": "Me·Soft·Own",
+    "archetype": "Free Spirit",
+    "noun": "Free Spirit"
+   },
+   "life": {
+    "code": "Steady·Easy·Context",
+    "archetype": "The Calm One",
+    "adjective": "Calm"
+   },
+   "name": "Calm Free Spirit",
+   "override": false,
+   "line": {
+    "fun": "Calm, original and totally at ease being different.",
+    "heart": "Gentle, relaxed and happy doing things differently."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.0,
+     "hurt": 1.28,
+     "wouldPost": 3.67,
+     "readers": 18,
+     "reading": "Relaxed person who lives their own way",
+     "misread": "Uncommitted or irresponsible",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.83,
+     "hurt": 1.39,
+     "wouldPost": 3.61,
+     "readers": 18,
+     "reading": "Comfortably expresses individuality without worrying about fitting in",
+     "misread": "Weird, socially isolated or indifferent to others",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.61,
+     "hurt": 1.06,
+     "wouldPost": 3.61,
+     "readers": 18,
+     "reading": "Easygoing person comfortable following their own approach",
+     "misread": "Unconventional without any clear meaning or examples",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Free Spirit",
+    "clear": 4.17,
+    "hurt": 1.44,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Soft·Own|Venture·Push·Rules",
+   "people": {
+    "code": "Me·Soft·Own",
+    "archetype": "Free Spirit",
+    "noun": "Free Spirit"
+   },
+   "life": {
+    "code": "Venture·Push·Rules",
+    "archetype": "The Strategist",
+    "adjective": "Strategic"
+   },
+   "name": "Strategic Free Spirit",
+   "override": false,
+   "line": {
+    "fun": "Looks totally relaxed, has a plan for everything.",
+    "heart": "Easygoing on the outside, with a careful plan for big goals."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.0,
+     "hurt": 1.28,
+     "wouldPost": 2.78,
+     "readers": 18,
+     "reading": "Independent person who also plans ahead",
+     "misread": "Contradictory mix of calculated and carefree",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.94,
+     "hurt": 1.39,
+     "wouldPost": 4.17,
+     "readers": 18,
+     "reading": "Appears easygoing but is thoroughly prepared",
+     "misread": "Secretly controlling and unable to tolerate uncertainty",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.89,
+     "hurt": 1.06,
+     "wouldPost": 4.0,
+     "readers": 18,
+     "reading": "Appears relaxed while carefully planning ambitious goals",
+     "misread": "Their relaxed appearance hides anxiety or control",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Free Spirit",
+    "clear": 4.17,
+    "hurt": 1.44,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Soft·Own|Venture·Push·Context",
+   "people": {
+    "code": "Me·Soft·Own",
+    "archetype": "Free Spirit",
+    "noun": "Free Spirit"
+   },
+   "life": {
+    "code": "Venture·Push·Context",
+    "archetype": "The Go-Getter",
+    "adjective": "Ambitious"
+   },
+   "name": "Ambitious Free Spirit",
+   "override": false,
+   "line": {
+    "fun": "Chases big dreams, and does it in a totally original way.",
+    "heart": "Gentle, independent and determined to reach big dreams."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.0,
+     "hurt": 1.33,
+     "wouldPost": 3.56,
+     "readers": 18,
+     "reading": "Pursues big goals in their own way",
+     "misread": "Rejects commitments while chasing unrealistic dreams",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.94,
+     "hurt": 1.06,
+     "wouldPost": 3.5,
+     "readers": 18,
+     "reading": "Pursues ambitious dreams in an individual way",
+     "misread": "Tries too hard to seem unique",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.94,
+     "hurt": 1.0,
+     "wouldPost": 3.61,
+     "readers": 18,
+     "reading": "Kind, independent, determined to achieve dreams",
+     "misread": "none",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Free Spirit",
+    "clear": 4.17,
+    "hurt": 1.44,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Soft·Own|Venture·Easy·Rules",
+   "people": {
+    "code": "Me·Soft·Own",
+    "archetype": "Free Spirit",
+    "noun": "Free Spirit"
+   },
+   "life": {
+    "code": "Venture·Easy·Rules",
+    "archetype": "The Explorer",
+    "adjective": "Curious"
+   },
+   "name": "Curious Free Spirit",
+   "override": false,
+   "line": {
+    "fun": "Always finding a new place, a new hobby or a new favorite.",
+    "heart": "Gentle and curious, and always discovering a new favorite thing."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.17,
+     "hurt": 1.11,
+     "wouldPost": 3.78,
+     "readers": 18,
+     "reading": "Independent person who enjoys discovering new things",
+     "misread": "Unreliable person who avoids commitments",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 4.28,
+     "readers": 18,
+     "reading": "Enjoys exploring places, hobbies and personal favorites",
+     "misread": "Never sticks with anything",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.94,
+     "hurt": 1.0,
+     "wouldPost": 3.78,
+     "readers": 18,
+     "reading": "Gentle, curious person who enjoys new discoveries",
+     "misread": "Constantly changes interests or gets bored easily",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Free Spirit",
+    "clear": 4.17,
+    "hurt": 1.44,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Soft·Own|Venture·Easy·Context",
+   "people": {
+    "code": "Me·Soft·Own",
+    "archetype": "Free Spirit",
+    "noun": "Free Spirit"
+   },
+   "life": {
+    "code": "Venture·Easy·Context",
+    "archetype": "The Spontaneous One",
+    "adjective": "Spontaneous"
+   },
+   "name": "Certified Free Spirit",
+   "override": true,
+   "line": {
+    "fun": "Follows curiosity, and somehow finds the best adventures.",
+    "heart": "Gentle, independent and always open to a new adventure."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.06,
+     "hurt": 1.33,
+     "wouldPost": 3.44,
+     "readers": 18,
+     "reading": "Definitely independent and carefree",
+     "misread": "Officially labeled unreliable or uncommitted",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.83,
+     "hurt": 1.06,
+     "wouldPost": 3.94,
+     "readers": 18,
+     "reading": "Curious person who stumbles into great adventures",
+     "misread": "Gets lucky rather than making good choices",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 3.83,
+     "readers": 18,
+     "reading": "Kind, independent person who welcomes new experiences",
+     "misread": "Always willing to take risks",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Free Spirit",
+    "clear": 4.17,
+    "hurt": 1.44,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Soft·Classic|Steady·Push·Rules",
+   "people": {
+    "code": "Me·Soft·Classic",
+    "archetype": "Old Soul",
+    "noun": "Old Soul"
+   },
+   "life": {
+    "code": "Steady·Push·Rules",
+    "archetype": "The Planner",
+    "adjective": "Organized"
+   },
+   "name": "Organized Old Soul",
+   "override": false,
+   "line": {
+    "fun": "Has the week planned by Sunday night, tea in hand.",
+    "heart": "Gentle, thoughtful and happiest when life is in order."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.17,
+     "hurt": 1.61,
+     "wouldPost": 3.61,
+     "readers": 18,
+     "reading": "Orderly, thoughtful person with mature or traditional tastes",
+     "misread": "Acts older than their age and dislikes change",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 5.0,
+     "hurt": 1.06,
+     "wouldPost": 3.89,
+     "readers": 18,
+     "reading": "Enjoys calmly organizing the week ahead",
+     "misread": "Rigid homebody with a stereotypically older lifestyle",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.94,
+     "hurt": 1.06,
+     "wouldPost": 3.89,
+     "readers": 18,
+     "reading": "Kind reflective person who enjoys an orderly life",
+     "misread": "Needs control and struggles with messy situations",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Old Soul",
+    "clear": 4.17,
+    "hurt": 1.56,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Soft·Classic|Steady·Push·Context",
+   "people": {
+    "code": "Me·Soft·Classic",
+    "archetype": "Old Soul",
+    "noun": "Old Soul"
+   },
+   "life": {
+    "code": "Steady·Push·Context",
+    "archetype": "The Quiet Achiever",
+    "adjective": "Quietly Ambitious"
+   },
+   "name": "Quietly Ambitious Old Soul",
+   "override": false,
+   "line": {
+    "fun": "Quiet nights in, big plans in the works.",
+    "heart": "Gentle and patient, and steadily reaching big goals."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.5,
+     "hurt": 1.44,
+     "wouldPost": 3.17,
+     "readers": 18,
+     "reading": "Mature, reserved person with strong personal ambitions",
+     "misread": "Old-fashioned person hiding their ambition",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.78,
+     "hurt": 1.0,
+     "wouldPost": 4.17,
+     "readers": 18,
+     "reading": "Enjoys staying home while pursuing ambitious goals",
+     "misread": "Only daydreams instead of taking action",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.89,
+     "hurt": 1.0,
+     "wouldPost": 4.11,
+     "readers": 18,
+     "reading": "Patient and gentle while pursuing ambitious goals",
+     "misread": "none",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Old Soul",
+    "clear": 4.17,
+    "hurt": 1.56,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Soft·Classic|Steady·Easy·Rules",
+   "people": {
+    "code": "Me·Soft·Classic",
+    "archetype": "Old Soul",
+    "noun": "Old Soul"
+   },
+   "life": {
+    "code": "Steady·Easy·Rules",
+    "archetype": "The Routine Lover",
+    "adjective": "Cozy"
+   },
+   "name": "Cozy Old Soul",
+   "override": false,
+   "line": {
+    "fun": "Tea, a blanket and zero plans to go out.",
+    "heart": "Finds joy in quiet nights and familiar favorites."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.28,
+     "hurt": 1.61,
+     "wouldPost": 3.67,
+     "readers": 18,
+     "reading": "Enjoys familiar comforts and a quiet life",
+     "misread": "Old-fashioned, boring or prematurely old",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 5.0,
+     "hurt": 1.33,
+     "wouldPost": 4.17,
+     "readers": 18,
+     "reading": "Prefers comfortable evenings at home",
+     "misread": "Antisocial and unwilling to leave home",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.94,
+     "hurt": 1.0,
+     "wouldPost": 4.06,
+     "readers": 18,
+     "reading": "Enjoys peaceful evenings and comforting familiar things",
+     "misread": "Boring or unwilling to try anything new",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Old Soul",
+    "clear": 4.17,
+    "hurt": 1.56,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Soft·Classic|Steady·Easy·Context",
+   "people": {
+    "code": "Me·Soft·Classic",
+    "archetype": "Old Soul",
+    "noun": "Old Soul"
+   },
+   "life": {
+    "code": "Steady·Easy·Context",
+    "archetype": "The Calm One",
+    "adjective": "Calm"
+   },
+   "name": "Calm Old Soul",
+   "override": false,
+   "line": {
+    "fun": "Calm, unhurried and full of good advice.",
+    "heart": "Calm, gentle and full of thoughtful advice."
+   },
+   "panel": {
+    "name": {
+     "clear": 4.11,
+     "hurt": 1.5,
+     "wouldPost": 3.5,
+     "readers": 18,
+     "reading": "Relaxed person with maturity beyond their age",
+     "misread": "Boring, old-fashioned or prematurely elderly",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 5.0,
+     "hurt": 1.06,
+     "wouldPost": 3.61,
+     "readers": 18,
+     "reading": "Relaxed, thoughtful, and helpful with advice",
+     "misread": "Acts like they know better than everyone",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.06,
+     "wouldPost": 3.78,
+     "readers": 18,
+     "reading": "Kind, composed person who gives considered advice",
+     "misread": "Expected to be everyone's calm adviser",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Old Soul",
+    "clear": 4.17,
+    "hurt": 1.56,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Soft·Classic|Venture·Push·Rules",
+   "people": {
+    "code": "Me·Soft·Classic",
+    "archetype": "Old Soul",
+    "noun": "Old Soul"
+   },
+   "life": {
+    "code": "Venture·Push·Rules",
+    "archetype": "The Strategist",
+    "adjective": "Strategic"
+   },
+   "name": "Strategic Old Soul",
+   "override": false,
+   "line": {
+    "fun": "Thinks it through quietly, then makes the smart move.",
+    "heart": "Gentle and thoughtful, with a careful plan for big goals."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.67,
+     "hurt": 1.56,
+     "wouldPost": 3.33,
+     "readers": 18,
+     "reading": "Mature, thoughtful person who plans ahead",
+     "misread": "Calculating person with an elderly personality",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.83,
+     "hurt": 1.0,
+     "wouldPost": 3.67,
+     "readers": 18,
+     "reading": "Quietly considers options before acting wisely",
+     "misread": "Overthinks or believes they are smarter than others",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 3.89,
+     "readers": 18,
+     "reading": "Kind, reflective person who plans ambitious goals carefully",
+     "misread": "none",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Old Soul",
+    "clear": 4.17,
+    "hurt": 1.56,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Soft·Classic|Venture·Push·Context",
+   "people": {
+    "code": "Me·Soft·Classic",
+    "archetype": "Old Soul",
+    "noun": "Old Soul"
+   },
+   "life": {
+    "code": "Venture·Push·Context",
+    "archetype": "The Go-Getter",
+    "adjective": "Ambitious"
+   },
+   "name": "Ambitious Old Soul",
+   "override": false,
+   "line": {
+    "fun": "Happy at home, and hungry for big new goals.",
+    "heart": "Gentle and grounded, with big dreams worth the work."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.94,
+     "hurt": 1.61,
+     "wouldPost": 3.5,
+     "readers": 18,
+     "reading": "Mature, nostalgic person with strong personal ambitions",
+     "misread": "Traditional values or conservative beliefs define the person",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.83,
+     "hurt": 1.0,
+     "wouldPost": 4.17,
+     "readers": 18,
+     "reading": "Enjoys home life and pursues ambitious goals",
+     "misread": "Prefers staying home but dreams instead of acting",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.56,
+     "hurt": 1.0,
+     "wouldPost": 3.78,
+     "readers": 18,
+     "reading": "Kind, sensible person working toward ambitious goals",
+     "misread": "Their dreams need outside validation",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Old Soul",
+    "clear": 4.17,
+    "hurt": 1.56,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Soft·Classic|Venture·Easy·Rules",
+   "people": {
+    "code": "Me·Soft·Classic",
+    "archetype": "Old Soul",
+    "noun": "Old Soul"
+   },
+   "life": {
+    "code": "Venture·Easy·Rules",
+    "archetype": "The Explorer",
+    "adjective": "Curious"
+   },
+   "name": "Curious Old Soul",
+   "override": false,
+   "line": {
+    "fun": "Reads about faraway places, then actually goes.",
+    "heart": "Loves familiar comforts and the thrill of a new place."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.67,
+     "hurt": 1.5,
+     "wouldPost": 3.28,
+     "readers": 18,
+     "reading": "Thoughtful, mature person interested in learning",
+     "misread": "Nosy or old-fashioned person",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 5.0,
+     "hurt": 1.22,
+     "wouldPost": 3.89,
+     "readers": 18,
+     "reading": "Turns interest in distant places into travel",
+     "misread": "Wealthy enough to travel whenever they want",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 4.94,
+     "hurt": 1.0,
+     "wouldPost": 4.0,
+     "readers": 18,
+     "reading": "Enjoys familiar comforts and exploring new places",
+     "misread": "none",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Old Soul",
+    "clear": 4.17,
+    "hurt": 1.56,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  },
+  {
+   "key": "Me·Soft·Classic|Venture·Easy·Context",
+   "people": {
+    "code": "Me·Soft·Classic",
+    "archetype": "Old Soul",
+    "noun": "Old Soul"
+   },
+   "life": {
+    "code": "Venture·Easy·Context",
+    "archetype": "The Spontaneous One",
+    "adjective": "Spontaneous"
+   },
+   "name": "Spontaneous Old Soul",
+   "override": false,
+   "line": {
+    "fun": "Plans a quiet night in, ends up on an adventure.",
+    "heart": "Loves quiet nights, and happily says yes to a surprise plan."
+   },
+   "panel": {
+    "name": {
+     "clear": 3.5,
+     "hurt": 1.33,
+     "wouldPost": 3.33,
+     "readers": 18,
+     "reading": "Mature person who enjoys spontaneous experiences",
+     "misread": "An older or old-fashioned person acting impulsively",
+     "pass": false
+    },
+    "lineFun": {
+     "clear": 4.94,
+     "hurt": 1.0,
+     "wouldPost": 4.22,
+     "readers": 18,
+     "reading": "Unexpectedly turns quiet plans into adventures",
+     "misread": "Cannot stick to plans or gets dragged along",
+     "pass": true
+    },
+    "lineHeart": {
+     "clear": 5.0,
+     "hurt": 1.0,
+     "wouldPost": 4.28,
+     "readers": 18,
+     "reading": "Enjoys quiet evenings and occasional spontaneous plans",
+     "misread": "Says yes even when wanting to stay home",
+     "pass": true
+    }
+   },
+   "nounAlone": {
+    "noun": "Old Soul",
+    "clear": 4.17,
+    "hurt": 1.56,
+    "wouldPost": 3.56
+   },
+   "pass": {
+    "name": false,
+    "lines": true
+   }
+  }
+ ],
+ "probe": {
+  "goToFriend": {
+   "B:Go-To Friend": {
+    "clear": 4.72,
+    "hurt": 1.44,
+    "wouldPost": 3.78,
+    "pass_": true
+   },
+   "P:Organized Go-To Friend": {
+    "clear": 4.72,
+    "hurt": 1.5,
+    "wouldPost": 3.78,
+    "pass_": true
+   },
+   "P:Organized Comfort Friend": {
+    "clear": 3.33,
+    "hurt": 1.56,
+    "wouldPost": 2.56,
+    "pass_": false
+   },
+   "P:Strategic Comfort Friend": {
+    "clear": 2.83,
+    "hurt": 2.44,
+    "wouldPost": 2.06,
+    "pass_": false
+   },
+   "P:Spontaneous Comfort Friend": {
+    "clear": 3.17,
+    "hurt": 1.17,
+    "wouldPost": 2.78,
+    "pass_": false
+   },
+   "P:Spontaneous Go-To Friend": {
+    "clear": 3.94,
+    "hurt": 1.17,
+    "wouldPost": 3.5,
+    "pass_": false
+   },
+   "B:Comfort Friend": {
+    "clear": 4.0,
+    "hurt": 1.67,
+    "wouldPost": 3.11,
+    "pass_": false
+   },
+   "P:Cozy Go-To Friend": {
+    "clear": 3.67,
+    "hurt": 1.28,
+    "wouldPost": 3.28,
+    "pass_": false
+   },
+   "P:Cozy Comfort Friend": {
+    "clear": 3.39,
+    "hurt": 1.33,
+    "wouldPost": 3.06,
+    "pass_": false
+   },
+   "P:Strategic Go-To Friend": {
+    "clear": 3.67,
+    "hurt": 1.94,
+    "wouldPost": 2.94,
+    "pass_": false
+   }
+  },
+  "note": "Held for Jerry: Go-To Friend as the Comfort Person noun. Not applied; Comfort Person is Jerry-approved."
+ }
+}
