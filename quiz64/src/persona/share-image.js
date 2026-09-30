@@ -548,10 +548,36 @@ function drawPill(ctx, { cx, y, item, p, size, maxW }) {
 
 // ---------------------------------------------------------------- the mirror card
 
+// The core traits as keyword pills in centered rows (round 3, LAUNCH-SPEC 24 item 2): as many as fit in `maxRows`
+// rows at a size that reads in a feed, in rank order; the rest stay on the traits screen. Returns the bottom edge.
+function drawPillRows(ctx, { items, y, W, p, size, maxW, maxRows = 2, gap = 20, rowGap = 20 }) {
+  const rows = [];
+  let row = [];
+  let used = 0;
+  for (const it of items) {
+    const w = Math.min(maxW, pillWidth(ctx, it.name, size));
+    if (row.length && used + gap + w > maxW) { rows.push(row); row = []; used = 0; }
+    if (rows.length >= maxRows) break;
+    used += (row.length ? gap : 0) + w;
+    row.push({ it, w });
+  }
+  if (row.length && rows.length < maxRows) rows.push(row);
+  const h = size * 1.9;
+  let top = y;
+  for (const r of rows) {
+    const total = r.reduce((t, x) => t + x.w, 0) + gap * (r.length - 1);
+    let x = (W - total) / 2;
+    for (const { it, w } of r) { drawPill(ctx, { cx: x + w / 2, y: top, item: it, p, size, maxW }); x += w + gap; }
+    top += h + rowGap;
+  }
+  return top - rowGap;
+}
+
 // The share card in either format and theme. `card` is the share projection (story-data.js buildStories().share).
 // Simplified for story size (VISUAL-JUDGE-CODEX-R2 screen 13): the completed mirror with both names, as large as the
-// card allows; two trait names as pills (their lines stay on the traits screen); the invite; the address.
-export const SHARE_TRAITS = 2;
+// card allows; the core traits as keyword pills in up to two rows (their evidence stays on the traits screen); the
+// invite; the address.
+export const SHARE_TRAITS = 6;
 export function drawShareCard(ctx, card, { format = "story", theme = "night", lightTheme = "day", wordmarkImage = null } = {}) {
   const { w: W, h: H } = FORMATS[format] || FORMATS.story;
   const p = paletteFor(theme === "day" ? "light" : "night", lightTheme);
@@ -564,21 +590,7 @@ export function drawShareCard(ctx, card, { format = "story", theme = "night", li
     const aw = 560;
     const ay = 110;
     const h = drawNamedMirror(ctx, { x: (W - aw) / 2, y: ay, w: aw, names, mirror: card.mirror, p });
-    const ty = ay + h + 40;
-    if (items.length === 2) {
-      const size = 38;
-      const w0 = Math.min(480, pillWidth(ctx, items[0].name, size));
-      const w1 = Math.min(480, pillWidth(ctx, items[1].name, size));
-      const gap = 24;
-      const total = w0 + w1 + gap;
-      if (total <= W - 80) {
-        drawPill(ctx, { cx: (W - total) / 2 + w0 / 2, y: ty, item: items[0], p, size, maxW: 480 });
-        drawPill(ctx, { cx: (W + total) / 2 - w1 / 2, y: ty, item: items[1], p, size, maxW: 480 });
-      } else {
-        drawPill(ctx, { cx: W / 2, y: ty - 10, item: items[0], p, size: 34, maxW: W - 120 });
-        drawPill(ctx, { cx: W / 2, y: ty + 64, item: items[1], p, size: 34, maxW: W - 120 });
-      }
-    } else if (items.length === 1) drawPill(ctx, { cx: W / 2, y: ty, item: items[0], p, size: 40, maxW: W - 120 });
+    drawPillRows(ctx, { items, y: ay + h + 30, W, p, size: 34, maxW: W - 100, maxRows: 2, gap: 16, rowGap: 14 });
     font(ctx, "display", 420, 48, true);
     lines(ctx, [card.invite || ""], W / 2, H - 72, { lh: 0, align: "center", color: p.accent });
     font(ctx, "text", 600, 24);
@@ -589,8 +601,7 @@ export function drawShareCard(ctx, card, { format = "story", theme = "night", li
   const aw = 780;
   const ay = 168;
   const h = drawNamedMirror(ctx, { x: (W - aw) / 2, y: ay, w: aw, names, mirror: card.mirror, p });
-  let y = ay + h + 44;
-  for (const it of items) y += drawPill(ctx, { cx: W / 2, y, item: it, p, size: 50, maxW: W - 140 }) + 22;
+  drawPillRows(ctx, { items, y: ay + h + 44, W, p, size: 46, maxW: W - 140, maxRows: 2 });
   font(ctx, "display", 420, 58, true);
   lines(ctx, [card.invite || ""], W / 2, 1800, { lh: 0, align: "center", color: p.accent });
   font(ctx, "text", 600, 28);
@@ -653,44 +664,63 @@ function drawStoryBody(ctx, spec, p, W, H) {
       return;
     }
     case "map": {
-      kicker(spec.kicker, 300);
-      y = block(ctx, spec.title, W / 2, 340, { face: "display", weight: 600, max: 76, min: 56, width, maxLines: 2, color: p.ink, align: "center" }) + 70;
+      // The character sheet (round 3, LAUNCH-SPEC 24): per stat its end, level word, five pips and the plain line. The
+      // signature stat glows, the wild card is dashed. No number or percentage is drawn.
+      kicker(spec.kicker, 270);
+      y = block(ctx, spec.title, W / 2, 300, { face: "display", weight: 600, max: 64, min: 50, width, maxLines: 1, color: p.ink, align: "center" }) + 18;
+      if (spec.sub) y = block(ctx, spec.sub, W / 2, y, { face: "text", weight: 500, max: 28, min: 24, width, maxLines: 2, color: p.ink2, align: "center" }) + 34;
       for (const g of spec.groups || []) {
-        tracked(ctx, g.label, X, y, { size: 26, color: p.ink3, track: 0.14 });
-        y += 40;
+        tracked(ctx, g.label, X, y + 24, { size: 24, color: p.ink3, track: 0.14 });
+        y += 44;
         for (const r of g.rows) {
-          const lean = !r.flex && !r.unfinished;
-          const leadLeft = lean && r.side === "left";
-          const leadRight = lean && r.side === "right";
-          const pole = (value, lead, align, x) => {
-            if (lead) { font(ctx, "display", 600, 66); lines(ctx, [value], x, y + 60, { lh: 0, align, color: p.ink }); }
-            else tracked(ctx, value, x, y + 56, { size: 26, color: p.ink3, align, track: 0.12 });
-          };
-          pole(r.left, leadLeft, "left", X);
-          pole(r.right, leadRight, "right", X + width);
-          const ry = y + 84;
-          roundRect(ctx, X, ry, width, 44, 22);
-          ctx.fillStyle = rgba(N.ink, 0.12);
+          const note = fit(ctx, r.line || "", { face: "text", weight: 450, max: 28, min: 24, width: width - 60, maxLines: 2 });
+          const h = 100 + note.lines.length * note.size * 1.3 + 16;
+          roundRect(ctx, X, y, width, h, 30);
+          ctx.fillStyle = r.badge === "signature" ? rgba(N.violet, 0.3) : rgba(N.ink, 0.06);
           ctx.fill();
-          ctx.strokeStyle = rgba(N.ink, 0.32);
-          ctx.lineWidth = 2;
+          ctx.lineWidth = r.badge === "signature" ? 3 : 2;
+          ctx.strokeStyle = r.badge === "signature" ? rgba(N.violet, 0.9) : rgba(N.ink, r.badge === "wild" ? 0.55 : 0.16);
+          if (r.badge === "wild" && ctx.setLineDash) ctx.setLineDash([10, 8]);
           ctx.stroke();
-          const bx = X + (width * r.pos) / 100;
-          if (lean) {
-            const fx = Math.min(bx, X + width / 2);
-            const fw = Math.abs(bx - (X + width / 2));
-            roundRect(ctx, fx, ry + 10, Math.max(10, fw), 24, 12);
-            ctx.fillStyle = N.violet;
-            ctx.fill();
+          if (ctx.setLineDash) ctx.setLineDash([]);
+          if (r.badge === "signature") glow(ctx, X + width - 120, y + 40, 120, N.violet, 0.35);
+          tracked(ctx, r.stat, X + 30, y + 44, { size: 22, color: N.violet, track: 0.14 });
+          // Five pips at the right: lit from the left, all half lit for a near-even stat.
+          for (let i = 0; i < 5; i++) {
+            const cx = X + width - 40 - (4 - i) * 34;
+            const cy = y + 36;
+            ctx.save();
+            ctx.translate(cx, cy);
+            ctx.rotate(Math.PI / 4);
+            roundRect(ctx, -9, -9, 18, 18, 4);
+            ctx.restore();
+            if (r.split) { ctx.fillStyle = rgba(N.ink, 0.55); ctx.fill(); }
+            else if (i < (r.pips || 0)) { ctx.fillStyle = N.ink; ctx.fill(); }
+            ctx.lineWidth = 2.5;
+            ctx.strokeStyle = rgba(N.ink, i < (r.pips || 0) || r.split ? 0.95 : 0.45);
+            ctx.stroke();
           }
-          glow(ctx, bx, ry + 22, 80, N.violet, 0.6);
-          ctx.beginPath();
-          ctx.arc(bx, ry + 22, 32, 0, Math.PI * 2);
-          ctx.fillStyle = r.unfinished ? rgba(N.ink, 0.1) : N.ink;
-          ctx.fill();
-          y += 176;
+          if (r.badgeLabel) {
+            font(ctx, "text", 700, 18);
+            const bw = ctx.measureText(String(r.badgeLabel).toUpperCase()).width + String(r.badgeLabel).length * 18 * 0.1 + 28;
+            const bx = X + width - 40 - 4 * 34 - 48 - bw;
+            roundRect(ctx, bx, y + 20, bw, 32, 16);
+            ctx.fillStyle = r.badge === "signature" ? N.ink : rgba(N.ink, 0.08);
+            ctx.fill();
+            if (r.badge === "wild") { ctx.lineWidth = 2; ctx.strokeStyle = rgba(N.ink, 0.6); ctx.stroke(); }
+            tracked(ctx, r.badgeLabel, bx + 14, y + 43, { size: 18, color: r.badge === "signature" ? N.n900 : p.ink, track: 0.1 });
+          }
+          font(ctx, "display", 600, 44);
+          const endText = String(r.end || "");
+          lines(ctx, [endText], X + 30, y + 94, { lh: 0, color: p.ink });
+          const ew = ctx.measureText(endText).width;
+          font(ctx, "text", 600, 26);
+          lines(ctx, [r.level || ""], X + 30 + ew + 18, y + 92, { lh: 0, color: p.ink2 });
+          font(ctx, "text", 450, note.size);
+          lines(ctx, note.lines, X + 30, y + 100 + note.size * 1.05, { lh: note.size * 1.3, color: rgba(N.ink, 0.85) });
+          y += h + 14;
         }
-        y += 30;
+        y += 18;
       }
       return;
     }

@@ -37,9 +37,9 @@ export const UI_COPY = Object.freeze({
   copyLink: "Copy link",
   copied: "Copied",
   shareSheet: "Share this screen",
-  stingsSheet: "Just for you",
-  stingsNote: "This screen never goes on a share card. You can keep a copy for yourself.",
-  privateTrait: "Only on your screen",
+  stingsSheet: "Keep a copy",
+  stingsNote: "This screen stays off share cards. You can keep a copy for yourself.",
+  privateTrait: "Kept off your card",
   opposite: (a, b) => `Your opposite: ${a} and ${b}. Know one?`,
   yourData: "Your data",
   dataTitle: "Your data",
@@ -61,7 +61,14 @@ export const STORY_COPY = Object.freeze({
     intro: { kicker: "Genii's read", title: "40 answers in. Here's you.", sub: "Hold. Then let go." },
     names: { kicker: "You are", people: "With your people", life: "With your life", sub: "Two sides. Both you." },
     read: { kicker: "The read" },
-    map: { kicker: "Your map", title: "Where you land", sub: "Six stats, set by your answers.", people: "With your people", life: "With your life" },
+    map: {
+      kicker: "Your character sheet", title: "Your six stats", sub: "Your signature stat glows. Your wild card could go either way.", subSolo: "Your signature stat glows.",
+      people: "With your people", life: "With your life",
+      levels: { 1: "Slight", 2: "Mild", 3: "Clear", 4: "Strong", 5: "Off the charts", both: "Both", open: "Still open" },
+      signature: "Signature", wild: "Wild card",
+      signatureNote: "Your loudest stat. People clock this one first.", wildNote: "Your closest call. On the day, it can swing.",
+      open: "Not enough cards to call this one yet.",
+    },
     knows: {
       kicker: "What Genii knows best",
       title: "The clearest parts of you",
@@ -71,9 +78,9 @@ export const STORY_COPY = Object.freeze({
       both: "Both",
     },
     rooms: { kicker: "Room by room", title: "Same you, different rooms", differs: "Your other side" },
-    traits: { kicker: "Your top traits", title: "What makes you, you" },
+    traits: { kicker: "Core traits", title: "What makes you, you" },
     insight: { kicker: "The thing you didn't know" },
-    stings: { kicker: "Only you", title: "The part that stings", badge: "Only you see this" },
+    stings: { kicker: "Open book", title: "The part that stings", badge: null },
     calls: {
       kicker: "Genii's calls",
       intro: "Before your last cards, Genii locked in a guess for each one.",
@@ -103,7 +110,14 @@ export const STORY_COPY = Object.freeze({
     intro: { kicker: "Genii's read", title: "40 answers in. Here's you.", sub: "Take your time with this one." },
     names: { kicker: "You are", people: "With your people", life: "With your life", sub: "Two sides of you, both worth knowing." },
     read: { kicker: "The read" },
-    map: { kicker: "Your map", title: "Where you land", sub: "Six stats, set by your answers.", people: "With your people", life: "With your life" },
+    map: {
+      kicker: "Your character sheet", title: "Your six stats", sub: "Your signature stat shines brightest. Your wild card could go either way.", subSolo: "Your signature stat shines brightest.",
+      people: "With your people", life: "With your life",
+      levels: { 1: "A touch", 2: "Mild", 3: "Clear", 4: "Strong", 5: "Through and through", both: "Both", open: "Still open" },
+      signature: "Signature", wild: "Wild card",
+      signatureNote: "Your clearest stat. It's the first thing people feel about you.", wildNote: "Your most open stat. It can go either way, depending on the day.",
+      open: "This one needs a few more answers before it's clear.",
+    },
     knows: {
       kicker: "What Genii knows best",
       title: "What came through clearest",
@@ -113,9 +127,9 @@ export const STORY_COPY = Object.freeze({
       both: "Both",
     },
     rooms: { kicker: "Room by room", title: "How you show up, room by room", differs: "A different side" },
-    traits: { kicker: "Your top traits", title: "What makes you, you" },
+    traits: { kicker: "Core traits", title: "What makes you, you" },
     insight: { kicker: "The thing you didn't know" },
-    stings: { kicker: "Only you", title: "The tender part", badge: "Only you see this" },
+    stings: { kicker: "Open book", title: "The tender part", badge: null },
     calls: {
       kicker: "Genii's calls",
       intro: "Before your last cards, Genii quietly locked in a guess for each one.",
@@ -235,6 +249,61 @@ export function clarityLevel(clarity) {
 }
 const TIER_OF = { 3: "clear", 2: "sharp", 1: "forming" };
 
+// ---------------------------------------------------------------- the character sheet (round 3, LAUNCH-SPEC 24)
+// Jerry, 2026-09-29 night: "62% Wanderlust" confused players, so no percentage reaches a player surface. Each stat reads
+// like a game character sheet instead: your end, five pips, a level word and one plain line. The pips come straight
+// from the stat's own score: |norm| is how far the answers on that stat lean, from 0 (dead even) to 1 (every card the
+// same way). Below the scorer's flex band (0.12) the stat reads "Both" with split pips. Few cards cap the reading at
+// three pips: a strong lean on two cards is clear, not off the charts.
+export const PIP_CUTS = Object.freeze([0.25, 0.45, 0.65, 0.85]);
+export function statLevel({ norm, cards = 4, flex = false, unfinished = false } = {}) {
+  if (unfinished) return { pips: 0, level: "open", band: null };
+  if (flex) return { pips: 0, level: "both", band: "both" };
+  const n = typeof norm === "number" && Number.isFinite(norm) ? Math.min(1, Math.abs(norm)) : 0.5;
+  let pips = 1 + PIP_CUTS.filter((c) => n >= c).length;
+  if (typeof cards === "number" && cards < 3) pips = Math.min(pips, 3);
+  return { pips, level: pips, band: pips >= 4 ? "strong" : pips === 3 ? "clear" : "light" };
+}
+// The plain line for one end at one band, in voice (library axes[].sheet, h.sheet for Heart to heart).
+export function sheetLine(meta, end, band, wording) {
+  const sh = (wording === "heart" && meta && meta.h && meta.h.sheet) || (meta && meta.sheet) || null;
+  if (!sh || !band) return null;
+  if (band === "both") return str(sh.both);
+  return sh[end] ? str(sh[end][band]) : null;
+}
+
+// Core traits (round 3): five to six keywords, each backed by a top trait (the scorer's shown tags, rank order) or by
+// one of the strongest stat ends (three pips or more; two pips only to reach five). Tags and stats alternate, a tag
+// first; a keyword never repeats. Marriage and kids tags stay on the owner's screen, marked, and never reach anything
+// shareable.
+export const CORE_MAX = 6;
+export function coreTraits(tags, rows, tagLib) {
+  const tagItems = tags.map((t) => {
+    const lt = tagLib[t.key] || {};
+    // A library without keywords (before round 3) lets the trait's own name stand in.
+    const keyword = str(lt.keyword) || str(t.name);
+    return keyword ? { key: `tag:${t.key}`, kind: "tag", tag: t.key, keyword, source: t.name, line: t.line, chapter: t.chapter, private: t.private } : null;
+  }).filter(Boolean);
+  const statItem = (r) => ({ key: `stat:${r.key}`, kind: "stat", axis: r.key, keyword: r.keyword, source: `${r.stat} · ${r.leadEnd}`, line: r.note, chapter: null, private: false, pips: r.pips });
+  const decided = rows.filter((r) => !r.flex && !r.unfinished && str(r.keyword) && r.pips >= 2)
+    .map((r, i) => ({ r, i }))
+    .sort((a, b) => b.r.pips - a.r.pips || b.r.strength - a.r.strength || a.i - b.i)
+    .map(({ r }) => r);
+  // A top trait that restates a stat end (library `echo`, e.g. No sugarcoating and Blunt) keeps that end out.
+  const echoed = new Set(tags.map((t) => str((tagLib[t.key] || {}).echo)).filter(Boolean));
+  const endKey = (r) => `${r.key}:${r.side === "right" ? "plus" : "minus"}`;
+  const statItems = decided.filter((r) => r.pips >= 3 && !echoed.has(endKey(r))).map(statItem);
+  const out = [];
+  const seen = new Set();
+  const add = (it) => { const k = it.keyword.toLowerCase(); if (out.length < CORE_MAX && !seen.has(k)) { seen.add(k); out.push(it); } };
+  for (let i = 0; i < Math.max(tagItems.length, statItems.length); i++) {
+    if (tagItems[i]) add(tagItems[i]);
+    if (statItems[i]) add(statItems[i]);
+  }
+  if (out.length < 5) for (const r of decided.filter((x) => x.pips === 2 && !echoed.has(endKey(x)))) if (out.length < 5) add(statItem(r));
+  return out;
+}
+
 // The rooms a player walked through, each read from that room's own answers (LAUNCH-SPEC 23): for every chapter the
 // lean with the clearest local evidence (two cards or more, leaning at least 0.3 of the way) that the library has a
 // line for; with none, a trait from that chapter that fired or leaned but did not make the top traits. Love, work and
@@ -320,12 +389,20 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
     const clarity = r.unfinished ? 0 : r.flex ? 0.1 : axisClarity(typeof p.norm === "number" ? p.norm : 0.5, typeof p.cards === "number" ? p.cards : 4);
     const pos = dotPosition(r);
     const lead = s > 0 ? r.right : r.left;
+    // The character sheet: pips and a level word from the stat's own score, one plain line for that end and level.
+    const lv = statLevel({ norm: typeof p.norm === "number" ? p.norm : undefined, cards: typeof p.cards === "number" ? p.cards : 4, flex: r.flex, unfinished: r.unfinished });
+    const end = s > 0 ? "plus" : "minus";
+    const note = r.unfinished ? C.map.open
+      : sheetLine(meta, end, lv.band, wording) || (r.flex ? voiced(L.flex, "line", wording) : voiced(meta, s > 0 ? "plusLine" : "minusLine", wording)) || "";
     return {
       key: r.key, left: r.left, right: r.right, side: s > 0 ? "right" : "left", flex: r.flex, unfinished: r.unfinished, pos, strength, lean, clarity,
       lead, other: s > 0 ? r.left : r.right,
       // What the player sees: the game stat, its two ends (first pole on the left) and the end they lean to.
       ...statRow(r.key, { lead: r.flex || r.unfinished ? null : lead, pos }),
       line: voiced(meta, s > 0 ? "plusLine" : "minusLine", wording),
+      pips: lv.pips, levelKey: lv.level, band: lv.band, level: C.map.levels[lv.level] || "", split: r.flex, note,
+      keyword: r.flex || r.unfinished ? null : str(meta[s > 0 ? "plusKeyword" : "minusKeyword"]),
+      badge: null,
     };
   });
   const mapGroups = [
@@ -333,6 +410,22 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
     { label: C.map.life, rows: mapHalf(lifeH) },
   ];
   const allRows = mapGroups.flatMap((g) => g.rows);
+  // The hook MBTI doesn't have: the signature stat (the strongest lean: most pips, then the lean itself, then the
+  // cards behind it) and the wild card (the stat closest to both: a flex first, else the weakest decided lean at three
+  // pips or fewer). Each is marked on its row; with fewer than two decided or flex stats there is no wild card.
+  const decidedRows = allRows.map((r, i) => ({ r, i })).filter(({ r }) => !r.flex && !r.unfinished);
+  const sigRow = decidedRows.slice().sort((a, b) => b.r.pips - a.r.pips || b.r.strength - a.r.strength || (((P.axes || {})[b.r.key] || {}).cards || 0) - (((P.axes || {})[a.r.key] || {}).cards || 0) || a.i - b.i)[0];
+  const flexRows = allRows.map((r, i) => ({ r, i })).filter(({ r }) => r.flex && !r.unfinished)
+    .sort((a, b) => Math.abs(((P.axes || {})[a.r.key] || {}).norm || 0) - Math.abs(((P.axes || {})[b.r.key] || {}).norm || 0) || a.i - b.i);
+  const weak = decidedRows.filter(({ r }) => r.pips <= 3 && (!sigRow || r !== sigRow.r)).sort((a, b) => a.r.pips - b.r.pips || a.r.strength - b.r.strength || a.i - b.i);
+  const wildRow = flexRows[0] || (decidedRows.length >= 2 ? weak[0] : null) || null;
+  const mark = (x, badge, label, note) => {
+    if (!x) return null;
+    x.r.badge = badge;
+    return { key: x.r.key, stat: x.r.stat, end: x.r.flex ? `${x.r.a} and ${x.r.b}` : x.r.leadEnd, label, note };
+  };
+  const signature = mark(sigRow, "signature", C.map.signature, C.map.signatureNote);
+  const wild = mark(wildRow, "wild", C.map.wild, C.map.wildNote);
   const facet = allRows.map((r) => ({ key: r.key, lean: r.lean, flex: r.flex, unfinished: r.unfinished, plus: endOf(r.right), minus: endOf(r.left) }));
 
   // What Genii knows best: every lean that came through, clearest first. A decided lean says what it knows; a flex lean
@@ -379,6 +472,9 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
     };
   });
   const calls = (result.calls || []).map((c) => (typeof c === "string" ? c : c && c.line)).filter(str);
+  // Core traits: keywords from the top traits and the strongest stat ends, each with the evidence behind it.
+  const core = coreTraits(tags, allRows, tagLib);
+  const publicCore = core.filter((k) => !k.private);
 
   // The read: two tablets, one per half, the confident line over the longer description.
   const readLines = [people.read, life.read].filter(Boolean);
@@ -426,12 +522,14 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
     insightFrom = { kind: "call" };
   }
 
-  // Only you: both halves' stings, then the strongest trait's.
+  // The stings, open book (round 3): both halves', then the strongest shareable trait's. Marriage and kids traits never
+  // give a sting here, so the whole screen can be shared like any other.
   const stings = [voiced(relL, "sting", wording), voiced(lifeL, "sting", wording)].map((s, i) => s || (result.stings || [])[i]).filter(Boolean);
-  if (tags[0] && tags[0].sting && !stings.includes(tags[0].sting)) stings.push(tags[0].sting);
+  const stingTag = tags.find((t) => !t.private);
+  if (stingTag && stingTag.sting && !stings.includes(stingTag.sting)) stings.push(stingTag.sting);
 
   const counts = P.counts || {};
-  const noTraits = tags.length ? null : C.noTraits[(counts.rushed || 0) * 2 >= (counts.answered || 0) && counts.answered ? "rushed" : "thin"];
+  const noTraits = tags.length || core.length ? null : C.noTraits[(counts.rushed || 0) * 2 >= (counts.answered || 0) && counts.answered ? "rushed" : "thin"];
 
   // The one line inside the mirror on story 2 (the screenshot moment): Genii's clearest finding, a lean that holds for
   // anyone who knows the player. With no decided lean at all, the people half's read.
@@ -443,7 +541,9 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
     brand: C.share.brand,
     names: [{ label: people.label, name: people.name, code: people.code }, { label: life.label, name: life.name, code: life.code }],
     // Marriage and kids tags (library `locked18`) never go on anything shareable.
-    tags: tags.filter((t) => !t.private).map((t) => ({ name: t.name, heart: t.heart, chapter: t.chapter })),
+    // The core traits as keywords (round 3). Marriage and kids tags (library `locked18`) never go on anything shareable.
+    tags: publicCore.map((k) => ({ name: k.keyword, heart: k.line, chapter: k.chapter, kind: k.kind })),
+    keywords: publicCore.map((k) => k.keyword),
     invite: str(result.share && result.share.invite) || "Do you really know me?",
     facet,
     mirror: mirror || null,
@@ -483,14 +583,14 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
 
   const slides = [
     { id: "intro", kicker: C.intro.kicker, title: C.intro.title, sub: C.intro.sub, mirror },
-    { id: "names", kicker: C.names.kicker, sub: C.names.sub, hook, people, life, mirror },
+    { id: "names", kicker: C.names.kicker, sub: C.names.sub, hook, people, life, mirror, keywords: publicCore.map((k) => k.keyword) },
     { id: "read", kicker: C.read.kicker, lines: readLines, bodies: readBodies, marks: readMarks },
-    { id: "map", kicker: C.map.kicker, title: C.map.title, sub: C.map.sub, groups: mapGroups, facet },
+    { id: "map", kicker: C.map.kicker, title: C.map.title, sub: wild ? C.map.sub : C.map.subSolo, groups: mapGroups, facet, signature, wild },
     { id: "knows", kicker: C.knows.kicker, title: C.knows.title, surest: C.knows.surest, findings },
     roomRows.length >= 2 ? { id: "rooms", kicker: C.rooms.kicker, title: C.rooms.title, differs: C.rooms.differs, rows: roomRows } : null,
     { id: "insight", kicker: C.insight.kicker, line: insight, parts: splitInsight(insight), from: insightFrom },
-    { id: "traits", kicker: C.traits.kicker, title: C.traits.title, tags, empty: noTraits },
-    { id: "stings", kicker: C.stings.kicker, title: C.stings.title, badge: C.stings.badge, stings, private: true },
+    { id: "traits", kicker: C.traits.kicker, title: C.traits.title, tags, core, empty: noTraits },
+    { id: "stings", kicker: C.stings.kicker, title: C.stings.title, badge: C.stings.badge, stings, private: false },
     guesses && guesses.rows.length ? {
       id: "calls", kicker: C.calls.kicker, title: callsTitle, intro: C.calls.intro, key: C.calls.key, of: C.calls.of, more: C.calls.more, exact: guesses.exact, called: guesses.called, face: callsFace,
       rows: guesses.rows.map((r) => ({ ...r, side: r.pole ? endOf(r.pole) : null, shown: (r.near ? C.calls.status.near : C.calls.status[r.status]) || C.calls.status.skipped })),
@@ -515,15 +615,16 @@ export function printFor(slide) {
       const keep = slide.lines.map((line, i) => ({ line, body: (slide.bodies || [])[i] || "", mark: marks[i] || { kind: "none" } })).filter((x) => !(x.mark && x.mark.private));
       return { ...base, tablets: keep };
     }
-    case "map": return { ...base, title: slide.title, groups: slide.groups.map((g) => ({ label: g.label, rows: g.rows.map((r) => ({ stat: r.stat, left: r.a, right: r.b, pos: r.at, side: r.leadSide === "a" ? "left" : "right", flex: r.flex, unfinished: r.unfinished })) })) };
+    // The character sheet: per stat its end, level word, pips and plain line; no number or percentage is drawn.
+    case "map": return { ...base, title: slide.title, sub: slide.sub, groups: slide.groups.map((g) => ({ label: g.label, rows: g.rows.map((r) => ({ stat: r.stat, left: r.a, right: r.b, pos: r.at, side: r.leadSide === "a" ? "left" : "right", flex: r.flex, unfinished: r.unfinished, end: r.flex || r.unfinished ? `${r.a} · ${r.b}` : r.leadEnd, level: r.level, pips: r.pips, split: r.split, line: r.note, badge: r.badge, badgeLabel: r.badge === "signature" ? slide.signature && slide.signature.label : r.badge === "wild" ? slide.wild && slide.wild.label : null })) })) };
     case "knows": return { ...base, title: slide.title, findings: slide.findings.map((f, i) => ({ topic: f.stat ? `${f.stat} · ${f.leadEnd}` : f.leadEnd, lead: f.leadEnd, other: f.otherEnd, kind: f.kind, line: i ? f.short || f.line : f.line, level: f.level, tier: f.tier })) };
     case "rooms": return { ...base, title: slide.title, rows: slide.rows.map((r) => ({ room: r.room, line: r.line, chapter: r.chapter, level: r.level })) };
     case "traits": {
-      const items = slide.tags.filter((t) => !t.private).map((t) => ({ name: t.name, line: t.line, chapter: t.chapter }));
+      const items = (slide.core || []).filter((k) => !k.private).map((k) => ({ name: k.keyword, line: k.line, chapter: k.chapter }));
       return { ...base, title: slide.title, charms: items, lines: items.length ? [] : slide.empty ? [slide.empty] : [] };
     }
     case "insight": return { ...base, belief: slide.parts ? slide.parts.belief : slide.line, behavior: slide.parts ? slide.parts.behavior : null };
-    case "stings": return { ...base, kicker: null, title: slide.title, badge: slide.badge, quotes: slide.stings, private: true };
+    case "stings": return { ...base, title: slide.title, badge: slide.badge, quotes: slide.stings, private: Boolean(slide.private) };
     case "calls": return { ...base, title: slide.title, exact: slide.exact, called: slide.called, of: slide.of, panes: slide.rows.map((r) => ({ topic: r.title || r.topic, status: r.status, near: r.near, label: r.shown || r.label, side: r.side })) };
     case "share": return { ...base, card: slide.share };
     case "app": return { ...base, title: slide.title, lines: [slide.body, slide.note] };

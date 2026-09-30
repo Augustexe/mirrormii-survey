@@ -138,15 +138,15 @@ test("the screens render in order from a synthetic result, with only the first o
   assert.ok(!read.includes("NEW-LINE-1"), "the traits keep their own lines");
 
   const map = slideHtml(html, "map");
-  assert.equal((map.match(/class="rv-pair"/g) || []).length, 6, "six labelled opposing pairs");
-  // G6: the pairs read as game stats (src/persona/stats.js); the internal pole names never show.
+  assert.equal((map.match(/class="rv-stat"/g) || []).length, 6, "six stats on the character sheet");
+  // Round 3: a character sheet of game stats (src/persona/stats.js); the internal pole names never show.
   for (const a of AXES) {
-    assert.ok(map.includes(`>${endOf(a.plus)}<`), endOf(a.plus));
-    assert.ok(map.includes(`>${endOf(a.minus)}<`), endOf(a.minus));
+    assert.ok(map.includes(endOf(a.plus)) || map.includes(endOf(a.minus)), `${a.id}: an end shows`);
     assert.ok(map.includes(STATS[a.id].stat), STATS[a.id].stat);
     assert.ok(!map.includes(`>${a.plus}<`) && !map.includes(`>${a.minus}<`), `no bare ${a.plus} or ${a.minus}`);
   }
-  assert.ok(visible(map).includes("Crew over Solo.") && visible(map).includes("Right between Old School and Own Lane."), "each stat reads as a sentence");
+  assert.ok(/Orbit: (Slight|Mild|Clear|Strong|Off the charts) Crew, \w+ pips of five\./.test(visible(map)) && visible(map).includes("Blueprint: Both, Old School and Own Lane."), "each stat reads as a sentence");
+  assert.doesNotMatch(visible(map), /%/, "no percentage on the map");
   assert.doesNotMatch(visible(map), /\d/, "no numbers on the map");
 
   const knows = visible(slideHtml(html, "knows"));
@@ -158,14 +158,15 @@ test("the screens render in order from a synthetic result, with only the first o
   for (const i of [1, 2, 3]) assert.ok(traits.includes(`NEW-LINE-${i}`));
   assert.ok(visible(slideHtml(html, "insight")).includes("NEW-INSIGHT-MINUS"), "believe minus, acted plus");
   const stings = visible(slideHtml(html, "stings"));
-  assert.ok(stings.includes("OLD-STING-PEOPLE") && stings.includes("OLD-STING-LIFE") && stings.includes("OLD-TAGSTING-1") && stings.includes("Only you see this"));
+  assert.ok(stings.includes("OLD-STING-PEOPLE") && stings.includes("OLD-STING-LIFE") && stings.includes("OLD-TAGSTING-1") && stings.includes("Open book") && !stings.includes("Only you see this"), "open book: no hiding frame");
 
   const calls = visible(slideHtml(html, "calls"));
   assert.ok(calls.includes("4") && calls.includes("of 6") && calls.includes("Called it") && calls.includes("Surprised Genii") && calls.includes("Genii passed"));
 
   const share = slideHtml(html, "share");
   const card = share.slice(share.indexOf("data-card"), share.indexOf("</figure>"));
-  for (const t of ["Here, scroll my phone", "OLD-TAGHEART-1", "Golden Retriever", "The Planner"]) assert.ok(card.includes(t), t);
+  // Round 3: the card carries the core traits as keywords (a pre-round-3 library lets the trait name stand in) with their evidence line.
+  for (const t of ["Here, scroll my phone", "NEW-LINE-1", "Golden Retriever", "The Planner"]) assert.ok(card.includes(t), t);
   for (const s of ["OLD-STING-PEOPLE", "OLD-STING-LIFE", "OLD-TAGSTING-1", "NEW-READ-PEOPLE"]) assert.ok(!card.includes(s), `no ${s} on the share card`);
   assert.ok(visible(share).includes("Do you really know me?"));
 
@@ -203,7 +204,7 @@ test("Heart to heart reads the h variants; Make it fun and Just the cards read t
   const heart = buildStories({ result: syntheticResult(), profile: syntheticProfile(), sealed: null, lib: newLibrary(), voice: "heart" });
   assert.deepEqual(heart.slides.map((s) => s.id), ORDER_NO_CALLS, "no calls screen without a guess check");
   const html = visible(await render(heart));
-  for (const t of ["H-READ-PEOPLE", "H-READ-LIFE", "H-DESC-PEOPLE", "H-LINE-1", "H-LINE-2", "H-LINE-3", "H-INSIGHT-MINUS", "H-STING-PEOPLE", "H-STING-LIFE", "H-TAGSTING-1", "H-TAGHEART-1", "The tender part", "What came through clearest"]) assert.ok(html.includes(t), t);
+  for (const t of ["H-READ-PEOPLE", "H-READ-LIFE", "H-DESC-PEOPLE", "H-LINE-1", "H-LINE-2", "H-LINE-3", "H-INSIGHT-MINUS", "H-STING-PEOPLE", "H-STING-LIFE", "H-TAGSTING-1", "The tender part", "What came through clearest"]) assert.ok(html.includes(t), t);
   for (const t of ["NEW-READ-PEOPLE", "NEW-LINE-1", "NEW-INSIGHT-MINUS", "OLD-STING-PEOPLE"]) assert.ok(!html.includes(t), `heart hides ${t}`);
   assert.equal(heart.slides.find((s) => s.id === "knows").findings[0].line, "H-You hold the person first.", "the clearest finding, in voice");
   assert.equal(heart.slides.find((s) => s.id === "names").hook, "H-You hold the person first.", "the plaque carries it too");
@@ -212,7 +213,7 @@ test("Heart to heart reads the h variants; Make it fun and Just the cards read t
   for (const voice of ["fun", "cards"]) {
     const v = buildStories({ result: syntheticResult(), profile: syntheticProfile(), sealed: null, lib: newLibrary(), voice });
     const text = visible(await render(v));
-    assert.ok(text.includes("NEW-READ-PEOPLE") && text.includes("NEW-LINE-1") && text.includes("OLD-TAGHEART-1"), voice);
+    assert.ok(text.includes("NEW-READ-PEOPLE") && text.includes("NEW-LINE-1") && !text.includes("H-LINE-1"), voice);
     assert.ok(!text.includes("H-READ-PEOPLE") && !text.includes("H-LINE-1"), voice);
   }
 

@@ -60,6 +60,22 @@ async function players() {
   return out;
 }
 
+// The character sheet, recomputed here from the score (LAUNCH-SPEC 24 item 1): pips from how far the stat leans
+// (|norm|, cuts at 0.25, 0.45, 0.65 and 0.85), capped at three when fewer than three cards carried it; a flex reads
+// "Both" with no full pip; the band picks the library line (light 1 to 2, clear 3, strong 4 to 5).
+function pipsFor(a) {
+  if (a.unfinished || a.flex) return 0;
+  const n = Math.min(1, Math.abs(a.norm));
+  let pips = 1 + [0.25, 0.45, 0.65, 0.85].filter((c) => n >= c).length;
+  if (a.cards < 3) pips = Math.min(pips, 3);
+  return pips;
+}
+const bandOf = (pips) => (pips >= 4 ? "strong" : pips === 3 ? "clear" : "light");
+function sheetIn(meta, end, band, voice) {
+  const sh = voice === "heart" && meta.h && meta.h.sheet ? meta.h.sheet : meta.sheet;
+  return band === "both" ? sh.both : sh[end][band];
+}
+
 // The library line in a voice, the same rule the screens promise: Heart to heart reads h first.
 function inVoice(entry, field, voice) {
   if (!entry) return null;
@@ -83,6 +99,9 @@ test("every reveal line, pole, trait, room and call comes from the player's own 
   let splitInsights = 0;
   let hits = 0;
   let partial = 0;
+  let sheetRows = 0;
+  let wilds = 0;
+  let coreCount = 0;
 
   for (const { label, run, voice } of list) {
     const { profile, result, sealed } = Session.resultFor(run);
@@ -113,7 +132,40 @@ test("every reveal line, pole, trait, room and call comes from the player's own 
       assert.equal(r.lead, a.pole > 0 ? meta.plus : meta.minus, `${label}: ${r.key} leans to the scored pole`);
       if (!a.flex && !a.unfinished) assert.ok(a.pole > 0 ? r.pos > 50 : r.pos < 50, `${label}: ${r.key} bead on the scored side`);
       else assert.ok(r.pos >= 43 && r.pos <= 57, `${label}: ${r.key} bead near the middle`);
+      // The character sheet: pips, the split, the level word and the plain line all follow this stat's own score.
+      const pips = pipsFor(a);
+      assert.equal(r.pips, pips, `${label}: ${r.key} pips from the score`);
+      assert.equal(r.split, a.flex, `${label}: ${r.key} split pips only for a near-even stat`);
+      if (a.unfinished) assert.equal(r.levelKey, "open");
+      else if (a.flex) {
+        assert.equal(r.levelKey, "both");
+        assert.equal(r.note, sheetIn(meta, null, "both", voice), `${label}: ${r.key} both line`);
+        assert.equal(r.keyword, null, `${label}: ${r.key} a near-even stat gives no keyword`);
+      } else {
+        assert.equal(r.levelKey, pips);
+        assert.equal(r.note, sheetIn(meta, a.pole > 0 ? "plus" : "minus", bandOf(pips), voice), `${label}: ${r.key} sheet line for the end and band`);
+        assert.equal(r.keyword, a.pole > 0 ? meta.plusKeyword : meta.minusKeyword, `${label}: ${r.key} keyword for the scored end`);
+      }
+      sheetRows++;
     }
+    // The signature stat is the strongest decided lean; the wild card is the stat closest to both.
+    const decided = rows.filter((r) => !P[r.key].flex && !P[r.key].unfinished);
+    const strongest = decided.slice().sort((x, y) => pipsFor(P[y.key]) - pipsFor(P[x.key]) || Math.abs(P[y.key].norm) - Math.abs(P[x.key].norm) || P[y.key].cards - P[x.key].cards)[0];
+    assert.equal(rows.filter((r) => r.badge === "signature").length, strongest ? 1 : 0, `${label}: one signature stat`);
+    if (strongest) {
+      assert.equal(by.map.signature.key, strongest.key, `${label}: the signature is the strongest lean`);
+      assert.ok(decided.every((r) => pipsFor(P[r.key]) <= pipsFor(P[strongest.key])), `${label}: nothing outranks the signature`);
+    }
+    const flexes = rows.filter((r) => P[r.key].flex && !P[r.key].unfinished);
+    if (by.map.wild) {
+      const w = P[by.map.wild.key];
+      if (flexes.length) assert.ok(w.flex && flexes.every((r) => Math.abs(P[r.key].norm) >= Math.abs(w.norm)), `${label}: the wild card is the most even flex`);
+      else {
+        assert.ok(pipsFor(w) <= 3 && by.map.wild.key !== by.map.signature.key, `${label}: the wild card is a weak lean`);
+        assert.ok(decided.filter((r) => r.key !== by.map.signature.key).every((r) => pipsFor(P[r.key]) >= pipsFor(w)), `${label}: nothing is closer to both than the wild card`);
+      }
+      wilds++;
+    } else assert.ok(!flexes.length, `${label}: a flex is always the wild card`);
 
     // 4. What Genii knows best: every lean that came through (5 or 6), clearest first, each line the library's
     //    finding for the scored pole, each cue recomputed from the lean and the number of cards behind it.
@@ -179,7 +231,42 @@ test("every reveal line, pole, trait, room and call comes from the player's own 
       assert.equal(t.line, inVoice(tagLib[t.key], "line", voice), `${label}: ${t.key} line`);
       assert.equal(t.private, Boolean(tagLib[t.key].locked18));
     }
-    assert.deepEqual(view.share.tags.map((t) => t.name), by.traits.tags.filter((t) => !t.private).map((t) => t.name));
+
+    // 6b. The core traits: five or six keywords, each traced to a top trait or to one of the strongest stat ends, with
+    //     that trait's or that stat's own line as evidence. The card and the names screen get the shareable ones.
+    const core = by.traits.core;
+    assert.ok(core.length <= 6, `${label}: at most six core traits`);
+    assert.equal(new Set(core.map((k) => k.keyword.toLowerCase())).size, core.length, `${label}: no keyword twice`);
+    for (const k of core) {
+      if (k.kind === "tag") {
+        assert.ok(profile.shownTags.slice(0, 5).includes(k.tag), `${label}: ${k.keyword} comes from a top trait`);
+        assert.equal(k.keyword, tagLib[k.tag].keyword, `${label}: ${k.tag} keyword`);
+        assert.equal(k.line, inVoice(tagLib[k.tag], "line", voice), `${label}: ${k.tag} evidence line`);
+        assert.equal(k.private, Boolean(tagLib[k.tag].locked18));
+      } else {
+        const a = P[k.axis];
+        const meta = axisMeta[k.axis];
+        assert.ok(!a.flex && !a.unfinished && pipsFor(a) >= 2, `${label}: ${k.keyword} comes from a decided stat`);
+        assert.equal(k.keyword, a.pole > 0 ? meta.plusKeyword : meta.minusKeyword, `${label}: ${k.axis} keyword for the scored end`);
+        assert.equal(k.line, sheetIn(meta, a.pole > 0 ? "plus" : "minus", bandOf(pipsFor(a)), voice), `${label}: ${k.axis} evidence line`);
+        assert.ok(!k.private);
+      }
+    }
+    // Stat ends at three pips or more join the tags; two pips only fill up to five. A stat end a top trait restates
+    // (library `echo`) stays out, so one trait never shows twice.
+    const echoed = new Set(by.traits.tags.map((t) => tagLib[t.key].echo).filter(Boolean));
+    for (const k of core.filter((x) => x.kind === "stat")) assert.ok(!echoed.has(`${k.axis}:${P[k.axis].pole > 0 ? "plus" : "minus"}`), `${label}: ${k.keyword} is not restated by a top trait`);
+    const kw = (minPips) => new Set([
+      ...by.traits.tags.map((t) => tagLib[t.key].keyword.toLowerCase()),
+      ...rows.filter((r) => !P[r.key].flex && !P[r.key].unfinished && pipsFor(P[r.key]) >= minPips && !echoed.has(`${r.key}:${P[r.key].pole > 0 ? "plus" : "minus"}`)).map((r) => r.keyword.toLowerCase()),
+    ]).size;
+    assert.equal(core.length, Math.max(Math.min(6, kw(3)), Math.min(5, kw(2))), `${label}: as many core traits as the evidence allows`);
+    coreCount += core.length;
+    const shareable = core.filter((k) => !k.private).map((k) => k.keyword);
+    assert.deepEqual(view.share.tags.map((t) => t.name), shareable, `${label}: the card carries the shareable core traits`);
+    assert.deepEqual(view.share.keywords, shareable);
+    assert.deepEqual(by.names.keywords, shareable, `${label}: the names screen gets the same keywords`);
+    for (const k of core.filter((x) => x.private)) assert.ok(!view.share.tags.some((t) => t.name === k.keyword), `${label}: ${k.keyword} stays off the card`);
 
     // 7. The insight: a real believe-versus-did split on that axis, or no split at all and the half's fallback.
     const split = profile.splits.find((s) => s.kind === "axis" && LIB.insights[s.dim]);
@@ -193,9 +280,11 @@ test("every reveal line, pole, trait, room and call comes from the player's own 
       assert.equal(by.insight.line, voice === "heart" ? fb.heart : fb.fun, `${label}: the half's fallback`);
     }
 
-    // 8. The stings: both halves', then the strongest trait's, in voice.
-    const tagSting = by.traits.tags[0] ? inVoice(tagLib[by.traits.tags[0].key], "sting", voice) : null;
+    // 8. The stings, open book: both halves', then the strongest shareable trait's, in voice. Shared like any screen.
+    const stingTrait = by.traits.tags.find((t) => !tagLib[t.key].locked18);
+    const tagSting = stingTrait ? inVoice(tagLib[stingTrait.key], "sting", voice) : null;
     assert.deepEqual(by.stings.stings, [inVoice(rel, "sting", voice), inVoice(life, "sting", voice), tagSting].filter(Boolean));
+    assert.equal(by.stings.private, false, `${label}: the stings screen is open book`);
 
     // 9. The calls: counts straight from the check; a hit names the pole of the guess Genii locked, nothing else.
     const called = sealed.rows.filter((r) => r.status === "hit" || r.status === "miss");
@@ -239,13 +328,42 @@ test("every reveal line, pole, trait, room and call comes from the player's own 
     }
     for (const t of said) assert.ok(!text.includes(t), `${label}: no quoted answer: ${t}`);
     assert.doesNotMatch(text, /—|You'd say|Last time, you|energy\b|streak|gacha|lottery|jackpot|predict|clinically|diagnos/i, `${label}: voice rules`);
-    for (const id of ["knows", "rooms", "map"]) assert.doesNotMatch(visible(slideHtml(html, id)), /\d/, `${label}: no numbers on ${id}`);
+    for (const id of ["knows", "rooms", "map", "traits", "stings"]) assert.doesNotMatch(visible(slideHtml(html, id)), /\d/, `${label}: no numbers on ${id}`);
+    assert.doesNotMatch(text, /Only you see this/, `${label}: no hiding frame`);
   }
   assert.ok(seenArchetypes.size >= 5, `several archetype pairs covered (${[...seenArchetypes].join("; ")})`);
   assert.ok(roomRows >= 20, "rooms exercised");
   assert.ok(hits >= 10, "hits exercised");
   assert.ok(partial >= 3, `noisy players show partial calls (${partial})`);
   assert.ok(splitInsights >= 1, "a split insight exercised");
+  assert.ok(sheetRows >= 90 && wilds >= 5, `character sheet exercised (${sheetRows} stats, ${wilds} wild cards)`);
+  assert.ok(coreCount >= list.length * 4, `core traits exercised (${coreCount})`);
+});
+
+// Round 3 (LAUNCH-SPEC 24 item 1): no percentage anywhere a player looks: not on any screen of the reveal (visible text
+// and what a screen reader hears), not in what a saved screen image draws, not on the share card.
+test("no percentage renders on the reveal, its saved images or the card", async () => {
+  const { resultView } = await load("/src/persona/views.js");
+  const { printFor } = await load("/src/persona/stories/story-data.js");
+  const { PersonaResult } = await load("/src/persona/PersonaResult.jsx");
+  const list = await players();
+  const texts = (o, out = []) => {
+    if (typeof o === "string") out.push(o);
+    else if (Array.isArray(o)) o.forEach((x) => texts(x, out));
+    else if (o && typeof o === "object") for (const [k, v] of Object.entries(o)) if (!["mirror", "facet"].includes(k)) texts(v, out);
+    return out;
+  };
+  for (const { label, run } of list) {
+    const view = resultView(run);
+    const html = renderToStaticMarkup(React.createElement(MotionConfig, { reducedMotion: "always" }, React.createElement(PersonaResult, {
+      view, friends: null, onFriendAction() {}, onRestart() {}, onDownload() {}, onDelete() {}, storageOK: true,
+    })));
+    assert.doesNotMatch(visible(html), /%|\bpercent/i, `${label}: no percentage on the reveal`);
+    for (const sl of view.slides) {
+      for (const t of texts(printFor(sl))) assert.doesNotMatch(t, /%|\bpercent/i, `${label}: no percentage on the ${sl.id} image ("${t}")`);
+    }
+    for (const t of texts(view.share)) assert.doesNotMatch(t, /%|\bpercent/i, `${label}: no percentage on the card`);
+  }
 });
 
 test("the round 2 result copy is complete in both voices and keeps the voice rules", async () => {

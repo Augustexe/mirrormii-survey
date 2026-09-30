@@ -62,11 +62,11 @@ test("the mirror card draws names, traits, the invite and the address, and nothi
         assert.doesNotMatch(all, BANNED);
         for (const s of stings) assert.ok(!all.includes(s), "no sting");
         for (const a of answers) assert.ok(!all.includes(a), `no quoted answer: ${a}`);
-        // At most two traits, so each reads at feed size; the rest stay on the traits screen.
-        const shown = view.share.tags.filter((t) => all.includes(t.name));
-        assert.ok(shown.length <= 2, `${voice} ${format} ${theme}: ${shown.length} traits on the card`);
-        if (view.share.tags.length >= 2) assert.equal(shown.length, 2);
-        for (const t of view.share.tags.slice(2)) assert.ok(!all.includes(t.name), `third trait stays off the card: ${t.name}`);
+        // Round 3: the core traits as keywords, in rank order, as many as two rows hold at feed size (at least three
+        // when the player has them); the rest stay on the traits screen.
+        const drawn = ctx.texts.filter((t) => view.share.tags.some((k) => k.name === t));
+        assert.deepEqual(drawn, view.share.tags.slice(0, drawn.length).map((k) => k.name), `${voice} ${format} ${theme}: keywords in rank order`);
+        assert.ok(drawn.length >= Math.min(3, view.share.tags.length), `${voice} ${format} ${theme}: ${drawn.length} keywords on the card`);
       }
     }
   }
@@ -94,7 +94,7 @@ test("marriage and kids traits never reach the card or a story image", async () 
     relationship: [{ code: "We·Soft·Own", name: "Golden Retriever", read: "PEOPLE-READ", sting: "PEOPLE-STING", heart: "p" }, { code: "Me·Direct·Classic", name: "Straight Shooter", read: "x" }],
     life: [{ code: "Steady·Push·Rules", name: "The Planner", read: "LIFE-READ", sting: "LIFE-STING", heart: "l" }, { code: "Venture·Easy·Context", name: "The Wanderer", read: "y" }],
     tags: [
-      { id: "T11A", name: "Wants kids someday", line: "KIDS-LINE", heart: "KIDS-HEART", chapter: 6, locked18: true },
+      { id: "T11A", name: "Wants kids someday", line: "KIDS-LINE", heart: "KIDS-HEART", sting: "KIDS-STING", chapter: 6, locked18: true },
       { id: "T02A", name: "Yes first", line: "YES-LINE", heart: "YES-HEART", chapter: 2 },
     ],
   };
@@ -122,6 +122,11 @@ test("marriage and kids traits never reach the card or a story image", async () 
     const all = ctx.texts.join(" ");
     assert.ok(!/KIDS|kids/.test(all), `${id} image has no kids trait`);
   }
-  const stingsPrint = printFor(view.slides.find((s) => s.id === "stings"));
-  assert.equal(stingsPrint.private, true, "the stings image is saved, never shared");
+  // Round 3, open book: the stings screen can be shared like any other, so a kids or marriage trait never gives it a
+  // sting.
+  const stingsSlide = view.slides.find((s) => s.id === "stings");
+  assert.ok(!stingsSlide.stings.some((x) => /KIDS/.test(x)), "no kids sting on the stings screen");
+  const stingsPrint = printFor(stingsSlide);
+  assert.equal(stingsPrint.private, false, "the stings image shares like any other");
+  assert.ok(!stingsPrint.quotes.some((x) => /KIDS/.test(x)));
 });

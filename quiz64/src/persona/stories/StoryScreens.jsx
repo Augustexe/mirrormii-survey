@@ -3,16 +3,15 @@
 // changes. The reveal art (the mirror, the pairs, the gems, the rooms, the flip, the panes, the card, the app scene)
 // lives in ../reveal.
 import React, { useEffect, useRef, useState } from "react";
-import { Link2, Lock, Share, Users } from "lucide-react";
+import { Link2, Share, Users } from "lucide-react";
 import { ChapterGlyph, MirrorArch, Sigil } from "../../art/index.js";
 import { IntroScreen, NamesScreen } from "../reveal/MirrorReveal.jsx";
-import { MapScreen } from "../reveal/FacetScreen.jsx";
+import { CoreTraitsScreen, SheetScreen, StingsScreen } from "./SheetScreens.jsx";
 import { KnowsScreen } from "../reveal/Findings.jsx";
 import { RoomsScreen } from "../reveal/Rooms.jsx";
 import { CallsScreen } from "../reveal/Calls.jsx";
 import { AppScene } from "../reveal/AppScene.jsx";
 import { InsightFlip } from "../reveal/InsightFlip.jsx";
-import { seeded } from "../reveal/layout.js";
 import { renderShareCard, FORMATS, SHARE_TRAITS } from "../share-image.js";
 import { UI_COPY } from "./story-data.js";
 
@@ -44,52 +43,6 @@ function Read({ s }) {
           );
         })}
       </ol>
-    </div>
-  );
-}
-
-// Story 8: traits as charms hanging from the mirror's frame; the two strongest hang larger, in the brand glass.
-function Traits({ s }) {
-  return (
-    <div className="rv-body rv-body--traits">
-      <Kicker>{s.kicker}</Kicker>
-      <h2 className="rv-title rv-in" data-focus tabIndex="-1">{s.title}</h2>
-      <span className="rv-chain" aria-hidden="true" />
-      {s.empty ? (
-        <ul className="rv-charms"><li className="rv-charm rv-charm--frost rv-in" style={{ "--i": 0 }}><span className="rv-charm__line">{s.empty}</span></li></ul>
-      ) : (
-        <ul className="rv-charms" data-count={s.tags.length}>
-          {s.tags.map((t, i) => (
-            <li className={`rv-charm${i < 2 ? " rv-charm--hero" : ""}`} key={t.key} style={{ "--i": i }} data-level={t.level}>
-              <span className="rv-charm__glyph" aria-hidden="true"><ChapterGlyph chapter={t.chapter ?? "extras"} size={28} /></span>
-              <span className="rv-charm__text">
-                <strong className="rv-charm__name">{t.name}</strong>
-                <span className="rv-charm__line">{t.line}</span>
-                {t.private ? <span className="rv-charm__private"><Lock size={11} aria-hidden="true" /> {UI_COPY.privateTrait}</span> : null}
-              </span>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
-}
-
-// Story 9: the back of the mirror. Old silver foxing, a lock badge, the stings in Genii's italic.
-function Stings({ s, seed }) {
-  const specks = seeded(`${seed}-foxing`, 72);
-  return (
-    <div className="rv-body rv-body--stings">
-      <span className="rv-foxing" aria-hidden="true">
-        {Array.from({ length: 24 }, (_, i) => (
-          <i key={i} style={{ left: `${specks[i * 3] * 100}%`, top: `${specks[i * 3 + 1] * 100}%`, "--r": `${10 + specks[i * 3 + 2] * 46}px` }} />
-        ))}
-      </span>
-      <p className="rv-badge rv-in"><Lock size={12} aria-hidden="true" /> {s.badge}</p>
-      <h2 className="rv-title rv-in" data-focus tabIndex="-1">{s.title}</h2>
-      <ul className="rv-stings">
-        {s.stings.map((line, i) => <li className="rv-in" key={i} style={{ "--i": i }}>{line}</li>)}
-      </ul>
     </div>
   );
 }
@@ -203,13 +156,13 @@ export function StoryScreen({ slide, ...props }) {
     case "intro": return <IntroScreen s={slide} stage={props.stage} active={props.active} reduced={props.reduced} phase={props.reveal} onStart={props.onAssemble} onDone={props.onAssembled} />;
     case "names": return <NamesScreen s={slide} stage={props.stage} active={props.active} reduced={props.reduced} wipe={props.wipe} onWiped={props.onWiped} sparkles={props.sparkles} />;
     case "read": return <Read s={slide} />;
-    case "map": return <MapScreen s={slide} />;
+    case "map": return <SheetScreen s={slide} />;
     case "knows": return <KnowsScreen s={slide} />;
     case "rooms": return <RoomsScreen s={slide} />;
     case "calls": return <CallsScreen s={slide} onGuesses={props.onGuesses} />;
-    case "traits": return <Traits s={slide} />;
+    case "traits": return <CoreTraitsScreen s={slide} />;
     case "insight": return <InsightFlip s={slide} active={props.active} />;
-    case "stings": return <Stings s={slide} seed={props.seed} />;
+    case "stings": return <StingsScreen s={slide} seed={props.seed} />;
     case "share": return <ShareScreen s={slide} {...props} />;
     case "app": return <App s={slide} {...props} />;
     default: return null;
