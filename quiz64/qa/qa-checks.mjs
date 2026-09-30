@@ -237,7 +237,7 @@ for (const [vname, vp] of Object.entries(VIEWS)) {
     await page.waitForSelector(".rv-room");
     await page.keyboard.press("End");
     await page.waitForTimeout(800);
-    await page.locator(".rv-slide.is-current .rv-textbtn", { hasText: /really know me/i }).click();
+    await page.locator(".rv-slide.is-current .rv-textbtn", { hasText: /know me\?/i }).click();
     await page.waitForSelector(".fp-composer");
     await audit(page, `${vname} friends sheet`, { axe });
     await page.locator(".fp-rel").first().click();
