@@ -120,7 +120,7 @@ export function StoryDeck({ stories, friends, onFriendAction, onRestart, onDownl
   useEffect(() => {
     const el = stageRef.current?.querySelector(`[data-slide="${index}"] [data-focus]`);
     el?.focus({ preventScroll: true });
-    if (!mounted.current) { mounted.current = true; if (typeof window !== "undefined") window.scrollTo({ top: 0, behavior: "instant" }); }
+    if (!mounted.current) { mounted.current = true; if (typeof window !== "undefined" && article === null) window.scrollTo({ top: 0, behavior: "instant" }); }
   }, [index]);
 
   useEffect(() => {
