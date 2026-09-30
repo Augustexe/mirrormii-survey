@@ -1128,40 +1128,40 @@
   "type": "reply",
   "chapter": 1,
   "sq": "SQ-L1-2",
-  "world": "absurd",
-  "prompt": "Driving to work. Your map app, which has never texted anyone, texts you.",
+  "world": "unusual",
+  "prompt": "Two years after the breakup, your ex's parent texts you.",
   "thread": [
    {
-    "from": "Your map app",
-    "text": "skip your exit. keep driving. 400 miles."
+    "from": "Your ex's parent",
+    "text": "Hi sweetheart! Do you have ten minutes for a call?"
    },
    {
-    "from": "Your map app",
-    "text": "trust me. you'll thank me"
+    "from": "Your ex's parent",
+    "text": "Nothing bad!"
    }
   ],
   "options": [
    {
-    "t": "\"Skipping the exit. Work thinks something came up.\"",
+    "t": "\"Calling you now!\" Dial before I can think.",
     "axes": {
      "L1": -2
     },
     "emotion": "delight"
    },
    {
-    "t": "\"Fine. I'm calling work from the road.\"",
+    "t": "\"Of course! Two minutes?\" Then pace the kitchen for both.",
     "axes": {
      "L1": -1
     }
    },
    {
-    "t": "\"Taking my exit. Text me the destination tonight.\"",
+    "t": "\"Hi!! Everything okay?? What's it about?\"",
     "axes": {
      "L1": 1
     }
    },
    {
-    "t": "\"Taking my exit. Not driving 400 miles blind.\"",
+    "t": "Don't answer. Send it to the group chat for a ruling first.",
     "axes": {
      "L1": 2
     },
@@ -1169,48 +1169,38 @@
    }
   ],
   "heart": {
-   "prompt": "You are driving to work when your map app, which has never texted anyone before, sends you a message.",
-   "thread": [
-    {
-     "from": "Your map app",
-     "text": "Skip your exit and keep driving for 400 miles."
-    },
-    {
-     "from": "Your map app",
-     "text": "Trust me. You will be glad you did."
-    }
-   ],
+   "prompt": "Two years after your breakup, your ex's parent sends you a message.",
    "options": [
-    "I am skipping the exit, and work will hear something came up.",
-    "Fine. I keep driving, and I call work from the road.",
-    "I take my exit, but I want the destination tonight.",
-    "I am taking my exit. I will not drive 400 miles blind."
+    "I call right away, before I can think about it.",
+    "I say yes, ask for two minutes, and pace the kitchen.",
+    "Before I agree, I ask whether everything is all right, and what it is about.",
+    "I do not answer yet. My friends see it first and tell me what to do."
    ]
   },
   "fp": {
-   "trigger": "your map app tells you to skip your exit",
-   "setting": "the drive to work",
-   "ask": "follow the unknown road or stick to the plan",
-   "who": "your phone, with work waiting",
-   "stakes": "a normal day versus a mystery road trip",
-   "device": "rogue-map-app"
+   "trigger": "your ex's parent asks for a call, two years after the breakup",
+   "setting": "your phone, out of nowhere",
+   "ask": "step in now or find out more first",
+   "who": "your ex's parent",
+   "stakes": "a call you can't see the end of",
+   "device": "ex-parent-text"
   },
-  "mask": "looks like a haunted-phone gag; measures stepping in blind versus needing a destination first (L1)",
+  "mask": "looks like an awkward-text gag; measures stepping in blind versus knowing more first (L1)",
   "ae": [
    "A",
    "D"
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "Driving to work, {name}'s map app texts: \"skip your exit. keep driving. 400 miles.\" What does {name} do?",
+   "prompt": "Two years after the breakup, {name}'s ex's parent texts: \"Do you have ten minutes for a call? Nothing bad!\" What does {name} do?",
    "a": {
-    "t": "Takes the exit. Not driving 400 miles blind.",
+    "t": "Doesn't answer. Sends it to the group chat for a ruling first.",
     "axes": {
      "L1": 2
     }
    },
    "b": {
-    "t": "Skips the exit. Texts work \"something came up.\"",
+    "t": "Calls right away, before thinking about it.",
     "axes": {
      "L1": -2
     }

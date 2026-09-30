@@ -347,10 +347,10 @@
     "id": "C5-141",
     "type": "scenario",
     "chapter": 5,
-    "prompt": "New job: you decide the town's weather. A kite festival booked Saturday's sunshine a year ago. A farmer's crops die without rain that day.",
+    "prompt": "You booked the only quiet room two weeks ago, for your own performance review. A coworker is at the door, whispering: \"Job interview. Video call. Four minutes. Please.\"",
     "options": [
       {
-        "t": "The kites booked first, so sunshine.",
+        "t": "\"Booked it two weeks ago. The stairwell has great acoustics.\"",
         "axes": {
           "L3": 2
         },
@@ -362,7 +362,7 @@
         ]
       },
       {
-        "t": "Sunshine. Then I go apologize to the farmer myself.",
+        "t": "Keep the room. They can take the call in my car. It smells like fries.",
         "axes": {
           "L3": 1
         },
@@ -375,7 +375,7 @@
         "emotion": "guilt"
       },
       {
-        "t": "Rain. Crops outrank kites.",
+        "t": "Hand it over. I'll do my review in the kitchen, next to the microwave.",
         "axes": {
           "L3": -2
         },
@@ -387,7 +387,7 @@
         ]
       },
       {
-        "t": "Rain, then let everyone blame the forecast.",
+        "t": "Give it up, then tell my manager the booking system ate it.",
         "axes": {
           "L3": -1
         },
@@ -401,23 +401,23 @@
       }
     ],
     "heart": {
-      "prompt": "In your new job, you decide the town's weather. A kite festival booked sunshine for Saturday a year ago. A farmer's crops will die without rain that day.",
+      "prompt": "Two weeks ago you booked the only quiet meeting room, for your own performance review. A coworker comes to the door and whispers that they have a job interview by video in four minutes.",
       "options": [
-        "The festival booked first, so it gets the sunshine.",
-        "Sunshine, and then I apologize to the farmer in person.",
-        "Rain. The crops matter more than the kites.",
-        "Rain, and I let people blame the forecast."
+        "I booked it two weeks ago, so I send them to the stairwell.",
+        "I keep the room and hand them my car keys for the call.",
+        "They take the room, and I have my review in the kitchen, beside the microwave.",
+        "I give it up and tell my manager the booking system lost it."
       ]
     },
     "fp": {
-      "trigger": "a booked sunny day versus a farmer who needs rain",
-      "setting": "a job booking the weather",
-      "ask": "honor the booking or the need",
-      "who": "a kite festival and a farmer",
-      "stakes": "a promise kept versus a harvest",
-      "device": "weather-booking-desk"
+      "trigger": "a coworker needs your booked quiet room for a job interview call",
+      "setting": "the office, one quiet room",
+      "ask": "keep your booking or give it up",
+      "who": "a coworker",
+      "stakes": "your own review versus their interview",
+      "device": "quiet-room-booking"
     },
-    "mask": "looks like a sky-office joke; measures first-come fairness versus the right call for the case (T25, L3). The booking is the rule, the farmer is the need",
+    "mask": "looks like an office room fight; measures first-come fairness versus the need in front of you (T25, L3). The booking is the rule, the interview is the need",
     "ae": [
       "A",
       "C",
@@ -425,11 +425,11 @@
     ],
     "privacy": "normal",
     "sq": "SQ-T25-2",
-    "world": "absurd",
+    "world": "unusual",
     "friend": {
-      "prompt": "{name} decides the town's weather. A kite festival booked Saturday's sun a year ago, and a farmer's crops die without rain that day. What does {name} do?",
+      "prompt": "{name} booked the only quiet room two weeks ago, for their own performance review. A coworker whispers: \"Job interview. Video call. Four minutes. Please.\" What does {name} do?",
       "a": {
-        "t": "Sunshine. \"The kites booked first.\"",
+        "t": "Keeps the room. \"Booked it two weeks ago.\"",
         "axes": {
           "L3": 2
         },
@@ -441,7 +441,7 @@
         ]
       },
       "b": {
-        "t": "Rain. \"Crops outrank kites.\"",
+        "t": "Hands it over. Does the review next to the microwave.",
         "axes": {
           "L3": -2
         },

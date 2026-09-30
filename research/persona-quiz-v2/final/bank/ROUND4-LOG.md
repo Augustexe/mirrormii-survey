@@ -163,3 +163,20 @@ LAUNCH-SPEC section 24, ruling 5. Jerry: "Some of the questions and events are s
 | X-R2-30 | "Text my feelings tomorrow" was stiff | smile for the photos, mention it later, maybe | no |
 
 Fixed from Codex R5 flags on cards that read fine in the first pass (wording only): C3-161 ("Name it Future" tag cut), C4-161 (option 3 now reads as what you'd do), S-123 ("theirs" was a joint party), X-R3-30 (announcer line cut), C1-144 (Heart keeps the "two can play" motive), C2-124 (Heart grading "right call" removed), C1-126 (Heart says texted, not spoken), C6-144 (both voices on the same moment: answer due tonight). No fix added a clock time, a repeated prop, a genie trope or an em dash; check-bank passes with 0 errors.
+
+## Batch 01 (Jerry approved 2026-09-30)
+
+Package B2. Jerry's verdicts on [BATCH-01](../../../../docs/review/BATCH-01.md): approved 1 (C5-141), 6 (C2-142) and 7 (C1-126); kept the originals of 3 (C6-121) and 4 (C6-140); asked for redos of 2, 5, 8, 9 and 10 (proposals in [BATCH-02](../../../../docs/review/BATCH-02.md)). Only the three approved cards changed, both voices exactly as in BATCH-01. **Evidence is unchanged on all three** (axes, tags, strengths, sub-question); each was re-read and re-locked with `lock-evidence.mjs --confirm`. A script compared cards.json with git HEAD: player text changed on these 3 cards only, evidence on none.
+
+| Card | Change | World and weight | Evidence changed |
+|---|---|---|---|
+| C5-141 | weather desk (kites versus crops) replaced by the quiet room you booked for your own review, and a coworker's four-minute job interview | absurd to unusual, 0.35 to 0.55 | no |
+| C2-142 | sky writing and a glowing letter replaced by four real apologies (11-minute voice note, unpacked kitchen, one-page card, Saturdays with a drill); premise kept | absurd to unusual, 0.35 to 0.45 | no |
+| C1-126 | the map app that texts you replaced by your ex's parent: "Do you have ten minutes for a call?" "Nothing bad!" | absurd to unusual, 0.35 to 0.55 | no |
+
+Not in BATCH-01, done to keep each card whole (no new evidence):
+- **Friend versions** of C5-141 and C1-126 still described the weather desk and the map app. Each now retells the approved prompt and uses the approved option lines for its two sides (C5-141: keeps the room, "Booked it two weeks ago." / hands it over, review next to the microwave; C1-126: sends it to the group chat for a ruling first / calls right away). Same axes and tags as before. C2-142 has no friend version.
+- **C1-126 Heart thread** removed: BATCH-01 gave no calm version of the two messages, so Heart to heart now shows the approved thread as written (the app falls back to it, `threadFor`). A calm thread can come in a later batch.
+- `fp` and `mask` rewritten for the new situations; devices `quiet-room-booking` and `ex-parent-text` are new, `four-apologies` kept.
+
+Bank mix after: absurd 58 (33%), unusual 77 (44%), everyday 39 (22%). Checker: 0 errors, 29 warnings (20 before, plus 9 length warnings on the approved text: C5-141 options 1 and 2 at 14 and 15 words, its Heart prompt at 34 words and all four Heart options at 13 to 15 words; C1-126 Heart options 2 and 3 at 15 and 16 words). Kit tests 45 of 45. Kit sim (`node sim.mjs`): axis recovery 94.8% (94.9% before), sealed exact 67.5% (same), 50 of 50 tags fire, every target passes. App tests 155 of 156 (the known `article-accuracy` never-say failure, LAUNCH-SPEC section 10 decision 12). Contracts 43 of 43; question pack regenerated.

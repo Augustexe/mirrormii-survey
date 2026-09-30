@@ -1259,11 +1259,11 @@
   "type": "rank",
   "chapter": 2,
   "sq": "SQ-T05-1",
-  "world": "absurd",
-  "prompt": "You slept through helping your best friend move. Rank these apologies, from the one you'd choose first to last:",
+  "world": "unusual",
+  "prompt": "Moving day. You slept through it. Your best friend carried a dresser down five floors with a stranger. Rank your apology, first pick to last:",
   "options": [
    {
-    "t": "The sky over their new place spells \"I'M SO SORRY\"",
+    "t": "An 11-minute voice note. The groveling starts at minute two",
     "tags": [
      {
       "id": "T05B",
@@ -1272,7 +1272,7 @@
     ]
    },
    {
-    "t": "Every box unpacked overnight, shelves up, no note",
+    "t": "Their whole kitchen unpacked while they're at work. No note",
     "tags": [
      {
       "id": "T05A",
@@ -1281,7 +1281,7 @@
     ]
    },
    {
-    "t": "A letter from me that glows until they forgive me",
+    "t": "A handwritten card. One full page, zero jokes",
     "tags": [
      {
       "id": "T05B",
@@ -1290,7 +1290,7 @@
     ]
    },
    {
-    "t": "Me at their door every weekend for a month, toolbox in hand",
+    "t": "Me at their door every Saturday this month, drill in hand",
     "tags": [
      {
       "id": "T05A",
@@ -1300,23 +1300,23 @@
    }
   ],
   "heart": {
-   "prompt": "You slept through helping your best friend move house. Put these apologies in order, from the one you would choose first to the last.",
+   "prompt": "You slept through your best friend's moving day, and they carried a dresser down five floors with a stranger. Put these apologies in order, your first choice at the top.",
    "options": [
-    "The sky above their new home spells out that I am sorry.",
-    "Every box is unpacked overnight, shelves up, with no note.",
-    "I send a letter that glows until they forgive me.",
-    "I show up every weekend for a month, ready to help."
+    "A voice message eleven minutes long, most of it apologizing.",
+    "Their whole kitchen, unpacked while they are at work, with no note.",
+    "A handwritten card, one full page, with no jokes in it.",
+    "Me at their door every Saturday this month, with a drill."
    ]
   },
   "fp": {
    "trigger": "you slept through a friend's moving day",
-   "setting": "Genii's four apologies",
+   "setting": "the week after the move",
    "ask": "rank how you make it up to them",
    "who": "your best friend",
    "stakes": "the friendship after you let them down",
    "device": "four-apologies"
   },
-  "mask": "looks like a magic apology menu; measures showing love by doing versus by saying (T05)",
+  "mask": "looks like an apology ranking; measures showing love by doing versus by saying (T05)",
   "ae": [
    "A",
    "D"

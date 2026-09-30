@@ -2,15 +2,15 @@
   "version": "persona-quiz-v2",
   "rows": [
     {
-      "id": "S-110",
+      "id": "S-160",
       "predicted": 0,
-      "predictedText": "Sign it in pen. Five known-good years beat any gamble.",
+      "predictedText": "Out. The rule doesn't check who's oldest.",
       "answer": 2,
-      "answerText": "Sign only the home part. Leave the job wide open.",
-      "status": "miss",
+      "answerText": "Out, and I lobby to change the rule next season.",
+      "status": "pass",
       "exact": false,
       "sideHit": true,
-      "passWhy": null,
+      "passWhy": "L3 is flex",
       "options": 4
     },
     {
@@ -26,23 +26,47 @@
       "options": 4
     },
     {
-      "id": "S-160",
-      "predicted": 0,
-      "predictedText": "Out. The rule doesn't check who's oldest.",
+      "id": "S-130",
+      "predicted": 1,
+      "predictedText": "Keep the job. Cook for friends on weekends, happily.",
       "answer": 0,
-      "answerText": "Out. The rule doesn't check who's oldest.",
-      "status": "pass",
-      "exact": true,
-      "sideHit": true,
-      "passWhy": "L3 is flex",
+      "answerText": "Quit Friday morning. Aprons are cheaper than regrets.",
+      "status": "miss",
+      "exact": false,
+      "sideHit": false,
+      "passWhy": null,
       "options": 4
     },
     {
-      "id": "S-128",
+      "id": "S-134",
+      "predicted": 1,
+      "predictedText": "Place a few tiles when the mood strikes. It'll get there.",
+      "answer": 1,
+      "answerText": "Place a few tiles when the mood strikes. It'll get there.",
+      "status": "hit",
+      "exact": true,
+      "sideHit": true,
+      "passWhy": null,
+      "options": 4
+    },
+    {
+      "id": "S-110",
       "predicted": 0,
-      "predictedText": "Kneel. Right there. The universe has spoken.",
+      "predictedText": "Sign it in pen. Five known-good years beat any gamble.",
       "answer": 0,
-      "answerText": "Kneel. Right there. The universe has spoken.",
+      "answerText": "Sign it in pen. Five known-good years beat any gamble.",
+      "status": "hit",
+      "exact": true,
+      "sideHit": true,
+      "passWhy": null,
+      "options": 4
+    },
+    {
+      "id": "S-111",
+      "predicted": 1,
+      "predictedText": "Join the call. If they say no, I stay.",
+      "answer": 1,
+      "answerText": "Join the call. If they say no, I stay.",
       "status": "hit",
       "exact": true,
       "sideHit": true,
@@ -62,30 +86,6 @@
       "options": 4
     },
     {
-      "id": "S-131",
-      "predicted": 3,
-      "predictedText": "Pass. I don't join what I can't describe.",
-      "answer": 3,
-      "answerText": "Pass. I don't join what I can't describe.",
-      "status": "hit",
-      "exact": true,
-      "sideHit": true,
-      "passWhy": null,
-      "options": 4
-    },
-    {
-      "id": "S-134",
-      "predicted": 1,
-      "predictedText": "Place a few tiles when the mood strikes. It'll get there.",
-      "answer": 3,
-      "answerText": "Lose count by week two. Love it anyway.",
-      "status": "miss",
-      "exact": false,
-      "sideHit": true,
-      "passWhy": null,
-      "options": 4
-    },
-    {
       "id": "S-125",
       "predicted": 2,
       "predictedText": "Let them win. Their party, their pot.",
@@ -99,13 +99,13 @@
     }
   ],
   "called": 7,
-  "exact": 4,
-  "exactRate": 0.571,
+  "exact": 5,
+  "exactRate": 0.714,
   "exactChance": 0.25,
-  "side": 6,
+  "side": 5,
   "sideOf": 7,
-  "sideRate": 0.857,
+  "sideRate": 0.714,
   "sideChance": 0.5,
   "passes": 1,
-  "line": "Genii called 4 of 7 exactly (chance about 25%)."
+  "line": "Genii called 5 of 7 exactly (chance about 25%)."
 }
