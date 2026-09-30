@@ -199,7 +199,7 @@ for (const [vname, vp] of Object.entries(VIEWS)) {
           for (const fmt of ["story", "post"]) {
             if (fmt === "post") await page.getByRole("radio", { name: "Post" }).click().catch(() => {});
             const dl = page.waitForEvent("download", { timeout: 8000 }).catch(() => null);
-            await page.locator(".rv-slide.is-current .rv-textbtn").first().click();
+            await page.locator(".rv-slide.is-current button", { hasText: /share image/i }).first().click();
             const d = await dl;
             if (d) { const f = path.join(OUT, `share-${fmt}.png`); await d.saveAs(f); report.share.push(f); } else report.errors.push(`share ${fmt}: no download`);
           }
