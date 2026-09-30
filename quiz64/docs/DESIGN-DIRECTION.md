@@ -541,10 +541,10 @@ Interaction: hold speeds orbits to 0.4 rev/s and brightens Genii (anticipation, 
 Visual hook: seeing your 40 answers as 40 lights.
 
 **Story 2: The two archetypes.** (Screen 2 of section 21; share-worthy.)
-Layout (phone): the mirror arch centered, 300 x 520, top at 96. The arch has a horizontal silver mullion at 50%. Upper pane: kicker "With your people" (`--type-kicker`, `--n-ink-2`), sigil (48 px, A-12), name in `--type-hero` 40/42 phone (Fraunces 600, white), centered, balanced to 2 lines max. Lower pane: "With your life", sigil, name. Under the arch: "Two sides. Both you." (keep; Heart: "Two sides of you, both worth knowing.") in `--type-genii` 17/24 `--n-ink-2`. The lower name casts a reflection on the floor line beneath the arch (reflection type).
+Layout (phone): the mirror arch centered, 300 x 520, top at 96. The arch has a horizontal silver mullion at 50%. Upper pane: kicker (stats.js HALVES, "With the people you love") (`--type-kicker`, `--n-ink-2`), sigil (48 px, A-12), name in `--type-hero` 40/42 phone (Fraunces 600, white), centered, balanced to 2 lines max. Lower pane: "With your life", sigil, name. Under the arch: "Two sides. Both you." (keep; Heart: "Two sides of you, both worth knowing.") in `--type-genii` 17/24 `--n-ink-2`. The lower name casts a reflection on the floor line beneath the arch (reflection type).
 Reveal: the fog wipe (radial from the center, 900 ms) reveals the panes; names settle with spring `settle` from 8 px below and 96% scale; Genii's light passes behind the glass once (a moving radial highlight inside the arch, 1.2 s), then rests at the arch's top as a small glow. Sparkles (6) pop at the names' first letters (Day only).
 Desktop: same composition inside the stage; the room behind shows a large soft echo of the arch.
-Copy rules: names from `library.json` (never glued, never "X with Y energy", section 21); labels exactly "With your people" and "With your life".
+Copy rules: names from `library.json` (never glued, never "X with Y energy", section 21); labels come from `stats.js` HALVES ("With the people you love", "Day to day"; LAUNCH-SPEC 26), and each name carries its defining line directly under it.
 Accessibility: the heading (sr-only today) becomes visible text; the fog is decorative; names are in the DOM from frame 0.
 
 **Story 3: The read.** Light theme.

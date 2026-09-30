@@ -73,7 +73,7 @@ quiz64/
     persona/
       session.js        run state machine: setup, lobby, picker, answers, lock (sha256), finale, result, save and restore
       kit.js            binds cards.json, library.json, friend.json and the shared scorer
-      stats.js          the six axes as game stats (Orbit, Delivery, Blueprint, Compass, Engine, Code) and their ends
+      stats.js          the one source for scale labels: half kickers, the six stats and their ends, retired labels (LAUNCH-SPEC 26)
       lobby.js          lobby ids and copy, host lines per voice
       reactions.js      Genii's between-card reactions
       views.js          player-facing projections of a finished run (resultView, share projection, mirror shards)

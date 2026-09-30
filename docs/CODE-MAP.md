@@ -10,7 +10,7 @@ Developer entry: **[quiz64/README.md](../quiz64/README.md)** (run, test, build, 
 | Web game | This checkout, branch `survey/launch`. `quiz64/src/main.jsx` paints `Boot.jsx`, then lazy loads `PersonaApp.jsx` |
 | Kit binding and build-time strip of authoring fields | `quiz64/src/persona/kit.js`, `quiz64/kit-strip.mjs`, `quiz64/vite.config.js` |
 | Run state machine, picker, lock, save and replay-validated restore | `quiz64/src/persona/session.js`, `store.js`, `sha256.js` |
-| Game stats (six axes as Orbit, Delivery, Blueprint, Compass, Engine, Code) | `quiz64/src/persona/stats.js` |
+| Game stats, half kickers and retired labels (Closeness, Hard truths, Traditions, New things, Pace, Rules; LAUNCH-SPEC 26) | `quiz64/src/persona/stats.js` |
 | Friend challenge and reply links, friend and owner views | `quiz64/src/persona/friend.js`, `links.js` |
 | Result: the 12-screen Stories reveal and share image | `quiz64/src/persona/views.js`, `stories/` (story-data.js is the pure projection), `reveal/`, `share-image.js` |
 | Screens and play | `quiz64/src/persona/screens/`, `play/` (card and 13 formats, lock) |

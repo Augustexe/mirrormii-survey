@@ -316,7 +316,7 @@ Rulings from Jerry's grill rounds. Where they differ from earlier sections, this
 | Free Spirit | Me·Soft·Own | The Explorer | Venture·Easy·Rules |
 | Old Soul | Me·Soft·Classic | The Wanderer | Venture·Easy·Context |
 
-Jerry approved the eight people archetypes; the eight life archetypes are Claude's working picks.
+Jerry approved the eight people archetypes; the eight life archetypes are Claude's working picks. Superseded for the life half and the kickers by section 26 (Plain names).
 
 **Tags.** All tags renamed to plain, instantly understood phrases (4 words or fewer) that someone who never played would get; each gets one confident line. The library may grow beyond 50 if the bank needs it.
 
@@ -389,7 +389,7 @@ Coverage: every axis carried by at least 15 scored cards, at least 6 of them in 
 6. **Accuracy of display:** a test proves that each reveal line comes from the player's actual scores and tags.
 
 
-**Map stat labels (Jerry, 2026-09-29 evening):** the map keeps its graph but players never see internal pole names. Each axis shows as a game stat:
+**Map stat labels (Jerry, 2026-09-29 evening; superseded by section 26 "Plain names", which replaces this table):** the map keeps its graph but players never see internal pole names. Each axis shows as a game stat:
 
 | Axis | Stat | Ends |
 |---|---|---|
@@ -432,7 +432,67 @@ This round locks the build. No more concept previews: build end to end, ready fo
 3. **The Evidence Article** follows the Stories deck: a long-form page where the player reviews everything. Direction: C (The Codex: tabs, stat block, trait cards, island map of rooms, the record, party) has priority, with A's editorial magazine type and pull quotes. Every section is distinct, clean, image-rich and animated; every line traces to the player's evidence; language is natural, never robotic. Reading time 3 to 5 minutes. It opens automatically after the deck and from a "Read the long version" button. Scroll must never be hijacked (the concept C prototype bug: a scroll-spy called scrollIntoView on the sticky tab, which scrolled the page back; tab strips scroll themselves only).
 4. **Handoff-ready:** visual design, evidence, question pack, library and context are complete; Desmond gets a backend contract (result schema, friend game, events, placeholders). Built (K3): [HANDOFF-DESMOND.md](HANDOFF-DESMOND.md), the contracts in `docs/contracts/` (checked against real runs by `scripts/validate-contracts.mjs` inside `npm test`) and the question pack export in `docs/question-pack/`.
 
+## 26. Plain names (Jerry, 2026-09-29 late)
+
+Jerry: "Nobody understands what a slow burner is." "Blueprint: Old School? That's even insulting. If they're progressive and you label them traditional, that's just bad." Every player-facing label on the result now follows [NAMING-RULES.md](NAMING-RULES.md) and passes a cold-reader gate. This section supersedes the stat table in section 23 and the life names in section 21.
+
+**The gate.** `node scripts/naming-inventory.mjs` lists every label with where it sits on the phone. A Codex panel of six cold readers aged 20 to 35 (a progressive activist, a religious conservative, an ESL speaker, a Gen Z TikTok user, a nurse, an engineer) sees each label with no explanation and scores clear, hurt and share from 1 to 5. Pass: clear 4.5 or more, hurt 2 or less, share 3.5 or more (averages; share applies to labels about the player, not to headings and buttons). Final labels are scored by 18 readers (three shuffled runs) because a single run swings by up to a point. Scores, before and after: [NAMING-PANEL.json](NAMING-PANEL.json).
+
+**One source.** Kickers, stat names and ends: `quiz64/src/persona/stats.js` (`HALVES`, `STATS`, `RETIRED_LABELS`). Archetype names, their defining lines (`define`), tag names and keywords: `research/persona-quiz-v2/final/library.json`. Result chrome: `STORY_COPY`, `UI_COPY`, `GUESS_COPY` in `story-data.js` and `library.json` `article`. `quiz64/tests/naming-retired.test.mjs` renders the deck, the article and every share image for all 16 archetypes in both voices and fails if a retired label appears anywhere or a title card lacks its kicker or defining line.
+
+**Title cards.** Every screen that shows an archetype name shows kicker, name and one plain defining line directly under the name: the names screen (inside the mirror), the share image (story and post), the article cover and the party slots. Kickers are set in sentence case.
+
+| Half | Kicker |
+|---|---|
+| People | With the people you love (Jerry locked "With your people"; it failed the gate three times, read as an ethnic or political group, clear 4.0; the replacement passed) |
+| Life | Day to day (locked; replaces "With your life") |
+
+| People archetype (approved, exempt) | Code | Defining line |
+|---|---|---|
+| Golden Retriever | We·Soft·Own | Warm, loyal and happy to see everyone. |
+| Comfort Person | We·Soft·Classic | Kind, caring and easy to talk to. |
+| Ride-or-Die | We·Direct·Own | Loyal, honest and always there. |
+| The Glue | We·Direct·Classic | Brings people together. |
+| Lone Wolf | Me·Direct·Own | Enjoys time alone and a few close friends. |
+| Straight Shooter | Me·Direct·Classic | Speaks plainly and kindly. |
+| Free Spirit | Me·Soft·Own | Gentle, relaxed and one of a kind. |
+| Old Soul | Me·Soft·Classic | Loves cozy nights, old favorites and alone time. |
+
+| Life archetype (locked) | Code | Was | Defining line |
+|---|---|---|---|
+| The Planner | Steady·Push·Rules | The Planner | Plans ahead and sees it through. |
+| The Quiet Achiever | Steady·Push·Context | The Slow Burner | Gets big things done without the spotlight. |
+| The Routine Lover | Steady·Easy·Rules | Creature of Habit | Enjoys a good routine and favorite things. |
+| The Calm One | Steady·Easy·Context | The Easygoer | Stays calm and takes life as it comes. |
+| The Strategist | Venture·Push·Rules | The Strategist | Goes after big goals with a clear plan. |
+| The Go-Getter | Venture·Push·Context | The Go-Getter | Sees a goal and goes for it. |
+| The Explorer | Venture·Easy·Rules | The Explorer | Tries new things, with good judgment. |
+| The Spontaneous One | Venture·Easy·Context | The Wanderer | Follows curiosity wherever it goes. |
+
+The life halves' desc, read, sting and heart lines (both voices) were rewritten to match the new names.
+
+**Stats** (name: left end / right end; the level words and pips, the strongest stat and the one closest to the middle stay):
+
+| Axis | Stat | Left end (plus) | Right end (minus) | Was |
+|---|---|---|---|---|
+| R1 | Closeness | Stays close | Keeps some space | Orbit: Crew / Solo |
+| R2 | Hard truths | Says it straight | Says it gently | Delivery: Blunt / Gentle |
+| R3 | Traditions | Carries them on | Starts new ones | Blueprint: Old School / Own Lane |
+| L1 | New things | Sticks with favorites | Tries new things | Compass: Home Base / Wanderlust |
+| L2 | Pace | Goes fast | Takes it slow and steady | Engine: Full Send / Cruise Control |
+| L3 | Rules | By the book | Case by case | Code: By the Book / Read the Room |
+
+Level words (both voices): A little, Somewhat, Moderately, Strongly, Very strongly; Right in the middle; Not enough answers yet. Badges: Your strongest stat (was Signature), Closest to the middle (was Wild card). Knows best: Came through clearly, Genii is fairly sure, Genii has a hunch, Genii can't tell yet. Calls: Guessed right, Close, not exact (was Same side), Surprised Genii, No guess, You skipped. Rooms: Phone habits, Friends, Love and dating, Spending and saving, Work and school, Family and home, Free time. The friend game and the share invite are "How well do you know me?" (was "Do you really know me?").
+
+**Keywords replaced:** Traditional (now Carries on traditions), Tradition keeper (Keeps traditions alive), Scrupulous (Pays fair share), Self-possessed (Self-assured), Low maintenance (Easygoing), Discerning (Buys to last), Free agent (Adaptable), Principled (Plays fair), Straight talker (Speaks plainly), Tactful (Kind with words), Original (One of a kind), Grounded (Down-to-earth), Unhurried (Relaxed), Perceptive (Reads people well), Open book (Honest with loved ones), Private (Values privacy), Tech-forward (Tech-savvy), Authentic (Genuine), Selective (Loyal to a few), Expressive (Warm), Diplomatic (Kind but honest), Devoted (Loving), Committed (Sticks with it), Clear-eyed (Realistic), Family-minded (Family-focused), Content (Happy with life), Prepared (Plans ahead), Minimalist (Keeps it simple), Self-made (Hardworking), Fair-minded (Humble), Competitive (Ambitious), Balanced (Work-life balance), Clear limits (Sets limits), Self-directed (Independent thinker), Family-first (Close to family), Trailblazer (Creative), Unconventional (Independent-minded), Intuitive (Trusts instincts), Rule keeper (Plays fair).
+
+**Tag names replaced (48 of 50):** Open phone policy (An open book with loved ones), Private phone policy (Keeps some things private), Texts back eventually (Replies when free), Notices who texts first (Loves hearing from friends), Asks the AI first (Uses AI to think things out), Writes it myself (Writes without AI), Small circle only (Close-knit circle), Friends with everyone (Makes friends easily), Says it with actions (Shows care through actions), Says it with words (Puts feelings into words), Friends come first (Shows up for friends), Social battery first (Knows when to recharge), No sugarcoating (Honest, even when it's hard), Gentle with the truth (Honest, but gentle), Gives second chances (Believes in second chances), Keeps the receipts (Remembers the details), All in on us (Loves deeply), Me first, then us (Independent, even in love), Works it out (Talks problems through), Lets it go (Knows when to move on), Wants kids someday (Wants kids one day), Full life without kids (Child-free and happy), Splits to the cent (Splits the bill evenly), Splits by income (Splits costs by income), Books first, thinks later (Up for last-minute plans), Buys the nice one (Buys what lasts), Minimalist on purpose (Owns less on purpose), Earned, not given (Proud of hard work), Luck counts too (Knows luck plays a part), In it to win (Loves a win), Logs off on time (Work stays at work), Wants it locked in (Likes plans set early), Keeps options open (Goes with the flow), Family's first call (First to help family), Helps with limits (Helps and sets limits), My life, my call (Makes own choices), Family gets a vote (Values family advice), Classic at heart (Keeps family traditions), Makes my own traditions (Starts new traditions), Big family wedding (Dreams of a big wedding), No wedding needed (Happy without a wedding), Always somewhere new (Loves new places), Same order, every time (Orders the usual), Saturdays are for me (Protects free time), Tracks everything (Plans with lists), Goes by feel (Trusts gut feeling), Plays by the rules (Fair to everyone), Bends rules for people (Makes room for exceptions). Kept: Saves first, spends later; First to volunteer.
+
+**Where the gate still fails (report, not hidden).** 193 of 278 final labels pass at 18 readers (69%); the labels as shipped before this pass, scored the same way, passed 75 of 305 (25%). The residual list in NAMING-PANEL.json is mostly: the exempt people names (the panel reads Golden Retriever as naive, Lone Wolf as antisocial); the locked stats and life names, which sit just under the line on hurt (Traditions 2.2 to 2.9 and Rules 2.4 to 2.7: the panel reads any rules or traditions scale as politics; every alternative tested scored the same or worse; "Giving feedback: Direct / Gentle" passed once for R2 and is an option for Jerry); topics that read as sensitive whatever the words (kids, weddings, AI, phone privacy: private or rarely shown traits); and short UI chrome that a cold reader cannot place without the screen (tabs such as Stats, the app headline, "Turn over"). Each was tried in three to six wordings.
+
 ## Changes
+
+- 2026-09-29: Section 26 added: plain names (NAMING-RULES.md, the cold-reader gate, NAMING-PANEL.json); new life names, kickers, stats, keywords, tag names and result labels; every title card shows kicker, name and defining line; section 23 stat table and section 21 life names superseded.
 
 - 2026-09-29: Section 25 item 4 built (K3): Desmond's handoff page, backend contracts (run, result, cards, library, friend content, friend challenge today and proposed; events; API) with a validator in the tests, and the question pack export.
 - 2026-09-29: Section 25 added: canon GDD world and oval World Mirror, Evidence Article (C priority with A type), lock-in and handoff.
