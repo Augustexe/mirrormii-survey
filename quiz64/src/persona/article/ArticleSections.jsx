@@ -319,16 +319,19 @@ export function TwoSides({ A }) {
     <section id="sides" className="ea-sec ea-sides" data-tab="rooms" aria-labelledby="ea-h-sides">
       <div className="ea-wrap">
         <Head id="ea-h-sides" title={s.title} intro={s.intro} />
-        <div className="ea-table" aria-hidden="true" data-reveal="">
-          <span className="ea-table__seat ea-table__seat--a"><GeniiSvg evolution={1} expression="happy" /><span className="ea-table__card">{s.people}</span></span>
-          <span className="ea-table__top" />
-          <span className="ea-table__seat ea-table__seat--b"><GeniiSvg evolution={1} expression="curious" /><span className="ea-table__card">{s.life}</span></span>
-        </div>
-        <div className="ea-cells">
+        <div className="ea-sides__stage">
+          <div className="ea-table" aria-hidden="true" data-reveal="">
+            <span className="ea-table__glow" />
+            <span className="ea-table__seat ea-table__seat--a"><GeniiSvg evolution={1} expression="happy" /></span>
+            <span className="ea-table__seat ea-table__seat--b"><GeniiSvg evolution={1} expression="curious" /></span>
+            <span className="ea-table__top" />
+            <span className="ea-table__card ea-table__card--a">{s.people}</span>
+            <span className="ea-table__card ea-table__card--b">{s.life}</span>
+          </div>
           {s.cells.map((c) => (
             <article key={c.type} className="ea-cell" data-type={c.type} data-reveal="">
               <h3 className="ea-cell__label">{c.label}</h3>
-              <p className="ea-cell__pair"><span>{c.a}</span><i aria-hidden="true">{c.type === "team" ? "+" : "×"}</i><span className="sr-only">{c.type === "team" ? " and " : " against "}</span><span>{c.b}</span></p>
+              <p className="ea-cell__pair"><span>{c.a}</span><i aria-hidden="true">{c.type === "team" ? "+" : "\u00d7"}</i><span className="sr-only">{c.type === "team" ? " and " : " against "}</span><span>{c.b}</span></p>
               <p className="ea-cell__line">{c.line}</p>
             </article>
           ))}
