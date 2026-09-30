@@ -221,7 +221,7 @@ Teen-safe by default (18+ cards need 18+ setup; teens never get the marriage and
 
 ## 17. Status and known gaps
 
-Status as of 2026-09-29 evening (overnight build C, then round 2 of section 23, Jerry's go):
+Status as of 2026-09-29 night (overnight build C, round 2 of section 23, round 3 of section 24):
 
 | Part | Status |
 |---|---|
@@ -231,6 +231,7 @@ Status as of 2026-09-29 evening (overnight build C, then round 2 of section 23, 
 | Result copy | Archetype names, plain tag names, confident read lines, stings, hearts and insights in both voices (`library.json`) |
 | Visual rebuild | Built (`quiz64/docs/DESIGN-DIRECTION.md`): design system (Fraunces and Figtree), Genii as light, mirror landing, lobby doors, island interludes, 13 distinct card formats, shard rail, lock ritual, The Reflection reveal (9 screens in the first build, 12 in round 2), mirror share image; all art made in code (`src/art`). Integration and visual QA done (round 2 row) |
 | Round 2 (section 23) | Built and integrated (G1 to G5). Genii evolves from the orb to the full glass slime as cards are answered (`quiz64/src/genii`, three.js, lazy; stage sheet `quiz64/docs/GENII-EVOLUTION.png`); no lamps or genie tropes (three new code-made device glyphs: mountain, yarn, shell); play polish (hold beat on every format, one selected state, glowing CTAs, shards fly home around the chapter text); the reveal is now **12 story screens** (section 21) with "what Genii knows best" (5 to 6 findings), room by room and Genii's calls; `reveal-accuracy.test.mjs` proves every displayed line and the calls count trace to the player's own score (noisy players show partial calls). Card variety pass on the bank. Gate: 137 tests (136 pass at close; the kit parity test waits on the in-flight G4b card wording merge), axe 0 violations on 205 audited screens (phone, desktop, 200% zoom), CLS 0, landing LCP 80 to 160 ms (production, fast) and about 1 s (slow 4G, 4x CPU), every main action above the fold, full play-through by mouse and keyboard. Codex visual judge R3: 7 overall (`quiz64/docs/VISUAL-JUDGE-CODEX-R3.json`); before and after sheet `quiz64/docs/ROUND2-SHEET.png` |
+| Round 3 (section 24) | Built and handed off. Stats as a game character sheet (5 pips, a level word and a plain line; no percentages on player surfaces), 5 to 6 core traits, rooms rewritten spicier in both voices, open-book stings, bank legibility pass (34 cards clarified, evidence unchanged), glow behind frames, the real MirrorMii world (`quiz64/public/assets/world/`) in the landing, lock, names and share mirrors and on the share and app screens. Handoff cleanup (H4): dead reveal CSS, unused copy keys and exports removed, 17 unreferenced old Genii and brand images deleted, `balloon-date-bill` draws a new balloon device glyph, the landing mirror's frost thinned so the city reads at phone size; **[quiz64/README.md](../quiz64/README.md) is the one developer entry**. Gate: 142 of 142 web tests, 45 of 45 kit tests, bank checker 174 of 174 cards (0 errors, 6 warnings), axe 0 violations on 205 audited screens, CLS 0, landing LCP 140 ms (dev), 276 ms (production, fast) and 3.1 s (production, cold, 1.6 Mbps and 4x CPU), fold 0 failures on 348 card renders, full play-throughs by mouse (Make it fun) and keyboard (Heart to heart) with no errors, 225 screenshots across three sizes. Sim: consistent players axis recovery 94.9%, sealed exact 67.6% (chance 25%), random clickers 46.7% recovery and 47.3 to 54% per pole; web picker at 40 cards with every room open: sealed exact 64.2%, 0 players with no tags. Bundle: main 79.8 kB gzip (landing), PersonaApp 207.3 kB, three.js scene 145.8 kB (lazy), StoryDeck 26.7 kB; dist 2.8 MB with assets. Codex visual judge R5 (neutral prompt): 6.8 overall (`quiz64/docs/VISUAL-JUDGE-CODEX-R5.json`); full phone flow sheet `quiz64/docs/ROUND3-SHEET.png` |
 | Friend game | Built; restyled |
 | Real-person validation | None (blind test 2 open) |
 
@@ -424,6 +425,7 @@ Keep spend tight: one pass, three crews, then one integration and judge pass.
 
 ## Changes
 
+- 2026-09-29: Section 17 status adds round 3 (section 24) with the handoff cleanup, gate numbers, Codex judge R5 and the round 3 sheet.
 - 2026-09-29: Section 24 added: round 3 (stats without percentages, core traits, rooms, stings, bank legibility, reveal craft, real product assets, handoff).
 - 2026-09-29: Section 23: map stat labels (Orbit, Delivery, Blueprint, Compass, Engine, Code) replace internal pole names on player surfaces.
 - 2026-09-29: Round 2 closed (G5): section 21 final screen order is the 12-screen deck; section 17 status adds round 2 with the gate numbers.
