@@ -109,7 +109,7 @@ export function LockView({ locked, lockHash, onLock, onStart, onSave, busy, erro
         <div className="lock__copy">
           <p className="lock__kicker">{locked ? "Guesses locked" : LOBBY_COPY.lockEyebrow}</p>
           <h1 ref={heading} tabIndex="-1" className="lock__title">
-            {locked ? <>Genii has made<br /><em>its guesses.</em></> : <>Eight cards.<br /><em>Eight guesses.</em></>}
+            {locked ? <>Genii has made<br /><em>its guesses.</em></> : <>Genii will guess<br /><em>your last eight answers.</em></>}
           </h1>
           {locked ? (
             <p className="lock__body">Locked before you play. They stay hidden until the end.</p>
@@ -130,7 +130,7 @@ export function LockView({ locked, lockHash, onLock, onStart, onSave, busy, erro
           {error ? <p className="pc-error" role="alert">{error}</p> : null}
           <div className="lock__actions">
             {locked
-              ? <button type="button" className="pc-primary pc-primary--large" onClick={() => { skip(); onStart(); }}>Play the final 8 <ArrowRight size={19} aria-hidden="true" /></button>
+              ? <button type="button" className="pc-primary pc-primary--large" onClick={() => { skip(); onStart(); }}>Play the last eight cards <ArrowRight size={19} aria-hidden="true" /></button>
               : <button type="button" className="pc-primary pc-primary--large" onClick={onLock} disabled={busy}>Lock in Genii's guesses <Lock size={17} aria-hidden="true" /></button>}
           </div>
           <p className="lock__boundary">It's a game about you, not a test of you. Genii's guesses are for fun.</p>

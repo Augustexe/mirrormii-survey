@@ -1,4 +1,4 @@
-// "Do you really know me?": the owner's challenge, the link a friend plays, the reply link back, and every view of
+// "How well do you know me?": the owner's challenge, the link a friend plays, the reply link back, and every view of
 // the result. Decks come from score-core buildFriendDeck and scores from score-core scoreFriendGame. Links carry
 // only card, tag and roast ids plus the answer key the friend's device needs to show counts: never answer texts,
 // stings (except the owner-enabled bestie round), research fields, scores or other answers.

@@ -1,25 +1,41 @@
-// The six leans as game stats (Jerry, 2026-09-29 evening; LAUNCH-SPEC section 23 "Map stat labels"). Players never
-// see the scorer's internal pole names (We, Me, Direct, Soft, Classic, Own, Steady, Venture, Push, Easy, Rules,
-// Context): every player-facing surface (the map, its saved image, what Genii knows best, the rooms, Genii's calls)
-// reads its labels from this one table. The same labels serve both voices.
+// The one source for the result's scale labels (LAUNCH-SPEC section 26 "Plain names", docs/NAMING-RULES.md): the two
+// half kickers, the six stats and their ends. Archetype names, their one-line definitions and trait keywords live in
+// library.json; nothing else in the app spells a label out. Players never see the scorer's internal pole names (We, Me,
+// Direct, Soft, Classic, Own, Steady, Venture, Push, Easy, Rules, Context): every player-facing surface (the names,
+// the character sheet, its saved image, what Genii knows best, the rooms, Genii's calls, the article, the share card)
+// reads its labels from here. The same labels serve both voices.
 //
-// Each stat has a name and two human ends. `first` is the first pole in the type code names (We·Soft·Own reads We
-// first), which the library calls `plus`; the map draws it on the left. Ends are keyed by the library's pole name, so
-// a lean always lands on the end that means the same thing: Crew is where We lands, Solo where Me lands, and so on
-// (checked against library.json plusLine and minusLine in tests/reveal-stats.test.mjs).
+// Every label passed the cold-reader gate (docs/NAMING-PANEL.json: clear 4.5 or more, hurt 2 or less, share 3.5 or
+// more): everyday words, no metaphor to decode, behavior never beliefs, both ends flattering. Ends are subjectless
+// verb phrases ("Says it straight"), so they read the same on a chip, a card or a sheet.
 //
-// Later migration (research/ is owned by the bank package): library.json `axes[].topic` strings such as "Rules or
-// the room" and "Safe bet or new road" still echo pole words; the reveal no longer shows them, and they can move to
-// these stat names when the library is next opened.
+// Each stat has a name and two ends. `first` is the first pole in the type code names (We·Soft·Own reads We first),
+// which the library calls `plus`; the map draws it on the left. Ends are keyed by the library's pole name, so a lean
+// always lands on the end that means the same thing (checked against library.json plusLine and minusLine in
+// tests/reveal-stats.test.mjs).
+
+// The two halves of the result, each with the kicker shown above its archetype name on every title card.
+export const HALVES = Object.freeze({
+  people: Object.freeze({ side: "relationship", kicker: "With the people you love", axes: Object.freeze(["R1", "R2", "R3"]) }),
+  life: Object.freeze({ side: "life", kicker: "Day to day", axes: Object.freeze(["L1", "L2", "L3"]) }),
+});
 
 export const STATS = Object.freeze({
-  R1: Object.freeze({ axis: "R1", stat: "Orbit", first: "We", second: "Me", ends: Object.freeze({ We: "Crew", Me: "Solo" }) }),
-  R2: Object.freeze({ axis: "R2", stat: "Delivery", first: "Direct", second: "Soft", ends: Object.freeze({ Direct: "Blunt", Soft: "Gentle" }) }),
-  R3: Object.freeze({ axis: "R3", stat: "Blueprint", first: "Classic", second: "Own", ends: Object.freeze({ Classic: "Old School", Own: "Own Lane" }) }),
-  L1: Object.freeze({ axis: "L1", stat: "Compass", first: "Steady", second: "Venture", ends: Object.freeze({ Steady: "Home Base", Venture: "Wanderlust" }) }),
-  L2: Object.freeze({ axis: "L2", stat: "Engine", first: "Push", second: "Easy", ends: Object.freeze({ Push: "Full Send", Easy: "Cruise Control" }) }),
-  L3: Object.freeze({ axis: "L3", stat: "Code", first: "Rules", second: "Context", ends: Object.freeze({ Rules: "By the Book", Context: "Read the Room" }) }),
+  R1: Object.freeze({ axis: "R1", stat: "Closeness", first: "We", second: "Me", ends: Object.freeze({ We: "Stays close", Me: "Keeps some space" }) }),
+  R2: Object.freeze({ axis: "R2", stat: "Hard truths", first: "Direct", second: "Soft", ends: Object.freeze({ Direct: "Says it straight", Soft: "Says it gently" }) }),
+  R3: Object.freeze({ axis: "R3", stat: "Traditions", first: "Classic", second: "Own", ends: Object.freeze({ Classic: "Carries them on", Own: "Starts new ones" }) }),
+  L1: Object.freeze({ axis: "L1", stat: "New things", first: "Steady", second: "Venture", ends: Object.freeze({ Steady: "Sticks with favorites", Venture: "Tries new things" }) }),
+  L2: Object.freeze({ axis: "L2", stat: "Pace", first: "Push", second: "Easy", ends: Object.freeze({ Push: "Goes fast", Easy: "Takes it slow and steady" }) }),
+  L3: Object.freeze({ axis: "L3", stat: "Rules", first: "Rules", second: "Context", ends: Object.freeze({ Rules: "By the book", Context: "Case by case" }) }),
 });
+
+// Labels retired by the plain-names pass (2026-09-29). None may reach a player surface again
+// (tests/naming-retired.test.mjs renders every screen, the article and the share image data and fails on any of them).
+export const RETIRED_LABELS = Object.freeze([
+  "The Slow Burner", "Slow Burner", "Creature of Habit", "The Easygoer", "Easygoer", "The Wanderer", "Wanderer",
+  "Orbit", "Delivery", "Blueprint", "Compass", "Engine", "Code:", "Crew", "Solo", "Old School", "Own Lane", "Home Base",
+  "Wanderlust", "Full Send", "Cruise Control", "Read the Room", "Traditional", "With your life",
+]);
 
 // Every internal pole name, for tests and guards.
 export const POLE_NAMES = Object.freeze(Object.values(STATS).flatMap((s) => [s.first, s.second]));
@@ -28,6 +44,13 @@ export const POLE_NAMES = Object.freeze(Object.values(STATS).flatMap((s) => [s.f
 const BY_POLE = Object.fromEntries(Object.values(STATS).flatMap((s) => Object.entries(s.ends)));
 export function endOf(pole) {
   return (pole && BY_POLE[pole]) || pole || "";
+}
+
+// Both ends in one phrase, for a stat that sits in the middle ("Stays close and keeps some space") or is still open
+// ("Stays close or keeps some space"). The second end drops its capital so the phrase reads as one.
+export function bothEnds(a, b, join = "and") {
+  const low = String(b || "");
+  return `${a} ${join} ${low.charAt(0).toLowerCase()}${low.slice(1)}`;
 }
 
 // The stat for an axis id, or a neutral stand-in so an unknown axis never breaks a screen.

@@ -3,22 +3,30 @@
 // never reach these views.
 import { S, LIB, KIT } from "./kit.js";
 import { resultFor } from "./session.js";
-import { buildStories, voiceOf } from "./stories/story-data.js";
+import { UI_COPY, buildStories, voiceOf } from "./stories/story-data.js";
 import { sceneTitle } from "./scene-titles.js";
+import { HALVES } from "./stats.js";
 
-// The share card: both archetype names, trait names with their heart lines, the invite. Never stings or answers.
+// The share card: both archetype names under their kickers, each with its one-line definition, trait names with their
+// heart lines, the invite. Never stings or answers.
 export function shareProjection(result, stories = null) {
   if (stories) return stories.share;
-  const [people, life] = (result.halves || []).map((h) => h.name);
+  const half = (side) => (result.halves || []).find((h) => h.side === side) || {};
+  const def = (list, h) => ((list || []).find((x) => x.code === h.code) || {}).define || "";
+  const people = half("relationship");
+  const life = half("life");
   return {
-    names: [{ label: "With your people", name: people }, { label: "With your life", name: life }],
+    names: [
+      { label: HALVES.people.kicker, name: people.name, define: def(LIB.relationship, people) },
+      { label: HALVES.life.kicker, name: life.name, define: def(LIB.life, life) },
+    ],
     tags: (result.share ? result.share.tags : []).map((t) => ({ name: t.name, heart: t.heart })),
-    invite: (result.share && result.share.invite) || "Do you really know me?",
+    invite: UI_COPY.invite,
   };
 }
 
 export function shareText(share) {
-  return [...share.names.map((n) => `${n.label}: ${n.name}`), ...share.tags.map((t) => `${t.name}: ${t.heart}`), share.invite].join("\n");
+  return [...share.names.map((n) => `${n.label}: ${n.name}${n.define ? `. ${n.define}` : ""}`), ...share.tags.map((t) => `${t.name}: ${t.heart}`), share.invite].join("\n");
 }
 
 // A sealed card's prompt in the player's voice (Heart to heart reads card.heart.prompt when a card has one).

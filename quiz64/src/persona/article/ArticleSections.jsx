@@ -61,8 +61,8 @@ export function Cover({ A }) {
       </div>
       <div className="ea-cover__text">
         <h1 id="ea-h1" className="ea-names" tabIndex="-1">
-          <span className="ea-names__row"><span className="ea-names__label">{c.people.label}</span><span className="ea-names__name">{c.people.name}</span></span>
-          <span className="ea-names__row ea-names__row--life"><span className="ea-names__label">{c.life.label}</span><span className="ea-names__name">{c.life.name}</span></span>
+          <span className="ea-names__row"><span className="ea-names__label">{c.people.label}</span><span className="ea-names__name">{c.people.name}</span>{c.people.define ? <span className="ea-names__define">{c.people.define}</span> : null}</span>
+          <span className="ea-names__row ea-names__row--life"><span className="ea-names__label">{c.life.label}</span><span className="ea-names__name">{c.life.name}</span>{c.life.define ? <span className="ea-names__define">{c.life.define}</span> : null}</span>
         </h1>
         <div className="ea-cover__foot">
           <p className="ea-dek">{c.dek}</p>
@@ -427,6 +427,18 @@ export function Record({ A }) {
 }
 
 // ---------------------------------------------------------------------------------------------------------- party
+// One archetype in a party slot: its kicker, the name, and the one plain line that defines it (LAUNCH-SPEC 26).
+function SlotName({ kicker, name, define }) {
+  if (!name) return null;
+  return (
+    <p className="ea-slot__name">
+      <small className="ea-slot__kicker">{kicker}</small>
+      <span>{name}</span>
+      {define ? <small className="ea-slot__define">{define}</small> : null}
+    </p>
+  );
+}
+
 export function Party({ A, onChallenge }) {
   const p = A.party;
   const b = A.bio;
@@ -444,13 +456,14 @@ export function Party({ A, onChallenge }) {
           <li className="ea-slot ea-slot--you" style={{ "--i": 0 }}>
             <span className="ea-slot__genii" aria-hidden="true"><GeniiSvg evolution={1} expression="happy" /></span>
             <p className="ea-slot__label">{p.you}</p>
-            <p className="ea-slot__name">{p.halves.people}<small>{`${p.with} ${p.halves.life}`}</small></p>
+            <SlotName kicker={p.kickers.people} name={p.halves.people} define={p.defines.people} />
+            <SlotName kicker={p.kickers.life} name={p.halves.life} define={p.defines.life} />
           </li>
           {p.click ? (
             <li className="ea-slot ea-slot--click" style={{ "--i": 1 }}>
               <span className="ea-slot__genii ea-slot__genii--tilt" aria-hidden="true"><GeniiSvg evolution={1} expression="curious" /></span>
               <p className="ea-slot__label">{p.click.label}</p>
-              <p className="ea-slot__name">{p.click.name}<small>{`${p.with} ${p.click.side === "life" ? p.halves.people : p.halves.life}`}</small></p>
+              <SlotName kicker={p.kickers[p.click.side]} name={p.click.name} define={p.click.define} />
               <p className="ea-slot__line">{p.click.line}</p>
             </li>
           ) : null}
@@ -458,7 +471,8 @@ export function Party({ A, onChallenge }) {
             <li className="ea-slot ea-slot--opp" style={{ "--i": 2 }}>
               <span className="ea-slot__genii ea-slot__genii--flip" aria-hidden="true"><GeniiSvg evolution={1} expression="skeptical" /></span>
               <p className="ea-slot__label">{p.opposite.label}</p>
-              <p className="ea-slot__name">{p.opposite.a}<small>{`${p.with} ${p.opposite.b}`}</small></p>
+              <SlotName kicker={p.kickers.people} name={p.opposite.a} define={p.opposite.aDefine} />
+              <SlotName kicker={p.kickers.life} name={p.opposite.b} define={p.opposite.bDefine} />
               <p className="ea-slot__line">{p.opposite.line}</p>
             </li>
           ) : null}

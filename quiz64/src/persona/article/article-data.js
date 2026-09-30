@@ -4,7 +4,7 @@
 // the deck already allows (Genii's calls). New lines come from library.json: `article` (frames that carry no claim of
 // their own) and `crossover` (the two-sides table, picked by the player's strongest stat ends).
 
-import { STATS } from "../stats.js";
+import { HALVES, STATS } from "../stats.js";
 import { oppositeOf, sheetLine, voiced } from "../stories/story-data.js";
 
 export const ARTICLE_TABS = Object.freeze(["stats", "traits", "surprise", "rooms", "book", "record", "party"]);
@@ -22,6 +22,7 @@ export const ISLETS = Object.freeze({
 
 const NUMBER_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight"];
 const str = (v) => (typeof v === "string" && v.trim() ? v : null);
+const lower = (t) => { const v = String(t || ""); return v.charAt(0).toLowerCase() + v.slice(1); };
 const fill = (t, vars = {}) => String(t || "").replace(/\{(\w+)\}/g, (_, k) => (vars[k] == null ? "" : String(vars[k])));
 
 // One frame from library.json `article`, in voice. `path` is dotted ("sheet.title").
@@ -80,7 +81,7 @@ export function clickWith(lib, halves, wild, rows) {
   // The end the flip swings to: the other end of the wild card (a near-even stat names the end they don't lean).
   const s = STATS[row.key];
   const toPole = FLIP[mine.code.split("·")[idx]];
-  return { name: hit.name, side: onLife ? "life" : "people", stat: row.stat, end: s.ends[toPole], pair: onLife ? [halves.people, hit.name] : [hit.name, halves.life] };
+  return { name: hit.name, define: str(hit.define) || "", side: onLife ? "life" : "people", stat: row.stat, end: s.ends[toPole], pair: onLife ? [halves.people, hit.name] : [hit.name, halves.life] };
 }
 
 // The page model. `stories` is buildStories() output (resultView), `lib` is library.json.
@@ -96,6 +97,7 @@ export function buildArticle({ stories, lib }) {
   const tagLib = Object.fromEntries((L.tags || []).map((t) => [t.id, t]));
   const halves = { people: names.people.name, life: names.life.name };
   const libHalf = (list, name) => (list || []).find((x) => x.name === name) || null;
+  const defineOf = (list, name) => str((libHalf(list, name) || {}).define) || "";
   const relL = libHalf(L.relationship, halves.people);
   const lifeL = libHalf(L.life, halves.life);
 
@@ -105,8 +107,9 @@ export function buildArticle({ stories, lib }) {
     readTime: f("readTime"),
     dek: f("cover.dek"),
     keywordsLabel: f("cover.keywords"),
-    people: { label: f("cover.people"), name: halves.people, read: read.lines[0] || names.people.read || "", desc: read.bodies[0] || "" },
-    life: { label: f("cover.life"), name: halves.life, read: read.lines[1] || names.life.read || "", desc: read.bodies[1] || "" },
+    // Kicker, name and the one plain defining line, as on every title card (LAUNCH-SPEC 26).
+    people: { label: HALVES.people.kicker, name: halves.people, define: names.people.define || "", read: read.lines[0] || names.people.read || "", desc: read.bodies[0] || "" },
+    life: { label: HALVES.life.kicker, name: halves.life, define: names.life.define || "", read: read.lines[1] || names.life.read || "", desc: read.bodies[1] || "" },
     keywords: names.keywords || [],
   };
 
@@ -187,7 +190,7 @@ export function buildArticle({ stories, lib }) {
   const flip = flipRow ? {
     chapter: flipRow.chapter, room: flipRow.room, stat: lead[flipRow.axis].stat, overall: lead[flipRow.axis].leadEnd, roomEnd: flipRow.leadEnd,
     title: f("rooms.flipTitle"),
-    line: f("rooms.flipLine", { overall: lead[flipRow.axis].leadEnd, room: flipRow.room, roomEnd: flipRow.leadEnd }),
+    line: f("rooms.flipLine", { overall: lower(lead[flipRow.axis].leadEnd), room: flipRow.room, roomEnd: lower(flipRow.leadEnd) }),
   } : null;
   const rooms = roomRows.length ? {
     kicker: by.rooms.kicker, title: f("rooms.title"), intro: f("rooms.intro"), mapLabel: f("rooms.mapLabel"), quiet: f("rooms.quiet"), differs: by.rooms.differs,
@@ -230,8 +233,11 @@ export function buildArticle({ stories, lib }) {
   const share = by.share;
   const party = {
     title: f("party.title"), you: f("party.you"), with: f("party.withLabel"), halves,
-    click: click ? { ...click, label: f("party.clickLabel"), line: f("party.click", { stat: click.stat, end: click.end }) } : null,
-    opposite: opp ? { a: opp[0], b: opp[1], label: f("party.oppositeLabel"), line: f("party.opposite") } : null,
+    click: click ? { ...click, label: f("party.clickLabel"), line: f("party.click", { stat: lower(click.stat), end: lower(click.end) }) } : null,
+    opposite: opp ? { a: opp[0], b: opp[1], aDefine: defineOf(L.relationship, opp[0]), bDefine: defineOf(L.life, opp[1]), label: f("party.oppositeLabel"), line: f("party.opposite") } : null,
+    // Each slot names both halves under their kickers, each with its defining line.
+    kickers: { people: HALVES.people.kicker, life: HALVES.life.kicker },
+    defines: { people: names.people.define || "", life: names.life.define || "" },
     challenge: share ? share.challenge : "", challengeSub: share ? share.sub : "",
   };
   // The one-line bio: both names and the first three shareable core traits. Never a sting or a private trait.
@@ -262,7 +268,7 @@ export function articleText(A) {
   const out = [];
   const add = (...xs) => xs.forEach((x) => { if (typeof x === "string" && x.trim()) out.push(x); });
   const c = A.cover;
-  add(c.masthead, c.readTime, c.dek, c.people.label, c.people.name, c.people.read, c.people.desc, c.life.label, c.life.name, c.life.read, c.life.desc, ...c.keywords);
+  add(c.masthead, c.readTime, c.dek, c.people.label, c.people.name, c.people.define, c.people.read, c.people.desc, c.life.label, c.life.name, c.life.define, c.life.read, c.life.desc, ...c.keywords);
   add(A.sheet.title, A.sheet.intro, A.sheet.hint, A.sheet.key);
   for (const g of A.sheet.groups) for (const r of g.rows) add(r.stat, r.leadEnd, r.level, r.note, r.otherLine, r.know, r.badgeLabel, r.badgeNote);
   add(A.traits.title, A.traits.intro);
@@ -273,7 +279,7 @@ export function articleText(A) {
   if (A.book) { add(A.book.title, A.book.intro, ...A.book.stings, A.book.saidTitle, A.book.saidIntro); for (const h of A.book.hearts) add(h.line); }
   if (A.record) { add(A.record.headline, A.record.intro, A.record.key); for (const r of A.record.rows) add(r.title, r.shown); }
   const p = A.party;
-  add(p.title, p.click && p.click.name, p.click && p.click.line, p.opposite && p.opposite.line, p.challenge, p.challengeSub, A.bio.text);
+  add(p.title, p.kickers.people, p.kickers.life, p.defines.people, p.defines.life, p.click && p.click.name, p.click && p.click.define, p.click && p.click.line, p.opposite && p.opposite.a, p.opposite && p.opposite.aDefine, p.opposite && p.opposite.b, p.opposite && p.opposite.bDefine, p.opposite && p.opposite.line, p.challenge, p.challengeSub, A.bio.text);
   add(A.closing.line, A.closing.app && A.closing.app.title, A.closing.app && A.closing.app.body);
   return out;
 }

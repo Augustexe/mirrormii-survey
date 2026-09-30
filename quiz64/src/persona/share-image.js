@@ -91,9 +91,9 @@ function block(ctx, value, x, y, opts) {
   return lines(ctx, ls, x, y + size * 0.82, { lh: size * (opts.lh || 1.18), align: opts.align, color: opts.color }) - size * 0.82;
 }
 
-function tracked(ctx, value, x, y, { size, weight = 700, color, align = "left", track = 0.12 }) {
+function tracked(ctx, value, x, y, { size, weight = 700, color, align = "left", track = 0.12, upper = true }) {
   font(ctx, "text", weight, size);
-  const text = String(value || "").toUpperCase();
+  const text = upper ? String(value || "").toUpperCase() : String(value || "");
   if ("letterSpacing" in ctx) {
     ctx.letterSpacing = `${(size * track).toFixed(1)}px`;
     ctx.textAlign = align;
@@ -407,26 +407,30 @@ function cellBox(cell) {
 }
 
 // Where the lettering sits in the glass, so the scrims can be drawn under it before the text goes on top. Each block
-// is a label pill (the half's sigil and "With your people" / "With your life") over the name; the two blocks meet at
-// the middle of the oval, where the glass is widest.
+// is a label pill (the half's sigil and its kicker, from stats.js HALVES) over the name, then the one plain line that
+// defines the name (LAUNCH-SPEC 26); the two blocks meet at the middle of the oval, where the glass is widest.
 function paneLayout(ctx, { x, y, w, h, names }) {
   const k = w / 600;
   const [people, life] = names;
-  const fitName = (name) => fit(ctx, name || "", { face: "display", weight: 600, max: 124 * k, min: 64 * k, width: w - 90 * k, maxLines: 2 });
+  const fitName = (name) => fit(ctx, name || "", { face: "display", weight: 600, max: 116 * k, min: 60 * k, width: w - 90 * k, maxLines: 2 });
+  const fitDefine = (line) => (line ? fit(ctx, line, { face: "text", weight: 600, max: 40 * k, min: 32 * k, width: w - 150 * k, maxLines: 2 }) : null);
   const pill = 66 * k;
-  const gap = 30 * k;
-  const block = (name) => pill + gap + name.lines.length * name.size * 1.0;
+  const gap = 28 * k;
+  const dgap = 16 * k;
+  const block = (name, def) => pill + gap + name.lines.length * name.size * 1.0 + (def ? dgap + def.lines.length * def.size * 1.25 : 0);
   const up = fitName(people && people.name);
   const low = fitName(life && life.name);
-  const upH = block(up);
-  const lowH = block(low);
-  const upTop = y + h * 0.5 - 50 * k - upH;
-  const lowTop = y + h * 0.5 + 50 * k;
+  const upDef = fitDefine(people && people.define);
+  const lowDef = fitDefine(life && life.define);
+  const upH = block(up, upDef);
+  const lowH = block(low, lowDef);
+  const upTop = y + h * 0.5 - 40 * k - upH;
+  const lowTop = y + h * 0.5 + 40 * k;
   return {
-    k, pill, gap,
+    k, pill, gap, dgap,
     panes: [
-      { half: people, which: "people", name: up, top: upTop, height: upH },
-      { half: life, which: "life", name: low, top: lowTop, height: lowH },
+      { half: people, which: "people", name: up, define: upDef, top: upTop, height: upH },
+      { half: life, which: "life", name: low, define: lowDef, top: lowTop, height: lowH },
     ],
   };
 }
@@ -586,9 +590,10 @@ function drawPaneText(ctx, { x, w, layout, p }) {
   for (const pane of layout.panes) {
     if (!pane.half) continue;
     let yy = pane.top;
-    const size = 27 * k;
-    const track = size * 0.16;
-    const label = String(pane.half.label || "").toUpperCase();
+    // Kickers are labels in sentence case (docs/NAMING-RULES.md rule 6), lightly tracked so the longer one fits.
+    const size = 29 * k;
+    const track = size * 0.02;
+    const label = String(pane.half.label || "");
     font(ctx, "text", 700, size);
     const spaced = "letterSpacing" in ctx;
     if (spaced) ctx.letterSpacing = `${track.toFixed(1)}px`;
@@ -607,12 +612,18 @@ function drawPaneText(ctx, { x, w, layout, p }) {
     ctx.lineWidth = Math.max(2, 3 * k);
     ctx.stroke();
     drawSigil(ctx, pane.half.code, px + padL, yy + (pill - sig) / 2, sig, ink);
-    tracked(ctx, label, px + padL + sig + inner, yy + pill / 2 + size * 0.36, { size, color: ink, align: "left", track: 0.16 });
+    tracked(ctx, label, px + padL + sig + inner, yy + pill / 2 + size * 0.36, { size, color: ink, align: "left", track: 0.02, upper: false });
     yy += pill + gap;
     font(ctx, "display", 600, pane.name.size);
     ctx.save();
     if (p.dark) { ctx.shadowColor = rgba(N.n900, 0.9); ctx.shadowBlur = 24 * k; }
     lines(ctx, pane.name.lines, cx, yy + pane.name.size * 0.8, { lh: pane.name.size * 1.0, align: "center", color: ink });
+    yy += pane.name.lines.length * pane.name.size * 1.0;
+    if (pane.define) {
+      yy += layout.dgap;
+      font(ctx, "text", 600, pane.define.size);
+      lines(ctx, pane.define.lines, cx, yy + pane.define.size * 0.95, { lh: pane.define.size * 1.25, align: "center", color: ink });
+    }
     ctx.restore();
   }
 }

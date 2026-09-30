@@ -262,6 +262,7 @@ function Pane({ half, where, box, first, sparkle }) {
           </span>
         ) : null}
       </m.span>
+      {half.define ? <span className="rv-pane__define">{half.define}</span> : null}
     </span>
   );
 }
@@ -305,7 +306,7 @@ export function NamesScreen({ s, stage, active, reduced, wipe, onWiped, sparkles
         </p>
       ) : null}
       <div className="rv-names__under" style={{ top: box.foot + 14 }}>
-        <p className="rv-names__sub rv-in">{s.sub}</p>
+        {s.sub ? <p className="rv-names__sub rv-in">{s.sub}</p> : null}
         {/* Round 3: the shareable core traits as keyword pills (story-data.js, the same list the card draws). */}
         {keys.length ? (
           <ul className="rv-names__keys" aria-label="Core traits">

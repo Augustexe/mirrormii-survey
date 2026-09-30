@@ -424,7 +424,22 @@
   .rv-pane__sparks i:nth-child(3) { left: 30%; bottom: -12px; }
   /* The oval glass is narrower than the old arch: names set a step smaller and closer to the rim. */
   .rv-names .rv-pane { padding: 0 var(--s-2); }
-  .rv-names .rv-pane__name { font-size: 34px; line-height: 36px; }
+  .rv-names .rv-pane__name { font-size: 32px; line-height: 34px; }
+  /* Kicker, name and defining line stack in each half of the glass; the two stacks keep clear air at the middle. */
+  .rv-names .rv-pane--up { padding-bottom: 30px; }
+  .rv-names .rv-pane--down { padding-top: 26px; }
+  /* Kickers are labels: sentence case, not tracked caps (docs/NAMING-RULES.md rule 6), so the longer one fits on one line. */
+  .rv-names .rv-pane__label { font-size: 13px; letter-spacing: 0.01em; text-transform: none; white-space: nowrap; }
+  /* The one plain line that defines the name, directly under it (LAUNCH-SPEC 26): readable text size, never display. */
+  .rv-pane__define {
+    display: block;
+    max-inline-size: 22ch;
+    margin-top: var(--s-2);
+    font: 600 15px / 19px var(--font-text);
+    color: var(--n-ink);
+    text-wrap: balance;
+    text-shadow: 0 1px 12px color-mix(in srgb, var(--n-900) 95%, transparent);
+  }
   .rv-mirror__scrim {
     position: absolute;
     background:

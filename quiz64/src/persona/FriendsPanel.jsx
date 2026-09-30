@@ -116,7 +116,7 @@ export function FriendsPanel({ friends, onAction }) {
     <section className="fp" aria-labelledby="fp-title">
       <div className="fp-intro">
         <span className="rv-kicker">The friend game</span>
-        <h2 id="fp-title">Do you really know me?</h2>
+        <h2 id="fp-title">How well do you know me?</h2>
         <p>Send a link. They guess your type, a few of your choices and what Genii calls you. You see what they get right, and what they don't see.</p>
         {friends.returnTo && <p className="fp-return">{friends.returnTo.name || "Your friend"} played about you. Send one back and see if they really know you.</p>}
       </div>

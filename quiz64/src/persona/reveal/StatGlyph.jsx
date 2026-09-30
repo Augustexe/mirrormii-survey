@@ -3,7 +3,7 @@
 import React from "react";
 
 const G = {
-  // Orbit: a planet with a ring and a moon.
+  // Closeness (R1): a planet with a ring and a moon.
   R1: (
     <>
       <circle cx="12" cy="12" r="4.2" />
@@ -11,14 +11,14 @@ const G = {
       <circle cx="19.6" cy="7.4" r="1.6" fill="currentColor" stroke="none" />
     </>
   ),
-  // Delivery: a speech bubble with a spark.
+  // Hard truths (R2): a speech bubble with a spark.
   R2: (
     <>
       <path d="M4.5 6.5a3 3 0 0 1 3-3h9a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H11l-4.5 4v-4h0a3 3 0 0 1-2-3z" />
       <path d="M12 7.2l.9 2 2 .9-2 .9-.9 2-.9-2-2-.9 2-.9z" fill="currentColor" stroke="none" />
     </>
   ),
-  // Blueprint: a floor plan with a door swing.
+  // Traditions (R3): a floor plan with a door swing.
   R3: (
     <>
       <rect x="3.5" y="3.5" width="17" height="17" rx="2.5" />
@@ -26,7 +26,7 @@ const G = {
       <path d="M10.5 12a3 3 0 0 1 3 3" strokeDasharray="1.6 1.8" />
     </>
   ),
-  // Compass: a ring with a four-point needle.
+  // New things (L1): a ring with a four-point needle.
   L1: (
     <>
       <circle cx="12" cy="12" r="8.6" />
@@ -34,7 +34,7 @@ const G = {
       <path d="M12 5.2l2 6.8h-4z" fill="currentColor" stroke="none" />
     </>
   ),
-  // Engine: a speed dial with its needle.
+  // Pace (L2): a speed dial with its needle.
   L2: (
     <>
       <path d="M4 16.5a8 8 0 1 1 16 0" />
@@ -43,7 +43,7 @@ const G = {
       <circle cx="12" cy="16.5" r="1.7" fill="currentColor" stroke="none" />
     </>
   ),
-  // Code: an open book with a ribbon.
+  // Rules (L3): an open book with a ribbon.
   L3: (
     <>
       <path d="M12 6.5c-2-1.6-4.8-2-7.5-1.6v12.6c2.7-.4 5.5 0 7.5 1.6 2-1.6 4.8-2 7.5-1.6V4.9C16.8 4.5 14 4.9 12 6.5z" />

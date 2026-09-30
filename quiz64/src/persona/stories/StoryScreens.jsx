@@ -108,7 +108,7 @@ function ShareScreen({ s, active, onInvite, onShareImage, onCopy, copied, format
       </div>
       <div className="rv-cardopts rv-in">
         <Seg label="Card shape" value={format} onChange={setFormat} options={[["story", UI_COPY.shareFormats.story], ["post", UI_COPY.shareFormats.post]]} />
-        <Seg label="Card light" value={cardTheme} onChange={setCardTheme} options={[["night", "Night"], ["day", "Day"]]} />
+        <Seg label="Card light" value={cardTheme} onChange={setCardTheme} options={[["night", UI_COPY.shareThemes.night], ["day", UI_COPY.shareThemes.day]]} />
       </div>
       <button type="button" className="rv-cta rv-cta--deep rv-in" onClick={onShareImage} disabled={busy}><Share size={18} aria-hidden="true" /> {UI_COPY.shareImage}</button>
       <div className="rv-actions rv-in">
@@ -155,7 +155,7 @@ function App({ s, stage, onFriends, onGuesses, hasGuesses, guessLabel, onData, o
       <ReadMore label={readMore} onArticle={onArticle} className="rv-pillbtn--strong rv-in" />
       <div className="rv-end rv-in">
         <div className="rv-end__links">
-          <button type="button" className="rv-textbtn" onClick={onFriends}><Users size={15} aria-hidden="true" /> Do you really know me?</button>
+          <button type="button" className="rv-textbtn" onClick={onFriends}><Users size={15} aria-hidden="true" /> {UI_COPY.invite}</button>
           {hasGuesses && <button type="button" className="rv-textbtn" onClick={onGuesses}>{guessLabel}</button>}
           <button type="button" className="rv-textbtn" onClick={onData}>{UI_COPY.yourData}</button>
         </div>

@@ -4,6 +4,7 @@
 import React from "react";
 import { ChapterGlyph } from "../../art/index.js";
 import { StatGlyph } from "../reveal/StatGlyph.jsx";
+import { bothEnds } from "../stats.js";
 import { seeded } from "../reveal/layout.js";
 import { UI_COPY } from "./story-data.js";
 import "./sheet-screens.css";
@@ -18,15 +19,15 @@ export function Pips({ n = 0, split = false }) {
 }
 
 function endText(row) {
-  if (row.unfinished) return `${row.a} or ${row.b}`;
-  if (row.flex) return `${row.a} and ${row.b}`;
+  if (row.unfinished) return bothEnds(row.a, row.b, "or");
+  if (row.flex) return bothEnds(row.a, row.b);
   return row.leadEnd;
 }
 
 const PIP_WORDS = ["no", "one", "two", "three", "four", "five"];
 // What a screen reader hears for one stat: the stat, the level and the end, the plain line, and the badge.
 function sentence(row, badge) {
-  const head = row.unfinished ? `${row.stat}: ${row.level}.` : row.flex ? `${row.stat}: ${row.level}, ${row.a} and ${row.b}.` : `${row.stat}: ${row.level} ${row.leadEnd}, ${PIP_WORDS[row.pips] || "no"} pips of five.`;
+  const head = row.unfinished ? `${row.stat}: ${row.level}.` : row.flex ? `${row.stat}: ${row.level}, ${bothEnds(row.a, row.b)}.` : `${row.stat}: ${row.leadEnd}, ${row.level}, ${PIP_WORDS[row.pips] || "no"} pips of five.`;
   return [badge ? `${badge.label}.` : "", head, row.note, badge ? badge.note : ""].filter(Boolean).join(" ");
 }
 
@@ -115,7 +116,7 @@ export function StingsScreen({ s, seed }) {
           <i key={i} style={{ left: `${specks[i * 3] * 100}%`, top: `${specks[i * 3 + 1] * 100}%`, "--r": `${10 + specks[i * 3 + 2] * 46}px` }} />
         ))}
       </span>
-      <p className="rv-kicker rv-stings__kicker rv-in">{s.kicker}</p>
+      {s.kicker ? <p className="rv-kicker rv-stings__kicker rv-in">{s.kicker}</p> : null}
       <h2 className="rv-title rv-in" data-focus tabIndex="-1">{s.title}</h2>
       <ul className="rv-stings">
         {s.stings.map((line, i) => <li className="rv-in" key={i} style={{ "--i": i }}>{line}</li>)}

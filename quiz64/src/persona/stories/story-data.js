@@ -6,7 +6,7 @@
 // believe-versus-did split, the calls from the guesses Genii locked before the final cards. Library fields are read
 // defensively so the screen works on the 2026-09-26 library (desc, heart) and on the Build C library.
 
-import { endOf, statOf, statRow } from "../stats.js";
+import { HALVES, bothEnds, endOf, statOf, statRow } from "../stats.js";
 
 export const VOICES = Object.freeze(["fun", "heart", "cards"]);
 export const STORY_IDS = Object.freeze(["intro", "names", "read", "map", "knows", "rooms", "insight", "traits", "stings", "calls", "share", "app"]);
@@ -22,24 +22,28 @@ export const SHARE_URL_LABEL = "mirrormii.ai";
 // insight, the calls and the app. Light and dark alternate so every tap changes the room.
 export const LOOKS = Object.freeze({ intro: "night", names: "night", read: "light", map: "night", knows: "deep", rooms: "light", insight: "deep", traits: "light", stings: "night", calls: "deep", share: "light", app: "deep" });
 
-// Interface strings for the result (proposed copy, DESIGN-DIRECTION section 8 D6; shipped under the 2026-09-29 go).
+// Interface strings for the result. Every label here passed the cold-reader gate (LAUNCH-SPEC 26, docs/NAMING-RULES.md,
+// docs/NAMING-PANEL.json): a stranger gets it at a glance, nothing is a metaphor to decode, nothing labels a belief.
+// Labels are the same in both voices; only full sentences change with the voice.
 export const UI_COPY = Object.freeze({
-  hold: "Hold, or tap",
-  shareFormats: { story: "Story", post: "Post" },
+  hold: "Tap to continue",
+  shareFormats: { story: "For stories", post: "For posts" },
+  shareThemes: { night: "Dark", day: "Light" },
   shareImage: "Share image",
   saveImage: "Save image",
-  saveForMe: "Save for me",
+  saveForMe: "Save to my phone",
   copyLink: "Copy link",
   copied: "Copied",
   shareSheet: "Share this screen",
-  stingsSheet: "Keep a copy",
+  stingsSheet: "Save to my phone",
   stingsNote: "This screen stays off share cards. You can keep a copy for yourself.",
-  privateTrait: "Kept off your card",
+  privateTrait: "Not on your share card",
   opposite: (a, b) => `Your opposite: ${a} and ${b}. Know one?`,
-  yourData: "Your data",
-  dataTitle: "Your data",
-  saving: "Making your image",
+  yourData: "See or delete your data",
+  dataTitle: "See or delete your data",
+  saving: "Saving your image",
   saveFailed: "The image couldn't be made in this browser.",
+  invite: "How well do you know me?",
   tap: "Next",
 });
 
@@ -51,50 +55,58 @@ export function voiceOf(lobby) {
 // "Just the cards" uses Make it fun wording (section 22).
 export const wordingFor = (voice) => (voice === "heart" ? "heart" : "fun");
 
+// Labels shared by both voices.
+const LABELS = {
+  levels: { 1: "A little", 2: "Somewhat", 3: "Moderately", 4: "Strongly", 5: "Very strongly", both: "Right in the middle", open: "Not enough answers yet" },
+  signature: "Your strongest stat", wild: "Closest to the middle",
+  tiers: { clear: "Came through clearly", sharp: "Genii is fairly sure", forming: "Genii has a hunch", flex: "Genii can't tell yet" },
+  status: { hit: "Guessed right", near: "Close, not exact", miss: "Surprised Genii", pass: "No guess", skipped: "You skipped", unanswered: "You skipped" },
+};
+
 export const STORY_COPY = Object.freeze({
   fun: {
-    intro: { kicker: "Genii's read", title: "40 answers in. Here's you.", sub: "Hold. Then let go." },
-    names: { kicker: "You are", people: "With your people", life: "With your life", sub: "Two sides. Both you." },
-    read: { kicker: "The read" },
+    intro: { kicker: "Your result is ready", title: "40 answers in. Here are your results.", sub: "Press and hold, then let go." },
+    names: { kicker: "You are", people: HALVES.people.kicker, life: HALVES.life.kicker, sub: null },
+    read: { kicker: "The short version" },
     map: {
-      kicker: "Your character sheet", title: "Your six stats", sub: "Your signature stat glows. Your wild card could go either way.", subSolo: "Your signature stat glows.",
-      people: "With your people", life: "With your life",
-      levels: { 1: "Slight", 2: "Mild", 3: "Clear", 4: "Strong", 5: "Off the charts", both: "Both", open: "Still open" },
-      signature: "Signature", wild: "Wild card",
-      signatureNote: "Your loudest stat. People clock this one first.", wildNote: "Your closest call. On the day, it can swing.",
+      kicker: "Your personality stats", title: "Your six stats, up close", sub: "The glowing stat is your strongest. The marked one sits closest to the middle.", subSolo: "The glowing stat is your strongest.",
+      people: HALVES.people.kicker, life: HALVES.life.kicker,
+      levels: LABELS.levels,
+      signature: LABELS.signature, wild: LABELS.wild,
+      signatureNote: "The stat you lean on most.", wildNote: "You sit near the middle here. It can go either way.",
       open: "Not enough cards to call this one yet.",
     },
     knows: {
-      kicker: "What Genii knows best",
-      title: "The clearest parts of you",
-      tiers: { clear: "Strong signal", sharp: "Clear signal", forming: "Some signal", flex: "Both sides" },
-      short: { clear: "Strong", sharp: "Clear", forming: "Some", flex: "Both" },
-      surest: "Surest",
+      kicker: "What Genii is surest about",
+      title: "What stood out most",
+      tiers: LABELS.tiers,
+      short: LABELS.tiers,
+      surest: "Top finding",
       both: "Both",
     },
-    rooms: { kicker: "Room by room", title: "Same you, different rooms", differs: "Your other side" },
-    traits: { kicker: "Core traits", title: "What makes you, you" },
-    insight: { kicker: "The thing you didn't know" },
-    stings: { kicker: "Open book", title: "The part that stings", badge: null },
+    rooms: { kicker: "In different parts of life", title: "How you act in each part of life", differs: "Unusual for you" },
+    traits: { kicker: "Core traits", title: "Words that describe you" },
+    insight: { kicker: "A surprise about you" },
+    stings: { kicker: null, title: "Every strength has a flip side", badge: null },
     calls: {
-      kicker: "Genii's calls",
+      kicker: "Genii guessed your answers",
       intro: "Before your last cards, Genii locked in a guess for each one.",
-      titles: { most: "Genii saw most of you coming.", half: "Genii read you more often than not.", even: "Half called. Half surprised Genii.", some: "You kept Genii guessing.", none: "Genii held back on every guess this time." },
-      of: "called exactly",
-      status: { hit: "Called it", near: "Same side", miss: "Surprised Genii", pass: "Genii passed", skipped: "Skipped", unanswered: "Skipped" },
-      key: "Called it: your exact answer. Same side: the right lean, another move. Surprised: Genii missed.",
-      more: "See the cards",
+      titles: { most: "Genii got most of your answers right.", half: "Genii got more than half right.", even: "Genii got half of your answers right.", some: "You kept Genii guessing.", none: "Genii made no guesses this time." },
+      of: "guessed right",
+      status: LABELS.status,
+      key: null,
+      more: "See each guess",
     },
-    share: { kicker: "Your card", brand: "Genii · MirrorMii", sub: "They guess your answers. You see who really knows you.", challenge: "Challenge a friend" },
+    share: { kicker: "Your card", brand: "Genii · MirrorMii", sub: "Your friends guess your answers. Find out who knows you best.", challenge: "Let a friend guess your answers" },
     app: {
       kicker: "Get MirrorMii",
-      title: "Your real day powers the game.",
+      title: "Your real day, turned into a cozy game.",
       body: "Snap a moment of your day and Miia, your digital twin, lives it. Genii is waiting on the island.",
       button: "Get MirrorMii",
       store: "On the App Store",
       note: "Free to join.",
       snap: "You snap lunch",
-      lives: "Miia lives it",
+      lives: "Your in-game self eats it too",
     },
     noTraits: {
       rushed: "You played this one fast. Traits land when you take your time, so a slower run brings them out.",
@@ -102,39 +114,39 @@ export const STORY_COPY = Object.freeze({
     },
   },
   heart: {
-    intro: { kicker: "Genii's read", title: "40 answers in. Here's you.", sub: "Take your time with this one." },
-    names: { kicker: "You are", people: "With your people", life: "With your life", sub: "Two sides of you, both worth knowing." },
-    read: { kicker: "The read" },
+    intro: { kicker: "Your result is ready", title: "40 answers in. Here are your results.", sub: "Press and hold, then let go." },
+    names: { kicker: "You are", people: HALVES.people.kicker, life: HALVES.life.kicker, sub: null },
+    read: { kicker: "The short version" },
     map: {
-      kicker: "Your character sheet", title: "Your six stats", sub: "Your signature stat shines brightest. Your wild card could go either way.", subSolo: "Your signature stat shines brightest.",
-      people: "With your people", life: "With your life",
-      levels: { 1: "A touch", 2: "Mild", 3: "Clear", 4: "Strong", 5: "Through and through", both: "Both", open: "Still open" },
-      signature: "Signature", wild: "Wild card",
-      signatureNote: "Your clearest stat. It's the first thing people feel about you.", wildNote: "Your most open stat. It can go either way, depending on the day.",
+      kicker: "Your personality stats", title: "Your six stats, up close", sub: "The glowing stat is your strongest. The marked one sits closest to the middle.", subSolo: "The glowing stat is your strongest.",
+      people: HALVES.people.kicker, life: HALVES.life.kicker,
+      levels: LABELS.levels,
+      signature: LABELS.signature, wild: LABELS.wild,
+      signatureNote: "The stat you lean on most.", wildNote: "You sit near the middle here. It can go either way.",
       open: "This one needs a few more answers before it's clear.",
     },
     knows: {
-      kicker: "What Genii knows best",
-      title: "What came through clearest",
-      tiers: { clear: "Strong signal", sharp: "Clear signal", forming: "Some signal", flex: "Both sides" },
-      short: { clear: "Strong", sharp: "Clear", forming: "Some", flex: "Both" },
-      surest: "Clearest",
+      kicker: "What Genii is surest about",
+      title: "What stood out most",
+      tiers: LABELS.tiers,
+      short: LABELS.tiers,
+      surest: "Top finding",
       both: "Both",
     },
-    rooms: { kicker: "Room by room", title: "How you show up, room by room", differs: "A different side" },
-    traits: { kicker: "Core traits", title: "What makes you, you" },
-    insight: { kicker: "The thing you didn't know" },
-    stings: { kicker: "Open book", title: "The tender part", badge: null },
+    rooms: { kicker: "In different parts of life", title: "How you act in each part of life", differs: "Unusual for you" },
+    traits: { kicker: "Core traits", title: "Words that describe you" },
+    insight: { kicker: "A surprise about you" },
+    stings: { kicker: null, title: "Every strength has a flip side", badge: null },
     calls: {
-      kicker: "Genii's calls",
+      kicker: "Genii guessed your answers",
       intro: "Before your last cards, Genii quietly locked in a guess for each one.",
-      titles: { most: "Genii understood you well.", half: "Genii understood you more often than not.", even: "Genii understood half of you. The other half surprised it.", some: "You surprised Genii, and that's good to know.", none: "Genii held back on every guess this time." },
-      of: "called exactly",
-      status: { hit: "Called it", near: "Same side", miss: "A surprise", pass: "Genii passed", skipped: "Skipped", unanswered: "Skipped" },
-      key: "Called it: your exact answer. Same side: the right lean, another move. A surprise: Genii missed.",
-      more: "See the cards",
+      titles: { most: "Genii understood you well.", half: "Genii got more than half right.", even: "Genii got half of your answers right.", some: "You kept Genii guessing.", none: "Genii made no guesses this time." },
+      of: "guessed right",
+      status: LABELS.status,
+      key: null,
+      more: "See each guess",
     },
-    share: { kicker: "Your card", brand: "Genii · MirrorMii", sub: "They guess your answers. Send it to someone who'd get them right.", challenge: "Challenge a friend" },
+    share: { kicker: "Your card", brand: "Genii · MirrorMii", sub: "Your friends guess your answers. Find out who knows you best.", challenge: "Let a friend guess your answers" },
     app: {
       kicker: "Get MirrorMii",
       title: "Your real day, turned into a cozy game.",
@@ -143,7 +155,7 @@ export const STORY_COPY = Object.freeze({
       store: "On the App Store",
       note: "Free to join.",
       snap: "You snap lunch",
-      lives: "Miia lives it",
+      lives: "Your in-game self eats it too",
     },
     noTraits: {
       rushed: "You moved quickly through this one. Traits show up when you linger, so a slower run lets them come through.",
@@ -153,11 +165,11 @@ export const STORY_COPY = Object.freeze({
 });
 
 export const GUESS_COPY = Object.freeze({
-  button: "How Genii read you",
-  title: "How Genii read you",
+  button: "See Genii's guesses",
+  title: "See Genii's guesses",
   intro: "Before your last eight cards, Genii wrote down a guess for each one.",
-  none: "Genii held back on every guess this time.",
-  status: { hit: "Called it", miss: "Missed", pass: "Passed", skipped: "Skipped", unanswered: "Skipped" },
+  none: "Genii made no guesses this time.",
+  status: { hit: "Guessed right", miss: "Genii missed", pass: "No guess", skipped: "You skipped", unanswered: "You skipped" },
 });
 
 const str = (v) => (typeof v === "string" && v.trim() ? v : null);
@@ -363,8 +375,10 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
   const lifeH = halfOf("life");
   const relL = libHalf(relH);
   const lifeL = libHalf(lifeH);
+  // Every title card shows the half's kicker, the archetype name and the one plain line that defines it (section 26).
   const half = (h, l, label) => ({
     label, name: str(l.name) || h.name, code: sigilCode(h.code),
+    define: voiced(l, ["define"], wording) || "",
     read: voiced(l, ["read", "desc"], wording) || h.desc || "",
     desc: voiced(l, ["desc"], wording) || h.desc || "",
   });
@@ -417,7 +431,7 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
   const mark = (x, badge, label, note) => {
     if (!x) return null;
     x.r.badge = badge;
-    return { key: x.r.key, stat: x.r.stat, end: x.r.flex ? `${x.r.a} and ${x.r.b}` : x.r.leadEnd, label, note };
+    return { key: x.r.key, stat: x.r.stat, end: x.r.flex ? bothEnds(x.r.a, x.r.b) : x.r.leadEnd, label, note };
   };
   const signature = mark(sigRow, "signature", C.map.signature, C.map.signatureNote);
   const wild = mark(wildRow, "wild", C.map.wild, C.map.wildNote);
@@ -439,7 +453,7 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
       const level = r.flex ? 0 : clarityLevel(r.clarity);
       return {
         key: r.key, kind: r.flex ? "flex" : "axis", topic: str((axisMeta[r.key] || {}).topic) || `${r.right} or ${r.left}`,
-        stat: statOf(r.key).stat, leadEnd: r.flex ? C.knows.both : r.leadEnd, otherEnd: r.flex ? `${r.a} and ${r.b}` : r.otherEnd,
+        stat: statOf(r.key).stat, leadEnd: r.flex ? C.knows.both : r.leadEnd, otherEnd: r.flex ? bothEnds(r.a, r.b) : r.otherEnd,
         lead: r.flex ? C.knows.both : r.lead, other: r.flex ? `${r.left} and ${r.right}` : r.other,
         line: knowsLine(r), short: splitInsight(knowsLine(r)).belief, clarity: r.clarity, level, tier: r.flex ? C.knows.tiers.flex : C.knows.tiers[TIER_OF[level]],
         tierShort: r.flex ? C.knows.short.flex : C.knows.short[TIER_OF[level]],
@@ -534,12 +548,12 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
   const opposite = oppositeOf(L, relH.code, lifeH.code);
   const share = {
     brand: C.share.brand,
-    names: [{ label: people.label, name: people.name, code: people.code }, { label: life.label, name: life.name, code: life.code }],
+    names: [people, life].map((h) => ({ label: h.label, name: h.name, define: h.define, code: h.code })),
     // Marriage and kids tags (library `locked18`) never go on anything shareable.
     // The core traits as keywords (round 3). Marriage and kids tags (library `locked18`) never go on anything shareable.
     tags: publicCore.map((k) => ({ name: k.keyword, heart: k.line, chapter: k.chapter, kind: k.kind })),
     keywords: publicCore.map((k) => k.keyword),
-    invite: str(result.share && result.share.invite) || "Do you really know me?",
+    invite: UI_COPY.invite,
     facet,
     mirror: mirror || null,
     url: SHARE_URL_LABEL,
@@ -604,14 +618,14 @@ export function printFor(slide) {
   const base = { id: slide.id, look: slide.look || LOOKS[slide.id] || "night", kicker: slide.kicker };
   switch (slide.id) {
     case "intro": return { ...base, title: slide.title, lines: [], mirror: slide.mirror };
-    case "names": return { ...base, kicker: null, names: [slide.people, slide.life].map((h) => ({ label: h.label, name: h.name, code: h.code })), hook: slide.hook || null, lines: [slide.sub], mirror: slide.mirror };
+    case "names": return { ...base, kicker: null, names: [slide.people, slide.life].map((h) => ({ label: h.label, name: h.name, define: h.define, code: h.code })), hook: slide.hook || null, lines: [slide.sub].filter(Boolean), mirror: slide.mirror };
     case "read": {
       const marks = slide.marks || [];
       const keep = slide.lines.map((line, i) => ({ line, body: (slide.bodies || [])[i] || "", mark: marks[i] || { kind: "none" } })).filter((x) => !(x.mark && x.mark.private));
       return { ...base, tablets: keep };
     }
     // The character sheet: per stat its end, level word, pips and plain line; no number or percentage is drawn.
-    case "map": return { ...base, title: slide.title, sub: slide.sub, groups: slide.groups.map((g) => ({ label: g.label, rows: g.rows.map((r) => ({ stat: r.stat, left: r.a, right: r.b, pos: r.at, side: r.leadSide === "a" ? "left" : "right", flex: r.flex, unfinished: r.unfinished, end: r.flex || r.unfinished ? `${r.a} · ${r.b}` : r.leadEnd, level: r.level, pips: r.pips, split: r.split, line: r.note, badge: r.badge, badgeLabel: r.badge === "signature" ? slide.signature && slide.signature.label : r.badge === "wild" ? slide.wild && slide.wild.label : null })) })) };
+    case "map": return { ...base, title: slide.title, sub: slide.sub, groups: slide.groups.map((g) => ({ label: g.label, rows: g.rows.map((r) => ({ stat: r.stat, left: r.a, right: r.b, pos: r.at, side: r.leadSide === "a" ? "left" : "right", flex: r.flex, unfinished: r.unfinished, end: r.flex ? bothEnds(r.a, r.b) : r.unfinished ? bothEnds(r.a, r.b, "or") : r.leadEnd, level: r.level, pips: r.pips, split: r.split, line: r.note, badge: r.badge, badgeLabel: r.badge === "signature" ? slide.signature && slide.signature.label : r.badge === "wild" ? slide.wild && slide.wild.label : null })) })) };
     case "knows": return { ...base, title: slide.title, findings: slide.findings.map((f, i) => ({ topic: f.stat ? `${f.stat} · ${f.leadEnd}` : f.leadEnd, lead: f.leadEnd, other: f.otherEnd, kind: f.kind, line: i ? f.short || f.line : f.line, level: f.level, tier: f.tier })) };
     case "rooms": return { ...base, title: slide.title, rows: slide.rows.map((r) => ({ room: r.room, line: r.line, chapter: r.chapter, level: r.level })) };
     case "traits": {

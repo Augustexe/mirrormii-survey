@@ -28,7 +28,7 @@ function Frame({ kicker, title, children, progress, bubble, hero = null, heroInC
         <section className="play-col">
           <div className="play-genii"><GeniiLight mood="listening" size="xs" /><p className="play-genii__line">{bubble || ""}</p></div>
           <article className="pc fg-card" data-card-type="friend">
-            <p className="pc-kicker"><span className="pc-kicker__label">Do you really know me?</span><span className="pc-kicker__dot" aria-hidden="true">·</span><span className="pc-kicker__chapter">{kicker}</span></p>
+            <p className="pc-kicker"><span className="pc-kicker__label">How well do you know me?</span><span className="pc-kicker__dot" aria-hidden="true">·</span><span className="pc-kicker__chapter">{kicker}</span></p>
             {heroInCard && hero ? <div className="fg-hero">{hero}</div> : null}
             {progress ? (
               <p className="fg-dots" aria-hidden="true">{Array.from({ length: progress[1] }, (_, i) => <i key={i} className={i < progress[0] ? "is-on" : ""} />)}</p>
