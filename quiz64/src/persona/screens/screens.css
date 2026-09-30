@@ -1408,6 +1408,8 @@
       padding-block-start: 0;
       max-inline-size: 520px;
     }
+    /* The large title's reflection needs its own band: the line under it starts below the reflection (package L2). */
+    .mm-interlude__title { margin-block-end: calc(var(--s-4) + 0.3em); }
     .mm-interlude__start {
       inline-size: auto;
       min-inline-size: 240px;
