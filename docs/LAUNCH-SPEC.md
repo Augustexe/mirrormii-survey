@@ -409,8 +409,22 @@ Coverage: every axis carried by at least 15 scored cards, at least 6 of them in 
 | G4 Card variety | `research/persona-quiz-v2/final/bank/*`, merged `cards.json`, evidence lock, Codex judge |
 | G5 Integrate and judge | full tests, capture, Codex visual judge round 3, fixes |
 
+## 24. Round 3: tighten the reveal and hand off (Jerry, 2026-09-29 night)
+
+Keep spend tight: one pass, three crews, then one integration and judge pass.
+
+1. **Stats without percentages.** Players found "62% Wanderlust" confusing. MBTI shows a letter code and a percentage per letter; we show a game character sheet instead: each stat has 5 pips, a level word and one plain line that says what it means in real life. No percentages anywhere on player surfaces.
+2. **Core traits.** A set of 5 to 6 keyword traits (one or two words each, evidence-backed from top tags and strongest poles) is shown as the core traits, not a single one. Share surfaces show the most that stay legible.
+3. **Rooms rewritten.** Friends, love and relationship room lines read boring; rewrite them spicier, specific and natural, in both voices.
+4. **Stings and "what everyone knows" tightened.** Open-book tone: no "only you see this" hiding frame; marriage and kids tags still stay off shareable images.
+5. **Bank legibility.** Every question and event must be instantly legible; weird premises get clarified or replaced, evidence unchanged unless meaning changes.
+6. **Reveal craft.** Glow behind frames, better mirror and shard animations.
+7. **Real product assets on product screens.** The share and get-the-app screens use MirrorMii's real game world and CGI Genii renders (assets/Genomii AI.library: composite-world-map.png, genii-v2-screenshot-02.png, production-media scene 1 03-@SOURCE-genii-master.png, 01-@REF-01-world-style-material-key.png), optimized into quiz64/public/assets/world/. At least one final screen shows the game world. This overrides the earlier "generate fresh, no library assets" rule for product and CTA screens only.
+8. **Handoff quality.** The whole codebase is cleaned for Desmond: dead code removed, docs current, one README path.
+
 ## Changes
 
+- 2026-09-29: Section 24 added: round 3 (stats without percentages, core traits, rooms, stings, bank legibility, reveal craft, real product assets, handoff).
 - 2026-09-29: Section 23: map stat labels (Orbit, Delivery, Blueprint, Compass, Engine, Code) replace internal pole names on player surfaces.
 - 2026-09-29: Round 2 closed (G5): section 21 final screen order is the 12-screen deck; section 17 status adds round 2 with the gate numbers.
 - 2026-09-29: Section 23 added: round 2 rulings (Genii evolves from the orb, no lamps, motion finish, card variety, reveal x10, display accuracy) and packages G1 to G5.
