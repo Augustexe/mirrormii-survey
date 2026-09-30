@@ -460,6 +460,7 @@
     block-size: 100%;
     object-fit: cover;
     object-position: 50% 40%;
+    filter: saturate(1.12) contrast(1.06);
     opacity: 0;
     transition: opacity var(--d-slow) var(--e-out);
   }
@@ -471,7 +472,7 @@
     inset: 12% 8% 30%;
     border-radius: 50%;
     background: radial-gradient(closest-side, var(--c-surface-solid), color-mix(in srgb, var(--c-violet-300) 60%, transparent) 55%, transparent);
-    opacity: 0.85;
+    opacity: 0.62;
   }
   .mm-fogmirror__inside::after {
     content: "";

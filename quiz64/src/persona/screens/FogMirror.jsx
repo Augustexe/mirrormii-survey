@@ -27,7 +27,7 @@ function paintFog(ctx, w, h, seed) {
   const g = ctx.createLinearGradient(0, 0, 0, H);
   g.addColorStop(0, cssVar("--c-surface-solid", tokens.color.surfaceSolid));
   g.addColorStop(1, cssVar("--c-canvas-2", tokens.color.canvas2));
-  ctx.globalAlpha = 0.56; // round 3: a little thinner, so the real city reads behind the frost
+  ctx.globalAlpha = 0.44; // round 3 (H4): thinner again, so the real city reads behind the frost at phone size
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, W, H);
   ctx.globalAlpha = 1;
