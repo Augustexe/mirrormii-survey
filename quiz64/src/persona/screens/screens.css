@@ -451,6 +451,19 @@
     opacity: 0.95;
   }
   .mm-fogmirror__world svg { display: block; inline-size: 100%; block-size: auto; }
+  /* Round 3: the real MirrorMii city behind the glass (world style key), faded in once decoded; absolutely placed,
+     so its arrival never moves anything. */
+  .mm-fogmirror__photo {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    object-position: 50% 40%;
+    opacity: 0;
+    transition: opacity var(--d-slow) var(--e-out);
+  }
+  .mm-fogmirror__photo[data-loaded="true"] { opacity: 1; }
   /* Genii's glow and a soft reflection band across the center of the glass. */
   .mm-fogmirror__inside::before {
     content: "";

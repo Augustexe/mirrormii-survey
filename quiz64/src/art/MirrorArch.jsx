@@ -16,8 +16,10 @@ const clamp01 = (n) => Math.max(0, Math.min(1, Number(n) || 0));
 
 // fresh: how many of the last filled shards just landed; they carry data-fresh so a screen can play their arrival
 // (system.css animates them only when motion is on). seams: "dark" draws the cracks in deep violet with a white
-// highlight, so the mosaic reads on a pale page before any shard is filled.
-export function MirrorArch({ seed, filled = [], fog = 0, glow = 0.6, mullion = false, size = 320, className, fresh = 0, seams = "light" }) {
+// highlight, so the mosaic reads on a pale page before any shard is filled. world: a URL of the real MirrorMii city
+// (src/art/world.js, round 3) shown through the glass under the shards, which then turn to tinted stained glass so the
+// world reads through them; off by default, so every other mirror stays code-drawn.
+export function MirrorArch({ seed, filled = [], fog = 0, glow = 0.6, mullion = false, size = 320, className, fresh = 0, seams = "light", world = null }) {
   const rid = safeId(useId(), "arch");
   const count = Math.max(filled.length, 40);
   const cells = useMemo(() => mosaic(seed ?? "mirror", count, { w: W, h: H }).cells, [seed, count]);
@@ -89,12 +91,13 @@ export function MirrorArch({ seed, filled = [], fog = 0, glow = 0.6, mullion = f
 
       <g clipPath={u("clip")}>
         <rect x="0" y="0" width={W} height={H} fill={u("glass")} />
-        <rect data-part="light" x="0" y="0" width={W} height={H} fill={u("light")} opacity={0.35 + 0.65 * g} />
+        {world ? <image data-part="world" href={world} x="0" y="0" width={W} height={H} preserveAspectRatio="xMidYMid slice" /> : null}
+        <rect data-part="light" x="0" y="0" width={W} height={H} fill={u("light")} opacity={(world ? 0.2 : 0.35) + (world ? 0.35 : 0.65) * g} />
         <g data-part="cells">
           {cells.map((cell, i) => {
             const shard = filled[i];
             const isFresh = fresh > 0 && i >= filled.length - fresh;
-            return shard ? <path key={cell.index} data-index={cell.index} data-fresh={isFresh ? "true" : undefined} style={isFresh ? { "--fresh-i": i - (filled.length - fresh) } : undefined} d={cell.path} fill={u(`c-${chapterKey(shard.chapter)}`)} fillOpacity="0.9" /> : null;
+            return shard ? <path key={cell.index} data-index={cell.index} data-fresh={isFresh ? "true" : undefined} style={isFresh ? { "--fresh-i": i - (filled.length - fresh) } : undefined} d={cell.path} fill={u(`c-${chapterKey(shard.chapter)}`)} fillOpacity={world ? 0.52 : 0.9} /> : null;
           })}
         </g>
         {seams === "dark" ? <path d={cracks} fill="none" stroke={v("c-violet-text")} strokeOpacity="0.45" strokeWidth="0.9" strokeLinejoin="round" /> : null}

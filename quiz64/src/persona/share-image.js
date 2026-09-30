@@ -289,6 +289,98 @@ function loadWordmark() {
   return wordmark;
 }
 
+// Round 3 (LAUNCH-SPEC 24 item 7): the real MirrorMii world on the card. The city from the world style key shows
+// through the mirror's stained glass, the mirror stands on the MirrorMii World island, and the CGI glass Genii sits
+// beside it. Loaded once, in parallel with the fonts; anything that fails or is late (1.5 s) is simply left out, so
+// the card always draws, and the tests' recording canvas never sees an image.
+const worldArt = { mirror: null, island: null, genii: null };
+let worldLoading = null;
+function loadWorld(timeout = 1500) {
+  if (!worldLoading) {
+    worldLoading = new Promise((resolve) => {
+      if (typeof Image === "undefined") { resolve(worldArt); return; }
+      const base = (import.meta.env && import.meta.env.BASE_URL) || "./";
+      const files = { mirror: "world/mirror-world-526.webp", island: "world/island-1440.webp", genii: "world/genii-480.webp" };
+      let left = Object.keys(files).length;
+      const done = () => { left -= 1; if (left === 0) resolve(worldArt); };
+      for (const [key, file] of Object.entries(files)) {
+        const img = new Image();
+        img.decoding = "async";
+        img.onload = () => { worldArt[key] = img; done(); };
+        img.onerror = done;
+        img.src = `${base}assets/${file}`;
+      }
+    });
+  }
+  let timer;
+  const late = new Promise((resolve) => { timer = setTimeout(() => resolve(worldArt), timeout); });
+  return Promise.race([worldLoading, late]).finally(() => clearTimeout(timer));
+}
+
+// Light behind the mirror: a wide bloom in the brand violet with warm and cool edges, and soft rays from the dome.
+function aura(ctx, cx, cy, r, p) {
+  const night = p.dark;
+  glow(ctx, cx, cy, r * 1.15, night ? N.violet : C.violet300, night ? 0.5 : 0.55);
+  glow(ctx, cx - r * 0.5, cy + r * 0.35, r * 0.75, tokens.chapterTint[3].tint, night ? 0.26 : 0.34);
+  glow(ctx, cx + r * 0.5, cy - r * 0.3, r * 0.75, tokens.chapterTint[1].tint, night ? 0.26 : 0.34);
+  ctx.save();
+  ctx.translate(cx, cy - r * 0.35);
+  for (let i = 0; i < 16; i++) {
+    const a = (i / 16) * Math.PI * 2 + 0.12;
+    const g = ctx.createRadialGradient(0, 0, r * 0.1, 0, 0, r * 1.25);
+    g.addColorStop(0, rgba(tokens.color.surfaceSolid, night ? 0.16 : 0.3));
+    g.addColorStop(1, rgba(tokens.color.surfaceSolid, 0));
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.arc(0, 0, r * 1.25, a, a + 0.1);
+    ctx.closePath();
+    ctx.fill();
+  }
+  ctx.restore();
+}
+
+// The island under the mirror's plinth, faded at its cut edges; returns nothing when the image is not there.
+function drawIsland(ctx, cx, top, width, alpha = 1) {
+  const img = worldArt.island;
+  if (!img || !ctx.drawImage || typeof document === "undefined") return;
+  const w = Math.round(width);
+  const h = Math.round((width * img.height) / img.width);
+  try {
+    const off = document.createElement("canvas");
+    off.width = w;
+    off.height = h;
+    const o = off.getContext("2d");
+    o.drawImage(img, 0, 0, w, h);
+    // Soft oval mask: the crop's straight left edge and the diorama's rim melt into the card.
+    o.globalCompositeOperation = "destination-in";
+    o.save();
+    o.translate(w / 2, h * 0.44);
+    o.scale(1, (h * 0.62) / (w * 0.5));
+    const m = o.createRadialGradient(0, 0, 0, 0, 0, w * 0.5);
+    m.addColorStop(0, "rgba(0, 0, 0, 1)");
+    m.addColorStop(0.74, "rgba(0, 0, 0, 1)");
+    m.addColorStop(1, "rgba(0, 0, 0, 0)");
+    o.fillStyle = m;
+    o.fillRect(-w, -w, w * 2, w * 2);
+    o.restore();
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.drawImage(off, cx - w / 2, top);
+    ctx.restore();
+  } catch { /* the island is decoration */ }
+}
+
+function drawGenii(ctx, x, bottom, width) {
+  const img = worldArt.genii;
+  if (!img || !ctx.drawImage) return;
+  const h = (width * img.height) / img.width;
+  ctx.save();
+  glow(ctx, x + width / 2, bottom - h * 0.5, width * 0.9, tokens.color.surfaceSolid, 0.35);
+  ctx.drawImage(img, x, bottom - h, width, h);
+  ctx.restore();
+}
+
 function drawWordmark(ctx, img, cx, y, width, p) {
   if (!img || typeof document === "undefined") return;
   try {
@@ -381,6 +473,14 @@ export function drawHeroMirror(ctx, { x, y, w, mirror, p, layout = null, fog = 0
   base.addColorStop(1, night ? N.n900 : tokens.color.surfaceSolid);
   ctx.fillStyle = base;
   ctx.fillRect(0, 0, 100, 160);
+  // The real MirrorMii city behind the stained glass (round 3).
+  const city = worldArt.mirror && ctx.drawImage ? worldArt.mirror : null;
+  if (city) {
+    ctx.save();
+    ctx.globalAlpha = night ? 0.85 : 0.95;
+    ctx.drawImage(city, 0, 0, 100, 160);
+    ctx.restore();
+  }
   for (let i = 0; i < cells.length; i++) {
     const cell = cells[i];
     const shard = filled[i];
@@ -393,7 +493,7 @@ export function drawHeroMirror(ctx, { x, y, w, mirror, p, layout = null, fog = 0
       g.addColorStop(0, rgba(tokens.color.surfaceSolid, night ? 0.55 : 0.85));
       g.addColorStop(0.45, t.tint);
       g.addColorStop(1, rgba(t.deep, night ? 0.9 : 0.6));
-      ctx.globalAlpha = (shard.skipped ? 0.45 : 1) * (night ? 0.94 : 0.9);
+      ctx.globalAlpha = (shard.skipped ? 0.45 : 1) * (night ? 0.94 : 0.9) * (city ? 0.6 : 1);
       ctx.fillStyle = g;
       ctx.fill(d);
     }
@@ -531,9 +631,9 @@ function drawPill(ctx, { cx, y, item, p, size, maxW }) {
   const h = nm.size * 1.9;
   const x = cx - w / 2;
   roundRect(ctx, x, y, w, h, h / 2);
-  ctx.fillStyle = p.dark ? rgba(N.ink, 0.1) : rgba(tokens.color.surfaceSolid, 0.85);
+  ctx.fillStyle = p.dark ? rgba(N.n900, 0.8) : rgba(tokens.color.surfaceSolid, 0.92);
   ctx.fill();
-  ctx.strokeStyle = p.dark ? rgba(N.ink, 0.42) : rgba(C.violetText, 0.3);
+  ctx.strokeStyle = p.dark ? rgba(N.ink, 0.5) : rgba(C.violetText, 0.35);
   ctx.lineWidth = 3;
   ctx.stroke();
   const r = nm.size * 0.22;
@@ -589,7 +689,10 @@ export function drawShareCard(ctx, card, { format = "story", theme = "night", li
     drawWordmark(ctx, wordmarkImage, W / 2, 30, 170, p);
     const aw = 560;
     const ay = 110;
+    aura(ctx, W / 2, ay + aw * 0.72, aw * 0.95, p);
+    drawIsland(ctx, W / 2, ay + aw * 1.6 - 200, 880);
     const h = drawNamedMirror(ctx, { x: (W - aw) / 2, y: ay, w: aw, names, mirror: card.mirror, p });
+    drawGenii(ctx, (W + aw) / 2 + 6, ay + h + 10, 150);
     drawPillRows(ctx, { items, y: ay + h + 30, W, p, size: 34, maxW: W - 100, maxRows: 2, gap: 16, rowGap: 14 });
     font(ctx, "display", 420, 48, true);
     lines(ctx, [card.invite || ""], W / 2, H - 72, { lh: 0, align: "center", color: p.accent });
@@ -600,7 +703,10 @@ export function drawShareCard(ctx, card, { format = "story", theme = "night", li
   drawWordmark(ctx, wordmarkImage, W / 2, 64, 220, p);
   const aw = 780;
   const ay = 168;
+  aura(ctx, W / 2, ay + aw * 0.72, aw * 0.9, p);
+  drawIsland(ctx, W / 2, ay + aw * 1.6 - 250, 1240);
   const h = drawNamedMirror(ctx, { x: (W - aw) / 2, y: ay, w: aw, names, mirror: card.mirror, p });
+  drawGenii(ctx, (W + aw) / 2 - 70, ay + h + 60, 190);
   drawPillRows(ctx, { items, y: ay + h + 44, W, p, size: 46, maxW: W - 140, maxRows: 2 });
   font(ctx, "display", 420, 58, true);
   lines(ctx, [card.invite || ""], W / 2, 1800, { lh: 0, align: "center", color: p.accent });
@@ -892,8 +998,7 @@ function newCanvas(format) {
 
 // Draw the mirror card into a canvas (the live preview on story 8 uses the same call).
 export async function renderShareCard(card, { format = "story", theme = "night", canvas = null } = {}) {
-  await fontsReady();
-  const img = await loadWordmark();
+  const [, img] = await Promise.all([fontsReady(), loadWordmark(), loadWorld()]);
   const c = canvas || newCanvas(format);
   const { w, h } = FORMATS[format] || FORMATS.story;
   if (c.width !== w) c.width = w;
@@ -907,8 +1012,7 @@ export async function renderShareCard(card, { format = "story", theme = "night",
 }
 
 export async function renderStoryImage(spec) {
-  await fontsReady();
-  const img = await loadWordmark();
+  const [, img] = await Promise.all([fontsReady(), loadWordmark(), loadWorld()]);
   const c = newCanvas("story");
   const ctx = c.getContext("2d");
   if (!ctx) throw new Error("Image export unavailable");

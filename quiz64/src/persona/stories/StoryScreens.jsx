@@ -10,7 +10,7 @@ import { CoreTraitsScreen, SheetScreen, StingsScreen } from "./SheetScreens.jsx"
 import { KnowsScreen } from "../reveal/Findings.jsx";
 import { RoomsScreen } from "../reveal/Rooms.jsx";
 import { CallsScreen } from "../reveal/Calls.jsx";
-import { AppScene } from "../reveal/AppScene.jsx";
+import { Aura, WorldScene } from "../reveal/WorldArt.jsx";
 import { InsightFlip } from "../reveal/InsightFlip.jsx";
 import { renderShareCard, FORMATS, SHARE_TRAITS } from "../share-image.js";
 import { UI_COPY } from "./story-data.js";
@@ -88,13 +88,18 @@ function Seg({ value, options, onChange, label }) {
 }
 
 // Story 11 (G6): the card first, a little smaller; Share image is the one primary action; the friend game is a named
-// challenge with what it is under it; Copy link steps back to a text button.
+// challenge with what it is under it; Copy link steps back to a text button. Round 3: the card stands in light on the
+// real MirrorMii World island, with the CGI Genii beside it (drawn into the card), and light blooms behind it.
 function ShareScreen({ s, active, onInvite, onShareImage, onCopy, copied, format, setFormat, cardTheme, setCardTheme, busy }) {
   return (
     <div className="rv-body rv-body--share">
       <Kicker>{s.kicker}</Kicker>
       <h2 className="sr-only" data-focus tabIndex="-1">{s.kicker}</h2>
-      <div className="rv-cardwrap rv-in"><MirrorCard card={s.share} active={active} format={format} theme={cardTheme} /></div>
+      <div className="rv-cardwrap rv-in">
+        {/* The card itself carries the island and the CGI Genii (share-image.js); the page adds the light behind it. */}
+        <span className="rv-cardstage" aria-hidden="true"><Aura className="rv-cardstage__aura" /></span>
+        <MirrorCard card={s.share} active={active} format={format} theme={cardTheme} />
+      </div>
       <div className="rv-cardopts rv-in">
         <Seg label="Card shape" value={format} onChange={setFormat} options={[["story", UI_COPY.shareFormats.story], ["post", UI_COPY.shareFormats.post]]} />
         <Seg label="Card light" value={cardTheme} onChange={setCardTheme} options={[["night", "Night"], ["day", "Day"]]} />
@@ -110,9 +115,9 @@ function ShareScreen({ s, active, onInvite, onShareImage, onCopy, copied, format
   );
 }
 
-// Story 12: get the app (G6). The loop in one picture (you snap lunch, Miia lives it, Genii on the island), a headline
-// that says what the game does with your real day, one App Store style button; the friend game and the guesses step
-// back to small links; the data actions wait behind "Your data".
+// Story 12: get the app (G6, round 3). The loop in one picture on the real MirrorMii World island (you snap lunch, it
+// lands in the game, the CGI Genii waits on the plaza), a headline that says what the game does with your real day,
+// one App Store style button; the friend game, the guesses and the data actions are small links under it.
 function StoreGlyph() {
   // A plain phone with a download arrow: a store cue drawn in code, not a platform's mark.
   return (
@@ -128,10 +133,10 @@ function App({ s, stage, onFriends, onGuesses, hasGuesses, guessLabel, onData })
   const placeholder = s.link.startsWith("#");
   const h = stage ? stage.h : 844;
   const w = stage ? stage.w : 390;
-  const art = Math.round(Math.max(180, Math.min(280, (h - 490) * 0.8, w * 0.7)));
+  const art = Math.round(Math.max(140, Math.min(320, h - 520)));
   return (
     <div className="rv-body rv-body--app">
-      <AppScene width={art} snap={s.snap} lives={s.lives} />
+      <WorldScene width={w} height={art} snap={s.snap} lives={s.lives} />
       <Kicker>{s.kicker}</Kicker>
       <h2 className="rv-title rv-in" data-focus tabIndex="-1">{s.title}</h2>
       <p className="rv-body-l rv-in">{s.body}</p>
@@ -141,8 +146,8 @@ function App({ s, stage, onFriends, onGuesses, hasGuesses, guessLabel, onData })
       </a>
       <p className="rv-note rv-in">{s.note}</p>
       <div className="rv-end rv-in">
-        <button type="button" className="rv-ghost" onClick={onFriends}><Users size={16} aria-hidden="true" /> Do you really know me?</button>
         <div className="rv-end__links">
+          <button type="button" className="rv-textbtn" onClick={onFriends}><Users size={15} aria-hidden="true" /> Do you really know me?</button>
           {hasGuesses && <button type="button" className="rv-textbtn" onClick={onGuesses}>{guessLabel}</button>}
           <button type="button" className="rv-textbtn" onClick={onData}>{UI_COPY.yourData}</button>
         </div>

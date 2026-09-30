@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
 import { IslandScene, geometry } from "../../art/index.js";
+import { WORLD } from "../../art/world.js";
 import { GeniiLight, tokens } from "../../system/index.js";
 
 const W = 100;
@@ -26,7 +27,7 @@ function paintFog(ctx, w, h, seed) {
   const g = ctx.createLinearGradient(0, 0, 0, H);
   g.addColorStop(0, cssVar("--c-surface-solid", tokens.color.surfaceSolid));
   g.addColorStop(1, cssVar("--c-canvas-2", tokens.color.canvas2));
-  ctx.globalAlpha = 0.66;
+  ctx.globalAlpha = 0.56; // round 3: a little thinner, so the real city reads behind the frost
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, W, H);
   ctx.globalAlpha = 1;
@@ -70,6 +71,11 @@ export function FogMirror({ seed = "mirrormii", className = "" }) {
   const reducedOS = useReducedMotion();
   const [noticed, setNoticed] = useState(false);
   const [peek, setPeek] = useState(false);
+  // Round 3: the glass shows the real MirrorMii city (a small preloaded WebP); the code-drawn island stands in until
+  // it has loaded, and again if it fails, so the arch never shows an empty or shifting frame.
+  const [world, setWorld] = useState(false);
+  const photo = useRef(null);
+  useEffect(() => { if (photo.current && photo.current.complete && photo.current.naturalWidth) setWorld(true); }, []);
   const cells = useMemo(() => geometry.mosaic(seed, 40, { w: W, h: H }).cells, [seed]);
   const motionOff = () => Boolean(reducedOS) || (typeof document !== "undefined" && document.body.dataset.motion === "off");
 
@@ -227,7 +233,9 @@ export function FogMirror({ seed = "mirrormii", className = "" }) {
           </g>
         </svg>
         <div className="mm-fogmirror__inside">
-          <span className="mm-fogmirror__world"><IslandScene chapter={6} variant="scene" size={200} /></span>
+          {world ? null : <span className="mm-fogmirror__world"><IslandScene chapter={6} variant="scene" size={200} /></span>}
+          <img ref={photo} className="mm-fogmirror__photo" data-loaded={world ? "true" : "false"} src={WORLD.mirror.small} srcSet={WORLD.mirror.srcSet}
+            sizes="(min-width: 1024px) 420px, 300px" alt="" decoding="async" fetchpriority="high" onLoad={() => setWorld(true)} onError={() => setWorld(false)} />
           <span className="mm-fogmirror__drift mm-fogmirror__drift--a" />
           <span className="mm-fogmirror__drift mm-fogmirror__drift--b" />
           <span className="mm-fogmirror__drift mm-fogmirror__drift--c" />

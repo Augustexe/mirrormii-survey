@@ -55,7 +55,8 @@ test("landing: hook, reflection line, one primary action, the fogged mirror, chi
   assert.match(html, /class="mm-fogmirror[^"]*" aria-hidden="true"/);
   assert.match(html, /<canvas[^>]*mm-fogmirror__fog/);
   for (const chip of LOBBY_COPY.landing.chips) assert.ok(text.includes(chip), chip);
-  assert.doesNotMatch(html, /<img(?![^>]*wordmark)/, "no raster art on the landing");
+  // Round 3 (LAUNCH-SPEC 24 item 7): the mirror's glass shows the real MirrorMii city; no other raster on the landing.
+  assert.doesNotMatch(html, /<img(?![^>]*(?:wordmark|assets\/world\/mirror-world))/, "no raster art on the landing but the mirror world");
   assert.ok(visible(render(PersonaLanding, { progress: "run", onBegin() {}, onHow() {} })).includes("Pick up where I left off"));
   assert.ok(visible(render(PersonaLanding, { progress: "result", onBegin() {}, onHow() {} })).includes("See my result"));
   assert.doesNotMatch(text, INTERNAL);

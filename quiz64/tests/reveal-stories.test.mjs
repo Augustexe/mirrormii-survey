@@ -113,7 +113,9 @@ test("the app screen has one primary job; the stings sheet only saves; the guess
     const app = slideHtml(html, "app");
     assert.equal((app.match(/class="rv-cta /g) || []).length, 1, `${voice}: one primary button`);
     assert.ok(visible(app).includes("Your data"));
-    assert.match(app, /class="rv-appscene"/, `${voice}: one large in-game moment`);
+    assert.match(app, /class="rv-world"[^>]*aria-hidden="true"/, `${voice}: one large in-game moment on the real island`);
+    assert.match(app, /assets\/world\/island-/, `${voice}: the MirrorMii World diorama`);
+    assert.match(app, /assets\/world\/genii-/, `${voice}: the CGI Genii`);
     assert.ok(visible(app).includes("Get MirrorMii"));
     const share = slideHtml(html, "share");
     assert.match(share, /Your opposite: .+ and .+\. Know one\?/);

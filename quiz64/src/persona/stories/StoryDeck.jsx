@@ -18,6 +18,7 @@ import { FriendsPanel } from "../FriendsPanel.jsx";
 import { DataSheet, GuessSheet, ShareSheet, Sheet } from "../reveal/Sheets.jsx";
 import { useElementSize, useReduced } from "../reveal/layout.js";
 import "../reveal/reveal.css";
+import "../reveal/craft.css";
 
 export { GuessSheet };
 

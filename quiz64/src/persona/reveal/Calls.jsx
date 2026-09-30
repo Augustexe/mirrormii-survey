@@ -1,4 +1,5 @@
-// Story 10, Genii's calls (round 2, LAUNCH-SPEC 21 and 23; G6 redesign, DESIGN-DIRECTION section 8 D11): the eight
+// Story 10, Genii's calls (round 2, LAUNCH-SPEC 21 and 23; G6 redesign, DESIGN-DIRECTION section 8 D11; round 3
+// light behind the grid and behind each called pane): the eight
 // guesses Genii locked before the final cards, in the order they were played, each a pane of glass named by its scene.
 // The panes arrive face down and flip into place one by one: a call Genii got exactly turns clear and lit with a glint
 // and the end of the stat it called; a call where Genii had the right side but not the exact move turns half clear
@@ -9,6 +10,7 @@
 import React from "react";
 import { Check } from "lucide-react";
 import { GeniiLight } from "../../system/index.js";
+import { Aura } from "./WorldArt.jsx";
 
 function PaneMark({ status, near }) {
   if (status === "hit") return <span className="rv-call__mark" aria-hidden="true"><Check size={14} strokeWidth={3} /></span>;
@@ -30,6 +32,7 @@ export function CallsScreen({ s, onGuesses }) {
   const state = (r) => (r.status === "hit" ? "hit" : r.near ? "near" : r.status === "miss" ? "miss" : "dim");
   return (
     <div className="rv-body rv-body--calls" data-tally={s.called ? Math.round((s.exact / s.called) * 4) : 0}>
+      <Aura className="rv-calls__aura" />
       <p className="rv-kicker rv-in">{s.kicker}</p>
       <div className="rv-calls__hero rv-in">
         <span className="rv-calls__genii" aria-hidden="true">
@@ -47,6 +50,8 @@ export function CallsScreen({ s, onGuesses }) {
           return (
             <li key={r.key} className={`rv-call rv-call--${r.status}`} data-state={state(r)} style={{ "--i": i }}>
               <span className="sr-only">{srLine(r)}</span>
+              {/* Round 3: light blooms behind a pane Genii called (and, softer, a same-side pane) as it lands. */}
+              <i className="rv-call__bloom" aria-hidden="true" />
               <span className="rv-call__glass" aria-hidden="true">
                 <span className="rv-call__top">
                   <b className="rv-call__n">{i + 1}</b>
