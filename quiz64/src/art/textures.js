@@ -48,6 +48,4 @@ const encode = (svg) => svg.replace(/</g, "%3C").replace(/>/g, "%3E").replace(/#
 export const dataUrl = (svg) => `url("data:image/svg+xml,${encode(svg)}")`;
 
 export const GRAIN_URL = dataUrl(grainSvg());
-export const FROST_URL = dataUrl(frostSvg());
-export const FOXING_URL = dataUrl(foxingSvg());
 export const SPECKS_URL = dataUrl(specksSvg());

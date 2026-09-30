@@ -167,7 +167,7 @@
     color: var(--c-ink);
     text-wrap: balance;
   }
-  .rv-sub, .rv-caption, .rv-opposite {
+  .rv-sub, .rv-opposite {
     margin: 0;
     font: italic var(--type-genii-weight) var(--rv-genii) var(--font-display);
     font-variation-settings: var(--font-display-italic);
@@ -229,11 +229,6 @@
     background: var(--g-deep);
     color: var(--c-on-deep);
     box-shadow: inset 0 1px 0 color-mix(in srgb, var(--c-on-deep) 35%, transparent), var(--e2);
-  }
-  .rv-cta--white {
-    background: var(--n-ink);
-    color: var(--n-900);
-    box-shadow: inset 0 -2px 0 color-mix(in srgb, var(--n-ink-3) 30%, transparent), 0 16px 36px -14px color-mix(in srgb, var(--n-900) 70%, transparent);
   }
   .rv-stage[data-look="deep"] .rv-kicker,
   .rv-stage[data-look="deep"] .rv-textbtn { color: var(--n-ink); }
@@ -451,15 +446,6 @@
     gap: var(--s-3);
     text-align: center;
   }
-  .rv-names__hook {
-    margin: 0;
-    max-inline-size: 22ch;
-    font: 560 21px / 28px var(--font-display);
-    font-variation-settings: var(--font-display-upright);
-    letter-spacing: -0.005em;
-    color: var(--n-ink);
-    text-wrap: balance;
-  }
   .rv-names__sub {
     margin: 0;
     font: italic var(--type-genii-weight) 19px / 25px var(--font-display);
@@ -507,13 +493,10 @@
   .rv-slide.is-current .rv-tablet { animation: rv-rise var(--d-base) var(--e-out) calc(var(--i) * var(--d-base) / 2) both; }
   .rv-slide.is-current .rv-tablet__sweep { animation: rv-sweep calc(var(--d-scene) * 0.86) var(--e-in-out) calc(var(--d-base) + var(--i) * var(--d-base) / 2) both; }
 
-  /* ---------------------------------------------------------------- story 4: the six stats (G6) */
+  /* ---------------------------------------------------------------- the stat sheet: group label (the rows live in stories/sheet-screens.css) */
 
   .rv-body--map { justify-content: flex-start; gap: 6px; }
   .rv-body--map .rv-title { color: var(--n-ink); }
-  .rv-map__sub { color: var(--n-ink-2); }
-  .rv-pairs { display: grid; gap: 24px; inline-size: 100%; max-inline-size: 380px; margin-top: var(--s-4); text-align: left; }
-  .rv-pairs__group { display: grid; gap: 14px; }
   .rv-pairs__label {
     display: flex;
     align-items: center;
@@ -525,81 +508,7 @@
     color: var(--n-ink-2);
   }
   .rv-pairs__label::after { content: ""; flex: 1; block-size: 1px; background: linear-gradient(90deg, color-mix(in srgb, var(--n-ink) 30%, transparent), transparent); }
-  .rv-pairs ul { display: grid; gap: 18px; margin: 0; padding: 0; list-style: none; }
-  .rv-pair { display: grid; gap: 5px; }
   /* Both ends the same size and weight; the end you lean to is lit on a glass chip, the other stays readable. */
-  .rv-pair__poles { display: flex; justify-content: space-between; align-items: center; gap: 10px; min-block-size: 30px; }
-  .rv-pair__poles b {
-    justify-self: start;
-    white-space: nowrap;
-    padding: 4px 0;
-    font: 650 17px / 21px var(--font-text);
-    letter-spacing: 0;
-    color: var(--n-ink-2);
-  }
-  .rv-pair__poles b:last-child { justify-self: end; text-align: right; }
-  .rv-pair__poles b.is-lead {
-    padding: 4px 11px;
-    border-radius: var(--r-pill);
-    color: var(--n-900);
-    background: linear-gradient(180deg, var(--n-ink), color-mix(in srgb, var(--n-ink) 82%, var(--n-violet)));
-    box-shadow: 0 0 18px color-mix(in srgb, var(--n-violet) 75%, transparent), inset 0 -1px 0 color-mix(in srgb, var(--n-violet) 40%, transparent);
-  }
-  .rv-pair__stat {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font: 750 11px / 14px var(--font-text);
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--n-violet);
-    white-space: nowrap;
-  }
-  .rv-pair__stat .rv-statglyph { flex: none; }
-  .rv-pair[data-state="flex"] .rv-pair__poles b { color: var(--n-ink); }
-  .rv-pair__rod { position: relative; display: block; block-size: 10px; margin-top: 2px; }
-  .rv-pair__rod > i { position: absolute; display: block; }
-  .rv-pair__glass {
-    inset: 0;
-    border-radius: var(--r-pill);
-    border: 1px solid color-mix(in srgb, var(--n-ink) 20%, transparent);
-    background:
-      linear-gradient(180deg, color-mix(in srgb, var(--n-ink) 26%, transparent), color-mix(in srgb, var(--n-ink) 5%, transparent) 55%, color-mix(in srgb, var(--n-ink) 14%, transparent));
-    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--n-ink) 50%, transparent), inset 0 -3px 6px color-mix(in srgb, var(--n-900) 55%, transparent), 0 10px 18px -12px color-mix(in srgb, var(--n-900) 90%, transparent);
-  }
-  .rv-pair__fill {
-    top: 2px;
-    bottom: 2px;
-    left: var(--from);
-    right: calc(100% - var(--to));
-    border-radius: var(--r-pill);
-    background: linear-gradient(90deg, var(--tint-ch6), var(--n-violet) 50%, var(--tint-ch1));
-    box-shadow: 0 0 14px color-mix(in srgb, var(--n-violet) 80%, transparent);
-    transform-origin: left center;
-  }
-  .rv-pair[data-side="left"] .rv-pair__fill { transform-origin: right center; }
-  .rv-pair[data-state="flex"] .rv-pair__fill, .rv-pair[data-state="open"] .rv-pair__fill { display: none; }
-  .rv-pair__mid { left: 50%; top: -4px; bottom: -4px; inline-size: 1.5px; margin-left: -0.75px; border-radius: 1px; background: color-mix(in srgb, var(--n-ink) 38%, transparent); }
-  .rv-pair__bead {
-    left: var(--pos);
-    top: 50%;
-    inline-size: 18px;
-    block-size: 18px;
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    background: radial-gradient(circle at 34% 30%, var(--n-ink) 0 12%, var(--n-violet) 46%, var(--c-violet-strong) 82%, var(--n-700));
-    box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--n-ink) 85%, transparent), 0 0 22px 5px color-mix(in srgb, var(--n-violet) 60%, transparent), 0 6px 12px color-mix(in srgb, var(--n-900) 70%, transparent);
-  }
-  .rv-pair__bead > i { position: absolute; left: 4px; top: 3px; inline-size: 6px; block-size: 4px; border-radius: 50%; background: var(--n-ink); opacity: 0.85; filter: blur(0.6px); }
-  .rv-pair[data-state="flex"] .rv-pair__bead {
-    background: radial-gradient(circle at 34% 30%, var(--n-ink) 0 10%, color-mix(in srgb, var(--n-violet) 70%, transparent) 50%, transparent 72%);
-    box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--n-ink) 80%, transparent), 0 0 0 7px color-mix(in srgb, var(--n-violet) 26%, transparent), 0 0 0 12px color-mix(in srgb, var(--n-violet) 12%, transparent);
-  }
-  .rv-pair[data-state="open"] .rv-pair__bead { background: transparent; box-shadow: none; border: 2px dashed var(--n-ink-3); }
-  .rv-pair[data-state="open"] .rv-pair__bead > i { display: none; }
-  .rv-slide.is-current .rv-pair__bead { animation: rv-bead calc(var(--d-scene) * 1.1) var(--e-out) calc(var(--d-base) + var(--i) * var(--rv-step)) both; }
-  .rv-slide.is-current .rv-pair__fill { animation: rv-grow calc(var(--d-scene) * 1.1) var(--e-out) calc(var(--d-base) + var(--i) * var(--rv-step)) both; }
-  .rv-slide.is-current .rv-pair__poles b.is-lead { animation: rv-rise var(--d-slow) var(--e-out) calc(var(--d-base) + var(--i) * var(--rv-step)) both; }
 
   /* ---------------------------------------------------------------- story 5: what Genii knows best */
 
@@ -738,76 +647,10 @@
   .rv-slide.is-current .rv-roomrow { animation: rv-rise var(--d-slow) var(--e-out) calc(var(--d-base) / 2 + var(--i) * var(--rv-step)) both; }
   .rv-slide.is-current .rv-roomrow__isle svg { animation: rv-bob var(--d-loop-breath, 6s) var(--e-in-out) calc(var(--i) * -1.3s) infinite alternate; }
 
-  /* ---------------------------------------------------------------- story 5: charms */
+  /* ---------------------------------------------------------------- core traits: shared body */
 
   .rv-body--traits { gap: 0; }
   .rv-body--traits .rv-title { margin-top: var(--s-2); font: var(--type-display-weight) var(--rv-display-s) var(--font-display); }
-  .rv-chain {
-    display: block;
-    inline-size: calc(100% - 16px);
-    max-inline-size: 380px;
-    block-size: 4px;
-    margin: var(--s-5) auto 0;
-    border-radius: var(--r-pill);
-    background: linear-gradient(90deg, var(--mirror-silver-2), var(--mirror-silver-1) 50%, var(--mirror-silver-2));
-    box-shadow: 0 1px 0 color-mix(in srgb, var(--c-surface-solid) 90%, transparent), 0 4px 10px -4px color-mix(in srgb, var(--c-violet-text) 40%, transparent);
-  }
-  .rv-charms {
-    position: relative;
-    display: grid;
-    gap: var(--s-2);
-    inline-size: 100%;
-    max-inline-size: 380px;
-    margin: 0 auto;
-    padding: 0;
-    list-style: none;
-    text-align: left;
-  }
-  .rv-charms::before {
-    content: "";
-    position: absolute;
-    left: 34px;
-    top: 0;
-    bottom: 36px;
-    inline-size: 1.5px;
-    background: linear-gradient(180deg, var(--mirror-silver-2), color-mix(in srgb, var(--mirror-silver-2) 30%, transparent));
-  }
-  .rv-charm {
-    position: relative;
-    display: flex;
-    gap: var(--s-3);
-    align-items: flex-start;
-    margin-top: var(--s-3);
-    padding: 12px 16px 12px 14px;
-    border-radius: 22px;
-    border: 1px solid var(--tile-border);
-    background: var(--tile-fill);
-    box-shadow: var(--e2);
-    transform-origin: 34px -12px;
-  }
-  .rv-charms[data-count="5"] .rv-charm { margin-top: var(--s-2); padding-block: 10px; }
-  .rv-slide.is-current .rv-charm { animation: rv-charm calc(var(--d-scene) * 0.86) var(--e-out) calc(var(--i) * var(--d-base) / 4.8 + var(--d-base) / 2) both; }
-  .rv-charm__glyph {
-    flex: none;
-    display: grid;
-    place-items: center;
-    inline-size: 40px;
-    block-size: 40px;
-    border-radius: var(--r-tile-s);
-    background: var(--c-surface-solid);
-    box-shadow: var(--e1);
-  }
-  .rv-charm__glyph svg { display: block; }
-  .rv-charm__text { display: grid; gap: 2px; min-inline-size: 0; }
-  .rv-charm__name {
-    font: 580 20px / 25px var(--font-display);
-    font-variation-settings: var(--font-display-upright);
-    letter-spacing: var(--type-title-track);
-    color: var(--c-ink);
-  }
-  .rv-charm__line { font: 450 var(--rv-body) var(--font-text); color: var(--c-ink-2); text-wrap: pretty; }
-  .rv-charm__private { display: inline-flex; align-items: center; gap: 4px; margin-top: 2px; font: 600 var(--rv-micro) var(--font-text); color: var(--c-ink-3); }
-  .rv-charm--frost { padding: 18px 20px; background: color-mix(in srgb, var(--tint-finale) 80%, transparent); }
 
   /* ---------------------------------------------------------------- story 6: the flip */
 
@@ -881,20 +724,6 @@
     border-radius: 50%;
     transform: translate(-50%, -50%);
     background: radial-gradient(closest-side, color-mix(in srgb, var(--mirror-silver-1) 14%, transparent), transparent);
-  }
-  .rv-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin: 0;
-    padding: 8px 14px;
-    border-radius: var(--r-pill);
-    border: 1px solid var(--glass-dark-border);
-    background: var(--glass-dark-fill);
-    font: var(--type-kicker-weight) var(--rv-kicker) var(--font-text);
-    letter-spacing: var(--type-kicker-track);
-    text-transform: uppercase;
-    color: var(--n-ink-2);
   }
   .rv-stings { display: grid; gap: var(--s-6); max-inline-size: 330px; margin: var(--s-2) 0 0; padding: 0; list-style: none; }
   .rv-stings li {
@@ -1075,18 +904,6 @@
   .rv-tablet[data-half="people"] { border-left: 3px solid var(--tint-ch3); }
   .rv-tablet[data-half="life"] { border-left: 3px solid var(--tint-ch1); }
 
-  /* The traits: the two strongest hang larger, in the brand glass. */
-  .rv-charm--hero {
-    padding: 14px 16px 14px 14px;
-    border-color: color-mix(in srgb, var(--c-on-deep) 60%, transparent);
-    background: var(--g-deep);
-    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--c-on-deep) 45%, transparent), 0 18px 30px -16px color-mix(in srgb, var(--c-violet-text) 70%, transparent);
-  }
-  .rv-charm--hero .rv-charm__name { font-size: 22px; line-height: 27px; color: var(--c-on-deep); }
-  .rv-charm--hero .rv-charm__line { color: color-mix(in srgb, var(--c-on-deep) 88%, transparent); font-size: 15px; }
-  .rv-charm--hero .rv-charm__private { color: color-mix(in srgb, var(--c-on-deep) 75%, transparent); }
-  .rv-charm--hero .rv-charm__glyph { background: color-mix(in srgb, var(--c-on-deep) 92%, transparent); }
-
   /* ---------------------------------------------------------------- story 10: Genii's calls (G6) */
   /* Genii beside the one number, the verdict line, then eight panes of glass in play order (two columns, read left to
      right), each flipping into place: hit clear and lit, near half clear, miss frosted with a crack, pass and skip dim. */
@@ -1219,8 +1036,6 @@
   .rv-store__text small { font: 600 11.5px / 14px var(--font-text); letter-spacing: 0.02em; color: color-mix(in srgb, var(--n-ink) 82%, transparent); }
   .rv-store__text b { font: 700 21px / 25px var(--font-text); letter-spacing: -0.01em; }
   .rv-slide.is-current .rv-body--app .rv-store { animation: rv-rise var(--d-base) var(--e-out) calc(var(--rv-step) * 3) both, rv-ctaglow calc(var(--d-loop-breath) * 0.6) var(--e-in-out) var(--d-scene) infinite alternate; }
-  .rv-body--app .rv-cta--white { min-block-size: 58px; font-size: 18px; box-shadow: 0 0 0 4px color-mix(in srgb, var(--n-ink) 25%, transparent), 0 18px 40px -14px color-mix(in srgb, var(--n-900) 70%, transparent); }
-  .rv-slide.is-current .rv-body--app .rv-cta--white { animation: rv-rise var(--d-base) var(--e-out) calc(var(--rv-step) * 3) both, rv-ctaglow calc(var(--d-loop-breath) * 0.6) var(--e-in-out) var(--d-scene) infinite alternate; }
 
   /* ---------------------------------------------------------------- arrows */
 
@@ -1516,7 +1331,6 @@
   @keyframes rv-spark { 0% { opacity: 0; transform: scale(0.2) rotate(-30deg); } 40% { opacity: 1; transform: scale(1.15) rotate(0); } 100% { opacity: 0; transform: scale(0.8) rotate(20deg); } }
   @keyframes rv-sweep { 0% { opacity: 0; background-position: 130% 0; } 20% { opacity: 1; } 100% { opacity: 0; background-position: -30% 0; } }
   @keyframes rv-gem { from { opacity: 0; transform: scale(0.35) rotate(-24deg); } to { opacity: 1; transform: none; } }
-  @keyframes rv-charm { 0% { opacity: 0; transform: translateY(-12px) rotate(3deg); } 55% { opacity: 1; transform: translateY(1px) rotate(-1.5deg); } 80% { transform: rotate(0.6deg); } 100% { opacity: 1; transform: none; } }
   @keyframes rv-flip {
     0% { opacity: 0.35; transform: rotateX(180deg); filter: blur(2px); }
     36% { opacity: 0.35; transform: rotateX(180deg); filter: blur(2px); }
@@ -1533,8 +1347,6 @@
   @keyframes rv-read { from { transform: scaleX(0); } to { transform: scaleX(1); } }
   @keyframes rv-barglow { from { box-shadow: 0 0 0 transparent; } to { box-shadow: 0 0 8px color-mix(in srgb, var(--n-violet) 90%, transparent); } }
   @keyframes rv-hint { 0%, 100% { opacity: 0.55; transform: translateX(0); } 50% { opacity: 1; transform: translateX(4px); } }
-  @keyframes rv-bead { from { left: 50%; opacity: 0; transform: translate(-50%, -50%) scale(0.4); } 30% { opacity: 1; } to { left: var(--pos); opacity: 1; transform: translate(-50%, -50%); } }
-  @keyframes rv-grow { from { transform: scaleX(0); opacity: 0; } to { transform: scaleX(1); opacity: 1; } }
   @keyframes rv-crystal { from { opacity: 0; transform: perspective(700px) rotateX(24deg) translateY(18px) scale(0.96); } to { opacity: 1; transform: none; } }
   @keyframes rv-gemspin { from { transform: rotate(-60deg) scale(0.4); opacity: 0; } 70% { transform: rotate(6deg) scale(1.06); opacity: 1; } to { transform: none; opacity: 1; } }
   @keyframes rv-glint { 0%, 70%, 100% { opacity: 0; transform: scale(0.4) rotate(0); } 80% { opacity: 1; transform: scale(1.1) rotate(20deg); } }

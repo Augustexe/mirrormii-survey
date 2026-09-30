@@ -4,7 +4,7 @@
 // gradient loads lazily on top of the glows: one WebGL canvas at most across the app (the most recently
 // mounted animated Backdrop owns it), 30 fps, DPR capped at 1.5, paused off screen and while hidden.
 import { Component, lazy, Suspense, useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { tint, v } from "./palette.js";
+import { v } from "./palette.js";
 import { GRAIN_URL, SPECKS_URL } from "./textures.js";
 import { Depth } from "./Depth.jsx";
 
@@ -165,8 +165,3 @@ export function Backdrop({ scene = "day", animated = true, className }) {
   );
 }
 
-// Island scenes read the chapter tint; exported for screens that want the same color as the backdrop.
-export const backdropTint = (scene) => {
-  const ch = islandChapter(scene);
-  return ch == null ? null : tint(ch);
-};

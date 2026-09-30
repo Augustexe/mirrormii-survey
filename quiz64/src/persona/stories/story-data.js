@@ -25,11 +25,6 @@ export const LOOKS = Object.freeze({ intro: "night", names: "night", read: "ligh
 // Interface strings for the result (proposed copy, DESIGN-DIRECTION section 8 D6; shipped under the 2026-09-29 go).
 export const UI_COPY = Object.freeze({
   hold: "Hold, or tap",
-  mapList: "Read it as a list",
-  mapGem: "Show the pairs",
-  mapOver: "over",
-  mapBetween: "Right between",
-  mapOpen: "still open",
   shareFormats: { story: "Story", post: "Post" },
   shareImage: "Share image",
   saveImage: "Save image",

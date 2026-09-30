@@ -31,7 +31,6 @@ export const PANE_VIEWBOX = "0 0 36 44";
 export const PANE = "M8,1 L28,1 Q35,1 35,8 L35,36 Q35,43 28,43 L8,43 Q1,43 1,36 L1,8 Q1,1 8,1 Z";
 export const SEAL = "M18,14 L19.9,19.4 L25.6,19.6 L21.1,23.1 L22.7,28.6 L18,25.4 L13.3,28.6 L14.9,23.1 L10.4,19.6 L16.1,19.4 Z";
 export const SEAL_RING = "M18,12 a10,10 0 1 0 0.01,0 Z";
-export const PANE_CHECK = "M12.5,22 L16.5,26 L24,17.5";
 export const PANE_SHEEN = "M5,6 Q5,4.5 7,4.5 L15,4.5 L5,20 Z";
 
 // A-10: door in a 60 x 96 viewBox; the leaf is its own path so it can swing (rotateY).
@@ -40,7 +39,6 @@ export const DOOR_FRAME = "M4,95 L4,26 A26,26 0 0 1 56,26 L56,95 Z";
 export const DOOR_OPENING = "M9,95 L9,27 A21,21 0 0 1 51,27 L51,95 Z";
 export const DOOR_LEAF = "M9,95 L9,27 A21,21 0 0 1 51,27 L51,95 Z";
 export const DOOR_PANELS = "M15,52 L15,32 A15,15 0 0 1 45,32 L45,52 Z M15,86 L15,60 L45,60 L45,86 Z";
-export const DOOR_SPILL = "M9,95 L51,95 L60,96 L0,96 Z";
 export const DOOR_KNOB = "M42,62 a3,3 0 1 0 0.01,0 Z";
 export const DOOR_HEART = "M30,48 C26.5,45.2 24.2,43.2 24.2,40.6 a2.9,2.9 0 0 1 5.8,-0.6 a2.9,2.9 0 0 1 5.8,0.6 C35.8,43.2 33.5,45.2 30,48 Z";
 export const DOOR_KNOCKER_RING = "M30,50 a4.5,4.5 0 1 0 0.01,0 Z";
@@ -56,37 +54,12 @@ export const ISLAND_FACETS = "M40,188 L124,246 L100,206 Z M280,188 L196,246 L222
 export const ISLAND_CRACKS = "M100,206 L124,246 M160,210 L160,258 M222,206 L196,246 M130,209 L142,252 M190,209 L178,252";
 export const ISLAND_DROP = "M160,258 L166,266 L160,280 L154,266 Z";
 export const ISLAND_WATER_Y = 286;
-export const ISLAND_WATER = `M0,${ISLAND_WATER_Y} L320,${ISLAND_WATER_Y}`;
 
 // A-18: app tablet (a glass phone outline) in a 150 x 300 viewBox.
 export const TABLET_VIEWBOX = "0 0 150 300";
 export const TABLET = "M24,2 L126,2 Q148,2 148,24 L148,276 Q148,298 126,298 L24,298 Q2,298 2,276 L2,24 Q2,2 24,2 Z";
 export const TABLET_SCREEN = "M28,14 L122,14 Q136,14 136,28 L136,272 Q136,286 122,286 L28,286 Q14,286 14,272 L14,28 Q14,14 28,14 Z";
 export const TABLET_ISLAND = "M60,22 L90,22 Q95,22 95,27 Q95,32 90,32 L60,32 Q55,32 55,27 Q55,22 60,22 Z";
-
-// A-16: zigzag edge for receipt paper, as a clip path in a w x h box.
-export function receiptEdge(w = 320, h = 400, tooth = 8) {
-  const teeth = Math.max(2, Math.round(w / tooth));
-  const step = w / teeth;
-  const top = [];
-  const bottom = [];
-  for (let i = 0; i <= teeth; i++) {
-    top.push(`${(i * step).toFixed(2)},${i % 2 ? 0 : tooth / 2}`);
-    bottom.push(`${(w - i * step).toFixed(2)},${i % 2 ? h : h - tooth / 2}`);
-  }
-  return `M${top.join(" L")} L${bottom.join(" L")} Z`;
-}
-
-// A-16: the torn edge for the receipt's "tear it off" beat: a seeded ragged line across the strip at `y`,
-// as a clip path for the part that stays (above the tear). Deterministic for a given seed.
-export function receiptTear(w = 320, y = 400, seed = 1) {
-  let s = (Number(seed) || 1) >>> 0;
-  const rand = () => ((s = (Math.imul(s ^ (s >>> 15), 0x2c1b3c6d) + 0x9e3779b9) >>> 0) % 1000) / 1000;
-  const pts = [];
-  const steps = Math.max(8, Math.round(w / 9));
-  for (let i = 0; i <= steps; i++) pts.push(`${((w * i) / steps).toFixed(1)},${(y - 1 - rand() * 5).toFixed(1)}`);
-  return `M0,0 L${w},0 L${pts.reverse().join(" L")} Z`;
-}
 
 // A-16: CSS mask for zigzag receipt edges (top and bottom), as a data URL for `mask-image` / `-webkit-mask`.
 // Use with `mask-size: <tooth*2>px 100%` style tiling: `receiptMask(tooth)` returns { top, bottom }.
@@ -105,8 +78,6 @@ export function receiptMask(tooth = 8) {
 // The same strings feed canvas (drawGlyph) through Path2D.
 
 export const GLYPH_VIEWBOX = "0 0 24 24";
-export const GLYPH_WELL = "M7,2 L17,2 Q22,2 22,7 L22,17 Q22,22 17,22 L7,22 Q2,22 2,17 L2,7 Q2,2 7,2 Z";
-export const GLYPH_DOT = "M12,8 a4,4 0 1 0 0.01,0 Z";
 
 const circle = (x, y, r) => `M${x - r},${y} a${r},${r} 0 1 0 ${r * 2},0 a${r},${r} 0 1 0 ${-r * 2},0 Z`;
 

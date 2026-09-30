@@ -1058,7 +1058,3 @@ export async function downloadStoryImage(spec, filename = "my-genii-read.png", {
   return deliverImage(canvas, filename, { share: share && !spec.private });
 }
 
-// Kept for older callers: the mirror card as a download.
-export function downloadShareImage(share) {
-  return shareImage(share, { format: "story", share: false });
-}

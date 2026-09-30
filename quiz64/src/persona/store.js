@@ -1,6 +1,6 @@
 // Browser storage for the persona game. Everything stays in this browser's localStorage: the owner's run under one
 // versioned key, a friend's in-progress guesses under another. Loads are validated; bad data is never trusted.
-import { STORAGE_KEY, restore, serialize, PersonaError } from "./session.js";
+import { STORAGE_KEY, restore, PersonaError } from "./session.js";
 import { validateFriendData, parseChallenge, friendDeckView, cleanGuesses } from "./friend.js";
 
 export const RUN_KEY = STORAGE_KEY;
@@ -20,10 +20,6 @@ export function loadRun(storage) {
   if (raw === null) return { state: null, error: null, raw: null };
   try { return { state: restoreRun(raw), error: null, raw }; }
   catch (e) { return { state: null, error: e instanceof PersonaError ? e.code : "corrupt", message: e.message, raw }; }
-}
-
-export function saveRun(storage, state) {
-  try { storage.setItem(RUN_KEY, serialize(state)); return true; } catch { return false; }
 }
 
 const STAGES = ["intro", "level1", "level2", "level3", "level4", "done"];

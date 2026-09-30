@@ -17,5 +17,3 @@ export const KIT_ID = `${cards.version}@${cards.built}/${library.built}/${friend
 export const AXES = S.AXES;
 export const TAG = S.TAG;
 export const CHAPTERS = cards.chapters.map((ch) => ({ id: ch.n, title: ch.title, intro: ch.intro }));
-export const FINALE_TITLE = "Genii has made its guesses. Your move.";
-export const EXTRAS_TITLE = "Two more cards and Genii can call it";

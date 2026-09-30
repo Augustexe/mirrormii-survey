@@ -160,7 +160,6 @@ export function cardChapterKey(card) {
 
 export const chapterDeviceId = (card) => `chapter-${cardChapterKey(card)}`;
 export const isChapterDevice = (id) => typeof id === "string" && id.startsWith("chapter-");
-export const isDeviceFamily = (id) => DEVICE_FAMILIES.includes(id);
 
 // Family for a device key alone (table, then keywords); "chapter" or null when there is none.
 export function deviceFamily(device, prompt = "") {

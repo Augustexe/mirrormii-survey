@@ -161,7 +161,6 @@ function infoOf(card) {
   return info;
 }
 export const cardAxes = (card) => [...infoOf(card).axes];
-export const cardDims = (card) => [...infoOf(card).dims];
 export const flowDims = (card) => [...infoOf(card).flow];
 // Do two neighbouring cards share a dimension the neighbour rule compares?
 const flowShare = (a, b) => { const fa = infoOf(a).flow; return [...infoOf(b).flow].some((d) => fa.has(d)); };

@@ -350,4 +350,3 @@ export function sigilParts(code) {
 
 export const SIGIL_GRID = 48;
 export const SIGIL_STROKE = 2.5;
-export const SIGIL_POLES = Object.keys(SIGIL_PARTS);
