@@ -423,8 +423,18 @@ Keep spend tight: one pass, three crews, then one integration and judge pass.
 7. **Real product assets on product screens.** The share and get-the-app screens use MirrorMii's real game world and CGI Genii renders (assets/Genomii AI.library: composite-world-map.png, genii-v2-screenshot-02.png, production-media scene 1 03-@SOURCE-genii-master.png, 01-@REF-01-world-style-material-key.png), optimized into quiz64/public/assets/world/. At least one final screen shows the game world. This overrides the earlier "generate fresh, no library assets" rule for product and CTA screens only.
 8. **Handoff quality.** The whole codebase is cleaned for Desmond: dead code removed, docs current, one README path.
 
+## 25. Round 4: canon world, the Evidence Article, lock-in (Jerry, 2026-09-29 late)
+
+This round locks the build. No more concept previews: build end to end, ready for Desmond.
+
+1. **Canon world only.** The island, the mirror and every background come from the GDD v0.2 (company/marketing/docs/10-product-specs/mirrormii-v2-gdd-v0.2, sections 3.2 and 3.4): a floating island of white pearl marble terraces, pools and waterfalls, the lavender Tree of Life, an arch pavilion and fountain, and at the center the World Mirror: a tall OVAL (pill-shaped) mirror with an iridescent opal frame on a round marble plinth. Fresh renders generated from the GDD live in quiz64/public/assets/island/. The gothic arch with stained glass ("cracked mirror") and the code-made cartoon islands are retired. Landing-page marketing media, old UI mockups and generic island stock are not used anywhere; they are tagged `status:outdated-not-canon` in the Eagle library (metadata backed up, nothing deleted). Genii is always our own 3D render (quiz64/src/genii), never a library image. In-product names such as Tree of Life stay out of player-facing copy.
+2. **The mirror mechanic stays:** answers still become shards that rebuild the mirror; the mirror they rebuild is the oval World Mirror, with clear glass shards, not colored stained glass.
+3. **The Evidence Article** follows the Stories deck: a long-form page where the player reviews everything. Direction: C (The Codex: tabs, stat block, trait cards, island map of rooms, the record, party) has priority, with A's editorial magazine type and pull quotes. Every section is distinct, clean, image-rich and animated; every line traces to the player's evidence; language is natural, never robotic. Reading time 3 to 5 minutes. It opens automatically after the deck and from a "Read the long version" button. Scroll must never be hijacked (the concept C prototype bug: a scroll-spy called scrollIntoView on the sticky tab, which scrolled the page back; tab strips scroll themselves only).
+4. **Handoff-ready:** visual design, evidence, question pack, library and context are complete; Desmond gets a backend contract (result schema, friend game, events, placeholders).
+
 ## Changes
 
+- 2026-09-29: Section 25 added: canon GDD world and oval World Mirror, Evidence Article (C priority with A type), lock-in and handoff.
 - 2026-09-29: Section 17 status adds round 3 (section 24) with the handoff cleanup, gate numbers, Codex judge R5 and the round 3 sheet.
 - 2026-09-29: Section 24 added: round 3 (stats without percentages, core traits, rooms, stings, bank legibility, reveal craft, real product assets, handoff).
 - 2026-09-29: Section 23: map stat labels (Orbit, Delivery, Blueprint, Compass, Engine, Code) replace internal pole names on player surfaces.
