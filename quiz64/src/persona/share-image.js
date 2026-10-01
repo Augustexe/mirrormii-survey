@@ -39,17 +39,17 @@ function paletteFor(look, theme = "day") {
 
 // ---------------------------------------------------------------- text
 
-// Display weights retuned for Satoshi: headlines and names 800, prompts and story lines 700, quiet lines 500, and
-// numbers of 90 px and up 900 (tabular figures are the face default for digits on canvas).
-export function displayWeight(weight, size) {
-  if (size >= 90) return 900;
+// Display weights retuned for Satoshi: big numbers 900 (callers pass 900), headlines and names 800, prompts and
+// story lines 700, quiet lines 500.
+export function displayWeight(weight) {
+  if (weight >= 900) return 900;
   if (weight >= 580) return 800;
   if (weight >= 540) return 700;
   return 500;
 }
 
 function font(ctx, face, weight, size) {
-  const w = face === "display" ? displayWeight(weight, size) : weight;
+  const w = face === "display" ? displayWeight(weight) : weight;
   ctx.font = `${w} ${Math.round(size)}px ${FAMILY}`;
 }
 
@@ -799,7 +799,7 @@ function drawStoryBody(ctx, spec, p, W, H) {
         ctx.fill();
         ctx.restore();
         tracked(ctx, b.abbr, cx, cy - 34, { size: 24, weight: 800, color: N.violet, align: "center", track: 0.12 });
-        font(ctx, "display", 600, 92);
+        font(ctx, "display", 900, 92);
         lines(ctx, [String(b.score)], cx, cy + 52, { lh: 0, align: "center", color: N.ink });
         // The name, the tag for the most surprising stat, then the line.
         let ty = y + 70;
@@ -876,16 +876,16 @@ function drawStoryBody(ctx, spec, p, W, H) {
     case "calls": {
       kicker(spec.kicker, 280);
       if (spec.called > 0) {
-        font(ctx, "display", 600, 180);
+        font(ctx, "display", 900, 180);
         const big = String(spec.exact);
         const bw = ctx.measureText(big).width;
-        font(ctx, "display", 600, 72);
+        font(ctx, "display", 900, 72);
         const tail = ` of ${spec.called}`;
         const tw = ctx.measureText(tail).width;
         const x0 = W / 2 - (bw + tw) / 2;
-        font(ctx, "display", 600, 180);
+        font(ctx, "display", 900, 180);
         lines(ctx, [big], x0, 480, { lh: 0, color: p.ink });
-        font(ctx, "display", 600, 72);
+        font(ctx, "display", 900, 72);
         lines(ctx, [tail], x0 + bw, 480, { lh: 0, color: p.ink });
         font(ctx, "display", 420, 40);
         lines(ctx, [spec.of || ""], W / 2, 548, { lh: 0, align: "center", color: p.ink2 });
