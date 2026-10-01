@@ -12,6 +12,14 @@ import { createServer } from "vite";
 import { fileURLToPath } from "node:url";
 import { makePlayer, playPicker } from "./persona-sim.mjs";
 import { leaning } from "./persona-helpers.mjs";
+import names64 from "../../research/persona-quiz-v2/final/naming/names-64.json" with { type: "json" };
+
+// The one story line per archetype pair (names-64.json), read here straight from the naming package.
+const PAIR_LINE = Object.fromEntries(names64.combos.map((c) => [c.key, c.line]));
+const pairLine = (relCode, lifeCode, w) => { const l = PAIR_LINE[`${relCode}|${lifeCode}`]; return l ? (w === "heart" ? l.heart : l.fun) : null; };
+// The heist role per day-to-day stat end, and the traits that never give a flag or a bet (AI use, kids, weddings).
+const HEIST = { "L3+": "planner", "L2-": "planner", "L2+": "driver", "L1+": "inside", "L3-": "inside", "L1-": "distraction" };
+const quiet = (t) => !t || t.locked18 || /^T03[AB]$/.test(t.id);
 
 let server;
 const load = (p) => server.ssrLoadModule(p);
@@ -99,7 +107,7 @@ function inVoice(entry, field, w) {
 const FLIP = { We: "Me", Me: "We", Direct: "Soft", Soft: "Direct", Classic: "Own", Own: "Classic", Steady: "Venture", Venture: "Steady", Push: "Easy", Easy: "Push", Rules: "Context", Context: "Rules" };
 const esc = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-test("every article line, name, stat, trait, room, flip, two-sides cell, call and party slot comes from the player's evidence", async () => {
+test("every article line, name, stat, trait, room, flip, two-sides cell, call, party slot, heist role, flag, bet and seed comes from the player's evidence", async () => {
   const { resultView } = await load("/src/persona/views.js");
   const Session = await load("/src/persona/session.js");
   const { LIB, S } = await load("/src/persona/kit.js");
@@ -118,7 +126,7 @@ test("every article line, name, stat, trait, room, flip, two-sides cell, call an
     if (typeof o === "string") { libStrings.add(o); const m = /^(.+?[.!?])\s+(\S.*)$/.exec(o.trim()); if (m) { libStrings.add(m[1]); libStrings.add(m[2]); } }
     else if (o && typeof o === "object") Object.values(o).forEach(walk);
   };
-  walk(LIB); walk(STORY_COPY); walk(UI_COPY);
+  walk(LIB); walk(STORY_COPY); walk(UI_COPY); walk(PAIR_LINE);
   Object.values(STATS).forEach((s) => { libStrings.add(s.stat); Object.values(s.ends).forEach((e) => libStrings.add(e)); });
   const frames = [];
   const walkFrames = (o) => { if (typeof o === "string") { if (o.includes("{")) frames.push(new RegExp(`^${esc(o).replace(/\\\{\w+\\\}/g, ".+")}$`)); } else if (o && typeof o === "object") Object.values(o).forEach(walkFrames); };
@@ -126,7 +134,8 @@ test("every article line, name, stat, trait, room, flip, two-sides cell, call an
   const traced = (line) => libStrings.has(line) || frames.some((re) => re.test(line));
 
   const list = await players();
-  let flips = 0, cells = 0, clicks = 0, hits = 0, statCores = 0, tagBacks = 0;
+  let flips = 0, cells = 0, clicks = 0, hits = 0, statCores = 0, tagBacks = 0, tagFlags = 0, statBets = 0;
+  const roles = new Set();
   const seenPairs = new Set();
   for (const { label, run, voice } of list) {
     const w = voice === "heart" ? "heart" : "fun";
@@ -137,12 +146,15 @@ test("every article line, name, stat, trait, room, flip, two-sides cell, call an
     const html = renderToStaticMarkup(React.createElement(MotionConfig, { reducedMotion: "always" }, React.createElement(ArticlePage, { stories, lib: LIB, onBack() {}, onChallenge() {}, onData() {}, onSave() {} })));
     const text = visible(html);
 
-    // 1. Names: the halves whose poles match the profile, set on the cover.
+    // 1. Names: one title (the people half whose poles match the profile) with its pair's story line; the day-to-day
+    //    half as a labeled row under it.
     const rel = LIB.relationship.find((h) => h.R1 === P.R1.pole && h.R2 === P.R2.pole && h.R3 === P.R3.pole);
     const life = LIB.life.find((h) => h.L1 === P.L1.pole && h.L2 === P.L2.pole && h.L3 === P.L3.pole);
-    assert.equal(A.cover.people.name, rel.name, `${label}: people name`);
-    assert.equal(A.cover.life.name, life.name, `${label}: life name`);
-    assert.ok(text.includes(rel.name) && text.includes(life.name), `${label}: both names on the page`);
+    assert.equal(A.cover.title.name, rel.name, `${label}: the title is the people archetype`);
+    assert.equal(A.cover.title.line, pairLine(rel.code, life.code, w), `${label}: the title's story line`);
+    assert.equal(A.cover.lifeRow.name, life.name, `${label}: the day-to-day row`);
+    assert.ok(text.includes(`${A.cover.title.kicker} ${rel.name} ${A.cover.title.line}`), `${label}: title and line on the cover`);
+    assert.ok(text.includes(life.name), `${label}: the day-to-day name on the page`);
     assert.equal(A.cover.people.read, inVoice(rel, "read", w), `${label}: people read`);
     assert.equal(A.cover.life.desc, inVoice(life, "desc", w), `${label}: life description`);
 
@@ -245,28 +257,82 @@ test("every article line, name, stat, trait, room, flip, two-sides cell, call an
       for (const r of A.record.rows) assert.ok(r.title && text.includes(r.title), `${label}: scene title ${r.title}`);
     }
 
-    // 7. Party: click with is the wild card flipped inside its half; your opposite is every pole flipped.
-    const wild = stories.slides.find((s) => s.id === "map").wild;
-    if (wild) {
-      const onLife = wild.key[0] === "L";
-      const half = onLife ? life : rel;
-      const idx = Number(wild.key[1]) - 1;
-      const code = half.code.split("·").map((x, i) => (i === idx ? FLIP[x] : x)).join("·");
-      const name = (onLife ? LIB.life : LIB.relationship).find((x) => x.code === code).name;
+    // 7. Party: every slot is one title with its pair's line. Click with is your people half with its people stat
+    //    closest to the middle flipped (a near-even stat first, the one nearest dead center; else the weakest lean);
+    //    your opposite is every pole flipped.
+    const posOf = (a) => Math.round(Math.max(8, Math.min(92, Math.max(43, Math.min(57, 50 + Math.max(-1, Math.min(1, a.norm)) * 42)))));
+    const peopleAx = ["R1", "R2", "R3"].map((ax, i) => ({ ax, i, a: P[ax] })).filter((x) => !x.a.unfinished);
+    const flexAx = peopleAx.filter((x) => x.a.flex).sort((x, y) => Math.abs(posOf(x.a) - 50) - Math.abs(posOf(y.a) - 50) || x.i - y.i);
+    const leanAx = peopleAx.filter((x) => !x.a.flex).sort((x, y) => pipsFor(x.a) - pipsFor(y.a) || Math.abs(x.a.norm) - Math.abs(y.a.norm) || x.i - y.i);
+    const softAx = (flexAx[0] || leanAx[0] || {}).ax;
+    if (softAx) {
+      const idx = Number(softAx[1]) - 1;
+      const code = rel.code.split("·").map((x, i) => (i === idx ? FLIP[x] : x)).join("·");
+      const name = LIB.relationship.find((x) => x.code === code).name;
       assert.equal(A.party.click.name, name, `${label}: click with`);
+      assert.equal(A.party.click.line, pairLine(code, life.code, w), `${label}: click with line`);
       assert.ok(text.includes(name), `${label}: click with on the page`);
       clicks++;
     } else assert.equal(A.party.click, null);
-    const oppP = LIB.relationship.find((x) => x.code === rel.code.split("·").map((p) => FLIP[p]).join("·")).name;
-    const oppL = LIB.life.find((x) => x.code === life.code.split("·").map((p) => FLIP[p]).join("·")).name;
-    assert.deepEqual([A.party.opposite.a, A.party.opposite.b], [oppP, oppL], `${label}: opposite`);
+    const oppCode = rel.code.split("·").map((p) => FLIP[p]).join("·");
+    const oppLife = life.code.split("·").map((p) => FLIP[p]).join("·");
+    assert.equal(A.party.opposite.name, LIB.relationship.find((x) => x.code === oppCode).name, `${label}: opposite`);
+    assert.equal(A.party.opposite.line, pairLine(oppCode, oppLife, w), `${label}: opposite line`);
+    assert.equal(A.party.me.line, A.cover.title.line, `${label}: your slot carries your line`);
 
-    // 8. The bio: both names and up to three shareable core traits; never a sting or a private trait.
+    // 8. The bio: the title and up to three shareable core traits; never a sting or a private trait.
     const shareable = storyCore.filter((k) => !k.private).map((k) => k.keyword);
-    assert.ok(A.bio.text.startsWith(`${rel.name}. ${life.name}.`), `${label}: bio names`);
+    assert.ok(A.bio.text.startsWith(`${rel.name}.`), `${label}: bio title`);
     for (const k of storyCore.filter((x) => x.private)) assert.ok(!A.bio.text.toLowerCase().includes(k.keyword.toLowerCase()), `${label}: private trait off the bio`);
     for (const k of shareable.slice(0, 3)) assert.ok(A.bio.text.toLowerCase().includes(k.toLowerCase()), `${label}: bio carries ${k}`);
     for (const sting of A.book ? A.book.stings : []) assert.ok(!A.bio.text.includes(sting));
+
+    // 8b. Part two, new sections (V2). Decided stats strongest first: most pips, then the lean, then sheet order.
+    const strongest = (ids) => ids.filter((ax) => !P[ax].flex && !P[ax].unfinished)
+      .map((ax, i) => ({ ax, i, pips: pipsFor(P[ax]), n: Math.abs(P[ax].norm) }))
+      .sort((x, y) => y.pips - x.pips || y.n - x.n || x.i - y.i)
+      .map((x) => `${x.ax}${P[x.ax].pole > 0 ? "+" : "-"}`);
+    const endText = (key, field) => inVoice(axisMeta[key.slice(0, 2)], `${key.endsWith("+") ? "plus" : "minus"}${field}`, w);
+    // The heist role: the strongest decided day-to-day end, else the day-to-day half's pole on New things.
+    const hEnd = strongest(["L1", "L2", "L3"])[0] || (life.L1 > 0 ? "L1+" : "L1-");
+    assert.equal(A.heist.role, HEIST[hEnd], `${label}: heist role`);
+    assert.equal(A.heist.why, inVoice(LIB.article.heist.why, hEnd, w), `${label}: heist why line`);
+    assert.ok(text.includes(A.heist.why), `${label}: heist why on the page`);
+    roles.add(A.heist.role);
+    // Flags: green from the first shareable trait, red from the second (or the first); else from the strongest ends.
+    const shownTags = stories.slides.find((s) => s.id === "traits").tags.filter((t) => !t.private && !quiet(tagLib[t.key]));
+    if (shownTags.length) {
+      assert.equal(A.flags.green.line, inVoice(tagLib[shownTags[0].key], "green", w), `${label}: green flag`);
+      assert.equal(A.flags.red.line, inVoice(tagLib[(shownTags[1] || shownTags[0]).key], "red", w), `${label}: red flag`);
+      tagFlags++;
+    } else {
+      const ends = strongest(["R1", "R2", "R3", "L1", "L2", "L3"]);
+      if (ends.length) {
+        assert.equal(A.flags.green.line, endText(ends[0], "Green"), `${label}: green flag from a stat end`);
+        assert.equal(A.flags.red.line, endText(ends[1] || ends[0], "Red"), `${label}: red flag from a stat end`);
+      } else assert.equal(A.flags, null);
+    }
+    for (const t of stories.slides.find((s) => s.id === "traits").tags.filter((x) => x.private || quiet(tagLib[x.key]))) {
+      for (const field of ["green", "red", "bet"]) for (const v of ["fun", "heart"]) {
+        const line = v === "heart" ? (tagLib[t.key].h || {})[field] : tagLib[t.key][field];
+        if (line) assert.ok(!text.includes(line), `${label}: no ${field} from ${t.key}`);
+      }
+    }
+    // Genii's bets: the shareable core traits in order, topped up from the strongest ends, three at most, no repeats.
+    const wantBets = [];
+    const seenBet = new Set();
+    const addBet = (key, line) => { if (line && !seenBet.has(key) && wantBets.length < 3) { seenBet.add(key); wantBets.push(line); } };
+    for (const k of storyCore.filter((x) => !x.private)) {
+      if (k.kind === "tag") { const lt = tagLib[k.key.slice(4)]; if (!quiet(lt)) addBet(lt.id, inVoice(lt, "bet", w)); }
+      else { const key = `${k.axis}${P[k.axis].pole > 0 ? "+" : "-"}`; addBet(key, endText(key, "Bet")); statBets++; }
+    }
+    for (const key of strongest(["R1", "R2", "R3", "L1", "L2", "L3"])) addBet(key, endText(key, "Bet"));
+    assert.deepEqual(A.bets ? A.bets.items.map((b) => b.line) : [], wantBets, `${label}: Genii's bets`);
+    for (const b of wantBets) assert.ok(text.includes(b), `${label}: bet on the page`);
+    // The island seed: what grows from the people half, how it grows from the day-to-day half; labeled as 2.0.
+    assert.equal(A.seed.what, inVoice(rel, "seed", w), `${label}: seed`);
+    assert.equal(A.seed.how, inVoice(life, "seed", w), `${label}: seed growth`);
+    assert.ok(text.includes(A.seed.soon) && /MirrorMii 2\.0/.test(A.seed.soon), `${label}: the seed says it is coming in 2.0`);
 
     // 9. Every visible line traces to the library or an article frame.
     for (const line of articleText(A)) {
@@ -292,19 +358,21 @@ test("every article line, name, stat, trait, room, flip, two-sides cell, call an
     // The trait card's own label ("Based on", the cold-reader pick in LAUNCH-SPEC 26) names the card's source, not an analysis.
     body = body.split(A.traits.fromLabel).join(" ");
     assert.doesNotMatch(body, /(?<!keep(?:ing|s)? )\bscore\b|\b(analysis|result|profile|evidence|axis|based on|indicates)\b/i, `${label}: no system words ("keeping score" is an idiom)`);
-    const digits = body.replace(new RegExp(`\\b${A.record ? A.record.exact : "x"} of ${A.record ? A.record.called : "x"}\\b`), "");
+    // The one count, and the version label on the island seed ("Coming in MirrorMii 2.0").
+    const digits = body.replace(new RegExp(`\\b${A.record ? A.record.exact : "x"} of ${A.record ? A.record.called : "x"}\\b`), "").split("MirrorMii 2.0").join(" ");
     assert.doesNotMatch(digits, /\d/, `${label}: no numbers but the calls count`);
-    for (const id of ["stats", "traits", "rooms", "party"]) assert.match(html, new RegExp(`id="${id}"`), `${label}: section ${id}`);
+    for (const id of ["stats", "traits", "rooms", "heist", "party", "seed"]) assert.match(html, new RegExp(`id="${id}"`), `${label}: section ${id}`);
     assert.equal((html.match(/<h1\b/g) || []).length, 1, `${label}: one h1`);
 
-    // 11. Reading time: three to five minutes of visible words.
+    // 11. Reading time: about six minutes of visible words at most (V2 added part two; the cover says six minutes).
     const words = articleText(A).join(" ").split(/\s+/).length;
-    assert.ok(words >= 650 && words <= 1300, `${label}: ${words} words`);
+    assert.ok(words >= 650 && words <= 1600, `${label}: ${words} words`);
   }
   assert.ok(flips >= 1, `a room flip exercised (${flips})`);
   assert.ok(cells >= list.length * 1.5, `two-sides cells exercised (${cells})`);
   assert.ok(seenPairs.size >= 8, `several crossover cells exercised (${seenPairs.size})`);
   assert.ok(clicks >= 5 && hits >= 10 && statCores >= 10 && tagBacks >= 5, `party, calls and cards exercised (${clicks}, ${hits}, ${statCores}, ${tagBacks})`);
+  assert.ok(roles.size >= 3 && tagFlags >= 10 && statBets >= 5, `heist roles, trait flags and stat bets exercised (${[...roles]}, ${tagFlags}, ${statBets})`);
 });
 
 test("the crossover table: 36 cells, both voices, and every player gets a team and a clash", async () => {
@@ -345,13 +413,18 @@ test("the article renders in both voices, with its tabs, one h1 and every sectio
     const run = completeRun(ADULT, leaning(LEANERS.demo), `artrender${voice}`, { voice, depth: "anything", rooms: ["love", "work", "family"] });
     const stories = resultView(run);
     const html = renderToStaticMarkup(React.createElement(ArticlePage, { stories, lib: LIB, onBack() {}, onChallenge() {}, onData() {}, onSave() {} }));
-    for (const id of ["stats", "traits", "surprise", "rooms", "book", "record", "party"]) {
+    for (const id of ["stats", "rooms", "surprise", "traits", "book", "record", "sides", "heist", "flags", "bets", "party", "seed"]) {
       assert.match(html, new RegExp(`href="#article/${id}"`), `${voice}: tab ${id}`);
       assert.match(html, new RegExp(`<section id="${id}"`), `${voice}: section ${id}`);
     }
-    assert.match(html, /assets\/island\/hero-portrait-/, `${voice}: the canon island on the cover`);
-    assert.match(html, /assets\/island\/ch\d-360/, `${voice}: the chapter islets on the map`);
-    assert.match(html, /assets\/island\/mirror-frame-/, `${voice}: the World Mirror`);
+    // V2: spot art from the article set, one sky band on the cover, no banner photos.
+    assert.match(html, /assets\/article\/cover-band-/, `${voice}: the sky band on the cover`);
+    assert.match(html, /assets\/article\/room-(phone|friends|love|money|work|home|play)-/, `${voice}: the room islets on the map`);
+    for (const art of ["stats-crystal", "insight-shard", "open-book", "record-quill", "heist-(planner|driver|inside|distraction)", "flags-pair", "bets-chips", "island-seed", "closing-mirror", "divider"]) {
+      assert.match(html, new RegExp(`assets/article/${art}-`), `${voice}: spot art ${art}`);
+    }
+    assert.doesNotMatch(html, /assets\/island\/hero-|assets\/island\/mirror-inside-/, `${voice}: no banner photos`);
+    assert.doesNotMatch(html, /ea-spot--ph/, `${voice}: every piece of art is a real file`);
     assert.doesNotMatch(html, /assets\/world\//, `${voice}: nothing from the retired world folder`);
     assert.match(html, /class="genii-light/, `${voice}: our own 3D Genii`);
     assert.match(visible(html), new RegExp(esc(LIB.article.readTime[voice === "heart" ? "heart" : "fun"])));
@@ -364,4 +437,37 @@ test("the article renders in both voices, with its tabs, one h1 and every sectio
   assert.equal(calls, 2, "scrollIntoView only on a tab tap and on opening a deep link");
   assert.doesNotMatch(src, /addEventListener\(["'](scroll|wheel|touchmove)/, "no scroll, wheel or touch listeners");
   assert.match(src, /ul\.scrollTo\(/, "the tab strip scrolls itself");
+});
+
+test("the V2 copy: flags, bets, heist lines and seeds in both voices, never-say clean, never about AI, kids or weddings", async () => {
+  const { LIB } = await load("/src/persona/kit.js");
+  const NEVER = /\b(streaks?|gacha|lottery|jackpot|predicts?|predicted|clinically|diagnos\w*|treat(ment|ed|ing|s)?|cures?|prevent\w*|dna|genomic|genies?|lamps?|wish(es|ed)?|energy)\b|—|%/i;
+  const HEART = /\b(boundaries|valid|healing|trauma|toxic|self-care|kind|brave|healthy|mature|selfish|responsible)\b|!/i;
+  const lines = [];
+  const both = (fun, heart, at) => {
+    assert.ok(typeof fun === "string" && fun.length > 10 && typeof heart === "string" && heart.length > 10, `${at}: both voices`);
+    assert.notEqual(fun, heart, `${at}: two voices`);
+    lines.push([fun, "fun", at], [heart, "heart", at]);
+  };
+  for (const t of LIB.tags) {
+    const quietTag = t.locked18 || /^T03[AB]$/.test(t.id);
+    for (const f of ["green", "red", "bet"]) {
+      if (quietTag) assert.ok(!t[f] && !(t.h || {})[f], `${t.id}: no ${f} on an AI, kids or wedding trait`);
+      else both(t[f], (t.h || {})[f], `${t.id}.${f}`);
+    }
+  }
+  for (const a of LIB.axes) for (const s of ["plus", "minus"]) for (const f of ["Green", "Red", "Bet"]) both(a[s + f], a.h[s + f], `${a.id}.${s}${f}`);
+  for (const x of [...LIB.relationship, ...LIB.life]) both(x.seed, x.h.seed, `${x.code}.seed`);
+  for (const [k, v] of Object.entries(LIB.article.heist.why)) both(v.fun, v.heart, `heist.why.${k}`);
+  for (const [k, v] of Object.entries(LIB.article.heist.roles)) both(v.job.fun, v.job.heart, `heist.${k}.job`);
+  assert.deepEqual(Object.keys(LIB.article.heist.why).sort(), ["L1+", "L1-", "L2+", "L2-", "L3+", "L3-"]);
+  for (const [line, voice, at] of lines) {
+    assert.doesNotMatch(line, NEVER, `${at} ${voice}: never-say`);
+    assert.doesNotMatch(line, /\d/, `${at} ${voice}: no numbers`);
+    assert.doesNotMatch(line, /\bwith \w+ energy\b|You'd say|Last time, you/i, `${at} ${voice}: voice rules`);
+    assert.doesNotMatch(line, /\b(AI|kids?|children|wedding|married|marriage)\b/, `${at} ${voice}: never about AI, kids or weddings`);
+    if (voice === "heart") assert.doesNotMatch(line, HEART, `${at} heart: no therapy or grading words, no exclamation`);
+    assert.ok(line.split(/\s+/).length <= 26, `${at} ${voice}: one line, not a paragraph`);
+  }
+  assert.ok(lines.length >= 380, `${lines.length} lines checked`);
 });
