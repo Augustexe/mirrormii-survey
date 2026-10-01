@@ -1,6 +1,6 @@
 ---
 title: The Evidence Article (design direction and three concepts)
-status: built 2026-09-29 (round 4, C with A type) in quiz64/src/persona/article; copy in library.json article and crossover; tests in quiz64/tests/article-accuracy.test.mjs and tests/visual/article-scroll.mjs; jury in ARTICLE-JUDGE.json, sheet ARTICLE-FINAL.png. Sections below are the design record; the stat and archetype labels in their examples (Orbit, Home Base, Wanderlust) are retired by LAUNCH-SPEC section 26
+status: V2 pass 2026-09-30 (spot art and an editorial grid, one title, part one in Stories order, part two new: heist crew, flags, Genii's bets, island seed; sheet ARTICLE-V2.png, LAUNCH-SPEC section 3 has the current structure); built 2026-09-29 (round 4, C with A type) in quiz64/src/persona/article; copy in library.json article and crossover; tests in quiz64/tests/article-accuracy.test.mjs and tests/visual/article-scroll.mjs; jury in ARTICLE-JUDGE.json, sheet ARTICLE-FINAL.png. Sections below are the design record; the stat and archetype labels in their examples (Orbit, Home Base, Wanderlust) are retired by LAUNCH-SPEC section 26
 owner: jerry
 created: 2026-09-29
 source_basis: Jerry's brief 2026-09-29 (story first, then a larger article page; award level; not robotic); LAUNCH-SPEC.md sections 13, 21, 23, 24; DESIGN-DIRECTION.md sections 1, 3, 4; REVEAL-R3-CONTENT.png and REVEAL-R3-VISUAL.png; src/persona/stories/story-data.js, stats.js, views.js; research/persona-quiz-v2/final/library.json; research/result-page-wireframes (gazette, stories, stars, WRAPPED-RESEARCH.md); Awwwards evaluation pages and scorecards (section 1); Codex jury 2026-09-29 (section 8)
@@ -8,6 +8,8 @@ prototypes: research/result-page-wireframes/article/ (index.html, concept-a.html
 ---
 
 > **Design record (built).** The locked spec [LAUNCH-SPEC.md](../../docs/LAUNCH-SPEC.md) wins (sections 3 and 7); current labels are in its section 6, so the stat and archetype labels in the examples below are retired. Section numbers cited below refer to the pre-lock spec, now [history](../../docs/history/LAUNCH-SPEC-2026-09-29-full.md).
+
+> **V2 pass (2026-09-30).** The current structure is in LAUNCH-SPEC section 3. What changed: the big hero and night photos are gone; every section is a spread with one piece of spot art on the left rail (beside the heading on a phone) from `public/assets/article/` (ARTICLE-ART-SET.md, read through `src/persona/article/art.js` from its MANIFEST.json); the cover is a quiet sky band and one title with its story line; part one walks the Stories beats in the deck's order; part two adds two sides, the heist crew (one casting strip, your seat lit), green flag and red flag (pennants), Genii's bets (three slips), your people and the island seed packet with Get MirrorMii. Sections 3 to 11 below are the round 4 record.
 
 # The Evidence Article
 

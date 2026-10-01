@@ -185,6 +185,7 @@ older dossier build (`../docs/STATE.md`).
 | [docs/QA-REPORT.md](docs/QA-REPORT.md), `docs/VISUAL-JUDGE-CODEX-R*.json` | QA and independent visual judge rounds |
 | `docs/ROUND3-SHEET.png` | the full phone flow at 390x844 as of round 3 |
 | `docs/NAMES-SCREEN-FINAL.png` | decision 1a: story 2 and the share card before and after (one title, one story line from `names-64.json`) |
+| `docs/ARTICLE-V2.png` | the Evidence Article V2 for three players in both voices at 390 and 1440 (`qa/article-sheet.mjs`) |
 | `docs/LAYOUT-FIXES.png` | package L2: before and after of the article bar, the stat screen header and the share actions |
 | [../research/persona-quiz-v2/final/README.md](../research/persona-quiz-v2/final/README.md) | the content kit |
 
