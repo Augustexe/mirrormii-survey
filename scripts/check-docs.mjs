@@ -3,7 +3,7 @@
 //
 // Fails when:
 //   1. docs/LAUNCH-SPEC.md names a retired label or asset anywhere outside its Changes log (the last "Changes"
-//      section). Retired content lives only in docs/history/, never in the spec.
+//      section). Retired content lives only in the Changes log and in git history, never in the spec body.
 //   2. Any text file under docs/ or quiz64/docs/, or AGENTS.md or quiz64/README.md, contains an em dash
 //      (Jerry's standing rule: no em dashes anywhere).
 //

@@ -1,5 +1,5 @@
 // Every player-facing label on the result, read from the one source each lives in (docs/NAMING-RULES.md). The cold
-// reader panel (docs/NAMING-PANEL.json) scores this list; run it again after any label change:
+// reader panel (LAUNCH-SPEC section 6, "The gate") scores this list; run it again after any label change:
 //   node scripts/naming-inventory.mjs > /tmp/inventory.json
 // Each item: { id, set, label, where, kind }. `where` tells a cold reader where the label sits on the phone, never what
 // it means. kind "result" labels describe the player (the share gate applies); kind "ui" labels are headings, chips

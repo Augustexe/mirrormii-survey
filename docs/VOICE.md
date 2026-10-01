@@ -1,6 +1,6 @@
 # VOICE: how every survey card sounds
 
-Status: APPROVED by Jerry, 2026-09-30 ("go ahead"). Once approved, this page wins on how cards sound and read. The card-writer skill (`skills/shared/genii-card-writer/SKILL.md`) keeps structure, evidence and JSON; LAUNCH-SPEC keeps the rules and numbers. When they disagree about voice, this page wins.
+Status: APPROVED by Jerry, 2026-09-30 ("go ahead"). Once approved, this page wins on how cards sound and read. The card-writer skill (`skills/shared/genii-card-writer/SKILL.md` in Jerry's workspace, not in this repository; LAUNCH-SPEC sections 4 and 5 carry the same structure rules) keeps structure, evidence and JSON; LAUNCH-SPEC keeps the rules and numbers. When they disagree about voice, this page wins.
 
 Every batch of cards is written against this page, then checked. Jerry reviews this page, not every batch.
 
@@ -140,9 +140,20 @@ No em dashes. No genie, lamp or wish (Genii is a slime who guesses and bets). Sa
 ## 10. How batches run under this page
 
 - Worst and most-seen cards first, 10 at a time, drafted against this page.
-- Cards Jerry approved or kept are never rewritten (C5-141, C2-142, C1-126, C6-121, C6-140, and every BATCH-02 card).
+- Cards Jerry approved or kept are never rewritten (C5-141, C2-142, C1-126, C6-121, C6-140, and every card applied in the BATCH-02 pass of 2026-09-30).
 - Evidence re-set only where an answer's move changes; the full sim runs once at the end of the loop.
 - Anything that doesn't clearly meet this page is flagged for Jerry instead of shipped.
+
+## 11. Taste notes from Jerry's card verdicts
+
+Drawn from the BATCH-01 and BATCH-02 reviews (2026-09-30). Sections 3 and 5 hold the main rules; these are the extras.
+
+- **Slow absurd is the problem, not absurd.** Keep a kept absurd premise and fix its execution; never swap it for a realistic rewrite (he kept the pumpkin curse and the goldfish over theirs).
+- **Realistic needs a sting** (money, pride, being chosen by default, an awkward text); without one, go absurd. "A lot better, but a little bit boring" is a rejection.
+- **One confusing line kills a card.** Re-read every answer cold; an odd phrase ("these hands are closed on weekends") sinks the whole card.
+- **Serious topics ride the joke.** When a card measures family duty or savings, the joke carries it; the card never lectures.
+- **Two-option cards must be instantly legible**; otherwise give 3 to 5 clear options where the choice matters.
+- **Say it in fewer words than the last version.**
 
 ## Changes
 
@@ -150,4 +161,4 @@ No em dashes. No genie, lamp or wish (Genii is a slime who guesses and bets). Sa
 
 - 2026-09-30: Approved. Added Genii's angle per chapter (one narrator, different hat; no separate chapter voices). Chapter 4 renamed "Money and spending". Evidence stays formal and locked; only the words players read follow this page.
 
-- 2026-09-30: Draft created from the advisor lens (Rice Purity x Wrapped), JERRY-TASTE.md verdicts, LAUNCH-SPEC section 2 and the card-writer skill sections 0 to 5.
+- 2026-09-30: Draft created from the advisor lens (Rice Purity x Wrapped), Jerry's card verdicts (folded into section 11 on 2026-09-30), LAUNCH-SPEC section 2 and the card-writer skill sections 0 to 5.

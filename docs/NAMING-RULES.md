@@ -2,7 +2,7 @@
 
 Every label a player reads on the result (archetype names, kickers, stat names and ends, level words, trait keywords,
 tag names, room labels, section titles, tabs, chips and buttons) follows these rules. LAUNCH-SPEC section 6 holds the
-locked tables; `docs/NAMING-PANEL.json` holds the scores. Written 2026-09-29 after Jerry: "Nobody understands what a
+locked tables and the panel's last result (raw panel scores are in git history). Written 2026-09-29 after Jerry: "Nobody understands what a
 slow burner is" and "If they're progressive and you label them traditional, that's just bad."
 
 ## The rules

@@ -18,7 +18,7 @@ Read in this order (about 30 minutes):
 5. [question-pack/QUESTION-PACK.md](question-pack/QUESTION-PACK.md) if you touch content.
 
 ```sh
-# from products/survey/, Node 22
+# from the repository root, Node 22 or newer
 npm ci --prefix quiz64
 npm run dev --prefix quiz64 -- --port 5195     # the game at http://127.0.0.1:5195/
 npm test --prefix quiz64                       # app tests, including the contract checks
@@ -115,7 +115,3 @@ Tooling line (proposals, build over buy): Node 22 with Fastify or Hono, `better-
 **Jerry holds these:** the list lives in one place, [LAUNCH-SPEC.md](LAUNCH-SPEC.md) section 10 (among them: blind test 2, teens, the public app link and share domain, when to push and deploy, copy sign-off). Until he rules, the build ships the defaults listed there; the backend must not collect or infer age.
 
 **Desmond decides (proposals in api.md):** one accepted friend submission per link or last-wins (today last-wins per browser); run and link retention (proposed 12 months and 30 days); server-issued or client-made run ids; host and collector; whether to add a public share page.
-
-## Round 4 note
-
-Crews K1 (Evidence Article, canon world) and K2 (world assets) changed the result presentation this round. The contracts were re-validated on the tree after both landed: the Evidence Article (`quiz64/src/persona/article/`) is a pure projection of `resultView` plus `library.json`, so the result record already carries every claim it shows and the server can rebuild it from the stored run.

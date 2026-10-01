@@ -1,6 +1,6 @@
 # Backend contracts: the launch survey
 
-Status: **proposed for Desmond, derived from the code on 2026-09-29 (round 4)**. Entry page: [../HANDOFF-DESMOND.md](../HANDOFF-DESMOND.md). Product rules: [../LAUNCH-SPEC.md](../LAUNCH-SPEC.md).
+Status: **proposed for Desmond, derived from the code on 2026-09-29 and re-validated on every test run**. Entry page: [../HANDOFF-DESMOND.md](../HANDOFF-DESMOND.md). Product rules: [../LAUNCH-SPEC.md](../LAUNCH-SPEC.md).
 
 Every schema is JSON Schema draft 2020-12 and is checked against the real kit and real runs of the app, so a change on either side that breaks a contract fails a test.
 
@@ -22,7 +22,7 @@ Supporting files:
 
 ## Validate
 
-From `products/survey/` (Node 22, no install needed):
+From the repository root (Node 22 or newer, no install needed):
 
 ```sh
 node scripts/validate-contracts.mjs            # one line per check, exit 1 on any failure

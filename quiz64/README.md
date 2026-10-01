@@ -1,6 +1,6 @@
 # MirrorMii launch survey: the Genii persona game (quiz64)
 
-**Start here.** This is the one entry page for a developer. The product rules live in
+The developer page for the web app. The repository entry is [../README.md](../README.md); the product rules live in
 [../docs/LAUNCH-SPEC.md](../docs/LAUNCH-SPEC.md) (the one locked spec; read it first; where anything below differs, the spec wins).
 
 ## What the app is
@@ -18,7 +18,7 @@ analytics or survey API.
 
 ## Run, test, build
 
-Node 22 (the kit JSON uses import attributes). Commands run from `products/survey/`.
+Node 22 or newer (the kit JSON uses import attributes). Commands run from the repository root.
 
 ```sh
 npm ci --prefix quiz64
@@ -48,16 +48,16 @@ with the app's own session module). Set `PLAYWRIGHT_MODULE=/path/to/playwright/i
 |---|---|
 | `qa/capture-screens.mjs [base] [outDir]` | Screenshot matrix: every screen, card format and reveal screen in both voices at 390x844, 375x667 and 1440x900 (`SIZES`, `ONLY`, `PLAYER` env) |
 | `qa/layout-guard.mjs [base] [outDir]` (`npm run qa:layout -- [base]`) | Layout guard: walks landing, setup, lobby, interlude, a card of each format, lock, finale, every Stories screen (scrolled in steps) and the whole Evidence Article (scrolled in steps, section menu, every tab) at 375x667, 390x844 and 1440x900 in both voices. Fails on text over text, icons or controls; text showing through a fixed or sticky bar without a solid backing; text clipped by overflow, ellipsis or line clamp; text or controls off the left or right edge; labels squeezed into round pills; controls a sticky bar covers once focused. Writes `report.json` and a marked screenshot per failing step to outDir (default `qa/layout-report/`, ignored); exit 1 on any failure or error. A format no run can reach (feeling cards while `SERVE_FEELING` is off; rank, served only for coverage) is a printed note, not an error; `tests/visual/fold.mjs` still renders every card of both. Justified exceptions live in its `EXCEPTIONS` list (none today). Env: `SIZES`, `VOICES`, `ONLY`, `PLAYER=a\|b\|c`. Run it after any CSS or layout change |
-| `qa/capture-layout-fixes.mjs before\|after\|sheet [base] [outDir]` | Before and after of the package L2 layout bugs; `sheet` writes `docs/LAYOUT-FIXES.png` |
-| `qa/capture-names-screen.mjs before\|after\|sheet [base] [outDir]` | Story 2 (one title, one line) for four players in both voices at all three sizes, plus the share card in both shapes; `sheet` writes `docs/NAMES-SCREEN-FINAL.png` |
 | `qa/qa-checks.mjs [base] [outDir]` | axe (WCAG 2 AA) on every screen, fonts, never-say copy (and the retired "your person"), overflow at 390 px and 200% zoom, share PNGs, friend link flow, landing LCP and CLS. Default outDir `qa/qa-report/` (ignored); unreachable formats are notes, as in the layout guard |
 | `qa/play-through.mjs [base] [fun\|heart\|cards] [outDir]` | One full run through the real UI (40 + lock + 8 + 12 reveal screens), mouse or `KEYS=1` keyboard only |
 | `tests/visual/fold.mjs` | Every card of the bank in the real card screen: all options and exits above the fold at 390x844 |
 | `tests/visual/play-evidence.mjs` | Proves the card sends the same answers as the pre-rebuild card for the same taps |
+| `qa/article-axe.mjs [base]`, `qa/article-capture.mjs [base] [outDir]` | axe on the Evidence Article; section-by-section captures at phone and desktop (shared setup in `qa/article-open.mjs`) |
+| `qa/article-sheet.mjs [base] [out.png]`, `qa/drama-sheet.mjs [base] [out.png]` | Contact sheets: the whole article for three players, and the drama stats for four players, both voices (default out in their ignored `qa/` folders) |
 | `qa/capture-genii.mjs`, `qa/genii-lab.html` | Genii evolution stage sheet and a side-by-side lab against the canon render |
 | `qa/capture-genii.mjs` with `STILL=1` | Saves the transparent still of our own 3D Genii that the share image draws (`public/assets/island/genii-still.png`) |
 
-`qa/persona-browser-qa.mjs` is **superseded** (it drives the pre-lobby flow); use `play-through.mjs` and `qa-checks.mjs`.
+Every QA output folder under `qa/` is git-ignored; screenshots and sheets never go into `docs/`.
 
 ## Folder map
 
@@ -95,8 +95,9 @@ quiz64/
   public/assets/island/ canon GDD v0.2 renders (LAUNCH-SPEC section 7): island day, wide and night, the World Mirror frame, the
                         room inside it, seven chapter islets, a still of our 3D Genii; sizes in MANIFEST.json
   tests/                node tests (logic, kit parity, picker, friend links, render, reveal accuracy, style and asset guards)
-  qa/                   browser QA scripts (above); qa/evidence holds an older report
-  docs/                 design direction, verification, judge rounds, sheets (see "Docs" below)
+  scripts/              calibrate-drama.mjs (drama stat calibration), make-textures.mjs, render-icons.mjs (favicon, OG image)
+  qa/                   browser QA scripts (above)
+  docs/                 design direction, Evidence Article design and art set, dependency notices (see "Docs" below)
 ```
 
 ## Where the content lives and how it reaches the app
@@ -123,8 +124,21 @@ examples and the question pack, is LAUNCH-SPEC section 5. Card rules, formats an
 **Scoring overview.** Six axes in two halves (R1 to R3 the people half, L1 to L3 the life half), tags from
 option evidence, grades and weights per format (`card-schema.mjs`), the picker in `session.js` (coverage first, then
 flow and value), Genii's 8 sealed guesses frozen and hashed before the final cards. Read LAUNCH-SPEC section 4,
-`score-core.mjs`, and `docs/PERSONA-MVP.md` for the picker and storage details. Every line on the reveal traces to the
+`score-core.mjs`, and the engine notes below. Every line on the reveal traces to the
 player's own scores: `tests/reveal-accuracy.test.mjs`.
+
+**Engine notes** (`src/persona/session.js`; rules in LAUNCH-SPEC sections 3 and 4):
+
+- The run is a plain JSON object (schema `genii.persona.run/3`; `/1` and `/2` saves are refused). Every write goes
+  through one step machine, and a restored save is replayed card by card through the same step machine and picker
+  before it is trusted.
+- Setup is two taps (closest person, pronoun); the lobby is stored as `{ voice, depth, rooms }`. `voice` is `fun`,
+  `heart` or `cards` (Just the cards reads Make it fun); `depth: "light"` skips `privacy: "intimate"` cards.
+- A card carries both voices: top-level text is Make it fun, `card.heart` holds Heart to heart in the same option
+  order. Answers are option indexes either way, so evidence is never duplicated.
+- The picker is deterministic: the only randomness is seeded from the run id. The 8 sealed cards are drawn per run
+  from the pool of 24 with a seed from `sha256("genii.finale|" + runId)` (`finaleIds`); Genii's guesses are frozen and
+  hashed (`lockHash`) before the first sealed card.
 
 ## The friend game and backend boundary (Desmond)
 
@@ -135,7 +149,7 @@ What exists today, all in the browser:
 - **Friend game v1** on two URL-fragment links: challenge `#play=<payload>` and reply `#reply=<payload>` (base64url
   JSON plus a SHA-256 check, 6000 characters max; `links.js`, `friend.js`). The owner opens the reply in the browser
   that holds their run. Known limit: the answer key rides in the challenge link, links are unsigned, and replies do
-  not sync across devices. Details: `docs/PERSONA-MVP.md`, "Friend game".
+  not sync across devices. Link formats: [../docs/contracts/friend-challenge.md](../docs/contracts/friend-challenge.md).
 - **Storage**: `localStorage` only (`genii.persona.v2.run`, `genii.persona.friend-play.v1`, `genii.motion.v1`).
   "Download my data" exports the run as JSON; "Delete my data" removes every `genii.*` key.
 
@@ -160,8 +174,8 @@ What a finished run exposes (no network code exists; a backend would read these)
   replies). `KIT_ID` pins every save and link to the kit that made it.
 
 Not built (backend work): hidden answer keys and signed links, cross-device replies, accounts, analytics, a research
-record store, the friend comparison view (bestie versus partner), and deployment. The live public site is still the
-older dossier build (`../docs/STATE.md`).
+record store and the friend comparison view (bestie versus partner). The static build is live on GitHub Pages
+(`../docs/STATE.md`).
 
 ## Known gaps
 
@@ -178,17 +192,9 @@ older dossier build (`../docs/STATE.md`).
 
 | Doc | Use it for |
 |---|---|
-| [../docs/HANDOFF-DESMOND.md](../docs/HANDOFF-DESMOND.md) | the backend and friend game handoff: contracts, API, events, question pack, deployment, open decisions |
 | [../docs/LAUNCH-SPEC.md](../docs/LAUNCH-SPEC.md) | the locked spec: rulings (section 2), flow, scoring, copy, gates with commands (section 8), open decisions (section 10) |
-| [docs/DESIGN-DIRECTION.md](docs/DESIGN-DIRECTION.md) | the visual system, screen by screen (section 5), QA checklist (section 7) |
-| [docs/PERSONA-MVP.md](docs/PERSONA-MVP.md) | engine notes: picker, storage, friend links (older sections are marked) |
-| [docs/QA-REPORT.md](docs/QA-REPORT.md), `docs/VISUAL-JUDGE-CODEX-R*.json` | QA and independent visual judge rounds |
-| `docs/ROUND3-SHEET.png` | the full phone flow at 390x844 as of round 3 |
-| `docs/NAMES-SCREEN-FINAL.png` | decision 1a: story 2 and the share card before and after (one title, one story line from `names-64.json`) |
-| `docs/ARTICLE-V2.png` | the Evidence Article V2 for three players in both voices at 390 and 1440 (`qa/article-sheet.mjs`) |
-| `docs/DRAMA-STATS.png` | the drama stats: story 4 and the article stat block for four players in both voices at 390 x 844, plus the cover after the cuts (`qa/drama-sheet.mjs`; recalibrate with `node scripts/calibrate-drama.mjs`) |
-| `docs/LAYOUT-FIXES.png` | package L2: before and after of the article bar, the stat screen header and the share actions |
+| [../docs/HANDOFF-DESMOND.md](../docs/HANDOFF-DESMOND.md) | the backend and friend game handoff: contracts, API, events, question pack, deployment, open decisions |
+| [docs/DESIGN-DIRECTION.md](docs/DESIGN-DIRECTION.md) | the visual system, screen by screen (section 5), QA checklist (section 7); partly superseded, the spec's section 7 says where |
+| [docs/ARTICLE-DESIGN.md](docs/ARTICLE-DESIGN.md), [docs/ARTICLE-ART-SET.md](docs/ARTICLE-ART-SET.md) | the Evidence Article design record and its spot art set |
+| [docs/DEPENDENCIES.md](docs/DEPENDENCIES.md) | shipped packages and licenses |
 | [../research/persona-quiz-v2/final/README.md](../research/persona-quiz-v2/final/README.md) | the content kit |
-
-Older build docs in `docs/` (ASTRA-*, IMPLEMENTATION-CONTRACT, QUESTION-MAP, EVIDENCE-ENGINE-CONTRACT, ENGLISH-VOICE,
-RELEASE-REVIEW) describe removed survey generations; they stay as history only.

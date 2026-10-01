@@ -1,6 +1,6 @@
 # Final card read (FR, 2026-09-30)
 
-Every served card read in both voices (Make it fun and Heart to heart), with thread messages and friend-game text, against VOICE.md section 9 and JERRY-TASTE.md. Feeling cards skipped (not served). Text only; evidence locked.
+Every served card read in both voices (Make it fun and Heart to heart), with thread messages and friend-game text, against VOICE.md sections 9 and 11 (Jerry's taste notes). Feeling cards skipped (not served). Text only; evidence locked.
 
 ## Counts
 

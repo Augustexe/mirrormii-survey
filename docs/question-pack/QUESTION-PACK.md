@@ -1,6 +1,6 @@
 # Question pack
 
-The launch survey's questions (cards), for developers and future content work. The rules live in [LAUNCH-SPEC](../LAUNCH-SPEC.md) (sections 5 to 12, 21, 22); this page explains how the bank is organized and how to change it safely, and points at a generated export.
+The launch survey's questions (cards), for developers and future content work. The rules live in [LAUNCH-SPEC](../LAUNCH-SPEC.md) (sections 4 and 5); this page explains how the bank is organized and how to change it safely, and points at a generated export.
 
 | File | What |
 |---|---|
@@ -64,7 +64,7 @@ Grade, weight and exits come from the format (`card-schema.mjs`), never from the
 - **Tags**: fire at net support 2.25 from 2 separate cards (one calm), strong at 3.0; up to 5 shown from at least 3 chapters; if none fire, the best above 1.25 shows as leaning.
 - **Splits**: believe-grade evidence one way and did or would the other way on the same axis becomes "the thing you didn't know".
 - **Evidence lock**: `evidence-lock.json` holds a hash of every text next to the evidence it carries. Rewording is free; a changed text fails the kit tests until someone re-reads the card and re-locks it.
-- Current coverage (scored pool): R1 22, R2 22, R3 19, L1 17, L2 17, L3 18 cards per axis; every tag 2 to 12 cards (T02A, T02B, T11A, T11B at 2; see ROUND4-LOG for T02).
+- Current coverage (scored pool): R1 22, R2 22, R3 19, L1 17, L2 17, L3 18 cards per axis; every tag 2 to 12 cards (T02A, T02B, T11A, T11B at 2; T02 by the two-cards-per-concept rule, LAUNCH-SPEC section 10 decision 3).
 
 ## The CSV
 
@@ -84,7 +84,7 @@ One row per card, in authored order (chapters, then extras, then sealed). Column
 
 ## Adding or changing a card safely
 
-1. **Write it with the card-writer skill**: `skills/shared/genii-card-writer/SKILL.md` in the central workspace (sub-question first, world, hook, event, moves, spice, uniqueness, both voices, JSON shape in its section 7). Put it in the right `bank/*.json`; new ids continue the chapter's numbering.
+1. **Write it** against [VOICE.md](../VOICE.md) and LAUNCH-SPEC sections 2, 4 and 5 (sub-question first, world, hook, event, moves, spice, uniqueness, both voices); copy the JSON shape of a neighbouring card or read [card.schema.json](../contracts/card.schema.json). Jerry's agents also use the card-writer skill in his workspace (`skills/shared/genii-card-writer/SKILL.md`, not in this repository). Put it in the right `bank/*.json`; new ids continue the chapter's numbering.
 2. **Check**: `node check-bank.mjs` (schema per format, option counts, both voices, fingerprints, bans, evidence rules) and `node shape-audit.mjs --limits` (repeated shapes), inside `research/persona-quiz-v2/final/`.
 3. **Merge**: `node merge-bank.mjs` builds `cards.json` (fills grade, weight, exits and checks).
 4. **Lock the evidence**: `node lock-evidence.mjs` lists what changed; after re-reading, `node lock-evidence.mjs --confirm <cardId>`.
