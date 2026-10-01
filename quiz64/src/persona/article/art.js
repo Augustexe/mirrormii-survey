@@ -1,26 +1,89 @@
-// The canon world renders the article uses (LAUNCH-SPEC section 25 item 1): public/assets/island/, made from the GDD
-// v0.2 (sizes in its MANIFEST.json). Paths only; the files are lazy-loaded by the page, except the cover.
+// The Evidence Article's art (V2 pass, 2026-09-30): one small opal-glass object per section, set beside the type as
+// spot art, and one quiet sky band on the cover. No banner photos. The set is generated into public/assets/article/
+// and listed in its MANIFEST.json (docs/ARTICLE-ART-SET.md). Until a piece exists the page draws a code-made glass
+// placeholder of the same size, so the layout never shifts when the real file lands.
 import { asset } from "../../assets.js";
 
-const at = (name) => asset(`island/${name}`);
-const set = (name, widths) => widths.map((w) => `${at(`${name}-${w}.webp`)} ${w}w`).join(", ");
+// The manifest is read at build time when it exists (an empty object otherwise), so a missing set never breaks a build.
+const FOUND = import.meta.glob("/public/assets/article/MANIFEST.json", { eager: true, import: "default" });
+const MANIFEST = Object.values(FOUND)[0] || null;
 
-export const ART = Object.freeze({
-  // The floating island with the World Mirror at its center: portrait for phones, wide for desktop.
-  portrait: { src: at("hero-portrait-720.webp"), srcSet: set("hero-portrait", [720, 1080]), w: 720, h: 1080 },
-  wide: { src: at("hero-wide-960.webp"), srcSet: set("hero-wide", [960, 1600]), w: 960, h: 540 },
-  // The same island at night, the mirror glowing.
-  night: { src: at("hero-night-720.webp"), srcSet: set("hero-night", [720, 1080]), w: 720, h: 1080 },
-  // The World Mirror: the oval opal frame on its round plinth, glass and background transparent. The glass opening
-  // sits at these fractions of the frame image (measured from the render's alpha).
-  frame: { src: at("mirror-frame-480.webp"), srcSet: set("mirror-frame", [240, 480, 900]), w: 480, h: 779, glass: { left: 19.6, top: 5.7, width: 61.4, height: 75.7 } },
-  // What the mirror shows: a cozy pastel room with a window onto the dream city.
-  inside: { src: at("mirror-inside-720.webp"), srcSet: set("mirror-inside", [360, 720, 1080]), w: 720, h: 1080 },
+// Page name (what a section asks for) to the file stem in the set.
+export const SPOT_STEMS = Object.freeze({
+  "cover-band": "cover-band",
+  divider: "divider",
+  backdrop: "backdrop-tile",
+  stats: "stats-crystal",
+  traits: "traits-pebbles",
+  secret: "insight-shard",
+  "room-ch1": "room-phone",
+  "room-ch2": "room-friends",
+  "room-ch3": "room-love",
+  "room-ch4": "room-money",
+  "room-ch5": "room-work",
+  "room-ch6": "room-home",
+  "room-ch7": "room-play",
+  "two-sides": "two-sides-orb",
+  "open-book": "open-book",
+  record: "record-quill",
+  "heist-planner": "heist-planner",
+  "heist-driver": "heist-driver",
+  "heist-inside": "heist-inside",
+  "heist-distraction": "heist-distraction",
+  flags: "flags-pair",
+  bets: "bets-chips",
+  seed: "island-seed",
+  closing: "closing-mirror",
 });
 
-// One floating islet per chapter (1 phone, 2 friends, 3 love, 4 money, 5 work, 6 home, 7 play), transparent around it.
-export function islet(chapter) {
-  const n = Number(chapter);
-  if (!(n >= 1 && n <= 7)) return null;
-  return { src: at(`ch${n}-360.webp`), srcSet: set(`ch${n}`, [360, 720]), w: 360, h: 360 };
+// Every entry the manifest lists for a stem, as { file, w, h }, whatever shape the manifest takes (an array of files,
+// or an object keyed by stem with a list of sizes).
+function filesFor(stem) {
+  if (!MANIFEST) return [];
+  const out = [];
+  const push = (f) => {
+    if (!f || typeof f !== "object") return;
+    const file = f.file || f.path || f.src || f.name;
+    if (typeof file !== "string") return;
+    const base = file.split("/").pop();
+    if (!base.startsWith(`${stem}-`) && !base.startsWith(`${stem}.`)) return;
+    const [sw, sh] = String(f.size || "").split("x").map(Number);
+    const w = Number(f.width || f.w) || sw || Number((/-(\d+)\.\w+$/.exec(base) || [])[1]) || 0;
+    const h = Number(f.height || f.h) || sh || w;
+    out.push({ file: base, w, h });
+  };
+  const walk = (node) => {
+    if (Array.isArray(node)) node.forEach((n) => (typeof n === "string" ? push({ file: n }) : n && (n.file || n.path || n.src) ? push(n) : walk(n)));
+    else if (node && typeof node === "object") {
+      if (node.file || node.path || node.src) push(node);
+      else Object.values(node).forEach(walk);
+    }
+  };
+  walk(MANIFEST);
+  // WebP when the set has it, else whatever image format it ships; one file per width.
+  const imgs = out.filter((f) => /\.(webp|avif|png|jpe?g)$/i.test(f.file));
+  const webp = imgs.filter((f) => /\.webp$/i.test(f.file));
+  const seen = new Set();
+  return (webp.length ? webp : imgs).sort((a, b) => a.w - b.w).filter((f) => (seen.has(f.w) ? false : seen.add(f.w)));
 }
+
+// One piece of spot art: { src, srcSet, w, h } from the set, or null while it does not exist yet.
+export function spot(name) {
+  const stem = SPOT_STEMS[name];
+  if (!stem) return null;
+  const files = filesFor(stem);
+  if (!files.length) return null;
+  const best = files.find((f) => f.w >= 360) || files[files.length - 1];
+  const at = (f) => asset(`article/${f.file}`);
+  return {
+    src: at(best),
+    srcSet: files.length > 1 ? files.map((f) => `${at(f)} ${f.w}w`).join(", ") : undefined,
+    w: best.w || 360,
+    h: best.h || best.w || 360,
+  };
+}
+
+export const HAS_ART = Boolean(MANIFEST);
+
+// The room islet for a chapter (1 phone, 2 friends, 3 love, 4 money, 5 work, 6 home, 7 play).
+export const roomArt = (chapter) => `room-ch${Number(chapter)}`;
