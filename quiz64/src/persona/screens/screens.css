@@ -174,7 +174,6 @@
   .mm-landing__title {
     margin-block-start: var(--s-3);
     font: var(--type-hero);
-    font-variation-settings: var(--font-display-upright);
     letter-spacing: var(--type-hero-track);
     max-inline-size: var(--measure-hero);
   }
@@ -887,11 +886,9 @@
   .mm-voice__name {
     font: var(--type-title);
     letter-spacing: var(--type-title-track);
-    font-variation-settings: var(--font-display-upright);
   }
   .mm-voice__sample {
     font: var(--type-genii);
-    font-variation-settings: var(--font-display-italic);
     color: var(--c-ink-2);
     text-wrap: pretty;
   }
@@ -1207,7 +1204,6 @@
     margin-block: var(--s-1) var(--s-4);
     font: var(--type-display);
     letter-spacing: var(--type-display-track);
-    font-variation-settings: var(--font-display-upright);
   }
   .mm-interlude__sub {
     margin-block-start: 0;
@@ -1240,7 +1236,6 @@
   }
   .mm-interlude__count strong {
     font: var(--type-title);
-    font-variation-settings: var(--font-display-upright);
     font-variant-numeric: tabular-nums;
     color: var(--c-ink);
   }

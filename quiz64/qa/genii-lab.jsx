@@ -19,7 +19,7 @@ function Cell({ children, label, night: dark = night }) {
   return (
     <figure style={{ margin: 0, width: CELL, display: "grid", justifyItems: "center", gap: 6 }}>
       <div style={{ width: CELL, height: CELL, display: "grid", placeItems: "center", position: "relative" }}>{children}</div>
-      <figcaption style={{ font: "600 15px/1.2 Figtree, system-ui, sans-serif", color: dark ? "#E9E6FF" : "#171625" }}>{label}</figcaption>
+      <figcaption style={{ font: "600 15px/1.2 Satoshi, system-ui, sans-serif", color: dark ? "#E9E6FF" : "#171625" }}>{label}</figcaption>
     </figure>
   );
 }

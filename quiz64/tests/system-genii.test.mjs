@@ -36,7 +36,7 @@ test("GeniiLight renders every mood at every size with no raster and no face", a
   assert.doesNotMatch(tiny, /genii-light__sparkle"/, "xs is a clean dot of light");
 });
 
-test("GeniiLight lines: Fraunces italic, polite, hidden for Just the cards", async () => {
+test("GeniiLight lines: upright Satoshi, polite, hidden for Just the cards", async () => {
   const { GeniiLight } = await load("/src/system/index.js");
   const line = "Oh, you enjoyed that one.";
   const fun = renderToStaticMarkup(React.createElement(GeniiLight, { line, voice: "fun" }));

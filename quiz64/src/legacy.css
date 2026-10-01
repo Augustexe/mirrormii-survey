@@ -6,13 +6,7 @@
 
 /* ---------- from src/styles.css ---------- */
 :root {
-  font-family:
-    Avenir Next,
-    Avenir,
-    Manrope,
-    ui-sans-serif,
-    system-ui,
-    sans-serif;
+  font-family: var(--font);
   color: #091b39;
   background: #fdfdff;
   font-synthesis: none;
@@ -199,11 +193,7 @@ body,
 /* Launch art direction: white paper, violet optical glass, quiet chrome.
    Art and motion live around the reading surface, never behind answer text. */
 :root {
-  font-family:
-    Satoshi,
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
+  font-family: var(--font);
   --ink: #292330;
   --iris-text: #6643b0;
 }
@@ -212,20 +202,12 @@ button,
 input,
 textarea,
 select {
-  font-family:
-    Satoshi,
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
+  font-family: var(--font);
 }
 h1,
 h2,
 h3 {
-  font-family:
-    Satoshi,
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif;
+  font-family: var(--font);
   font-weight: 700;
 }
 html {
@@ -590,7 +572,7 @@ body[data-motion="off"] dialog[open]::backdrop {
 .fp-made__invite {
   margin: 0;
   font-size: 17px;
-  font-style: italic;
+  font-style: normal;
   color: #3a2a6e;
 }
 .fp-made small {

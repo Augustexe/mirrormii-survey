@@ -10,8 +10,9 @@ import { tokens } from "../system/index.js";
 export const FORMATS = Object.freeze({ story: { w: 1080, h: 1920 }, post: { w: 1080, h: 1350 } });
 const N = tokens.night;
 const C = tokens.color;
-const DISPLAY = tokens.fonts.display;
-const TEXT = tokens.fonts.text;
+// One font: Satoshi (tokens.fonts.family), upright only. Callers still name a role ("display" for headlines, names,
+// numbers and lines; "text" for labels and body); the role only picks the weight, never a different face.
+const FAMILY = tokens.fonts.family;
 const hasPath2D = () => typeof Path2D !== "undefined";
 const path = (d) => (hasPath2D() ? new Path2D(d) : null);
 const tintOf = (ch) => (tokens.chapterTint[ch] || tokens.chapterTint[Number(ch)] || tokens.chapterTint.extras).tint;
@@ -38,8 +39,18 @@ function paletteFor(look, theme = "day") {
 
 // ---------------------------------------------------------------- text
 
-function font(ctx, face, weight, size, italic = false) {
-  ctx.font = `${italic ? "italic " : ""}${weight} ${Math.round(size)}px ${face === "display" ? DISPLAY : TEXT}`;
+// Display weights retuned for Satoshi: headlines and names 800, prompts and story lines 700, quiet lines 500, and
+// numbers of 90 px and up 900 (tabular figures are the face default for digits on canvas).
+export function displayWeight(weight, size) {
+  if (size >= 90) return 900;
+  if (weight >= 580) return 800;
+  if (weight >= 540) return 700;
+  return 500;
+}
+
+function font(ctx, face, weight, size) {
+  const w = face === "display" ? displayWeight(weight, size) : weight;
+  ctx.font = `${w} ${Math.round(size)}px ${FAMILY}`;
 }
 
 function wrap(ctx, value, width) {
@@ -66,13 +77,13 @@ function balanced(ctx, value, width, first) {
 }
 
 // Fit text into at most `maxLines` lines at the largest size between max and min. Returns { size, lines }.
-function fit(ctx, value, { face, weight, italic, max, min, width, maxLines, balance = true }) {
+function fit(ctx, value, { face, weight, max, min, width, maxLines, balance = true }) {
   for (let size = max; size >= min; size -= 2) {
-    font(ctx, face, weight, size, italic);
+    font(ctx, face, weight, size);
     const lines = wrap(ctx, value, width);
     if (lines.length <= maxLines && lines.every((l) => ctx.measureText(l).width <= width)) return { size, lines: balance ? balanced(ctx, value, width, lines) : lines };
   }
-  font(ctx, face, weight, min, italic);
+  font(ctx, face, weight, min);
   return { size: min, lines: wrap(ctx, value, width).slice(0, maxLines) };
 }
 
@@ -592,7 +603,7 @@ function drawTitleText(ctx, { x, w, layout, p }) {
   yy += layout.rule + layout.lineGap;
   ctx.save();
   if (p.dark) { ctx.shadowColor = rgba(N.n900, 0.95); ctx.shadowBlur = 18 * k; }
-  font(ctx, "display", 450, line.size, true);
+  font(ctx, "display", 450, line.size);
   lines(ctx, line.lines, cx, yy + line.size * 0.86, { lh: line.size * 1.3, align: "center", color: ink });
   ctx.restore();
 }
@@ -684,7 +695,7 @@ export function drawShareCard(ctx, card, { format = "story", theme = "night", li
     const { foot } = drawNamedMirror(ctx, { x: (W - aw) / 2, y: ay, w: aw, title, mirror: card.mirror, p });
     drawGenii(ctx, W / 2 + aw * 1.12, foot + 4, 128);
     drawPillRows(ctx, { items, y: foot + 26, W, p, size: 34, maxW: W - 100, maxRows: 2, gap: 16, rowGap: 14 });
-    font(ctx, "display", 420, 48, true);
+    font(ctx, "display", 420, 48);
     lines(ctx, [card.invite || ""], W / 2, H - 72, { lh: 0, align: "center", color: p.accent });
     font(ctx, "text", 600, 24);
     lines(ctx, [card.url || ""], W / 2, H - 28, { lh: 0, align: "center", color: p.ink3 });
@@ -697,7 +708,7 @@ export function drawShareCard(ctx, card, { format = "story", theme = "night", li
   const { foot } = drawNamedMirror(ctx, { x: (W - aw) / 2, y: ay, w: aw, title, mirror: card.mirror, p });
   drawGenii(ctx, W - 176 - 44, foot + 8, 176);
   drawPillRows(ctx, { items, y: foot + 34, W, p, size: 46, maxW: W - 140, maxRows: 2 });
-  font(ctx, "display", 420, 58, true);
+  font(ctx, "display", 420, 58);
   lines(ctx, [card.invite || ""], W / 2, 1800, { lh: 0, align: "center", color: p.accent });
   font(ctx, "text", 600, 28);
   lines(ctx, [card.url || ""], W / 2, 1876, { lh: 0, align: "center", color: p.ink3 });
@@ -876,7 +887,7 @@ function drawStoryBody(ctx, spec, p, W, H) {
         lines(ctx, [big], x0, 480, { lh: 0, color: p.ink });
         font(ctx, "display", 600, 72);
         lines(ctx, [tail], x0 + bw, 480, { lh: 0, color: p.ink });
-        font(ctx, "display", 420, 40, true);
+        font(ctx, "display", 420, 40);
         lines(ctx, [spec.of || ""], W / 2, 548, { lh: 0, align: "center", color: p.ink2 });
       }
       y = block(ctx, spec.title, W / 2, 610, { face: "display", weight: 600, max: 62, min: 48, width, maxLines: 2, color: p.ink, align: "center" }) + 60;
@@ -953,10 +964,11 @@ export function drawStory(ctx, spec, { lightTheme = "day", wordmarkImage = null 
 
 // ---------------------------------------------------------------- output
 
-// Wait for the brand faces (1.5 s at most; after that the system fallback draws).
+// Wait for Satoshi before drawing (1.5 s at most; after that the system fallback draws). One variable file covers
+// every weight, so loading the weights the images use is enough.
 export async function fontsReady(timeout = 1500) {
   if (typeof document === "undefined" || !document.fonts || !document.fonts.load) return false;
-  const faces = [`600 84px ${DISPLAY}`, `420 52px ${DISPLAY}`, `560 48px ${DISPLAY}`, `600 26px ${TEXT}`, `500 28px ${TEXT}`, `700 26px ${TEXT}`];
+  const faces = [500, 600, 700, 800, 900].map((w) => `${w} 48px ${FAMILY}`);
   let timer;
   const late = new Promise((resolve) => { timer = setTimeout(() => resolve(false), timeout); });
   const ok = await Promise.race([Promise.all(faces.map((f) => document.fonts.load(f))).then(() => true, () => false), late]);

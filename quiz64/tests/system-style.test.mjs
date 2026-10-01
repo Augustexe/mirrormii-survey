@@ -2,7 +2,7 @@
 // - only src/system (tokens) and src/art may hold color, font-family and duration literals in CSS; the legacy layer
 //   is exempt until integration deletes it;
 // - the shipped module graph never references the retired library Genii renders or badges;
-// - the brand fonts stay inside the 220 KB budget and Satoshi is never requested.
+// - one font: Satoshi, upright, inside the 220 KB budget; no other family anywhere in the shipped CSS or images.
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -42,7 +42,7 @@ export function styleViolations(file, css) {
     if (prop.startsWith("--")) continue;
     if (HEX.test(value)) out.push(`${file}: hex color in ${prop}: ${value}`);
     if (prop === "font-family") out.push(`${file}: font-family: ${value}`);
-    if (prop === "font" && !/var\(--(type|font)-/.test(value) && !/^(inherit|initial|unset)$/.test(value)) out.push(`${file}: font shorthand without a token: ${value}`);
+    if (prop === "font" && !/var\(--(type-|font\b)/.test(value) && !/^(inherit|initial|unset)$/.test(value)) out.push(`${file}: font shorthand without a token: ${value}`);
     if (TIMED.test(prop) && RAW_DURATION.test(value.replace(/var\([^)]*\)/g, ""))) out.push(`${file}: raw duration in ${prop}: ${value}`);
   }
   return out;
@@ -127,15 +127,57 @@ test("package A never draws Genii from the library: screens, system and the app 
 });
 
 // ---------------------------------------------------------------- fonts
-test("fonts: Fraunces and Figtree together at or under 220 KB; Satoshi is aliased, never fetched", () => {
+test("fonts: one face, Satoshi, upright, variable 300 to 900, at or under 220 KB", () => {
   const css = read("src/system/fonts.css");
   const faces = [...css.matchAll(/@font-face\s*\{([\s\S]*?)\}/g)].map((m) => m[1]);
-  const brand = faces.filter((f) => /font-family:\s*"(Fraunces|Figtree)"/.test(f));
-  assert.equal(brand.length, 3, "Figtree, Fraunces upright, Fraunces italic");
-  const files = new Set(brand.flatMap((f) => [...f.matchAll(/url\("([^"]+)"\)/g)].map((m) => path.resolve(ROOT, "src/system", m[1]))));
-  const bytes = [...files].reduce((sum, f) => sum + fs.statSync(f).size, 0);
-  assert.ok(bytes <= 220 * 1024, `font payload ${bytes} bytes`);
-  const satoshi = faces.find((f) => /font-family:\s*Satoshi/.test(f));
-  assert.ok(satoshi && /figtree-latin\.woff2/.test(satoshi), "Satoshi resolves to the Figtree file");
-  assert.doesNotMatch(read("index.html"), /Satoshi/);
+  assert.equal(faces.length, 1, "one @font-face");
+  assert.match(faces[0], /font-family:\s*"Satoshi"/);
+  assert.match(faces[0], /font-style:\s*normal/);
+  assert.match(faces[0], /font-weight:\s*300 900/);
+  assert.match(faces[0], /font-display:\s*swap/);
+  const file = path.resolve(ROOT, "src/system", /url\("([^"]+)"\)/.exec(faces[0])[1]);
+  assert.ok(fs.statSync(file).size <= 220 * 1024, "font payload");
+  assert.match(read("src/system/system.css"), /font-synthesis:\s*none/);
+});
+
+// ---------------------------------------------------------------- one font (Jerry, 2026-09-30: "one super clean font")
+const FONT_STACK = /^"?Satoshi"?, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif$/;
+const OTHER_FACES = /Fraunces|Figtree|Manrope|Avenir|Georgia|Times New Roman|Helvetica|Arial|Inter\b|(?<!sans-)serif\b|monospace|cursive/;
+
+test("one font: every shipped stylesheet and the share images name only Satoshi (plus the system fallbacks), never italic", () => {
+  const cssFiles = walk(path.join(ROOT, "src")).filter((f) => f.endsWith(".css"));
+  for (const f of cssFiles) {
+    const css = fs.readFileSync(f, "utf8").replace(/\/\*[\s\S]*?\*\//g, "");
+    for (const m of css.matchAll(/font-family:\s*([^;}]+)/g)) {
+      const v = m[1].trim();
+      assert.ok(v === "var(--font)" || FONT_STACK.test(v) || v === '"Satoshi"', `${rel(f)}: font-family ${v}`);
+    }
+    for (const m of css.matchAll(/(?<![-\w])font:\s*([^;}]+)/g)) {
+      const v = m[1].trim();
+      assert.ok(/^var\(--type-[a-z-]+\)$/.test(v) || /var\(--font\)$/.test(v) || v === "inherit", `${rel(f)}: font ${v}`);
+    }
+    assert.doesNotMatch(css, OTHER_FACES, `${rel(f)}: another face`);
+    assert.doesNotMatch(css, /italic|oblique/, `${rel(f)}: italic`);
+    assert.doesNotMatch(css, /font-variation-settings|"WONK"|"SOFT"|"opsz"|font-optical-sizing/, `${rel(f)}: Fraunces axes`);
+  }
+  const tokensCss = read("src/system/tokens.css");
+  assert.match(/--font:\s*([^;]+);/.exec(tokensCss)[1], FONT_STACK);
+  const img = read("src/persona/share-image.js");
+  assert.match(img, /tokens\.fonts\.family/);
+  assert.doesNotMatch(img, OTHER_FACES);
+  assert.doesNotMatch(img, /italic|oblique/);
+  assert.match(img, /document\.fonts\.load/, "share images wait for Satoshi");
+  assert.doesNotMatch(read("index.html"), /fonts\.googleapis|Fraunces|Figtree|Manrope/);
+});
+
+test("one font: the built CSS names only Satoshi and no italic (when dist exists)", (t) => {
+  const assets = path.join(ROOT, "dist/assets");
+  if (!fs.existsSync(assets)) return t.skip("no build");
+  const built = fs.readdirSync(assets).filter((f) => f.endsWith(".css")).map((f) => fs.readFileSync(path.join(assets, f), "utf8")).join("\n");
+  const woff = fs.readdirSync(assets).filter((f) => /\.woff2?$/.test(f));
+  assert.ok(woff.length === 1 && /^satoshi-variable/.test(woff[0]), `one font file: ${woff.join(", ")}`);
+  const families = new Set([...built.matchAll(/font-family:\s*([^;}]+)/g)].map((m) => m[1].trim()));
+  for (const v of families) assert.ok(v === "var(--font)" || /^"?Satoshi"?(,|$)/.test(v), `built font-family ${v}`);
+  assert.doesNotMatch(built, OTHER_FACES);
+  assert.doesNotMatch(built, /italic|oblique/);
 });

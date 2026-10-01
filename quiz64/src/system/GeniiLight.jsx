@@ -36,7 +36,7 @@ function evolutionOf(evolution) {
  * Genii is a glass slime, never a genie and never a lamp.
  * mood: listening | noted | thinking | hush | sure | idle (motion, and the face once Genii is complete).
  * expression: optional face override (alert, curious, skeptical, happy, thinking). size: xs 24, s 32, m 72, l 160, xl 280.
- * line: one Genii line, set in Fraunces italic and announced politely. voice "cards" (Just the cards) shows no line.
+ * line: one Genii line, set upright in Satoshi and announced politely. voice "cards" (Just the cards) shows no line.
  * placement: "row" (line beside the orb) or "below" (line under the orb, centered).
  * geniiEvents.emit("noted" | "thinking" | "sure") from anywhere makes every mounted Genii react.
  */

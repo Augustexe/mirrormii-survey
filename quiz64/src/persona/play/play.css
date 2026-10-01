@@ -117,7 +117,6 @@
   .play-genii__line {
     margin: 0;
     font: var(--type-genii);
-    font-variation-settings: var(--font-display-italic);
     letter-spacing: var(--type-genii-track);
     color: var(--c-ink-2);
     display: -webkit-box;
@@ -213,7 +212,6 @@
     margin: 0;
     font: var(--type-prompt-s);
     letter-spacing: var(--type-prompt-s-track);
-    font-variation-settings: var(--font-display-upright);
     color: var(--c-ink);
     text-wrap: balance;
     overflow-wrap: break-word;
@@ -349,7 +347,6 @@
     font: var(--type-quote);
     font-size: 30px;
     line-height: 1;
-    font-variation-settings: var(--font-display-italic);
     color: var(--c-violet-300);
     transform: translateY(5px);
   }
@@ -357,7 +354,7 @@
 
   /* Role: a cast list. */
   .pc-tile--role .pc-tile__text { display: grid; gap: 2px; }
-  .pc-role__title { font: var(--type-title); font-size: 17px; line-height: 21px; letter-spacing: var(--type-title-track); font-variation-settings: var(--font-display-upright); }
+  .pc-role__title { font: var(--type-title); font-size: 17px; line-height: 21px; letter-spacing: var(--type-title-track); }
   .pc-role__line { font: var(--type-small); color: var(--c-ink-2); }
   .pc-tile--role.is-selected .pc-role__line { color: var(--c-on-deep); opacity: 0.88; }
   .pc-role__badge { color: var(--c-violet); }
@@ -374,7 +371,7 @@
   .pc[data-card-type="feeling"].is-answered { background: color-mix(in srgb, var(--pc-wash, var(--pc-tint)) 10%, var(--glass-fill)); }
 
   /* Bet: the prompt is Genii speaking; a glass chip spins in; two-way bets split. */
-  .pc[data-card-type="bet"] .pc-prompt { font-style: italic; font-variation-settings: var(--font-display-italic); }
+  .pc[data-card-type="bet"] .pc-prompt { font-style: normal; }
   .pc-betchip { display: inline-block; inline-size: 26px; block-size: 26px; margin-inline-end: var(--s-2); vertical-align: -3px; animation: pc-spin var(--d-scene) var(--e-out) both; }
   .pc-betchip__rim { fill: var(--c-violet-100); stroke: var(--c-violet); stroke-width: 1.6; }
   .pc-betchip__face { fill: var(--c-surface-solid); stroke: var(--c-violet-300); stroke-width: 1.2; }
@@ -516,7 +513,7 @@
 
   /* ---------- receipts: receipt paper (A-16) ---------- */
   /* Till-roll paper: warm off-white, faint print lines and edge shading, zigzag top and bottom, a double rule over the
-     total. Rows print "x1" in the quantity column when ticked. Figtree tabular throughout (no monospace, 4.1). */
+     total. Rows print "x1" in the quantity column when ticked. Satoshi tabular throughout (no monospace, 4.1). */
   .pc-receipt-shade { margin-top: var(--s-3); filter: drop-shadow(0 0 0.6px rgba(23, 22, 37, 0.35)) drop-shadow(0 1px 2px rgba(23, 22, 37, 0.14)) drop-shadow(0 12px 18px rgba(86, 70, 192, 0.2)); }
   .pc.is-torn .pc-receipt { visibility: hidden; }
   .pc-receipt {
@@ -778,7 +775,6 @@
     font-size: 20px;
     line-height: 26px;
     letter-spacing: var(--type-title-track);
-    font-variation-settings: var(--font-display-upright);
     text-align: center;
     text-wrap: balance;
     cursor: pointer;
@@ -836,7 +832,6 @@
     color: var(--c-violet-text);
     font: var(--type-genii);
     font-size: 19px;
-    font-variation-settings: var(--font-display-italic);
     pointer-events: none;
   }
   .pc-split.has-choice .pc-split__coin { opacity: 0; transition: opacity var(--d-quick) var(--e-out); }
@@ -992,7 +987,7 @@
   .rail-count {
     flex: none;
     margin-inline-start: 7px;
-    font: 600 13px / 16px var(--font-text);
+    font: 600 13px / 16px var(--font);
     letter-spacing: 0.01em;
     color: var(--c-ink-2);
     white-space: nowrap;
@@ -1095,7 +1090,6 @@
     .play-niche__line {
       margin: 0;
       font: var(--type-genii);
-      font-variation-settings: var(--font-display-italic);
       color: var(--c-ink-2);
       animation: pc-fade var(--d-quick) var(--e-out) both;
     }
@@ -1272,7 +1266,6 @@
     font: var(--type-genii);
     font-size: 15px;
     font-weight: 600;
-    font-variation-settings: var(--font-display-italic);
     color: var(--n-ink);
     text-shadow: 0 0 6px var(--pane-tint, var(--n-violet));
     transition: opacity var(--d-base) var(--e-out);
@@ -1296,7 +1289,7 @@
   .lock__light { --c-surface-solid: var(--n-ink); --n-ink-2: var(--n-violet); }
   .lock__copy { display: grid; gap: var(--s-3); align-content: start; }
   .lock__kicker { margin: 0; font: var(--type-kicker); letter-spacing: var(--type-kicker-track); text-transform: uppercase; color: var(--n-violet); }
-  .lock__title { margin: 0; font: var(--type-display); letter-spacing: var(--type-display-track); font-variation-settings: var(--font-display-upright); color: var(--n-ink); text-wrap: balance; animation: pc-fade var(--d-base) var(--e-out) both; }
+  .lock__title { margin: 0; font: var(--type-display); letter-spacing: var(--type-display-track); color: var(--n-ink); text-wrap: balance; animation: pc-fade var(--d-base) var(--e-out) both; }
   .lock__title em { font-style: normal; color: var(--n-violet); }
   .lock__title:focus, .lock__title:focus-visible { outline: none; }
   .lock__body { margin: 0; font: var(--type-body-l); color: var(--n-ink-2); max-inline-size: 34em; }
@@ -1504,7 +1497,7 @@
   .fr-back { justify-self: start; }
   .fr-hero .pc-kicker svg { vertical-align: -1px; }
   .fr-compare, .fr-flex, .fr-band { margin: var(--s-2) 0 0; font: var(--type-body); color: var(--c-ink-2); }
-  .fr-band { font: var(--type-genii); font-variation-settings: var(--font-display-italic); color: var(--c-violet-text); }
+  .fr-band { font: var(--type-genii); color: var(--c-violet-text); }
   .fr-counts { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: var(--s-3); }
   .fr-counts span { padding: 6px var(--s-3); border-radius: var(--r-pill); background: var(--c-violet-100); color: var(--c-violet-text); font: var(--type-small); font-variant-numeric: tabular-nums; }
   .fr-zones { display: grid; gap: var(--s-3); }
@@ -1517,6 +1510,6 @@
   .fr-zone--think { box-shadow: inset 4px 0 0 var(--c-violet-300), var(--e1); }
   .fr-zone__sub, .fr-empty, .fr-reason { margin: 0 0 var(--s-2); font: var(--type-small); color: var(--c-ink-3); }
   .fr-surprise p, .fr-bonus p { margin: 0 0 var(--s-2); font: var(--type-body); color: var(--c-ink-2); }
-  .fr-bonus blockquote { margin: 0 0 var(--s-2); font: var(--type-quote); font-variation-settings: var(--font-display-italic); color: var(--c-ink); }
+  .fr-bonus blockquote { margin: 0 0 var(--s-2); font: var(--type-quote); color: var(--c-ink); }
   @media (min-width: 1024px) { .fr-zones { grid-template-columns: 1fr 1fr; } }
 }

@@ -16,7 +16,7 @@ body {
   margin: 0;
   background: var(--c-canvas);
   color: var(--c-ink);
-  font-family: var(--font-text);
+  font-family: var(--font);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -25,14 +25,22 @@ button,
 input,
 textarea,
 select {
-  font-family: var(--font-text);
+  font-family: var(--font);
 }
 h1,
 h2,
 h3 {
-  font-family: var(--font-display);
-  font-variation-settings: var(--font-display-upright);
-  font-optical-sizing: auto;
+  font-family: var(--font);
+}
+/* One upright font: Satoshi ships no italic and font-synthesis is off, so nothing slants, ever. */
+em,
+i,
+cite,
+q,
+dfn,
+var,
+address {
+  font-style: normal;
 }
 :where(button, a, summary, [tabindex]):focus-visible {
   outline: 3px solid var(--c-focus);
@@ -71,7 +79,6 @@ h2[tabindex="-1"]:focus {
 }
 .mm-genii-line {
   font: var(--type-genii);
-  font-variation-settings: var(--font-display-italic);
   letter-spacing: var(--type-genii-track);
   color: var(--c-ink-2);
 }
@@ -88,7 +95,7 @@ h2[tabindex="-1"]:focus {
   padding: 0 var(--s-6);
   border: 0;
   border-radius: var(--r-pill);
-  font: 650 17px / 1 var(--font-text);
+  font: 650 17px / 1 var(--font);
   letter-spacing: 0.005em;
   text-decoration: none;
   cursor: pointer;
@@ -135,7 +142,7 @@ h2[tabindex="-1"]:focus {
 .mm-btn--small {
   --btn-h: 44px;
   padding: 0 var(--s-5);
-  font: 600 15px / 1 var(--font-text);
+  font: 600 15px / 1 var(--font);
 }
 .mm-text-btn {
   display: inline-flex;
@@ -463,7 +470,6 @@ h2[tabindex="-1"]:focus {
 .genii-light__line {
   min-inline-size: 0;
   font: var(--type-genii);
-  font-variation-settings: var(--font-display-italic);
   letter-spacing: var(--type-genii-track);
   color: var(--c-ink-2);
   text-wrap: pretty;

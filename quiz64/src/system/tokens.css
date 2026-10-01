@@ -9,42 +9,40 @@
 
 :root {
   /* ---------- 4.1 Type ---------- */
-  --font-display: "Fraunces", "Fraunces fallback", Georgia, "Times New Roman", serif;
-  --font-text: "Figtree", "Figtree fallback", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-  --font-display-upright: "SOFT" 100, "WONK" 0;
-  --font-display-italic: "SOFT" 100, "WONK" 1;
+  /* One font: Satoshi. Hierarchy comes from weight, size and tracking only; upright only, never italic. */
+  --font: "Satoshi", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 
   /* Phone sizes are the default; desktop (1024 and up) and xs (under 360) below. */
-  --type-hero-size: 44px;      --type-hero-line: 46px;      --type-hero-weight: 600;      --type-hero-track: -0.025em;
-  --type-display-size: 36px;   --type-display-line: 40px;   --type-display-weight: 600;   --type-display-track: -0.02em;
-  --type-prompt-s-size: 28px;  --type-prompt-s-line: 32px;  --type-prompt-s-weight: 560;  --type-prompt-s-track: -0.015em;
-  --type-prompt-m-size: 24px;  --type-prompt-m-line: 28px;  --type-prompt-m-weight: 560;  --type-prompt-m-track: -0.01em;
-  --type-prompt-l-size: 21px;  --type-prompt-l-line: 26px;  --type-prompt-l-weight: 540;  --type-prompt-l-track: -0.005em;
-  --type-title-size: 22px;     --type-title-line: 28px;     --type-title-weight: 580;     --type-title-track: -0.01em;
-  --type-genii-size: 15px;     --type-genii-line: 20px;     --type-genii-weight: 420;     --type-genii-track: 0em;
-  --type-quote-size: 24px;     --type-quote-line: 31px;     --type-quote-weight: 460;     --type-quote-track: -0.01em;
+  --type-hero-size: 44px;      --type-hero-line: 46px;      --type-hero-weight: 800;      --type-hero-track: -0.025em;
+  --type-display-size: 36px;   --type-display-line: 40px;   --type-display-weight: 800;   --type-display-track: -0.02em;
+  --type-prompt-s-size: 28px;  --type-prompt-s-line: 32px;  --type-prompt-s-weight: 700;  --type-prompt-s-track: -0.02em;
+  --type-prompt-m-size: 24px;  --type-prompt-m-line: 28px;  --type-prompt-m-weight: 700;  --type-prompt-m-track: -0.015em;
+  --type-prompt-l-size: 21px;  --type-prompt-l-line: 26px;  --type-prompt-l-weight: 700;  --type-prompt-l-track: -0.01em;
+  --type-title-size: 22px;     --type-title-line: 28px;     --type-title-weight: 700;     --type-title-track: -0.015em;
+  --type-genii-size: 15px;     --type-genii-line: 20px;     --type-genii-weight: 500;     --type-genii-track: 0em;
+  --type-quote-size: 24px;     --type-quote-line: 31px;     --type-quote-weight: 600;     --type-quote-track: -0.01em;
   --type-body-l-size: 18px;    --type-body-l-line: 27px;    --type-body-l-weight: 450;    --type-body-l-track: 0em;
   --type-answer-size: 16px;    --type-answer-line: 21px;    --type-answer-weight: 500;    --type-answer-track: 0em;
   --type-body-size: 16px;      --type-body-line: 24px;      --type-body-weight: 400;      --type-body-track: 0em;
   --type-small-size: 14px;     --type-small-line: 20px;     --type-small-weight: 500;     --type-small-track: 0.005em;
-  --type-kicker-size: 12px;    --type-kicker-line: 16px;    --type-kicker-weight: 700;    --type-kicker-track: 0.12em;
+  --type-kicker-size: 12px;    --type-kicker-line: 16px;    --type-kicker-weight: 600;    --type-kicker-track: 0.06em;
   --type-micro-size: 11px;     --type-micro-line: 14px;     --type-micro-weight: 600;     --type-micro-track: 0.04em;
 
   /* Font shorthands (pair each with its --type-*-track as letter-spacing). */
-  --type-hero: var(--type-hero-weight) var(--type-hero-size) / var(--type-hero-line) var(--font-display);
-  --type-display: var(--type-display-weight) var(--type-display-size) / var(--type-display-line) var(--font-display);
-  --type-prompt-s: var(--type-prompt-s-weight) var(--type-prompt-s-size) / var(--type-prompt-s-line) var(--font-display);
-  --type-prompt-m: var(--type-prompt-m-weight) var(--type-prompt-m-size) / var(--type-prompt-m-line) var(--font-display);
-  --type-prompt-l: var(--type-prompt-l-weight) var(--type-prompt-l-size) / var(--type-prompt-l-line) var(--font-display);
-  --type-title: var(--type-title-weight) var(--type-title-size) / var(--type-title-line) var(--font-display);
-  --type-genii: italic var(--type-genii-weight) var(--type-genii-size) / var(--type-genii-line) var(--font-display);
-  --type-quote: italic var(--type-quote-weight) var(--type-quote-size) / var(--type-quote-line) var(--font-display);
-  --type-body-l: var(--type-body-l-weight) var(--type-body-l-size) / var(--type-body-l-line) var(--font-text);
-  --type-answer: var(--type-answer-weight) var(--type-answer-size) / var(--type-answer-line) var(--font-text);
-  --type-body: var(--type-body-weight) var(--type-body-size) / var(--type-body-line) var(--font-text);
-  --type-small: var(--type-small-weight) var(--type-small-size) / var(--type-small-line) var(--font-text);
-  --type-kicker: var(--type-kicker-weight) var(--type-kicker-size) / var(--type-kicker-line) var(--font-text);
-  --type-micro: var(--type-micro-weight) var(--type-micro-size) / var(--type-micro-line) var(--font-text);
+  --type-hero: var(--type-hero-weight) var(--type-hero-size) / var(--type-hero-line) var(--font);
+  --type-display: var(--type-display-weight) var(--type-display-size) / var(--type-display-line) var(--font);
+  --type-prompt-s: var(--type-prompt-s-weight) var(--type-prompt-s-size) / var(--type-prompt-s-line) var(--font);
+  --type-prompt-m: var(--type-prompt-m-weight) var(--type-prompt-m-size) / var(--type-prompt-m-line) var(--font);
+  --type-prompt-l: var(--type-prompt-l-weight) var(--type-prompt-l-size) / var(--type-prompt-l-line) var(--font);
+  --type-title: var(--type-title-weight) var(--type-title-size) / var(--type-title-line) var(--font);
+  --type-genii: var(--type-genii-weight) var(--type-genii-size) / var(--type-genii-line) var(--font);
+  --type-quote: var(--type-quote-weight) var(--type-quote-size) / var(--type-quote-line) var(--font);
+  --type-body-l: var(--type-body-l-weight) var(--type-body-l-size) / var(--type-body-l-line) var(--font);
+  --type-answer: var(--type-answer-weight) var(--type-answer-size) / var(--type-answer-line) var(--font);
+  --type-body: var(--type-body-weight) var(--type-body-size) / var(--type-body-line) var(--font);
+  --type-small: var(--type-small-weight) var(--type-small-size) / var(--type-small-line) var(--font);
+  --type-kicker: var(--type-kicker-weight) var(--type-kicker-size) / var(--type-kicker-line) var(--font);
+  --type-micro: var(--type-micro-weight) var(--type-micro-size) / var(--type-micro-line) var(--font);
 
   /* Line lengths */
   --measure-body: 34em;

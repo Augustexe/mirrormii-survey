@@ -476,7 +476,7 @@ test("the V2 copy: flags, bets, heist lines and seeds in both voices, never-say 
 });
 
 // No squiggly type (Jerry, 2026-09-30): the Stories deck, its saved images and the article set upright type only
-// (Fraunces and Figtree, roman weights); no italic, no Fraunces WONK axis, no italic display token.
+// (Satoshi only, roman weights); no italic, no variation axes, no italic display token.
 test("upright type only in the Stories deck, its images and the article", async () => {
   const fs = await import("node:fs");
   const read = (p) => fs.readFileSync(fileURLToPath(new URL(`../src/${p}`, import.meta.url)), "utf8");

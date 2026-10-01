@@ -2,37 +2,35 @@
 // Mirrors src/system/tokens.css; tests/system-tokens.test.mjs fails when the two drift apart.
 
 export const fonts = Object.freeze({
-  display: '"Fraunces", "Fraunces fallback", Georgia, "Times New Roman", serif',
-  text: '"Figtree", "Figtree fallback", system-ui, -apple-system, "Segoe UI", Arial, sans-serif',
-  displayUpright: '"SOFT" 100, "WONK" 0',
-  displayItalic: '"SOFT" 100, "WONK" 1',
+  // One font: Satoshi (upright only). Hierarchy comes from weight, size and tracking.
+  family: '"Satoshi", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif',
 });
 
-// [size px, line px, weight, tracking em] for phone and desktop; face is "display" (Fraunces) or "text" (Figtree).
-const t = (face, phone, desktop, weight, track, extra = {}) => Object.freeze({ face, phone, desktop, weight, track, ...extra });
+// [size px, line px, weight, tracking em] for phone and desktop. Every token is set in Satoshi.
+const t = (phone, desktop, weight, track, extra = {}) => Object.freeze({ phone, desktop, weight, track, ...extra });
 export const type = Object.freeze({
-  hero: t("display", [44, 46], [80, 80], 600, -0.025),
-  display: t("display", [36, 40], [60, 62], 600, -0.02),
-  promptS: t("display", [28, 32], [40, 46], 560, -0.015, { maxChars: 70 }),
-  promptM: t("display", [24, 28], [34, 40], 560, -0.01, { maxChars: 120 }),
-  promptL: t("display", [21, 26], [28, 34], 540, -0.005, { maxChars: 170 }),
-  title: t("display", [22, 28], [26, 32], 580, -0.01),
-  genii: t("display", [15, 20], [17, 24], 420, 0, { italic: true }),
-  quote: t("display", [24, 31], [30, 38], 460, -0.01, { italic: true }),
-  bodyL: t("text", [18, 27], [20, 30], 450, 0),
-  answer: t("text", [16, 21], [17, 23], 500, 0),
-  body: t("text", [16, 24], [16, 24], 400, 0),
-  small: t("text", [14, 20], [14, 20], 500, 0.005),
-  kicker: t("text", [12, 16], [13, 16], 700, 0.12, { uppercase: true }),
-  micro: t("text", [11, 14], [11, 14], 600, 0.04),
+  hero: t([44, 46], [80, 80], 800, -0.025),
+  display: t([36, 40], [60, 62], 800, -0.02),
+  promptS: t([28, 32], [40, 46], 700, -0.02, { maxChars: 70 }),
+  promptM: t([24, 28], [34, 40], 700, -0.015, { maxChars: 120 }),
+  promptL: t([21, 26], [28, 34], 700, -0.01, { maxChars: 170 }),
+  title: t([22, 28], [26, 32], 700, -0.015),
+  genii: t([15, 20], [17, 24], 500, 0),
+  quote: t([24, 31], [30, 38], 600, -0.01),
+  bodyL: t([18, 27], [20, 30], 450, 0),
+  answer: t([16, 21], [17, 23], 500, 0),
+  body: t([16, 24], [16, 24], 400, 0),
+  small: t([14, 20], [14, 20], 500, 0.005),
+  kicker: t([12, 16], [13, 16], 600, 0.06, { uppercase: true }),
+  micro: t([11, 14], [11, 14], 600, 0.04),
 });
 
-// Canvas font string for a type token, e.g. fontFor("title", 2) -> "580 44px Fraunces..."
+// Canvas font string for a type token, e.g. fontFor("title", 2) -> "700 44px "Satoshi", ..."
 export function fontFor(name, scale = 1, { desktop = false } = {}) {
   const tok = type[name];
   if (!tok) throw new Error(`Unknown type token: ${name}`);
   const [size] = desktop ? tok.desktop : tok.phone;
-  return `${tok.italic ? "italic " : ""}${tok.weight} ${Math.round(size * scale)}px ${tok.face === "display" ? fonts.display : fonts.text}`;
+  return `${tok.weight} ${Math.round(size * scale)}px ${fonts.family}`;
 }
 
 export const color = Object.freeze({

@@ -73,8 +73,10 @@ test("type scale: phone values in :root, desktop overrides in the 1024 media que
     if (tok.desktop[0] !== tok.phone[0]) assert.match(desk, new RegExp(`--type-${css_}-size: ${tok.desktop[0]}px`), `${css_} desktop size`);
     if (tok.desktop[1] !== tok.phone[1]) assert.match(desk, new RegExp(`--type-${css_}-line: ${tok.desktop[1]}px`), `${css_} desktop line`);
   }
-  assert.match(root["--font-display"], /^"Fraunces"/);
-  assert.match(root["--font-text"], /^"Figtree"/);
+  assert.match(root["--font"], /^"Satoshi"/);
+  assert.equal(root["--font"].replace(/\s+/g, " "), T.fonts.family, "tokens.css and tokens.js name the same stack");
+  assert.equal(root["--font-display"], undefined, "no second display face");
+  assert.equal(root["--font-text"], undefined, "no second text face");
   assert.doesNotMatch(css, /monospace/);
 });
 
@@ -123,13 +125,14 @@ test("layers.css declares the layer order and keeps the one tree-shaken legacy s
   assert.doesNotMatch(app, /import "\.\/(styles|launch|persona\/persona)\.css";/);
 });
 
-test("fonts: subset files exist, Figtree is preloaded, Fontaine is wired", () => {
+test("fonts: the Satoshi file exists and is preloaded; no font packages or fallback plugins", () => {
   const fonts = read("src/system/fonts.css");
   for (const m of fonts.matchAll(/url\("([^"]+)"\)/g)) assert.ok(fs.existsSync(new URL(m[1], new URL("../src/system/", import.meta.url))), m[1]);
-  assert.match(read("index.html"), /rel="preload"[\s\S]*?figtree-latin\.woff2/);
-  assert.match(read("vite.config.js"), /FontaineTransform\.vite\(/);
+  assert.match(read("index.html"), /rel="preload"[\s\S]*?satoshi-variable\.woff2/);
+  assert.doesNotMatch(read("vite.config.js"), /fontaine|Fontaine/);
   const pkg = JSON.parse(read("package.json"));
-  for (const dep of ["@fontsource-variable/fraunces", "@fontsource-variable/figtree", "fontaine", "@paper-design/shaders-react"]) assert.ok(pkg.dependencies[dep], dep);
+  for (const dep of Object.keys({ ...pkg.dependencies, ...pkg.devDependencies })) assert.doesNotMatch(dep, /fontsource|^fontaine$/, dep);
+  assert.ok(pkg.dependencies["@paper-design/shaders-react"]);
   for (const dep of ["@resvg/resvg-js", "svgo"]) assert.ok(pkg.devDependencies[dep], dep);
 });
 
