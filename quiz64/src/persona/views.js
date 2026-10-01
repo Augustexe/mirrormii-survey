@@ -6,9 +6,10 @@ import { resultFor } from "./session.js";
 import { UI_COPY, buildStories, voiceOf } from "./stories/story-data.js";
 import { sceneTitle } from "./scene-titles.js";
 import { HALVES } from "./stats.js";
+import { COMBO_LINES, comboLine } from "./combo-lines.js";
 
-// The share card: both archetype names under their kickers, each with its one-line definition, trait names with their
-// heart lines, the invite. Never stings or answers.
+// The share card: the one title (the people archetype) with its story line (decision 1a), both archetype names under
+// their kickers as data, trait names with their heart lines, the invite. Never stings or answers.
 export function shareProjection(result, stories = null) {
   if (stories) return stories.share;
   const half = (side) => (result.halves || []).find((h) => h.side === side) || {};
@@ -16,6 +17,7 @@ export function shareProjection(result, stories = null) {
   const people = half("relationship");
   const life = half("life");
   return {
+    title: { name: people.name, line: comboLine(COMBO_LINES, people.code, life.code, "fun") || "" },
     names: [
       { label: HALVES.people.kicker, name: people.name, define: def(LIB.relationship, people) },
       { label: HALVES.life.kicker, name: life.name, define: def(LIB.life, life) },
@@ -25,8 +27,13 @@ export function shareProjection(result, stories = null) {
   };
 }
 
+// The text that rides along with a shared image: the title and its line first, then the day-to-day half, the traits and
+// the invite.
 export function shareText(share) {
-  return [...share.names.map((n) => `${n.label}: ${n.name}${n.define ? `. ${n.define}` : ""}`), ...share.tags.map((t) => `${t.name}: ${t.heart}`), share.invite].join("\n");
+  const title = share.title && share.title.name ? [`${share.title.name}${share.title.line ? `. ${share.title.line}` : ""}`] : [];
+  const rest = (share.names || []).filter((n) => !share.title || n.name !== share.title.name).map((n) => `${n.label}: ${n.name}`);
+  const names = title.length ? rest : (share.names || []).map((n) => `${n.label}: ${n.name}${n.define ? `. ${n.define}` : ""}`);
+  return [...title, ...names, ...share.tags.map((t) => `${t.name}: ${t.heart}`), share.invite].join("\n");
 }
 
 // A sealed card's prompt in the player's voice (Heart to heart reads card.heart.prompt when a card has one).
@@ -82,6 +89,7 @@ export function resultView(state) {
     callFor: (id) => callInfo(state, id),
     chapterOf,
     mirror: mirrorFor(state),
+    lines: COMBO_LINES,
   });
   return { ...stories, share: shareProjection(result, stories) };
 }

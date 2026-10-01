@@ -7,6 +7,7 @@
 // defensively so the screen works on the 2026-09-26 library (desc, heart) and on the Build C library.
 
 import { HALVES, bothEnds, endOf, statOf, statRow } from "../stats.js";
+import { comboLine } from "../combo-lines.js";
 
 export const VOICES = Object.freeze(["fun", "heart", "cards"]);
 export const STORY_IDS = Object.freeze(["intro", "names", "read", "map", "knows", "rooms", "insight", "traits", "stings", "calls", "share", "app"]);
@@ -66,7 +67,7 @@ const LABELS = {
 export const STORY_COPY = Object.freeze({
   fun: {
     intro: { kicker: "Your result is ready", title: "40 answers in. Here are your results.", sub: "Press and hold, then let go." },
-    names: { kicker: "You are", people: HALVES.people.kicker, life: HALVES.life.kicker, sub: null },
+    names: { kicker: "You are", people: HALVES.people.kicker, life: HALVES.life.kicker, traits: "Core traits", sub: null },
     read: { kicker: "The short version" },
     map: {
       kicker: "Your personality stats", title: "Your six stats, up close", sub: "The glowing stat is your strongest. The marked one sits closest to the middle.", subSolo: "The glowing stat is your strongest.",
@@ -99,12 +100,12 @@ export const STORY_COPY = Object.freeze({
     },
     share: { kicker: "Your card", brand: "Genii · MirrorMii", sub: "Your friends guess your answers. Find out who knows you best.", challenge: "Let a friend guess your answers" },
     app: {
-      kicker: "Get MirrorMii",
-      title: "Your real day, turned into a cozy game.",
-      body: "Snap a moment of your day and Miia, your digital twin, lives it. Genii is waiting on the island.",
+      kicker: null,
+      title: "Genii read you. Now meet your Miia.",
+      body: "MirrorMii is the cozy game where your real day powers the island. Snap a moment, and Miia, your digital twin, lives it.",
       button: "Get MirrorMii",
       store: "On the App Store",
-      note: "Free to join.",
+      note: "Free to join, no credit card.",
       snap: "You snap lunch",
       lives: "Your in-game self eats it too",
     },
@@ -115,7 +116,7 @@ export const STORY_COPY = Object.freeze({
   },
   heart: {
     intro: { kicker: "Your result is ready", title: "40 answers in. Here are your results.", sub: "Press and hold, then let go." },
-    names: { kicker: "You are", people: HALVES.people.kicker, life: HALVES.life.kicker, sub: null },
+    names: { kicker: "You are", people: HALVES.people.kicker, life: HALVES.life.kicker, traits: "Core traits", sub: null },
     read: { kicker: "The short version" },
     map: {
       kicker: "Your personality stats", title: "Your six stats, up close", sub: "The glowing stat is your strongest. The marked one sits closest to the middle.", subSolo: "The glowing stat is your strongest.",
@@ -148,12 +149,12 @@ export const STORY_COPY = Object.freeze({
     },
     share: { kicker: "Your card", brand: "Genii · MirrorMii", sub: "Your friends guess your answers. Find out who knows you best.", challenge: "Let a friend guess your answers" },
     app: {
-      kicker: "Get MirrorMii",
-      title: "Your real day, turned into a cozy game.",
-      body: "Snap small moments of your day and Miia, your digital twin, lives them. Genii is waiting on the island.",
+      kicker: null,
+      title: "You've met Genii. Now meet your Miia.",
+      body: "MirrorMii is a cozy game where your real day powers the island. Snap small moments, and Miia, your digital twin, lives them.",
       button: "Get MirrorMii",
       store: "On the App Store",
-      note: "Free to join.",
+      note: "Free to join, no credit card.",
       snap: "You snap lunch",
       lives: "Your in-game self eats it too",
     },
@@ -361,7 +362,8 @@ const NUMBER_WORDS = ["no", "one", "two", "three", "four", "five", "six", "seven
 //     guessed on the card's main axis (plus or minus), or null
 //   chapterOf(cardId): the chapter a scored card belongs to, for the rooms screen
 //   mirror: { seed, filled: [{ chapter }] } for the reveal art (the run id and the answered cards in order), or null
-export function buildStories({ result, profile = {}, sealed = null, lib, voice = "fun", promptFor = null, callFor = null, chapterOf = null, mirror = null }) {
+//   lines: the story line per archetype pair (combo-lines.js COMBO_LINES), or null to use the people half's read
+export function buildStories({ result, profile = {}, sealed = null, lib, voice = "fun", promptFor = null, callFor = null, chapterOf = null, mirror = null, lines = null }) {
   const wording = wordingFor(voice);
   const C = STORY_COPY[wording];
   const L = lib || {};
@@ -384,6 +386,11 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
   });
   const people = half(relH, relL, C.names.people);
   const life = half(lifeH, lifeL, C.names.life);
+  // Decision 1a (2026-09-30): one title, not two stacked names. The people archetype is the title; under it, one story
+  // line that merges both halves (names-64.json, per pair and voice). A pair without a line falls back to the people
+  // half's own read.
+  const pairLine = comboLine(lines, relH.code, lifeH.code, wording);
+  const title = { label: people.label, name: people.name, line: pairLine || people.read || "", from: pairLine ? "combo" : "read" };
 
   // The six leans, people side then life side. The pole always comes from the profile (or, with no profile, from the
   // half's own row), so the map, the findings and the names can never disagree.
@@ -540,14 +547,12 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
   const counts = P.counts || {};
   const noTraits = tags.length || core.length ? null : C.noTraits[(counts.rushed || 0) * 2 >= (counts.answered || 0) && counts.answered ? "rushed" : "thin"];
 
-  // The one line inside the mirror on story 2 (the screenshot moment): Genii's clearest finding, a lean that holds for
-  // anyone who knows the player. With no decided lean at all, the people half's read.
-  const top = findings.find((f) => f.kind === "axis");
-  const hook = (top && top.line) || people.read || life.read || "";
-
   const opposite = oppositeOf(L, relH.code, lifeH.code);
   const share = {
     brand: C.share.brand,
+    // What the card draws inside the mirror: the one title and its story line (decision 1a).
+    title: { name: title.name, line: title.line },
+    // Both halves stay in the data (the result record and the share text name them); the card draws only the title.
     names: [people, life].map((h) => ({ label: h.label, name: h.name, define: h.define, code: h.code })),
     // Marriage and kids tags (library `locked18`) never go on anything shareable.
     // The core traits as keywords (round 3). Marriage and kids tags (library `locked18`) never go on anything shareable.
@@ -592,7 +597,8 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
 
   const slides = [
     { id: "intro", kicker: C.intro.kicker, title: C.intro.title, sub: C.intro.sub, mirror },
-    { id: "names", kicker: C.names.kicker, sub: C.names.sub, hook, people, life, mirror, keywords: publicCore.map((k) => k.keyword) },
+    // Story 2: inside the mirror only the title and its line; under it, the day-to-day half and the core traits.
+    { id: "names", kicker: C.names.kicker, sub: C.names.sub, title, people, life, mirror, keywords: publicCore.map((k) => k.keyword), labels: { life: C.names.life, traits: C.names.traits } },
     { id: "read", kicker: C.read.kicker, lines: readLines, bodies: readBodies, marks: readMarks },
     { id: "map", kicker: C.map.kicker, title: C.map.title, sub: wild ? C.map.sub : C.map.subSolo, groups: mapGroups, facet, signature, wild },
     { id: "knows", kicker: C.knows.kicker, title: C.knows.title, surest: C.knows.surest, findings },
@@ -618,7 +624,7 @@ export function printFor(slide) {
   const base = { id: slide.id, look: slide.look || LOOKS[slide.id] || "night", kicker: slide.kicker };
   switch (slide.id) {
     case "intro": return { ...base, title: slide.title, lines: [], mirror: slide.mirror };
-    case "names": return { ...base, kicker: null, names: [slide.people, slide.life].map((h) => ({ label: h.label, name: h.name, define: h.define, code: h.code })), hook: slide.hook || null, lines: [slide.sub].filter(Boolean), mirror: slide.mirror };
+    case "names": return { ...base, kicker: null, title: slide.title ? { name: slide.title.name, line: slide.title.line } : null, rows: [{ label: slide.labels && slide.labels.life, value: slide.life && slide.life.name }].filter((r) => r.label && r.value), lines: [slide.sub].filter(Boolean), mirror: slide.mirror };
     case "read": {
       const marks = slide.marks || [];
       const keep = slide.lines.map((line, i) => ({ line, body: (slide.bodies || [])[i] || "", mark: marks[i] || { kind: "none" } })).filter((x) => !(x.mark && x.mark.private));

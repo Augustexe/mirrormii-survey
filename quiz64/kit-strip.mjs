@@ -28,14 +28,23 @@ export function stripAuthoring(value) {
 }
 
 export const KIT_FILES = /research\/persona-quiz-v2\/final\/(cards|library|friend)\.json$/;
+// The naming package (names-64.json): the app reads only each pair's story line (src/persona/combo-lines.js). The
+// rejected merged names, the panel scores and the misreads never ship.
+export const NAMES_FILE = /research\/persona-quiz-v2\/final\/naming\/names-64\.json$/;
+export function stripNames(data) {
+  const combos = Array.isArray(data && data.combos) ? data.combos : [];
+  return { version: data && data.version, built: data && data.built, combos: combos.map((c) => ({ key: c.key, line: { fun: c.line && c.line.fun, heart: c.line && c.line.heart } })) };
+}
 
-// Vite plugin: runs before the JSON plugin and rewrites the three kit files without authoring fields.
+// Vite plugin: runs before the JSON plugin and rewrites the three kit files without authoring fields, and the naming
+// package down to its story lines.
 export function stripKitPlugin() {
   return {
     name: "genii-strip-persona-kit",
     enforce: "pre",
     transform(code, id) {
       const file = id.split("?")[0].replaceAll("\\", "/");
+      if (NAMES_FILE.test(file)) return { code: JSON.stringify(stripNames(JSON.parse(code))), map: null };
       if (!KIT_FILES.test(file)) return null;
       return { code: JSON.stringify(stripAuthoring(JSON.parse(code))), map: null };
     },

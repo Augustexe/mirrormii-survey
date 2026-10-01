@@ -130,8 +130,11 @@ test("the screens render in order from a synthetic result, with only the first o
   const text = visible(html);
   assert.ok(text.includes(C.intro.title));
 
+  // Decision 1a: one title (the people half) with one line in the glass; the day-to-day half sits in a row under it.
   const names = visible(slideHtml(html, "names"));
   assert.ok(names.includes("Golden Retriever") && names.includes("The Planner"));
+  assert.ok(names.includes(`${C.names.life} The Planner`), "the day-to-day half is a labeled row under the mirror");
+  assert.equal((slideHtml(html, "names").match(/<h2/g) || []).length, 1, "one title, not two stacked names");
   assert.ok(!text.includes("Golden Retriever × The Planner") && !/Golden Retriever (?:with|and) The Planner energy/.test(text), "the two names are never glued");
 
   const read = visible(slideHtml(html, "read"));
@@ -169,8 +172,10 @@ test("the screens render in order from a synthetic result, with only the first o
   const share = slideHtml(html, "share");
   const card = share.slice(share.indexOf("data-card"), share.indexOf("</figure>"));
   // Round 3: the card carries the core traits as keywords (a pre-round-3 library lets the trait name stand in) with their evidence line.
-  for (const t of ["Here, scroll my phone", "NEW-LINE-1", "Golden Retriever", "The Planner"]) assert.ok(card.includes(t), t);
-  for (const s of ["OLD-STING-PEOPLE", "OLD-STING-LIFE", "OLD-TAGSTING-1", "NEW-READ-PEOPLE"]) assert.ok(!card.includes(s), `no ${s} on the share card`);
+  // Decision 1a: the card carries the one title and its line (with no pair line, the people half's read stands in).
+  for (const t of ["Here, scroll my phone", "NEW-LINE-1", "Golden Retriever", view.share.title.line]) assert.ok(card.includes(t), t);
+  assert.equal(view.share.title.line, "NEW-READ-PEOPLE", "no pair line: the people half's read");
+  for (const s of ["OLD-STING-PEOPLE", "OLD-STING-LIFE", "OLD-TAGSTING-1"]) assert.ok(!card.includes(s), `no ${s} on the share card`);
   assert.ok(visible(share).includes(UI_COPY.invite));
 
   const app = visible(slideHtml(html, "app"));
@@ -210,7 +215,15 @@ test("Heart to heart reads the h variants; Make it fun and Just the cards read t
   for (const t of ["H-READ-PEOPLE", "H-READ-LIFE", "H-DESC-PEOPLE", "H-LINE-1", "H-LINE-2", "H-LINE-3", "H-INSIGHT-MINUS", "H-STING-PEOPLE", "H-STING-LIFE", "H-TAGSTING-1", STORY_COPY.heart.stings.title, STORY_COPY.heart.knows.title]) assert.ok(html.includes(t), t);
   for (const t of ["NEW-READ-PEOPLE", "NEW-LINE-1", "NEW-INSIGHT-MINUS", "OLD-STING-PEOPLE"]) assert.ok(!html.includes(t), `heart hides ${t}`);
   assert.equal(heart.slides.find((s) => s.id === "knows").findings[0].line, "H-You hold the person first.", "the clearest finding, in voice");
-  assert.equal(heart.slides.find((s) => s.id === "names").hook, "H-You hold the person first.", "the plaque carries it too");
+  const title = heart.slides.find((s) => s.id === "names").title;
+  assert.deepEqual([title.name, title.line, title.from], ["Golden Retriever", "H-READ-PEOPLE", "read"], "no pair line: the title falls back to the people half's read, in voice");
+  const lines = { "We·Soft·Own|Steady·Push·Rules": { fun: "PAIR-FUN", heart: "PAIR-HEART" } };
+  for (const [voice, want] of [["fun", "PAIR-FUN"], ["heart", "PAIR-HEART"], ["cards", "PAIR-FUN"]]) {
+    const v = buildStories({ result: syntheticResult(), profile: syntheticProfile(), sealed: null, lib: newLibrary(), voice, lines });
+    const t = v.slides.find((s) => s.id === "names").title;
+    assert.deepEqual([t.name, t.line, t.from], ["Golden Retriever", want, "combo"], `${voice}: the pair's line in voice`);
+    assert.deepEqual(v.share.title, { name: "Golden Retriever", line: want }, `${voice}: the card carries the same title and line`);
+  }
   assert.ok(!html.includes(GUESS_COPY.button), "no guess button without a guess check");
 
   for (const voice of ["fun", "cards"]) {

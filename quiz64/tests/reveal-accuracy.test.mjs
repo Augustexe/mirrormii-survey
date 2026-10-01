@@ -93,6 +93,10 @@ test("every reveal line, pole, trait, room and call comes from the player's own 
   const { LIB, KIT, S } = await load("/src/persona/kit.js");
   const axisMeta = Object.fromEntries(LIB.axes.map((a) => [a.id, a]));
   const tagLib = Object.fromEntries(LIB.tags.map((t) => [t.id, t]));
+  // The naming package read straight from disk (the app bundle carries a stripped copy): one line per pair and voice.
+  const fs = await import("node:fs");
+  const names64 = JSON.parse(fs.readFileSync(new URL("../../research/persona-quiz-v2/final/naming/names-64.json", import.meta.url), "utf8"));
+  const pairLine = Object.fromEntries(names64.combos.map((c) => [c.key, c.line]));
   const list = await players();
   const seenArchetypes = new Set();
   let roomRows = 0;
@@ -116,6 +120,13 @@ test("every reveal line, pole, trait, room and call comes from the player's own 
     assert.equal(by.names.life.name, life.name, `${label}: life half`);
     seenArchetypes.add(`${rel.name} / ${life.name}`);
     assert.deepEqual(view.share.names.map((n) => n.name), [rel.name, life.name], `${label}: the card names the same halves`);
+    // Decision 1a: one title, the people half, and one line from names-64.json for this exact pair, in voice.
+    const want = pairLine[`${rel.code}|${life.code}`];
+    assert.ok(want, `${label}: names-64.json has a line for ${rel.code}|${life.code}`);
+    assert.equal(by.names.title.name, rel.name, `${label}: the title is the people half`);
+    assert.equal(by.names.title.line, voice === "heart" ? want.heart : want.fun, `${label}: the title line is the pair's line in voice`);
+    assert.equal(by.names.title.from, "combo", `${label}: the line comes from the pair, not a fallback`);
+    assert.deepEqual(view.share.title, { name: rel.name, line: by.names.title.line }, `${label}: the card carries the same title and line`);
 
     // 2. The read: each half's own line and description, in voice.
     assert.deepEqual(by.read.lines, [inVoice(rel, "read", voice), inVoice(life, "read", voice)], `${label}: read lines`);
@@ -195,8 +206,6 @@ test("every reveal line, pole, trait, room and call comes from the player's own 
       assert.ok(x.clarity <= prev, `${label}: clearest first`);
       prev = x.clarity;
     }
-    const topAxis = f.find((x) => x.kind === "axis");
-    assert.equal(by.names.hook, topAxis ? topAxis.line : by.names.people.read, `${label}: the plaque is the clearest finding`);
 
     // 5. The rooms: each row recomputed from that chapter's own evidence.
     if (by.rooms) {
