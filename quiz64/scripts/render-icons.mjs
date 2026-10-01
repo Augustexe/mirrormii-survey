@@ -5,8 +5,8 @@
 //
 // favicon and apple-touch-icon: hand-authored SVG, svgo-optimized, rasterized with @resvg/resvg-js.
 // og.png: the fogged mirror (the real <MirrorArch> from src/art, server-rendered) with the landing line
-// in Fraunces. resvg cannot read the woff2 fontsource ships, so the OG pass renders in Playwright Chrome
-// with the same tokens.css and the fontsource Fraunces file. Colors come from src/art/palette.js.
+// in Satoshi, the survey's one font. resvg cannot read a variable woff2, so the OG pass renders in Playwright
+// Chrome with the same tokens.css and src/system/fonts/satoshi-variable.woff2. Colors come from src/art/palette.js.
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
@@ -81,7 +81,7 @@ fs.mkdirSync(refs, { recursive: true });
 for (const size of [16, 32, 64]) fs.writeFileSync(path.join(refs, `favicon-${size}.png`), png(favicon, size));
 console.log("wrote public/favicon.svg, public/apple-touch-icon.png, favicon previews");
 
-// ---------------------------------------------------------------- og.png (Playwright Chrome for Fraunces)
+// ---------------------------------------------------------------- og.png (Playwright Chrome for Satoshi)
 
 if (process.argv.includes("--og")) {
   const { createServer } = await import("vite");
@@ -101,25 +101,24 @@ if (process.argv.includes("--og")) {
       h("div", { className: "spark s2" }, h(art.Sparkle, { size: 14 })),
     ),
   );
-  const fontDir = path.join(root, "node_modules/@fontsource-variable/fraunces/files");
-  const fontFile = fs.readdirSync(fontDir).find((f) => /^fraunces-latin-full-normal\.woff2$/.test(f)) || fs.readdirSync(fontDir).find((f) => /latin-(full|wght)-normal/.test(f));
-  const font = fs.readFileSync(path.join(fontDir, fontFile)).toString("base64");
+  const font = fs.readFileSync(path.join(root, "src/system/fonts/satoshi-variable.woff2")).toString("base64");
   const wordmark = fs.readFileSync(path.join(pub, "assets/mirrormii-wordmark.svg")).toString("base64");
   const tokens = fs.readFileSync(path.join(root, "src/system/tokens.css"), "utf8");
   const html = `<!doctype html><html data-theme="day"><head><meta charset="utf-8"><style>
-@font-face{font-family:"Fraunces";src:url(data:font/woff2;base64,${font}) format("woff2");font-weight:100 900;font-display:block}
+@font-face{font-family:"Satoshi";src:url(data:font/woff2;base64,${font}) format("woff2");font-weight:300 900;font-style:normal;font-display:block}
 ${tokens}
 html,body{margin:0;width:1200px;height:630px;overflow:hidden;background:var(--c-canvas)}
 .og{position:relative;width:1200px;height:630px;overflow:hidden;transform:translateZ(0)}
 .floor{position:absolute;left:700px;top:500px;width:480px;height:90px;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--c-violet) 30%,transparent),transparent)}
 .mirror{position:absolute;left:790px;top:78px;filter:drop-shadow(0 28px 48px rgba(86,70,192,.28))}
 .spark{position:absolute;color:var(--c-violet)} .s1{left:1110px;top:120px} .s2{left:760px;top:430px;color:var(--c-violet-300)}
-.copy{position:absolute;left:84px;top:150px;width:640px;font-family:Fraunces,serif;font-variation-settings:"SOFT" 100,"WONK" 0;color:var(--c-ink)}
+.copy{position:absolute;left:84px;top:150px;width:640px;font-family:var(--font);font-synthesis:none;color:var(--c-ink)}
 .wm{position:absolute;left:84px;top:64px;height:30px}
-.kicker{font:700 20px/1 system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--c-violet-text);margin:0 0 26px}
-h1{margin:0;font-weight:600;font-size:96px;line-height:.98;letter-spacing:-.03em}
+.og [class^="bd-"]{display:none}
+.kicker{font:600 20px/1 var(--font);letter-spacing:.06em;text-transform:uppercase;color:var(--c-violet-text);margin:0 0 26px}
+h1{margin:0;font-weight:800;font-size:96px;line-height:.98;letter-spacing:-.025em}
 h1 span{display:block} h1 .two{color:var(--c-violet-text)}
-.reflect{display:block;font-weight:600;font-size:96px;line-height:.98;letter-spacing:-.03em;color:var(--c-violet-text);transform:scaleY(-1);opacity:.14;height:44px;overflow:hidden;-webkit-mask-image:linear-gradient(180deg,transparent,#000);mask-image:linear-gradient(180deg,transparent,#000)}
+.reflect{display:block;font-weight:800;font-size:96px;line-height:.98;letter-spacing:-.025em;color:var(--c-violet-text);transform:scaleY(-1);opacity:.14;height:44px;overflow:hidden;-webkit-mask-image:linear-gradient(180deg,transparent,#000);mask-image:linear-gradient(180deg,transparent,#000)}
 </style></head><body>${markup.replace('<div class="og">', `<div class="og"><img class="wm" src="data:image/svg+xml;base64,${wordmark}" alt=""><div class="copy"><p class="kicker">A personality game</p><h1><span>Let's get</span><span class="two">oddly specific.</span></h1><span class="reflect" aria-hidden="true">oddly specific.</span></div>`)}</body></html>`;
   const tmp = path.join(refs, "og.html");
   fs.writeFileSync(tmp, html);
