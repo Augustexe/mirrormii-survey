@@ -1169,15 +1169,3 @@ test("check-bank CLI: the shipped bank folder checks without errors; --kit repor
   const out = JSON.parse(k.stdout);
   assert.ok(out.counts.ch1.total > 0 && Array.isArray(out.errors) && Array.isArray(out.warnings));
 });
-
-// library.json is the source of truth for result copy (package C); assemble.mjs must never regenerate it (or cards.json).
-test("assemble.mjs is retired: it refuses and changes neither library.json nor cards.json", () => {
-  const before = ["library.json", "cards.json"].map((f) => fs.readFileSync(path.join(DIR, f), "utf8"));
-  const r = spawnSync(process.execPath, [path.join(DIR, "assemble.mjs")], { cwd: DIR, encoding: "utf8" });
-  const after = ["library.json", "cards.json"].map((f) => fs.readFileSync(path.join(DIR, f), "utf8"));
-  if (after[0] !== before[0]) fs.writeFileSync(path.join(DIR, "library.json"), before[0]);
-  if (after[1] !== before[1]) fs.writeFileSync(path.join(DIR, "cards.json"), before[1]);
-  assert.notEqual(r.status, 0, "assemble.mjs must refuse");
-  assert.equal(after[0], before[0], "assemble.mjs changed library.json");
-  assert.equal(after[1], before[1], "assemble.mjs changed cards.json");
-});

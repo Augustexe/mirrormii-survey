@@ -228,4 +228,4 @@ Every combination was scored on the same population. "ok" means every target abo
 
 - Random clickers still see some tags (shown 4.75 on average) because their picks sometimes line up by chance; only 2.04 of them are strong. The result page labels a tag "strong" only above tagStrong.
 - Recovery is measured against a synthetic hidden profile. It shows the parser is consistent with the card evidence, not that the cards measure a real person. Blind test 2 is the real check.
-- Worked example: `sim-example/` (answers, sealed answers, hidden profile, result, sealed results), used in RESULT-TEMPLATE.md.
+- Worked example: `sim-example/` (answers, sealed answers, hidden profile, result, sealed results), read by the kit tests and the app tests.

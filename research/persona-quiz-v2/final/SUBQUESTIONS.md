@@ -137,7 +137,7 @@ Pole A is the first tag named. The pair's `never` lines still bind every card (s
 
 ## Pole audit (round 3, 2026-09-29)
 
-Every target's pole A and pole B were checked against the entry's pole A and pole B behavior. Secondary targets live only in the JSON (the tables above show the primary pair, which was right everywhere), so these rows are unchanged; the fixes are in `subquestions.json`. The world-1 to world-4 cards already scored in the fixed direction.
+Every target's pole A and pole B were checked against the entry's pole A and pole B behavior. Secondary targets live only in the JSON (the tables above show the primary pair, which was right everywhere), so these rows are unchanged; the fixes are in `subquestions.json`. The draft world cards of that round (since merged into the bank) already scored in the fixed direction.
 
 | id | secondary | was | now | why |
 |---|---|---|---|---|

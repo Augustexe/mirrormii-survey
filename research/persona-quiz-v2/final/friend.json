@@ -3,16 +3,14 @@
   "version": "v2-2026-09-26",
   "title": "How well do you know me?",
   "zhTitle": "你真的懂我嗎？",
-  "status": "Draft for the gauntlet. English first, gender neutral. zh is Sally's Chinese where it exists (zhStatus says how it was touched); zhSally keeps her original when the meaning had to change.",
+  "status": "Current. English first, gender neutral. zh is the Chinese source text where it exists (zhStatus says how it was touched); zhSally keeps the original when the meaning had to change.",
   "sources": {
-    "spec": "../BRIEF.md (Friend game section)",
+    "spec": "docs/LAUNCH-SPEC.md section 3 (Friend game)",
     "sally": [
-      "../../sally-v2-2026-09-26/v2-friend-version.md",
-      "../../sally-v2-2026-09-26/v2-bestie-version.md"
+      "Earlier research template for the friend and bestie versions (removed from the repo; in git history)"
     ],
     "library": [
-      "../library/types.json",
-      "../library/tags.json"
+      "library.json"
     ],
     "chapters": {
       "cards.json": "merged from bank/ch1.json to ch7.json (Build C, 2026-09-29)"
@@ -3353,7 +3351,7 @@
       "Sally's optional 'why did you guess this?' text field became 4 one-tap chips; her bestie roast box became 'pick the roast' from 12 presets (brief: no free text).",
       "The friend label is the relationship plus a preset emoji so nobody types a name.",
       "Marriage and kids tags: opt-in only for partner and bestie. Sally allowed any recipient to see them if the owner opted in; 'friend or coworker' includes coworkers, so this build never offers them there or to a crush.",
-      "Level 2 skips rushed owner answers (under 1.5 s), so a friend is never marked wrong on a tap the owner did not mean (LESSONS-FROM-TEST-1: rushed taps).",
+      "Level 2 skips rushed owner answers (under 1.5 s), so a friend is never marked wrong on a tap the owner did not mean (a lesson from blind test 1: rushed taps).",
       "Sally's primary sets repeated a pair (Q21 and Q24 both family vote T19; Q15 and Q27/Q28 both T06). Primaries here use 12 different pairs; the repeats are in backup.",
       "Level 4 sting decoys come only from pairs the owner has no tag in, so exactly one line is true.",
       "Roast lines cover 12 different pairs across all 7 chapters; one is love-tied (R06) and hides when love tags are off."

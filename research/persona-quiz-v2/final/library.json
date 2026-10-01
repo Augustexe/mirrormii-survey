@@ -2,8 +2,7 @@
   "version": "persona-quiz-v2",
   "built": "2026-09-26",
   "sources": [
-    "../library/types.json",
-    "../library/tags.json"
+    "Merged on 2026-09-26 from the research drafts library/types.json and library/tags.json (removed; in git history). Edited by hand since."
   ],
   "axes": [
     {
@@ -861,7 +860,7 @@
   "tagRules": {
     "pairs": "Every tag has exactly one opposite (pair). Support for a tag counts against its pair. The pair is the decoy card in friend game Level 3.",
     "firing": "A tag fires with support from at least 2 separate cards, at least 1 not rushed, and net support (minus its pair) above the simulation threshold. Circumstance, Not my life, No recent example and Skip never count. Up to 5 shown: strong tags first by net support, then the rest by coverage share (net support over what the player’s answered cards could give), from at least 3 chapters where possible.",
-    "triggers": "Each trigger string names the card id and card type ('golden' marks a golden card), then in parentheses the Sally question it answers when there is one (Qnn; 'reframed' means Sally's premise was replaced per the brief; '18+' marks a locked18 card), then the situation, and after the arrow the behavior (the option or options) that evidences the tag. '(slight)' means strength 1. The strings describe the evidence; the scored values live on the card options in chapters/*.final.json, and the strings are synced from the cards after card edits.",
+    "triggers": "Each trigger string names the card id and card type ('golden' marks a golden card), then in parentheses the Sally question it answers when there is one (Qnn; 'reframed' means Sally's premise was replaced per the brief; '18+' marks a locked18 card), then the situation, and after the arrow the behavior (the option or options) that evidences the tag. '(slight)' means strength 1. The strings describe the evidence; the scored values live on the card options in bank/*.json (merged into cards.json), and the strings are synced from the cards after card edits.",
     "stingAndHeart": "Sting is owner only. Name and heart are shareable.",
     "locked18": "Marriage and kids tags. Never shown to players under 18. friendGame defaultOff: they enter the friend game card pool (true, opposite or decoy) only if the owner opts in, per Sally.",
     "loveTag": "Love tags (loveTag true) appear in friend game Level 3 only when the owner sends to a partner or bestie, or to a crush when the owner opts in; never for a friend or coworker (Sally's friend-version relationship table, pairs 1 and 2, extended to the new love pair T10).",

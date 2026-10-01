@@ -370,7 +370,7 @@ ${okGrid.length} of ${grid.length} combinations meet every target; ${okBase.leng
 
 - Random clickers still see some tags (shown ${shipped.random.shownMean.toFixed(2)} on average) because their picks sometimes line up by chance; only ${shipped.random.strongMean.toFixed(2)} of them are strong. The result page labels a tag "strong" only above tagStrong.
 - Recovery is measured against a synthetic hidden profile. It shows the parser is consistent with the card evidence, not that the cards measure a real person. Blind test 2 is the real check.
-- Worked example: \`sim-example/\` (answers, sealed answers, hidden profile, result, sealed results), used in RESULT-TEMPLATE.md.
+- Worked example: \`sim-example/\` (answers, sealed answers, hidden profile, result, sealed results), read by the kit tests and the app tests.
 `;
   fs.writeFileSync(path.join(DIR, "SIM-REPORT.md"), md);
   console.log("wrote SIM-REPORT.md and sim-example/");
