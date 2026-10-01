@@ -1201,7 +1201,8 @@
     padding-block-start: var(--s-5);
   }
   .mm-interlude__title {
-    margin-block: var(--s-1) var(--s-4);
+    /* The reflection gets its own band under the title (Satoshi sits lower in its line box than Fraunces did). */
+    margin-block: var(--s-1) calc(var(--s-4) + 0.3em);
     font: var(--type-display);
     letter-spacing: var(--type-display-track);
   }
