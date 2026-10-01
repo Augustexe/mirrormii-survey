@@ -1,0 +1,185 @@
+{
+ "overall": 7,
+ "screens": [
+  {
+   "n": 1,
+   "score": 7,
+   "strengths": [
+    "Distinctive headline and inviting pastel world",
+    "Clear primary CTA"
+   ],
+   "problems": [
+    "The mirror is so pale that its shards barely register; increase edge contrast and reveal a few colored pieces.",
+    "Three chips and the information card crowd the area below the CTA; reduce them to one short reassurance line."
+   ]
+  },
+  {
+   "n": 2,
+   "score": 7,
+   "strengths": [
+    "Warm, low-pressure choice",
+    "Large, easy-to-tap options"
+   ],
+   "problems": [
+    "Both options read like a standard settings form; give the selected option a stronger visual state.",
+    "The decorative mirror below the panel feels disconnected from the choice; let the choice visibly affect it."
+   ]
+  },
+  {
+   "n": 3,
+   "score": 7,
+   "strengths": [
+    "The floating island gives the chapter a memorable setting",
+    "Progress and next action are easy to find"
+   ],
+   "problems": [
+    "The island and the shard counter compete for attention; make the six upcoming cards the clearer focus.",
+    "The headline reflection is faint enough to resemble a rendering artifact; strengthen it or remove it."
+   ]
+  },
+  {
+   "n": 4,
+   "score": 7,
+   "strengths": [
+    "Specific, funny scenario",
+    "Comfortable answer targets"
+   ],
+   "problems": [
+    "The long prompt consumes most of the first viewport; reduce the heading size slightly and tighten line spacing.",
+    "All four answers have nearly identical visual weight; add a clear pressed state and a more distinct selection cue."
+   ]
+  },
+  {
+   "n": 5,
+   "score": 8,
+   "strengths": [
+    "The chat format turns a question into a recognizable social moment",
+    "Reply choices feel integrated with the conversation"
+   ],
+   "problems": [
+    "The chat plus four large replies makes the card very tall; tighten bubble padding and vertical gaps.",
+    "The selected reply is only modestly different from the others; strengthen its border and fill."
+   ]
+  },
+  {
+   "n": 6,
+   "score": 8,
+   "strengths": [
+    "The receipt is a playful format change",
+    "The running total makes interaction tangible"
+   ],
+   "problems": [
+    "The receipt paper, card background, and page background are too close in value; add definition to the receipt edge.",
+    "The disabled-looking 'Tear it off' button needs a visible rule for when it becomes active."
+   ]
+  },
+  {
+   "n": 7,
+   "score": 7,
+   "strengths": [
+    "Ranking adds useful interaction variety",
+    "Numbered positions are easy to scan"
+   ],
+   "problems": [
+    "The drag handles look small for touch; enlarge their hit areas and show a brief movement cue.",
+    "The long options create a dense block; trim copy or reduce row padding without shrinking text."
+   ]
+  },
+  {
+   "n": 8,
+   "score": 8,
+   "strengths": [
+    "The completed mirror is a strong visual payoff",
+    "The dark palette makes the transition to the finale feel significant"
+   ],
+   "problems": [
+    "The eight surrounding cards are too generic to convey 'eight guesses'; give each a distinct symbol or teaser.",
+    "The lock explanation is dense at the decision point; shorten it and give the irreversible action more breathing room."
+   ]
+  },
+  {
+   "n": 9,
+   "score": 8,
+   "strengths": [
+    "The shard burst delivers the clearest moment of spectacle",
+    "Strong pacing before the reveal"
+   ],
+   "problems": [
+    "The animation's apparent focal point sits far above the headline; bring the two closer on small screens.",
+    "The progress bars imply a tappable story sequence, but there is no visible navigation hint."
+   ]
+  },
+  {
+   "n": 10,
+   "score": 9,
+   "strengths": [
+    "The two archetypes inside one mirror are the strongest expression of the concept",
+    "Excellent contrast and reveal hierarchy"
+   ],
+   "problems": [
+    "The glass pattern behind the names slightly reduces legibility; darken the name areas or soften the shard lines.",
+    "The supporting sentence falls below the mirror and feels detached; connect it visually to the two halves."
+   ]
+  },
+  {
+   "n": 11,
+   "score": 6,
+   "strengths": [
+    "A useful shift from poetic reveal to explorable detail",
+    "The list alternative is considerate"
+   ],
+   "problems": [
+    "Axis labels mix poles and categories in a way that takes effort to decode; put each opposing pair on one clearly labeled axis.",
+    "The map occupies a relatively small central area; enlarge it and move explanatory copy nearer to the plotted shape."
+   ]
+  },
+  {
+   "n": 12,
+   "score": 7,
+   "strengths": [
+    "Readable trait cards",
+    "Good rhythm and category icons"
+   ],
+   "problems": [
+    "Five nearly identical white cards make the result feel generic; vary emphasis for the top two defining traits.",
+    "The thin connecting line implies a journey but carries no information; use it to show category or evidence, or remove it."
+   ]
+  },
+  {
+   "n": 13,
+   "score": 8,
+   "strengths": [
+    "A polished, ready-made share artifact",
+    "Story/Post and Night/Day controls make sharing practical"
+   ],
+   "problems": [
+    "The share card's text is small at phone-viewing size; enlarge the archetype names and cut secondary copy.",
+    "The page has several competing share actions; make 'Share image' primary and visually subordinate the link and challenge CTA."
+   ]
+  },
+  {
+   "n": 14,
+   "score": 7,
+   "strengths": [
+    "Clear bridge from the personality game to MirrorMii",
+    "Strong color and recognizable mirror motif"
+   ],
+   "problems": [
+    "The app imagery is intricate but too small to explain the food-photo game loop; show one larger, legible in-app moment.",
+    "The two calls to action compete; keep app install primary and reduce the visual weight of the friend challenge."
+   ]
+  }
+ ],
+ "top_fixes": [
+  "Increase mirror shard contrast on screens 1 and 3; show a few colored shards early so the central mechanic is visible before the finale.",
+  "Make each completed answer visibly add one shard to the persistent header mirror, with a brief motion from the selected answer to the mirror.",
+  "Reduce prompt and answer vertical space on card screens 4\u20137 so more choices fit in the initial viewport at 390\u00d7844 without reducing body text below its current size.",
+  "Give selected answers a consistent, unmistakable state across scenario, reply, receipt, and rank cards: stronger fill, border, and confirmation motion.",
+  "Redesign screen 11's radar labels as six explicit opposing pairs and enlarge the plotted area; keep the list view for accessibility.",
+  "Make screen 10 the primary share composition: preserve the full two-archetype mirror, enlarge the names, and integrate the one-line personal insight inside its frame.",
+  "Simplify screen 13's exported card by removing small secondary lines and ensuring archetype names and two traits remain legible when viewed as a social story.",
+  "On screen 14, replace the tiny composite app illustration with one large food-photo-to-island example, and give the install CTA clear priority over the friend challenge."
+ ],
+ "hooks": "There are enough visual hooks to hold attention: the receipt, chat reply, shard burst, and completed mirror break up the flow. Screen 10 is the strongest screenshot moment because the two archetypes are instantly personal and inseparable from the mirror concept. Make it stronger by adding one short, sharply specific insight inside the mirror and making that composition directly shareable. The current share card on screen 13 is polished but less emotionally immediate.",
+ "brand_fit": "Strong fit. The frosted lavender world and dark, luminous finale feel like two states of the same mirror, while shards give the answers a coherent visual consequence. The main gap is continuity: the mirror mechanic is subtle during the questions, then suddenly powerful at the lock and reveal. Make each answer visibly build it, and make the final app screen show the cozy game loop as clearly as the personality game."
+}

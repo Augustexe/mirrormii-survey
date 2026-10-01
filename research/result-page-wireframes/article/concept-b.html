@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Night to Morning</title>
+<meta name="description" content="Concept B for the MirrorMii Evidence Article: a cinematic long-read that walks from the night of the reveal into the morning of the game.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,200..800,0..100,0..1;1,9..144,200..800,0..100,0..1&family=Figtree:wght@400..800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --night: #171625; --n-800: #1F1D33; --n-700: #2A2744; --n-ink: #F3F1FF; --n-ink-2: #C9C4EE; --n-ink-3: #9A94C0; --n-violet: #A99CF5;
+  --paper: #F8F8FF; --pearl: #E9E6FB; --ink: #1E1B2E; --ink-2: #4A4560; --ink-3: #6E6987; --vt: #5646C0; --violet: #8071E4; --line: #E2DEF7; --rose: #F2A7C3;
+  --serif: "Fraunces", Georgia, serif; --sans: "Figtree", system-ui, sans-serif;
+  --sky: var(--night); --e-out: cubic-bezier(.2,.8,.2,1);
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--sky); color: var(--n-ink); font: 400 17px/1.6 var(--sans); overflow-x: hidden; transition: background-color 900ms var(--e-out); }
+img { display: block; max-width: 100%; height: auto; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid #fff; outline-offset: 3px; box-shadow: 0 0 0 6px #5646C0; border-radius: 6px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* sky layers: stars fade out, morning glow rises, both tied to scroll progress */
+.sky { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.stars { opacity: calc(1 - var(--p, 0) * 1.6); background-image: radial-gradient(1.2px 1.2px at 12% 18%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 72% 12%, #fff 50%, transparent 51%), radial-gradient(1.4px 1.4px at 40% 38%, #d8d2ff 50%, transparent 51%), radial-gradient(1px 1px at 88% 44%, #fff 50%, transparent 51%), radial-gradient(1.2px 1.2px at 22% 70%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 60% 82%, #cfc8ff 50%, transparent 51%), radial-gradient(1.3px 1.3px at 92% 88%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 6% 52%, #fff 50%, transparent 51%); }
+.dawn { opacity: calc((var(--p, 0) - .45) * 2.2); background: radial-gradient(90% 55% at 50% 110%, #FFE3EE 0%, #D9D2FF 45%, transparent 75%); }
+
+/* top chrome */
+.bar { position: fixed; top: 0; left: 0; right: 0; z-index: 40; display: flex; align-items: center; gap: 10px; padding: 10px 16px; pointer-events: none; }
+.bar > * { pointer-events: auto; }
+.bar::before { content: ""; position: absolute; inset: 0 0 -26px; background: linear-gradient(var(--sky) 45%, transparent); transition: background .9s; z-index: -1; pointer-events: none; }
+.bar img { height: 17px; width: auto; filter: brightness(0) invert(1); transition: filter .6s; }
+.day .bar img { filter: none; }
+.voice { margin-left: auto; display: flex; padding: 3px; border-radius: 999px; background: rgba(31,29,51,.55); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(201,196,238,.2); }
+.day .voice { background: rgba(255,255,255,.7); border-color: var(--line); }
+.voice button { border: 0; background: transparent; padding: 7px 11px; min-height: 34px; border-radius: 999px; font: 650 12.5px/1 var(--sans); color: var(--n-ink-2); cursor: pointer; }
+.day .voice button { color: var(--ink-2); }
+.voice button[aria-checked="true"] { background: #fff; color: var(--ink); }
+.day .voice button[aria-checked="true"] { background: var(--ink); color: #fff; }
+.rail { position: fixed; right: 8px; top: 50%; transform: translateY(-50%); z-index: 39; display: flex; flex-direction: column; gap: 8px; }
+.rail a { width: 8px; height: 8px; border-radius: 50%; background: rgba(201,196,238,.35); display: block; transition: transform .3s, background .3s; }
+.rail a.on { background: #fff; transform: scale(1.6); }
+.rail .rl { display: none; }
+@media (min-width: 900px) { .rail .rl { display: inline; } }
+@media (min-width: 900px) { .rail { right: 18px; gap: 4px; } .rail a { width: auto; height: auto; background: none !important; transform: none !important; font: 650 12px/1 var(--sans); color: var(--n-ink-3); padding: 6px 8px; border-radius: 99px; text-decoration: none; text-align: right; } .rail a.on { color: #fff; background: rgba(255,255,255,.12) !important; } .day .rail a { color: var(--ink-3); } .day .rail a.on { color: var(--vt); background: rgba(86,70,192,.1) !important; } }
+.day .rail a { background: rgba(86,70,192,.25); }
+.day .rail a.on { background: var(--vt); }
+
+/* chapters: a sticky plate (the mirror) with glass copy scrolling over it */
+main { position: relative; z-index: 1; }
+.ch { position: relative; }
+.plate { position: sticky; top: 0; height: 100svh; display: grid; place-items: center; overflow: hidden; }
+.copy { position: relative; z-index: 2; margin-top: -42svh; padding: 0 16px 22svh; display: grid; gap: 14px; }
+.pane { max-width: 36rem; border-radius: 28px; padding: 22px 20px; background: rgba(31,29,51,.8); backdrop-filter: blur(22px) saturate(140%); -webkit-backdrop-filter: blur(22px) saturate(140%); border: 1px solid rgba(201,196,238,.16); box-shadow: 0 30px 60px -30px rgba(0,0,0,.6); }
+.light .pane { background: rgba(255,255,255,.86); color: var(--ink); border-color: rgba(255,255,255,.9); box-shadow: 0 24px 50px -28px rgba(86,70,192,.4); }
+.kick { font: 650 13px/1.2 var(--sans); color: var(--n-violet); margin: 0 0 10px; }
+.light .kick { color: var(--vt); }
+h2 { font-family: var(--serif); font-variation-settings: "SOFT" 100, "WONK" 0; font-weight: 440; font-size: clamp(34px, 9vw, 60px); line-height: 1.02; letter-spacing: -.028em; margin: 0 0 12px; text-wrap: balance; }
+h3 { font-family: var(--serif); font-weight: 560; font-size: 24px; line-height: 1.12; letter-spacing: -.012em; margin: 0 0 6px; }
+p { margin: 0 0 12px; text-wrap: pretty; }
+p:last-child { margin-bottom: 0; }
+.soft { color: var(--n-ink-2); }
+.light .soft { color: var(--ink-2); }
+.tiny { font: 600 12.5px/1.35 var(--sans); color: var(--n-ink-3); }
+.light .tiny { color: var(--ink-3); }
+
+/* the arch (one object, many states) */
+.arch { position: relative; width: min(72vw, 400px); aspect-ratio: 5 / 7.4; border-radius: 999px 999px 26px 26px; padding: 8px; background: linear-gradient(160deg, rgba(255,255,255,.85), rgba(169,156,245,.35) 45%, rgba(91,139,235,.4)); box-shadow: 0 0 80px rgba(169,156,245,.35), 0 40px 90px -30px rgba(0,0,0,.7); transform: translateY(-9svh); }
+.arch .in { position: relative; height: 100%; border-radius: 999px 999px 19px 19px; overflow: hidden; background: #221f3b; }
+.arch .in > img.bg { width: 100%; height: 100%; object-fit: cover; }
+.arch .spec { position: absolute; inset: 0; background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.35) 45%, transparent 58%); mix-blend-mode: soft-light; animation: sweep 7s ease-in-out infinite; }
+@keyframes sweep { 0%, 100% { transform: translateX(-60%); } 50% { transform: translateX(60%); } }
+.halo { position: absolute; width: 150%; aspect-ratio: 1; left: -25%; top: -10%; background: radial-gradient(closest-side, rgba(169,156,245,.45), transparent); z-index: -1; }
+.genii { position: absolute; width: 104px; right: -26px; bottom: -22px; z-index: 3; filter: drop-shadow(0 0 26px rgba(169,156,245,.7)); animation: bob 6s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(-9px) rotate(-4deg); } }
+
+/* cover: fog you can wipe */
+.names { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; justify-content: center; gap: 18px; padding: 24px 18px; text-align: center; background: linear-gradient(180deg, rgba(23,22,37,0) 20%, rgba(23,22,37,.55)); }
+.names .lab { font: 700 10.5px/1 var(--sans); letter-spacing: .08em; color: #fff; opacity: .85; }
+.names b { display: block; font-family: var(--serif); font-weight: 600; font-size: clamp(30px, 8.4vw, 44px); line-height: .95; letter-spacing: -.02em; color: #fff; text-shadow: 0 2px 24px rgba(23,22,37,.7); margin-top: 6px; }
+.names hr { border: 0; height: 2px; margin: 0 18%; background: linear-gradient(90deg, transparent, rgba(255,255,255,.8), transparent); }
+canvas.fog { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; touch-action: none; transition: opacity 1s var(--e-out); cursor: crosshair; }
+canvas.fog.gone { opacity: 0; pointer-events: none; }
+.wipe { position: absolute; z-index: 4; left: 50%; bottom: 22px; transform: translateX(-50%); border: 1px solid rgba(255,255,255,.4); background: rgba(23,22,37,.45); backdrop-filter: blur(10px); border-radius: 999px; padding: 10px 16px; min-height: 44px; font: 650 13px/1 var(--sans); color: #fff; cursor: pointer; white-space: nowrap; transition: opacity .5s; }
+.wipe.gone { opacity: 0; pointer-events: none; }
+.cover h1 { font-family: var(--serif); font-weight: 330; font-size: clamp(42px, 11.4vw, 84px); line-height: .96; letter-spacing: -.035em; margin: 0 0 14px; text-wrap: balance; }
+.cover h1 i { font-style: italic; font-variation-settings: "SOFT" 100, "WONK" 1; color: var(--n-violet); }
+.dek { font-family: var(--serif); font-style: italic; font-variation-settings: "SOFT" 100, "WONK" 1; font-size: 21px; line-height: 1.35; color: var(--n-ink-2); }
+
+/* facet gem */
+.gem { width: min(96vw, 460px); transform: translateY(-9svh); overflow: visible; }
+.gem .spoke { stroke: rgba(201,196,238,.22); stroke-width: 1; }
+.gem .ring { fill: none; stroke: rgba(201,196,238,.14); }
+.gem .shape { fill: url(#gemfill); stroke: #D9D2FF; stroke-width: 1.5; stroke-linejoin: round; filter: drop-shadow(0 0 22px rgba(169,156,245,.6)); transition: transform .8s var(--e-out); transform-origin: 200px 200px; }
+.gem text { font: 650 15px var(--sans); fill: var(--n-ink-3); transition: fill .4s; }
+.gem text.on { fill: #fff; }
+.gem circle.v { fill: #fff; r: 3.5; transition: r .4s; }
+.gem circle.v.on { r: 7; fill: #fff; }
+.stat .ends { display: flex; justify-content: space-between; font: 650 13px/1.2 var(--sans); color: var(--n-ink-3); margin-bottom: 6px; }
+.stat .ends .me { color: #fff; }
+.pips { display: flex; gap: 5px; margin: 0 0 12px; }
+.pips i { flex: 1; height: 7px; border-radius: 99px; background: rgba(255,255,255,.13); }
+.pips i.on { background: linear-gradient(90deg, #cfc8ff, #9fb8ff); box-shadow: 0 0 10px rgba(169,156,245,.6); }
+.pips i.half { background: linear-gradient(90deg, #cfc8ff 50%, rgba(255,255,255,.13) 50%); }
+.badge { display: inline-block; font: 700 11px/1 var(--sans); padding: 5px 9px; border-radius: 99px; background: #fff; color: var(--ink); margin-left: 6px; vertical-align: 4px; }
+.badge.wild { background: var(--rose); }
+details { margin-top: 12px; border-top: 1px solid rgba(201,196,238,.16); padding-top: 10px; }
+summary { cursor: pointer; font: 650 13.5px/1 var(--sans); color: var(--n-violet); list-style: none; display: flex; align-items: center; gap: 8px; min-height: 36px; }
+summary::-webkit-details-marker { display: none; }
+summary::before { content: ""; width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid currentColor; background: linear-gradient(90deg, currentColor 50%, transparent 50%); }
+details p { margin: 8px 0 0; color: var(--n-ink-2); }
+details b { color: #fff; font-weight: 650; }
+
+/* charms */
+.charms { position: absolute; inset: 0; }
+.charm { position: absolute; font: 650 14px/1 var(--sans); padding: 9px 14px; border-radius: 99px; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.3); backdrop-filter: blur(8px); color: #fff; white-space: nowrap; animation: floaty 8s ease-in-out infinite; }
+@keyframes floaty { 50% { transform: translateY(-10px); } }
+.trait h3 { font-size: 30px; }
+
+/* insight: written backwards on the glass until you turn it */
+.reflect { perspective: 1200px; width: min(84vw, 520px); transform: translateY(-9svh); text-align: center; }
+.reflect .turn { transition: transform 900ms var(--e-out); transform: rotateY(180deg); transform-style: preserve-3d; }
+.reflect.upright .turn { transform: rotateY(0deg); }
+.reflect p { font-family: var(--serif); font-weight: 480; font-size: clamp(30px, 8.4vw, 52px); line-height: 1.06; letter-spacing: -.025em; margin: 0; text-shadow: 0 0 40px rgba(169,156,245,.5); }
+.reflect .behav { font-style: italic; font-variation-settings: "SOFT" 100, "WONK" 1; font-weight: 330; font-size: clamp(21px, 5.8vw, 32px); color: var(--n-ink-2); margin-top: 18px; opacity: 0; transition: opacity .6s .7s; }
+.reflect.upright .behav { opacity: 1; }
+.hold { margin-top: 26px; border: 1px solid rgba(255,255,255,.35); background: rgba(255,255,255,.08); border-radius: 999px; padding: 12px 20px; min-height: 48px; font: 650 14px/1 var(--sans); color: #fff; cursor: pointer; position: relative; overflow: hidden; }
+.hold .fill { position: absolute; inset: 0; background: rgba(255,255,255,.25); transform-origin: 0 50%; transform: scaleX(0); }
+.hold.pressing .fill { transform: scaleX(1); transition: transform 650ms linear; }
+
+/* rooms: the island with lit rooms */
+.island { position: relative; width: 150vw; max-width: 1200px; transform: translateY(-12svh); }
+.island img { width: 100%; filter: saturate(1.05); }
+.island .glow { position: absolute; width: 60px; height: 60px; border-radius: 50%; background: radial-gradient(closest-side, var(--c), transparent); mix-blend-mode: screen; opacity: .35; transition: opacity .5s, transform .5s; }
+.island .glow.on { opacity: 1; transform: scale(1.5); }
+.room { border-left: 3px solid var(--c); padding-left: 14px; }
+.room .differs { display: inline-block; font: 700 11.5px/1 var(--sans); padding: 5px 9px; border-radius: 99px; background: var(--rose); color: var(--ink); margin-bottom: 6px; }
+
+/* two sides: the arch split into two panes */
+.split .in { display: grid; grid-template-rows: 1fr 1fr; gap: 6px; background: transparent; }
+.split .half { border-radius: 999px 999px 8px 8px; background: linear-gradient(170deg, #3a3470, #221f3b); display: grid; place-items: center; text-align: center; padding: 18px; font-family: var(--serif); font-weight: 600; font-size: 26px; line-height: 1; }
+.split .half + .half { border-radius: 8px 8px 19px 19px; background: linear-gradient(170deg, #4B3F95, #2A2744); }
+.split .half small { display: block; font: 700 10px/1 var(--sans); letter-spacing: .08em; color: var(--n-ink-2); margin-bottom: 8px; }
+.pair { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; font-family: var(--serif); font-weight: 600; font-size: 21px; margin: 4px 0 10px; }
+.pair em { font: 700 12px/1 var(--sans); font-style: normal; padding: 5px 8px; border-radius: 99px; background: rgba(255,255,255,.12); }
+.light .pair em { background: var(--pearl); }
+
+/* back of the mirror */
+.back .in { background: repeating-linear-gradient(115deg, #d9dbeb 0 2px, #c9cce0 2px 5px); display: grid; place-items: center; }
+.back .in span { font-family: var(--serif); font-style: italic; color: #6E6987; font-size: 15px; text-align: center; padding: 30px; line-height: 1.4; }
+.sting { font-family: var(--serif); font-weight: 440; font-size: 23px; line-height: 1.28; letter-spacing: -.01em; margin: 0 0 14px; }
+.hearts { list-style: none; padding: 0; margin: 0; display: grid; gap: 12px; }
+.hearts li { font-family: var(--serif); font-style: italic; font-variation-settings: "SOFT" 100, "WONK" 1; font-size: 20px; line-height: 1.3; }
+.hearts small { display: block; font: 600 12px/1.3 var(--sans); font-style: normal; color: var(--ink-3); }
+
+/* the record: eight panes that clear one by one */
+.panes { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; width: min(84vw, 460px); transform: translateY(-10svh); }
+.panes div { aspect-ratio: 3 / 4.4; border-radius: 999px 999px 10px 10px; position: relative; overflow: hidden; background: linear-gradient(170deg, #fff, #d9d2ff); box-shadow: 0 10px 24px -12px rgba(86,70,192,.5); }
+.panes div::after { content: ""; position: absolute; inset: 0; background: rgba(233,230,251,.92); backdrop-filter: blur(4px); transition: opacity .6s var(--e-out); transition-delay: var(--d); }
+.lit .panes div::after { opacity: 0; }
+.panes div b { position: absolute; left: 6px; right: 6px; bottom: 10px; font: 650 10.5px/1.15 var(--sans); color: var(--ink); text-align: center; }
+.panes div i { position: absolute; top: 34%; left: 50%; width: 18px; height: 18px; margin-left: -9px; border-radius: 50%; background: var(--vt); }
+.panes div.near i { background: linear-gradient(90deg, var(--vt) 50%, #cfc8ff 50%); }
+.panes div.miss i { background: var(--rose); }
+.big7 { font-family: var(--serif); font-weight: 250; font-size: 110px; line-height: .8; letter-spacing: -.06em; margin: 0 0 6px; }
+.big7 small { font-size: 26px; letter-spacing: 0; font-weight: 500; color: var(--ink-3); }
+.calls { list-style: none; padding: 0; margin: 12px 0 0; display: grid; gap: 6px; }
+.calls li { display: flex; justify-content: space-between; gap: 10px; font-size: 15px; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+.calls li span { font: 650 12.5px/1.6 var(--sans); color: var(--vt); white-space: nowrap; }
+
+/* party */
+.duo { display: flex; gap: 10px; transform: translateY(-9svh); }
+.duo .arch { width: min(40vw, 230px); transform: none; }
+.duo .arch .in { display: grid; place-items: center; text-align: center; padding: 12px; font-family: var(--serif); font-weight: 600; font-size: 20px; line-height: 1.05; color: #fff; background: linear-gradient(170deg, #6A5AD6, #2A2744); }
+.duo .arch.opp .in { transform: scaleX(-1); background: linear-gradient(170deg, #2A2744, #171625); }
+.duo .arch.opp .in span { transform: scaleX(-1); }
+.duo small { display: block; font: 700 10px/1 var(--sans); letter-spacing: .06em; opacity: .8; margin-bottom: 6px; }
+.bio q { display: block; quotes: none; font-family: var(--serif); font-size: 23px; line-height: 1.22; font-weight: 520; margin: 6px 0 12px; }
+.chip { border: 0; background: var(--ink); color: #fff; border-radius: 999px; padding: 11px 18px; min-height: 44px; font: 700 14px/1 var(--sans); cursor: pointer; }
+
+/* morning */
+.morning .plate { place-items: end center; }
+.morning .isl { width: 170vw; max-width: 1500px; transform: translateY(8svh); }
+.morning .g2 { position: absolute; z-index: 1; width: 110px; top: 12svh; left: 50%; margin-left: -65px; animation: bob 6s ease-in-out infinite; filter: drop-shadow(0 20px 30px rgba(86,70,192,.35)); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: 0; border-radius: 999px; padding: 14px 22px; min-height: 52px; font: 700 16px/1 var(--sans); cursor: pointer; text-decoration: none; }
+.btn.primary { background: linear-gradient(135deg, #5A4ED6, #4A63D3); color: #fff; }
+.btn.ghost { background: #fff; color: var(--vt); box-shadow: 0 0 0 1px var(--line); }
+.store { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: #fff; border-radius: 16px; padding: 10px 18px; text-decoration: none; min-height: 52px; }
+.store small { display: block; font: 500 11px/1 var(--sans); opacity: .8; }
+.store b { font: 700 17px/1.1 var(--sans); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.foot { position: relative; z-index: 1; text-align: center; font-size: 13px; color: var(--ink-3); padding: 20px 16px 50px; }
+.foot a { color: var(--vt); }
+.swapping .copy { opacity: .15; transition: opacity .25s; }
+
+@media (min-width: 900px) {
+  body { font-size: 18px; }
+  .bar { padding: 16px 28px; }
+  .ch { display: grid; grid-template-columns: 1fr 1fr; }
+  .plate { grid-column: 1; grid-row: 1; }
+  .copy { grid-column: 2; grid-row: 1; margin-top: 0; padding: 30vh 64px 30vh 24px; gap: 18px; align-content: start; }
+  .arch, .gem, .reflect, .panes, .duo { transform: none; }
+  .island { width: 118%; transform: none; }
+  .copy .pane { max-width: 34rem; }
+  .cover .copy { padding-top: 34vh; }
+  .morning { grid-template-columns: 1fr; }
+  .morning .plate { grid-column: 1; }
+  .morning .copy { grid-column: 1; margin: -70vh auto 0; width: min(640px, 90vw); padding: 0 0 30vh; }
+  .morning .isl { width: 100%; transform: translateY(6vh); }
+  .reflect-copy { display: none; }
+  #c3 .plate { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+  .reflect .turn { transform: none; }
+  .reflect .behav { opacity: 1; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .pane { background: var(--n-700); backdrop-filter: none; }
+  .light .pane { background: #fff; }
+}
+</style>
+</head>
+<body>
+<div class="sky stars" aria-hidden="true"></div>
+<div class="sky dawn" aria-hidden="true"></div>
+<header class="bar">
+  <img src="assets/mirrormii-wordmark.svg" alt="MirrorMii">
+  <div class="voice" id="voice"></div>
+</header>
+<nav class="rail" id="rail" aria-label="Chapters"></nav>
+<main id="main"></main>
+<script type="module">
+import { loadData, buildArticle, esc, pipsHTML, getVoice, mountVoiceSwitch, reducedMotion } from "./shared.js";
+const data = await loadData();
+let voice = getVoice();
+const main = document.getElementById("main");
+const TINT = { 1: "#8FB8F2", 2: "#F4B8A0", 3: "#F2A7C3", 4: "#F2D48A", 5: "#96D8C4", 6: "#C9B3F0", 7: "#8EDBE6" };
+// where each room glows on the island picture (fractions of its width and height)
+const SPOT = { 3: [.47, .18], 5: [.12, .3], 6: [.56, .44], 2: [.3, .66], 4: [.84, .7], 1: [.7, .2], 7: [.78, .42] };
+// the sky for each chapter: night through dusk into morning
+const SKY = ["#171625", "#1B1A2E", "#1F1D33", "#231F3D", "#2A2744", "#342E5C", "#4B3F95", "#CFC8F8", "#E3DEFB", "#EFEDFC", "#F8F8FF"];
+const apple = `<svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.9-3.5.9s-1.9-.8-3.1-.8C6.8 7.3 5.3 8.2 4.5 9.7c-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.1-1.2 2.9-2.4.9-1.3 1.3-2.6 1.3-2.7 0 0-2.7-1-2.7-4zM14.2 5.4c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg>`;
+
+function gemSVG(rows) {
+  const cx = 200, cy = 200, R = 150;
+  const pts = rows.map((r, i) => {
+    const a = -Math.PI / 2 + (i * Math.PI) / 3;
+    const k = r.flex ? 0.45 : 0.25 + (r.pips / 5) * 0.75;
+    return { x: cx + Math.cos(a) * R * k, y: cy + Math.sin(a) * R * k, lx: cx + Math.cos(a) * (R + 30), ly: cy + Math.sin(a) * (R + 30), ex: cx + Math.cos(a) * R, ey: cy + Math.sin(a) * R, r };
+  });
+  return `<svg class="gem" viewBox="-40 -20 480 440" role="img" aria-label="Your six stats as a gem: ${rows.map((r) => `${r.stat} ${r.flex ? "both" : r.leadEnd}`).join(", ")}">
+    <defs><linearGradient id="gemfill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D9D2FF" stop-opacity=".75"/><stop offset=".55" stop-color="#8071E4" stop-opacity=".55"/><stop offset="1" stop-color="#5B8BEB" stop-opacity=".7"/></linearGradient></defs>
+    ${[0.4, 0.7, 1].map((k) => `<polygon class="ring" points="${pts.map((p, i) => { const a = -Math.PI / 2 + (i * Math.PI) / 3; return `${cx + Math.cos(a) * R * k},${cy + Math.sin(a) * R * k}`; }).join(" ")}"/>`).join("")}
+    ${pts.map((p) => `<line class="spoke" x1="${cx}" y1="${cy}" x2="${p.ex}" y2="${p.ey}"/>`).join("")}
+    <polygon class="shape" points="${pts.map((p) => `${p.x},${p.y}`).join(" ")}"/>
+    ${pts.map((p, i) => `<circle class="v" data-v="${i}" cx="${p.x}" cy="${p.y}"/><text data-v="${i}" x="${p.lx}" y="${p.ly}" text-anchor="middle" dominant-baseline="middle">${esc(p.r.stat)}<tspan x="${p.lx}" dy="17" font-weight="500">${esc(p.r.flex ? "Both" : p.r.leadEnd)}</tspan></text>`).join("")}
+  </svg>`;
+}
+
+function render(A) {
+  const c = A.cover;
+  const ch = [];
+  ch.push(`<section class="ch cover" data-sky="0" id="c0" aria-label="${esc(c.people.name)} and ${esc(c.life.name)}">
+    <div class="plate"><div class="halo"></div><div class="arch"><div class="in">
+      <img class="bg" src="assets/mirror-world-526.webp" alt="" width="526" height="842" fetchpriority="high">
+      <div class="names"><div><span class="lab">${esc(c.people.label)}</span><b>${esc(c.people.name)}</b></div><hr><div><span class="lab">${esc(c.life.label)}</span><b>${esc(c.life.name)}</b></div></div>
+      <div class="spec"></div><canvas class="fog" id="fog" aria-hidden="true"></canvas>
+      </div><button class="wipe" id="wipe">${esc(A.labels.fog)}</button><img class="genii" src="assets/genii-240.webp" srcset="assets/genii-240.webp 240w, assets/genii-480.webp 480w" sizes="110px" alt="" width="240" height="216"></div></div>
+    <div class="copy">
+      <div class="pane"><p class="kick">${esc(A.readTime)}</p><h1>${esc(c.people.name)} <i>and</i> ${esc(c.life.name)}</h1><p class="dek">${esc(c.dek)}</p></div>
+      <div class="pane"><p class="kick">${esc(A.lede.title)}</p>${A.lede.lines.map((l, i) => `<h3>${esc(l)}</h3><p class="soft">${esc(A.lede.bodies[i])}</p>`).join("")}</div>
+    </div></section>`);
+  ch.push(`<section class="ch" data-sky="2" id="c1" aria-labelledby="h-sheet">
+    <div class="plate"><div class="halo"></div>${gemSVG(A.sheet.rows)}</div>
+    <div class="copy">
+      <div class="pane"><p class="kick">${esc(A.sheet.kicker)}</p><h2 id="h-sheet">${esc(A.sheet.title)}</h2><p class="soft">${esc(A.sheet.intro)}</p></div>
+      ${A.sheet.rows.map((s, i) => `<div class="pane stat" data-stat="${i}">
+        <h3>${esc(s.stat)}${s.badge ? `<span class="badge ${s.badge === "wild" ? "wild" : ""}">${esc(s.badgeLabel)}</span>` : ""}</h3>
+        <div class="ends"><span class="${s.leadSide === "a" ? "me" : ""}">${esc(s.a)}</span><span class="${s.leadSide === "b" ? "me" : ""}">${esc(s.b)}</span></div>
+        ${pipsHTML(s.pips, s.flex)}
+        <p><b>${esc(s.flex ? `${s.a} and ${s.b}` : s.leadEnd)}</b>, ${esc(s.level.toLowerCase())}. ${esc(s.note)}</p>
+        ${s.know && !s.inCore && s.know !== A.cover.hook ? `<p class="soft" style="font-family:var(--serif);font-style:italic">${esc(s.know)}</p>` : ""}
+        ${s.badgeNote ? `<p class="tiny">${esc(s.badgeNote)}</p>` : ""}
+        ${s.flex ? "" : `<details><summary>${esc(A.sheet.showOther)}</summary><p><b>${esc(s.otherEnd)}.</b> ${esc(s.otherLine)}</p></details>`}
+      </div>`).join("")}
+    </div></section>`);
+  const charmPos = [[8, 16], [52, 8], [4, 58], [60, 50], [14, 84], [56, 90]];
+  ch.push(`<section class="ch" data-sky="3" id="c2" aria-labelledby="h-core">
+    <div class="plate"><div class="halo"></div><div class="arch"><div class="in"><img class="bg" src="assets/mirror-world-320.webp" alt="" loading="lazy" style="opacity:.55"><div class="spec"></div></div>
+      <div class="charms" aria-hidden="true">${A.core.items.map((k, i) => `<span class="charm" style="left:${charmPos[i][0]}%;top:${charmPos[i][1]}%;animation-delay:${-i * 1.3}s">${esc(k.keyword)}</span>`).join("")}</div></div></div>
+    <div class="copy">
+      <div class="pane"><p class="kick">${esc(A.core.kicker)}</p><h2 id="h-core">${esc(A.core.title)}</h2></div>
+      ${A.core.items.map((k) => `<div class="pane trait"><h3>${esc(k.keyword)}</h3><p>${esc(k.line)}</p><p class="tiny">${esc(A.core.fromLabel)}: ${esc(k.from)}</p></div>`).join("")}
+    </div></section>`);
+  ch.push(`<section class="ch" data-sky="4" id="c3" aria-labelledby="h-ins">
+    <div class="plate"><div class="halo"></div><div class="reflect" id="reflect"><p class="kick" id="h-ins">${esc(A.insight.kicker)}</p><div class="turn"><p>${esc(A.insight.belief)}</p></div>${A.insight.behavior ? `<p class="behav">${esc(A.insight.behavior)}</p>` : ""}<button class="hold" id="hold"><span class="fill"></span><span style="position:relative">${esc(A.labels.flipHint)}</span></button></div></div>
+    <div class="copy reflect-copy"><div class="pane" style="visibility:hidden;height:40svh"></div></div></section>`);
+  ch.push(`<section class="ch" data-sky="5" id="c4" aria-labelledby="h-rooms">
+    <div class="plate"><div class="island" id="island"><img src="assets/island-720.webp" srcset="assets/island-720.webp 720w, assets/island-1440.webp 1440w" sizes="(min-width:900px) 60vw, 150vw" alt="The island in MirrorMii, one building for each room" width="720" height="342" loading="lazy">
+      ${A.rooms.list.map((rm) => `<span class="glow" data-room="${rm.chapter}" style="--c:${TINT[rm.chapter]};left:calc(${SPOT[rm.chapter][0] * 100}% - 30px);top:calc(${SPOT[rm.chapter][1] * 100}% - 30px)"></span>`).join("")}</div></div>
+    <div class="copy">
+      <div class="pane"><p class="kick">${esc(A.rooms.kicker)}</p><h2 id="h-rooms">${esc(A.rooms.title)}</h2><p class="soft">${esc(A.rooms.intro)}</p></div>
+      ${A.rooms.list.map((rm) => `<div class="pane room" data-room="${rm.chapter}" style="--c:${TINT[rm.chapter]}"><h3>${esc(rm.room)}</h3>${rm.lines.map((l) => `${l.differs ? `<span class="differs">${esc(A.rooms.differs)}</span>` : ""}<p>${esc(l.line)}</p>`).join("")}</div>`).join("")}
+      ${A.rooms.flip ? `<div class="pane"><p class="kick">${esc(A.rooms.flipTitle)}</p><h3 style="font-style:italic">${esc(A.rooms.flip.sentence)}</h3></div>` : ""}
+    </div></section>`);
+  ch.push(`<section class="ch" data-sky="6" id="c5" aria-labelledby="h-sides">
+    <div class="plate"><div class="halo"></div><div class="arch split"><div class="in"><div class="half"><span><small>${esc(c.people.label)}</small>${esc(c.people.name)}</span></div><div class="half"><span><small>${esc(c.life.label)}</small>${esc(c.life.name)}</span></div></div></div></div>
+    <div class="copy">
+      <div class="pane"><h2 id="h-sides">${esc(A.sides.title)}</h2><p class="soft">${esc(A.sides.intro)}</p></div>
+      ${[A.sides.team, A.sides.clash].filter(Boolean).map((s, i) => `<div class="pane"><p class="kick">${esc(s.label)}</p><p class="pair">${esc(s.a)} <em>${i ? "vs" : "and"}</em> ${esc(s.b)}</p><p>${esc(s.line)}</p></div>`).join("")}
+    </div></section>`);
+  ch.push(`<section class="ch light" data-sky="7" id="c6" aria-labelledby="h-book">
+    <div class="plate"><div class="arch back" style="background:linear-gradient(160deg,#fff,#cfd2e6)"><div class="in"><span>${esc(A.stings.intro)}</span></div></div></div>
+    <div class="copy">
+      <div class="pane"><p class="kick">${esc(A.stings.kicker)}</p><h2 id="h-book">${esc(A.stings.title)}</h2>${A.stings.lines.map((s) => `<p class="sting">${esc(s)}</p>`).join("")}</div>
+      <div class="pane"><h3 style="font-size:28px">${esc(A.said.title)}</h3><p class="soft">${esc(A.said.intro)}</p><ul class="hearts">${A.said.hearts.map((h) => `<li>&ldquo;${esc(h.line)}&rdquo;<small>${esc(h.from)}</small></li>`).join("")}</ul></div>
+    </div></section>`);
+  const r = A.record;
+  if (r) ch.push(`<section class="ch light" data-sky="8" id="c7" aria-labelledby="h-rec">
+    <div class="plate"><div class="panes" id="panes">${r.rows.map((x, i) => `<div class="${x.near ? "near" : x.status}" style="--d:${i * 120}ms"><i></i><b>${esc(x.title)}</b></div>`).join("")}</div></div>
+    <div class="copy">
+      <div class="pane"><p class="kick">${esc(r.kicker)}</p><p class="big7" aria-label="${r.exact} of 8 ${esc(r.of)}">${r.exact}<small> of 8</small></p><h2 id="h-rec">${esc(r.headline)}</h2><p class="soft">${esc(r.intro)}</p>
+        <ul class="calls">${r.rows.map((x) => `<li>${esc(x.title)}<span>${esc(x.shown)}</span></li>`).join("")}</ul><p class="tiny" style="margin-top:10px">${esc(r.key)}</p></div>
+    </div></section>`);
+  const p = A.party;
+  ch.push(`<section class="ch light" data-sky="9" id="c8" aria-labelledby="h-party">
+    <div class="plate"><div class="duo">${p.click ? `<div class="arch"><div class="in"><span><small>${esc(p.click.label)}</small>${esc(p.click.name)}</span></div></div>` : ""}<div class="arch opp"><div class="in"><span><small>${esc(p.opposite.label)}</small>${esc(p.opposite.a)} and ${esc(p.opposite.b)}</span></div></div></div></div>
+    <div class="copy">
+      <div class="pane"><h2 id="h-party">${esc(p.title)}</h2></div>
+      ${p.click ? `<div class="pane"><p class="kick">${esc(p.click.label)}</p><h3>${esc(p.click.name)}</h3><p>${esc(p.click.line)}</p></div>` : ""}
+      <div class="pane"><p class="kick">${esc(p.opposite.label)}</p><h3>${esc(p.opposite.a)} and ${esc(p.opposite.b)}</h3><p>${esc(p.opposite.line)}</p></div>
+      <div class="pane bio"><p class="kick">${esc(A.bio.title)}</p><q>${esc(A.bio.text)}</q><button class="chip" id="copybio">${esc(A.bio.copy)}</button></div>
+    </div></section>`);
+  ch.push(`<section class="ch light morning" data-sky="10" id="c9" aria-labelledby="h-app">
+    <div class="plate"><img class="g2" src="assets/genii-480.webp" alt="" width="480" height="433" loading="lazy"><img class="isl" src="assets/island-1440.webp" alt="MirrorMii World in the morning" width="1440" height="684" loading="lazy"></div>
+    <div class="copy">
+      <div class="pane"><p style="font-family:var(--serif);font-size:24px;line-height:1.25">${esc(A.closing)}</p><p class="soft">${esc(A.share.sub)}</p><div class="row"><a class="btn primary" href="#challenge">${esc(A.share.challenge)}</a></div></div>
+      <div class="pane"><p class="kick">${esc(A.app.kicker)}</p><h2 id="h-app">${esc(A.app.title)}</h2><p>${esc(A.app.body)}</p><a class="store" href="#get-mirrormii">${apple}<span><small>${esc(A.app.store)}</small><b>${esc(A.app.button)}</b></span></a><p class="tiny" style="margin-top:10px">${esc(A.app.note)}</p></div>
+    </div></section>`);
+  return ch.join("") + `<footer class="foot">Genii keeps your answers on this device. <a href="#data">Your data</a></footer>`;
+}
+
+let io;
+function wire(A) {
+  // the chapter rail and the sky follow the chapter in view
+  const secs = [...document.querySelectorAll(".ch")];
+  const rail = document.getElementById("rail");
+  const RL = ["You", "Stats", "Traits", "The surprise", "Rooms", "Two sides", "Open book", "The record", "Your people", "Play"];
+  rail.innerHTML = secs.map((s, i) => `<a href="#${s.id}" aria-label="${esc(RL[i] || "")}"><span class="rl">${esc(RL[i] || "")}</span></a>`).join("");
+  io && io.disconnect();
+  io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (!e.isIntersecting) return;
+    const i = secs.indexOf(e.target);
+    document.body.style.setProperty("--sky", SKY[+e.target.dataset.sky]);
+    document.body.classList.toggle("day", e.target.classList.contains("light"));
+    rail.querySelectorAll("a").forEach((a, k) => a.classList.toggle("on", k === i));
+    if (e.target.id === "c7") document.getElementById("c7").classList.add("lit");
+  }), { rootMargin: "-45% 0px -45% 0px" });
+  secs.forEach((s) => io.observe(s));
+  // the gem lights the stat you are reading
+  const statIO = new IntersectionObserver((es) => es.forEach((e) => {
+    if (!e.isIntersecting) return;
+    const i = e.target.dataset.stat;
+    document.querySelectorAll(".gem [data-v]").forEach((n) => n.classList.toggle("on", n.dataset.v === i));
+  }), { rootMargin: "-40% 0px -50% 0px" });
+  document.querySelectorAll(".stat").forEach((s) => statIO.observe(s));
+  // the island lights the room you are reading
+  const roomIO = new IntersectionObserver((es) => es.forEach((e) => {
+    if (!e.isIntersecting) return;
+    document.querySelectorAll(".island .glow").forEach((g) => g.classList.toggle("on", g.dataset.room === e.target.dataset.room));
+  }), { rootMargin: "-40% 0px -50% 0px" });
+  document.querySelectorAll(".room").forEach((s) => roomIO.observe(s));
+  // hold to turn the reflection upright (a tap works too, and keyboard Enter or Space)
+  const hold = document.getElementById("hold"), refl = document.getElementById("reflect");
+  let t;
+  const done = () => { refl.classList.add("upright"); hold.style.display = "none"; };
+  hold.addEventListener("pointerdown", () => { hold.classList.add("pressing"); t = setTimeout(done, reducedMotion() ? 0 : 650); });
+  ["pointerup", "pointerleave"].forEach((ev) => hold.addEventListener(ev, () => { hold.classList.remove("pressing"); clearTimeout(t); }));
+  hold.addEventListener("click", (e) => { if (e.detail === 0) done(); });
+  hold.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); done(); } });
+  if (new URLSearchParams(location.search).has("upright")) done();
+  // the reflection turns itself upright once it has been on screen for a beat, so nobody has to hold to read it
+  const selfTurn = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { setTimeout(done, 2200); selfTurn.disconnect(); } }), { threshold: .6 });
+  selfTurn.observe(refl);
+  const cb = document.getElementById("copybio");
+  cb.addEventListener("click", async () => { try { await navigator.clipboard.writeText(A.bio.text); } catch { /* blocked */ } cb.textContent = A.bio.copied; setTimeout(() => (cb.textContent = A.bio.copy), 1600); });
+  fog();
+}
+
+// the fog: a frosted layer you clear with a finger or the cursor; the button clears it all
+function fog() {
+  const cv = document.getElementById("fog"), btn = document.getElementById("wipe");
+  const clear = () => { cv.classList.add("gone"); btn.classList.add("gone"); };
+  if (reducedMotion() || new URLSearchParams(location.search).has("clear")) { clear(); return; }
+  const box = cv.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 1.5);
+  cv.width = box.width * dpr; cv.height = box.height * dpr;
+  const g = cv.getContext("2d");
+  g.scale(dpr, dpr);
+  const grd = g.createLinearGradient(0, 0, box.width, box.height);
+  grd.addColorStop(0, "rgba(233,230,251,.96)"); grd.addColorStop(1, "rgba(201,194,246,.94)");
+  g.fillStyle = grd; g.fillRect(0, 0, box.width, box.height);
+  for (let i = 0; i < 900; i++) { g.fillStyle = `rgba(255,255,255,${Math.random() * 0.25})`; g.fillRect(Math.random() * box.width, Math.random() * box.height, 1.5, 1.5); }
+  g.globalCompositeOperation = "destination-out";
+  let wiped = 0, down = false;
+  // the fog lifts by itself after a moment: wiping is a pleasure, never a gate
+  setTimeout(clear, 3200);
+  const rub = (e) => {
+    const b = cv.getBoundingClientRect(), x = e.clientX - b.left, y = e.clientY - b.top;
+    const r = g.createRadialGradient(x, y, 4, x, y, 34); r.addColorStop(0, "rgba(0,0,0,1)"); r.addColorStop(1, "rgba(0,0,0,0)");
+    g.fillStyle = r; g.beginPath(); g.arc(x, y, 34, 0, Math.PI * 2); g.fill();
+    if (++wiped > 60) clear();
+  };
+  cv.addEventListener("pointerdown", (e) => { down = true; rub(e); });
+  addEventListener("pointerup", () => (down = false));
+  cv.addEventListener("pointermove", (e) => { if (down || e.pointerType === "mouse") rub(e); });
+  btn.addEventListener("click", clear);
+}
+
+let A = buildArticle(data, voice);
+main.innerHTML = render(A);
+wire(A);
+mountVoiceSwitch(document.getElementById("voice"), voice, { voiceFun: data.newCopy.voice, voiceHeart: data.newCopy.voice }, (v) => {
+  const y = scrollY; document.body.classList.add("swapping");
+  setTimeout(() => { A = buildArticle(data, v); main.innerHTML = render(A); wire(A); scrollTo(0, y); document.body.classList.remove("swapping"); }, reducedMotion() ? 0 : 250);
+});
+const root = document.documentElement;
+addEventListener("scroll", () => root.style.setProperty("--p", (scrollY / Math.max(1, root.scrollHeight - innerHeight)).toFixed(3)), { passive: true });
+</script>
+</body>
+</html>

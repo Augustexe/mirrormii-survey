@@ -1,3 +1,25 @@
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
+# Live deployment of the final dossier: 2026-09-23
+
+Jerry identified `codex/final-survey-dossier` as the intended public survey after an earlier deployment published the wrong version (publication `main` at `112bf44`). That branch is now live on GitHub Pages from `Augustexe/Mirrormii-survey-main-publication-`; the Pages environment allows exactly `main` and this branch. This supersedes the 2026-09-21 "no publication" boundary for this branch only. Merging into `main`, backend work and business writes remain unauthorized. Current details: [STATE.md](STATE.md).
+
+# Founder pivot to a first-session personality game: 2026-09-19
+
+Jerry confirmed that Genii's first survey is a high-engagement personality game, not a wellness questionnaire, health assessment, habit tracker or self-improvement intake. It should feel surprising, funny, socially risky, specific and worth sharing; the respondent receives an unusually observant provisional portrait. Wellness may emerge later from a relationship with Genii but is not the front-door promise. First-session sleep, food, exercise, hydration, body metrics, medical framing, depression inference and wellness-routine collection are removed.
+
+This supersedes D-015 (personality plus health blend), D-023, D-024, D-028 and the health parts of D-029 and D-033 for the first session; they stay below as history. The evidence target is reactions under challenge, embarrassment, exclusion, pressure and power; emotion triggers and expression; reported actions; recurring decision and interpersonal patterns; values, fears and dark-side tendencies; and support or reminder preferences. A frozen profile reaching roughly 75 percent on defined held-out scenarios is a research hypothesis, never a user-facing claim. Humor and voice are renderers applied after construct validity and cannot change an option's meaning. The Person Profile Council is development and evaluation tooling, not an app feature.
+
+# Overnight final-survey build authorization: 2026-09-21
+
+Jerry explicitly authorized autonomous local finalization with Luna subagents, full evidence-framework and question-bank integration, multiple routes and voices, question-count adjustment, and a full final-screen redesign. Personality/game recognition leads; survey health features remain excluded. The audit-like visual reference is playful packaging, not permission for fabricated probabilities, diagnoses, fidelity judgments or health inference.
+
+Implementation uses contextual editions rather than asserting validated ICP segments. Exact answers and bounded claims feed the dossier; nickname rules are separate game metadata. Final checks never rescore the frozen profile. Feedback is append-only; explicit edits create child attempts. No external publication or business writes were requested.
+
+Earlier decisions follow for provenance. Current implementation status is in [STATE.md](STATE.md).
+
+> Reconciled 2026-09-18 from the approved release documentation (R6 handoff, commit `b8cf8ec`, merged as PR #1). Implementation/team instructions below describe that historical task. Read [STATE.md](STATE.md) and [OPEN-QUESTIONS.md](OPEN-QUESTIONS.md) for current state.
+
 # Decisions and remaining choices
 
 ## Current implementation authorization - 2026-09-17
@@ -10,7 +32,7 @@ The installed Taste skill informs the brand composition and quality review. Its 
 
 Updated 2026-09-17 · Owner: Jerry · Authority: latest conversation and [active personality/health contract](PERSONALITY-HEALTH-SPEC.md). Earlier decisions below remain historical where explicitly superseded.
 
-## Active revision — 2026-09-17
+## Active revision: 2026-09-17
 
 | ID | Decision and effect on earlier direction |
 | --- | --- |
@@ -38,9 +60,9 @@ Updated 2026-09-17 · Owner: Jerry · Authority: latest conversation and [active
 
 The active [Product Spec v0.6](PRODUCT-SPEC.md), [core specification](PERSONALITY-HEALTH-SPEC.md) and [host experience](HOST-EXPERIENCE.md) govern this revision. Approximately 60 questions remains the working scale; do not reinstate old 12/30/96 tiers. Backend remains Desmond's scope. Q11–Q15 are settled; retain unresolved axis/scale/routing contracts separately. User-facing discussion continues in English. The historical 20-item benchmark and latest “20 accuracy” reference do not settle the respondent-visible count/placement.
 
-Fresh native Lark reads succeeded on 2026-09-17. Relevant schema/vision/emotion sources include drafts, and the aggregate packet remains incomplete. See runs/20260917T193810Z-a886d9810122/output/COMPANY-CONTEXT.md for sources/states. Historical access failures below do not describe current native access.
+Fresh native Lark reads succeeded on 2026-09-17. Relevant schema/vision/emotion sources include drafts, and the aggregate packet remains incomplete; the grounding summary is in [PRODUCT-SPEC.md](PRODUCT-SPEC.md). Historical access failures below do not describe current native access.
 
-## Historical product direction — 2026-09-14
+## Historical product direction: 2026-09-14
 
 | ID | Decision and current scope |
 | --- | --- |
@@ -61,7 +83,7 @@ Fresh native Lark reads succeeded on 2026-09-17. Relevant schema/vision/emotion 
 
 At that stage, the full brief selected a character identity supported by a behavioral reading. D-017 now changes this iteration's primary result and defers final character assignment. Attention/sharing and future personalization remain context; paid offer and business conversion are still undecided.
 
-## Historical MVP implementation choices — 2026-09-14
+## Historical MVP implementation choices: 2026-09-14
 
 These choices make the prototype concrete. They do not claim psychological validation or final founder approval of every question, weight, family name or production architecture.
 
@@ -95,7 +117,7 @@ These choices make the prototype concrete. They do not claim psychological valid
 
 At the 2026-09-14 stage, Q-001/Q-003/Q-005/Q-006 were retired. The current revision reopens result structure under D-017 and includes health habits under D-015; it does not reinstate clinical assessment. Legacy nested-depth counts are not the current root requirement. Q-002's commercial event remains under Q-010/Q-011. Current specification choices are tracked in the core document.
 
-## Historical verification snapshot — 2026-09-14
+## Historical verification snapshot: 2026-09-14
 
 Current Eagle metadata identifies authorized V2 master expressions of one Genii. Current Lark company content remains pending. Fresh checks on 2026-09-14 still encounter this session's network-disabled sandbox, loopback EPERM and Lark Keychain initialization failure. This does not establish broken native logins.
 
@@ -121,3 +143,20 @@ Jerry approved the living-world direction and requested richer question/text sur
 ## Colored card surfaces · 2026-09-17
 
 Jerry clarified that white/purple governs the main theme, while individual survey/result cards may use complementary colors. Replace flat near-white surfaces with visibly tinted glass, stronger edge separation and colored shadows. Domain colors identify sections (such as periwinkle sleep, apricot eating and mint movement), never health grades or response quality. Preserve layout, questions and all behavior. This supersedes any interpretation that every card must be white/lavender. Uiverse is a design reference, not a requirement to copy a component or introduce a new framework. Implemented for review on `codex/genii-prismatic-cards`; see `quiz64/docs/CARD-MATERIALS.md`.
+
+
+## 2026-09-21: preserve the official survey world; expand only the final packet
+
+Jerry explicitly rejected replacing the approved pre-result graphics. The visual baseline is the App.jsx/components/styles/assets at `2e65313`, an ancestor commit of the active branch. Reuse those exact components for the welcome, chapter transitions, question cards, Genii reactions, backgrounds and header. New bank content and evidence logic remain authorized. The final evidence packet alone may materially expand its visual design: a personality game with dimensional Genii graphics, 3D objects and motion, interactive discoveries, and longer distinctive answer-grounded writing. Do not treat broader visual redesign as authorized by the bank/framework work.
+
+Source is the active worktree named in [CODE-MAP.md](CODE-MAP.md).
+
+## 2026-09-21: preserve approved game layout; refine content and interactions
+Jerry approved the dimensional evidence-screen layout and explicitly requested richer answer-dependent language, curiosity, sharing and game details. Keep pre-result visuals and existing result layout. App destination is a placeholder by explicit reply. Outcomes are deterministic display labels supported by profile evidence, with heldouts separate.
+
+## 2026-09-21: final demo refinement and commit authorization
+Jerry requested an end-to-end final survey demo and explicitly said "commit after". Preserve approved visuals. Consolidate duplicate guess displays into one result reveal; keep scoring inspectable. Viewing completed answers must not create revisions; only actual edits do. Old wording-bound saves fail closed with export recovery. Current verification: 94 tests and build pass, real UI complete/save/review flows and mobile result checked. No push or publication is authorized.
+
+2026-09-21: Jerry rejected polite generic names and requested distinct section voice/format while preserving approved visuals. Fifty unique v2 nicknames and five editorial formats now replace the previous naming copy. Gentle remains warm; sarcasm follows selected tone. User authorized commit to GitHub; target origin/codex/final-survey-dossier, not publication/main.
+
+2026-09-21 repository correction: Jerry explicitly identified `Augustexe/Mirrormii-survey-main-publication-` as the correct GitHub repository. Prior guidance selecting `Augustexe/mirrormii-survey` is superseded. Handoff branch: `codex/final-survey-dossier` on the correct repository (local remote alias `publication`). No main merge or Pages deployment is implied.

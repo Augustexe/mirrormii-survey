@@ -1,0 +1,256 @@
+{
+  "version": "v2-2026-09-26",
+  "source": "Sally v2 six axes and 16 half-names (../sally-v2-2026-09-26/v2-system-64types-tags.md), reworked per BRIEF.md: English first, gender neutral, meme-style, all names our own, no diagnoses or moral grades. Sally's Chinese kept as zh.",
+  "axes": [
+    {
+      "id": "R1",
+      "plus": "We",
+      "minus": "Me",
+      "zhPlus": "我們",
+      "zhMinus": "我",
+      "plusLine": "Your people are your happy place. Close means shared.",
+      "minusLine": "You love hard and keep your own door. Close still means space."
+    },
+    {
+      "id": "R2",
+      "plus": "Direct",
+      "minus": "Soft",
+      "zhPlus": "直",
+      "zhMinus": "柔",
+      "plusLine": "You say the hard thing to their face, because that's respect.",
+      "minusLine": "You hold the person first. The hard part can wait for a gentler moment."
+    },
+    {
+      "id": "R3",
+      "plus": "Classic",
+      "minus": "Own",
+      "zhPlus": "舊",
+      "zhMinus": "新",
+      "plusLine": "Traditions, rituals and how a home should run feel like home to you.",
+      "minusLine": "You write your own script for love, home and holidays."
+    },
+    {
+      "id": "L1",
+      "plus": "Steady",
+      "minus": "Venture",
+      "zhPlus": "穩",
+      "zhMinus": "闖",
+      "plusLine": "Security first. Your leaps come with a safety net.",
+      "minusLine": "New city, new plan, new try. The unknown pulls you in."
+    },
+    {
+      "id": "L2",
+      "plus": "Push",
+      "minus": "Easy",
+      "zhPlus": "衝",
+      "zhMinus": "鬆",
+      "plusLine": "You want visible wins and a clear direction, sooner rather than later.",
+      "minusLine": "You run on your own clock. Other people's timelines are optional."
+    },
+    {
+      "id": "L3",
+      "plus": "Rules",
+      "minus": "Context",
+      "zhPlus": "規",
+      "zhMinus": "情",
+      "plusLine": "A fair process keeps everyone safe. A rule is a rule.",
+      "minusLine": "You read the room. Rules bend when a person needs them to."
+    }
+  ],
+  "relationship": [
+    {
+      "code": "We·Direct·Own",
+      "R1": 1,
+      "R2": 1,
+      "R3": -1,
+      "name": "Trash-Talking Cuddle Bug",
+      "zh": "嘴硬黏人精",
+      "desc": "You want your people close. You show it by roasting them, saying it straight and writing your own rules for love.",
+      "sting": "You call them annoying. Your real fear is the day they stop annoying you.",
+      "heart": "I'm clingy and I tell the truth. You get the full set."
+    },
+    {
+      "code": "We·Direct·Classic",
+      "R1": 1,
+      "R2": 1,
+      "R3": 1,
+      "name": "Family CEO",
+      "zh": "家族CEO",
+      "desc": "You're the hub of your people. You carry the load, make the call and keep the traditions running on time.",
+      "sting": "Everyone leans on you. Nobody has asked if you're tired.",
+      "heart": "I can carry it all, and I deserve to be carried too."
+    },
+    {
+      "code": "We·Soft·Own",
+      "R1": 1,
+      "R2": -1,
+      "R3": -1,
+      "name": "Open-Book Golden Retriever",
+      "zh": "全透明暖寶",
+      "desc": "You love out loud: warm, gentle, all in, and mostly by your own rulebook.",
+      "sting": "You'll break any rule for your people, except the one where you tell them what hurt.",
+      "heart": "I'd rather love too much than too carefully."
+    },
+    {
+      "code": "We·Soft·Classic",
+      "R1": 1,
+      "R2": -1,
+      "R3": 1,
+      "name": "Human Weighted Blanket",
+      "zh": "溫柔守家人",
+      "desc": "You keep everyone's feelings and every tradition safe: the birthday texts, the holiday dishes, the seat saved for whoever's late.",
+      "sting": "You check on everyone's feelings. Yours get checked if there's time left over.",
+      "heart": "My softness is my strength."
+    },
+    {
+      "code": "Me·Direct·Own",
+      "R1": -1,
+      "R2": 1,
+      "R3": -1,
+      "name": "No-Filter Free Agent",
+      "zh": "清醒獨行俠",
+      "desc": "In any relationship you're yourself first. Boundaries said out loud, script written by you.",
+      "sting": "You rarely get hurt, because you rarely let anyone that close.",
+      "heart": "My clear head is how I keep myself safe."
+    },
+    {
+      "code": "Me·Direct·Classic",
+      "R1": -1,
+      "R2": 1,
+      "R3": 1,
+      "name": "Old-School Final Boss",
+      "zh": "老派硬核",
+      "desc": "You believe in the classic way to love and live, but the final call on your life is yours.",
+      "sting": "You want old-school love without handing over any of the control.",
+      "heart": "I can want tradition and freedom. Both. At once."
+    },
+    {
+      "code": "Me·Soft·Own",
+      "R1": -1,
+      "R2": -1,
+      "R3": -1,
+      "name": "Soft-Spoken Rebel",
+      "zh": "溫柔自由派",
+      "desc": "Gentle voice, iron line, and a life you'd rather write yourself than copy from a template.",
+      "sting": "Everyone thinks you're easygoing, right up until they step on your line.",
+      "heart": "Soft is not the same as a pushover."
+    },
+    {
+      "code": "Me·Soft·Classic",
+      "R1": -1,
+      "R2": -1,
+      "R3": 1,
+      "name": "Do-Not-Disturb Homebody",
+      "zh": "安靜老靈魂",
+      "desc": "You love the cozy, traditional kind of home, speak gently, and still need hours alone behind your own door.",
+      "sting": "You want a home. You want a door that locks even more.",
+      "heart": "Love with a little distance is still deep love."
+    }
+  ],
+  "life": [
+    {
+      "code": "Steady·Push·Rules",
+      "L1": 1,
+      "L2": 1,
+      "L3": 1,
+      "name": "Color-Coded Overachiever",
+      "zh": "步步為營野心家",
+      "desc": "You want big wins, and you like the steps to them planned, checked and done by the book.",
+      "sting": "You hit the goal and start the next list before you celebrate this one.",
+      "heart": "Big goals, small steps. Every one of them counts."
+    },
+    {
+      "code": "Steady·Push·Context",
+      "L1": 1,
+      "L2": 1,
+      "L3": -1,
+      "name": "Low-Key Tryhard",
+      "zh": "低調野心家",
+      "desc": "You're climbing, and you know when to take the side road, but you'd rather not bet your safety net to get there.",
+      "sting": "You want to be seen, but you won't let go of safe long enough to be.",
+      "heart": "Quiet ambition is still ambition."
+    },
+    {
+      "code": "Steady·Easy·Rules",
+      "L1": 1,
+      "L2": -1,
+      "L3": 1,
+      "name": "Slow-and-Steady Regular",
+      "zh": "規律生活家",
+      "desc": "Your days run on routine and order, and you're in no rush to prove anything to anyone.",
+      "sting": "Your life is so steady that some nights you wonder if it's too steady.",
+      "heart": "I chose my ordinary days. I didn't settle for them."
+    },
+    {
+      "code": "Steady·Easy·Context",
+      "L1": 1,
+      "L2": -1,
+      "L3": -1,
+      "name": "Chill Personified",
+      "zh": "松弛感本人",
+      "desc": "You don't race anyone's timeline. You go with the flow, and you like the flow familiar.",
+      "sting": "You're not unambitious. Nothing has been worth the grind yet.",
+      "heart": "My life doesn't need a progress bar."
+    },
+    {
+      "code": "Venture·Push·Rules",
+      "L1": -1,
+      "L2": 1,
+      "L3": 1,
+      "name": "Calculated Daredevil",
+      "zh": "有計畫的冒險家",
+      "desc": "You jump, but you like to scout the landing, pack a plan B and read the fine print first.",
+      "sting": "You say you love risk. Most of your leaps came with a backup plan.",
+      "heart": "Brave and careful. I get to be both."
+    },
+    {
+      "code": "Venture·Push·Context",
+      "L1": -1,
+      "L2": 1,
+      "L3": -1,
+      "name": "Full-Send Trailblazer",
+      "zh": "野生開拓者",
+      "desc": "You want something big and you'll trade certainty to get it. Rules are negotiable; the mission isn't.",
+      "sting": "You'd rather regret doing it. Sometimes the bill for that is steep.",
+      "heart": "Even if I lose, I get a great story."
+    },
+    {
+      "code": "Venture·Easy·Rules",
+      "L1": -1,
+      "L2": -1,
+      "L3": 1,
+      "name": "Side-Quest Knight",
+      "zh": "有底線的流浪者",
+      "desc": "You chase the new, skip the main quest, and still live by a personal code nobody can talk you out of.",
+      "sting": "You've gone far. You've rarely said where you're going.",
+      "heart": "Being on the road is my answer."
+    },
+    {
+      "code": "Venture·Easy·Context",
+      "L1": -1,
+      "L2": -1,
+      "L3": -1,
+      "name": "Vibes-Based Wanderer",
+      "zh": "隨風型旅人",
+      "desc": "You follow your curiosity wherever it goes. Rules and timelines are suggestions; the vibe decides.",
+      "sting": "Freedom is your superpower. It's also your favorite excuse.",
+      "heart": "I travel light, and I live true."
+    }
+  ],
+  "typeNameRule": "relationship name × life name",
+  "typeCodeRule": "relationship code | life code, e.g. We·Direct·Classic | Steady·Push·Rules",
+  "flex": {
+    "badge": "Flex",
+    "zh": "彈性",
+    "line": "You live on both sides of this one. Genii couldn't call it, and honestly, neither could you."
+  },
+  "unfinished": {
+    "line": "This side isn't finished yet. Two more cards and Genii can call it.",
+    "zh": "這一面還沒測完整"
+  },
+  "examples": [
+    "Trash-Talking Cuddle Bug × Low-Key Tryhard",
+    "Family CEO × Color-Coded Overachiever",
+    "Soft-Spoken Rebel × Vibes-Based Wanderer"
+  ]
+}

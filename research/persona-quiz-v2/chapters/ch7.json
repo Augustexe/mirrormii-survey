@@ -1,0 +1,873 @@
+{
+  "chapter": 7,
+  "title": "Play, rules and you",
+  "intro": "Game night, free time and the rules nobody reads. Let's see how you play.",
+  "cards": [
+    {
+      "id": "C7-1",
+      "type": "scenario",
+      "sally": [
+        "Q02"
+      ],
+      "prompt": "Game night, last round of Uno. Your friend stacks a +4 on your +2 and wins. Half the table swears that's legal. It isn't.",
+      "privacy": "normal",
+      "options": [
+        {
+          "t": "Pull up the official rules. Read them out loud.",
+          "axes": {
+            "L3": 2
+          },
+          "tags": [
+            {
+              "id": "T25A",
+              "s": 2
+            }
+          ],
+          "emotion": "irritation"
+        },
+        {
+          "t": "Draw six. Stacking is the best part of Uno.",
+          "axes": {
+            "L3": -2
+          },
+          "tags": [
+            {
+              "id": "T25B",
+              "s": 2
+            }
+          ],
+          "emotion": "delight"
+        },
+        {
+          "t": "Let it count, then settle the stacking rule before next game.",
+          "axes": {
+            "L3": 1
+          },
+          "tags": []
+        },
+        {
+          "t": "Let it slide. They haven't won a single round all night.",
+          "axes": {
+            "L3": -1
+          },
+          "tags": [
+            {
+              "id": "T25B",
+              "s": 1
+            }
+          ],
+          "emotion": "warmth"
+        }
+      ],
+      "feel": "irritation",
+      "mask": "looks like Uno drama; measures L3: the rule as written versus the rule the room is enjoying (Sally Q02 rebuilt as an everyday fairness card)",
+      "ae": [
+        "A",
+        "C"
+      ],
+      "friend": {
+        "prompt": "Game night. A friend wins Uno with a stack that isn't in the official rules. {name}...",
+        "a": {
+          "t": "Pulls up the official rules and reads them out",
+          "axes": {
+            "L3": 2
+          },
+          "tags": [
+            {
+              "id": "T25A",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "Draws six. Stacking is more fun anyway",
+          "axes": {
+            "L3": -2
+          },
+          "tags": [
+            {
+              "id": "T25B",
+              "s": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C7-2",
+      "type": "role",
+      "sally": [
+        "Q29"
+      ],
+      "prompt": "Your crew is getting ready to go out. The ride is 10 minutes away. You're the one...",
+      "privacy": "normal",
+      "options": [
+        {
+          "t": "Ready in six minutes. Hoodie, keys, done.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T14B",
+              "s": 2
+            }
+          ]
+        },
+        {
+          "t": "Doing a full fit check in every mirror we pass.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T14A",
+              "s": 2
+            }
+          ]
+        },
+        {
+          "t": "Wearing the outfit I planned on Tuesday. Accessories included.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T14A",
+              "s": 1
+            },
+            {
+              "id": "T24A",
+              "s": 1
+            }
+          ]
+        },
+        {
+          "t": "Still in the shower. We'll be fashionably late.",
+          "axes": {
+            "L2": -1
+          },
+          "tags": [
+            {
+              "id": "T24B",
+              "s": 1
+            }
+          ]
+        },
+        {
+          "t": "Fixing everyone else's hair and collars.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T23A",
+              "s": 1
+            }
+          ]
+        }
+      ],
+      "feel": "recognition",
+      "mask": "looks like a getting-ready meme; measures how much time and care the look is worth to you (Sally Q29, T14), with slight planning and helper evidence",
+      "ae": [
+        "A",
+        "B"
+      ],
+      "friend": {
+        "prompt": "The crew is getting ready to go out, ride in 10 minutes. {name} is...",
+        "a": {
+          "t": "Ready in six minutes, hoodie on",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T14B",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "Doing a full fit check in every mirror",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T14A",
+              "s": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C7-3",
+      "type": "scenario",
+      "sally": [
+        "Q46"
+      ],
+      "prompt": "You're offered a year in a city you've never been to. Place to live, sorted. Your life here is honestly good.",
+      "teenPrompt": "Your school offers a year-long exchange in a city you've never been to. Host family, sorted. Your life here is honestly good.",
+      "privacy": "normal",
+      "options": [
+        {
+          "t": "Go. Pack tonight, learn the bus map when I land.",
+          "axes": {
+            "L1": -2
+          },
+          "tags": [
+            {
+              "id": "T22A",
+              "s": 2
+            }
+          ],
+          "emotion": "delight"
+        },
+        {
+          "t": "Stay. My people, my spots, my Thursday thing.",
+          "axes": {
+            "L1": 2
+          },
+          "tags": [
+            {
+              "id": "T22B",
+              "s": 2
+            }
+          ],
+          "emotion": "warmth"
+        },
+        {
+          "t": "Visit for a week first. Then decide.",
+          "axes": {
+            "L1": 1
+          },
+          "tags": []
+        },
+        {
+          "t": "Depends who I'd be leaving behind.",
+          "axes": {
+            "R1": 1
+          },
+          "tags": []
+        },
+        {
+          "t": "Can't right now. Money or family keeps me here.",
+          "circumstance": true
+        }
+      ],
+      "flip": {
+        "prompt": "What would flip you?",
+        "options": [
+          "My closest people tell me to go",
+          "I could come home for every holiday",
+          "A friend moves there with me"
+        ]
+      },
+      "feel": "longing",
+      "mask": "looks like a dream-offer daydream; measures L1 steady versus venture when nothing forces the move (Sally Q46)",
+      "ae": [
+        "D",
+        "E",
+        "C"
+      ],
+      "friend": {
+        "prompt": "{name} is offered a year in a city {they}'ve never been to. Life here is good. {name}...",
+        "a": {
+          "t": "Goes. Packs tonight",
+          "axes": {
+            "L1": -2
+          },
+          "tags": [
+            {
+              "id": "T22A",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "Stays. The people and routines are here",
+          "axes": {
+            "L1": 2
+          },
+          "tags": [
+            {
+              "id": "T22B",
+              "s": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C7-4",
+      "type": "real",
+      "sally": [
+        "Q38"
+      ],
+      "prompt": "Think of the last time a rule made zero sense for your exact situation. A house rule, a school policy, a store sign. It wasn't your call.",
+      "privacy": "normal",
+      "options": [
+        {
+          "t": "Asked whoever runs it for an exception.",
+          "axes": {
+            "L3": 2
+          },
+          "tags": [
+            {
+              "id": "T25A",
+              "s": 2
+            }
+          ]
+        },
+        {
+          "t": "Followed it, rolled my eyes, moved on.",
+          "axes": {
+            "L3": 1
+          },
+          "tags": [
+            {
+              "id": "T25A",
+              "s": 1
+            }
+          ],
+          "emotion": "irritation"
+        },
+        {
+          "t": "Worked around it quietly. Nobody got hurt.",
+          "axes": {
+            "L3": -2
+          },
+          "tags": [
+            {
+              "id": "T25B",
+              "s": 2
+            }
+          ]
+        },
+        {
+          "t": "Bent it, then told them why before anyone asked.",
+          "axes": {
+            "L3": -1
+          },
+          "tags": [
+            {
+              "id": "T25B",
+              "s": 1
+            }
+          ]
+        }
+      ],
+      "feel": "irritation",
+      "mask": "looks like a pet-peeve story; measures L3 in action: work the rule through its owner versus handle it yourself and explain (Sally Q38)",
+      "ae": [
+        "A",
+        "C"
+      ],
+      "friend": {
+        "prompt": "A rule makes zero sense for {name}'s situation, and it isn't {name}'s call. {name}...",
+        "a": {
+          "t": "Asks whoever runs it for an exception",
+          "axes": {
+            "L3": 2
+          },
+          "tags": [
+            {
+              "id": "T25A",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "Works around it quietly",
+          "axes": {
+            "L3": -2
+          },
+          "tags": [
+            {
+              "id": "T25B",
+              "s": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C7-5",
+      "type": "scenario",
+      "sally": [
+        "Q31",
+        "Q32"
+      ],
+      "prompt": "Sunday night. The week ahead has three deadlines, two plans and one thing you've definitely forgotten. What do you actually do?",
+      "privacy": "normal",
+      "options": [
+        {
+          "t": "Color-code the whole week. Backup times included.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T24A",
+              "s": 2
+            }
+          ]
+        },
+        {
+          "t": "Look back at last week to see what went wrong.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T24A",
+              "s": 2
+            }
+          ]
+        },
+        {
+          "t": "Nothing. Monday me is very capable.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T24B",
+              "s": 2
+            }
+          ],
+          "emotion": "relief"
+        },
+        {
+          "t": "Ask the group chat what I'm doing this week.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T24B",
+              "s": 1
+            }
+          ]
+        }
+      ],
+      "feel": "worry",
+      "mask": "looks like week-planning chaos; measures track-and-read-the-trend versus go by feel in daily life (Sally Q31/Q32 reframed, never health)",
+      "ae": [
+        "A",
+        "C"
+      ],
+      "friend": {
+        "prompt": "Sunday night, and {name}'s week ahead is a mess. {name}...",
+        "a": {
+          "t": "Color-codes the whole week",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T24A",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "Trusts Monday to sort it out",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T24B",
+              "s": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C7-6",
+      "type": "real",
+      "sally": [
+        "Q47"
+      ],
+      "prompt": "Think of the last free afternoon you got. Nothing planned, nobody needing you. What did you actually do with it?",
+      "privacy": "normal",
+      "options": [
+        {
+          "t": "Went deep on my own thing. Game, sketch, gym, guitar.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T23B",
+              "s": 2
+            }
+          ]
+        },
+        {
+          "t": "Helped with someone else's thing. A move, a stall, a fundraiser.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T23A",
+              "s": 2
+            }
+          ]
+        },
+        {
+          "t": "Texted around until a group plan happened.",
+          "axes": {
+            "R1": 1
+          },
+          "tags": []
+        },
+        {
+          "t": "Stayed horizontal. Snacks, shows, zero guilt.",
+          "axes": {
+            "L2": -1
+          },
+          "tags": []
+        },
+        {
+          "t": "Caught up on work or homework I was behind on.",
+          "axes": {
+            "L2": 1
+          },
+          "tags": [],
+          "emotion": "guilt"
+        },
+        {
+          "t": "Got pulled into a shift or family stuff. Not really free.",
+          "circumstance": true
+        }
+      ],
+      "feel": "recognition",
+      "mask": "looks like a lazy-afternoon recap; measures whether free time goes to your own growth or to helping others (Sally Q47, T23), with slight L2 and R1",
+      "ae": [
+        "A",
+        "D"
+      ],
+      "friend": {
+        "prompt": "{name} gets a free afternoon, nothing planned. {name}...",
+        "a": {
+          "t": "Goes deep on a hobby, solo",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T23B",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "Helps with someone else's thing",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T23A",
+              "s": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C7-7",
+      "type": "scenario",
+      "sally": [
+        "Q40"
+      ],
+      "prompt": "You have one spare ticket to the sold-out show. One friend asked first, weeks ago. Another is having the worst month of their year.",
+      "privacy": "normal",
+      "options": [
+        {
+          "t": "First to ask gets it. That was the deal.",
+          "axes": {
+            "L3": 2
+          },
+          "tags": [
+            {
+              "id": "T25A",
+              "s": 2
+            }
+          ]
+        },
+        {
+          "t": "The friend having the awful month. They need tonight.",
+          "axes": {
+            "L3": -2
+          },
+          "tags": [
+            {
+              "id": "T25B",
+              "s": 2
+            }
+          ]
+        },
+        {
+          "t": "Flip a coin on video, post it in the group chat.",
+          "axes": {
+            "L3": 1
+          },
+          "tags": []
+        },
+        {
+          "t": "Give up my own ticket so both of them go.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T06A",
+              "s": 1
+            }
+          ],
+          "emotion": "guilt"
+        }
+      ],
+      "feel": "tension",
+      "mask": "looks like concert logistics; measures L3: keep the queue order or go by who needs it more right now (Sally Q40 as an everyday last-spot card)",
+      "ae": [
+        "A",
+        "B",
+        "C"
+      ],
+      "friend": {
+        "prompt": "{name} has one spare ticket. One friend asked first, another is having an awful month. It goes to...",
+        "a": {
+          "t": "The friend who asked first",
+          "axes": {
+            "L3": 2
+          },
+          "tags": [
+            {
+              "id": "T25A",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "The friend having the awful month",
+          "axes": {
+            "L3": -2
+          },
+          "tags": [
+            {
+              "id": "T25B",
+              "s": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C7-8",
+      "type": "feeling",
+      "sally": [],
+      "follows": "C7-7",
+      "prompt": "The ticket's handed over. What showed up first?",
+      "privacy": "normal",
+      "options": [
+        {
+          "t": "Guilt. Someone's going to be quietly hurt.",
+          "axes": {},
+          "tags": [],
+          "emotion": "guilt"
+        },
+        {
+          "t": "Relief. It's out of my hands now.",
+          "axes": {},
+          "tags": [],
+          "emotion": "relief"
+        },
+        {
+          "t": "Irritation. Why is this my job?",
+          "axes": {},
+          "tags": [],
+          "emotion": "irritation"
+        },
+        {
+          "t": "Worry about what the group chat will say.",
+          "axes": {},
+          "tags": [],
+          "emotion": "worry"
+        },
+        {
+          "t": "Pride. That was the right call.",
+          "axes": {},
+          "tags": [],
+          "emotion": "pride"
+        }
+      ],
+      "feel": "guilt",
+      "mask": "looks like a mood check; records the emotion attached to choosing between order and need (emotion only, no profile score)",
+      "ae": [
+        "E"
+      ]
+    },
+    {
+      "id": "C7-9",
+      "type": "pick_two",
+      "sally": [],
+      "prompt": "Pick the two that are the most you.",
+      "privacy": "normal",
+      "options": [
+        {
+          "t": "My comfort show is on its fifth rewatch.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T22B",
+              "s": 1
+            }
+          ]
+        },
+        {
+          "t": "I pick the restaurant none of us has tried.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T22A",
+              "s": 1
+            }
+          ]
+        },
+        {
+          "t": "I know my screen time down to the minute.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T24A",
+              "s": 1
+            }
+          ]
+        },
+        {
+          "t": "My calendar is mostly vibes and sticky notes.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T24B",
+              "s": 1
+            }
+          ]
+        },
+        {
+          "t": "I'll give up a Saturday to help anyone move.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T23A",
+              "s": 1
+            }
+          ]
+        },
+        {
+          "t": "My free time is booked. By me, for me.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T23B",
+              "s": 1
+            }
+          ]
+        }
+      ],
+      "feel": "recognition",
+      "mask": "looks like a quick self-roast; gives T22, T24 and T23 a second card each (new versus favorite, tracked versus by feel, helper versus own time)",
+      "ae": [
+        "A",
+        "D"
+      ]
+    },
+    {
+      "id": "C7-S1",
+      "type": "sealed",
+      "sally": [],
+      "prompt": "Group project. The brief says 10 slides. Your group's idea would be way better as a 3-minute video.",
+      "privacy": "normal",
+      "options": [
+        {
+          "t": "Make the 10 slides. The brief is the brief.",
+          "axes": {
+            "L3": 2
+          },
+          "tags": [
+            {
+              "id": "T25A",
+              "s": 2
+            }
+          ]
+        },
+        {
+          "t": "Make the video. Good work speaks for itself.",
+          "axes": {
+            "L3": -2
+          },
+          "tags": [
+            {
+              "id": "T25B",
+              "s": 2
+            }
+          ]
+        },
+        {
+          "t": "Ask whoever set the brief before touching anything.",
+          "axes": {
+            "L3": 1
+          },
+          "tags": [
+            {
+              "id": "T25A",
+              "s": 1
+            }
+          ]
+        },
+        {
+          "t": "Make the slides. Hide the video link on slide 10.",
+          "axes": {
+            "L3": -1
+          },
+          "tags": [
+            {
+              "id": "T25B",
+              "s": 1
+            }
+          ]
+        }
+      ],
+      "feel": "curiosity",
+      "mask": "looks like group-project politics; sealed check on L3 (the brief as written versus what the situation needs)",
+      "ae": [
+        "A",
+        "C"
+      ]
+    },
+    {
+      "id": "C7-S2",
+      "type": "sealed",
+      "sally": [],
+      "prompt": "Your go-to spot, the one that starts your order when you walk in, closes forever. First morning after, you...",
+      "privacy": "normal",
+      "options": [
+        {
+          "t": "Try a different place every day until one clicks.",
+          "axes": {
+            "L1": -1
+          },
+          "tags": [
+            {
+              "id": "T22A",
+              "s": 2
+            }
+          ]
+        },
+        {
+          "t": "Go to the closest one and order the exact same thing.",
+          "axes": {
+            "L1": 1
+          },
+          "tags": [
+            {
+              "id": "T22B",
+              "s": 2
+            }
+          ]
+        },
+        {
+          "t": "Track down where the staff went and follow them.",
+          "axes": {
+            "R1": 1
+          },
+          "tags": [
+            {
+              "id": "T22B",
+              "s": 1
+            }
+          ]
+        }
+      ],
+      "feel": "longing",
+      "mask": "looks like a small everyday loss; sealed check on T22 (new versus mine) with slight L1",
+      "ae": [
+        "A",
+        "D"
+      ]
+    }
+  ]
+}

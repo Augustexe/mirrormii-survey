@@ -1,0 +1,665 @@
+{
+  "chapter": 1,
+  "title": "Your phone",
+  "intro": "Your phone already knows too much about you. I just want the highlights.",
+  "order": [
+    "C1-1",
+    "C1-2",
+    "C1-4",
+    "C1-5",
+    "C1-6",
+    "C1-8",
+    "C1-7",
+    "C1-11"
+  ],
+  "cards": [
+    {
+      "id": "C1-1",
+      "type": "role",
+      "sally": [],
+      "prompt": "The main group chat is at 99+ unread. Be honest. In there, you're the…",
+      "privacy": "normal",
+      "options": [
+        {
+          "t": "Planner. Makes the poll. Nobody votes. Decides anyway.",
+          "tags": [
+            {
+              "id": "T24A",
+              "s": 1
+            }
+          ],
+          "emotion": "pride"
+        },
+        {
+          "t": "Recruiter. \"Everyone, this is Sam. Be nice.\"",
+          "tags": [
+            {
+              "id": "T04B",
+              "s": 2
+            }
+          ],
+          "emotion": "delight"
+        },
+        {
+          "t": "Courier. Screenshots the good stuff straight to my two favorites.",
+          "tags": [
+            {
+              "id": "T04A",
+              "s": 2
+            }
+          ],
+          "emotion": "delight"
+        },
+        {
+          "t": "Ghost. Reads everything, says nothing, still shows up Saturday.",
+          "tags": [
+            {
+              "id": "T02A",
+              "s": 1
+            }
+          ],
+          "emotion": "cringe"
+        },
+        {
+          "t": "Scorekeeper. Knows exactly who didn't react to MY message.",
+          "tags": [
+            {
+              "id": "T02B",
+              "s": 1
+            }
+          ],
+          "emotion": "sting"
+        },
+        {
+          "t": "Lawyer. \"Okay, but have we heard THEIR side?\"",
+          "tags": [
+            {
+              "id": "T08A",
+              "s": 1
+            }
+          ],
+          "emotion": "delight"
+        }
+      ],
+      "feel": "recognition",
+      "mask": "looks like a group chat meme; measures circle size (T04: Close Friends list vs Mayor of every group chat), how much contact you need to see (T02, slight on both sides), and, slightly, running things by structure (T24A) and giving the accused a hearing (T08A)",
+      "ae": [
+        "A",
+        "B"
+      ],
+      "friend": {
+        "prompt": "In the main group chat, {name} is the one who…",
+        "a": {
+          "t": "Adds new people: \"Everyone, this is Sam.\"",
+          "tags": [
+            {
+              "id": "T04B",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "Screenshots it all to two favorites.",
+          "tags": [
+            {
+              "id": "T04A",
+              "s": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C1-2",
+      "type": "scenario",
+      "sally": [
+        "Q41"
+      ],
+      "prompt": "Your person, totally casual: \"Let's swap passcodes. Nothing's wrong. It just feels close.\" They're already holding their phone out.",
+      "teenPrompt": "Your best friend, totally casual: \"Let's swap passcodes. Besties do.\" They're already holding their phone out.",
+      "privacy": "normal",
+      "options": [
+        {
+          "t": "Type mine into their phone before they finish the sentence.",
+          "axes": {
+            "R1": 2
+          },
+          "tags": [
+            {
+              "id": "T01A",
+              "s": 2
+            }
+          ],
+          "emotion": "warmth"
+        },
+        {
+          "t": "Point out we already did. Two years ago. They forgot.",
+          "axes": {
+            "R1": 1
+          },
+          "tags": [
+            {
+              "id": "T01A",
+              "s": 1
+            }
+          ],
+          "emotion": "delight"
+        },
+        {
+          "t": "Offer a trade: my photos, yes. My DMs, never.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T01B",
+              "s": 1
+            }
+          ]
+        },
+        {
+          "t": "Keep mine. \"Nothing to hide. Still no.\"",
+          "axes": {
+            "R1": -2
+          },
+          "tags": [
+            {
+              "id": "T01B",
+              "s": 2
+            }
+          ]
+        },
+        {
+          "t": "Laugh, change the subject, hope it never comes back.",
+          "axes": {
+            "R1": -1
+          },
+          "tags": [
+            {
+              "id": "T01B",
+              "s": 1
+            }
+          ],
+          "emotion": "cringe"
+        },
+        {
+          "t": "Not my call. Parents or work set my phone rules.",
+          "circumstance": true
+        }
+      ],
+      "feel": "tension",
+      "mask": "looks like a phone privacy question; measures whether closeness means sharing everything or keeping your own door (R1) and phone openness (T01)",
+      "ae": [
+        "A",
+        "B",
+        "D"
+      ],
+      "friend": {
+        "prompt": "{name}'s person suggests swapping phone passcodes. Nothing's wrong. What does {name} do?",
+        "a": {
+          "t": "Swaps on the spot.",
+          "axes": {
+            "R1": 2
+          },
+          "tags": [
+            {
+              "id": "T01A",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "Keeps {their} own: \"Nothing to hide. Still no.\"",
+          "axes": {
+            "R1": -2
+          },
+          "tags": [
+            {
+              "id": "T01B",
+              "s": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C1-4",
+      "type": "real",
+      "sally": [
+        "Q44"
+      ],
+      "prompt": "Last time something was eating at you after midnight, where did it go first?",
+      "privacy": "normal",
+      "options": [
+        {
+          "t": "Typed it all out to an AI. It asked good questions.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T03A",
+              "s": 2
+            }
+          ],
+          "emotion": "relief"
+        },
+        {
+          "t": "Voice-noted my closest person. Four minutes, no summary.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T03B",
+              "s": 2
+            }
+          ],
+          "emotion": "relief"
+        },
+        {
+          "t": "Posted a sad song on my story. Waited to see who'd ask.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T02B",
+              "s": 2
+            }
+          ],
+          "emotion": "longing"
+        },
+        {
+          "t": "Notes app. A whole essay nobody will ever read.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T03B",
+              "s": 1
+            }
+          ],
+          "emotion": "relief"
+        },
+        {
+          "t": "Nowhere. Stared at the ceiling till 3am. Told no one.",
+          "circumstance": true
+        }
+      ],
+      "feel": "recognition",
+      "mask": "looks like a late-night habit; measures whether an AI counts as a real confidant or your own raw words do (T03: the voice note and the Notes-app essay are the no-AI routes) and whether you wait to be reached (T02B). Tag-only, like Sally's Q44: no axis. 'Nowhere' is a circumstance: nothing went anywhere, so there is no choice to score",
+      "ae": [
+        "A",
+        "B",
+        "E"
+      ],
+      "friend": {
+        "prompt": "Something's eating at {name} after midnight. Where does it go first?",
+        "a": {
+          "t": "Typed out to an AI.",
+          "tags": [
+            {
+              "id": "T03A",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "A long voice note to {their} closest person.",
+          "tags": [
+            {
+              "id": "T03B",
+              "s": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C1-5",
+      "type": "scenario",
+      "sally": [
+        "Q42"
+      ],
+      "prompt": "Your whole friend group joins a new map app: everyone's dot, battery and song, live. Now the popup wants your location.",
+      "privacy": "normal",
+      "options": [
+        {
+          "t": "Always. Come find me. I'm the dot at 4%.",
+          "tags": [
+            {
+              "id": "T01A",
+              "s": 2
+            }
+          ],
+          "emotion": "delight"
+        },
+        {
+          "t": "Share it with my top three. Everyone else can guess.",
+          "tags": [
+            {
+              "id": "T01A",
+              "s": 1
+            },
+            {
+              "id": "T04A",
+              "s": 1
+            }
+          ],
+          "emotion": "warmth"
+        },
+        {
+          "t": "Allow it, then revoke it at 2am after one scary video.",
+          "tags": [
+            {
+              "id": "T01B",
+              "s": 1
+            }
+          ],
+          "emotion": "worry"
+        },
+        {
+          "t": "Freeze my dot at home. Technically sharing.",
+          "tags": [
+            {
+              "id": "T01B",
+              "s": 2
+            }
+          ],
+          "emotion": "cringe"
+        }
+      ],
+      "feel": "curiosity",
+      "mask": "looks like an app permission popup; measures whether you let your people see where you are, always on, or keep your dot to yourself (T01, Sally Q42 reframed to location with your close people), and, slightly, a tiny inner circle (T04A)",
+      "ae": [
+        "A",
+        "B"
+      ],
+      "friend": {
+        "prompt": "{name}'s friends all join an app that shares everyone's location. What does {name} pick?",
+        "a": {
+          "t": "Always. Come find me.",
+          "tags": [
+            {
+              "id": "T01A",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "Freezes {their} dot at home. Technically sharing.",
+          "tags": [
+            {
+              "id": "T01B",
+              "s": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C1-7",
+      "type": "this_or_that",
+      "sally": [],
+      "prompt": "Someone you talked to for four minutes at a party sends you a follow request.",
+      "privacy": "normal",
+      "options": [
+        {
+          "t": "Accept and follow back. We're basically friends now.",
+          "tags": [
+            {
+              "id": "T04B",
+              "s": 2
+            }
+          ],
+          "emotion": "delight"
+        },
+        {
+          "t": "Leave it pending. Forever.",
+          "tags": [
+            {
+              "id": "T04A",
+              "s": 2
+            }
+          ],
+          "emotion": "cringe"
+        }
+      ],
+      "feel": "delight",
+      "mask": "looks like a social media reflex; measures how wide you let your circle go (T04)",
+      "ae": [
+        "A",
+        "B"
+      ],
+      "friend": {
+        "prompt": "Someone {name} met for four minutes at a party sends a follow request. What does {name} do?",
+        "a": {
+          "t": "Accepts and follows back.",
+          "tags": [
+            {
+              "id": "T04B",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "Leaves it pending forever.",
+          "tags": [
+            {
+              "id": "T04A",
+              "s": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C1-6",
+      "type": "this_or_that",
+      "sally": [
+        "Q26"
+      ],
+      "prompt": "You and an old close friend haven't texted in four months. Nobody's mad. You still love them.",
+      "privacy": "normal",
+      "options": [
+        {
+          "t": "Send a random pic, no hello. Like we never stopped.",
+          "tags": [
+            {
+              "id": "T02A",
+              "s": 2
+            }
+          ],
+          "emotion": "warmth"
+        },
+        {
+          "t": "Like their story. Let them take it from there.",
+          "tags": [
+            {
+              "id": "T02B",
+              "s": 2
+            }
+          ],
+          "emotion": "sting"
+        }
+      ],
+      "feel": "sting",
+      "mask": "looks like a friendship hot take; measures whether a quiet friendship still feels safe or needs the other person to reach out first (T02). Options are moves (text like no time passed, or wait for their text), not feelings, so they no longer restate C1-11's golden answers",
+      "ae": [
+        "B",
+        "E"
+      ],
+      "friend": {
+        "prompt": "{name} and an old close friend haven't texted in four months. What does {name} do?",
+        "a": {
+          "t": "Sends a random pic, no hello, like they never stopped.",
+          "tags": [
+            {
+              "id": "T02A",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "Waits. The last text was {name}'s.",
+          "tags": [
+            {
+              "id": "T02B",
+              "s": 2
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C1-8",
+      "type": "this_or_that",
+      "sally": [
+        "Q43"
+      ],
+      "prompt": "You owe someone a real apology. You know exactly what you mean. AI could word it way better.",
+      "privacy": "normal",
+      "options": [
+        {
+          "t": "Let AI fix it. Add one typo so it sounds like me.",
+          "tags": [
+            {
+              "id": "T03A",
+              "s": 2
+            }
+          ],
+          "emotion": "relief"
+        },
+        {
+          "t": "Send my own version. It took 40 minutes and says sorry six times.",
+          "tags": [
+            {
+              "id": "T03B",
+              "s": 2
+            },
+            {
+              "id": "T05B",
+              "s": 1
+            }
+          ],
+          "emotion": "cringe"
+        }
+      ],
+      "feel": "tension",
+      "mask": "looks like a tech opinion; measures whether sincerity lives in the intent and follow-through or in your own raw words (T03); the long own-words apology is also slight love-in-words evidence (T05B, library Q43 trigger)",
+      "ae": [
+        "A",
+        "B"
+      ],
+      "friend": {
+        "prompt": "{name} owes someone a real apology. AI could word it better. What does {name} send?",
+        "a": {
+          "t": "The AI version, plus one fake typo.",
+          "tags": [
+            {
+              "id": "T03A",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "{Their} own version. 40 minutes, six sorries.",
+          "tags": [
+            {
+              "id": "T03B",
+              "s": 2
+            },
+            {
+              "id": "T05B",
+              "s": 1
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "C1-11",
+      "type": "real",
+      "sally": [],
+      "prompt": "Think of the last time a message that mattered showed \"Read\" and no reply.",
+      "privacy": "normal",
+      "options": [
+        {
+          "t": "Forgot about it. They'd answer eventually.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T02A",
+              "s": 2
+            }
+          ],
+          "emotion": "relief"
+        },
+        {
+          "t": "Kept checking if they'd been online since.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T02B",
+              "s": 1
+            }
+          ],
+          "emotion": "worry"
+        },
+        {
+          "t": "Reread my message like it was evidence.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T02B",
+              "s": 1
+            }
+          ],
+          "emotion": "cringe"
+        },
+        {
+          "t": "Handed my best friend my phone: \"Write the follow-up. Make it chill.\"",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T01A",
+              "s": 1
+            }
+          ],
+          "emotion": "delight"
+        },
+        {
+          "t": "Turned off my own read receipts. Forever.",
+          "axes": {},
+          "tags": [
+            {
+              "id": "T01B",
+              "s": 1
+            }
+          ],
+          "emotion": "irritation"
+        }
+      ],
+      "feel": "sting",
+      "mask": "looks like a texting moment; measures whether silence after a message that mattered feels fine or needs checking (T02, did-grade) and, slightly, how open your phone is to your people: hand it to a friend to write the follow-up (T01A) or lock down what others can see (T01B). Golden card (BRIEF.md golden set), the three golden options unchanged",
+      "ae": [
+        "A",
+        "B",
+        "E"
+      ],
+      "friend": {
+        "prompt": "Last time a message that mattered to {name} showed \"Read\" and got no reply, {they}...",
+        "a": {
+          "t": "Forgot about it. A reply would come eventually.",
+          "tags": [
+            {
+              "id": "T02A",
+              "s": 2
+            }
+          ]
+        },
+        "b": {
+          "t": "Kept checking when the other person was last online.",
+          "tags": [
+            {
+              "id": "T02B",
+              "s": 1
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

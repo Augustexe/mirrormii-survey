@@ -1,0 +1,23 @@
+<!doctype html>
+<!-- Package D harness: two animated Backdrops (only the newest may own the WebGL canvas) over a mirror.
+     Served by the Vite dev server; verify-backdrop.mjs drives it in Chrome. -->
+<html data-theme="day">
+  <head><meta charset="utf-8" /><link rel="icon" href="/favicon.svg" /><title>Backdrop harness</title></head>
+  <body style="margin:0;min-height:100vh">
+    <div id="root"></div>
+    <script type="module">
+      import React from "react";
+      import { createRoot } from "react-dom/client";
+      import "/src/system/tokens.css";
+      import { Backdrop, MirrorArch } from "/src/art/index.js";
+      const h = React.createElement;
+      const scene = new URLSearchParams(location.search).get("scene") || "day";
+      createRoot(document.getElementById("root")).render(
+        h(React.Fragment, null,
+          h(Backdrop, { scene: "night" }),
+          h(Backdrop, { scene }),
+          h("div", { style: { display: "grid", placeItems: "center", height: "100vh" } }, h(MirrorArch, { seed: "harness", size: 220, glow: 0.8 }))),
+      );
+    </script>
+  </body>
+</html>

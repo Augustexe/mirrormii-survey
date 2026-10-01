@@ -1,3 +1,5 @@
+> **Superseded, history only.** This describes an earlier survey build or visual pass whose code has been removed. The current app starts at [../README.md](../README.md); the visual system is [DESIGN-DIRECTION.md](DESIGN-DIRECTION.md).
+
 # Card materials
 
 This refinement starts from `e5ae89e`. Jerry's feedback was that the questionnaire and result cards still felt too white and flat. White and purple remain the overall theme; complementary color inside cards is explicitly authorized. Existing layout, typography, questions and behavior remain locked.

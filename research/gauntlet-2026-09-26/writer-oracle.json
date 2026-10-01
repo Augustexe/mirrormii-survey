@@ -1,0 +1,525 @@
+{
+  "writer": "oracle",
+  "voice": "The Oracle (candidate voice)",
+  "dims": [
+    {
+      "id": "closeness_style",
+      "quick": {
+        "prompt": "I see your closest person in the cards. Your ideal is…",
+        "a": "Most free time together, sharing the whole day.",
+        "b": "Close, with real time and space of my own."
+      },
+      "scene": {
+        "prompt": "The cards recall your last free day with nothing planned. How much went to your closest person?",
+        "options": [
+          "Nearly all of it, on purpose. Even the errands.",
+          "A good chunk, then my own evening.",
+          "One check-in text. The rest was mine.",
+          "Mostly mine. We caught up another day."
+        ]
+      }
+    },
+    {
+      "id": "betrayal_line",
+      "quick": {
+        "prompt": "A dark card: your person got secretly close to someone else. Nothing physical. What hurts most?",
+        "teenPrompt": "A dark card: your best friend got secretly close to someone else. What hurts most?",
+        "a": "The closeness. Those talks were supposed to be ours.",
+        "b": "The hiding. We never agreed that was okay."
+      }
+    },
+    {
+      "id": "commitment_pace",
+      "quick": {
+        "prompt": "The stars align: mutual attraction, respect, everything talked through, nothing official yet. Getting physical is…",
+        "a": "Fine by me. It doesn't need a label first.",
+        "b": "Worth waiting on until it's official."
+      }
+    },
+    {
+      "id": "phone_privacy",
+      "quick": {
+        "prompt": "Your fortune: your closest person suggests swapping phone passcodes. Nothing's wrong, it's just an idea.",
+        "a": "Sure. Here's mine, what's yours?",
+        "b": "I'd keep mine. If something's up, just ask."
+      }
+    },
+    {
+      "id": "who_pays",
+      "quick": {
+        "prompt": "I see a first date or first hangout. The bill arrives.",
+        "a": "Whoever did the asking pays. That's the move.",
+        "b": "We split it. Nobody owes anybody."
+      }
+    },
+    {
+      "id": "standards",
+      "quick": {
+        "prompt": "The cards show someone great. Then they do one small thing that gives you the ick.",
+        "a": "Trust the ick. It knows things.",
+        "b": "Everyone has one thing. I look past it."
+      }
+    },
+    {
+      "id": "support_capacity",
+      "quick": {
+        "prompt": "I see a friend who needs you tonight, and you're running on empty. A good friend…",
+        "a": "shows up anyway. Sleep can wait.",
+        "b": "says so and picks another night."
+      },
+      "scene": {
+        "prompt": "The cards remember the last time someone needed a long talk or favor on an empty night. What happened?",
+        "options": [
+          "Went, and stayed way too late.",
+          "Gave them an hour, then called it.",
+          "Answered the next morning. Felt bad about it.",
+          "Said \"can't tonight, tomorrow?\" and went to sleep."
+        ]
+      }
+    },
+    {
+      "id": "contact_needs",
+      "quick": {
+        "prompt": "The cards show you and a friend silent for a couple of months. Nobody's upset.",
+        "a": "Totally fine. We'll pick up where we left off.",
+        "b": "Someone should reach out. That matters to me."
+      },
+      "scene": {
+        "prompt": "Your past card: the last time a friend went quiet for a few weeks. What went through your head?",
+        "options": [
+          "Didn't notice until they texted again.",
+          "Noticed, figured they were busy, moved on.",
+          "Checked their stories to make sure they were okay.",
+          "Wondered if they still liked me."
+        ]
+      }
+    },
+    {
+      "id": "friend_did_harm",
+      "quick": {
+        "prompt": "The cards show a close friend who clearly hurt someone. The facts are settled. First move?",
+        "a": "Be there for them first. Owning it comes next.",
+        "b": "Tell them it wasn't okay, even if they're mad."
+      },
+      "scene": {
+        "prompt": "The crystal ball replays your last group drama where a friend was clearly wrong. What did you do?",
+        "options": [
+          "Backed them in public, talked to them privately later.",
+          "Stayed neutral and let it blow over.",
+          "Told them privately they'd messed up.",
+          "Said it in the group chat, kindly but clearly."
+        ]
+      }
+    },
+    {
+      "id": "celebration_budget",
+      "quick": {
+        "prompt": "I see friends planning a birthday trip over your comfortable budget, but doable. Your move?",
+        "a": "Go. Cut back somewhere else. It's worth it.",
+        "b": "Say my budget and celebrate a cheaper way."
+      },
+      "scene": {
+        "prompt": "The cards recall the last time friends planned something above your budget. What did you do?",
+        "options": [
+          "Went, paid, and quietly ate rice all week.",
+          "Joined, but skipped the pricey parts without saying why.",
+          "Said my budget and suggested a cheaper plan.",
+          "Sat this one out and made it up later."
+        ]
+      }
+    },
+    {
+      "id": "feedback_style",
+      "quick": {
+        "prompt": "A friend's practice run for something big isn't there yet, and they're rattled. The cards advise…",
+        "a": "Name the main problem now, plus a fix.",
+        "b": "Build them up first. The hard part can wait."
+      },
+      "scene": {
+        "prompt": "Your past card: the last friend who asked your honest take on something they made. What did you say?",
+        "options": [
+          "Told the truth in the first sentence.",
+          "Opened with one nice thing, then the truth.",
+          "Mostly praised it. The truth got one line.",
+          "Said \"I love it!\" and moved on."
+        ]
+      }
+    },
+    {
+      "id": "second_chances",
+      "quick": {
+        "prompt": "Someone in your group hurt a person, owned it, made it right, and changed. Back in?",
+        "a": "Let them back in slowly, with some limits.",
+        "b": "The person they hurt gets the final say."
+      }
+    },
+    {
+      "id": "strings_attached",
+      "quick": {
+        "prompt": "The cards show your parents offering rent help, as long as you live closer to them.",
+        "teenPrompt": "The cards show your parents offering a later curfew, as long as you share your location.",
+        "a": "Fair deal. Family help comes with family terms.",
+        "b": "Only if it fits my plans. Otherwise I'll wait."
+      }
+    },
+    {
+      "id": "family_vs_own_call",
+      "quick": {
+        "prompt": "The cards show a big move: new city, school or job. Family's not on board. Nobody needs you home.",
+        "a": "Keep talking until they're on board, even if I wait.",
+        "b": "Hear them out, then decide on my own timeline."
+      },
+      "scene": {
+        "prompt": "The cards recall the last time your family pushed back on a decision of yours. What happened next?",
+        "options": [
+          "Changed the plan. Peace at home won.",
+          "Found a middle ground we could all live with.",
+          "Did it anyway, after explaining a lot.",
+          "Went ahead and told them after."
+        ]
+      }
+    },
+    {
+      "id": "family_safety_net",
+      "quick": {
+        "prompt": "The cards show your parents asking you to keep supporting a grown sibling. No crisis, just not independent yet.",
+        "teenPrompt": "The cards show your parents asking you to keep covering for a sibling who skips chores.",
+        "a": "Family carries each other. Fairness can wait.",
+        "b": "Help, with an end date. They'll stand on their own."
+      }
+    },
+    {
+      "id": "caregiving",
+      "quick": {
+        "prompt": "I see a family member needing long-term care. Siblings can help, but moving home costs your work or school.",
+        "a": "Be there in person. Everything else adjusts.",
+        "b": "Organize family and paid help. Keep my life going."
+      }
+    },
+    {
+      "id": "fairness_rule",
+      "quick": {
+        "prompt": "The stars pair two people sharing costs. One earns about twice as much. Fair is…",
+        "a": "Split it evenly. Same bill, same share.",
+        "b": "The one earning more pays more."
+      },
+      "scene": {
+        "prompt": "The cards recall your last shared bill: dinner, a trip, a group gift. How did the split go?",
+        "options": [
+          "Down the middle. Clean math, no feelings.",
+          "Split it evenly. I'd ordered a salad.",
+          "Whoever had more that month covered more.",
+          "Paid it all and didn't bring it up."
+        ]
+      }
+    },
+    {
+      "id": "lending",
+      "quick": {
+        "prompt": "The cards show a close friend urgently needing money you could spare. Losing it would sting. Payback unknown.",
+        "a": "Give what I can lose. Skip the payback talk.",
+        "b": "Get the payback plan clear first, then decide."
+      },
+      "scene": {
+        "prompt": "The cards recall the last time someone asked you to lend or cover money. What did you do?",
+        "options": [
+          "Sent it and never mentioned paying back.",
+          "Covered it with a vague \"pay me whenever.\"",
+          "Lent it with a clear \"by the 15th?\"",
+          "Said \"sorry, not this time.\""
+        ]
+      }
+    },
+    {
+      "id": "effort_vs_start",
+      "quick": {
+        "prompt": "The cards show a friend buying a home with their parents' help. They say they worked hard too.",
+        "a": "They did. Help doesn't erase the work.",
+        "b": "Sure, but say the head start out loud."
+      }
+    },
+    {
+      "id": "time_horizon",
+      "quick": {
+        "prompt": "Your fortune: an unexpected $300 lands. The best use is…",
+        "a": "Something fun I'll remember this month.",
+        "b": "Savings, or something I'll need later."
+      },
+      "scene": {
+        "prompt": "The cards recall your last surprise money: a refund, birthday cash, a bonus. Where did most of it go?",
+        "options": [
+          "Spent it on a plan or treat within a week.",
+          "Had some fun, set the rest aside.",
+          "Saved most of it, bought one small treat.",
+          "Paid bills or saved it. Barely felt it."
+        ]
+      }
+    },
+    {
+      "id": "favorite_premium",
+      "quick": {
+        "prompt": "The cards show two versions that do the same job. You love the pricier one. Your budget allows it.",
+        "a": "Buy the one I love. The feeling counts.",
+        "b": "Get the cheaper one. Spend the difference elsewhere."
+      },
+      "scene": {
+        "prompt": "Your past card: the last time you chose between a pricier favorite and a cheaper version. What did you get?",
+        "options": [
+          "Bought the favorite. No regrets.",
+          "Got the favorite after a week of deciding.",
+          "Picked the cheaper one. Still think about the other.",
+          "Went cheaper without thinking twice."
+        ]
+      }
+    },
+    {
+      "id": "pay_or_passion",
+      "quick": {
+        "prompt": "Two paths, both cover your needs. One pays more but bores you. One pays less, but you'd enjoy it.",
+        "teenPrompt": "Two part-time jobs. One pays more but bores you. One pays less, but you'd enjoy it.",
+        "a": "Take the money. Enjoy life outside it.",
+        "b": "Pick the one I'd enjoy. Live a bit leaner."
+      }
+    },
+    {
+      "id": "risk_style",
+      "quick": {
+        "prompt": "Your fortune: six months of cushion, a steady option, and a risky thing you really want to try.",
+        "a": "Stay steady. Test the new thing on the side.",
+        "b": "Give it six real months, even if the cushion shrinks."
+      },
+      "scene": {
+        "prompt": "The cards recall the last new thing you wanted to start: a project, club, side hustle. How did it begin?",
+        "options": [
+          "Dipped a toe in, kept everything else the same.",
+          "Started small, went bigger once it worked.",
+          "Jumped in and figured it out as I went.",
+          "Still planning it. My notes app is full."
+        ]
+      }
+    },
+    {
+      "id": "success_meaning",
+      "quick": {
+        "prompt": "The cards whisper about five years from now. You'd rather hear…",
+        "a": "\"You built something people know about.\"",
+        "b": "\"Your life looks exactly how you wanted.\""
+      },
+      "scene": {
+        "prompt": "The cards recall the last time you were offered more responsibility: a lead role, captain, organizer. What did you do?",
+        "options": [
+          "Took it before they finished asking.",
+          "Said yes if something came off my plate.",
+          "Asked for time, then said no.",
+          "Declined right away. I like my life this size."
+        ]
+      }
+    },
+    {
+      "id": "stay_late",
+      "quick": {
+        "prompt": "The cards see your part done. Someone asks you to stay late on something that could wait.",
+        "a": "Stay. We cover for each other.",
+        "b": "Say I have plans, and help tomorrow."
+      }
+    },
+    {
+      "id": "ai_apology",
+      "quick": {
+        "prompt": "The cards show an apology to you, worded with AI help. They meant it and followed through.",
+        "a": "Still counts. Meaning it and changing is what matters.",
+        "b": "For something big, I want their own words."
+      }
+    },
+    {
+      "id": "ai_companion",
+      "quick": {
+        "prompt": "The cards show an AI companion making someone feel understood. They still have real friends and a life.",
+        "a": "That comfort can be real, person or not.",
+        "b": "Useful, sure. But not a close relationship."
+      }
+    },
+    {
+      "id": "posting_person",
+      "quick": {
+        "prompt": "The cards show someone new making you happy: a partner or a new best friend. Posting them is…",
+        "a": "Obvious. I'm proud of them.",
+        "b": "Not my thing. My feed isn't where that lives."
+      }
+    },
+    {
+      "id": "explore_or_root",
+      "quick": {
+        "prompt": "The cards offer a year living somewhere new. Your life is good, and the risks are manageable.",
+        "a": "Go. The unknown is the point.",
+        "b": "Stay and go deeper with what I have."
+      },
+      "scene": {
+        "prompt": "Your past card: the last time you could try something unfamiliar and hard: a trip, class, group. What happened?",
+        "options": [
+          "Went for it, no research.",
+          "Researched a lot, then went for it.",
+          "Thought about it, then stuck with what I know.",
+          "Passed. I like my usual."
+        ]
+      }
+    },
+    {
+      "id": "life_timeline",
+      "quick": {
+        "prompt": "The stars say people your age are locking things in: careers, partners, cities.",
+        "teenPrompt": "The stars say people your age are locking things in: majors, paths, friend groups.",
+        "a": "Set a few long-term directions. Milestones calm me down.",
+        "b": "Keep exploring. Their timeline isn't mine."
+      }
+    },
+    {
+      "id": "self_or_others",
+      "quick": {
+        "prompt": "The cards grant free time for one big thing: your own hobby and growth, or a volunteer project.",
+        "a": "My own hobby and growth, first.",
+        "b": "The volunteer project that helps people."
+      }
+    },
+    {
+      "id": "looking_put_together",
+      "quick": {
+        "prompt": "The cards see a look-good routine taking an hour a day. It makes you happy; nobody requires it.",
+        "a": "Worth it. Looking good feels good.",
+        "b": "Simplify it and spend the hour elsewhere."
+      }
+    },
+    {
+      "id": "repair_or_release",
+      "quick": {
+        "prompt": "The cards show a friendship going quiet and a little awkward. Your move?",
+        "a": "Talk it out, even if it's awkward.",
+        "b": "Let it go. Some friendships just fade."
+      },
+      "scene": {
+        "prompt": "The cards recall the last friendship or group chat that went quiet on your side. What did you do?",
+        "options": [
+          "Said something, and we talked it out.",
+          "Dropped hints and hoped it would sort itself.",
+          "Let it fade on its own.",
+          "Left or muted it and didn't look back."
+        ]
+      }
+    },
+    {
+      "id": "home_split",
+      "quick": {
+        "prompt": "The cards see you sharing a home with someone. Chores get split…",
+        "a": "By what each of us actually likes doing.",
+        "b": "Evenly, down the middle, every chore."
+      }
+    },
+    {
+      "id": "marriage_meaning",
+      "quick": {
+        "prompt": "The cards turn to marriage. Where do you stand?",
+        "a": "It matters to me.",
+        "b": "Life can be great without it."
+      }
+    },
+    {
+      "id": "kids_someday",
+      "quick": {
+        "prompt": "The cards turn to kids. Looking ahead, you'd say…",
+        "a": "I want that someday.",
+        "b": "My ideal life might not include kids."
+      }
+    },
+    {
+      "id": "wedding_budget",
+      "quick": {
+        "prompt": "Picture your wedding someday. The cards ask where the money goes.",
+        "a": "The big celebration. All our people there.",
+        "b": "Small, and we keep the money."
+      }
+    }
+  ],
+  "sealed": [
+    {
+      "id": "H01",
+      "prompt": "The cards show your group chat: who can help someone move Saturday, your only free day? First reply?",
+      "options": [
+        "\"I'm in.\"",
+        "\"Mornings work for me.\"",
+        "\"Can't lift, but take my car.\"",
+        "\"Sorry, can't this time. Good luck!\""
+      ]
+    },
+    {
+      "id": "H02",
+      "prompt": "The cards show a $1,200 group trip house. One room is much bigger than the rest. What do you propose?",
+      "options": [
+        "Split it evenly. Simple.",
+        "Even split, and the big room buys dinner.",
+        "Charge the big room a bit more.",
+        "Price every room by size."
+      ]
+    },
+    {
+      "id": "H03",
+      "prompt": "Your closest person wants all of Sunday together. The cards know you'd planned a solo day.",
+      "options": [
+        "Move my plan. Sunday's theirs.",
+        "Half the day together, half mine.",
+        "Keep my plan, offer the evening.",
+        "Stick to my solo day. Another Sunday."
+      ]
+    },
+    {
+      "id": "H04",
+      "prompt": "The stars announce a surprise show by your favorite artist this week. $180. Budget's fine, not loose.",
+      "options": [
+        "Bought before finishing the announcement.",
+        "Checked my budget twice, then bought.",
+        "Waiting for resale prices.",
+        "Passing. I'll catch the next tour."
+      ]
+    },
+    {
+      "id": "H05",
+      "prompt": "A friend shows you a haircut they got an hour ago. The cards say it isn't great.",
+      "options": [
+        "\"Honestly? Not your best. Here's a fix.\"",
+        "\"Love the color. The cut needs a week.\"",
+        "\"It'll grow on me!\"",
+        "\"Obsessed.\""
+      ]
+    },
+    {
+      "id": "H06",
+      "prompt": "The cards offer you the lead on a group project: more credit, more work, and it overlaps a trip.",
+      "options": [
+        "Take the lead. The trip can move.",
+        "Accept, and shorten the trip.",
+        "Ask for a smaller role.",
+        "Pass. I'm going on the trip."
+      ]
+    },
+    {
+      "id": "H07",
+      "prompt": "The cards show a friend bragging about ghosting someone who was really kind to them.",
+      "options": [
+        "Laugh along, bring it up gently later.",
+        "Change the subject.",
+        "\"That's kind of harsh, no?\"",
+        "\"Not cool. You should message them.\""
+      ]
+    },
+    {
+      "id": "H08",
+      "prompt": "The cards grant a free weekend and a free train ticket anywhere you've never been.",
+      "options": [
+        "Pick a random city and go.",
+        "Go, after a night of planning.",
+        "Save it for somewhere familiar.",
+        "Give the ticket away and enjoy home."
+      ]
+    }
+  ],
+  "notes": "The Oracle puts all the fortune-teller flavor in the prompt frame (\"The cards recall\", \"Your past card\", \"I see\", \"The stars say\") and none in the options, which stay plain first-person actions a person would text a friend. Every scene keeps the \"last time\" framing, so the cards are remembering a real event, not inventing one; immersive \"the cards show\" setups are used only in quick takes and sealed checks. Options keep bank.js meaning, level and order (including the out-of-order celebration_budget and the null options in fairness_rule and risk_style); I started from the approved Make it fun and Oracle rows in PILOT-VOICES-V1 where they existed, gave each option one true detail of similar weight (ate rice all week, ordered a salad, notes app is full) so no pole reads as the healthy one, and changed first words so options scan apart. Emotion-coded options keep their private feeling: felt bad (guilt), still liked me (sting), make sure they were okay (worry), ordered a salad (resentment), still think about the other (longing). Trait words are avoided (limits, not boundaries). The three 18+ tags use neutral wording with no partner gender. Watch items for the judges: the tarot frame repeats across 15 scenes and may tire by the end, so the build could rotate openers or drop the frame on every other item; ai_companion B says \"close relationship\" in place of \"intimate life\" to stay teen-safe."
+}

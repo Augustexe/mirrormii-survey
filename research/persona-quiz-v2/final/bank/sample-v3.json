@@ -1,0 +1,2498 @@
+[
+  {
+    "id": "C1-100",
+    "type": "bet",
+    "chapter": 1,
+    "sq": "SQ-T16-2",
+    "world": "everyday",
+    "prompt": "Genii bets you know your personal best at something, down to the exact number.",
+    "options": [
+      {
+        "t": "Guilty. 412. Please ask me how.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 2
+          }
+        ],
+        "emotion": "pride"
+      },
+      {
+        "t": "Guilty. Nobody knows the number but me.",
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Never. I stop counting on purpose. Freedom.",
+        "axes": {
+          "L2": -1
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 2
+          }
+        ],
+        "emotion": "relief"
+      },
+      {
+        "t": "Never. I didn't know I had a personal best.",
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Genii guesses that you know your personal best at something, down to the exact number. Is that true?",
+      "options": [
+        "Yes. It is 412, and I would love to tell you about it.",
+        "Yes, but nobody knows the number except me.",
+        "No. I stop counting on purpose, and it feels freeing.",
+        "No. I did not even know I had a personal best."
+      ]
+    },
+    "fp": {
+      "trigger": "Genii guesses you know your personal best",
+      "setting": "your own quiet tally",
+      "ask": "do you keep a tally of wins",
+      "who": "just you",
+      "stakes": "wanting your count seen"
+    },
+    "mask": "looks like a phone confession; measures keeping a quiet tally of wins and wanting it seen (T16, L2)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "C1-92",
+    "type": "bet",
+    "chapter": 1,
+    "prompt": "Prove me wrong: there's a friend you won't text first until they text you. You're counting.",
+    "options": [
+      {
+        "t": "Guilty. It's 4 to 1. Their move.",
+        "tags": [
+          {
+            "id": "T02B",
+            "s": 2
+          }
+        ],
+        "emotion": "resentment"
+      },
+      {
+        "t": "Guilty. Held out a week, then caved with a meme.",
+        "tags": [
+          {
+            "id": "T02B",
+            "s": 1
+          }
+        ],
+        "emotion": "cringe"
+      },
+      {
+        "t": "Wrong. I text whoever I miss. No math involved.",
+        "tags": [
+          {
+            "id": "T02A",
+            "s": 2
+          }
+        ],
+        "emotion": "warmth"
+      },
+      {
+        "t": "Wrong. I forget to text everyone, equally.",
+        "tags": [
+          {
+            "id": "T02A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "I'm the one who never texts first. Someone's counting me.",
+        "circumstance": true
+      }
+    ],
+    "heart": {
+      "prompt": "Is there a friend you will not text first until they text you, and you are keeping count?",
+      "options": [
+        "Yes. The count is four to one, so it is their turn.",
+        "Yes. I held out for a week, then sent them something anyway.",
+        "No. I text whoever I miss, without counting.",
+        "No. I forget to text everyone, equally.",
+        "I am usually the one who does not text first. Someone may be counting me."
+      ]
+    },
+    "fp": {
+      "trigger": "a friend owes you the first text",
+      "setting": "phone, an ongoing standoff",
+      "ask": "do you keep the count",
+      "who": "a friend",
+      "stakes": "pride versus the friendship going quiet"
+    },
+    "mask": "looks like a texting confession; measures keeping count of who reaches out first (T02) from a thing actually done",
+    "ae": [
+      "A",
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T02-2",
+    "world": "everyday"
+  },
+  {
+    "id": "C1-110",
+    "type": "scenario",
+    "chapter": 1,
+    "prompt": "Genii curses your phone: it buzzes whenever anyone nearby needs a hand. Muting it floats an \"unavailable\" badge over your head. Everyone can see it.",
+    "options": [
+      {
+        "t": "Keep it on. Already jogging before the buzz ends.",
+        "tags": [
+          {
+            "id": "T23A",
+            "s": 2
+          }
+        ],
+        "emotion": "pride"
+      },
+      {
+        "t": "Answer every buzz. Keep a list of who owes me.",
+        "tags": [
+          {
+            "id": "T23A",
+            "s": 1
+          },
+          {
+            "id": "T08B",
+            "s": 1
+          }
+        ],
+        "emotion": "resentment"
+      },
+      {
+        "t": "Keep it on. Wait ten seconds. Someone closer might go.",
+        "tags": [
+          {
+            "id": "T23B",
+            "s": 1
+          }
+        ],
+        "emotion": "guilt"
+      },
+      {
+        "t": "Mute it. Wear the badge. My evenings are spoken for.",
+        "tags": [
+          {
+            "id": "T23B",
+            "s": 2
+          }
+        ],
+        "emotion": "cringe"
+      }
+    ],
+    "heart": {
+      "prompt": "Genii puts a spell on your phone: it buzzes whenever anyone nearby needs help. If you mute it, a sign saying \"unavailable\" appears above you for everyone to see.",
+      "options": [
+        "I keep it on and I am already moving before it stops buzzing.",
+        "I answer every call for help and keep track of who owes me.",
+        "I keep it on, but I wait a few seconds in case someone closer goes.",
+        "I mute it and accept the sign. My evenings are already taken."
+      ]
+    },
+    "fp": {
+      "trigger": "phone buzzes when anyone nearby needs help",
+      "setting": "cursed phone, public badge",
+      "ask": "run to help, wait or mute",
+      "who": "strangers and neighbors",
+      "stakes": "your evenings versus your reputation"
+    },
+    "mask": "looks like a cursed-phone gag; measures moving first when hands are needed versus holding back (T23), with keeping score (T08B)",
+    "ae": [
+      "A",
+      "C",
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T23-2",
+    "world": "absurd"
+  },
+  {
+    "id": "C2-91",
+    "type": "scenario",
+    "chapter": 2,
+    "prompt": "Ten years asleep, thanks to one cursed nap. Your phone: 212 texts from your neighbor. Zero from your best friend.",
+    "options": [
+      {
+        "t": "Call my best friend first. That's just how we are.",
+        "tags": [
+          {
+            "id": "T02A",
+            "s": 2
+          }
+        ],
+        "emotion": "warmth"
+      },
+      {
+        "t": "Answer all 212 first. My best friend can wait ten years.",
+        "tags": [
+          {
+            "id": "T02B",
+            "s": 2
+          }
+        ],
+        "emotion": "resentment"
+      },
+      {
+        "t": "Text my best friend: \"Zero? Really? Anyway, hi.\"",
+        "tags": [
+          {
+            "id": "T02B",
+            "s": 1
+          }
+        ],
+        "emotion": "sting"
+      },
+      {
+        "t": "Ten years is ten years. Nobody owes anybody a text.",
+        "tags": [
+          {
+            "id": "T02A",
+            "s": 1
+          }
+        ],
+        "emotion": "relief"
+      }
+    ],
+    "heart": {
+      "prompt": "A cursed nap kept you asleep for ten years. Your phone shows 212 texts from your neighbor and none from your best friend.",
+      "options": [
+        "I call my best friend first. Silence is just how we are.",
+        "I answer all 212 first. My best friend can wait.",
+        "I text my best friend: none at all? Anyway, hello.",
+        "Ten years is a long time. Nobody owes anyone a message."
+      ]
+    },
+    "fp": {
+      "trigger": "waking from a ten-year magic sleep",
+      "setting": "your phone after a decade",
+      "ask": "who you answer first",
+      "who": "silent best friend, chatty neighbor",
+      "stakes": "the friendship versus your pride"
+    },
+    "mask": "looks like a fairy-tale wake-up; measures whether a quiet stretch means fine or fading (T02)",
+    "ae": [
+      "A",
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T02-1",
+    "world": "absurd"
+  },
+  {
+    "id": "C2-100",
+    "type": "scenario",
+    "chapter": 2,
+    "sq": "SQ-T10-1",
+    "world": "absurd",
+    "prompt": "A friendship repair shop opens next door. Any friendship fixed, but both people stay locked in until it's done. Your old best friend just booked you both.",
+    "options": [
+      {
+        "t": "Walk in with two sleeping bags. However long it takes.",
+        "tags": [
+          {
+            "id": "T10A",
+            "s": 2
+          }
+        ],
+        "emotion": "longing"
+      },
+      {
+        "t": "Go in, but I'm bringing a list. Page one: them.",
+        "axes": {
+          "R2": 1
+        },
+        "tags": [
+          {
+            "id": "T10A",
+            "s": 1
+          }
+        ],
+        "emotion": "resentment"
+      },
+      {
+        "t": "Cancel the booking. Some friendships end for a reason.",
+        "tags": [
+          {
+            "id": "T10B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Leave a thank-you card on the shop door. Walk on.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T10B",
+            "s": 1
+          }
+        ],
+        "emotion": "warmth"
+      }
+    ],
+    "heart": {
+      "prompt": "A shop opens next door that can repair any friendship, but both people stay locked inside until it is fixed. Your former best friend has just booked a time for the two of you.",
+      "options": [
+        "I go in prepared to stay as long as it takes.",
+        "I go in, but I bring a list of everything they did.",
+        "I cancel. Some friendships end for a reason.",
+        "I leave a thank-you card at the door and keep walking."
+      ]
+    },
+    "fp": {
+      "trigger": "magic shop offers to fix a broken friendship",
+      "setting": "repair shop, locked in until fixed",
+      "ask": "go in and repair or walk away",
+      "who": "former best friend",
+      "stakes": "a lost friendship back, at a cost"
+    },
+    "mask": "looks like a fairy tale; measures repairing a rocky bond versus letting it go (T10)",
+    "ae": [
+      "A",
+      "B",
+      "E"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "C2-90",
+    "type": "reply",
+    "chapter": 2,
+    "prompt": "Noor is cutting a documentary about your friend group. Everyone else already sent their old chats.",
+    "thread": [
+      {
+        "from": "Noor",
+        "text": "the doc is SO close. just need our old chats from you"
+      },
+      {
+        "from": "Noor",
+        "text": "easiest if I borrow your phone at brunch and scroll?"
+      }
+    ],
+    "options": [
+      {
+        "t": "\"Take it. Scroll back to the very beginning. Enjoy.\"",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T01A",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "\"I'll pick the screenshots. The phone stays with me.\"",
+        "axes": {
+          "R1": -1
+        },
+        "tags": [
+          {
+            "id": "T01B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "\"Deal, if I get to see everyone else's first.\"",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T01A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "\"Love you. Cut me from the film.\"",
+        "axes": {
+          "R1": -2
+        },
+        "tags": [
+          {
+            "id": "T01B",
+            "s": 2
+          }
+        ],
+        "emotion": "guilt"
+      }
+    ],
+    "heart": {
+      "prompt": "Your friend Noor is making a documentary about your friend group, and everyone else has already sent their old chats.",
+      "thread": [
+        {
+          "from": "Noor",
+          "text": "The documentary is nearly done. I just need our old chats from you."
+        },
+        {
+          "from": "Noor",
+          "text": "Would it be easiest if I borrowed your phone at brunch and scrolled through?"
+        }
+      ],
+      "options": [
+        "I tell them to take my phone and scroll back as far as they like.",
+        "I say I will choose the screenshots myself, and my phone stays with me.",
+        "I say yes, if I can see what everyone else sent first.",
+        "I say I love them, and ask to be left out of the film."
+      ]
+    },
+    "fp": {
+      "trigger": "friend asks for your phone for a film",
+      "setting": "friend group documentary",
+      "ask": "hand over the phone or curate it",
+      "who": "friend making the film",
+      "stakes": "old chats seen versus being cut from the story"
+    },
+    "mask": "looks like a fun group project; measures an open phone versus a private one when someone warm asks (T01), with shared versus separate (R1)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T01-2",
+    "world": "unusual"
+  },
+  {
+    "id": "C3-80",
+    "type": "scenario",
+    "chapter": 3,
+    "prompt": "A wish went sideways: you and your person now share every dream, every night. Your person loves it. Genii can undo it by sunrise.",
+    "options": [
+      {
+        "t": "Keep it. We share a pillow already. Why not the dreams?",
+        "axes": {
+          "R1": 2
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 2
+          }
+        ],
+        "emotion": "warmth"
+      },
+      {
+        "t": "Undo it. My dreams are the one room nobody enters.",
+        "axes": {
+          "R1": -2
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 2
+          }
+        ],
+        "emotion": "relief"
+      },
+      {
+        "t": "Keep it one week, then bargain for dream-free weekends.",
+        "axes": {
+          "R1": -1
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Keep it, mostly to see what they dream about me.",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 1
+          }
+        ],
+        "emotion": "longing"
+      }
+    ],
+    "heart": {
+      "prompt": "Because of a wish that went wrong, you and your person now share the same dreams every night. Your person loves it. Genii can undo it before sunrise.",
+      "options": [
+        "I keep it. We already share so much, and dreams can be part of that.",
+        "I undo it. My dreams are the one place that is only mine.",
+        "I keep it for a week, then ask for weekends without it.",
+        "I keep it, partly to find out what they dream about me."
+      ]
+    },
+    "fp": {
+      "trigger": "wish makes you share dreams",
+      "setting": "sleep, Genii magic",
+      "ask": "keep or undo shared dreams",
+      "who": "your person",
+      "stakes": "your inner room versus their delight"
+    },
+    "mask": "looks like a magic mishap; measures close as fully shared versus close with a room of your own (R1, T09)",
+    "ae": [
+      "B",
+      "D"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-R1-1",
+    "world": "absurd"
+  },
+  {
+    "id": "C3-91",
+    "type": "scenario",
+    "chapter": 3,
+    "prompt": "Elevator stuck between floors 14 and 15. Two hours so far. Your ex uses the time to apologize. Properly.",
+    "options": [
+      {
+        "t": "\"Thank you. Coffee when we're out? Let's actually talk.\"",
+        "tags": [
+          {
+            "id": "T08A",
+            "s": 2
+          }
+        ],
+        "emotion": "warmth"
+      },
+      {
+        "t": "\"Accepted.\" Then study the buttons for another hour.",
+        "tags": [
+          {
+            "id": "T08B",
+            "s": 2
+          }
+        ],
+        "emotion": "cringe"
+      },
+      {
+        "t": "Forgive them. Unblock them. Keep them muted.",
+        "tags": [
+          {
+            "id": "T08B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Hug it out. Tell my friends we're cool now.",
+        "tags": [
+          {
+            "id": "T08A",
+            "s": 1
+          }
+        ],
+        "emotion": "relief"
+      }
+    ],
+    "heart": {
+      "prompt": "An elevator is stuck between floors, and it has been two hours. Your ex uses the time to apologize, properly.",
+      "options": [
+        "I thank them and suggest coffee once we are out, so we can really talk.",
+        "I say I accept it, then stare at the buttons for another hour.",
+        "I forgive them and unblock them, but keep them muted.",
+        "I hug them and tell my friends we are fine now."
+      ]
+    },
+    "fp": {
+      "trigger": "ex apologizes while trapped together",
+      "setting": "stuck elevator",
+      "ask": "let them back in or keep the chain on",
+      "who": "your ex",
+      "stakes": "reopening an old hurt versus closing it for good"
+    },
+    "mask": "looks like an awkward-ex scene; measures second chances versus keeping the receipts (T08)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T08-1",
+    "world": "unusual"
+  },
+  {
+    "id": "C3-101",
+    "type": "reply",
+    "chapter": 3,
+    "sq": "SQ-T09-2",
+    "world": "unusual",
+    "prompt": "Chess club has been your one night alone for three years. Then your person texts.",
+    "thread": [
+      {
+        "from": "Your person",
+        "text": "SURPRISE!! I joined your chess club. they just voted me president?? see you tonight"
+      }
+    ],
+    "options": [
+      {
+        "t": "\"My two loves, one room. Save me the seat next to yours.\"",
+        "axes": {
+          "R1": 2
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "\"Congrats! Can I keep one night that's just mine, though?\"",
+        "axes": {
+          "R2": 1
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 2
+          }
+        ],
+        "emotion": "guilt"
+      },
+      {
+        "t": "\"So proud!\" Then quietly join a club across town.",
+        "axes": {
+          "R1": -1,
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "\"Amazing! Thursdays next? I want in on yours too.\"",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Chess club has been your one night to yourself for three years. Then your person sends you a message.",
+      "thread": [
+        {
+          "from": "Your person",
+          "text": "Surprise. I joined your chess club, and they have just voted me president. See you tonight."
+        }
+      ],
+      "options": [
+        "I tell them I love having both in one room and ask them to save me a seat.",
+        "I congratulate them and ask whether I can still keep one night that is only mine.",
+        "I tell them I am proud of them, and then I quietly find another club across town.",
+        "I tell them it is wonderful and ask to join their Thursday plans too."
+      ]
+    },
+    "fp": {
+      "trigger": "your person joins your solo club and becomes its president",
+      "setting": "your weekly chess night",
+      "ask": "share your one night or protect it",
+      "who": "your person",
+      "stakes": "the only thing that is yours"
+    },
+    "mask": "looks like a cute surprise; measures keeping a corner of your own inside love (T09) and whether you say so (R2)",
+    "ae": [
+      "A",
+      "B",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "C3-111",
+    "type": "role",
+    "chapter": 3,
+    "prompt": "Your person's family starts a group chat called \"THE WEDDING.\" You're not engaged. It has 41 members. In there, you're the...",
+    "options": [
+      {
+        "t": "Guest-list builder. \"Add the second cousins. And their neighbors.\"",
+        "tags": [
+          {
+            "id": "T21A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Hype machine. Hearts every centerpiece idea within seconds.",
+        "tags": [
+          {
+            "id": "T21A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Negotiator. \"Fifty guests. Each side picks twenty-five.\"",
+        "tags": [
+          {
+            "id": "T21A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Bouncer. \"Just us two. Everyone else gets a postcard.\"",
+        "tags": [
+          {
+            "id": "T21B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Escape artist. Quietly pricing two one-way tickets.",
+        "tags": [
+          {
+            "id": "T21B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Editor. Removes 30 members. Nobody notices for a week.",
+        "tags": [
+          {
+            "id": "T21B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Your person's family creates a group chat called \"The Wedding.\" You are not engaged, and it already has 41 members. In that chat, which one are you?",
+      "options": [
+        "The one adding more people, second cousins and their neighbors too.",
+        "The one reacting to every decoration idea right away.",
+        "The one proposing fifty guests, twenty-five from each side.",
+        "The one saying it will be just the two of us, with postcards for everyone else.",
+        "The one quietly looking at two one-way tickets.",
+        "The one who removes 30 members and waits to see if anyone notices."
+      ]
+    },
+    "fp": {
+      "trigger": "family opens a wedding chat before any engagement",
+      "setting": "41-member family group chat",
+      "ask": "who gets to be there",
+      "who": "your person's whole family",
+      "stakes": "a day for everyone versus a day for two"
+    },
+    "mask": "looks like family chat chaos; measures wanting everyone there versus keeping the big moment small (T21)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "intimate",
+    "sq": "SQ-T21-2",
+    "world": "unusual"
+  },
+  {
+    "id": "C3-81",
+    "type": "bet",
+    "chapter": 3,
+    "prompt": "Shower thoughts, Genii edition: you've won a whole argument with your person in there. They never heard a word of it.",
+    "options": [
+      {
+        "t": "Guilty. Then said none of it. Ever.",
+        "axes": {
+          "R2": -2
+        },
+        "tags": [
+          {
+            "id": "T08B",
+            "s": 1
+          }
+        ],
+        "emotion": "resentment"
+      },
+      {
+        "t": "Guilty. Delivered the best line to their face that night.",
+        "axes": {
+          "R2": 1
+        },
+        "emotion": "pride"
+      },
+      {
+        "t": "Guilty. Still having it. Same argument, round forty.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T08B",
+            "s": 2
+          }
+        ],
+        "emotion": "irritation"
+      },
+      {
+        "t": "Never. If it bugs me, they hear it the first time.",
+        "axes": {
+          "R2": 2
+        }
+      },
+      {
+        "t": "Guilty. It stopped mattering before I'd dried off.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T08A",
+            "s": 1
+          }
+        ],
+        "emotion": "relief"
+      }
+    ],
+    "heart": {
+      "prompt": "Have you ever had a whole argument with your person in your head, in the shower, that they never heard?",
+      "options": [
+        "Yes, and I never said any of it to them.",
+        "Yes, and I said the best part to them that same night.",
+        "Yes, and I am still having it. It keeps coming back.",
+        "No. If something bothers me, I tell them the first time.",
+        "Yes, and by the time I dried off it no longer mattered."
+      ]
+    },
+    "fp": {
+      "trigger": "rehearsed argument never said aloud",
+      "setting": "the shower",
+      "ask": "did you ever say it",
+      "who": "your person",
+      "stakes": "a scene versus quiet resentment"
+    },
+    "mask": "looks like a funny confession; measures naming what crossed a line versus absorbing it (R2), with holding on to it (T08B) against letting it go (T08A)",
+    "ae": [
+      "A",
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-R2-2",
+    "world": "everyday"
+  },
+  {
+    "id": "C4-102",
+    "type": "scenario",
+    "chapter": 4,
+    "sq": "SQ-T14-1",
+    "world": "unusual",
+    "prompt": "An auction house mistakes you for a bidder. Next lot: the vintage jacket you've wanted for six years. Bidding just passed your rent. Thirty seconds.",
+    "options": [
+      {
+        "t": "Paddle up. Rent can be late once.",
+        "tags": [
+          {
+            "id": "T14A",
+            "s": 2
+          },
+          {
+            "id": "T13A",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "One bid at my limit. Then let it go.",
+        "tags": [
+          {
+            "id": "T14A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Paddle down. Six years of wanting it was plenty.",
+        "tags": [
+          {
+            "id": "T14B",
+            "s": 2
+          }
+        ],
+        "emotion": "longing"
+      },
+      {
+        "t": "Slip out. I'll find a cheaper one that's almost it.",
+        "tags": [
+          {
+            "id": "T14B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "An auction house mistakes you for a bidder. The next item is the vintage jacket you have wanted for six years, and the bidding has just passed your rent. You have thirty seconds.",
+      "options": [
+        "I raise my paddle. Rent can be late this once.",
+        "I bid once at my limit, and then I let it go.",
+        "I keep my paddle down. Six years of wanting it was enough.",
+        "I slip out and look for a cheaper one that is nearly the same."
+      ]
+    },
+    "fp": {
+      "trigger": "mistaken for a bidder on your dream object",
+      "setting": "auction room, thirty-second window",
+      "ask": "overpay for the thing you love",
+      "who": "you and a room of strangers",
+      "stakes": "rent versus the one you've wanted for years"
+    },
+    "mask": "looks like a movie moment; measures paying extra for the thing you love versus settling for less (T14)",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "C4-82",
+    "type": "others",
+    "chapter": 4,
+    "prompt": "$2,400, stuffed inside the secondhand couch you and four roommates bought. Jae splits it by who's short on rent, not five ways. First thought?",
+    "options": [
+      {
+        "t": "Five ways. Couch money isn't a need-based program.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T12A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Right call. Whoever's short on rent gets more.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T12B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Who made Jae the judge of who's short?",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ],
+        "emotion": "irritation"
+      },
+      {
+        "t": "Fine, as long as nobody learns who got the most.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T12B",
+            "s": 1
+          }
+        ],
+        "emotion": "worry"
+      }
+    ],
+    "heart": {
+      "prompt": "You and four roommates find $2,400 inside a secondhand couch you bought together. Your roommate Jae divides it by who is short on rent, instead of equally. What is your first thought?",
+      "options": [
+        "It should be five equal shares. Found money is not about need.",
+        "That is right. Whoever is short on rent should get more.",
+        "Who decided Jae gets to judge who is short?",
+        "It is fine, as long as nobody learns who got the most."
+      ]
+    },
+    "fp": {
+      "trigger": "found cash split by need",
+      "setting": "shared apartment, secondhand couch",
+      "ask": "equal shares or by need",
+      "who": "four roommates",
+      "stakes": "fairness and money between housemates"
+    },
+    "mask": "looks like a lucky find; measures fair as the same share for all versus what each person needs (L3, T12)",
+    "ae": [
+      "C",
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-L3-2",
+    "world": "unusual"
+  },
+  {
+    "id": "C4-100",
+    "type": "others",
+    "chapter": 4,
+    "sq": "SQ-T13-1",
+    "world": "absurd",
+    "prompt": "A leprechaun gave your friend a pot of gold: it doubles every year untouched, vanishes if touched. Day two, they spent a coin on pizza. First thought?",
+    "options": [
+      {
+        "t": "Icon. Best pizza anyone has ever eaten.",
+        "axes": {
+          "L1": -1
+        },
+        "tags": [
+          {
+            "id": "T13A",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Doubling forever. Traded for pizza. I need to lie down.",
+        "axes": {
+          "L1": 1
+        },
+        "tags": [
+          {
+            "id": "T13B",
+            "s": 2
+          }
+        ],
+        "emotion": "irritation"
+      },
+      {
+        "t": "Same. I'd have lasted a day and a half.",
+        "tags": [
+          {
+            "id": "T13A",
+            "s": 1
+          }
+        ],
+        "emotion": "cringe"
+      },
+      {
+        "t": "I'd have buried it and drawn myself a map.",
+        "axes": {
+          "L1": 1
+        },
+        "tags": [
+          {
+            "id": "T13B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "A leprechaun gives your friend a pot of gold that doubles every year it is left alone and disappears if anyone touches it. On the second day, they spend a coin on pizza. What is your first thought?",
+      "options": [
+        "Good for them. That was probably the best pizza of their life.",
+        "It could have doubled forever, and it went on pizza. I cannot believe it.",
+        "Honestly, I would have lasted about a day and a half myself.",
+        "I would have buried it somewhere and drawn myself a map."
+      ]
+    },
+    "fp": {
+      "trigger": "friend spends a magic doubling pot on day two",
+      "setting": "leprechaun's gold, pizza night",
+      "ask": "judge joy now versus letting it grow",
+      "who": "friend",
+      "stakes": "a treat today versus a fortune later"
+    },
+    "mask": "looks like a fable; measures spending found money now versus saving it (T13, L1)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "C5-111",
+    "type": "scenario",
+    "chapter": 5,
+    "prompt": "Blizzard. You run the only warm barn in town. The fair's 60 chocolate chip muffins booked it weeks ago. Now 60 cold chickens are at the door.",
+    "options": [
+      {
+        "t": "Muffins stay. They booked. Chickens get blankets and my apologies.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 2
+          }
+        ],
+        "emotion": "guilt"
+      },
+      {
+        "t": "Call the muffin baker. Nothing moves without permission.",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ],
+        "emotion": "worry"
+      },
+      {
+        "t": "Chickens in. Muffins out in the snow. Tell the fair later.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Squeeze the chickens between the muffin trays. Hope for the best.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      }
+    ],
+    "heart": {
+      "prompt": "There is a blizzard, and you run the only warm barn in town. The fair booked it weeks ago for 60 chocolate chip muffins. Now 60 cold chickens are at the door.",
+      "options": [
+        "The muffins stay because they booked first. The chickens get blankets and my apology.",
+        "I call the baker and move nothing until they agree.",
+        "The chickens come in, the muffins go out, and I tell the fair later.",
+        "I fit the chickens in between the muffin trays and hope it works."
+      ]
+    },
+    "fp": {
+      "trigger": "the booked space is needed by someone in need",
+      "setting": "only warm barn in a blizzard",
+      "ask": "honor the booking or the need",
+      "who": "a fair's muffins and 60 chickens",
+      "stakes": "a promise kept versus cold chickens"
+    },
+    "mask": "looks like pure nonsense; measures first-come fairness versus the right call for the case (T25, L3). The booking is the rule, the chickens are the need",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T25-2",
+    "world": "absurd"
+  },
+  {
+    "id": "C5-110",
+    "type": "reply",
+    "chapter": 5,
+    "prompt": "You quit your job to open a food truck. You were telling the family Sunday. Your cousin posted it first.",
+    "thread": [
+      {
+        "from": "Your parent",
+        "text": "Your cousin just showed us. A FOOD TRUCK??"
+      },
+      {
+        "from": "Your parent",
+        "text": "Absolutely not. Call me. Now."
+      }
+    ],
+    "options": [
+      {
+        "t": "\"Truck's bought. Free tacos for whoever stops yelling first.\"",
+        "tags": [
+          {
+            "id": "T19A",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Heart the message. Keep painting the truck.",
+        "tags": [
+          {
+            "id": "T19A",
+            "s": 1
+          }
+        ],
+        "emotion": "irritation"
+      },
+      {
+        "t": "\"Calling now. Bringing the menu and a spreadsheet.\"",
+        "tags": [
+          {
+            "id": "T19B",
+            "s": 1
+          }
+        ],
+        "emotion": "worry"
+      },
+      {
+        "t": "\"Okay. The truck's on hold until we all talk.\"",
+        "tags": [
+          {
+            "id": "T19B",
+            "s": 2
+          }
+        ],
+        "emotion": "sting"
+      },
+      {
+        "t": "Ask my sibling to call them first. Soften the landing.",
+        "tags": [
+          {
+            "id": "T19B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "You left your job to open a food truck and planned to tell your family on Sunday. Your cousin posted about it first, and now your parent is texting you.",
+      "thread": [
+        {
+          "from": "Your parent",
+          "text": "Your cousin just showed us. A food truck?"
+        },
+        {
+          "from": "Your parent",
+          "text": "Absolutely not. Please call me now."
+        }
+      ],
+      "options": [
+        "\"The truck is already bought. There are free tacos for whoever calms down first.\"",
+        "I react with a heart and go back to painting the truck.",
+        "\"I am calling now, and I am bringing the menu and the numbers.\"",
+        "\"Okay. I will put the truck on hold until we all talk.\"",
+        "I ask my sibling to call them first and soften it."
+      ]
+    },
+    "fp": {
+      "trigger": "family learns you quit from a cousin's post",
+      "setting": "family text thread, new food truck",
+      "ask": "stand firm, negotiate or pause",
+      "who": "a parent, with a cousin and sibling around",
+      "stakes": "a new venture versus family peace"
+    },
+    "mask": "looks like a family blowup; measures going ahead anyway versus negotiating or pausing for family (T19)",
+    "ae": [
+      "A",
+      "B",
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T19-2",
+    "world": "unusual"
+  },
+  {
+    "id": "C5-80",
+    "type": "scenario",
+    "chapter": 5,
+    "prompt": "A deal from Genii: world famous at one thing of your choosing. The catch? You never get a lazy Sunday again.",
+    "options": [
+      {
+        "t": "Deal. I'll rest when the documentary comes out.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 2
+          }
+        ],
+        "emotion": "pride"
+      },
+      {
+        "t": "No deal. Lazy Sundays are my one true talent.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Deal, but only for something I'd grind at anyway.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Pass. Good at it quietly beats famous and tired.",
+        "axes": {
+          "L2": -1
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 1
+          }
+        ],
+        "emotion": "longing"
+      }
+    ],
+    "heart": {
+      "prompt": "Genii offers to make you world famous at one thing of your choice. The catch is that you will never have a slow, lazy Sunday again.",
+      "options": [
+        "I accept. I can rest once the work is known.",
+        "I decline. My slow Sundays matter more to me.",
+        "I accept, but only for something I would work at anyway.",
+        "I pass. Being good at it quietly is enough for me."
+      ]
+    },
+    "fp": {
+      "trigger": "fame offered at the cost of rest",
+      "setting": "Genii's deal",
+      "ask": "trade every Sunday for fame",
+      "who": "just you",
+      "stakes": "a visible win versus free time"
+    },
+    "mask": "looks like a genie bargain; measures trading rest for a win people can see versus keeping your time (L2, T16)",
+    "ae": [
+      "D"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-L2-1",
+    "world": "absurd"
+  },
+  {
+    "id": "C5-81",
+    "type": "eyes",
+    "chapter": 5,
+    "prompt": "A reality show is casting you. Your oldest friend is your reference. The producer asks: \"Whose clock do they run on?\"",
+    "options": [
+      {
+        "t": "Keeps a quiet scoreboard of everyone's milestones.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Their own. Hasn't noticed anyone else moved.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Hears one friend's news, rewrites the five-year plan overnight.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Happy for everyone. Changes nothing. Sleeps great.",
+        "axes": {
+          "L2": -1
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Says \"not my race.\" Then checks the standings.",
+        "axes": {
+          "L2": 1
+        },
+        "emotion": "envy"
+      }
+    ],
+    "heart": {
+      "prompt": "A reality show is considering you, and your oldest friend is your reference. The producer asks whose timeline you live by. What does your friend say?",
+      "options": [
+        "They quietly keep track of where everyone is in life.",
+        "Their own. They have barely noticed anyone else moving.",
+        "One friend's news, and they rewrite their five-year plan overnight.",
+        "They are happy for everyone, change nothing and sleep well.",
+        "They say it is not their race, then check how it is going."
+      ]
+    },
+    "fp": {
+      "trigger": "producer asks your reference about your pace",
+      "setting": "reality show casting call",
+      "ask": "whose timeline you run on",
+      "who": "oldest friend and a producer",
+      "stakes": "your reputation on comparison"
+    },
+    "mask": "looks like a casting call; measures setting your clock by others versus keeping your own pace (L2, T17)",
+    "ae": [
+      "A",
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-L2-2",
+    "world": "unusual"
+  },
+  {
+    "id": "C5-91",
+    "type": "bet",
+    "chapter": 5,
+    "prompt": "Hunch: your phone holds a screenshot of something a coworker said. Not to share. Just in case.",
+    "options": [
+      {
+        "t": "Guilty. Dated, labeled, in its own folder.",
+        "tags": [
+          {
+            "id": "T08B",
+            "s": 2
+          }
+        ],
+        "emotion": "pride"
+      },
+      {
+        "t": "Guilty. Forgot why I saved it. Keeping it anyway.",
+        "tags": [
+          {
+            "id": "T08B",
+            "s": 1
+          }
+        ],
+        "emotion": "cringe"
+      },
+      {
+        "t": "Guilty. Deleted it the day we were good again.",
+        "tags": [
+          {
+            "id": "T08A",
+            "s": 1
+          }
+        ],
+        "emotion": "relief"
+      },
+      {
+        "t": "Never. Once it's sorted, it's gone from my head too.",
+        "tags": [
+          {
+            "id": "T08A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Nobody at work or school has earned one. Yet.",
+        "circumstance": true
+      }
+    ],
+    "heart": {
+      "prompt": "Do you have a screenshot of something a coworker said, saved not to share, but just in case?",
+      "options": [
+        "Yes. It is dated and filed in its own folder.",
+        "Yes. I forget why I saved it, but I am keeping it.",
+        "I did, and I deleted it once things were good again.",
+        "No. Once something is settled, I let it go completely.",
+        "Nobody at work or school has given me a reason yet."
+      ]
+    },
+    "fp": {
+      "trigger": "saving proof of a coworker's words",
+      "setting": "phone, work or school",
+      "ask": "do you keep the receipt",
+      "who": "a coworker",
+      "stakes": "protection versus letting it go"
+    },
+    "mask": "looks like office paranoia; measures forgive-and-forget versus forgive-and-file (T08) from a thing actually done",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T08-2",
+    "world": "everyday"
+  },
+  {
+    "id": "C6-80",
+    "type": "this_or_that",
+    "chapter": 6,
+    "round": "ch6-r80",
+    "prompt": "Your parent and your person fall into a lazy river. Both swim equally badly. One floatie. Everyone will be fine. Who gets it first?",
+    "options": [
+      {
+        "t": "My parent. The family I came from grabs first.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T19B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "My person. The family I'm building floats first.",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T19A",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Your parent and your person both fall into a slow river. They swim equally badly, and you have one float. Everyone will be fine. Who gets it first?",
+      "options": [
+        "My parent. The family I came from comes first.",
+        "My person. The family I am building comes first."
+      ]
+    },
+    "fp": {
+      "trigger": "parent and person both in the river",
+      "setting": "lazy river, one floatie",
+      "ask": "who you save first",
+      "who": "your parent and your person",
+      "stakes": "which bond comes first"
+    },
+    "mask": "looks like the classic river riddle; measures the family you came from versus the one you are building (R3, T19)",
+    "ae": [
+      "B",
+      "D"
+    ],
+    "privacy": "intimate",
+    "sq": "SQ-R3-3",
+    "world": "absurd"
+  },
+  {
+    "id": "C6-81",
+    "type": "this_or_that",
+    "chapter": 6,
+    "round": "ch6-r80",
+    "prompt": "A home robot shows up preset to run your future home exactly like the one you grew up in. Who cooks, who pays, all of it.",
+    "options": [
+      {
+        "t": "Keep the settings. It already knows where the good scissors go.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Factory reset. Our house, our settings, from zero.",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 2
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "A household robot arrives set to run your future home exactly the way the home you grew up in was run, including who cooks and who pays.",
+      "options": [
+        "I keep the settings. It already knows how things should go.",
+        "I reset it, and we decide every setting ourselves."
+      ]
+    },
+    "fp": {
+      "trigger": "robot preset to your childhood home's ways",
+      "setting": "your future home",
+      "ask": "keep or wipe the settings",
+      "who": "you and whoever you live with",
+      "stakes": "the family script versus your own design"
+    },
+    "mask": "looks like a gadget choice; measures running a home the way it was always run versus designing your own (R3, T20)",
+    "ae": [
+      "D"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-R3-2",
+    "world": "absurd"
+  },
+  {
+    "id": "C6-100",
+    "type": "pick_two",
+    "chapter": 6,
+    "sq": "SQ-T11-1",
+    "world": "unusual",
+    "prompt": "Street fair palm reader, your person right beside you: \"Three kids. I see it clearly.\" Pick the two thoughts closest to yours.",
+    "options": [
+      {
+        "t": "Three! We'll need a much bigger table.",
+        "axes": {
+          "R3": 1
+        },
+        "tags": [
+          {
+            "id": "T11A",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "One, maybe. Can I negotiate with the palm?",
+        "tags": [
+          {
+            "id": "T11A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Refund, please. Wrong palm, wrong life.",
+        "tags": [
+          {
+            "id": "T11B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "My future has a dog, a balcony, late dinners.",
+        "tags": [
+          {
+            "id": "T11B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Squeeze my person's hand. Hope they heard it too.",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T11A",
+            "s": 1
+          }
+        ],
+        "emotion": "longing"
+      },
+      {
+        "t": "Laugh. I'll write my own fortune, thanks.",
+        "axes": {
+          "R3": -1
+        },
+        "tags": [
+          {
+            "id": "T11B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "At a street fair, a palm reader studies your hand while your person stands beside you and says, \"Three children. I see it clearly.\" Choose the two thoughts closest to yours.",
+      "options": [
+        "Three sounds lovely. We would need a much bigger table.",
+        "Maybe one. I would like to negotiate with my palm.",
+        "I would ask for my money back. That is not my life.",
+        "The future I picture has a dog, a balcony and late dinners.",
+        "I squeeze my person's hand and hope they liked hearing it.",
+        "I laugh. I would rather write my own future."
+      ]
+    },
+    "fp": {
+      "trigger": "palm reader predicts three kids",
+      "setting": "street fair, your person beside you",
+      "ask": "react to a future with kids",
+      "who": "palm reader and your person",
+      "stakes": "the life you picture, said in front of them"
+    },
+    "mask": "looks like a fairground joke; measures whether raising kids is in the life you picture (T11, R3)",
+    "ae": [
+      "A",
+      "B",
+      "D"
+    ],
+    "privacy": "intimate"
+  },
+  {
+    "id": "C6-91",
+    "type": "others",
+    "chapter": 6,
+    "prompt": "The couple asked for an honest toast. Their best friend delivers: \"I give it two years. Prove me wrong.\" First thought?",
+    "options": [
+      {
+        "t": "They asked for honest. That was honest. Respect.",
+        "axes": {
+          "R2": 1
+        },
+        "tags": [
+          {
+            "id": "T07A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "True or not, that belongs in the car, not the mic.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 2
+          }
+        ],
+        "emotion": "cringe"
+      },
+      {
+        "t": "Right message, wrong wrapping. Lead with a story.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Finally, a toast worth listening to.",
+        "axes": {
+          "R2": 1
+        },
+        "tags": [
+          {
+            "id": "T07A",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      }
+    ],
+    "heart": {
+      "prompt": "The couple asked for an honest toast. Their best friend stands up and says, \"I give it two years. Prove me wrong.\" What is your first thought?",
+      "options": [
+        "They asked for honesty, and that was honest. I respect it.",
+        "True or not, that belongs in a private conversation, not a speech.",
+        "The message was fair, but it needed a softer way in.",
+        "Finally, a toast worth listening to."
+      ]
+    },
+    "fp": {
+      "trigger": "best friend's brutally honest wedding toast",
+      "setting": "wedding reception",
+      "ask": "raw truth or wrapped",
+      "who": "the couple and their best friend",
+      "stakes": "honesty versus the couple's big night"
+    },
+    "mask": "looks like wedding gossip; measures giving the asked-for truth raw versus wrapped (T07), with directness (R2)",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T07-1",
+    "world": "unusual"
+  },
+  {
+    "id": "C7-112",
+    "type": "scenario",
+    "chapter": 7,
+    "prompt": "You referee a soccer final between two kitten teams. The tiniest kitten keeps carrying the ball in its mouth. The crowd adores it. The other bench does not.",
+    "options": [
+      {
+        "t": "Yellow card. Tiny rules are still rules.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 2
+          }
+        ],
+        "emotion": "cringe"
+      },
+      {
+        "t": "Warn it once, gently. Next time, it's a card.",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Let it play. Nobody bought tickets for the rulebook.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Allow it, but only while its team is losing.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "You are the referee for a soccer final between two teams of kittens. The smallest kitten keeps carrying the ball in its mouth. The crowd loves it, and the other team's bench does not.",
+      "options": [
+        "I give a yellow card. A small player still follows the rules.",
+        "I give one gentle warning. The next time, it is a card.",
+        "I let it play. People came for the game, not the rulebook.",
+        "I allow it, but only while its team is behind."
+      ]
+    },
+    "fp": {
+      "trigger": "the smallest player keeps breaking a rule",
+      "setting": "kitten soccer final",
+      "ask": "call it or let it slide",
+      "who": "a tiny kitten, a crowd, the other bench",
+      "stakes": "a fair match versus the crowd's favorite"
+    },
+    "mask": "looks like a cute absurdity; measures a rule as a rule versus bending it for the player (T25, L3)",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T25-1",
+    "world": "absurd"
+  },
+  {
+    "id": "C7-100",
+    "type": "real",
+    "chapter": 7,
+    "sq": "SQ-T10-2",
+    "world": "everyday",
+    "prompt": "The club, team or crew you most recently stopped showing up to. What did you actually do?",
+    "options": [
+      {
+        "t": "Told them in person: \"I'm out. Thanks for everything.\"",
+        "axes": {
+          "R2": 2
+        },
+        "tags": [
+          {
+            "id": "T10A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Sent a long goodbye message. Muted the chat right after.",
+        "axes": {
+          "R2": 1
+        },
+        "tags": [
+          {
+            "id": "T10A",
+            "s": 1
+          }
+        ],
+        "emotion": "cringe"
+      },
+      {
+        "t": "Just stopped going. Nobody asked. I didn't explain.",
+        "axes": {
+          "R2": -2
+        },
+        "tags": [
+          {
+            "id": "T10B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Said \"busy lately\" three times till they stopped asking.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T10B",
+            "s": 1
+          }
+        ],
+        "emotion": "guilt"
+      },
+      {
+        "t": "Still a member on paper. Haven't been in a year.",
+        "tags": [
+          {
+            "id": "T10B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Think of the club, team or group you most recently stopped going to. What did you actually do?",
+      "options": [
+        "I told them in person that I was leaving, and thanked them.",
+        "I sent a long goodbye message, then muted the chat.",
+        "I stopped going. Nobody asked, and I did not explain.",
+        "I said I was busy until they stopped asking.",
+        "I am still a member on paper, but I have not been in a year."
+      ]
+    },
+    "fp": {
+      "trigger": "you drifted out of a group",
+      "setting": "club, team or crew",
+      "ask": "say it's over or let it fade",
+      "who": "a group you belonged to",
+      "stakes": "a clean ending versus a quiet one"
+    },
+    "mask": "looks like a memory; measures whether ending something needs a conversation (T10, R2)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "C7-90",
+    "type": "receipts",
+    "chapter": 7,
+    "prompt": "Something on your mind, too late to call anyone. Tap everything you've done lately:",
+    "options": [
+      {
+        "t": "Typed the whole worry out to an AI before telling anyone",
+        "tags": [
+          {
+            "id": "T03A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Called a friend anyway, apologizing as they picked up",
+        "tags": [
+          {
+            "id": "T03B",
+            "s": 1
+          },
+          {
+            "id": "T04A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Asked an AI whether my text sounded okay",
+        "tags": [
+          {
+            "id": "T03A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Wrote it in a notebook, no screen involved",
+        "tags": [
+          {
+            "id": "T03B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Sent a vague \"ugh\" to a group chat to see who bit",
+        "tags": [
+          {
+            "id": "T03B",
+            "s": 1
+          },
+          {
+            "id": "T04B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Asked an AI something I'd be embarrassed to ask a friend",
+        "tags": [
+          {
+            "id": "T03A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Waited for morning to say it to a person's face",
+        "tags": [
+          {
+            "id": "T03B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "None of these",
+        "none": true
+      }
+    ],
+    "heart": {
+      "prompt": "Think of times something was on your mind and it felt too late to call anyone. Which of these have you done lately?",
+      "options": [
+        "I typed the whole worry out to an AI before telling anyone.",
+        "I called a friend anyway, apologizing as they picked up.",
+        "I asked an AI whether my message sounded okay.",
+        "I wrote it in a notebook, with no screen involved.",
+        "I sent a vague message to a group chat to see who would reply.",
+        "I asked an AI something I would be embarrassed to ask a friend.",
+        "I waited for morning to say it to someone in person.",
+        "None of these"
+      ]
+    },
+    "fp": {
+      "trigger": "worry arrives too late to call",
+      "setting": "alone, late at night",
+      "ask": "machine or person first",
+      "who": "an AI, a friend, a notebook, a group",
+      "stakes": "being heard now versus by someone who knows you"
+    },
+    "mask": "looks like a late-night habits list; measures whether a machine or a person hears it first (T03), with a small circle versus a wide one (T04)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T03-2",
+    "world": "everyday"
+  },
+  {
+    "id": "C7-80",
+    "type": "pick_two",
+    "chapter": 7,
+    "pick": 2,
+    "prompt": "One spot left on a sailboat crossing the Atlantic. Leaves in 36 hours. You've never sailed. Pick your two first thoughts.",
+    "options": [
+      {
+        "t": "Yes. I'll learn which rope is which on the way.",
+        "axes": {
+          "L1": -2
+        },
+        "tags": [
+          {
+            "id": "T22A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Who's the captain? I need a name and reviews.",
+        "axes": {
+          "L1": 1
+        }
+      },
+      {
+        "t": "What's my way off if I hate it by day three?",
+        "axes": {
+          "L1": 2
+        }
+      },
+      {
+        "t": "Say yes. Then look up what a \"jib\" is.",
+        "axes": {
+          "L1": -1
+        },
+        "tags": [
+          {
+            "id": "T22A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Route, weather, every port on the way. Then maybe.",
+        "axes": {
+          "L1": 1
+        },
+        "tags": [
+          {
+            "id": "T24A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Already telling everyone I'm a sailor now.",
+        "axes": {
+          "L1": -2
+        },
+        "emotion": "delight"
+      }
+    ],
+    "heart": {
+      "prompt": "There is one spot left on a sailboat crossing the Atlantic. It leaves in 36 hours, and you have never sailed. Which two thoughts come first?",
+      "options": [
+        "Yes. I will learn which rope is which on the way.",
+        "Who is the captain? I want a name and some reviews first.",
+        "What is my way out if I hate it by the third day?",
+        "I say yes, then look up the basics.",
+        "I ask for the route, the weather and every port first.",
+        "I am already telling people I sail now."
+      ]
+    },
+    "fp": {
+      "trigger": "last-minute crew spot on a sailboat",
+      "setting": "ocean crossing, 36 hours out",
+      "ask": "jump in or get the details first",
+      "who": "a crew of strangers",
+      "stakes": "adventure versus falling with no net"
+    },
+    "mask": "looks like a travel daydream; measures stepping in blind versus needing a plan B first (L1)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-L1-2",
+    "world": "unusual"
+  },
+  {
+    "id": "S-90",
+    "type": "sealed",
+    "chapter": 7,
+    "primary": "L3",
+    "prompt": "Genii's gift: a remote that freezes everyone but you. The line for the new coaster says four hours.",
+    "options": [
+      {
+        "t": "Freeze. Stroll to the front. Unfreeze looking innocent.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Stay put. Frozen people still got here first.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Freeze, then pass only the family who cut earlier.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 1
+          }
+        ],
+        "emotion": "irritation"
+      },
+      {
+        "t": "Freeze, then read the park rules. Is this even allowed?",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ],
+        "emotion": "cringe"
+      }
+    ],
+    "heart": {
+      "prompt": "Genii gives you a remote that freezes everyone except you. The line for the new roller coaster is four hours long.",
+      "options": [
+        "I freeze everyone, walk to the front, and unfreeze as if nothing happened.",
+        "I stay where I am. The people ahead of me still arrived first.",
+        "I freeze everyone, but I only pass the family who cut in earlier.",
+        "I freeze everyone, then look up the park rules to see if this is allowed."
+      ]
+    },
+    "fp": {
+      "trigger": "freeze remote meets a four-hour line",
+      "setting": "theme park, wish granted",
+      "ask": "skip unseen or wait your turn",
+      "who": "strangers in line",
+      "stakes": "four hours versus the fair order"
+    },
+    "mask": "looks like a superpower daydream; Genii's locked guess on the fair order versus the sensible shortcut when nobody can see (L3), with T25 as a side guess",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal",
+    "checks": {
+      "primary": "L3",
+      "axes": [
+        "L3"
+      ],
+      "pairs": [
+        "T25"
+      ]
+    },
+    "sq": "SQ-L3-3",
+    "world": "absurd"
+  },
+  {
+    "id": "S-80",
+    "type": "sealed",
+    "chapter": 7,
+    "primary": "L1",
+    "prompt": "Genii's offer: swap your whole life (home, job, friends) for a random one, somewhere random. \"At least as good.\" No previews. Yours is honestly good.",
+    "options": [
+      {
+        "t": "Keep mine. I built it. I like it.",
+        "axes": {
+          "L1": 2
+        },
+        "tags": [
+          {
+            "id": "T22B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Swap. \"At least as good\" plus a surprise? Sold.",
+        "axes": {
+          "L1": -2
+        },
+        "tags": [
+          {
+            "id": "T22A",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Say no. Then wonder about it every night for a year.",
+        "axes": {
+          "L1": 1
+        },
+        "emotion": "longing"
+      },
+      {
+        "t": "Swap, but only if my person comes too.",
+        "axes": {
+          "L1": -1,
+          "R1": 1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "Genii offers to swap your whole life, your home, job and friends, for a random new one in a random place. It is promised to be at least as good, with no preview. Your life now is good.",
+      "options": [
+        "I keep mine. I built it and I like it.",
+        "I swap. At least as good, plus a surprise, is enough for me.",
+        "I say no, then wonder about it every night for a year.",
+        "I swap, but only if my person can come too."
+      ]
+    },
+    "fp": {
+      "trigger": "blind life swap offered",
+      "setting": "Genii wish, no previews",
+      "ask": "keep your life or swap it blind",
+      "who": "just you",
+      "stakes": "a good life versus the unknown"
+    },
+    "mask": "looks like a genie gamble; Genii's locked guess on keeping the sure good thing versus the unknown (L1), with T22 as a side guess",
+    "ae": [
+      "D"
+    ],
+    "privacy": "normal",
+    "checks": {
+      "primary": "L1",
+      "axes": [
+        "L1"
+      ],
+      "pairs": [
+        "T22"
+      ]
+    },
+    "sq": "SQ-L1-1",
+    "world": "absurd"
+  },
+  {
+    "id": "S-91",
+    "type": "sealed",
+    "chapter": 5,
+    "primary": "R2",
+    "prompt": "Work party, by the coats. You overhear the boss: your friend won't get the promotion they've already celebrated.",
+    "options": [
+      {
+        "t": "Tell them tonight, word for word. Better from me.",
+        "axes": {
+          "R2": 2
+        },
+        "tags": [
+          {
+            "id": "T07A",
+            "s": 2
+          }
+        ],
+        "emotion": "worry"
+      },
+      {
+        "t": "Hint: \"Maybe don't order the new car yet?\"",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Say nothing. Be there with snacks when it lands.",
+        "axes": {
+          "R2": -2
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 2
+          }
+        ],
+        "emotion": "guilt"
+      },
+      {
+        "t": "Tell them tomorrow, gently, with a plan B ready.",
+        "axes": {
+          "R2": 1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "At a work party, near the coats, you overhear the boss say your friend will not get the promotion they have already celebrated.",
+      "options": [
+        "I tell them tonight, exactly as I heard it. It is better coming from me.",
+        "I hint that they should not order the new car just yet.",
+        "I say nothing, and I am there for them when it happens.",
+        "I tell them tomorrow, gently, with a backup plan ready."
+      ]
+    },
+    "fp": {
+      "trigger": "overhearing the boss about your friend",
+      "setting": "work party, by the coat rack",
+      "ask": "tell them straight or shield them",
+      "who": "a friend at work and the boss",
+      "stakes": "their pride versus your source"
+    },
+    "mask": "looks like office gossip; Genii's locked guess on saying the hard thing now versus holding the person first (R2), with T07 as a side guess",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal",
+    "checks": {
+      "primary": "R2",
+      "axes": [
+        "R2"
+      ],
+      "pairs": [
+        "T07"
+      ]
+    },
+    "sq": "SQ-T07-2",
+    "world": "unusual"
+  }
+]

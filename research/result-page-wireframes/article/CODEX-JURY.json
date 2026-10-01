@@ -1,0 +1,82 @@
+{
+  "concepts": [
+    {
+      "id": "A",
+      "design": 7.8,
+      "usability": 7.2,
+      "creativity": 7.3,
+      "content": 7.6,
+      "overall": 7.5,
+      "strengths": [
+        "Strongest editorial art direction: expressive typography, airy spacing and a memorable mirror cover.",
+        "The dark insight spread gives the surprising observation appropriate emotional weight.",
+        "Readable room notes and specific guess labels make the evidence feel personal."
+      ],
+      "weaknesses": [
+        "The long mobile article lacks visible section navigation for returning to particular evidence.",
+        "Oversized stat headings compete with the actual results; the outlined lettering is delicate at phone scale.",
+        "The reversed Delivery card makes the player's actual result less immediately clear.",
+        "Flips and story-image saving are described or signposted, but their behavior is unverified. The app-download ending is not shown."
+      ],
+      "top_fixes": [
+        "Add compact sticky section navigation with a clear current-section state.",
+        "Keep the player's result and pips visible when revealing the opposite end; reduce decorative stat-heading size.",
+        "Finish with a clear friend challenge followed by an island-game download panel, preserving the editorial styling."
+      ]
+    },
+    {
+      "id": "B",
+      "design": 7.5,
+      "usability": 6.3,
+      "creativity": 8.0,
+      "content": 7.2,
+      "overall": 7.21,
+      "strengths": [
+        "Most distinctive narrative atmosphere, with a convincing transition from dark introspection to pastel openness.",
+        "Desktop mirror-and-copy compositions have cinematic presence.",
+        "The visible ending connects the friend challenge to the island-game download."
+      ],
+      "weaknesses": [
+        "The opening repeats the archetype names while delaying useful evidence, especially on mobile.",
+        "White text over detailed imagery, muted secondary text and translucent panels create uneven contrast.",
+        "Unlabeled navigation dots provide little help when revisiting a specific finding.",
+        "Wiping fog, synchronized gem lighting and holding reversed text upright are described, not demonstrated; essential reading could become unnecessarily demanding.",
+        "The radar shape implies a quantitative profile without clearly explaining its scale or bipolar axes."
+      ],
+      "top_fixes": [
+        "Shorten the opening and provide labeled jump navigation for evidence review.",
+        "Keep all essential copy readable without wiping, holding or animation; reserve those effects for optional embellishment.",
+        "Replace the ambiguous radar with six clearly labeled pip scales and strengthen contrast across glass panels."
+      ]
+    },
+    {
+      "id": "C",
+      "design": 7.3,
+      "usability": 8.0,
+      "creativity": 7.2,
+      "content": 7.8,
+      "overall": 7.54,
+      "strengths": [
+        "Best fit for reviewing a completed reveal: visible section tabs, compact stats and explicit comparisons support revisiting.",
+        "The room map, pip scales and party slots connect the article naturally to a cozy personality game.",
+        "Trait provenance is visible on the revealed card, giving the personality claims an inspectable basis.",
+        "The calls summary communicates the score and individual outcomes efficiently."
+      ],
+      "weaknesses": [
+        "Repeated rounded cards, pastel gradients and identical mascot artwork make the visual system feel more familiar than award-defining.",
+        "The horizontally overflowing mobile tabs and trait carousel reduce discoverability.",
+        "Unflipped trait cards spend substantial space on decoration while concealing the promised evidence.",
+        "The empty party slot makes the friend challenge thematic but less prominent as a primary action.",
+        "Drawers, card tilt, flips and map-pin behavior remain unverified; the required app-download ending is not shown."
+      ],
+      "top_fixes": [
+        "Expose a short provenance sentence on every trait card and reduce repeated decorative space.",
+        "Make mobile navigation overflow unmistakable and provide accessible, clearly labeled controls for drawers and cards.",
+        "Create a distinct final conversion section with a prominent friend challenge and an illustrated island-game download."
+      ]
+    }
+  ],
+  "build": "hybrid",
+  "build_reason": "C provides the strongest phone-first review structure, while A supplies the most polished visual identity. B contributes atmosphere, but its proposed interaction demands are poorly suited to revisiting evidence. Static screenshots cannot establish interaction quality or conversion performance.",
+  "hybrid_recipe": "Use C's navigation, pip-based character sheet, visible trait provenance, room map and party structure. Apply A's editorial typography, mirror imagery, generous spacing and dark insight spread. Borrow B's restrained night-to-morning color progression and explicit island-download ending. Keep every essential finding readable without flipping, wiping or holding."
+}

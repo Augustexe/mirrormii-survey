@@ -1,0 +1,14 @@
+/*
+ * One font (docs/DESIGN-DIRECTION.md section 4.1, LAUNCH-SPEC section 7): Satoshi, everywhere.
+ * ./fonts/satoshi-variable.woff2 is the unmodified variable file from Fontshare (ITF Free Font License, notes in
+ * public/fonts/LICENSE-SOURCE.txt and public/fonts/FFL.txt). Upright only: no italic face is loaded and
+ * font-synthesis is off, so the browser never fakes a slant or a bold. index.html preloads the file.
+ */
+
+@font-face {
+  font-family: "Satoshi";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300 900;
+  src: url("./fonts/satoshi-variable.woff2") format("woff2-variations"), url("./fonts/satoshi-variable.woff2") format("woff2");
+}

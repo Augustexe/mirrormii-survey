@@ -1,0 +1,1676 @@
+[
+  {
+    "id": "C3-80",
+    "type": "scenario",
+    "chapter": 3,
+    "prompt": "A street tailor knits you and your partner one sweater with two necks. It only comes off when one of you asks. They won't be the one.",
+    "options": [
+      {
+        "t": "Holiday card photo in it, then we just never take it off.",
+        "axes": {
+          "R1": 2
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 2
+          }
+        ],
+        "emotion": "warmth"
+      },
+      {
+        "t": "Ask before the wool's even dry. I need my own sleeves.",
+        "axes": {
+          "R1": -2
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 2
+          }
+        ],
+        "emotion": "relief"
+      },
+      {
+        "t": "Sundays only, for movie night. By Monday I'm asking out.",
+        "axes": {
+          "R1": -1
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Fall asleep in it. Honestly, I've wanted this since date one.",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 1
+          }
+        ],
+        "emotion": "longing"
+      }
+    ],
+    "heart": {
+      "prompt": "A street tailor knits you and your partner one sweater with two necks. It only comes off if one of you asks, and they won't.",
+      "options": [
+        "It's in our holiday card photo, and it never comes off.",
+        "I ask before the wool's even dry. I need my own sleeves.",
+        "Sundays only, for movie night. By Monday I'm asking out.",
+        "Asleep in it by ten. I've wanted this since our first date."
+      ]
+    },
+    "fp": {
+      "trigger": "a two-person sweater that only comes off if you ask",
+      "setting": "home, stuck together in one sweater",
+      "ask": "stay in it or be the one who asks out",
+      "who": "your partner",
+      "stakes": "closeness versus your own space, and being the one who asks",
+      "device": "two-person-sweater"
+    },
+    "mask": "looks like a cozy curse; measures whether closeness means shared space or keeping your own (R1, T09)",
+    "ae": [
+      "B",
+      "D"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-R1-1",
+    "world": "absurd",
+    "friend": {
+      "prompt": "A tailor knits {name} and {their} partner one sweater with two necks. It only comes off if one of them asks. What does {name} do?",
+      "a": {
+        "t": "Holiday card photo in it, then never takes it off.",
+        "axes": {
+          "R1": 2
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Asks before the wool's dry. Needs {their} own sleeves.",
+        "axes": {
+          "R1": -2
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C3-91",
+    "type": "scenario",
+    "chapter": 3,
+    "prompt": "Elevator stuck between floors 14 and 15. Two hours in, your ex uses the time to apologize. Properly. I need every detail.",
+    "options": [
+      {
+        "t": "\"Thank you. Coffee on the ground floor? Let's really talk.\"",
+        "tags": [
+          {
+            "id": "T08A",
+            "s": 2
+          }
+        ],
+        "emotion": "warmth"
+      },
+      {
+        "t": "\"Accepted.\" Then I read the inspection certificate for an hour.",
+        "tags": [
+          {
+            "id": "T08B",
+            "s": 2
+          }
+        ],
+        "emotion": "cringe"
+      },
+      {
+        "t": "Forgive them, unblock them, keep their stories on mute.",
+        "tags": [
+          {
+            "id": "T08B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Hug it out at floor 15. Tell everyone we're cool now.",
+        "tags": [
+          {
+            "id": "T08A",
+            "s": 1
+          }
+        ],
+        "emotion": "relief"
+      }
+    ],
+    "heart": {
+      "prompt": "You're stuck in an elevator between floors 14 and 15, two hours in. Your ex uses the time to apologize, a real apology.",
+      "options": [
+        "\"Thank you.\" Then coffee once we're out, so we can really talk.",
+        "\"Accepted.\" Then I read the inspection certificate for an hour.",
+        "I forgive them and unblock them. Their stories stay muted.",
+        "We hug when the doors open, and I tell everyone we're okay."
+      ]
+    },
+    "fp": {
+      "trigger": "ex apologizes while trapped together",
+      "setting": "stuck elevator",
+      "ask": "let them back in or keep the chain on",
+      "who": "your ex",
+      "stakes": "reopening an old hurt versus closing it for good",
+      "device": "stuck elevator"
+    },
+    "mask": "looks like an awkward-ex scene; measures second chances versus keeping the receipts (T08)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T08-1",
+    "world": "unusual",
+    "friend": {
+      "prompt": "{name} and an ex are stuck in an elevator for two hours. The ex apologizes. Properly. What does {name} do?",
+      "a": {
+        "t": "\"Thank you. Coffee on the ground floor? Let's really talk.\"",
+        "tags": [
+          {
+            "id": "T08A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "\"Accepted.\" Then reads the inspection certificate for an hour.",
+        "tags": [
+          {
+            "id": "T08B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C3-129",
+    "type": "feeling",
+    "chapter": 3,
+    "follows": "C3-91",
+    "world": "unusual",
+    "prompt": "Two hours stuck, one real apology, doors still shut. What's rising in you?",
+    "options": [
+      {
+        "t": "Relief, finally."
+      },
+      {
+        "t": "Suspicion. Why now, exactly?"
+      },
+      {
+        "t": "The old sting, fresh as ever."
+      },
+      {
+        "t": "Smug that it took them this long."
+      },
+      {
+        "t": "Nothing. Doors, please."
+      }
+    ],
+    "heart": {
+      "prompt": "Two hours stuck, one real apology, and the doors still won't open. What's rising in you?",
+      "options": [
+        "Relief, finally.",
+        "Suspicion. Why now, of all times?",
+        "The old sting, as fresh as it ever was.",
+        "I'm a little smug it took them this long.",
+        "Nothing. I just want the doors open."
+      ]
+    },
+    "fp": {
+      "trigger": "the ex's apology has landed",
+      "setting": "still stuck in the elevator",
+      "ask": "first feeling",
+      "who": "your ex",
+      "stakes": "an old hurt reopened",
+      "device": "feeling after the elevator apology"
+    },
+    "mask": "looks like a quick check-in; records the first emotion after an apology from an ex (no scoring)",
+    "ae": [
+      "E"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "C3-101",
+    "type": "reply",
+    "chapter": 3,
+    "sq": "SQ-T09-2",
+    "world": "unusual",
+    "prompt": "Chess club has been your one night alone for three years. Then Robin, your partner, texts.",
+    "thread": [
+      {
+        "from": "Robin",
+        "text": "SURPRISE!! I joined your chess club. they just voted me president?? see you tonight"
+      }
+    ],
+    "options": [
+      {
+        "t": "\"My two loves, one room. Save me the seat next to yours.\"",
+        "axes": {
+          "R1": 2
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "\"Wait, that was my one night. Can I get it back?\"",
+        "axes": {
+          "R2": 1
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 2
+          }
+        ],
+        "emotion": "guilt"
+      },
+      {
+        "t": "A thumbs-up. Then I quietly join a fencing club across town.",
+        "axes": {
+          "R1": -1,
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "\"Love it. Next stop: your Thursday improv class, with me in it.\"",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Chess club's been your one night to yourself for three years. Then Robin, your partner, texts you.",
+      "thread": [
+        {
+          "from": "Robin",
+          "text": "Surprise. I joined your chess club, and they just voted me president. See you tonight."
+        }
+      ],
+      "options": [
+        "Both my loves in one room. Save me the seat beside you.",
+        "Wait, that was my one night. Can I have it back?",
+        "Just a thumbs-up. Then I quietly join a fencing club across town.",
+        "I love it. Next, I'm joining your Thursday improv class."
+      ]
+    },
+    "fp": {
+      "trigger": "your partner joins your solo club and becomes its president",
+      "setting": "your weekly chess night",
+      "ask": "share your one night or protect it",
+      "who": "your partner",
+      "stakes": "the only thing that is yours",
+      "device": "solo club joined by your partner"
+    },
+    "mask": "looks like a cute surprise; measures keeping a corner of your own inside love (T09) and whether you say so (R2)",
+    "ae": [
+      "A",
+      "B",
+      "D"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "Chess night is {name}'s one solo night, three years running. {name}'s partner texts: \"Joined your club! Voted president!\" What does {name} reply?",
+      "a": {
+        "t": "\"My two loves, one room. Save me the seat next to yours.\"",
+        "axes": {
+          "R1": 2
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "A thumbs-up, then quietly joins a fencing club across town.",
+        "axes": {
+          "R1": -1,
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C3-81",
+    "type": "bet",
+    "chapter": 3,
+    "prompt": "Calling it: you've rehearsed a whole fight with your partner in the shower. And won. Then what happened?",
+    "options": [
+      {
+        "t": "It never left the bathroom. I'm undefeated in there.",
+        "axes": {
+          "R2": -2
+        },
+        "tags": [
+          {
+            "id": "T08B",
+            "s": 1
+          }
+        ],
+        "emotion": "resentment"
+      },
+      {
+        "t": "Used the best line on them that night. Still dripping.",
+        "axes": {
+          "R2": 1
+        },
+        "emotion": "pride"
+      },
+      {
+        "t": "Forty rehearsals and counting. The shampoo knows my closing argument.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T08B",
+            "s": 2
+          }
+        ],
+        "emotion": "irritation"
+      },
+      {
+        "t": "Rehearse? If it bugs me, they hear it before the water's warm.",
+        "axes": {
+          "R2": 2
+        }
+      },
+      {
+        "t": "By the conditioner, I'd forgotten what we were fighting about.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T08A",
+            "s": 1
+          }
+        ],
+        "emotion": "relief"
+      }
+    ],
+    "heart": {
+      "prompt": "I'm guessing you've rehearsed a whole fight with your partner in the shower, and won. What happened after?",
+      "options": [
+        "It never left the bathroom. I win every time in there.",
+        "That night I used the best line on them, still dripping.",
+        "Forty rehearsals, and I'm still going. I know my closing by heart.",
+        "I don't rehearse. If something bugs me, they hear it right away.",
+        "By the conditioner, I couldn't remember what the fight was about."
+      ]
+    },
+    "fp": {
+      "trigger": "rehearsed argument in the shower",
+      "setting": "the shower",
+      "ask": "what happened to it next",
+      "who": "your partner",
+      "stakes": "a scene versus quiet resentment",
+      "device": "shower argument"
+    },
+    "mask": "looks like a funny confession; measures naming what crossed a line versus absorbing it (R2), with holding on to it (T08B) against letting it go (T08A)",
+    "ae": [
+      "A",
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-R2-2",
+    "world": "everyday",
+    "friend": {
+      "prompt": "Has {name} ever rehearsed a whole fight with {their} partner in the shower? What happened next?",
+      "a": {
+        "t": "No rehearsals. If it bugs {name}, {their} partner hears it fast.",
+        "axes": {
+          "R2": 2
+        }
+      },
+      "b": {
+        "t": "It never leaves the bathroom. Undefeated in there.",
+        "axes": {
+          "R2": -2
+        },
+        "tags": [
+          {
+            "id": "T08B",
+            "s": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C3-120",
+    "type": "scenario",
+    "chapter": 3,
+    "sq": "SQ-T10-2",
+    "world": "absurd",
+    "prompt": "Mall vending machine, $5: one Clean Break. Your fizzling situationship forgets the whole thing and just remembers you fondly.",
+    "options": [
+      {
+        "t": "Feed it a crumpled five. The talk is canceled.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T10B",
+            "s": 2
+          }
+        ],
+        "emotion": "relief"
+      },
+      {
+        "t": "Walk past it. They get the real talk at the food court.",
+        "axes": {
+          "R2": 1
+        },
+        "tags": [
+          {
+            "id": "T10A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Book one long dinner to see if it's worth saving. Dessert decides.",
+        "tags": [
+          {
+            "id": "T10A",
+            "s": 2
+          }
+        ],
+        "emotion": "longing"
+      },
+      {
+        "t": "Two Clean Breaks, please. One for them, one for me.",
+        "tags": [
+          {
+            "id": "T10B",
+            "s": 1
+          }
+        ],
+        "emotion": "cringe"
+      }
+    ],
+    "heart": {
+      "prompt": "A mall vending machine sells Clean Breaks for $5. Your fading situationship forgets the whole thing and just remembers you fondly.",
+      "options": [
+        "I feed it a crumpled five. Nobody has the talk.",
+        "They get the real talk, face to face, at the food court.",
+        "First, one long dinner to see if it's worth saving.",
+        "Two, please. One for them and one for me."
+      ]
+    },
+    "fp": {
+      "trigger": "a situationship is fizzling",
+      "setting": "mall vending machine that erases you from their memory",
+      "ask": "fade out or end it out loud",
+      "who": "someone you have been seeing",
+      "stakes": "their feelings versus one awkward talk",
+      "device": "memory-erase vending machine"
+    },
+    "mask": "looks like a magic shortcut; measures whether an ending needs a conversation or can fade (T10) and saying the hard thing (R2)",
+    "ae": [
+      "A",
+      "E"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "{name}'s situationship is fizzling. A mall vending machine sells Clean Breaks: $5, and the fling forgets it all, fondly. What does {name} do?",
+      "a": {
+        "t": "Walks past it. Real talk at the food court.",
+        "axes": {
+          "R2": 1
+        },
+        "tags": [
+          {
+            "id": "T10A",
+            "s": 1
+          }
+        ]
+      },
+      "b": {
+        "t": "Feeds it a crumpled five. The talk is canceled.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T10B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C3-160",
+    "type": "others",
+    "chapter": 3,
+    "sq": "SQ-T10-2",
+    "world": "unusual",
+    "prompt": "Mina ended a three-year relationship by mailing back every borrowed book. One sticky note inside: \"Thanks for everything. Take care.\" First thought?",
+    "options": [
+      {
+        "t": "Text Mina: \"You owe them one real conversation.\"",
+        "axes": {
+          "R2": 1
+        },
+        "tags": [
+          {
+            "id": "T10A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Saving that move for later. Clear, final, no scene.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T10B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "\"Take care\"? Three years earns at least a paragraph.",
+        "tags": [
+          {
+            "id": "T10A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Jealous. My last ending was four hours in a parked car.",
+        "tags": [
+          {
+            "id": "T10B",
+            "s": 1
+          }
+        ],
+        "emotion": "longing"
+      }
+    ],
+    "heart": {
+      "prompt": "Mina ended a three-year relationship by mailing back every book they'd borrowed. Inside, one sticky note: \"Thanks for everything. Take care.\" What's your first thought?",
+      "options": [
+        "I'd text Mina. They owe that person one real conversation.",
+        "I'm saving that one for later. Clear, final, no scene.",
+        "\"Take care\"? After three years, I'd want at least a paragraph.",
+        "Jealous, honestly. My last ending was four hours in a parked car."
+      ]
+    },
+    "fp": {
+      "trigger": "someone ends a relationship by returning books with a note",
+      "setting": "a box of borrowed books in the mail",
+      "ask": "your line on how endings should go",
+      "who": "an acquaintance and their ex",
+      "stakes": "saying it out loud versus a quiet exit",
+      "device": "returned-books-note"
+    },
+    "mask": "looks like gossip; measures whether you think endings need a conversation, a fix, or a quiet exit (T10)",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "Mina ended a three-year relationship by mailing back the borrowed books with one sticky note: \"Take care.\" {name}'s first thought?",
+      "a": {
+        "t": "Texts Mina: \"You owe them one real conversation.\"",
+        "axes": {
+          "R2": 1
+        },
+        "tags": [
+          {
+            "id": "T10A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Saves the move for later. Clear, final, no scene.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T10B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C3-140",
+    "type": "this_or_that",
+    "chapter": 3,
+    "prompt": "Your partner's shadow got home from their weekend away an hour before they did. It's on your couch, ready to spill everything.",
+    "options": [
+      {
+        "t": "Pour the shadow a drink. I want names, places, the whole weekend.",
+        "axes": {
+          "R1": 2
+        },
+        "emotion": "worry"
+      },
+      {
+        "t": "Their weekend, their story. The shadow waits on the doormat.",
+        "axes": {
+          "R1": -2
+        },
+        "emotion": "warmth"
+      }
+    ],
+    "heart": {
+      "prompt": "Your partner's shadow got home from their weekend away an hour before they did. It's on your couch, ready to tell you everything.",
+      "options": [
+        "I get it a drink. I want the whole weekend, names included.",
+        "Their weekend's theirs to tell. The shadow can wait on the doormat."
+      ]
+    },
+    "fp": {
+      "trigger": "their shadow offers the untold weekend",
+      "setting": "your couch, before they are home",
+      "ask": "hear the whole story or leave the gaps",
+      "who": "your partner",
+      "stakes": "knowing everything versus trusting what you don't know",
+      "device": "early-shadow"
+    },
+    "mask": "looks like a spooky joke; measures whether being close means knowing everything or trusting the gaps (R1)",
+    "ae": [
+      "C",
+      "D"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-R1-2",
+    "world": "absurd",
+    "friend": {
+      "prompt": "{name}'s partner's shadow gets home an hour early from a weekend away, ready to spill everything. What does {name} do?",
+      "a": {
+        "t": "Pours it a drink. Wants names, places, all of it.",
+        "axes": {
+          "R1": 2
+        }
+      },
+      "b": {
+        "t": "Sends it to the doormat. The weekend's theirs to tell.",
+        "axes": {
+          "R1": -2
+        }
+      }
+    }
+  },
+  {
+    "id": "C3-141",
+    "type": "this_or_that",
+    "chapter": 3,
+    "prompt": "Your city wants a statue of you in the main square. Catch: you pose every weekend for a year, and your partner hates weekends apart.",
+    "options": [
+      {
+        "t": "Pose every weekend. In 200 years, pigeons still know my face.",
+        "axes": {
+          "L2": 2,
+          "R1": -1
+        },
+        "emotion": "pride"
+      },
+      {
+        "t": "Turn it down. Our slow Saturday mornings beat any bronze.",
+        "axes": {
+          "L2": -2,
+          "R1": 1
+        },
+        "emotion": "warmth"
+      }
+    ],
+    "heart": {
+      "prompt": "Your city wants a statue of you in the main square. You'd have to pose every weekend for a year, and your partner hates weekends apart.",
+      "options": [
+        "I pose. In two hundred years, people still know my face.",
+        "Our slow Saturday mornings mean more than any bronze. I say no."
+      ]
+    },
+    "fp": {
+      "trigger": "a statue in your honor needs a year of weekends",
+      "setting": "a sculptor's studio, the main square",
+      "ask": "trade your weekends for the statue",
+      "who": "your partner",
+      "stakes": "public recognition versus your time together",
+      "device": "statue-posing"
+    },
+    "mask": "looks like a vanity fable; measures trading time with your partner for a win people can see (L2, R1)",
+    "ae": [
+      "A",
+      "B",
+      "D"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-L2-1",
+    "world": "absurd",
+    "friend": {
+      "prompt": "{name}'s city wants a statue of {them}, if {they} pose every weekend for a year. {their} partner hates weekends apart. Which one is {name}?",
+      "a": {
+        "t": "Poses. In 200 years, pigeons still know {their} face.",
+        "axes": {
+          "L2": 2,
+          "R1": -1
+        }
+      },
+      "b": {
+        "t": "Turns it down. Their slow Saturday mornings beat any bronze.",
+        "axes": {
+          "L2": -2,
+          "R1": 1
+        }
+      }
+    }
+  },
+  {
+    "id": "C3-142",
+    "type": "real",
+    "chapter": 3,
+    "prompt": "Round three of the same fight, same spot on the couch, with a partner, roommate or friend. Last time it got there, your move?",
+    "options": [
+      {
+        "t": "Said \"we're fixing this tonight\" and grabbed a notepad.",
+        "axes": {
+          "R2": 1
+        },
+        "tags": [
+          {
+            "id": "T10A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Apologized first, even though I'm pretty sure I was right.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T10A",
+            "s": 1
+          }
+        ],
+        "emotion": "guilt"
+      },
+      {
+        "t": "Found reasons to be out whenever they got home.",
+        "tags": [
+          {
+            "id": "T10B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Called it. There was no round four.",
+        "tags": [
+          {
+            "id": "T10B",
+            "s": 2
+          }
+        ],
+        "emotion": "relief"
+      }
+    ],
+    "heart": {
+      "prompt": "It's the same fight for the third time, with a partner, a roommate or a friend. The last time it got that far, what did you do?",
+      "options": [
+        "I said we're fixing this tonight, and I got out a notepad.",
+        "I apologized first, even though I'm pretty sure I was right.",
+        "Suddenly I had reasons to be out whenever they got home.",
+        "There was no round four. I ended it."
+      ]
+    },
+    "fp": {
+      "trigger": "the same fight comes back a third time",
+      "setting": "your most recent repeat fight",
+      "ask": "what you actually did",
+      "who": "a partner, roommate or friend",
+      "stakes": "fix it or let it go",
+      "device": "third-round-fight"
+    },
+    "mask": "looks like a conflict memory; measures repairing versus releasing (T10) from what you actually did",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T10-1",
+    "world": "everyday",
+    "friend": {
+      "prompt": "Round three of the same fight with someone close. The most recent time, what did {name} actually do?",
+      "a": {
+        "t": "Said \"we're fixing this tonight\" and grabbed a notepad.",
+        "axes": {
+          "R2": 1
+        },
+        "tags": [
+          {
+            "id": "T10A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Called it. There was no round four.",
+        "tags": [
+          {
+            "id": "T10B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C3-124",
+    "type": "scenario",
+    "chapter": 3,
+    "sq": "SQ-R3-2",
+    "world": "absurd",
+    "prompt": "Ding-dong. Your talking doorbell greets every guest with your partner's last name, never yours. You get one chance to change its greeting.",
+    "options": [
+      {
+        "t": "Leave it. One home, one name, and it says it so warmly.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Announce it at dinner: the doorbell says my name now.",
+        "axes": {
+          "R3": 1,
+          "R2": 1
+        }
+      },
+      {
+        "t": "Record both names. Guests can wait out the long version.",
+        "axes": {
+          "R3": -1
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Invent a new last name for us. The doorbell hears it first.",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      }
+    ],
+    "heart": {
+      "prompt": "Your talking doorbell greets every guest with your partner's last name, never yours. You get one chance to change what it says.",
+      "options": [
+        "I leave it. One home, one name feels right to me.",
+        "Over dinner, I tell them the doorbell says my name now.",
+        "Both names go in, even if guests wait a little longer.",
+        "We invent a new last name, and the doorbell hears it first."
+      ]
+    },
+    "fp": {
+      "trigger": "the doorbell greets guests with only your partner's last name",
+      "setting": "new shared home with a talking doorbell",
+      "ask": "whose name the home carries",
+      "who": "your partner",
+      "stakes": "one family name versus a design of your own",
+      "device": "talking doorbell"
+    },
+    "mask": "looks like a silly smart-home bug; measures whether a couple runs on the classic script or its own (R3)",
+    "ae": [
+      "A",
+      "B",
+      "D"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "{name}'s talking doorbell greets guests with {their} partner's last name, never {name}'s. One chance to change it. What does {name} do?",
+      "a": {
+        "t": "Leaves it. One home, one name sounds right.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 1
+          }
+        ]
+      },
+      "b": {
+        "t": "Invents a new last name. The doorbell hears it first.",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C3-161",
+    "type": "reply",
+    "chapter": 3,
+    "sq": "SQ-T11-2",
+    "world": "unusual",
+    "prompt": "A baby goat at the farm sanctuary won't leave your partner Alex's side. Then Alex texts from the petting pen.",
+    "thread": [
+      {
+        "from": "Alex",
+        "text": "it literally picked me. can we adopt it??"
+      },
+      {
+        "from": "Alex",
+        "text": "practice round. if we can raise a goat we can raise a tiny human"
+      }
+    ],
+    "options": [
+      {
+        "t": "\"Yes, and a tiny human by our five-year anniversary.\"",
+        "tags": [
+          {
+            "id": "T11A",
+            "s": 2
+          }
+        ],
+        "emotion": "warmth"
+      },
+      {
+        "t": "\"Adopt it. That goat's our only kid, and it's perfect.\"",
+        "tags": [
+          {
+            "id": "T11B",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "\"Goat first. If we survive a year, we'll talk tiny humans.\"",
+        "tags": [
+          {
+            "id": "T11A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "\"No goat, no baby. I like our life fitting in one carry-on.\"",
+        "tags": [
+          {
+            "id": "T11B",
+            "s": 2
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "At the farm sanctuary, a baby goat won't leave your partner Alex's side. Then Alex texts you from the petting pen.",
+      "thread": [
+        {
+          "from": "Alex",
+          "text": "It picked me. It really did. Can we adopt it?"
+        },
+        {
+          "from": "Alex",
+          "text": "A practice round. If we can raise a goat, we can raise a tiny human."
+        }
+      ],
+      "options": [
+        "Yes. The goat now, and a tiny human by our five-year anniversary.",
+        "Let's adopt it. But the goat's our only kid, and that's perfect.",
+        "Goat first. If we survive a year, we'll talk tiny humans.",
+        "No goat, no baby. I like that we fit in one carry-on."
+      ]
+    },
+    "fp": {
+      "trigger": "your partner wants a goat as practice for a kid",
+      "setting": "texts from a farm sanctuary",
+      "ask": "practice for a family or the whole plan",
+      "who": "your partner",
+      "stakes": "a family someday versus a free life",
+      "device": "baby-goat-practice"
+    },
+    "mask": "looks like a cute animal text; measures trading freedom for a family or a family for freedom (T11)",
+    "ae": [
+      "A",
+      "B",
+      "D"
+    ],
+    "privacy": "intimate"
+  },
+  {
+    "id": "C3-162",
+    "type": "bet",
+    "chapter": 3,
+    "sq": "SQ-T11-1",
+    "world": "everyday",
+    "prompt": "Don't lie: you've already picked a name for a kid you don't have yet.",
+    "options": [
+      {
+        "t": "First and middle. A friend tried to steal it once. No.",
+        "tags": [
+          {
+            "id": "T11A",
+            "s": 2
+          }
+        ],
+        "emotion": "warmth"
+      },
+      {
+        "t": "Had one picked for years. Lately that kid's gone quiet.",
+        "tags": [
+          {
+            "id": "T11B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Nameless so far, but I've pictured the school pickup line.",
+        "tags": [
+          {
+            "id": "T11A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Zero kids in the life I picture. A lot more sleep, though.",
+        "tags": [
+          {
+            "id": "T11B",
+            "s": 2
+          }
+        ],
+        "emotion": "relief"
+      }
+    ],
+    "heart": {
+      "prompt": "Tell me if I'm wrong: you've already picked a name for a kid you don't have yet.",
+      "options": [
+        "First and middle. A friend tried to take it once, and no.",
+        "I had one for years. Lately I don't picture the kid much.",
+        "No name yet, but I've pictured the school pickup line.",
+        "The life I picture has no kids, and a lot more sleep."
+      ]
+    },
+    "fp": {
+      "trigger": "a name saved for a kid who doesn't exist",
+      "setting": "your own head, any day",
+      "ask": "have you picked a name",
+      "who": "a future kid, or none",
+      "stakes": "a life with kids or without",
+      "device": "saved-baby-name"
+    },
+    "mask": "looks like a sweet confession; measures whether raising a kid is part of the life you picture (T11), from something already done",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "intimate"
+  },
+  {
+    "id": "C3-145",
+    "type": "role",
+    "chapter": 3,
+    "prompt": "Four couples, one rented cabin, one long weekend. I heard things. By Sunday, which one were you?",
+    "options": [
+      {
+        "t": "Matching set: we even did the dishes holding hands.",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 2
+          }
+        ],
+        "emotion": "warmth"
+      },
+      {
+        "t": "Escape artist: an hour alone in the car daily, with a book.",
+        "axes": {
+          "R1": -1
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 2
+          }
+        ],
+        "emotion": "relief"
+      },
+      {
+        "t": "Charades captain: our couple, undefeated since Friday night.",
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Free agent: crashed another couple's card game. Alone. On purpose.",
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Night owl: last one up talking, my partner long asleep.",
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Four couples, one rented cabin, a long weekend. By Sunday, which one were you?",
+      "options": [
+        "My partner and I did everything together, even the dishes.",
+        "Every day, an hour alone in the car with a book.",
+        "We ran couples' charades, and nobody beat us all weekend.",
+        "I joined another couple's card game on my own, on purpose.",
+        "Up late talking with the others, while my partner slept."
+      ]
+    },
+    "fp": {
+      "trigger": "a long weekend away with other couples",
+      "setting": "a rented cabin for eight",
+      "ask": "how you and your partner spend it",
+      "who": "your partner and three other couples",
+      "stakes": "being a unit versus being yourself in a group",
+      "device": "couples-cabin"
+    },
+    "mask": "looks like a trip recap; measures folding into your partner versus keeping your own orbit (T09, R1)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T09-2",
+    "world": "unusual",
+    "friend": {
+      "prompt": "Four couples, one rented cabin, one long weekend. By Sunday, which one was {name}?",
+      "a": {
+        "t": "Matching set: did the dishes holding hands.",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Escape artist: an hour alone in the car daily, with a book.",
+        "axes": {
+          "R1": -1
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C3-123",
+    "type": "scenario",
+    "chapter": 3,
+    "sq": "SQ-L2-3",
+    "world": "absurd",
+    "prompt": "A loading bar floats over you and your partner: \"MOVING IN: 31%.\" A button under it skips straight to 100%, past everything in between.",
+    "options": [
+      {
+        "t": "Press it. I've watched enough loading screens.",
+        "axes": {
+          "L2": 2
+        }
+      },
+      {
+        "t": "Don't touch it. The buffering is the good part.",
+        "axes": {
+          "L2": -2
+        },
+        "emotion": "warmth"
+      },
+      {
+        "t": "Leave it, but refresh it every morning.",
+        "axes": {
+          "L2": 1
+        },
+        "emotion": "envy"
+      },
+      {
+        "t": "Throw a towel over it. We'll know when it's done.",
+        "axes": {
+          "L2": -1
+        },
+        "emotion": "relief"
+      }
+    ],
+    "heart": {
+      "prompt": "A loading bar floats above you and your partner: \"Moving in: 31%.\" A button under it skips to 100%, and past everything in between.",
+      "options": [
+        "I press it. I've watched enough loading screens.",
+        "I leave it alone. The waiting's the good part.",
+        "It stays, but I refresh it every morning.",
+        "A towel goes over it. We'll know when it's done."
+      ]
+    },
+    "fp": {
+      "trigger": "a button that skips moving in together to the end",
+      "setting": "a loading bar over you two",
+      "ask": "skip ahead or take the slow way",
+      "who": "your partner",
+      "stakes": "milestones versus the in-between",
+      "device": "relationship-progress-bar"
+    },
+    "mask": "looks like a sci-fi romance; measures needing to see progress versus trusting the slow road (L2)",
+    "ae": [
+      "A",
+      "D",
+      "E"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "A loading bar floats over {name} and {their} partner: \"MOVING IN: 31%,\" with a skip button. What does {name} do?",
+      "a": {
+        "t": "Presses it. Enough loading screens.",
+        "axes": {
+          "L2": 2
+        }
+      },
+      "b": {
+        "t": "Leaves it: \"The buffering is the good part.\"",
+        "axes": {
+          "L2": -2
+        }
+      }
+    }
+  },
+  {
+    "id": "C3-163",
+    "type": "others",
+    "chapter": 3,
+    "sq": "SQ-T09-1",
+    "world": "unusual",
+    "prompt": "Three months dating a jazz drummer, and your friend owns a hi-hat, quit their book club, and says \"we\" about every gig. Your read?",
+    "options": [
+      {
+        "t": "Love that. Falling for someone means falling into their world.",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 2
+          }
+        ],
+        "emotion": "longing"
+      },
+      {
+        "t": "Give it a year. Nobody gets my whole calendar.",
+        "axes": {
+          "R1": -1
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Cute, from a distance. My book club keeps its Tuesdays.",
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Relatable. I'd own drumsticks by week two.",
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      }
+    ],
+    "heart": {
+      "prompt": "Three months into dating a jazz drummer, your friend owns a hi-hat, has quit their book club and says \"we\" about every gig. What's your read?",
+      "options": [
+        "I love that. Falling for someone means falling into their world.",
+        "Give it a year. Nobody gets my whole calendar.",
+        "It's sweet from a distance, but my book club keeps its Tuesdays.",
+        "Honestly, I'd own drumsticks by week two too."
+      ]
+    },
+    "fp": {
+      "trigger": "a friend's life merges into their new partner's",
+      "setting": "a jazz drummer's gigs",
+      "ask": "your take on folding into their world",
+      "who": "a friend and their new partner",
+      "stakes": "togetherness versus a life of your own",
+      "device": "partner-hobby-takeover"
+    },
+    "mask": "looks like friend gossip; measures whether love folds your life into theirs or keeps your own (T09, R1)",
+    "ae": [
+      "C",
+      "D"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "{name}'s friend started dating a jazz drummer. Three months in: a hi-hat, no book club, \"we\" about every gig. {name}'s first thought?",
+      "a": {
+        "t": "\"Love that. Falling for someone means falling into their world.\"",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "\"Give it a year. Nobody gets {their} whole calendar.\"",
+        "axes": {
+          "R1": -1
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C3-147",
+    "type": "real",
+    "chapter": 3,
+    "prompt": "A whole weekend of your partner's plans, without you. The most recent one: what did yours look like?",
+    "options": [
+      {
+        "t": "Showed up for part of it anyway, with a cooler.",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Missed them by noon. Planned our next weekend by sundown.",
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 1
+          }
+        ],
+        "emotion": "longing"
+      },
+      {
+        "t": "Booked my own plans before their bag was even packed.",
+        "axes": {
+          "R1": -1
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Solo dinner at the oyster bar they refuse to try.",
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "The most recent weekend your partner had plans without you, how'd you spend yours?",
+      "options": [
+        "I showed up for part of it anyway, with a cooler.",
+        "Missed them by noon. By sundown I'd planned our next weekend.",
+        "My own plans were booked before their bag was packed.",
+        "Dinner alone at the oyster bar they won't try."
+      ]
+    },
+    "fp": {
+      "trigger": "your partner has a weekend of plans without you",
+      "setting": "your weekend on your own",
+      "ask": "what you did with your time",
+      "who": "your partner",
+      "stakes": "folding in versus keeping your own life",
+      "device": "weekend-apart"
+    },
+    "mask": "looks like a weekend recap; measures folding your life into theirs versus keeping your own (T09) from what you did",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T09-1",
+    "world": "everyday",
+    "friend": {
+      "prompt": "{name}'s partner recently had a weekend of plans without {name}. How did {name} spend it?",
+      "a": {
+        "t": "Showed up for part of it anyway, with a cooler.",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Booked {their} own plans before the bag was even packed.",
+        "axes": {
+          "R1": -1
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C3-148",
+    "type": "receipts",
+    "chapter": 3,
+    "prompt": "Spill: which of these happened with your partner this month? Tap every one.",
+    "options": [
+      {
+        "t": "Told a party \"we'll be there\" before asking them",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Handed them my whole Saturday to plan, and loved it",
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Bailed on a friend to stay on the couch with them",
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Kept a friend they've never met, on purpose",
+        "axes": {
+          "R1": -1
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Texted \"miss you\" from a night out I didn't leave early",
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "None of these",
+        "none": true
+      }
+    ],
+    "heart": {
+      "prompt": "This month with your partner, which of these happened? Choose every one that's true.",
+      "options": [
+        "I told a party \"we'll be there\" before I'd asked them.",
+        "They planned my whole Saturday, and I loved it.",
+        "I bailed on a friend to stay on the couch with them.",
+        "There's a friend of mine they've never met, on purpose.",
+        "I texted \"miss you\" from a night out, and didn't leave early.",
+        "None of these."
+      ]
+    },
+    "fp": {
+      "trigger": "you and your partner lately",
+      "setting": "the last few weeks",
+      "ask": "tick what is true",
+      "who": "your partner",
+      "stakes": "folding in versus keeping your own",
+      "device": "couple-receipts"
+    },
+    "mask": "looks like a quick checklist; measures folding your life into theirs versus keeping your own (T09, R1) from things done",
+    "ae": [
+      "A"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T09-1",
+    "world": "everyday"
+  }
+]

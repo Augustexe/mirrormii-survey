@@ -1,0 +1,2079 @@
+[
+ {
+  "id": "C2-160",
+  "type": "scenario",
+  "chapter": 2,
+  "sq": "SQ-T05-1",
+  "world": "absurd",
+  "prompt": "Every word you say out loud now costs $5. Your best friend has the biggest presentation of their life in an hour, and they're shaking.",
+  "options": [
+   {
+    "t": "Blow $200 in the parking lot. Forty words, zero filler.",
+    "tags": [
+     {
+      "id": "T05B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Not one word. Drive them, carry their laptop, fix their collar.",
+    "tags": [
+     {
+      "id": "T05A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Write \"you've got this\" on their hand. Ink is free.",
+    "tags": [
+     {
+      "id": "T05B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Front row, nodding at every slide like I wrote it.",
+    "tags": [
+     {
+      "id": "T05A",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "Every word you say out loud now costs $5. Your best friend has the biggest presentation of their life in an hour, and they're shaking.",
+   "options": [
+    "I spend $200 in the parking lot on forty words that count.",
+    "No words. I drive, carry their laptop, fix their collar.",
+    "Writing's free, so \"you've got this\" goes on their hand in pen.",
+    "Front row, nodding at every single slide."
+   ]
+  },
+  "fp": {
+   "trigger": "a best friend panics before a big presentation",
+   "setting": "a world where every spoken word costs $5",
+   "ask": "say it or do something",
+   "who": "your best friend",
+   "stakes": "how your support shows up",
+   "device": "priced-words"
+  },
+  "mask": "looks like a money curse; measures showing love by doing versus by saying (T05)",
+  "ae": [
+   "A",
+   "B",
+   "D"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "Every word {name} says now costs $5. {name}'s best friend is shaking before a huge presentation. What does {name} do?",
+   "a": {
+    "t": "Not one word. Drives them, carries the laptop, fixes their collar.",
+    "tags": [
+     {
+      "id": "T05A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Blows $200 in the parking lot. Forty words, zero filler.",
+    "tags": [
+     {
+      "id": "T05B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-100",
+  "type": "scenario",
+  "chapter": 2,
+  "sq": "SQ-T10-1",
+  "world": "absurd",
+  "prompt": "Next door, a new shop fixes any friendship, but the door stays locked until it's fixed. Your old best friend just booked you both.",
+  "options": [
+   {
+    "t": "Packing two sleeping bags and a week of snacks.",
+    "tags": [
+     {
+      "id": "T10A",
+      "s": 2
+     }
+    ],
+    "emotion": "longing"
+   },
+   {
+    "t": "Bringing a printed list of grievances. It has a table of contents.",
+    "axes": {
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T10A",
+      "s": 1
+     }
+    ],
+    "emotion": "resentment"
+   },
+   {
+    "t": "Cancel the booking. That friendship ended on purpose.",
+    "tags": [
+     {
+      "id": "T10B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "A sticky note on their door: \"Glad we were friends.\"",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T10B",
+      "s": 1
+     }
+    ],
+    "emotion": "warmth"
+   }
+  ],
+  "heart": {
+   "prompt": "A new shop next door fixes any friendship, but you're both locked in until it's fixed. Your old best friend just booked you both.",
+   "options": [
+    "I'm packing two sleeping bags and a week of snacks.",
+    "Fine, but my list of grievances has a table of contents.",
+    "Canceling. That friendship ended on purpose.",
+    "A note on their door instead: glad we were friends."
+   ]
+  },
+  "fp": {
+   "trigger": "magic shop offers to fix a broken friendship",
+   "setting": "repair shop, locked in until fixed",
+   "ask": "go in and repair or walk away",
+   "who": "former best friend",
+   "stakes": "a lost friendship back, at a cost",
+   "device": "friendship repair shop"
+  },
+  "mask": "looks like a fairy tale; measures repairing a rocky bond versus letting it go (T10)",
+  "ae": [
+   "A",
+   "B",
+   "E"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "A friendship repair shop locks both people in until it's fixed. {name}'s old best friend just booked a slot. What does {name} do?",
+   "a": {
+    "t": "Brings a printed list of grievances, with a table of contents.",
+    "axes": {
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T10A",
+      "s": 1
+     }
+    ]
+   },
+   "b": {
+    "t": "Leaves a sticky note on their door: \"Glad we were friends.\"",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T10B",
+      "s": 1
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-141",
+  "type": "reply",
+  "chapter": 2,
+  "sq": "SQ-R1-3",
+  "world": "unusual",
+  "prompt": "Your friends want all six of you in one big house.",
+  "thread": [
+   {
+    "from": "Maya",
+    "text": "WE FOUND IT. six bedrooms, one kitchen, all of us. lease starts june"
+   },
+   {
+    "from": "Theo",
+    "text": "room draw sunday. you're in right??"
+   }
+  ],
+  "options": [
+   {
+    "t": "\"DIBS on the room by the kitchen. Boxes already taped.\"",
+    "axes": {
+     "R1": 2
+    },
+    "emotion": "delight"
+   },
+   {
+    "t": "\"Already made us a chore wheel. It's laminated.\"",
+    "axes": {
+     "R1": 1
+    },
+    "emotion": "warmth"
+   },
+   {
+    "t": "\"Put me in the attic. The one with the lock.\"",
+    "axes": {
+     "R1": -1
+    }
+   },
+   {
+    "t": "\"Love you all. I'll visit. Constantly.\"",
+    "axes": {
+     "R1": -2
+    },
+    "emotion": "guilt"
+   }
+  ],
+  "heart": {
+   "prompt": "Your friends want all six of you in one big house.",
+   "thread": [
+    {
+     "from": "Maya",
+     "text": "We found it. Six bedrooms, one kitchen, all of us. Lease starts in June."
+    },
+    {
+     "from": "Theo",
+     "text": "Room draw's Sunday. You're in, right?"
+    }
+   ],
+   "options": [
+    "Dibs on the room by the kitchen. My boxes are already taped.",
+    "I already made us a chore wheel. It's laminated.",
+    "Put me in the attic, the room with the lock.",
+    "Love you all so much. I'll visit all the time."
+   ]
+  },
+  "fp": {
+   "trigger": "friends want to all move in together",
+   "setting": "a six-bedroom house hunt",
+   "ask": "move in with the group or keep your own place",
+   "who": "your friend group",
+   "stakes": "belonging versus a place of your own",
+   "device": "friend-group-house"
+  },
+  "mask": "looks like a fun housing plan; measures merging your life with your people versus keeping your own space (R1)",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "{name}'s five closest friends want everyone in one big house. Room draw is Sunday. What does {name} reply?",
+   "a": {
+    "t": "\"DIBS on the room by the kitchen. Boxes already taped.\"",
+    "axes": {
+     "R1": 2
+    }
+   },
+   "b": {
+    "t": "\"Love you all. I'll visit. Constantly.\"",
+    "axes": {
+     "R1": -2
+    }
+   }
+  }
+ },
+ {
+  "id": "C2-80",
+  "type": "scenario",
+  "chapter": 2,
+  "prompt": "An 8-ball that has never once been wrong says Jules's crush will say no. Jules confesses in five minutes, in front of everyone.",
+  "options": [
+   {
+    "t": "Grab Jules by the elbow: \"Abort. The ball said no.\"",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Hand Jules the 8-ball. Their shake, their call.",
+    "axes": {
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Zip it. Wait by the exit after, tissues ready.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 2
+     }
+    ],
+    "emotion": "guilt"
+   },
+   {
+    "t": "Casually float \"maybe not in front of everyone?\" Then drop it.",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "An 8-ball that's never once been wrong says Jules's crush will say no. Jules is confessing in five minutes, in front of everyone.",
+   "options": [
+    "I grab Jules by the elbow: \"Don't. The ball said no.\"",
+    "Jules gets the 8-ball. They shake it, then it's their call.",
+    "Nothing from me. I'm by the exit after, with tissues.",
+    "\"Maybe not in front of everyone?\" Once, then I drop it."
+   ]
+  },
+  "fp": {
+   "trigger": "oracle says friend will be rejected",
+   "setting": "crowded party, magic 8-ball",
+   "ask": "warn them or let it happen",
+   "who": "a friend and their crush",
+   "stakes": "friend's public embarrassment versus their hope",
+   "device": "magic 8-ball"
+  },
+  "mask": "looks like a magic party moment; measures saying the hard truth now versus protecting their hope first (R2, T07)",
+  "ae": [
+   "A",
+   "C"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-R2-1",
+  "world": "absurd",
+  "friend": {
+   "prompt": "A never-wrong 8-ball says Jules's crush will say no. Jules confesses to everyone in five minutes. What does {name} do?",
+   "a": {
+    "t": "Grabs Jules by the elbow: \"Abort. The ball said no.\"",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Zips it. Waits by the exit after with tissues.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-120",
+  "type": "scenario",
+  "chapter": 2,
+  "prompt": "Stand-up debut, tonight: your roommate quit their job for this. They run the whole set for you. Only the landlord joke gets a laugh.",
+  "options": [
+   {
+    "t": "\"Honestly? One laugh. Minute nine. The landlord bit.\"",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 2
+     }
+    ],
+    "emotion": "guilt"
+   },
+   {
+    "t": "Ask if they want the honest version or the roommate version.",
+    "axes": {
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Quietly invite ten friends who laugh at everything.",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "\"You're going to crush it.\" Front row, laughing loudest.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 2
+     }
+    ],
+    "emotion": "warmth"
+   }
+  ],
+  "heart": {
+   "prompt": "Your roommate quit their job to do stand-up, and the first show's tonight. They run the whole set for you. Only the landlord joke makes you laugh.",
+   "options": [
+    "\"Honestly? You got one laugh, at minute nine. The landlord bit.\"",
+    "I ask if they want the honest version or the roommate version.",
+    "Ten friends who laugh at everything get a quiet invite from me.",
+    "\"You'll crush it.\" Then I laugh loudest from the front row."
+   ]
+  },
+  "fp": {
+   "trigger": "roommate runs a stand-up set by you; one joke lands",
+   "setting": "apartment, hours before their debut",
+   "ask": "honest notes or pure hype",
+   "who": "roommate turned comic",
+   "stakes": "their first show versus their feelings",
+   "device": "stand-up debut"
+  },
+  "mask": "looks like a comedy moment; measures giving the truth raw versus wrapped when a friend is hopeful (T07, R2)",
+  "ae": [
+   "A",
+   "E"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T07-1",
+  "world": "unusual",
+  "friend": {
+   "prompt": "{name}'s roommate quit a job for stand-up. Debut's tonight. Of the whole set, only the landlord joke made {name} laugh. What does {name} do?",
+   "a": {
+    "t": "\"Honestly? One laugh. Minute nine. The landlord bit.\"",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "\"You're going to crush it.\" Front row, laughing loudest.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-121",
+  "type": "scenario",
+  "chapter": 2,
+  "prompt": "Time capsule, opened in front of the whole friend group. Your note: \"By now I'll run my own company.\" You don't. Everyone's reading theirs aloud.",
+  "options": [
+   {
+    "t": "Read it like a poem. Bow. Sit down.",
+    "axes": {
+     "L2": -2
+    },
+    "tags": [
+     {
+      "id": "T24B",
+      "s": 1
+     }
+    ],
+    "emotion": "pride"
+   },
+   {
+    "t": "\"Technically, I have three clients.\" Nobody asked.",
+    "axes": {
+     "L2": 1
+    },
+    "emotion": "cringe"
+   },
+   {
+    "t": "Laugh the hardest. Past me was adorable.",
+    "axes": {
+     "L2": -1
+    },
+    "emotion": "delight"
+   },
+   {
+    "t": "Drive home and make a milestone chart that night.",
+    "axes": {
+     "L2": 2
+    },
+    "tags": [
+     {
+      "id": "T24A",
+      "s": 1
+     }
+    ],
+    "emotion": "sting"
+   }
+  ],
+  "heart": {
+   "prompt": "Your friend group opens its old time capsule. Your note says, \"By now I'll run my own company.\" You don't. Everyone's reading theirs out loud.",
+   "options": [
+    "I read it like a poem, take a bow and sit down.",
+    "\"Technically, I have three clients,\" I say. Nobody asked.",
+    "Laughing hardest, honestly. Past me was adorable.",
+    "That night I drive home and make a milestone chart."
+   ]
+  },
+  "fp": {
+   "trigger": "old time capsule note read aloud",
+   "setting": "friend group dig, years later",
+   "ask": "own the gap or cover it",
+   "who": "old friend group",
+   "stakes": "face versus your own pace",
+   "device": "time capsule"
+  },
+  "mask": "looks like a nostalgic reunion; measures needing visible progress versus trusting your own slow road (L2, T24)",
+  "ae": [
+   "A",
+   "E"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-L2-3",
+  "world": "unusual",
+  "friend": {
+   "prompt": "Time capsule day. {name}'s note: \"By now I'll run my own company.\" Not yet. Everyone reads aloud. What does {name} do?",
+   "a": {
+    "t": "Drives home and makes a milestone chart that night.",
+    "axes": {
+     "L2": 2
+    },
+    "tags": [
+     {
+      "id": "T24A",
+      "s": 1
+     }
+    ]
+   },
+   "b": {
+    "t": "Reads it like a poem, bows, sits down.",
+    "axes": {
+     "L2": -2
+    },
+    "tags": [
+     {
+      "id": "T24B",
+      "s": 1
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-122",
+  "type": "feeling",
+  "chapter": 2,
+  "follows": "C2-121",
+  "prompt": "Your old note, read aloud, the whole group grinning. Which feeling won?",
+  "options": [
+   {
+    "t": "Cringe. Past me was so sure.",
+    "emotion": "cringe"
+   },
+   {
+    "t": "A sting, because I really meant it.",
+    "emotion": "sting"
+   },
+   {
+    "t": "Pride: real life turned out better.",
+    "emotion": "pride"
+   },
+   {
+    "t": "Relief that nobody's holding me to it.",
+    "emotion": "relief"
+   },
+   {
+    "t": "Longing. I miss that version of me.",
+    "emotion": "longing"
+   }
+  ],
+  "heart": {
+   "prompt": "Your old note gets read out loud while the whole group grins. Which feeling wins?",
+   "options": [
+    "Cringe. Past me was so sure.",
+    "It stings, because I really meant it.",
+    "Pride. Real life turned out better.",
+    "Relief that nobody's holding me to it.",
+    "Longing. I miss that version of me."
+   ]
+  },
+  "fp": {
+   "trigger": "follows C2-121",
+   "setting": "the time capsule dig",
+   "ask": "first feeling reading your old note",
+   "who": "your past self and the group",
+   "stakes": "emotion only, no score",
+   "device": "time capsule"
+  },
+  "mask": "emotion only; no score",
+  "ae": [
+   "E"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-L2-3",
+  "world": "unusual"
+ },
+ {
+  "id": "C2-41",
+  "type": "reply",
+  "chapter": 2,
+  "prompt": "Riley's building bans pets. Riley's pig, Biscuit, is very large.",
+  "thread": [
+   {
+    "from": "Riley",
+    "text": "ok weird favor. landlord inspects my place tomorrow at 10"
+   },
+   {
+    "from": "Riley",
+    "text": "can you come over and say Biscuit is YOUR pig?? just visiting. for like a year 🐷"
+   }
+  ],
+  "options": [
+   {
+    "t": "\"Omw. Biscuit and I have matching sweaters now.\"",
+    "axes": {
+     "L3": -2
+    },
+    "tags": [
+     {
+      "id": "T25B",
+      "s": 2
+     },
+     {
+      "id": "T06A",
+      "s": 1
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "Fine, once. Biscuit needs a real plan by Friday.",
+    "axes": {
+     "L3": -1
+    },
+    "tags": [
+     {
+      "id": "T25B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "\"Not lying to your landlord. Love you. Love Biscuit.\"",
+    "axes": {
+     "L3": 2,
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T25A",
+      "s": 1
+     }
+    ],
+    "emotion": "guilt"
+   },
+   {
+    "t": "Sent \"sorry, just saw this!!\" at 10:45.",
+    "axes": {
+     "L3": 1
+    },
+    "tags": [
+     {
+      "id": "T25A",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "Riley's building bans pets. Riley's pig, Biscuit, is very large.",
+   "thread": [
+    {
+     "from": "Riley",
+     "text": "Weird favor. My landlord's inspecting my place tomorrow at 10."
+    },
+    {
+     "from": "Riley",
+     "text": "Can you come over and say Biscuit's your pig? Just visiting. For about a year."
+    }
+   ],
+   "options": [
+    "\"On my way. Biscuit and I have matching sweaters now.\"",
+    "Fine, once. After that, Biscuit needs a real plan.",
+    "\"I won't lie to your landlord. I love you. I love Biscuit.\"",
+    "\"Sorry, just saw this,\" I send, at 10:45."
+   ]
+  },
+  "fp": {
+   "trigger": "friend asks you to claim their pig",
+   "setting": "text thread, a no-pets building",
+   "ask": "lie for them or refuse",
+   "who": "friend and their landlord",
+   "stakes": "their home versus your word",
+   "device": "fake pig owner"
+  },
+  "mask": "looks like a funny favor; measures whether the rule or the person wins (L3, T25)",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-L3-1",
+  "world": "unusual",
+  "friend": {
+   "prompt": "Riley's building bans pets. Inspection's tomorrow: \"can you come over and say Biscuit is YOUR pig??\" What does {name} reply?",
+   "a": {
+    "t": "\"Not lying to your landlord. Love you. Love Biscuit.\"",
+    "axes": {
+     "L3": 2,
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T25A",
+      "s": 1
+     }
+    ]
+   },
+   "b": {
+    "t": "\"Omw. Biscuit and I have matching sweaters now.\"",
+    "axes": {
+     "L3": -2
+    },
+    "tags": [
+     {
+      "id": "T25B",
+      "s": 2
+     },
+     {
+      "id": "T06A",
+      "s": 1
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-161",
+  "type": "others",
+  "chapter": 2,
+  "sq": "SQ-T08-2",
+  "world": "absurd",
+  "prompt": "Settle this: your friend can delete one memory a year. They deleted the day their sibling sold their guitar and lied about it. They're close again. Your verdict?",
+  "options": [
+   {
+    "t": "Best use of the year. Clean slate, group hug.",
+    "tags": [
+     {
+      "id": "T08A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Sure. I'd still hide the amp when that sibling visits.",
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Huge mistake. That memory was their fraud alert.",
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Waste of a delete. I'd forget it by summer anyway.",
+    "tags": [
+     {
+      "id": "T08A",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "Your friend can delete one memory a year. They deleted the time their sibling sold their guitar and lied about it, and now they're close again. What do you think?",
+   "options": [
+    "Best thing they could've done with it. Clean slate.",
+    "Fine, but I'd still hide the amp when that sibling's over.",
+    "I'd keep it. That memory's how you know who to trust.",
+    "They didn't need the delete. I'd have forgotten by summer."
+   ]
+  },
+  "fp": {
+   "trigger": "a friend erases the memory of a sibling's betrayal",
+   "setting": "a world where one memory a year can go",
+   "ask": "your take on forgetting",
+   "who": "a friend and their sibling",
+   "stakes": "trust versus a clean slate",
+   "device": "memory-delete"
+  },
+  "mask": "looks like a sci-fi perk; measures forgive-and-forget versus forgive-and-file (T08), shown by how you judge a friend's clean slate",
+  "ae": [
+   "A",
+   "C",
+   "D"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "{name}'s friend deleted the day their sibling sold their guitar and lied about it. They're close again. {name}'s verdict?",
+   "a": {
+    "t": "Best use of the year. Clean slate, group hug.",
+    "tags": [
+     {
+      "id": "T08A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Huge mistake. That memory was their fraud alert.",
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-124",
+  "type": "others",
+  "chapter": 2,
+  "prompt": "Drive-through chapel, no party, no speeches, ever: that's how your closest friend just got married. They told everyone after. First thought?",
+  "options": [
+   {
+    "t": "Robbed. I've had a dance routine ready for years.",
+    "axes": {
+     "R3": 2
+    },
+    "tags": [
+     {
+      "id": "T21A",
+      "s": 2
+     }
+    ],
+    "emotion": "sting"
+   },
+   {
+    "t": "Smartest thing they've ever done. Zero seating charts.",
+    "axes": {
+     "R3": -2
+    },
+    "tags": [
+     {
+      "id": "T21B",
+      "s": 2
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "Throw them a party anyway. Someone's giving a speech.",
+    "axes": {
+     "R3": 1
+    },
+    "tags": [
+     {
+      "id": "T21A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Already looking up the nearest drive-through. For me.",
+    "axes": {
+     "R3": -1
+    },
+    "tags": [
+     {
+      "id": "T21B",
+      "s": 1
+     }
+    ],
+    "emotion": "envy"
+   }
+  ],
+  "heart": {
+   "prompt": "Your closest friend just got married at a drive-through chapel and told everyone after. No party, no speeches, ever. What's your first thought?",
+   "options": [
+    "Honestly, robbed. I had a dance routine ready for years.",
+    "Smartest thing they've done. No seating chart, no stress.",
+    "I'm throwing them a party anyway, speeches and all.",
+    "Part of me's already looking up the nearest drive-through."
+   ]
+  },
+  "fp": {
+   "trigger": "closest friend elopes and tells you after",
+   "setting": "drive-through chapel",
+   "ask": "your take on skipping the big day",
+   "who": "closest friend",
+   "stakes": "a big moment you were never part of",
+   "device": "elopement"
+  },
+  "mask": "looks like wedding gossip; measures whether love needs a big public yes (T21, R3)",
+  "ae": [
+   "A",
+   "E"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T21-1",
+  "world": "unusual",
+  "friend": {
+   "prompt": "{name}'s closest friend married at a drive-through chapel, told everyone after. No party, no speeches, ever. {name}'s first thought?",
+   "a": {
+    "t": "Robbed. Had a dance routine ready for years.",
+    "axes": {
+     "R3": 2
+    },
+    "tags": [
+     {
+      "id": "T21A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Smartest thing they've ever done. Zero seating charts.",
+    "axes": {
+     "R3": -2
+    },
+    "tags": [
+     {
+      "id": "T21B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-125",
+  "type": "this_or_that",
+  "chapter": 2,
+  "round": "ch2-r125",
+  "prompt": "Your best friend got a brass bell. One ring and you appear next to them, even mid-nap. You can break it today only.",
+  "options": [
+   {
+    "t": "Keep it. Ring away. I'll arrive mid-sandwich, no complaints.",
+    "axes": {
+     "R1": 1
+    },
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 2
+     }
+    ],
+    "emotion": "warmth"
+   },
+   {
+    "t": "Smash it before lunch. My naps stay mine.",
+    "axes": {
+     "R1": -1
+    },
+    "tags": [
+     {
+      "id": "T06B",
+      "s": 2
+     }
+    ],
+    "emotion": "relief"
+   }
+  ],
+  "heart": {
+   "prompt": "Your best friend has a brass bell now. One ring and you appear next to them, even mid-nap. You can only break it today.",
+   "options": [
+    "It stays. If it rings, I show up mid-sandwich.",
+    "I break it before lunch. My naps stay mine."
+   ]
+  },
+  "fp": {
+   "trigger": "friend gets a bell that summons you",
+   "setting": "magic summoning bell",
+   "ask": "keep it or break it",
+   "who": "best friend",
+   "stakes": "always there versus your own time",
+   "device": "summoning bell"
+  },
+  "mask": "looks like a magic gadget; measures whether a friend's need beats your own reserves (T06), with close as shared versus close with space (R1)",
+  "ae": [
+   "A",
+   "D"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T06-1",
+  "world": "absurd",
+  "friend": {
+   "prompt": "One ring and {name} appears beside the best friend, anywhere. The bell can only be broken today. Which one is {name}?",
+   "a": {
+    "t": "Keeps it: \"Ring away. I'll arrive mid-sandwich.\"",
+    "axes": {
+     "R1": 1
+    },
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Smashes it before lunch: \"My naps stay mine.\"",
+    "axes": {
+     "R1": -1
+    },
+    "tags": [
+     {
+      "id": "T06B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-126",
+  "type": "this_or_that",
+  "chapter": 2,
+  "round": "ch2-r125",
+  "prompt": "Your friend's closet now opens somewhere random on Earth. They step through in an hour, back in two days, room for one more. Your weekend was already perfect.",
+  "options": [
+   {
+    "t": "Through the closet in my socks. The weekend can wait.",
+    "axes": {
+     "L1": -2
+    },
+    "tags": [
+     {
+      "id": "T22A",
+      "s": 1
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "Mine's booked: nap, bookstore, a 1,000-piece puzzle. Send a postcard.",
+    "axes": {
+     "L1": 2
+    },
+    "tags": [
+     {
+      "id": "T22B",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "Your friend's closet opens somewhere random on Earth now. They're stepping through in an hour, back in two days, and there's room for you. Your weekend was already perfect.",
+   "options": [
+    "Through the closet in my socks. The weekend can wait.",
+    "My weekend stays: a nap, the bookstore, a puzzle. Send a postcard."
+   ]
+  },
+  "fp": {
+   "trigger": "friend invites you through a magic door",
+   "setting": "closet door to anywhere",
+   "ask": "go or keep your plan",
+   "who": "friend",
+   "stakes": "a sure good weekend versus the unknown",
+   "device": "magic door"
+  },
+  "mask": "looks like a portal fantasy; measures a sure good thing versus a great unknown (L1, T22)",
+  "ae": [
+   "A",
+   "D"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-L1-1",
+  "world": "absurd",
+  "friend": {
+   "prompt": "A friend's closet opens somewhere random, and {name} is invited through in an hour. {name}'s weekend was already planned. Which one is {name}?",
+   "a": {
+    "t": "\"Nap, bookstore, puzzle. Send me a postcard.\"",
+    "axes": {
+     "L1": 2
+    },
+    "tags": [
+     {
+      "id": "T22B",
+      "s": 1
+     }
+    ]
+   },
+   "b": {
+    "t": "\"Through the closet in my socks. The weekend can wait.\"",
+    "axes": {
+     "L1": -2
+    },
+    "tags": [
+     {
+      "id": "T22A",
+      "s": 1
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-127",
+  "type": "role",
+  "chapter": 2,
+  "prompt": "Haunted mansion, one night, your whole crew. Something upstairs just knocked twice. In this crew, you're the...",
+  "options": [
+   {
+    "t": "Scout, first up the stairs. Two knocks is an invite.",
+    "axes": {
+     "L1": -2
+    }
+   },
+   {
+    "t": "Warden. Flashlight, exit map, headcount every ten minutes.",
+    "axes": {
+     "L1": 2
+    }
+   },
+   {
+    "t": "\"Let's split up!\" Already halfway down a dark hallway.",
+    "axes": {
+     "L1": -1
+    }
+   },
+   {
+    "t": "Rule reader, reciting the house rules off the fridge.",
+    "axes": {
+     "L1": 1
+    }
+   },
+   {
+    "t": "Door holder, one foot outside, ride already ordered.",
+    "axes": {
+     "L1": 1
+    }
+   }
+  ],
+  "heart": {
+   "prompt": "You and your friends are spending one night in a haunted mansion. Something upstairs just knocked twice. Which one are you?",
+   "options": [
+    "First up the stairs. Two knocks sounds like an invite.",
+    "Flashlight, exit map, and I'm counting heads every ten minutes.",
+    "\"Let's split up,\" I say, already halfway down the hall.",
+    "I'm reading the house rules off the fridge, out loud.",
+    "Holding the front door, one foot outside, ride on the way."
+   ]
+  },
+  "fp": {
+   "trigger": "a knock upstairs in a haunted house",
+   "setting": "inherited haunted mansion, one night",
+   "ask": "your role in the group",
+   "who": "friend group",
+   "stakes": "the thrill versus getting out safe",
+   "device": "haunted house"
+  },
+  "mask": "looks like a spooky group bit; measures stepping into the unknown versus waiting until it is known (L1)",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-L1-2",
+  "world": "absurd",
+  "friend": {
+   "prompt": "Something upstairs in the crew's haunted mansion just knocked twice. In this crew, {name} is the...",
+   "a": {
+    "t": "Warden: flashlight, exit map, headcount every ten minutes.",
+    "axes": {
+     "L1": 2
+    }
+   },
+   "b": {
+    "t": "Scout, first up the stairs. Two knocks is an invite.",
+    "axes": {
+     "L1": -2
+    }
+   }
+  }
+ },
+ {
+  "id": "C2-142",
+  "type": "rank",
+  "chapter": 2,
+  "sq": "SQ-T05-1",
+  "world": "unusual",
+  "prompt": "Moving day. You slept through it. Your best friend carried a dresser down five floors with a stranger. Rank your apology, first pick to last:",
+  "options": [
+   {
+    "t": "An 11-minute voice note. The groveling starts at minute two",
+    "tags": [
+     {
+      "id": "T05B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Their whole kitchen unpacked while they're at work. No note",
+    "tags": [
+     {
+      "id": "T05A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "A handwritten card. One full page, zero jokes",
+    "tags": [
+     {
+      "id": "T05B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Me at their door every Saturday this month, drill in hand",
+    "tags": [
+     {
+      "id": "T05A",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "You slept through your best friend's moving day. They carried a dresser down five floors with a stranger. How do you make it up to them? Rank these:",
+   "options": [
+    "A long voice note. I'm sorry for most of it",
+    "I unpack their whole kitchen while they're at work, no note",
+    "A handwritten card, a full page, no jokes",
+    "I show up every Saturday this month with a drill"
+   ]
+  },
+  "fp": {
+   "trigger": "you slept through a friend's moving day",
+   "setting": "the week after the move",
+   "ask": "rank how you make it up to them",
+   "who": "your best friend",
+   "stakes": "the friendship after you let them down",
+   "device": "four-apologies"
+  },
+  "mask": "looks like an apology ranking; measures showing love by doing versus by saying (T05)",
+  "ae": [
+   "A",
+   "D"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C2-129",
+  "type": "eyes",
+  "chapter": 2,
+  "prompt": "A sphinx blocks the road: your best friend gets one true line about you, or you both turn to stone. They say:",
+  "options": [
+   {
+    "t": "\"Cross them and you'll hear about it before you sit.\"",
+    "axes": {
+     "R2": 2
+    }
+   },
+   {
+    "t": "\"They say 'all good,' then reply in one-word texts for a day.\"",
+    "axes": {
+     "R2": -1
+    }
+   },
+   {
+    "t": "\"Forgets what you did before you've even apologized.\"",
+    "axes": {
+     "R2": -2
+    }
+   },
+   {
+    "t": "\"One clear callout. Then it's never mentioned again.\"",
+    "axes": {
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T08A",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "A sphinx stops you and your best friend. Your friend has to say one true line about you, or you both turn to stone. What do they say?",
+   "options": [
+    "\"Cross them and you'll hear about it right then.\"",
+    "\"They say it's all good, then go quiet for a day.\"",
+    "\"Whatever you did, they've forgotten it before you apologize.\"",
+    "\"One clear callout, and then it's never brought up again.\""
+   ]
+  },
+  "fp": {
+   "trigger": "sphinx demands one true line about you",
+   "setting": "mythic road, a stone curse",
+   "ask": "how your friend sums up your limits",
+   "who": "best friend",
+   "stakes": "how you are seen when someone crosses you",
+   "device": "sphinx"
+  },
+  "mask": "looks like a riddle; measures naming it when someone crosses a line versus absorbing it (R2)",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-R2-2",
+  "world": "absurd",
+  "friend": {
+   "prompt": "A sphinx makes {name}'s best friend say one true line about {them}, or both turn to stone. Which line?",
+   "a": {
+    "t": "\"Cross {them} and you'll hear about it before you sit.\"",
+    "axes": {
+     "R2": 2
+    }
+   },
+   "b": {
+    "t": "\"Forgets what you did before you've even apologized.\"",
+    "axes": {
+     "R2": -2
+    }
+   }
+  }
+ },
+ {
+  "id": "C2-50",
+  "type": "bet",
+  "chapter": 2,
+  "prompt": "Be honest: a friend's big launch flopped in front of everyone, and a tiny part of you exhaled.",
+  "options": [
+   {
+    "t": "Neck and neck for years. Then they tripped. Relief.",
+    "axes": {
+     "L2": 2
+    },
+    "tags": [
+     {
+      "id": "T16A",
+      "s": 1
+     }
+    ],
+    "emotion": "relief"
+   },
+   {
+    "t": "One guilty second. Then I paid for their drinks all night.",
+    "axes": {
+     "L2": 1
+    },
+    "emotion": "guilt"
+   },
+   {
+    "t": "Their flop hit me like my own. I drafted their comeback.",
+    "axes": {
+     "L2": -1
+    },
+    "emotion": "warmth"
+   },
+   {
+    "t": "Honestly couldn't name their plan. Not my scoreboard.",
+    "axes": {
+     "L2": -2
+    }
+   }
+  ],
+  "heart": {
+   "prompt": "Has a friend's big plan ever flopped in front of everyone, and a small part of you felt relieved?",
+   "options": [
+    "Yes. We'd been neck and neck for years, and then we weren't.",
+    "For one second. Then guilt made me pay for their drinks.",
+    "No. Their flop hit me like my own. I planned their comeback.",
+    "I couldn't even tell you what their plan was."
+   ]
+  },
+  "fp": {
+   "trigger": "friend's big plan flops publicly",
+   "setting": "friendship, afterward",
+   "ask": "admit the relief",
+   "who": "close friend",
+   "stakes": "rivalry versus loyalty",
+   "device": "rival flop"
+  },
+  "mask": "looks like a confession; measures whether someone else's timeline sets your clock (L2) from a thing actually felt",
+  "ae": [
+   "A",
+   "E"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-L2-2",
+  "world": "unusual",
+  "friend": {
+   "prompt": "Has {name} ever felt a little relieved when a friend's big plan flopped in public?",
+   "a": {
+    "t": "Guilty. Neck and neck for years, then they tripped.",
+    "axes": {
+     "L2": 2
+    },
+    "tags": [
+     {
+      "id": "T16A",
+      "s": 1
+     }
+    ]
+   },
+   "b": {
+    "t": "Never. Couldn't even name the plan.",
+    "axes": {
+     "L2": -2
+    }
+   }
+  }
+ },
+ {
+  "id": "C2-143",
+  "type": "bet",
+  "chapter": 2,
+  "sq": "SQ-T07-2",
+  "world": "everyday",
+  "prompt": "Confession time: you've heard what others say about a friend behind their back, and never told them.",
+  "options": [
+   {
+    "t": "Kept it to myself. Still smile at those people at parties.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 2
+     }
+    ],
+    "emotion": "guilt"
+   },
+   {
+    "t": "Hinted until they asked the right question.",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Told them that night, names included.",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Repeated it to the talkers' faces. Watched them squirm.",
+    "axes": {
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 1
+     }
+    ],
+    "emotion": "delight"
+   }
+  ],
+  "heart": {
+   "prompt": "Ever heard what people say about a friend behind their back, and never told them?",
+   "options": [
+    "I kept it to myself. I still smile at those people.",
+    "Little hints, until they finally asked the right question.",
+    "Told them that same night, names and all.",
+    "Said it right back to the talkers, and watched them squirm."
+   ]
+  },
+  "fp": {
+   "trigger": "you hear what others say about a friend",
+   "setting": "real life, behind their back",
+   "ask": "tell them or keep it",
+   "who": "a friend and the people talking",
+   "stakes": "the friend's feelings versus your place with the others",
+   "device": "behind-their-back-talk"
+  },
+  "mask": "looks like a gossip confession; measures telling a friend the hard news straight versus shielding them (T07, R2), from a thing actually done",
+  "ae": [
+   "A",
+   "B",
+   "E"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "Genii bets {name} has heard what others say about a friend behind the friend's back, and never told. Guilty or not?",
+   "a": {
+    "t": "Told the friend that night, names included.",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Kept it quiet. Still keeping it.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-144",
+  "type": "real",
+  "chapter": 2,
+  "sq": "SQ-T06-2",
+  "world": "everyday",
+  "prompt": "The last time a friend asked to borrow your good stuff: the car, the nice jacket, the good speaker. What happened?",
+  "options": [
+   {
+    "t": "Handed it over before they finished the sentence.",
+    "axes": {
+     "L3": -2
+    },
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 2
+     }
+    ],
+    "emotion": "warmth"
+   },
+   {
+    "t": "Lent it, after photographing every scratch first.",
+    "axes": {
+     "L3": 1
+    },
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Said no. My rule doesn't come with a friends list.",
+    "axes": {
+     "L3": 2
+    },
+    "tags": [
+     {
+      "id": "T06B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Kept it, then offered them my backup one. Guilt tax.",
+    "tags": [
+     {
+      "id": "T06B",
+      "s": 1
+     }
+    ],
+    "emotion": "guilt"
+   }
+  ],
+  "heart": {
+   "prompt": "The last time a friend asked to borrow your good stuff, like the car, the nice jacket or the good speaker, what happened?",
+   "options": [
+    "They had it before they finished asking.",
+    "I lent it, after taking photos of every scratch.",
+    "I said no. My rule doesn't have a friends list.",
+    "It stayed home. I felt bad, so they got my backup."
+   ]
+  },
+  "fp": {
+   "trigger": "a friend asks to borrow something you guard",
+   "setting": "real life, your car or good jacket",
+   "ask": "bend your rule or keep it",
+   "who": "a friend",
+   "stakes": "your things and your rule versus the friendship",
+   "device": "borrow-the-good-stuff"
+  },
+  "mask": "looks like a lending memory; measures whether your own rules bend for a friend (T06), with the rule versus the person (L3), from what you did",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "The last time a friend asked to borrow {name}'s good stuff. What did {name} actually do?",
+   "a": {
+    "t": "Handed it over before the friend finished the sentence.",
+    "axes": {
+     "L3": -2
+    },
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Said no. The rule doesn't come with a friends list.",
+    "axes": {
+     "L3": 2
+    },
+    "tags": [
+     {
+      "id": "T06B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-132",
+  "type": "bet",
+  "chapter": 2,
+  "prompt": "Genii's guess: someone you swore you'd never speak to again is back in your life.",
+  "options": [
+   {
+    "t": "Emergency contact now. Don't ask how.",
+    "tags": [
+     {
+      "id": "T08A",
+      "s": 2
+     }
+    ],
+    "emotion": "warmth"
+   },
+   {
+    "t": "Back in the group chat. Never in my DMs.",
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "One decent apology and I folded like a lawn chair.",
+    "tags": [
+     {
+      "id": "T08A",
+      "s": 1
+     }
+    ],
+    "emotion": "cringe"
+   },
+   {
+    "t": "Blocked on four apps. Considering a fifth.",
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 2
+     }
+    ],
+    "emotion": "pride"
+   }
+  ],
+  "heart": {
+   "prompt": "Is someone you once swore you'd never speak to again back in your life now?",
+   "options": [
+    "They're my emergency contact now. Don't ask me how.",
+    "In the group chat, sure. Never in my messages.",
+    "One decent apology, and I folded.",
+    "Still blocked, on every app I have."
+   ]
+  },
+  "fp": {
+   "trigger": "someone you cut off is back",
+   "setting": "real life, over time",
+   "ask": "did you let them back in",
+   "who": "someone who hurt you",
+   "stakes": "a second chance versus protecting yourself",
+   "device": "never-again vow"
+  },
+  "mask": "looks like a confession; measures whether someone who hurt you can get back in (T08), from a thing actually done",
+  "ae": [
+   "A",
+   "E"
+  ],
+  "privacy": "normal",
+  "sq": "SQ-T08-1",
+  "world": "everyday",
+  "friend": {
+   "prompt": "Genii bets {name} has someone back in {their} life {they} swore never to speak to again. Guilty or not?",
+   "a": {
+    "t": "Back, and now they're {their} emergency contact.",
+    "tags": [
+     {
+      "id": "T08A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Blocked on four apps. Considering a fifth.",
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-145",
+  "type": "real",
+  "chapter": 2,
+  "sq": "SQ-T05-1",
+  "world": "everyday",
+  "prompt": "Last big win in your friend group: the job, the apartment, the acceptance letter. What did you actually do first?",
+  "options": [
+   {
+    "t": "Typed in all caps until my thumbs hurt.",
+    "tags": [
+     {
+      "id": "T05B",
+      "s": 2
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "Called and made them tell it twice, slower the second time.",
+    "tags": [
+     {
+      "id": "T05B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Showed up with gas station flowers. Barely spoke.",
+    "tags": [
+     {
+      "id": "T05A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Offered to do the boring part: forms, heavy lifting.",
+    "tags": [
+     {
+      "id": "T05A",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "The last time a friend had big good news, like a new job, a new place or an acceptance letter, what did you do first?",
+   "options": [
+    "All caps, until my thumbs hurt.",
+    "I called and made them tell it twice, slower the second time.",
+    "Gas station flowers at their door. I barely said a word.",
+    "Forms, heavy lifting, the boring part. I offered to do it."
+   ]
+  },
+  "fp": {
+   "trigger": "a friend gets big good news",
+   "setting": "real life, the first hour",
+   "ask": "how you celebrated first",
+   "who": "a friend",
+   "stakes": "showing it in a way that lands",
+   "device": "friend-good-news"
+  },
+  "mask": "looks like a celebration memory; measures showing love by doing versus by saying (T05), from a thing actually done",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "Last big win in {name}'s friend group: the job, the apartment, the acceptance letter. What did {name} actually do first?",
+   "a": {
+    "t": "Showed up with gas station flowers. Barely spoke.",
+    "tags": [
+     {
+      "id": "T05A",
+      "s": 2
+     }
+    ]
+   },
+   "b": {
+    "t": "Typed in all caps until {their} thumbs hurt.",
+    "tags": [
+     {
+      "id": "T05B",
+      "s": 2
+     }
+    ]
+   }
+  }
+ },
+ {
+  "id": "C2-146",
+  "type": "receipts",
+  "chapter": 2,
+  "sq": "SQ-T05-2",
+  "world": "everyday",
+  "prompt": "The group chat wants receipts: a friend's last rough week. Tap everything you actually did:",
+  "options": [
+   {
+    "t": "Showed up and did their dishes, no questions",
+    "tags": [
+     {
+      "id": "T05A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Sent a paragraph so long it needed a \"read more\"",
+    "tags": [
+     {
+      "id": "T05B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Canceled my own plans to sit on their floor",
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Muted their chat for a night so I could sleep",
+    "tags": [
+     {
+      "id": "T06B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Sent a meme instead of asking \"how are you, really?\"",
+    "tags": [
+     {
+      "id": "T05B",
+      "s": 1
+     },
+     {
+      "id": "T06B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "None of these",
+    "none": true
+   }
+  ],
+  "heart": {
+   "prompt": "Think of the last time a friend had a rough week. Which of these did you really do?",
+   "options": [
+    "I showed up and did their dishes, no questions asked.",
+    "I sent a paragraph so long it needed a \"read more\".",
+    "I canceled my own plans to sit on their floor.",
+    "I muted their chat for a night so I could sleep.",
+    "A meme, instead of asking how they really were.",
+    "None of these."
+   ]
+  },
+  "fp": {
+   "trigger": "a friend's rough week",
+   "setting": "real life, the past few weeks",
+   "ask": "tick what you actually did",
+   "who": "a friend having a hard time",
+   "stakes": "showing up versus your own battery",
+   "device": "rough-week-receipts"
+  },
+  "mask": "looks like a quick checklist; measures showing up in person versus sending love from a distance (T05, T06), from things actually done",
+  "ae": [
+   "A"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C2-162",
+  "type": "bet",
+  "chapter": 2,
+  "sq": "SQ-R3-1",
+  "world": "everyday",
+  "prompt": "I bet you've quietly judged a birthday with no cake, no candles and no song.",
+  "options": [
+   {
+    "t": "Judged it, then sprinted out for a sheet cake.",
+    "axes": {
+     "R3": 2
+    },
+    "tags": [
+     {
+      "id": "T20A",
+      "s": 1
+     }
+    ],
+    "emotion": "pride"
+   },
+   {
+    "t": "Smiled all night. Hummed the song in my head, furious.",
+    "axes": {
+     "R3": 1
+    },
+    "emotion": "irritation"
+   },
+   {
+    "t": "Didn't miss it once. Best night that month.",
+    "axes": {
+     "R3": -2
+    },
+    "tags": [
+     {
+      "id": "T20B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Judge it? I hosted it. Taco bar, zero singing.",
+    "axes": {
+     "R3": -1
+    },
+    "emotion": "delight"
+   }
+  ],
+  "heart": {
+   "prompt": "Be honest. Ever quietly judged a birthday with no cake, no candles and no song?",
+   "options": [
+    "I judged it, then ran out for a sheet cake.",
+    "Smiling on the outside, humming the song in my head all night.",
+    "Didn't miss it once. It was a great night.",
+    "Judge it? That was my party. Tacos, no singing."
+   ]
+  },
+  "fp": {
+   "trigger": "a birthday with no cake or song",
+   "setting": "a friend's birthday party",
+   "ask": "did the missing ritual bother you",
+   "who": "the host and the guests",
+   "stakes": "the classic ritual versus a party done your way",
+   "device": "no-cake-birthday"
+  },
+  "mask": "looks like a party confession; measures whether old rituals feel like home or a costume (R3, T20), from a thing actually done",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal",
+  "friend": {
+   "prompt": "Genii bets {name} has quietly judged a birthday with no cake, no candles and no song. Guilty or not?",
+   "a": {
+    "t": "Judged it, then sprinted out for a sheet cake.",
+    "axes": {
+     "R3": 2
+    },
+    "tags": [
+     {
+      "id": "T20A",
+      "s": 1
+     }
+    ]
+   },
+   "b": {
+    "t": "Didn't miss it once. Best night that month.",
+    "axes": {
+     "R3": -2
+    },
+    "tags": [
+     {
+      "id": "T20B",
+      "s": 1
+     }
+    ]
+   }
+  }
+ }
+]

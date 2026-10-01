@@ -1,0 +1,1534 @@
+[
+ {
+  "id": "C1-40",
+  "type": "scenario",
+  "chapter": 1,
+  "prompt": "Showing you a photo, a friend hands over their phone. One swipe too far: a screenshot of your texts, sent to someone else.",
+  "options": [
+   {
+    "t": "\"Wait. Who got my texts?\" Ask right there.",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 1
+     }
+    ],
+    "emotion": "sting"
+   },
+   {
+    "t": "Swipe once more. I need to see who.",
+    "axes": {
+     "L3": -1
+    },
+    "tags": [
+     {
+      "id": "T01A",
+      "s": 1
+     }
+    ],
+    "emotion": "worry"
+   },
+   {
+    "t": "Hand it back, smile. Stop texting them anything real.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T01B",
+      "s": 2
+     }
+    ],
+    "emotion": "sting"
+   },
+   {
+    "t": "Say nothing. File it with the other receipts.",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 2
+     }
+    ],
+    "emotion": "resentment"
+   }
+  ],
+  "heart": {
+   "prompt": "A friend hands you their phone to show you a photo. You swipe one photo too far and see a screenshot of your texts, sent to someone else.",
+   "options": [
+    "I ask them right away who they sent my texts to.",
+    "I swipe once more, because I need to know who it was.",
+    "I hand it back, smile, and stop telling them anything real.",
+    "I say nothing and remember it."
+   ]
+  },
+  "fp": {
+   "trigger": "own texts screenshotted, spotted on their phone",
+   "setting": "friend's phone, hanging out",
+   "ask": "confront, snoop further or go quiet",
+   "who": "friend who forwards your texts",
+   "stakes": "trust, what you share"
+  },
+  "mask": "looks like a phone slip; measures saying it now versus going quiet (R2), with keeping the file (T08) and guarding what you share (T01)",
+  "ae": [
+   "A",
+   "B",
+   "E"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C1-41",
+  "type": "receipts",
+  "chapter": 1,
+  "prompt": "Lately, for real. Tap everything you've actually done:",
+  "options": [
+   {
+    "t": "Read a message in the preview so it wouldn't show as read",
+    "tags": [
+     {
+      "id": "T02A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Looked up a friend's new date before being introduced",
+    "axes": {
+     "R1": 1
+    }
+   },
+   {
+    "t": "Screenshotted a chat to send to exactly one person",
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Saw something on someone's screen and never mentioned it",
+    "axes": {
+     "R2": -1
+    }
+   },
+   {
+    "t": "Kept a secret you were dying to tell",
+    "axes": {
+     "L3": 1
+    }
+   },
+   {
+    "t": "Passed on someone's secret to exactly one person",
+    "axes": {
+     "L3": -1
+    },
+    "tags": [
+     {
+      "id": "T01A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Tilted your screen away from the person next to you",
+    "tags": [
+     {
+      "id": "T01B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "None of these",
+    "none": true
+   }
+  ],
+  "heart": {
+   "prompt": "Thinking about recent weeks, which of these have you actually done? Choose all that apply.",
+   "options": [
+    "I read a message in the preview so it stayed unread.",
+    "I looked up a friend's new date before we were introduced.",
+    "I screenshotted a chat and sent it to one person.",
+    "I saw something on someone's screen and never mentioned it.",
+    "I kept a secret that I really wanted to tell.",
+    "I passed on someone's secret to one other person.",
+    "I turned my screen away from the person sitting next to me.",
+    "None of these."
+   ]
+  },
+  "fp": {
+   "trigger": "recent small snooping and secret moments",
+   "setting": "phone, recent weeks",
+   "ask": "tick what you did",
+   "who": "friends and people nearby",
+   "stakes": "privacy, other people's trust"
+  },
+  "mask": "looks like a harmless tick list; measures privacy habits (T01), keeping the file (T08) and whether promises bend (L3) from things actually done",
+  "ae": [
+   "A"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C2-40",
+  "type": "scenario",
+  "chapter": 2,
+  "prompt": "Sworn to secrecy: Dev is quietly bailing on the group trip. The group books the villa in an hour, split six ways.",
+  "options": [
+   {
+    "t": "Say nothing. Dev's secret, Dev's $400 problem.",
+    "axes": {
+     "L3": 1
+    },
+    "tags": [
+     {
+      "id": "T12A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "\"Hold off booking. Can't say why. Trust me.\"",
+    "axes": {
+     "R2": -1,
+     "L3": -1
+    },
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 1
+     }
+    ],
+    "emotion": "worry"
+   },
+   {
+    "t": "Text Dev: \"Tell them within the hour, or I will.\"",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 1
+     }
+    ],
+    "emotion": "irritation"
+   },
+   {
+    "t": "Book it for five. Let the group do the math.",
+    "axes": {
+     "L3": -2
+    },
+    "emotion": "delight"
+   }
+  ],
+  "heart": {
+   "prompt": "A friend, Dev, has told you in confidence that they are dropping out of the group trip. The group is booking the villa within the hour, split six ways.",
+   "options": [
+    "I say nothing. It is Dev's secret, and Dev's $400.",
+    "I ask the group to hold off, without saying why.",
+    "I tell Dev to tell them within the hour, or I will.",
+    "I book it for five and let the group work out why."
+   ]
+  },
+  "fp": {
+   "trigger": "friend secretly quitting group trip before booking",
+   "setting": "group chat, booking deadline",
+   "ask": "keep the secret or protect the group's money",
+   "who": "one friend versus the whole group",
+   "stakes": "$400 a head, a promise"
+  },
+  "mask": "looks like trip admin; measures whether a promise holds when money is on the line (L3) and forcing the truth out (R2)",
+  "ae": [
+   "A",
+   "B",
+   "C"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C2-41",
+  "type": "reply",
+  "chapter": 2,
+  "prompt": "A friend texts out of nowhere. Their person has your number too.",
+  "thread": [
+   {
+    "from": "Riley",
+    "text": "if anyone asks, i was at yours last night"
+   },
+   {
+    "from": "Riley",
+    "text": "pls. i'll explain later"
+   }
+  ],
+  "options": [
+   {
+    "t": "\"Done. You owe me the whole story.\"",
+    "axes": {
+     "L3": -1
+    },
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 2
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "\"Explain first. Then I'll decide what I saw.\"",
+    "axes": {
+     "R2": 1
+    },
+    "emotion": "worry"
+   },
+   {
+    "t": "\"Not lying to your person. Don't put me there.\"",
+    "axes": {
+     "R2": 2,
+     "L3": 1
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 1
+     }
+    ],
+    "emotion": "irritation"
+   },
+   {
+    "t": "Leave it on read. Pray nobody asks.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T06B",
+      "s": 1
+     }
+    ],
+    "emotion": "worry"
+   }
+  ],
+  "heart": {
+   "prompt": "A friend suddenly sends you these messages. Their partner has your number too.",
+   "options": [
+    "I agree, and tell them they owe me the whole story.",
+    "I ask them to explain first, and then I will decide.",
+    "I tell them I will not lie to their person for them.",
+    "I leave it unanswered and hope nobody asks me."
+   ]
+  },
+  "fp": {
+   "trigger": "friend asks you to be their alibi",
+   "setting": "text thread, no warning",
+   "ask": "cover for them or refuse",
+   "who": "friend and their partner",
+   "stakes": "lying for someone, the friendship"
+  },
+  "mask": "looks like a messy text; measures friends first versus your own line (T06, L3) and saying no out loud versus dodging (R2)",
+  "ae": [
+   "A",
+   "B",
+   "E"
+  ],
+  "privacy": "intimate"
+ },
+ {
+  "id": "C2-42",
+  "type": "others",
+  "chapter": 2,
+  "prompt": "Mid-gossip, a friend leans in: \"Okay, Jess told me this in total confidence...\" Then tells you all of it. First thought?",
+  "options": [
+   {
+    "t": "Great story. I'm telling you nothing, ever again.",
+    "tags": [
+     {
+      "id": "T01B",
+      "s": 2
+     }
+    ],
+    "emotion": "worry"
+   },
+   {
+    "t": "Wait, who else knows? Walk me through it.",
+    "axes": {
+     "R1": 1
+    },
+    "tags": [
+     {
+      "id": "T04B",
+      "s": 1
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "\"Why are you telling me this?\" Out loud.",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 1
+     }
+    ],
+    "emotion": "irritation"
+   },
+   {
+    "t": "Store it. That's leverage, not gossip.",
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 2
+     }
+    ],
+    "emotion": "delight"
+   }
+  ],
+  "heart": {
+   "prompt": "While gossiping, a friend says Jess told them something in total confidence, and then tells you all of it. What is your first thought?",
+   "options": [
+    "Good story. I will not tell this friend anything again.",
+    "I want to know who else knows, and how it happened.",
+    "I ask them, out loud, why they are telling me this.",
+    "I keep it in mind, in case I ever need it."
+   ]
+  },
+  "fp": {
+   "trigger": "friend spills someone else's confidence",
+   "setting": "hanging out, gossip",
+   "ask": "first thought about the leaker",
+   "who": "friend and an absent third",
+   "stakes": "trust in the teller"
+  },
+  "mask": "looks like a gossip moment; measures guarding your own secrets (T01), keeping the file (T08) and calling it out (R2)",
+  "ae": [
+   "A",
+   "E"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C2-43",
+  "type": "bet",
+  "chapter": 2,
+  "prompt": "Confession time: you've told a secret you swore to keep. Just to one person.",
+  "options": [
+   {
+    "t": "Guilty. Told my person. That doesn't count, right?",
+    "axes": {
+     "R1": 1
+    },
+    "tags": [
+     {
+      "id": "T09A",
+      "s": 1
+     }
+    ],
+    "emotion": "cringe"
+   },
+   {
+    "t": "Guilty. It was too good to keep. Zero regrets.",
+    "axes": {
+     "L3": -1
+    },
+    "tags": [
+     {
+      "id": "T01A",
+      "s": 1
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "Guilty. Then couldn't look at them for a week.",
+    "axes": {
+     "L3": -1
+    },
+    "emotion": "guilt"
+   },
+   {
+    "t": "Never. I'm a vault, and everyone knows it.",
+    "axes": {
+     "L3": 2
+    },
+    "tags": [
+     {
+      "id": "T01B",
+      "s": 1
+     }
+    ],
+    "emotion": "pride"
+   },
+   {
+    "t": "Never. Nobody tells me the good stuff.",
+    "circumstance": true
+   }
+  ],
+  "heart": {
+   "prompt": "Have you ever told someone a secret you promised to keep, even just one person?",
+   "options": [
+    "Yes, I told my person. I am not sure that counts.",
+    "Yes. It was too good to keep. No regrets.",
+    "Yes, and I could not look at them for a week afterward.",
+    "No. I keep secrets, and people know that about me.",
+    "No. People do not tend to tell me secrets."
+   ]
+  },
+  "fp": {
+   "trigger": "a sworn secret you carried",
+   "setting": "any time, one listener",
+   "ask": "did you ever pass it on",
+   "who": "friend who trusted you",
+   "stakes": "a promise"
+  },
+  "mask": "looks like a confession; measures whether a promise bends for the moment (L3), shared-by-default love (R1, T09) and open versus closed (T01) from a thing actually done",
+  "ae": [
+   "A",
+   "B",
+   "E"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C2-44",
+  "type": "eyes",
+  "chapter": 2,
+  "prompt": "The group's newest member asks about you. A friend answers. Which line do they use?",
+  "options": [
+   {
+    "t": "Vault for your secrets. Not for your screenshots.",
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Knows everything about everyone. Never says how.",
+    "tags": [
+     {
+      "id": "T04B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Will tell you your person is lying. Unasked.",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Knows all your secrets. You know none of theirs.",
+    "axes": {
+     "R1": -1
+    },
+    "tags": [
+     {
+      "id": "T01B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "Keeps your secret. Makes sure you know it was heavy.",
+    "tags": [
+     {
+      "id": "T05B",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "A new member of your group asks about you, and a friend answers. Which description do they give?",
+   "options": [
+    "Your secrets are safe with them. Your screenshots may not be.",
+    "They know everything about everyone, and never say how.",
+    "They will tell you if your person lies, unasked.",
+    "They know all your secrets, and you know none of theirs.",
+    "They keep your secret, and let you know it was heavy."
+   ]
+  },
+  "fp": {
+   "trigger": "new group member asks about you",
+   "setting": "group hangout",
+   "ask": "which reputation line fits",
+   "who": "friend describing you",
+   "stakes": "your reputation with secrets"
+  },
+  "mask": "looks like a reputation check; measures keeping the file (T08), wide circle (T04), open versus private (T01) and bluntness (R2)",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C3-40",
+  "type": "scenario",
+  "chapter": 3,
+  "prompt": "\"Working late,\" your person said. A friend's story, posted an hour ago: your person at karaoke, mid-chorus, very much not at work.",
+  "options": [
+   {
+    "t": "Screenshot it. Ask tonight, phone in hand.",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 1
+     }
+    ],
+    "emotion": "resentment"
+   },
+   {
+    "t": "\"How was work?\" Then watch them answer.",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 1
+     }
+    ],
+    "emotion": "worry"
+   },
+   {
+    "t": "Let it go. I've told small lies too.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T08A",
+      "s": 2
+     }
+    ],
+    "emotion": "cringe"
+   },
+   {
+    "t": "Reply to the story: \"Great night for work!\"",
+    "axes": {
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 1
+     }
+    ],
+    "emotion": "irritation"
+   }
+  ],
+  "heart": {
+   "prompt": "Your person told you they were working late. A friend's story from an hour ago shows your person at karaoke instead.",
+   "options": [
+    "I screenshot it and ask them tonight, phone in hand.",
+    "I ask how work was, and watch how they answer.",
+    "I let it go. I have told small lies too.",
+    "I reply to the story about their night at work."
+   ]
+  },
+  "fp": {
+   "trigger": "catch your person in a small lie via a story",
+   "setting": "phone, evening",
+   "ask": "confront, test or let it go",
+   "who": "your person",
+   "stakes": "trust over a small lie"
+  },
+  "mask": "looks like a caught-out moment; measures confronting now versus testing or letting it slide (R2), with second chances versus keeping the file (T08)",
+  "ae": [
+   "A",
+   "B",
+   "E"
+  ],
+  "privacy": "intimate"
+ },
+ {
+  "id": "C3-41",
+  "type": "this_or_that",
+  "chapter": 3,
+  "prompt": "One-time offer: read your person's entire message history. They'd never, ever know.",
+  "options": [
+   {
+    "t": "Read it. I'd rather know than wonder.",
+    "axes": {
+     "R1": 2
+    },
+    "tags": [
+     {
+      "id": "T01A",
+      "s": 1
+     }
+    ],
+    "emotion": "worry"
+   },
+   {
+    "t": "Pass. Some doors stay shut. Mine too.",
+    "axes": {
+     "R1": -2
+    },
+    "tags": [
+     {
+      "id": "T01B",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "round": "ch3-r40",
+  "heart": {
+   "prompt": "Imagine you could read your partner's entire message history once, and they would never find out.",
+   "options": [
+    "I would read it. I would rather know than wonder.",
+    "I would not. Some doors should stay shut, including mine."
+   ]
+  },
+  "fp": {
+   "trigger": "chance to read partner's messages undetected",
+   "setting": "hypothetical, alone",
+   "ask": "read or leave it",
+   "who": "your person",
+   "stakes": "knowing versus trust"
+  },
+  "mask": "looks like a temptation poll; measures close means shared versus close still means space (R1) and phone openness (T01)",
+  "ae": [
+   "A",
+   "D"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C3-42",
+  "type": "this_or_that",
+  "chapter": 3,
+  "prompt": "Full disclosure night: your person offers every ex, every crush, every almost. No follow-up questions allowed.",
+  "options": [
+   {
+    "t": "Hand it over. I can handle a list.",
+    "axes": {
+     "R1": 1
+    },
+    "tags": [
+     {
+      "id": "T09A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Keep it. I don't want that file in my head.",
+    "axes": {
+     "R1": -1
+    },
+    "tags": [
+     {
+      "id": "T09B",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "round": "ch3-r40",
+  "heart": {
+   "prompt": "Your partner offers to tell you about every ex, every crush and every almost, with no follow-up questions allowed.",
+   "options": [
+    "Yes. I can handle the list.",
+    "No. I would rather not carry that in my head."
+   ]
+  },
+  "fp": {
+   "trigger": "partner offers their full romantic history",
+   "setting": "at home, just the two of you",
+   "ask": "hear it or not",
+   "who": "your person",
+   "stakes": "peace of mind"
+  },
+  "mask": "looks like a dare; measures sharing everything versus keeping some space in love (R1, T09)",
+  "ae": [
+   "A",
+   "D"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C4-40",
+  "type": "scenario",
+  "chapter": 4,
+  "prompt": "$500, lent quietly by a friend: \"Don't tell my person.\" Now it's dinner with both. Their person, smiling: \"So, did they lend you money?\"",
+  "options": [
+   {
+    "t": "\"Nope.\" Then eat my noodles very, very calmly.",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 2
+     }
+    ],
+    "emotion": "guilt"
+   },
+   {
+    "t": "\"That's a question for them, not me.\"",
+    "axes": {
+     "R2": 1
+    },
+    "emotion": "cringe"
+   },
+   {
+    "t": "\"Yes. And it's getting paid back this month.\"",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 1
+     }
+    ],
+    "emotion": "relief"
+   },
+   {
+    "t": "Laugh, change the subject, nudge my friend under the table.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 1
+     }
+    ],
+    "emotion": "worry"
+   }
+  ],
+  "heart": {
+   "prompt": "A friend lent you $500 and asked you not to tell their partner. At dinner with both of them, the partner asks whether your friend lent you money.",
+   "options": [
+    "I say no, and keep eating as calmly as I can.",
+    "I say that is a question for my friend, not for me.",
+    "I say yes, and that I am paying it back this month.",
+    "I laugh, change the subject and nudge my friend under the table."
+   ]
+  },
+  "fp": {
+   "trigger": "partner asks point blank about a secret loan",
+   "setting": "dinner, the three of you",
+   "ask": "lie, dodge or come clean",
+   "who": "friend and their partner",
+   "stakes": "$500 and their relationship"
+  },
+  "mask": "looks like an awkward dinner; measures saying the true thing versus smoothing it over (R2) and friends first (T06)",
+  "ae": [
+   "A",
+   "B",
+   "C"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C4-41",
+  "type": "bet",
+  "chapter": 4,
+  "prompt": "Genii's guess: you found out exactly what a friend earns, and thought about it for days.",
+  "options": [
+   {
+    "t": "Guilty. Now splitting the bill feels different.",
+    "tags": [
+     {
+      "id": "T12B",
+      "s": 2
+     }
+    ],
+    "emotion": "sting"
+   },
+   {
+    "t": "Guilty. Asked for a raise that same week.",
+    "axes": {
+     "L2": 2
+    },
+    "tags": [
+     {
+      "id": "T16A",
+      "s": 1
+     }
+    ],
+    "emotion": "pride"
+   },
+   {
+    "t": "Guilty. Said congrats. Sulked in private.",
+    "tags": [
+     {
+      "id": "T15B",
+      "s": 1
+     }
+    ],
+    "emotion": "envy"
+   },
+   {
+    "t": "Never. I'd rather not know. Ever.",
+    "axes": {
+     "L2": -1
+    }
+   },
+   {
+    "t": "Never. I earn more. They think about me.",
+    "circumstance": true
+   }
+  ],
+  "heart": {
+   "prompt": "Have you ever found out exactly what a friend earns, and kept thinking about it for days?",
+   "options": [
+    "Yes. Splitting the bill with them feels different now.",
+    "Yes. I asked for a raise that same week.",
+    "Yes. I congratulated them and felt envious in private.",
+    "No. I would rather not know.",
+    "No. I earn more, so I am the one they think about."
+   ]
+  },
+  "fp": {
+   "trigger": "learn a friend's exact pay",
+   "setting": "after a conversation, alone",
+   "ask": "did it stay with you",
+   "who": "friend",
+   "stakes": "envy and comparison"
+  },
+  "mask": "looks like a money confession; measures push and visible progress (L2, T16), fairness by income (T12) and noticing head starts (T15) from a thing actually done",
+  "ae": [
+   "A",
+   "E"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C5-40",
+  "type": "others",
+  "chapter": 5,
+  "prompt": "Someone left the salary sheet on the office printer. A coworker posted it to the team chat before anyone could stop them. First thought?",
+  "options": [
+   {
+    "t": "Hero. Secret pay only ever helps the boss.",
+    "axes": {
+     "L3": -2
+    },
+    "tags": [
+     {
+      "id": "T15B",
+      "s": 1
+     }
+    ],
+    "emotion": "delight"
+   },
+   {
+    "t": "Scroll to my row. Then theirs. Then everyone's.",
+    "axes": {
+     "L2": 1
+    },
+    "tags": [
+     {
+      "id": "T16A",
+      "s": 1
+     }
+    ],
+    "emotion": "worry"
+   },
+   {
+    "t": "Not theirs to share. Someone's getting fired.",
+    "axes": {
+     "L3": 2
+    },
+    "tags": [
+     {
+      "id": "T25A",
+      "s": 1
+     }
+    ],
+    "emotion": "worry"
+   },
+   {
+    "t": "Screenshot it before somebody deletes it.",
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 2
+     }
+    ],
+    "emotion": "delight"
+   }
+  ],
+  "heart": {
+   "prompt": "Someone left the team's salary sheet on the printer at work, and a coworker posted it in the team chat before anyone could stop them. What is your first thought?",
+   "options": [
+    "Good. Keeping pay secret only helps the people at the top.",
+    "I look for my own row, then theirs, then everyone's.",
+    "It was not theirs to share, and someone will lose their job.",
+    "I save a copy before someone deletes it."
+   ]
+  },
+  "fp": {
+   "trigger": "salary sheet leaked to the team chat",
+   "setting": "work, team chat",
+   "ask": "judge the leak",
+   "who": "coworker who leaked it",
+   "stakes": "pay secrecy, someone's job"
+  },
+  "mask": "looks like office drama; measures the process versus the situation (L3), comparing wins (L2, T16) and keeping the file (T08)",
+  "ae": [
+   "A",
+   "C"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C5-41",
+  "type": "reply",
+  "chapter": 5,
+  "prompt": "Sam told you, in confidence, they're interviewing elsewhere. Now your manager messages you.",
+  "thread": [
+   {
+    "from": "Your manager",
+    "text": "hey, between us... has Sam said anything about leaving?"
+   }
+  ],
+  "options": [
+   {
+    "t": "\"Not to me! Everything okay?\"",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 1
+     }
+    ],
+    "emotion": "guilt"
+   },
+   {
+    "t": "\"That's really a question for Sam.\"",
+    "axes": {
+     "R2": 1,
+     "L3": 1
+    },
+    "emotion": "cringe"
+   },
+   {
+    "t": "\"Yes. Better you hear it from me.\"",
+    "axes": {
+     "R2": 2,
+     "L2": 1
+    },
+    "emotion": "guilt"
+   },
+   {
+    "t": "\"No idea.\" Then warn Sam within the minute.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 2
+     }
+    ],
+    "emotion": "worry"
+   }
+  ],
+  "heart": {
+   "prompt": "A coworker, Sam, told you in confidence that they are interviewing for other jobs. Now your manager sends you a message.",
+   "options": [
+    "I say not to me, and ask if everything is okay.",
+    "I say that is really a question for Sam.",
+    "I tell them yes. I would rather they heard it from me.",
+    "I say I have no idea, and then warn Sam right away."
+   ]
+  },
+  "fp": {
+   "trigger": "manager fishes about a coworker's job hunt",
+   "setting": "work DM",
+   "ask": "cover, deflect or tell",
+   "who": "coworker and your manager",
+   "stakes": "their job, your standing"
+  },
+  "mask": "looks like a work DM; measures directness versus cover (R2), loyalty to a peer (T06) and a little ambition (L2)",
+  "ae": [
+   "A",
+   "B",
+   "C"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C6-40",
+  "type": "scenario",
+  "chapter": 6,
+  "prompt": "Your sibling confesses: they quit their program months ago. The family still pays the fees. \"Please. Just until the holidays.\"",
+  "options": [
+   {
+    "t": "Keep it. Their life, their timeline.",
+    "axes": {
+     "L3": -1
+    },
+    "tags": [
+     {
+      "id": "T19A",
+      "s": 1
+     }
+    ],
+    "emotion": "worry"
+   },
+   {
+    "t": "\"Holidays, then. If you don't tell them, I will.\"",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T18B",
+      "s": 1
+     }
+    ],
+    "emotion": "irritation"
+   },
+   {
+    "t": "Tell the family now. That's real money.",
+    "axes": {
+     "L3": 2
+    },
+    "tags": [
+     {
+      "id": "T19B",
+      "s": 1
+     }
+    ],
+    "emotion": "guilt"
+   },
+   {
+    "t": "Stay quiet on one condition: they pay it all back.",
+    "axes": {
+     "L3": -1
+    },
+    "tags": [
+     {
+      "id": "T12A",
+      "s": 2
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "Your sibling tells you they left their study program months ago. Your family is still paying the fees. They ask you to keep quiet until the holidays.",
+   "options": [
+    "I keep it. It is their life and their timeline.",
+    "Until the holidays. After that, I tell them myself.",
+    "I tell the family now, because it is real money.",
+    "I stay quiet, on the condition that they pay it all back."
+   ]
+  },
+  "fp": {
+   "trigger": "sibling hiding that they quit their program",
+   "setting": "family, fees still being paid",
+   "ask": "keep it or tell the family",
+   "who": "sibling and the family",
+   "stakes": "family money, a sibling's trust"
+  },
+  "mask": "looks like family drama; measures the rule versus the person (L3), the family's say (T19) and deadlines on help (T18)",
+  "ae": [
+   "A",
+   "B",
+   "C"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C6-41",
+  "type": "real",
+  "chapter": 6,
+  "prompt": "Think back to the last family secret you were asked to keep from someone else in the family.",
+  "options": [
+   {
+    "t": "Kept it. Still keeping it. Nobody suspects a thing.",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T18A",
+      "s": 1
+     }
+    ],
+    "emotion": "pride"
+   },
+   {
+    "t": "Hinted so hard it came out on its own.",
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 2
+     }
+    ],
+    "emotion": "cringe"
+   },
+   {
+    "t": "Told the person it was being kept from.",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 1
+     }
+    ],
+    "emotion": "guilt"
+   },
+   {
+    "t": "Told a friend outside the family, just to cope.",
+    "axes": {
+     "R1": -1
+    },
+    "tags": [
+     {
+      "id": "T19A",
+      "s": 1
+     }
+    ],
+    "emotion": "relief"
+   },
+   {
+    "t": "Said: \"Leave me out of your secrets next time.\"",
+    "tags": [
+     {
+      "id": "T18B",
+      "s": 2
+     }
+    ],
+    "emotion": "irritation"
+   }
+  ],
+  "heart": {
+   "prompt": "Think back to the last time a family member asked you to keep a secret from someone else in the family.",
+   "options": [
+    "I kept it, and I still do. Nobody suspects.",
+    "I hinted until it came out on its own.",
+    "I told the person it was being kept from.",
+    "I told a friend outside the family, so I could cope.",
+    "I asked them to leave me out of future secrets."
+   ]
+  },
+  "fp": {
+   "trigger": "asked to keep a family secret",
+   "setting": "family, recent",
+   "ask": "what you actually did",
+   "who": "relatives on both sides",
+   "stakes": "family trust"
+  },
+  "mask": "looks like a family memory; measures saying it straight versus hinting or holding (R2, T07) and family limits (T18, T19) from a thing actually done",
+  "ae": [
+   "A",
+   "B",
+   "E"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C7-40",
+  "type": "rank",
+  "chapter": 7,
+  "prompt": "Rank it: what you'd peek at if nobody would ever, ever know. Most tempting first.",
+  "options": [
+   {
+    "t": "The group chat your friends made without you",
+    "tags": [
+     {
+      "id": "T02B",
+      "s": 2
+     }
+    ]
+   },
+   {
+    "t": "The notes your manager keeps about you",
+    "axes": {
+     "L2": 1
+    },
+    "tags": [
+     {
+      "id": "T16A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "What your ex tells people about you now",
+    "tags": [
+     {
+      "id": "T08B",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "What your family says when you leave the room",
+    "tags": [
+     {
+      "id": "T19B",
+      "s": 1
+     }
+    ]
+   }
+  ],
+  "heart": {
+   "prompt": "If nobody would ever find out, which of these would you most want to see? Put them in order, most tempting first.",
+   "options": [
+    "The group chat your friends made without you.",
+    "The notes your manager keeps about you.",
+    "What your ex tells people about you now.",
+    "What your family says after you leave the room."
+   ]
+  },
+  "fp": {
+   "trigger": "undetectable peek, four choices",
+   "setting": "hypothetical",
+   "ask": "rank the temptations",
+   "who": "friends, manager, ex, family",
+   "stakes": "what you'd learn about yourself"
+  },
+  "mask": "looks like a temptation list; measures who you track (T02), visible standing at work (L2, T16), keeping the file on an ex (T08) and the family's say (T19)",
+  "ae": [
+   "D"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "C7-41",
+  "type": "scenario",
+  "chapter": 7,
+  "prompt": "Poker night, $20 each. You just watched your closest friend slide a card out of their sleeve. They're winning.",
+  "options": [
+   {
+    "t": "Call it. At the table. Right now.",
+    "axes": {
+     "L3": 2,
+     "R2": 1
+    },
+    "emotion": "irritation"
+   },
+   {
+    "t": "Say nothing. Pull them aside after.",
+    "axes": {
+     "L3": 1,
+     "R2": -1
+    },
+    "emotion": "worry"
+   },
+   {
+    "t": "Say nothing. Fold every hand they play.",
+    "axes": {
+     "L3": -1
+    },
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 1
+     }
+    ],
+    "emotion": "cringe"
+   },
+   {
+    "t": "Catch their eye. Ask for half, later.",
+    "axes": {
+     "L3": -2
+    },
+    "tags": [
+     {
+      "id": "T25B",
+      "s": 1
+     }
+    ],
+    "emotion": "delight"
+   }
+  ],
+  "heart": {
+   "prompt": "At poker night, everyone has put in $20. You just saw your closest friend slide a card out of their sleeve, and they are winning.",
+   "options": [
+    "I call it out at the table, right away.",
+    "I say nothing, and talk to them privately afterward.",
+    "I say nothing, and fold every hand they play.",
+    "I catch their eye and ask for half of the winnings later."
+   ]
+  },
+  "fp": {
+   "trigger": "catch your closest friend cheating at cards",
+   "setting": "poker night, money on the table",
+   "ask": "expose, protect or profit",
+   "who": "closest friend and the table",
+   "stakes": "$20 pots, fairness"
+  },
+  "mask": "looks like a game-night scandal; measures the fair order versus the person (L3) and calling it out now (R2)",
+  "ae": [
+   "A",
+   "B",
+   "C"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "S-40",
+  "type": "sealed",
+  "chapter": 2,
+  "prompt": "Party's winding down. Your friend's new partner, a little too close: \"You're way more fun than they are.\" Your friend adores them.",
+  "options": [
+   {
+    "t": "Tell my friend tomorrow. Every word, exact quote.",
+    "axes": {
+     "R2": 2
+    },
+    "tags": [
+     {
+      "id": "T07A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Tell the partner quietly: \"Try that again and they'll know.\"",
+    "axes": {
+     "R2": 1
+    },
+    "tags": [
+     {
+      "id": "T06A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Say nothing. Maybe I misread it.",
+    "axes": {
+     "R2": -2
+    },
+    "tags": [
+     {
+      "id": "T08A",
+      "s": 1
+     }
+    ]
+   },
+   {
+    "t": "Hint to my friend: \"They seem very... friendly.\"",
+    "axes": {
+     "R2": -1
+    },
+    "tags": [
+     {
+      "id": "T07B",
+      "s": 2
+     }
+    ]
+   }
+  ],
+  "primary": "R2",
+  "heart": {
+   "prompt": "At the end of a party, your friend's new partner stands a little too close and says you are much more fun than your friend. Your friend adores them.",
+   "options": [
+    "I tell my friend the next day, word for word.",
+    "I quietly warn the partner: again, and my friend will know.",
+    "I say nothing. Maybe I read it wrong.",
+    "I hint to my friend that their partner seems very friendly."
+   ]
+  },
+  "fp": {
+   "trigger": "friend's new partner comes on to you",
+   "setting": "end of a party",
+   "ask": "tell your friend or not",
+   "who": "friend and their new partner",
+   "stakes": "the friendship, their relationship"
+  },
+  "mask": "looks like party fallout; Genii's locked guess on saying the hard thing now versus holding the person first (R2)",
+  "ae": [
+   "A",
+   "B"
+  ],
+  "privacy": "normal"
+ },
+ {
+  "id": "S-41",
+  "type": "sealed",
+  "chapter": 6,
+  "prompt": "Printing from your roommate's laptop. A doc is open, titled with your name and \"things I haven't said.\"",
+  "options": [
+   {
+    "t": "Read it. It has my name on it.",
+    "axes": {
+     "L3": -2
+    },
+    "emotion": "worry"
+   },
+   {
+    "t": "Close it. Knock: \"So. What haven't you said?\"",
+    "axes": {
+     "L3": 1,
+     "R2": 2
+    }
+   },
+   {
+    "t": "Close it. Say nothing. Wonder for months.",
+    "axes": {
+     "L3": 2,
+     "R2": -1
+    }
+   },
+   {
+    "t": "Read the first line only. Then feel awful.",
+    "axes": {
+     "L3": -1
+    },
+    "emotion": "guilt"
+   }
+  ],
+  "primary": "L3",
+  "heart": {
+   "prompt": "You are printing something from your roommate's laptop. A document is open, titled with your name and the words \"things I haven't said.\"",
+   "options": [
+    "I read it. It has my name on it.",
+    "I close it and ask them what they have not said.",
+    "I close it, say nothing, and wonder about it for months.",
+    "I read only the first line, then feel bad about it."
+   ]
+  },
+  "fp": {
+   "trigger": "a doc about you left open",
+   "setting": "roommate's laptop, home",
+   "ask": "read it or not",
+   "who": "roommate",
+   "stakes": "what they think of you, their privacy"
+  },
+  "mask": "looks like a snooping moment; Genii's locked guess on the rule versus the situation (L3)",
+  "ae": [
+   "A"
+  ],
+  "privacy": "normal"
+ }
+]

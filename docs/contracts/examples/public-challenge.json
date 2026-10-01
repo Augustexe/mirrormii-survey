@@ -1,0 +1,349 @@
+{
+  "schema": "genii.persona.challenge/1",
+  "id": "example01",
+  "kit": "persona-quiz-v2@2026-09-30/2026-09-26/v2-2026-09-26",
+  "rel": "bestie",
+  "owner": {
+    "name": "Sam",
+    "pronoun": "they"
+  },
+  "emoji": 0,
+  "invite": 0,
+  "level1": [
+    {
+      "axis": "R1",
+      "prompt": "Sam with a crush or a partner is…",
+      "options": [
+        {
+          "pole": 1,
+          "t": "Clingy mode: wants to see them daily and share every detail."
+        },
+        {
+          "pole": -1,
+          "t": "Solo mode: loves hard, still guards solo nights and bestie nights."
+        }
+      ],
+      "eitherCounts": false
+    },
+    {
+      "axis": "R2",
+      "prompt": "You show Sam the angry text you're about to send. Bad idea. Sam…",
+      "options": [
+        {
+          "pole": 1,
+          "t": "\"Absolutely not. Hand me your phone.\""
+        },
+        {
+          "pole": -1,
+          "t": "\"I get why you're mad.\" Holds you first, talks you down later."
+        }
+      ],
+      "eitherCounts": false
+    },
+    {
+      "axis": "R3",
+      "prompt": "Picture Sam's future home on a big holiday. It's…",
+      "options": [
+        {
+          "pole": -1,
+          "t": "A remix: their own rituals, their own rules, no template."
+        },
+        {
+          "pole": 1,
+          "t": "The classic: rituals, the family table, parents at ease."
+        }
+      ],
+      "eitherCounts": false
+    },
+    {
+      "axis": "L1",
+      "prompt": "Sam gets a surprise bonus. By Friday…",
+      "options": [
+        {
+          "pole": 1,
+          "t": "It's in savings. Safety first."
+        },
+        {
+          "pole": -1,
+          "t": "A flight is booked. Life is short."
+        }
+      ],
+      "eitherCounts": false
+    },
+    {
+      "axis": "L2",
+      "prompt": "Talking plans and life progress, Sam is…",
+      "options": [
+        {
+          "pole": -1,
+          "t": "Unbothered: who gets promoted or married when is not their business."
+        },
+        {
+          "pole": 1,
+          "t": "Ambitious: wants real wins and a direction, soon."
+        }
+      ],
+      "eitherCounts": false
+    },
+    {
+      "axis": "L3",
+      "prompt": "Lines, house rules, what's fair: Sam is…",
+      "options": [
+        {
+          "pole": 1,
+          "t": "Rulebook: the same rules for everyone is the only fair way."
+        },
+        {
+          "pole": -1,
+          "t": "Case by case: rules are fixed, people aren't."
+        }
+      ],
+      "eitherCounts": false
+    }
+  ],
+  "level2": {
+    "skipped": false,
+    "cards": [
+      {
+        "id": "C1-140",
+        "prompt": "Genii bets there's a friend Sam stopped inviting, just to see if the friend ever invites them. True?",
+        "a": "Invites whoever Sam misses. Tests are exhausting.",
+        "b": "Three months in, still waiting, still counting.",
+        "order": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "id": "C4-5",
+        "prompt": "Last time Sam wanted the pricier version of something they owned plenty of already. How did it end?",
+        "a": "Bought it on the spot. Always room for one more.",
+        "b": "Left it in the cart until the feeling passed.",
+        "order": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "id": "C1-144",
+        "prompt": "The last time someone scrolled their phone while Sam was talking. How did Sam handle it?",
+        "a": "Said it: \"Hello? I'm right here.\"",
+        "b": "Kept talking like they hadn't noticed.",
+        "order": [
+          "b",
+          "a"
+        ]
+      },
+      {
+        "id": "C6-127",
+        "prompt": "A relative recently asked Sam: \"can you help me with something?\" What did Sam actually do?",
+        "a": "Said yes before the relative finished the sentence.",
+        "b": "Said yes for Saturday. Not every Saturday.",
+        "order": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "id": "C1-131",
+        "prompt": "Sam's last big message: a breakup, a resignation, a real apology. Who actually wrote it?",
+        "a": "An AI drafted it. I changed three words. Sent.",
+        "b": "Me. Nine drafts. Sent the tenth.",
+        "order": [
+          "b",
+          "a"
+        ]
+      },
+      {
+        "id": "C2-50",
+        "prompt": "Has Sam ever felt a little relieved when a friend's big plan flopped in public?",
+        "a": "Guilty. We'd been neck and neck. Now we weren't.",
+        "b": "Never. I don't track friends' plans that closely.",
+        "order": [
+          "b",
+          "a"
+        ]
+      },
+      {
+        "id": "C4-143",
+        "prompt": "Friends planned a trip that was a stretch for Sam's budget. What did Sam actually do?",
+        "a": "Booked it that night. Future me can deal.",
+        "b": "Did the math, then said \"next one.\"",
+        "order": [
+          "b",
+          "a"
+        ]
+      },
+      {
+        "id": "C3-147",
+        "prompt": "Sam's partner recently had a weekend of plans without Sam. How did Sam spend it?",
+        "a": "Tagged along for part of it anyway.",
+        "b": "Booked my own plans before they'd even left.",
+        "order": [
+          "b",
+          "a"
+        ]
+      },
+      {
+        "id": "C1-163",
+        "prompt": "Someone new wants into Sam's friend group. Sam's best friend gives one honest tip. Which one?",
+        "a": "\"Give it a year. They don't hand out trust.\"",
+        "b": "\"Just show up. They'll adopt you by dessert.\"",
+        "order": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "id": "C5-129",
+        "prompt": "Has Sam ever said yes to one job or school offer while secretly hoping another would call?",
+        "a": "Guilty. Would do it again. A yes in hand is a yes.",
+        "b": "Guilty. Bailed on the first one when the other called.",
+        "order": [
+          "a",
+          "b"
+        ]
+      },
+      {
+        "id": "C4-124",
+        "prompt": "Sam's new housemate is a mermaid with a sunken ship's worth of gold, and wants rent split fifty-fifty. What does Sam do?",
+        "a": "Fair. Same home, same rent.",
+        "b": "Pitch it: we each pay by what we have.",
+        "order": [
+          "b",
+          "a"
+        ]
+      },
+      {
+        "id": "C1-125",
+        "prompt": "Same holiday photo, same stairs, 25 years running. Sam is abroad, and the family wants them photoshopped in. What does Sam do?",
+        "a": "Sends a selfie at the exact angle. The stairs must be honored.",
+        "b": "Sends a beach photo instead. New tradition starts now.",
+        "order": [
+          "b",
+          "a"
+        ]
+      }
+    ]
+  },
+  "level3": {
+    "skipped": false,
+    "pick": 4,
+    "prompt": "Which of these 12 are the real Sam? Pick 4.",
+    "fewTagsLine": null,
+    "cards": [
+      {
+        "id": "T19B",
+        "name": "Values family advice",
+        "heart": "My family is part of my 'we', and I like it that way."
+      },
+      {
+        "id": "T03B",
+        "name": "Writes without AI",
+        "heart": "My messy real words are the truest version of me."
+      },
+      {
+        "id": "T03A",
+        "name": "Uses AI to think things out",
+        "heart": "Feeling understood counts, wherever it comes from."
+      },
+      {
+        "id": "T02A",
+        "name": "Replies when free",
+        "heart": "Missing you doesn't need a daily check-in."
+      },
+      {
+        "id": "T05B",
+        "name": "Puts feelings into words",
+        "heart": "If I feel it, you're going to read it."
+      },
+      {
+        "id": "T17A",
+        "name": "Likes plans set early",
+        "heart": "Wanting solid ground is how I take care of myself."
+      },
+      {
+        "id": "T17B",
+        "name": "Goes with the flow",
+        "heart": "My timeline is mine to write."
+      },
+      {
+        "id": "T25B",
+        "name": "Makes room for exceptions",
+        "heart": "I look at the person, not the form."
+      },
+      {
+        "id": "T16A",
+        "name": "Loves a win",
+        "heart": "Wanting to build something big isn't too much."
+      },
+      {
+        "id": "T02B",
+        "name": "Loves hearing from friends",
+        "heart": "Wanting to be thought of isn't embarrassing."
+      },
+      {
+        "id": "T16B",
+        "name": "Work stays at work",
+        "heart": "A good life is the whole point, not the reward for later."
+      },
+      {
+        "id": "T15A",
+        "name": "Proud of hard work",
+        "heart": "I like knowing I earned my spot."
+      }
+    ]
+  },
+  "level4": {
+    "stingPick": {
+      "prompt": "Which of these 4 lines would leave Sam speechless for three seconds?",
+      "lines": [
+        {
+          "tag": "T09A",
+          "t": "You love being in their whole day, so the days apart drag."
+        },
+        {
+          "tag": "T23A",
+          "t": "You'll say yes to one more good cause before you say yes to a nap."
+        },
+        {
+          "tag": "T20B",
+          "t": "No script means every choice at home is yours to make, and to explain."
+        },
+        {
+          "tag": "T03A",
+          "t": "An AI may have heard more about your feelings than your friends have."
+        }
+      ]
+    },
+    "pickTheRoast": {
+      "prompt": "Pick the roast Sam would laugh at hardest.",
+      "lines": [
+        {
+          "id": "R03",
+          "t": "Asked for a quick opinion once. Got notes, bullet points and a follow-up."
+        },
+        {
+          "id": "R11",
+          "t": "Made a spreadsheet for the group trip. It has tabs. Plural."
+        },
+        {
+          "id": "R01",
+          "t": "Answers texts on a three-to-five business day schedule. Still my favorite."
+        },
+        {
+          "id": "R06",
+          "t": "Says 'we're keeping it casual.' Already knows their coffee order by heart."
+        },
+        {
+          "id": "R09",
+          "t": "Calls it 'just a side project.' It has a logo and a five-year plan."
+        },
+        {
+          "id": "R13",
+          "t": "Bragged about a $12 dupe for a full week. Unprompted."
+        }
+      ]
+    }
+  }
+}

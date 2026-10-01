@@ -1,0 +1,16 @@
+/*
+ * Cascade layers for the survey (docs/DESIGN-DIRECTION.md section 7.1, Step 0 A).
+ * Order, lowest to highest: legacy < system < art < play < reveal < screens.
+ * What the app still uses from the 13 stylesheets of earlier builds lives in `legacy` (src/legacy.css, tree-shaken at
+ * integration, 2026-09-29), so any new rule in a named layer wins without !important.
+ * Import this file once, from PersonaApp.jsx.
+ */
+@layer legacy, system, art, play, reveal, screens;
+
+@import url("../legacy.css") layer(legacy);
+
+@import url("./fonts.css") layer(system);
+@import url("./tokens.css") layer(system);
+@import url("./system.css") layer(system);
+@import url("./motion.css") layer(system);
+@import url("../art/art.css") layer(art);

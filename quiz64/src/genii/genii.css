@@ -1,0 +1,85 @@
+/* Genii's evolving form (src/genii). Sits inside .genii-light__orb and overflows it: the canvas and the SVG poster
+   span 150% of the orb box so the bead and the jelly's edge are never clipped. */
+.genii-form {
+  position: absolute;
+  inset: -25%;
+  pointer-events: none;
+}
+.genii-form__poster,
+.genii-form__canvas {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  display: block;
+}
+.genii-form__canvas { opacity: 0; }
+.genii-form[data-live="true"] .genii-form__canvas { opacity: 1; }
+.genii-form[data-live="true"] .genii-form__poster { opacity: 0; }
+.genii-form__ring {
+  position: absolute;
+  inset: 22%;
+  border-radius: 50%;
+  border: 2px solid var(--c-violet-300);
+  opacity: 0;
+}
+
+/* The orb's light fades as the body forms; a faint aura stays with full Genii. */
+/* Complete Genii (--gl-clear) carries its own soft glass glow. */
+.genii-light[data-formed="true"] .genii-light__bloom { opacity: calc(var(--gl-glow) * max(var(--gl-light, 1), calc(0.22 + 0.4 * var(--gl-clear, 0)))); }
+/* The orb's core stays in front of the forming body and fades as the glass takes over: light condensing into Genii. */
+.genii-light[data-formed="true"] .genii-light__core,
+.genii-light[data-formed="true"] .genii-light__glint { opacity: calc(var(--gl-light, 1) * var(--gl-light, 1) * 1.2); }
+
+@media (prefers-reduced-motion: no-preference) {
+  body:not([data-motion="off"]) .genii-form__canvas,
+  body:not([data-motion="off"]) .genii-form__poster { transition: opacity var(--d-slow) var(--e-out); }
+  body:not([data-motion="off"]) .genii-form:not([data-live="true"]) .genii-form__poster {
+    animation: genii-form-breath var(--d-loop-breath) var(--e-in-out) infinite alternate;
+    transform-origin: 50% 60%;
+  }
+  body:not([data-motion="off"]) .genii-form[data-beat="chapter"] .genii-form__ring {
+    animation: genii-form-ring calc(var(--d-scene) * 1.7) var(--e-out);
+  }
+  /* The landing: Genii completes (the lock, the reveal) with a soft burst of light and two rings. */
+  body:not([data-motion="off"]) .genii-form[data-beat="complete"] .genii-form__ring {
+    animation: genii-form-burst calc(var(--d-scene) * 2) var(--e-out);
+    box-shadow: 0 0 0 2px var(--c-violet-300), 0 0 calc(var(--gl-size) * 0.4) var(--c-violet-300);
+  }
+  body:not([data-motion="off"]) .genii-form[data-beat="complete"]::after {
+    content: "";
+    position: absolute;
+    inset: 8%;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, var(--c-surface-solid), transparent);
+    animation: genii-form-flash calc(var(--d-scene) * 2) var(--e-out) both;
+    pointer-events: none;
+  }
+  body:not([data-motion="off"]) .genii-light.is-pulse .genii-form__ring {
+    animation: genii-form-ring var(--d-scene) var(--e-out);
+  }
+}
+html[data-hidden="true"] .genii-form * { animation-play-state: paused !important; }
+
+@keyframes genii-form-breath {
+  from { transform: scale(1, 0.985); }
+  to { transform: scale(0.99, 1.015); }
+}
+@keyframes genii-form-burst {
+  0% { opacity: 0.9; transform: scale(0.6); }
+  100% { opacity: 0; transform: scale(2); }
+}
+@keyframes genii-form-flash {
+  0% { opacity: 0; transform: scale(0.7); }
+  25% { opacity: 0.85; }
+  100% { opacity: 0; transform: scale(1.3); }
+}
+@keyframes genii-form-ring {
+  0% { opacity: 0.7; transform: scale(0.7); }
+  100% { opacity: 0; transform: scale(1.45); }
+}
+
+@media (forced-colors: active) {
+  .genii-form__canvas { display: none; }
+  .genii-form .genii-form__poster { opacity: 1; }
+}

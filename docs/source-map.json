@@ -1,0 +1,102 @@
+{
+  "schema": "mirrormii-survey-source-map/v1",
+  "project_id": "mirrormii-genie-survey",
+  "checked_at": "2026-09-14",
+  "company_content_status": "blocked-unverified",
+  "founder_brief": {
+    "authority": "survey project intent",
+    "date": "2026-09-14",
+    "source": "docs/FOUNDER-BRIEF.md",
+    "source_sha256": "3dcc79069ce687d7abbfd2d0a2ba691bae714c4e8445713ab26a31b3c6de5389",
+    "latest_scope": "Local MVP implementation and generated project reference sheets; no push before user review"
+  },
+  "company_base": {
+    "name": "MirrorMii OS",
+    "url": "https://kdz2ecuce1a.sg.larksuite.com/base/XteAbcw1iagLDHsFmSNlTLpagQe",
+    "base_id": "XteAbcw1iagLDHsFmSNlTLpagQe",
+    "authority": "company canon",
+    "verification": "routing recovered from current workspace source; no live content read"
+  },
+  "company_wiki": {
+    "name": "MirrorMii Marketing OS",
+    "space_id": "7681497738504113914",
+    "authority": "canonical company document corpus",
+    "verification": "routing contract only; no live content read"
+  },
+  "canon_media": {
+    "path": "/Users/jerryzhang/Workspace-Draft/assets/Genomii AI.library",
+    "path_exists": true,
+    "selected_items": [
+      {
+        "eagle_id": "MSF9HPVHMCG93",
+        "project_path": "public/assets/genii-alert.png",
+        "sha256": "e1af1d401278f31876602cf8e4963ce3c983e9c2ba9b0c68fdecd255db04a144",
+        "usage": "unchanged current V2 app-ui master"
+      },
+      {
+        "eagle_id": "MSF9HPVHMO5NX",
+        "project_path": "public/assets/genii-curious.png",
+        "sha256": "3011a29392be7c3f357c4b78915b74ab8d2cb27ce63f70e71ce6107f06b4ef3a",
+        "usage": "unchanged current V2 app-ui master"
+      },
+      {
+        "eagle_id": "MSF9HPVIWCZ4U",
+        "project_path": "public/assets/genii-skeptical.png",
+        "sha256": "365559010e225ad768c22561a5a45aa70a73393bb0ec79d1eceff69fa0b082e2",
+        "usage": "unchanged current V2 app-ui master"
+      }
+    ],
+    "selection": "Verified through Eagle metadata, current V2 folder membership, tags, rights, descriptions and visual inspection; one host, three original expressions. Generated reference drafts stay outside canon."
+  },
+  "survey_data_destination": {
+    "base_id": null,
+    "table_ids": [],
+    "status": "not-selected-or-provisioned"
+  },
+  "github": {
+    "owner": "Augustexe",
+    "repository_name": "mirrormii-survey",
+    "url": "https://github.com/Augustexe/mirrormii-survey",
+    "git_url": "https://github.com/Augustexe/mirrormii-survey.git",
+    "origin_configured": true,
+    "local_branch": "mvp/genii-playground",
+    "visibility": "unverified-existing-repository",
+    "remote_contents_verified": false,
+    "status": "existing-team-repository-designated; fetch-and-integration-blocked"
+  },
+  "rules": {
+    "project_pinned": true,
+    "refresh_company_context_before_claims": true,
+    "legacy_fallback": false,
+    "persist_raw_company_packets": false,
+    "credentials": "native authentication only"
+  },
+  "blockers": [
+    "Execution session uses Seatbelt with network disabled: external DNS fails and loopback sockets return EPERM",
+    "Lark native Keychain initialization fails before identity/token verification, including managed dev route",
+    "GitHub remote authentication and repository read remain unverified because execution network access is blocked"
+  ],
+  "access_audit": {
+    "date": "2026-09-14",
+    "run_id": "20260914T214741Z-53aa82ae91a1",
+    "browser_used": false,
+    "managed_cli_route": "/Users/jerryzhang/Workspace-Draft/system/bin/dev",
+    "http_health_verified": false,
+    "native_terminal_verification": "pending",
+    "credentials_changed": false
+  },
+  "local_mvp": {
+    "build": "npm run build",
+    "source": "index.html + src/",
+    "standalone_output": "run output/mvp/index.html",
+    "network_required": false,
+    "business_backend_connected": false,
+    "remote_push_authorized": false
+  },
+  "snapshot_notice": {
+    "status": "historical-2026-09-14-snapshot",
+    "current_project_context": "README.md",
+    "current_code_map": "CODE-MAP.md",
+    "note": "Access blockers and remote status below are dated observations, not current checks. See CURRENT.md for later receipts. No fresh business read in filing audit."
+  }
+}

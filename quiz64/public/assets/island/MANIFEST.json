@@ -1,0 +1,122 @@
+{
+ "hero-portrait": {
+  "source": "island-hero.png",
+  "alpha": false,
+  "aspect": "1024x1536",
+  "files": {
+   "hero-portrait-720.webp": "720x1080, 134 KB",
+   "hero-portrait-1080.webp": "1080x1620, 231 KB"
+  }
+ },
+ "hero-wide": {
+  "source": "hero-wide.png",
+  "alpha": false,
+  "aspect": "1672x941",
+  "files": {
+   "hero-wide-960.webp": "960x540, 93 KB",
+   "hero-wide-1600.webp": "1600x900, 194 KB"
+  }
+ },
+ "hero-night": {
+  "source": "hero-night.png",
+  "alpha": false,
+  "aspect": "1024x1536",
+  "files": {
+   "hero-night-720.webp": "720x1080, 143 KB",
+   "hero-night-1080.webp": "1080x1620, 247 KB"
+  }
+ },
+ "mirror-frame": {
+  "source": "mirror-frame.png, cut to a 1:2 glass opening (231 rows removed from the straight middle of the ring, 12-row crossfade) and trimmed to the frame, 791x1284",
+  "alpha": true,
+  "aspect": "791x1284",
+  "glass": "opening 486x972 px at (155, 73) in the cut; src/art/world.js MIRROR.frame places it in glass units",
+  "files": {
+   "mirror-frame-240.webp": "240x390, 16 KB",
+   "mirror-frame-480.webp": "480x779, 43 KB",
+   "mirror-frame-900.webp": "900x1461, 110 KB"
+  }
+ },
+ "mirror-inside": {
+  "source": "mirror-inside.png",
+  "alpha": false,
+  "aspect": "1024x1536",
+  "files": {
+   "mirror-inside-360.webp": "360x540, 46 KB",
+   "mirror-inside-720.webp": "720x1080, 148 KB",
+   "mirror-inside-1080.webp": "1080x1620, 262 KB"
+  }
+ },
+ "ch1": {
+  "source": "ch1.png",
+  "alpha": true,
+  "aspect": "1254x1254",
+  "files": {
+   "ch1-360.webp": "360x360, 31 KB",
+   "ch1-720.webp": "720x720, 103 KB"
+  }
+ },
+ "ch2": {
+  "source": "ch2.png",
+  "alpha": true,
+  "aspect": "1254x1254",
+  "files": {
+   "ch2-360.webp": "360x360, 72 KB",
+   "ch2-720.webp": "720x720, 253 KB"
+  }
+ },
+ "ch3": {
+  "source": "ch3.png",
+  "alpha": true,
+  "aspect": "1254x1254",
+  "files": {
+   "ch3-360.webp": "360x360, 50 KB",
+   "ch3-720.webp": "720x720, 179 KB"
+  }
+ },
+ "ch4": {
+  "source": "ch4.png",
+  "alpha": true,
+  "aspect": "1254x1254",
+  "files": {
+   "ch4-360.webp": "360x360, 36 KB",
+   "ch4-720.webp": "720x720, 122 KB"
+  }
+ },
+ "ch5": {
+  "source": "ch5.png",
+  "alpha": true,
+  "aspect": "1254x1254",
+  "files": {
+   "ch5-360.webp": "360x360, 50 KB",
+   "ch5-720.webp": "720x720, 169 KB"
+  }
+ },
+ "ch6": {
+  "source": "ch6.png",
+  "alpha": true,
+  "aspect": "1254x1254",
+  "files": {
+   "ch6-360.webp": "360x360, 56 KB",
+   "ch6-720.webp": "720x720, 203 KB"
+  }
+ },
+ "ch7": {
+  "source": "ch7.png",
+  "alpha": true,
+  "aspect": "1254x1254",
+  "files": {
+   "ch7-360.webp": "360x360, 49 KB",
+   "ch7-720.webp": "720x720, 175 KB"
+  }
+ },
+ "genii-still": {
+  "source": "our own three.js Genii (src/genii), full evolution, alert face, reduced motion; qa/capture-genii.mjs STILL=1",
+  "alpha": true,
+  "aspect": "320x306",
+  "files": {
+   "genii-still.png": "320x306, 53 KB",
+   "genii-still.webp": "320x306, 12 KB"
+  }
+ }
+}

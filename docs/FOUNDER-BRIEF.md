@@ -1,7 +1,11 @@
-# Genie Personality Survey Campaign — Full Brief
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
+
+> Historical founder brief. Later [DECISIONS.md](DECISIONS.md) explicitly supersedes parts of its counts, health scope and feedback mechanics. Use [CURRENT.md](CURRENT.md) for current work.
+
+# Genie Personality Survey Campaign: Full Brief
 
 ## Core Concept
-This campaign is a funny conversation with an AI that gets increasingly good at reading the user—not a wellness assessment.
+This campaign is a funny conversation with an AI that gets increasingly good at reading the user, not a wellness assessment.
 
 > **Answer suspiciously random questions. Genie will try to figure out who you are.**
 
@@ -11,7 +15,7 @@ Front end: group-chat humor, absurd hypotheticals, gossip, playful accusations. 
 
 ## Three Survey Depths
 
-### Level 1 — Can Genie Clock You?
+### Level 1: Can Genie Clock You?
 **10–12 questions / ~2 minutes.** Viral top-of-funnel. Promise: “Let me make a suspiciously specific read of you.”
 
 Example questions:
@@ -40,13 +44,13 @@ Ending:
 
 Conversion: **I know enough to judge you. Not enough to impersonate you. Get me to 70% →**
 
-### Level 2 — How Well Can Genie Read You?
+### Level 2: How Well Can Genie Read You?
 **25–35 questions / ~7 minutes.** Promise: “Give me seven minutes. I'll tell you things you didn't tell me.”
 
 Re-test Level 1 dimensions through completely different disguises.
 
 Examples:
-- Unexpectedly empty Saturday: which outcome feels worst—accomplished nothing / saw nobody / spent too much / never left house / someone ruined peaceful day?
+- Unexpectedly empty Saturday: which outcome feels worst, accomplished nothing / saw nobody / spent too much / never left house / someone ruined peaceful day?
 - Permanently delete one inconvenience: deciding food / clothes / workouts / replying / appointments / groceries / remembering obligations.
 - Wake up feeling awful but calendar has plans: body wins / calendar wins / depends who / coffee gets custody / renegotiate every 14 minutes.
 
@@ -61,7 +65,7 @@ Personal Operating Manual:
 
 > **Something you didn't tell me directly:** You don't actually dislike routines. **You dislike routines you didn't choose.**
 
-### Level 3 — Build My Genie
+### Level 3: Build My Genie
 **~80–120 structured prompts**, broken into short sessions over several days. Promise: “Teach an AI enough about you that it can start predicting your choices.”
 
 Never market this as a 100-question survey.
@@ -124,7 +128,7 @@ One more episode / revenge bedtime procrastination / financially inexplicable pu
 Leave him / support women's rights and wrongs / show messages / participating in own documentary / secretly tired.
 
 **Horrific day: pick your emotional support animal.**
-Bed / fridge / credit card / group chat / gym / Netflix / “I'm fine”—extremely suspicious animal.
+Bed / fridge / credit card / group chat / gym / Netflix / “I'm fine”, extremely suspicious animal.
 
 ## Prediction + Confidence
 Genie should interrupt:
@@ -137,7 +141,7 @@ Eventually:
 
 **Confidence = progression mechanic. Genie = identity mechanic.**
 
-Confidence should reflect repeated evidence, consistency, contradictions, prediction performance, and uncertainty—not simply question count.
+Confidence should reflect repeated evidence, consistency, contradictions, prediction performance, and uncertainty, not simply question count.
 
 ## Genie Personality System
 Desired reaction:
@@ -146,63 +150,63 @@ Desired reaction:
 The result is a **character summoning/reveal system**. Use roughly 6–8 core Genie families plus secondary traits/modifiers rather than dozens of mutually exclusive boxes.
 
 Example:
-> **THE FUNCTIONAL MENACE — Chaos Genie, with Caretaker tendencies and a suspicious amount of Analyst energy.**
+> **THE FUNCTIONAL MENACE, Chaos Genie, with Caretaker tendencies and a suspicious amount of Analyst energy.**
 
 ### 🔥 Chaos Genie
-- **The Functional Menace** — *Somehow still employed.*
-- **The Delulu Strategist** — *Bad idea. Excellent execution.*
-- **The Side Quest CEO** — *Started one task. Founded three companies.*
+- **The Functional Menace**: *Somehow still employed.*
+- **The Delulu Strategist**: *Bad idea. Excellent execution.*
+- **The Side Quest CEO**: *Started one task. Founded three companies.*
 
 ### 👑 Commander Genie
-- **The Benevolent Dictator** — *You asked everyone what they wanted. Then did your thing.*
-- **The Human Override Button** — *Recommendations are welcome. Instructions are not.*
-- **The “I Got It” Genie** — *Would rather struggle than explain.*
+- **The Benevolent Dictator**: *You asked everyone what they wanted. Then did your thing.*
+- **The Human Override Button**: *Recommendations are welcome. Instructions are not.*
+- **The “I Got It” Genie**: *Would rather struggle than explain.*
 
 ### 🫶 Caretaker Genie
-- **The Group Chat Mother** — *Hydrated everyone except herself.*
-- **The Emotional Support CEO** — *Managing six people's problems and ignoring her own.*
-- **The “Anything Is Fine” Liar** — *Anything was, in fact, not fine.*
+- **The Group Chat Mother**: *Hydrated everyone except herself.*
+- **The Emotional Support CEO**: *Managing six people's problems and ignoring her own.*
+- **The “Anything Is Fine” Liar**: *Anything was, in fact, not fine.*
 
 ### 🧠 Analyst Genie
-- **The Receipts Department** — *Doesn't have trust issues. Has follow-up questions.*
-- **The Human Terms & Conditions** — *Would like to understand the mechanism first.*
-- **The WebMD Prosecutor** — *Your Honor, I have seventeen tabs.* Use cautiously where health implications are inappropriate.
+- **The Receipts Department**: *Doesn't have trust issues. Has follow-up questions.*
+- **The Human Terms & Conditions**: *Would like to understand the mechanism first.*
+- **The WebMD Prosecutor**: *Your Honor, I have seventeen tabs.* Use cautiously where health implications are inappropriate.
 
 ### 🛋️ Comfort Genie
 Never frame this family as lazy.
-- **The Minimum Viable Human** — *Why use twelve steps when four steps and lying down exist?*
-- **The Soft-Life Engineer** — *Optimizing aggressively for not suffering.*
-- **The Bed Rot Executive** — *Currently unavailable due to horizontal strategy.*
+- **The Minimum Viable Human**: *Why use twelve steps when four steps and lying down exist?*
+- **The Soft-Life Engineer**: *Optimizing aggressively for not suffering.*
+- **The Bed Rot Executive**: *Currently unavailable due to horizontal strategy.*
 
 ### ✨ Main Character Genie
-- **The Plot-Driven Individual** — *Will make a questionable decision if it improves the storyline.*
-- **The Lore Collector** — *Doesn't make mistakes. Acquires backstory.*
-- **The Main Character With Receipts** — *Romanticizes responsibly.*
+- **The Plot-Driven Individual**: *Will make a questionable decision if it improves the storyline.*
+- **The Lore Collector**: *Doesn't make mistakes. Acquires backstory.*
+- **The Main Character With Receipts**: *Romanticizes responsibly.*
 
 ### 🐢 Stability Genie
-- **The Suspiciously Functional Adult** — *Owns groceries before needing groceries.*
-- **The Human Backup Plan** — *Already thought of that.*
-- **The “Just In Case” Genie** — *Packed Advil for a two-hour outing.*
+- **The Suspiciously Functional Adult**: *Owns groceries before needing groceries.*
+- **The Human Backup Plan**: *Already thought of that.*
+- **The “Just In Case” Genie**: *Packed Advil for a two-hour outing.*
 
 ### 🦝 Survivor Genie
-- **The Raccoon With a Calendar** — *Resourceful. Questionable methods. Surprisingly effective.*
-- **The Crisis Valedictorian** — *Unfortunately, this is when you do your best work.*
-- **The Cockroach With Wi-Fi** — *You will survive. Whether elegantly was never specified.* Edgier; test before default use.
+- **The Raccoon With a Calendar**: *Resourceful. Questionable methods. Surprisingly effective.*
+- **The Crisis Valedictorian**: *Unfortunately, this is when you do your best work.*
+- **The Cockroach With Wi-Fi**: *You will survive. Whether elegantly was never specified.* Edgier; test before default use.
 
 ## Result Architecture
 
-### Layer A — Shareable Identity
+### Layer A: Shareable Identity
 > ## YOU SUMMONED
 > # THE DELULU STRATEGIST
 > *Bad idea. Excellent execution.*
 >
 > **Chaos Genie · Analyst secondary**
 >
-> You can turn almost anything into a plan—as long as nobody calls it a routine. You trust your instincts, improvise beautifully, and somehow become extremely competent approximately five minutes before consequences arrive.
+> You can turn almost anything into a plan, as long as nobody calls it a routine. You trust your instincts, improvise beautifully, and somehow become extremely competent approximately five minutes before consequences arrive.
 >
 > **Genie confidence: 74%**
 
-### Layer B — Personality Breakdown
+### Layer B: Personality Breakdown
 
 | Dimension | Reading |
 |---|---|
@@ -215,7 +219,7 @@ Never frame this family as lazy.
 | When stressed | Avoid → improvise → somehow recover |
 | Agent setting | Give me choices. Don't parent me. |
 
-### Layer C — Genie's Allegations
+### Layer C: Genie's Allegations
 - You have absolutely said “I'll figure it out” with no plan.
 - You are more disciplined for other people than for yourself.
 - You don't hate structure. You hate being *given* structure.
@@ -248,11 +252,11 @@ This loving roast may be more important to virality than the formal explanation 
 
 **74% CLOCKED**
 
-- 🔥 Instinct — 87
-- 🧠 Overthinking — 73
-- 🫶 People Pleasing — 61
-- 🛋️ Friction Tolerance — 22
-- 👑 Autonomy — 91
+- 🔥 Instinct, 87
+- 🧠 Overthinking, 73
+- 🫶 People Pleasing, 61
+- 🛋️ Friction Tolerance, 22
+- 👑 Autonomy, 91
 
 > **Genie alleges:** “You don't hate routines. You hate being told what to do.”
 
@@ -270,7 +274,7 @@ The goal is not merely “share your result.” Make comparison part of the game
 The personality system should invite disagreement. Disagreement creates conversation, retesting, and sharing.
 
 ## Asset Mapping
-Do **not** finalize the taxonomy in isolation from existing Genie artwork. First map each existing Genie asset by visible personality cues—chaotic, regal, analytical, cozy, nurturing, expressive, resilient, etc.—then align behavioral family, naming, animation, copy, and result tone to the asset.
+Do **not** finalize the taxonomy in isolation from existing Genie artwork. First map each existing Genie asset by visible personality cues, chaotic, regal, analytical, cozy, nurturing, expressive, resilient, etc., then align behavioral family, naming, animation, copy, and result tone to the asset.
 
 The character and psychological archetype should feel inseparable.
 

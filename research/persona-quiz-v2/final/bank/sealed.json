@@ -1,0 +1,1811 @@
+[
+  {
+    "id": "S-120",
+    "type": "sealed",
+    "primary": "R1",
+    "sq": "SQ-R1-1",
+    "world": "unusual",
+    "prompt": "Co-owners, forever: your best friend wants to buy a sailboat with you. Both names on the hull, alternating weekends, shared repair bills.",
+    "options": [
+      {
+        "t": "Every weekend, together. I'm already shopping for matching hats.",
+        "axes": {
+          "R1": 2
+        }
+      },
+      {
+        "t": "Love you. Buy it yourself. I'll wave from the dock.",
+        "axes": {
+          "R1": -2
+        }
+      },
+      {
+        "t": "My name on the hull, your hands on the wheel. I visit.",
+        "axes": {
+          "R1": -1
+        }
+      },
+      {
+        "t": "Alternate weekends, plus one sail together a month. Snacks on me.",
+        "axes": {
+          "R1": 1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "Your best friend wants to buy a sailboat with you, forever. Both names on the hull, alternating weekends, shared repair bills.",
+      "options": [
+        "Every weekend, together. I'm already looking at matching hats.",
+        "Love you, but buy it yourself. I'll wave from the dock.",
+        "My name's on the hull, but it's yours to sail. I'll visit.",
+        "We alternate weekends, and once a month we sail together."
+      ]
+    },
+    "fp": {
+      "trigger": "a best friend asks you to co-own a sailboat",
+      "setting": "a shared boat, both names on the hull",
+      "ask": "merge your weekends or keep your own",
+      "who": "your best friend",
+      "stakes": "a shared life versus your own schedule",
+      "device": "co-owned-sailboat"
+    },
+    "mask": "looks like a fun purchase; Genii's locked guess on close as shared everything versus close with your own life (R1)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-121",
+    "type": "sealed",
+    "primary": "R1",
+    "sq": "SQ-R1-2",
+    "world": "absurd",
+    "prompt": "New curse: every time something big happens to you, a tiny rain cloud follows you until your partner hears about it. You just won a photo contest.",
+    "options": [
+      {
+        "t": "Call them mid-drizzle. I'd have told them anyway.",
+        "axes": {
+          "R1": 2
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Stay damp for a week. Some news is mine first.",
+        "axes": {
+          "R1": -2
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Text them the headline. The full story can wait.",
+        "axes": {
+          "R1": -1
+        }
+      },
+      {
+        "t": "Tell them, then demand their news too. Fair's fair.",
+        "axes": {
+          "R1": 1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "There's a new curse: whenever something big happens to you, a little rain cloud follows you around until your partner hears about it. You just won a photo contest.",
+      "options": [
+        "I'm calling them mid-drizzle. I'd have told them anyway.",
+        "I'll stay damp for a week. Some news is mine first.",
+        "They get the headline by text. The full story can wait.",
+        "I tell them, then ask for their news too. Fair's fair."
+      ]
+    },
+    "fp": {
+      "trigger": "a rain cloud follows you until your partner knows your news",
+      "setting": "anywhere, under a personal cloud",
+      "ask": "tell them now or keep it a while",
+      "who": "your partner",
+      "stakes": "being fully known versus news of your own",
+      "device": "rain-cloud"
+    },
+    "mask": "looks like a silly curse; Genii's locked guess on close as knowing everything versus keeping some rooms private (R1)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-122",
+    "type": "sealed",
+    "primary": "R1",
+    "sq": "SQ-R1-3",
+    "world": "unusual",
+    "prompt": "Seven to one: your friend group votes for a five-day silent retreat in the mountains. No talking at all. You were the one.",
+    "options": [
+      {
+        "t": "Silent together still counts as together. I'm in.",
+        "axes": {
+          "R1": 2
+        }
+      },
+      {
+        "t": "\"Enjoy. I'll host the loud welcome-back dinner.\"",
+        "axes": {
+          "R1": -2
+        }
+      },
+      {
+        "t": "Day two, I hike out alone and eat a very loud sandwich.",
+        "axes": {
+          "R1": -1
+        }
+      },
+      {
+        "t": "Sneak in a notepad. Pass notes the entire time.",
+        "axes": {
+          "R1": 1
+        },
+        "emotion": "delight"
+      }
+    ],
+    "heart": {
+      "prompt": "Seven to one, your friend group votes for a five-day silent retreat in the mountains. No talking at all. You were the one.",
+      "options": [
+        "Silent together still counts as together. I'm in.",
+        "\"Enjoy it. I'll host a loud welcome-back dinner.\"",
+        "By day two, I hike out alone for a very loud sandwich.",
+        "I'd bring a notepad and pass notes the whole time."
+      ]
+    },
+    "fp": {
+      "trigger": "friends outvote you on a silent retreat",
+      "setting": "mountain retreat, five days",
+      "ask": "go with the group or peel off",
+      "who": "your whole friend group",
+      "stakes": "staying one unit versus your own plan",
+      "device": "silent-retreat"
+    },
+    "mask": "looks like a group trip vote; Genii's locked guess on going with the group versus peeling off (R1)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-123",
+    "type": "sealed",
+    "primary": "R1",
+    "sq": "SQ-T09-1",
+    "world": "unusual",
+    "prompt": "You and your partner share a birthday. They've already booked one joint party for 80 people: both names on the banner, every friend invited.",
+    "options": [
+      {
+        "t": "One banner, two names. Their friends are my friends.",
+        "axes": {
+          "R1": 2
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Cut the cake, then slip out with my own friends.",
+        "axes": {
+          "R1": -1
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Two parties. My birthday stays my night.",
+        "axes": {
+          "R1": -2
+        },
+        "tags": [
+          {
+            "id": "T09B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Joint party this year. Next year gets its own vote.",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T09A",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "You and your partner share a birthday. They've already booked one joint party for 80 people, both names on the banner and every friend invited.",
+      "options": [
+        "One banner, two names. Their friends are my friends.",
+        "I'll cut the cake, then slip out with my own friends.",
+        "Two parties. My birthday's still my night.",
+        "Joint party this year. Next year gets its own vote."
+      ]
+    },
+    "fp": {
+      "trigger": "your partner books one joint party for your shared birthday",
+      "setting": "a party for 80 under one banner",
+      "ask": "merge the day or keep it yours",
+      "who": "your partner and both friend groups",
+      "stakes": "one shared life versus a night of your own",
+      "device": "joint-birthday"
+    },
+    "mask": "looks like party planning; Genii's locked guess on folding into their life versus keeping yours (R1, T09)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-91",
+    "type": "sealed",
+    "primary": "R2",
+    "sq": "SQ-T07-2",
+    "world": "unusual",
+    "prompt": "Your friend's first music video went viral: 4,000 comments, most of them brutal. They hand you their phone: \"What are people saying?\"",
+    "options": [
+      {
+        "t": "Top ten, out loud, brutal ones included. Deep breath first.",
+        "axes": {
+          "R2": 2
+        },
+        "tags": [
+          {
+            "id": "T07A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Cherry-pick the nice ones. Hint that they skip the rest.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "\"All love!\" Phone locked, pocketed, gone.",
+        "axes": {
+          "R2": -2
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Honest score: mostly rough. Full readout tomorrow, if they want.",
+        "axes": {
+          "R2": 1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "Your friend's first music video went viral: 4,000 comments, most of them brutal. They hand you their phone and ask, \"What are people saying?\"",
+      "options": [
+        "I read them the top ten out loud, brutal ones included.",
+        "Just the nice ones, then I hint they skip the rest.",
+        "\"It's all love.\" Then the phone gets locked.",
+        "Honestly, it's mostly rough. They can have the full list tomorrow."
+      ]
+    },
+    "fp": {
+      "trigger": "a friend's video goes viral with brutal comments",
+      "setting": "their phone in your hand",
+      "ask": "read them the truth or shield them",
+      "who": "a friend",
+      "stakes": "their pride versus the internet's verdict",
+      "device": "viral-comments"
+    },
+    "mask": "looks like an internet moment; Genii's locked guess on saying the hard thing now versus holding the person first (R2), with T07 as a side guess",
+    "ae": [
+      "A",
+      "B",
+      "E"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-124",
+    "type": "sealed",
+    "primary": "R2",
+    "sq": "SQ-R2-2",
+    "world": "unusual",
+    "prompt": "New phrase from the neighbor's parrot: your name, then \"never pays anyone back.\" You always pay people back.",
+    "options": [
+      {
+        "t": "Knock now: \"Your parrot's wrong. So are you.\"",
+        "axes": {
+          "R2": 2
+        },
+        "tags": [
+          {
+            "id": "T07A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Slide an old receipt under their door. No note.",
+        "axes": {
+          "R2": -1
+        }
+      },
+      {
+        "t": "Teach the parrot a better line. Weeks of balcony lessons.",
+        "axes": {
+          "R2": -2
+        },
+        "emotion": "delight"
+      },
+      {
+        "t": "Tape a note to their door: \"I pay people back. Always.\"",
+        "axes": {
+          "R2": 1
+        },
+        "emotion": "irritation"
+      }
+    ],
+    "heart": {
+      "prompt": "Your neighbor's parrot has a new phrase: your name, then \"never pays anyone back.\" You always pay people back.",
+      "options": [
+        "I knock right now: \"Your parrot's wrong. So are you.\"",
+        "I slide an old receipt under their door. No note.",
+        "Weeks of balcony lessons. That parrot's learning a better line.",
+        "A note goes on their door: I pay people back. Always."
+      ]
+    },
+    "fp": {
+      "trigger": "a parrot repeats gossip about you",
+      "setting": "neighboring balconies",
+      "ask": "confront the neighbor or work around it",
+      "who": "the neighbor next door",
+      "stakes": "your name in the building",
+      "device": "gossip-parrot"
+    },
+    "mask": "looks like a pet mishap; Genii's locked guess on naming it when someone crosses a line versus absorbing it (R2)",
+    "ae": [
+      "A",
+      "E"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-125",
+    "type": "sealed",
+    "primary": "R2",
+    "sq": "SQ-R2-3",
+    "world": "unusual",
+    "prompt": "Murder mystery party, $200 prize pot. You've worked out that the host rigged the clues so the host wins. Twelve guests are still guessing.",
+    "options": [
+      {
+        "t": "Stand up: \"The killer is the host. So is the cheater.\"",
+        "axes": {
+          "R2": 2
+        },
+        "tags": [
+          {
+            "id": "T07A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Pull the host aside in the kitchen. Quietly.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Let them win. Their party, their pot.",
+        "axes": {
+          "R2": -2
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Loudly wonder if these clues seem a little convenient.",
+        "axes": {
+          "R2": 1
+        },
+        "emotion": "delight"
+      }
+    ],
+    "heart": {
+      "prompt": "Murder mystery party, $200 prize pot. You've figured out the host rigged the clues so the host wins, and twelve guests are still guessing.",
+      "options": [
+        "Standing up: \"The host's the killer. And the cheater.\"",
+        "I pull the host aside in the kitchen and say it quietly.",
+        "Let them win. Their party, their pot.",
+        "I wonder out loud if these clues seem a bit convenient."
+      ]
+    },
+    "fp": {
+      "trigger": "the host rigged the party game",
+      "setting": "murder mystery party",
+      "ask": "call it out to the room or not",
+      "who": "the host and twelve guests",
+      "stakes": "$200 and the host's face",
+      "device": "murder-mystery-party"
+    },
+    "mask": "looks like party-game drama; Genii's locked guess on saying it to the whole room versus keeping the peace (R2)",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-126",
+    "type": "sealed",
+    "primary": "R2",
+    "sq": "SQ-R2-1",
+    "world": "unusual",
+    "prompt": "A single friend shows you a dating profile. It's your best friend's partner, active an hour ago. Your best friend is booking them a surprise trip.",
+    "options": [
+      {
+        "t": "Screenshot, then call my best friend tonight.",
+        "axes": {
+          "R2": 2
+        },
+        "tags": [
+          {
+            "id": "T07A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Casually ask my friend, \"You two ever talk about apps?\"",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Say nothing. Not my relationship, not my news.",
+        "axes": {
+          "R2": -2
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Tell my best friend over brunch. Phone face down unless they ask.",
+        "axes": {
+          "R2": 1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "A single friend shows you a dating profile. It's your best friend's partner, active an hour ago, and your best friend's booking them a surprise trip.",
+      "options": [
+        "Screenshot, then I call my best friend tonight.",
+        "I'd casually ask my friend, \"You two ever talk about apps?\"",
+        "I say nothing. It's not my relationship, and it's not my news.",
+        "I tell them over brunch, my phone face down unless they ask."
+      ]
+    },
+    "fp": {
+      "trigger": "your best friend's partner shows up active on a dating app",
+      "setting": "a friend's phone, a dating profile",
+      "ask": "tell now or protect them",
+      "who": "your best friend and their partner",
+      "stakes": "their relationship versus being the messenger",
+      "device": "partner-dating-profile"
+    },
+    "mask": "looks like relationship drama; Genii's locked guess on saying the hard truth now versus protecting the person first (R2, T07)",
+    "ae": [
+      "A",
+      "B",
+      "C",
+      "E"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-111",
+    "type": "sealed",
+    "primary": "R3",
+    "sq": "SQ-T19-1",
+    "world": "unusual",
+    "prompt": "Accepted: a dream program on the other side of the world. Before you've even said yes, your family books a video call. Its title? \"Discussion.\"",
+    "options": [
+      {
+        "t": "Accept first. Then join with a slideshow of my new city.",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T19A",
+            "s": 2
+          }
+        ],
+        "emotion": "pride"
+      },
+      {
+        "t": "If the family says no, I stay. Suitcase goes back up.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T19B",
+            "s": 2
+          }
+        ],
+        "emotion": "longing"
+      },
+      {
+        "t": "Nod through all 90 minutes, then decide alone in bed.",
+        "axes": {
+          "R3": -1
+        },
+        "tags": [
+          {
+            "id": "T19A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Family vote. Mine counts double, obviously.",
+        "axes": {
+          "R3": 1
+        },
+        "tags": [
+          {
+            "id": "T19B",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      }
+    ],
+    "heart": {
+      "prompt": "You got into a dream program on the other side of the world. Before you've even said yes, your family books a video call. It's called \"Discussion.\"",
+      "options": [
+        "I accept first, then join with photos of my new city.",
+        "If they say no, I stay. The suitcase goes back up.",
+        "All ninety minutes, I just listen. Then I decide alone that night.",
+        "We vote as a family. My vote counts double."
+      ]
+    },
+    "fp": {
+      "trigger": "family books a call about your acceptance",
+      "setting": "video call, a program far away",
+      "ask": "decide alone or give them a vote",
+      "who": "the whole family",
+      "stakes": "a dream versus family support",
+      "device": "family-video-call"
+    },
+    "mask": "looks like big news; Genii's locked guess on the family script versus writing your own (R3), with who gets a vote (T19) as a side guess",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-140",
+    "type": "sealed",
+    "primary": "R3",
+    "sq": "SQ-T20-2",
+    "world": "unusual",
+    "prompt": "Ten years running: same cabin, same weekend, same broken karaoke machine. Two friends want a city trip instead. The vote's tied, and yours decides.",
+    "options": [
+      {
+        "t": "Cabin forever. Ten years makes it sacred.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Alternate. City this year, cabin next, karaoke on pause.",
+        "axes": {
+          "R3": -1
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Book the city. Ten years was a great run.",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Same cabin, but I'm finally replacing that karaoke machine.",
+        "axes": {
+          "R3": 1
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Ten years running: same cabin, same weekend, same broken karaoke machine. Two friends want a city trip instead. It's a tie, and your vote decides.",
+      "options": [
+        "The cabin. Ten years makes it sacred.",
+        "We take turns. City this year, cabin next.",
+        "I'd book the city. Ten years was a great run.",
+        "Same cabin, but I'm finally replacing that karaoke machine."
+      ]
+    },
+    "fp": {
+      "trigger": "a ten-year friend tradition faces a vote",
+      "setting": "the same cabin every year",
+      "ask": "keep the tradition or retire it",
+      "who": "your friend group",
+      "stakes": "a ritual versus something new",
+      "device": "cabin-tradition"
+    },
+    "mask": "looks like trip planning; Genii's locked guess on keeping a ritual versus remaking it (R3), with T20 as a side guess",
+    "ae": [
+      "A",
+      "D",
+      "E"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-128",
+    "type": "sealed",
+    "primary": "R3",
+    "sq": "SQ-T21-1",
+    "world": "unusual",
+    "prompt": "The stadium kiss cam lands on you and your partner. Someone behind you unrolls a banner: \"PROPOSE!\" Forty thousand people start chanting.",
+    "options": [
+      {
+        "t": "Kneel. Right there. The universe has spoken.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T21A",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Kiss, wave, never mention it again.",
+        "axes": {
+          "R3": -1
+        },
+        "tags": [
+          {
+            "id": "T21B",
+            "s": 1
+          }
+        ],
+        "emotion": "cringe"
+      },
+      {
+        "t": "Mouth to the camera: \"We don't need a stadium.\"",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T21B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Whisper: \"Not here. At the family dinner, properly.\"",
+        "axes": {
+          "R3": 1
+        },
+        "tags": [
+          {
+            "id": "T21A",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "The stadium kiss cam lands on you and your partner. Someone behind you unrolls a banner that says \"Propose!\" and forty thousand people start chanting.",
+      "options": [
+        "Down on one knee, right there. The universe has spoken.",
+        "We kiss, wave, and never bring it up again.",
+        "I mouth to the camera, \"We don't need a stadium.\"",
+        "I whisper, \"Not here. At the family dinner, properly.\""
+      ]
+    },
+    "fp": {
+      "trigger": "a stadium crowd chants for a proposal",
+      "setting": "stadium kiss cam",
+      "ask": "propose in public or not",
+      "who": "your partner and forty thousand strangers",
+      "stakes": "a big public yes versus your own way",
+      "device": "kiss-cam"
+    },
+    "mask": "looks like a jumbotron moment; Genii's locked guess on wanting the big official yes versus not needing the stamp (R3, T21)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "intimate"
+  },
+  {
+    "id": "S-129",
+    "type": "sealed",
+    "primary": "R3",
+    "sq": "SQ-T20-1",
+    "world": "unusual",
+    "prompt": "Month-long visit: your partner's parent relabels every shelf in your home to match their own. Printed labels. Laminated.",
+    "options": [
+      {
+        "t": "Leave every label up. Decades of order can't be wrong.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Peel off one a day. Quietly. They'll never notice.",
+        "axes": {
+          "R3": -1
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Sit everyone down: \"Our house, our system.\"",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Only the kitchen labels survive. Their spice rack is elite.",
+        "axes": {
+          "R3": 1
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Your partner's parent stays for a month and relabels every shelf in your home to match their own. Printed. Laminated.",
+      "options": [
+        "Every label stays up. Their system's worked for decades.",
+        "I peel off one a day, quietly. They'll never notice.",
+        "Family meeting: \"Our house, our system.\"",
+        "Just the kitchen ones stay. Their spice rack really is better."
+      ]
+    },
+    "fp": {
+      "trigger": "an in-law relabels your whole home",
+      "setting": "your home, a month-long visit",
+      "ask": "keep their system or restore yours",
+      "who": "your partner's parent",
+      "stakes": "whose way the home runs",
+      "device": "label-maker"
+    },
+    "mask": "looks like in-law comedy; Genii's locked guess on running a home the way homes always ran versus your own design (R3, T20)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-141",
+    "type": "sealed",
+    "primary": "L1",
+    "sq": "SQ-L1-1",
+    "world": "unusual",
+    "prompt": "Game show, final round: walk away with $20,000, or answer one question for $100,000 and lose it all if wrong. The topic: one you half know.",
+    "options": [
+      {
+        "t": "Walk with the $20,000. Wave, leave, frame the check.",
+        "axes": {
+          "L1": 2
+        },
+        "tags": [
+          {
+            "id": "T13B",
+            "s": 1
+          }
+        ],
+        "emotion": "relief"
+      },
+      {
+        "t": "Half knowing is basically knowing. Hit me.",
+        "axes": {
+          "L1": -2
+        },
+        "tags": [
+          {
+            "id": "T13A",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Bank the money, then beg to hear the question anyway.",
+        "axes": {
+          "L1": 1
+        }
+      },
+      {
+        "t": "Answer it. Regret is worse than losing $20,000.",
+        "axes": {
+          "L1": -1
+        },
+        "emotion": "worry"
+      }
+    ],
+    "heart": {
+      "prompt": "Final round of a game show: walk away with $20,000, or answer one question for $100,000 and lose it all if you're wrong. It's a topic you half know.",
+      "options": [
+        "I walk with the $20,000 and frame the check.",
+        "Half knowing is basically knowing. I'm playing.",
+        "The money's banked, but I beg to hear the question anyway.",
+        "Answering. Regret would be worse than losing it."
+      ]
+    },
+    "fp": {
+      "trigger": "a sure prize or one question for five times more",
+      "setting": "game show final round",
+      "ask": "walk away or risk it",
+      "who": "a host and a studio audience",
+      "stakes": "$20,000 sure versus $100,000 maybe",
+      "device": "game-show-final"
+    },
+    "mask": "looks like a TV moment; Genii's locked guess on keeping the sure good thing versus a shot at more (L1), with T13 as a side guess",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-110",
+    "type": "sealed",
+    "primary": "L1",
+    "sq": "SQ-T17-2",
+    "world": "absurd",
+    "prompt": "On your pillow, a contract: your job, home and people stay exactly as they are for five years. Good, guaranteed, no surprises. Sign any part, any time.",
+    "options": [
+      {
+        "t": "Sign it in pen. Five known-good years beat any gamble.",
+        "axes": {
+          "L1": 2
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 2
+          }
+        ],
+        "emotion": "relief"
+      },
+      {
+        "t": "Tear it up. I want the surprises, bad ones included.",
+        "axes": {
+          "L1": -2
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Initial the home page only. Job stays wide open.",
+        "axes": {
+          "L1": 1
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Stick it on the fridge unsigned. Not knowing is half the fun.",
+        "axes": {
+          "L1": -1
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 1
+          }
+        ],
+        "emotion": "worry"
+      }
+    ],
+    "heart": {
+      "prompt": "There's a contract on your pillow: your job, home and people stay exactly as they are for five years. Good, guaranteed, no surprises. You can sign any part, any time.",
+      "options": [
+        "I sign it in pen. Five known-good years beat any gamble.",
+        "It's getting torn up. I want the surprises, bad ones too.",
+        "Just the home page gets initialed. The job stays wide open.",
+        "It goes on the fridge unsigned. Not knowing is half the fun."
+      ]
+    },
+    "fp": {
+      "trigger": "a contract would freeze the next five years",
+      "setting": "bedroom, magic scroll",
+      "ask": "sign, tear or wait",
+      "who": "you and Genii",
+      "stakes": "guaranteed calm versus every surprise",
+      "device": "five-year-contract"
+    },
+    "mask": "looks like a strange gift; Genii's locked guess on the known versus the new (L1), with locking it in versus keeping options open (T17) as a side guess",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-130",
+    "type": "sealed",
+    "primary": "L1",
+    "sq": "SQ-L1-3",
+    "world": "unusual",
+    "prompt": "At a friend's barbecue, a famous chef tastes your cooking and offers you a job in their kitchen. One condition: quit yours by Friday. No trial.",
+    "options": [
+      {
+        "t": "Quit Friday morning. Aprons are cheaper than regrets.",
+        "axes": {
+          "L1": -2
+        },
+        "tags": [
+          {
+            "id": "T22A",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "My job stays. Weekend dinner parties get very fancy.",
+        "axes": {
+          "L1": 2
+        },
+        "tags": [
+          {
+            "id": "T22B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Say no. Cook their signature dish every night, bitterly.",
+        "axes": {
+          "L1": 1
+        },
+        "emotion": "longing"
+      },
+      {
+        "t": "Resign, but sublet my place in case it flops.",
+        "axes": {
+          "L1": -1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "At a friend's barbecue, a famous chef tastes your cooking and offers you a job in their kitchen. The condition: you quit yours by Friday, no trial.",
+      "options": [
+        "I quit Friday morning. Aprons are cheaper than regrets.",
+        "My job stays. My weekend dinners just get a lot fancier.",
+        "I say no, then cook their signature dish nightly, a bit bitter.",
+        "Resigning, but I'm subletting my place in case it flops."
+      ]
+    },
+    "fp": {
+      "trigger": "a famous chef offers a job if you quit by Friday",
+      "setting": "a friend's barbecue",
+      "ask": "quit the safe job or not",
+      "who": "a stranger chef",
+      "stakes": "a steady paycheck versus a dream kitchen",
+      "device": "chef-offer"
+    },
+    "mask": "looks like a big break; Genii's locked guess on keeping the safety net versus cutting it to go all in (L1)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-131",
+    "type": "sealed",
+    "primary": "L1",
+    "sq": "SQ-L1-2",
+    "world": "unusual",
+    "prompt": "A friend of a friend invites you into a club with no name. Members can't say what it does. The invite expires tonight.",
+    "options": [
+      {
+        "t": "I'm in. The best stories start exactly like this.",
+        "axes": {
+          "L1": -2
+        },
+        "tags": [
+          {
+            "id": "T22A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Drop my location to two friends, then show up.",
+        "axes": {
+          "L1": -1
+        }
+      },
+      {
+        "t": "Only if my friend comes as my plus-one, first time.",
+        "axes": {
+          "L1": 1
+        }
+      },
+      {
+        "t": "Pass. I don't join what I can't describe.",
+        "axes": {
+          "L1": 2
+        },
+        "tags": [
+          {
+            "id": "T22B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "A friend of a friend invites you into a club with no name. Members can't say what it does, and the invite expires tonight.",
+      "options": [
+        "I'm in. The best stories start exactly like this.",
+        "My location goes to two friends first, then I go.",
+        "Only if my friend comes as my plus-one the first time.",
+        "I'll pass. I don't join what I can't describe."
+      ]
+    },
+    "fp": {
+      "trigger": "an invitation to a secret club",
+      "setting": "a friend of a friend, invite expires tonight",
+      "ask": "step in blind or wait to know more",
+      "who": "a friend of a friend",
+      "stakes": "a great story versus walking in blind",
+      "device": "nameless-club"
+    },
+    "mask": "looks like a mystery invite; Genii's locked guess on stepping in blind versus waiting to know more (L1, T22)",
+    "ae": [
+      "A",
+      "D",
+      "E"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-101",
+    "type": "sealed",
+    "primary": "L2",
+    "sq": "SQ-T17-1",
+    "world": "unusual",
+    "prompt": "Two weeks away next spring, booked by your best friend. They'll tell you everything now, or nothing until the airport. You choose.",
+    "options": [
+      {
+        "t": "Everything. I'm making a countdown for the fridge.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Tell me the city. I'll have restaurants booked by Friday.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T17A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Only what to pack. Swimsuit or coat, that's it.",
+        "axes": {
+          "L2": -1
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Nothing. Blindfold me at the airport.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T17B",
+            "s": 2
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Your best friend booked you both two weeks away next spring. They'll tell you everything now, or nothing until the airport. It's your call.",
+      "options": [
+        "Everything, please. I want a countdown on the fridge.",
+        "Just the city. I'll have restaurants booked by Friday.",
+        "Only what to pack, swimsuit or coat. That's it.",
+        "Nothing at all. They can blindfold me at the airport."
+      ]
+    },
+    "fp": {
+      "trigger": "a friend offers to reveal a booked trip or keep it secret",
+      "setting": "a surprise trip next spring",
+      "ask": "know it all now or keep the surprise",
+      "who": "your best friend",
+      "stakes": "certainty versus surprise",
+      "device": "surprise-trip"
+    },
+    "mask": "looks like a trip surprise; Genii's locked guess on wanting it known and locked in versus keeping it open (L2, T17)",
+    "ae": [
+      "D",
+      "E"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-132",
+    "type": "sealed",
+    "primary": "L2",
+    "sq": "SQ-L2-2",
+    "world": "unusual",
+    "prompt": "For years, an old classmate has hit every milestone just before you: job, apartment, first car. Your new job starts Monday. They just announced theirs.",
+    "options": [
+      {
+        "t": "Post mine tonight, with a better photo than theirs.",
+        "axes": {
+          "L2": 2
+        }
+      },
+      {
+        "t": "Monday, as planned. Their calendar doesn't run mine.",
+        "axes": {
+          "L2": -2
+        }
+      },
+      {
+        "t": "Bump my announcement up a few days. Just a few.",
+        "axes": {
+          "L2": 1
+        }
+      },
+      {
+        "t": "Mute them for a week. Still posting Monday.",
+        "axes": {
+          "L2": -1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "For years, an old classmate has hit every milestone right before you: job, apartment, first car. Your new job starts Monday, and they just announced theirs.",
+      "options": [
+        "I post mine tonight, with a better photo than theirs.",
+        "Monday, like I planned. Their calendar doesn't set mine.",
+        "I move my news up a few days. Only a few.",
+        "They're muted for a week. I still post on Monday."
+      ]
+    },
+    "fp": {
+      "trigger": "a rival keeps beating your milestones by a week",
+      "setting": "announcements, eight years running",
+      "ask": "race them or keep your own clock",
+      "who": "an old classmate",
+      "stakes": "your pace versus theirs",
+      "device": "milestone-rival"
+    },
+    "mask": "looks like a rivalry story; Genii's locked guess on letting someone else's timeline set your clock (L2)",
+    "ae": [
+      "A",
+      "C",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-142",
+    "type": "sealed",
+    "primary": "L2",
+    "sq": "SQ-L2-1",
+    "world": "unusual",
+    "prompt": "Neighborhood garden contest, winner's photo in the paper. You're in second. First place means weeding every evening until August.",
+    "options": [
+      {
+        "t": "Every evening, by headlamp if I have to. That photo's mine.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Second place and my evenings back. Fine by me.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Weekend weeding only. Enough to scare first place a little.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "I garden when it's fun. The paper can pick someone else.",
+        "axes": {
+          "L2": -1
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "In the neighborhood garden contest, the winner's photo goes in the paper. You're in second, and first place means weeding every evening until August.",
+      "options": [
+        "Every evening, by headlamp if I have to. That photo's mine.",
+        "Second place and my evenings back. That's fine by me.",
+        "I'll weed on weekends. Enough to make first place nervous.",
+        "I garden when it's fun. The paper can pick someone else."
+      ]
+    },
+    "fp": {
+      "trigger": "first place in a public contest costs every evening",
+      "setting": "a neighborhood garden contest",
+      "ask": "trade your evenings for the win",
+      "who": "you and the neighbors",
+      "stakes": "free time versus a win in the paper",
+      "device": "garden-contest"
+    },
+    "mask": "looks like a hobby contest; Genii's locked guess on trading free time for a win people can see (L2, T16)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-134",
+    "type": "sealed",
+    "primary": "L2",
+    "sq": "SQ-L2-3",
+    "world": "unusual",
+    "prompt": "10,000 mosaic tiles, and you're the one placing them for a museum. Nobody sees the full picture until the last tile goes in.",
+    "options": [
+      {
+        "t": "Count tiles nightly. Post the percentage somewhere public.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T24A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Place a few tiles when the mood strikes. It'll get there.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T24B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Log my rows every Friday. Just rows, no peeking.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T24A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Lose count by week two. Love it anyway.",
+        "axes": {
+          "L2": -1
+        },
+        "tags": [
+          {
+            "id": "T24B",
+            "s": 1
+          }
+        ],
+        "emotion": "warmth"
+      }
+    ],
+    "heart": {
+      "prompt": "A museum hired you to place 10,000 mosaic tiles. Nobody sees the full picture until the last tile goes in.",
+      "options": [
+        "I count tiles every night and post the percentage somewhere public.",
+        "A few tiles whenever the mood hits. It'll get there.",
+        "Every Friday I log my rows. Just rows, no peeking.",
+        "I lose count by week two, and love it anyway."
+      ]
+    },
+    "fp": {
+      "trigger": "a mosaic nobody sees whole until it is done",
+      "setting": "museum studio, 10,000 tiles",
+      "ask": "track progress or trust the slow build",
+      "who": "you and a museum",
+      "stakes": "proof it is working versus patience",
+      "device": "covered-mosaic"
+    },
+    "mask": "looks like an art commission; Genii's locked guess on needing visible progress versus trusting the slow road (L2, T24)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-90",
+    "type": "sealed",
+    "primary": "L3",
+    "sq": "SQ-L3-3",
+    "world": "unusual",
+    "prompt": "Six months alone keeping a lighthouse. The rule: log the weather every three hours. You slept through one reading. Nobody will ever check.",
+    "options": [
+      {
+        "t": "Fill in something sunny. Nobody reads old weather.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "\"MISSED,\" in capitals. The log is the job.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Copy yesterday's reading. Weather's basically a rerun.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Pencil in a best guess, with an asterisk.",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "You're keeping a lighthouse alone for six months. The rule: log the weather every three hours. You slept through one reading, and nobody will ever check.",
+      "options": [
+        "Something sunny goes in. Nobody reads old weather.",
+        "\"Missed,\" right there in the log. The log is the job.",
+        "Yesterday's reading, copied. The weather's basically a rerun.",
+        "I pencil in my best guess, with an asterisk."
+      ]
+    },
+    "fp": {
+      "trigger": "a missed log entry that nobody will check",
+      "setting": "a lighthouse, six months alone",
+      "ask": "follow the process or take the shortcut",
+      "who": "just you",
+      "stakes": "an honest record versus a harmless gap",
+      "device": "lighthouse-log"
+    },
+    "mask": "looks like a lonely job; Genii's locked guess on following the process when nobody is checking (L3), with T25 as a side guess",
+    "ae": [
+      "C",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-160",
+    "type": "sealed",
+    "primary": "L3",
+    "sq": "SQ-L3-1",
+    "world": "unusual",
+    "prompt": "Watch-party rule among your friends: spoil a finale, lose your seat forever. Your oldest friend just read the ending aloud from a headline. By accident.",
+    "options": [
+      {
+        "t": "No exceptions. Oldest friend, newest exile.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "We all agree it never happened. Seat stays.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Seat's gone. Then I start a petition to change the rule.",
+        "axes": {
+          "L3": 1
+        }
+      },
+      {
+        "t": "One free pass. Next spoiler, anyone's out.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Your friends' watch-party rule: spoil a finale, lose your seat forever. Your oldest friend just read the ending out loud from a headline. By accident.",
+      "options": [
+        "No exceptions, even for my oldest friend.",
+        "We all agree it never happened. The seat stays.",
+        "Their seat's gone, and then I start lobbying to change the rule.",
+        "One free pass. The next spoiler, anyone's out."
+      ]
+    },
+    "fp": {
+      "trigger": "your oldest friend breaks the watch party's one rule by accident",
+      "setting": "a friends' watch party on finale night",
+      "ask": "enforce the rule or let it slide",
+      "who": "your oldest friend and the group",
+      "stakes": "the rule versus a friend's mistake",
+      "device": "spoiler-rule"
+    },
+    "mask": "looks like TV-night drama; Genii's locked guess on the rule for everyone versus bending it for this person (L3, T25)",
+    "ae": [
+      "B",
+      "E"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-143",
+    "type": "sealed",
+    "primary": "L3",
+    "sq": "SQ-L3-1",
+    "world": "absurd",
+    "prompt": "Superhero code, rule one: never use your powers for personal favors. Your best friend's new couch is wedged in their stairwell. You can lift trucks.",
+    "options": [
+      {
+        "t": "Code's the code. I'll call them some movers.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Lift it. The code is for strangers.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "No powers. I'll push like a regular person.",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Nudge it with one finger. Nobody saw anything.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Superhero code, rule one: never use your powers for personal favors. Your best friend's new couch is wedged in their stairwell, and you can lift trucks.",
+      "options": [
+        "The code's the code. I'll call them some movers.",
+        "I lift it. The code's for strangers.",
+        "No powers. I push like a regular person.",
+        "One finger, one tiny nudge, while nobody's looking."
+      ]
+    },
+    "fp": {
+      "trigger": "a friend needs a favor your powers could do",
+      "setting": "a stairwell, a wedged couch, a hero's code",
+      "ask": "keep the code or bend it for a friend",
+      "who": "your best friend",
+      "stakes": "the code versus a friend's moving day",
+      "device": "hero-code"
+    },
+    "mask": "looks like a superhero joke; Genii's locked guess on the rule for everyone versus bending it for this person (L3, T25)",
+    "ae": [
+      "B",
+      "D",
+      "E"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "S-135",
+    "type": "sealed",
+    "primary": "L3",
+    "sq": "SQ-L3-2",
+    "world": "unusual",
+    "prompt": "Street talent show, $500 prize, and you're the only judge. Best act by far: a touring juggler. Second: a neighbor who needs the money for rent. Who wins?",
+    "options": [
+      {
+        "t": "Juggler wins. Best act is best act.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "The neighbor wins. Rent matters more than ribbons.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Trophy to the juggler. Then I slip the neighbor $50.",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "One-point win for the neighbor. I feel weird all week.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "You're the only judge at the street talent show, $500 prize. The best act by far is a touring juggler. Second is a neighbor who needs the money for rent.",
+      "options": [
+        "The juggler wins. Best act is best act.",
+        "My neighbor. Rent matters more than ribbons.",
+        "Juggler gets the prize. I slip my neighbor $50 on the side.",
+        "Neighbor wins by one point, and I feel weird all week."
+      ]
+    },
+    "fp": {
+      "trigger": "the best act and the neighbor who needs the prize compete",
+      "setting": "a street talent show",
+      "ask": "judge by one standard or by who needs it",
+      "who": "a touring juggler and a neighbor",
+      "stakes": "fair judging versus a neighbor's big night",
+      "device": "talent-show-judge"
+    },
+    "mask": "looks like a block party; Genii's locked guess on the same standard for everyone versus more for whoever needs it (L3, T25)",
+    "ae": [
+      "A",
+      "B",
+      "C"
+    ],
+    "privacy": "normal"
+  }
+]

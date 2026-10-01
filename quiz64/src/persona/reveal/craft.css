@@ -1,0 +1,187 @@
+/*
+ * Round 3 reveal craft (LAUNCH-SPEC section 24 items 6 and 7): the light behind the frames (aura, rim light, landing
+ * flash, pane blooms) and the real MirrorMii world on the share and get-the-app screens. Same layer as reveal.css,
+ * loaded after it. Every loop moves only transform and opacity (plus one small SVG dash), so it stays on the
+ * compositor at 60 fps on a mid phone; nothing here changes layout. Reduced motion: reveal.css stops every
+ * animation inside the slides, and the finished frame is the base style.
+ */
+
+@layer reveal {
+  /* ---------------------------------------------------------------- the aura behind a frame */
+
+  .rv-aura {
+    --aura-a: var(--n-violet);
+    --aura-b: var(--tint-ch3);
+    --aura-c: var(--tint-ch1);
+    position: absolute;
+    translate: -50% -50%;
+    pointer-events: none;
+  }
+  .rv-aura[data-tone="world"] { --aura-a: var(--c-on-deep); --aura-b: var(--tint-ch3); --aura-c: var(--tint-ch1); }
+  .rv-aura > i { position: absolute; border-radius: 50%; }
+  .rv-aura__bloom {
+    inset: 0;
+    background:
+      radial-gradient(closest-side at 50% 50%, color-mix(in srgb, var(--aura-a) 72%, transparent), color-mix(in srgb, var(--aura-a) 30%, transparent) 45%, transparent 76%),
+      radial-gradient(closest-side at 28% 66%, color-mix(in srgb, var(--aura-b) 55%, transparent), transparent 70%),
+      radial-gradient(closest-side at 74% 32%, color-mix(in srgb, var(--aura-c) 55%, transparent), transparent 70%);
+    opacity: 1;
+  }
+  .rv-aura__rays {
+    inset: 6%;
+    background: repeating-conic-gradient(from 8deg, transparent 0deg, color-mix(in srgb, var(--c-on-deep) 38%, transparent) 7deg, transparent 14deg, transparent 26deg);
+    -webkit-mask-image: radial-gradient(closest-side, black 18%, transparent 92%);
+    mask-image: radial-gradient(closest-side, black 18%, transparent 92%);
+    opacity: 0.75;
+  }
+  .rv-aura__ring {
+    inset: 24%;
+    border: 2px solid color-mix(in srgb, var(--c-on-deep) 85%, transparent);
+    box-shadow: 0 0 28px color-mix(in srgb, var(--aura-a) 80%, transparent), inset 0 0 28px color-mix(in srgb, var(--aura-a) 70%, transparent);
+    opacity: 0;
+  }
+  .rv-slide.is-current .rv-aura__bloom { animation: rv-aura-breathe calc(var(--d-loop-breath) * 1.3) var(--e-in-out) infinite alternate; }
+  .rv-slide.is-current .rv-aura__rays { animation: rv-aura-spin calc(var(--d-loop-breath) * 18) linear infinite; }
+  .rv-slide--names.is-current .rv-aura__ring,
+  .rv-slide--calls.is-current .rv-aura__ring,
+  .rv-slide--share.is-current .rv-aura__ring,
+  .rv-intro[data-landed="true"] .rv-aura__ring { animation: rv-aura-ring calc(var(--d-scene) * 1.6) var(--e-out) calc(var(--d-scene) * 0.3) both; }
+
+  /* ---------------------------------------------------------------- the mirror: rim light, landing flash */
+
+  .rv-mirror__rimlight { position: absolute; overflow: visible; pointer-events: none; }
+  .rv-mirror__rimlight path { fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 0.09 0.91; stroke-dashoffset: 0.12; }
+  .rv-mirror__rimglow { stroke: color-mix(in srgb, var(--n-violet) 70%, var(--c-on-deep)); stroke-width: 9px; stroke-opacity: 0.28; }
+  .rv-mirror__rimcore { stroke: var(--c-on-deep); stroke-width: 2.4px; stroke-opacity: 0.95; stroke-dasharray: 0.05 0.95; }
+  .rv-slide.is-current .rv-mirror__rimlight path { animation: rv-rim calc(var(--d-loop-breath) * 2.2) linear infinite; }
+  .rv-slide.is-current .rv-mirror__rimcore { animation-delay: calc(var(--d-quick) * -0.2); }
+  .rv-intro .rv-mirror--landing .rv-mirror__rimlight { opacity: 0; }
+  .rv-intro[data-landed="true"] .rv-mirror--landing .rv-mirror__rimlight { opacity: 1; transition: opacity var(--d-slow) var(--e-out) var(--d-scene); }
+
+  .rv-intro__flash {
+    position: absolute;
+    translate: -50% -50%;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(closest-side, var(--c-on-deep), color-mix(in srgb, var(--n-violet) 60%, transparent) 38%, transparent 72%);
+    opacity: 0;
+  }
+  .rv-intro[data-landed="true"] .rv-intro__flash { animation: rv-flash calc(var(--d-scene) * 1.3) var(--e-out) both; }
+
+  /* ---------------------------------------------------------------- Genii's calls: light behind the grid and the lit panes */
+
+  .rv-body--calls { isolation: isolate; }
+  .rv-calls__aura { left: 50%; top: 58%; inline-size: 140%; block-size: 78%; z-index: -1; }
+  .rv-calls__aura .rv-aura__bloom { opacity: 0.7; }
+  .rv-call__bloom {
+    position: absolute;
+    inset: -12px -8px;
+    border-radius: 30px;
+    pointer-events: none;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--c-on-deep) 60%, transparent), color-mix(in srgb, var(--n-violet) 38%, transparent) 55%, transparent);
+    opacity: 0;
+  }
+  .rv-call[data-state="hit"] .rv-call__bloom { opacity: 0.85; }
+  .rv-call[data-state="near"] .rv-call__bloom { opacity: 0.4; }
+  .rv-slide.is-current .rv-call[data-state="hit"] .rv-call__bloom,
+  .rv-slide.is-current .rv-call[data-state="near"] .rv-call__bloom {
+    animation:
+      rv-bloom-in calc(var(--d-slow) * 1.6) var(--e-out) calc(var(--d-scene) * 0.55 + var(--i) * var(--d-instant) + var(--d-slow) * 0.6) both,
+      rv-aura-breathe calc(var(--d-loop-breath) * 0.9) var(--e-in-out) calc(var(--d-scene) * 2 + var(--i) * var(--d-quick)) infinite alternate;
+  }
+
+  /* ---------------------------------------------------------------- the share screen: light behind the card */
+
+  .rv-body--share { isolation: isolate; }
+  .rv-cardwrap { position: relative; }
+  .rv-cardopts, .rv-body--share .rv-cta, .rv-actions, .rv-body--share .rv-sub, .rv-opposite { position: relative; }
+  .rv-cardstage { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+  .rv-cardstage__aura { left: 50%; top: 46%; inline-size: 125%; block-size: 105%; }
+
+  /* ---------------------------------------------------------------- get the app: Genii's island (GDD v0.2, 3.2) */
+
+  .rv-world {
+    position: relative;
+    flex: none;
+    inline-size: var(--w);
+    block-size: var(--h);
+    margin: -18px -24px 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .rv-world > * { position: absolute; }
+  /* The island render, full bleed; its sky melts into the screen at the top and the bottom. */
+  .rv-world__land {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, black 12%, black 74%, transparent 96%);
+    mask-image: linear-gradient(to bottom, transparent 0, black 12%, black 74%, transparent 96%);
+  }
+  .rv-world__land img { display: block; inline-size: 100%; block-size: 100%; }
+  .rv-world__genii { translate: -50% -100%; inline-size: 72px; block-size: 72px; }
+  .rv-world__gform { position: relative; display: block; inline-size: 72px; block-size: 72px; }
+  .rv-world__gglow {
+    position: absolute;
+    inset: -40% -45% -10%;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--c-on-deep) 75%, transparent), color-mix(in srgb, var(--n-violet) 40%, transparent) 45%, transparent);
+  }
+  .rv-world__gshadow {
+    position: absolute;
+    left: 14%;
+    right: 14%;
+    bottom: -8%;
+    block-size: 16%;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, color-mix(in srgb, var(--n-900) 45%, transparent), transparent);
+  }
+  .rv-world__trail { inset: 0; overflow: visible; }
+  .rv-world__trail path { fill: none; stroke: var(--c-on-deep); stroke-width: 2.4; stroke-linecap: round; stroke-dasharray: 2 7; filter: drop-shadow(0 0 4px var(--c-on-deep)); }
+  .rv-world__snap { transform: rotate(7deg); filter: drop-shadow(0 12px 18px color-mix(in srgb, var(--n-900) 45%, transparent)); }
+  .rv-world__snap svg { display: block; }
+  .rv-world__spark { translate: -50% -50%; color: var(--c-on-deep); filter: drop-shadow(0 0 6px var(--c-on-deep)); }
+  .rv-world__caps { inset: 0; margin: 0; }
+  .rv-world__cap {
+    position: absolute;
+    padding: 5px 11px;
+    border-radius: var(--r-pill);
+    background: var(--c-on-deep);
+    color: var(--c-violet-strong);
+    font: 750 11.5px / 14px var(--font);
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    box-shadow: 0 8px 18px -8px color-mix(in srgb, var(--n-900) 60%, transparent);
+  }
+  .rv-world__cap--snap { transform: rotate(4deg); }
+  .rv-world__cap--lives { transform: rotate(-3deg); background: var(--n-900); color: var(--n-ink); }
+
+  .rv-slide.is-current .rv-world__land img { animation: rv-fade calc(var(--d-scene) * 1.2) var(--e-out) both, rv-float-s calc(var(--d-loop-breath) * 1.6) var(--e-in-out) calc(var(--d-scene) * 1.2) infinite alternate; }
+  .rv-slide.is-current .rv-world__genii { animation: rv-pop var(--d-scene) var(--e-out) calc(var(--d-scene) * 0.6) both; }
+  .rv-slide.is-current .rv-world__gform { animation: rv-float calc(var(--d-loop-breath) * 0.9) var(--e-in-out) calc(var(--d-scene) * 1.3) infinite alternate; }
+  .rv-slide.is-current .rv-world__gshadow { animation: rv-shadow calc(var(--d-loop-breath) * 0.9) var(--e-in-out) calc(var(--d-scene) * 1.3) infinite alternate; }
+  .rv-slide.is-current .rv-world__snap { animation: rv-snap var(--d-scene) var(--e-out) calc(var(--d-slow)) both; }
+  .rv-slide.is-current .rv-world__trail path { animation: rv-fade var(--d-slow) var(--e-out) var(--d-scene) both, rv-dash var(--d-loop-breath) linear var(--d-scene) infinite; }
+  .rv-slide.is-current .rv-world__spark { animation: rv-spark calc(var(--d-loop-breath) * 0.7) var(--e-in-out) calc(var(--d-scene) * 1.4) infinite; }
+  .rv-slide.is-current .rv-world__spark--b { animation-delay: calc(var(--d-scene) * 2); }
+  .rv-slide.is-current .rv-world__cap { animation: rv-fade var(--d-slow) var(--e-out) calc(var(--d-scene) * 1.1) both; }
+  .rv-body--app .rv-end__links { gap: 0 var(--s-2); }
+
+  /* Reduced motion: every layer holds its finished frame (these selectors outrank the loops above). */
+  .rv-room[data-reduced="true"] .rv-slide.is-current :is(.rv-aura *, .rv-mirror__rimlight path, .rv-intro__flash, .rv-call__bloom, .rv-cardstage *, .rv-world *) { animation: none !important; }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .rv-aura__rays { display: none; }
+  }
+
+  @keyframes rv-aura-breathe { from { opacity: 0.7; transform: scale(0.95); } to { opacity: 1; transform: scale(1.05); } }
+  @keyframes rv-aura-spin { to { transform: rotate(360deg); } }
+  @keyframes rv-aura-ring { 0% { opacity: 0; transform: scale(0.5); } 25% { opacity: 0.95; } 100% { opacity: 0; transform: scale(1.6); } }
+  @keyframes rv-rim { from { stroke-dashoffset: 1.12; } to { stroke-dashoffset: 0.12; } }
+  @keyframes rv-flash { 0% { opacity: 0; transform: scale(0.35); } 22% { opacity: 1; transform: scale(0.9); } 100% { opacity: 0; transform: scale(1.35); } }
+  @keyframes rv-bloom-in { from { opacity: 0; transform: scale(0.7); } }
+  @keyframes rv-float { from { transform: translateY(3px); } to { transform: translateY(-7px); } }
+  @keyframes rv-float-s { from { transform: translateY(2px); } to { transform: translateY(-3px); } }
+  @keyframes rv-shadow { from { opacity: 1; transform: scaleX(1); } to { opacity: 0.6; transform: scaleX(0.82); } }
+  @keyframes rv-drift { from { transform: scale(1.04) translateX(-6px); } to { transform: scale(1.04) translateX(6px); } }
+  @keyframes rv-pop { from { opacity: 0; transform: translateY(14px) scale(0.86); } to { opacity: 1; transform: none; } }
+  @keyframes rv-snap { from { opacity: 0; transform: translateY(-22px) rotate(16deg); } to { opacity: 1; transform: rotate(7deg); } }
+}

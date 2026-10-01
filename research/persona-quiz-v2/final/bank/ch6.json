@@ -1,0 +1,1663 @@
+[
+  {
+    "id": "C6-140",
+    "type": "this_or_that",
+    "chapter": 6,
+    "prompt": "You wake up as a goldfish, for one year. Your parent and your partner both show up to take your bowl home. You pick.",
+    "options": [
+      {
+        "t": "Back to my parent. They know which little castle I like.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T19B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "My partner. The home we're building is my home now.",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T19A",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "You wake up as a goldfish for a whole year. Your parent and your partner both show up to take your bowl home. You have to pick.",
+      "options": [
+        "My parent. They know which little castle I like.",
+        "Home with my partner. What we're building is my home now."
+      ]
+    },
+    "fp": {
+      "trigger": "you become a goldfish and two homes want your bowl",
+      "setting": "a year as a goldfish",
+      "ask": "whose home you go to first",
+      "who": "your parent and your partner",
+      "stakes": "which bond comes first",
+      "device": "goldfish-year"
+    },
+    "mask": "looks like a pet joke; measures whether the family you came from or the family you chose comes first (R3, T19)",
+    "ae": [
+      "B",
+      "D"
+    ],
+    "privacy": "intimate",
+    "sq": "SQ-R3-3",
+    "world": "absurd"
+  },
+  {
+    "id": "C6-160",
+    "type": "this_or_that",
+    "chapter": 6,
+    "sq": "SQ-R3-2",
+    "world": "absurd",
+    "prompt": "A board game turns up on your doorstep: your life with your partner, square by square. Move in, ring, wedding, house, in order. Or a blank board.",
+    "options": [
+      {
+        "t": "Play it as printed. Keys, ring, wedding, house.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 2
+          }
+        ],
+        "emotion": "warmth"
+      },
+      {
+        "t": "Grab the markers. Square one: we open a bakery.",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      }
+    ],
+    "heart": {
+      "prompt": "A board game turns up at your door: your life with your partner, square by square. Move in, ring, wedding, house, in that order. Or there's a blank board.",
+      "options": [
+        "We'd play it as printed. Keys, ring, wedding, house.",
+        "Hand us the markers. Square one might be a bakery."
+      ]
+    },
+    "fp": {
+      "trigger": "a board game lays out a couple's milestones",
+      "setting": "Genii's board game of your future",
+      "ask": "follow the printed path or draw your own",
+      "who": "you and your partner",
+      "stakes": "the classic script versus your own design",
+      "device": "life-board-game"
+    },
+    "mask": "looks like a game-night gift; measures running a couple's life the way it has always run versus designing your own (R3, T20)",
+    "ae": [
+      "D"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "{name} and {their} partner get a board game of their future, in order: move in, ring, wedding, house. Or a blank board. Which one is {name}?",
+      "a": {
+        "t": "Plays it as printed. Keys, ring, wedding, house.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Grabs the markers. Square one: opening a bakery.",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C6-141",
+    "type": "pick_two",
+    "chapter": 6,
+    "pick": 2,
+    "prompt": "Big family news: a makeover show bought the house you grew up in. They gut it on TV next week. You all get one last day inside. Pick two.",
+    "options": [
+      {
+        "t": "Unscrewing the doorframe. The height marks continue at my place.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 2
+          }
+        ],
+        "emotion": "longing"
+      },
+      {
+        "t": "Begging the host to spare the porch. Holiday light hooks still up.",
+        "axes": {
+          "R3": 1
+        }
+      },
+      {
+        "t": "Holiday dinner one last time, everyone in their old chair.",
+        "axes": {
+          "R3": 1
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 1
+          }
+        ],
+        "emotion": "warmth"
+      },
+      {
+        "t": "Quietly relieved. New house, new holidays, no more casserole.",
+        "axes": {
+          "R3": -1
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 1
+          }
+        ],
+        "emotion": "relief"
+      },
+      {
+        "t": "Booking a watch party for the episode. Heckling is our new tradition.",
+        "axes": {
+          "R3": -1
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Shrug. My holidays have been a friends' potluck for years.",
+        "axes": {
+          "R3": -2
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "Big family news: a makeover show bought the house you grew up in. They're gutting it on TV next week, and your family gets one last day inside. Pick two.",
+      "options": [
+        "I'd unscrew the doorframe. Our height marks keep going at my place.",
+        "Begging them to spare the porch, holiday light hooks still up.",
+        "One last holiday dinner there, everyone in their old chair.",
+        "Honestly, relief. New house, new holidays, no more casserole.",
+        "We'd watch the episode together, loudly. That's our new tradition.",
+        "A shrug. My holidays have been a friends' potluck for years."
+      ]
+    },
+    "fp": {
+      "trigger": "a TV show will gut your childhood home",
+      "setting": "the house you grew up in, a makeover show",
+      "ask": "hold on to the old home or let it go",
+      "who": "your family and a TV crew",
+      "stakes": "the family's old rituals versus your own",
+      "device": "makeover-show-house"
+    },
+    "mask": "looks like a TV gag; measures whether the family's old home and rituals feel like yours to keep or yours to rewrite (R3, T20)",
+    "ae": [
+      "A",
+      "B",
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-R3-1",
+    "world": "unusual",
+    "friend": {
+      "prompt": "A makeover show bought the house {name} grew up in and will gut it on TV. Which line sounds most like {name}?",
+      "a": {
+        "t": "Unscrews the doorframe. The height marks continue at {their} place.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Shrugs. Holidays have been a friends' potluck for years.",
+        "axes": {
+          "R3": -2
+        }
+      }
+    }
+  },
+  {
+    "id": "C6-91",
+    "type": "others",
+    "chapter": 6,
+    "sq": "SQ-T07-1",
+    "world": "unusual",
+    "prompt": "At the wedding, the couple asked for honest toasts. Their best friend, meaning every word: \"I give it two years. Prove me wrong.\" Your verdict?",
+    "options": [
+      {
+        "t": "Honest was the assignment. I started the slow clap.",
+        "axes": {
+          "R2": 1
+        },
+        "tags": [
+          {
+            "id": "T07A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "True or not, that belongs in the car, not the mic.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 2
+          }
+        ],
+        "emotion": "cringe"
+      },
+      {
+        "t": "Open with the camping story, then land it. Same point.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Brutal, and the only toast anyone will remember.",
+        "axes": {
+          "R2": 1
+        },
+        "tags": [
+          {
+            "id": "T07A",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      }
+    ],
+    "heart": {
+      "prompt": "The couple asked for honest toasts. Their best friend, meaning every word, says: \"I give it two years. Prove me wrong.\" What's your verdict?",
+      "options": [
+        "Honest was what they asked for. I'd have started the slow clap.",
+        "True or not, that's a car conversation, not a mic one.",
+        "Start with the camping story, then land it. Same point, softer.",
+        "It was brutal, and it's the only toast anyone will remember."
+      ]
+    },
+    "fp": {
+      "trigger": "best friend's brutally honest wedding toast",
+      "setting": "wedding reception",
+      "ask": "raw truth or wrapped",
+      "who": "the couple and their best friend",
+      "stakes": "honesty versus the couple's big night",
+      "device": "wedding-toast"
+    },
+    "mask": "looks like wedding gossip; measures giving the asked-for truth raw versus wrapped (T07), with directness (R2)",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "At the wedding, the couple wanted honest toasts. The best friend: \"I give it two years. Prove me wrong.\" {name}'s first thought?",
+      "a": {
+        "t": "Honest was the assignment. Starts the slow clap.",
+        "axes": {
+          "R2": 1
+        },
+        "tags": [
+          {
+            "id": "T07A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "True or not, that belongs in the car, not the mic.",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C6-161",
+    "type": "others",
+    "chapter": 6,
+    "sq": "SQ-T21-2",
+    "world": "absurd",
+    "prompt": "Your town made your friend's anniversary a public holiday. Parade, fireworks, a float with their faces on it. They're inside with the blinds down. Your take?",
+    "options": [
+      {
+        "t": "The town built them a float. Least they can do is wave.",
+        "tags": [
+          {
+            "id": "T21A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Good. Someone tell the tuba section to go home.",
+        "axes": {
+          "R1": -1
+        },
+        "tags": [
+          {
+            "id": "T21B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "If it were mine, I'd be on that float throwing candy.",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T21A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Takeout in pajamas still counts as a big anniversary.",
+        "tags": [
+          {
+            "id": "T21B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Your town made your friend's anniversary a public holiday: parade, fireworks, a float with their faces on it. They're staying in, blinds down. What do you think?",
+      "options": [
+        "They built them a float. They could at least wave.",
+        "Good for them. That day's theirs, tuba section or not.",
+        "If it were my anniversary, I'd be up on that float.",
+        "Takeout in pajamas is still a big anniversary."
+      ]
+    },
+    "fp": {
+      "trigger": "a friend's anniversary becomes a town holiday",
+      "setting": "a parade outside drawn blinds",
+      "ask": "everyone or just us",
+      "who": "a friend and their partner",
+      "stakes": "a public celebration versus a private day",
+      "device": "anniversary-holiday"
+    },
+    "mask": "looks like a small-town joke; measures whether big moments belong to everyone or to just the two of you (T21), with shared versus apart (R1)",
+    "ae": [
+      "B",
+      "D",
+      "E"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "The town made {name}'s friend's anniversary a holiday, float and all. The couple stays in, blinds down. {name}'s take?",
+      "a": {
+        "t": "\"If it were mine, I'd be on that float throwing candy.\"",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T21A",
+            "s": 1
+          }
+        ]
+      },
+      "b": {
+        "t": "\"Good. Someone tell the tuba section to go home.\"",
+        "axes": {
+          "R1": -1
+        },
+        "tags": [
+          {
+            "id": "T21B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C6-110",
+    "type": "scenario",
+    "chapter": 6,
+    "sq": "SQ-T18-1",
+    "world": "unusual",
+    "prompt": "Family vote: you're now Head of Family Problems. Nine to zero. Nobody told you there was a vote.",
+    "options": [
+      {
+        "t": "Accept. Lanyard ordered. Send me your problems.",
+        "tags": [
+          {
+            "id": "T18A",
+            "s": 2
+          }
+        ],
+        "emotion": "pride"
+      },
+      {
+        "t": "Fix it all. Then sign every holiday card \"Head of Problems.\"",
+        "tags": [
+          {
+            "id": "T18A",
+            "s": 1
+          }
+        ],
+        "emotion": "resentment"
+      },
+      {
+        "t": "Demand a recount. Half the problems go to my sibling.",
+        "tags": [
+          {
+            "id": "T18B",
+            "s": 2
+          }
+        ],
+        "emotion": "irritation"
+      },
+      {
+        "t": "Fine. Office hours are Sundays, two to four. No walk-ins.",
+        "tags": [
+          {
+            "id": "T18B",
+            "s": 2
+          }
+        ],
+        "emotion": "guilt"
+      }
+    ],
+    "heart": {
+      "prompt": "Your family held a vote and made you Head of Family Problems. Nine to zero. Nobody told you there was a vote.",
+      "options": [
+        "I accept. The lanyard's already ordered, so bring me your problems.",
+        "I fix everything, then sign every holiday card \"Head of Problems.\"",
+        "I'm asking for a recount. Half of these belong to my sibling.",
+        "Fine. Office hours are Sundays, two to four, no walk-ins."
+      ]
+    },
+    "fp": {
+      "trigger": "the family votes you Head of Family Problems",
+      "setting": "a family vote you missed",
+      "ask": "take every problem or set limits",
+      "who": "the whole family and a sibling",
+      "stakes": "being the family's go-to versus your limits",
+      "device": "family-problems-vote"
+    },
+    "mask": "looks like a family joke; measures whether you are the family's first call or help with limits (T18)",
+    "ae": [
+      "A",
+      "B",
+      "E"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "{name}'s family voted {them} Head of Family Problems, nine to zero, without telling {them}. What does {name} do?",
+      "a": {
+        "t": "Accepts. Lanyard ordered: \"Send me your problems.\"",
+        "tags": [
+          {
+            "id": "T18A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Demands a recount. Half the problems go to the sibling.",
+        "tags": [
+          {
+            "id": "T18B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C6-121",
+    "type": "scenario",
+    "chapter": 6,
+    "sq": "SQ-L3-2",
+    "world": "absurd",
+    "prompt": "Family curse: every winter, one sibling spends a week as a pumpkin. Swaps are allowed. It's your youngest sibling's turn, the week they move into their first place.",
+    "options": [
+      {
+        "t": "Rotation stands. The chart's been in pen since 2009.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T18B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "I'll be the pumpkin. Just keep me off the porch.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T18A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Still their week. I'm rolling them up the new stairs.",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T18A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Whoever's week is quietest takes it. Last year was me.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T18B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "A family curse: every winter, one sibling spends a week as a pumpkin, and swaps are allowed. It's your youngest sibling's turn, the week they move into their first place.",
+      "options": [
+        "The rotation stands. The chart's been in pen since 2009.",
+        "I'll be the pumpkin. Just keep me off the porch.",
+        "It's still their week, but I'll roll them up the new stairs.",
+        "Whoever has the quietest week takes it. Last year was me."
+      ]
+    },
+    "fp": {
+      "trigger": "a family curse lands on a sibling's big week",
+      "setting": "winter, a family curse rotation",
+      "ask": "keep the turn order or swap by need",
+      "who": "you and your siblings",
+      "stakes": "fair turns versus a sibling's new job",
+      "device": "pumpkin-curse"
+    },
+    "mask": "looks like a fairy-tale curse; measures fair as the same turn for everyone versus what each sibling needs (L3), and whether you are family's first call (T18)",
+    "ae": [
+      "A",
+      "B",
+      "E"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "{name}'s family curse turns one sibling into a pumpkin each winter. It's the youngest's turn, the week they move out. What does {name} do?",
+      "a": {
+        "t": "Rotation stands. The chart's been in pen since 2009.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T18B",
+            "s": 1
+          }
+        ]
+      },
+      "b": {
+        "t": "Volunteers as the pumpkin so the big move goes fine.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T18A",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C6-122",
+    "type": "scenario",
+    "chapter": 6,
+    "sq": "SQ-T19-1",
+    "world": "absurd",
+    "prompt": "The family portrait in your hallway frowns at any choice the family wouldn't make. You just said yes to a cross-country move. The frame is tilting.",
+    "options": [
+      {
+        "t": "Flip it to face the drywall. My move, my call.",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T19A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Calling home first. Not one box gets packed until they smile.",
+        "axes": {
+          "R3": 1
+        },
+        "tags": [
+          {
+            "id": "T19B",
+            "s": 1
+          }
+        ],
+        "emotion": "worry"
+      },
+      {
+        "t": "Cancel the move. Nobody survives that many eyebrows.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T19B",
+            "s": 2
+          }
+        ],
+        "emotion": "guilt"
+      },
+      {
+        "t": "Rehang it in the guest bathroom. Let it judge strangers.",
+        "axes": {
+          "R3": -1
+        },
+        "tags": [
+          {
+            "id": "T19A",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      }
+    ],
+    "heart": {
+      "prompt": "The family portrait in your hallway frowns at any choice your family wouldn't make. You've just said yes to a move across the country, and the frame's started to tilt.",
+      "options": [
+        "It gets turned to face the drywall. My move, my call.",
+        "I'd call home first. No boxes get packed until they're smiling.",
+        "The move's off. I can't live under all those frowns.",
+        "Into the guest bathroom it goes, to frown at strangers."
+      ]
+    },
+    "fp": {
+      "trigger": "portrait frowns at your big move",
+      "setting": "your hallway, a move just agreed",
+      "ask": "ignore the frown or seek the family's blessing",
+      "who": "your family, through a portrait",
+      "stakes": "a move far away versus family approval",
+      "device": "magic-portrait"
+    },
+    "mask": "looks like a haunted-house gag; measures whether your family gets a vote on your big choices (T19), with the family script versus your own (R3)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "{name}'s hallway portrait frowns at choices the family wouldn't make. {name} just said yes to a cross-country move, and the frame's tilting. What does {name} do?",
+      "a": {
+        "t": "Cancels the move: \"Nobody survives that many eyebrows.\"",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T19B",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Turns it to face the drywall: \"My move, my call.\"",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T19A",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C6-143",
+    "type": "scenario",
+    "chapter": 6,
+    "prompt": "The local paper wants your love story on its front page Sunday, photos included. Your partner already said yes. They need your answer tonight.",
+    "options": [
+      {
+        "t": "Front page, big photo. Buy me twenty copies.",
+        "axes": {
+          "R3": 1
+        },
+        "tags": [
+          {
+            "id": "T21A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Mailing a clipping to both families. Framed.",
+        "tags": [
+          {
+            "id": "T21A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Run the story, minus my face. Crop me to an elbow.",
+        "tags": [
+          {
+            "id": "T21B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Hard pass. Our story isn't news. It's ours.",
+        "axes": {
+          "R3": -1
+        },
+        "tags": [
+          {
+            "id": "T21B",
+            "s": 2
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "The local paper wants your love story on Sunday's front page, photos and all. Your partner's already said yes, and they need your answer tonight.",
+      "options": [
+        "Front page, big photo. I'm buying twenty copies.",
+        "I'm mailing a clipping to both our families, framed.",
+        "Let it run, but crop me down to an elbow.",
+        "That's a no from me. Our story isn't news, it's ours."
+      ]
+    },
+    "fp": {
+      "trigger": "a newspaper wants your love story",
+      "setting": "the front page, photos included",
+      "ask": "go public or keep it yours",
+      "who": "you and your partner",
+      "stakes": "a public yes versus a private love",
+      "device": "front-page-love"
+    },
+    "mask": "looks like a local honor; measures whether love wants a big public yes (T21), with the classic script versus your own (R3)",
+    "ae": [
+      "A",
+      "B",
+      "D",
+      "E"
+    ],
+    "privacy": "intimate",
+    "sq": "SQ-T21-1",
+    "world": "unusual"
+  },
+  {
+    "id": "C6-144",
+    "type": "feeling",
+    "chapter": 6,
+    "follows": "C6-143",
+    "prompt": "Your love story on the front page, your answer due tonight. Which feeling got there first?",
+    "options": [
+      {
+        "t": "Giddy, against my will."
+      },
+      {
+        "t": "Exposed. The whole town?"
+      },
+      {
+        "t": "Worried what my partner hoped I'd say."
+      },
+      {
+        "t": "Proud, honestly."
+      },
+      {
+        "t": "Weirdly calm."
+      }
+    ],
+    "heart": {
+      "prompt": "Your love story might be on the front page, and your answer's due tonight. What did you feel first?",
+      "options": [
+        "Giddy, even though I didn't want to be.",
+        "Exposed. The whole town would read it.",
+        "Worried about what my partner hoped I'd say.",
+        "Honestly, proud.",
+        "Strangely calm."
+      ]
+    },
+    "fp": {
+      "trigger": "a newspaper asks for your love story",
+      "setting": "right after the front-page card",
+      "ask": "first feeling",
+      "who": "you and your partner",
+      "stakes": "none, feeling only",
+      "device": "front-page-love"
+    },
+    "mask": "looks like a quick check-in; records the first feeling when going public with love is on offer (emotion only)",
+    "ae": [
+      "E"
+    ],
+    "privacy": "intimate",
+    "sq": "SQ-T21-1",
+    "world": "unusual"
+  },
+  {
+    "id": "C6-120",
+    "type": "scenario",
+    "chapter": 6,
+    "sq": "SQ-T18-2",
+    "world": "unusual",
+    "prompt": "\"Two weeks,\" your sibling said. It's month five on your air mattress, and they just bought it a fitted sheet.",
+    "options": [
+      {
+        "t": "Clear them a drawer. Stay as long as it takes.",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T18A",
+            "s": 2
+          }
+        ],
+        "emotion": "warmth"
+      },
+      {
+        "t": "Tape a move-out date to the bathroom mirror. Circled twice, in red.",
+        "axes": {
+          "R1": -1
+        },
+        "tags": [
+          {
+            "id": "T18B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Give them my bed. The air mattress and I bonded.",
+        "tags": [
+          {
+            "id": "T18A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Leave apartment listings on the new sheet. Highlighted. No comment.",
+        "axes": {
+          "R1": -1
+        },
+        "tags": [
+          {
+            "id": "T18B",
+            "s": 1
+          }
+        ],
+        "emotion": "irritation"
+      }
+    ],
+    "heart": {
+      "prompt": "Your sibling said two weeks. It's month five on your air mattress, and they've just bought it a fitted sheet.",
+      "options": [
+        "Their own drawer, cleared. Stay as long as it takes.",
+        "A move-out date goes on the bathroom mirror, circled twice in red.",
+        "My bed's theirs. I'll take the air mattress.",
+        "I'd leave apartment listings on that new sheet, highlighted, and say nothing."
+      ]
+    },
+    "fp": {
+      "trigger": "sibling's two-week stay hits month five",
+      "setting": "your living room, an air mattress",
+      "ask": "keep hosting or set an end",
+      "who": "your sibling",
+      "stakes": "your home versus family loyalty",
+      "device": "air-mattress-guest"
+    },
+    "mask": "looks like a roommate complaint; measures where family help ends and who decides (T18), with sharing your space versus keeping it (R1)",
+    "ae": [
+      "A",
+      "B",
+      "E"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "\"Two weeks,\" said {name}'s sibling. Month five, the air mattress just got its own fitted sheet. What does {name} do?",
+      "a": {
+        "t": "Clears a drawer for the sibling: \"Stay as long as it takes.\"",
+        "axes": {
+          "R1": 1
+        },
+        "tags": [
+          {
+            "id": "T18A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Tapes a move-out date to the mirror. Circled twice, in red.",
+        "axes": {
+          "R1": -1
+        },
+        "tags": [
+          {
+            "id": "T18B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C6-125",
+    "type": "reply",
+    "chapter": 6,
+    "sq": "SQ-R1-1",
+    "world": "absurd",
+    "prompt": "You moved out three months ago. Your parent misses you.",
+    "thread": [
+      {
+        "from": "Your parent",
+        "text": "small problem. literally. the science museum's shrink ray got me, for a month"
+      },
+      {
+        "from": "Your parent",
+        "text": "I'm coming to stay with you! I'll ride in your pocket everywhere"
+      }
+    ],
+    "options": [
+      {
+        "t": "\"Front pocket's yours. You're coming to everything.\"",
+        "axes": {
+          "R1": 2
+        },
+        "emotion": "delight"
+      },
+      {
+        "t": "\"Welcome! You get the shelf by the window, not my pocket.\"",
+        "axes": {
+          "R1": -1
+        }
+      },
+      {
+        "t": "\"Come stay. Just sit out date nights.\"",
+        "axes": {
+          "R1": 1
+        }
+      },
+      {
+        "t": "\"Love you. Please shrink at your own place.\"",
+        "axes": {
+          "R1": -2
+        },
+        "emotion": "guilt"
+      }
+    ],
+    "heart": {
+      "prompt": "You moved out three months ago, and your parent misses you.",
+      "thread": [
+        {
+          "from": "Your parent",
+          "text": "Small problem. Literally. The science museum's shrink ray got me, for a month."
+        },
+        {
+          "from": "Your parent",
+          "text": "So I'm coming to stay with you. I'll ride in your pocket everywhere."
+        }
+      ],
+      "options": [
+        "The front pocket's yours. You're coming to everything.",
+        "Welcome. You get the shelf by the window, not my pocket.",
+        "Come stay, but you're sitting out date nights.",
+        "Love you. Please stay home until you're full-size again."
+      ]
+    },
+    "fp": {
+      "trigger": "a pocket-sized parent wants to move in",
+      "setting": "a text from home, three months after moving out",
+      "ask": "take them everywhere or keep your space",
+      "who": "your parent",
+      "stakes": "closeness with family versus your own life",
+      "device": "pocket-parent"
+    },
+    "mask": "looks like a silly family text; measures closeness versus space with family (R1)",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "{name}'s parent texts: \"the museum shrink ray got me for a month. I'll ride in your pocket!\" What does {name} reply?",
+      "a": {
+        "t": "\"Front pocket's yours. You're coming to everything.\"",
+        "axes": {
+          "R1": 2
+        }
+      },
+      "b": {
+        "t": "\"Love you. Please shrink at your own place.\"",
+        "axes": {
+          "R1": -2
+        }
+      }
+    }
+  },
+  {
+    "id": "C6-82",
+    "type": "reply",
+    "chapter": 6,
+    "sq": "SQ-R3-1",
+    "world": "unusual",
+    "prompt": "Your grandparent left you the house. Your cousin texts.",
+    "thread": [
+      {
+        "from": "Ana",
+        "text": "the lawyer just read it to everyone"
+      },
+      {
+        "from": "Ana",
+        "text": "house is yours IF the yearly dinner stays there. same date. same menu. forever??"
+      }
+    ],
+    "options": [
+      {
+        "t": "\"Forever. I'm even keeping the tablecloth with the gravy stain.\"",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 2
+          }
+        ],
+        "emotion": "warmth"
+      },
+      {
+        "t": "\"Sure. Same menu, plus my friends and a disco ball.\"",
+        "axes": {
+          "R3": -1
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "\"Ana, it's yours. I'm starting our own dumpling night.\"",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "\"Deal. Teach me the stuffing before I ruin a legacy.\"",
+        "axes": {
+          "R3": 1
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 1
+          }
+        ],
+        "emotion": "worry"
+      }
+    ],
+    "heart": {
+      "prompt": "Your grandparent left you the house, with one condition. Your cousin Ana texts you.",
+      "thread": [
+        {
+          "from": "Ana",
+          "text": "The lawyer just read it out to everyone."
+        },
+        {
+          "from": "Ana",
+          "text": "The house is yours, but only if the yearly dinner stays there. Same date, same menu, forever?"
+        }
+      ],
+      "options": [
+        "Every year. The tablecloth with the gravy stain stays too.",
+        "Sure, same menu, plus my friends and a disco ball.",
+        "Ana, it's yours. I'll start our own dumpling night.",
+        "Okay, but teach me the stuffing before I ruin it."
+      ]
+    },
+    "fp": {
+      "trigger": "inheritance with a hosting condition",
+      "setting": "grandparent's house, cousin's text",
+      "ask": "keep the yearly dinner as it always was",
+      "who": "cousin and the extended family",
+      "stakes": "a house versus your own holidays",
+      "device": "inheritance-clause"
+    },
+    "mask": "looks like an inheritance twist; measures keeping the old ritual as it was versus remaking it (R3, T20)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "A cousin texts: \"grandparent's house is yours IF the yearly dinner stays there. same date. same menu. forever??\" What does {name} reply?",
+      "a": {
+        "t": "\"Forever. Even keeping the tablecloth with the gravy stain.\"",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "\"Ana, it's yours. I'm starting our own dumpling night.\"",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C6-162",
+    "type": "real",
+    "chapter": 6,
+    "sq": "SQ-L3-2",
+    "world": "everyday",
+    "prompt": "The great leftover divide: the last time your family split up the holiday leftovers, how did it go?",
+    "options": [
+      {
+        "t": "Same containers per household. I counted.",
+        "axes": {
+          "L3": 2
+        }
+      },
+      {
+        "t": "First come, first served. I brought my own containers.",
+        "axes": {
+          "L3": 1
+        }
+      },
+      {
+        "t": "Packed extra for the cousin who just moved out.",
+        "axes": {
+          "L3": -1
+        }
+      },
+      {
+        "t": "Sent the rest home with whoever had the roughest year.",
+        "axes": {
+          "L3": -2
+        },
+        "emotion": "warmth"
+      }
+    ],
+    "heart": {
+      "prompt": "Holiday leftovers: the last time your family divided them up, how did it go?",
+      "options": [
+        "Every household got the same number of containers. I counted.",
+        "First come, first served, and I'd brought my own containers.",
+        "I packed extra for the cousin who'd just moved out.",
+        "The rest went with whoever had the roughest year."
+      ]
+    },
+    "fp": {
+      "trigger": "the holiday leftovers get divided",
+      "setting": "a family holiday, the kitchen after",
+      "ask": "the same share for all or more for who needs it",
+      "who": "relatives",
+      "stakes": "the same rule for all versus the one who needs it",
+      "device": "leftover-divide"
+    },
+    "mask": "looks like a family food story; measures fair as the same deal for everyone versus fair as what each person needs (L3), from a thing actually done",
+    "ae": [
+      "A",
+      "B",
+      "E"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "The last time {name}'s family split up the holiday leftovers, how did it go?",
+      "a": {
+        "t": "Same containers per household, counted.",
+        "axes": {
+          "L3": 2
+        }
+      },
+      "b": {
+        "t": "Sent the rest home with whoever had the roughest year.",
+        "axes": {
+          "L3": -2
+        }
+      }
+    }
+  },
+  {
+    "id": "C6-127",
+    "type": "real",
+    "chapter": 6,
+    "sq": "SQ-T18-1",
+    "world": "everyday",
+    "prompt": "\"Can you help me with something this weekend?\" No details. The last time a relative texted you that, what happened?",
+    "options": [
+      {
+        "t": "Said \"what time?\" before asking what it was. A fourth-floor couch.",
+        "tags": [
+          {
+            "id": "T18A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Asked for details first. \"Something\" is never something small.",
+        "tags": [
+          {
+            "id": "T18B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Two hours, tops. Then I \"had a thing.\" There was no thing.",
+        "tags": [
+          {
+            "id": "T18B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Skipped a friend's birthday dinner for it. Blamed traffic.",
+        "tags": [
+          {
+            "id": "T18A",
+            "s": 1
+          }
+        ],
+        "emotion": "guilt"
+      }
+    ],
+    "heart": {
+      "prompt": "A relative texts, \"Can you help me with something this weekend?\" and nothing else. Last time that happened, what did you do?",
+      "options": [
+        "I said \"what time?\" before I knew. It was a fourth-floor couch.",
+        "Details first, because \"something\" is never small.",
+        "Two hours, then I said I had a thing. I didn't.",
+        "I skipped a friend's birthday dinner for it and blamed traffic."
+      ]
+    },
+    "fp": {
+      "trigger": "relative asks for help with something",
+      "setting": "family, real life",
+      "ask": "how you said yes",
+      "who": "a relative",
+      "stakes": "your own plans versus being the first call",
+      "device": "help-request"
+    },
+    "mask": "looks like a family errand story; measures being the family's first call versus helping on your terms (T18) from a thing actually done",
+    "ae": [
+      "A",
+      "B"
+    ],
+    "privacy": "normal",
+    "friend": {
+      "prompt": "A relative texted {name}: \"can you help me with something this weekend?\" No details. What did {name} actually do?",
+      "a": {
+        "t": "Said \"what time?\" before asking what it was. A fourth-floor couch.",
+        "tags": [
+          {
+            "id": "T18A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Two hours, tops. Then {they} \"had a thing.\" There was no thing.",
+        "tags": [
+          {
+            "id": "T18B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C6-146",
+    "type": "real",
+    "chapter": 6,
+    "prompt": "Most recent time you started seeing someone. How did people find out?",
+    "options": [
+      {
+        "t": "Posted a photo within the month. Official is official.",
+        "tags": [
+          {
+            "id": "T21A",
+            "s": 2
+          }
+        ],
+        "emotion": "pride"
+      },
+      {
+        "t": "Brought them to a family dinner. That was the announcement.",
+        "axes": {
+          "R3": 1
+        },
+        "tags": [
+          {
+            "id": "T21A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Never announced it. Somebody clocked the matching keychains.",
+        "axes": {
+          "R3": -1
+        },
+        "tags": [
+          {
+            "id": "T21B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Admitted it months later, and only because my cousin asked.",
+        "tags": [
+          {
+            "id": "T21B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "When you last started seeing someone, how did people find out?",
+      "options": [
+        "I posted a photo within the month. Official is official.",
+        "They came to a family dinner. That was the announcement.",
+        "Never said a word. Someone clocked the matching keychains.",
+        "Months later, and only because my cousin asked me straight out."
+      ]
+    },
+    "fp": {
+      "trigger": "starting to see someone new",
+      "setting": "friends, family and online",
+      "ask": "announce it or let people notice",
+      "who": "your new partner and everyone else",
+      "stakes": "going public versus keeping it yours",
+      "device": "relationship-reveal"
+    },
+    "mask": "looks like dating gossip; measures wanting the public, official yes versus not needing the stamp (T21, R3) from a thing actually done",
+    "ae": [
+      "A",
+      "B",
+      "E"
+    ],
+    "privacy": "intimate",
+    "sq": "SQ-T21-1",
+    "world": "everyday"
+  },
+  {
+    "id": "C6-147",
+    "type": "bet",
+    "chapter": 6,
+    "prompt": "Overheard at the holiday table: you once peeled the price tag off something big before your family came over, so nobody would ask.",
+    "options": [
+      {
+        "t": "Peeled it, stashed the bag in the trunk. No committee needed.",
+        "tags": [
+          {
+            "id": "T19A",
+            "s": 2
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Hid it, then caved by dessert and asked what they thought.",
+        "tags": [
+          {
+            "id": "T19B",
+            "s": 1
+          }
+        ],
+        "emotion": "guilt"
+      },
+      {
+        "t": "Never. Anything that big gets a family hearing before checkout.",
+        "tags": [
+          {
+            "id": "T19B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Tag stays on. I say the price and enjoy the gasp.",
+        "tags": [
+          {
+            "id": "T19A",
+            "s": 1
+          }
+        ],
+        "emotion": "pride"
+      }
+    ],
+    "heart": {
+      "prompt": "Be honest: have you ever taken the price tag off something big before your family came over, so nobody would ask?",
+      "options": [
+        "Yes. Bag in the trunk, so they don't get a say.",
+        "I hid it, then caved by dessert and asked what they thought.",
+        "No. Something that big, I'd run past them before I paid.",
+        "The tag stays on. I say the price and watch them gasp."
+      ]
+    },
+    "fp": {
+      "trigger": "a purchase your family might question",
+      "setting": "home, before a family visit",
+      "ask": "hide the price or let them weigh in",
+      "who": "your family",
+      "stakes": "your call versus their say",
+      "device": "cut-price-tag"
+    },
+    "mask": "looks like a shopping confession; measures whether your family gets a vote on your choices (T19) from a thing actually done",
+    "ae": [
+      "A",
+      "B",
+      "E"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T19-1",
+    "world": "everyday",
+    "friend": {
+      "prompt": "Overheard at the holiday table: {name} once peeled the price tag off something big before a family visit, so nobody would ask. True?",
+      "a": {
+        "t": "Peeled it, stashed the bag in the trunk. No committee needed.",
+        "tags": [
+          {
+            "id": "T19A",
+            "s": 2
+          }
+        ]
+      },
+      "b": {
+        "t": "Never. Anything that big goes past the family first.",
+        "tags": [
+          {
+            "id": "T19B",
+            "s": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "C6-148",
+    "type": "receipts",
+    "chapter": 6,
+    "prompt": "The family would have notes on your place. Tap everything that happened lately:",
+    "options": [
+      {
+        "t": "Said \"in this house, we...\" in my parent's exact voice",
+        "axes": {
+          "R3": 1
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Ran the chores on a system my family would find deeply weird",
+        "axes": {
+          "R3": -1
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Made a guest take their shoes off, like home taught me",
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Invented a weekly home ritual with a name. Soup Sunday counts",
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "None of these",
+        "none": true
+      }
+    ],
+    "heart": {
+      "prompt": "At your place lately, which of these have happened? Pick all that fit.",
+      "options": [
+        "I said \"in this house, we...\" and heard my parent's exact voice.",
+        "Our chores run on a system my family would find really odd.",
+        "A guest had to take their shoes off. House rule since childhood.",
+        "There's a weekly ritual at home I made up. Soup Sunday counts.",
+        "None of these."
+      ]
+    },
+    "fp": {
+      "trigger": "a tick list about the rules of your place",
+      "setting": "your place, lately",
+      "ask": "classic house rules or your own",
+      "who": "you and whoever you live with",
+      "stakes": "the family script versus your own",
+      "device": "house-rules-receipts"
+    },
+    "mask": "looks like a home habits list; measures running your home the classic way versus inventing your own (T20, R3) from things actually done",
+    "ae": [
+      "A"
+    ],
+    "privacy": "normal",
+    "sq": "SQ-T20-1",
+    "world": "everyday"
+  }
+]

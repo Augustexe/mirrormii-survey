@@ -1,0 +1,849 @@
+/*
+ * The legacy layer after integration (2026-09-29): what the persona app still uses from the 13 stylesheets of
+ * earlier builds, tree-shaken by class usage. Lowest cascade layer; every named layer wins over it.
+ * Sections keep the name of the file each rule came from.
+ */
+
+/* ---------- from src/styles.css ---------- */
+:root {
+  font-family: var(--font);
+  color: #091b39;
+  background: #fdfdff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --porcelain: #fdfdff;
+  --ink: #091b39;
+  --iris-text: #5958b1;
+}
+
+* {
+  box-sizing: border-box;
+}
+html {
+  background: var(--porcelain);
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(
+      circle at 85% 4%,
+      rgba(234, 227, 255, 0.6),
+      transparent 28rem
+    ),
+    var(--porcelain);
+}
+button,
+textarea,
+input {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #0588f0;
+  outline-offset: 3px;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+.app-shell {
+  min-height: 100vh;
+  overflow-x: clip;
+}
+@supports (min-height: 100dvh) {
+  body,
+  .app-shell {
+    min-height: 100dvh;
+  }
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+h1,
+h2,
+h3 {
+  font-weight: 600;
+}
+h1 {
+  letter-spacing: -0.055em;
+}
+h1 em,
+h2 em {
+  color: var(--iris-text);
+  font-style: normal;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+body[data-motion="off"] *,
+body[data-motion="off"] *::before,
+body[data-motion="off"] *::after {
+  animation: none !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* Genii studio layer
+   The survey stays a light, single-theme experience. These tokens add a
+   tactile pearl-and-orchid material without hiding text behind blur. */
+
+body {
+  background:
+    radial-gradient(
+      ellipse 62rem 35rem at 92% -6%,
+      rgba(224, 218, 255, 0.8),
+      transparent 67%
+    ),
+    radial-gradient(
+      ellipse 44rem 32rem at -14% 48%,
+      rgba(219, 231, 255, 0.42),
+      transparent 71%
+    ),
+    var(--porcelain);
+}
+
+.app-shell {
+  position: relative;
+}
+.app-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.26;
+  background-image: radial-gradient(
+    rgba(71, 57, 143, 0.12) 0.55px,
+    transparent 0.55px
+  );
+  background-size: 17px 17px;
+  mask-image: linear-gradient(180deg, #000, transparent 82%);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .app-shell::before {
+    display: none;
+  }
+}
+
+/* Contract surfaces: a single portrait with progressive detail. */
+.save-error {
+  position: relative;
+  z-index: 1;
+  margin: 8px 0 0;
+  color: #9a3f54;
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: right;
+}
+
+/* ---------- from src/voice-polish.css ---------- */
+/* White canvas, orchid accents, graphite text. The glass reference belongs to
+   the character stage; answers and evidence use clear, opaque reading surfaces. */
+:root {
+  color-scheme: light;
+  --porcelain: #ffffff;
+  --ink: #272330;
+  --iris-text: #6143a9;
+  color: var(--ink);
+  background: #fff;
+}
+html,
+body,
+.app-shell {
+  background: #fff;
+  color: var(--ink);
+}
+.app-shell::before {
+  display: none;
+}
+
+/* ---------- from src/launch.css ---------- */
+/* Launch art direction: white paper, violet optical glass, quiet chrome.
+   Art and motion live around the reading surface, never behind answer text. */
+:root {
+  font-family: var(--font);
+  --ink: #292330;
+  --iris-text: #6643b0;
+}
+body,
+button,
+input,
+textarea,
+select {
+  font-family: var(--font);
+}
+h1,
+h2,
+h3 {
+  font-family: var(--font);
+  font-weight: 700;
+}
+html {
+  scroll-padding-top: 98px;
+}
+h1[tabindex="-1"]:focus {
+  outline: none;
+}
+.app-shell {
+  padding-top: 16px;
+}
+
+/* Answering remains a quiet, single-column reading task. */
+@media (max-width: 760px) {
+  .app-shell {
+    padding-top: 10px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- from src/living-world.css ---------- */
+/* The living-world layer decorates the approved composition; all form geometry
+   and all survey data remain owned by the existing components. */
+.app-shell {
+  position: relative;
+  isolation: isolate;
+}
+.app-shell > :not(.ambient-world) {
+  position: relative;
+  z-index: 1;
+}
+.app-shell > dialog {
+  position: fixed;
+}
+
+/* Every Genii is lit by the same opal material. Two expressions share one rig. */
+dialog::backdrop {
+  backdrop-filter: blur(7px);
+  background: #30233e2e;
+}
+@media (prefers-reduced-transparency: reduce) {
+  dialog::backdrop {
+    backdrop-filter: none;
+    background: #30233e80;
+  }
+}
+
+/* ---------- from src/question-surfaces.css ---------- */
+/* Chapter-tuned opal glass for the existing question geometry. */
+
+.save-error {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- from src/micro-details.css ---------- */
+/* Precise accent lighting around the existing survey; data and geometry stay stable. */
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline-color: #7651a6;
+}
+
+dialog {
+  border: 1px solid #b6a2ce;
+  border-radius: 28px;
+  background:
+    radial-gradient(ellipse at 100% 0%, #d6e5ffb3, transparent 58%),
+    linear-gradient(145deg, #f1e8fa, #e9e1f5 76%, #f5e9f0);
+  box-shadow:
+    inset 0 1px 0 #fff,
+    inset 0 -2px 0 #a998c347,
+    0 0 0 5px #ffffff80,
+    0 22px 100px #4930613d;
+}
+dialog[open] {
+  animation: panel-arrive 300ms cubic-bezier(0.18, 0.8, 0.25, 1) both;
+  transform-origin: 50% 30%;
+}
+dialog[open]::backdrop {
+  animation: scrim-arrive 260ms ease both;
+  backdrop-filter: blur(9px);
+  background: #30204038;
+}
+dialog button:focus-visible {
+  outline: 3px solid #8a62bd;
+  outline-offset: 4px;
+  box-shadow:
+    0 0 0 6px #ffffffd4,
+    0 0 22px #c7a3e747;
+}
+@keyframes panel-arrive {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.975);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes scrim-arrive {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (max-width: 760px) {
+  dialog {
+    border-radius: 24px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  dialog[open],
+  dialog[open]::backdrop {
+    animation: none !important;
+  }
+}
+body[data-motion="off"] dialog[open],
+body[data-motion="off"] dialog[open]::backdrop {
+  animation: none !important;
+}
+@media (prefers-reduced-transparency: reduce) {
+  dialog {
+    background: #ede7f7;
+  }
+  dialog::backdrop {
+    backdrop-filter: none;
+    background: #30204080;
+  }
+}
+
+/* ---------- from src/persona/persona.css ---------- */
+
+/* ---------- cards ---------- */
+.fg-chip:focus-visible,
+.fg-tag:focus-visible {
+  outline: 3px solid #67449f;
+  outline-offset: 3px;
+}
+
+/* ---------- result ---------- */
+
+.fp,
+.fr-zone {
+  position: relative;
+  padding: 26px 28px;
+  border: 1px solid rgba(114, 111, 172, 0.3);
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(242, 239, 255, 0.78));
+  box-shadow: 0 3px 0 rgba(213, 210, 247, 0.7), 0 18px 40px rgba(78, 68, 153, 0.08);
+}
+
+.fp h2,
+.fr-zone h2 {
+  margin: 6px 0 10px;
+  font-size: clamp(22px, 2.6vw, 28px);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.fr-zone ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+.fr-zone li {
+  display: flex;
+  gap: 8px;
+  color: #2c2540;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* ---------- friends panel (owner) ---------- */
+.fp {
+  display: grid;
+  gap: 18px;
+}
+.fp-intro p {
+  margin: 0;
+  max-width: 64ch;
+  color: #3b3452;
+  line-height: 1.55;
+}
+.fp-return {
+  margin-top: 10px !important;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: #ece5fb;
+  color: #332089 !important;
+  font-weight: 600;
+}
+.fp-composer {
+  display: grid;
+  gap: 18px;
+}
+.fp fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+.fp legend {
+  margin-bottom: 10px;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 800;
+}
+.fp-rels {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.fp-rels legend {
+  grid-column: 1 / -1;
+}
+.fp-rel,
+.fp-invite,
+.fp-toggle {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  min-height: 48px;
+  padding: 14px 16px;
+  border: 1px solid rgba(114, 111, 172, 0.35);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+.fp-rel small,
+.fp-toggle small {
+  color: #5d5775;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.fp-rel.is-on,
+.fp-invite.is-on {
+  border-color: #6945a8;
+  background: #efe8fd;
+  box-shadow: 0 0 0 3px rgba(131, 99, 191, 0.16);
+}
+.fp-rel input,
+.fp-invite input,
+.fp-emoji input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.fp-rel:has(input:focus-visible),
+.fp-invite:has(input:focus-visible),
+.fp-emoji label:has(input:focus-visible),
+.fp-toggle:has(input:focus-visible) {
+  outline: 3px solid #67449f;
+  outline-offset: 3px;
+}
+.fp-toggles,
+.fp-invites {
+  display: grid;
+  gap: 8px;
+}
+.fp-toggle {
+  grid-template-columns: 22px 1fr;
+  align-items: start;
+}
+.fp-toggle input {
+  width: 20px;
+  height: 20px;
+  margin: 2px 0 0;
+  accent-color: #6945a8;
+}
+.fp-toggle span {
+  display: grid;
+  gap: 4px;
+  font-weight: 600;
+}
+.fp-emoji > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.fp-emoji label {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(114, 111, 172, 0.35);
+  border-radius: 14px;
+  background: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+.fp-emoji label.is-on {
+  border-color: #6945a8;
+  background: #efe8fd;
+  box-shadow: 0 0 0 3px rgba(131, 99, 191, 0.2);
+}
+.fp-field {
+  display: grid;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.fp-field small {
+  color: #6b6486;
+  font-weight: 500;
+}
+.fp-field input {
+  min-height: 48px;
+  padding: 10px 14px;
+  border: 1px solid rgba(114, 111, 172, 0.45);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 500;
+}
+.fp-field input:focus-visible {
+  outline: 3px solid #67449f;
+  outline-offset: 2px;
+}
+.fp-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.fp-made {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(105, 69, 168, 0.35);
+}
+.fp-made__title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  color: #185c3b;
+  font-weight: 800;
+}
+.fp-made__invite {
+  margin: 0;
+  font-size: 17px;
+  font-style: normal;
+  color: #3a2a6e;
+}
+.fp-made small {
+  color: #5d5775;
+}
+.fp-sent h3,
+.fp-rank h3 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 0 10px;
+  font-size: 18px;
+}
+.fp-sent ul {
+  margin: 0 0 14px;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+}
+.fp-sent__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(114, 111, 172, 0.22);
+}
+.fp-sent__who {
+  display: grid;
+}
+.fp-sent__who small {
+  color: #5d5775;
+}
+.fp-sent__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.fp-paste {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+}
+.fp-paste .fp-field {
+  width: 100%;
+}
+.fp-rank ol {
+  margin: 8px 0 0;
+  padding-left: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+}
+.fp-badge {
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #332089;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* ---------- friend game (friend's device) ---------- */
+.fg-note {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #fff4d6;
+  color: #5b4300;
+  font-weight: 600;
+}
+.fg-why {
+  position: relative;
+  z-index: 1;
+  margin: 16px 0 0;
+  padding: 0;
+  border: 0;
+}
+.fg-why legend {
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+.fg-why > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.fg-chip {
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid rgba(114, 111, 172, 0.4);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #3a2a6e;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+}
+.fg-chip.is-on {
+  border-color: #6945a8;
+  background: #332089;
+  color: #fff;
+}
+.fg-tags {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+.fg-tag {
+  min-height: 88px;
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid rgba(114, 111, 172, 0.38);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.84);
+  color: #2c2540;
+  font: inherit;
+  text-align: left;
+}
+.fg-tag b {
+  font-size: 15px;
+  line-height: 1.25;
+}
+.fg-tag span {
+  color: #6d528c;
+  font-size: 13px;
+  line-height: 1.4;
+}
+.fg-tag.is-on {
+  border-color: #6945a8;
+  background: #ece3fc;
+  box-shadow: 0 0 0 3px rgba(131, 99, 191, 0.22);
+}
+.fg-tag:disabled {
+  opacity: 0.5;
+}
+.fg-counts {
+  font-size: 18px;
+  font-weight: 700;
+  color: #332089;
+}
+.fg-type {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #3a2a6e;
+}
+.fg-send {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0;
+  padding: 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(105, 69, 168, 0.35);
+}
+.fg-send h2 {
+  margin: 0;
+  font-size: 20px;
+}
+.fg-send p {
+  margin: 0;
+  color: #3b3452;
+}
+
+/* ---------- owner view of one friend ---------- */
+.fr-back {
+  justify-self: start;
+}
+.fr-title {
+  margin: 10px 0;
+  font-size: clamp(32px, 4.6vw, 54px);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+.fr-hero {
+  grid-template-columns: minmax(0, 1fr);
+}
+.fr-compare {
+  font-size: 19px;
+  line-height: 1.5;
+}
+.fr-flex {
+  color: #5d5775;
+}
+.fr-band {
+  font-size: 18px;
+  font-weight: 700;
+  color: #332089;
+}
+.fr-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.fr-counts span {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid rgba(114, 111, 172, 0.28);
+  font-size: 14px;
+}
+.fr-zones {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.fr-zone__sub {
+  margin: 0 0 12px;
+  color: #5d5775;
+  font-size: 14px;
+}
+.fr-zone--get {
+  background: linear-gradient(145deg, rgba(247, 255, 251, 0.94), rgba(220, 244, 232, 0.75));
+}
+.fr-zone--miss {
+  background: linear-gradient(145deg, rgba(255, 252, 247, 0.94), rgba(252, 232, 222, 0.75));
+}
+.fr-empty {
+  color: #5d5775;
+}
+.fr-reason {
+  opacity: 0.85;
+  font-size: 16px !important;
+}
+.fr-bonus blockquote {
+  margin: 8px 0;
+  padding: 12px 16px;
+  border-left: 3px solid #7260d2;
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 17px;
+}
+
+/* ---------- small screens ---------- */
+@media (max-width: 900px) {
+
+  .fp-rels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .fr-zones {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .fp,
+  .fr-zone {
+    padding: 20px 18px;
+    border-radius: 20px;
+  }
+
+  .fp-rels {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .fg-tags {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fg-tag {
+    transition: none;
+  }
+}

@@ -1,0 +1,129 @@
+/*
+ * Art layer styles (round 2): the backdrop's depth planes (Depth.jsx). Colors come from tokens; the far plane is
+ * hazy, the near plane crisp, so the frosted glass world reads in three dimensions. Movement only when the backdrop
+ * is animated and motion is on: slow drift (16 to 32 s) and a small pointer parallax per depth.
+ */
+@layer legacy, system, art, play, reveal, screens;
+
+@layer art {
+  .bd-depth {
+    --px: 0;
+    --py: 0;
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  /* Mid: light shafts from the upper left, like sun through frosted glass. */
+  .bd-shafts {
+    position: absolute;
+    inset: -20% -10% 20% -30%;
+    transform: rotate(-24deg);
+    transform-origin: 0 0;
+    -webkit-mask-image: linear-gradient(180deg, black 10%, transparent 78%);
+    mask-image: linear-gradient(180deg, black 10%, transparent 78%);
+  }
+  .bd-shaft {
+    position: absolute;
+    inset-block: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5) 45%, rgba(255, 255, 255, 0.5) 55%, transparent);
+    opacity: 0.55;
+  }
+  .bd-shaft--a { inset-inline-start: 34%; inline-size: 90px; }
+  .bd-shaft--b { inset-inline-start: 48%; inline-size: 150px; opacity: 0.35; }
+  .bd-shaft--c { inset-inline-start: 66%; inline-size: 56px; opacity: 0.45; }
+  [data-night="true"] .bd-shaft { background: linear-gradient(90deg, transparent, rgba(169, 156, 245, 0.16) 50%, transparent); }
+
+  /* Far: two small glass islands on the horizon (62 %), hazy. */
+  .bd-far { position: absolute; inset: 0; }
+  .bd-far__slot {
+    position: absolute;
+    inset-block-start: calc(62% - 46px);
+    display: block;
+    opacity: 0.5;
+    filter: blur(0.6px);
+    translate: calc(var(--px) * -4px) calc(var(--py) * -2px);
+  }
+  .bd-far__slot--l { inset-inline-start: -34px; scale: 0.9; }
+  .bd-far__slot--r { inset-inline-end: -26px; scale: 0.62; inset-block-start: calc(62% - 42px); opacity: 0.42; }
+  .bd-far__isle { display: block; }
+  [data-night="true"] .bd-far__slot { opacity: 0.28; }
+
+  /* Near: floating glass shards at three depths, and bokeh motes. */
+  .bd-near { position: absolute; inset: 0; }
+  .bd-shard {
+    position: absolute;
+    display: block;
+    line-height: 0;
+    rotate: var(--rot);
+    translate: calc(var(--px) * var(--depth) * 5px) calc(var(--py) * var(--depth) * 4px);
+    filter: drop-shadow(0 6px 10px rgba(86, 70, 192, 0.14));
+  }
+  .bd-shard svg { display: block; }
+  .bd-shard[data-depth="1"] { opacity: 0.45; filter: blur(0.8px); }
+  .bd-shard[data-depth="2"] { opacity: 0.8; }
+  .bd-shard[data-depth="3"] { opacity: 0.72; filter: blur(1.6px) drop-shadow(0 10px 16px rgba(86, 70, 192, 0.2)); }
+  [data-night="true"] .bd-shard { filter: drop-shadow(0 0 10px rgba(169, 156, 245, 0.28)); }
+  [data-night="true"] .bd-shard[data-depth="1"] { filter: blur(0.8px); }
+  [data-night="true"] .bd-shard[data-depth="3"] { filter: blur(1.6px); }
+  .bd-mote {
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0));
+    opacity: 0.7;
+  }
+  [data-night="true"] .bd-mote { background: radial-gradient(closest-side, rgba(201, 194, 246, 0.9), rgba(201, 194, 246, 0)); }
+
+  /* Phone: fewer, smaller near shards so text never sits on a crisp edge. */
+  @media (max-width: 599.98px) {
+    .bd-shard[data-depth="3"] { scale: 0.85; }
+    .bd-far__slot--l { scale: 0.7; }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    body:not([data-motion="off"]) .bd-depth[data-animated="true"] .bd-shard {
+      animation: bd-drift var(--drift) var(--e-in-out) var(--delay) infinite alternate;
+      will-change: transform;
+    }
+    body:not([data-motion="off"]) .bd-depth[data-animated="true"] .bd-mote {
+      animation: bd-twinkle calc(var(--d-loop-bob) * 1.5) var(--e-in-out) var(--delay) infinite alternate;
+    }
+    body:not([data-motion="off"]) .bd-depth[data-animated="true"] .bd-shaft {
+      animation: bd-shaft var(--d-loop-orbit) var(--e-in-out) infinite alternate;
+    }
+    body:not([data-motion="off"]) .bd-depth[data-animated="true"] .bd-shaft--b { animation-delay: calc(var(--d-loop-bob) * -1); }
+    body:not([data-motion="off"]) .bd-depth[data-animated="true"] .bd-far__isle {
+      animation: bd-bob calc(var(--d-loop-bob) * 2) var(--e-in-out) infinite alternate;
+    }
+    body:not([data-motion="off"]) .bd-depth[data-animated="true"] :is(.bd-shard, .bd-far__slot) {
+      transition: translate var(--d-scene) var(--e-out);
+    }
+  }
+  html[data-hidden="true"] .bd-depth * { animation-play-state: paused !important; }
+
+  @keyframes bd-drift {
+    from { transform: translate3d(0, 0, 0) rotate(0deg); }
+    to { transform: translate3d(8px, -18px, 0) rotate(9deg); }
+  }
+  @keyframes bd-twinkle {
+    from { opacity: 0.25; transform: scale(0.8); }
+    to { opacity: 0.85; transform: scale(1.15); }
+  }
+  @keyframes bd-shaft {
+    from { opacity: 0.25; }
+    to { opacity: 0.65; }
+  }
+  @keyframes bd-bob {
+    from { transform: translateY(0); }
+    to { transform: translateY(-4px); }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .bd-shafts, .bd-near .bd-mote { display: none; }
+  }
+  @media (forced-colors: active) {
+    .bd-depth { display: none; }
+  }
+}

@@ -1,0 +1,843 @@
+[
+  {
+    "id": "X-R1-30",
+    "type": "scenario",
+    "axisFor": "R1",
+    "sq": "SQ-R1-1",
+    "world": "unusual",
+    "prompt": "Two years of saving for your first solo trip: three weeks, one backpack. Your sibling wants in. They already requested the time off.",
+    "options": [
+      {
+        "t": "Buy a second ticket. Solo was overrated anyway.",
+        "axes": {
+          "R1": 2
+        }
+      },
+      {
+        "t": "They get the last weekend. The first 19 days are mine.",
+        "axes": {
+          "R1": -1
+        }
+      },
+      {
+        "t": "No. Two years of saving bought three weeks of nobody.",
+        "axes": {
+          "R1": -2
+        }
+      },
+      {
+        "t": "Come, but Wednesdays I vanish with the backpack.",
+        "axes": {
+          "R1": 1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "You've saved for two years for your first solo trip: three weeks, one backpack. Your sibling wants to come, and they've already asked for the time off.",
+      "options": [
+        "I'd buy a second ticket. Solo was overrated anyway.",
+        "They can join the last weekend. The first 19 days are mine.",
+        "No. Two years of saving bought three weeks of just me.",
+        "Come along, but Wednesdays I disappear on my own."
+      ]
+    },
+    "fp": {
+      "trigger": "a sibling asks to join your long-planned solo trip",
+      "setting": "a three-week backpacking trip",
+      "ask": "share it or keep it solo",
+      "who": "your sibling",
+      "stakes": "closeness versus the trip you saved for",
+      "device": "solo-trip-crasher"
+    },
+    "mask": "looks like travel plans; measures whether close means shared everything or close with room of your own (R1)",
+    "ae": [
+      "A",
+      "B",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-R1-40",
+    "type": "pick_two",
+    "axisFor": "R1",
+    "pick": 2,
+    "sq": "SQ-R1-2",
+    "world": "absurd",
+    "prompt": "Overnight, your friend group's moods get linked. One bad day, all six feel it. Someone's parking ticket just ruined your lunch. Pick two.",
+    "options": [
+      {
+        "t": "Good. Nobody in this group has a bad day solo again.",
+        "axes": {
+          "R1": 2
+        }
+      },
+      {
+        "t": "Hunting for the off switch before lunch is over.",
+        "axes": {
+          "R1": -2
+        }
+      },
+      {
+        "t": "Starting a nightly check-in call. We fix it together.",
+        "axes": {
+          "R1": 1
+        }
+      },
+      {
+        "t": "Feel my moods, fine. My reasons stay in the drafts.",
+        "axes": {
+          "R1": -1
+        }
+      },
+      {
+        "t": "Finally, nobody can fake \"I'm fine\" at me.",
+        "axes": {
+          "R1": 1
+        }
+      },
+      {
+        "t": "Zero follow-up questions. The link already told me.",
+        "axes": {
+          "R1": -1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "Overnight, your friend group's moods get linked. When one of you has a bad day, all six of you feel it. Someone's parking ticket just ruined your lunch. Pick two.",
+      "options": [
+        "Good. Nobody in this group has a bad day alone anymore.",
+        "Where's the off switch? I'm looking for it today.",
+        "A nightly check-in call, so we fix it together.",
+        "They can feel my moods. My reasons stay mine.",
+        "Finally, nobody could tell me \"I'm fine\" and hide it.",
+        "I'd stop asking why anyone's down. The link says enough."
+      ]
+    },
+    "fp": {
+      "trigger": "friends' moods become linked",
+      "setting": "a friend group of six, linked overnight",
+      "ask": "welcome it or want out",
+      "who": "your whole friend group",
+      "stakes": "knowing everything versus your own inner weather",
+      "device": "mood-link"
+    },
+    "mask": "looks like a friendship spell; measures close as knowing everything versus keeping some rooms private (R1)",
+    "ae": [
+      "B",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-R2-30",
+    "type": "scenario",
+    "axisFor": "R2",
+    "sq": "SQ-R2-2",
+    "world": "unusual",
+    "prompt": "Costume contest, $1,000 prize. Your friend is winning, dressed as you. The wig is wrong. The laugh is worse. The crowd loves it.",
+    "options": [
+      {
+        "t": "Corner them at the snack table tonight. Funny, but it stung.",
+        "axes": {
+          "R2": 2
+        },
+        "tags": [
+          {
+            "id": "T07A",
+            "s": 1
+          }
+        ],
+        "emotion": "sting"
+      },
+      {
+        "t": "Smile and clap. Bring it up later, probably never.",
+        "axes": {
+          "R2": -1
+        }
+      },
+      {
+        "t": "Cheer for them. A thousand dollars is a thousand dollars.",
+        "axes": {
+          "R2": -2
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Shout from the back: \"For the record, I laugh better.\"",
+        "axes": {
+          "R2": 1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "Costume contest, $1,000 prize. Your friend's winning, dressed as you. The wig's wrong and the laugh is worse. The crowd loves it.",
+      "options": [
+        "Tonight at the snack table, I tell them: funny, but it stung.",
+        "I smile and clap. Maybe I bring it up later. Probably never.",
+        "Cheering for them. A thousand dollars is a thousand dollars.",
+        "From the back I shout, \"For the record, I laugh better.\""
+      ]
+    },
+    "fp": {
+      "trigger": "a friend wins a contest by impersonating you",
+      "setting": "costume contest stage",
+      "ask": "say it stung or let it go",
+      "who": "a friend and a cheering crowd",
+      "stakes": "your pride versus their win",
+      "device": "costume-of-you"
+    },
+    "mask": "looks like a party roast; measures naming it when someone crosses a line versus absorbing it (R2)",
+    "ae": [
+      "A",
+      "E"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-R2-31",
+    "type": "eyes",
+    "axisFor": "R2",
+    "sq": "SQ-R2-3",
+    "world": "unusual",
+    "prompt": "Screaming match at the bowling league finale. The mediator asks your best friend how you act in a group fight.",
+    "options": [
+      {
+        "t": "\"First to say what everyone's thinking. Loudly.\"",
+        "axes": {
+          "R2": 2
+        },
+        "tags": [
+          {
+            "id": "T07A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "\"Corners people by the shoe rental after. One by one.\"",
+        "axes": {
+          "R2": -1
+        },
+        "tags": [
+          {
+            "id": "T07B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "\"Changes the subject so smoothly nobody notices.\"",
+        "axes": {
+          "R2": -2
+        }
+      },
+      {
+        "t": "\"Waits for a gutter ball. Then says it once, to everyone.\"",
+        "axes": {
+          "R2": 1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "The bowling league's final night turns into a shouting match. The mediator asks your best friend how you act in a group fight.",
+      "options": [
+        "\"First to say what everyone's thinking. Loudly.\"",
+        "\"After, they catch people one by one by the shoe rental.\"",
+        "\"They change the subject so smoothly nobody even notices.\"",
+        "\"At the next gutter ball, they say it once, to everyone.\""
+      ]
+    },
+    "fp": {
+      "trigger": "a mediator asks your friend how you fight",
+      "setting": "bowling league blowup",
+      "ask": "how you handle a group fight",
+      "who": "your best friend and a league mediator",
+      "stakes": "the group's peace versus the truth said",
+      "device": "league-mediator"
+    },
+    "mask": "looks like league drama; measures saying it to the whole group versus keeping the peace (R2)",
+    "ae": [
+      "A",
+      "C"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-R3-30",
+    "type": "scenario",
+    "axisFor": "R3",
+    "sq": "SQ-T20-2",
+    "world": "unusual",
+    "prompt": "Your new town's 200-year tradition: every newcomer rings the old bell at the fair, dressed as a lobster. You just moved in. The fair is Saturday.",
+    "options": [
+      {
+        "t": "Full lobster, claws and antennae. Two centuries deserves commitment.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Ring it dressed as a shrimp. Close enough.",
+        "axes": {
+          "R3": -1
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Skip the bell. My tradition: newcomers bring the town donuts.",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Suit on, bell rung, out of there in five minutes flat.",
+        "axes": {
+          "R3": 1
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Your new town's 200-year tradition: every newcomer rings the old bell at the fair, dressed as a lobster. You just moved in, and the fair's Saturday.",
+      "options": [
+        "The full lobster, claws and all. Two centuries deserves it.",
+        "I ring it dressed as a shrimp. Close enough.",
+        "Skipping the bell. My newcomer tradition is donuts for the town.",
+        "Suit on, bell rung, and I'm gone in five minutes."
+      ]
+    },
+    "fp": {
+      "trigger": "a town tradition asks every newcomer to perform",
+      "setting": "a small-town fair and an old bell",
+      "ask": "follow the ritual or make your own",
+      "who": "your new neighbors",
+      "stakes": "belonging versus doing it your way",
+      "device": "lobster-bell"
+    },
+    "mask": "looks like a small-town joke; measures keeping traditions as they are versus remaking them (R3, T20)",
+    "ae": [
+      "A",
+      "D",
+      "E"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-R3-50",
+    "type": "this_or_that",
+    "axisFor": "R3",
+    "sq": "SQ-R3-2",
+    "world": "absurd",
+    "prompt": "A ring falls from the sky, engraved with your name and your partner's. Does one of you kneel, the classic way, or do you just hand it over at breakfast?",
+    "options": [
+      {
+        "t": "One knee, a speech, someone cries. The full classic.",
+        "axes": {
+          "R3": 2
+        },
+        "tags": [
+          {
+            "id": "T20A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Slide it across the table with the toast. Pajamas on.",
+        "axes": {
+          "R3": -2
+        },
+        "tags": [
+          {
+            "id": "T20B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "A ring falls from the sky, engraved with your name and your partner's. Does one of you kneel the classic way, or do you just hand it over at breakfast?",
+      "options": [
+        "One of us kneels, there's a speech, and someone cries.",
+        "I slide it across the breakfast table, still in pajamas."
+      ]
+    },
+    "fp": {
+      "trigger": "a ring arrives and the proposal script is yours to follow or skip",
+      "setting": "your home, a ring from the sky",
+      "ask": "the classic proposal or your own way",
+      "who": "you and your partner",
+      "stakes": "the way couples always did it versus your own design",
+      "device": "sky-ring"
+    },
+    "mask": "looks like a romantic surprise; measures running a couple the way it has always been done versus your own design (R3, T20)",
+    "ae": [
+      "D",
+      "E"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-L1-30",
+    "type": "scenario",
+    "axisFor": "L1",
+    "sq": "SQ-L1-2",
+    "world": "unusual",
+    "prompt": "An airport sells unclaimed suitcases, sealed, $300 each. One is humming softly. Another has a first-class sticker. You have exactly $300.",
+    "options": [
+      {
+        "t": "Grab the humming one. No questions. Best $300 ever.",
+        "axes": {
+          "L1": -2
+        },
+        "tags": [
+          {
+            "id": "T22A",
+            "s": 1
+          }
+        ],
+        "emotion": "delight"
+      },
+      {
+        "t": "Shake the first-class one. If it rattles, it's mine.",
+        "axes": {
+          "L1": -1
+        }
+      },
+      {
+        "t": "Watch three strangers open theirs. Then decide.",
+        "axes": {
+          "L1": 1
+        }
+      },
+      {
+        "t": "Keep my $300. A mystery isn't a plan.",
+        "axes": {
+          "L1": 2
+        },
+        "tags": [
+          {
+            "id": "T13B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "An airport's selling unclaimed suitcases, sealed, $300 each. One's humming softly. Another has a first-class sticker. You've got exactly $300.",
+      "options": [
+        "I grab the humming one, no questions. Best $300 I'll ever spend.",
+        "Shaking the first-class one. If it rattles, it's mine.",
+        "Three strangers open theirs first, then I decide.",
+        "My $300 stays with me. A mystery isn't a plan."
+      ]
+    },
+    "fp": {
+      "trigger": "sealed suitcases for sale, contents unknown",
+      "setting": "airport unclaimed-luggage sale",
+      "ask": "buy blind or keep the money",
+      "who": "strangers bidding, just you",
+      "stakes": "$300 on a mystery",
+      "device": "mystery-suitcase"
+    },
+    "mask": "looks like a treasure hunt; measures stepping in blind versus waiting for more information (L1)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-L1-40",
+    "type": "this_or_that",
+    "axisFor": "L1",
+    "sq": "SQ-L1-3",
+    "world": "absurd",
+    "prompt": "Every jacket you own has a parachute sewn in. You look like a turtle. You've never once needed it.",
+    "options": [
+      {
+        "t": "Turtle for life. The day I need it, who's laughing?",
+        "axes": {
+          "L1": 2
+        }
+      },
+      {
+        "t": "Cutting them out tonight. I'll take my chances, looking great.",
+        "axes": {
+          "L1": -2
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "Every jacket you own has a parachute sewn in. You look a bit like a turtle, and you've never once needed it.",
+      "options": [
+        "The turtle look stays. The day I need it, who's laughing?",
+        "I cut them out tonight and take my chances, looking great."
+      ]
+    },
+    "fp": {
+      "trigger": "a safety net sewn into everything you wear",
+      "setting": "your closet, every jacket",
+      "ask": "keep the backup or cut it out",
+      "who": "just you",
+      "stakes": "never falling versus looking like yourself",
+      "device": "parachute-jackets"
+    },
+    "mask": "looks like a silly fashion image; measures keeping the safety net versus cutting it to go without one (L1)",
+    "ae": [
+      "B",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-L2-30",
+    "type": "scenario",
+    "axisFor": "L2",
+    "sq": "SQ-L2-1",
+    "world": "unusual",
+    "prompt": "Years ago you posted a story online. Now a publisher wants it as a book: finished manuscript in six months, every evening and weekend until then.",
+    "options": [
+      {
+        "t": "Tonight I sign and tell my friends I've gone into hiding.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Cancel every weekend plan till spring. Grumble the whole time.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 1
+          }
+        ],
+        "emotion": "pride"
+      },
+      {
+        "t": "Turn it down. New chapters drop whenever I feel like it.",
+        "axes": {
+          "L2": -1
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Ghost the publisher. The fun was that nobody was waiting.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 2
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Years ago you posted a story online. Now a publisher wants it as a book, due in six months. That's every evening and weekend until then.",
+      "options": [
+        "Tonight I sign, and tell my friends I've gone into hiding.",
+        "Every weekend plan's canceled till spring. I grumble the whole way.",
+        "I turn it down. New chapters come whenever I feel like it.",
+        "Never writing back. It was fun because nobody was waiting."
+      ]
+    },
+    "fp": {
+      "trigger": "a publisher offers a deal on your old online story",
+      "setting": "a publisher's offer, six-month deadline",
+      "ask": "give up evenings for the book",
+      "who": "a publisher and your friends",
+      "stakes": "a visible win versus your free time",
+      "device": "book-deal"
+    },
+    "mask": "looks like a lucky break; measures trading free time for a win people can see (L2, T16)",
+    "ae": [
+      "A",
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-L2-40",
+    "type": "rank",
+    "axisFor": "L2",
+    "sq": "SQ-T16-2",
+    "world": "absurd",
+    "prompt": "Anything you hang on one wall of your home stays there forever, and every guest sees it. Rank what you'd hang, first to last.",
+    "options": [
+      {
+        "t": "Every trophy, medal and certificate I've ever won.",
+        "axes": {
+          "L2": 2
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "My laziest, happiest Sunday, in one blurry photo.",
+        "axes": {
+          "L2": -2
+        },
+        "tags": [
+          {
+            "id": "T16B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Best work I've ever done, dated the day I finished.",
+        "axes": {
+          "L2": 1
+        },
+        "tags": [
+          {
+            "id": "T16A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "A hammock. Guests can actually nap in it.",
+        "axes": {
+          "L2": -1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "Whatever you hang on one wall of your home stays there forever, and every guest sees it. Put these in order, your first choice at the top.",
+      "options": [
+        "Every trophy, medal and certificate I've ever won.",
+        "My laziest, happiest Sunday, in one blurry photo.",
+        "The best work I've ever done, with the day I finished it.",
+        "A hammock. Guests can actually nap in it."
+      ]
+    },
+    "fp": {
+      "trigger": "one permanent display in your home",
+      "setting": "your home, every guest looking",
+      "ask": "rank what goes on display",
+      "who": "you and every guest",
+      "stakes": "wins on display versus rest on display",
+      "device": "genii-wall-frame"
+    },
+    "mask": "looks like home decor; measures wanting your wins seen versus not keeping score (L2, T16)",
+    "ae": [
+      "D"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-L3-30",
+    "type": "scenario",
+    "axisFor": "L3",
+    "sq": "SQ-L3-1",
+    "world": "unusual",
+    "prompt": "One sacred rule in your friend group: nobody dates anyone's ex. Your best friend just matched with yours, and asks you before going further.",
+    "options": [
+      {
+        "t": "Quote the rule back to them. It's why the group survives.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Go for it. That rule was never meant for you two.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Say no, then overcompensate with brunch for a month.",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Fine by me, as long as the group chat never finds out.",
+        "axes": {
+          "L3": -1
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 1
+          }
+        ]
+      }
+    ],
+    "heart": {
+      "prompt": "Your friend group has one sacred rule: nobody dates anyone's ex. Your best friend just matched with yours, and asks you before it goes any further.",
+      "options": [
+        "Reminding them of the rule. It's why the group's lasted.",
+        "Go for it. That rule was never meant for you two.",
+        "I say no, then make it up with brunch for a month.",
+        "Fine by me, as long as the group chat never finds out."
+      ]
+    },
+    "fp": {
+      "trigger": "a best friend matches with your ex",
+      "setting": "a dating app and a friend group rule",
+      "ask": "hold the rule or bend it",
+      "who": "your best friend and your ex",
+      "stakes": "the group's rule versus your friend's chance",
+      "device": "ex-match-rule"
+    },
+    "mask": "looks like dating drama; measures the rule versus the person in front of you (L3, T25)",
+    "ae": [
+      "A",
+      "B",
+      "C",
+      "E"
+    ],
+    "privacy": "normal"
+  },
+  {
+    "id": "X-L3-31",
+    "type": "role",
+    "axisFor": "L3",
+    "sq": "SQ-L3-3",
+    "world": "unusual",
+    "prompt": "Escape room, eight minutes left. On a shelf: an envelope marked \"STAFF ONLY: ALL ANSWERS.\" The camera's pointed at the ceiling. Your role in the crew?",
+    "options": [
+      {
+        "t": "Envelope guard, sitting on it like it's an egg.",
+        "axes": {
+          "L3": 2
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 2
+          }
+        ]
+      },
+      {
+        "t": "Opener: answers read aloud, record time, zero shame.",
+        "axes": {
+          "L3": -2
+        },
+        "tags": [
+          {
+            "id": "T25B",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Solver, humming loudly while someone else peeks.",
+        "axes": {
+          "L3": -1
+        }
+      },
+      {
+        "t": "Snitch. I wave the staff over: \"Your envelope's out.\"",
+        "axes": {
+          "L3": 1
+        },
+        "tags": [
+          {
+            "id": "T25A",
+            "s": 1
+          }
+        ]
+      },
+      {
+        "t": "Negotiator: we peek only if we're truly, legally stuck.",
+        "axes": {
+          "L3": -1
+        }
+      }
+    ],
+    "heart": {
+      "prompt": "Escape room, eight minutes left. On a shelf there's an envelope marked \"Staff only: all answers,\" and the camera's pointed at the ceiling. Which one are you?",
+      "options": [
+        "I guard the envelope. We solve it ourselves or we lose.",
+        "Opening it. I read everything out and we're gone in record time.",
+        "Still solving, humming loudly, while someone else peeks.",
+        "The staff hear from me that their envelope's out.",
+        "My rule: we only peek if we're truly stuck."
+      ]
+    },
+    "fp": {
+      "trigger": "an answer envelope nobody is watching",
+      "setting": "an escape room, final minutes",
+      "ask": "use the shortcut or play it straight",
+      "who": "your friend group",
+      "stakes": "the win versus the honest way",
+      "device": "staff-envelope"
+    },
+    "mask": "looks like a game night; measures following the process when nobody is checking (L3)",
+    "ae": [
+      "A",
+      "C",
+      "E"
+    ],
+    "privacy": "normal"
+  }
+]

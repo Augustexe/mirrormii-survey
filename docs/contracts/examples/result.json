@@ -1,0 +1,471 @@
+{
+  "schema": "genii.persona.result/1",
+  "kit": "persona-quiz-v2@2026-09-30/2026-09-26/v2-2026-09-26",
+  "runId": "contract01",
+  "completedAt": "2026-09-30T09:00:51.000Z",
+  "voice": "fun",
+  "lobby": {
+    "depth": "anything",
+    "rooms": [
+      "love",
+      "work",
+      "family"
+    ]
+  },
+  "archetype": {
+    "people": {
+      "code": "We·Direct·Own",
+      "kicker": "With the people you love",
+      "name": "Ride-or-Die",
+      "define": "Loyal, honest and always there.",
+      "read": "You're the one who shows up first and tells the truth once you're there.",
+      "desc": "You're in it with your people all the way, and you'll tell them the truth on the way in. Your loyalty is loud, honest and done your way."
+    },
+    "life": {
+      "code": "Steady·Push·Rules",
+      "kicker": "Day to day",
+      "name": "The Planner",
+      "define": "Plans ahead and sees it through.",
+      "read": "You're the one with a plan, a backup plan and a date for both.",
+      "desc": "You want big wins, and you like the steps to them mapped, checked and done properly. Your calendar is a love letter to future you."
+    },
+    "opposite": "Your opposite: Old Soul and The Spontaneous One. Know one?"
+  },
+  "axes": [
+    {
+      "axis": "R1",
+      "half": "people",
+      "stat": "Closeness",
+      "pole": "We",
+      "end": "Stays close",
+      "sign": 1,
+      "strength": 0.5,
+      "cards": 2,
+      "pips": 3,
+      "level": 3,
+      "levelWord": "Moderately",
+      "flex": false,
+      "unfinished": false,
+      "badge": "wild",
+      "line": "Plans get better when your people are in them, so you make sure they are."
+    },
+    {
+      "axis": "R2",
+      "half": "people",
+      "stat": "Hard truths",
+      "pole": "Direct",
+      "end": "Says it straight",
+      "sign": 1,
+      "strength": 0.82,
+      "cards": 2,
+      "pips": 3,
+      "level": 3,
+      "levelWord": "Moderately",
+      "flex": false,
+      "unfinished": false,
+      "badge": null,
+      "line": "You'd rather have one awkward talk than a month of hints."
+    },
+    {
+      "axis": "R3",
+      "half": "people",
+      "stat": "Traditions",
+      "pole": "Own",
+      "end": "Starts new ones",
+      "sign": -1,
+      "strength": 1,
+      "cards": 2,
+      "pips": 3,
+      "level": 3,
+      "levelWord": "Moderately",
+      "flex": false,
+      "unfinished": false,
+      "badge": null,
+      "line": "Love, home, holidays: you'd rather design it than inherit it."
+    },
+    {
+      "axis": "L1",
+      "half": "life",
+      "stat": "New things",
+      "pole": "Steady",
+      "end": "Sticks with favorites",
+      "sign": 1,
+      "strength": 0.784,
+      "cards": 4,
+      "pips": 4,
+      "level": 4,
+      "levelWord": "Strongly",
+      "flex": false,
+      "unfinished": false,
+      "badge": "signature",
+      "line": "Same order, same seat, same people. You found what works and you guard it."
+    },
+    {
+      "axis": "L2",
+      "half": "life",
+      "stat": "Pace",
+      "pole": "Push",
+      "end": "Goes fast",
+      "sign": 1,
+      "strength": 0.885,
+      "cards": 2,
+      "pips": 3,
+      "level": 3,
+      "levelWord": "Moderately",
+      "flex": false,
+      "unfinished": false,
+      "badge": null,
+      "line": "You want proof you're getting somewhere, and you keep going until you see it."
+    },
+    {
+      "axis": "L3",
+      "half": "life",
+      "stat": "Rules",
+      "pole": "Rules",
+      "end": "By the book",
+      "sign": 1,
+      "strength": 0.72,
+      "cards": 4,
+      "pips": 4,
+      "level": 4,
+      "levelWord": "Strongly",
+      "flex": false,
+      "unfinished": false,
+      "badge": null,
+      "line": "You read the terms and hold the line, even when it's awkward."
+    }
+  ],
+  "findings": [
+    {
+      "axis": "L1",
+      "kind": "axis",
+      "end": "Sticks with favorites",
+      "level": 3,
+      "tier": "Came through clearly",
+      "line": "Your boldest moves come after boring homework. Nobody sees the prep, so they call it luck."
+    },
+    {
+      "axis": "L3",
+      "kind": "axis",
+      "end": "By the book",
+      "level": 3,
+      "tier": "Came through clearly",
+      "line": "Fair is how you keep people safe. You read the fine print and hold the line, awkward or not."
+    },
+    {
+      "axis": "R3",
+      "kind": "axis",
+      "end": "Starts new ones",
+      "level": 2,
+      "tier": "Genii is fairly sure",
+      "line": "How it's always been done is a suggestion to you. Your home, holidays and love life are custom builds."
+    },
+    {
+      "axis": "L2",
+      "kind": "axis",
+      "end": "Goes fast",
+      "level": 2,
+      "tier": "Genii is fairly sure",
+      "line": "You need proof you're getting somewhere. A finished list, a goal ticked, a door you pushed open."
+    },
+    {
+      "axis": "R2",
+      "kind": "axis",
+      "end": "Says it straight",
+      "level": 2,
+      "tier": "Genii is fairly sure",
+      "line": "You say the hard thing early so nobody walks into a wall later. Blunt, yes. Also care."
+    },
+    {
+      "axis": "R1",
+      "kind": "axis",
+      "end": "Stays close",
+      "level": 1,
+      "tier": "Genii has a hunch",
+      "line": "You love in logistics. Shared calendars, the spare key, the group order: close means together."
+    }
+  ],
+  "tags": [
+    {
+      "id": "T03A",
+      "name": "Uses AI to think things out",
+      "chapter": 1,
+      "strength": "showing",
+      "level": 2,
+      "private": false,
+      "line": "When something's on your mind, an AI hears about it before your friends do.",
+      "heart": "Feeling understood counts, wherever it comes from."
+    },
+    {
+      "id": "T16A",
+      "name": "Loves a win",
+      "chapter": 5,
+      "strength": "showing",
+      "level": 2,
+      "private": false,
+      "line": "You want wins people can see, and you keep a quiet tally of every one.",
+      "heart": "Wanting to build something big isn't too much."
+    },
+    {
+      "id": "T02A",
+      "name": "Replies when free",
+      "chapter": 1,
+      "strength": "showing",
+      "level": 1,
+      "private": false,
+      "line": "You can go months without texting and pick up right where you left off.",
+      "heart": "Missing you doesn't need a daily check-in."
+    },
+    {
+      "id": "T17A",
+      "name": "Likes plans set early",
+      "chapter": 5,
+      "strength": "showing",
+      "level": 1,
+      "private": false,
+      "line": "You relax the moment something is booked, signed or decided.",
+      "heart": "Wanting solid ground is how I take care of myself."
+    },
+    {
+      "id": "T11A",
+      "name": "Wants kids one day",
+      "chapter": 3,
+      "strength": "showing",
+      "level": 1,
+      "private": true,
+      "line": "You want kids someday, and you've already thought about how to share the load.",
+      "heart": "I want it, and I want to be held up while I do it."
+    }
+  ],
+  "coreTraits": [
+    {
+      "keyword": "Tech-savvy",
+      "kind": "tag",
+      "source": "T03A",
+      "line": "When something's on your mind, an AI hears about it before your friends do.",
+      "private": false
+    },
+    {
+      "keyword": "Down-to-earth",
+      "kind": "stat",
+      "source": "L1",
+      "line": "Same order, same seat, same people. You found what works and you guard it.",
+      "private": false
+    },
+    {
+      "keyword": "Ambitious",
+      "kind": "tag",
+      "source": "T16A",
+      "line": "You want wins people can see, and you keep a quiet tally of every one.",
+      "private": false
+    },
+    {
+      "keyword": "Plays fair",
+      "kind": "stat",
+      "source": "L3",
+      "line": "You read the terms and hold the line, even when it's awkward.",
+      "private": false
+    },
+    {
+      "keyword": "Easygoing",
+      "kind": "tag",
+      "source": "T02A",
+      "line": "You can go months without texting and pick up right where you left off.",
+      "private": false
+    },
+    {
+      "keyword": "One of a kind",
+      "kind": "stat",
+      "source": "R3",
+      "line": "Love, home, holidays: you'd rather design it than inherit it.",
+      "private": false
+    }
+  ],
+  "rooms": [
+    {
+      "chapter": 6,
+      "room": "Family and home",
+      "kind": "tag",
+      "axis": null,
+      "tag": "T20B",
+      "end": null,
+      "level": 1,
+      "differs": false,
+      "line": "No script for how a home should run. You're writing your own."
+    },
+    {
+      "chapter": 2,
+      "room": "Friends",
+      "kind": "tag",
+      "axis": null,
+      "tag": "T06A",
+      "end": null,
+      "level": 2,
+      "differs": false,
+      "line": "One ask from a friend and your own rules quietly step aside."
+    },
+    {
+      "chapter": 4,
+      "room": "Spending and saving",
+      "kind": "axis",
+      "axis": "L1",
+      "tag": null,
+      "end": "Sticks with favorites",
+      "level": 2,
+      "differs": false,
+      "line": "Savings first, fun money second. Your cushion is how you sleep at night."
+    },
+    {
+      "chapter": 7,
+      "room": "Free time",
+      "kind": "tag",
+      "axis": null,
+      "tag": "T25A",
+      "end": null,
+      "level": 1,
+      "differs": false,
+      "line": "You've read the rulebook, and fair to you means the same rules for everyone."
+    }
+  ],
+  "insight": {
+    "line": "Nobody has to decode you. People always know where they stand, and that's exactly why they relax around you.",
+    "from": {
+      "kind": "fallback",
+      "code": "We·Direct·Own"
+    }
+  },
+  "stings": [
+    "You'd go to war for your people. Letting them fight for you is the part you skip.",
+    "You hit the goal and start the next list before you celebrate.",
+    "An AI may have heard more about your feelings than your friends have."
+  ],
+  "calls": {
+    "called": 8,
+    "exact": 8,
+    "rows": [
+      {
+        "card": "S-160",
+        "axis": "L3",
+        "status": "hit",
+        "near": false,
+        "end": "By the book"
+      },
+      {
+        "card": "S-120",
+        "axis": "R1",
+        "status": "hit",
+        "near": false,
+        "end": "Stays close"
+      },
+      {
+        "card": "S-130",
+        "axis": "L1",
+        "status": "hit",
+        "near": false,
+        "end": "Sticks with favorites"
+      },
+      {
+        "card": "S-126",
+        "axis": "R2",
+        "status": "hit",
+        "near": false,
+        "end": "Says it straight"
+      },
+      {
+        "card": "S-134",
+        "axis": "L2",
+        "status": "hit",
+        "near": false,
+        "end": "Goes fast"
+      },
+      {
+        "card": "S-111",
+        "axis": "R3",
+        "status": "hit",
+        "near": false,
+        "end": "Starts new ones"
+      },
+      {
+        "card": "S-121",
+        "axis": "R1",
+        "status": "hit",
+        "near": false,
+        "end": "Stays close"
+      },
+      {
+        "card": "S-142",
+        "axis": "L2",
+        "status": "hit",
+        "near": false,
+        "end": "Goes fast"
+      }
+    ]
+  },
+  "share": {
+    "names": [
+      {
+        "label": "With the people you love",
+        "name": "Ride-or-Die",
+        "define": "Loyal, honest and always there."
+      },
+      {
+        "label": "Day to day",
+        "name": "The Planner",
+        "define": "Plans ahead and sees it through."
+      }
+    ],
+    "keywords": [
+      "Tech-savvy",
+      "Down-to-earth",
+      "Ambitious",
+      "Plays fair",
+      "Easygoing",
+      "One of a kind"
+    ],
+    "tags": [
+      {
+        "name": "Tech-savvy",
+        "line": "When something's on your mind, an AI hears about it before your friends do.",
+        "kind": "tag"
+      },
+      {
+        "name": "Down-to-earth",
+        "line": "Same order, same seat, same people. You found what works and you guard it.",
+        "kind": "stat"
+      },
+      {
+        "name": "Ambitious",
+        "line": "You want wins people can see, and you keep a quiet tally of every one.",
+        "kind": "tag"
+      },
+      {
+        "name": "Plays fair",
+        "line": "You read the terms and hold the line, even when it's awkward.",
+        "kind": "stat"
+      },
+      {
+        "name": "Easygoing",
+        "line": "You can go months without texting and pick up right where you left off.",
+        "kind": "tag"
+      },
+      {
+        "name": "One of a kind",
+        "line": "Love, home, holidays: you'd rather design it than inherit it.",
+        "kind": "stat"
+      }
+    ],
+    "invite": "How well do you know me?",
+    "url": "mirrormii.ai"
+  },
+  "counts": {
+    "run": 136,
+    "answered": 37,
+    "skipped": 1,
+    "notMyLife": 2,
+    "noRecent": 0,
+    "unanswered": 96,
+    "rushed": 2,
+    "circumstance": 0
+  },
+  "empty": null
+}

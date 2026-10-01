@@ -1,52 +1,66 @@
-# Genii host survey implementation contract
+> **Superseded, history only.** This describes an earlier survey build or visual pass whose code has been removed. The current app starts at [../README.md](../README.md); the visual system is [DESIGN-DIRECTION.md](DESIGN-DIRECTION.md).
 
-2026-09-17. User explicitly authorized implementation of the discussed spec. Prior interview pauses are superseded. Root owns integration and review; Luna workers own bounded source areas. No publication/backend work.
+# Switch Modes v3 implementation contract
 
-## Product decisions for this build
+**Historical v3 contract.** For the V4 language candidate based on `533c3da`, use `ASTRA-IMPLEMENTATION.md`, the V4 question map and the executable bank/engine contracts. The v3 counts and storage keys below are not current for that candidate.
 
-- Keep a 64-slot respondent route (56 context/training + 8 internal checks), within the approved roughly-60 scale. Use one eligible candidate per slot from an expanded bank. Every slot must have a generic applicable fallback. Keep relevant context replacement, not unrelated padding. No forced 20 extra checks.
-- Existing D1-D14 semantics remain useful. Bank authors may replace weak scenes and add direct health and emotional records. Preserve source IDs where meanings remain the same; changed meaning gets a new ID. Bank/version must change.
-- Fixed default windows: usual past month; recent last seven days; actual latest event in month. No-example distinct from skip/other/system omission. Body/skin and optional health context are factual reports. No clinical score or advice.
-- Trait bars are descriptive positions with explicit endpoints, not health scores or probabilities. Ordinal direct measures may have usual/recent positions; show the selected band/label rather than false precision. Confidence is separate qualitative evidence coverage.
-- Internal emotion, outward action and recovery are separate literal records; cover all seven feeling families without assigning every respondent a feeling they did not report.
-- Context selection governs applicable prompts. Unknown context uses neutral generic alternatives, not invented household/partner facts. Changing a context invalidates dependent observations/notes/Other and all frozen checks; preserve old claim-feedback snapshots separately.
-- Current UI uses a stable route index, not an index into the entire candidate bank.
-- Responsive host copy is answer-specific. Never count a reflection as a prediction hit. Per-claim True/False records snapshots only.
+Status: local implementation test, not deployment approval or scientific validation.
 
-## Data API (bank worker)
+## Product thesis
 
-Keep current required question fields and exports: VERSION, CHAPTERS, DIMS, QUESTIONS. QUESTIONS becomes the candidate bank; QUESTIONS_BY_ID may be exported as convenience.
+The useful portrait is not a permanent type. It is the pattern between the situation, what mattered, and what the person did.
 
-Add ROUTE_SLOTS: ordered array of `{id, candidates:[questionId,...]}`. Exactly 64 slots, the final eight holdouts. Candidate order is preference; each slot ends in an always-applicable fallback where needed. Each question belongs to one slot only; replacement candidates have equivalent intended construct/context function. No separate exponential route variants.
+The result should deliver three distinct things without conflating them:
 
-Question: `{id, chapter, title, setup, role, test, applicable, options, baseline, meta?}`. Retain current tags/why/facts option fields. `applicable` may be legacy `close` or `shared`, absent for all, or `{fact, values:[...]}` for explicit optional context. Object eligibility requires a direct matching fact; unknown is false for the specific candidate and routes to generic fallback.
+1. **Recognition:** a bounded contextual contrast the respondent can inspect.
+2. **Credibility:** exact answer receipts, explicit scope, alternatives, and a next validation.
+3. **Drama:** predictions frozen before eight sealed checks, with abstention and a visible baseline.
 
-`meta`: `{domain, window, evidence, emotionFamily?, counterpart?, source?}`. Windows exactly `past_month`, `last_7_days`, `latest_instance_past_month`, `scenario` or null. Evidence role uses `self_report`, `actual_event`, `hypothetical`, `self_description`; existing context/actual/hypo role allowed with normalized provenance.
+## Route
 
-Option extensions:
+- 32 profile/context candidates (`n01`–`n32`).
+- Eight sealed checks (`t01`–`t08`).
+- `n08`, `n20`, and `n24` appear only after an authored parent answer; `n06` appears only when the respondent selects an authored tender topic.
+- Respondent route: 36–40 questions across six chapters.
+- Changing a parent answer deletes now-hidden follow-up answers, notes, Other text, and any frozen check state.
 
-- `reaction`: short literal host reflection, optional; do not generate personality claims from unsupported motives.
-- `measures`: array of `{id, value, label?}` where `value` is an ordinal/number declared in MEASURES and label is the actual selected band. Question meta owns the recall window. Do not encode unsupported midpoints as precise measurements.
-- `signals`: array of `{family, layer, value, label}`. Family: `frustration`, `worry`, `disappointment`, `embarrassment`, `guilt`, `joy`, `relief`; layer: `feeling`, `response`, `recovery`. Only literal supported fields. No automatic conversion of an action into felt intensity.
+## Evidence invariants
 
-MEASURES export: dictionary `{id:{domain,label,low,high,min,max,unit,description}}`. Ordinal axes use unit `ordinal`; endpoints describe routine/behavior, not good/bad health. Reuse a measure ID across usual/recent so display can compare windows; do not collapse windows. Direct timing/duration bands may remain facts rather than axes. Core desired axes include sleep regularity, meal routine, movement consistency, felt energy/restoration, body/skin attention; choose few well-supported measures rather than one universal health bar.
+- Opening friction, social context, goal, tender topic, challenge preference, and teaching tone are direct facts only.
+- Every narrative receipt reproduces the selected authored answer text exactly.
+- Action and motive remain separate fields from one linked event.
+- Multiple tags or linked questions from one event never count as independent corroboration.
+- A linked claim requires a literal scored receipt from every required question.
+- `other`, `skip`, and `no_example` are distinct and unscored.
+- Variable routine answers remain unknown; they are not mapped to a low score.
+- Feeling and outward response are separate. Recovery is absent unless asked directly.
+- Repeated-pattern claims require two distinct source questions, exclude linked-event dimensions, and remain provisional.
+- Every claim states evidence status, scope, alternatives, and the next useful validation.
 
-## Engine API (engine worker)
+## Frozen checks
 
-- Keep KEY, VERSION-compatible fresh/restore, selected, label, facts, evidence, profile, freeze, stats, setAnswer, exportAttempt. Existing profile may remain the legacy group array; add `portrait(state)` for UI instead of changing every legacy group consumer.
-- `buildRoute(answers)` -> `{ids, omitted:[{questionId,slotId,reason}], replacements:[{slotId,questionId}], total:64}`. Derive from answers deterministically.
-- `setAnswer(state,id,value,meta={})` mutates and returns state. Special values: `other`, `skip`, `no_example`. `meta.otherText`, `meta.note` stored separately, bounded to 1200 chars. Invalid choice/sentinel/question/route entries rejected. Holdout answered only after freeze; immutable thereafter.
-- State retains answers/notes/cursor/started/locked/testSeen; adds attemptId, other, feedback, resultHistory as needed. State cursor means route position. New versioned storage key; old raw keys stay untouched. Never imply a migrated legacy attempt fits changed question meanings.
-- `freeze(answersOrState)` returns frozen training profile, direct facts, route, evidence and predictions. Support state for metadata. `portrait(state)` returns the current frozen profile when locked or current eligible training evidence otherwise.
-- `portrait(state)` -> `{id,version,title,summary,claims,domains,emotions,facts}`. Claim `{id,text,dimension,target,confidence,evidenceIds,observations}`. Domain `{id,label,description,axes:[{id,label,low,high,min,max,unit,usual,recent,confidence,evidenceIds}]}`; usual/recent nullable `{value,label,sourceIds}`. Emotions array `{family,label,feeling:[],response:[],recovery:[]}`; each record `{value,label,questionId,window}`. Missing measures remain null. `facts` plain map (direct only).
-- `reviewClaim(state,claimId,boolean)` appends/updates versioned endorsement event with exact claim/result/evidence snapshot; does not mutate the portrait, bars, evidence weights, confidence or predictions. Existing feedback persists attached to old snapshots after answer edits.
-- `stats(state)` retains current hits/predicted/answered/abstained/skipped/baselineHits/trials names for compatibility, adds explicit eligibility/other/no-example counts as needed. No Other text scoring; holdouts never enter profile.
-- `exportAttempt` includes versioned route/omission evidence, answers/Other/notes, observations, portrait, claim reviews, and evaluation with existing prediction secrecy until checks resolved. No arbitrary internal field leakage.
+- Training answers freeze before any check is shown.
+- Check answers never enter the portrait or prediction sources.
+- Thin or tied evidence abstains.
+- Predictions are exact-option matches with fixed authored baselines; they are not calibrated probabilities.
+- Check results remain hidden until all terminal check questions are resolved.
 
-## Survey helpers / UI boundary
+## Result and continuation
 
-Engine worker exports survey helpers for root UI: `routeQuestions(state)`, `trainingQuestionsFor(state)`, `testQuestionsFor(state)`, `routeIndex(id,state)`, `nextOpenIndex(state,from=0,includeTests=false)`, `resolvedTraining(state)`, `resolvedTests(state)`, `chapterCount(state,chapterId)`, `chapterFor`, `asset`, `interpolate`, `safeTitle`, `optionText`, `applicable`, `questionStatus`, `personLabel`. Route progress uses eligible slot counts. `nextOpenIndex` never returns hidden candidates. Root will rewrite App/QuestionCard/result/dialogs to this contract.
+- The hero teaches the Switch Modes thesis while preserving the approved two-line/emphasized markup.
+- Teaching copy follows the selected tone: `understanding`, `direct`, `funny`, or `permission-first`.
+- Direct goals and preferences appear as literal context, never inferred traits.
+- The CTA previews a goal-aligned next MirrorMe step; it does not claim that benefit has already occurred.
+- True/False appends an immutable claim/evidence snapshot. It cannot rewrite the portrait, confidence, or predictions.
+
+## Storage and boundaries
+
+- State version: `genii-switch-modes.v3`.
+- Local key: `genii.switch-modes.v3`.
+- Older attempts fail closed and remain untouched under their prior key.
+- No account, backend, analytics, remote write, publication, or production migration is included.
+- No CSS, template layout, or visual asset change is authorized by this contract.
 
 ## Verification
 
-Meaningful tests: solo/no-close/unknown routing, all64slots, context edit invalidation incl notes/Other, Others/noexamples/skips distinct, usual/recent no mixing, quiet action not inferred calm feeling, feedback immutability and restore/export snapshots, holdout leakage/ties/abstention/denominators, malicious/invalid saved state and export hiding. Root browser verifies complete64flow, edits, resume, feedback, keyboard/dialogs, mobile320/390 and desktop1440, light/dark/reduced motion, storage denial. No fabricated accuracy claims.
+The source contract is enforced by `tests/bank-contract.test.mjs` and `tests/engine.test.mjs`. Release evidence must include passing tests, a production build, a changed-file scope check, literal-receipt fuzzing, and an independent read-only review.

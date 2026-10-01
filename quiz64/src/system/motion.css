@@ -1,0 +1,130 @@
+/*
+ * Round 2 motion vocabulary (LAUNCH-SPEC section 23, ruling 3; DESIGN-DIRECTION 4.6). One set of moves for every
+ * screen, so the game feels like one object:
+ *   enter   content rises 8 px and fades (mm-rise, system.css); decoration settles last (--e-settle)
+ *   press   scale 0.97, the glow tightens (--d-instant)
+ *   pick    the chosen thing bounces (mm-pick on --e-spring), fills deep violet, glows, and its check pops
+ *   hold    the pick stays on screen (--d-hold) while its shard flies to the mirror; the others recede
+ *   leave   the card lifts 8 px and fades (mm-leave, the last --d-quick of the hold)
+ * Buttons: the primary CTA glows and its glow breathes (6 s, slower than any content motion), brighter on hover and
+ * tighter on press; secondary buttons are quiet glass with the same press. Tokens only; motion off or reduced motion keeps
+ * every end state and drops the travel.
+ */
+
+:root {
+  --cta-fill: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0) 52%), var(--g-deep);
+  --cta-inset: inset 0 1px 0 rgba(255, 255, 255, 0.38), inset 0 -1px 0 rgba(23, 22, 37, 0.14);
+  --cta-glow: 0 10px 24px -10px rgba(74, 64, 200, 0.6), 0 0 18px -4px rgba(152, 141, 234, 0.55);
+  --cta-glow-hi: 0 14px 30px -10px rgba(74, 64, 200, 0.62), 0 0 34px 0 rgba(152, 141, 234, 0.62);
+  --cta-glow-press: 0 6px 14px -8px rgba(74, 64, 200, 0.7), 0 0 14px -2px rgba(152, 141, 234, 0.7);
+  --pick-ring: rgba(128, 113, 228, 0.5);
+  --pick-glow: 0 0 0 1px rgba(255, 255, 255, 0.5) inset, 0 12px 26px -10px rgba(74, 64, 200, 0.55), 0 0 22px -4px rgba(152, 141, 234, 0.7);
+  --secondary-fill: rgba(255, 255, 255, 0.78);
+  --secondary-border: rgba(179, 170, 240, 0.7);
+}
+[data-scene="night"] {
+  --secondary-fill: rgba(42, 39, 68, 0.72);
+  --secondary-border: rgba(169, 156, 245, 0.45);
+  --pick-ring: rgba(169, 156, 245, 0.55);
+}
+
+/* ---------- Primary CTA: glowing and breathing ---------- */
+/* No moving sheen: Chrome scores a sweep across a button (by transform, background-position or an animated gradient
+   stop) as a layout shift on every frame, and CLS stays 0. */
+/* The glow breathes on its own layer by opacity only (::before, an outer shadow around the button's own box), so the
+   button's painted bounds never change while it breathes: no layout shift, no paint of the page behind it. */
+.mm-btn--primary {
+  isolation: isolate;
+  background: var(--cta-fill);
+  box-shadow: var(--cta-inset), var(--cta-glow);
+}
+.mm-btn--primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  box-shadow: var(--cta-glow-hi);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--d-quick) var(--e-out);
+}
+.mm-btn--primary:hover:not(:disabled)::before { opacity: 1; }
+.mm-btn--primary:active:not(:disabled) {
+  transform: scale(0.97);
+  box-shadow: var(--cta-inset), var(--cta-glow-press);
+}
+
+/* ---------- Secondary: quiet glass, same press ---------- */
+.mm-btn--glass,
+.mm-btn--outline {
+  background: var(--secondary-fill);
+  box-shadow: inset 0 0 0 1px var(--secondary-border), var(--e1);
+}
+.mm-btn--outline {
+  color: var(--c-violet-text);
+}
+.mm-btn--glass:hover:not(:disabled),
+.mm-btn--outline:hover:not(:disabled) {
+  box-shadow: inset 0 0 0 1px var(--c-violet-300), var(--e2);
+  transform: translateY(-1px);
+}
+.mm-btn--glass:active:not(:disabled),
+.mm-btn--outline:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body:not([data-motion="off"]) .mm-btn--primary:not(:disabled)::before {
+    animation: mm-glow-breathe var(--d-loop-bob) var(--e-in-out) var(--d-scene) infinite alternate;
+  }
+  body:not([data-motion="off"]) .mm-btn--primary:hover:not(:disabled)::before,
+  body:not([data-motion="off"]) .mm-btn--primary:active:not(:disabled)::before {
+    animation: none;
+  }
+}
+
+/* ---------- Shared keyframes (every package may use them) ---------- */
+/* A glow layer breathes (opacity only; 6 s, alternate). */
+@keyframes mm-glow-breathe {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+/* The pick: a haptic-like bounce (run it on --e-spring, which overshoots and settles). */
+@keyframes mm-pick {
+  from { transform: scale(0.955); }
+  to { transform: none; }
+}
+/* A ring ripples out from the picked thing (animate a ::after with inset 0 and the element's radius). */
+@keyframes mm-ripple {
+  from { opacity: 0.9; transform: scale(1); box-shadow: 0 0 0 0 var(--pick-ring); }
+  to { opacity: 0; transform: scale(1.06); box-shadow: 0 0 0 10px transparent; }
+}
+/* A check or stamp pops in (on --e-spring). */
+@keyframes mm-check {
+  from { opacity: 0; transform: scale(0.3) rotate(-24deg); }
+  to { opacity: 1; transform: none; }
+}
+/* Glass arriving (on --e-settle). */
+@keyframes mm-arrive {
+  from { opacity: 0; transform: translateY(14px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+/* The card leaving after the hold. */
+@keyframes mm-leave {
+  to { opacity: 0; transform: translateY(-8px) scale(0.985); }
+}
+/* A soft flash when a shard lands in a mirror. */
+@keyframes mm-catch {
+  0% { transform: scale(1); filter: brightness(1); }
+  35% { transform: scale(1.22); filter: brightness(1.5) drop-shadow(0 0 8px var(--c-violet-300)); }
+  100% { transform: scale(1); filter: brightness(1); }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :root { --secondary-fill: var(--c-surface-solid); }
+  [data-scene="night"] { --secondary-fill: var(--n-700); }
+}
+@media (forced-colors: active) {
+  .mm-btn--primary { background: ButtonFace; }
+}

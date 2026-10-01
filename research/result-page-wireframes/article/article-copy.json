@@ -1,0 +1,66 @@
+{
+  "_note": "NEW copy for the Evidence Article (not in library.json yet). Every entry has both voices. Frames only: no line here makes a claim about the player by itself; claims come from library lines picked by evidence. Placeholders in braces are filled from data.json. crossover is the one new library table (36 cells when complete; the cells below are the ones the demo player needs plus two spares).",
+  "readTime": { "fun": "About four minutes", "heart": "About four minutes, at your pace" },
+  "cover": {
+    "dek": { "fun": "Forty answers, one read. The story was the trailer. This is the long version.", "heart": "Forty answers, read slowly. The story was the first look. This is the long version, yours to keep." },
+    "issue": { "fun": "The issue about you", "heart": "The issue about you" }
+  },
+  "contents": { "fun": "In this issue", "heart": "Inside" },
+  "lede": { "fun": "The short version", "heart": "The short version" },
+  "sheet": {
+    "title": { "fun": "The character sheet", "heart": "Your six stats, up close" },
+    "intro": { "fun": "Six stats, two ends each. Here's where you land, and what the other end looks like, so you can spot it in your friends.", "heart": "Six stats, each with two ends. Here's where you sit on each one, and what the other side looks like, so you can recognize it in the people you love." },
+    "yours": { "fun": "Your end", "heart": "Your side" },
+    "other": { "fun": "The other end", "heart": "The other side" },
+    "showOther": { "fun": "Show the other end", "heart": "See the other side" }
+  },
+  "core": {
+    "title": { "fun": "Your core traits, and where they come from", "heart": "Your core traits, and what's behind them" },
+    "from": { "fun": "Comes from", "heart": "Grows from" },
+    "statFrom": { "fun": "your {stat} stat, {end}", "heart": "your {stat} stat, {end}" }
+  },
+  "rooms": {
+    "intro": { "fun": "Same person, different rooms. Here's how you show up in each one you walked through.", "heart": "You're the same person everywhere, but each room brings out something. Here's what came through in each." },
+    "flipTitle": { "fun": "The room where you flip", "heart": "The room where you change" },
+    "flipLine": { "fun": "Everywhere else you lean {overall}. {room}, you're {roomEnd}.", "heart": "Most of the time you lean {overall}. {room}, you lean {roomEnd}, and that's worth knowing." }
+  },
+  "said": {
+    "title": { "fun": "What you'd say, if you said it", "heart": "Things your heart already knows" },
+    "intro": { "fun": "Nobody says these out loud. So here they are, in your voice.", "heart": "The quiet things underneath the traits, in words that sound like you." }
+  },
+  "stings": {
+    "intro": { "fun": "Everyone has a part like this. Here's yours, out in the open, because it's more charming than you think.", "heart": "Everyone carries a part like this. Here's yours, said gently and out in the open." }
+  },
+  "record": {
+    "title": { "fun": "The record", "heart": "The record" }
+  },
+  "sides": {
+    "title": { "fun": "Your two sides at one table", "heart": "Where your two sides meet" },
+    "intro": { "fun": "{people} and {life} live in the same body. Here's where they team up, and where they argue.", "heart": "{people} and {life} are both you. Here's where they help each other, and where they pull in different directions." },
+    "team": { "fun": "Where they team up", "heart": "Where they help each other" },
+    "clash": { "fun": "Where they argue", "heart": "Where they pull apart" }
+  },
+  "crossover": {
+    "R3-|L3-": { "type": "team", "fun": "You don't follow scripts, and you can tell when a rule is hurting someone. Put together, you're the one who rewrites the plan so it works for everyone in it.", "heart": "You make your own way, and you notice when a rule is hurting someone. Together, that makes you the one who quietly rewrites the plan so it fits the people in it." },
+    "R2-|L2+": { "type": "clash", "fun": "You're soft on everyone's feelings and hard on your own goals. Everyone gets your patience except you.", "heart": "You're gentle with everyone else and demanding with yourself. The kindness you give so easily is the kindness you're slowest to give you." },
+    "R1+|L2+": { "type": "clash", "fun": "You want everyone at the table, and you also want the win. Some weeks the group chat loses to the goal, and you feel it.", "heart": "You want your people close, and you want to get somewhere. Some weeks one of them has to wait, and you feel it either way." },
+    "R2-|L3-": { "type": "team", "fun": "You read the room and you say things kindly. People walk out of hard conversations with you feeling better than they walked in.", "heart": "You notice what people need and you speak with care. Hard conversations with you tend to end softer than they started." }
+  },
+  "party": {
+    "title": { "fun": "Your people, sorted", "heart": "Who you'd find your way to" },
+    "clickLabel": { "fun": "You click with", "heart": "You'd feel at home with" },
+    "click": { "fun": "They're you, on the day your wild card swings the other way.", "heart": "They're who you are on the days your closest call goes the other way." },
+    "oppositeLabel": { "fun": "Your opposite", "heart": "Your opposite" },
+    "opposite": { "fun": "Everything you lean, they lean the other way. Know one? Send them this.", "heart": "Where you lean one way, they lean the other. If you know one, they'd love to see this." }
+  },
+  "bio": {
+    "title": { "fun": "Your one-line bio", "heart": "A line for your bio" },
+    "copy": { "fun": "Copy", "heart": "Copy" },
+    "copied": { "fun": "Copied", "heart": "Copied" }
+  },
+  "closing": { "fun": "That's the long version. The short one fits on a card, and the real test is whether your friends can guess it.", "heart": "That's you, read slowly. The short version fits on a card, and the people who love you can find out how well they know it." },
+  "voice": { "fun": "Make it fun", "heart": "Heart to heart" },
+  "saveStory": { "fun": "Save as a story", "heart": "Keep this one" },
+  "fog": { "fun": "Wipe the glass", "heart": "Clear the glass gently" },
+  "flipHint": { "fun": "Hold to turn it around", "heart": "Hold to turn it around" }
+}

@@ -1,0 +1,664 @@
+// The final screen as Stories (LAUNCH-SPEC sections 21 to 23). A pure projection: result + profile + sealed check +
+// library in, twelve screens out. Nothing here quotes an answer, shows an id, a number or a score on a main screen, or
+// uses the words the spec keeps off the page (the guess screen is the one place a count is allowed). Every line shown
+// is picked from the player's own evidence: the halves and the six leans from the profile's poles, the findings and
+// the rooms from the strength of the evidence behind them, the traits from the shown tags, the insight from a real
+// believe-versus-did split, the calls from the guesses Genii locked before the final cards. Library fields are read
+// defensively so the screen works on the 2026-09-26 library (desc, heart) and on the Build C library.
+
+import { HALVES, bothEnds, endOf, statOf, statRow } from "../stats.js";
+import { comboLine } from "../combo-lines.js";
+import { dramaStats, dumpStat, lineSide, topFour, topStat } from "../rpg-stats.js";
+
+export const VOICES = Object.freeze(["fun", "heart", "cards"]);
+export const STORY_IDS = Object.freeze(["intro", "names", "read", "map", "knows", "rooms", "insight", "traits", "stings", "calls", "share", "app"]);
+
+// Placeholder until the public app link is decided (FACT-SHEET pending item 2). Swap here only.
+export const APP_LINK = "#get-mirrormii";
+// The address printed at the foot of the share image. Placeholder until the game link is decided (the brand site
+// for now). No digits: the share image carries no numbers.
+export const SHARE_URL_LABEL = "mirrormii.ai";
+
+// How each screen is lit (DESIGN-DIRECTION 5.12, round 2): night for the reveal, the map and the stings, the player's
+// light (Day or Dusk) for the read, the rooms, the traits and the card, the deep gradient for the findings, the
+// insight, the calls and the app. Light and dark alternate so every tap changes the room.
+export const LOOKS = Object.freeze({ intro: "night", names: "night", read: "light", map: "night", knows: "deep", rooms: "light", insight: "deep", traits: "light", stings: "night", calls: "deep", share: "light", app: "deep" });
+
+// Interface strings for the result. Every label here passed the cold-reader gate (LAUNCH-SPEC 26, docs/NAMING-RULES.md,
+// docs/NAMING-PANEL.json): a stranger gets it at a glance, nothing is a metaphor to decode, nothing labels a belief.
+// Labels are the same in both voices; only full sentences change with the voice.
+export const UI_COPY = Object.freeze({
+  hold: "Tap to continue",
+  shareFormats: { story: "For stories", post: "For posts" },
+  shareThemes: { night: "Dark", day: "Light" },
+  shareImage: "Share image",
+  saveImage: "Save image",
+  saveForMe: "Save to my phone",
+  copyLink: "Copy link",
+  copied: "Copied",
+  shareSheet: "Share this screen",
+  stingsSheet: "Save to my phone",
+  stingsNote: "This screen stays off share cards. You can keep a copy for yourself.",
+  privateTrait: "Not on your share card",
+  opposite: (a, b) => `Your opposite: ${a} and ${b}. Know one?`,
+  yourData: "See or delete your data",
+  dataTitle: "See or delete your data",
+  saving: "Saving your image",
+  saveFailed: "The image couldn't be made in this browser.",
+  invite: "How well do you know me?",
+  tap: "Next",
+});
+
+// The lobby's "How should Genii talk to you?" tap. Old runs carry no voice; they read as Make it fun.
+export function voiceOf(lobby) {
+  const v = lobby && typeof lobby === "object" ? lobby.voice : null;
+  return VOICES.includes(v) ? v : "fun";
+}
+// "Just the cards" uses Make it fun wording (section 22).
+export const wordingFor = (voice) => (voice === "heart" ? "heart" : "fun");
+
+// Labels shared by both voices.
+const LABELS = {
+  levels: { 1: "A little", 2: "Somewhat", 3: "Moderately", 4: "Strongly", 5: "Very strongly", both: "Right in the middle", open: "Not enough answers yet" },
+  signature: "Your strongest stat", wild: "Closest to the middle",
+  tiers: { clear: "Came through clearly", sharp: "Genii is fairly sure", forming: "Genii has a hunch", flex: "Genii can't tell yet" },
+  status: { hit: "Guessed right", near: "Close, not exact", miss: "Surprised Genii", pass: "No guess", skipped: "You skipped", unanswered: "You skipped" },
+};
+
+export const STORY_COPY = Object.freeze({
+  fun: {
+    intro: { kicker: "Your result is ready", title: "40 answers in. Here are your results.", sub: "Press and hold, then let go." },
+    names: { kicker: "You are", people: HALVES.people.kicker, life: HALVES.life.kicker, traits: "Core traits", sub: null },
+    read: { kicker: "The short version" },
+    // Story 4: the drama stats (2026-09-30). Four stat blocks and a link to all six; the six axes behind them stay
+    // internal (people, life, levels, open and the two marks feed the article's traits, the knows screen and records).
+    map: {
+      kicker: "Your stats", title: "Where you max out", surprise: "Most surprising", more: "See all six in the long version",
+      people: HALVES.people.kicker, life: HALVES.life.kicker,
+      levels: LABELS.levels,
+      signature: LABELS.signature, wild: LABELS.wild,
+      signatureNote: "The stat you lean on most.", wildNote: "You sit near the middle here. It can go either way.",
+      open: "Not enough cards to call this one yet.",
+    },
+    knows: {
+      kicker: "What Genii is surest about",
+      title: "What stood out most",
+      tiers: LABELS.tiers,
+      short: LABELS.tiers,
+      surest: "Top finding",
+      both: "Both",
+    },
+    rooms: { kicker: "In different parts of life", title: "How you act in each part of life", differs: "Unusual for you" },
+    traits: { kicker: "Core traits", title: "Words that describe you" },
+    insight: { kicker: "A surprise about you" },
+    stings: { kicker: null, title: "Every strength has a flip side", badge: null },
+    calls: {
+      kicker: "Genii guessed your answers",
+      intro: "Before your last cards, Genii locked in a guess for each one.",
+      titles: { most: "Genii got most of your answers right.", half: "Genii got more than half right.", even: "Genii got half of your answers right.", some: "You kept Genii guessing.", none: "Genii made no guesses this time." },
+      of: "guessed right",
+      status: LABELS.status,
+      key: null,
+      more: "See each guess",
+    },
+    share: { kicker: "Your card", brand: "Genii · MirrorMii", sub: "Your friends guess your answers. Find out who knows you best.", challenge: "Let a friend guess your answers" },
+    app: {
+      kicker: null,
+      title: "Genii read you. Now meet your Miia.",
+      body: "MirrorMii is the cozy game where your real day powers the island. Snap a moment, and Miia, your digital twin, lives it.",
+      button: "Get MirrorMii",
+      store: "On the App Store",
+      note: "Free to join, no credit card.",
+      snap: "You snap lunch",
+      lives: "Your in-game self eats it too",
+    },
+    noTraits: {
+      rushed: "You played this one fast. Traits land when you take your time, so a slower run brings them out.",
+      thin: "You kept a lot of cards to yourself, so Genii kept its traits to itself too.",
+    },
+  },
+  heart: {
+    intro: { kicker: "Your result is ready", title: "40 answers in. Here are your results.", sub: "Press and hold, then let go." },
+    names: { kicker: "You are", people: HALVES.people.kicker, life: HALVES.life.kicker, traits: "Core traits", sub: null },
+    read: { kicker: "The short version" },
+    map: {
+      kicker: "Your stats", title: "Where you shine most", surprise: "Most surprising", more: "See all six in the long version",
+      people: HALVES.people.kicker, life: HALVES.life.kicker,
+      levels: LABELS.levels,
+      signature: LABELS.signature, wild: LABELS.wild,
+      signatureNote: "The stat you lean on most.", wildNote: "You sit near the middle here. It can go either way.",
+      open: "This one needs a few more answers before it's clear.",
+    },
+    knows: {
+      kicker: "What Genii is surest about",
+      title: "What stood out most",
+      tiers: LABELS.tiers,
+      short: LABELS.tiers,
+      surest: "Top finding",
+      both: "Both",
+    },
+    rooms: { kicker: "In different parts of life", title: "How you act in each part of life", differs: "Unusual for you" },
+    traits: { kicker: "Core traits", title: "Words that describe you" },
+    insight: { kicker: "A surprise about you" },
+    stings: { kicker: null, title: "Every strength has a flip side", badge: null },
+    calls: {
+      kicker: "Genii guessed your answers",
+      intro: "Before your last cards, Genii quietly locked in a guess for each one.",
+      titles: { most: "Genii understood you well.", half: "Genii got more than half right.", even: "Genii got half of your answers right.", some: "You kept Genii guessing.", none: "Genii made no guesses this time." },
+      of: "guessed right",
+      status: LABELS.status,
+      key: null,
+      more: "See each guess",
+    },
+    share: { kicker: "Your card", brand: "Genii · MirrorMii", sub: "Your friends guess your answers. Find out who knows you best.", challenge: "Let a friend guess your answers" },
+    app: {
+      kicker: null,
+      title: "You've met Genii. Now meet your Miia.",
+      body: "MirrorMii is a cozy game where your real day powers the island. Snap small moments, and Miia, your digital twin, lives them.",
+      button: "Get MirrorMii",
+      store: "On the App Store",
+      note: "Free to join, no credit card.",
+      snap: "You snap lunch",
+      lives: "Your in-game self eats it too",
+    },
+    noTraits: {
+      rushed: "You moved quickly through this one. Traits show up when you linger, so a slower run lets them come through.",
+      thin: "You kept a lot of cards to yourself, and that's fine. Genii keeps its traits for the answers you share.",
+    },
+  },
+});
+
+export const GUESS_COPY = Object.freeze({
+  button: "See Genii's guesses",
+  title: "See Genii's guesses",
+  intro: "Before your last eight cards, Genii wrote down a guess for each one.",
+  none: "Genii made no guesses this time.",
+  status: { hit: "Guessed right", miss: "Genii missed", pass: "No guess", skipped: "You skipped", unanswered: "You skipped" },
+});
+
+const str = (v) => (typeof v === "string" && v.trim() ? v : null);
+function pickVal(v, wording) {
+  if (str(v)) return v;
+  if (v && typeof v === "object") return wording === "heart" ? str(v.h) || str(v.heart) || str(v.fun) || str(v.t) : str(v.fun) || str(v.t) || str(v.text);
+  return null;
+}
+
+// One library line in the chosen voice. Fields are tried in order; for each, Heart to heart reads entry.h[field]
+// before entry[field]. A field may also be a { fun, heart } or { t, h } pair.
+export function voiced(entry, fields, wording) {
+  if (!entry || typeof entry !== "object") return null;
+  for (const f of Array.isArray(fields) ? fields : [fields]) {
+    if (wording === "heart" && entry.h && typeof entry.h === "object") {
+      const hv = pickVal(entry.h[f], "heart");
+      if (hv) return hv;
+    }
+    const v = pickVal(entry[f], wording);
+    if (v) return v;
+  }
+  return null;
+}
+
+// Where the dot sits between the two pole words, in percent from the minus word. Decided sides stay on their side,
+// flex sits near the middle, unfinished sits dead center.
+export function dotPosition(row) {
+  if (row.unfinished) return 50;
+  const norm = typeof row.norm === "number" && Number.isFinite(row.norm) ? Math.max(-1, Math.min(1, row.norm)) : row.sign * 0.5;
+  let pos = 50 + norm * 42;
+  if (row.flex) pos = Math.max(43, Math.min(57, pos));
+  else if (row.sign > 0) pos = Math.max(62, pos);
+  else pos = Math.min(38, pos);
+  return Math.round(Math.max(8, Math.min(92, pos)));
+}
+
+// A type code for the sigil art, with spaces instead of the middle dot: the dotted code is an internal id and never
+// reaches the page, even in an attribute.
+export function sigilCode(code) {
+  return String(code || "").split(/[·|.\s/]+/).filter(Boolean).join(" ");
+}
+
+const POLE_OPPOSITE = { We: "Me", Me: "We", Direct: "Soft", Soft: "Direct", Classic: "Own", Own: "Classic", Steady: "Venture", Venture: "Steady", Push: "Easy", Easy: "Push", Rules: "Context", Context: "Rules" };
+// The pairing hook (DESIGN-DIRECTION section 8 D3): every pole flipped, named from the library. Null when either half
+// has no clean opposite.
+export function oppositeOf(lib, relCode, lifeCode) {
+  const flip = (code) => String(code || "").split("·").map((p) => POLE_OPPOSITE[p] || null);
+  const find = (list, code) => {
+    const poles = flip(code);
+    if (!poles.length || poles.some((p) => !p)) return null;
+    const hit = (list || []).find((x) => x.code === poles.join("·"));
+    return hit && str(hit.name) ? hit.name : null;
+  };
+  const a = find(lib && lib.relationship, relCode);
+  const b = find(lib && lib.life, lifeCode);
+  return a && b ? [a, b] : null;
+}
+
+// The insight flip (story 6): the first sentence is the belief, the rest answers it. One sentence: no split.
+export function splitInsight(line) {
+  const text = String(line || "").trim();
+  const m = /^(.+?[.!?])\s+(\S.*)$/.exec(text);
+  if (!m) return { belief: text, behavior: null };
+  return { belief: m[1], behavior: m[2] };
+}
+
+// ---------------------------------------------------------------- evidence strength (no number ever reaches a screen)
+
+const sign = (x) => (x > 0 ? 1 : x < 0 ? -1 : 0);
+const round2 = (x) => Math.round(x * 100) / 100;
+// How clearly one lean came through: how far it leans, discounted when few cards carried it. 0 to 1.
+export function axisClarity(norm, cards = 4) {
+  const n = typeof norm === "number" && Number.isFinite(norm) ? Math.min(1, Math.abs(norm)) : 0;
+  return round2(n * (1 - Math.exp(-Math.max(0, cards) / 3)));
+}
+// How clearly one trait came through: net support against its pair, discounted when few cards carried it.
+export function tagClarity(net, cards = 2) {
+  const n = typeof net === "number" && Number.isFinite(net) ? Math.max(0, Math.min(1, net / 4.5)) : 0;
+  return round2(n * (1 - Math.exp(-Math.max(0, cards) / 2.5)));
+}
+// The visual cue: three facets lit, two, or one. Flex has its own two-sided cue.
+export function clarityLevel(clarity) {
+  return clarity >= 0.5 ? 3 : clarity >= 0.3 ? 2 : 1;
+}
+const TIER_OF = { 3: "clear", 2: "sharp", 1: "forming" };
+
+// ---------------------------------------------------------------- the character sheet (round 3, LAUNCH-SPEC 24)
+// Jerry, 2026-09-29 night: "62% Wanderlust" confused players, so no percentage reaches a player surface. Each stat reads
+// like a game character sheet instead: your end, five pips, a level word and one plain line. The pips come straight
+// from the stat's own score: |norm| is how far the answers on that stat lean, from 0 (dead even) to 1 (every card the
+// same way). Below the scorer's flex band (0.12) the stat reads "Both" with split pips. Few cards cap the reading at
+// three pips: a strong lean on two cards is clear, not off the charts.
+export const PIP_CUTS = Object.freeze([0.25, 0.45, 0.65, 0.85]);
+export function statLevel({ norm, cards = 4, flex = false, unfinished = false } = {}) {
+  if (unfinished) return { pips: 0, level: "open", band: null };
+  if (flex) return { pips: 0, level: "both", band: "both" };
+  const n = typeof norm === "number" && Number.isFinite(norm) ? Math.min(1, Math.abs(norm)) : 0.5;
+  let pips = 1 + PIP_CUTS.filter((c) => n >= c).length;
+  if (typeof cards === "number" && cards < 3) pips = Math.min(pips, 3);
+  return { pips, level: pips, band: pips >= 4 ? "strong" : pips === 3 ? "clear" : "light" };
+}
+// The plain line for one end at one band, in voice (library axes[].sheet, h.sheet for Heart to heart).
+export function sheetLine(meta, end, band, wording) {
+  const sh = (wording === "heart" && meta && meta.h && meta.h.sheet) || (meta && meta.sheet) || null;
+  if (!sh || !band) return null;
+  if (band === "both") return str(sh.both);
+  return sh[end] ? str(sh[end][band]) : null;
+}
+
+// Core traits (round 3): five to six keywords, each backed by a top trait (the scorer's shown tags, rank order) or by
+// one of the strongest stat ends (three pips or more; two pips only to reach five). Tags and stats alternate, a tag
+// first; a keyword never repeats. Marriage and kids tags stay on the owner's screen, marked, and never reach anything
+// shareable.
+export const CORE_MAX = 6;
+export function coreTraits(tags, rows, tagLib) {
+  const tagItems = tags.map((t) => {
+    const lt = tagLib[t.key] || {};
+    // A library without keywords (before round 3) lets the trait's own name stand in.
+    const keyword = str(lt.keyword) || str(t.name);
+    return keyword ? { key: `tag:${t.key}`, kind: "tag", tag: t.key, keyword, source: t.name, line: t.line, chapter: t.chapter, private: t.private } : null;
+  }).filter(Boolean);
+  // The source names the end only: the old stat names no longer render (drama stats, 2026-09-30).
+  const statItem = (r) => ({ key: `stat:${r.key}`, kind: "stat", axis: r.key, keyword: r.keyword, source: r.leadEnd, line: r.note, chapter: null, private: false, pips: r.pips });
+  const decided = rows.filter((r) => !r.flex && !r.unfinished && str(r.keyword) && r.pips >= 2)
+    .map((r, i) => ({ r, i }))
+    .sort((a, b) => b.r.pips - a.r.pips || b.r.strength - a.r.strength || a.i - b.i)
+    .map(({ r }) => r);
+  // A top trait that restates a stat end (library `echo`, e.g. No sugarcoating and Blunt) keeps that end out.
+  const echoed = new Set(tags.map((t) => str((tagLib[t.key] || {}).echo)).filter(Boolean));
+  const endKey = (r) => `${r.key}:${r.side === "right" ? "plus" : "minus"}`;
+  const statItems = decided.filter((r) => r.pips >= 3 && !echoed.has(endKey(r))).map(statItem);
+  const out = [];
+  const seen = new Set();
+  const add = (it) => { const k = it.keyword.toLowerCase(); if (out.length < CORE_MAX && !seen.has(k)) { seen.add(k); out.push(it); } };
+  for (let i = 0; i < Math.max(tagItems.length, statItems.length); i++) {
+    if (tagItems[i]) add(tagItems[i]);
+    if (statItems[i]) add(statItems[i]);
+  }
+  if (out.length < 5) for (const r of decided.filter((x) => x.pips === 2 && !echoed.has(endKey(x)))) if (out.length < 5) add(statItem(r));
+  return out;
+}
+
+// The rooms a player walked through, each read from that room's own answers (LAUNCH-SPEC 23): for every chapter the
+// lean with the clearest local evidence (two cards or more, leaning at least 0.3 of the way) that the library has a
+// line for; with none, a trait from that chapter that fired or leaned but did not make the top traits. Love, work and
+// home come first (the rooms the player opened), then friends, money, phone and play.
+export const ROOM_ORDER = Object.freeze([3, 5, 6, 2, 4, 1, 7]);
+export function roomsFor(profile, chapterOf, lib) {
+  const out = [];
+  if (!profile || typeof chapterOf !== "function" || !lib || !lib.rooms) return out;
+  const axes = profile.axes || {};
+  const tags = profile.tags || {};
+  const shown = new Set(profile.shownTags || []);
+  for (const ch of ROOM_ORDER) {
+    const copy = lib.rooms[ch] || lib.rooms[String(ch)];
+    if (!copy) continue;
+    let best = null;
+    for (const [ax, a] of Object.entries(axes)) {
+      if (!copy[ax] || !a || !Array.isArray(a.evidence)) continue;
+      const ev = a.evidence.filter((e) => e && e.w > 0 && chapterOf(e.card) === ch);
+      const cards = new Set(ev.map((e) => e.card)).size;
+      if (cards < 2) continue;
+      const sum = ev.reduce((t, e) => t + e.w * e.v, 0);
+      const max = ev.reduce((t, e) => t + Math.abs(e.w) * 2, 0);
+      const norm = max ? sum / max : 0;
+      if (Math.abs(norm) < 0.3) continue;
+      const clarity = axisClarity(norm, cards);
+      if (!best || clarity > best.clarity) {
+        best = { chapter: ch, kind: "axis", axis: ax, sign: sign(sum), clarity, cards, differs: !a.flex && !a.unfinished && sign(sum) !== a.pole };
+      }
+    }
+    if (!best) {
+      const cand = Object.entries(tags)
+        .filter(([id, t]) => t && t.chapter === ch && (t.fired || t.floorOk) && !shown.has(id))
+        .sort((x, y) => y[1].net - x[1].net || x[0].localeCompare(y[0]))[0];
+      if (cand) best = { chapter: ch, kind: "tag", tag: cand[0], clarity: tagClarity(cand[1].net, cand[1].cards), cards: cand[1].cards, differs: false };
+    }
+    if (best) out.push(best);
+  }
+  return out;
+}
+
+const NUMBER_WORDS = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
+
+// Screen data for one finished run.
+//   result: score-core buildResult output; profile: buildProfile output (axes, tags, splits, counts; may be partial)
+//   sealed: checkSealed output or null; lib: library.json; voice: "fun" | "heart" | "cards"
+//   promptFor(cardId): the sealed card's prompt in this voice, for the guess sheet
+//   callFor(cardId): { topic, pole } for a locked guess: the card's situation in a few words, and the pole Genii
+//     guessed on the card's main axis (plus or minus), or null
+//   chapterOf(cardId): the chapter a scored card belongs to, for the rooms screen
+//   mirror: { seed, filled: [{ chapter }] } for the reveal art (the run id and the answered cards in order), or null
+//   lines: the story line per archetype pair (combo-lines.js COMBO_LINES), or null to use the people half's read
+export function buildStories({ result, profile = {}, sealed = null, lib, voice = "fun", promptFor = null, callFor = null, chapterOf = null, mirror = null, lines = null }) {
+  const wording = wordingFor(voice);
+  const C = STORY_COPY[wording];
+  const L = lib || {};
+  const P = profile || {};
+  const axisMeta = Object.fromEntries((L.axes || []).map((a) => [a.id, a]));
+  const tagLib = Object.fromEntries((L.tags || []).map((t) => [t.id, t]));
+  const halfOf = (side) => (result.halves || []).find((h) => h.side === side) || { side, name: "", desc: "", axes: [] };
+  const libHalf = (h) => ((h.side === "relationship" ? L.relationship : L.life) || []).find((x) => x.code === h.code) || h;
+
+  const relH = halfOf("relationship");
+  const lifeH = halfOf("life");
+  const relL = libHalf(relH);
+  const lifeL = libHalf(lifeH);
+  // Every title card shows the half's kicker, the archetype name and the one plain line that defines it (section 26).
+  const half = (h, l, label) => ({
+    label, name: str(l.name) || h.name, code: sigilCode(h.code),
+    define: voiced(l, ["define"], wording) || "",
+    read: voiced(l, ["read", "desc"], wording) || h.desc || "",
+    desc: voiced(l, ["desc"], wording) || h.desc || "",
+  });
+  const people = half(relH, relL, C.names.people);
+  const life = half(lifeH, lifeL, C.names.life);
+  // Decision 1a (2026-09-30): one title, not two stacked names. The people archetype is the title; under it, one story
+  // line that merges both halves (names-64.json, per pair and voice). A pair without a line falls back to the people
+  // half's own read.
+  const pairLine = comboLine(lines, relH.code, lifeH.code, wording);
+  const title = { label: people.label, name: people.name, line: pairLine || people.read || "", from: pairLine ? "combo" : "read" };
+
+  // The six leans, people side then life side. The pole always comes from the profile (or, with no profile, from the
+  // half's own row), so the map, the findings and the names can never disagree.
+  const mapHalf = (h) => (h.axes || []).map((row) => {
+    const meta = axisMeta[row.axis] || {};
+    const p = (P.axes || {})[row.axis] || {};
+    const s = typeof p.pole === "number" ? p.pole : row.pole === meta.minus ? -1 : 1;
+    const r = { key: row.axis, left: meta.minus || "", right: meta.plus || "", sign: s, flex: Boolean(row.flex), unfinished: Boolean(row.unfinished), norm: p.norm };
+    const strength = r.unfinished || r.flex ? 0 : Math.abs(typeof p.norm === "number" ? p.norm : 0.5);
+    // The facet reads lean from minus (-1) to plus (+1); a decided side never sits closer to the middle than a flex one.
+    const lean = r.unfinished || r.flex ? 0 : s * Math.max(0.3, Math.min(1, strength || 0.5));
+    const clarity = r.unfinished ? 0 : r.flex ? 0.1 : axisClarity(typeof p.norm === "number" ? p.norm : 0.5, typeof p.cards === "number" ? p.cards : 4);
+    const pos = dotPosition(r);
+    const lead = s > 0 ? r.right : r.left;
+    // The character sheet: pips and a level word from the stat's own score, one plain line for that end and level.
+    const lv = statLevel({ norm: typeof p.norm === "number" ? p.norm : undefined, cards: typeof p.cards === "number" ? p.cards : 4, flex: r.flex, unfinished: r.unfinished });
+    const end = s > 0 ? "plus" : "minus";
+    const note = r.unfinished ? C.map.open
+      : sheetLine(meta, end, lv.band, wording) || (r.flex ? voiced(L.flex, "line", wording) : voiced(meta, s > 0 ? "plusLine" : "minusLine", wording)) || "";
+    return {
+      key: r.key, left: r.left, right: r.right, side: s > 0 ? "right" : "left", flex: r.flex, unfinished: r.unfinished, pos, strength, lean, clarity,
+      lead, other: s > 0 ? r.left : r.right,
+      // What the player sees: the game stat, its two ends (first pole on the left) and the end they lean to.
+      ...statRow(r.key, { lead: r.flex || r.unfinished ? null : lead, pos }),
+      line: voiced(meta, s > 0 ? "plusLine" : "minusLine", wording),
+      pips: lv.pips, levelKey: lv.level, band: lv.band, level: C.map.levels[lv.level] || "", split: r.flex, note,
+      keyword: r.flex || r.unfinished ? null : str(meta[s > 0 ? "plusKeyword" : "minusKeyword"]),
+      badge: null,
+    };
+  });
+  const mapGroups = [
+    { label: C.map.people, rows: mapHalf(relH) },
+    { label: C.map.life, rows: mapHalf(lifeH) },
+  ];
+  const allRows = mapGroups.flatMap((g) => g.rows);
+  // The hook MBTI doesn't have: the signature stat (the strongest lean: most pips, then the lean itself, then the
+  // cards behind it) and the wild card (the stat closest to both: a flex first, else the weakest decided lean at three
+  // pips or fewer). Each is marked on its row; with fewer than two decided or flex stats there is no wild card.
+  const decidedRows = allRows.map((r, i) => ({ r, i })).filter(({ r }) => !r.flex && !r.unfinished);
+  const sigRow = decidedRows.slice().sort((a, b) => b.r.pips - a.r.pips || b.r.strength - a.r.strength || (((P.axes || {})[b.r.key] || {}).cards || 0) - (((P.axes || {})[a.r.key] || {}).cards || 0) || a.i - b.i)[0];
+  const flexRows = allRows.map((r, i) => ({ r, i })).filter(({ r }) => r.flex && !r.unfinished)
+    .sort((a, b) => Math.abs(((P.axes || {})[a.r.key] || {}).norm || 0) - Math.abs(((P.axes || {})[b.r.key] || {}).norm || 0) || a.i - b.i);
+  const weak = decidedRows.filter(({ r }) => r.pips <= 3 && (!sigRow || r !== sigRow.r)).sort((a, b) => a.r.pips - b.r.pips || a.r.strength - b.r.strength || a.i - b.i);
+  const wildRow = flexRows[0] || (decidedRows.length >= 2 ? weak[0] : null) || null;
+  const mark = (x, badge, label, note) => {
+    if (!x) return null;
+    x.r.badge = badge;
+    return { key: x.r.key, stat: x.r.stat, end: x.r.flex ? bothEnds(x.r.a, x.r.b) : x.r.leadEnd, label, note };
+  };
+  const signature = mark(sigRow, "signature", C.map.signature, C.map.signatureNote);
+  const wild = mark(wildRow, "wild", C.map.wild, C.map.wildNote);
+  const facet = allRows.map((r) => ({ key: r.key, lean: r.lean, flex: r.flex, unfinished: r.unfinished, plus: endOf(r.right), minus: endOf(r.left) }));
+
+  // The drama stats (Jerry, 2026-09-30): six numbers from 1 to 20, each a fixed mix of this profile's leans and traits
+  // (rpg-stats.js). Story 4 shows four blocks: the three highest and the most surprising one (else the fourth highest),
+  // each with its short line; the article shows all six with the top stat and the dump stat lines.
+  const dramaCopy = (L.drama && L.drama.stats) || {};
+  const statView = (s, side) => ({ id: s.id, abbr: s.abbr, name: s.name, score: s.score, line: voiced(dramaCopy[s.id], side, wording) || "" });
+  const drama = dramaStats(P);
+  const blocks = topFour(drama).map((s) => ({ ...statView(s, lineSide(s.score)), pick: s.pick }));
+  const dramaTop = statView(topStat(drama), "top");
+  const dramaDump = statView(dumpStat(drama), "dump");
+  const dramaAll = drama.map((s) => statView(s, lineSide(s.score)));
+
+  // What Genii knows best: every lean that came through, clearest first. A decided lean says what it knows; a flex lean
+  // says so honestly at the bottom; an unfinished one is left out.
+  const knowsLine = (r) => {
+    const meta = axisMeta[r.key] || {};
+    if (r.flex) return voiced(meta, "flexKnow", wording) || voiced(L.flex, "line", wording);
+    return voiced(meta, r.side === "right" ? "plusKnow" : "minusKnow", wording) || r.line;
+  };
+  const findings = allRows
+    .map((r, i) => ({ r, i }))
+    .filter(({ r }) => !r.unfinished && knowsLine(r))
+    .sort((a, b) => (b.r.flex ? -1 : b.r.clarity) - (a.r.flex ? -1 : a.r.clarity) || a.i - b.i)
+    .slice(0, 6)
+    .map(({ r }) => {
+      const level = r.flex ? 0 : clarityLevel(r.clarity);
+      return {
+        key: r.key, kind: r.flex ? "flex" : "axis", topic: str((axisMeta[r.key] || {}).topic) || `${r.right} or ${r.left}`,
+        stat: statOf(r.key).stat, leadEnd: r.flex ? C.knows.both : r.leadEnd, otherEnd: r.flex ? bothEnds(r.a, r.b) : r.otherEnd,
+        lead: r.flex ? C.knows.both : r.lead, other: r.flex ? `${r.left} and ${r.right}` : r.other,
+        line: knowsLine(r), short: splitInsight(knowsLine(r)).belief, clarity: r.clarity, level, tier: r.flex ? C.knows.tiers.flex : C.knows.tiers[TIER_OF[level]],
+        tierShort: r.flex ? C.knows.short.flex : C.knows.short[TIER_OF[level]],
+      };
+    });
+
+  // Traits: up to 5 shown tags in the scorer's rank order, name plus one confident line.
+  const tags = (result.tags || []).slice(0, 5).map((t) => {
+    const lt = tagLib[t.id] || {};
+    const pt = (P.tags || {})[t.id];
+    const calls = Array.isArray(lt.calls) ? lt.calls.filter(str) : [];
+    const clarity = pt ? tagClarity(pt.net, pt.cards) : t.strength === "strong" ? 0.7 : t.strength === "leaning" ? 0.25 : 0.4;
+    return {
+      key: t.id,
+      chapter: lt.chapter ?? t.chapter ?? null,
+      // Marriage and kids tags (library `locked18`) stay on the owner's screen and never go on anything shareable.
+      private: Boolean(lt.locked18),
+      name: str(lt.name) || t.name,
+      line: voiced(lt, ["line"], wording) || calls[0] || voiced(lt, ["heart"], wording) || t.heart || "",
+      heart: voiced(lt, ["heart"], wording) || t.heart || "",
+      sting: voiced(lt, ["sting"], wording) || t.sting || null,
+      strength: t.strength || "showing",
+      clarity,
+      level: clarityLevel(clarity),
+    };
+  });
+  const calls = (result.calls || []).map((c) => (typeof c === "string" ? c : c && c.line)).filter(str);
+  // Core traits: keywords from the top traits and the strongest stat ends, each with the evidence behind it.
+  const core = coreTraits(tags, allRows, tagLib);
+  const publicCore = core.filter((k) => !k.private);
+
+  // The read: two tablets, one per half, the confident line over the longer description.
+  const readLines = [people.read, life.read].filter(Boolean);
+  const readBodies = [people.desc !== people.read ? people.desc : "", life.desc !== life.read ? life.desc : ""];
+  const readMarks = [{ kind: "sigil", code: people.code }, { kind: "sigil", code: life.code }].slice(0, readLines.length);
+  const used = new Set([...readLines, ...readBodies, ...findings.map((f) => f.line), ...tags.map((t) => t.line)]);
+
+  // The rooms: one line per room the player played, from that room's own answers.
+  const roomRows = roomsFor(P, chapterOf, L).map((rm) => {
+    const copy = (L.rooms || {})[rm.chapter] || (L.rooms || {})[String(rm.chapter)] || {};
+    const name = voiced(copy, "name", wording) || "";
+    if (rm.kind === "axis") {
+      const entry = copy[rm.axis];
+      const line = voiced(entry, rm.sign > 0 ? "plus" : "minus", wording);
+      const meta = axisMeta[rm.axis] || {};
+      return line ? { key: `${rm.chapter}`, chapter: rm.chapter, room: name, line, lead: rm.sign > 0 ? meta.plus : meta.minus, leadEnd: endOf(rm.sign > 0 ? meta.plus : meta.minus), level: clarityLevel(rm.clarity), clarity: rm.clarity, differs: rm.differs, kind: "axis", axis: rm.axis, sign: rm.sign } : null;
+    }
+    const lt = tagLib[rm.tag] || {};
+    if (lt.locked18) return null;
+    const line = voiced(lt, ["line"], wording);
+    return line && !used.has(line) ? { key: `${rm.chapter}`, chapter: rm.chapter, room: name, line, lead: str(lt.name) || "", level: clarityLevel(rm.clarity), clarity: rm.clarity, differs: false, kind: "tag", tag: rm.tag } : null;
+  }).filter(Boolean).slice(0, 4);
+  roomRows.forEach((r) => used.add(r.line));
+
+  // The thing you didn't know: a real believe-versus-did split on an axis first, then the half fallback, then a call
+  // nobody has seen yet.
+  const split = (P.splits || []).find((s) => s && s.kind === "axis" && (!L.insights || L.insights[s.dim]));
+  let insight = null;
+  let insightFrom = null;
+  if (split && L.insights && L.insights[split.dim]) {
+    insight = voiced(L.insights[split.dim], split.believe > 0 ? "believePlus" : "believeMinus", wording);
+    if (insight) insightFrom = { kind: "split", dim: split.dim, believe: sign(split.believe) };
+  }
+  if (!insight && L.insightFallback) {
+    const fb = L.insightFallback;
+    const keys = [`${relH.code} | ${lifeH.code}`, relH.code, lifeH.code];
+    for (const k of keys) {
+      const v = pickVal(fb[k], wording) || voiced(fb[k], ["line", "text"], wording);
+      if (v) { insight = v; insightFrom = { kind: "fallback", code: k }; break; }
+    }
+  }
+  if (!insight) {
+    const pool = [...calls, ...(result.tags || []).slice(0, 5).flatMap((t) => (tagLib[t.id] && Array.isArray(tagLib[t.id].calls) ? tagLib[t.id].calls.filter(str) : []))];
+    insight = pool.find((c) => !used.has(c)) || voiced(relL, "heart", wording) || "";
+    insightFrom = { kind: "call" };
+  }
+
+  // The stings, open book (round 3): both halves', then the strongest shareable trait's. Marriage and kids traits never
+  // give a sting here, so the whole screen can be shared like any other.
+  const stings = [voiced(relL, "sting", wording), voiced(lifeL, "sting", wording)].map((s, i) => s || (result.stings || [])[i]).filter(Boolean);
+  const stingTag = tags.find((t) => !t.private);
+  if (stingTag && stingTag.sting && !stings.includes(stingTag.sting)) stings.push(stingTag.sting);
+
+  const counts = P.counts || {};
+  const noTraits = tags.length || core.length ? null : C.noTraits[(counts.rushed || 0) * 2 >= (counts.answered || 0) && counts.answered ? "rushed" : "thin"];
+
+  const opposite = oppositeOf(L, relH.code, lifeH.code);
+  const share = {
+    brand: C.share.brand,
+    // What the card draws inside the mirror: the one title and its story line (decision 1a).
+    title: { name: title.name, line: title.line },
+    // Both halves stay in the data (the result record and the share text name them); the card draws only the title.
+    names: [people, life].map((h) => ({ label: h.label, name: h.name, define: h.define, code: h.code })),
+    // Marriage and kids tags (library `locked18`) never go on anything shareable.
+    // The core traits as keywords (round 3). Marriage and kids tags (library `locked18`) never go on anything shareable.
+    tags: publicCore.map((k) => ({ name: k.keyword, heart: k.line, chapter: k.chapter, kind: k.kind })),
+    keywords: publicCore.map((k) => k.keyword),
+    invite: UI_COPY.invite,
+    facet,
+    mirror: mirror || null,
+    url: SHARE_URL_LABEL,
+  };
+
+  // The locked guesses. Counts come straight from the check; a hit names the pole Genii guessed, nothing else.
+  let guesses = null;
+  if (sealed && Array.isArray(sealed.rows)) {
+    const rows = sealed.rows.map((r, i) => {
+      const info = (callFor && callFor(r.id)) || {};
+      return {
+        key: r.id || String(i),
+        prompt: (promptFor && promptFor(r.id)) || "",
+        topic: str(info.topic) || "",
+        // The card's scene in a few words (derived at build time from the card's own scene, never its answers).
+        title: str(info.title) || "",
+        axis: str(info.axis) || null,
+        pole: r.status === "hit" && str(info.pole) ? info.pole : null,
+        status: r.status,
+        // An honest partial: Genii missed the exact answer but had the side right. It never counts as a hit.
+        near: r.status === "miss" && r.sideHit === true,
+        label: GUESS_COPY.status[r.status] || GUESS_COPY.status.skipped,
+      };
+    });
+    guesses = {
+      called: typeof sealed.called === "number" ? sealed.called : sealed.rows.filter((r) => r.status === "hit" || r.status === "miss").length,
+      exact: typeof sealed.exact === "number" ? sealed.exact : sealed.rows.filter((r) => r.status === "hit").length,
+      rows,
+    };
+  }
+  const ratio = guesses && guesses.called ? guesses.exact / guesses.called : 0;
+  const callsTier = !guesses || !guesses.called ? "none" : ratio >= 0.75 ? "most" : ratio > 0.5 ? "half" : ratio === 0.5 ? "even" : "some";
+  const callsTitle = C.calls.titles[callsTier];
+  // Genii's face on the calls screen: pleased when it read you, curious at half, delighted to be surprised below that.
+  const callsFace = { most: "happy", half: "happy", even: "curious", some: "alert", none: "thinking" }[callsTier];
+
+  const slides = [
+    { id: "intro", kicker: C.intro.kicker, title: C.intro.title, sub: C.intro.sub, mirror },
+    // Story 2: inside the mirror only the title and its line; under it, the day-to-day half and the core traits.
+    { id: "names", kicker: C.names.kicker, sub: C.names.sub, title, people, life, mirror, keywords: publicCore.map((k) => k.keyword), labels: { life: C.names.life, traits: C.names.traits } },
+    { id: "read", kicker: C.read.kicker, lines: readLines, bodies: readBodies, marks: readMarks },
+    { id: "map", kicker: C.map.kicker, title: C.map.title, surprise: C.map.surprise, more: C.map.more, blocks, stats: dramaAll, top: dramaTop, dump: dramaDump, groups: mapGroups, facet, signature, wild },
+    { id: "knows", kicker: C.knows.kicker, title: C.knows.title, surest: C.knows.surest, findings },
+    roomRows.length >= 2 ? { id: "rooms", kicker: C.rooms.kicker, title: C.rooms.title, differs: C.rooms.differs, rows: roomRows } : null,
+    { id: "insight", kicker: C.insight.kicker, line: insight, parts: splitInsight(insight), from: insightFrom },
+    { id: "traits", kicker: C.traits.kicker, title: C.traits.title, tags, core, empty: noTraits },
+    { id: "stings", kicker: C.stings.kicker, title: C.stings.title, badge: C.stings.badge, stings, private: false },
+    guesses && guesses.rows.length ? {
+      id: "calls", kicker: C.calls.kicker, title: callsTitle, intro: C.calls.intro, key: C.calls.key, of: C.calls.of, more: C.calls.more, exact: guesses.exact, called: guesses.called, face: callsFace,
+      rows: guesses.rows.map((r) => ({ ...r, side: r.pole ? endOf(r.pole) : null, shown: (r.near ? C.calls.status.near : C.calls.status[r.status]) || C.calls.status.skipped })),
+      count: NUMBER_WORDS[guesses.rows.length] || String(guesses.rows.length),
+    } : null,
+    { id: "share", kicker: C.share.kicker, sub: C.share.sub, challenge: C.share.challenge, share, opposite: opposite ? UI_COPY.opposite(opposite[0], opposite[1]) : null },
+    { id: "app", kicker: C.app.kicker, title: C.app.title, body: C.app.body, button: C.app.button, store: C.app.store, note: C.app.note, snap: C.app.snap, lives: C.app.lives, link: APP_LINK, mirror },
+  ].filter(Boolean).map((sl) => ({ ...sl, look: LOOKS[sl.id], tone: LOOKS[sl.id] }));
+
+  return { voice, wording, slides, share, guesses };
+}
+
+// What a saved image of one screen draws (share-image.js lays it out). Only what the screen itself shows, minus
+// anything private: marriage and kids traits never reach an image, and the stings image is saved, never shared.
+export function printFor(slide) {
+  const base = { id: slide.id, look: slide.look || LOOKS[slide.id] || "night", kicker: slide.kicker };
+  switch (slide.id) {
+    case "intro": return { ...base, title: slide.title, lines: [], mirror: slide.mirror };
+    case "names": return { ...base, kicker: null, title: slide.title ? { name: slide.title.name, line: slide.title.line } : null, rows: [{ label: slide.labels && slide.labels.life, value: slide.life && slide.life.name }].filter((r) => r.label && r.value), lines: [slide.sub].filter(Boolean), mirror: slide.mirror };
+    case "read": {
+      const marks = slide.marks || [];
+      const keep = slide.lines.map((line, i) => ({ line, body: (slide.bodies || [])[i] || "", mark: marks[i] || { kind: "none" } })).filter((x) => !(x.mark && x.mark.private));
+      return { ...base, tablets: keep };
+    }
+    // The drama stats: four blocks, each its abbreviation, score, name and line. The scores are the only numbers drawn
+    // besides Genii's calls count; no percentage.
+    case "map": return { ...base, title: slide.title, blocks: (slide.blocks || []).map((b) => ({ abbr: b.abbr, score: b.score, name: b.name, line: b.line, surprise: b.pick === "surprise" ? slide.surprise : null })) };
+    case "knows": return { ...base, title: slide.title, findings: slide.findings.map((f, i) => ({ topic: f.leadEnd, lead: f.leadEnd, other: f.otherEnd, kind: f.kind, line: i ? f.short || f.line : f.line, level: f.level, tier: f.tier })) };
+    case "rooms": return { ...base, title: slide.title, rows: slide.rows.map((r) => ({ room: r.room, line: r.line, chapter: r.chapter, level: r.level })) };
+    case "traits": {
+      const items = (slide.core || []).filter((k) => !k.private).map((k) => ({ name: k.keyword, line: k.line, chapter: k.chapter }));
+      return { ...base, title: slide.title, charms: items, lines: items.length ? [] : slide.empty ? [slide.empty] : [] };
+    }
+    case "insight": return { ...base, belief: slide.parts ? slide.parts.belief : slide.line, behavior: slide.parts ? slide.parts.behavior : null };
+    case "stings": return { ...base, title: slide.title, badge: slide.badge, quotes: slide.stings, private: Boolean(slide.private) };
+    case "calls": return { ...base, title: slide.title, exact: slide.exact, called: slide.called, of: slide.of, panes: slide.rows.map((r) => ({ topic: r.title || r.topic, status: r.status, near: r.near, label: r.shown || r.label, side: r.side })) };
+    case "share": return { ...base, card: slide.share };
+    case "app": return { ...base, title: slide.title, lines: [slide.body, slide.note] };
+    default: return base;
+  }
+}

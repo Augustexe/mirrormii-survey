@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Codex</title>
+<meta name="description" content="Concept C for the MirrorMii Evidence Article: your result as a cozy game codex, with holo trait cards, an island map of your rooms and a party to fill.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Figtree:wght@400..900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --canvas: #F3F1FE; --canvas-2: #E9E6FB; --ink: #1E1B2E; --ink-2: #4A4560; --ink-3: #6E6987; --vt: #5646C0; --violet: #8071E4; --line: #DCD7F5; --night: #171625;
+  --sky: #8FB8F2; --peach: #F4B8A0; --rose: #F2A7C3; --butter: #F2D48A; --mint: #96D8C4; --lilac: #C9B3F0; --aqua: #8EDBE6;
+  --holo: linear-gradient(115deg, transparent 18%, rgba(255,150,210,.55) 32%, rgba(150,200,255,.55) 45%, rgba(170,255,215,.5) 56%, rgba(255,230,160,.5) 66%, transparent 82%);
+  --serif: "Fraunces", Georgia, serif; --sans: "Figtree", system-ui, sans-serif;
+  --e-out: cubic-bezier(.2,.8,.2,1); --spring: cubic-bezier(.34,1.56,.64,1);
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 116px; }
+body { margin: 0; color: var(--ink); font: 400 16.5px/1.55 var(--sans); overflow-x: hidden;
+  background: radial-gradient(circle at 1px 1px, rgba(128,113,228,.12) 1px, transparent 1.5px) 0 0 / 22px 22px, linear-gradient(180deg, #F7F6FF, var(--canvas) 30%, #EEEBFD); }
+img { display: block; max-width: 100%; height: auto; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--vt); outline-offset: 3px; border-radius: 8px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+
+/* chrome: logo, voice, then the codex tabs that follow you */
+.top { display: flex; align-items: center; gap: 10px; padding: 12px 16px 6px; max-width: 1180px; margin: 0 auto; }
+.top img { height: 18px; width: auto; }
+.voice { margin-left: auto; display: flex; padding: 3px; border-radius: 14px; background: #fff; box-shadow: 0 0 0 1.5px var(--line); }
+.voice button { border: 0; background: transparent; padding: 7px 11px; min-height: 34px; border-radius: 11px; font: 750 12.5px/1 var(--sans); color: var(--ink-2); cursor: pointer; }
+.voice button[aria-checked="true"] { background: var(--vt); color: #fff; }
+.tabs { position: sticky; top: 0; z-index: 30; background: rgba(243,241,254,.86); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1.5px solid var(--line); }
+.tabs ul { -webkit-mask-image: linear-gradient(90deg, #000 86%, transparent); mask-image: linear-gradient(90deg, #000 86%, transparent); list-style: none; margin: 0 auto; padding: 8px 16px; max-width: 1180px; display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+.tabs a { display: flex; align-items: center; gap: 6px; padding: 9px 13px; min-height: 40px; border-radius: 12px; font: 800 13.5px/1 var(--sans); color: var(--ink-2); text-decoration: none; white-space: nowrap; }
+.tabs a i { width: 10px; height: 10px; border-radius: 3px; transform: rotate(45deg); background: var(--c, var(--violet)); }
+.tabs a.on { background: var(--ink); color: #fff; }
+
+/* hero: the character plate */
+.hero { position: relative; padding: 18px 0 8px; }
+.stage { position: relative; height: 330px; margin: 0 -16px; overflow: hidden; }
+.stage .isl { position: absolute; width: 170%; max-width: none; left: -35%; bottom: -30px; opacity: .95; }
+.stage .ring { position: absolute; left: 50%; bottom: 58px; width: 250px; height: 70px; margin-left: -125px; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,255,255,.95), rgba(201,194,246,.5) 60%, transparent); }
+.stage .g { position: absolute; left: 50%; bottom: 76px; width: 190px; margin-left: -95px; filter: drop-shadow(0 24px 30px rgba(86,70,192,.4)); animation: idle 5s ease-in-out infinite; }
+@keyframes idle { 50% { transform: translateY(-10px) scale(1.02, .98); } }
+.stage .spark { position: absolute; width: 10px; height: 10px; background: #fff; clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); animation: tw 3s ease-in-out infinite; }
+@keyframes tw { 50% { transform: scale(.3); opacity: .3; } }
+.plates { display: grid; gap: 10px; margin-top: -40px; position: relative; z-index: 2; }
+.plate { position: relative; overflow: hidden; border-radius: 22px; padding: 14px 16px 16px; background: #fff; box-shadow: 0 0 0 1.5px var(--line), 0 16px 34px -20px rgba(86,70,192,.5); }
+.plate::after { content: ""; position: absolute; inset: 0; background: var(--holo); background-size: 250% 100%; background-position: calc(var(--mx, 50) * 1%) 0; mix-blend-mode: color-dodge; opacity: .45; pointer-events: none; }
+.plate .lab { font: 800 12px/1 var(--sans); color: var(--vt); }
+.plate h1, .plate .nm { margin: 6px 0 0; font-family: var(--serif); font-variation-settings: "SOFT" 100, "WONK" 0; font-weight: 750; font-size: clamp(36px, 10vw, 54px); line-height: .95; letter-spacing: -.03em; }
+.plate .rd { margin: 8px 0 0; color: var(--ink-2); font-size: 15.5px; }
+.lvl { position: absolute; top: 12px; right: 14px; font: 800 11px/1 var(--sans); color: var(--ink-3); }
+.keys { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0 0; padding: 0; list-style: none; }
+.keys li { font: 800 13px/1 var(--sans); padding: 8px 11px; border-radius: 10px; background: var(--ink); color: #fff; }
+.dek { font-family: var(--serif); font-style: italic; font-variation-settings: "SOFT" 100, "WONK" 1; font-size: 20px; line-height: 1.35; color: var(--ink-2); margin: 18px 0 0; max-width: 34rem; }
+
+/* sections */
+section.s { padding: 44px 0 10px; }
+.hd { display: flex; align-items: center; gap: 10px; margin: 0 0 6px; }
+.hd i { width: 14px; height: 14px; border-radius: 4px; transform: rotate(45deg); background: var(--c, var(--violet)); }
+.hd span { font: 800 13px/1 var(--sans); color: var(--vt); }
+h2 { font-family: var(--serif); font-variation-settings: "SOFT" 100, "WONK" 0; font-weight: 720; font-size: clamp(30px, 8vw, 50px); line-height: 1; letter-spacing: -.028em; margin: 0 0 10px; text-wrap: balance; }
+.lead { color: var(--ink-2); max-width: 36rem; margin: 0 0 18px; text-wrap: pretty; }
+
+/* stat block */
+.block { border-radius: 24px; background: #fff; box-shadow: 0 0 0 1.5px var(--line), 0 20px 40px -26px rgba(86,70,192,.5); overflow: hidden; }
+.srow { border-top: 1.5px solid var(--canvas-2); }
+.srow:first-child { border-top: 0; }
+.srow > button { width: 100%; border: 0; background: transparent; text-align: left; cursor: pointer; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; padding: 14px 16px; min-height: 64px; }
+.srow .st { font: 850 15px/1 var(--sans); letter-spacing: .01em; display: flex; align-items: center; gap: 8px; }
+.srow .end { font-family: var(--serif); font-weight: 650; font-size: 19px; grid-column: 1; }
+.srow .end small { font: 700 12.5px/1 var(--sans); color: var(--ink-3); margin-left: 6px; }
+.beads { grid-column: 2; grid-row: 1 / span 2; display: flex; gap: 5px; }
+.beads i { width: 15px; height: 15px; border-radius: 50%; background: var(--canvas-2); box-shadow: inset 0 1px 2px rgba(23,22,37,.12); }
+.beads i.on { background: radial-gradient(circle at 35% 30%, #fff 0 18%, #B3AAF0 30%, #6A5AD6 80%); box-shadow: 0 2px 6px rgba(86,70,192,.45); }
+.beads i.half { background: linear-gradient(90deg, #8071E4 50%, var(--canvas-2) 50%); }
+.crown { font: 850 10.5px/1 var(--sans); padding: 4px 7px; border-radius: 7px; background: var(--butter); color: var(--ink); }
+.crown.wild { background: var(--rose); }
+.drawer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s var(--e-out); }
+.srow.open .drawer { grid-template-rows: 1fr; }
+.drawer > div { overflow: hidden; }
+.cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 0 16px 16px; }
+.cmp div { border-radius: 16px; padding: 12px; font-size: 14.5px; line-height: 1.45; }
+.cmp .me { background: linear-gradient(160deg, #F1EEFF, #E4DFFD); }
+.cmp .them { background: #F6F5FB; color: var(--ink-2); }
+.cmp b { display: block; font: 850 12px/1.2 var(--sans); margin-bottom: 6px; color: var(--vt); }
+.cmp .them b { color: var(--ink-3); }
+.know { grid-column: 1 / -1; font-family: var(--serif); font-style: italic; font-variation-settings: "SOFT" 100, "WONK" 1; font-size: 17px; line-height: 1.35; padding: 0 16px 16px; margin: 0; }
+.hint { font: 700 12.5px/1.3 var(--sans); color: var(--ink-3); margin: 10px 0 0; }
+
+/* holo trait cards */
+.deck { display: grid; grid-auto-flow: column; grid-auto-columns: 74%; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 8px 16px 22px; margin: 0 -16px; scrollbar-width: none; }
+.tc { scroll-snap-align: center; perspective: 1000px; }
+.tc button { all: unset; display: block; cursor: pointer; width: 100%; }
+.tc button:focus-visible { outline: 3px solid var(--vt); outline-offset: 4px; border-radius: 22px; }
+.tc .flip { position: relative; display: grid; transform-style: preserve-3d; transition: transform .7s var(--spring); transform: rotateY(var(--ry, 0deg)) rotateX(var(--rx, 0deg)); }
+.tc.flipped .flip { transform: rotateY(calc(180deg + var(--ry, 0deg))) rotateX(var(--rx, 0deg)); }
+.tc .f { grid-area: 1 / 1; aspect-ratio: 5 / 7; border-radius: 22px; padding: 16px; backface-visibility: hidden; -webkit-backface-visibility: hidden; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.tc .fr { background: linear-gradient(165deg, #fff 0%, var(--c) 140%); box-shadow: 0 0 0 1.5px rgba(255,255,255,.9) inset, 0 0 0 1.5px var(--line), 0 24px 40px -24px rgba(86,70,192,.6); }
+.tc .fr::after { content: ""; position: absolute; inset: 0; background: var(--holo); background-size: 260% 100%; background-position: calc(var(--mx, 50) * 1%) 0; mix-blend-mode: color-dodge; opacity: .6; pointer-events: none; }
+.tc .prov { position: relative; z-index: 1; margin: 8px 0 0; font: 750 12px/1.3 var(--sans); color: var(--ink-2); }
+.tc .bk { transform: rotateY(180deg); background: var(--night); color: #F3F1FF; }
+.tc .kind { font: 850 11px/1 var(--sans); color: var(--ink-2); display: flex; justify-content: space-between; }
+.tc .gl { width: 96px; margin: auto auto 6px; filter: drop-shadow(0 10px 16px rgba(86,70,192,.35)); }
+.tc .kw { font-family: var(--serif); font-weight: 800; font-size: 30px; line-height: .95; letter-spacing: -.03em; margin: 0; position: relative; z-index: 1; }
+.tc .bk p { font-family: var(--serif); font-size: 20px; line-height: 1.3; margin: 8px 0 auto; }
+.tc .bk small { font: 700 12.5px/1.35 var(--sans); color: #C9C4EE; }
+.tc .bk small b { color: #fff; }
+
+/* the rare card: the thing you didn't know */
+.rare { perspective: 1200px; }
+.rare button { all: unset; display: block; width: 100%; cursor: pointer; }
+.rare .flip { display: grid; transform-style: preserve-3d; transition: transform .9s var(--spring); }
+.rare.open .flip { transform: rotateY(180deg); }
+.rare .f { grid-area: 1 / 1; min-height: 300px; border-radius: 28px; padding: 24px 22px; backface-visibility: hidden; -webkit-backface-visibility: hidden; position: relative; overflow: hidden; }
+.rare .sealed { background: radial-gradient(120% 90% at 50% 20%, #3A3470, var(--night)); color: #fff; display: grid; place-items: center; text-align: center; }
+.rare .sealed::after { content: ""; position: absolute; inset: 0; background: var(--holo); background-size: 260% 100%; background-position: calc(var(--mx, 50) * 1%) 0; mix-blend-mode: overlay; opacity: .5; }
+.rare .sealed img { width: 110px; margin: 0 auto 12px; filter: drop-shadow(0 0 26px rgba(169,156,245,.8)); }
+.rare .sealed b { font: 850 14px/1 var(--sans); padding: 12px 18px; border-radius: 12px; background: #fff; color: var(--ink); display: inline-block; margin-top: 8px; }
+.rare .open-f { transform: rotateY(180deg); background: linear-gradient(160deg, #fff, #E4DFFD); box-shadow: 0 0 0 1.5px var(--line); }
+.rare .open-f p.b1 { font-family: var(--serif); font-weight: 720; font-size: clamp(28px, 7.6vw, 44px); line-height: 1.05; letter-spacing: -.025em; margin: 10px 0 14px; }
+.rare .open-f p.b2 { font-family: var(--serif); font-style: italic; font-variation-settings: "SOFT" 100, "WONK" 1; font-size: 21px; line-height: 1.3; margin: 0; color: var(--ink-2); }
+
+/* island map */
+.map { position: relative; margin: 0 -16px; }
+.map img { width: 100%; }
+.pin { position: absolute; transform: translate(-50%, -100%); border: 0; cursor: pointer; background: transparent; padding: 0; min-width: 48px; min-height: 48px; display: grid; place-items: end center; }
+.pin span { display: block; padding: 7px 10px; border-radius: 12px 12px 12px 3px; background: #fff; font: 850 12px/1 var(--sans); box-shadow: 0 0 0 2px var(--c), 0 8px 18px -6px rgba(23,22,37,.35); white-space: nowrap; transition: transform .3s var(--spring); }
+.pin.flip span { box-shadow: 0 0 0 2px var(--rose), 0 0 0 6px rgba(242,167,195,.4), 0 8px 18px -6px rgba(23,22,37,.35); }
+.pin[aria-pressed="true"] span { background: var(--ink); color: #fff; transform: scale(1.12); }
+.note { border-radius: 22px; padding: 16px; background: #fff; box-shadow: 0 0 0 1.5px var(--line); margin-top: 10px; border-left: 6px solid var(--c); min-height: 120px; }
+.note h3 { font-family: var(--serif); font-size: 24px; margin: 0 0 6px; }
+.note p { margin: 0 0 8px; }
+.note .fl { display: inline-block; font: 850 11.5px/1 var(--sans); padding: 5px 8px; border-radius: 8px; background: var(--rose); margin-bottom: 6px; }
+.flipline { font-family: var(--serif); font-style: italic; font-size: 19px; margin: 14px 0 0; color: var(--ink-2); }
+
+/* combos */
+.combos { display: grid; gap: 10px; }
+.combo { border-radius: 22px; padding: 16px; background: #fff; box-shadow: 0 0 0 1.5px var(--line); }
+.combo .tag { font: 850 11.5px/1 var(--sans); padding: 5px 8px; border-radius: 8px; background: var(--mint); display: inline-block; }
+.combo.clash .tag { background: var(--rose); }
+.combo .pr { display: flex; align-items: center; gap: 8px; margin: 10px 0; flex-wrap: wrap; }
+.combo .pr b { font: 850 14px/1 var(--sans); padding: 9px 11px; border-radius: 10px; background: var(--canvas-2); }
+.combo .pr i { font: 900 16px/1 var(--sans); font-style: normal; color: var(--ink-3); }
+.combo p { margin: 0; }
+
+/* journal */
+.journal { border-radius: 24px; padding: 22px 18px; background: #FFFDF8; box-shadow: 0 0 0 1.5px #EFE6D6, 0 20px 40px -26px rgba(120,90,40,.35); background-image: repeating-linear-gradient(#FFFDF8 0 31px, #F1E9DB 31px 32px); }
+.journal p { font-family: var(--serif); font-size: 21px; line-height: 32px; margin: 0 0 32px; }
+.hearts { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 14px 0 0; }
+.hearts li { border-radius: 16px; padding: 10px 12px; background: #fff; box-shadow: 0 0 0 1.5px var(--line); font-family: var(--serif); font-style: italic; font-size: 16.5px; line-height: 1.3; max-width: 100%; }
+
+/* achievements */
+.ach { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: center; margin-bottom: 16px; }
+.ringsvg { width: 120px; height: 120px; }
+.ringsvg text { font-family: var(--serif); font-weight: 800; font-size: 40px; }
+.badges { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; list-style: none; padding: 0; margin: 0; }
+.badges li { display: grid; grid-template-columns: 38px 1fr; gap: 10px; align-items: center; border-radius: 16px; padding: 10px; background: #fff; box-shadow: 0 0 0 1.5px var(--line); }
+.badges .hx { width: 38px; height: 42px; clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%); background: linear-gradient(160deg, #B3AAF0, #5646C0); display: grid; place-items: center; color: #fff; font: 900 15px/1 var(--sans); }
+.badges .near .hx { background: linear-gradient(90deg, #8071E4 50%, #D9D2FF 50%); }
+.badges .miss .hx { background: #E9E6FB; color: var(--ink-3); }
+.badges b { font: 800 13.5px/1.2 var(--sans); display: block; }
+.badges small { font: 700 12px/1.2 var(--sans); color: var(--ink-3); }
+
+/* party */
+.party { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.slot { border-radius: 22px; padding: 14px; min-height: 170px; display: flex; flex-direction: column; background: #fff; box-shadow: 0 0 0 1.5px var(--line); position: relative; overflow: hidden; }
+.slot .lab { font: 850 11.5px/1.2 var(--sans); color: var(--vt); }
+.slot .nm { font-family: var(--serif); font-weight: 750; font-size: 22px; line-height: 1.02; margin: 8px 0 auto; letter-spacing: -.015em; }
+.slot p { font-size: 13.5px; line-height: 1.4; margin: 10px 0 0; color: var(--ink-2); }
+.slot.you { background: linear-gradient(160deg, #6A5AD6, #4A63D3); color: #fff; }
+.slot.you .lab { color: #E4DFFD; }
+.slot.you::after { content: ""; position: absolute; inset: 0; background: var(--holo); background-size: 260% 100%; background-position: calc(var(--mx, 50) * 1%) 0; mix-blend-mode: overlay; opacity: .6; }
+.slot.opp { background: var(--night); color: #fff; }
+.slot.opp .lab { color: #A99CF5; }
+.slot.opp p { color: #C9C4EE; }
+.slot.add { border: 2px dashed #B3AAF0; box-shadow: none; background: rgba(255,255,255,.5); align-items: center; justify-content: center; text-align: center; text-decoration: none; color: var(--vt); cursor: pointer; }
+.slot.add span { font-size: 38px; line-height: 1; font-weight: 300; }
+.slot.add b { font: 850 15px/1.2 var(--sans); margin-top: 6px; }
+.slot.add small { font: 600 12.5px/1.3 var(--sans); color: var(--ink-3); margin-top: 6px; }
+.bio { margin-top: 12px; border-radius: 22px; padding: 16px; background: var(--ink); color: #fff; display: flex; flex-direction: column; gap: 10px; }
+.bio q { quotes: none; font-family: var(--serif); font-weight: 650; font-size: 20px; line-height: 1.25; }
+.bio .lab { font: 850 11.5px/1 var(--sans); color: #A99CF5; }
+.bio button { align-self: flex-start; border: 0; border-radius: 12px; padding: 10px 16px; min-height: 44px; background: #fff; color: var(--ink); font: 850 14px/1 var(--sans); cursor: pointer; }
+
+/* play */
+.play { position: relative; border-radius: 30px; overflow: hidden; background: linear-gradient(180deg, #D9D2FF, #A9B8F5); padding: 22px 18px 20px; margin-top: 10px; }
+.play .isl2 { width: 140%; max-width: none; margin: -10px -20% 0; }
+.play .g3 { position: absolute; width: 96px; right: 14px; top: 16px; animation: idle 5s ease-in-out infinite; }
+.play h2 { margin-top: 6px; }
+.store { display: inline-flex; align-items: center; gap: 10px; background: var(--ink); color: #fff; border-radius: 16px; padding: 10px 18px; text-decoration: none; min-height: 52px; }
+.store small { display: block; font: 500 11px/1 var(--sans); opacity: .8; }
+.store b { font: 800 17px/1.1 var(--sans); }
+.btn-ch { display: inline-flex; align-items: center; min-height: 52px; padding: 14px 22px; border-radius: 14px; background: linear-gradient(135deg, #5A4ED6, #4A63D3); color: #fff; font: 850 16px/1 var(--sans); text-decoration: none; box-shadow: 0 14px 30px -12px rgba(74,99,211,.7); }
+.closing { font-family: var(--serif); font-size: 22px; line-height: 1.3; margin: 0 0 12px; max-width: 34rem; }
+.foot { text-align: center; font-size: 13px; color: var(--ink-3); padding: 30px 16px 60px; }
+.foot a { color: var(--vt); }
+.swapping main { opacity: .2; transition: opacity .25s; }
+
+@media (min-width: 900px) {
+  body { font-size: 17.5px; }
+  .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 32px; align-items: end; padding-top: 30px; }
+  .stage { height: 520px; margin: 0; border-radius: 36px; }
+  .stage .g { width: 280px; margin-left: -140px; bottom: 120px; }
+  .stage .ring { width: 360px; margin-left: -180px; bottom: 96px; }
+  .stage .isl { width: 150%; left: -25%; }
+  .plates { margin-top: 0; }
+  .deck { grid-auto-flow: row; grid-template-columns: repeat(3, 1fr); overflow: visible; margin: 0; padding: 8px 0 0; }
+  .tc .f { aspect-ratio: 5 / 3.6; }
+  .tc .gl { width: 84px; }
+  .twocol { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  .combos { grid-template-columns: 1fr 1fr; }
+  .badges { grid-template-columns: repeat(4, 1fr); }
+  .party { grid-template-columns: repeat(4, 1fr); }
+  .map { margin: 0; }
+  .map img { border-radius: 30px; }
+  .play { display: grid; grid-template-columns: .9fr 1.1fr; gap: 30px; align-items: center; padding: 40px; }
+  .play .isl2 { grid-column: 2; grid-row: 1 / span 5; width: 120%; margin: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .tabs { background: var(--canvas); backdrop-filter: none; }
+}
+</style>
+</head>
+<body>
+<div class="top"><img src="assets/mirrormii-wordmark.svg" alt="MirrorMii"><div class="voice" id="voice"></div></div>
+<nav class="tabs" aria-label="Sections"><ul id="tabs"></ul></nav>
+<main id="main" class="wrap"></main>
+<footer class="foot">Genii keeps your answers on this device. <a href="#data">Your data</a></footer>
+<script type="module">
+import { loadData, buildArticle, esc, getVoice, mountVoiceSwitch, reducedMotion } from "./shared.js";
+const data = await loadData();
+let voice = getVoice();
+const main = document.getElementById("main");
+const TINT = { 1: "var(--sky)", 2: "var(--peach)", 3: "var(--rose)", 4: "var(--butter)", 5: "var(--mint)", 6: "var(--lilac)", 7: "var(--aqua)" };
+const PIN = { 3: [47, 30], 5: [14, 40], 6: [57, 52], 2: [33, 72], 4: [85, 76], 1: [70, 28], 7: [79, 50] };
+const TABS = [["stats", "Stats", "var(--violet)"], ["traits", "Traits", "var(--rose)"], ["secret", "Secret", "var(--butter)"], ["rooms", "Rooms", "var(--mint)"], ["book", "Open book", "var(--peach)"], ["record", "Record", "var(--sky)"], ["party", "Party", "var(--lilac)"], ["play", "Play", "var(--aqua)"]];
+const beads = (n, flex) => `<span class="beads" aria-hidden="true">${[1, 2, 3, 4, 5].map((i) => `<i class="${flex ? (i === 2 || i === 4 ? "half" : "") : i <= n ? "on" : ""}"></i>`).join("")}</span>`;
+const apple = `<svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.2-2.8.9-3.5.9s-1.9-.8-3.1-.8C6.8 7.3 5.3 8.2 4.5 9.7c-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.1-1.2 2.9-2.4.9-1.3 1.3-2.6 1.3-2.7 0 0-2.7-1-2.7-4zM14.2 5.4c.6-.8 1.1-1.9 1-3-.9 0-2.1.6-2.7 1.4-.6.7-1.1 1.8-1 2.9 1 .1 2.1-.5 2.7-1.3z"/></svg>`;
+const head = (id, label) => { const t = TABS.find((x) => x[0] === id); return `<div class="hd" style="--c:${t[2]}"><i></i><span>${esc(label)}</span></div>`; };
+
+function render(A) {
+  const c = A.cover, r = A.record, p = A.party;
+  const sparks = [[18, 30], [80, 22], [70, 60], [26, 64], [52, 12]].map(([x, y], i) => `<span class="spark" style="left:${x}%;top:${y}%;animation-delay:${-i * .6}s"></span>`).join("");
+  return `
+  <section class="hero" aria-label="Your character">
+    <div class="stage" aria-hidden="true"><img class="isl" src="assets/island-720.webp" srcset="assets/island-720.webp 720w, assets/island-1440.webp 1440w" sizes="(min-width:900px) 60vw, 170vw" alt="" width="720" height="342"><div class="ring"></div><img class="g" src="assets/genii-480.webp" alt="" width="480" height="433" fetchpriority="high">${sparks}</div>
+    <div>
+      <div class="plates">
+        <div class="plate holo"><span class="lab">${esc(c.people.label)}</span><h1>${esc(c.people.name)}<span class="sr"> and ${esc(c.life.name)}</span></h1><p class="rd">${esc(A.lede.lines[0])}</p></div>
+        <div class="plate holo"><span class="lab">${esc(c.life.label)}</span><p class="nm" aria-hidden="true">${esc(c.life.name)}</p><p class="rd">${esc(A.lede.lines[1])}</p></div>
+      </div>
+      <ul class="keys" aria-label="Core traits">${c.keywords.map((k) => `<li>${esc(k)}</li>`).join("")}</ul>
+      <p class="dek">${esc(c.dek)}</p>
+    </div>
+  </section>
+
+  <section class="s" id="stats" aria-labelledby="h-stats">
+    ${head("stats", A.sheet.kicker)}
+    <h2 id="h-stats">${esc(A.sheet.title)}</h2>
+    <p class="lead">${esc(A.sheet.intro)}</p>
+    <div class="block">${A.sheet.rows.map((s, i) => `
+      <div class="srow" data-i="${i}">
+        <button aria-expanded="false" aria-controls="dr${i}">
+          <span class="st">${esc(s.stat)}${s.badge ? `<span class="crown ${s.badge === "wild" ? "wild" : ""}">${esc(s.badgeLabel)}</span>` : ""}</span>
+          ${beads(s.pips, s.flex)}
+          <span class="end">${esc(s.flex ? `${s.a} and ${s.b}` : s.leadEnd)}<small>${esc(s.level)}</small></span>
+        </button>
+        <div class="drawer" id="dr${i}"><div>
+          <div class="cmp"><div class="me"><b>${esc(A.sheet.yours)}: ${esc(s.leadEnd || "")}</b>${esc(s.note)}</div>${s.flex ? "" : `<div class="them"><b>${esc(A.sheet.other)}: ${esc(s.otherEnd)}</b>${esc(s.otherLine)}</div>`}</div>
+          ${s.know && !s.inCore && s.know !== c.hook ? `<p class="know">${esc(s.know)}</p>` : ""}
+          ${s.badgeNote ? `<p class="know" style="font-size:14.5px;color:var(--ink-3)">${esc(s.badgeNote)}</p>` : ""}
+        </div></div>
+      </div>`).join("")}</div>
+    <p class="hint">${esc(A.sheet.showOther)}: tap a stat.</p>
+  </section>
+
+  <section class="s" id="traits" aria-labelledby="h-traits">
+    ${head("traits", A.core.kicker)}
+    <h2 id="h-traits">${esc(A.core.title)}</h2>
+    <div class="deck" role="list">${A.core.items.map((k, i) => `
+      <div class="tc" role="listitem" style="--c:${["#C9B3F0", "#8FB8F2", "#F4B8A0", "#96D8C4", "#F2D48A", "#F2A7C3"][i % 6]}">
+        <button aria-pressed="false" aria-label="${esc(k.keyword)}. ${esc(k.line)} ${esc(A.core.fromLabel)}: ${esc(k.from)}">
+          <div class="flip">
+            <div class="f fr"><span class="kind"><span>${esc(A.core.kicker)}</span><span>${i + 1} of ${A.core.items.length}</span></span><img class="gl" src="assets/genii-240.webp" alt="" width="240" height="216" loading="lazy"><p class="kw">${esc(k.keyword)}</p><p class="prov">${esc(A.core.fromLabel)}: ${esc(k.from)}</p></div>
+            <div class="f bk"><span class="kind" style="color:#A99CF5"><span>${esc(k.keyword)}</span></span><p>${esc(k.line)}</p><small>${esc(A.core.fromLabel)}: <b>${esc(k.from)}</b></small></div>
+          </div>
+        </button>
+      </div>`).join("")}</div>
+  </section>
+
+  <section class="s" id="secret" aria-labelledby="h-secret">
+    ${head("secret", A.insight.kicker)}
+    <h2 id="h-secret" class="sr">${esc(A.insight.kicker)}</h2>
+    <div class="rare" id="rare"><button aria-expanded="false"><div class="flip">
+      <div class="f sealed"><div><img src="assets/genii-240.webp" alt="" width="240" height="216" loading="lazy"><p style="font-family:var(--serif);font-size:26px;line-height:1.1;margin:0 0 6px">${esc(A.insight.kicker)}</p><b>${esc(A.labels.flipHint.replace("Hold", "Tap"))}</b></div></div>
+      <div class="f open-f"><span class="hd" style="--c:var(--butter)"><i></i><span>${esc(A.insight.kicker)}</span></span><p class="b1">${esc(A.insight.belief)}</p>${A.insight.behavior ? `<p class="b2">${esc(A.insight.behavior)}</p>` : ""}</div>
+    </div></button></div>
+  </section>
+
+  <section class="s" id="rooms" aria-labelledby="h-rooms">
+    ${head("rooms", A.rooms.kicker)}
+    <h2 id="h-rooms">${esc(A.rooms.title)}</h2>
+    <p class="lead">${esc(A.rooms.intro)}</p>
+    <div class="twocol">
+      <div class="map"><img src="assets/island-720.webp" srcset="assets/island-720.webp 720w, assets/island-1440.webp 1440w" sizes="(min-width:900px) 50vw, 100vw" alt="The island, with a pin for each room you walked through" width="720" height="342" loading="lazy">
+        ${A.rooms.list.map((rm, i) => `<button class="pin ${A.rooms.flip && A.rooms.flip.chapter === rm.chapter ? "flip" : ""}" data-i="${i}" aria-pressed="${i === 0}" style="left:${PIN[rm.chapter][0]}%;top:${PIN[rm.chapter][1]}%;--c:${TINT[rm.chapter]}"><span>${esc(rm.room)}</span></button>`).join("")}
+      </div>
+      <div><div class="note" id="note" aria-live="polite"></div>${A.rooms.flip ? `<p class="flipline">${esc(A.rooms.flip.sentence)}</p>` : ""}</div>
+    </div>
+  </section>
+
+  <section class="s" aria-labelledby="h-sides">
+    <h2 id="h-sides">${esc(A.sides.title)}</h2>
+    <p class="lead">${esc(A.sides.intro)}</p>
+    <div class="combos">${[A.sides.team, A.sides.clash].filter(Boolean).map((s, i) => `<div class="combo ${i ? "clash" : ""}"><span class="tag">${esc(s.label)}</span><div class="pr"><b>${esc(s.a)}</b><i aria-hidden="true">${i ? "&times;" : "+"}</i><b>${esc(s.b)}</b></div><p>${esc(s.line)}</p></div>`).join("")}</div>
+  </section>
+
+  <section class="s" id="book" aria-labelledby="h-book">
+    ${head("book", A.stings.kicker)}
+    <div class="twocol">
+      <div><h2 id="h-book">${esc(A.stings.title)}</h2><p class="lead">${esc(A.stings.intro)}</p><div class="journal">${A.stings.lines.map((s) => `<p>${esc(s)}</p>`).join("")}</div></div>
+      <div><h2 style="font-size:clamp(26px,6.4vw,36px);margin-top:14px">${esc(A.said.title)}</h2><p class="lead">${esc(A.said.intro)}</p><ul class="hearts">${A.said.hearts.map((h) => `<li>&ldquo;${esc(h.line)}&rdquo;</li>`).join("")}</ul></div>
+    </div>
+  </section>
+
+  ${r ? `<section class="s" id="record" aria-labelledby="h-rec">
+    ${head("record", r.kicker)}
+    <div class="ach">
+      <svg class="ringsvg" viewBox="0 0 120 120" role="img" aria-label="${r.exact} of 8 ${esc(r.of)}">${r.rows.map((x, i) => { const a0 = (i / 8) * Math.PI * 2 - Math.PI / 2 + 0.06, a1 = ((i + 1) / 8) * Math.PI * 2 - Math.PI / 2 - 0.06, R = 52; return `<path d="M${60 + R * Math.cos(a0)} ${60 + R * Math.sin(a0)} A${R} ${R} 0 0 1 ${60 + R * Math.cos(a1)} ${60 + R * Math.sin(a1)}" fill="none" stroke-width="10" stroke-linecap="round" stroke="${x.status === "hit" ? "#6A5AD6" : x.near ? "#B3AAF0" : "#E9E6FB"}"/>`; }).join("")}<text x="60" y="62" text-anchor="middle" dominant-baseline="middle" fill="#1E1B2E">${r.exact}<tspan font-size="16" font-weight="600" fill="#6E6987">/8</tspan></text></svg>
+      <div><h2 id="h-rec" style="font-size:clamp(26px,6.6vw,40px)">${esc(r.headline)}</h2><p class="lead" style="margin:0">${esc(r.intro)}</p></div>
+    </div>
+    <ul class="badges">${r.rows.map((x, i) => `<li class="${x.near ? "near" : x.status}"><span class="hx">${i + 1}</span><span><b>${esc(x.title)}</b><small>${esc(x.shown)}</small></span></li>`).join("")}</ul>
+    <p class="hint">${esc(r.key)}</p>
+  </section>` : ""}
+
+  <section class="s" id="party" aria-labelledby="h-party">
+    ${head("party", "Party")}
+    <h2 id="h-party">${esc(p.title)}</h2>
+    <div class="party">
+      <div class="slot you"><span class="lab">${esc(A.partyYou)}</span><span class="nm">${esc(c.people.name)}<br>${esc(c.life.name)}</span></div>
+      ${p.click ? `<div class="slot"><span class="lab">${esc(p.click.label)}</span><span class="nm">${esc(p.click.name)}</span><p>${esc(p.click.line)}</p></div>` : ""}
+      <div class="slot opp"><span class="lab">${esc(p.opposite.label)}</span><span class="nm">${esc(p.opposite.a)} and ${esc(p.opposite.b)}</span><p>${esc(p.opposite.line)}</p></div>
+      <a class="slot add" href="#challenge"><span aria-hidden="true">+</span><b>${esc(A.share.challenge)}</b><small>${esc(A.share.sub)}</small></a>
+    </div>
+    <div class="bio"><span class="lab">${esc(A.bio.title)}</span><q>${esc(A.bio.text)}</q><button id="copybio">${esc(A.bio.copy)}</button></div>
+  </section>
+
+  <section class="s" id="play" aria-labelledby="h-play">
+    <p class="closing">${esc(A.closing)}</p>
+    <p style="margin:0 0 18px"><a class="btn-ch" href="#challenge">${esc(A.share.challenge)}</a></p>
+    <div class="play">
+      <img class="isl2" src="assets/island-720.webp" srcset="assets/island-720.webp 720w, assets/island-1440.webp 1440w" sizes="(min-width:900px) 55vw, 140vw" alt="MirrorMii World, the island in the game" width="720" height="342" loading="lazy">
+      <img class="g3" src="assets/genii-240.webp" alt="" width="240" height="216" loading="lazy">
+      ${head("play", A.app.kicker)}
+      <h2 id="h-play">${esc(A.app.title)}</h2>
+      <p>${esc(A.app.body)}</p>
+      <div><a class="store" href="#get-mirrormii">${apple}<span><small>${esc(A.app.store)}</small><b>${esc(A.app.button)}</b></span></a><p style="font-size:14px;margin:10px 0 0">${esc(A.app.note)}</p></div>
+    </div>
+  </section>`;
+}
+
+let spy;
+function wire(A) {
+  // tabs + scroll spy
+  const tabs = document.getElementById("tabs");
+  tabs.innerHTML = TABS.filter(([id]) => document.getElementById(id)).map(([id, label, col]) => `<li><a href="#${id}" style="--c:${col}"><i></i>${esc(label)}</a></li>`).join("");
+  spy && spy.disconnect();
+  spy = new IntersectionObserver((es) => es.forEach((e) => {
+    if (!e.isIntersecting) return;
+    tabs.querySelectorAll("a").forEach((a) => { const on = a.getAttribute("href") === `#${e.target.id}`; a.classList.toggle("on", on); if (on) a.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" }); });
+  }), { rootMargin: "-30% 0px -60% 0px" });
+  TABS.forEach(([id]) => { const el = document.getElementById(id); if (el) spy.observe(el); });
+  // stat drawers
+  document.querySelectorAll(".srow > button").forEach((b) => b.addEventListener("click", () => { const row = b.parentElement; const on = !row.classList.contains("open"); row.classList.toggle("open", on); b.setAttribute("aria-expanded", String(on)); }));
+  document.querySelector(".srow")?.classList.add("open");
+  document.querySelector(".srow > button")?.setAttribute("aria-expanded", "true");
+  // holo cards: tilt with the pointer, flip on tap
+  document.querySelectorAll(".tc").forEach((tc) => {
+    const b = tc.querySelector("button");
+    b.addEventListener("click", () => { const on = !tc.classList.contains("flipped"); tc.classList.toggle("flipped", on); b.setAttribute("aria-pressed", String(on)); });
+    if (!reducedMotion()) {
+      tc.addEventListener("pointermove", (e) => { const r = tc.getBoundingClientRect(); const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height; tc.style.setProperty("--ry", `${(x - .5) * 16}deg`); tc.style.setProperty("--rx", `${(.5 - y) * 12}deg`); tc.style.setProperty("--mx", x * 100); });
+      tc.addEventListener("pointerleave", () => { tc.style.setProperty("--ry", "0deg"); tc.style.setProperty("--rx", "0deg"); });
+    }
+  });
+  // the holo sheen on plates follows the pointer, or the phone's tilt
+  if (!reducedMotion()) {
+    const sheen = (x) => document.querySelectorAll(".plate, .slot.you, .rare .sealed").forEach((el) => el.style.setProperty("--mx", x));
+    addEventListener("pointermove", (e) => sheen((e.clientX / innerWidth) * 100), { passive: true });
+    addEventListener("deviceorientation", (e) => { if (e.gamma != null) sheen(50 + e.gamma * 1.5); }, { passive: true });
+  }
+  // the rare card
+  const rare = document.getElementById("rare");
+  rare.querySelector("button").addEventListener("click", (e) => { rare.classList.add("open"); e.currentTarget.setAttribute("aria-expanded", "true"); });
+  if (new URLSearchParams(location.search).has("open")) rare.classList.add("open");
+  // island pins
+  const note = document.getElementById("note");
+  const show = (i) => {
+    const rm = A.rooms.list[i];
+    note.style.setProperty("--c", TINT[rm.chapter]);
+    note.innerHTML = `<h3>${esc(rm.room)}</h3>${rm.lines.map((l) => `${l.differs ? `<span class="fl">${esc(A.rooms.differs)}</span>` : ""}<p>${esc(l.line)}</p>`).join("")}`;
+    document.querySelectorAll(".pin").forEach((p) => p.setAttribute("aria-pressed", String(+p.dataset.i === i)));
+  };
+  document.querySelectorAll(".pin").forEach((p) => p.addEventListener("click", () => show(+p.dataset.i)));
+  show(0);
+  const cb = document.getElementById("copybio");
+  cb.addEventListener("click", async () => { try { await navigator.clipboard.writeText(A.bio.text); } catch { /* blocked */ } cb.textContent = A.bio.copied; setTimeout(() => (cb.textContent = A.bio.copy), 1600); });
+}
+
+const you = (a) => Object.assign(a, { partyYou: "You" });
+let A = you(buildArticle(data, voice));
+main.innerHTML = render(A);
+wire(A);
+mountVoiceSwitch(document.getElementById("voice"), voice, { voiceFun: data.newCopy.voice, voiceHeart: data.newCopy.voice }, (v) => {
+  const y = scrollY; document.body.classList.add("swapping");
+  setTimeout(() => { A = you(buildArticle(data, v)); main.innerHTML = render(A); wire(A); scrollTo(0, y); document.body.classList.remove("swapping"); }, reducedMotion() ? 0 : 250);
+});
+</script>
+</body>
+</html>

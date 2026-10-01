@@ -1,6 +1,24 @@
-# Genii Personality and Health Survey — Product Spec
+> **Superseded: history only.** The launch survey's one spec is [LAUNCH-SPEC.md](LAUNCH-SPEC.md) (locked 2026-09-29); nothing here governs the build.
 
-Version 0.6 · 2026-09-17 · Owner: Jerry Zhang · Status: local implementation authorized; verification recorded in the current handoff
+> Reconciled 2026-09-18 from the approved R6 release documentation. Implementation/team instructions below describe that historical task; read [STATE.md](STATE.md) for the current build.
+
+# Genii Personality and Health Survey: Product Spec
+
+Version 0.6 · 2026-09-17 · Owner: Jerry Zhang · Status: superseded in part by the 2026-09-19 pivot; see Current direction
+
+## Current direction (2026-09-25)
+
+**The first session is a personality game, not a health survey.** Jerry's 2026-09-19 pivot ([DECISIONS.md](DECISIONS.md)) removes sleep, food, movement, hydration, body metrics and any health inference from the first session. Wellness may come later through the relationship with Genii. The sections below that describe the personality-and-health blend (health scope, sleep scope, routine bars, health acceptance rows) are superseded for the first session and kept as history; the evidence model, missingness rules, feedback rules, heldout separation, accessibility and non-claims still apply.
+
+What is built and live since 2026-09-23 ([STATE.md](STATE.md)):
+
+- Three contextual editions (everyday, work and study, social) with gentle, playful and sharp voices; optional personal sections are opt-in.
+- Route length follows Jerry's 2026-09-21 authorization to adjust question count: 16 to 24 profile scenes (25 to 33 with personal sections) plus 8 sealed checks, replacing the roughly 60-question route of D-027.
+- Evidence follows [EVIDENCE-FRAMEWORK.md](EVIDENCE-FRAMEWORK.md); the bank is [questions/QUESTION-BANK-V2-AUTHOR-GUIDE.md](questions/QUESTION-BANK-V2-AUTHOR-GUIDE.md).
+- The result is the personality dossier described in [RESULT-DISPLAY-V1.md](RESULT-DISPLAY-V1.md): provisional game nickname, five facets, answer-grounded stories, one prediction reveal, corrections, private export and a nickname-only share card.
+- Still unvalidated: human comprehension, humor, shareability, usefulness and predictive value. No backend, accounts or analytics.
+
+## Earlier spec v0.6 (2026-09-17)
 
 **A funny conversation that reveals how you feel, respond, and handle everyday health routines.**
 
@@ -8,7 +26,7 @@ The root survey blends personality, emotional context and health-related habits.
 
 The primary first-session outcome is recognition and earned trust: “You ask about things that matter to me, and I want to keep talking.” Genii should act as an attentive, playful host. The first portrait is provisional; label accuracy is secondary to the conversation's ability to create a credible reason to return. The audience direction is North America, all genders, with English first. Earlier age/gender/life-event examples are illustrative rather than a fixed target segment. The accepted return value is understanding yourself better and gradually finding small habits that work for you. The [host experience contract](HOST-EXPERIENCE.md) translates this direction into flow and authoring rules.
 
-The active detailed contract is [PERSONALITY-HEALTH-SPEC.md](PERSONALITY-HEALTH-SPEC.md). Jerry's latest decisions govern over earlier documents. The [founder brief](FOUNDER-BRIEF.md) remains creative and historical source material; its personality-only framing, correction-based rescoring and example percentages are superseded where they conflict with the active contract. Original v0.3 documents are preserved in this specification run's output/reference directory.
+The active detailed contract is [PERSONALITY-HEALTH-SPEC.md](PERSONALITY-HEALTH-SPEC.md). Jerry's latest decisions govern over earlier documents. The [founder brief](FOUNDER-BRIEF.md) remains creative and historical source material; its personality-only framing, correction-based rescoring and example percentages are superseded where they conflict with the active contract. Git history holds the original v0.3 documents.
 
 ## Scope and implementation status
 
@@ -49,7 +67,7 @@ Current direct health facts are q17 bedtime band, q20 takeaway dinner days and q
 
 Survey-answer edits are distinct from True/False review. Answer edits replace or supersede observations and recompute affected eligibility. Review feedback attaches to the original result snapshot and never silently changes it.
 
-## Sleep scope — confirmed
+## Sleep scope: confirmed
 
 Include all three layers:
 
@@ -110,9 +128,9 @@ Jerry requested Luna implementation with coordinating-agent verification. The cu
 
 Fresh native reads on 2026-09-17 verified MirrorMii OS Base revision 201 and relevant Wiki/source documents. TwinsXM schema revision 27 includes personality, sleep/fatigue, diet, activity and psychology/emotion; its corresponding Brand Facts row is draft. The draft company Emotion × Mechanism Map provides creative vocabulary, not a respondent scoring scale. Sally's 80% intent is attributed in the supplied handoff, which also says the framework awaits her confirmation.
 
-The protected aggregate packet remains incomplete. Targeted reads succeeded; do not describe Lark as generally inaccessible or treat drafts as approved capabilities. Source links, revisions and states are in output/COMPANY-CONTEXT.md; exact implementation gaps are in output/SPEC-GAP-AUDIT.md.
+The protected aggregate packet remains incomplete. Targeted reads succeeded; do not describe Lark as generally inaccessible or treat drafts as approved capabilities. Refresh Lark before relying on these revisions; they are dated 2026-09-17.
 
-Foundational specification/source-audit run: runs/20260917T193810Z-a886d9810122. Host-direction update run: runs/20260917T201408Z-a40d4b34db0c. This update changes founder requirements; it does not promote the earlier company drafts to approved capability claims.
+This update changed founder requirements; it did not promote the earlier company drafts to approved capability claims.
 
 ## Open decisions
 

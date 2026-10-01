@@ -1,0 +1,200 @@
+{
+  "schema": "genii-context-provenance/v1",
+  "updated_at": "2026-09-18",
+  "consolidation_run": "20260918T183120Z-c0d3445e10e4",
+  "relocations": [
+    {
+      "from": "project/docs/ALPHA-ICP-THESIS.md",
+      "to": "project/context/ALPHA-ICP-THESIS.md",
+      "sha256": "6ff6109a4f6e76d2b75846b9d09073c5588245565083b604895685b98cdf1b0f"
+    },
+    {
+      "from": "project/docs/ALPHA-ONTOLOGY-AND-FLOW.md",
+      "to": "project/context/ALPHA-ONTOLOGY-AND-FLOW.md",
+      "sha256": "7269a06a0ca01941c7fde7c44b8a1e881e4cc84bf092a0c47fc8f4d3034222d0"
+    },
+    {
+      "from": "project/docs/ALPHA-QUESTION-BANK-TEMPLATE.md",
+      "to": "project/context/ALPHA-QUESTION-BANK-TEMPLATE.md",
+      "sha256": "94bbc41091e3843581daf5a4eb99751fac745196898400086236df6b1e41f194"
+    },
+    {
+      "from": "project/docs/CLI-ACCESS.md",
+      "to": "project/context/CLI-ACCESS.md",
+      "sha256": "6b2faeced7110baf825f374e3228b6ea61577dd67e8ca92127aab6f316e402db"
+    },
+    {
+      "from": "project/docs/DATA-DESIGN.md",
+      "to": "project/context/DATA-DESIGN.md",
+      "sha256": "01ff5b72d691fe06449b88497492c3787d06cd455e7f9a7deda2caa3b063e6fa"
+    },
+    {
+      "from": "project/docs/DECISIONS.md",
+      "to": "project/context/DECISIONS.md",
+      "sha256": "7ab727ebee669e73b9f2b14925ae720312922505e29541f666a2019449cc2b75"
+    },
+    {
+      "from": "project/docs/DESIGN.md",
+      "to": "project/context/DESIGN.md",
+      "sha256": "60ca13a4775e127dcea3c338156e9b72c5393259d4abd4da7bee782563203f62"
+    },
+    {
+      "from": "project/docs/ENGLISH-EVIDENCE-DEMO-30.md",
+      "to": "project/context/ENGLISH-EVIDENCE-DEMO-30.md",
+      "sha256": "e51513c5b00ab56d8155a9ad214d7bf7a1900767b44001690e60a6035d92d9ea"
+    },
+    {
+      "from": "project/docs/ENVIRONMENT.md",
+      "to": "project/context/ENVIRONMENT.md",
+      "sha256": "a30422173e23c02b8d108a33ce977edb6ab5b564406484d1849c20603fcee8c6"
+    },
+    {
+      "from": "project/docs/EVIDENCE-REVIEW.md",
+      "to": "project/context/EVIDENCE-REVIEW.md",
+      "sha256": "199a56574286604e44757fc1a76f770d9fc3ed0673ce342aecfaf6ce27688ad3"
+    },
+    {
+      "from": "project/docs/FOUNDER-BRIEF.md",
+      "to": "project/context/FOUNDER-BRIEF.md",
+      "sha256": "3dcc79069ce687d7abbfd2d0a2ba691bae714c4e8445713ab26a31b3c6de5389"
+    },
+    {
+      "from": "project/docs/HOST-EXPERIENCE.md",
+      "to": "project/context/HOST-EXPERIENCE.md",
+      "sha256": "737768f984c19229095bc3a0e6b9f2c4daa9e24fc1eb2bb26c19ab88aef4b79f"
+    },
+    {
+      "from": "project/docs/IDENTITY-EVIDENCE-FRAMEWORK.md",
+      "to": "project/context/IDENTITY-EVIDENCE-FRAMEWORK.md",
+      "sha256": "ae14e8d706b12e8eb9f46b8b573879891d03141aaa719b4c58e4b0867ad619dc"
+    },
+    {
+      "from": "project/docs/PERSONALITY-HEALTH-SPEC.md",
+      "to": "project/context/PERSONALITY-HEALTH-SPEC.md",
+      "sha256": "55526d74a5069949c37b141a00b25140c7945fb4eb356f36c79645ad3d308f6a"
+    },
+    {
+      "from": "project/docs/PRODUCT-SPEC.md",
+      "to": "project/context/PRODUCT-SPEC.md",
+      "sha256": "735238c203773e995e7aefafc2f03dc199d33801b05fb1e62fadaf85984a1616"
+    },
+    {
+      "from": "project/docs/RESEARCH.md",
+      "to": "project/context/RESEARCH.md",
+      "sha256": "da9103369a9dfa803966337427641ce6b8bf342110cec1b1081190a694312d56"
+    }
+  ],
+  "promotions": [
+    {
+      "source": "runs/20260918T174625Z-7724d715c4d8/output/QUESTION-BANK.md",
+      "source_sha256": "1f8e00bec91004a16bba96708357dbd64100f9a737baf9b92a33a812b57e24b1",
+      "destination": "project/context/questions/EXPERIMENTAL-40.md",
+      "destination_sha256": "180e7b83fc0f2b56e7f09054597283196fe459285e18b3ac1bc2b0a1da9ddff8",
+      "status": "working-copy; original remains frozen"
+    },
+    {
+      "source": "runs/20260918T174625Z-7724d715c4d8/output/candidate-bank.json",
+      "source_sha256": "05d8da33981986bff7c219ab563b1330a37a2c3b13251162d0514eadb4682821",
+      "destination": "project/context/questions/experimental-40.json",
+      "destination_sha256": "05d8da33981986bff7c219ab563b1330a37a2c3b13251162d0514eadb4682821",
+      "status": "working-copy; original remains frozen"
+    },
+    {
+      "source": "runs/20260918T174625Z-7724d715c4d8/output/BANK-AUTHOR-NOTES.md",
+      "source_sha256": "94fa6bd4519daeadca6a5fef702d3235abdbc739f80e6448002bdd1b4d7cbddf",
+      "destination": "project/context/questions/BANK-AUTHOR-NOTES.md",
+      "destination_sha256": "931e3cb5d84ab4ea9a8953d61f10fd1931f76a37d56d1a02823e9e45c3407b5a",
+      "status": "working-copy; original remains frozen"
+    },
+    {
+      "source": "runs/20260918T174625Z-7724d715c4d8/output/NEXT-REVISION-PATCHES.md",
+      "source_sha256": "43b3f6c699b7d87c52d1272d0374be9c7758db4feda8c3db76d4cf7a89453329",
+      "destination": "project/context/questions/NEXT-REVISION-PATCHES.md",
+      "destination_sha256": "bdc7cd12999faa58d3bc67d6be181eae671068a294ff73201c1073f2737322ad",
+      "status": "working-copy; original remains frozen"
+    },
+    {
+      "source": "runs/20260918T174625Z-7724d715c4d8/output/BUILD-INTEGRATION-MAP.md",
+      "source_sha256": "c92e43729e0d7324b4c93e0c02b858e3944f99bcf89656966353b966da7dffcc",
+      "destination": "project/context/questions/BUILD-INTEGRATION-MAP.md",
+      "destination_sha256": "c4d9bc2ef731bb64c19728a820653af7b98207727a285c692707cde5fa351d6b",
+      "status": "working-copy; original remains frozen"
+    },
+    {
+      "source": "runs/20260918T174625Z-7724d715c4d8/output/SOURCE-SYNTHESIS.md",
+      "source_sha256": "8dcb8d9213de01086c7abc21dd79522678fefb4515c1b6755640f1030b66742b",
+      "destination": "project/context/questions/SOURCE-SYNTHESIS.md",
+      "destination_sha256": "42dadbe4c81effb8cd19aaa17ed7fb91dddaf2e6497cc9056e712ca64b750c13",
+      "status": "working-copy; original remains frozen"
+    },
+    {
+      "source": "runs/20260918T174625Z-7724d715c4d8/output/SOURCE-TO-BANK-MAP.md",
+      "source_sha256": "0b8f828d2bf5fe84514d5e2457fb942a7ac76288f29a284828560663ed58467e",
+      "destination": "project/context/questions/SOURCE-TO-BANK-MAP.md",
+      "destination_sha256": "859115d436c98c2b039c99494830e00009d36153c65048d66b9ff7eda025dc50",
+      "status": "working-copy; original remains frozen"
+    },
+    {
+      "source": "runs/20260918T024222Z-c25e30eace25/output/EVIDENCE-CHECKLIST.md",
+      "source_sha256": "cc81ee0d166488d5050b55268a0d719ffcab3b426f72b68e1974630cecc96f62",
+      "destination": "project/context/evidence/EVIDENCE-CHECKLIST.md",
+      "destination_sha256": "81e320e53a3004ce9cdc495341844b625fe01a1c010a1a9e4c8dafedcfbc5e05",
+      "status": "working-copy; original remains frozen"
+    },
+    {
+      "source": "runs/20260918T024222Z-c25e30eace25/output/RESEARCH-SOURCES.md",
+      "source_sha256": "a613c4654c80791c46c0330a658f69bf2a434aaf4bde75d328bf8092aafab4ac",
+      "destination": "project/context/evidence/RESEARCH-SOURCES.md",
+      "destination_sha256": "a5ca6b9a4d490c0eba5e3f734bc333692b4977969f54852d318f533b573ec08a",
+      "status": "working-copy; original remains frozen"
+    },
+    {
+      "source": "runs/20260918T015043Z-b1b26c2a04de/output/ICP-OPENING-HYPOTHESES.md",
+      "source_sha256": "5f4147671e8d07f343dcf2470a1f54042324ff14ced60b10704439fee4af83ee",
+      "destination": "project/context/icp/ICP-OPENING-HYPOTHESES.md",
+      "destination_sha256": "070c9e9cd1a912035f8e47ce05dac02759a1e5e5a647b2ab6b583420522949d4",
+      "status": "working-copy; original remains frozen"
+    },
+    {
+      "source": "runs/20260917T201408Z-a40d4b34db0c/output/CONVERSATION-EVIDENCE.md",
+      "source_sha256": "a5debd2bf15906cd75806e0324dd605917208fe2e51827d495dd96d94d9867b4",
+      "destination": "project/context/psychology/CONVERSATION-EVIDENCE.md",
+      "destination_sha256": "9b825d62bdbfa5f7bcc52807dff1ffeb394ffe3d7b58fd37b64ce2b0ecf24a65",
+      "status": "working-copy; original remains frozen"
+    },
+    {
+      "source": "runs/20260918T011159Z-16d23238fdf9/scratch/handoff/docs/DECISIONS.md",
+      "source_sha256": "69496dc9cd2077fd4394c7a1f979db1b5bef120680946e4a782160f81f3c7b55",
+      "destination": "project/context/DECISIONS.md",
+      "destination_sha256": "c68e7acf8e368e1f1f15d4d80c886a7d1f06a964e25ee53d1a196c34327bd9c4",
+      "status": "reconciled later implemented specification; prior canonical checkpoint preserved in output/before"
+    },
+    {
+      "source": "runs/20260918T011159Z-16d23238fdf9/scratch/handoff/docs/PRODUCT-SPEC.md",
+      "source_sha256": "0efe99e25ca20bfd3a14c539a0dd125b1a5eed904f909b570277173550aa6268",
+      "destination": "project/context/PRODUCT-SPEC.md",
+      "destination_sha256": "eea617c9cc0f76ed44338d75200ad59797676dc87b6a6c622e8611ab541fbe15",
+      "status": "reconciled later implemented specification; prior canonical checkpoint preserved in output/before"
+    },
+    {
+      "source": "runs/20260918T011159Z-16d23238fdf9/scratch/handoff/docs/PERSONALITY-HEALTH-SPEC.md",
+      "source_sha256": "39e7620a01d0a88901d79f028cb263a0bc9d8559411fa071f51b81d06436332a",
+      "destination": "project/context/PERSONALITY-HEALTH-SPEC.md",
+      "destination_sha256": "31441697b884928fc2b758b39d14eee2b96b44ee952baa15781dcc782f9447b7",
+      "status": "reconciled later implemented specification; prior canonical checkpoint preserved in output/before"
+    },
+    {
+      "source": "runs/20260918T011159Z-16d23238fdf9/scratch/handoff/docs/HOST-EXPERIENCE.md",
+      "source_sha256": "0ea9bd4a649287efdfcfddb287c3041812e92473cedfdf10837d11848a0fcb8e",
+      "destination": "project/context/HOST-EXPERIENCE.md",
+      "destination_sha256": "7eebd329fba41ae0ad8cdcef0715f2db96039490fba6c594a5d091eaa2f1ffcf",
+      "status": "reconciled later implemented specification; prior canonical checkpoint preserved in output/before"
+    }
+  ],
+  "frozen_evaluation_policy": "Original run files and receipt hashes are preserved; maintained candidate copies are not retroactive evaluation inputs.",
+  "reconciliation_notes": [
+    "Approved release versions of DECISIONS, PRODUCT-SPEC, PERSONALITY-HEALTH-SPEC and HOST-EXPERIENCE recovered after comparing against canonical originals.",
+    "ALPHA-ONTOLOGY-AND-FLOW public share wording clarified to preserve existing private exports.",
+    "NEXT-REVISION-PATCHES adds two omitted final-judge findings; frozen bank not changed."
+  ]
+}

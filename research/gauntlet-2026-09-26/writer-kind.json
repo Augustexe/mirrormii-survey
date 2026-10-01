@@ -1,0 +1,258 @@
+{
+  "writer": "kind",
+  "voice": "Be kind",
+  "dims": [
+    {
+      "id": "closeness_style",
+      "quick": { "prompt": "With your closest person, the ideal is…", "a": "Lots of time together, sharing the whole day.", "b": "Close, and we each keep time of our own." },
+      "scene": {
+        "prompt": "Think of your last free day with nothing planned. How much went to your closest person?",
+        "options": ["Almost all of it. That was the plan.", "A good chunk, then some time to myself.", "One check-in text. The rest was mine.", "Mostly on my own. We caught up later."]
+      }
+    },
+    {
+      "id": "betrayal_line",
+      "quick": {
+        "prompt": "Your person got secretly close to someone. Nothing physical, but they share what used to be yours. What hurts most?",
+        "teenPrompt": "Your best friend got secretly close to someone else and shares what used to be yours. What hurts most?",
+        "a": "That closeness itself. It used to be ours.",
+        "b": "The hiding. We never agreed that was okay."
+      }
+    },
+    {
+      "id": "commitment_pace",
+      "quick": { "prompt": "You like and respect each other and talked it all through. Nothing official yet. Getting physical is…", "a": "Fine with me. It doesn't need a label first.", "b": "Something I'd rather save for once it's official." }
+    },
+    {
+      "id": "phone_privacy",
+      "quick": { "prompt": "Your closest person suggests you both share phone passcodes. Nothing's wrong, it's just an idea.", "a": "Sure. That feels natural to me.", "b": "I'd keep mine. If something's up, just ask." }
+    },
+    {
+      "id": "who_pays",
+      "quick": { "prompt": "First date or first hangout. The bill arrives.", "a": "Whoever did the asking pays. It's a nice gesture.", "b": "We split it. Easy and even from the start." }
+    },
+    {
+      "id": "standards",
+      "quick": { "prompt": "Someone great does one small thing that gives you the ick.", "a": "Trust it. The ick is usually right.", "b": "Let it go. Everyone has something." }
+    },
+    {
+      "id": "support_capacity",
+      "quick": { "prompt": "A friend needs you tonight, and you're exhausted. A good friend…", "a": "Shows up anyway.", "b": "Says so, and picks another night." },
+      "scene": {
+        "prompt": "Think of the last time a friend needed a long talk or favor while you were exhausted. What happened?",
+        "options": ["Showed up and stayed as long as they needed.", "Made time, but kept it on the short side.", "Answered the next day and felt bad about it.", "Said \"not tonight\" and offered another day."]
+      }
+    },
+    {
+      "id": "contact_needs",
+      "quick": { "prompt": "You and a friend haven't talked in a couple of months. Nobody's upset.", "a": "That's fine. We'll pick right back up.", "b": "It matters to me that someone reaches out." },
+      "scene": {
+        "prompt": "Think of the last time a friend went quiet for a few weeks. What went through your head?",
+        "options": ["Didn't notice until they popped back up.", "Noticed, figured they were busy, and moved on.", "Checked their posts to make sure they were okay.", "Wondered, quietly, if they still liked me."]
+      }
+    },
+    {
+      "id": "friend_did_harm",
+      "quick": { "prompt": "A close friend clearly hurt someone. The facts are pretty settled. What do you do first?", "a": "Be there for them, then talk about owning it.", "b": "Tell them it wasn't okay, even if they get upset." },
+      "scene": {
+        "prompt": "Think of the last time a friend was pretty clearly wrong in group drama. What did you do?",
+        "options": ["Backed them up in public, talked privately later.", "Stayed neutral and let it blow over.", "Told them privately that they'd messed up.", "Said it in the group chat, kindly but clearly."]
+      }
+    },
+    {
+      "id": "celebration_budget",
+      "quick": { "prompt": "Friends plan a birthday trip that's over your comfortable budget, but doable.", "a": "Go, and cut back somewhere else. It's worth it.", "b": "Say my budget and celebrate a cheaper way." },
+      "scene": {
+        "prompt": "Think of the last time friends planned something above your budget. What did you do?",
+        "options": ["Went, paid, and quietly cut back for a week.", "Joined, but skipped the pricier parts without saying why.", "Said my budget and suggested a cheaper version.", "Sat this one out and made it up later."]
+      }
+    },
+    {
+      "id": "feedback_style",
+      "quick": { "prompt": "A friend shows you their practice run for something big. It's not there yet, and they're already shaken.", "a": "Name the main problem now, plus a fix.", "b": "Build them up first. The hard part can wait." },
+      "scene": {
+        "prompt": "Think of the last time a friend asked your honest opinion on something they made. What did you say?",
+        "options": ["Gave the honest answer, right up front.", "Started with one nice thing, then the truth.", "Kept it mostly kind, with a tiny bit of truth.", "Said \"I love it!\" and let it be."]
+      }
+    },
+    {
+      "id": "second_chances",
+      "quick": { "prompt": "Someone in your group hurt a person, owned it, made it right, and changed. They want back in.", "a": "Let them back in slowly, step by step.", "b": "Go with whatever the person they hurt wants." }
+    },
+    {
+      "id": "strings_attached",
+      "quick": {
+        "prompt": "Your parents offer to help with rent, as long as you live closer to them.",
+        "teenPrompt": "Your parents offer a later curfew, as long as you share your location.",
+        "a": "Fair deal. Family help comes with family expectations.",
+        "b": "Only if it fits my plans. Otherwise I'll wait."
+      }
+    },
+    {
+      "id": "family_vs_own_call",
+      "quick": { "prompt": "You want a big change: new city, school or job. Your family isn't on board, but nothing needs you home.", "a": "Keep talking until they're on board, even if I wait.", "b": "Hear them out, then decide on my own timeline." },
+      "scene": {
+        "prompt": "Think of the last time your family pushed back on a decision of yours. What happened next?",
+        "options": ["Changed my plan. Peace at home mattered more.", "Found a middle ground we could all live with.", "Went ahead, and explained my reasons at length.", "Did it, and told them after."]
+      }
+    },
+    {
+      "id": "family_safety_net",
+      "quick": {
+        "prompt": "Your parents want you to keep supporting a grown sibling who's not in crisis, just not independent yet.",
+        "teenPrompt": "Your parents want you to keep covering for a sibling who keeps skipping chores.",
+        "a": "Family carries each other. Fairness can wait.",
+        "b": "Help, with an end date. They'll find their feet."
+      }
+    },
+    {
+      "id": "caregiving",
+      "quick": { "prompt": "A family member needs long-term care. Siblings and money could help, but moving home would hurt your work or school.", "a": "Be there in person. Everything else can adjust.", "b": "Organize family and paid help, and keep my life going." }
+    },
+    {
+      "id": "fairness_rule",
+      "quick": { "prompt": "Two people share costs. One earns about twice as much. Fair is…", "a": "Splitting it evenly.", "b": "The higher earner paying more." },
+      "scene": {
+        "prompt": "Think of the last shared bill: dinner, a trip, a group gift. How did the split actually go?",
+        "options": ["Divided it evenly. Clean and easy.", "Split it evenly, and quietly noticed I'd ordered less.", "Whoever had more that month covered more.", "Covered it myself and didn't bring it up."]
+      }
+    },
+    {
+      "id": "lending",
+      "quick": { "prompt": "A close friend urgently needs money you can spare, but losing it would sting. Payback is uncertain.", "a": "Give what I can afford to lose, no payback talk.", "b": "Agree on a payback plan first, then decide." },
+      "scene": {
+        "prompt": "Think of the last time someone asked you to lend or cover money. What did you do?",
+        "options": ["Sent it and never mentioned paying back.", "Lent it with a vague \"whenever works.\"", "Agreed, with a clear \"back by the 15th?\"", "Said \"not this time,\" gently."]
+      }
+    },
+    {
+      "id": "effort_vs_start",
+      "quick": { "prompt": "A friend bought a home with help from their parents. They say they worked hard too.", "a": "They did. Help doesn't erase the effort.", "b": "True, but the head start deserves saying out loud." }
+    },
+    {
+      "id": "time_horizon",
+      "quick": { "prompt": "An unexpected $300 lands. The best use is…", "a": "Something I'll remember this month.", "b": "Savings, or something I'll need later." },
+      "scene": {
+        "prompt": "Think of the last bit of surprise money: a refund, birthday cash, a bonus. Where did most of it go?",
+        "options": ["Spent it on a plan or treat within a week.", "Had some fun, and set the rest aside.", "Saved most, and kept a little for a treat.", "Put it all toward bills or savings."]
+      }
+    },
+    {
+      "id": "favorite_premium",
+      "quick": { "prompt": "Two versions do the same job. You love one; it costs a lot more but fits your budget.", "a": "Get the one I love. The feeling's worth it.", "b": "Buy the cheaper one. Use the difference elsewhere." },
+      "scene": {
+        "prompt": "Think of the last time you chose between a pricier favorite and a cheaper one. What did you get?",
+        "options": ["Got the favorite, and I'm glad I did.", "Bought the favorite after a week of thinking.", "Chose the cheaper one, and still think about the other.", "Picked the cheaper one without a second thought."]
+      }
+    },
+    {
+      "id": "pay_or_passion",
+      "quick": {
+        "prompt": "Two options both cover your needs. One pays more but bores you; the other pays less but you'd enjoy it.",
+        "teenPrompt": "Two part-time jobs. One pays more but bores you; the other pays less but you'd enjoy it.",
+        "a": "Take the money, and enjoy life outside it.",
+        "b": "Choose the one I'd enjoy, and live leaner."
+      }
+    },
+    {
+      "id": "risk_style",
+      "quick": { "prompt": "You have six months of savings. A risky thing you really want shows up beside your steady option.", "a": "Stay steady, and try the new thing on the side.", "b": "Give it six real months, even if savings shrink." },
+      "scene": {
+        "prompt": "Think of the last new thing you really wanted to start, like a project or club. How did you begin?",
+        "options": ["Dipped a toe in and kept everything else the same.", "Started small, then went bigger once it worked.", "Jumped in and figured it out as I went.", "Still planning it, honestly."]
+      }
+    },
+    {
+      "id": "success_meaning",
+      "quick": { "prompt": "Five years from now, you'd rather hear…", "a": "\"You built something people know about.\"", "b": "\"Your life looks exactly how you wanted.\"" },
+      "scene": {
+        "prompt": "Think of the last time you were offered more responsibility: a lead role, captain, organizer. What did you do?",
+        "options": ["Said yes before they finished asking.", "Took it, and asked what could come off my plate.", "Asked for time to think, then said no.", "Declined right away. I like my life as is."]
+      }
+    },
+    {
+      "id": "stay_late",
+      "quick": { "prompt": "Your part is done. Someone asks you to stay late for something that could wait until tomorrow.", "a": "Stay. Covering for each other matters.", "b": "Say I have plans, and offer help tomorrow." }
+    },
+    {
+      "id": "ai_apology",
+      "quick": { "prompt": "Someone used AI to help word an apology to you. They meant it and followed through.", "a": "Still sincere. Meaning it and changing is what counts.", "b": "For something big, I want their own words." }
+    },
+    {
+      "id": "ai_companion",
+      "quick": { "prompt": "An AI companion helps someone feel understood. They still have real friends and a full life.", "a": "That comfort can be real, even from an AI.", "b": "Helpful, sure, but not a close relationship." }
+    },
+    {
+      "id": "posting_person",
+      "quick": { "prompt": "You're happy with someone new, a partner or a new best friend. Posting them is…", "a": "Obvious. I'm proud of them.", "b": "Not my thing. I keep that part offline." }
+    },
+    {
+      "id": "explore_or_root",
+      "quick": { "prompt": "You could live somewhere new for a year. Life is good now, and the risks are manageable.", "a": "Go. Not knowing is part of the fun.", "b": "Stay, and go deeper with what I have." },
+      "scene": {
+        "prompt": "Think of the last time you could try something unfamiliar that took effort: a trip, class, or group. What happened?",
+        "options": ["Went for it, with no research.", "Said yes after reading up a lot.", "Thought about it, then stuck with what I know.", "Passed on it. I like my usual."]
+      }
+    },
+    {
+      "id": "life_timeline",
+      "quick": {
+        "prompt": "People your age are locking things in: careers, partners, cities.",
+        "teenPrompt": "People your age are locking things in: majors, paths, friend groups.",
+        "a": "Lock in a few directions. Milestones calm me.",
+        "b": "Keep exploring. Their timeline isn't mine."
+      }
+    },
+    {
+      "id": "self_or_others",
+      "quick": { "prompt": "Free time for one big thing: your own hobby and growth, or a volunteer project helping people.", "a": "My own thing. I'd grow from it.", "b": "The project. I'd love helping out." }
+    },
+    {
+      "id": "looking_put_together",
+      "quick": { "prompt": "Your look-good routine takes an hour a day. It makes you happy, and nobody requires it.", "a": "Worth it. Looking good feels good.", "b": "Simplify it, and use the hour elsewhere." }
+    },
+    {
+      "id": "repair_or_release",
+      "quick": { "prompt": "A friendship keeps leaving you drained, with no single big fight. What do you do?", "a": "Talk it through and try to fix it.", "b": "Let it fade. Not every friendship lasts." },
+      "scene": {
+        "prompt": "Think of the last friendship or group chat that went quiet on your side. What happened?",
+        "options": ["Said something, and we talked it out.", "Dropped hints and hoped it sorted itself out.", "Let it fade on its own.", "Left or muted it and didn't look back."]
+      }
+    },
+    {
+      "id": "home_split",
+      "quick": { "prompt": "You share a home with someone. The best way to divide chores is…", "a": "Each of us takes the chores we like.", "b": "Everything split evenly, chore by chore." }
+    },
+    {
+      "id": "marriage_meaning",
+      "quick": { "prompt": "Picturing your future, marriage is…", "a": "Something that really matters to me.", "b": "Optional. Life can be great without it." }
+    },
+    {
+      "id": "kids_someday",
+      "quick": { "prompt": "Picturing your future, having kids is…", "a": "Something I want someday.", "b": "Maybe not part of my ideal life." }
+    },
+    {
+      "id": "wedding_budget",
+      "quick": { "prompt": "If you ever have a wedding, you'd rather…", "a": "Throw the big celebration, everyone invited.", "b": "Keep it small and save the money." }
+    }
+  ],
+  "sealed": [
+    { "id": "H01", "prompt": "A friend asks for help moving on Saturday, your only free day. What do you say?",
+      "options": ["\"I'm in.\"", "\"I can do the morning.\"", "\"Can't help, but borrow my car.\"", "\"Sorry, can't this time. Good luck!\""] },
+    { "id": "H02", "prompt": "A group trip house costs $1,200. One room is much bigger than the rest. What do you suggest?",
+      "options": ["Divide it evenly. Keep it simple.", "Split evenly, and the big room treats dinner.", "Ask the big room to pay a bit more.", "Price each room by its size."] },
+    { "id": "H03", "prompt": "Your closest person suggests spending all of Sunday together. You'd planned a day to yourself.",
+      "options": ["Move my plan. Sunday is theirs.", "Spend half the day together, half alone.", "Keep my plan, and offer the evening.", "Stay with my solo day. Maybe next Sunday."] },
+    { "id": "H04", "prompt": "A favorite artist announces a surprise show this week. Tickets are $180. Your budget is okay, not loose.",
+      "options": ["Bought them before the announcement ended.", "Checked my budget twice, then bought.", "Waited to see resale prices.", "Passed. I'll catch the next tour."] },
+    { "id": "H05", "prompt": "A friend shows you a haircut they got an hour ago. It isn't great.",
+      "options": ["\"Honestly, not your best. Here's a fix.\"", "\"The color's great. Give the cut a week.\"", "\"It'll grow on me!\"", "\"I love it!\""] },
+    { "id": "H06", "prompt": "You're offered the lead on a group project: more credit, more work, and it overlaps a trip.",
+      "options": ["Take the lead. The trip can move.", "Accept, and shorten the trip.", "Ask for a smaller role.", "Pass, and go on the trip."] },
+    { "id": "H07", "prompt": "A friend brags about ghosting someone who was really kind to them.",
+      "options": ["Laugh along, then bring it up gently later.", "Change the subject.", "\"That's a little harsh, no?\"", "\"That wasn't kind. You should message them.\""] },
+    { "id": "H08", "prompt": "You get a free weekend and a free train ticket to anywhere you've never been.",
+      "options": ["Pick a random city and go.", "Go, after a night of planning.", "Save it for somewhere familiar.", "Give the ticket away and enjoy being home."] }
+  ],
+  "notes": "Kind voice: plain, warm, first-person actions with no teasing. Every scene keeps the \"Think of the last time\" framing so it records what people did, and each option keeps the bank.js meaning, level and order (including celebration_budget's -2,-1,+2,+1 order and the none-level options on fairness_rule and risk_style). Warmth is spread evenly: the gentle detail goes on every option, not only the healthy-looking one (for example \"Let it fade on its own\" sits beside \"Said something, and we talked it out\", and the self-invest and help-others options both get a reason). Emotion-coded options keep their private feeling in quiet words (\"felt bad about it\", \"quietly noticed I'd ordered less\", \"still think about the other\", \"Wondered, quietly, if they still liked me\"). I removed trait words that were in the source prompts (\"trust issues\", \"boundaries\", \"the mature move\") and swapped rejected metaphors (\"Sleep is a social construct\", \"a timer in my head\") for true details. Options start with different words so they scan cleanly. The three 18+ tags (marriage_meaning, kids_someday, wedding_budget) plus commitment_pace stay adult-only; home_split is phrased as sharing a home with anyone, so roommates and teens fit. repair_or_release uses tension as its feel, drawn from TAG-VALIDATION-SPEC 3.4, since bank.js has no entry yet."
+}
