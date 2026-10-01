@@ -1,8 +1,8 @@
-name: Deploy Genii survey to GitHub Pages
+name: Deploy MirrorMii survey to GitHub Pages
 
 on:
   push:
-    branches: [codex/final-survey-dossier]
+    branches: [survey/launch]
   workflow_dispatch:
 
 permissions:
