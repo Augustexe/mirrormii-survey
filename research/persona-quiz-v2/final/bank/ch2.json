@@ -215,21 +215,21 @@
   ],
   "options": [
    {
-    "t": "\"IN. Dibs on the room by the kitchen.\"",
+    "t": "\"DIBS on the room by the kitchen. Boxes already taped.\"",
     "axes": {
      "R1": 2
     },
     "emotion": "delight"
    },
    {
-    "t": "\"Yes! House dinners every Sunday, mandatory.\"",
+    "t": "\"Already made us a chore wheel. It's laminated.\"",
     "axes": {
      "R1": 1
     },
     "emotion": "warmth"
    },
    {
-    "t": "\"In for a year. Then I want my own place again.\"",
+    "t": "\"Put me in the attic. The one with the lock.\"",
     "axes": {
      "R1": -1
     }
@@ -255,9 +255,9 @@
     }
    ],
    "options": [
-    "I'm in. And I want the room by the kitchen.",
-    "Yes, and Sunday house dinners are mandatory.",
-    "In for a year. Then I want my own place back.",
+    "Dibs on the room by the kitchen. My boxes are already taped.",
+    "I already made us a chore wheel. It's laminated.",
+    "Put me in the attic, the room with the lock.",
     "Love you all so much. I'll visit all the time."
    ]
   },
@@ -278,7 +278,7 @@
   "friend": {
    "prompt": "{name}'s five closest friends want everyone in one big house. Room draw is Sunday. What does {name} reply?",
    "a": {
-    "t": "\"IN. Dibs on the room by the kitchen.\"",
+    "t": "\"DIBS on the room by the kitchen. Boxes already taped.\"",
     "axes": {
      "R1": 2
     }
@@ -1534,7 +1534,7 @@
     ]
    },
    {
-    "t": "Told them, then told everyone I'd told them.",
+    "t": "Repeated it to the talkers' faces. Watched them squirm.",
     "axes": {
      "R2": 1
     },
@@ -1551,9 +1551,9 @@
    "prompt": "Ever heard what people say about a friend behind their back, and never told them?",
    "options": [
     "I kept it to myself, and I still am.",
-    "I hinted until they asked the right question.",
+    "Little hints, until they finally asked the right question.",
     "Told them that same night, names and all.",
-    "Told them, then told everyone I'd told them."
+    "Said it right back to the talkers, and watched them squirm."
    ]
   },
   "fp": {
@@ -1713,7 +1713,7 @@
   "prompt": "Genii's guess: someone you swore you'd never speak to again is back in your life.",
   "options": [
    {
-    "t": "Back, and now they're my emergency contact.",
+    "t": "Emergency contact now. Don't ask how.",
     "tags": [
      {
       "id": "T08A",
@@ -1755,8 +1755,8 @@
   "heart": {
    "prompt": "Is someone you once swore you'd never speak to again back in your life now?",
    "options": [
-    "Yes, and now they're my emergency contact.",
-    "They're back in the group chat. Not in my messages.",
+    "They're my emergency contact now. Don't ask me how.",
+    "In the group chat, sure. Never in my messages.",
     "One decent apology, and I folded.",
     "Still blocked, on every app I have."
    ]

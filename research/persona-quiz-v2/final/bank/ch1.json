@@ -553,7 +553,7 @@
     "emotion": "relief"
    },
    {
-    "t": "An AI wrote it, then I rewrote it in my voice.",
+    "t": "My words, but an AI sanded off the mean parts.",
     "tags": [
      {
       "id": "T03A",
@@ -572,7 +572,7 @@
     "emotion": "pride"
    },
    {
-    "t": "Me, first try, typos in. Sent before I chickened out.",
+    "t": "First try, typos in. Sent before I chickened out.",
     "tags": [
      {
       "id": "T03B",
@@ -585,9 +585,9 @@
    "prompt": "Think of your last big message, like a breakup, a resignation or a real apology. Who actually wrote it?",
    "options": [
     "An AI drafted it. I changed three words and sent it.",
-    "An AI wrote it. Then I rewrote it to sound like me.",
+    "My words, but I let an AI sand off the mean parts.",
     "Nine drafts, all mine. I sent the tenth.",
-    "Me, first try, typos and all, before I lost my nerve."
+    "First try, typos and all, before I lost my nerve."
    ]
   },
   "fp": {
@@ -635,21 +635,21 @@
   "prompt": "Overnight, a billboard goes up outside your window ranking you and your eight closest friends by how well life is going. You're seventh.",
   "options": [
    {
-    "t": "\"Seventh?\" I'm taking third by next summer.",
+    "t": "\"Seventh?\" Watch me. I'm taking third by next summer.",
     "axes": {
      "L2": 2
     },
     "emotion": "pride"
    },
    {
-    "t": "Find out what number one is doing. Copy it.",
+    "t": "Dig through number one's posts. Copy the morning routine.",
     "axes": {
      "L2": 1
     },
     "emotion": "envy"
    },
    {
-    "t": "Seventh is cozy. Nobody expects much from seventh.",
+    "t": "Get comfy. Nobody expects anything from seventh.",
     "axes": {
      "L2": -1
     },
@@ -666,8 +666,8 @@
    "prompt": "Overnight, a billboard goes up outside your window ranking you and your eight closest friends by how life's going. You're seventh.",
    "options": [
     "\"Seventh?\" Give me till next summer. I'm taking third.",
-    "I'd find out what number one is doing, and copy it.",
-    "Seventh's kind of cozy. Nobody expects much from seventh.",
+    "I'd go through number one's posts and copy their mornings.",
+    "Honestly? I'd get comfy. Nobody expects much from seventh.",
     "Curtains closed. My life isn't a leaderboard."
    ]
   },
@@ -773,7 +773,7 @@
     "emotion": "warmth"
    },
    {
-    "t": "Send a meme like no time passed. Green by dinner.",
+    "t": "Drop a meme in their DMs like nothing happened. Green by dinner.",
     "tags": [
      {
       "id": "T02A",
@@ -806,7 +806,7 @@
    "prompt": "Every friendship you have is a houseplant on your windowsill, and it wilts when nobody texts. Your oldest friend's plant has gone brown.",
    "options": [
     "It'll perk up. We go quiet for months and always come back.",
-    "I send a meme like no time passed. Green by dinner.",
+    "A meme in their messages like nothing happened. Green by dinner.",
     "They get a photo of the plant. No caption.",
     "It goes behind the green ones. That's where we are now."
    ]
@@ -1797,7 +1797,7 @@
   "prompt": "Someone new wants into your friend group. Your best friend gives them one honest tip about you. Which one?",
   "options": [
    {
-    "t": "\"Give it a year. They don't hand out trust.\"",
+    "t": "\"They'll test you with a fake secret first. Don't spread it.\"",
     "tags": [
      {
       "id": "T04A",
@@ -1815,7 +1815,7 @@
     ]
    },
    {
-    "t": "\"Three hangouts before you get the inside jokes.\"",
+    "t": "\"Polite for months. You're in when they roast you.\"",
     "tags": [
      {
       "id": "T04A",
@@ -1824,7 +1824,7 @@
     ]
    },
    {
-    "t": "\"They'll invite you to everything by next week.\"",
+    "t": "\"Laugh at one of their bits and you're in.\"",
     "tags": [
      {
       "id": "T04B",
@@ -1836,10 +1836,10 @@
   "heart": {
    "prompt": "Someone new wants into your friend group, and your best friend gives them one honest tip about you. Which one?",
    "options": [
-    "\"Give it a year. They don't hand out trust fast.\"",
+    "\"They'll test you with a fake secret first. Don't pass it on.\"",
     "\"Just show up. They'll adopt you by dessert.\"",
-    "\"Three hangouts, and you'll get the inside jokes.\"",
-    "\"They'll invite you to everything by next week.\""
+    "\"Months of polite. You're in the day they tease you.\"",
+    "\"Laugh at one of their jokes and you're in.\""
    ]
   },
   "fp": {
@@ -1860,7 +1860,7 @@
   "friend": {
    "prompt": "Someone new wants into {name}'s friend group. {name}'s best friend gives one honest tip. Which one?",
    "a": {
-    "t": "\"Give it a year. They don't hand out trust.\"",
+    "t": "\"They'll test you with a fake secret first. Don't spread it.\"",
     "tags": [
      {
       "id": "T04A",

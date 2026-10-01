@@ -285,6 +285,9 @@ export function checkCards(cards, { lib, legacy = false, serveFeeling = SERVE_FE
   // prompt first words and endings, Heart to heart openers, shared shape signatures and flat rhythms are capped
   // (SHAPE_LIMITS in shape-audit.mjs; run `node shape-audit.mjs` for the full report).
   if (!legacy) checkShapes(cards, err);
+  // Four different moves, never four strengths (Jerry, 2026-09-30, VOICE.md section 5): no two answers in a card open
+  // with the same word or the same core move.
+  checkSameMove(cards, err);
 
   return { errors, warnings, counts: countCards(cards) };
 }
@@ -328,6 +331,27 @@ function checkSceneRefs(cards, err, warn, serveFeeling = SERVE_FEELING) {
     const hard = r.hard && (!f || (serveFeeling && f.follows !== (f.id === r.id ? r.other : r.id)));
     (hard ? err : warn)(r.id, f && !serveFeeling ? `${r.what} (feeling card, not served while SERVE_FEELING is off)` : r.what);
   }
+}
+
+// Same-move rule (Jerry, 2026-09-30, VOICE.md section 5). In a scored card (not receipts, sealed or feeling), no two
+// Make it fun answers may open with the same first word, and no two may share a core move in their first four words.
+export const SAME_MOVES = ["split", "even", "half", "pay", "pays", "going", "go", "their turn", "keep", "yes", "no", "take", "stay", "leave", "send", "text", "call", "delete", "skip", "say", "tell", "wait", "ask", "give", "sign", "press", "post", "block", "sell", "buy"];
+const moveText = (t) => String(t).toLowerCase().replace(/[“”"!?.,:;()]/g, " ").replace(/\s+/g, " ").trim();
+export function sameMoveIssues(card) {
+  if (!card || ["receipts", "sealed", "feeling"].includes(card.type)) return [];
+  const opts = (card.options || []).filter((o) => o && !o.none && !o.circumstance && typeof o.t === "string").map((o) => moveText(o.t));
+  const issues = [];
+  const firsts = new Map();
+  for (const t of opts) { const w = t.split(" ")[0]; firsts.set(w, (firsts.get(w) || 0) + 1); }
+  for (const [w, k] of firsts) if (w && k > 1) issues.push(`${k} answers open with "${w}"`);
+  for (const m of SAME_MOVES) {
+    const hits = opts.filter((t) => ` ${t.split(" ").slice(0, 4).join(" ")} `.includes(` ${m} `));
+    if (hits.length > 1) issues.push(`${hits.length} answers share the move "${m}"`);
+  }
+  return issues;
+}
+function checkSameMove(cards, err) {
+  for (const c of cards) for (const what of sameMoveIssues(c)) err(c.id, `same move twice: ${what}; every answer must be a different move (VOICE.md section 5)`);
 }
 
 const CLOCK = /\b\d{1,2}(:\d{2})?\s?(am|pm)\b|\b\d{1,2}:\d{2}\b|\bmidnight\b|\bnoon\b/i;

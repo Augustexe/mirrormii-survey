@@ -76,7 +76,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "The blank board, and we draw every square ourselves.",
+        "t": "Grab the markers. Square one: we open a bakery.",
         "axes": {
           "R3": -2
         },
@@ -93,7 +93,7 @@
       "prompt": "A board game turns up at your door: your life with your partner, square by square. Move in, ring, wedding, house, in that order. Or there's a blank board.",
       "options": [
         "We'd play it as printed. Keys, ring, wedding, house.",
-        "The blank one. We'd rather draw every square ourselves."
+        "Hand us the markers. Square one might be a bakery."
       ]
     },
     "fp": {
@@ -124,7 +124,7 @@
         ]
       },
       "b": {
-        "t": "Blank board. Draws every square with {their} partner.",
+        "t": "Grabs the markers. Square one: opening a bakery.",
         "axes": {
           "R3": -2
         },
@@ -268,7 +268,7 @@
     "prompt": "At the wedding, the couple asked for honest toasts. Their best friend, meaning every word: \"I give it two years. Prove me wrong.\" Your verdict?",
     "options": [
       {
-        "t": "They asked for honest. That was honest.",
+        "t": "Honest was the assignment. I started the slow clap.",
         "axes": {
           "R2": 1
         },
@@ -293,7 +293,7 @@
         "emotion": "cringe"
       },
       {
-        "t": "Right message, wrong wrapping. Lead with a story.",
+        "t": "Open with the camping story, then land it. Same point.",
         "axes": {
           "R2": -1
         },
@@ -305,7 +305,7 @@
         ]
       },
       {
-        "t": "Brutal, but someone had to say it out loud.",
+        "t": "Brutal, and the only toast anyone will remember.",
         "axes": {
           "R2": 1
         },
@@ -321,10 +321,10 @@
     "heart": {
       "prompt": "The couple asked for honest toasts. Their best friend, meaning every word, says: \"I give it two years. Prove me wrong.\" What's your verdict?",
       "options": [
-        "They asked for honest, and that's what they got.",
+        "Honest was what they asked for. I'd have started the slow clap.",
         "True or not, that's a car conversation, not a mic one.",
-        "The point could stay. It just needed a softer way in.",
-        "It was brutal, but someone had to say it out loud."
+        "Start with the camping story, then land it. Same point, softer.",
+        "It was brutal, and it's the only toast anyone will remember."
       ]
     },
     "fp": {
@@ -344,7 +344,7 @@
     "friend": {
       "prompt": "At the wedding, the couple wanted honest toasts. The best friend: \"I give it two years. Prove me wrong.\" {name}'s first thought?",
       "a": {
-        "t": "The couple asked for honest. That was honest. Respect.",
+        "t": "Honest was the assignment. Starts the slow clap.",
         "axes": {
           "R2": 1
         },
@@ -576,7 +576,7 @@
     "prompt": "Family curse: every winter, one sibling spends a week as a pumpkin. Swaps are allowed. It's your youngest sibling's turn, the week they move into their first place.",
     "options": [
       {
-        "t": "Their turn is their turn. No swaps from me.",
+        "t": "Rotation stands. The chart's been in pen since 2009.",
         "axes": {
           "L3": 2
         },
@@ -588,7 +588,7 @@
         ]
       },
       {
-        "t": "I'll be the pumpkin. Their big week matters more.",
+        "t": "I'll be the pumpkin. Just keep me off the porch.",
         "axes": {
           "L3": -2
         },
@@ -600,7 +600,7 @@
         ]
       },
       {
-        "t": "Their turn. I'll carry them up the new stairs myself.",
+        "t": "Still their week. I'm rolling them up the new stairs.",
         "axes": {
           "L3": 1
         },
@@ -612,7 +612,7 @@
         ]
       },
       {
-        "t": "Whoever has the quietest week takes it. Not always me.",
+        "t": "Whoever's week is quietest takes it. Last year was me.",
         "axes": {
           "L3": -1
         },
@@ -627,10 +627,10 @@
     "heart": {
       "prompt": "A family curse: every winter, one sibling spends a week as a pumpkin, and swaps are allowed. It's your youngest sibling's turn, the week they move into their first place.",
       "options": [
-        "It's their turn. I'm not swapping.",
-        "I'll take the week. Their big move matters more.",
-        "Still their turn, but I'll carry them up the new stairs myself.",
-        "Whoever has the quietest week takes it. It can't always be me."
+        "The rotation stands. The chart's been in pen since 2009.",
+        "I'll be the pumpkin. Just keep me off the porch.",
+        "It's still their week, but I'll roll them up the new stairs.",
+        "Whoever has the quietest week takes it. Last year was me."
       ]
     },
     "fp": {
@@ -651,7 +651,7 @@
     "friend": {
       "prompt": "{name}'s family curse turns one sibling into a pumpkin each winter. It's the youngest's turn, the week they move out. What does {name} do?",
       "a": {
-        "t": "Their turn is their turn. No swaps.",
+        "t": "Rotation stands. The chart's been in pen since 2009.",
         "axes": {
           "L3": 2
         },
@@ -663,7 +663,7 @@
         ]
       },
       "b": {
-        "t": "Becomes the pumpkin so their big week goes fine.",
+        "t": "Volunteers as the pumpkin so the big move goes fine.",
         "axes": {
           "L3": -2
         },
@@ -739,10 +739,10 @@
     "heart": {
       "prompt": "The family portrait in your hallway now frowns at any choice your family wouldn't make, and guests can see it. You just said yes to a move across the country.",
       "options": [
-        "I'd turn it to face the wall. My move, my call.",
+        "It's getting turned to face the wall. My move, my call.",
         "I'd call home first. The move waits until they're smiling.",
         "The move's off. I can't live under that face.",
-        "It's going in the guest bathroom to frown at strangers."
+        "Into the guest bathroom it goes, to frown at strangers."
       ]
     },
     "fp": {
@@ -806,7 +806,7 @@
         ]
       },
       {
-        "t": "Yes, and I'm mailing a copy to both families.",
+        "t": "Mailing a clipping to both families. Framed.",
         "tags": [
           {
             "id": "T21A",
@@ -815,7 +815,7 @@
         ]
       },
       {
-        "t": "Yes to the story. My face stays out of it.",
+        "t": "Run the story, minus my face. Crop me to an elbow.",
         "tags": [
           {
             "id": "T21B",
@@ -824,7 +824,7 @@
         ]
       },
       {
-        "t": "No. Our story isn't news. It's ours.",
+        "t": "Hard pass. Our story isn't news. It's ours.",
         "axes": {
           "R3": -1
         },
@@ -840,9 +840,9 @@
       "prompt": "The local paper wants your love story on Sunday's front page, photos and all. Your partner's already said yes, and they need your answer tonight.",
       "options": [
         "Front page, big photo. I'm buying twenty copies.",
-        "Yes, and I'm mailing a copy to both our families.",
-        "The story can run. My face stays out of it.",
-        "No. Our story isn't news. It's just ours."
+        "I'm mailing a clipping to both our families, framed.",
+        "Let it run, but crop me down to an elbow.",
+        "That's a no from me. Our story isn't news, it's ours."
       ]
     },
     "fp": {
@@ -1147,7 +1147,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "\"Yes to all of it. My friends come to dinner too.\"",
+        "t": "\"Sure. Same menu, plus my friends and a disco ball.\"",
         "axes": {
           "R3": -1
         },
@@ -1159,7 +1159,7 @@
         ]
       },
       {
-        "t": "\"Someone else take it. I'll start our own thing.\"",
+        "t": "\"Ana, it's yours. I'm starting our own dumpling night.\"",
         "axes": {
           "R3": -2
         },
@@ -1171,7 +1171,7 @@
         ]
       },
       {
-        "t": "\"Same date, same menu. I'm not the one who breaks it.\"",
+        "t": "\"Deal. Teach me the stuffing before I ruin a legacy.\"",
         "axes": {
           "R3": 1
         },
@@ -1198,9 +1198,9 @@
       ],
       "options": [
         "Every year. The tablecloth with the gravy stain stays too.",
-        "Yes to all of it, and my friends come to dinner too.",
-        "Someone else should take it. I'll start our own thing.",
-        "Same date, same menu. It's not ending with me."
+        "Sure, same menu, plus my friends and a disco ball.",
+        "Ana, it's yours. I'll start our own dumpling night.",
+        "Okay, but teach me the stuffing before I ruin it."
       ]
     },
     "fp": {
@@ -1232,7 +1232,7 @@
         ]
       },
       "b": {
-        "t": "\"Someone else take it. I'll start our own thing.\"",
+        "t": "\"Ana, it's yours. I'm starting our own dumpling night.\"",
         "axes": {
           "R3": -2
         },
@@ -1439,7 +1439,7 @@
         ]
       },
       {
-        "t": "Never announced it. People worked it out.",
+        "t": "Never announced it. Somebody clocked the matching keychains.",
         "axes": {
           "R3": -1
         },
@@ -1451,7 +1451,7 @@
         ]
       },
       {
-        "t": "Only when someone asked me directly. Months later.",
+        "t": "Admitted it months later, and only because my cousin asked.",
         "tags": [
           {
             "id": "T21B",
@@ -1465,8 +1465,8 @@
       "options": [
         "I posted a photo within the month. Official is official.",
         "They came to a family dinner. That was the announcement.",
-        "I never announced it. People just worked it out.",
-        "Only when someone asked me straight out, months later."
+        "Never said a word. Someone clocked the matching keychains.",
+        "Months later, and only because my cousin asked me straight out."
       ]
     },
     "fp": {

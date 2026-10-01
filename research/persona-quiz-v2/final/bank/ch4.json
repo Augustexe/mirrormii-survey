@@ -8,7 +8,7 @@
     "prompt": "The pricier version of something you already own plenty of: sneakers, plushies, hoodies, skins. The last time you wanted it, how did it end?",
     "options": [
       {
-        "t": "Bought it on the spot. There's always room for one more.",
+        "t": "Checked out in under a minute. Always room for one more.",
         "tags": [
           {
             "id": "T14A",
@@ -18,7 +18,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Bought it, then hid the bag for a few days.",
+        "t": "Hid the bag under my bed for a week. Then wore it.",
         "tags": [
           {
             "id": "T14A",
@@ -28,7 +28,7 @@
         "emotion": "guilt"
       },
       {
-        "t": "Left it in my cart until the feeling passed.",
+        "t": "Left it in my cart until the crush wore off.",
         "tags": [
           {
             "id": "T14B",
@@ -37,7 +37,7 @@
         ]
       },
       {
-        "t": "Went for the cheaper version instead.",
+        "t": "Settled for the cheaper version. Nobody can tell. I can tell.",
         "tags": [
           {
             "id": "T14B",
@@ -49,10 +49,10 @@
     "heart": {
       "prompt": "Sneakers, plushies, hoodies, game skins: you already had plenty. The last time you wanted the pricier one anyway, how did it end?",
       "options": [
-        "I bought it on the spot. There's always room for one more.",
-        "I bought it, then hid the bag for a few days.",
-        "It sat in my cart until the feeling passed.",
-        "I went for the cheaper version instead."
+        "Under a minute, I'd checked out. There's always room for one more.",
+        "The bag hid under my bed a week before I wore it.",
+        "It sat in my cart until the crush wore off.",
+        "I settled for the cheaper version. Nobody can tell, except me."
       ]
     },
     "fp": {
@@ -72,7 +72,7 @@
     "friend": {
       "prompt": "Last time {name} wanted the pricier version of something {they} owned plenty of already. How did it end?",
       "a": {
-        "t": "Bought it on the spot. Always room for one more.",
+        "t": "Checked out in under a minute. Always room for one more.",
         "tags": [
           {
             "id": "T14A",
@@ -81,7 +81,7 @@
         ]
       },
       "b": {
-        "t": "Left it in the cart until the feeling passed.",
+        "t": "Left it in the cart until the crush wore off.",
         "tags": [
           {
             "id": "T14B",
@@ -185,7 +185,7 @@
     "prompt": "Be honest: you've said \"must be nice\" about someone else's big win.",
     "options": [
       {
-        "t": "Said it, meant it, would say it again.",
+        "t": "Out loud, mid-toast. Their parents' lake house backs me up.",
         "tags": [
           {
             "id": "T15B",
@@ -194,7 +194,7 @@
         ]
       },
       {
-        "t": "Said it, then asked how they did it. Now I'm copying.",
+        "t": "Asked how they pulled it off. Now I'm copying their routine.",
         "axes": {
           "L2": 1
         },
@@ -207,7 +207,7 @@
         "emotion": "pride"
       },
       {
-        "t": "If they got there, they did the work.",
+        "t": "Never once. Somebody got up for all those 5am alarms.",
         "tags": [
           {
             "id": "T15A",
@@ -216,7 +216,7 @@
         ]
       },
       {
-        "t": "Never out loud. Thought it plenty.",
+        "t": "Only in my head. Loudly. Many, many times.",
         "tags": [
           {
             "id": "T15B",
@@ -229,10 +229,10 @@
     "heart": {
       "prompt": "Tell me the truth. You've said \"must be nice\" about someone else's big win, haven't you?",
       "options": [
-        "Yes. I meant it, and I'd say it again.",
-        "I said it, then asked how they did it. Now I'm copying.",
-        "No. If they got there, they did the work.",
-        "Never out loud. I've thought it plenty, though."
+        "Yes, out loud, mid-toast. Their parents' lake house backs me up.",
+        "I asked how they did it. Now I'm copying their routine.",
+        "Never. Someone got up for all those early alarms.",
+        "Only in my head, but plenty of times."
       ]
     },
     "fp": {
@@ -255,7 +255,7 @@
     "friend": {
       "prompt": "Has {name} ever said \"must be nice\" about someone else's big win?",
       "a": {
-        "t": "Never. If they got there, they did the work.",
+        "t": "Never once. Somebody got up for all those 5am alarms.",
         "tags": [
           {
             "id": "T15A",
@@ -264,7 +264,7 @@
         ]
       },
       "b": {
-        "t": "Guilty. Said it, meant it, would say it again.",
+        "t": "Out loud, mid-toast. The parents' lake house backs {them} up.",
         "tags": [
           {
             "id": "T15B",
@@ -585,7 +585,7 @@
     "prompt": "A signed test pressing of your favorite album: one of twelve in the world, $900. The same album streams free.",
     "options": [
       {
-        "t": "Mine. Even if rent gets tight this month.",
+        "t": "Mine. Rent can be tight for one month.",
         "tags": [
           {
             "id": "T14A",
@@ -598,7 +598,7 @@
         ]
       },
       {
-        "t": "Buy it, then play it once a year, very carefully.",
+        "t": "Hang it behind glass. That needle never touches it.",
         "tags": [
           {
             "id": "T14A",
@@ -607,7 +607,7 @@
         ]
       },
       {
-        "t": "Streaming sounds the same. Nine hundred stays in my pocket.",
+        "t": "Streaming sounds the same. My $900 stays put.",
         "tags": [
           {
             "id": "T14B",
@@ -616,7 +616,7 @@
         ]
       },
       {
-        "t": "Stream it, and frame a $10 poster of the cover.",
+        "t": "Grab the $3 cover sticker on the way out. Close enough.",
         "tags": [
           {
             "id": "T14B",
@@ -628,10 +628,10 @@
     "heart": {
       "prompt": "A signed test pressing of your favorite album is for sale: one of twelve in the world, $900. The same album streams for free.",
       "options": [
-        "It's mine, even if rent gets tight this month.",
-        "I buy it, then play it once a year, very carefully.",
-        "Streaming sounds the same. The $900 stays in my pocket.",
-        "I stream it and frame a $10 poster of the cover."
+        "It's mine. Rent can be tight for one month.",
+        "I hang it behind glass, and no needle ever touches it.",
+        "Streaming sounds the same. My $900 stays where it is.",
+        "A $3 sticker of the cover is close enough for me."
       ]
     },
     "fp": {
@@ -664,7 +664,7 @@
         ]
       },
       "b": {
-        "t": "Streams it. Nine hundred stays in the pocket.",
+        "t": "Streams it. The $900 stays put.",
         "tags": [
           {
             "id": "T14B",
@@ -772,10 +772,10 @@
     "chapter": 4,
     "sq": "SQ-T12-1",
     "world": "absurd",
-    "prompt": "New housemate: a mermaid with a sunken ship's worth of gold, while you live on a normal paycheck. They want rent split exactly fifty-fifty.",
+    "prompt": "Your housemate's a mermaid with a sunken ship's worth of gold. You're on one normal paycheck. Rent day, they flick you a doubloon: \"Your rent's on me. Every month.\"",
     "options": [
       {
-        "t": "Same home, same rent. Fair.",
+        "t": "Flick it back. I pay my own way, gold or no gold.",
         "axes": {
           "L3": 1
         },
@@ -787,7 +787,7 @@
         ]
       },
       {
-        "t": "Pitch it: we each pay by what we have.",
+        "t": "Pocket it. They own a shipwreck. I own a paycheck.",
         "axes": {
           "L3": -1
         },
@@ -799,7 +799,7 @@
         ]
       },
       {
-        "t": "Pay half, say nothing, and quietly resent it.",
+        "t": "Log every doubloon in a notebook. Owing a fish bugs me.",
         "tags": [
           {
             "id": "T12A",
@@ -809,7 +809,7 @@
         "emotion": "irritation"
       },
       {
-        "t": "Pay half, and drop gold hints every rent day.",
+        "t": "Smile, say thanks, and leave the water bill by their tub.",
         "axes": {
           "R2": -1
         },
@@ -823,12 +823,12 @@
       }
     ],
     "heart": {
-      "prompt": "Your new housemate's a mermaid with a sunken ship's worth of gold, and you're on a normal paycheck. They want the rent split exactly in half.",
+      "prompt": "Your mermaid housemate has a sunken ship's worth of gold. You're on a normal paycheck. On rent day, they flick you a doubloon: your rent's on them, every month.",
       "options": [
-        "Half each. Same home, same rent. That's fair.",
-        "I suggest we each pay by what we have.",
-        "I pay half, say nothing, and quietly resent it.",
-        "I pay half, and drop hints about their gold every rent day."
+        "I flick it back. I pay my own way, gold or not.",
+        "In my pocket. They own a shipwreck, and I own a paycheck.",
+        "Every doubloon goes in a notebook. Owing them bugs me.",
+        "Smiling, I say thanks and leave the water bill by their tub."
       ]
     },
     "fp": {
@@ -847,9 +847,9 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "{name}'s new housemate is a mermaid with a sunken ship's worth of gold, and wants rent split fifty-fifty. What does {name} do?",
+      "prompt": "{name}'s housemate is a mermaid with a sunken ship's worth of gold. On rent day, they offer to cover {name}'s rent every month. What does {name} do?",
       "a": {
-        "t": "Fair. Same home, same rent.",
+        "t": "Flicks the doubloon right back. Pays {their} own way.",
         "axes": {
           "L3": 1
         },
@@ -861,7 +861,7 @@
         ]
       },
       "b": {
-        "t": "Pitch it: we each pay by what we have.",
+        "t": "Pockets it. They own a shipwreck. {name} owns a paycheck.",
         "axes": {
           "L3": -1
         },
@@ -880,10 +880,10 @@
     "chapter": 4,
     "sq": "SQ-T15-2",
     "world": "absurd",
-    "prompt": "You and a friend dig up a pirate chest. You did all the digging. They had the map, from a thrift-store book.",
+    "prompt": "You and a friend dig up a pirate chest. You did six hours of digging. They had the map, from a thrift-store book. Inside: one gold crown.",
     "options": [
       {
-        "t": "Most of it's mine. The map never held a shovel.",
+        "t": "The crown's coming home with me. The map never held a shovel.",
         "tags": [
           {
             "id": "T15A",
@@ -893,7 +893,7 @@
         "emotion": "pride"
       },
       {
-        "t": "Even split. No map, no chest.",
+        "t": "Joint custody. They get weekends. No map, no chest.",
         "tags": [
           {
             "id": "T15B",
@@ -902,7 +902,7 @@
         ]
       },
       {
-        "t": "Even split, but I pick first. I dug.",
+        "t": "Fine, they wear it. Every news story says who dug.",
         "tags": [
           {
             "id": "T15A",
@@ -912,7 +912,7 @@
         "emotion": "resentment"
       },
       {
-        "t": "They take more. Finding that map was the miracle.",
+        "t": "Put it on their head. That map was the real luck.",
         "tags": [
           {
             "id": "T15B",
@@ -923,12 +923,12 @@
       }
     ],
     "heart": {
-      "prompt": "You and a friend dig up a pirate chest. You did all the digging. They had the map, from a thrift-store book.",
+      "prompt": "You and a friend dig up a pirate chest. You did six hours of the digging. They found the map in a thrift-store book. Inside, there's one gold crown.",
       "options": [
-        "Most of it's mine. The map never held a shovel.",
-        "We split it evenly. No map, no chest.",
-        "Even split, but I pick first. I did the digging.",
-        "They take more. Finding that map was the real luck."
+        "The crown's coming home with me. The map never held a shovel.",
+        "We share it. They get weekends. No map, no chest.",
+        "Fine, they can wear it, but every news story says who dug.",
+        "I put it on their head. That map was the real luck."
       ]
     },
     "fp": {
@@ -947,9 +947,9 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "{name} did all the digging for a pirate chest. A friend had the map, from a thrift-store book. What does {name} do?",
+      "prompt": "{name} did six hours of digging for a pirate chest. A friend had the map, from a thrift-store book. Inside: one gold crown. What does {name} do?",
       "a": {
-        "t": "Most of it's mine. The map never held a shovel.",
+        "t": "Takes the crown home. The map never held a shovel.",
         "tags": [
           {
             "id": "T15A",
@@ -958,7 +958,7 @@
         ]
       },
       "b": {
-        "t": "Even split. No map, no chest.",
+        "t": "Joint custody. The friend gets weekends. No map, no chest.",
         "tags": [
           {
             "id": "T15B",
@@ -1002,14 +1002,14 @@
         ]
       },
       {
-        "t": "Chip in $20. Say nothing. Seethe in private.",
+        "t": "Send $20, then seethe through every Lisbon story.",
         "axes": {
           "R2": -2
         },
         "emotion": "resentment"
       },
       {
-        "t": "Chip in $50. That $400 was a gift now, apparently.",
+        "t": "Like the post. Guess my $400 was Kai's birthday present.",
         "axes": {
           "R2": -1
         },
@@ -1026,8 +1026,8 @@
       "options": [
         "In a comment, I say Kai's $400 counts as my donation.",
         "I text Kai privately: Lisbon looks great, but my $400 first, please.",
-        "I put in $20, say nothing, and stew about it alone.",
-        "Fifty dollars from me. I guess the $400 was a gift now."
+        "Twenty dollars from me, then I stew through every Lisbon story.",
+        "A like on the post. So my $400 was Kai's birthday present."
       ]
     },
     "fp": {
@@ -1060,7 +1060,7 @@
         ]
       },
       "b": {
-        "t": "Chips in $20. Says nothing. Seethes in private.",
+        "t": "Sends $20, then seethes through every Lisbon story.",
         "axes": {
           "R2": -2
         }
@@ -1131,7 +1131,7 @@
     ],
     "options": [
       {
-        "t": "\"Obviously. One account, one team, sixty years.\"",
+        "t": "\"Obviously. One account, and see you at our 60th.\"",
         "axes": {
           "R3": 2,
           "R1": 1
@@ -1139,13 +1139,13 @@
         "emotion": "warmth"
       },
       {
-        "t": "\"Love them. We're writing our own money rules.\"",
+        "t": "\"Adorable. We're still writing our own money rules.\"",
         "axes": {
           "R3": -2
         }
       },
       {
-        "t": "\"Yes. Plus one small account nobody needs to know about.\"",
+        "t": "\"Forever!\" My tiny secret account stays very quiet.",
         "axes": {
           "R3": 1,
           "R1": -1
@@ -1153,7 +1153,7 @@
         "emotion": "guilt"
       },
       {
-        "t": "\"Separate accounts, one pot for bills. Our version.\"",
+        "t": "\"Yours, mine, and one pot for bills. Our version.\"",
         "axes": {
           "R3": -1,
           "R1": -1
@@ -1169,10 +1169,10 @@
         }
       ],
       "options": [
-        "Of course. One account, one team, sixty years.",
-        "I love them, but we're writing our own money rules.",
-        "Yes. Plus one small account nobody needs to know about.",
-        "Separate accounts, and one shared pot for bills. Our version."
+        "Of course. One account, and I'll see you at our sixtieth.",
+        "They're adorable, but we're writing our own money rules.",
+        "Forever. And my small secret account stays very quiet.",
+        "Yours, mine, and one shared pot for bills. Our version."
       ]
     },
     "fp": {
@@ -1193,14 +1193,14 @@
     "friend": {
       "prompt": "{name}'s partner's grandparents credit 60 years to \"one bank account, never two.\" The partner texts: \"that's us, right??\" What does {name} reply?",
       "a": {
-        "t": "\"Obviously. One account, one team, sixty years.\"",
+        "t": "\"Obviously. One account, and see you at our 60th.\"",
         "axes": {
           "R3": 2,
           "R1": 1
         }
       },
       "b": {
-        "t": "\"Love them. We're writing our own money rules.\"",
+        "t": "\"Adorable. We're still writing our own money rules.\"",
         "axes": {
           "R3": -2
         }
@@ -1226,7 +1226,7 @@
     ],
     "options": [
       {
-        "t": "\"Here's my savings. I believe in this cat.\"",
+        "t": "\"Wiring my savings now. I believe in this cat.\"",
         "axes": {
           "L1": -2
         },
@@ -1239,14 +1239,14 @@
         "emotion": "delight"
       },
       {
-        "t": "\"No. A cat can stop talking any day.\"",
+        "t": "\"Hard pass. That cat could clam up tomorrow.\"",
         "axes": {
           "L1": 2
         },
         "emotion": "worry"
       },
       {
-        "t": "\"I can put in $200 as a friend. No more.\"",
+        "t": "\"Show me three months of sales first. Then we talk.\"",
         "axes": {
           "L1": 1
         },
@@ -1258,7 +1258,7 @@
         ]
       },
       {
-        "t": "\"$1,000, and I'm telling everyone I'm an investor.\"",
+        "t": "\"In. My bio now says 'cat investor.'\"",
         "axes": {
           "L1": -1
         }
@@ -1277,10 +1277,10 @@
         }
       ],
       "options": [
-        "Here's my savings. I believe in this cat.",
-        "No. A cat could stop talking any day.",
-        "I can put in $200 as a friend, and no more.",
-        "I'll put in $1,000 and tell everyone I'm an investor."
+        "I'm sending my savings now. I believe in this cat.",
+        "I'll pass. That cat could clam up tomorrow.",
+        "Show me three months of sales first, then we'll talk.",
+        "Count me in. I'm calling myself a cat investor from now on."
       ]
     },
     "fp": {
@@ -1300,13 +1300,13 @@
     "friend": {
       "prompt": "Dev's talking cat has two million followers. Dev needs $5,000 for merch and offers ten percent. What does {name} reply?",
       "a": {
-        "t": "\"No. A cat can stop talking any day.\"",
+        "t": "\"Hard pass. That cat could clam up tomorrow.\"",
         "axes": {
           "L1": 2
         }
       },
       "b": {
-        "t": "\"Here's my savings. I believe in this cat.\"",
+        "t": "\"Wiring my savings now. I believe in this cat.\"",
         "axes": {
           "L1": -2
         },
@@ -1328,7 +1328,7 @@
     "prompt": "Pizza night always splits evenly. Mo, fresh from their second job, had one slice. Your take?",
     "options": [
       {
-        "t": "Even is even. One slice or six, same price.",
+        "t": "Rules are rules. One slice or six, same price.",
         "axes": {
           "L3": 2
         },
@@ -1340,7 +1340,7 @@
         ]
       },
       {
-        "t": "Mo pays for one slice. Second jobs get a discount.",
+        "t": "Charge Mo for one slice. Second jobs get a discount.",
         "axes": {
           "L3": -2
         },
@@ -1352,7 +1352,7 @@
         ]
       },
       {
-        "t": "Even split, but Mo takes the leftovers home.",
+        "t": "Box up the leftovers for Mo. The split stays the split.",
         "axes": {
           "L3": 1
         },
@@ -1364,7 +1364,7 @@
         ]
       },
       {
-        "t": "Mo pays even. I slip them a ten on the way out.",
+        "t": "Slip Mo a ten on the way out. Nobody needs to know.",
         "axes": {
           "L3": -1
         },
@@ -1379,10 +1379,10 @@
     "heart": {
       "prompt": "Pizza night's always split evenly. Mo came straight from their second job and had one slice. What do you think?",
       "options": [
-        "Even is even. One slice or six, it's the same price.",
+        "Rules are rules. One slice or six, it's the same price.",
         "Mo pays for one slice. A second job earns a discount.",
-        "We split it evenly, but Mo takes the leftovers home.",
-        "Mo pays even, and I slip them ten on the way out."
+        "The leftovers go home with Mo, and the split stays the same.",
+        "I slip Mo ten on the way out. Nobody needs to know."
       ]
     },
     "fp": {
@@ -1403,7 +1403,7 @@
     "friend": {
       "prompt": "{name}'s pizza night always splits evenly. Mo, fresh from a second job, had one slice. {name}'s take?",
       "a": {
-        "t": "Even is even. One slice or six, same price.",
+        "t": "Rules are rules. One slice or six, same price.",
         "axes": {
           "L3": 2
         },
@@ -1415,7 +1415,7 @@
         ]
       },
       "b": {
-        "t": "Mo pays for one slice. Second jobs get a discount.",
+        "t": "Charges Mo for one slice. Second jobs get a discount.",
         "axes": {
           "L3": -2
         },
@@ -1708,13 +1708,13 @@
     "prompt": "First date, your idea: a hot-air balloon ride. On landing, the pilot hands you the bill. $640.",
     "options": [
       {
-        "t": "I asked, so I pay. That's how dates work.",
+        "t": "I asked, so I pay. That's how first dates work.",
         "axes": {
           "R3": 2
         }
       },
       {
-        "t": "We split it. $320 each, no script.",
+        "t": "$320 each, right there in the basket. No script.",
         "axes": {
           "R3": -2
         },
@@ -1729,8 +1729,8 @@
     "heart": {
       "prompt": "Your idea for a first date was a hot-air balloon ride. When you land, the pilot hands you the bill: $640.",
       "options": [
-        "I asked, so I pay. That's how dates work.",
-        "We split it, $320 each. No script."
+        "I asked, so I pay. That's how first dates work.",
+        "It's $320 each, right there in the basket. No script needed."
       ]
     },
     "fp": {
@@ -1756,7 +1756,7 @@
         }
       },
       "b": {
-        "t": "Splits it: $320 each. No script.",
+        "t": "$320 each, right there in the basket. No script.",
         "axes": {
           "R3": -2
         },

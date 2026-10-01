@@ -6,7 +6,7 @@
     "prompt": "A street tailor knits you and your partner one sweater with two necks. It only comes off when one of you asks. They won't be the one.",
     "options": [
       {
-        "t": "Nobody's asking. It's going on this year's holiday card.",
+        "t": "Holiday card photo in it, then we just never take it off.",
         "axes": {
           "R1": 2
         },
@@ -32,7 +32,7 @@
         "emotion": "relief"
       },
       {
-        "t": "Ask, then climb back in for movie nights.",
+        "t": "Sundays only, for movie night. By Monday I'm asking out.",
         "axes": {
           "R1": -1
         },
@@ -60,10 +60,10 @@
     "heart": {
       "prompt": "A street tailor knits you and your partner one sweater with two necks. It only comes off if one of you asks, and they won't.",
       "options": [
-        "Nobody's asking. We're putting it on this year's holiday card.",
+        "It's in our holiday card photo, and it never comes off.",
         "I ask before the wool's even dry. I need my own sleeves.",
-        "I ask, then I climb back in for movie nights.",
-        "I fall asleep in it. I've wanted this since our first date."
+        "Sundays only, for movie night. By Monday I'm asking out.",
+        "Asleep in it by ten. I've wanted this since our first date."
       ]
     },
     "fp": {
@@ -85,7 +85,7 @@
     "friend": {
       "prompt": "A tailor knits {name} and {their} partner one sweater with two necks. It only comes off if one of them asks. What does {name} do?",
       "a": {
-        "t": "Never asks. Puts it on the holiday card.",
+        "t": "Holiday card photo in it, then never takes it off.",
         "axes": {
           "R1": 2
         },
@@ -279,7 +279,7 @@
         "emotion": "delight"
       },
       {
-        "t": "\"Congrats! Can I keep one night that's just mine, though?\"",
+        "t": "\"Wait, that was my one night. Can I get it back?\"",
         "axes": {
           "R2": 1
         },
@@ -292,7 +292,7 @@
         "emotion": "guilt"
       },
       {
-        "t": "\"So proud!\" Then quietly join a club across town.",
+        "t": "A thumbs-up. Then I quietly join a fencing club across town.",
         "axes": {
           "R1": -1,
           "R2": -1
@@ -305,7 +305,7 @@
         ]
       },
       {
-        "t": "\"Amazing! Then I'm joining your Thursday thing too.\"",
+        "t": "\"Love it. Next stop: your Thursday improv class, with me in it.\"",
         "axes": {
           "R1": 1
         },
@@ -327,9 +327,9 @@
       ],
       "options": [
         "Both my loves in one room. Save me the seat beside you.",
-        "Congratulations. Can I still keep one night that's only mine, though?",
-        "I tell them I'm proud, then quietly join a club across town.",
-        "That's wonderful. Then I'm joining your Thursday thing too."
+        "Wait, that was my one night. Can I have it back?",
+        "Just a thumbs-up. Then I quietly join a fencing club across town.",
+        "I love it. Next, I'm joining your Thursday improv class."
       ]
     },
     "fp": {
@@ -362,7 +362,7 @@
         ]
       },
       "b": {
-        "t": "\"So proud!\" Then quietly joins a club across town.",
+        "t": "A thumbs-up, then quietly joins a fencing club across town.",
         "axes": {
           "R1": -1,
           "R2": -1
@@ -758,7 +758,7 @@
     "prompt": "Your city wants a statue of you in the main square. Catch: you pose every weekend for a year, and your partner hates weekends apart.",
     "options": [
       {
-        "t": "Pose. A statue is forever. Weekends aren't.",
+        "t": "Pose every weekend. In 200 years, pigeons still know my face.",
         "axes": {
           "L2": 2,
           "R1": -1
@@ -766,7 +766,7 @@
         "emotion": "pride"
       },
       {
-        "t": "Our weekends beat any bronze. No statue.",
+        "t": "Turn it down. Our slow Saturday mornings beat any bronze.",
         "axes": {
           "L2": -2,
           "R1": 1
@@ -777,8 +777,8 @@
     "heart": {
       "prompt": "Your city wants a statue of you in the main square. You'd have to pose every weekend for a year, and your partner hates weekends apart.",
       "options": [
-        "I pose. A statue's forever, and weekends aren't.",
-        "No statue. Our weekends mean more than any bronze."
+        "I pose. In two hundred years, people still know my face.",
+        "Our slow Saturday mornings mean more than any bronze. I say no."
       ]
     },
     "fp": {
@@ -801,14 +801,14 @@
     "friend": {
       "prompt": "{name}'s city wants a statue of {them}, if {they} pose every weekend for a year. {their} partner hates weekends apart. Which one is {name}?",
       "a": {
-        "t": "Pose. A statue is forever. Weekends aren't.",
+        "t": "Poses. In 200 years, pigeons still know {their} face.",
         "axes": {
           "L2": 2,
           "R1": -1
         }
       },
       "b": {
-        "t": "No statue. Their weekends beat any bronze.",
+        "t": "Turns it down. Their slow Saturday mornings beat any bronze.",
         "axes": {
           "L2": -2,
           "R1": 1
@@ -926,7 +926,7 @@
     "prompt": "Ding-dong. Your talking doorbell greets every guest with your partner's last name, never yours. You get one chance to change its greeting.",
     "options": [
       {
-        "t": "Keep their name. One home, one name sounds right.",
+        "t": "Leave it. One home, one name, and it says it so warmly.",
         "axes": {
           "R3": 2
         },
@@ -938,14 +938,14 @@
         ]
       },
       {
-        "t": "Switch it to my name. Same rule, my turn.",
+        "t": "Announce it at dinner: the doorbell says my name now.",
         "axes": {
           "R3": 1,
           "R2": 1
         }
       },
       {
-        "t": "Teach it both names. Guests can wait through the greeting.",
+        "t": "Record both names. Guests can wait out the long version.",
         "axes": {
           "R3": -1
         },
@@ -957,7 +957,7 @@
         ]
       },
       {
-        "t": "A brand-new shared name, and the doorbell learns it first.",
+        "t": "Invent a new last name for us. The doorbell hears it first.",
         "axes": {
           "R3": -2
         },
@@ -973,10 +973,10 @@
     "heart": {
       "prompt": "Your talking doorbell greets every guest with your partner's last name, never yours. You get one chance to change what it says.",
       "options": [
-        "I keep their name. One home, one name feels right to me.",
-        "It gets my name instead. Same rule, my turn.",
-        "I teach it both names, even if guests wait a little longer.",
-        "We make up a shared name, and the doorbell learns it first."
+        "I leave it. One home, one name feels right to me.",
+        "Over dinner, I tell them the doorbell says my name now.",
+        "Both names go in, even if guests wait a little longer.",
+        "We invent a new last name, and the doorbell hears it first."
       ]
     },
     "fp": {
@@ -997,7 +997,7 @@
     "friend": {
       "prompt": "{name}'s talking doorbell greets guests with {their} partner's last name, never {name}'s. One chance to change it. What does {name} do?",
       "a": {
-        "t": "Keeps their name. One home, one name sounds right.",
+        "t": "Leaves it. One home, one name sounds right.",
         "axes": {
           "R3": 2
         },
@@ -1009,7 +1009,7 @@
         ]
       },
       "b": {
-        "t": "Invents a new shared name. The doorbell learns it first.",
+        "t": "Invents a new last name. The doorbell hears it first.",
         "axes": {
           "R3": -2
         },
@@ -1398,7 +1398,7 @@
         "emotion": "longing"
       },
       {
-        "t": "Give it a year. I'd never hand over my whole calendar.",
+        "t": "Give it a year. Nobody gets my whole calendar.",
         "axes": {
           "R1": -1
         },
@@ -1410,7 +1410,7 @@
         ]
       },
       {
-        "t": "Cute. I'd still keep book club. That part's mine.",
+        "t": "Cute, from a distance. My book club keeps its Tuesdays.",
         "tags": [
           {
             "id": "T09B",
@@ -1419,7 +1419,7 @@
         ]
       },
       {
-        "t": "I'd own drumsticks by week two, same as them.",
+        "t": "Relatable. I'd own drumsticks by week two.",
         "tags": [
           {
             "id": "T09A",
@@ -1433,8 +1433,8 @@
       "prompt": "Three months into dating a jazz drummer, your friend owns a hi-hat, has quit their book club and says \"we\" about every gig. What's your read?",
       "options": [
         "I love that. Falling for someone means falling into their world.",
-        "Give it a year. I'd never hand over my whole calendar.",
-        "It's sweet, but I'd keep the book club. That part's mine.",
+        "Give it a year. Nobody gets my whole calendar.",
+        "It's sweet from a distance, but my book club keeps its Tuesdays.",
         "Honestly, I'd own drumsticks by week two too."
       ]
     },
@@ -1467,7 +1467,7 @@
         ]
       },
       "b": {
-        "t": "\"Give it a year. They'll want their own thing back.\"",
+        "t": "\"Give it a year. Nobody gets {their} whole calendar.\"",
         "axes": {
           "R1": -1
         },
@@ -1588,10 +1588,10 @@
     "id": "C3-148",
     "type": "receipts",
     "chapter": 3,
-    "prompt": "Love, lately: which of these happened this month? Tap every one.",
+    "prompt": "Spill: which of these happened with your partner this month? Tap every one.",
     "options": [
       {
-        "t": "Said \"we\" about a plan before asking them",
+        "t": "Told a party \"we'll be there\" before asking them",
         "axes": {
           "R1": 1
         },
@@ -1603,7 +1603,7 @@
         ]
       },
       {
-        "t": "Let them plan my whole weekend, and liked it",
+        "t": "Handed them my whole Saturday to plan, and loved it",
         "tags": [
           {
             "id": "T09A",
@@ -1612,7 +1612,7 @@
         ]
       },
       {
-        "t": "Canceled on a friend to stay in with them",
+        "t": "Bailed on a friend to stay on the couch with them",
         "tags": [
           {
             "id": "T09A",
@@ -1621,7 +1621,7 @@
         ]
       },
       {
-        "t": "Have a friend they've never met, and like it that way",
+        "t": "Kept a friend they've never met, on purpose",
         "axes": {
           "R1": -1
         },
@@ -1633,7 +1633,7 @@
         ]
       },
       {
-        "t": "Said \"I miss you\" and kept my plans anyway",
+        "t": "Texted \"miss you\" from a night out I didn't leave early",
         "tags": [
           {
             "id": "T09B",
@@ -1649,11 +1649,11 @@
     "heart": {
       "prompt": "This month with your partner, which of these happened? Choose every one that's true.",
       "options": [
-        "I said \"we\" about a plan before I'd asked them.",
-        "I let them plan my whole weekend, and I liked it.",
-        "I canceled on a friend to stay in with them.",
-        "They've never met one of my friends, and I like that.",
-        "I said \"I miss you\" and kept my plans anyway.",
+        "I told a party \"we'll be there\" before I'd asked them.",
+        "They planned my whole Saturday, and I loved it.",
+        "I bailed on a friend to stay on the couch with them.",
+        "There's a friend of mine they've never met, on purpose.",
+        "I texted \"miss you\" from a night out, and didn't leave early.",
         "None of these."
       ]
     },

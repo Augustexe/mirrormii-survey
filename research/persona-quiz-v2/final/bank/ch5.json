@@ -6,7 +6,7 @@
     "prompt": "Eight days a week now, but only for you. Nobody at work knows the extra one exists.",
     "options": [
       {
-        "t": "Work it and be everyone's boss by spring.",
+        "t": "Clock in and be everyone's boss by spring.",
         "axes": {
           "L2": 2
         },
@@ -32,7 +32,7 @@
         "emotion": "relief"
       },
       {
-        "t": "Work it quietly. Let them wonder how I do it.",
+        "t": "Clear the whole inbox. Let them wonder how I'm always ahead.",
         "axes": {
           "L2": 1
         },
@@ -45,7 +45,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Spend it on the hobby I keep promising myself.",
+        "t": "Pottery. The bowls get a little less lumpy each week.",
         "axes": {
           "L2": -1
         },
@@ -61,10 +61,10 @@
     "heart": {
       "prompt": "Your week has eight days now, but only for you. Nobody at work knows the extra one exists.",
       "options": [
-        "I work it, and by spring I'm running the place.",
-        "I sleep through it. Every week, no regrets.",
-        "I work it quietly and let everyone wonder how I do it.",
-        "It goes to the hobby I keep promising myself."
+        "I clock in, and by spring I'm running the place.",
+        "Sleeping through it. Every week, no regrets.",
+        "My inbox is empty by Monday, and nobody knows how.",
+        "Pottery. The bowls get a little less lumpy every week."
       ]
     },
     "fp": {
@@ -87,7 +87,7 @@
     "friend": {
       "prompt": "{name}'s week grows a secret eighth day. Nobody at work knows. What does {name} do with it?",
       "a": {
-        "t": "Works it. \"By spring I'm everyone's boss.\"",
+        "t": "Clocks in. \"By spring I'm everyone's boss.\"",
         "axes": {
           "L2": 2
         },
@@ -132,7 +132,7 @@
         }
       },
       {
-        "t": "Happy for it. Honestly, a very good dog.",
+        "t": "Buy my new boss a squeaky toy. Very good dog.",
         "axes": {
           "L2": -2
         },
@@ -148,9 +148,9 @@
     "heart": {
       "prompt": "The office dog just got the manager job you applied for. It's your boss now, and the whole team's thrilled.",
       "options": [
-        "I update my résumé tonight. I refuse to lose to a dog.",
-        "I book a one-on-one and ask the dog how it did it.",
-        "Honestly, I'm happy for it. It's a very good dog.",
+        "Résumé, updated tonight. I refuse to lose to a dog.",
+        "One-on-one with the dog. I want to know how it did it.",
+        "Squeaky toy for my new boss. It's a very good dog.",
         "I shrug. Second place to a dog is still pretty good."
       ]
     },
@@ -179,7 +179,7 @@
         }
       },
       "b": {
-        "t": "Happy for it. \"Honestly, a very good dog.\"",
+        "t": "Buys the new boss a squeaky toy. \"Very good dog.\"",
         "axes": {
           "L2": -2
         }
@@ -242,7 +242,7 @@
     "prompt": "The last time friends invited you out on a night you'd saved for your big project. What won?",
     "options": [
       {
-        "t": "Stayed in and worked. Told them \"next time.\"",
+        "t": "Texted \"next time!\" and worked till 2am.",
         "axes": {
           "L2": 2
         },
@@ -254,7 +254,7 @@
         ]
       },
       {
-        "t": "Went, then left early to get back to it.",
+        "t": "One drink, then an Irish exit back to my desk.",
         "axes": {
           "L2": 1
         },
@@ -266,7 +266,7 @@
         ]
       },
       {
-        "t": "Closed the place down with them.",
+        "t": "Closed the place down. Project? What project?",
         "axes": {
           "L2": -2
         },
@@ -278,7 +278,7 @@
         ]
       },
       {
-        "t": "Went. Felt guilty about the project all night.",
+        "t": "Out all night, mentally fixing slide nine the whole time.",
         "axes": {
           "L2": -1
         },
@@ -293,10 +293,10 @@
     "heart": {
       "prompt": "Friends invited you out on a night you'd saved for your big project. The last time that happened, what won?",
       "options": [
-        "I stayed in and worked, and told them next time.",
-        "I went, then left early to get back to it.",
+        "I texted \"next time\" and worked till 2am.",
+        "One drink, then I slipped out and went back to it.",
         "Going out won. We closed the place down.",
-        "I went, and felt guilty about the project all night."
+        "Out all night, but my head was on slide nine."
       ]
     },
     "fp": {
@@ -318,7 +318,7 @@
     "friend": {
       "prompt": "The last time friends invited {name} out on a night {they} had saved for a big project. What won?",
       "a": {
-        "t": "Stayed in and worked. Told them \"next time.\"",
+        "t": "Texted \"next time!\" and worked till 2am.",
         "axes": {
           "L2": 2
         },
@@ -330,7 +330,7 @@
         ]
       },
       "b": {
-        "t": "Closed the place down with them.",
+        "t": "Closed the place down. \"Project? What project?\"",
         "axes": {
           "L2": -2
         },
@@ -467,7 +467,7 @@
     ],
     "options": [
       {
-        "t": "\"Deleted, promise.\" Act shocked with everyone next week.",
+        "t": "\"Deleted, promise.\" Then act shocked with everyone next week.",
         "axes": {
           "L3": 2
         },
@@ -480,13 +480,13 @@
         "emotion": "guilt"
       },
       {
-        "t": "\"Wrong number. Heads up: check who else got this.\"",
+        "t": "\"Heads up: this reached the wrong phone. Check who else got it.\"",
         "axes": {
           "L3": 1
         }
       },
       {
-        "t": "\"Wrong number!\" Then call my friend on the walk home.",
+        "t": "Leave it on read. Call my friend from the parking lot.",
         "axes": {
           "L3": -2
         },
@@ -499,7 +499,7 @@
         "emotion": "worry"
       },
       {
-        "t": "\"Sorry, wrong person!\" Then nudge my friend: update your résumé.",
+        "t": "\"Sorry, wrong person!\" Then ask my friend how their portfolio's looking.",
         "axes": {
           "L3": -1
         },
@@ -521,9 +521,9 @@
       ],
       "options": [
         "\"Deleted, I promise.\" Next week I act as shocked as everyone.",
-        "\"Wrong number. You might want to check who else got this.\"",
-        "\"Wrong number.\" Then I call my friend on the walk home.",
-        "\"Sorry, wrong person.\" Then I nudge my friend to update their résumé."
+        "\"Heads up, wrong phone. Might want to check who else got this.\"",
+        "Left on read. Then I call my friend from the parking lot.",
+        "\"Sorry, wrong person.\" Then I ask my friend how their portfolio's looking."
       ]
     },
     "fp": {
@@ -546,7 +546,7 @@
     "friend": {
       "prompt": "Wrong-number text from the CEO: \"letting design go next week.\" {name}'s closest work friend is on design. What does {name} reply?",
       "a": {
-        "t": "\"Wrong number! Deleted.\" Acts shocked with everyone next week.",
+        "t": "\"Deleted, promise.\" Acts shocked with everyone next week.",
         "axes": {
           "L3": 2
         },
@@ -558,7 +558,7 @@
         ]
       },
       "b": {
-        "t": "\"Wrong number!\" Then calls the friend on the walk home.",
+        "t": "Leaves it on read. Calls the friend from the parking lot.",
         "axes": {
           "L3": -2
         },
@@ -754,7 +754,7 @@
     "prompt": "Your company offers a full year's pay to anyone who quits this week. You like your job. Half your team is already clearing their desks.",
     "options": [
       {
-        "t": "Take it. A paid year to find out what's next.",
+        "t": "Grab the money. Figure out the rest from a beach.",
         "axes": {
           "L1": -2
         },
@@ -766,13 +766,13 @@
         ]
       },
       {
-        "t": "Take it, and start freelancing the same week.",
+        "t": "Freelance from day one. The buyout is my seed money.",
         "axes": {
           "L1": -1
         }
       },
       {
-        "t": "Stay. Liking your job is rarer than a year's pay.",
+        "t": "Wave the leavers off from my desk. Liking a job is rarer.",
         "axes": {
           "L1": 2
         },
@@ -784,7 +784,7 @@
         ]
       },
       {
-        "t": "Stay, and ask HR to call me if there's a second round.",
+        "t": "Help pack their boxes. Quietly ask HR about a round two.",
         "axes": {
           "L1": 1
         },
@@ -799,10 +799,10 @@
     "heart": {
       "prompt": "Your company's offering a full year's pay to anyone who quits this week. You like your job. Half your team's already clearing their desks.",
       "options": [
-        "I take it. A paid year to find out what's next.",
-        "Freelancing starts the same week I take it.",
-        "Staying. Liking my job's rarer than a year's pay.",
-        "I stay, and ask HR to call me if there's round two."
+        "I grab the money and figure out the rest from a beach.",
+        "Freelancing from day one. The buyout's my seed money.",
+        "Waving them off from my desk. Liking my job is rarer.",
+        "Their boxes first. Then I quietly ask HR about round two."
       ]
     },
     "fp": {
@@ -825,7 +825,7 @@
     "friend": {
       "prompt": "{name}'s company offers a year's pay to anyone who quits this week. {name} likes the job. What does {name} do?",
       "a": {
-        "t": "Stays. Liking your job is rarer than a year's pay.",
+        "t": "Waves the leavers off. A job {they} like beats a year's pay.",
         "axes": {
           "L1": 2
         },
@@ -837,7 +837,7 @@
         ]
       },
       "b": {
-        "t": "Takes it. A paid year to find out what's next.",
+        "t": "Grabs the money. Figures out the rest from a beach.",
         "axes": {
           "L1": -2
         },
@@ -1072,7 +1072,7 @@
         ]
       },
       {
-        "t": "Four minutes is a Wi-Fi hiccup. Accepted.",
+        "t": "Blame the Wi-Fi for them. Four minutes is a hiccup.",
         "axes": {
           "L3": -2
         },
@@ -1084,7 +1084,7 @@
         ]
       },
       {
-        "t": "Zero, and it felt a little too good.",
+        "t": "Type \"late, see syllabus\" and enjoy every keystroke.",
         "axes": {
           "L3": 1
         },
@@ -1097,7 +1097,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Accept it, then grade it very, very carefully.",
+        "t": "Grade it like a lawyer. Every comma gets a comment.",
         "axes": {
           "L3": -1
         },
@@ -1114,9 +1114,9 @@
       "prompt": "You're a TA, and late essays get a zero. This one's four minutes late, from the student who rated your class 'mid.' Only you can see the timestamp.",
       "options": [
         "Zero. The syllabus doesn't read reviews.",
-        "Four minutes is a Wi-Fi hiccup. I accept it.",
-        "Zero, and it felt a little too good.",
-        "I accept it, then grade it very, very carefully."
+        "I blame the Wi-Fi for them. Four minutes is a hiccup.",
+        "Typing \"late, see syllabus,\" and enjoying every keystroke.",
+        "Grading it like a lawyer. Every comma gets a comment."
       ]
     },
     "fp": {
@@ -1151,7 +1151,7 @@
         ]
       },
       "b": {
-        "t": "Accepts it. \"Four minutes is a Wi-Fi hiccup.\"",
+        "t": "Blames the Wi-Fi for them. \"Four minutes is a hiccup.\"",
         "axes": {
           "L3": -2
         },
@@ -1173,7 +1173,7 @@
     "prompt": "Famous perfumer, one offer: a seven-year apprenticeship before you make your first perfume. Your best friend gets the reference call. What do they say?",
     "options": [
       {
-        "t": "\"They'll want a progress chart by week one.\"",
+        "t": "\"Expect a progress chart by week one.\"",
         "axes": {
           "L2": 1
         },
@@ -1185,7 +1185,7 @@
         ]
       },
       {
-        "t": "\"No visible progress by month three? They'll walk.\"",
+        "t": "\"No visible progress by month three? Gone.\"",
         "axes": {
           "L2": 2
         },
@@ -1197,7 +1197,7 @@
         ]
       },
       {
-        "t": "\"They'll love the learning. The perfume's a bonus.\"",
+        "t": "\"Seven years of sniffing jasmine? That's their dream.\"",
         "axes": {
           "L2": -2
         },
@@ -1209,7 +1209,7 @@
         ]
       },
       {
-        "t": "\"They won't track a single day. It's done when it's done.\"",
+        "t": "\"They don't own a calendar. It's done when it's done.\"",
         "axes": {
           "L2": -1
         },
@@ -1224,10 +1224,10 @@
     "heart": {
       "prompt": "A famous perfumer offers you a seven-year apprenticeship before you make your first perfume. Your best friend gets the reference call. What do they say?",
       "options": [
-        "\"They'll want a progress chart by week one.\"",
-        "\"If there's no progress they can see by month three, they'll walk.\"",
-        "\"They'll love the learning. The perfume's a bonus.\"",
-        "\"They won't count a single day. It's done when it's done.\""
+        "\"Expect a progress chart by week one.\"",
+        "\"If there's nothing to show by month three, they're gone.\"",
+        "\"Seven years of sniffing jasmine? That's their dream.\"",
+        "\"They don't count days. It's done when it's done.\""
       ]
     },
     "fp": {
@@ -1247,7 +1247,7 @@
     "friend": {
       "prompt": "A famous perfumer offers {name} a seven-year apprenticeship and calls for a reference. Which line fits {name}?",
       "a": {
-        "t": "Will want a progress chart by week one.",
+        "t": "Wants a progress chart by week one.",
         "axes": {
           "L2": 1
         },
@@ -1259,7 +1259,7 @@
         ]
       },
       "b": {
-        "t": "Will love the learning. The perfume's a bonus.",
+        "t": "Calls seven years of sniffing jasmine a dream.",
         "axes": {
           "L2": -2
         },
@@ -1299,7 +1299,7 @@
         ]
       },
       {
-        "t": "Chased a clear yes or no because not knowing kept me up",
+        "t": "Emailed someone \"any update?\" twice in one week",
         "tags": [
           {
             "id": "T17A",
@@ -1326,7 +1326,7 @@
       "options": [
         "I booked something non-refundable just to stop deciding.",
         "I said \"maybe\" to a plan in case something better came up.",
-        "Not knowing kept me up, so I pushed for a clear answer.",
+        "Twice in one week, I emailed someone \"any update?\"",
         "I left a big question open for months and slept fine.",
         "None of these."
       ]
@@ -1474,7 +1474,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Love it, as long as there's a plan B besides Gary.",
+        "t": "Slide a job listing under their door. Just in case.",
         "axes": {
           "L1": 1
         },
@@ -1498,8 +1498,8 @@
     "heart": {
       "prompt": "Gary the snail has lost six races in a row. Your roommate quit a steady job to race Gary for prize money. Rent's due in two weeks. Your honest take?",
       "options": [
-        "Somebody has to believe in Gary. I love it.",
-        "Love it, as long as there's a plan B besides Gary.",
+        "Somebody has to believe in Gary, and it's me.",
+        "I slide a job listing under their door, just in case.",
         "Great. Is Gary covering their half of the rent?",
         "Honestly, I'm jealous. I'd quit for a snail too."
       ]

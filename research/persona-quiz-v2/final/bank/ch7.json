@@ -233,7 +233,7 @@
     "emotion": "delight"
    },
    {
-    "t": "Yes, and I'm posting every tiny brick I lay.",
+    "t": "Count me in. Every tiny brick goes on my story.",
     "tags": [
      {
       "id": "T23A",
@@ -243,7 +243,7 @@
     "emotion": "pride"
    },
    {
-    "t": "Yes, then quit by spring. Pastries aren't everything.",
+    "t": "Make it to spring, then quietly stop showing. Sorry, gnomes.",
     "tags": [
      {
       "id": "T23B",
@@ -253,7 +253,7 @@
     "emotion": "guilt"
    },
    {
-    "t": "No. My Saturdays already have a project.",
+    "t": "Pass. My Saturdays already belong to a half-built canoe.",
     "tags": [
      {
       "id": "T23B",
@@ -266,9 +266,9 @@
    "prompt": "A village of tiny gnomes needs help rebuilding, every Saturday for a year. They pay in pastries.",
    "options": [
     "Every Saturday. I've already ordered a tiny hard hat.",
-    "Yes, and I'm posting every tiny brick I lay.",
-    "I'd say yes, then quit by spring. Pastries aren't everything.",
-    "No. My Saturdays already have their own project."
+    "Count me in, and every tiny brick goes on my story.",
+    "I'd make it to spring, then quietly stop showing up. Sorry, gnomes.",
+    "Not me. My Saturdays already belong to a half-built canoe."
    ]
   },
   "fp": {
@@ -297,7 +297,7 @@
     ]
    },
    "b": {
-    "t": "No. {Their} Saturdays already have a project.",
+    "t": "Passes. {Their} Saturdays belong to a half-built canoe.",
     "tags": [
      {
       "id": "T23B",
@@ -422,7 +422,7 @@
     "emotion": "pride"
    },
    {
-    "t": "Mail it and celebrate my own way.",
+    "t": "Mail it. I'll pop champagne in my own kitchen.",
     "axes": {
      "R3": -2
     },
@@ -439,7 +439,7 @@
    "prompt": "Your degree's done. The ceremony means four hours, a $90 gown and your whole family in the stands. Or the diploma just comes in the mail.",
    "options": [
     "I'm walking the stage. Gown, hat toss, all of it.",
-    "Mail it. I'll celebrate my own way."
+    "Mail it. I'll pop champagne in my own kitchen."
    ]
   },
   "fp": {
@@ -472,7 +472,7 @@
     ]
    },
    "b": {
-    "t": "Mail it. Celebrates {their} own way.",
+    "t": "Mail it. Champagne in {their} own kitchen.",
     "axes": {
      "R3": -2
     },
@@ -507,7 +507,7 @@
     ]
    },
    {
-    "t": "Quietly slide the ace back into the deck.",
+    "t": "Slide the ace back under the table. Kick their shin.",
     "axes": {
      "L3": 1,
      "R2": -1
@@ -521,7 +521,7 @@
     "emotion": "irritation"
    },
    {
-    "t": "Keep quiet. The money goes to charity either way.",
+    "t": "My donation doubles at the door. Charity wins either way.",
     "axes": {
      "L3": -1
     },
@@ -534,7 +534,7 @@
     "emotion": "guilt"
    },
    {
-    "t": "Say nothing. Start packing for two.",
+    "t": "Start packing for two. Sunscreen's on them.",
     "axes": {
      "L3": -2
     },
@@ -551,9 +551,9 @@
    "prompt": "At charity poker night, you and your oldest friend share one stack of chips for a trip for two. You just saw them slide an ace out of their sleeve.",
    "options": [
     "Right there at the table, I call it. Trip or no trip.",
-    "I quietly slide the ace back into the deck.",
-    "I keep quiet. The money goes to charity either way.",
-    "Not a word. I start packing for two."
+    "I slide the ace back and kick their shin under the table.",
+    "My donation doubles at the door. Charity wins either way.",
+    "Not a word. I'm packing for two. Sunscreen's on them."
    ]
   },
   "fp": {
@@ -587,7 +587,7 @@
     ]
    },
    "b": {
-    "t": "Says nothing. Starts packing for two.",
+    "t": "Says nothing. Starts packing for two. Sunscreen's on them.",
     "axes": {
      "L3": -2
     },
@@ -816,7 +816,7 @@
     "emotion": "warmth"
    },
    {
-    "t": "\"Going, but you owe me noodles.\"",
+    "t": "\"I'll fly. Save me half those noodles.\"",
     "tags": [
      {
       "id": "T23A",
@@ -825,7 +825,7 @@
     ]
    },
    {
-    "t": "\"Going, if nobody else claims it first.\"",
+    "t": "\"Give it ten minutes. Someone closer will grab it.\"",
     "tags": [
      {
       "id": "T23B",
@@ -834,7 +834,7 @@
     ]
    },
    {
-    "t": "\"Off duty tonight. Someone else has wings.\"",
+    "t": "\"Off duty. I'm in sweatpants and staying there.\"",
     "tags": [
      {
       "id": "T23B",
@@ -858,9 +858,9 @@
    ],
    "options": [
     "\"On my way. Stay with your noodles.\"",
-    "\"I'll go, but you owe me noodles.\"",
-    "\"I'll go if nobody else grabs it first.\"",
-    "\"Not tonight. Someone else has wings.\""
+    "\"I'll fly over. Save me half those noodles.\"",
+    "\"Give it ten minutes. Someone closer will grab it.\"",
+    "\"Not tonight. I'm in sweatpants and staying there.\""
    ]
   },
   "fp": {
@@ -889,7 +889,7 @@
     ]
    },
    "b": {
-    "t": "\"Off duty tonight. Someone else has wings.\"",
+    "t": "\"Off duty. I'm in sweatpants and staying there.\"",
     "tags": [
      {
       "id": "T23B",
@@ -933,7 +933,7 @@
     "emotion": "delight"
    },
    {
-    "t": "Sweet, but I'd want us in one bed.",
+    "t": "Cute for them. I'd miss the cold feet, weirdly.",
     "axes": {
      "R3": 1
     },
@@ -945,7 +945,7 @@
     ]
    },
    {
-    "t": "Honestly, I get exactly why it works.",
+    "t": "Two rooms, two thermostats. I see the appeal.",
     "axes": {
      "R3": -1
     },
@@ -962,8 +962,8 @@
    "options": [
     "A couple shares a bed. That's the whole point.",
     "Honestly, genius. Nobody steals the blanket ever again.",
-    "It's sweet, but I'd want us in one bed.",
-    "I get exactly why it works for them."
+    "Good for them, but I'd miss the cold feet.",
+    "Two rooms, two thermostats. I can see the appeal."
    ]
   },
   "fp": {
@@ -1044,7 +1044,7 @@
     "emotion": "cringe"
    },
    {
-    "t": "At our table, house rules beat the book.",
+    "t": "Our house rules are taped inside the lid. The book's decor.",
     "axes": {
      "L3": -2
     },
@@ -1056,7 +1056,7 @@
     ]
    },
    {
-    "t": "Whatever keeps the game fun is the rule.",
+    "t": "Conceded on purpose so the pizza wouldn't get cold.",
     "axes": {
      "L3": -1
     },
@@ -1073,9 +1073,9 @@
    "prompt": "Ever read a game's rulebook out loud mid-game, just to win an argument?",
    "options": [
     "Yes, page 12. I'd bookmarked it.",
-    "I read it, won the point, then lost on that exact rule.",
-    "No. At our table, house rules beat the book.",
-    "Whatever keeps the game fun is the rule."
+    "Read it, won the point, then lost on that exact rule.",
+    "Our house rules are taped inside the lid. The book's just decoration.",
+    "I let them have it so the pizza wouldn't get cold."
    ]
   },
   "fp": {
@@ -1095,7 +1095,7 @@
   "friend": {
    "prompt": "Has {name} ever read a game's rulebook out loud mid-game, just to win an argument?",
    "a": {
-    "t": "Guilty. Page 12. Had it bookmarked.",
+    "t": "Page 12. Had it bookmarked.",
     "axes": {
      "L3": 2
     },
@@ -1107,7 +1107,7 @@
     ]
    },
    "b": {
-    "t": "Never. At {their} table, house rules beat the book.",
+    "t": "{Their} house rules are taped inside the lid. The book's decor.",
     "axes": {
      "L3": -2
     },
@@ -1127,7 +1127,7 @@
   "prompt": "An hour before a 200-person show, your friend's band loses its bassist. You've played bass twice, at parties. They're begging. Pick your two first thoughts.",
   "options": [
    {
-    "t": "Yes. I'll learn the songs in the cab.",
+    "t": "Hand me the bass. I'll learn the songs in the cab.",
     "axes": {
      "L1": -2
     },
@@ -1139,7 +1139,7 @@
     ]
    },
    {
-    "t": "No, but I'll haul their amps all night.",
+    "t": "Roadie, sure. I'll haul amps all night, off stage.",
     "axes": {
      "L1": 1
     }
@@ -1158,7 +1158,7 @@
     "emotion": "delight"
    },
    {
-    "t": "No. I don't play what I haven't practiced.",
+    "t": "Not a chance. I only play what I've practiced.",
     "axes": {
      "L1": 2
     }
@@ -1174,11 +1174,11 @@
   "heart": {
    "prompt": "An hour before a 200-person show, your friend's band loses its bassist. You've played bass twice, at parties, and they're begging. What are your first two thoughts?",
    "options": [
-    "Yes. I'll learn the songs in the cab.",
-    "No, but I'll haul their amps all night.",
-    "I'm tempted, until I picture 200 faces. Pass.",
+    "Hand me the bass. I'll learn the songs in the cab.",
+    "I'll haul their amps all night, but I'm staying off stage.",
+    "Tempting, until I picture 200 faces. Pass.",
     "Worst case, it's a great story. I'm in.",
-    "No. I don't play what I haven't practiced.",
+    "Not a chance. I only play what I've practiced.",
     "I'm already picking what to wear on stage."
    ]
   },
@@ -1202,13 +1202,13 @@
   "friend": {
    "prompt": "{name}'s friend's band needs a bassist in an hour, for 200 people. {name} has played twice. Which line sounds most like {name}?",
    "a": {
-    "t": "\"No. I don't play what I haven't practiced.\"",
+    "t": "\"Not a chance. I only play what I've practiced.\"",
     "axes": {
      "L1": 2
     }
    },
    "b": {
-    "t": "\"Yes. I'll learn the songs in the cab.\"",
+    "t": "\"Hand me the bass. I'll learn the songs in the cab.\"",
     "axes": {
      "L1": -2
     },
@@ -1230,27 +1230,27 @@
   "prompt": "A perfect clone of you arrives in the mail. It can go to every plan your friend group votes for, in your place. Nobody could tell.",
   "options": [
    {
-    "t": "No deal. Every plan they pick, even the bad ones.",
+    "t": "Return to sender. I'm at every plan, even mini golf.",
     "axes": {
      "R1": 2
     },
     "emotion": "warmth"
    },
    {
-    "t": "I go to most. The clone covers bowling night.",
+    "t": "Clone's on bowling duty. I'm at everything else.",
     "axes": {
      "R1": 1
     }
    },
    {
-    "t": "Clone takes the big group ones. I keep the one-on-ones.",
+    "t": "Big group dinners go to the clone. One-on-ones stay mine.",
     "axes": {
      "R1": -1
     },
     "emotion": "relief"
    },
    {
-    "t": "Clone goes everywhere. Me and my couch, reunited.",
+    "t": "Couch and me, reunited. The clone takes the whole calendar.",
     "axes": {
      "R1": -2
     },
@@ -1260,10 +1260,10 @@
   "heart": {
    "prompt": "A perfect clone of you arrives in the mail. It could go to every plan your friend group votes for, in your place, and nobody could tell.",
    "options": [
-    "No thanks. I go to every plan they pick, even bad ones.",
-    "I'll go to most of them. The clone can cover bowling night.",
-    "The clone takes the big group stuff. I keep the one-on-ones.",
-    "The clone goes everywhere. Me and my couch, together again."
+    "Sending it back. I'm at every plan, even mini golf.",
+    "The clone can do bowling night. I'll be at everything else.",
+    "Big group dinners are the clone's. The one-on-ones stay mine.",
+    "Me and my couch, together again. The clone gets the whole calendar."
    ]
   },
   "fp": {
@@ -1284,7 +1284,7 @@
   "friend": {
    "prompt": "A mail-order clone could attend every hangout, party and group dinner for {name}. Nobody could tell. What does {name} do?",
    "a": {
-    "t": "No deal. Every plan they pick, even the bad ones.",
+    "t": "Returns it to sender. Every plan, even mini golf.",
     "axes": {
      "R1": 2
     }
@@ -1669,20 +1669,20 @@
   "prompt": "Last trip away with friends, a few nights at least. What did your mornings actually look like?",
   "options": [
    {
-    "t": "Woke everyone for breakfast together. Group mornings or nothing.",
+    "t": "Woke everyone for pancakes. Group mornings or nothing.",
     "axes": {
      "R1": 2
     },
     "emotion": "warmth"
    },
    {
-    "t": "Waited for the whole group before doing anything.",
+    "t": "Didn't move till the last bedroom door opened.",
     "axes": {
      "R1": 1
     }
    },
    {
-    "t": "Went off with one friend while the rest slept.",
+    "t": "Snuck out for bagels with one friend while the rest slept.",
     "axes": {
      "R1": -1
     }
@@ -1698,9 +1698,9 @@
   "heart": {
    "prompt": "Your last trip away with friends, a few nights at least. What did your mornings actually look like?",
    "options": [
-    "I woke everyone up for breakfast together. Group mornings or nothing.",
-    "Nothing happened until the whole group was up. I waited.",
-    "One friend and I snuck off while everyone else slept.",
+    "Everyone up for pancakes. Group mornings or nothing.",
+    "I didn't move till the last bedroom door opened.",
+    "One friend and I snuck out for bagels while the rest slept.",
     "Up early, on my own. Coffee and a walk before anyone stirred."
    ]
   },
@@ -1723,7 +1723,7 @@
   "friend": {
    "prompt": "On {name}'s last trip with friends, what did {their} mornings actually look like?",
    "a": {
-    "t": "Woke everyone for breakfast together.",
+    "t": "Woke everyone for pancakes. Group mornings or nothing.",
     "axes": {
      "R1": 2
     }
@@ -1743,27 +1743,27 @@
   "prompt": "Forty minutes late, no warning. The most recent friend who did that to you: how did you greet them?",
   "options": [
    {
-    "t": "Said it straight: \"Forty minutes. Not okay.\"",
+    "t": "\"Forty minutes. Not okay.\" Before they'd even sat down.",
     "axes": {
      "R2": 2
     },
     "emotion": "irritation"
    },
    {
-    "t": "\"You owe me forty minutes. And a drink.\"",
+    "t": "Made them buy the first round. Forty minutes of interest.",
     "axes": {
      "R2": 1
     }
    },
    {
-    "t": "Said \"no worries!\" and meant about half of it.",
+    "t": "\"No worries!\" Meant about half of it.",
     "axes": {
      "R2": -1
     },
     "emotion": "resentment"
    },
    {
-    "t": "I'd already ordered them a drink. Said nothing.",
+    "t": "Their fries were already ordered. Not a word about it.",
     "axes": {
      "R2": -2
     },
@@ -1773,10 +1773,10 @@
   "heart": {
    "prompt": "A friend shows up forty minutes late, no warning. The most recent time, how did you greet them?",
    "options": [
-    "I said it straight: forty minutes isn't okay.",
-    "\"You owe me forty minutes. And a drink.\"",
+    "\"Forty minutes isn't okay,\" before they'd even sat down.",
+    "I made them buy the first round. Forty minutes of interest.",
     "\"No worries,\" I said, and meant about half of it.",
-    "Nothing. I'd already ordered them a drink."
+    "Their food was already ordered. I didn't say a word."
    ]
   },
   "fp": {
@@ -1798,13 +1798,13 @@
   "friend": {
    "prompt": "The last time a friend showed up forty minutes late with no warning. What did {name} actually do?",
    "a": {
-    "t": "Said it straight: \"Forty minutes. Not okay.\"",
+    "t": "\"Forty minutes. Not okay.\" Before they'd even sat down.",
     "axes": {
      "R2": 2
     }
    },
    "b": {
-    "t": "Said nothing. Already ordered them a drink.",
+    "t": "Had their food ordered already. Said nothing.",
     "axes": {
      "R2": -2
     }
