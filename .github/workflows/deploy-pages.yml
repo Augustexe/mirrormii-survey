@@ -2,7 +2,7 @@ name: Deploy MirrorMii survey to GitHub Pages
 
 on:
   push:
-    branches: [survey/launch]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
