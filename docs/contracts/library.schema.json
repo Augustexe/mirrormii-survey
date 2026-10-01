@@ -116,7 +116,7 @@
     },
     "axis": {
       "type": "object",
-      "required": ["id", "plus", "minus", "plusLine", "minusLine", "plusKnow", "minusKnow", "flexKnow", "plusKeyword", "minusKeyword", "sheet", "h"],
+      "required": ["id", "plus", "minus", "plusLine", "minusLine", "plusKnow", "minusKnow", "flexKnow", "plusKeyword", "minusKeyword", "sheet", "h", "plusGreen", "minusGreen", "plusRed", "minusRed", "plusBet", "minusBet"],
       "properties": {
         "id": { "enum": ["R1", "R2", "R3", "L1", "L2", "L3"] },
         "plus": { "$ref": "#/$defs/pole" },
@@ -132,12 +132,14 @@
         "plusKeyword": { "type": "string", "minLength": 1 },
         "minusKeyword": { "type": "string", "minLength": 1 },
         "sheet": { "$ref": "#/$defs/sheet" },
+        "plusGreen": { "type": "string", "minLength": 1, "description": "Evidence Article V2 (2026-09-30): each stat end's green flag, red flag and Genii's bet (plusGreen to minusBet), used for bets and when a player has no shareable trait for the flags. Heart under h." }, "minusGreen": { "type": "string", "minLength": 1 }, "plusRed": { "type": "string", "minLength": 1 }, "minusRed": { "type": "string", "minLength": 1 }, "plusBet": { "type": "string", "minLength": 1 }, "minusBet": { "type": "string", "minLength": 1 },
         "h": {
           "type": "object",
-          "required": ["plusLine", "minusLine", "plusKnow", "minusKnow", "flexKnow", "sheet"],
+          "required": ["plusLine", "minusLine", "plusKnow", "minusKnow", "flexKnow", "sheet", "plusGreen", "minusGreen", "plusRed", "minusRed", "plusBet", "minusBet"],
           "properties": {
             "plusLine": { "type": "string" }, "minusLine": { "type": "string" }, "plusKnow": { "type": "string" }, "minusKnow": { "type": "string" }, "flexKnow": { "type": "string" },
-            "sheet": { "$ref": "#/$defs/sheet" }
+            "sheet": { "$ref": "#/$defs/sheet" },
+            "plusGreen": { "type": "string", "minLength": 1 }, "minusGreen": { "type": "string", "minLength": 1 }, "plusRed": { "type": "string", "minLength": 1 }, "minusRed": { "type": "string", "minLength": 1 }, "plusBet": { "type": "string", "minLength": 1 }, "minusBet": { "type": "string", "minLength": 1 }
           },
           "additionalProperties": false
         }
@@ -147,7 +149,7 @@
     "half": {
       "type": "object",
       "description": "One archetype half (8 people archetypes, 8 life archetypes). Code is the internal id, never shown.",
-      "required": ["code", "name", "define", "desc", "read", "sting", "heart", "h"],
+      "required": ["code", "name", "define", "desc", "read", "sting", "heart", "h", "seed"],
       "properties": {
         "code": { "$ref": "#/$defs/halfCode" },
         "R1": { "enum": [1, -1] }, "R2": { "enum": [1, -1] }, "R3": { "enum": [1, -1] },
@@ -159,11 +161,12 @@
         "read": { "type": "string" },
         "sting": { "type": "string" },
         "heart": { "type": "string" },
+        "seed": { "type": "string", "minLength": 1, "description": "Evidence Article V2, your island seed (shown as coming in MirrorMii 2.0): what grows (people half) or how it grows (life half). Heart under h." },
         "h": {
           "type": "object",
-          "required": ["desc", "read", "sting", "heart"],
+          "required": ["desc", "read", "sting", "heart", "seed"],
           "additionalProperties": false,
-          "properties": { "desc": { "type": "string" }, "read": { "type": "string" }, "sting": { "type": "string" }, "heart": { "type": "string" } }
+          "properties": { "desc": { "type": "string" }, "read": { "type": "string" }, "sting": { "type": "string" }, "heart": { "type": "string" }, "seed": { "type": "string" } }
         }
       },
       "additionalProperties": false
@@ -185,11 +188,14 @@
         "locked18": { "type": "boolean", "description": "Marriage and kids tags: never on anything shareable, off by default in the friend game." },
         "loveTag": { "type": "boolean" },
         "friendGame": { "enum": ["open", "defaultOff"] },
+        "green": { "type": "string", "minLength": 1, "description": "Evidence Article V2: this trait's green flag, red flag and Genii's bet (green, red, bet). Absent on AI, kids and wedding traits. Heart under h." },
+        "red": { "type": "string", "minLength": 1 },
+        "bet": { "type": "string", "minLength": 1 },
         "h": {
           "type": "object",
           "required": ["line", "sting", "heart"],
           "additionalProperties": false,
-          "properties": { "line": { "type": "string" }, "sting": { "type": "string" }, "heart": { "type": "string" } }
+          "properties": { "line": { "type": "string" }, "sting": { "type": "string" }, "heart": { "type": "string" }, "green": { "type": "string" }, "red": { "type": "string" }, "bet": { "type": "string" } }
         },
         "zh": { "type": "string" },
         "never": { "type": "string" },
