@@ -106,7 +106,7 @@ Tooling line (proposals, build over buy): Node 22 with Fastify or Hono, `better-
 ## Deployment
 
 - **Build:** `npm ci --prefix quiz64 && npm run build --prefix quiz64` gives a static `quiz64/dist` (Vite, `base: "./"`, so it serves from any path). The build reads the kit from `research/persona-quiz-v2/final/`, so deploy from a full checkout. Main chunk about 74 kB gzip (2026-09-30); the three.js Genii scene loads lazily.
-- **Host:** the live site today is the older dossier build on GitHub Pages (`Augustexe/Mirrormii-survey-main-publication-`, branch `codex/final-survey-dossier`, workflow `.github/workflows/deploy-pages.yml`, [STATE.md](STATE.md)). The launch build is branch `survey/launch`, **local only, never pushed**. Shipping it means pointing that workflow at the launch branch or merging, with Jerry's go.
+- **Host:** GitHub Pages, https://augustexe.github.io/mirrormii-survey/ , built and deployed from `main` by `.github/workflows/deploy-pages.yml` on every push to `main`. Only `main` may deploy (github-pages environment policy).
 - **Environment:** none today. The only build variable is Vite's `BASE_URL`. When the backend lands, add `VITE_API_BASE` (the service origin) and keep the app working without it (static-only mode). Server side: `TOKEN_KEYS` (HMAC keys by `kid`), `DATABASE_PATH`, `ALLOWED_ORIGIN`, `KIT_DIR`.
 - **Checks before any deploy:** `npm test --prefix quiz64`, `node scripts/validate-contracts.mjs`, the kit tests, and the browser QA in quiz64/README.md.
 
