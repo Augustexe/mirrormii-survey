@@ -142,10 +142,10 @@
     "type": "pick_two",
     "chapter": 6,
     "pick": 2,
-    "prompt": "A home-makeover show bought the house you grew up in. They gut it on TV next week, but your family gets one last day inside. Pick two.",
+    "prompt": "Big family news: a makeover show bought the house you grew up in. They gut it on TV next week. You all get one last day inside. Pick two.",
     "options": [
       {
-        "t": "Take the doorframe. Our height marks continue at my place.",
+        "t": "Unscrewing the doorframe. The height marks continue at my place.",
         "axes": {
           "R3": 2
         },
@@ -158,13 +158,13 @@
         "emotion": "longing"
       },
       {
-        "t": "Beg them to keep the porch where we hung holiday lights.",
+        "t": "Begging the host to spare the porch. Holiday light hooks still up.",
         "axes": {
           "R3": 1
         }
       },
       {
-        "t": "One last holiday dinner there, same seats as always.",
+        "t": "Holiday dinner one last time, everyone in their old chair.",
         "axes": {
           "R3": 1
         },
@@ -177,7 +177,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "Relieved. New house, new holiday traditions.",
+        "t": "Quietly relieved. New house, new holidays, no more casserole.",
         "axes": {
           "R3": -1
         },
@@ -190,7 +190,7 @@
         "emotion": "relief"
       },
       {
-        "t": "New tradition: the family watches the episode together, loudly.",
+        "t": "Booking a watch party for the episode. Heckling is our new tradition.",
         "axes": {
           "R3": -1
         },
@@ -203,21 +203,21 @@
         "emotion": "delight"
       },
       {
-        "t": "Shrug. I stopped doing the old holidays years ago.",
+        "t": "Shrug. My holidays have been a friends' potluck for years.",
         "axes": {
           "R3": -2
         }
       }
     ],
     "heart": {
-      "prompt": "A home makeover show bought the house you grew up in. They're gutting it on TV next week, and your family gets one last day inside. Pick two.",
+      "prompt": "Big family news: a makeover show bought the house you grew up in. They're gutting it on TV next week, and your family gets one last day inside. Pick two.",
       "options": [
-        "I'm taking the doorframe. Our height marks keep going at my place.",
-        "I'd beg them to keep the porch with the holiday lights.",
-        "One last holiday dinner there, everyone in their usual seat.",
-        "Honestly, relief. New house, new holiday traditions.",
-        "We start a new tradition: watching the episode together, loudly.",
-        "I'd shrug. I stopped doing the old holidays years ago."
+        "I'd unscrew the doorframe. Our height marks keep going at my place.",
+        "Begging them to spare the porch, holiday light hooks still up.",
+        "One last holiday dinner there, everyone in their old chair.",
+        "Honestly, relief. New house, new holidays, no more casserole.",
+        "We'd watch the episode together, loudly. That's our new tradition.",
+        "A shrug. My holidays have been a friends' potluck for years."
       ]
     },
     "fp": {
@@ -240,7 +240,7 @@
     "friend": {
       "prompt": "A makeover show bought the house {name} grew up in and will gut it on TV. Which line sounds most like {name}?",
       "a": {
-        "t": "Takes the doorframe. The height marks continue at {their} place.",
+        "t": "Unscrews the doorframe. The height marks continue at {their} place.",
         "axes": {
           "R3": 2
         },
@@ -252,7 +252,7 @@
         ]
       },
       "b": {
-        "t": "Shrugs. \"I stopped doing the old holidays years ago.\"",
+        "t": "Shrugs. Holidays have been a friends' potluck for years.",
         "axes": {
           "R3": -2
         }
@@ -682,10 +682,10 @@
     "chapter": 6,
     "sq": "SQ-T19-1",
     "world": "absurd",
-    "prompt": "In your hallway, the family portrait now frowns at any choice your family wouldn't make. Guests see it. You just said yes to a cross-country move.",
+    "prompt": "The family portrait in your hallway frowns at any choice the family wouldn't make. You just said yes to a cross-country move. The frame is tilting.",
     "options": [
       {
-        "t": "Turn it to face the wall. My move, my call.",
+        "t": "Flip it to face the drywall. My move, my call.",
         "axes": {
           "R3": -2
         },
@@ -697,7 +697,7 @@
         ]
       },
       {
-        "t": "Call home first. The move waits for their smile.",
+        "t": "Calling home first. Not one box gets packed until they smile.",
         "axes": {
           "R3": 1
         },
@@ -710,7 +710,7 @@
         "emotion": "worry"
       },
       {
-        "t": "Cancel the move. I can't live under that face.",
+        "t": "Cancel the move. Nobody survives that many eyebrows.",
         "axes": {
           "R3": 2
         },
@@ -723,7 +723,7 @@
         "emotion": "guilt"
       },
       {
-        "t": "Hang it in the guest bathroom. Let it frown at strangers.",
+        "t": "Rehang it in the guest bathroom. Let it judge strangers.",
         "axes": {
           "R3": -1
         },
@@ -737,11 +737,11 @@
       }
     ],
     "heart": {
-      "prompt": "The family portrait in your hallway now frowns at any choice your family wouldn't make, and guests can see it. You just said yes to a move across the country.",
+      "prompt": "The family portrait in your hallway frowns at any choice your family wouldn't make. You've just said yes to a move across the country, and the frame's started to tilt.",
       "options": [
-        "It's getting turned to face the wall. My move, my call.",
-        "I'd call home first. The move waits until they're smiling.",
-        "The move's off. I can't live under that face.",
+        "It gets turned to face the drywall. My move, my call.",
+        "I'd call home first. No boxes get packed until they're smiling.",
+        "The move's off. I can't live under all those frowns.",
         "Into the guest bathroom it goes, to frown at strangers."
       ]
     },
@@ -760,9 +760,9 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "{name}'s portrait frowns at choices the family wouldn't make. Guests see it. {name} just agreed to move cross-country. What does {name} do?",
+      "prompt": "{name}'s hallway portrait frowns at choices the family wouldn't make. {name} just said yes to a cross-country move, and the frame's tilting. What does {name} do?",
       "a": {
-        "t": "Cancels the move: \"I can't live under that face.\"",
+        "t": "Cancels the move: \"Nobody survives that many eyebrows.\"",
         "axes": {
           "R3": 2
         },
@@ -774,7 +774,7 @@
         ]
       },
       "b": {
-        "t": "Turns it to face the wall: \"My move, my call.\"",
+        "t": "Turns it to face the drywall: \"My move, my call.\"",
         "axes": {
           "R3": -2
         },
@@ -922,7 +922,7 @@
     "prompt": "\"Two weeks,\" your sibling said. It's month five on your air mattress, and they just bought it a fitted sheet.",
     "options": [
       {
-        "t": "Hand them a real key. Stay as long as it takes.",
+        "t": "Clear them a drawer. Stay as long as it takes.",
         "axes": {
           "R1": 1
         },
@@ -935,7 +935,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "Tape a move-out date to the fridge. Circle it twice.",
+        "t": "Tape a move-out date to the bathroom mirror. Circled twice, in red.",
         "axes": {
           "R1": -1
         },
@@ -947,7 +947,7 @@
         ]
       },
       {
-        "t": "Give them my bed. I'm an air mattress person now.",
+        "t": "Give them my bed. The air mattress and I bonded.",
         "tags": [
           {
             "id": "T18A",
@@ -956,7 +956,7 @@
         ]
       },
       {
-        "t": "Leave apartment listings on the new sheet, no comment.",
+        "t": "Leave apartment listings on the new sheet. Highlighted. No comment.",
         "axes": {
           "R1": -1
         },
@@ -972,10 +972,10 @@
     "heart": {
       "prompt": "Your sibling said two weeks. It's month five on your air mattress, and they've just bought it a fitted sheet.",
       "options": [
-        "Here's a real key. Stay as long as it takes.",
-        "A move-out date goes on the fridge, circled twice.",
-        "They can have my bed. I'll take the air mattress.",
-        "I'd leave apartment listings on the new sheet and say nothing."
+        "Their own drawer, cleared. Stay as long as it takes.",
+        "A move-out date goes on the bathroom mirror, circled twice in red.",
+        "My bed's theirs. I'll take the air mattress.",
+        "I'd leave apartment listings on that new sheet, highlighted, and say nothing."
       ]
     },
     "fp": {
@@ -996,7 +996,7 @@
     "friend": {
       "prompt": "\"Two weeks,\" said {name}'s sibling. Month five, the air mattress just got its own fitted sheet. What does {name} do?",
       "a": {
-        "t": "Hands over a real key: \"Stay as long as it takes.\"",
+        "t": "Clears a drawer for the sibling: \"Stay as long as it takes.\"",
         "axes": {
           "R1": 1
         },
@@ -1008,7 +1008,7 @@
         ]
       },
       "b": {
-        "t": "Tapes a move-out date to the fridge. Circles it twice.",
+        "t": "Tapes a move-out date to the mirror. Circled twice, in red.",
         "axes": {
           "R1": -1
         },
@@ -1491,10 +1491,10 @@
     "id": "C6-147",
     "type": "bet",
     "chapter": 6,
-    "prompt": "Be honest: you've cut the price tag off something big before a family visit, so nobody would ask.",
+    "prompt": "Overheard at the holiday table: you once peeled the price tag off something big before your family came over, so nobody would ask.",
     "options": [
       {
-        "t": "What they don't see, they can't vote on.",
+        "t": "Peeled it, stashed the bag in the trunk. No committee needed.",
         "tags": [
           {
             "id": "T19A",
@@ -1504,7 +1504,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Cut it, then caved and asked what they thought.",
+        "t": "Hid it, then caved by dessert and asked what they thought.",
         "tags": [
           {
             "id": "T19B",
@@ -1514,7 +1514,7 @@
         "emotion": "guilt"
       },
       {
-        "t": "Anything that big, I'd run past them first.",
+        "t": "Never. Anything that big gets a family hearing before checkout.",
         "tags": [
           {
             "id": "T19B",
@@ -1523,7 +1523,7 @@
         ]
       },
       {
-        "t": "I say the price out loud and let them gasp.",
+        "t": "Tag stays on. I say the price and enjoy the gasp.",
         "tags": [
           {
             "id": "T19A",
@@ -1534,12 +1534,12 @@
       }
     ],
     "heart": {
-      "prompt": "Be honest: have you ever cut the price tag off something big before a family visit, so nobody would ask?",
+      "prompt": "Be honest: have you ever taken the price tag off something big before your family came over, so nobody would ask?",
       "options": [
-        "Yes. What they don't see, they can't weigh in on.",
-        "I cut it, then caved and asked what they thought anyway.",
-        "No. Something that big, I'd run past them first.",
-        "I'd rather say the price out loud and watch them gasp."
+        "Yes. Bag in the trunk, so they don't get a say.",
+        "I hid it, then caved by dessert and asked what they thought.",
+        "No. Something that big, I'd run past them before I paid.",
+        "The tag stays on. I say the price and watch them gasp."
       ]
     },
     "fp": {
@@ -1560,9 +1560,9 @@
     "sq": "SQ-T19-1",
     "world": "everyday",
     "friend": {
-      "prompt": "Genii bets {name} has cut the price tag off something big before a family visit, so nobody would ask. Guilty or not?",
+      "prompt": "Overheard at the holiday table: {name} once peeled the price tag off something big before a family visit, so nobody would ask. True?",
       "a": {
-        "t": "What they don't see, they can't vote on.",
+        "t": "Peeled it, stashed the bag in the trunk. No committee needed.",
         "tags": [
           {
             "id": "T19A",
@@ -1571,7 +1571,7 @@
         ]
       },
       "b": {
-        "t": "Anything that big goes past the family first.",
+        "t": "Never. Anything that big goes past the family first.",
         "tags": [
           {
             "id": "T19B",

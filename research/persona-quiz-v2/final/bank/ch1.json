@@ -98,10 +98,10 @@
   "chapter": 1,
   "sq": "SQ-T16-2",
   "world": "everyday",
-  "prompt": "Genii bets you've deleted a post because it didn't get enough likes.",
+  "prompt": "Your archive has a graveyard. I bet at least one post in there died of low likes.",
   "options": [
    {
-    "t": "Eleven likes in an hour? It had to go.",
+    "t": "Eleven likes in an hour. Archived before the twelfth.",
     "axes": {
      "L2": 1
     },
@@ -114,7 +114,7 @@
     "emotion": "cringe"
    },
    {
-    "t": "Deleted it, then reposted when more people were awake.",
+    "t": "Reposted it at peak scrolling hour. Same caption.",
     "tags": [
      {
       "id": "T16A",
@@ -123,7 +123,7 @@
     ]
    },
    {
-    "t": "I post and forget it exists.",
+    "t": "Post, lock the screen, hear about it a week later.",
     "axes": {
      "L2": -1
     },
@@ -136,7 +136,7 @@
     "emotion": "relief"
    },
    {
-    "t": "Never. Low likes stay up, like a monument.",
+    "t": "Three likes, one was me. It stays up, proudly.",
     "tags": [
      {
       "id": "T16B",
@@ -147,12 +147,12 @@
    }
   ],
   "heart": {
-   "prompt": "Ever deleted a post because it didn't get enough likes?",
+   "prompt": "I've got a feeling you've deleted a post once because the likes never came.",
    "options": [
-    "Yes. Eleven likes in an hour, so it had to go.",
-    "Deleted it, then posted it again when more people were awake.",
-    "Honestly, I post and forget it's even there.",
-    "Never. The quiet ones stay up, like little monuments."
+    "Eleven likes in an hour, so I archived it before the twelfth.",
+    "I took it down, then reposted it when everyone was online.",
+    "Honestly, I post, put my phone away and hear about it later.",
+    "Three likes, and one was me. It's still up, and I'm proud."
    ]
   },
   "fp": {
@@ -170,9 +170,9 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "Genii bets {name} has deleted a post because it didn't get enough likes. Guilty or not?",
+   "prompt": "Genii bets {name}'s archive has a graveyard, and at least one post died of low likes. True?",
    "a": {
-    "t": "Eleven likes in an hour? It had to go.",
+    "t": "Eleven likes in an hour. Archived before the twelfth.",
     "axes": {
      "L2": 1
     },
@@ -184,7 +184,7 @@
     ]
    },
    "b": {
-    "t": "Posts it and forgets it exists.",
+    "t": "Posts, locks the screen, hears about it a week later.",
     "axes": {
      "L2": -1
     },
@@ -391,29 +391,29 @@
   "chapter": 1,
   "sq": "SQ-R2-2",
   "world": "everyday",
-  "prompt": "The last time someone scrolled their phone while you were telling them something. How did you handle it?",
+  "prompt": "Mid-story, right at the good part, and they're scrolling. Think of the last time. What did you do?",
   "options": [
    {
-    "t": "Said it: \"Hello? I'm right here.\"",
+    "t": "\"Hello? I'm the content right now.\"",
     "axes": {
      "R2": 2
     },
     "emotion": "irritation"
    },
    {
-    "t": "Stopped mid-sentence: \"Take your time. I'll wait.\"",
+    "t": "Stopped mid-word and stared until they looked up.",
     "axes": {
      "R2": 1
     }
    },
    {
-    "t": "Picked up my own phone. Two can play.",
+    "t": "Pulled out my own phone. Two can scroll.",
     "axes": {
      "R2": -1
     }
    },
    {
-    "t": "Kept talking like I hadn't noticed.",
+    "t": "Finished the whole story to the top of their head.",
     "axes": {
      "R2": -2
     },
@@ -421,12 +421,12 @@
    }
   ],
   "heart": {
-   "prompt": "The last time someone scrolled their phone while you were telling them something, what did you do?",
+   "prompt": "You got to the best part of your story, and they were scrolling. The last time that happened, what did you do?",
    "options": [
-    "\"Hello? I'm right here,\" I said, out loud.",
-    "Stopped mid-sentence: \"Take your time. I'll wait.\"",
+    "I said it: \"Hey, I'm talking to you.\"",
+    "I stopped mid-word and waited until they looked up.",
     "My phone came out too. If they could, I could.",
-    "I kept going like I hadn't noticed."
+    "Honestly, I finished the story to the top of their head."
    ]
   },
   "fp": {
@@ -444,15 +444,15 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "The last time someone scrolled their phone while {name} was talking. How did {name} handle it?",
+   "prompt": "The last time {name} hit the good part of a story and the listener started scrolling. What did {name} do?",
    "a": {
-    "t": "Said it: \"Hello? I'm right here.\"",
+    "t": "\"Hello? I'm the content right now.\"",
     "axes": {
      "R2": 2
     }
    },
    "b": {
-    "t": "Kept talking like {they} hadn't noticed.",
+    "t": "Finished the whole story to the top of their head.",
     "axes": {
      "R2": -2
     }
@@ -607,7 +607,7 @@
   "friend": {
    "prompt": "{name}'s last big message: a breakup, a resignation, a real apology. Who actually wrote it?",
    "a": {
-    "t": "An AI drafted it. I changed three words. Sent.",
+    "t": "An AI drafted it. {name} changed three words. Sent.",
     "tags": [
      {
       "id": "T03A",
@@ -616,7 +616,7 @@
     ]
    },
    "b": {
-    "t": "Me. Nine drafts. Sent the tenth.",
+    "t": "{They} wrote it. Nine drafts. Sent the tenth.",
     "tags": [
      {
       "id": "T03B",
@@ -856,7 +856,7 @@
   "prompt": "A new app called Probably Better has one button: swap your job, city and apartment for ones it picked, sight unseen. Your life right now is good.",
   "options": [
    {
-    "t": "Smash it before my coffee's cold. \"Fine\" was never the goal.",
+    "t": "Hit it before my coffee's cold. \"Fine\" was never the goal.",
     "axes": {
      "L1": -2
     }
@@ -886,7 +886,7 @@
     "I'd press it before my coffee's cold. Fine was never the goal.",
     "Deleted. Then I hug my radiator. It took years to get here.",
     "It stays, unpressed. I stare at it on bad days.",
-    "I hand my best friend the phone. Their call."
+    "I hand my best friend the phone: \"You press it.\""
    ]
   },
   "fp": {
@@ -913,7 +913,7 @@
     }
    },
    "b": {
-    "t": "Smashes it before the coffee's cold. \"Fine\" was never the goal.",
+    "t": "Hits it before the coffee's cold. \"Fine\" was never the goal.",
     "axes": {
      "L1": -2
     }
@@ -926,10 +926,10 @@
   "chapter": 1,
   "sq": "SQ-T04-2",
   "world": "unusual",
-  "prompt": "Slid under your door: a note from the neighbor you've nodded at for two years. \"Want to be actual friends?\"",
+  "prompt": "Slid under your door, from the neighbor you've nodded at for two years: \"Want to be actual friends? Check yes or no.\"",
   "options": [
    {
-    "t": "Knock tonight. Friendship starts now.",
+    "t": "Over in ten minutes with chips. Friendship is live.",
     "tags": [
      {
       "id": "T04B",
@@ -939,7 +939,7 @@
     "emotion": "delight"
    },
    {
-    "t": "Bring them along on my next night out with friends.",
+    "t": "Add them to game night. My friends can do the vetting.",
     "tags": [
      {
       "id": "T04B",
@@ -948,7 +948,7 @@
     ]
    },
    {
-    "t": "Slide back a \"yes!\" Keep it to hallway chats.",
+    "t": "Check yes. Friendship strictly between the mailboxes and the hallway.",
     "tags": [
      {
       "id": "T04A",
@@ -957,7 +957,7 @@
     ]
    },
    {
-    "t": "Keep nodding. Act like the note never arrived.",
+    "t": "Pretend the note got lost. Keep nodding, just faster.",
     "tags": [
      {
       "id": "T04A",
@@ -968,12 +968,12 @@
    }
   ],
   "heart": {
-   "prompt": "Someone slid a note under your door. It's from the neighbor you've nodded at for two years: \"Want to be actual friends?\"",
+   "prompt": "A note under your door, from the neighbor you've nodded at for two years: \"Want to be actual friends? Check yes or no.\"",
    "options": [
-    "I knock that night. We're friends starting now.",
-    "Next time I go out with my friends, they're coming too.",
-    "I slide back a yes and keep it to hallway chats.",
-    "Honestly, I keep nodding and act like it never came."
+    "I'm at their door with chips that same night.",
+    "They're coming to game night, so my friends can meet them too.",
+    "Yes, but it stays in the hallway, by the mailboxes.",
+    "Honestly, I'd act like it got lost and nod a little faster."
    ]
   },
   "fp": {
@@ -991,9 +991,9 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "A note under {name}'s door, from a neighbor {name} has nodded at for two years: \"Want to be actual friends?\" What does {name} do?",
+   "prompt": "A note under {name}'s door, from a neighbor {name} has nodded at for two years: \"Want to be actual friends? Check yes or no.\" What does {name} do?",
    "a": {
-    "t": "Knocks tonight. Friendship starts now.",
+    "t": "Over in ten minutes with chips. Friendship is live.",
     "tags": [
      {
       "id": "T04B",
@@ -1002,7 +1002,7 @@
     ]
    },
    "b": {
-    "t": "Keeps nodding. Acts like the note never arrived.",
+    "t": "Pretends the note got lost. Keeps nodding, just faster.",
     "tags": [
      {
       "id": "T04A",
@@ -1213,7 +1213,7 @@
   "chapter": 1,
   "sq": "SQ-R3-2",
   "world": "unusual",
-  "prompt": "Four months dating Sam. Your parent adds Sam to the family group chat, asking neither of you.",
+  "prompt": "Four months dating Sam. Your parent just added Sam to the family group chat. Nobody asked either of you.",
   "thread": [
    {
     "from": "Your parent",
@@ -1226,14 +1226,14 @@
   ],
   "options": [
    {
-    "t": "\"Welcome, Sam! You're family now. No refunds.\"",
+    "t": "\"Welcome, Sam! You're one of us now. No refunds.\"",
     "axes": {
      "R3": 2
     },
     "emotion": "warmth"
    },
    {
-    "t": "Pin the holiday schedule for Sam. Attendance is mandatory.",
+    "t": "\"Sam, I've pinned the reunion dates. Attendance isn't optional.\"",
     "axes": {
      "R3": 1
     },
@@ -1245,13 +1245,13 @@
     ]
    },
    {
-    "t": "Text my parent privately: \"Next time, ask us first.\"",
+    "t": "Side text to my parent: \"Love you. Ask us next time.\"",
     "axes": {
      "R3": -1
     }
    },
    {
-    "t": "Remove Sam myself. We'll join when we decide.",
+    "t": "Remove Sam myself: \"We'll join when we're ready.\"",
     "axes": {
      "R3": -2
     },
@@ -1265,7 +1265,7 @@
    }
   ],
   "heart": {
-   "prompt": "You've been dating Sam for four months. Your parent adds Sam to the family group chat without asking either of you.",
+   "prompt": "You've been dating Sam for four months. Your parent just added Sam to the family group chat without asking either of you.",
    "thread": [
     {
      "from": "Your parent",
@@ -1277,10 +1277,10 @@
     }
    ],
    "options": [
-    "\"Welcome, Sam. You're family now.\"",
-    "I send Sam the holiday schedule. Everyone comes, that's the rule.",
-    "I text my parent on the side: \"Next time, ask us first.\"",
-    "I take Sam out myself. We'll join when we're ready."
+    "\"Welcome, Sam. You're one of us now.\"",
+    "Sam gets the reunion dates from me. Everyone comes.",
+    "Side text to my parent: \"Love you. Ask us next time.\"",
+    "Honestly, I'd remove Sam myself. We'll join when we're ready."
    ]
   },
   "fp": {
@@ -1300,13 +1300,13 @@
   "friend": {
    "prompt": "{name} has dated Sam for four months. {name}'s parent adds Sam to the family group chat unasked. What does {name} reply?",
    "a": {
-    "t": "\"Welcome, Sam! You're family now. No refunds.\"",
+    "t": "\"Welcome, Sam! You're one of us now. No refunds.\"",
     "axes": {
      "R3": 2
     }
    },
    "b": {
-    "t": "Removes Sam: \"We'll join when we decide.\"",
+    "t": "Removes Sam: \"We'll join when we're ready.\"",
     "axes": {
      "R3": -2
     },
@@ -1436,7 +1436,7 @@
   "prompt": "A phone from a street stall: never cracks, never dies. The seller's one rule? It can never, ever be locked.",
   "options": [
    {
-    "t": "Anyone can scroll it. Nothing in there bites.",
+    "t": "Sold. Anyone can scroll it. It's 4,000 sunsets.",
     "axes": {
      "R1": 1
     },
@@ -1449,7 +1449,7 @@
     "emotion": "delight"
    },
    {
-    "t": "Keep my cracked one at 9%. Nothing to hide. Still locked.",
+    "t": "Keep my cracked one at 9%. Six-digit code, face down.",
     "axes": {
      "R1": -1
     },
@@ -1465,8 +1465,8 @@
   "heart": {
    "prompt": "A phone from a street stall never cracks and never dies. The seller's one rule: it can never be locked.",
    "options": [
-    "I'd take it. Anyone can scroll, and nothing in there bites.",
-    "My cracked one stays, at 9%. Nothing to hide, still locked."
+    "Sold. Anyone can scroll it. It's mostly sunsets.",
+    "My cracked one stays, at 9%, locked and face down."
    ]
   },
   "fp": {
@@ -1488,7 +1488,7 @@
   "friend": {
    "prompt": "A street-stall phone never cracks or dies, but it can never be locked. Which one is {name}?",
    "a": {
-    "t": "Takes it. Anyone can scroll. Nothing in there bites.",
+    "t": "Takes it. Anyone can scroll. It's 4,000 sunsets.",
     "axes": {
      "R1": 1
     },
@@ -1500,7 +1500,7 @@
     ]
    },
    "b": {
-    "t": "Keeps the cracked one at 9%. Nothing to hide. Still locked.",
+    "t": "Keeps the cracked one at 9%. Six-digit code, face down.",
     "axes": {
      "R1": -1
     },
@@ -1521,7 +1521,7 @@
   "prompt": "There's a ghost poet in your laptop. It offers to write your farewell toast for your best friend. Tears guaranteed.",
   "options": [
    {
-    "t": "Ghost writes it. I sneak in one inside joke.",
+    "t": "Ghost writes it. I add one inside joke and cry on cue.",
     "tags": [
      {
       "id": "T03A",
@@ -1531,7 +1531,7 @@
     "emotion": "relief"
    },
    {
-    "t": "Me, shaky and too long, and every word mine.",
+    "t": "Mine. Shaky, six minutes long, one joke only they get.",
     "tags": [
      {
       "id": "T03B",
@@ -1544,8 +1544,8 @@
   "heart": {
    "prompt": "There's a ghost poet in your laptop. It offers to write your goodbye toast for your best friend, and tears are guaranteed.",
    "options": [
-    "The ghost writes it, and I sneak in one inside joke.",
-    "I write it myself, shaky and too long, every word mine."
+    "Ghost writes it. I add an inside joke and cry on cue.",
+    "Mine, shaky and six minutes long, with a joke only they get."
    ]
   },
   "fp": {
@@ -1567,7 +1567,7 @@
   "friend": {
    "prompt": "A ghost poet in {name}'s laptop offers to write {their} farewell toast for {their} best friend. Tears guaranteed. Which one is {name}?",
    "a": {
-    "t": "Ghost writes it. I sneak in one inside joke.",
+    "t": "Ghost writes it. {name} adds one inside joke and cries on cue.",
     "tags": [
      {
       "id": "T03A",
@@ -1576,7 +1576,7 @@
     ]
    },
    "b": {
-    "t": "I write it. Shaky, too long, and all mine.",
+    "t": "Writes it alone. Shaky, six minutes long, one joke only the friend gets.",
     "tags": [
      {
       "id": "T03B",
@@ -1675,7 +1675,7 @@
   "pick": 2,
   "options": [
    {
-    "t": "Tell it the thing I've told nobody. Day one.",
+    "t": "Day one: the thing I've told nobody. Whispered, in the shower.",
     "tags": [
      {
       "id": "T03A",
@@ -1684,7 +1684,7 @@
     ]
    },
    {
-    "t": "Rehearse the hard conversation with it first.",
+    "t": "Rehearse the hard talk with it. Eleven takes.",
     "tags": [
      {
       "id": "T03A",
@@ -1693,7 +1693,7 @@
     ]
    },
    {
-    "t": "Let it pick which friend I should call.",
+    "t": "Let it choose which friend gets my 2am call.",
     "tags": [
      {
       "id": "T03A",
@@ -1702,7 +1702,7 @@
     ]
    },
    {
-    "t": "Keep it for directions. Feelings go to my best friend.",
+    "t": "Directions only. My feelings go to my best friend.",
     "tags": [
      {
       "id": "T03B",
@@ -1715,7 +1715,7 @@
     ]
    },
    {
-    "t": "Mute it and walk it off alone.",
+    "t": "Switch it off and stare at the ceiling alone.",
     "tags": [
      {
       "id": "T03B",
@@ -1724,7 +1724,7 @@
     ]
    },
    {
-    "t": "Call three friends and ask what they think.",
+    "t": "Poll three friends. Majority rules.",
     "tags": [
      {
       "id": "T03B",
@@ -1741,11 +1741,11 @@
    "prompt": "A tiny AI moves into your ear for a week, rent-free. It knows everything and never judges. Something's eating at you. Which two sound like you?",
    "options": [
     "Day one, I tell it the thing I've told nobody.",
-    "I rehearse the hard conversation with it first.",
-    "It gets to pick which friend I call.",
-    "It's for directions. My feelings go to my best friend.",
-    "I mute it and walk it off alone.",
-    "Three friends get a call, and I ask what they think."
+    "Rehearsing the hard talk with it, about eleven takes.",
+    "Whichever friend it picks gets my 2am call.",
+    "Directions only. My feelings go to my best friend.",
+    "Switched off. Just me and the ceiling for a while.",
+    "Three friends hear it, and the majority wins."
    ]
   },
   "fp": {
@@ -1765,7 +1765,7 @@
   "friend": {
    "prompt": "An all-knowing AI lives in {name}'s ear for a week. Something's eating at {name}. Which line sounds most like {name}?",
    "a": {
-    "t": "Tells it the secret nobody else knows. Day one.",
+    "t": "Tells it the thing nobody else knows. Day one, in the shower.",
     "tags": [
      {
       "id": "T03A",
@@ -1774,7 +1774,7 @@
     ]
    },
    "b": {
-    "t": "Keeps it for directions. Feelings go to {their} best friend.",
+    "t": "Directions only. Feelings go to {their} best friend.",
     "tags": [
      {
       "id": "T03B",

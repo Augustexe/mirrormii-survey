@@ -333,12 +333,12 @@ function checkSceneRefs(cards, err, warn, serveFeeling = SERVE_FEELING) {
   }
 }
 
-// Same-move rule (Jerry, 2026-09-30, VOICE.md section 5). In a scored card (not receipts, sealed or feeling), no two
+// Same-move rule (Jerry, 2026-09-30, VOICE.md section 5). In a scored or sealed card (not receipts or feeling), no two
 // Make it fun answers may open with the same first word, and no two may share a core move in their first four words.
 export const SAME_MOVES = ["split", "even", "half", "pay", "pays", "going", "go", "their turn", "keep", "yes", "no", "take", "stay", "leave", "send", "text", "call", "delete", "skip", "say", "tell", "wait", "ask", "give", "sign", "press", "post", "block", "sell", "buy"];
 const moveText = (t) => String(t).toLowerCase().replace(/[“”"!?.,:;()]/g, " ").replace(/\s+/g, " ").trim();
 export function sameMoveIssues(card) {
-  if (!card || ["receipts", "sealed", "feeling"].includes(card.type)) return [];
+  if (!card || ["receipts", "feeling"].includes(card.type)) return [];
   const opts = (card.options || []).filter((o) => o && !o.none && !o.circumstance && typeof o.t === "string").map((o) => moveText(o.t));
   const issues = [];
   const firsts = new Map();

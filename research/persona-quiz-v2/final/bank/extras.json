@@ -5,40 +5,40 @@
     "axisFor": "R1",
     "sq": "SQ-R1-1",
     "world": "unusual",
-    "prompt": "Two years of saving for your first solo trip: three weeks, one backpack. Your sibling asks to come. They already requested the time off.",
+    "prompt": "Two years of saving for your first solo trip: three weeks, one backpack. Your sibling wants in. They already requested the time off.",
     "options": [
       {
-        "t": "Two tickets, then. Solo was overrated anyway.",
+        "t": "Buy a second ticket. Solo was overrated anyway.",
         "axes": {
           "R1": 2
         }
       },
       {
-        "t": "Meet me for the last weekend. The rest is mine.",
+        "t": "They get the last weekend. The first 19 days are mine.",
         "axes": {
           "R1": -1
         }
       },
       {
-        "t": "No. I've waited two years to be alone out there.",
+        "t": "No. Two years of saving bought three weeks of nobody.",
         "axes": {
           "R1": -2
         }
       },
       {
-        "t": "Come, but I get one solo day a week.",
+        "t": "Come, but Wednesdays I vanish with the backpack.",
         "axes": {
           "R1": 1
         }
       }
     ],
     "heart": {
-      "prompt": "You've saved for two years for your first solo trip: three weeks, one backpack. Your sibling asks to come, and they've already asked for the time off.",
+      "prompt": "You've saved for two years for your first solo trip: three weeks, one backpack. Your sibling wants to come, and they've already asked for the time off.",
       "options": [
-        "Two tickets, then. Solo was overrated anyway.",
-        "They can meet me for the last weekend. The rest is mine.",
-        "No. I've waited two years to be out there alone.",
-        "They can come, but one day a week is mine alone."
+        "I'd buy a second ticket. Solo was overrated anyway.",
+        "They can join the last weekend. The first 19 days are mine.",
+        "No. Two years of saving bought three weeks of just me.",
+        "Come along, but Wednesdays I disappear on my own."
       ]
     },
     "fp": {
@@ -64,53 +64,53 @@
     "pick": 2,
     "sq": "SQ-R1-2",
     "world": "absurd",
-    "prompt": "Overnight, your friend group's moods get linked: when one of you has a bad day, all six feel it. Pick the two thoughts most like yours.",
+    "prompt": "Overnight, your friend group's moods get linked. One bad day, all six feel it. Someone's parking ticket just ruined your lunch. Pick two.",
     "options": [
       {
-        "t": "Good. Nobody in this group has a bad day alone.",
+        "t": "Good. Nobody in this group has a bad day solo again.",
         "axes": {
           "R1": 2
         }
       },
       {
-        "t": "Where's the off switch? Asking today.",
+        "t": "Hunting for the off switch before lunch is over.",
         "axes": {
           "R1": -2
         }
       },
       {
-        "t": "Daily check-in call. We fix it together.",
+        "t": "Starting a nightly check-in call. We fix it together.",
         "axes": {
           "R1": 1
         }
       },
       {
-        "t": "Feel my moods, fine. My reasons stay mine.",
+        "t": "Feel my moods, fine. My reasons stay in the drafts.",
         "axes": {
           "R1": -1
         }
       },
       {
-        "t": "Finally, nobody could hide a bad day from me.",
+        "t": "Finally, nobody can fake \"I'm fine\" at me.",
         "axes": {
           "R1": 1
         }
       },
       {
-        "t": "I'd stop asking why anyone's down. The link says enough.",
+        "t": "Zero follow-up questions. The link already told me.",
         "axes": {
           "R1": -1
         }
       }
     ],
     "heart": {
-      "prompt": "Overnight, your friend group's moods get linked. When one of you has a bad day, all six of you feel it. Pick the two thoughts closest to yours.",
+      "prompt": "Overnight, your friend group's moods get linked. When one of you has a bad day, all six of you feel it. Someone's parking ticket just ruined your lunch. Pick two.",
       "options": [
-        "Good. Nobody in this group has a bad day alone.",
-        "Where's the off switch? I'm asking today.",
-        "A daily check-in call, so we fix it together.",
-        "They can feel my moods, fine. My reasons stay mine.",
-        "Finally, nobody could hide a bad day from me.",
+        "Good. Nobody in this group has a bad day alone anymore.",
+        "Where's the off switch? I'm looking for it today.",
+        "A nightly check-in call, so we fix it together.",
+        "They can feel my moods. My reasons stay mine.",
+        "Finally, nobody could tell me \"I'm fine\" and hide it.",
         "I'd stop asking why anyone's down. The link says enough."
       ]
     },
@@ -138,7 +138,7 @@
     "prompt": "Costume contest, $1,000 prize. Your friend is winning, dressed as you. The wig is wrong. The laugh is worse. The crowd loves it.",
     "options": [
       {
-        "t": "Tell them tonight: funny, but it stung.",
+        "t": "Corner them at the snack table tonight. Funny, but it stung.",
         "axes": {
           "R2": 2
         },
@@ -151,13 +151,13 @@
         "emotion": "sting"
       },
       {
-        "t": "Smile for the photos. Mention it later, maybe.",
+        "t": "Smile and clap. Bring it up later, probably never.",
         "axes": {
           "R2": -1
         }
       },
       {
-        "t": "Vote for them. A thousand dollars is a thousand dollars.",
+        "t": "Cheer for them. A thousand dollars is a thousand dollars.",
         "axes": {
           "R2": -2
         },
@@ -169,7 +169,7 @@
         ]
       },
       {
-        "t": "Grab the mic: \"For the record, I laugh better.\"",
+        "t": "Shout from the back: \"For the record, I laugh better.\"",
         "axes": {
           "R2": 1
         }
@@ -178,10 +178,10 @@
     "heart": {
       "prompt": "Costume contest, $1,000 prize. Your friend's winning, dressed as you. The wig's wrong and the laugh is worse. The crowd loves it.",
       "options": [
-        "I tell them tonight: it was funny, but it stung.",
-        "I smile for the photos. Maybe I mention it later.",
-        "They get my vote. A thousand dollars is a thousand dollars.",
-        "I grab the mic: \"For the record, I laugh better.\""
+        "Tonight at the snack table, I tell them: funny, but it stung.",
+        "I smile and clap. Maybe I bring it up later. Probably never.",
+        "Cheering for them. A thousand dollars is a thousand dollars.",
+        "From the back I shout, \"For the record, I laugh better.\""
       ]
     },
     "fp": {
@@ -277,7 +277,7 @@
     "prompt": "Your new town's 200-year tradition: every newcomer rings the old bell at the fair, dressed as a lobster. You just moved in. The fair is Saturday.",
     "options": [
       {
-        "t": "Full lobster, claws and all. Two centuries deserves it.",
+        "t": "Full lobster, claws and antennae. Two centuries deserves commitment.",
         "axes": {
           "R3": 2
         },
@@ -289,7 +289,7 @@
         ]
       },
       {
-        "t": "Ring the bell in my own costume. Close enough.",
+        "t": "Ring it dressed as a shrimp. Close enough.",
         "axes": {
           "R3": -1
         },
@@ -301,7 +301,7 @@
         ]
       },
       {
-        "t": "Skip it. I'll start a newcomer tradition of my own.",
+        "t": "Skip the bell. My tradition: newcomers bring the town donuts.",
         "axes": {
           "R3": -2
         },
@@ -313,7 +313,7 @@
         ]
       },
       {
-        "t": "Lobster suit, bell rung, gone in five minutes.",
+        "t": "Suit on, bell rung, out of there in five minutes flat.",
         "axes": {
           "R3": 1
         },
@@ -329,9 +329,9 @@
       "prompt": "Your new town's 200-year tradition: every newcomer rings the old bell at the fair, dressed as a lobster. You just moved in, and the fair's Saturday.",
       "options": [
         "The full lobster, claws and all. Two centuries deserves it.",
-        "I ring the bell in my own costume. Close enough.",
-        "I skip it and start a newcomer tradition of my own.",
-        "Lobster suit on, bell rung, and I'm gone in five minutes."
+        "I ring it dressed as a shrimp. Close enough.",
+        "Skipping the bell. My newcomer tradition is donuts for the town.",
+        "Suit on, bell rung, and I'm gone in five minutes."
       ]
     },
     "fp": {
@@ -580,7 +580,7 @@
       "prompt": "Years ago you posted a story online. Now a publisher wants it as a book, due in six months. That's every evening and weekend until then.",
       "options": [
         "Tonight I sign, and tell my friends I've gone into hiding.",
-        "Every weekend plan's cancelled till spring. I grumble the whole way.",
+        "Every weekend plan's canceled till spring. I grumble the whole way.",
         "I turn it down. New chapters come whenever I feel like it.",
         "Never writing back. It was fun because nobody was waiting."
       ]
@@ -763,10 +763,10 @@
     "axisFor": "L3",
     "sq": "SQ-L3-3",
     "world": "unusual",
-    "prompt": "Escape room, eight minutes left. On a shelf: an envelope marked \"STAFF ONLY: ALL ANSWERS.\" The camera faces the wall. Your role in the crew?",
+    "prompt": "Escape room, eight minutes left. On a shelf: an envelope marked \"STAFF ONLY: ALL ANSWERS.\" The camera's pointed at the ceiling. Your role in the crew?",
     "options": [
       {
-        "t": "Envelope guard: \"We solve it or we lose it.\"",
+        "t": "Envelope guard, sitting on it like it's an egg.",
         "axes": {
           "L3": 2
         },
@@ -778,7 +778,7 @@
         ]
       },
       {
-        "t": "Opener. Read it all, escape in record time.",
+        "t": "Opener: answers read aloud, record time, zero shame.",
         "axes": {
           "L3": -2
         },
@@ -790,13 +790,13 @@
         ]
       },
       {
-        "t": "Solver who looks away while someone else peeks.",
+        "t": "Solver, humming loudly while someone else peeks.",
         "axes": {
           "L3": -1
         }
       },
       {
-        "t": "Snitch: \"Hey, staff? Your envelope's out.\"",
+        "t": "Snitch. I wave the staff over: \"Your envelope's out.\"",
         "axes": {
           "L3": 1
         },
@@ -808,20 +808,20 @@
         ]
       },
       {
-        "t": "Negotiator: \"We only peek if we're truly stuck.\"",
+        "t": "Negotiator: we peek only if we're truly, legally stuck.",
         "axes": {
           "L3": -1
         }
       }
     ],
     "heart": {
-      "prompt": "Escape room, eight minutes left. On a shelf there's an envelope marked \"Staff only: all answers,\" and the camera's facing the wall. Which one are you?",
+      "prompt": "Escape room, eight minutes left. On a shelf there's an envelope marked \"Staff only: all answers,\" and the camera's pointed at the ceiling. Which one are you?",
       "options": [
         "I guard the envelope. We solve it ourselves or we lose.",
-        "I open it, read everything and get us out in record time.",
-        "I keep solving and look away while someone else peeks.",
+        "Opening it. I read everything out and we're gone in record time.",
+        "Still solving, humming loudly, while someone else peeks.",
         "The staff hear from me that their envelope's out.",
-        "\"We only peek if we're truly stuck,\" I argue."
+        "My rule: we only peek if we're truly stuck."
       ]
     },
     "fp": {

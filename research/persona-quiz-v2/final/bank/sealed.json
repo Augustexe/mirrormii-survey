@@ -5,10 +5,10 @@
     "primary": "R1",
     "sq": "SQ-R1-1",
     "world": "unusual",
-    "prompt": "Co-owners, forever: your best friend wants to buy a small sailboat with you. Both names on the hull. Alternating weekends, shared repair bills.",
+    "prompt": "Co-owners, forever: your best friend wants to buy a sailboat with you. Both names on the hull, alternating weekends, shared repair bills.",
     "options": [
       {
-        "t": "Yes, and we sail it together, every weekend.",
+        "t": "Every weekend, together. I'm already shopping for matching hats.",
         "axes": {
           "R1": 2
         }
@@ -20,25 +20,25 @@
         }
       },
       {
-        "t": "Co-own it, but you'll mostly sail it. I visit.",
+        "t": "My name on the hull, your hands on the wheel. I visit.",
         "axes": {
           "R1": -1
         }
       },
       {
-        "t": "Yes. Alternate weekends, plus one sail together a month.",
+        "t": "Alternate weekends, plus one sail together a month. Snacks on me.",
         "axes": {
           "R1": 1
         }
       }
     ],
     "heart": {
-      "prompt": "Your best friend wants to buy a small sailboat with you, forever. Both names on the hull, alternating weekends, shared repair bills.",
+      "prompt": "Your best friend wants to buy a sailboat with you, forever. Both names on the hull, alternating weekends, shared repair bills.",
       "options": [
-        "Yes, and we sail it together every single weekend.",
+        "Every weekend, together. I'm already looking at matching hats.",
         "Love you, but buy it yourself. I'll wave from the dock.",
-        "I'll co-own it, but it's mostly yours to sail. I'll visit.",
-        "Yes. Alternate weekends, plus one sail together a month."
+        "My name's on the hull, but it's yours to sail. I'll visit.",
+        "We alternate weekends, and once a month we sail together."
       ]
     },
     "fp": {
@@ -62,7 +62,7 @@
     "primary": "R1",
     "sq": "SQ-R1-2",
     "world": "absurd",
-    "prompt": "New curse: every time something happens to you, a tiny rain cloud follows you until your partner hears about it. You just won a photo contest.",
+    "prompt": "New curse: every time something big happens to you, a tiny rain cloud follows you until your partner hears about it. You just won a photo contest.",
     "options": [
       {
         "t": "Call them mid-drizzle. I'd have told them anyway.",
@@ -102,7 +102,7 @@
       }
     ],
     "heart": {
-      "prompt": "There's a new curse: whenever something happens to you, a little rain cloud follows you around until your partner hears about it. You just won a photo contest.",
+      "prompt": "There's a new curse: whenever something big happens to you, a little rain cloud follows you around until your partner hears about it. You just won a photo contest.",
       "options": [
         "I'm calling them mid-drizzle. I'd have told them anyway.",
         "I'll stay damp for a week. Some news is mine first.",
@@ -140,19 +140,19 @@
         }
       },
       {
-        "t": "\"You go. I'll host the loud welcome-back dinner.\"",
+        "t": "\"Enjoy. I'll host the loud welcome-back dinner.\"",
         "axes": {
           "R1": -2
         }
       },
       {
-        "t": "Two days, then hike out alone.",
+        "t": "Day two, I hike out alone and eat a very loud sandwich.",
         "axes": {
           "R1": -1
         }
       },
       {
-        "t": "Go, and pass notes the entire time.",
+        "t": "Sneak in a notepad. Pass notes the entire time.",
         "axes": {
           "R1": 1
         },
@@ -163,9 +163,9 @@
       "prompt": "Seven to one, your friend group votes for a five-day silent retreat in the mountains. No talking at all. You were the one.",
       "options": [
         "Silent together still counts as together. I'm in.",
-        "\"You all go. I'll host a loud welcome-back dinner.\"",
-        "Two days, then I'm hiking out on my own.",
-        "I'd go, and pass notes the entire time."
+        "\"Enjoy it. I'll host a loud welcome-back dinner.\"",
+        "By day two, I hike out alone for a very loud sandwich.",
+        "I'd bring a notepad and pass notes the whole time."
       ]
     },
     "fp": {
@@ -204,7 +204,7 @@
         ]
       },
       {
-        "t": "Go to the joint one, then take my own friends out.",
+        "t": "Cut the cake, then slip out with my own friends.",
         "axes": {
           "R1": -1
         },
@@ -244,7 +244,7 @@
       "prompt": "You and your partner share a birthday. They've already booked one joint party for 80 people, both names on the banner and every friend invited.",
       "options": [
         "One banner, two names. Their friends are my friends.",
-        "I'll go to the joint one, then take my own friends out.",
+        "I'll cut the cake, then slip out with my own friends.",
         "Two parties. My birthday's still my night.",
         "Joint party this year. Next year gets its own vote."
       ]
@@ -273,7 +273,7 @@
     "prompt": "Your friend's first music video went viral: 4,000 comments, most of them brutal. They hand you their phone: \"What are people saying?\"",
     "options": [
       {
-        "t": "Read them the top ten, brutal ones included.",
+        "t": "Top ten, out loud, brutal ones included. Deep breath first.",
         "axes": {
           "R2": 2
         },
@@ -285,7 +285,7 @@
         ]
       },
       {
-        "t": "Read the nice ones, then add, \"Maybe skip the rest.\"",
+        "t": "Cherry-pick the nice ones. Hint that they skip the rest.",
         "axes": {
           "R2": -1
         },
@@ -297,7 +297,7 @@
         ]
       },
       {
-        "t": "\"All love!\" Then lock the phone.",
+        "t": "\"All love!\" Phone locked, pocketed, gone.",
         "axes": {
           "R2": -2
         },
@@ -309,7 +309,7 @@
         ]
       },
       {
-        "t": "\"Rough ones outnumber nice ones. Want them tomorrow?\"",
+        "t": "Honest score: mostly rough. Full readout tomorrow, if they want.",
         "axes": {
           "R2": 1
         }
@@ -318,10 +318,10 @@
     "heart": {
       "prompt": "Your friend's first music video went viral: 4,000 comments, most of them brutal. They hand you their phone and ask, \"What are people saying?\"",
       "options": [
-        "I'd read them the top ten, brutal ones included.",
-        "I'd read the nice ones, then say maybe skip the rest.",
-        "\"It's all love.\" Then I lock the phone.",
-        "\"The rough ones outnumber the nice ones. Want them tomorrow?\""
+        "I read them the top ten out loud, brutal ones included.",
+        "Just the nice ones, then I hint they skip the rest.",
+        "\"It's all love.\" Then the phone gets locked.",
+        "Honestly, it's mostly rough. They can have the full list tomorrow."
       ]
     },
     "fp": {
@@ -450,7 +450,7 @@
         ]
       },
       {
-        "t": "Tell the room: \"Something's off with these clues.\"",
+        "t": "Loudly wonder if these clues seem a little convenient.",
         "axes": {
           "R2": 1
         },
@@ -460,10 +460,10 @@
     "heart": {
       "prompt": "Murder mystery party, $200 prize pot. You've figured out the host rigged the clues so the host wins, and twelve guests are still guessing.",
       "options": [
-        "I stand up: \"The host's the killer. And the cheater.\"",
+        "Standing up: \"The host's the killer. And the cheater.\"",
         "I pull the host aside in the kitchen and say it quietly.",
         "Let them win. Their party, their pot.",
-        "I tell the room something's off with these clues."
+        "I wonder out loud if these clues seem a bit convenient."
       ]
     },
     "fp": {
@@ -567,7 +567,7 @@
     "prompt": "Accepted: a dream program on the other side of the world. Before you've even said yes, your family books a video call. Its title? \"Discussion.\"",
     "options": [
       {
-        "t": "Accept before the call. Join it to share the news.",
+        "t": "Accept first. Then join with a slideshow of my new city.",
         "axes": {
           "R3": -2
         },
@@ -580,7 +580,7 @@
         "emotion": "pride"
       },
       {
-        "t": "Join the call. If they say no, I stay.",
+        "t": "If the family says no, I stay. Suitcase goes back up.",
         "axes": {
           "R3": 2
         },
@@ -593,7 +593,7 @@
         "emotion": "longing"
       },
       {
-        "t": "Hear everyone out. Then decide alone, that night.",
+        "t": "Nod through all 90 minutes, then decide alone in bed.",
         "axes": {
           "R3": -1
         },
@@ -605,7 +605,7 @@
         ]
       },
       {
-        "t": "Let them vote. Mine counts double.",
+        "t": "Family vote. Mine counts double, obviously.",
         "axes": {
           "R3": 1
         },
@@ -621,10 +621,10 @@
     "heart": {
       "prompt": "You got into a dream program on the other side of the world. Before you've even said yes, your family books a video call. It's called \"Discussion.\"",
       "options": [
-        "I accept before the call, then join it to share the news.",
-        "I join the call. If they say no, I stay.",
-        "I hear everyone out, then decide by myself that night.",
-        "They can vote. Mine counts double."
+        "I accept first, then join with photos of my new city.",
+        "If they say no, I stay. The suitcase goes back up.",
+        "All ninety minutes, I just listen. Then I decide alone that night.",
+        "We vote as a family. My vote counts double."
       ]
     },
     "fp": {
@@ -651,7 +651,7 @@
     "prompt": "Ten years running: same cabin, same weekend, same broken karaoke machine. Two friends want a city trip instead. The vote's tied, and yours decides.",
     "options": [
       {
-        "t": "Cabin. Ten years makes it sacred.",
+        "t": "Cabin forever. Ten years makes it sacred.",
         "axes": {
           "R3": 2
         },
@@ -663,7 +663,7 @@
         ]
       },
       {
-        "t": "City this year, cabin next. We alternate.",
+        "t": "Alternate. City this year, cabin next, karaoke on pause.",
         "axes": {
           "R3": -1
         },
@@ -675,7 +675,7 @@
         ]
       },
       {
-        "t": "City. Ten years was a great run. Retire it.",
+        "t": "Book the city. Ten years was a great run.",
         "axes": {
           "R3": -2
         },
@@ -687,7 +687,7 @@
         ]
       },
       {
-        "t": "Cabin, but I'm replacing that karaoke machine.",
+        "t": "Same cabin, but I'm finally replacing that karaoke machine.",
         "axes": {
           "R3": 1
         },
@@ -703,9 +703,9 @@
       "prompt": "Ten years running: same cabin, same weekend, same broken karaoke machine. Two friends want a city trip instead. It's a tie, and your vote decides.",
       "options": [
         "The cabin. Ten years makes it sacred.",
-        "City this year, cabin next. We take turns.",
-        "The city. Ten years was a great run. Time to retire it.",
-        "The cabin, but I'm replacing that karaoke machine."
+        "We take turns. City this year, cabin next.",
+        "I'd book the city. Ten years was a great run.",
+        "Same cabin, but I'm finally replacing that karaoke machine."
       ]
     },
     "fp": {
@@ -786,7 +786,7 @@
     "heart": {
       "prompt": "The stadium kiss cam lands on you and your partner. Someone behind you unrolls a banner that says \"Propose!\" and forty thousand people start chanting.",
       "options": [
-        "I kneel, right there. The universe has spoken.",
+        "Down on one knee, right there. The universe has spoken.",
         "We kiss, wave, and never bring it up again.",
         "I mouth to the camera, \"We don't need a stadium.\"",
         "I whisper, \"Not here. At the family dinner, properly.\""
@@ -816,7 +816,7 @@
     "prompt": "Month-long visit: your partner's parent relabels every shelf in your home to match their own. Printed labels. Laminated.",
     "options": [
       {
-        "t": "Keep them. Their family's system has worked for decades.",
+        "t": "Leave every label up. Decades of order can't be wrong.",
         "axes": {
           "R3": 2
         },
@@ -853,7 +853,7 @@
         ]
       },
       {
-        "t": "Keep the kitchen ones. Their kitchen always ran better.",
+        "t": "Only the kitchen labels survive. Their spice rack is elite.",
         "axes": {
           "R3": 1
         },
@@ -868,10 +868,10 @@
     "heart": {
       "prompt": "Your partner's parent stays for a month and relabels every shelf in your home to match their own. Printed. Laminated.",
       "options": [
-        "The labels stay. Their system's worked for decades.",
+        "Every label stays up. Their system's worked for decades.",
         "I peel off one a day, quietly. They'll never notice.",
-        "I sit everyone down: \"Our house, our system.\"",
-        "I keep the kitchen ones. Their kitchen always ran better."
+        "Family meeting: \"Our house, our system.\"",
+        "Just the kitchen ones stay. Their spice rack really is better."
       ]
     },
     "fp": {
@@ -898,7 +898,7 @@
     "prompt": "Game show, final round: walk away with $20,000, or answer one question for $100,000 and lose it all if wrong. The topic: one you half know.",
     "options": [
       {
-        "t": "Take the $20,000. Wave. Leave. Frame the check.",
+        "t": "Walk with the $20,000. Wave, leave, frame the check.",
         "axes": {
           "L1": 2
         },
@@ -911,7 +911,7 @@
         "emotion": "relief"
       },
       {
-        "t": "Play. Half knowing is basically knowing.",
+        "t": "Half knowing is basically knowing. Hit me.",
         "axes": {
           "L1": -2
         },
@@ -924,13 +924,13 @@
         "emotion": "delight"
       },
       {
-        "t": "Take the $20,000, but ask to hear the question anyway.",
+        "t": "Bank the money, then beg to hear the question anyway.",
         "axes": {
           "L1": 1
         }
       },
       {
-        "t": "Play. I'd never forgive myself for walking.",
+        "t": "Answer it. Regret is worse than losing $20,000.",
         "axes": {
           "L1": -1
         },
@@ -940,10 +940,10 @@
     "heart": {
       "prompt": "Final round of a game show: walk away with $20,000, or answer one question for $100,000 and lose it all if you're wrong. It's a topic you half know.",
       "options": [
-        "I take the $20,000, wave, leave, and frame the check.",
+        "I walk with the $20,000 and frame the check.",
         "Half knowing is basically knowing. I'm playing.",
-        "I take the $20,000, but I ask to hear the question anyway.",
-        "Playing. I'd never forgive myself for walking."
+        "The money's banked, but I beg to hear the question anyway.",
+        "Answering. Regret would be worse than losing it."
       ]
     },
     "fp": {
@@ -996,7 +996,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Sign only the home part. Leave the job wide open.",
+        "t": "Initial the home page only. Job stays wide open.",
         "axes": {
           "L1": 1
         },
@@ -1008,7 +1008,7 @@
         ]
       },
       {
-        "t": "Leave it unsigned. I like not knowing what's next.",
+        "t": "Stick it on the fridge unsigned. Not knowing is half the fun.",
         "axes": {
           "L1": -1
         },
@@ -1026,8 +1026,8 @@
       "options": [
         "I sign it in pen. Five known-good years beat any gamble.",
         "It's getting torn up. I want the surprises, bad ones too.",
-        "Just the home part gets signed. The job stays wide open.",
-        "I leave it unsigned. I like not knowing what's next."
+        "Just the home page gets initialed. The job stays wide open.",
+        "It goes on the fridge unsigned. Not knowing is half the fun."
       ]
     },
     "fp": {
@@ -1051,7 +1051,7 @@
     "primary": "L1",
     "sq": "SQ-L1-3",
     "world": "unusual",
-    "prompt": "At a friend's barbecue, a famous chef tastes your cooking and offers you a job in their kitchen. Catch: quit yours by Friday. No trial.",
+    "prompt": "At a friend's barbecue, a famous chef tastes your cooking and offers you a job in their kitchen. One condition: quit yours by Friday. No trial.",
     "options": [
       {
         "t": "Quit Friday morning. Aprons are cheaper than regrets.",
@@ -1067,7 +1067,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Keep the job. Cook for friends on weekends, happily.",
+        "t": "My job stays. Weekend dinner parties get very fancy.",
         "axes": {
           "L1": 2
         },
@@ -1086,7 +1086,7 @@
         "emotion": "longing"
       },
       {
-        "t": "Quit, and sublet my place in case it flops.",
+        "t": "Resign, but sublet my place in case it flops.",
         "axes": {
           "L1": -1
         }
@@ -1096,9 +1096,9 @@
       "prompt": "At a friend's barbecue, a famous chef tastes your cooking and offers you a job in their kitchen. The condition: you quit yours by Friday, no trial.",
       "options": [
         "I quit Friday morning. Aprons are cheaper than regrets.",
-        "My job stays. Weekends, I cook for friends, happily.",
+        "My job stays. My weekend dinners just get a lot fancier.",
         "I say no, then cook their signature dish nightly, a bit bitter.",
-        "I quit, and sublet my place in case it flops."
+        "Resigning, but I'm subletting my place in case it flops."
       ]
     },
     "fp": {
@@ -1137,13 +1137,13 @@
         ]
       },
       {
-        "t": "In, and my location goes to two friends first.",
+        "t": "Drop my location to two friends, then show up.",
         "axes": {
           "L1": -1
         }
       },
       {
-        "t": "Only if my friend comes along the first time.",
+        "t": "Only if my friend comes as my plus-one, first time.",
         "axes": {
           "L1": 1
         }
@@ -1165,8 +1165,8 @@
       "prompt": "A friend of a friend invites you into a club with no name. Members can't say what it does, and the invite expires tonight.",
       "options": [
         "I'm in. The best stories start exactly like this.",
-        "I'm in, but my location goes to two friends first.",
-        "Only if my friend comes with me the first time.",
+        "My location goes to two friends first, then I go.",
+        "Only if my friend comes as my plus-one the first time.",
         "I'll pass. I don't join what I can't describe."
       ]
     },
@@ -1358,7 +1358,7 @@
         ]
       },
       {
-        "t": "Weekends only. Second is fine, first is better.",
+        "t": "Weekend weeding only. Enough to scare first place a little.",
         "axes": {
           "L2": 1
         },
@@ -1387,7 +1387,7 @@
       "options": [
         "Every evening, by headlamp if I have to. That photo's mine.",
         "Second place and my evenings back. That's fine by me.",
-        "Weekends only. Second's fine, but first would be better.",
+        "I'll weed on weekends. Enough to make first place nervous.",
         "I garden when it's fun. The paper can pick someone else."
       ]
     },
@@ -1509,7 +1509,7 @@
         ]
       },
       {
-        "t": "Write \"MISSED\" in the log. The log is the job.",
+        "t": "\"MISSED,\" in capitals. The log is the job.",
         "axes": {
           "L3": 2
         },
@@ -1533,7 +1533,7 @@
         ]
       },
       {
-        "t": "Write in an estimate, marked \"estimated.\"",
+        "t": "Pencil in a best guess, with an asterisk.",
         "axes": {
           "L3": 1
         },
@@ -1549,9 +1549,9 @@
       "prompt": "You're keeping a lighthouse alone for six months. The rule: log the weather every three hours. You slept through one reading, and nobody will ever check.",
       "options": [
         "Something sunny goes in. Nobody reads old weather.",
-        "I write \"missed\" in the log. The log is the job.",
+        "\"Missed,\" right there in the log. The log is the job.",
         "Yesterday's reading, copied. The weather's basically a rerun.",
-        "I put in an estimate and mark it \"estimated.\""
+        "I pencil in my best guess, with an asterisk."
       ]
     },
     "fp": {
@@ -1578,7 +1578,7 @@
     "prompt": "Watch-party rule among your friends: spoil a finale, lose your seat forever. Your oldest friend just read the ending aloud from a headline. By accident.",
     "options": [
       {
-        "t": "Out. The rule doesn't check who's oldest.",
+        "t": "No exceptions. Oldest friend, newest exile.",
         "axes": {
           "L3": 2
         },
@@ -1602,7 +1602,7 @@
         ]
       },
       {
-        "t": "Out, and I lobby to change the rule next season.",
+        "t": "Seat's gone. Then I start a petition to change the rule.",
         "axes": {
           "L3": 1
         }
@@ -1623,9 +1623,9 @@
     "heart": {
       "prompt": "Your friends' watch-party rule: spoil a finale, lose your seat forever. Your oldest friend just read the ending out loud from a headline. By accident.",
       "options": [
-        "They're out. The rule doesn't care who's oldest.",
+        "No exceptions, even for my oldest friend.",
         "We all agree it never happened. The seat stays.",
-        "They're out, and I'm lobbying to change the rule next season.",
+        "Their seat's gone, and then I start lobbying to change the rule.",
         "One free pass. The next spoiler, anyone's out."
       ]
     },
@@ -1689,7 +1689,7 @@
         ]
       },
       {
-        "t": "One tiny lift while nobody's looking.",
+        "t": "Nudge it with one finger. Nobody saw anything.",
         "axes": {
           "L3": -1
         },
@@ -1707,7 +1707,7 @@
         "The code's the code. I'll call them some movers.",
         "I lift it. The code's for strangers.",
         "No powers. I push like a regular person.",
-        "One tiny lift while nobody's looking."
+        "One finger, one tiny nudge, while nobody's looking."
       ]
     },
     "fp": {
@@ -1759,7 +1759,7 @@
         ]
       },
       {
-        "t": "Juggler wins, and I quietly slip the neighbor $50.",
+        "t": "Trophy to the juggler. Then I slip the neighbor $50.",
         "axes": {
           "L3": 1
         },
@@ -1771,7 +1771,7 @@
         ]
       },
       {
-        "t": "Neighbor, by one point. I'll feel weird all week.",
+        "t": "One-point win for the neighbor. I feel weird all week.",
         "axes": {
           "L3": -1
         },
@@ -1788,8 +1788,8 @@
       "options": [
         "The juggler wins. Best act is best act.",
         "My neighbor. Rent matters more than ribbons.",
-        "The juggler wins, and I quietly slip the neighbor $50.",
-        "Neighbor, by one point, and I'll feel weird all week."
+        "Juggler gets the prize. I slip my neighbor $50 on the side.",
+        "Neighbor wins by one point, and I feel weird all week."
       ]
     },
     "fp": {

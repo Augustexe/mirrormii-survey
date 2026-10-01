@@ -96,10 +96,10 @@
   "chapter": 2,
   "sq": "SQ-T10-1",
   "world": "absurd",
-  "prompt": "Next door, a new shop fixes any friendship, but both people stay locked in until it's done. Your old best friend just booked you both.",
+  "prompt": "Next door, a new shop fixes any friendship, but the door stays locked until it's fixed. Your old best friend just booked you both.",
   "options": [
    {
-    "t": "Walk in with two sleeping bags. However long it takes.",
+    "t": "Packing two sleeping bags and a week of snacks.",
     "tags": [
      {
       "id": "T10A",
@@ -109,7 +109,7 @@
     "emotion": "longing"
    },
    {
-    "t": "Go in, but I'm bringing a list. Page one: them.",
+    "t": "Bringing a printed list of grievances. It has a table of contents.",
     "axes": {
      "R2": 1
     },
@@ -122,7 +122,7 @@
     "emotion": "resentment"
    },
    {
-    "t": "Cancel the booking. Some friendships end for a reason.",
+    "t": "Cancel the booking. That friendship ended on purpose.",
     "tags": [
      {
       "id": "T10B",
@@ -131,7 +131,7 @@
     ]
    },
    {
-    "t": "Skip it, with a note: glad we were friends.",
+    "t": "A sticky note on their door: \"Glad we were friends.\"",
     "axes": {
      "R2": -1
     },
@@ -145,12 +145,12 @@
    }
   ],
   "heart": {
-   "prompt": "A new shop next door fixes any friendship, but you're both locked in until it's done. Your old best friend just booked you both.",
+   "prompt": "A new shop next door fixes any friendship, but you're both locked in until it's fixed. Your old best friend just booked you both.",
    "options": [
-    "I walk in with two sleeping bags. However long it takes.",
-    "I'll go, but I'm bringing a list. They're page one.",
-    "Canceling. Some friendships end for a reason.",
-    "I skip it and leave a note: glad we were friends."
+    "I'm packing two sleeping bags and a week of snacks.",
+    "Fine, but my list of grievances has a table of contents.",
+    "Canceling. That friendship ended on purpose.",
+    "A note on their door instead: glad we were friends."
    ]
   },
   "fp": {
@@ -169,9 +169,9 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "A friendship repair shop locks both people in until fixed. {name}'s old best friend just booked a slot. What does {name} do?",
+   "prompt": "A friendship repair shop locks both people in until it's fixed. {name}'s old best friend just booked a slot. What does {name} do?",
    "a": {
-    "t": "Goes in, but with a list. Page one: the old friend.",
+    "t": "Brings a printed list of grievances, with a table of contents.",
     "axes": {
      "R2": 1
     },
@@ -183,7 +183,7 @@
     ]
    },
    "b": {
-    "t": "Skips it, with a note: glad we were friends.",
+    "t": "Leaves a sticky note on their door: \"Glad we were friends.\"",
     "axes": {
      "R2": -1
     },
@@ -298,7 +298,7 @@
   "prompt": "An 8-ball that has never once been wrong says Jules's crush will say no. Jules confesses in five minutes, in front of everyone.",
   "options": [
    {
-    "t": "Pull Jules aside now: \"Don't. The ball said no.\"",
+    "t": "Grab Jules by the elbow: \"Abort. The ball said no.\"",
     "axes": {
      "R2": 2
     },
@@ -310,7 +310,7 @@
     ]
    },
    {
-    "t": "Show Jules the 8-ball. Their call after that.",
+    "t": "Hand Jules the 8-ball. Their shake, their call.",
     "axes": {
      "R2": 1
     },
@@ -322,7 +322,7 @@
     ]
    },
    {
-    "t": "Say nothing. Be waiting by the exit after.",
+    "t": "Zip it. Wait by the exit after, tissues ready.",
     "axes": {
      "R2": -2
     },
@@ -335,7 +335,7 @@
     "emotion": "guilt"
    },
    {
-    "t": "Float \"maybe not in front of everyone?\" and stop there.",
+    "t": "Casually float \"maybe not in front of everyone?\" Then drop it.",
     "axes": {
      "R2": -1
     },
@@ -350,10 +350,10 @@
   "heart": {
    "prompt": "An 8-ball that's never once been wrong says Jules's crush will say no. Jules is confessing in five minutes, in front of everyone.",
    "options": [
-    "I pull Jules aside right now: \"Don't. The ball said no.\"",
-    "Jules sees the 8-ball, and then it's their call.",
-    "I say nothing, and I'm waiting by the exit after.",
-    "\"Maybe not in front of everyone?\" I float it and stop there."
+    "I grab Jules by the elbow: \"Don't. The ball said no.\"",
+    "Jules gets the 8-ball. They shake it, then it's their call.",
+    "Nothing from me. I'm by the exit after, with tissues.",
+    "\"Maybe not in front of everyone?\" Once, then I drop it."
    ]
   },
   "fp": {
@@ -375,7 +375,7 @@
   "friend": {
    "prompt": "A never-wrong 8-ball says Jules's crush will say no. Jules confesses to everyone in five minutes. What does {name} do?",
    "a": {
-    "t": "Pulls Jules aside now: \"Don't. The ball said no.\"",
+    "t": "Grabs Jules by the elbow: \"Abort. The ball said no.\"",
     "axes": {
      "R2": 2
     },
@@ -387,7 +387,7 @@
     ]
    },
    "b": {
-    "t": "Says nothing. Waits by the exit for after.",
+    "t": "Zips it. Waits by the exit after with tissues.",
     "axes": {
      "R2": -2
     },
@@ -810,10 +810,10 @@
   "chapter": 2,
   "sq": "SQ-T08-2",
   "world": "absurd",
-  "prompt": "Your friend can now delete one memory a year. They deleted the time their sibling sold their guitar and lied about it. Now they're close again. Your take?",
+  "prompt": "Settle this: your friend can delete one memory a year. They deleted the day their sibling sold their guitar and lied about it. They're close again. Your verdict?",
   "options": [
    {
-    "t": "Best use of the year. Forgiven, forgotten, done.",
+    "t": "Best use of the year. Clean slate, group hug.",
     "tags": [
      {
       "id": "T08A",
@@ -822,7 +822,7 @@
     ]
    },
    {
-    "t": "Fine, but I'd still lock up my guitar.",
+    "t": "Sure. I'd still hide the amp when that sibling visits.",
     "tags": [
      {
       "id": "T08B",
@@ -831,7 +831,7 @@
     ]
    },
    {
-    "t": "Never. That memory is how you learn who to trust.",
+    "t": "Huge mistake. That memory was their fraud alert.",
     "tags": [
      {
       "id": "T08B",
@@ -840,7 +840,7 @@
     ]
    },
    {
-    "t": "I wouldn't need the delete. I'd forget by summer.",
+    "t": "Waste of a delete. I'd forget it by summer anyway.",
     "tags": [
      {
       "id": "T08A",
@@ -852,10 +852,10 @@
   "heart": {
    "prompt": "Your friend can delete one memory a year. They deleted the time their sibling sold their guitar and lied about it, and now they're close again. What do you think?",
    "options": [
-    "Best use of the year. Forgiven, forgotten, done.",
-    "Fine, but I'd still lock up my guitar.",
-    "I'd keep that memory. It's how you learn who to trust.",
-    "Wouldn't need to delete it. I'd forget by summer."
+    "Best thing they could've done with it. Clean slate.",
+    "Fine, but I'd still hide the amp when that sibling's over.",
+    "I'd keep it. That memory's how you know who to trust.",
+    "They didn't need the delete. I'd have forgotten by summer."
    ]
   },
   "fp": {
@@ -874,9 +874,9 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "{name}'s friend deleted the memory of their sibling selling their guitar and lying. They're close again. {name}'s take?",
+   "prompt": "{name}'s friend deleted the day their sibling sold their guitar and lied about it. They're close again. {name}'s verdict?",
    "a": {
-    "t": "Best use of the year. Forgiven, forgotten, done.",
+    "t": "Best use of the year. Clean slate, group hug.",
     "tags": [
      {
       "id": "T08A",
@@ -885,7 +885,7 @@
     ]
    },
    "b": {
-    "t": "Never delete that. It's how you learn who to trust.",
+    "t": "Huge mistake. That memory was their fraud alert.",
     "tags": [
      {
       "id": "T08B",
@@ -1011,10 +1011,10 @@
   "type": "this_or_that",
   "chapter": 2,
   "round": "ch2-r125",
-  "prompt": "Your best friend now has a brass bell: one ring when they need you, and you appear. Even mid-nap. You can break it today only.",
+  "prompt": "Your best friend got a brass bell. One ring and you appear next to them, even mid-nap. You can break it today only.",
   "options": [
    {
-    "t": "Keep it. If it rings, I'm there. Pajamas and all.",
+    "t": "Keep it. Ring away. I'll arrive mid-sandwich, no complaints.",
     "axes": {
      "R1": 1
     },
@@ -1027,7 +1027,7 @@
     "emotion": "warmth"
    },
    {
-    "t": "Break it today. Nobody summons me mid-shower.",
+    "t": "Smash it before lunch. My naps stay mine.",
     "axes": {
      "R1": -1
     },
@@ -1041,10 +1041,10 @@
    }
   ],
   "heart": {
-   "prompt": "Your best friend has a brass bell now. One ring when they need you, and you appear, even mid-nap. You can only break it today.",
+   "prompt": "Your best friend has a brass bell now. One ring and you appear next to them, even mid-nap. You can only break it today.",
    "options": [
-    "It stays whole. If it rings, I'm there, pajamas and all.",
-    "I break it today. Nobody summons me mid-shower."
+    "It stays. If it rings, I show up mid-sandwich.",
+    "I break it before lunch. My naps stay mine."
    ]
   },
   "fp": {
@@ -1066,7 +1066,7 @@
   "friend": {
    "prompt": "One ring and {name} appears beside the best friend, anywhere. The bell can only be broken today. Which one is {name}?",
    "a": {
-    "t": "Keeps it: \"If it rings, I'm there. Pajamas and all.\"",
+    "t": "Keeps it: \"Ring away. I'll arrive mid-sandwich.\"",
     "axes": {
      "R1": 1
     },
@@ -1078,7 +1078,7 @@
     ]
    },
    "b": {
-    "t": "Breaks it: \"Nobody summons me mid-shower.\"",
+    "t": "Smashes it before lunch: \"My naps stay mine.\"",
     "axes": {
      "R1": -1
     },
@@ -1096,10 +1096,10 @@
   "type": "this_or_that",
   "chapter": 2,
   "round": "ch2-r125",
-  "prompt": "Your friend's closet door now opens somewhere random on Earth, back by Sunday. They leave in an hour, with room for you. You had a perfect weekend planned.",
+  "prompt": "Your friend's closet now opens somewhere random on Earth. They step through in an hour, back in two days, room for one more. Your weekend was already perfect.",
   "options": [
    {
-    "t": "Through the door, and the weekend can wait.",
+    "t": "Through the closet in my socks. The weekend can wait.",
     "axes": {
      "L1": -2
     },
@@ -1112,7 +1112,7 @@
     "emotion": "delight"
    },
    {
-    "t": "My weekend. Send me a postcard from wherever.",
+    "t": "Mine's booked: nap, bookstore, a 1,000-piece puzzle. Send a postcard.",
     "axes": {
      "L1": 2
     },
@@ -1125,10 +1125,10 @@
    }
   ],
   "heart": {
-   "prompt": "Your friend's closet door opens somewhere random on Earth, back by Sunday. They're leaving in an hour, and there's room for you. You'd planned a perfect weekend.",
+   "prompt": "Your friend's closet opens somewhere random on Earth now. They're stepping through in an hour, back in two days, and there's room for you. Your weekend was already perfect.",
    "options": [
-    "Through the door I go. The weekend can wait.",
-    "I'm keeping my weekend. Send me a postcard from wherever."
+    "Through the closet in my socks. The weekend can wait.",
+    "My weekend stays: a nap, the bookstore, a puzzle. Send a postcard."
    ]
   },
   "fp": {
@@ -1148,9 +1148,9 @@
   "sq": "SQ-L1-1",
   "world": "absurd",
   "friend": {
-   "prompt": "A friend's closet door opens somewhere random, and {name} is invited through in an hour. {name}'s weekend was already planned. Which one is {name}?",
+   "prompt": "A friend's closet opens somewhere random, and {name} is invited through in an hour. {name}'s weekend was already planned. Which one is {name}?",
    "a": {
-    "t": "\"My weekend. Send me a postcard from wherever.\"",
+    "t": "\"Nap, bookstore, puzzle. Send me a postcard.\"",
     "axes": {
      "L1": 2
     },
@@ -1162,7 +1162,7 @@
     ]
    },
    "b": {
-    "t": "\"Through the door. The weekend can wait.\"",
+    "t": "\"Through the closet in my socks. The weekend can wait.\"",
     "axes": {
      "L1": -2
     },
@@ -1194,19 +1194,19 @@
     }
    },
    {
-    "t": "\"Let's split up!\" Already gone.",
+    "t": "\"Let's split up!\" Already halfway down a dark hallway.",
     "axes": {
      "L1": -1
     }
    },
    {
-    "t": "The one reading the house rules taped to the fridge.",
+    "t": "Rule reader, reciting the house rules off the fridge.",
     "axes": {
      "L1": 1
     }
    },
    {
-    "t": "Door holder. Front door propped, one foot outside.",
+    "t": "Door holder, one foot outside, ride already ordered.",
     "axes": {
      "L1": 1
     }
@@ -1216,10 +1216,10 @@
    "prompt": "You and your friends are spending one night in a haunted mansion. Something upstairs just knocked twice. Which one are you?",
    "options": [
     "First up the stairs. Two knocks sounds like an invite.",
-    "I've got the flashlight and the exit map, and I'm counting heads.",
-    "\"Let's split up,\" I say, and I'm already gone.",
-    "I'm reading the house rules taped to the fridge.",
-    "I hold the front door open, one foot outside."
+    "Flashlight, exit map, and I'm counting heads every ten minutes.",
+    "\"Let's split up,\" I say, already halfway down the hall.",
+    "I'm reading the house rules off the fridge, out loud.",
+    "Holding the front door, one foot outside, ride on the way."
    ]
   },
   "fp": {
@@ -1247,7 +1247,7 @@
     }
    },
    "b": {
-    "t": "Scout: first up the stairs. Two knocks is an invite.",
+    "t": "Scout, first up the stairs. Two knocks is an invite.",
     "axes": {
      "L1": -2
     }
@@ -1330,25 +1330,25 @@
   "prompt": "A sphinx blocks the road: your best friend gets one true line about you, or you both turn to stone. They say:",
   "options": [
    {
-    "t": "\"Cross them and they tell you, right then.\"",
+    "t": "\"Cross them and you'll hear about it before you sit.\"",
     "axes": {
      "R2": 2
     }
    },
    {
-    "t": "\"Smiles, says 'all good,' then goes quiet for a day.\"",
+    "t": "\"They say 'all good,' then reply in one-word texts for a day.\"",
     "axes": {
      "R2": -1
     }
    },
    {
-    "t": "\"Lets things slide so long they forget them.\"",
+    "t": "\"Forgets what you did before you've even apologized.\"",
     "axes": {
      "R2": -2
     }
    },
    {
-    "t": "\"Calls you out once, then never brings it up again.\"",
+    "t": "\"One clear callout. Then it's never mentioned again.\"",
     "axes": {
      "R2": 1
     },
@@ -1363,10 +1363,10 @@
   "heart": {
    "prompt": "A sphinx stops you and your best friend. Your friend has to say one true line about you, or you both turn to stone. What do they say?",
    "options": [
-    "\"Cross them and they'll tell you, right then.\"",
-    "\"They smile, say it's all good, then go quiet for a day.\"",
-    "\"They let things slide so long they forget them.\"",
-    "\"They call you out once, then never bring it up again.\""
+    "\"Cross them and you'll hear about it right then.\"",
+    "\"They say it's all good, then go quiet for a day.\"",
+    "\"Whatever you did, they've forgotten it before you apologize.\"",
+    "\"One clear callout, and then it's never brought up again.\""
    ]
   },
   "fp": {
@@ -1388,13 +1388,13 @@
   "friend": {
    "prompt": "A sphinx makes {name}'s best friend say one true line about {them}, or both turn to stone. Which line?",
    "a": {
-    "t": "\"Cross {them} and {they} tell you, right then.\"",
+    "t": "\"Cross {them} and you'll hear about it before you sit.\"",
     "axes": {
      "R2": 2
     }
    },
    "b": {
-    "t": "\"Lets things slide until even {name} can't remember them.\"",
+    "t": "\"Forgets what you did before you've even apologized.\"",
     "axes": {
      "R2": -2
     }
@@ -1405,10 +1405,10 @@
   "id": "C2-50",
   "type": "bet",
   "chapter": 2,
-  "prompt": "Be honest: a friend's big plan flopped in public, and part of you felt relieved.",
+  "prompt": "Be honest: a friend's big launch flopped in front of everyone, and a tiny part of you exhaled.",
   "options": [
    {
-    "t": "We'd been neck and neck. Then we weren't. Relief.",
+    "t": "Neck and neck for years. Then they tripped. Relief.",
     "axes": {
      "L2": 2
     },
@@ -1421,33 +1421,33 @@
     "emotion": "relief"
    },
    {
-    "t": "Relieved for a second, then bought them dinner out of guilt.",
+    "t": "One guilty second. Then I paid for their drinks all night.",
     "axes": {
      "L2": 1
     },
     "emotion": "guilt"
    },
    {
-    "t": "Their flops hit me like mine do. No relief there.",
+    "t": "Their flop hit me like my own. I drafted their comeback.",
     "axes": {
      "L2": -1
     },
     "emotion": "warmth"
    },
    {
-    "t": "I don't track their plans closely enough to feel anything.",
+    "t": "Honestly couldn't name their plan. Not my scoreboard.",
     "axes": {
      "L2": -2
     }
    }
   ],
   "heart": {
-   "prompt": "Has a friend's big plan ever flopped in public, and part of you felt relieved?",
+   "prompt": "Has a friend's big plan ever flopped in front of everyone, and a small part of you felt relieved?",
    "options": [
-    "Yes. We'd been neck and neck, and then we weren't.",
-    "For a second. Then I bought them dinner out of guilt.",
-    "No. Their flops hit me like my own do.",
-    "I don't follow their plans closely enough to feel anything."
+    "Yes. We'd been neck and neck for years, and then we weren't.",
+    "For one second. Then guilt made me pay for their drinks.",
+    "No. Their flop hit me like my own. I planned their comeback.",
+    "I couldn't even tell you what their plan was."
    ]
   },
   "fp": {
@@ -1469,7 +1469,7 @@
   "friend": {
    "prompt": "Has {name} ever felt a little relieved when a friend's big plan flopped in public?",
    "a": {
-    "t": "Guilty. We'd been neck and neck. Now we weren't.",
+    "t": "Guilty. Neck and neck for years, then they tripped.",
     "axes": {
      "L2": 2
     },
@@ -1481,7 +1481,7 @@
     ]
    },
    "b": {
-    "t": "Never. I don't track friends' plans that closely.",
+    "t": "Never. Couldn't even name the plan.",
     "axes": {
      "L2": -2
     }
@@ -1497,7 +1497,7 @@
   "prompt": "Confession time: you've heard what others say about a friend behind their back, and never told them.",
   "options": [
    {
-    "t": "Kept it to myself. Still keeping it.",
+    "t": "Kept it to myself. Still smile at those people at parties.",
     "axes": {
      "R2": -2
     },
@@ -1550,7 +1550,7 @@
   "heart": {
    "prompt": "Ever heard what people say about a friend behind their back, and never told them?",
    "options": [
-    "I kept it to myself, and I still am.",
+    "I kept it to myself. I still smile at those people.",
     "Little hints, until they finally asked the right question.",
     "Told them that same night, names and all.",
     "Said it right back to the talkers, and watched them squirm."
@@ -1805,10 +1805,10 @@
   "chapter": 2,
   "sq": "SQ-T05-1",
   "world": "everyday",
-  "prompt": "Last big good news from a friend: a new job, a new place, an acceptance. What did you do first?",
+  "prompt": "Last big win in your friend group: the job, the apartment, the acceptance letter. What did you actually do first?",
   "options": [
    {
-    "t": "Sent a wall of caps and too many exclamation marks.",
+    "t": "Typed in all caps until my thumbs hurt.",
     "tags": [
      {
       "id": "T05B",
@@ -1818,7 +1818,7 @@
     "emotion": "delight"
    },
    {
-    "t": "Called, and made them tell the whole story twice.",
+    "t": "Called and made them tell it twice, slower the second time.",
     "tags": [
      {
       "id": "T05B",
@@ -1827,7 +1827,7 @@
     ]
    },
    {
-    "t": "Showed up with flowers. Said almost nothing.",
+    "t": "Showed up with gas station flowers. Barely spoke.",
     "tags": [
      {
       "id": "T05A",
@@ -1836,7 +1836,7 @@
     ]
    },
    {
-    "t": "Offered to help with the boring part: boxes, forms.",
+    "t": "Offered to do the boring part: forms, heavy lifting.",
     "tags": [
      {
       "id": "T05A",
@@ -1846,12 +1846,12 @@
    }
   ],
   "heart": {
-   "prompt": "The last time a friend had big good news, like a new job, a new place or an acceptance, what did you do first?",
+   "prompt": "The last time a friend had big good news, like a new job, a new place or an acceptance letter, what did you do first?",
    "options": [
-    "A wall of caps and way too many exclamation marks.",
-    "I called and made them tell me the whole story twice.",
-    "I showed up with flowers and barely said a word.",
-    "I offered to help with the boring part, the boxes and forms."
+    "All caps, until my thumbs hurt.",
+    "I called and made them tell it twice, slower the second time.",
+    "Gas station flowers at their door. I barely said a word.",
+    "Forms, heavy lifting, the boring part. I offered to do it."
    ]
   },
   "fp": {
@@ -1869,9 +1869,9 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "A friend's last big good news: a new job, a new place, an acceptance. What did {name} actually do first?",
+   "prompt": "Last big win in {name}'s friend group: the job, the apartment, the acceptance letter. What did {name} actually do first?",
    "a": {
-    "t": "Showed up with flowers. Said almost nothing.",
+    "t": "Showed up with gas station flowers. Barely spoke.",
     "tags": [
      {
       "id": "T05A",
@@ -1880,7 +1880,7 @@
     ]
    },
    "b": {
-    "t": "Sent a wall of caps and too many exclamation marks.",
+    "t": "Typed in all caps until {their} thumbs hurt.",
     "tags": [
      {
       "id": "T05B",
@@ -1986,7 +1986,7 @@
   "prompt": "I bet you've quietly judged a birthday with no cake, no candles and no song.",
   "options": [
    {
-    "t": "Judged it, then ran out and bought the cake myself.",
+    "t": "Judged it, then sprinted out for a sheet cake.",
     "axes": {
      "R3": 2
     },
@@ -1999,14 +1999,14 @@
     "emotion": "pride"
    },
    {
-    "t": "Said nothing. Felt it all night.",
+    "t": "Smiled all night. Hummed the song in my head, furious.",
     "axes": {
      "R3": 1
     },
     "emotion": "irritation"
    },
    {
-    "t": "No cake, no song, still a great night.",
+    "t": "Didn't miss it once. Best night that month.",
     "axes": {
      "R3": -2
     },
@@ -2018,7 +2018,7 @@
     ]
    },
    {
-    "t": "Judge it? I threw that party. Tacos, zero singing.",
+    "t": "Judge it? I hosted it. Taco bar, zero singing.",
     "axes": {
      "R3": -1
     },
@@ -2028,9 +2028,9 @@
   "heart": {
    "prompt": "Be honest. Ever quietly judged a birthday with no cake, no candles and no song?",
    "options": [
-    "Judged it, then went out and bought a cake myself.",
-    "I didn't say a word, but I felt it all night.",
-    "No cake, no song, and it was still a great night.",
+    "I judged it, then ran out for a sheet cake.",
+    "Smiling on the outside, humming the song in my head all night.",
+    "Didn't miss it once. It was a great night.",
     "Judge it? That was my party. Tacos, no singing."
    ]
   },
@@ -2051,7 +2051,7 @@
   "friend": {
    "prompt": "Genii bets {name} has quietly judged a birthday with no cake, no candles and no song. Guilty or not?",
    "a": {
-    "t": "Judged it, then ran out and bought the cake.",
+    "t": "Judged it, then sprinted out for a sheet cake.",
     "axes": {
      "R3": 2
     },
@@ -2063,7 +2063,7 @@
     ]
    },
    "b": {
-    "t": "No cake, no song, still a great night.",
+    "t": "Didn't miss it once. Best night that month.",
     "axes": {
      "R3": -2
     },

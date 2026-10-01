@@ -49,7 +49,7 @@
     "heart": {
       "prompt": "Sneakers, plushies, hoodies, game skins: you already had plenty. The last time you wanted the pricier one anyway, how did it end?",
       "options": [
-        "Under a minute, I'd checked out. There's always room for one more.",
+        "I'd checked out in under a minute. Always room for one more.",
         "The bag hid under my bed a week before I wore it.",
         "It sat in my cart until the crush wore off.",
         "I settled for the cheaper version. Nobody can tell, except me."
@@ -283,7 +283,7 @@
     "prompt": "Admit it: you've spent a whole weekend on a project mostly to post the \"done\" photo.",
     "options": [
       {
-        "t": "Posted it Sunday night, before shot and all. Worth it.",
+        "t": "Posted it Sunday night, before-and-after and all. Worth it.",
         "axes": {
           "L2": 2
         },
@@ -329,7 +329,7 @@
     "heart": {
       "prompt": "Be honest. Have you ever spent a whole weekend on a project mostly so you could post the finished photo?",
       "options": [
-        "It went up Sunday night, before photo and all. Worth it.",
+        "It went up Sunday night, before-and-after and all. Worth it.",
         "I bought a new plant just so the finished photo looked good.",
         "My weekends go to the couch. Nothing gets posted.",
         "I finished it three months later and told nobody."
@@ -352,7 +352,7 @@
     "friend": {
       "prompt": "Genii bets {name} has given up a whole weekend on a project just to post the done photo. Guilty or not?",
       "a": {
-        "t": "Posted it Sunday night, before shot and all. Worth it.",
+        "t": "Posted it Sunday night, before-and-after and all. Worth it.",
         "axes": {
           "L2": 2
         },
@@ -557,7 +557,7 @@
     "friend": {
       "prompt": "The group chat planned a trip way over {name}'s budget. What did {name} actually do?",
       "a": {
-        "t": "Said yes before seeing the price. Future me's problem.",
+        "t": "Said yes before seeing the price: \"Future me's problem.\"",
         "tags": [
           {
             "id": "T13A",
@@ -1434,10 +1434,10 @@
     "chapter": 4,
     "sq": "SQ-T13-1",
     "world": "absurd",
-    "prompt": "One $100 bill a week grows on your friend's new money tree. They pick each one the minute it appears and spend it by dinner. First thought?",
+    "prompt": "One $100 bill grows on your friend's money tree each week. It's spent by dinner. Every time. First thought?",
     "options": [
       {
-        "t": "Right call. Money that grows back is for now.",
+        "t": "Correct. Money that grows on trees is for tonight.",
         "axes": {
           "L1": -1
         },
@@ -1463,7 +1463,7 @@
         "emotion": "worry"
       },
       {
-        "t": "A round for the whole group, every single week.",
+        "t": "Their tree, our brunch. Every week, on them.",
         "axes": {
           "L1": -1
         },
@@ -1476,7 +1476,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "I'd sell the tree and bank the whole check.",
+        "t": "Sell the whole tree. Let interest do the growing.",
         "axes": {
           "L1": 2
         },
@@ -1490,12 +1490,12 @@
       }
     ],
     "heart": {
-      "prompt": "Your friend's new money tree grows one $100 bill a week. They pick each one the minute it appears and spend it by dinner. What's your first thought?",
+      "prompt": "Your friend's money tree grows a $100 bill each week, and it's spent by dinner every time. What's your first thought?",
       "options": [
-        "Good call. Money that grows back is meant for now.",
+        "Good for them. Money that grows on trees is for tonight.",
         "They should leave a few on the branch. Trees have bad years.",
-        "I'd buy the whole group a round, every single week.",
-        "I'd sell the tree and put the whole check in the bank."
+        "Every week should be brunch on them, for the whole group.",
+        "I'd sell the whole tree and let interest do the growing."
       ]
     },
     "fp": {
@@ -1513,7 +1513,7 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "{name}'s friend has a money tree: $100 a week, picked and spent by dinner. {name}'s first thought?",
+      "prompt": "{name}'s friend has a money tree: $100 a week, spent by dinner. {name}'s first thought?",
       "a": {
         "t": "\"Leave a few on the branch. Trees have bad years.\"",
         "axes": {
@@ -1527,7 +1527,7 @@
         ]
       },
       "b": {
-        "t": "\"Right call. Money that grows back is for now.\"",
+        "t": "\"Correct. Money that grows on trees is for tonight.\"",
         "axes": {
           "L1": -1
         },
@@ -1544,23 +1544,23 @@
     "id": "C4-144",
     "type": "role",
     "chapter": 4,
-    "prompt": "$6,000 trivia win, one shared prize: the group wants to blow it on one trip together. In this crew, you're the...",
+    "prompt": "$6,000 trivia win, one shared prize, and the group votes to blow it all on one trip. In this crew, you're the...",
     "options": [
       {
-        "t": "Hype machine: already picked the beach and the date.",
+        "t": "Hype machine: picked the beach before the host finished talking.",
         "axes": {
           "R1": 2
         },
         "emotion": "delight"
       },
       {
-        "t": "Yes vote. I wanted cash, but I'm in.",
+        "t": "Reluctant yes: I wanted the cash. I'm also already packing.",
         "axes": {
           "R1": 1
         }
       },
       {
-        "t": "Budget keeper, logging every dollar and every ask.",
+        "t": "Treasurer: a color-coded sheet, every sunscreen accounted for.",
         "axes": {
           "L3": 1
         },
@@ -1572,25 +1572,25 @@
         ]
       },
       {
-        "t": "Part-timer: flying in for the last three days only.",
+        "t": "Cameo: flying in for the last three days only.",
         "axes": {
           "R1": -1
         }
       },
       {
-        "t": "\"Love you all. Spend my part on you.\" Exit.",
+        "t": "Ghost: \"Love you all. Spend my part on you.\"",
         "axes": {
           "R1": -2
         }
       }
     ],
     "heart": {
-      "prompt": "Your crew wins $6,000 at trivia, one shared prize, and the group wants to spend it all on one trip together. Which one are you?",
+      "prompt": "Your trivia team wins $6,000, one shared prize, and everyone wants to spend it all on one trip together. Which one are you?",
       "options": [
-        "I've already picked the beach and the date.",
-        "I'm a yes. I wanted the cash, but I'm in.",
-        "I keep the budget and log every dollar and every ask.",
-        "I fly in for the last three days only.",
+        "I'd picked the beach before the host finished talking.",
+        "Honestly, I wanted the cash. I'm still packing.",
+        "The budget's mine, down to the last sunscreen.",
+        "Just the last three days for me. I'll fly in.",
         "\"Love you all. Spend my part on you.\" And I'm out."
       ]
     },
@@ -1611,15 +1611,15 @@
     "sq": "SQ-R1-3",
     "world": "unusual",
     "friend": {
-      "prompt": "{name}'s crew wins $6,000 at trivia: one shared prize, one group decision. In this crew, {name} is the...",
+      "prompt": "{name}'s trivia team wins $6,000: one shared prize, one group trip. In this crew, {name} is the...",
       "a": {
-        "t": "Hype machine: already picked the beach and the date.",
+        "t": "Hype machine: picked the beach before the host finished talking.",
         "axes": {
           "R1": 2
         }
       },
       "b": {
-        "t": "Exit: \"Love you all. Spend my part on you.\"",
+        "t": "Ghost: \"Love you all. Spend my part on you.\"",
         "axes": {
           "R1": -2
         }
@@ -1636,7 +1636,7 @@
     "prompt": "A stranger left your friend a castle. They turned it into a hotel, and now they sell a course called \"Built From Nothing.\"",
     "options": [
       {
-        "t": "Let them teach it. Running a castle hotel is real work.",
+        "t": "Respect. Heating a castle in January is a full-time job.",
         "tags": [
           {
             "id": "T15A",
@@ -1645,7 +1645,7 @@
         ]
       },
       {
-        "t": "Enroll, then ask in lesson one: \"Step one, the castle?\"",
+        "t": "Enroll, then ask in lesson one: \"Step one, inherit a castle?\"",
         "tags": [
           {
             "id": "T15B",
@@ -1658,8 +1658,8 @@
     "heart": {
       "prompt": "A stranger left your friend a castle. They turned it into a hotel, and now they sell a course called \"Built From Nothing.\"",
       "options": [
-        "Let them teach it. Running a castle hotel is real work.",
-        "I sign up and ask in lesson one: step one, the castle?"
+        "Honestly, respect. Heating a castle in January is a full-time job.",
+        "I'd enroll just to ask: step one, the castle?"
       ]
     },
     "fp": {
@@ -1679,7 +1679,7 @@
     "friend": {
       "prompt": "A stranger left {name}'s friend a castle. Now the friend sells a course called \"Built From Nothing.\" Which one is {name}?",
       "a": {
-        "t": "Lets them teach it. A castle hotel is real work.",
+        "t": "Respects it. Heating a castle in January is a full-time job.",
         "tags": [
           {
             "id": "T15A",
@@ -1688,7 +1688,7 @@
         ]
       },
       "b": {
-        "t": "Enrolls, then asks: \"Step one, the castle?\"",
+        "t": "Enrolls to ask: \"Step one, inherit a castle?\"",
         "tags": [
           {
             "id": "T15B",
@@ -1708,7 +1708,7 @@
     "prompt": "First date, your idea: a hot-air balloon ride. On landing, the pilot hands you the bill. $640.",
     "options": [
       {
-        "t": "I asked, so I pay. That's how first dates work.",
+        "t": "I asked, so I pay. Even if it's $640 of sky.",
         "axes": {
           "R3": 2
         }
@@ -1729,7 +1729,7 @@
     "heart": {
       "prompt": "Your idea for a first date was a hot-air balloon ride. When you land, the pilot hands you the bill: $640.",
       "options": [
-        "I asked, so I pay. That's how first dates work.",
+        "I asked, so I pay, even if it's $640 of sky.",
         "It's $320 each, right there in the basket. No script needed."
       ]
     },
@@ -1750,7 +1750,7 @@
     "friend": {
       "prompt": "{name} invited someone on a first date in a hot-air balloon. On landing, the pilot hands over the $640 bill. Which one is {name}?",
       "a": {
-        "t": "I asked, so I pay. That's how dates work.",
+        "t": "\"I asked, so I pay. Even if it's $640 of sky.\"",
         "axes": {
           "R3": 2
         }
@@ -1773,10 +1773,10 @@
     "id": "C4-145",
     "type": "this_or_that",
     "chapter": 4,
-    "prompt": "One night in the only hotel on the Moon. Tonight. Price: your entire savings.",
+    "prompt": "One night in the only hotel on the Moon. Tonight. Price: everything you've saved.",
     "options": [
       {
-        "t": "Take it. Some nights are worth every cent.",
+        "t": "Booking it, because a Moon postcard beats a savings number.",
         "axes": {
           "L1": -1
         },
@@ -1789,7 +1789,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Keep the savings. The Moon isn't going anywhere.",
+        "t": "Pass. The Moon's waited four billion years. It can wait.",
         "axes": {
           "L1": 1
         },
@@ -1802,10 +1802,10 @@
       }
     ],
     "heart": {
-      "prompt": "One night in the only hotel on the Moon, tonight. The price is all of your savings.",
+      "prompt": "One night in the only hotel on the Moon, tonight. The price is everything you've saved.",
       "options": [
-        "Yes. Some nights are worth every cent.",
-        "I keep my savings. The Moon isn't going anywhere."
+        "Yes, because a postcard from the Moon beats a number in savings.",
+        "I'll pass. The Moon's waited four billion years. It can wait."
       ]
     },
     "fp": {
@@ -1826,9 +1826,9 @@
     "world": "absurd",
     "round": "ch4-r120",
     "friend": {
-      "prompt": "One night in the only hotel on the Moon, tonight, costs all of {name}'s savings. Which one is {name}?",
+      "prompt": "One night in the only hotel on the Moon, tonight, costs everything {name} has saved. Which one is {name}?",
       "a": {
-        "t": "Take it. Some nights are worth every cent.",
+        "t": "Books it. A Moon postcard beats a savings number.",
         "axes": {
           "L1": -1
         },
@@ -1840,7 +1840,7 @@
         ]
       },
       "b": {
-        "t": "Keep the savings. The Moon isn't going anywhere.",
+        "t": "Passes. The Moon's waited four billion years.",
         "axes": {
           "L1": 1
         },

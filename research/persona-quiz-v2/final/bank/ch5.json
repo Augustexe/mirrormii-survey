@@ -427,7 +427,7 @@
     "sq": "SQ-T25-2",
     "world": "unusual",
     "friend": {
-      "prompt": "{name} booked the only quiet room two weeks ago, for their own performance review. A coworker whispers: \"Job interview. Video call. Four minutes. Please.\" What does {name} do?",
+      "prompt": "{name} booked the only quiet room two weeks ago, for {their} own performance review. A coworker whispers: \"Job interview. Video call. Four minutes. Please.\" What does {name} do?",
       "a": {
         "t": "Keeps the room. \"Booked it two weeks ago.\"",
         "axes": {
@@ -578,7 +578,7 @@
     "prompt": "One bite of a never-wrong fortune cookie and you'll know your whole career: every job, every title, how it ends.",
     "options": [
       {
-        "t": "Bite it, because I'd sleep better knowing.",
+        "t": "Eat it. Frame the slip over my desk and finally sleep.",
         "axes": {
           "L2": 1
         },
@@ -591,7 +591,7 @@
         "emotion": "relief"
       },
       {
-        "t": "Crush it. Finding out is the fun part.",
+        "t": "Crumble it into my latte. Spoilers ruin everything.",
         "axes": {
           "L2": -1
         },
@@ -607,8 +607,8 @@
     "heart": {
       "prompt": "One bite of a fortune cookie that's never been wrong, and you'd know your whole career: every job, every title, how it ends.",
       "options": [
-        "I bite it. I'd sleep better knowing.",
-        "It gets crushed. Finding out is the fun part."
+        "I'd eat it and frame the slip. I'd sleep so much better.",
+        "It gets crumbled into my latte. I don't want spoilers."
       ]
     },
     "fp": {
@@ -630,7 +630,7 @@
     "friend": {
       "prompt": "A fortune cookie that's never wrong would reveal {name}'s whole career in one bite. Which one is {name}?",
       "a": {
-        "t": "Bites. \"I'd sleep so much better knowing.\"",
+        "t": "Eats it, frames the slip, finally sleeps.",
         "axes": {
           "L2": 1
         },
@@ -642,7 +642,7 @@
         ]
       },
       "b": {
-        "t": "Crushes it. \"Finding out is the fun part.\"",
+        "t": "Crumbles it into {their} latte. No spoilers.",
         "axes": {
           "L2": -1
         },
@@ -854,10 +854,10 @@
     "id": "C5-125",
     "type": "others",
     "chapter": 5,
-    "prompt": "Three minutes flat: that's how fast your teammate answered the CEO's email. From their honeymoon. A week later, they got the promotion. First thought?",
+    "prompt": "Three minutes: that's how fast your teammate answered the CEO's email. From their honeymoon. I was on the thread. A week later: promoted. First thought?",
     "options": [
       {
-        "t": "That's what wanting it looks like. Respect.",
+        "t": "That's what wanting it looks like: email from a hammock.",
         "axes": {
           "L2": 1
         },
@@ -869,7 +869,7 @@
         ]
       },
       {
-        "t": "Great title, shame about the honeymoon.",
+        "t": "Great title, shame the honeymoon's best view was the CEO.",
         "axes": {
           "L2": -2
         },
@@ -894,7 +894,7 @@
         "emotion": "envy"
       },
       {
-        "t": "Now we're all expected to do that. Cool.",
+        "t": "Cool, now we all answer from hammocks. Love that for us.",
         "axes": {
           "L2": -1
         },
@@ -908,12 +908,12 @@
       }
     ],
     "heart": {
-      "prompt": "Your teammate answered the CEO's email in three minutes flat, from their honeymoon. A week later, they got the promotion. What's your first thought?",
+      "prompt": "Your teammate answered the CEO's email in three minutes, from their honeymoon. A week later, they got the promotion. What's your first thought?",
       "options": [
-        "That's what wanting it looks like. I respect it.",
-        "Great title. Shame about the honeymoon.",
-        "Three minutes? I'd have done it in one.",
-        "Now we're all expected to do that. Cool."
+        "Respect. That's what wanting it looks like.",
+        "Great title, but the best view on that honeymoon was the CEO.",
+        "Three minutes? I'd have answered in one.",
+        "So now we're all expected to answer from a hammock."
       ]
     },
     "fp": {
@@ -947,7 +947,7 @@
         ]
       },
       "b": {
-        "t": "\"Great title. Shame about the honeymoon.\"",
+        "t": "\"Great title, shame the honeymoon's best view was the CEO.\"",
         "axes": {
           "L2": -2
         },
@@ -964,10 +964,10 @@
     "id": "C5-91",
     "type": "bet",
     "chapter": 5,
-    "prompt": "Hunch: your phone holds a screenshot of something a coworker said. Not to share. Just in case.",
+    "prompt": "I saw what your coworker wrote in the team chat. Hunch: you screenshotted it. Not to share. Just in case.",
     "options": [
       {
-        "t": "Dated, labeled, in its own folder.",
+        "t": "Dated, labeled, in a folder called \"Just in case.\"",
         "tags": [
           {
             "id": "T08B",
@@ -977,7 +977,7 @@
         "emotion": "pride"
       },
       {
-        "t": "Forgot why I saved it. Keeping it anyway.",
+        "t": "No idea why I saved it anymore. It stays.",
         "tags": [
           {
             "id": "T08B",
@@ -987,7 +987,7 @@
         "emotion": "cringe"
       },
       {
-        "t": "Had one. Deleted it the day we were good again.",
+        "t": "Had one. Deleted it the day we got lunch again.",
         "tags": [
           {
             "id": "T08A",
@@ -997,7 +997,7 @@
         "emotion": "relief"
       },
       {
-        "t": "Once it's sorted, it's gone from my head too.",
+        "t": "Once it's sorted, it's gone. I couldn't quote one word.",
         "tags": [
           {
             "id": "T08A",
@@ -1007,12 +1007,12 @@
       }
     ],
     "heart": {
-      "prompt": "My guess: your phone has a screenshot of something a coworker said. Not to share. Just in case.",
+      "prompt": "I saw what your coworker wrote in the team chat. My guess is you've got a screenshot of it, not to share, just in case.",
       "options": [
-        "It's dated, labeled and in its own folder.",
-        "I forgot why I saved it. I'm keeping it anyway.",
-        "I had one. I deleted it the day we were good again.",
-        "Once it's sorted, it's gone from my head too."
+        "Dated and labeled, in a folder called \"Just in case.\"",
+        "I don't even remember why I saved it. It's staying.",
+        "Had one. I deleted it the day we got lunch again.",
+        "Once it's sorted, it's gone. I couldn't quote a word of it."
       ]
     },
     "fp": {
@@ -1032,9 +1032,9 @@
     "sq": "SQ-T08-2",
     "world": "everyday",
     "friend": {
-      "prompt": "Genii bets {name} has a screenshot of a coworker's words, saved not to share, just in case. Guilty or not?",
+      "prompt": "Bet: {name} has a screenshot of something a coworker wrote. Not to share. Just in case. True?",
       "a": {
-        "t": "Once it's sorted, it's gone from {their} head too.",
+        "t": "Once it's sorted, it's gone. {name} couldn't quote one word.",
         "tags": [
           {
             "id": "T08A",
@@ -1043,7 +1043,7 @@
         ]
       },
       "b": {
-        "t": "Dated, labeled, in its own folder.",
+        "t": "Dated, labeled, in a folder called \"Just in case.\"",
         "tags": [
           {
             "id": "T08B",
@@ -1650,29 +1650,29 @@
     "id": "C5-144",
     "type": "real",
     "chapter": 5,
-    "prompt": "Last job post you were only half qualified for. Your move?",
+    "prompt": "Half qualified, fully tempted: the last job post that made you hover over Apply. What happened?",
     "options": [
       {
-        "t": "Applied that night. I'd learn the other half on the job.",
+        "t": "Applied before bed. I'll learn the other half on the job.",
         "axes": {
           "L1": -2
         },
         "emotion": "delight"
       },
       {
-        "t": "Skipped it. I'll apply when I tick every box.",
+        "t": "Scrolled past. I'll apply once every bullet point is true.",
         "axes": {
           "L1": 2
         }
       },
       {
-        "t": "Grilled someone who works there, then applied a month later.",
+        "t": "Spent a month grilling someone who works there. Then applied.",
         "axes": {
           "L1": 1
         }
       },
       {
-        "t": "Sent it to a friend. We both applied, for courage.",
+        "t": "Dared a friend to apply with me. We both hit submit.",
         "axes": {
           "L1": -1
         },
@@ -1680,12 +1680,12 @@
       }
     ],
     "heart": {
-      "prompt": "You're only half qualified for a job post. The last time that happened, what was your move?",
+      "prompt": "The last job post you were only half qualified for, the one you kept coming back to. What did you do?",
       "options": [
         "I applied that night. I'd learn the other half on the job.",
-        "I skipped it. I'll apply once I tick every box.",
-        "I grilled someone who works there, then applied a month later.",
-        "A friend and I both applied, for courage."
+        "Scrolled past. I'll apply once every bullet point is true.",
+        "First I spent a month quizzing someone who works there, then applied.",
+        "A friend and I dared each other, and we both applied."
       ]
     },
     "fp": {
@@ -1707,13 +1707,13 @@
     "friend": {
       "prompt": "The last job post {name} was only half qualified for. What did {name} actually do?",
       "a": {
-        "t": "Skipped it. Applies only once every box is ticked.",
+        "t": "Scrolled past. Applies once every bullet point is true.",
         "axes": {
           "L1": 2
         }
       },
       "b": {
-        "t": "Applied that night. Learning the other half on the job.",
+        "t": "Applied before bed. Learning the other half on the job.",
         "axes": {
           "L1": -2
         }

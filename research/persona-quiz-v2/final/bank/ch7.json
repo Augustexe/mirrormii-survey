@@ -3,10 +3,10 @@
   "id": "C7-112",
   "type": "scenario",
   "chapter": 7,
-  "prompt": "You referee a kitten soccer final. The tiniest kitten keeps carrying the ball in its mouth. The crowd adores it; the other bench doesn't.",
+  "prompt": "Kitten soccer final, and you're the ref. The tiniest kitten keeps carrying the ball in its mouth. The stands melt. The other bench files a complaint.",
   "options": [
    {
-    "t": "Yellow card. Tiny rules are still rules.",
+    "t": "Yellow card. I hold it up to a kitten and feel nothing.",
     "axes": {
      "L3": 2
     },
@@ -19,7 +19,7 @@
     "emotion": "cringe"
    },
    {
-    "t": "Warn it once, gently. Next time, it's a card.",
+    "t": "Pause the match and explain the no-mouths rule. It purrs.",
     "axes": {
      "L3": 1
     },
@@ -44,7 +44,7 @@
     "emotion": "delight"
    },
    {
-    "t": "Allow it, but only while its team is losing.",
+    "t": "Only legal while its team is losing. Mercy rule, my invention.",
     "axes": {
      "L3": -1
     },
@@ -57,12 +57,12 @@
    }
   ],
   "heart": {
-   "prompt": "You're refereeing a kitten soccer final. The tiniest kitten keeps carrying the ball in its mouth. The crowd adores it. The other bench doesn't.",
+   "prompt": "You're refereeing a kitten soccer final. The tiniest kitten keeps carrying the ball in its mouth. The stands melt, and the other bench files a complaint.",
    "options": [
-    "It gets a yellow card. Small players still play by the rules.",
-    "One gentle warning. Next time, it's a card.",
-    "I let it play. Nobody bought a ticket for the rulebook.",
-    "It can keep doing it, but only while its team is losing."
+    "A yellow card, held up to a kitten. I mean it.",
+    "I'd pause the match and explain the no-mouths rule. It purrs.",
+    "It keeps playing. Nobody bought a ticket for the rulebook.",
+    "Only while its team is losing. That's my own mercy rule."
    ]
   },
   "fp": {
@@ -82,9 +82,9 @@
   "sq": "SQ-T25-1",
   "world": "absurd",
   "friend": {
-   "prompt": "{name} referees a kitten soccer final. The tiniest one carries the ball in its mouth. Crowd adores it. What does {name} do?",
+   "prompt": "{name} referees a kitten soccer final. The tiniest one carries the ball in its mouth. The stands melt. What does {name} do?",
    "a": {
-    "t": "Yellow card. \"Tiny rules are still rules.\"",
+    "t": "Yellow card, held up to a kitten, zero regrets.",
     "axes": {
      "L3": 2
     },
@@ -113,10 +113,10 @@
   "id": "C7-140",
   "type": "bet",
   "chapter": 7,
-  "prompt": "I bet a café or takeout spot has greeted you with \"the usual?\" before you said a word.",
+  "prompt": "Bonus round: I bet a café or takeout spot has said \"the usual?\" before you said a word.",
   "options": [
    {
-    "t": "Best compliment I've ever gotten.",
+    "t": "Yes, and I tipped double out of pure pride.",
     "axes": {
      "L1": 1
     },
@@ -129,7 +129,7 @@
     "emotion": "pride"
    },
    {
-    "t": "Heard it, then ordered something new out of spite.",
+    "t": "Heard it once, then ordered a beet latte out of spite.",
     "tags": [
      {
       "id": "T22A",
@@ -139,7 +139,7 @@
     "emotion": "cringe"
    },
    {
-    "t": "Never. I rarely order the same thing twice.",
+    "t": "Never. Same order twice? Not since 2019.",
     "axes": {
      "L1": -1
     },
@@ -151,7 +151,7 @@
     ]
    },
    {
-    "t": "At three places. I rotate my usuals.",
+    "t": "Three spots know my order. I rotate them by weekday.",
     "tags": [
      {
       "id": "T22B",
@@ -164,10 +164,10 @@
   "heart": {
    "prompt": "Has a café or takeout place ever greeted you with \"the usual?\" before you'd said a word?",
    "options": [
-    "Yes, and it's the best compliment I've ever gotten.",
-    "Yes, and I ordered something new just to be difficult.",
+    "Yes, and I tipped double. I was that proud.",
+    "Once, and I ordered a beet latte just to be difficult.",
     "Never. I hardly ever order the same thing twice.",
-    "At three places. I rotate my usuals."
+    "At three places. I rotate between them by the day."
    ]
   },
   "fp": {
@@ -189,7 +189,7 @@
   "friend": {
    "prompt": "Has a café ever greeted {name} with \"the usual?\" before {they} said a word?",
    "a": {
-    "t": "Guilty. \"Best compliment I've ever gotten.\"",
+    "t": "Tipped double the day it happened. Pure pride.",
     "axes": {
      "L1": 1
     },
@@ -201,7 +201,7 @@
     ]
    },
    "b": {
-    "t": "Never. Hasn't ordered the same thing twice.",
+    "t": "Never. Hasn't ordered the same thing twice since 2019.",
     "axes": {
      "L1": -1
     },
@@ -313,10 +313,10 @@
   "chapter": 7,
   "sq": "SQ-T23-2",
   "world": "everyday",
-  "prompt": "Someone asked a room for a volunteer, and the room went silent. The most recent time, who broke it?",
+  "prompt": "\"Any volunteers?\" Silence, then one nervous cough. The last time a room did that, who buzzed in first?",
   "options": [
    {
-    "t": "Hand up before the silence got awkward.",
+    "t": "Me, by second three. My hand moves before my brain.",
     "tags": [
      {
       "id": "T23A",
@@ -325,7 +325,7 @@
     ]
    },
    {
-    "t": "Waited it out. Someone always cracks.",
+    "t": "Not me. I studied my shoes until someone cracked.",
     "tags": [
      {
       "id": "T23B",
@@ -334,7 +334,7 @@
     ]
    },
    {
-    "t": "Volunteered the person next to me. They still bring it up.",
+    "t": "Pointed at the person next to me. They still bring it up.",
     "tags": [
      {
       "id": "T23B",
@@ -344,7 +344,7 @@
     "emotion": "cringe"
    },
    {
-    "t": "Held out, then caved when they looked at me.",
+    "t": "Held out until they looked right at me. \"...Sure.\"",
     "tags": [
      {
       "id": "T23A",
@@ -355,12 +355,12 @@
    }
   ],
   "heart": {
-   "prompt": "Someone asks a room for a volunteer, and nobody moves. The most recent time, who broke the silence?",
+   "prompt": "Someone asks a room for a volunteer, and it goes so quiet you hear one nervous cough. The last time, who broke the silence?",
    "options": [
-    "Me. My hand went up before it got awkward.",
-    "Not me. I waited it out. Someone always cracks.",
+    "Me. My hand was up before my brain caught up.",
+    "Not me. I looked at my shoes until someone cracked.",
     "I volunteered the person next to me. They still bring it up.",
-    "I held out, then caved the second they looked at me."
+    "Held out, until they looked right at me. Then I said sure."
    ]
   },
   "fp": {
@@ -379,9 +379,9 @@
   ],
   "privacy": "normal",
   "friend": {
-   "prompt": "The last time someone asked a room for a volunteer and it went silent. What did {name} actually do?",
+   "prompt": "\"Any volunteers?\" Silence, one nervous cough. The last time, what did {name} actually do?",
    "a": {
-    "t": "Hand up before the silence got awkward.",
+    "t": "Hand up by second three. Before {their} brain caught up.",
     "tags": [
      {
       "id": "T23A",
@@ -390,7 +390,7 @@
     ]
    },
    "b": {
-    "t": "Waited it out. Someone always cracks.",
+    "t": "Studied {their} shoes until someone cracked.",
     "tags": [
      {
       "id": "T23B",
@@ -409,7 +409,7 @@
   "prompt": "The ceremony: four hours, a $90 gown, your whole family in the stands. Or the diploma just arrives by mail. Your degree is done.",
   "options": [
    {
-    "t": "Walk the stage. Gown, hat toss, the whole thing.",
+    "t": "Walk the stage. Gown, hat toss, family yelling my full name.",
     "axes": {
      "R3": 2
     },
@@ -438,7 +438,7 @@
   "heart": {
    "prompt": "Your degree's done. The ceremony means four hours, a $90 gown and your whole family in the stands. Or the diploma just comes in the mail.",
    "options": [
-    "I'm walking the stage. Gown, hat toss, all of it.",
+    "I'm walking the stage. Gown, hat toss, family yelling my name.",
     "Mail it. I'll pop champagne in my own kitchen."
    ]
   },
@@ -460,7 +460,7 @@
   "friend": {
    "prompt": "{name}'s degree is done. Four-hour ceremony and a $90 gown, or the diploma by mail. Which one is {name}?",
    "a": {
-    "t": "Walks the stage. Gown, hat toss, the whole thing.",
+    "t": "Walks the stage. Gown, hat toss, family yelling {their} full name.",
     "axes": {
      "R3": 2
     },
@@ -1354,10 +1354,10 @@
   "id": "C7-111",
   "type": "others",
   "chapter": 7,
-  "prompt": "An ash cloud grounds every flight. Four days in a hostel with nine strangers. One tapes a full group schedule to the fridge. Gut reaction?",
+  "prompt": "An ash cloud grounds every flight. Four days in a hostel with nine strangers. One posts a color-coded schedule for all ten of you. Gut reaction?",
   "options": [
    {
-    "t": "Finally, someone's in charge. Signing up for dishes.",
+    "t": "Finally, a leader. My name's already down for breakfast duty.",
     "tags": [
      {
       "id": "T24A",
@@ -1371,7 +1371,7 @@
     "emotion": "relief"
    },
    {
-    "t": "Grab the pen. Add a slot for charades.",
+    "t": "Grab a marker. Add karaoke night after dinner.",
     "tags": [
      {
       "id": "T24A",
@@ -1381,7 +1381,7 @@
     "emotion": "delight"
    },
    {
-    "t": "Cute. I'll follow it until lunch, then freelance.",
+    "t": "Cute. I'm following it until lunch, then I vanish.",
     "tags": [
      {
       "id": "T24B",
@@ -1390,7 +1390,7 @@
     ]
    },
    {
-    "t": "Nobody schedules my stranded days. Skipping \"group trivia.\"",
+    "t": "Nobody color-codes my stranded days. Skipping group trivia.",
     "tags": [
      {
       "id": "T24B",
@@ -1405,12 +1405,12 @@
    }
   ],
   "heart": {
-   "prompt": "An ash cloud grounds every flight, and you're stuck four days in a hostel with nine strangers. One tapes a group schedule to the fridge. What's your gut reaction?",
+   "prompt": "An ash cloud grounds every flight. You're stuck four days in a hostel with nine strangers, and one posts a color-coded schedule for all ten. What's your gut reaction?",
    "options": [
-    "Finally, someone's in charge. I'll sign up for dishes.",
-    "I grab the pen and add a slot for charades.",
+    "Finally, someone's in charge. My name's down for breakfast duty.",
+    "I grab a marker and add karaoke after dinner.",
     "Cute. I'll follow it until lunch, then do my own thing.",
-    "Nobody's scheduling my stranded days. I'm skipping group trivia."
+    "Nobody's color-coding my stranded days. I'm skipping group trivia."
    ]
   },
   "fp": {
@@ -1431,9 +1431,9 @@
   "sq": "SQ-T24-2",
   "world": "unusual",
   "friend": {
-   "prompt": "Ash cloud. Four days stuck in a hostel with nine strangers. One tapes a group schedule to the fridge. {name}'s first thought?",
+   "prompt": "Ash cloud. Four days in a hostel with nine strangers. One posts a color-coded group schedule. {name}'s first thought?",
    "a": {
-    "t": "\"Finally, someone's in charge. Signing up for dishes.\"",
+    "t": "\"Finally, a leader.\" Signs up for breakfast duty.",
     "tags": [
      {
       "id": "T24A",
@@ -1446,7 +1446,7 @@
     ]
    },
    "b": {
-    "t": "\"Nobody schedules my stranded days.\" Skips group trivia.",
+    "t": "\"Nobody color-codes my stranded days.\" Skips group trivia.",
     "tags": [
      {
       "id": "T24B",

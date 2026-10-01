@@ -114,10 +114,10 @@
     "id": "C3-91",
     "type": "scenario",
     "chapter": 3,
-    "prompt": "Elevator stuck between floors 14 and 15. Two hours so far. Your ex uses the time to apologize. Properly.",
+    "prompt": "Elevator stuck between floors 14 and 15. Two hours in, your ex uses the time to apologize. Properly. I need every detail.",
     "options": [
       {
-        "t": "\"Thank you. Coffee when we're out? Let's actually talk.\"",
+        "t": "\"Thank you. Coffee on the ground floor? Let's really talk.\"",
         "tags": [
           {
             "id": "T08A",
@@ -127,7 +127,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "\"Accepted.\" Then study the buttons for another hour.",
+        "t": "\"Accepted.\" Then I read the inspection certificate for an hour.",
         "tags": [
           {
             "id": "T08B",
@@ -137,7 +137,7 @@
         "emotion": "cringe"
       },
       {
-        "t": "Forgive them. Unblock them. Keep them muted.",
+        "t": "Forgive them, unblock them, keep their stories on mute.",
         "tags": [
           {
             "id": "T08B",
@@ -146,7 +146,7 @@
         ]
       },
       {
-        "t": "Hug it out. Tell my friends we're cool now.",
+        "t": "Hug it out at floor 15. Tell everyone we're cool now.",
         "tags": [
           {
             "id": "T08A",
@@ -157,12 +157,12 @@
       }
     ],
     "heart": {
-      "prompt": "You're stuck in an elevator between floors 14 and 15, two hours in. Your ex uses the time to apologize. A real apology.",
+      "prompt": "You're stuck in an elevator between floors 14 and 15, two hours in. Your ex uses the time to apologize, a real apology.",
       "options": [
-        "I thank them. Coffee once we're out, so we can really talk.",
-        "\"Accepted.\" Then I stare at the buttons for another hour.",
-        "I forgive them and unblock them. They stay muted, though.",
-        "We hug, and I tell my friends we're fine now."
+        "\"Thank you.\" Then coffee once we're out, so we can really talk.",
+        "\"Accepted.\" Then I read the inspection certificate for an hour.",
+        "I forgive them and unblock them. Their stories stay muted.",
+        "We hug when the doors open, and I tell everyone we're okay."
       ]
     },
     "fp": {
@@ -184,7 +184,7 @@
     "friend": {
       "prompt": "{name} and an ex are stuck in an elevator for two hours. The ex apologizes. Properly. What does {name} do?",
       "a": {
-        "t": "\"Thank you. Coffee when we're out? Let's actually talk.\"",
+        "t": "\"Thank you. Coffee on the ground floor? Let's really talk.\"",
         "tags": [
           {
             "id": "T08A",
@@ -193,7 +193,7 @@
         ]
       },
       "b": {
-        "t": "\"Accepted.\" Then studies the buttons for another hour.",
+        "t": "\"Accepted.\" Then reads the inspection certificate for an hour.",
         "tags": [
           {
             "id": "T08B",
@@ -380,10 +380,10 @@
     "id": "C3-81",
     "type": "bet",
     "chapter": 3,
-    "prompt": "Genii's sure: you've rehearsed a whole fight with your partner in the shower. Then what?",
+    "prompt": "Calling it: you've rehearsed a whole fight with your partner in the shower. And won. Then what happened?",
     "options": [
       {
-        "t": "None of it ever left the shower.",
+        "t": "It never left the bathroom. I'm undefeated in there.",
         "axes": {
           "R2": -2
         },
@@ -396,14 +396,14 @@
         "emotion": "resentment"
       },
       {
-        "t": "Delivered the best line to their face that night.",
+        "t": "Used the best line on them that night. Still dripping.",
         "axes": {
           "R2": 1
         },
         "emotion": "pride"
       },
       {
-        "t": "The shower's heard it forty times. Still going.",
+        "t": "Forty rehearsals and counting. The shampoo knows my closing argument.",
         "axes": {
           "R2": -1
         },
@@ -416,13 +416,13 @@
         "emotion": "irritation"
       },
       {
-        "t": "No rehearsal needed. If it bugs me, they hear it.",
+        "t": "Rehearse? If it bugs me, they hear it before the water's warm.",
         "axes": {
           "R2": 2
         }
       },
       {
-        "t": "It stopped mattering before I'd dried off.",
+        "t": "By the conditioner, I'd forgotten what we were fighting about.",
         "axes": {
           "R2": -1
         },
@@ -436,13 +436,13 @@
       }
     ],
     "heart": {
-      "prompt": "I'm guessing you've rehearsed a whole fight with your partner in the shower. What happened after?",
+      "prompt": "I'm guessing you've rehearsed a whole fight with your partner in the shower, and won. What happened after?",
       "options": [
-        "None of it ever made it out of the shower.",
-        "I said the best line to their face that same night.",
-        "The shower's heard it forty times. I'm still going.",
-        "I don't rehearse. If something bugs me, they hear it.",
-        "By the time I'd dried off, it didn't matter anymore."
+        "It never left the bathroom. I win every time in there.",
+        "That night I used the best line on them, still dripping.",
+        "Forty rehearsals, and I'm still going. I know my closing by heart.",
+        "I don't rehearse. If something bugs me, they hear it right away.",
+        "By the conditioner, I couldn't remember what the fight was about."
       ]
     },
     "fp": {
@@ -462,15 +462,15 @@
     "sq": "SQ-R2-2",
     "world": "everyday",
     "friend": {
-      "prompt": "Has {name} ever rehearsed a whole argument with {their} partner in the shower? What happened next?",
+      "prompt": "Has {name} ever rehearsed a whole fight with {their} partner in the shower? What happened next?",
       "a": {
-        "t": "Never. If it bugs me, my partner hears it right away.",
+        "t": "No rehearsals. If it bugs {name}, {their} partner hears it fast.",
         "axes": {
           "R2": 2
         }
       },
       "b": {
-        "t": "Guilty. Then said none of it. Ever.",
+        "t": "It never leaves the bathroom. Undefeated in there.",
         "axes": {
           "R2": -2
         },
@@ -489,10 +489,10 @@
     "chapter": 3,
     "sq": "SQ-T10-2",
     "world": "absurd",
-    "prompt": "$5 at the mall vending machine buys a Clean Break: whoever you pick forgets the whole situationship and just remembers you fondly. Yours is fizzling.",
+    "prompt": "Mall vending machine, $5: one Clean Break. Your fizzling situationship forgets the whole thing and just remembers you fondly.",
     "options": [
       {
-        "t": "$5 in, and nobody has to have the talk.",
+        "t": "Feed it a crumpled five. The talk is canceled.",
         "axes": {
           "R2": -1
         },
@@ -505,7 +505,7 @@
         "emotion": "relief"
       },
       {
-        "t": "Walk past it. They get the real talk, face to face.",
+        "t": "Walk past it. They get the real talk at the food court.",
         "axes": {
           "R2": 1
         },
@@ -517,7 +517,7 @@
         ]
       },
       {
-        "t": "No machine. One long dinner to see if it's worth saving.",
+        "t": "Book one long dinner to see if it's worth saving. Dessert decides.",
         "tags": [
           {
             "id": "T10A",
@@ -527,7 +527,7 @@
         "emotion": "longing"
       },
       {
-        "t": "Buy two: one for them, one for me.",
+        "t": "Two Clean Breaks, please. One for them, one for me.",
         "tags": [
           {
             "id": "T10B",
@@ -538,12 +538,12 @@
       }
     ],
     "heart": {
-      "prompt": "A mall vending machine sells Clean Breaks for $5. Whoever you pick forgets the whole situationship and just remembers you fondly. Yours is fading.",
+      "prompt": "A mall vending machine sells Clean Breaks for $5. Your fading situationship forgets the whole thing and just remembers you fondly.",
       "options": [
-        "I pay, so neither of us has to have the talk.",
-        "I walk past it. They get the real talk, face to face.",
-        "No machine. One long dinner to see if it's worth saving.",
-        "I buy two: one for them, and one for me."
+        "I feed it a crumpled five. Nobody has the talk.",
+        "They get the real talk, face to face, at the food court.",
+        "First, one long dinner to see if it's worth saving.",
+        "Two, please. One for them and one for me."
       ]
     },
     "fp": {
@@ -561,9 +561,9 @@
     ],
     "privacy": "normal",
     "friend": {
-      "prompt": "{name}'s situationship is fizzling. A mall vending machine sells Clean Breaks: $5, and the fling fondly forgets everything. What does {name} do?",
+      "prompt": "{name}'s situationship is fizzling. A mall vending machine sells Clean Breaks: $5, and the fling forgets it all, fondly. What does {name} do?",
       "a": {
-        "t": "Walks past it. Real talk, face to face.",
+        "t": "Walks past it. Real talk at the food court.",
         "axes": {
           "R2": 1
         },
@@ -575,7 +575,7 @@
         ]
       },
       "b": {
-        "t": "Inserts $5. Nobody has to have the talk.",
+        "t": "Feeds it a crumpled five. The talk is canceled.",
         "axes": {
           "R2": -1
         },
@@ -695,17 +695,17 @@
     "id": "C3-140",
     "type": "this_or_that",
     "chapter": 3,
-    "prompt": "Your partner's shadow came home from their weekend away an hour before they did. It's on your couch, happy to tell you everything they did.",
+    "prompt": "Your partner's shadow got home from their weekend away an hour before they did. It's on your couch, ready to spill everything.",
     "options": [
       {
-        "t": "Pour the shadow a drink. I want the whole weekend.",
+        "t": "Pour the shadow a drink. I want names, places, the whole weekend.",
         "axes": {
           "R1": 2
         },
         "emotion": "worry"
       },
       {
-        "t": "Their weekend is theirs, so the shadow waits outside.",
+        "t": "Their weekend, their story. The shadow waits on the doormat.",
         "axes": {
           "R1": -2
         },
@@ -713,10 +713,10 @@
       }
     ],
     "heart": {
-      "prompt": "Your partner's shadow got home from their weekend away an hour before they did. It's on your couch, happy to tell you everything they did.",
+      "prompt": "Your partner's shadow got home from their weekend away an hour before they did. It's on your couch, ready to tell you everything.",
       "options": [
-        "I sit down with it. I want to hear the whole weekend.",
-        "Their weekend's theirs. I ask the shadow to wait outside."
+        "I get it a drink. I want the whole weekend, names included.",
+        "Their weekend's theirs to tell. The shadow can wait on the doormat."
       ]
     },
     "fp": {
@@ -736,15 +736,15 @@
     "sq": "SQ-R1-2",
     "world": "absurd",
     "friend": {
-      "prompt": "{name}'s partner's shadow gets home early from a weekend away, ready to tell everything. What does {name} do?",
+      "prompt": "{name}'s partner's shadow gets home an hour early from a weekend away, ready to spill everything. What does {name} do?",
       "a": {
-        "t": "Pours it a drink. Wants the whole weekend.",
+        "t": "Pours it a drink. Wants names, places, all of it.",
         "axes": {
           "R1": 2
         }
       },
       "b": {
-        "t": "Sends it outside. The weekend is theirs.",
+        "t": "Sends it to the doormat. The weekend's theirs to tell.",
         "axes": {
           "R1": -2
         }
@@ -1120,10 +1120,10 @@
     "chapter": 3,
     "sq": "SQ-T11-1",
     "world": "everyday",
-    "prompt": "Genii suspects you've already picked a name for a kid you don't have.",
+    "prompt": "Don't lie: you've already picked a name for a kid you don't have yet.",
     "options": [
       {
-        "t": "First and middle. Nobody's allowed to steal it.",
+        "t": "First and middle. A friend tried to steal it once. No.",
         "tags": [
           {
             "id": "T11A",
@@ -1133,7 +1133,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "Picked one years ago. Stopped picturing it since.",
+        "t": "Had one picked for years. Lately that kid's gone quiet.",
         "tags": [
           {
             "id": "T11B",
@@ -1142,7 +1142,7 @@
         ]
       },
       {
-        "t": "No name yet, but I've pictured the school pickups.",
+        "t": "Nameless so far, but I've pictured the school pickup line.",
         "tags": [
           {
             "id": "T11A",
@@ -1151,7 +1151,7 @@
         ]
       },
       {
-        "t": "The life I picture has no kids and a lot more sleep.",
+        "t": "Zero kids in the life I picture. A lot more sleep, though.",
         "tags": [
           {
             "id": "T11B",
@@ -1162,11 +1162,11 @@
       }
     ],
     "heart": {
-      "prompt": "Tell me if I'm wrong: you've already picked a name for a kid you don't have.",
+      "prompt": "Tell me if I'm wrong: you've already picked a name for a kid you don't have yet.",
       "options": [
-        "First and middle. Nobody's allowed to take it.",
-        "I picked one years ago, but I've stopped picturing it since.",
-        "No name yet, but I've pictured the school pickups.",
+        "First and middle. A friend tried to take it once, and no.",
+        "I had one for years. Lately I don't picture the kid much.",
+        "No name yet, but I've pictured the school pickup line.",
         "The life I picture has no kids, and a lot more sleep."
       ]
     },
@@ -1189,10 +1189,10 @@
     "id": "C3-145",
     "type": "role",
     "chapter": 3,
-    "prompt": "Four couples, one rented cabin, one long weekend. By Sunday, which one were you?",
+    "prompt": "Four couples, one rented cabin, one long weekend. I heard things. By Sunday, which one were you?",
     "options": [
       {
-        "t": "Inseparable half: we even did the dishes together.",
+        "t": "Matching set: we even did the dishes holding hands.",
         "axes": {
           "R1": 1
         },
@@ -1205,7 +1205,7 @@
         "emotion": "warmth"
       },
       {
-        "t": "Escape artist: an hour alone in the car each day, reading.",
+        "t": "Escape artist: an hour alone in the car daily, with a book.",
         "axes": {
           "R1": -1
         },
@@ -1218,7 +1218,7 @@
         "emotion": "relief"
       },
       {
-        "t": "Charades captain: running couples' charades, and we're winning.",
+        "t": "Charades captain: our couple, undefeated since Friday night.",
         "tags": [
           {
             "id": "T09A",
@@ -1228,7 +1228,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Free agent: joined another couple's card game, solo, by choice.",
+        "t": "Free agent: crashed another couple's card game. Alone. On purpose.",
         "tags": [
           {
             "id": "T09B",
@@ -1237,7 +1237,7 @@
         ]
       },
       {
-        "t": "Night owl, up talking with others while my partner sleeps.",
+        "t": "Night owl: last one up talking, my partner long asleep.",
         "tags": [
           {
             "id": "T09B",
@@ -1250,10 +1250,10 @@
       "prompt": "Four couples, one rented cabin, a long weekend. By Sunday, which one were you?",
       "options": [
         "My partner and I did everything together, even the dishes.",
-        "I spent an hour alone in the car each day, reading.",
-        "We ran couples' charades, and we were winning.",
-        "I joined another couple's card game on my own, by choice.",
-        "I stayed up talking with the others while my partner slept."
+        "Every day, an hour alone in the car with a book.",
+        "We ran couples' charades, and nobody beat us all weekend.",
+        "I joined another couple's card game on my own, on purpose.",
+        "Up late talking with the others, while my partner slept."
       ]
     },
     "fp": {
@@ -1275,7 +1275,7 @@
     "friend": {
       "prompt": "Four couples, one rented cabin, one long weekend. By Sunday, which one was {name}?",
       "a": {
-        "t": "Inseparable half: we even did the dishes together.",
+        "t": "Matching set: did the dishes holding hands.",
         "axes": {
           "R1": 1
         },
@@ -1287,7 +1287,7 @@
         ]
       },
       "b": {
-        "t": "Escape artist: an hour alone in the car each day, reading.",
+        "t": "Escape artist: an hour alone in the car daily, with a book.",
         "axes": {
           "R1": -1
         },
@@ -1306,7 +1306,7 @@
     "chapter": 3,
     "sq": "SQ-L2-3",
     "world": "absurd",
-    "prompt": "A loading bar floats over you and your partner: \"MOVING IN: 31%.\" A button under it skips to 100%, and everything in between.",
+    "prompt": "A loading bar floats over you and your partner: \"MOVING IN: 31%.\" A button under it skips straight to 100%, past everything in between.",
     "options": [
       {
         "t": "Press it. I've watched enough loading screens.",
@@ -1484,10 +1484,10 @@
     "id": "C3-147",
     "type": "real",
     "chapter": 3,
-    "prompt": "Most recent weekend your partner had plans without you: how did you spend yours?",
+    "prompt": "A whole weekend of your partner's plans, without you. The most recent one: what did yours look like?",
     "options": [
       {
-        "t": "Tagged along for part of it anyway.",
+        "t": "Showed up for part of it anyway, with a cooler.",
         "axes": {
           "R1": 1
         },
@@ -1499,7 +1499,7 @@
         ]
       },
       {
-        "t": "Missed them within hours. Planned our next weekend.",
+        "t": "Missed them by noon. Planned our next weekend by sundown.",
         "tags": [
           {
             "id": "T09A",
@@ -1509,7 +1509,7 @@
         "emotion": "longing"
       },
       {
-        "t": "Booked my own plans before they'd even left.",
+        "t": "Booked my own plans before their bag was even packed.",
         "axes": {
           "R1": -1
         },
@@ -1522,7 +1522,7 @@
         "emotion": "delight"
       },
       {
-        "t": "Went solo to the restaurant they refuse to try.",
+        "t": "Solo dinner at the oyster bar they refuse to try.",
         "tags": [
           {
             "id": "T09B",
@@ -1534,10 +1534,10 @@
     "heart": {
       "prompt": "The most recent weekend your partner had plans without you, how'd you spend yours?",
       "options": [
-        "I tagged along for part of it anyway.",
-        "I missed them within hours and started planning our next weekend.",
-        "My own plans were booked before they'd even left.",
-        "I went on my own to the restaurant they won't try."
+        "I showed up for part of it anyway, with a cooler.",
+        "Missed them by noon. By sundown I'd planned our next weekend.",
+        "My own plans were booked before their bag was packed.",
+        "Dinner alone at the oyster bar they won't try."
       ]
     },
     "fp": {
@@ -1559,7 +1559,7 @@
     "friend": {
       "prompt": "{name}'s partner recently had a weekend of plans without {name}. How did {name} spend it?",
       "a": {
-        "t": "Tagged along for part of it anyway.",
+        "t": "Showed up for part of it anyway, with a cooler.",
         "axes": {
           "R1": 1
         },
@@ -1571,7 +1571,7 @@
         ]
       },
       "b": {
-        "t": "Booked my own plans before they'd even left.",
+        "t": "Booked {their} own plans before the bag was even packed.",
         "axes": {
           "R1": -1
         },
