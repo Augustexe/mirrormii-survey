@@ -276,7 +276,7 @@ export function acceptance({ n = 1000, nRooms = 300, nRandom = 2000, noise = 0.2
 
 const pct = (x) => (x === null ? "n/a" : `${(100 * x).toFixed(1)}%`);
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (typeof process !== "undefined" && import.meta.url === `file://${process.argv[1]}`) {
   const arg = (k, d) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : d; };
   const n = Number(arg("--n", 300));
   const t0 = Date.now();

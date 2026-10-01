@@ -1,5 +1,6 @@
-// axe (WCAG 2 AA) on the Evidence Article at phone and desktop, both voices, with every stat drawer open, a trait card
-// turned over and the phone section menu open. Needs the dev server.
+// axe (WCAG 2 AA) on the Evidence Article at phone and desktop, both voices, with any drawer open (none since the
+// drama stats replaced the character sheet, 2026-09-30), a trait card turned over and the phone section menu open.
+// Needs the dev server.
 //   PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node qa/article-axe.mjs [baseUrl]
 import { createRequire } from "node:module";
 import { openArticle, SIZES } from "./article-open.mjs";

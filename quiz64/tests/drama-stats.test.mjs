@@ -166,7 +166,7 @@ test("calibration: typical players spread about 6 to 18 on every stat, not every
 });
 
 test("the drama copy: four lines per stat in both voices, never-say clean, affectionate, upright and number-free", () => {
-  const NEVER = /\b(streaks?|gacha|lottery|jackpot|predicts?|predicted|clinically|diagnos\w*|treat(ment|ed|ing|s)?|cures?|prevent\w*|dna|genomic|genies?|lamps?|wish(es|ed)?|energy|evidence|axis|score|result|profile)\b|—|%/i;
+  const NEVER = /\b(streaks?|gacha|lottery|jackpot|predicts?|predicted|clinically|diagnos\w*|treat(ment|ed|ing|s)?|cures?|prevent\w*|dna|genomic|genies?|lamps?|wish(es|ed)?|energy|evidence|axis|score|result|profile)\b|\u2014|%/i;
   const HEART = /\b(boundaries|valid|healing|trauma|toxic|self-care|kind|brave|healthy|mature|selfish|responsible)\b|!/i;
   const GENDERED = /\b(girls?|girlies?|queens?|divas?|ladies|lady|guys?|bros?|dudes?|boyfriends?|girlfriends?|wives|wife|husbands?|moms?|dads?|babes?|kings?)\b/i;
   const MEAN = /\b(stupid|dumb|loser|boring|lame|weirdo|cringe|annoying|clingy|needy|cold|fake|shallow)\b/i;

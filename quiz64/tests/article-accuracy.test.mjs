@@ -367,9 +367,9 @@ test("every article line, name, drama stat, trait, room, flip, call, party slot,
     for (const id of ["stats", "traits", "rooms", "heist", "party", "seed"]) assert.match(html, new RegExp(`id="${id}"`), `${label}: section ${id}`);
     assert.equal((html.match(/<h1\b/g) || []).length, 1, `${label}: one h1`);
 
-    // 11. Reading time: about six minutes of visible words at most (V2 added part two; the cover says six minutes).
+    // 11. Reading time: about five minutes of visible words since the 2026-09-30 cuts (the cover says five minutes).
     const words = articleText(A).join(" ").split(/\s+/).length;
-    assert.ok(words >= 450 && words <= 1400, `${label}: ${words} words`);
+    assert.ok(words >= 700 && words <= 1300, `${label}: ${words} words`);
   }
   assert.ok(flips >= 1, `a room flip exercised (${flips})`);
   assert.ok(tops.size >= 3 && dumps.size >= 3, `several top and dump stats exercised (${[...tops]}; ${[...dumps]})`);
