@@ -396,43 +396,29 @@ function drawWordmark(ctx, img, cx, y, width, p) {
 
 // The World Mirror as it stands on story 2 (GDD v0.2 section 3.4): the oval glass showing the room it looks into, every
 // shard rebuilt in clear glass with an opal edge, the opal frame render on its marble plinth, and a soft scrim inside
-// the glass behind each block of lettering so the names read at feed size while the glass stays glass around them.
+// the glass behind the lettering so the title reads at feed size while the glass stays glass around it.
 // `x, y, w` are the glass box (the frame and plinth reach beyond it: MIRROR.frame, in glass units).
-const PANE_HUE = { people: { rim: "#F2A7C3" }, life: { rim: "#8FB8F2" } };
-
 function cellBox(cell) {
   const xs = cell.points.map((q) => q[0]);
   const ys = cell.points.map((q) => q[1]);
   return [Math.min(...xs), Math.min(...ys), Math.max(...xs), Math.max(...ys)];
 }
 
-// Where the lettering sits in the glass, so the scrims can be drawn under it before the text goes on top. Each block
-// is a label pill (the half's sigil and its kicker, from stats.js HALVES) over the name, then the one plain line that
-// defines the name (LAUNCH-SPEC 26); the two blocks meet at the middle of the oval, where the glass is widest.
-function paneLayout(ctx, { x, y, w, h, names }) {
+// Where the lettering sits in the glass (decision 1a): one title, the people archetype, over one story line that merges
+// both halves, with a short opal stroke between them. The block is centered where the oval is widest, so the scrim can
+// be drawn under it before the text goes on top.
+function titleLayout(ctx, { x, y, w, h, title }) {
   const k = w / 600;
-  const [people, life] = names;
-  const fitName = (name) => fit(ctx, name || "", { face: "display", weight: 600, max: 116 * k, min: 60 * k, width: w - 90 * k, maxLines: 2 });
-  const fitDefine = (line) => (line ? fit(ctx, line, { face: "text", weight: 600, max: 40 * k, min: 32 * k, width: w - 150 * k, maxLines: 2 }) : null);
-  const pill = 66 * k;
-  const gap = 28 * k;
-  const dgap = 16 * k;
-  const block = (name, def) => pill + gap + name.lines.length * name.size * 1.0 + (def ? dgap + def.lines.length * def.size * 1.25 : 0);
-  const up = fitName(people && people.name);
-  const low = fitName(life && life.name);
-  const upDef = fitDefine(people && people.define);
-  const lowDef = fitDefine(life && life.define);
-  const upH = block(up, upDef);
-  const lowH = block(low, lowDef);
-  const upTop = y + h * 0.5 - 40 * k - upH;
-  const lowTop = y + h * 0.5 + 40 * k;
-  return {
-    k, pill, gap, dgap,
-    panes: [
-      { half: people, which: "people", name: up, define: upDef, top: upTop, height: upH },
-      { half: life, which: "life", name: low, define: lowDef, top: lowTop, height: lowH },
-    ],
-  };
+  const name = fit(ctx, (title && title.name) || "", { face: "display", weight: 600, max: 132 * k, min: 64 * k, width: w - 110 * k, maxLines: 2 });
+  const line = title && title.line ? fit(ctx, title.line, { face: "display", weight: 450, italic: true, max: 52 * k, min: 40 * k, width: w - 120 * k, maxLines: 4 }) : null;
+  const ruleGap = 40 * k;
+  const rule = 5 * k;
+  const lineGap = 34 * k;
+  const nameH = name.lines.length * name.size * 1.02;
+  const lineH = line ? line.lines.length * line.size * 1.3 : 0;
+  const height = nameH + (line ? ruleGap + rule + lineGap + lineH : 0);
+  const top = y + h * 0.48 - height / 2;
+  return { k, name, line, ruleGap, rule, lineGap, top, panes: [{ top, height }] };
 }
 
 // The code-drawn opal frame and plinth (glass units): the frame render stands in front of it when it has loaded.
@@ -581,60 +567,43 @@ export function drawHeroMirror(ctx, { x, y, w, mirror, p, layout = null, fog = 0
   return { h, s, foot: y + MIRROR.bottom * s };
 }
 
-// The lettering on the panes: a label pill edged in that pane's hue, carrying the half's sigil and its label, then the
-// name at the largest size that fits two lines.
-function drawPaneText(ctx, { x, w, layout, p }) {
-  const { k, pill, gap } = layout;
+// The lettering: the title at the largest size that fits two lines, the opal stroke, then the story line in italic.
+function drawTitleText(ctx, { x, w, layout, p }) {
+  const { k, name, line } = layout;
   const ink = p.dark ? N.ink : C.ink;
   const cx = x + w / 2;
-  for (const pane of layout.panes) {
-    if (!pane.half) continue;
-    let yy = pane.top;
-    // Kickers are labels in sentence case (docs/NAMING-RULES.md rule 6), lightly tracked so the longer one fits.
-    const size = 29 * k;
-    const track = size * 0.02;
-    const label = String(pane.half.label || "");
-    font(ctx, "text", 700, size);
-    const spaced = "letterSpacing" in ctx;
-    if (spaced) ctx.letterSpacing = `${track.toFixed(1)}px`;
-    const tw = ctx.measureText(label).width - (spaced ? track : 0);
-    if (spaced) ctx.letterSpacing = "0px";
-    const sig = 46 * k;
-    const padL = 18 * k;
-    const padR = 30 * k;
-    const inner = 12 * k;
-    const pw = padL + sig + inner + tw + padR;
-    const px = cx - pw / 2;
-    roundRect(ctx, px, yy, pw, pill, pill / 2);
-    ctx.fillStyle = p.dark ? rgba(N.n900, 0.78) : rgba(tokens.color.surfaceSolid, 0.92);
-    ctx.fill();
-    ctx.strokeStyle = PANE_HUE[pane.which].rim;
-    ctx.lineWidth = Math.max(2, 3 * k);
-    ctx.stroke();
-    drawSigil(ctx, pane.half.code, px + padL, yy + (pill - sig) / 2, sig, ink);
-    tracked(ctx, label, px + padL + sig + inner, yy + pill / 2 + size * 0.36, { size, color: ink, align: "left", track: 0.02, upper: false });
-    yy += pill + gap;
-    font(ctx, "display", 600, pane.name.size);
-    ctx.save();
-    if (p.dark) { ctx.shadowColor = rgba(N.n900, 0.9); ctx.shadowBlur = 24 * k; }
-    lines(ctx, pane.name.lines, cx, yy + pane.name.size * 0.8, { lh: pane.name.size * 1.0, align: "center", color: ink });
-    yy += pane.name.lines.length * pane.name.size * 1.0;
-    if (pane.define) {
-      yy += layout.dgap;
-      font(ctx, "text", 600, pane.define.size);
-      lines(ctx, pane.define.lines, cx, yy + pane.define.size * 0.95, { lh: pane.define.size * 1.25, align: "center", color: ink });
-    }
-    ctx.restore();
-  }
+  let yy = layout.top;
+  ctx.save();
+  if (p.dark) { ctx.shadowColor = rgba(N.n900, 0.9); ctx.shadowBlur = 26 * k; }
+  font(ctx, "display", 600, name.size);
+  lines(ctx, name.lines, cx, yy + name.size * 0.8, { lh: name.size * 1.02, align: "center", color: ink });
+  ctx.restore();
+  yy += name.lines.length * name.size * 1.02;
+  if (!line) return;
+  yy += layout.ruleGap;
+  const rw = 70 * k;
+  const g = ctx.createLinearGradient(cx - rw / 2, 0, cx + rw / 2, 0);
+  g.addColorStop(0, tintOf(3));
+  g.addColorStop(0.5, N.violet);
+  g.addColorStop(1, tintOf(1));
+  ctx.fillStyle = g;
+  roundRect(ctx, cx - rw / 2, yy, rw, layout.rule, layout.rule / 2);
+  ctx.fill();
+  yy += layout.rule + layout.lineGap;
+  ctx.save();
+  if (p.dark) { ctx.shadowColor = rgba(N.n900, 0.95); ctx.shadowBlur = 18 * k; }
+  font(ctx, "display", 450, line.size, true);
+  lines(ctx, line.lines, cx, yy + line.size * 0.86, { lh: line.size * 1.3, align: "center", color: ink });
+  ctx.restore();
 }
 
-// The whole mirror with both names: layout, glass, lettering. Returns { h, foot }: the glass height and the y of the
-// plinth's foot.
-export function drawNamedMirror(ctx, { x, y, w, names, mirror, p, fog = 0 }) {
+// The whole mirror with the title: layout, glass, lettering. Returns { h, foot }: the glass height and the y of the
+// plinth's foot. With no title the mirror stands empty (story 1's image).
+export function drawNamedMirror(ctx, { x, y, w, title = null, mirror, p, fog = 0 }) {
   const h = w * (MIRROR.h / MIRROR.w);
-  const layout = names && names.length ? paneLayout(ctx, { x, y, w, h, names }) : null;
+  const layout = title && title.name ? titleLayout(ctx, { x, y, w, h, title }) : null;
   const { foot } = drawHeroMirror(ctx, { x, y, w, mirror, p, layout, fog });
-  if (layout) drawPaneText(ctx, { x, w, layout, p });
+  if (layout) drawTitleText(ctx, { x, w, layout, p });
   return { h, foot };
 }
 
@@ -693,7 +662,8 @@ function drawPillRows(ctx, { items, y, W, p, size, maxW, maxRows = 2, gap = 20, 
 }
 
 // The share card in either format and theme. `card` is the share projection (story-data.js buildStories().share).
-// Simplified for story size (VISUAL-JUDGE-CODEX-R2 screen 13): the completed mirror with both names, as large as the
+// Simplified for story size (VISUAL-JUDGE-CODEX-R2 screen 13): the completed mirror with the one title and its story
+// line (decision 1a; the day-to-day half stays in the share text), as large as the
 // card allows; the core traits as keyword pills in up to two rows (their evidence stays on the traits screen); the
 // invite; the address.
 export const SHARE_TRAITS = 6;
@@ -702,7 +672,8 @@ export function drawShareCard(ctx, card, { format = "story", theme = "night", li
   const p = paletteFor(theme === "day" ? "light" : "night", lightTheme);
   ctx.textBaseline = "alphabetic";
   background(ctx, W, H, p);
-  const names = card.names || [];
+  // Older projections carry only the two names: the people half becomes the title with its defining line.
+  const title = card.title && card.title.name ? card.title : card.names && card.names[0] ? { name: card.names[0].name, line: card.names[0].define || "" } : null;
   const items = (card.tags || []).filter((t) => t && t.name).slice(0, SHARE_TRAITS);
   drawIslandBackdrop(ctx, W, H, p);
   if (format === "post") {
@@ -710,7 +681,7 @@ export function drawShareCard(ctx, card, { format = "story", theme = "night", li
     const aw = 340;
     const ay = 104;
     aura(ctx, W / 2, ay + aw, aw * 1.5, p);
-    const { foot } = drawNamedMirror(ctx, { x: (W - aw) / 2, y: ay, w: aw, names, mirror: card.mirror, p });
+    const { foot } = drawNamedMirror(ctx, { x: (W - aw) / 2, y: ay, w: aw, title, mirror: card.mirror, p });
     drawGenii(ctx, W / 2 + aw * 1.12, foot + 4, 128);
     drawPillRows(ctx, { items, y: foot + 26, W, p, size: 34, maxW: W - 100, maxRows: 2, gap: 16, rowGap: 14 });
     font(ctx, "display", 420, 48, true);
@@ -723,7 +694,7 @@ export function drawShareCard(ctx, card, { format = "story", theme = "night", li
   const aw = 520;
   const ay = 196;
   aura(ctx, W / 2, ay + aw, aw * 1.4, p);
-  const { foot } = drawNamedMirror(ctx, { x: (W - aw) / 2, y: ay, w: aw, names, mirror: card.mirror, p });
+  const { foot } = drawNamedMirror(ctx, { x: (W - aw) / 2, y: ay, w: aw, title, mirror: card.mirror, p });
   drawGenii(ctx, W - 176 - 44, foot + 8, 176);
   drawPillRows(ctx, { items, y: foot + 34, W, p, size: 46, maxW: W - 140, maxRows: 2 });
   font(ctx, "display", 420, 58, true);
@@ -744,25 +715,21 @@ function drawStoryBody(ctx, spec, p, W, H) {
     case "names": {
       const aw = 480;
       const top = 236;
-      const { foot } = drawNamedMirror(ctx, { x: (W - aw) / 2, y: top, w: aw, names: spec.names || [], mirror: spec.mirror, p, fog: spec.id === "intro" ? 1 : 0 });
+      const { foot } = drawNamedMirror(ctx, { x: (W - aw) / 2, y: top, w: aw, title: spec.id === "names" ? spec.title : null, mirror: spec.mirror, p, fog: spec.id === "intro" ? 1 : 0 });
       y = foot + 70;
-      if (spec.title) y = block(ctx, spec.title, W / 2, y, { face: "display", weight: 600, max: 80, min: 56, width, maxLines: 2, color: p.ink, align: "center", lh: 1.08 });
-      if (spec.hook) {
-        // The plaque across the mirror's foot, as on the screen: the clearest finding's first sentence.
-        const first = String(spec.hook).split(/(?<=[.!?])\s+/)[0];
-        const pw = 720;
-        const fitted = fit(ctx, first, { face: "display", weight: 450, italic: true, max: 44, min: 34, width: pw - 80, maxLines: 3 });
-        const ph = fitted.lines.length * fitted.size * 1.28 + 56;
-        const py = top + aw * 2 - 30;
-        roundRect(ctx, (W - pw) / 2, py, pw, ph, 36);
-        ctx.fillStyle = rgba(N.n800, 0.94);
-        ctx.fill();
-        ctx.strokeStyle = rgba(tokens.color.surfaceSolid, 0.75);
-        ctx.lineWidth = 3;
-        ctx.stroke();
-        font(ctx, "display", 450, fitted.size, true);
-        lines(ctx, fitted.lines, W / 2, py + 28 + fitted.size * 0.92, { lh: fitted.size * 1.28, align: "center", color: N.ink });
-        y = Math.max(y, py + ph + 60);
+      if (spec.id === "intro" && spec.title) y = block(ctx, spec.title, W / 2, y, { face: "display", weight: 600, max: 80, min: 56, width, maxLines: 2, color: p.ink, align: "center", lh: 1.08 });
+      // Story 2's rows under the plinth, as on the screen: the day-to-day half, label left and name right.
+      for (const r of spec.rows || []) {
+        const rx = 190;
+        const rw = W - rx * 2;
+        ctx.fillStyle = rgba(p.dark ? N.ink : C.ink, 0.16);
+        ctx.fillRect(rx, y - 46, rw, 2);
+        font(ctx, "text", 600, 30);
+        lines(ctx, [r.label], rx + 4, y + 4, { lh: 0, color: p.ink2 });
+        const v = fit(ctx, r.value, { face: "display", weight: 600, max: 46, min: 34, width: rw - 260, maxLines: 1 });
+        font(ctx, "display", 600, v.size);
+        lines(ctx, v.lines, rx + 260, y + 6, { lh: 0, color: p.ink });
+        y += 96;
       }
       for (const l of spec.lines || []) block(ctx, l, W / 2, y, { face: "display", weight: 420, italic: true, max: 40, min: 32, width, maxLines: 2, color: p.ink2, align: "center" });
       return;

@@ -55,7 +55,11 @@ test("the mirror card draws names, traits, the invite and the address, and nothi
         const ctx = recorder();
         drawShareCard(ctx, view.share, { format, theme });
         const all = ctx.texts.join(" | ");
-        for (const n of view.share.names) assert.ok(all.includes(n.name.split(" ")[0]), `${voice} ${format} ${theme}: ${n.name}`);
+        // Decision 1a: one title and its one line; the day-to-day half is never drawn as a second stacked name.
+        assert.ok(all.includes(view.share.title.name.split(" ")[0]), `${voice} ${format} ${theme}: the title ${view.share.title.name}`);
+        assert.ok(view.share.title.line.split(" ").every((w) => all.includes(w)), `${voice} ${format} ${theme}: the title line`);
+        assert.ok(!all.includes(view.share.names[1].name), `${voice} ${format} ${theme}: no second name on the card`);
+        for (const n of view.share.names) assert.ok(!all.includes(n.label), `${voice} ${format} ${theme}: no kicker pill in the mirror`);
         assert.ok(all.includes("How well do you know me?"));
         assert.ok(all.includes("mirrormii.ai"));
         assert.doesNotMatch(all, /\d/, `${format} ${theme}: no numbers`);
@@ -72,17 +76,24 @@ test("the mirror card draws names, traits, the invite and the address, and nothi
   }
 });
 
-test("story 2 carries one sharp line inside the frame: Genii's clearest finding, never an answer", async () => {
+test("story 2 carries one title and one line inside the frame: the people half and its pair's line, never an answer", async () => {
+  const { drawStory } = await load("/src/persona/share-image.js");
+  const { printFor } = await load("/src/persona/stories/story-data.js");
   for (const voice of ["fun", "heart"]) {
     const { view, run, Session } = await finishedView(voice);
     const names = view.slides.find((s) => s.id === "names");
-    const findings = view.slides.find((s) => s.id === "knows").findings;
-    assert.ok(names.hook, `${voice}: a plaque line`);
-    const top = findings.find((f) => f.kind === "axis");
-    assert.equal(names.hook, top ? top.line : names.people.read, `${voice}: the plaque is the clearest finding`);
+    assert.equal(names.title.name, names.people.name, `${voice}: the title is the people half`);
+    assert.ok(names.title.line && names.title.from === "combo", `${voice}: a pair line`);
+    assert.doesNotMatch(names.title.line, /\u2014/, "no em dash");
     const { result } = Session.resultFor(run);
     const said = result.tags.flatMap((t) => (t.youToldGenii || []).map((q) => q.said)).filter(Boolean);
-    for (const a of said) assert.ok(!names.hook.includes(a), "no quoted answer");
+    for (const a of said) assert.ok(!names.title.line.includes(a), "no quoted answer");
+    // The saved image of story 2: the title, its line and the day-to-day row, no plaque and no kicker pills.
+    const ctx = recorder();
+    drawStory(ctx, printFor(names));
+    const all = ctx.texts.join(" | ");
+    assert.ok(all.includes(names.title.name.split(" ")[0]) && all.includes(names.life.name), `${voice}: story 2 image`);
+    assert.ok(!all.includes(names.people.label), `${voice}: no people kicker on the story 2 image`);
   }
 });
 
@@ -108,8 +119,8 @@ test("marriage and kids traits never reach the card or a story image", async () 
     stings: [], calls: [],
   };
   const view = buildStories({ result, profile: {}, lib, voice: "fun" });
-  const hook = view.slides.find((s) => s.id === "names").hook;
-  assert.ok(hook && !/KIDS|kids/.test(hook), "a kids trait never becomes the story 2 line");
+  const line = view.slides.find((s) => s.id === "names").title.line;
+  assert.ok(line && !/KIDS|kids/.test(line), "a kids trait never becomes the story 2 line");
   assert.ok(view.slides.find((s) => s.id === "traits").tags[0].private, "the owner still sees it, marked private");
   assert.deepEqual(view.share.tags.map((t) => t.name), ["Yes first"]);
   assert.equal(view.slides.find((s) => s.id === "share").opposite, "Your opposite: Straight Shooter and The Spontaneous One. Know one?");

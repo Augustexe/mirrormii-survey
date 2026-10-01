@@ -66,7 +66,7 @@ function retiredIn(text, retired) {
   return retired.filter((w) => new RegExp(`(^|[^A-Za-z])${w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}([^A-Za-z]|$)`).test(text));
 }
 
-test("no retired label reaches the reveal, the article or any share image, and every title card is kicker, name, defining line", async () => {
+test("no retired label reaches the reveal, the article or any share image; the deck and card show one title and line, the article its title cards", async () => {
   const { RETIRED_LABELS, HALVES } = await load("/src/persona/stats.js");
   const { resultView, shareText } = await load("/src/persona/views.js");
   const { PersonaResult } = await load("/src/persona/PersonaResult.jsx");
@@ -99,19 +99,20 @@ test("no retired label reaches the reveal, the article or any share image, and e
       assert.ok(def, `${half.name} has a defining line in library.json`);
       assert.equal(half.label, HALVES[side].kicker);
       assert.equal(half.define, def);
-      for (const [surface, text] of [["deck", deck], ["article", article]]) {
-        assert.ok(text.includes(`${HALVES[side].kicker} ${half.name} ${def}`), `${where}: ${surface} shows kicker, name, defining line for ${half.name}`);
-      }
+      // The article keeps its title cards (kicker, name, defining line).
+      assert.ok(article.includes(`${HALVES[side].kicker} ${half.name} ${def}`), `${where}: article shows kicker, name, defining line for ${half.name}`);
       const card = view.share.names.find((n) => n.name === half.name);
       assert.ok(card && card.label === HALVES[side].kicker && card.define === def, `${where}: share card carries ${half.name} with kicker and line`);
     }
+    // Decision 1a (2026-09-30): the Stories deck and the share image show one title, the people half, with one line
+    // that merges both halves; the day-to-day half sits under the mirror on story 2 as a labeled row.
+    assert.ok(deck.includes(`${names.title.name} ${names.title.line}`), `${where}: deck shows the title and its line`);
+    assert.ok(deck.includes(`${HALVES.life.kicker} ${names.life.name}`), `${where}: deck shows the day-to-day half as a row`);
     const drawn = recorder();
     drawShareCard(drawn, view.share, { format: "story", theme: "night" });
     const all = drawn.texts.join(" ");
-    for (const n of view.share.names) {
-      assert.ok(all.includes(n.label), `${where}: share image kicker ${n.label}`);
-      for (const w of n.define.split(" ")) assert.ok(all.includes(w), `${where}: share image defining line for ${n.name}`);
-    }
+    assert.ok(all.includes(view.share.title.name.split(" ")[0]), `${where}: share image title`);
+    for (const w of view.share.title.line.split(" ")) assert.ok(all.includes(w), `${where}: share image title line`);
   }
   assert.equal(seen.people.size, 8, `every people archetype rendered: ${[...seen.people]}`);
   assert.equal(seen.life.size, 8, `every life archetype rendered: ${[...seen.life]}`);

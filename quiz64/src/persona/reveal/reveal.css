@@ -392,93 +392,83 @@
     pointer-events: none;
   }
   .rv-names[data-wipe="on"] .rv-names__genii { animation: rv-fade var(--d-slow) var(--e-out) calc(var(--d-reveal) * 0.7) both; }
-  .rv-names__panes { margin: 0; font: inherit; }
-  .rv-pane {
+  /* Story 2 (decision 1a): one title and one line etched into the glass, nothing else inside the mirror. */
+  .rv-mirror__shade {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(var(--rx) var(--ry) at var(--cx) var(--cy), color-mix(in srgb, var(--n-900) 84%, transparent), color-mix(in srgb, var(--n-900) 66%, transparent) 50%, color-mix(in srgb, var(--n-900) 18%, transparent) 86%, transparent);
+  }
+  .rv-etch {
     position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 var(--s-4);
+    justify-content: center;
+    gap: 0;
+    padding: 0 6% 4%;
     text-align: center;
     pointer-events: none;
   }
-  .rv-pane--up { justify-content: flex-end; padding-bottom: var(--s-6); }
-  .rv-pane--down { justify-content: flex-start; padding-top: var(--s-6); }
-  .rv-pane__label {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 5px 13px 5px 8px;
-    border-radius: var(--r-pill);
-    border: 1.5px solid var(--rv-pane-rim);
-    background: color-mix(in srgb, var(--n-900) 74%, transparent);
-    font: 750 12px / 16px var(--font-text);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--n-ink);
-    box-shadow: 0 4px 14px -6px color-mix(in srgb, var(--n-900) 90%, transparent);
-  }
-  .rv-pane--up { --rv-pane-rim: var(--tint-ch3); }
-  .rv-pane--down { --rv-pane-rim: var(--tint-ch1); }
-  .rv-pane__sigil { display: block; color: var(--n-ink); }
-  .rv-pane__sigil svg { display: block; }
-  .rv-pane__label + .rv-pane__name { margin-top: var(--s-3); }
-  .rv-pane__name {
+  .rv-etch__title {
     position: relative;
-    display: block;
-    font: var(--type-hero-weight) var(--rv-hero) var(--font-display);
-    font-variation-settings: var(--font-display-upright);
-    letter-spacing: var(--type-hero-track);
-    color: var(--n-ink);
-    text-wrap: balance;
-    text-shadow: 0 2px 22px color-mix(in srgb, var(--n-900) 90%, transparent);
-  }
-  .rv-pane__sparks { position: absolute; inset: 0; pointer-events: none; }
-  .rv-pane__sparks i { position: absolute; color: var(--n-ink); opacity: 0; animation: rv-spark var(--d-scene) var(--e-out) calc(var(--d-reveal) * 0.5 + var(--i) * var(--d-instant)) both; }
-  .rv-pane__sparks i:nth-child(1) { left: -14px; top: -6px; }
-  .rv-pane__sparks i:nth-child(2) { right: -12px; top: 4px; }
-  .rv-pane__sparks i:nth-child(3) { left: 30%; bottom: -12px; }
-  /* The oval glass is narrower than the old arch: names set a step smaller and closer to the rim. */
-  .rv-names .rv-pane { padding: 0 var(--s-2); }
-  .rv-names .rv-pane__name { font-size: var(--rv-name-size, 32px); line-height: calc(var(--rv-name-size, 32px) + 2px); }
-  /* Kicker, name and defining line stack in each half of the glass; the two stacks keep clear air at the middle. */
-  .rv-names .rv-pane--up { padding-bottom: 30px; }
-  .rv-names .rv-pane--down { padding-top: 26px; }
-  .rv-names[data-compact] .rv-pane--up { padding-bottom: 22px; }
-  .rv-names[data-compact] .rv-pane--down { padding-top: 16px; }
-  /* Kickers are labels: sentence case, not tracked caps (docs/NAMING-RULES.md rule 6), so the longer one fits on one line. */
-  .rv-names .rv-pane__label { font-size: 13px; letter-spacing: 0.01em; text-transform: none; white-space: nowrap; }
-  /* The one plain line that defines the name, directly under it (LAUNCH-SPEC 26): readable text size, never display. */
-  .rv-pane__define {
-    display: block;
-    max-inline-size: 22ch;
-    margin-top: var(--s-2);
-    font: 600 15px / 19px var(--font-text);
-    color: var(--n-ink);
-    text-wrap: balance;
-    text-shadow: 0 1px 12px color-mix(in srgb, var(--n-900) 95%, transparent);
-  }
-  .rv-mirror__scrim {
-    position: absolute;
-    background:
-      radial-gradient(var(--rx) var(--ry) at var(--cx) var(--up), color-mix(in srgb, var(--n-900) 80%, transparent), color-mix(in srgb, var(--n-900) 58%, transparent) 55%, transparent),
-      radial-gradient(var(--rx) var(--ry) at var(--cx) var(--down), color-mix(in srgb, var(--n-900) 80%, transparent), color-mix(in srgb, var(--n-900) 58%, transparent) 55%, transparent);
-  }
-  .rv-names__under {
-    position: absolute;
-    inset-inline: 28px;
-    display: grid;
-    justify-items: center;
-    gap: var(--s-3);
-    text-align: center;
-  }
-  .rv-names__sub {
     margin: 0;
-    font: italic var(--type-genii-weight) 19px / 25px var(--font-display);
+    font: 600 var(--etch-title, 40px) / 1.02 var(--font-display);
+    font-variation-settings: var(--font-display-upright);
+    letter-spacing: -0.022em;
+    color: var(--n-ink);
+    text-wrap: balance;
+    text-shadow: 0 2px 24px color-mix(in srgb, var(--n-900) 92%, transparent), 0 0 2px color-mix(in srgb, var(--n-900) 60%, transparent);
+  }
+  .rv-etch__word { white-space: nowrap; }
+  .rv-etch__title:focus { outline: none; }
+  .rv-etch__title:focus-visible { outline: 2px solid var(--n-violet); outline-offset: 6px; border-radius: 6px; }
+  /* A short opal stroke between the title and its line, the only mark in the glass. */
+  .rv-etch__rule {
+    display: block;
+    inline-size: 34px;
+    block-size: 2px;
+    margin: calc(var(--etch-line, 19px) * 0.75) 0 calc(var(--etch-line, 19px) * 0.6);
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--tint-ch3), var(--n-violet), var(--tint-ch1));
+    box-shadow: 0 0 10px color-mix(in srgb, var(--n-violet) 70%, transparent);
+  }
+  .rv-etch__line {
+    margin: 0;
+    max-inline-size: 15em;
+    font: italic 450 var(--etch-line, 19px) / 1.3 var(--font-display);
     font-variation-settings: var(--font-display-italic);
     color: var(--n-ink);
-    text-shadow: 0 0 18px color-mix(in srgb, var(--n-violet) 60%, transparent);
+    text-wrap: balance;
+    text-shadow: 0 1px 14px color-mix(in srgb, var(--n-900) 95%, transparent);
   }
+  .rv-etch__sparks { position: absolute; inset: 0; pointer-events: none; }
+  .rv-etch__sparks i { position: absolute; color: var(--n-ink); opacity: 0; animation: rv-spark var(--d-scene) var(--e-out) calc(var(--d-reveal) * 0.5 + var(--i) * var(--d-instant)) both; }
+  .rv-etch__sparks i:nth-child(1) { left: -12px; top: -8px; }
+  .rv-etch__sparks i:nth-child(2) { right: -10px; top: 2px; }
+  .rv-etch__sparks i:nth-child(3) { left: 30%; bottom: -10px; }
+  .rv-slide.is-current .rv-etch__rule { animation: rv-fade var(--d-slow) var(--e-out) calc(var(--d-reveal) * 0.3) both; }
+  /* Under the plinth: the day-to-day half and the core traits as two quiet rows, label left, value right. */
+  .rv-names__rows {
+    position: absolute;
+    left: 50%;
+    inline-size: min(330px, calc(100% - 48px));
+    translate: -50% 0;
+    margin: 0;
+    display: grid;
+  }
+  .rv-names__row {
+    display: grid;
+    grid-template-columns: 6.6em minmax(0, 1fr);
+    column-gap: 14px;
+    align-items: baseline;
+    padding: 9px 2px;
+    border-top: 1px solid color-mix(in srgb, var(--n-ink) 16%, transparent);
+  }
+  .rv-names[data-short] .rv-names__row { padding: 6px 2px; }
+  .rv-names__row dt { font: 600 13px / 18px var(--font-text); color: var(--n-ink-2); }
+  .rv-names__row dd { margin: 0; color: var(--n-ink); text-wrap: pretty; }
+  .rv-names__row[data-kind="name"] dd { font: 600 19px / 23px var(--font-display); font-variation-settings: var(--font-display-upright); letter-spacing: -0.01em; }
+  .rv-names__row[data-kind="traits"] dd { font: 500 15px / 21px var(--font-text); color: var(--n-ink); }
 
   /* ---------------------------------------------------------------- story 3: the read */
 
@@ -909,27 +899,6 @@
   }
   .rv-stage[data-look="light"] .rv-taphint { color: var(--c-ink); background: color-mix(in srgb, var(--c-surface-solid) 70%, transparent); border-color: var(--tile-border); }
 
-  /* The plaque inside the names mirror: one line of Genii's clearest finding, etched on glass. */
-  .rv-plaque {
-    position: absolute;
-    margin: 0;
-    padding: 9px 14px 10px;
-    border-radius: 16px;
-    border: 1px solid color-mix(in srgb, var(--mirror-silver-1) 80%, transparent);
-    background: linear-gradient(180deg, color-mix(in srgb, var(--n-700) 92%, transparent), color-mix(in srgb, var(--n-900) 96%, transparent));
-    box-shadow: inset 0 1px 0 color-mix(in srgb, var(--n-ink) 30%, transparent), 0 10px 22px -12px color-mix(in srgb, var(--n-900) 95%, transparent);
-    text-align: center;
-    pointer-events: none;
-  }
-  .rv-plaque__line {
-    display: block;
-    font: italic 450 15px / 20px var(--font-display);
-    font-variation-settings: var(--font-display-italic);
-    color: var(--n-ink);
-    text-wrap: balance;
-  }
-  .rv-slide.is-current .rv-plaque { animation: rv-rise var(--d-slow) var(--e-out) calc(var(--d-reveal) * 0.55) both; }
-
   /* The read: a body under each line. */
   .rv-tablet__body { display: block; margin-top: var(--s-2); font: 450 var(--rv-body) var(--font-text); color: var(--c-ink-2); text-wrap: pretty; }
   .rv-tablet[data-half="people"] { border-left: 3px solid var(--tint-ch3); }
@@ -1045,27 +1014,36 @@
   .rv-body--app .rv-end__links { flex-wrap: wrap; justify-content: center; gap: 0 var(--s-1); }
   .rv-body--app .rv-end { gap: 2px; margin-top: 0; }
   .rv-body--app .rv-end__links .rv-textbtn { font-size: 13px; color: color-mix(in srgb, var(--n-ink) 90%, transparent); }
-  /* G6: an App Store style button: dark, rounded, a store cue, a small line over the big one. */
+  /* The get-the-app button (refreshed 2026-09-30): a pearl button with an opal rim, like the World Mirror's frame, so it
+     stands out on the violet screen; the action in big dark type, the store under it, the download cue at the right. */
   .rv-store {
+    position: relative;
     display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 12px;
+    justify-content: space-between;
+    gap: 14px;
     inline-size: 100%;
-    max-inline-size: 300px;
-    min-block-size: 60px;
-    padding: 8px 22px;
-    border-radius: 16px;
-    background: var(--n-900);
-    color: var(--n-ink);
+    max-inline-size: 320px;
+    min-block-size: 64px;
+    padding: 10px 20px 10px 26px;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background:
+      linear-gradient(180deg, var(--c-on-deep), var(--mirror-silver-1)) padding-box,
+      linear-gradient(100deg, var(--tint-ch3), var(--n-violet) 35%, var(--tint-ch1) 65%, var(--tint-ch7)) border-box;
+    color: var(--n-900);
     text-decoration: none;
-    box-shadow: 0 0 0 1px color-mix(in srgb, var(--n-ink) 40%, transparent), 0 0 0 5px color-mix(in srgb, var(--n-ink) 16%, transparent), 0 18px 40px -14px color-mix(in srgb, var(--n-900) 80%, transparent);
+    box-shadow:
+      0 0 0 6px color-mix(in srgb, var(--c-on-deep) 18%, transparent),
+      0 18px 40px -14px color-mix(in srgb, var(--n-900) 75%, transparent);
     transition: transform var(--d-instant) var(--e-out);
   }
   .rv-store:active { transform: scale(0.985); }
-  .rv-store__text { display: grid; text-align: left; }
-  .rv-store__text small { font: 600 11.5px / 14px var(--font-text); letter-spacing: 0.02em; color: color-mix(in srgb, var(--n-ink) 82%, transparent); }
-  .rv-store__text b { font: 700 21px / 25px var(--font-text); letter-spacing: -0.01em; }
+  .rv-store:focus-visible { outline: 3px solid var(--n-ink); outline-offset: 4px; }
+  .rv-store__text { display: grid; text-align: left; gap: 1px; }
+  .rv-store__text b { font: 700 21px / 25px var(--font-text); letter-spacing: -0.01em; color: var(--n-900); }
+  .rv-store__text small { font: 600 13px / 16px var(--font-text); color: var(--n-600); }
+  .rv-store .rv-store__glyph { flex: none; color: var(--n-700); }
   .rv-slide.is-current .rv-body--app .rv-store { animation: rv-rise var(--d-base) var(--e-out) calc(var(--rv-step) * 3) both, rv-ctaglow calc(var(--d-loop-breath) * 0.6) var(--e-in-out) var(--d-scene) infinite alternate; }
 
   /* ---------------------------------------------------------------- arrows */
@@ -1340,6 +1318,7 @@
 
   @media (prefers-reduced-transparency: reduce) {
     .rv-tablet, .rv-arrow, .rv-sheet-wrap, .rv-find, .rv-call__glass { -webkit-backdrop-filter: none; backdrop-filter: none; }
+    .rv-mirror__shade { background: radial-gradient(var(--rx) var(--ry) at var(--cx) var(--cy), color-mix(in srgb, var(--n-900) 92%, transparent), color-mix(in srgb, var(--n-900) 78%, transparent) 60%, transparent); }
   }
   @media (forced-colors: active) {
     .rv-bg, .rv-room__art, .rv-mirror__glass, .rv-mirror__fog, .rv-intro__fog, .rv-foxing { display: none; }

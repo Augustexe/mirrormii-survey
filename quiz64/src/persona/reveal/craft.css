@@ -68,19 +68,6 @@
   }
   .rv-intro[data-landed="true"] .rv-intro__flash { animation: rv-flash calc(var(--d-scene) * 1.3) var(--e-out) both; }
 
-  /* The core traits under the names: dark glass pills, white type, two rows at most. */
-  .rv-names__keys { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 0 -12px; padding: 0; list-style: none; max-inline-size: 360px; }
-  .rv-names__keys li {
-    padding: 6px 11px;
-    border-radius: var(--r-pill);
-    border: 1px solid color-mix(in srgb, var(--n-ink) 40%, transparent);
-    background: color-mix(in srgb, var(--n-900) 72%, transparent);
-    box-shadow: 0 0 18px -4px color-mix(in srgb, var(--n-violet) 70%, transparent);
-    font: 650 14px / 18px var(--font-text);
-    color: var(--n-ink);
-    white-space: nowrap;
-  }
-
   /* ---------------------------------------------------------------- Genii's calls: light behind the grid and the lit panes */
 
   .rv-body--calls { isolation: isolate; }

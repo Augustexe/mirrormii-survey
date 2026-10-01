@@ -63,7 +63,9 @@ export function MirrorCard({ card, active, format = "story", theme = "night" }) 
     <figure className="rv-card" data-card data-format={format} data-theme={theme} data-drawn={drawn ? "true" : "false"} aria-label="Your mirror card">
       <canvas ref={ref} width={w} height={h} aria-hidden="true" />
       <div className="rv-card__text">
-        {card.names.map((n, i) => (
+        {card.title ? (
+          <p className="rv-card__name"><strong>{card.title.name}</strong> <span>{card.title.line}</span></p>
+        ) : card.names.map((n, i) => (
           <p key={i} className="rv-card__name"><span>{n.label}</span> <strong>{n.name}</strong></p>
         ))}
         {card.tags.length > 0 && (
@@ -124,9 +126,11 @@ function ShareScreen({ s, active, onInvite, onShareImage, onCopy, copied, format
   );
 }
 
-// Story 12: get the app (G6, round 3). The loop in one picture on the real MirrorMii World island (you snap lunch, it
-// lands in the game, the CGI Genii waits on the plaza), a headline that says what the game does with your real day,
-// one App Store style button; the friend game, the guesses and the data actions are small links under it.
+// Story 12: get the app (G6, round 3; refreshed 2026-09-30). The loop in one picture on the real MirrorMii World island
+// (you snap lunch, it lands in the game, the CGI Genii waits on the plaza), a headline that hands the player from Genii's
+// read to meeting their Miia, one line on what the game does with your real day, and one bright button: the action
+// first, the store under it, the download cue on the right. The friend game, the guesses and the data actions are small
+// links under it.
 function StoreGlyph() {
   // A plain phone with a download arrow: a store cue drawn in code, not a platform's mark.
   return (
@@ -146,12 +150,12 @@ function App({ s, stage, onFriends, onGuesses, hasGuesses, guessLabel, onData, o
   return (
     <div className="rv-body rv-body--app">
       <WorldScene width={w} height={art} snap={s.snap} lives={s.lives} />
-      <Kicker>{s.kicker}</Kicker>
+      {s.kicker ? <Kicker>{s.kicker}</Kicker> : null}
       <h2 className="rv-title rv-in" data-focus tabIndex="-1">{s.title}</h2>
       <p className="rv-body-l rv-in">{s.body}</p>
       <a className="rv-cta rv-store rv-in" href={s.link} onClick={placeholder ? (e) => e.preventDefault() : undefined} data-placeholder={placeholder ? "true" : undefined}>
+        <span className="rv-store__text"><b>{s.button}</b><small>{s.store}</small></span>
         <StoreGlyph />
-        <span className="rv-store__text"><small>{s.store}</small><b>{s.button}</b></span>
       </a>
       <p className="rv-note rv-in">{s.note}</p>
       <ReadMore label={readMore} onArticle={onArticle} className="rv-pillbtn--strong rv-in" />

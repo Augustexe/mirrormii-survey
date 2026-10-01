@@ -42,7 +42,7 @@ test("the mirror is the run's: seeded by the run id, one shard per answered card
   assert.ok(intro.mirror.filled.every((f) => (f.chapter >= 1 && f.chapter <= 7) || f.chapter === "extras"));
 });
 
-test("reduced motion: the assembled, fogged mirror and both names are there at once", async () => {
+test("reduced motion: the assembled, fogged mirror, the title and its line are there at once", async () => {
   const view = await realView();
   const html = await render(view, "always");
   assert.match(html, /data-reduced="true"/);
@@ -51,7 +51,13 @@ test("reduced motion: the assembled, fogged mirror and both names are there at o
   assert.match(intro, /data-art="mirror-arch"/);
   const names = slideHtml(html, "names");
   const { HALVES } = await load("/src/persona/stats.js");
-  for (const s of [view.slides[1].people.name, view.slides[1].life.name, view.slides[1].people.define, view.slides[1].life.define, HALVES.people.kicker, HALVES.life.kicker]) assert.ok(visible(names).includes(s), s);
+  // Decision 1a: the glass holds only the title (the people half) and its one line; the day-to-day half is a labeled
+  // row under the plinth. No kicker pills, defining lines or plaque.
+  const s2 = view.slides[1];
+  for (const s of [s2.title.name, s2.title.line, `${HALVES.life.kicker} ${s2.life.name}`]) assert.ok(visible(names).includes(s), s);
+  const etch = names.slice(names.indexOf('class="rv-etch"'), names.indexOf("</div>", names.indexOf('class="rv-etch__line"')));
+  assert.ok(etch.includes(s2.title.line) && !etch.includes(s2.life.name) && !etch.includes(HALVES.people.kicker), "only the title and its line inside the mirror");
+  assert.ok(!visible(names).includes(s2.people.define) && !visible(names).includes(HALVES.people.kicker), "no defining line or kicker on story 2");
   assert.ok(!names.includes("We·"), "no type code, even in attributes");
   const motion = await render(view, "never");
   assert.match(slideHtml(motion, "intro"), /data-phase="orbit"/, "with motion, story 1 opens on the orbit");
@@ -161,6 +167,7 @@ test("the findings, the rooms and the calls render their cues", async () => {
     assert.equal((calls.match(/class="rv-call rv-call--/g) || []).length, c.rows.length);
     assert.ok(visible(calls).includes(`${c.exact} of ${c.called}`));
     const names = slideHtml(html, "names");
-    assert.match(names, /class="rv-plaque"/, `${voice}: the plaque sits inside the frame`);
+    assert.doesNotMatch(names, /rv-plaque|rv-pane/, `${voice}: no plaque or label panes on story 2`);
+    assert.equal((names.match(/<h2/g) || []).length, 1, `${voice}: one title`);
   }
 });

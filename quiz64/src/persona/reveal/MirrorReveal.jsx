@@ -1,17 +1,16 @@
 // The Reflection (DESIGN-DIRECTION 3.2, 5.12 stories 1 and 2; LAUNCH-SPEC 25 item 2). Story 1: every answered card is
 // a shard of clear glass with an opal edge, orbiting Genii's light; hold to speed them up, let go (or tap) and they rush
 // in, chapter by chapter, and rebuild the World Mirror (the oval opal mirror at the center of Genii's island), whose
-// shard pattern is seeded by your run. Story 2: the fog wipes from the center out and your two names resolve in the
-// glass, over the room the mirror looks into. Names and titles are in the DOM from the first frame.
+// shard pattern is seeded by your run. Story 2: the fog wipes from the center out and your title and its one line
+// resolve in the glass, over the room the mirror looks into. Titles are in the DOM from the first frame.
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion as m } from "motion/react";
-import { MirrorArch, Sigil, Sparkle, geometry } from "../../art/index.js";
+import { MirrorArch, Sparkle, geometry } from "../../art/index.js";
 import { MIRROR } from "../../art/world.js";
 import { OPAL } from "../../art/palette.js";
 import { Aura } from "./WorldArt.jsx";
 import { GeniiLight, tokens } from "../../system/index.js";
 import { archBox, archClip, durationMs } from "./layout.js";
-import { splitInsight } from "../stories/story-data.js";
 
 const TAU = Math.PI * 2;
 const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
@@ -244,29 +243,28 @@ export function IntroScreen({ s, stage, active, reduced, phase, onStart, onDone 
 
 // ---------------------------------------------------------------- story 2
 
-function Pane({ half, where, box, first, sparkle }) {
-  const h = box.glassH / 2;
-  // Names set a step smaller in a small glass (short phones), so kicker, name and defining line fit their half.
-  const nameSize = Math.round(Math.max(26, Math.min(32, box.glassW * 0.15)));
-  const style = { left: box.glassLeft, top: where === "up" ? box.glassTop : box.mullionY, width: box.glassW, height: h, "--rv-name-size": `${nameSize}px` };
-  return (
-    <span className={`rv-pane rv-pane--${where}`} style={style}>
-      <span className="rv-pane__label">
-        <span className="rv-pane__sigil" aria-hidden="true"><Sigil code={half.code} size={Math.round(Math.min(24, box.glassW * 0.085))} /></span>
-        {half.label}
-      </span>
-      <m.span className="rv-pane__name" initial={first ? { opacity: 0, y: 8, scale: 0.96 } : false}
-        animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ ...tokens.springs.settle, delay: first ? first : 0 }}>
-        {half.name}
-        {sparkle ? (
-          <span className="rv-pane__sparks" aria-hidden="true">
-            {[0, 1, 2].map((i) => <i key={i} style={{ "--i": i }}><Sparkle size={10 + (i % 2) * 4} /></i>)}
-          </span>
-        ) : null}
-      </m.span>
-      {half.define ? <span className="rv-pane__define">{half.define}</span> : null}
-    </span>
-  );
+// Decision 1a (2026-09-30): one title, one line. The glass carries only the people archetype and the one story line that
+// merges both halves, set large and centered where the oval is widest; everything else sits in two quiet rows under the
+// plinth. The title is sized from its longest word so it never breaks mid-word in a narrow glass.
+export function etchType(name, glassW) {
+  const words = String(name || "").split(/\s+/).filter(Boolean);
+  const longest = Math.max(4, ...words.map((w) => w.length));
+  const room = glassW * 0.86;
+  let size = Math.min(glassW * 0.2, room / (longest * 0.58), 52);
+  // A short name ("Old Soul", "The Glue") stays on one line rather than stacking two small words.
+  const whole = String(name || "").trim().length;
+  if (whole <= 10) size = Math.min(size, room / (whole * 0.6));
+  const title = Math.round(Math.max(24, size));
+  const line = Math.round(Math.max(16, Math.min(21, glassW * 0.083)));
+  return { title, line };
+}
+
+// "Loyal to a few, relaxed and down-to-earth": the core traits read as one plain phrase, not a row of pills.
+export function traitPhrase(keys) {
+  if (!keys.length) return "";
+  const list = keys.map((k, i) => (i ? k.charAt(0).toLowerCase() + k.slice(1) : k));
+  if (list.length < 2) return list[0] || "";
+  return `${list.slice(0, -1).join(", ")} and ${list[list.length - 1]}`;
 }
 
 export function NamesScreen({ s, stage, active, reduced, wipe, onWiped, sparkles }) {
@@ -281,44 +279,56 @@ export function NamesScreen({ s, stage, active, reduced, wipe, onWiped, sparkles
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [active, wipe, reduced]);
   const settle = wipe && !reduced ? durationMs("reveal", 1600) * 0.28 / 1000 : 0;
+  const first = active && wipe ? settle : 0;
   const clip = archClip(box);
-  // The plaque carries the finding's first sentence; the whole line waits on the findings screen.
-  const plaque = s.hook ? splitInsight(s.hook).belief : "";
-  // A small glass (short phones): the halves pad less and the plaque sits on the plinth below the glass, so a
-  // three-line name and its defining line never run under the plaque (package L2).
-  const compact = box.glassW < 210;
-  const keys = (s.keywords || []).map((k) => (typeof k === "string" ? k : k && (k.keyword || k.name))).filter(Boolean).slice(0, stage.h < 720 ? 4 : 6);
+  const title = s.title || { name: s.people ? s.people.name : "", line: s.people ? s.people.read : "" };
+  const type = etchType(title.name, box.glassW);
+  // The strongest traits, as many as read on one line (up to three; the full list waits on the core traits screen).
+  const short = stage.h < 720;
+  const all = (s.keywords || []).map((k) => (typeof k === "string" ? k : k && (k.keyword || k.name))).filter(Boolean);
+  let keys = all.slice(0, 1);
+  for (let n = 2; n <= Math.min(3, all.length); n++) if (traitPhrase(all.slice(0, n)).length <= 30) keys = all.slice(0, n);
+  const labels = s.labels || {};
+  const rows = [
+    s.life && s.life.name && labels.life ? { key: "life", label: labels.life, value: s.life.name, kind: "name" } : null,
+    keys.length && labels.traits ? { key: "traits", label: labels.traits, value: traitPhrase(keys), kind: "traits" } : null,
+  ].filter(Boolean);
+  const midY = box.glassTop + box.glassH * 0.48;
   return (
-    <div className="rv-names" data-wipe={wiping ? "on" : "off"} data-plaque={plaque ? "true" : "false"} data-compact={compact ? "true" : undefined}>
+    <div className="rv-names" data-wipe={wiping ? "on" : "off"} data-short={short ? "true" : undefined}>
       <StandingMirror box={box} mirror={mirror} fog={0}>
-        {/* Clear glass over the room, and a soft scrim behind each block of lettering so the names read while the glass
-            stays glass around them. */}
-        <span className="rv-mirror__scrim" style={{ clipPath: clip, left: 0, top: 0, width: stage.w, height: stage.h, "--up": `${box.mullionY - box.glassH * 0.2}px`, "--down": `${box.mullionY + box.glassH * 0.25}px`, "--rx": `${box.glassW * 0.62}px`, "--ry": `${box.glassH * 0.2}px`, "--cx": `${box.cx}px` }} />
+        {/* One soft shadow behind the lettering, so the words read while the room and the shards stay clear toward the rim. */}
+        <span className="rv-mirror__shade" style={{ clipPath: clip, "--cx": `${box.cx}px`, "--cy": `${midY}px`, "--rx": `${box.glassW * 0.74}px`, "--ry": `${box.glassH * 0.34}px` }} />
         <span className="rv-mirror__wipe" style={{ clipPath: clip }} />
         <span className="rv-mirror__pass" style={{ clipPath: clip }} />
       </StandingMirror>
       <span className="rv-names__genii" style={{ left: box.cx, top: box.glassTop + box.glassW * 0.16 }} aria-hidden="true" />
-      <h2 className="rv-names__panes" data-focus tabIndex="-1">
-        <Pane half={s.people} where="up" box={box} first={active && wipe ? settle : 0} sparkle={sparkles && active && wipe} />
-        <span className="sr-only">. </span>
-        <Pane half={s.life} where="down" box={box} first={active && wipe ? settle + 0.12 : 0} sparkle={sparkles && active && wipe} />
-      </h2>
-      {/* One line on the mirror's foot: Genii's clearest finding, etched on a glass plaque across the plinth, so the
-          screenshot carries the names and the read together. */}
-      {plaque ? (
-        <p className="rv-plaque" style={{ left: box.cx - Math.min(stage.w - 32, box.glassW * 1.42) / 2, width: Math.min(stage.w - 32, box.glassW * 1.42), top: box.bottom - (compact ? -2 : 14) }}>
-          <span className="rv-plaque__line">{plaque}</span>
-        </p>
-      ) : null}
-      <div className="rv-names__under" style={{ top: box.foot + 14 }}>
-        {s.sub ? <p className="rv-names__sub rv-in">{s.sub}</p> : null}
-        {/* Round 3: the shareable core traits as keyword pills (story-data.js, the same list the card draws). */}
-        {keys.length ? (
-          <ul className="rv-names__keys" aria-label="Core traits">
-            {keys.map((k, i) => <li key={k} className="rv-in" style={{ "--i": i }}>{k}</li>)}
-          </ul>
+      <div className="rv-etch" style={{ left: box.glassLeft, top: box.glassTop, width: box.glassW, height: box.glassH, "--etch-title": `${type.title}px`, "--etch-line": `${type.line}px` }}>
+        <m.h2 className="rv-etch__title" data-focus tabIndex="-1" initial={first ? { opacity: 0, y: 10, scale: 0.97 } : false}
+          animate={{ opacity: 1, y: 0, scale: 1 }} transition={{ ...tokens.springs.settle, delay: first }}>
+          {String(title.name || "").split(/\s+/).filter(Boolean).map((w, i) => <React.Fragment key={i}>{i ? " " : ""}<span className="rv-etch__word">{w}</span></React.Fragment>)}
+          {sparkles && active && wipe ? (
+            <span className="rv-etch__sparks" aria-hidden="true">
+              {[0, 1, 2].map((i) => <i key={i} style={{ "--i": i }}><Sparkle size={10 + (i % 2) * 4} /></i>)}
+            </span>
+          ) : null}
+        </m.h2>
+        <span className="rv-etch__rule" aria-hidden="true" />
+        {title.line ? (
+          <m.p className="rv-etch__line" initial={first ? { opacity: 0, y: 6 } : false} animate={{ opacity: 1, y: 0 }}
+            transition={{ ...tokens.springs.settle, delay: first ? first + 0.18 : 0 }}>{title.line}</m.p>
         ) : null}
       </div>
+      {rows.length ? (
+        <dl className="rv-names__rows" style={{ top: box.foot + (short ? 10 : 18) }}>
+          {rows.map((r, i) => (
+            <div key={r.key} className="rv-names__row rv-in" data-kind={r.kind} style={{ "--i": i }}>
+              <dt>{r.label}</dt>
+              <dd>{r.value}</dd>
+            </div>
+          ))}
+        </dl>
+      ) : null}
     </div>
   );
 }
