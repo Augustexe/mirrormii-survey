@@ -1,16 +1,21 @@
 # Frontend dependency notices
 
-The shipped app uses the following open source packages. Versions are locked in `package-lock.json`; this note keeps the delivery boundary visible without copying `node_modules` into the repository.
+The shipped app uses the following open source packages. Versions are locked in `package-lock.json`.
 
-| Package | Use | License / notice |
+| Package | Use | License |
 | --- | --- | --- |
-| React, ReactDOM, Scheduler | UI runtime | MIT; copyright Meta Platforms, Inc. and contributors |
-| Vite, `@vitejs/plugin-react`, esbuild transitives | Local development and production bundling | MIT; respective project notices apply |
+| React, ReactDOM, Scheduler | UI runtime | MIT |
 | Motion | Page and state transitions | MIT |
 | lucide-react | Interface icons | ISC |
-| Satoshi | Self-hosted, unmodified variable font from Fontshare | ITF Free Font License 2.0; full notice in `public/fonts/FFL.txt` |
-| @fontsource/manrope | Retained package from the preceding build, no longer imported | SIL Open Font License 1.1; Manrope copyright The Manrope Project |
+| three | Genii's 3D evolution scene (lazy chunk) | MIT |
+| @paper-design/shaders-react, @paper-design/shaders | Backdrop shader | Apache-2.0 |
+| Satoshi | Self-hosted, unmodified variable font from Fontshare (`src/system/fonts/`) | ITF Free Font License; notice in `public/fonts/FFL.txt` |
 
-The app does not call a remote font, analytics, account, survey, or model service at runtime. Satoshi is hosted locally with a system sans-serif fallback. Full package notices remain available in the installed dependency tree for local distribution review.
+Build and test only (not shipped): Vite and `@vitejs/plugin-react` (MIT), `@axe-core/playwright` (MPL-2.0),
+`@resvg/resvg-js` (MPL-2.0), svgo (MIT).
 
-The exact applicable upstream license texts are shipped with the static app at `public/THIRD-PARTY-NOTICES.txt` and therefore are also present in the built `output/site/` delivery.
+The app calls no remote font, analytics, account, survey or model service at runtime.
+
+License texts ship with the static app in `public/THIRD-PARTY-NOTICES.txt` (copied into `dist/` by the build). Gap
+(2026-09-30): that file covers React, Motion, lucide-react and Satoshi; the three.js (MIT) and Paper Design shaders
+(Apache-2.0) notices still need to be added before a public launch.

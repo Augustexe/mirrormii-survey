@@ -1,14 +1,14 @@
 // The Evidence Article contact sheet (V2 pass, 2026-09-30): the whole article for three players in both voices, at
 // phone (390) and desktop (1440) width, laid out on one image. Needs the dev server.
 //   PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node qa/article-sheet.mjs [baseUrl] [out.png] [shotDir]
-// Default out: docs/ARTICLE-V2.png. Full-page shots land in shotDir (default qa/article-sheet/, ignored).
+// Default out: qa/article-sheet/sheet.png. Full-page shots land in shotDir (default qa/article-sheet/). Both ignored.
 import fs from "node:fs";
 import path from "node:path";
 import { openArticle } from "./article-open.mjs";
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || "playwright");
 
 const BASE = process.argv[2] || "http://127.0.0.1:5202/";
-const OUT = path.resolve(process.argv[3] || "docs/ARTICLE-V2.png");
+const OUT = path.resolve(process.argv[3] || "qa/article-sheet/sheet.png");
 const DIR = path.resolve(process.argv[4] || "qa/article-sheet");
 const PLAYERS = (process.env.PLAYERS || "a,b,c").split(",");
 const VOICES = ["fun", "heart"];

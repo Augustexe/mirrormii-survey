@@ -673,7 +673,7 @@ function drawPillRows(ctx, { items, y, W, p, size, maxW, maxRows = 2, gap = 20, 
 }
 
 // The share card in either format and theme. `card` is the share projection (story-data.js buildStories().share).
-// Simplified for story size (VISUAL-JUDGE-CODEX-R2 screen 13): the completed mirror with the one title and its story
+// Simplified for story size (visual judge, round 2): the completed mirror with the one title and its story
 // line (decision 1a; the day-to-day half stays in the share text), as large as the
 // card allows; the core traits as keyword pills in up to two rows (their evidence stays on the traits screen); the
 // invite; the address.

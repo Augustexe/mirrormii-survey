@@ -4,17 +4,17 @@ status: proposed 2026-09-29, for Jerry; implementation packages A to D build fro
 owner: jerry
 created: 2026-09-17 (first version, Genii conversation design)
 updated: 2026-09-30 (one font: Satoshi, section 4.1); 2026-09-29 (full rewrite for the launch visual pass)
-source_basis: 76 screenshots of the current build (scratchpad screens-before, phone 390x844 and desktop 1440x900); products/survey/docs/LAUNCH-SPEC.md sections 1, 4 to 6, 13, 21, 22; research/result-page-wireframes/WRAPPED-RESEARCH.md and stories.html; company/marketing/docs/10-product-specs/PRODUCT-TRUTH.md; quiz64/src (PersonaApp.jsx, persona/*, persona/stories/*, 13 CSS files); card bank research/persona-quiz-v2/final/bank (world and fp.device fields, 12 emotions); founder brief 2026-09-29
+source_basis: 76 screenshots of the build of 2026-09-29 (phone 390x844 and desktop 1440x900, not kept); docs/LAUNCH-SPEC.md sections 1, 4 to 6, 13, 21, 22; result page wireframes (removed, in git history); company/marketing/docs/10-product-specs/PRODUCT-TRUTH.md; quiz64/src (PersonaApp.jsx, persona/*, persona/stories/*, 13 CSS files); card bank research/persona-quiz-v2/final/bank (world and fp.device fields, 12 emotions); founder brief 2026-09-29
 supersedes: the 2026-09-17 version of this file (dossier build; kept in git at commit 8eff355). Its still-valid rules (reduced motion and transparency, dialog focus, 320 px support) are folded into section 4.
 ---
 
-> **Partly superseded (2026-09-29).** The locked spec [LAUNCH-SPEC.md](../../docs/LAUNCH-SPEC.md) wins; its section 7 lists what this page no longer governs (the arched mirror, Genii as light only, code-made islands, the facet gem, the old stat labels and invite line). Section numbers cited below refer to the pre-lock spec, now [history](../../docs/history/LAUNCH-SPEC-2026-09-29-full.md).
+> **Partly superseded (2026-09-29).** The locked spec [LAUNCH-SPEC.md](../../docs/LAUNCH-SPEC.md) wins; its section 7 lists what this page no longer governs (the arched mirror, Genii as light only, code-made islands, the facet gem, the old stat labels and invite line). Section numbers cited below refer to the pre-lock spec (in git history), not the current one.
 
 # Mirror, Mirror: design direction for the MirrorMii launch survey
 
 **How to use this file.** Section 3 is the idea. Section 4 is the system every package shares. Section 5 is the per-screen contract (phone first, then desktop). Section 6 lists every asset to make in code. Section 7 splits the work into four parallel packages with file ownership, contracts and acceptance checks. Section 8 lists what is held for Jerry. LAUNCH-SPEC.md still wins on content, evidence and flow; this file wins on how it looks, moves and reads.
 
-Reference images: [design-refs/phone-card-390.svg](design-refs/phone-card-390.svg) (card layout and fold budget), [design-refs/reveal-storyboard.svg](design-refs/reveal-storyboard.svg) (the final reveal).
+Reference images: the card layout and reveal storyboard SVGs drawn for this pass were removed with the retired art (git history); the built screens in `src/` are the reference now.
 
 ```mermaid
 flowchart LR
@@ -420,7 +420,7 @@ Every screen spec gives: purpose, phone layout (390 x 844 reference, 16 px gutte
 
 ### 5.5 The card shell (common to every format)
 
-See [design-refs/phone-card-390.svg](design-refs/phone-card-390.svg).
+The fold budget below is enforced by `tests/visual/fold.mjs` and `qa/layout-guard.mjs`.
 
 **Phone vertical budget (390 x 844):** header 0 to 52 (rail inside); Genii line 60 to 92 (size xs orb 24 px plus one line, 60 characters max, ellipsis never, the pool is written short); card sheet from 100 to the end of the exits; sheet padding 20.
 
@@ -692,7 +692,7 @@ Step 0 runs first (A and D in parallel, about an hour). After that, A, B, C and 
 | **A: system, landing, setup, lobby, interludes, Genii** | `index.html`, `vite.config.*` (font plugin only), `src/main.jsx`, `src/PersonaApp.jsx`, `src/system/**`, `src/persona/screens/**` (Landing, Setup, Lobby, Interlude, Header, Toast), `src/persona/PersonaScreens.jsx` (becomes a re-export shim, then removed at integration), `src/persona/PersonaDialogs.jsx` (More, How, Confirm dialogs; restyle only), `src/components/GeniiStage.jsx` and `AmbientWorld.jsx` (retired: A removes their use), `tests/system-*.test.mjs`, `tests/screens-*.test.mjs` | `src/art/**`, `src/persona/play/**`, `src/persona/reveal/**`, `src/persona/stories/**`, bank and library files |
 | **B: cards, progress, lock, finale** | `src/persona/play/**` (Quiz.jsx, Lock.jsx, CardShell.jsx, formats/*.jsx one per format, AnswerTile.jsx, ShardRail.jsx, ChapterMapSheet.jsx, play.css), `src/persona/PersonaCard.jsx` (moved into play, then removed), `src/persona/reactions.js` (new), `src/persona/FriendGame.jsx` and `FriendResultsView.jsx` (restyle, and placing C's hero), `tests/play-*.test.mjs`, `tests/visual/fold.mjs` | Scorer, `session.js` picker logic, `lobby.js` (A's copy file; B reads `hostLine`), story files |
 | **C: reveal, stories, share** | `src/persona/reveal/**` (Reveal.jsx, Story screens, Facet screen, InsightFlip.jsx, GuessSheet.jsx, DataSheet.jsx, FriendMirrorHero.jsx, reveal.css), `src/persona/PersonaResult.jsx`, `src/persona/stories/**` (StoryDeck, StoryScreens, stories.css; story-data.js presentation fields only, copy constants flagged in D6), `src/persona/share-image.js`, `src/persona/views.js`, `src/persona/FriendsPanel.jsx` (restyle), `tests/reveal-*.test.mjs`, updates to `tests/persona-result.test.mjs` | `library.json`, scorer, play and screens folders |
-| **D: asset library** | `src/art/**`, `public/favicon.svg`, `public/apple-touch-icon.png`, `public/og.png`, `scripts/render-icons.mjs`, `scripts/make-textures.mjs`, `package.json` devDependencies for `@resvg/resvg-js` and `svgo` and dependency `@paper-design/shaders-react`, `tests/art-*.test.mjs`, `docs/design-refs/**` | Everything else |
+| **D: asset library** | `src/art/**`, `public/favicon.svg`, `public/apple-touch-icon.png`, `public/og.png`, `scripts/render-icons.mjs`, `scripts/make-textures.mjs`, `package.json` devDependencies for `@resvg/resvg-js` and `svgo` and dependency `@paper-design/shaders-react`, `tests/art-*.test.mjs` | Everything else |
 | **Integration** (after A to D) | Removes the `legacy` layer files that nothing uses (dossier CSS and components, per LAUNCH-SPEC step C), removes retired assets only after Jerry's D1, runs the screenshot matrix, owns `tests/visual/capture.mjs` | |
 
 `package.json` dependencies: A adds the two fontsource packages and Fontaine; D adds the shader package and dev tools. To avoid a merge conflict, Step 0 A adds all of them at once (the list is in this section), and packages only use them.
@@ -845,5 +845,5 @@ Capture tooling: a Playwright script `tests/visual/capture.mjs` that replays the
 - 2026-09-29 (G6): Section 8 D11 to D19: Genii's calls redesign, scene titles, reply format, readable progress, the map as game stats (Jerry's labels), knows best on dark glass, the app handoff and share screen, small play fixes. Codex judge R4 in `VISUAL-JUDGE-CODEX-R4.json`.
 
 - 2026-09-29: Section 5.12 updated to the round 2 twelve-screen deck (knows best, room by room and Genii's calls added; map and app screens redrawn; order table and looks).
-- 2026-09-29: Rewritten for the launch visual pass: benchmark study, screen-by-screen critique of 76 screenshots, the Mirror, Mirror concept and The Reflection reveal, the full system, per-screen specs for every screen and format, the asset list, four parallel packages with ownership and acceptance, and held decisions. Reference images in `design-refs/`.
+- 2026-09-29: Rewritten for the launch visual pass: benchmark study, screen-by-screen critique of 76 screenshots, the Mirror, Mirror concept and The Reflection reveal, the full system, per-screen specs for every screen and format, the asset list, four parallel packages with ownership and acceptance, and held decisions. Reference images in `design-refs/` (removed 2026-09-30, in git history).
 - 2026-09-17: First version (Genii conversation design for the dossier build), superseded; see git commit 8eff355.

@@ -1,8 +1,8 @@
-// Shared helpers for the layout QA scripts (layout-guard.mjs, capture-layout-fixes.mjs): build a game state in the page
+// Helpers for the layout guard (layout-guard.mjs): build a game state in the page
 // with the app's own session module, then open the app on it. Needs the dev server (the page imports /src/...).
 // Run ids must match /^[a-z0-9]{6,32}$/ (the app rejects anything else as a corrupt save).
 
-// Leaning players (the same presets as capture-names.mjs); PLAYER=a|b|c picks one (default a).
+// Leaning players; PLAYER=a|b|c picks one (default a).
 export const PLAYERS = {
   a: { R1: 1, R2: -0.6, R3: -0.4, L1: 0.9, L2: -0.5, L3: 0.9 },
   b: { R1: -0.9, R2: 0.8, R3: 0.5, L1: -0.8, L2: 0.7, L3: -0.6 },

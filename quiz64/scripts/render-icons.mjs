@@ -18,7 +18,8 @@ import { star } from "../src/art/shapes.js";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const pub = path.join(root, "public");
-const refs = path.join(root, "docs/design-refs/art-sheet");
+// Favicon previews and the OG page scratch go to an ignored folder.
+const refs = path.join(root, "qa/icon-previews");
 // svgo 4: preset-default no longer removes the viewBox, so the preset alone keeps it.
 const svgoConfig = { multipass: true, plugins: ["preset-default"] };
 

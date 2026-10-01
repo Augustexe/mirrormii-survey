@@ -7,7 +7,7 @@
 //   STILL=1 node qa/capture-genii.mjs http://127.0.0.1:5201/ public/assets/island/genii-still.png
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || "playwright");
 const BASE = process.argv[2] || "http://127.0.0.1:5181/";
-const OUT = process.argv[3] || "docs/GENII-EVOLUTION.png";
+const OUT = process.argv[3] || "qa/genii-sheet/sheet.png";
 const QUERY = process.argv[4] || "size=l";
 const WAIT = Number(process.env.WAIT || 2600);
 

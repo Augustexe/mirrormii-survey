@@ -24,8 +24,8 @@ export const SHARE_URL_LABEL = "mirrormii.ai";
 // insight, the calls and the app. Light and dark alternate so every tap changes the room.
 export const LOOKS = Object.freeze({ intro: "night", names: "night", read: "light", map: "night", knows: "deep", rooms: "light", insight: "deep", traits: "light", stings: "night", calls: "deep", share: "light", app: "deep" });
 
-// Interface strings for the result. Every label here passed the cold-reader gate (LAUNCH-SPEC 26, docs/NAMING-RULES.md,
-// docs/NAMING-PANEL.json): a stranger gets it at a glance, nothing is a metaphor to decode, nothing labels a belief.
+// Interface strings for the result. Every label here passed the cold-reader gate (LAUNCH-SPEC section 6,
+// docs/NAMING-RULES.md): a stranger gets it at a glance, nothing is a metaphor to decode, nothing labels a belief.
 // Labels are the same in both voices; only full sentences change with the voice.
 export const UI_COPY = Object.freeze({
   hold: "Tap to continue",

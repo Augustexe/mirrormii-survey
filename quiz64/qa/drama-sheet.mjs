@@ -2,7 +2,7 @@
 // (story 4) and the article's stat block (opened from the screen's "See all six in the long version" link), plus the
 // article cover after the cuts in both voices. Needs the dev server.
 //   PLAYWRIGHT_MODULE=/path/to/playwright/index.mjs node qa/drama-sheet.mjs [baseUrl] [out.png] [shotDir]
-// Default out: docs/DRAMA-STATS.png. Shots land in shotDir (default qa/drama-sheet/, ignored).
+// Default out: qa/drama-sheet/sheet.png. Shots land in shotDir (default qa/drama-sheet/). Both ignored.
 import fs from "node:fs";
 import path from "node:path";
 // Simulated players (tests/persona-sim.mjs, the calibration sim's player model) chosen for variety: different top
@@ -20,7 +20,7 @@ async function seedResult(page, { voice = "fun", player = "sheet1", id = "dramas
 const { chromium } = await import(process.env.PLAYWRIGHT_MODULE || "playwright");
 
 const BASE = process.argv[2] || "http://127.0.0.1:5261/";
-const OUT = path.resolve(process.argv[3] || "docs/DRAMA-STATS.png");
+const OUT = path.resolve(process.argv[3] || "qa/drama-sheet/sheet.png");
 const DIR = path.resolve(process.argv[4] || "qa/drama-sheet");
 const PLAYERS = (process.env.PLAYERS || "sheet1,sheet5,sheet6,sheet12").split(",");
 const VOICES = ["fun", "heart"];

@@ -6,7 +6,7 @@
 // the character sheet, its saved image, what Genii knows best, the rooms, Genii's calls, the article, the share card)
 // reads its labels from here. The same labels serve both voices.
 //
-// Every label passed the cold-reader gate (docs/NAMING-PANEL.json: clear 4.5 or more, hurt 2 or less, share 3.5 or
+// Every label passed the cold-reader gate (docs/NAMING-RULES.md: clear 4.5 or more, hurt 2 or less, share 3.5 or
 // more): everyday words, no metaphor to decode, behavior never beliefs, both ends flattering. Ends are subjectless
 // verb phrases ("Says it straight"), so they read the same on a chip, a card or a sheet.
 //

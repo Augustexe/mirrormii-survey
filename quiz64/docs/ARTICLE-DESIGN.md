@@ -1,13 +1,13 @@
 ---
 title: The Evidence Article (design direction and three concepts)
-status: V2 pass 2026-09-30 (spot art and an editorial grid, one title, part one in Stories order, part two new: heist crew, flags, Genii's bets, island seed; sheet ARTICLE-V2.png, LAUNCH-SPEC section 3 has the current structure); built 2026-09-29 (round 4, C with A type) in quiz64/src/persona/article; copy in library.json article and crossover; tests in quiz64/tests/article-accuracy.test.mjs and tests/visual/article-scroll.mjs; jury in ARTICLE-JUDGE.json, sheet ARTICLE-FINAL.png. Sections below are the design record; the stat and archetype labels in their examples (Orbit, Home Base, Wanderlust) are retired by LAUNCH-SPEC section 26
+status: V2 pass 2026-09-30 (spot art and an editorial grid, one title, part one in Stories order, part two new: heist crew, flags, Genii's bets, island seed; LAUNCH-SPEC section 3 has the current structure); built 2026-09-29 (round 4, C with A type) in quiz64/src/persona/article; copy in library.json article and crossover; tests in quiz64/tests/article-accuracy.test.mjs and tests/visual/article-scroll.mjs; contact sheet from qa/article-sheet.mjs. Sections below are the design record; the stat and archetype labels in their examples (Orbit, Home Base, Wanderlust) are retired by LAUNCH-SPEC section 6
 owner: jerry
 created: 2026-09-29
-source_basis: Jerry's brief 2026-09-29 (story first, then a larger article page; award level; not robotic); LAUNCH-SPEC.md sections 13, 21, 23, 24; DESIGN-DIRECTION.md sections 1, 3, 4; REVEAL-R3-CONTENT.png and REVEAL-R3-VISUAL.png; src/persona/stories/story-data.js, stats.js, views.js; research/persona-quiz-v2/final/library.json; research/result-page-wireframes (gazette, stories, stars, WRAPPED-RESEARCH.md); Awwwards evaluation pages and scorecards (section 1); Codex jury 2026-09-29 (section 8)
-prototypes: research/result-page-wireframes/article/ (index.html, concept-a.html, concept-b.html, concept-c.html, data.json, CONCEPTS.png)
+source_basis: Jerry's brief 2026-09-29 (story first, then a larger article page; award level; not robotic); LAUNCH-SPEC.md; DESIGN-DIRECTION.md sections 1, 3, 4; src/persona/stories/story-data.js, stats.js, views.js; research/persona-quiz-v2/final/library.json; result page wireframes (removed, in git history); Awwwards evaluation pages and scorecards (section 1); Codex jury 2026-09-29 (section 8)
+prototypes: removed after the build (concepts A, B and C, the demo data and the jury output are in git history)
 ---
 
-> **Design record (built).** The locked spec [LAUNCH-SPEC.md](../../docs/LAUNCH-SPEC.md) wins (sections 3 and 7); current labels are in its section 6, so the stat and archetype labels in the examples below are retired. Section numbers cited below refer to the pre-lock spec, now [history](../../docs/history/LAUNCH-SPEC-2026-09-29-full.md).
+> **Design record (built).** The locked spec [LAUNCH-SPEC.md](../../docs/LAUNCH-SPEC.md) wins (sections 3 and 7); current labels are in its section 6, so the stat and archetype labels in the examples below are retired. Section numbers cited below refer to the pre-lock spec (in git history), not the current one.
 
 > **V2 pass (2026-09-30).** The current structure is in LAUNCH-SPEC section 3. What changed: the big hero and night photos are gone; every section is a spread with one piece of spot art on the left rail (beside the heading on a phone) from `public/assets/article/` (ARTICLE-ART-SET.md, read through `src/persona/article/art.js` from its MANIFEST.json); the cover is a quiet sky band and one title with its story line; part one walks the Stories beats in the deck's order; part two adds two sides, the heist crew (one casting strip, your seat lit), green flag and red flag (pennants), Genii's bets (three slips), your people and the island seed packet with Get MirrorMii. Sections 3 to 11 below are the round 4 record.
 
@@ -15,7 +15,7 @@ prototypes: research/result-page-wireframes/article/ (index.html, concept-a.html
 
 **What this is.** The Stories deck stays the reveal. When the player reaches its end, the result opens into a long-read page, the Evidence Article, where they review everything at their own pace and find more than the story showed. This file sets the bar (section 1), the references (section 2), what the article says and where each line comes from (sections 3 to 5), how it talks (section 6), three visual concepts built as clickable prototypes (section 7), their scores (section 8), the recommendation (section 9), the build plan (section 10) and what Jerry decides (section 12).
 
-**Look at it first.** `python3 -m http.server 8793 --directory research/result-page-wireframes`, then http://localhost:8793/article/ (index), `concept-a.html`, `concept-b.html`, `concept-c.html`; add `?voice=heart` for Heart to heart. The server root is `research/result-page-wireframes`, which cannot reach `quiz64/public`, so the prototypes use copies of the world assets in `article/assets/` (about 230 KB). Contact sheet: `research/result-page-wireframes/article/CONCEPTS.png`.
+**Look at it first.** Run the app (`npm run dev --prefix quiz64`), finish a run and tap "Read the long version", or capture it with `qa/article-capture.mjs` and `qa/article-sheet.mjs` (quiz64/README.md, Browser QA). The clickable concept prototypes this page scored were removed after the build; they are in git history.
 
 **Recommendation in one line.** Build A's editorial look on C's review structure, with one signature from B (the sky moving from night to morning). Section 9 has goods and bads.
 
@@ -206,7 +206,7 @@ Codex's top fixes, and what was done (one round):
 | C | Obvious tab overflow | Fade edge on the tab bar |
 | C | Distinct final conversion | A primary "Challenge a friend" button above the play panel |
 
-Raw jury output: `research/result-page-wireframes/article/CODEX-JURY.json`.
+Raw jury output: in git history (removed with the prototypes).
 
 ## 9. Recommendation: A's skin on C's bones, with B's sky
 
@@ -289,7 +289,7 @@ Frames only; none makes a claim by itself.
 | Crew x Full Send | clash | You want everyone at the table, and you also want the win. Some weeks the group chat loses to the goal, and you feel it. | You want your people close, and you want to get somewhere. Some weeks one of them has to wait, and you feel it either way. |
 | Gentle x Read the Room | team | You read the room and you say things kindly. People walk out of hard conversations with you feeling better than they walked in. | You notice what people need and you speak with care. Hard conversations with you tend to end softer than they started. |
 
-**The demo player** (`data.json`, built by `article/build-data.mjs`): a consistent leaner (warm, gentle, own lane; pushes hard, reads the room, mild on Compass) plays the real step machine with every room open; Golden Retriever and The Slow Burner, six core traits (Trailblazer, Perceptive, Dependable, Tactful, Competitive, Loyal), signature Code (Read the Room), wild card Compass (Home Base), 7 of 8 calls exact, the room flip at play. Rebuild with `node research/result-page-wireframes/article/build-data.mjs`.
+**The demo player** (`data.json`, built by `article/build-data.mjs`): a consistent leaner (warm, gentle, own lane; pushes hard, reads the room, mild on Compass) plays the real step machine with every room open; Golden Retriever and The Slow Burner, six core traits (Trailblazer, Perceptive, Dependable, Tactful, Competitive, Loyal), signature Code (Read the Room), wild card Compass (Home Base), 7 of 8 calls exact, the room flip at play. (Prototype data, removed with the prototypes.)
 
 ## 12. Open decisions for Jerry
 
