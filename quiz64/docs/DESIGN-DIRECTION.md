@@ -3,7 +3,7 @@ title: MirrorMii launch survey, design direction ("Mirror, Mirror")
 status: proposed 2026-09-29, for Jerry; implementation packages A to D build from this file
 owner: jerry
 created: 2026-09-17 (first version, Genii conversation design)
-updated: 2026-09-29 (full rewrite for the launch visual pass)
+updated: 2026-09-30 (one font: Satoshi, section 4.1); 2026-09-29 (full rewrite for the launch visual pass)
 source_basis: 76 screenshots of the current build (scratchpad screens-before, phone 390x844 and desktop 1440x900); products/survey/docs/LAUNCH-SPEC.md sections 1, 4 to 6, 13, 21, 22; research/result-page-wireframes/WRAPPED-RESEARCH.md and stories.html; company/marketing/docs/10-product-specs/PRODUCT-TRUTH.md; quiz64/src (PersonaApp.jsx, persona/*, persona/stories/*, 13 CSS files); card bank research/persona-quiz-v2/final/bank (world and fp.device fields, 12 emotions); founder brief 2026-09-29
 supersedes: the 2026-09-17 version of this file (dossier build; kept in git at commit 8eff355). Its still-valid rules (reduced motion and transparency, dialog focus, 320 px support) are folded into section 4.
 ---
@@ -184,35 +184,34 @@ All tokens live in one new file, `src/system/tokens.css`, as CSS custom properti
 
 ### 4.1 Type
 
-**Display: Fraunces** (variable; axes wght, opsz, SOFT, WONK). A soft, warm "old style" serif with an optical-size axis: at SOFT 100 its terminals round off, which gives the storybook, cozy-game warmth Jerry's liked draft (stories.html used Fraunces) already had, and its italic gives Genii a voice. Install `@fontsource-variable/fraunces` and import the full-axes file for Latin only.
-**Text: Figtree** (variable; wght 300 to 900). A friendly geometric sans with open apertures and very good small-size legibility on phones; warmer than Manrope, less corporate than Inter. Install `@fontsource-variable/figtree`.
-**No monospace anywhere player-facing.** Counts use Figtree with `font-variant-numeric: tabular-nums`.
-**Wordmark**: `public/assets/mirrormii-wordmark.svg` unchanged; never set "MirrorMii" in Fraunces as a logo.
+**One font: Satoshi (2026-09-30, Jerry: "Select one super clean looking font and stick with it. Nothing AI.").** Satoshi (Indian Type Foundry, variable, weights 300 to 900, ITF Free Font License; `src/system/fonts/satoshi-variable.woff2`, license in `public/fonts/`) sets every word: headings, body, buttons, stat numbers, names, cards, Stories, lobby, friend game, edge screens, the Evidence Article and the canvas share images. Why: a clean geometric sans, the closest free match to the brand's marketing face (Avenir, licensed); Fraunces read squiggly at every size. One token: `--font` in `tokens.css` (`"Satoshi", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif`), `fonts.family` in `tokens.js`. This replaces every Fraunces, Figtree and Manrope mention later in this file (per-screen specs included): read "Fraunces" as Satoshi 700 to 800 and "Fraunces italic" as Satoshi upright 500.
+**Hierarchy from weight, size and tracking only:** headings and names 700 to 800 with -0.01em to -0.025em tracking; big stat numbers 900 with `font-variant-numeric: tabular-nums`; body 400 to 500 at about 1.5 line height; kickers 600 uppercase at +0.06em.
+**No italic anywhere.** No italic face is loaded, `font-synthesis: none` on the body, `em, i, cite, q` are set upright, and there are no variation axes (`font-variation-settings`, SOFT, WONK, opsz are gone). Guarded by `tests/system-style.test.mjs` (source and built CSS) and `tests/article-accuracy.test.mjs`.
+**No monospace anywhere player-facing.** Counts use Satoshi with `font-variant-numeric: tabular-nums`.
+**Wordmark**: `public/assets/mirrormii-wordmark.svg` unchanged; never set "MirrorMii" in type as a logo.
 
-Retire: Satoshi (`public/fonts/Satoshi-Variable.woff2`, launch.css @font-face) and `@fontsource/manrope` after package C switches share-image.js. Considered and rejected for display: Bricolage Grotesque (too editorial-tech), Young Serif (single weight, no italic), Gloock (too high-contrast at small sizes).
+Retired 2026-09-30: Fraunces, Figtree, `@fontsource/manrope` and the Fontaine fallback plugin (packages uninstalled; subset files and `build-fonts.sh` deleted).
 
-Loading: preload the Figtree woff2 (text renders first); Fraunces with `font-display: swap` and a metric-matched fallback so nothing jumps (`@font-face { font-family: "Fraunces Fallback"; src: local("Georgia"); size-adjust / ascent-override computed with the Fontaine Vite plugin }`). Budget: both Latin subsets together at or under 220 KB woff2; if Fraunces full axes exceeds 150 KB, subset with pyftsubset to Latin plus typographic punctuation.
-
-Fraunces settings: upright `font-variation-settings: "SOFT" 100, "WONK" 0`; italic (Genii) `"SOFT" 100, "WONK" 1`; `font-optical-sizing: auto`.
+Loading: one `@font-face` (`font-display: swap`, weight 300 900) in `src/system/fonts.css`; `index.html` preloads the file (42 KB, budget 220 KB). The share images call `document.fonts.load` for Satoshi 500 to 900 before drawing (1.5 s cap, then the system fallback).
 
 | Token | Face | Phone size/line | Desktop size/line | Weight | Tracking | Use |
 |---|---|---|---|---|---|---|
-| `--type-hero` | Fraunces | 44/46 | 80/80 | 600 | -0.025em | Landing H1, archetype names on reveal |
-| `--type-display` | Fraunces | 36/40 | 60/62 | 600 | -0.02em | Chapter titles, lock headline, story titles |
-| `--type-prompt-s` | Fraunces | 30/34 | 40/46 | 560 | -0.015em | Card prompt up to 70 characters |
-| `--type-prompt-m` | Fraunces | 26/30 | 34/40 | 560 | -0.01em | Card prompt 71 to 120 characters |
-| `--type-prompt-l` | Fraunces | 22/27 | 28/34 | 540 | -0.005em | Card prompt 121 to 170 characters (over 170: flagged to the bank checker) |
-| `--type-title` | Fraunces | 22/28 | 26/32 | 580 | -0.01em | Trait names, share-card names at small size, sheet titles |
-| `--type-genii` | Fraunces italic | 15/20 | 17/24 | 420 | 0 | Every Genii line |
-| `--type-quote` | Fraunces italic | 24/31 | 30/38 | 460 | -0.01em | Stings and the second half of the insight (chat bubbles use `--type-answer`) |
-| `--type-body-l` | Figtree | 18/27 | 20/30 | 450 | 0 | Landing promise, story body |
-| `--type-answer` | Figtree | 16/21 | 17/23 | 500 | 0 | Answer tiles, chips, bubbles |
-| `--type-body` | Figtree | 16/24 | 16/24 | 400 | 0 | Notes, sheets |
-| `--type-small` | Figtree | 14/20 | 14/20 | 500 | 0.005em | Exits, meta, captions |
-| `--type-kicker` | Figtree | 12/16 | 13/16 | 700 | 0.12em, uppercase | Kickers, pane labels |
-| `--type-micro` | Figtree | 11/14 | 11/14 | 600 | 0.04em | Share-card fine print, rail labels |
+| `--type-hero` | Satoshi | 44/46 | 80/80 | 800 | -0.025em | Landing H1, archetype names on reveal |
+| `--type-display` | Satoshi | 36/40 | 60/62 | 800 | -0.02em | Chapter titles, lock headline, story titles |
+| `--type-prompt-s` | Satoshi | 30/34 | 40/46 | 700 | -0.02em | Card prompt up to 70 characters |
+| `--type-prompt-m` | Satoshi | 26/30 | 34/40 | 700 | -0.015em | Card prompt 71 to 120 characters |
+| `--type-prompt-l` | Satoshi | 22/27 | 28/34 | 700 | -0.01em | Card prompt 121 to 170 characters (over 170: flagged to the bank checker) |
+| `--type-title` | Satoshi | 22/28 | 26/32 | 700 | -0.015em | Trait names, share-card names at small size, sheet titles |
+| `--type-genii` | Satoshi | 15/20 | 17/24 | 500 | 0 | Every Genii line |
+| `--type-quote` | Satoshi | 24/31 | 30/38 | 600 | -0.01em | Stings and the second half of the insight (chat bubbles use `--type-answer`) |
+| `--type-body-l` | Satoshi | 18/27 | 20/30 | 450 | 0 | Landing promise, story body |
+| `--type-answer` | Satoshi | 16/21 | 17/23 | 500 | 0 | Answer tiles, chips, bubbles |
+| `--type-body` | Satoshi | 16/24 | 16/24 | 400 | 0 | Notes, sheets |
+| `--type-small` | Satoshi | 14/20 | 14/20 | 500 | 0.005em | Exits, meta, captions |
+| `--type-kicker` | Satoshi | 12/16 | 13/16 | 600 | 0.06em, uppercase | Kickers, pane labels |
+| `--type-micro` | Satoshi | 11/14 | 11/14 | 600 | 0.04em | Share-card fine print, rail labels |
 
-Line lengths: body 30 to 42 characters per line on phone (natural at 358 px), max 64 characters on desktop (`max-width: 34em` for body, `18em` for prompts, `14em` for hero). Headlines use `text-wrap: balance`; body uses `text-wrap: pretty`. Never justify. Never set more than 3 lines of Fraunces italic in a row outside stories.
+Line lengths: body 30 to 42 characters per line on phone (natural at 358 px), max 64 characters on desktop (`max-width: 34em` for body, `18em` for prompts, `14em` for hero). Headlines use `text-wrap: balance`; body uses `text-wrap: pretty`. Never justify. Never set more than 3 lines of Genii's voice in a row outside stories.
 
 ### 4.2 Color
 

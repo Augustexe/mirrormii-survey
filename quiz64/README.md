@@ -63,8 +63,8 @@ with the app's own session module). Set `PLAYWRIGHT_MODULE=/path/to/playwright/i
 
 ```
 quiz64/
-  index.html            entry; preloads the landing's world image and the text font
-  vite.config.js        React, font fallbacks (fontaine), the kit strip plugin; dev server may read ../research/.../final
+  index.html            entry; preloads the landing's world image and the one font (Satoshi)
+  vite.config.js        React, the kit strip plugin; dev server may read ../research/.../final
   kit-strip.mjs         build-time plugin: drops authoring fields (masks, fingerprints, notes) from the kit JSON
   src/
     main.jsx, Boot.jsx  first paint: the landing from a tiny chunk, then PersonaApp loads lazily
@@ -168,8 +168,8 @@ older dossier build (`../docs/STATE.md`).
 - No real-person validation yet (blind test 2 open, LAUNCH-SPEC section 10).
 - Two chunks are over 500 kB minified: `PersonaApp` (the kit JSON and app, about 212 kB gzip, 2026-09-30) and `scene` (three.js
   for Genii, lazy, about 146 kB gzip). The landing paints from the small `main` chunk first.
-- `public/fonts/Satoshi-Variable.woff2` and its license files are unused leftovers (Satoshi is aliased to Figtree and
-  never fetched); left in place pending a decision.
+- Resolved 2026-09-30: Satoshi is the one font (`src/system/fonts/satoshi-variable.woff2`, license in `public/fonts/`), upright only; see
+  `docs/DESIGN-DIRECTION.md` 4.1 and LAUNCH-SPEC section 7.
 - `src/system/tokens.js` `choreography`, `.mm-btn--glass`, `.mm-btn--block` and `.mm-genii-line` are design-system
   entries the current screens do not use; kept as part of the system.
 - `library.json` axis `topic` strings still echo internal pole words; the reveal reads stat names from `stats.js`.
