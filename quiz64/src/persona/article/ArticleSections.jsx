@@ -549,7 +549,7 @@ export function Seed({ A }) {
   if (!s && !app) return null;
   const placeholder = app && String(app.link || "").startsWith("#");
   return (
-    <Section id="seed" className="ea-seed" art="seed" title={s ? s.title : app.title} intro={s ? s.intro : app.body}>
+    <Section id="seed" className="ea-seed" art={null} title={s ? s.title : app.title} intro={s ? s.intro : app.body}>
       {s ? (
         <div className="ea-packet" data-reveal="">
           <p className="ea-packet__soon">{s.soon}</p>
