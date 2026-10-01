@@ -7,7 +7,8 @@
 
 A phone-first web game hosted by Genii (a glass slime, never a genie or a lamp). The player taps through 40 quick
 cards in seven chapters (13 card formats, two voices: "Make it fun" and "Heart to heart"), Genii locks 8 guesses, the
-player plays those 8 sealed cards, then gets a 12-screen Stories reveal: two archetype names, a game character sheet
+player plays those 8 sealed cards, then gets a 12-screen Stories reveal: one title (the people archetype) with one
+story line that merges both halves, a game character sheet
 (six stats with pips and a level word, no percentages), what Genii knows best, room by room, the core traits (5 to 6),
 the stings, Genii's calls, a share image and the get-the-app screen. Genii itself evolves from an orb to the full slime
 as cards are answered. The friend game ("How well do you know me?") runs on links.
@@ -48,6 +49,7 @@ with the app's own session module). Set `PLAYWRIGHT_MODULE=/path/to/playwright/i
 | `qa/capture-screens.mjs [base] [outDir]` | Screenshot matrix: every screen, card format and reveal screen in both voices at 390x844, 375x667 and 1440x900 (`SIZES`, `ONLY`, `PLAYER` env) |
 | `qa/layout-guard.mjs [base] [outDir]` (`npm run qa:layout -- [base]`) | Layout guard: walks landing, setup, lobby, interlude, a card of each format, lock, finale, every Stories screen (scrolled in steps) and the whole Evidence Article (scrolled in steps, section menu, every tab) at 375x667, 390x844 and 1440x900 in both voices. Fails on text over text, icons or controls; text showing through a fixed or sticky bar without a solid backing; text clipped by overflow, ellipsis or line clamp; text or controls off the left or right edge; labels squeezed into round pills; controls a sticky bar covers once focused. Writes `report.json` and a marked screenshot per failing step to outDir (default `qa/layout-report/`, ignored); exit 1 on any failure or error. A format no run can reach (feeling cards while `SERVE_FEELING` is off; rank, served only for coverage) is a printed note, not an error; `tests/visual/fold.mjs` still renders every card of both. Justified exceptions live in its `EXCEPTIONS` list (none today). Env: `SIZES`, `VOICES`, `ONLY`, `PLAYER=a\|b\|c`. Run it after any CSS or layout change |
 | `qa/capture-layout-fixes.mjs before\|after\|sheet [base] [outDir]` | Before and after of the package L2 layout bugs; `sheet` writes `docs/LAYOUT-FIXES.png` |
+| `qa/capture-names-screen.mjs before\|after\|sheet [base] [outDir]` | Story 2 (one title, one line) for four players in both voices at all three sizes, plus the share card in both shapes; `sheet` writes `docs/NAMES-SCREEN-FINAL.png` |
 | `qa/qa-checks.mjs [base] [outDir]` | axe (WCAG 2 AA) on every screen, fonts, never-say copy (and the retired "your person"), overflow at 390 px and 200% zoom, share PNGs, friend link flow, landing LCP and CLS. Default outDir `qa/qa-report/` (ignored); unreachable formats are notes, as in the layout guard |
 | `qa/play-through.mjs [base] [fun\|heart\|cards] [outDir]` | One full run through the real UI (40 + lock + 8 + 12 reveal screens), mouse or `KEYS=1` keyboard only |
 | `tests/visual/fold.mjs` | Every card of the bank in the real card screen: all options and exits above the fold at 390x844 |
@@ -75,6 +77,7 @@ quiz64/
     persona/
       session.js        run state machine: setup, lobby, picker, answers, lock (sha256), finale, result, save and restore
       kit.js            binds cards.json, library.json, friend.json and the shared scorer
+      combo-lines.js    the one story line per archetype pair (names-64.json; kit-strip.mjs ships only the lines)
       stats.js          the one source for scale labels: half kickers, the six stats and their ends, retired labels (LAUNCH-SPEC section 6)
       lobby.js          lobby ids and copy, host lines per voice
       reactions.js      Genii's between-card reactions
@@ -105,6 +108,7 @@ research/persona-quiz-v2/final/bank/*.json   card bank, authored per chapter (pl
 research/persona-quiz-v2/final/cards.json    the merged bank: 136 chapter cards, 12 extras, 24 sealed (172)
 research/persona-quiz-v2/final/library.json  result copy: archetype names, tag names, lines, stings, hearts (both voices)
 research/persona-quiz-v2/final/friend.json   friend game levels, relationships, privacy switches, invites
+research/persona-quiz-v2/final/naming/names-64.json   the story line under the title, per people x day-to-day pair (src/persona/combo-lines.js)
 research/persona-quiz-v2/final/score-core.mjs  the one deterministic scorer (shared by the web app, CLI, sim and tests)
         | imported by src/persona/kit.js
         | kit-strip.mjs (Vite plugin) removes mask, fp, triggers, notes; keeps heart text, a scene title and the device
@@ -180,6 +184,7 @@ older dossier build (`../docs/STATE.md`).
 | [docs/PERSONA-MVP.md](docs/PERSONA-MVP.md) | engine notes: picker, storage, friend links (older sections are marked) |
 | [docs/QA-REPORT.md](docs/QA-REPORT.md), `docs/VISUAL-JUDGE-CODEX-R*.json` | QA and independent visual judge rounds |
 | `docs/ROUND3-SHEET.png` | the full phone flow at 390x844 as of round 3 |
+| `docs/NAMES-SCREEN-FINAL.png` | decision 1a: story 2 and the share card before and after (one title, one story line from `names-64.json`) |
 | `docs/LAYOUT-FIXES.png` | package L2: before and after of the article bar, the stat screen header and the share actions |
 | [../research/persona-quiz-v2/final/README.md](../research/persona-quiz-v2/final/README.md) | the content kit |
 
