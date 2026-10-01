@@ -85,8 +85,8 @@ One list, final wording. Dates are 2026.
 
 **Names**
 32. Plain-names gate: every player-facing label passes the cold-reader gate in [NAMING-RULES.md](NAMING-RULES.md) before it ships (09-29).
-33. Two classic, widely known archetypes, one per half, shown side by side; never glued into one phrase, never "X with Y energy" (09-28).
-34. Every title card shows kicker, name and one plain defining line under the name (09-29).
+33. One title, one line (Jerry, 09-30, decision 1a; replaces the side-by-side pair of 09-28): the people archetype is the single title and one story line under it merges both sides (`research/persona-quiz-v2/final/naming/names-64.json`, line per pair, both voices; its merged adjective names are rejected and never shown). The day-to-day archetype appears as a quiet labeled row, never as a second title. Never glued into one phrase, never "X with Y energy".
+34. Inside the mirror only the title and its story line; labels, traits and the day-to-day name sit outside below it (09-30).
 35. Labels describe behavior, never beliefs or identity, and both ends of every scale are flattering and shareable (09-29).
 
 ## 3. Flow
@@ -122,7 +122,7 @@ flowchart LR
 | # | Screen | Shows |
 |---|---|---|
 | 1 | Intro | "40 answers in." The shards assemble the World Mirror |
-| 2 | Names | The two archetypes in the mirror, each as a title card (section 6) |
+| 2 | Names | One title (the people archetype) and one story line inside the mirror; day to day and core traits as quiet rows below (ruling 33) |
 | 3 | The short version | The read: one confident line per half |
 | 4 | Your personality stats | The character sheet: six stats, 5 pips and a level word each, strongest and closest-to-middle marks |
 | 5 | What Genii is surest about | 5 to 6 findings, clearest first |
@@ -299,7 +299,7 @@ Jerry approved the eight people names (09-28); they are exempt from the gate.
 
 **Traits and keywords.** 5 to 6 core traits per player, one or two plain words each, evidence-backed from the top tags and the strongest stat ends. Tag names are plain phrases of 4 words or fewer that a stranger gets at once, each with one confident line. Keywords follow the same rules: everyday words, behavior not beliefs (for example "Keeps traditions alive", not a political label), both sides of a pair flattering. The full current lists are `library.json` `tags[].name` and the keyword fields; 48 of 50 tag names and 39 keywords were replaced on 09-29 (history file, section 26).
 
-**What the result never shows.** Quoted answers, ids, percentages or scores (except the calls count), the words in ruling 10, science or accuracy claims. The share image shows the two title cards, the core traits with their lines, the invite and the address label; never stings, marriage or kids tags, answers or numbers.
+**What the result never shows.** Quoted answers, ids, percentages or scores (except the calls count), the words in ruling 10, science or accuracy claims. The share image shows the one title and its story line, the core traits with their lines, the invite and the address label; never stings, marriage or kids tags, answers or numbers.
 
 **The gate.** `node scripts/naming-inventory.mjs` lists every label with where it sits. A Codex panel of six cold readers aged 20 to 35 (a progressive activist, a religious conservative, an ESL speaker, a Gen Z TikTok user, a nurse, an engineer) scores clear, hurt and share 1 to 5. Pass: clear 4.5 or more, hurt 2 or less, share 3.5 or more (share only for labels about the player); final labels are scored by 18 readers. Now: 193 of 278 final labels pass (69%), scores in [NAMING-PANEL.json](NAMING-PANEL.json). The residuals are mostly the exempt people names, Traditions and Rules sitting just over the hurt line (every alternative tested scored the same or worse), sensitive topics (kids, weddings, AI, phone privacy) and short UI chrome that needs its screen. `quiz64/tests/naming-retired.test.mjs` fails if any label in `RETIRED_LABELS` renders anywhere or a title card lacks its kicker or line.
 
