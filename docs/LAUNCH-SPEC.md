@@ -36,7 +36,8 @@ A phone-first web game hosted by Genii, MirrorMii's glass slime. The player taps
 | The one scorer (app, CLI, sims, tests) | `research/persona-quiz-v2/final/score-core.mjs` (`CONFIG`), grades in `card-schema.mjs` |
 | Evidence lock | `research/persona-quiz-v2/final/evidence-lock.json`, `lock-evidence.mjs` |
 | Web game | `quiz64/` (entry `src/PersonaApp.jsx`, run state and picker `src/persona/session.js`) |
-| Scale labels (kickers, stats, retired labels) | `quiz64/src/persona/stats.js` |
+| Scale labels (kickers, axis stat ends, retired labels) | `quiz64/src/persona/stats.js` |
+| Drama stats (the six numbers players see: formulas, calibration, top four, dump stat) | `quiz64/src/persona/rpg-stats.js`, calibrated by `quiz64/scripts/calibrate-drama.mjs`; copy in `library.json` `drama` |
 | Backend contracts and question pack | `docs/contracts/`, `docs/question-pack/` |
 | Card writing rules for agents | `skills/shared/genii-card-writer/SKILL.md` (workspace root; follows this file) |
 
@@ -55,7 +56,7 @@ One list, final wording. Dates are 2026.
 6. Result voice is smooth and natural, like a perceptive friend saying it warmly. Spicy in content, never in snark (09-28).
 7. No gotcha lines ("You'd say X. Last three times, you did Y.") and no sitcom or announcer lines ("Genii called this before you answered") (09-28).
 8. Never quote the player's answers on the result, and show no data list. The read is written as fact, never as a science or accuracy claim (09-28).
-9. No percentages on any player surface. The one number allowed is Genii's calls count ("5 guessed right") (09-29).
+9. No percentages on any player surface. The only numbers allowed are Genii's calls count ("5 guessed right") (09-29) and the drama stat scores, whole numbers from 1 to 20 (09-30).
 10. Never-say list: PRODUCT-TRUTH section 8 (diagnose, treat, cure, prevent, clinically proven, anti-aging; streaks or absence guilt; "predicts"; DNA or genomics; wearable sync; competitor names; fabricated counts, ratings or reviews; "free forever"; 2.0 features described as live). Player screens also never show "evidence", "axis", "sealed", "run id", "hash", genie or lamp. The app screen promises only what the app does today (09-28).
 11. No em dashes anywhere: copy, code comments and docs (standing).
 12. Sally's v2 system (`research/sally-v2-2026-09-26`) is a template for structure and humor, never a translation source. English names and tags are written natively (09-28).
@@ -124,7 +125,7 @@ flowchart LR
 | 1 | Intro | "40 answers in." The shards assemble the World Mirror |
 | 2 | Names | One title (the people archetype) and one story line inside the mirror; day to day and core traits as quiet rows below (ruling 33) |
 | 3 | The short version | The read: one confident line per half |
-| 4 | Your personality stats | The character sheet: six stats, 5 pips and a level word each, strongest and closest-to-middle marks |
+| 4 | Your stats | The drama stats (section 6): four stat blocks, each its abbreviation and score in an oval (for example LOY 18), its name and one short line: the three highest, plus the most surprising stat (furthest from the population median for its spread) when it is not already among them, otherwise the fourth highest. Nothing else but the link "See all six in the long version", which opens the article at its stat block |
 | 5 | What Genii is surest about | 5 to 6 findings, clearest first |
 | 6 | In different parts of life | Room by room lines, and where a room leans the other way (needs 2 or more rooms) |
 | 7 | A surprise about you | One warm insight from a believe-versus-did split, else the half's fallback line |
@@ -136,7 +137,7 @@ flowchart LR
 
 Share-worthy screens: 2, 8 and 11. Every displayed line traces to the player's own score (`quiz64/tests/reveal-accuracy.test.mjs`, `article-accuracy.test.mjs`).
 
-**Evidence Article** ([quiz64/docs/ARTICLE-DESIGN.md](../quiz64/docs/ARTICLE-DESIGN.md), V2 pass 2026-09-30): an editorial grid around spot art (one small opal-glass object per section, `quiz64/public/assets/article/`, [ARTICLE-ART-SET.md](../quiz64/docs/ARTICLE-ART-SET.md)); the cover's sky band is the only full-width image, no banner photos. Cover: one title (the people archetype) with its story line from `names-64.json`, the day-to-day half as a labeled row, the core traits. Then the short version. Part one walks the Stories beats in the deck's order, deeper: the character sheet, room by room and the room where you flip, the thing you didn't know, core traits and where each comes from, every strength has a flip side, Genii's calls. Part two is new: your two sides, your heist crew role (the strongest day-to-day stat end picks the Planner, the Getaway Driver, the Inside Person or the Distraction), green flag and red flag (from the top shareable traits, never AI, kids or wedding traits), Genii's bets (three, from the shareable core traits), your people (click with is your people half with its closest-to-middle stat flipped; your opposite), and your island seed (labeled "Coming in MirrorMii 2.0"), which leads into Get MirrorMii. About a six-minute read; every line from the player's evidence (`article-accuracy.test.mjs`); copy in `library.json` (`article`, tag `green`/`red`/`bet`, axis `plusGreen` to `minusBet`, half `seed`).
+**Evidence Article** ([quiz64/docs/ARTICLE-DESIGN.md](../quiz64/docs/ARTICLE-DESIGN.md), V2 pass 2026-09-30): an editorial grid around spot art (one small opal-glass object per section, `quiz64/public/assets/article/`, [ARTICLE-ART-SET.md](../quiz64/docs/ARTICLE-ART-SET.md)); the cover's sky band is the only full-width image, no banner photos. Cover: one title (the people archetype) with its one story line from `names-64.json` and the day-to-day half as a labeled row; nothing restated under it (the lede is merged into the cover). Part one walks the Stories beats in the deck's order, deeper: the stat block (all six drama stats, D&D style, with the top stat line and the dump stat line), room by room and the room where you flip, the thing you didn't know, core traits and where each comes from, Genii's calls. Part two is new: your heist crew role (the strongest day-to-day stat end picks the Planner, the Getaway Driver, the Inside Person or the Distraction), green flag and red flag (from the top shareable traits, never AI, kids or wedding traits), Genii's bets (three, from the shareable core traits), your people (click with is your people half with its closest-to-middle stat flipped; your opposite), and your island seed (labeled "Coming in MirrorMii 2.0"), which leads into Get MirrorMii. No section repeats another (cut 2026-09-30: the lede, the character sheet and its drawers, your two results side by side with its stat crossings, every strength has a flip side, the cover's trait chips, the repeated story line in your own party slot). Upright type only: no italic or script display anywhere in the deck, its images or the article. About a five-minute read; every line from the player's evidence (`article-accuracy.test.mjs`); copy in `library.json` (`article`, `drama`, tag `green`/`red`/`bet`, axis `plusGreen` to `minusBet`, half `seed`).
 
 **Friend game.** The owner picks a relationship (partner, crush, friend or coworker, bestie) and sends a link. Level 1: 6 either-or guesses, one per axis. Level 2: 12 of the owner's cards in third person. Level 3: 12 trait cards (the owner's, opposites, decoys). Level 4 (bestie, owner opt-in): which sting hits hardest. The owner sees "You, through {friend}'s eyes"; the friend sees only counts, then "Your turn". Links carry the answer key and are unsigned: fine for testing, a backend is needed before real players (section 9).
 
@@ -154,7 +155,7 @@ Every answer option carries its own evidence; the scorer only adds up what optio
 | `none` | Receipts only: "None of these", exclusive, scores nothing |
 | Exits | Skip, Not my life (real cards add No recent example). Never score |
 
-**Axes** (internal pole names never reach a player; the player sees the stats in section 6):
+**Axes** (internal: the pole names and the axis stat names never reach a player; the player sees the drama stats in section 6):
 
 | Axis | + pole | - pole | Meaning | Cards carrying it (pool of 141, `audit.mjs`, 2026-09-30) |
 |---|---|---|---|---|
@@ -244,7 +245,7 @@ Measured 2026-09-30 after BATCH-02 (`node quiz64/tests/sq-measure.mjs --n 100`, 
 
 ## 6. Result copy and names
 
-**Sources.** Kickers, stat names and ends: `quiz64/src/persona/stats.js` (`HALVES`, `STATS`, `RETIRED_LABELS`). Archetype names, defining lines (`define`), tag names and keywords: `library.json`. Result chrome: `STORY_COPY`, `UI_COPY`, `GUESS_COPY` in `stories/story-data.js`; article frames in `library.json` `article`. Nothing else spells a label out.
+**Sources.** Kickers, axis stat ends: `quiz64/src/persona/stats.js` (`HALVES`, `STATS`, `RETIRED_LABELS`). Drama stat names and formulas: `quiz64/src/persona/rpg-stats.js`; their lines: `library.json` `drama`. Archetype names, defining lines (`define`), tag names and keywords: `library.json`. Result chrome: `STORY_COPY`, `UI_COPY`, `GUESS_COPY` in `stories/story-data.js`; article frames in `library.json` `article`. Nothing else spells a label out.
 
 **Title card format.** Kicker (sentence case), then the name, then one plain defining line directly under it, on every screen that shows an archetype name: the names screen, the share image (story and post), the article cover and the party slots.
 
@@ -277,9 +278,24 @@ Jerry approved the eight people names (09-28); they are exempt from the gate.
 | The Explorer | Venture·Easy·Rules | Tries new things, with good judgment. |
 | The Spontaneous One | Venture·Easy·Context | Follows curiosity wherever it goes. |
 
-**Stats** (the character sheet; same labels in both voices):
+**Drama stats** (Jerry, 2026-09-30; they replace the character sheet on every player surface). Six display stats, D&D style, for a women-first 20 to 35 audience: group chat, drama, affectionate, never mean. Each is a whole number from 1 to 20, computed from the profile by `quiz64/src/persona/rpg-stats.js`; the six axes stay hidden as the scoring engine and nothing about cards, evidence, axes or the picker changed. Same names in both voices.
 
-| Axis | Stat | Left end (+ pole) | Right end (- pole) |
+| Stat | Name | Formula (weights; poles and tag ids from `library.json`) |
+|---|---|---|
+| CHA | Charm | R1 We, stays close (1.0); R2 Soft, says it gently (1.0); T04B Makes friends easily (1.0); T08A Believes in second chances (0.8) |
+| ROM | Romance | T09A Loves deeply, all in on us (1.5); T05B Puts feelings into words (1.0); T10A Talks problems through (0.5); never a kids or wedding tag |
+| LOY | Loyalty | R1 We (1.0); T18A First to help family (1.0); T05A Shows care through actions (0.8); T10A Talks problems through (0.8) |
+| PEACE | Peacemaker | R2 Soft (1.0); T08A Believes in second chances (1.0); T10B Knows when to move on (0.8); T25B Makes room for exceptions (0.8) |
+| TEA | Tea Radar | L3 Context, case by case (1.0); T02B Loves hearing from friends, notices who texts first (1.0); T08B Remembers the details (1.0); T24A Plans with lists (0.6) |
+| PETTY | Petty | R2 Direct, says it straight (1.0); T08B Remembers the details, keeps the receipts (1.0); T02B (0.8); T12A Splits the bill evenly (0.6) |
+
+How a score is made: each part gives a lean from -1 to 1 (an axis's normalized score toward the named pole; a tag's net support against its pair through tanh(net / 2.5)) and a confidence from the cards behind it; raw = the weighted sum of lean times confidence over the weights, so thin evidence pulls toward zero. The raw value maps through that stat's population percentiles (1st to 3, 5th to 6, 25th to 9, median to 12, 75th to 15, 95th to 18, 99th to 20; constants in `CALIBRATION`, measured on 1600 simulated players by `scripts/calibrate-drama.mjs`, 2026-09-30: every stat spreads 6 to 18 from the 5th to the 95th percentile, median 12). Below the confidence `CONF_FULL` (0.29, about the 10th percentile) the score is pulled toward 12, so an unfinished or thin run reads soft, never extreme. The most surprising stat is the one whose raw value sits furthest from its population median in units of the middle half (25th to 75th percentile). The top stat is the highest; the dump stat is the lowest (gamer slang).
+
+Copy per stat in `library.json` `drama.stats`, both voices: `high` and `low` (the short line on a Stories block, high at 11 or more), `top` (the article's top stat line) and `dump` (the article's dump stat line). A low stat reads as a flex or a cute quirk, never an insult; no gendered stereotype words. Labels: "Your stats", "Where you max out" (Heart to heart: "Where you shine most"), "Most surprising", "See all six in the long version", "Your stat block", "Top stat", "Dump stat".
+
+**Internal axis labels** (`stats.js`; the stat names Closeness, Hard truths, Traditions, New things and Pace are retired from player surfaces and sit in `RETIRED_LABELS`; the ends below still render in core traits, findings, rooms and flags):
+
+| Axis | Stat (internal) | Left end (+ pole) | Right end (- pole) |
 |---|---|---|---|
 | R1 | Closeness | Stays close | Keeps some space |
 | R2 | Hard truths | Says it straight | Says it gently |
@@ -290,8 +306,7 @@ Jerry approved the eight people names (09-28); they are exempt from the gate.
 
 | Label set | Words |
 |---|---|
-| Level words (with 5 pips) | A little, Somewhat, Moderately, Strongly, Very strongly; Right in the middle; Not enough answers yet |
-| Badges | Your strongest stat; Closest to the middle |
+| Level words and badges (internal since 2026-09-30, no longer rendered) | A little, Somewhat, Moderately, Strongly, Very strongly; Right in the middle; Not enough answers yet; Your strongest stat; Closest to the middle |
 | What Genii is surest about | Came through clearly; Genii is fairly sure; Genii has a hunch; Genii can't tell yet |
 | Genii's calls | Guessed right; Close, not exact; Surprised Genii; No guess; You skipped. The count reads "N guessed right" |
 | Rooms | Phone habits, Friends, Love and dating, Spending and saving, Work and school, Family and home, Free time |
@@ -299,13 +314,13 @@ Jerry approved the eight people names (09-28); they are exempt from the gate.
 
 **Traits and keywords.** 5 to 6 core traits per player, one or two plain words each, evidence-backed from the top tags and the strongest stat ends. Tag names are plain phrases of 4 words or fewer that a stranger gets at once, each with one confident line. Keywords follow the same rules: everyday words, behavior not beliefs (for example "Keeps traditions alive", not a political label), both sides of a pair flattering. The full current lists are `library.json` `tags[].name` and the keyword fields; 48 of 50 tag names and 39 keywords were replaced on 09-29 (history file, section 26).
 
-**What the result never shows.** Quoted answers, ids, percentages or scores (except the calls count), the words in ruling 10, science or accuracy claims. The share image shows the one title and its story line, the core traits with their lines, the invite and the address label; never stings, marriage or kids tags, answers or numbers.
+**What the result never shows.** Quoted answers, ids, percentages or numbers (except the calls count and the drama stat scores 1 to 20), the words in ruling 10, science or accuracy claims. The share image shows the one title and its story line, the core traits with their lines, the invite and the address label; never stings, marriage or kids tags, answers or numbers.
 
 **The gate.** `node scripts/naming-inventory.mjs` lists every label with where it sits. A Codex panel of six cold readers aged 20 to 35 (a progressive activist, a religious conservative, an ESL speaker, a Gen Z TikTok user, a nurse, an engineer) scores clear, hurt and share 1 to 5. Pass: clear 4.5 or more, hurt 2 or less, share 3.5 or more (share only for labels about the player); final labels are scored by 18 readers. Now: 193 of 278 final labels pass (69%), scores in [NAMING-PANEL.json](NAMING-PANEL.json). The residuals are mostly the exempt people names, Traditions and Rules sitting just over the hurt line (every alternative tested scored the same or worse), sensitive topics (kids, weddings, AI, phone privacy) and short UI chrome that needs its screen. `quiz64/tests/naming-retired.test.mjs` fails if any label in `RETIRED_LABELS` renders anywhere or a title card lacks its kicker or line.
 
 ## 7. Visual system
 
-**Design docs.** [quiz64/docs/DESIGN-DIRECTION.md](../quiz64/docs/DESIGN-DIRECTION.md) holds the system (type Fraunces and Figtree, color, materials, motion tokens, accessibility contract, per-screen specs, QA checklist); [quiz64/docs/ARTICLE-DESIGN.md](../quiz64/docs/ARTICLE-DESIGN.md) holds the article. Both predate some rulings. Where they disagree with section 2, section 2 wins: the mirror is the oval World Mirror (not an arched mirror), Genii is the 3D slime (not light only), the backgrounds are the canon island renders (not code-made islands), the map is the stat sheet in section 6 (not a facet gem), and every label is from section 6.
+**Design docs.** [quiz64/docs/DESIGN-DIRECTION.md](../quiz64/docs/DESIGN-DIRECTION.md) holds the system (type Fraunces and Figtree, color, materials, motion tokens, accessibility contract, per-screen specs, QA checklist); [quiz64/docs/ARTICLE-DESIGN.md](../quiz64/docs/ARTICLE-DESIGN.md) holds the article. Both predate some rulings. Where they disagree with section 2, section 2 wins: the mirror is the oval World Mirror (not an arched mirror), Genii is the 3D slime (not light only), the backgrounds are the canon island renders (not code-made islands), the stats are the drama stat blocks in section 6 (not a facet gem, not a character sheet), and every label is from section 6.
 
 **Canon assets** (`quiz64/public/assets/island/`, sizes and sources in `MANIFEST.json`; generated from the GDD references):
 
@@ -331,7 +346,7 @@ Commands run from `products/survey/` unless noted. "Last" is the latest verified
 
 | Gate | Command | Pass bar | Last |
 |---|---|---|---|
-| App tests | `npm test --prefix quiz64` | all pass | 156 of 156 (2026-09-30; the "treats" failure is gone, decision 12) |
+| App tests | `npm test --prefix quiz64` | all pass | 164 of 164 (2026-09-30, drama stats pass; includes `tests/drama-stats.test.mjs`) |
 | Kit tests | `node --test tests.mjs` in `research/persona-quiz-v2/final` | all pass | 46 of 46 (2026-09-30) |
 | Bank checker | `node check-bank.mjs --kit` (same folder) | 0 errors | 172 cards, 0 errors, 31 warnings (2026-09-30) |
 | Shape audit | `node shape-audit.mjs --limits` (same folder) | passes | enforced inside check-bank |
@@ -342,7 +357,8 @@ Commands run from `products/survey/` unless noted. "Last" is the latest verified
 | Contracts | `node scripts/validate-contracts.mjs` (also in `npm test`) | all checks pass | 43 of 43, examples rewritten from a real run, question pack regenerated (2026-09-30) |
 | Docs | `node scripts/check-docs.mjs` (also in `npm test`) | no retired labels here, no em dash in `docs/` | pass (2026-09-30) |
 | Retired labels, title cards | `quiz64/tests/naming-retired.test.mjs` (in `npm test`) | pass | pass |
-| Display accuracy | `quiz64/tests/reveal-accuracy.test.mjs`, `article-accuracy.test.mjs` (in `npm test`) | pass | pass |
+| Display accuracy | `quiz64/tests/reveal-accuracy.test.mjs`, `article-accuracy.test.mjs` (in `npm test`) | pass | pass (2026-09-30: drama stat blocks, the stat block, the cuts, upright type) |
+| Drama stats | `quiz64/tests/drama-stats.test.mjs` (in `npm test`); `node quiz64/scripts/calibrate-drama.mjs` | formulas recomputed, 1 to 20, top four and dump rules, spread about 6 to 18 | pass; 1600 players, every stat p05 6, median 12, p95 18 (2026-09-30) |
 | Naming panel | `node scripts/naming-inventory.mjs`, then the Codex panel | section 6 gate | 193 of 278 pass (NAMING-PANEL.json) |
 | Layout guard | `npm run qa:layout --prefix quiz64 -- <dev url>` (dev server, `PLAYWRIGHT_MODULE` set) | 0 failures, 0 errors | 376 steps, 0 failures, 0 errors; feeling and rank not reached are notes (2026-09-30); rerun after CSS changes |
 | Fold | `node quiz64/tests/visual/fold.mjs` | every option above the fold | 344 renders, 0 failures (2026-09-30) |
@@ -372,7 +388,7 @@ Only real open decisions. The build ships the default until Jerry rules.
 | # | Decision | Default in the build | Where it stands |
 |---|---|---|---|
 | 1 | People kicker | "With the people you love" | Jerry locked "With your people"; it failed the gate three times (read as an ethnic or political group, clear 4.0). The replacement passed; needs his yes |
-| 2 | Hard truths wording | "Hard truths: Says it straight / Says it gently" | Sits just under the gate on hurt; "Giving feedback: Direct / Gentle" passed once. Pick one |
+| 2 | Hard truths wording | Moot on screen since 2026-09-30 | The stat name no longer renders (drama stats, section 6); only the ends "Says it straight / Says it gently" still show. Close, or pick new ends |
 | 3 | T02, short tags and thin formats | T02 on 2 cards | The 2-per-concept rule moved two T02 cards to T04 and T05 (`bank/ROUND4-LOG.md`); T02 still fires. The 4-cards-per-tag target is unmet for 13 tags (section 4; T22B joined after the C7-142 cut). The BATCH-02 cuts and format moves leave chapter 1 one others card short, chapter 5 one quick card short and chapter 7 two quick cards short (section 5). Choose: concept rule wins, or write more cards for the short tags and formats |
 | 4 | "Your opposite: X and Y. Know one?" on the share screen and in the article | In | Proposed by Claude; needs a yes or a cut |
 | 5 | Copy sign-off | Shipping as written | No recorded sign-off for the eight life names, the Heart to heart wording, the tag names, the Evidence Article copy and the DESIGN-DIRECTION D6 proposed copy |
@@ -392,6 +408,7 @@ Only real open decisions. The build ships the default until Jerry rules.
 
 ## 11. Changes
 
+- 2026-09-30: Drama stats (Jerry approved, display only; scoring engine, evidence, axes, picker and cards unchanged). Six display stats (Charm, Romance, Loyalty, Peacemaker, Tea Radar, Petty), 1 to 20, replace the character sheet everywhere players see stats (section 6; `rpg-stats.js`, calibrated on 1600 simulated players). Story 4 shows four stat blocks (three highest plus the most surprising, else the fourth highest) and links to all six; the article shows the six as a stat block with the top stat and dump stat lines. Ruling 9: the stat scores join the calls count as the only numbers. Article cuts (no section repeats another): the lede (merged into the cover), the character sheet and its drawers, your two results side by side, every strength has a flip side, the cover's trait chips, the line repeated in your party slot; about a five-minute read. Upright type only in the deck, its images and the article. Closeness, Hard truths, Traditions, New things and Pace retired from player surfaces (`RETIRED_LABELS`; internal names stay). Copy in `library.json` `drama` and `article.stats` (both voices); sheet `quiz64/docs/DRAMA-STATS.png` (`qa/drama-sheet.mjs`).
 - 2026-09-30: Evidence Article V2 (package V2; Jerry: "20x better; it still reads very bland"). Spot art and an editorial grid replace the banner photos; one title and its story line on the cover and in the party slots; part one follows the Stories order; part two adds the heist crew role, green flag and red flag, Genii's bets and the island seed (coming in 2.0). New copy in `library.json` in both voices (388 lines, never-say and voice checked by `article-accuracy.test.mjs`); `library.schema.json` knows the new fields; sheet `quiz64/docs/ARTICLE-V2.png` (`qa/article-sheet.mjs`).
 - 2026-09-30: Voice pass per `docs/VOICE.md` (package Z2): 30 weak cards got new Make it fun text, Heart to heart rewritten on all 172 cards, each chapter intro now carries Genii's angle (VOICE.md section 6), chapter 4 is "Money and spending". Text only: evidence unchanged (lock re-confirmed on 172 cards, 0 evidence differences; sim identical at 94.9% axis recovery, 66.8% sealed exact, 50 of 50 tags). Decision 18 resolved; section 2's voice rulings point to `docs/VOICE.md`.
 - 2026-09-30: BATCH-02 pass and full gate (package Z1; Jerry delegated the verdicts: "One more time, pass on all these new things we built, as well as these cards, then implement it fully to spec"). Applied A1 to A5, B1 to B4 and B6 as proposed (C7-147, X-L1-40, C6-110, C5-51, C4-142, C3-123, C1-1, C6-162, C4-82, C7-143) with Heart to heart and friend text; B5 (C6-125) kept. C7-147 rank to scenario; C5-51 this or that to scenario with evidence re-derived as listed; C6-110 and C5-51 absurd to unusual. Rule 25: "your partner" replaces "your person" on every player surface (25 cards in both voices and friend texts, the library calls and room label, the lobby label, the setup note); text threads name their sender (Robin C3-101, Alex C3-161, Jordan C4-126); chapter 3 is "Love and dating"; `check-bank.mjs` and the kit tests fail "your person", and `qa-checks.mjs` reports it with the never-say copy. Cut C1-161 and C7-142 (text kept in `bank/ROUND4-LOG.md`); C5-1 and C7-161 lost their round partners and play as single cards. Decision 12 resolved ("fun money"). Engineering: the layout guard and qa-checks report formats no run reaches (feeling while off, rank) as notes; the play-through no longer waits on a leaving receipts card; the device table dropped cut and unusual cards' devices and learned `parachute-jackets`; `qa/qa-report/` is ignored; the change flow lists every regeneration step. Numbers in sections 4, 5 and 8 re-measured; decisions 15 to 18 added.

@@ -8,8 +8,8 @@
 A phone-first web game hosted by Genii (a glass slime, never a genie or a lamp). The player taps through 40 quick
 cards in seven chapters (13 card formats, two voices: "Make it fun" and "Heart to heart"), Genii locks 8 guesses, the
 player plays those 8 sealed cards, then gets a 12-screen Stories reveal: one title (the people archetype) with one
-story line that merges both halves, a game character sheet
-(six stats with pips and a level word, no percentages), what Genii knows best, room by room, the core traits (5 to 6),
+story line that merges both halves, the drama stats (four D&D style stat blocks scored 1 to 20 from
+`src/persona/rpg-stats.js`, all six in the article), what Genii knows best, room by room, the core traits (5 to 6),
 the stings, Genii's calls, a share image and the get-the-app screen. Genii itself evolves from an orb to the full slime
 as cards are answered. The friend game ("How well do you know me?") runs on links.
 
@@ -89,7 +89,7 @@ quiz64/
       play/             the card (PersonaCard and the 13 formats), shard rail, chapter map, lock ritual
       reveal/           reveal building blocks: mirror, stage light, findings, calls, rooms, stat glyphs, world art
       stories/          the 12-screen Stories deck: story-data.js (pure projection, all result copy), StoryDeck,
-                        StoryScreens, SheetScreens (character sheet, core traits, stings)
+                        StoryScreens, SheetScreens (drama stats, core traits, stings)
       FriendsPanel.jsx, FriendGame.jsx, FriendResultsView.jsx, PersonaDialogs.jsx
     legacy.css          the few rules still used from earlier builds, lowest cascade layer (tree-shaken; keep)
   public/assets/island/ canon GDD v0.2 renders (LAUNCH-SPEC section 7): island day, wide and night, the World Mirror frame, the
@@ -186,6 +186,7 @@ older dossier build (`../docs/STATE.md`).
 | `docs/ROUND3-SHEET.png` | the full phone flow at 390x844 as of round 3 |
 | `docs/NAMES-SCREEN-FINAL.png` | decision 1a: story 2 and the share card before and after (one title, one story line from `names-64.json`) |
 | `docs/ARTICLE-V2.png` | the Evidence Article V2 for three players in both voices at 390 and 1440 (`qa/article-sheet.mjs`) |
+| `docs/DRAMA-STATS.png` | the drama stats: story 4 and the article stat block for four players in both voices at 390 x 844, plus the cover after the cuts (`qa/drama-sheet.mjs`; recalibrate with `node scripts/calibrate-drama.mjs`) |
 | `docs/LAYOUT-FIXES.png` | package L2: before and after of the article bar, the stat screen header and the share actions |
 | [../research/persona-quiz-v2/final/README.md](../research/persona-quiz-v2/final/README.md) | the content kit |
 
