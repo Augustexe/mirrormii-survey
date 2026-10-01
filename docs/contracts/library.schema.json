@@ -79,9 +79,36 @@
       "type": "object",
       "description": "Evidence Article frames (LAUNCH-SPEC section 3): section titles and connective copy, each leaf a { fun, heart } pair. Frames carry no claim about the player; claims come from the lines above, picked by evidence."
     },
+    "drama": {
+      "type": "object",
+      "description": "Drama stats (2026-09-30): the six display stats players see, scored 1 to 20 by quiz64/src/persona/rpg-stats.js. Per stat id the short line for a Stories stat block (high, low) and the article's top stat and dump stat lines, both voices.",
+      "required": ["rule", "stats"],
+      "additionalProperties": false,
+      "properties": {
+        "rule": { "type": "string" },
+        "stats": {
+          "type": "object",
+          "required": ["CHA", "ROM", "LOY", "PEACE", "TEA", "PETTY"],
+          "additionalProperties": false,
+          "patternProperties": {
+            "^(CHA|ROM|LOY|PEACE|TEA|PETTY)$": {
+              "type": "object",
+              "required": ["high", "low", "top", "dump"],
+              "additionalProperties": false,
+              "properties": {
+                "high": { "$ref": "#/$defs/voicePair" },
+                "low": { "$ref": "#/$defs/voicePair" },
+                "top": { "$ref": "#/$defs/voicePair" },
+                "dump": { "$ref": "#/$defs/voicePair" }
+              }
+            }
+          }
+        }
+      }
+    },
     "crossover": {
       "type": "object",
-      "description": "Evidence Article: a people stat end crossed with a life stat end (key 'R1+|L2-'), typed team or clash, both voices.",
+      "description": "Evidence Article: a people stat end crossed with a life stat end (key 'R1+|L2-'), typed team or clash, both voices. Not rendered since the 2026-09-30 cuts (your two results side by side); kept until Jerry rules it out.",
       "propertyNames": { "pattern": "^R[1-3][+-]\\|L[1-3][+-]$" },
       "additionalProperties": {
         "type": "object",

@@ -2929,7 +2929,7 @@
   },
   "roomsRule": "Round 2 reveal (LAUNCH-SPEC section 23): one line per room the player played, chosen from that room's own answers; keys are chapter, axis, pole (plus, minus); h holds Heart to heart.",
   "sheetRule": "Round 3 reveal (LAUNCH-SPEC section 24): each axis is a game stat on a character sheet. plusKeyword and minusKeyword are the core-trait keyword for each end (both voices); sheet[end][band] is the plain line for that end at a band (light 1 to 2 pips, clear 3, strong 4 to 5), sheet.both is the near-even line; h.sheet holds Heart to heart. tags[].keyword is the tag's core-trait keyword (both voices). tags[].echo names the stat end a tag restates (axis:plus or axis:minus); when that tag is a top trait, the stat end's keyword is left out of the core traits so the same trait never shows twice.",
-  "articleRule": "Evidence Article frames (LAUNCH-SPEC section 25 item 3, quiz64/docs/ARTICLE-DESIGN.md). Frames carry no claim about the player by themselves; every claim on the page is a library line picked by the player's evidence. Placeholders in braces are filled with archetype names, stat names, stat ends and room names only. crossover: the strongest decided end of each people stat crossed with each life stat (key 'R?+|L?-', plus is the first pole of the stat), typed team or clash; the article shows the strongest team cell and the strongest clash cell. New in the V2 pass (2026-09-30): the cover and the party show one title (the people archetype) with its story line from naming/names-64.json. Tags carry green, red and bet (heart under h); axes carry plusGreen, minusRed, plusBet and so on (heart under h); AI, kids and wedding tags carry none. Flags come from the top shareable traits (green from the first, red from the second), else from the strongest stat ends. Genii's bets come from the shareable core traits in order, topped up from the strongest stat ends. The heist role comes from the strongest decided day-to-day stat end (article.heist.why). The island seed is relationship[].seed (what grows) plus life[].seed (how it grows), shown as coming in MirrorMii 2.0.",
+  "articleRule": "Evidence Article frames (LAUNCH-SPEC section 3, quiz64/docs/ARTICLE-DESIGN.md). Frames carry no claim about the player by themselves; every claim on the page is a library line picked by the player's evidence. Placeholders in braces are filled with archetype names, stat names, stat ends and room names only. crossover: the strongest decided end of each people stat crossed with each life stat (key 'R?+|L?-', plus is the first pole of the stat), typed team or clash; the article shows the strongest team cell and the strongest clash cell. New in the V2 pass (2026-09-30): the cover and the party show one title (the people archetype) with its story line from naming/names-64.json. Tags carry green, red and bet (heart under h); axes carry plusGreen, minusRed, plusBet and so on (heart under h); AI, kids and wedding tags carry none. Flags come from the top shareable traits (green from the first, red from the second), else from the strongest stat ends. Genii's bets come from the shareable core traits in order, topped up from the strongest stat ends. The heist role comes from the strongest decided day-to-day stat end (article.heist.why). The island seed is relationship[].seed (what grows) plus life[].seed (how it grows), shown as coming in MirrorMii 2.0. Cut on 2026-09-30 (drama stats pass, Jerry): the lede, the character sheet, your two results side by side and every strength has a flip side no longer render; their frames (sheet, sides, book) and the crossover table stay here unused until Jerry rules them out. article.stats frames the drama stat block (drama.stats lines).",
   "article": {
     "readMore": {
       "fun": "Read the long version",
@@ -3187,8 +3187,8 @@
         "heart": "Your opposite"
       },
       "opposite": {
-        "fun": "All six of your stats, flipped. You'd drive each other up the wall and learn a lot.",
-        "heart": "Every one of your six stats, turned the other way. You'd learn a lot from each other."
+        "fun": "Your opposite in every way. You'd drive each other up the wall and learn a lot.",
+        "heart": "Your opposite in every way. You'd learn a lot from each other."
       },
       "withLabel": {
         "fun": "with",
@@ -3403,6 +3403,137 @@
       "hook": {
         "fun": "In MirrorMii 2.0, Genii's island grows from small moments of your real day.",
         "heart": "In MirrorMii 2.0, Genii's island grows a little with each small moment of your real day."
+      }
+    },
+    "stats": {
+      "title": {
+        "fun": "Your stat block",
+        "heart": "Your stat block"
+      },
+      "intro": {
+        "fun": "Six stats, game style. The higher the number, the more it's you.",
+        "heart": "Six stats, like a game character's. The higher the number, the more it sounds like you."
+      },
+      "top": {
+        "fun": "Top stat",
+        "heart": "Top stat"
+      },
+      "dump": {
+        "fun": "Dump stat",
+        "heart": "Dump stat"
+      }
+    }
+  },
+  "drama": {
+    "rule": "Drama stats (Jerry, 2026-09-30; LAUNCH-SPEC sections 3 and 6): six display stats scored 1 to 20 from the profile by quiz64/src/persona/rpg-stats.js (formulas and calibration there), shown instead of the old character sheet. Per stat: high and low are the short line on a Stories stat block (high at or above the middle, low below it); top is the article's top stat line, dump the article's dump stat line (the lowest stat). Both voices; affectionate, never mean: a low stat reads as a flex or a cute quirk.",
+    "stats": {
+      "CHA": {
+        "high": {
+          "fun": "Everyone's favorite plus-one.",
+          "heart": "People feel at ease around you."
+        },
+        "low": {
+          "fun": "Small talk? You skip straight to real talk.",
+          "heart": "You'd rather know a few people well than charm a whole room."
+        },
+        "top": {
+          "fun": "You could make a new best friend in the bathroom line, and you have.",
+          "heart": "You make people feel welcome without trying, and they remember how that felt."
+        },
+        "dump": {
+          "fun": "You don't work the room. You find your people and guard the snacks.",
+          "heart": "You're not here to win over the room. You're here for the people who already get you."
+        }
+      },
+      "ROM": {
+        "high": {
+          "fun": "Writes the paragraph. Means every word.",
+          "heart": "When you love someone, they know it."
+        },
+        "low": {
+          "fun": "Your love language is not making it weird.",
+          "heart": "You show love quietly, in your own way."
+        },
+        "top": {
+          "fun": "You're all in on us, and you say it out loud, in full paragraphs, with a playlist.",
+          "heart": "When you love someone, you let them see all of it, and you find the words."
+        },
+        "dump": {
+          "fun": "Grand gestures give you the ick. Showing up on time is your love letter.",
+          "heart": "You don't need the big speech. Your love lives in the small things you keep doing."
+        }
+      },
+      "LOY": {
+        "high": {
+          "fun": "Helps move the couch at midnight.",
+          "heart": "Your people never have to wonder."
+        },
+        "low": {
+          "fun": "Loyal to your own plans first.",
+          "heart": "You keep a little room that's just yours."
+        },
+        "top": {
+          "fun": "One call and you're already in the car, snacks on the passenger seat.",
+          "heart": "When someone you love calls, you're already reaching for your keys."
+        },
+        "dump": {
+          "fun": "You love your people and your own couch, and you refuse to choose.",
+          "heart": "You love your people and still keep some of yourself for you."
+        }
+      },
+      "PEACE": {
+        "high": {
+          "fun": "Ends the group chat fight in one text.",
+          "heart": "You smooth things over before they sting."
+        },
+        "low": {
+          "fun": "Won't fake a vibe to keep the peace.",
+          "heart": "You'd rather clear the air than stay quiet."
+        },
+        "top": {
+          "fun": "You can end a group chat war with one perfectly timed meme.",
+          "heart": "When people clash, you're the one who quietly brings them back to the table."
+        },
+        "dump": {
+          "fun": "You don't smooth it over. If something's off, the chat hears about it.",
+          "heart": "You won't pretend things are fine when they aren't, and people trust you for it."
+        }
+      },
+      "TEA": {
+        "high": {
+          "fun": "Knew about the breakup before the breakup.",
+          "heart": "You notice what nobody says out loud."
+        },
+        "low": {
+          "fun": "Drama slides right off you.",
+          "heart": "You let other people's business stay theirs."
+        },
+        "top": {
+          "fun": "You clocked the situationship from one story view, and you were right.",
+          "heart": "You pick up on small shifts in people, often before they've noticed them."
+        },
+        "dump": {
+          "fun": "You hear the gossip last, and honestly, you sleep great.",
+          "heart": "You take people as they come, and you don't go looking for the backstory."
+        }
+      },
+      "PETTY": {
+        "high": {
+          "fun": "Remembers who left you on read.",
+          "heart": "You remember exactly how it went."
+        },
+        "low": {
+          "fun": "Forgets the grudge before dessert.",
+          "heart": "Grudges just don't stick to you."
+        },
+        "top": {
+          "fun": "You keep the receipts, the screenshots and the exact date it happened.",
+          "heart": "You remember the details, and you're honest about what still bugs you."
+        },
+        "dump": {
+          "fun": "You couldn't hold a grudge if someone paid you to.",
+          "heart": "Things roll off you, and the people around you feel lighter for it."
+        }
       }
     }
   },
