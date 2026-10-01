@@ -1,9 +1,10 @@
-// The Evidence Article's sections (V2 pass, 2026-09-30). One editorial grid for every section: a plate on the left
-// rail (one small opal-glass object from the MirrorMii world, art.js) and the body on the right; on a phone the plate
-// sits beside the heading. Part one walks the Stories beats in the deck's own order, deeper; part two is new (two
-// sides, the heist crew, green flag and red flag, Genii's bets, your people, your island seed). No banner photos: the
-// cover's sky band is the only full-width image. Every word shown comes from article-data.js.
-import React, { useCallback, useEffect, useId, useRef, useState } from "react";
+// The Evidence Article's sections (V2 pass, 2026-09-30; drama stats pass the same day). One editorial grid for every
+// section: a plate on the left rail (one small opal-glass object from the MirrorMii world, art.js) and the body on the
+// right; on a phone the plate sits beside the heading. Part one walks the Stories beats in the deck's own order,
+// deeper; part two is new (the heist crew, green flag and red flag, Genii's bets, your people, your island seed). No
+// banner photos: the cover's sky band is the only full-width image. Upright type only. Every word shown comes from
+// article-data.js.
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Check, Copy, Download, Plus, Sparkles } from "lucide-react";
 import { GeniiLight } from "../../system/index.js";
 import { GeniiSvg } from "../../genii/GeniiSvg.jsx";
@@ -11,7 +12,6 @@ import { StatGlyph } from "../reveal/StatGlyph.jsx";
 import { roomArt, spot } from "./art.js";
 import { ISLETS } from "./article-data.js";
 
-const NUM = ["no", "one", "two", "three", "four", "five", "six", "seven", "eight"];
 const TINTS = { 1: "var(--tint-ch1)", 2: "var(--tint-ch2)", 3: "var(--tint-ch3)", 4: "var(--tint-ch4)", 5: "var(--tint-ch5)", 6: "var(--tint-ch6)", 7: "var(--tint-ch7)" };
 const CARD_TINTS = ["#C9B3F0", "#8FB8F2", "#F4B8A0", "#96D8C4", "#F2D48A", "#F2A7C3"];
 
@@ -70,33 +70,9 @@ export function Cover({ A }) {
         <span className="ea-cover__genii" aria-hidden="true"><GeniiLight size="l" evolution={1} mood="sure" expression="happy" /></span>
         <div className="ea-cover__aside">
           <p className="ea-dayrow"><span>{c.lifeRow.label}</span><b>{c.lifeRow.name}</b></p>
-          {c.keywords.length ? (
-            <div className="ea-covertags">
-              <p className="ea-covertags__label">{c.keywordsLabel}</p>
-              <ul>{c.keywords.map((k) => <li key={k}>{k}</li>)}</ul>
-            </div>
-          ) : null}
           <p className="ea-dek">{c.dek}</p>
           <p className="ea-readtime">{c.readTime}</p>
         </div>
-      </div>
-    </section>
-  );
-}
-
-// The short version: both reads over both descriptions, set like a magazine lede.
-export function Lede({ A }) {
-  const c = A.cover;
-  return (
-    <section className="ea-lede" aria-label={c.masthead}>
-      <div className="ea-wrap ea-lede__grid">
-        {[c.people, c.life].map((h, i) => (
-          <article key={h.label} className="ea-lede__col" data-half={i ? "life" : "people"} data-reveal="" style={{ "--d": i }}>
-            <p className="ea-label"><Mark />{h.label}</p>
-            <p className="ea-lede__read">{h.read}</p>
-            {h.desc ? <p className="ea-lede__desc">{h.desc}</p> : null}
-          </article>
-        ))}
       </div>
     </section>
   );
@@ -117,60 +93,37 @@ export function PartOpener({ part, n }) {
 }
 
 // ---------------------------------------------------------------------------------------------------------- stats
-function Pips({ n, split }) {
+// The drama stat block, D&D style: six ovals (the World Mirror's shape), each its abbreviation, score and name; the
+// top stat glows and the dump stat is marked. Under it the top stat line and the dump stat line.
+function Extreme({ x, kind }) {
+  if (!x) return null;
   return (
-    <span className="ea-pips" data-split={split ? "true" : undefined} aria-hidden="true">
-      {[1, 2, 3, 4, 5].map((i) => <i key={i} className={split ? "is-half" : i <= n ? "is-on" : undefined} style={{ "--p": i }} />)}
-    </span>
-  );
-}
-
-function StatRow({ r, open, onToggle, S }) {
-  const id = useId();
-  const decided = !r.flex && !r.unfinished;
-  const end = r.unfinished ? `${r.a} or ${r.b}` : r.flex ? `${r.a} and ${r.b}` : r.leadEnd;
-  const spoken = decided ? `${r.level} ${r.leadEnd}, ${NUM[r.pips]} of five` : `${r.level}, ${end}`;
-  const hasDrawer = Boolean(r.otherLine || r.note || r.know || r.badgeNote);
-  return (
-    <li className="ea-stat" data-badge={r.badge || undefined} data-open={open ? "true" : undefined} data-state={decided ? "lean" : r.flex ? "flex" : "open"}>
-      <button type="button" className="ea-stat__btn" aria-expanded={open} aria-controls={id} onClick={onToggle} disabled={!hasDrawer}>
-        <span className="ea-stat__name"><StatGlyph axis={r.key} size={16} />{r.stat}</span>
-        <span className="ea-stat__end">{end}</span>
-        <Pips n={r.pips} split={r.split} />
-        <span className="ea-stat__level" aria-hidden="true">{r.level}</span>
-        <span className="sr-only">{spoken}</span>
-        <span className="ea-stat__chev" aria-hidden="true" />
-      </button>
-      <div className="ea-drawer" id={id} role="region" aria-label={r.stat} data-open={open ? "true" : undefined}>
-        <div className="ea-drawer__in">
-          <div className="ea-cmp">
-            <div className="ea-cmp__me"><p className="ea-cmp__h">{decided ? `${S.yours}: ${r.leadEnd}` : end}</p><p>{r.note}</p></div>
-            {r.otherLine ? <div className="ea-cmp__them"><p className="ea-cmp__h">{`${S.other}: ${r.otherEnd}`}</p><p>{r.otherLine}</p></div> : null}
-          </div>
-          {r.know ? <p className="ea-know">{r.know}</p> : null}
-          {r.badgeNote ? <p className="ea-badgenote"><span className="ea-stat__badge">{r.badgeLabel}</span> {r.badgeNote}</p> : null}
-        </div>
-      </div>
-    </li>
+    <article className="ea-extreme" data-kind={kind} data-reveal="">
+      <p className="ea-extreme__label"><span>{x.label}</span> <b>{x.name}</b></p>
+      <p className="ea-extreme__line">{x.line}</p>
+    </article>
   );
 }
 
 export function Stats({ A }) {
-  const S = A.sheet;
-  const first = (S.groups.flatMap((g) => g.rows).find((r) => r.badge === "signature") || {}).key || null;
-  const [open, setOpen] = useState(() => new Set(first ? [first] : []));
-  const toggle = (k) => setOpen((o) => { const n = new Set(o); if (n.has(k)) n.delete(k); else n.add(k); return n; });
+  const S = A.stats;
   return (
     <Section id="stats" className="ea-stats" art="stats" label={S.kicker} title={S.title} intro={S.intro}>
-      <div className="ea-sheet" data-reveal="">
-        {S.groups.map((g) => (
-          <div key={g.label} className="ea-sheet__group" role="group" aria-label={g.label}>
-            <p className="ea-sheet__label">{g.label}</p>
-            <ul>{g.rows.map((r) => <StatRow key={r.key} r={r} S={S} open={open.has(r.key)} onToggle={() => toggle(r.key)} />)}</ul>
-          </div>
+      <ul className="ea-abilities" data-reveal="">
+        {S.all.map((x, i) => (
+          <li key={x.id} className="ea-ability" data-mark={x.mark || undefined} style={{ "--i": i }}>
+            <span className="sr-only">{`${x.name}, ${x.score}`}</span>
+            <span className="ea-ability__oval" aria-hidden="true">
+              <span className="ea-ability__abbr">{x.abbr}</span>
+              <span className="ea-ability__score">{x.score}</span>
+            </span>
+            <span className="ea-ability__name" aria-hidden="true">{x.name}</span>
+          </li>
         ))}
-        <p className="ea-sheetkey"><Pips n={5} /><span>{S.key}</span></p>
-        <p className="ea-hint">{S.hint}</p>
+      </ul>
+      <div className="ea-extremes">
+        <Extreme x={S.top} kind="top" />
+        <Extreme x={S.dump} kind="dump" />
       </div>
     </Section>
   );
@@ -339,28 +292,6 @@ export function Traits({ A }) {
   );
 }
 
-// ---------------------------------------------------------------------------------------------------------- open book
-export function OpenBook({ A }) {
-  const b = A.book;
-  if (!b) return null;
-  return (
-    <Section id="book" className="ea-book" art="open-book" label={b.kicker} title={b.title} intro={b.intro}>
-      <ul className="ea-stings">
-        {b.stings.map((line, i) => <li key={i} data-reveal="" style={{ "--d": i }}>{line}</li>)}
-      </ul>
-      {b.hearts.length ? (
-        <div className="ea-said" data-reveal="">
-          <h3 className="ea-said__title">{b.saidTitle}</h3>
-          <p className="ea-said__intro">{b.saidIntro}</p>
-          <ul>
-            {b.hearts.map((h) => <li key={h.line}><q>{h.line}</q><span>{h.from}</span></li>)}
-          </ul>
-        </div>
-      ) : null}
-    </Section>
-  );
-}
-
 // ---------------------------------------------------------------------------------------------------------- the record
 export function Record({ A }) {
   const r = A.record;
@@ -380,29 +311,10 @@ export function Record({ A }) {
           <li key={x.key} className="ea-pane" data-status={x.near ? "near" : x.status} style={{ "--i": i }}>
             <span className="ea-pane__glass" aria-hidden="true"><i />{x.status === "hit" ? <Check size={18} strokeWidth={2.5} /> : x.near ? null : <Sparkles size={16} strokeWidth={1.75} />}</span>
             <span className="ea-pane__title">{x.title}</span>
-            <span className="ea-pane__status"><span className="ea-pane__chip">{x.shown}</span>{x.side ? <em>{x.side}</em> : null}</span>
+            <span className="ea-pane__status"><span className="ea-pane__chip">{x.shown}</span>{x.side ? <strong>{x.side}</strong> : null}</span>
           </li>
         ))}
       </ol>
-    </Section>
-  );
-}
-
-// ---------------------------------------------------------------------------------------------------------- two sides
-export function TwoSides({ A }) {
-  const s = A.sides;
-  if (!s) return null;
-  return (
-    <Section id="sides" className="ea-sides" art="two-sides" title={s.title} intro={s.intro} wide>
-      <div className="ea-cells">
-        {s.cells.map((c) => (
-          <article key={c.type} className="ea-cell" data-type={c.type} data-reveal="">
-            <h3 className="ea-cell__label">{c.label}</h3>
-            <p className="ea-cell__pair"><span><small>{c.aStat}</small>{c.a}</span><i aria-hidden="true">{c.type === "team" ? "+" : "×"}</i><span className="sr-only">{c.type === "team" ? " and " : " against "}</span><span><small>{c.bStat}</small>{c.b}</span></p>
-            <p className="ea-cell__line">{c.line}</p>
-          </article>
-        ))}
-      </div>
     </Section>
   );
 }
@@ -493,7 +405,6 @@ export function Party({ A, onChallenge }) {
           <span className="ea-slot__genii" aria-hidden="true"><GeniiSvg evolution={1} expression="happy" /></span>
           <p className="ea-slot__label">{p.you}</p>
           <p className="ea-slot__name">{p.me.name}</p>
-          {p.me.line ? <p className="ea-slot__story">{p.me.line}</p> : null}
         </li>
         {p.click ? (
           <li className="ea-slot ea-slot--click" style={{ "--i": 1 }}>

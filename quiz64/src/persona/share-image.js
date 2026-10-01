@@ -410,7 +410,7 @@ function cellBox(cell) {
 function titleLayout(ctx, { x, y, w, h, title }) {
   const k = w / 600;
   const name = fit(ctx, (title && title.name) || "", { face: "display", weight: 600, max: 132 * k, min: 64 * k, width: w - 110 * k, maxLines: 2 });
-  const line = title && title.line ? fit(ctx, title.line, { face: "display", weight: 450, italic: true, max: 52 * k, min: 40 * k, width: w - 120 * k, maxLines: 4 }) : null;
+  const line = title && title.line ? fit(ctx, title.line, { face: "display", weight: 450, max: 52 * k, min: 40 * k, width: w - 120 * k, maxLines: 4 }) : null;
   const ruleGap = 40 * k;
   const rule = 5 * k;
   const lineGap = 34 * k;
@@ -567,7 +567,7 @@ export function drawHeroMirror(ctx, { x, y, w, mirror, p, layout = null, fog = 0
   return { h, s, foot: y + MIRROR.bottom * s };
 }
 
-// The lettering: the title at the largest size that fits two lines, the opal stroke, then the story line in italic.
+// The lettering: the title at the largest size that fits two lines, the opal stroke, then the story line, upright.
 function drawTitleText(ctx, { x, w, layout, p }) {
   const { k, name, line } = layout;
   const ink = p.dark ? N.ink : C.ink;
@@ -731,7 +731,7 @@ function drawStoryBody(ctx, spec, p, W, H) {
         lines(ctx, v.lines, rx + 260, y + 6, { lh: 0, color: p.ink });
         y += 96;
       }
-      for (const l of spec.lines || []) block(ctx, l, W / 2, y, { face: "display", weight: 420, italic: true, max: 40, min: 32, width, maxLines: 2, color: p.ink2, align: "center" });
+      for (const l of spec.lines || []) block(ctx, l, W / 2, y, { face: "display", weight: 420, max: 40, min: 32, width, maxLines: 2, color: p.ink2, align: "center" });
       return;
     }
     case "read": {
@@ -756,64 +756,57 @@ function drawStoryBody(ctx, spec, p, W, H) {
       return;
     }
     case "map": {
-      // The character sheet (round 3, LAUNCH-SPEC 24): per stat its end, level word, five pips and the plain line. The
-      // signature stat glows, the wild card is dashed. No number or percentage is drawn.
-      kicker(spec.kicker, 270);
-      y = block(ctx, spec.title, W / 2, 300, { face: "display", weight: 600, max: 64, min: 50, width, maxLines: 1, color: p.ink, align: "center" }) + 18;
-      if (spec.sub) y = block(ctx, spec.sub, W / 2, y, { face: "text", weight: 500, max: 28, min: 24, width, maxLines: 2, color: p.ink2, align: "center" }) + 34;
-      for (const g of spec.groups || []) {
-        tracked(ctx, g.label, X, y + 24, { size: 24, color: p.ink3, track: 0.14 });
-        y += 44;
-        for (const r of g.rows) {
-          const note = fit(ctx, r.line || "", { face: "text", weight: 450, max: 28, min: 24, width: width - 60, maxLines: 2 });
-          const h = 100 + note.lines.length * note.size * 1.3 + 16;
-          roundRect(ctx, X, y, width, h, 30);
-          ctx.fillStyle = r.badge === "signature" ? rgba(N.violet, 0.3) : rgba(N.ink, 0.06);
+      // The drama stats (2026-09-30): four blocks, each its abbreviation and score in an opal-rimmed oval (the World
+      // Mirror's shape), the name and the short line beside it. The scores are the only numbers drawn here.
+      kicker(spec.kicker, 300);
+      y = block(ctx, spec.title, W / 2, 340, { face: "display", weight: 600, max: 72, min: 54, width, maxLines: 2, color: p.ink, align: "center" }) + 70;
+      (spec.blocks || []).forEach((b, i) => {
+        const textX = X + 230;
+        const textW = width - 260;
+        const line = fit(ctx, b.line || "", { face: "display", weight: 560, max: 42, min: 34, width: textW, maxLines: 3 });
+        const h = Math.max(250, 96 + line.lines.length * line.size * 1.22 + 40);
+        roundRect(ctx, X, y, width, h, 60);
+        ctx.fillStyle = i === 0 ? rgba(N.violet, 0.26) : rgba(N.ink, 0.07);
+        ctx.fill();
+        ctx.lineWidth = i === 0 ? 3 : 2;
+        ctx.strokeStyle = i === 0 ? rgba(N.violet, 0.85) : rgba(N.ink, 0.16);
+        ctx.stroke();
+        if (i === 0) glow(ctx, X + 110, y + h / 2, 150, N.violet, 0.32);
+        // The oval: an opal rim around a night glass well.
+        const cx = X + 110;
+        const cy = y + h / 2;
+        ctx.save();
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, 82, 102, 0, 0, Math.PI * 2);
+        const rim = ctx.createLinearGradient(cx - 82, cy - 102, cx + 82, cy + 102);
+        ["#F6D3E6", "#D9D2FF", "#BFE3F7", "#D8F3E6", "#F7E7C4", "#F2C9E3"].forEach((c, k) => rim.addColorStop(k / 5, c));
+        ctx.fillStyle = rim;
+        ctx.fill();
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, 76, 96, 0, 0, Math.PI * 2);
+        ctx.fillStyle = N.n900;
+        ctx.fill();
+        ctx.restore();
+        tracked(ctx, b.abbr, cx, cy - 34, { size: 24, weight: 800, color: N.violet, align: "center", track: 0.12 });
+        font(ctx, "display", 600, 92);
+        lines(ctx, [String(b.score)], cx, cy + 52, { lh: 0, align: "center", color: N.ink });
+        // The name, the tag for the most surprising stat, then the line.
+        let ty = y + 70;
+        tracked(ctx, b.name, textX, ty, { size: 28, weight: 700, color: N.violet, track: 0.02, upper: false });
+        if (b.surprise) {
+          font(ctx, "text", 700, 24);
+          const nw = ctx.measureText(String(b.name)).width + String(b.name).length * 0.56;
+          const tw = ctx.measureText(b.surprise).width + 32;
+          roundRect(ctx, textX + nw + 18, ty - 30, tw, 40, 20);
+          ctx.fillStyle = "#F2A7C3";
           ctx.fill();
-          ctx.lineWidth = r.badge === "signature" ? 3 : 2;
-          ctx.strokeStyle = r.badge === "signature" ? rgba(N.violet, 0.9) : rgba(N.ink, r.badge === "wild" ? 0.55 : 0.16);
-          if (r.badge === "wild" && ctx.setLineDash) ctx.setLineDash([10, 8]);
-          ctx.stroke();
-          if (ctx.setLineDash) ctx.setLineDash([]);
-          if (r.badge === "signature") glow(ctx, X + width - 120, y + 40, 120, N.violet, 0.35);
-          tracked(ctx, r.stat, X + 30, y + 44, { size: 22, color: N.violet, track: 0.14 });
-          // Five pips at the right: lit from the left, all half lit for a near-even stat.
-          for (let i = 0; i < 5; i++) {
-            const cx = X + width - 40 - (4 - i) * 34;
-            const cy = y + 36;
-            ctx.save();
-            ctx.translate(cx, cy);
-            ctx.rotate(Math.PI / 4);
-            roundRect(ctx, -9, -9, 18, 18, 4);
-            ctx.restore();
-            if (r.split) { ctx.fillStyle = rgba(N.ink, 0.55); ctx.fill(); }
-            else if (i < (r.pips || 0)) { ctx.fillStyle = N.ink; ctx.fill(); }
-            ctx.lineWidth = 2.5;
-            ctx.strokeStyle = rgba(N.ink, i < (r.pips || 0) || r.split ? 0.95 : 0.45);
-            ctx.stroke();
-          }
-          if (r.badgeLabel) {
-            font(ctx, "text", 700, 18);
-            const bw = ctx.measureText(String(r.badgeLabel).toUpperCase()).width + String(r.badgeLabel).length * 18 * 0.1 + 28;
-            const bx = X + width - 40 - 4 * 34 - 48 - bw;
-            roundRect(ctx, bx, y + 20, bw, 32, 16);
-            ctx.fillStyle = r.badge === "signature" ? N.ink : rgba(N.ink, 0.08);
-            ctx.fill();
-            if (r.badge === "wild") { ctx.lineWidth = 2; ctx.strokeStyle = rgba(N.ink, 0.6); ctx.stroke(); }
-            tracked(ctx, r.badgeLabel, bx + 14, y + 43, { size: 18, color: r.badge === "signature" ? N.n900 : p.ink, track: 0.1 });
-          }
-          font(ctx, "display", 600, 44);
-          const endText = String(r.end || "");
-          lines(ctx, [endText], X + 30, y + 94, { lh: 0, color: p.ink });
-          const ew = ctx.measureText(endText).width;
-          font(ctx, "text", 600, 26);
-          lines(ctx, [r.level || ""], X + 30 + ew + 18, y + 92, { lh: 0, color: p.ink2 });
-          font(ctx, "text", 450, note.size);
-          lines(ctx, note.lines, X + 30, y + 100 + note.size * 1.05, { lh: note.size * 1.3, color: rgba(N.ink, 0.85) });
-          y += h + 14;
+          lines(ctx, [b.surprise], textX + nw + 34, ty - 2, { lh: 0, color: N.n900 });
         }
-        y += 18;
-      }
+        ty += 30;
+        font(ctx, "display", 560, line.size);
+        lines(ctx, line.lines, textX, ty + line.size * 0.9, { lh: line.size * 1.22, color: N.ink });
+        y += h + 30;
+      });
       return;
     }
     case "knows": {
@@ -917,7 +910,7 @@ function drawStoryBody(ctx, spec, p, W, H) {
       const water = Math.max(end + 50, 1000);
       ctx.fillStyle = rgba(N.ink, 0.7);
       ctx.fillRect(X + 80, water, width - 160, 2);
-      if (spec.behavior) block(ctx, spec.behavior, W / 2, water + 60, { face: "display", weight: 460, italic: true, max: 60, min: 44, width, maxLines: 4, color: p.ink, align: "center", lh: 1.2 });
+      if (spec.behavior) block(ctx, spec.behavior, W / 2, water + 60, { face: "display", weight: 460, max: 60, min: 44, width, maxLines: 4, color: p.ink, align: "center", lh: 1.2 });
       return;
     }
     case "stings": {
@@ -932,7 +925,7 @@ function drawStoryBody(ctx, spec, p, W, H) {
       for (const q of spec.quotes || []) {
         ctx.fillStyle = rgba(N.ink2, 0.7);
         ctx.fillRect(X, y, 56, 2);
-        y = block(ctx, q, X, y + 36, { face: "display", weight: 460, italic: true, max: 50, min: 40, width, maxLines: 5, color: p.ink, lh: 1.3 }) + 60;
+        y = block(ctx, q, X, y + 36, { face: "display", weight: 460, max: 50, min: 40, width, maxLines: 5, color: p.ink, lh: 1.3 }) + 60;
       }
       return;
     }
@@ -963,7 +956,7 @@ export function drawStory(ctx, spec, { lightTheme = "day", wordmarkImage = null 
 // Wait for the brand faces (1.5 s at most; after that the system fallback draws).
 export async function fontsReady(timeout = 1500) {
   if (typeof document === "undefined" || !document.fonts || !document.fonts.load) return false;
-  const faces = [`600 84px ${DISPLAY}`, `italic 420 52px ${DISPLAY}`, `560 48px ${DISPLAY}`, `600 26px ${TEXT}`, `500 28px ${TEXT}`, `700 26px ${TEXT}`];
+  const faces = [`600 84px ${DISPLAY}`, `420 52px ${DISPLAY}`, `560 48px ${DISPLAY}`, `600 26px ${TEXT}`, `500 28px ${TEXT}`, `700 26px ${TEXT}`];
   let timer;
   const late = new Promise((resolve) => { timer = setTimeout(() => resolve(false), timeout); });
   const ok = await Promise.race([Promise.all(faces.map((f) => document.fonts.load(f))).then(() => true, () => false), late]);

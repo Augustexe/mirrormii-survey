@@ -141,6 +141,7 @@ test("the one sources: stat names and ends in stats.js, archetype names, definin
   for (const x of [...LIB.relationship, ...LIB.life]) assert.ok(x.name && x.define && !/[—]/.test(x.define), `${x.code}: name and defining line`);
   for (const t of LIB.tags) assert.ok(t.name && t.keyword, `${t.id}: name and keyword`);
   for (const a of LIB.axes) assert.ok(a.plusKeyword && a.minusKeyword, `${a.id}: keywords`);
-  const libText = JSON.stringify({ relationship: LIB.relationship, life: LIB.life, tags: LIB.tags.map((t) => [t.name, t.keyword]), axes: LIB.axes.map((a) => [a.plusKeyword, a.minusKeyword, a.topic]), article: LIB.article, rooms: LIB.rooms, crossover: LIB.crossover });
+  // The crossover table no longer renders (cut 2026-09-30, your two results side by side), so it is not player copy.
+  const libText = JSON.stringify({ relationship: LIB.relationship, life: LIB.life, tags: LIB.tags.map((t) => [t.name, t.keyword]), axes: LIB.axes.map((a) => [a.plusKeyword, a.minusKeyword, a.topic]), article: LIB.article, rooms: LIB.rooms, drama: LIB.drama });
   assert.deepEqual(retiredIn(libText, RETIRED_LABELS), [], "library.json player copy names a retired label");
 });

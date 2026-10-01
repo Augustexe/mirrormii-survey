@@ -76,14 +76,14 @@ function Head({ f }) {
   return (
     <span className="rv-find__stat">
       <StatGlyph axis={f.key} size={f.top ? 16 : 14} />
-      <span>{f.stat}</span>
     </span>
   );
 }
 
-// Round 3 (G6): the stat name and the end you lean to lead each finding (src/persona/stats.js), the lines sit on dark
-// glass for contrast, and every row carries its signal word ("Strong", "Clear", "Some", "Both") beside the gem, so
-// the gems never need a legend; tier words say how strong the signal is, never certainty.
+// Round 3 (G6): the end you lean to leads each finding (src/persona/stats.js; the old stat names retired with the
+// drama stats, 2026-09-30), the lines sit on dark glass for contrast, and every row carries its signal word ("Strong",
+// "Clear", "Some", "Both") beside the gem, so the gems never need a legend; tier words say how strong the signal is,
+// never certainty.
 export function KnowsScreen({ s }) {
   const [top, ...rest] = s.findings;
   return (

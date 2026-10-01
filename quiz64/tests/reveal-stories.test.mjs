@@ -91,14 +91,19 @@ test("the facet: leans point to the right pole, people above the waterline, flex
   const flexView = buildStories({ result: { halves: [{ side: "relationship", name: "A", code: "We·Soft·Own", axes: [{ axis: "R1", pole: "We", flex: true }] }, { side: "life", name: "B", code: "Steady·Push·Rules", axes: [] }], tags: [], stings: [] }, lib, voice: "fun" });
   assert.equal(flexView.slides.find((s) => s.id === "map").facet[0].lean, 0);
 
+  // Story 4 shows the drama stats (2026-09-30): four blocks, each its abbreviation, score, name and line, and the
+  // link to all six; the six axis rows above stay internal and never render as a sheet.
   const html = await render(view);
   const map = slideHtml(html, "map");
-  assert.equal((map.match(/class="rv-stat"/g) || []).length, 6, "six stats on the character sheet");
-  for (const r of rows) {
-    // Round 3: the sentence names the level and the stat's end (src/persona/stats.js), never the internal pole.
-    if (!r.flex && !r.unfinished) assert.ok(visible(map).includes(`${r.stat}: ${r.leadEnd}, ${r.level},`), `${r.key} reads as a sentence`);
-  }
-  assert.doesNotMatch(visible(map), /\d/);
+  const blocks = view.slides.find((s) => s.id === "map").blocks;
+  assert.equal(blocks.length, 4);
+  assert.equal((map.match(/class="rv-ds"/g) || []).length, 4, "four stat blocks");
+  for (const b of blocks) assert.ok(visible(map).includes(`${b.name}, ${b.score}.`) && visible(map).includes(b.line), `${b.id} reads as a sentence`);
+  assert.equal((map.match(/class="rv-stat"/g) || []).length, 0, "no character sheet rows");
+  // The only digits are the four scores.
+  let rest = visible(map);
+  for (const b of blocks) rest = rest.split(String(b.score)).join(" ");
+  assert.doesNotMatch(rest, /\d/);
 });
 
 test("the insight flips at its sentence boundary and sits whole when it is one sentence", async () => {

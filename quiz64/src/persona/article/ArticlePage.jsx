@@ -6,7 +6,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronDown, ChevronLeft } from "lucide-react";
 import { buildArticle } from "./article-data.js";
-import { Bets, Closing, Cover, Flags, Heist, Lede, OpenBook, PartOpener, Party, Record, Rooms, Seed, Stats, Surprise, Traits, TwoSides } from "./ArticleSections.jsx";
+import { Bets, Closing, Cover, Flags, Heist, PartOpener, Party, Record, Rooms, Seed, Stats, Surprise, Traits } from "./ArticleSections.jsx";
 import "./article.css";
 
 const reducedMotion = () => {
@@ -40,7 +40,7 @@ function useSpy(root, tabs, onChange) {
       for (const e of entries) seen.set(e.target, e.isIntersecting);
       const on = secs.filter((s) => seen.get(s));
       if (on.length) onChange(on[0].dataset.tab);
-      // Back above the first section (the cover and the short version): no tab is current.
+      // Back above the first section (the cover): no tab is current.
       else if (secs[0] && secs[0].getBoundingClientRect().top > window.innerHeight * 0.3) onChange(null);
     }, { rootMargin: "-30% 0px -55% 0px" });
     secs.forEach((s) => io.observe(s));
@@ -130,18 +130,15 @@ export function ArticlePage({ stories, lib, section = null, onBack, onChallenge,
           </ul>
           <span className="ea-tabs__progress" aria-hidden="true" />
         </nav>
-        <Lede A={A} />
         {/* Part one: the Stories beats in the deck's own order, deeper. */}
         <PartOpener part={A.parts.one} n="one" />
         <Stats A={A} />
         <Rooms A={A} />
         <Surprise A={A} onSave={onSave} />
         <Traits A={A} />
-        <OpenBook A={A} />
         <Record A={A} />
         {/* Part two: new pages, every line still from the player's own answers. */}
         <PartOpener part={A.parts.two} n="two" />
-        <TwoSides A={A} />
         <Heist A={A} onChallenge={onChallenge} />
         <Flags A={A} />
         <Bets A={A} />

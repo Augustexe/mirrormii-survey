@@ -8,6 +8,7 @@
 
 import { HALVES, bothEnds, endOf, statOf, statRow } from "../stats.js";
 import { comboLine } from "../combo-lines.js";
+import { dramaStats, dumpStat, lineSide, topFour, topStat } from "../rpg-stats.js";
 
 export const VOICES = Object.freeze(["fun", "heart", "cards"]);
 export const STORY_IDS = Object.freeze(["intro", "names", "read", "map", "knows", "rooms", "insight", "traits", "stings", "calls", "share", "app"]);
@@ -69,8 +70,10 @@ export const STORY_COPY = Object.freeze({
     intro: { kicker: "Your result is ready", title: "40 answers in. Here are your results.", sub: "Press and hold, then let go." },
     names: { kicker: "You are", people: HALVES.people.kicker, life: HALVES.life.kicker, traits: "Core traits", sub: null },
     read: { kicker: "The short version" },
+    // Story 4: the drama stats (2026-09-30). Four stat blocks and a link to all six; the six axes behind them stay
+    // internal (people, life, levels, open and the two marks feed the article's traits, the knows screen and records).
     map: {
-      kicker: "Your personality stats", title: "Your six stats, up close", sub: "The glowing stat is your strongest. The marked one sits closest to the middle.", subSolo: "The glowing stat is your strongest.",
+      kicker: "Your stats", title: "Where you max out", surprise: "Most surprising", more: "See all six in the long version",
       people: HALVES.people.kicker, life: HALVES.life.kicker,
       levels: LABELS.levels,
       signature: LABELS.signature, wild: LABELS.wild,
@@ -119,7 +122,7 @@ export const STORY_COPY = Object.freeze({
     names: { kicker: "You are", people: HALVES.people.kicker, life: HALVES.life.kicker, traits: "Core traits", sub: null },
     read: { kicker: "The short version" },
     map: {
-      kicker: "Your personality stats", title: "Your six stats, up close", sub: "The glowing stat is your strongest. The marked one sits closest to the middle.", subSolo: "The glowing stat is your strongest.",
+      kicker: "Your stats", title: "Where you shine most", surprise: "Most surprising", more: "See all six in the long version",
       people: HALVES.people.kicker, life: HALVES.life.kicker,
       levels: LABELS.levels,
       signature: LABELS.signature, wild: LABELS.wild,
@@ -292,7 +295,8 @@ export function coreTraits(tags, rows, tagLib) {
     const keyword = str(lt.keyword) || str(t.name);
     return keyword ? { key: `tag:${t.key}`, kind: "tag", tag: t.key, keyword, source: t.name, line: t.line, chapter: t.chapter, private: t.private } : null;
   }).filter(Boolean);
-  const statItem = (r) => ({ key: `stat:${r.key}`, kind: "stat", axis: r.key, keyword: r.keyword, source: `${r.stat} · ${r.leadEnd}`, line: r.note, chapter: null, private: false, pips: r.pips });
+  // The source names the end only: the old stat names no longer render (drama stats, 2026-09-30).
+  const statItem = (r) => ({ key: `stat:${r.key}`, kind: "stat", axis: r.key, keyword: r.keyword, source: r.leadEnd, line: r.note, chapter: null, private: false, pips: r.pips });
   const decided = rows.filter((r) => !r.flex && !r.unfinished && str(r.keyword) && r.pips >= 2)
     .map((r, i) => ({ r, i }))
     .sort((a, b) => b.r.pips - a.r.pips || b.r.strength - a.r.strength || a.i - b.i)
@@ -443,6 +447,17 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
   const signature = mark(sigRow, "signature", C.map.signature, C.map.signatureNote);
   const wild = mark(wildRow, "wild", C.map.wild, C.map.wildNote);
   const facet = allRows.map((r) => ({ key: r.key, lean: r.lean, flex: r.flex, unfinished: r.unfinished, plus: endOf(r.right), minus: endOf(r.left) }));
+
+  // The drama stats (Jerry, 2026-09-30): six numbers from 1 to 20, each a fixed mix of this profile's leans and traits
+  // (rpg-stats.js). Story 4 shows four blocks: the three highest and the most surprising one (else the fourth highest),
+  // each with its short line; the article shows all six with the top stat and the dump stat lines.
+  const dramaCopy = (L.drama && L.drama.stats) || {};
+  const statView = (s, side) => ({ id: s.id, abbr: s.abbr, name: s.name, score: s.score, line: voiced(dramaCopy[s.id], side, wording) || "" });
+  const drama = dramaStats(P);
+  const blocks = topFour(drama).map((s) => ({ ...statView(s, lineSide(s.score)), pick: s.pick }));
+  const dramaTop = statView(topStat(drama), "top");
+  const dramaDump = statView(dumpStat(drama), "dump");
+  const dramaAll = drama.map((s) => statView(s, lineSide(s.score)));
 
   // What Genii knows best: every lean that came through, clearest first. A decided lean says what it knows; a flex lean
   // says so honestly at the bottom; an unfinished one is left out.
@@ -600,7 +615,7 @@ export function buildStories({ result, profile = {}, sealed = null, lib, voice =
     // Story 2: inside the mirror only the title and its line; under it, the day-to-day half and the core traits.
     { id: "names", kicker: C.names.kicker, sub: C.names.sub, title, people, life, mirror, keywords: publicCore.map((k) => k.keyword), labels: { life: C.names.life, traits: C.names.traits } },
     { id: "read", kicker: C.read.kicker, lines: readLines, bodies: readBodies, marks: readMarks },
-    { id: "map", kicker: C.map.kicker, title: C.map.title, sub: wild ? C.map.sub : C.map.subSolo, groups: mapGroups, facet, signature, wild },
+    { id: "map", kicker: C.map.kicker, title: C.map.title, surprise: C.map.surprise, more: C.map.more, blocks, stats: dramaAll, top: dramaTop, dump: dramaDump, groups: mapGroups, facet, signature, wild },
     { id: "knows", kicker: C.knows.kicker, title: C.knows.title, surest: C.knows.surest, findings },
     roomRows.length >= 2 ? { id: "rooms", kicker: C.rooms.kicker, title: C.rooms.title, differs: C.rooms.differs, rows: roomRows } : null,
     { id: "insight", kicker: C.insight.kicker, line: insight, parts: splitInsight(insight), from: insightFrom },
@@ -630,9 +645,10 @@ export function printFor(slide) {
       const keep = slide.lines.map((line, i) => ({ line, body: (slide.bodies || [])[i] || "", mark: marks[i] || { kind: "none" } })).filter((x) => !(x.mark && x.mark.private));
       return { ...base, tablets: keep };
     }
-    // The character sheet: per stat its end, level word, pips and plain line; no number or percentage is drawn.
-    case "map": return { ...base, title: slide.title, sub: slide.sub, groups: slide.groups.map((g) => ({ label: g.label, rows: g.rows.map((r) => ({ stat: r.stat, left: r.a, right: r.b, pos: r.at, side: r.leadSide === "a" ? "left" : "right", flex: r.flex, unfinished: r.unfinished, end: r.flex ? bothEnds(r.a, r.b) : r.unfinished ? bothEnds(r.a, r.b, "or") : r.leadEnd, level: r.level, pips: r.pips, split: r.split, line: r.note, badge: r.badge, badgeLabel: r.badge === "signature" ? slide.signature && slide.signature.label : r.badge === "wild" ? slide.wild && slide.wild.label : null })) })) };
-    case "knows": return { ...base, title: slide.title, findings: slide.findings.map((f, i) => ({ topic: f.stat ? `${f.stat} · ${f.leadEnd}` : f.leadEnd, lead: f.leadEnd, other: f.otherEnd, kind: f.kind, line: i ? f.short || f.line : f.line, level: f.level, tier: f.tier })) };
+    // The drama stats: four blocks, each its abbreviation, score, name and line. The scores are the only numbers drawn
+    // besides Genii's calls count; no percentage.
+    case "map": return { ...base, title: slide.title, blocks: (slide.blocks || []).map((b) => ({ abbr: b.abbr, score: b.score, name: b.name, line: b.line, surprise: b.pick === "surprise" ? slide.surprise : null })) };
+    case "knows": return { ...base, title: slide.title, findings: slide.findings.map((f, i) => ({ topic: f.leadEnd, lead: f.leadEnd, other: f.otherEnd, kind: f.kind, line: i ? f.short || f.line : f.line, level: f.level, tier: f.tier })) };
     case "rooms": return { ...base, title: slide.title, rows: slide.rows.map((r) => ({ room: r.room, line: r.line, chapter: r.chapter, level: r.level })) };
     case "traits": {
       const items = (slide.core || []).filter((k) => !k.private).map((k) => ({ name: k.keyword, line: k.line, chapter: k.chapter }));

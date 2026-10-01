@@ -1,5 +1,6 @@
 // The one source for the result's scale labels (LAUNCH-SPEC section 26 "Plain names", docs/NAMING-RULES.md): the two
-// half kickers, the six stats and their ends. Archetype names, their one-line definitions and trait keywords live in
+// half kickers, the six axis stats and their ends. Since the drama stats (2026-09-30, rpg-stats.js) players no longer
+// see the six axis stat names; the ends still render (core traits, findings, rooms, flags, the heist line). Archetype names, their one-line definitions and trait keywords live in
 // library.json; nothing else in the app spells a label out. Players never see the scorer's internal pole names (We, Me,
 // Direct, Soft, Classic, Own, Steady, Venture, Push, Easy, Rules, Context): every player-facing surface (the names,
 // the character sheet, its saved image, what Genii knows best, the rooms, Genii's calls, the article, the share card)
@@ -35,6 +36,9 @@ export const RETIRED_LABELS = Object.freeze([
   "The Slow Burner", "Slow Burner", "Creature of Habit", "The Easygoer", "Easygoer", "The Wanderer", "Wanderer",
   "Orbit", "Delivery", "Blueprint", "Compass", "Engine", "Code:", "Crew", "Solo", "Old School", "Own Lane", "Home Base",
   "Wanderlust", "Full Send", "Cruise Control", "Read the Room", "Traditional", "With your life",
+  // The old stat display names, retired from every player surface by the drama stats (Jerry, 2026-09-30); they stay
+  // the internal names in STATS below (records, tests). "Rules" is not listed: it is also the L3 pole id.
+  "Closeness", "Hard truths", "Traditions", "New things", "Pace",
 ]);
 
 // Every internal pole name, for tests and guards.

@@ -141,19 +141,24 @@ test("the screens render in order from a synthetic result, with only the first o
   for (const line of ["NEW-READ-PEOPLE", "NEW-READ-LIFE", "OLD-DESC-PEOPLE", "OLD-DESC-LIFE"]) assert.ok(read.includes(line), line);
   assert.ok(!read.includes("NEW-LINE-1"), "the traits keep their own lines");
 
+  // Story 4 (2026-09-30): the drama stats, four blocks; the old character sheet and its stat names never render.
   const map = slideHtml(html, "map");
-  assert.equal((map.match(/class="rv-stat"/g) || []).length, 6, "six stats on the character sheet");
-  // Round 3: a character sheet of game stats (src/persona/stats.js); the internal pole names never show.
-  for (const a of AXES) {
-    assert.ok(map.includes(endOf(a.plus)) || map.includes(endOf(a.minus)), `${a.id}: an end shows`);
-    assert.ok(map.includes(STATS[a.id].stat), STATS[a.id].stat);
-    // The L3 stat is named Rules, like its internal plus pole; the stat name is the label, never the pole.
-    assert.ok((a.plus === STATS[a.id].stat || !map.includes(`>${a.plus}<`)) && !map.includes(`>${a.minus}<`), `no bare ${a.plus} or ${a.minus}`);
+  const mapSlide = view.slides.find((x) => x.id === "map");
+  assert.equal((map.match(/class="rv-ds"/g) || []).length, 4, "four drama stat blocks");
+  assert.equal((map.match(/class="rv-stat"/g) || []).length, 0, "no character sheet");
+  for (const b of mapSlide.blocks) {
+    assert.ok(Number.isInteger(b.score) && b.score >= 1 && b.score <= 20, `${b.id} scores 1 to 20`);
+    assert.ok(visible(map).includes(b.abbr) && visible(map).includes(b.name), `${b.id} shows its abbreviation and name`);
   }
-  const lv = Object.values(C.map.levels).join("|");
-  assert.ok(new RegExp(`Closeness: Stays close, (${lv}), \\w+ pips of five\\.`).test(visible(map)) && visible(map).includes("Traditions: Right in the middle, Carries them on and starts new ones."), "each stat reads as a sentence");
+  for (const a of AXES) {
+    assert.ok(!visible(map).includes(STATS[a.id].stat) || STATS[a.id].stat === "Rules", `${STATS[a.id].stat} retired from the map`);
+    assert.ok(!map.includes(`>${a.plus}<`) && !map.includes(`>${a.minus}<`), `no bare ${a.plus} or ${a.minus}`);
+  }
+  assert.ok(visible(map).includes(C.map.more), "the link to all six in the long version");
   assert.doesNotMatch(visible(map), /%/, "no percentage on the map");
-  assert.doesNotMatch(visible(map), /\d/, "no numbers on the map");
+  let digits = visible(map);
+  for (const b of mapSlide.blocks) digits = digits.split(String(b.score)).join(" ");
+  assert.doesNotMatch(digits, /\d/, "no numbers on the map but the stat scores");
 
   const knows = visible(slideHtml(html, "knows"));
   assert.ok(knows.includes(C.knows.kicker));
@@ -192,8 +197,10 @@ test("no quoted answers, ids, numbers, scores or system words reach the main scr
     for (const lib of [oldLibrary(), newLibrary()]) {
       const view = buildStories({ result: syntheticResult(), profile: syntheticProfile(), sealed: SEALED, lib, voice, promptFor: () => "A PROMPT" });
       const html = await render(view);
-      const callsAt = html.indexOf('data-story="calls"');
-      const withoutCalls = callsAt < 0 ? html : html.slice(0, callsAt) + html.slice(html.indexOf("</section>", callsAt));
+      // The calls count and the drama stat scores (1 to 20, story 4) are the only numbers allowed; they are checked
+      // on their own screens, so both screens are left out here.
+      const cut = (h, id) => { const at = h.indexOf(`data-story="${id}"`); return at < 0 ? h : h.slice(0, at) + h.slice(h.indexOf("</section>", at)); };
+      const withoutCalls = cut(cut(html, "calls"), "map");
       const text = visible(withoutCalls);
       for (const q of QUOTES) assert.ok(!html.includes(q), `${voice}: no quoted answer ${q}`);
       assert.ok(!html.includes("GUESS-TEXT"));

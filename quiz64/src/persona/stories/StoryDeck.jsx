@@ -88,10 +88,12 @@ export function StoryDeck({ stories, friends, onFriendAction, onRestart, onDownl
   useEffect(() => { const id = setTimeout(() => setLight(true), 60); return () => clearTimeout(id); }, []);
 
   const assembled = useCallback(() => { setReveal("set"); setWipe(true); go(1); }, [go]);
-  const openArticle = useCallback(() => {
-    if (typeof window !== "undefined") { window.history.pushState(null, "", "#article"); pushed.current = true; }
+  // Opens the article at its top, or at one section ("stats" from the stat screen's link). A click event is not a section.
+  const openArticle = useCallback((section) => {
+    const id = typeof section === "string" ? section : "";
+    if (typeof window !== "undefined") { window.history.pushState(null, "", id ? `#article/${id}` : "#article"); pushed.current = true; }
     setSheet(null);
-    setArticle("");
+    setArticle(id);
   }, []);
   const closeArticle = useCallback(() => {
     if (pushed.current && typeof window !== "undefined") { pushed.current = false; window.history.back(); return; }

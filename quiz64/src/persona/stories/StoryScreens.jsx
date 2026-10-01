@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { BookOpen, Link2, Share, Users } from "lucide-react";
 import { ChapterGlyph, MirrorArch, Sigil } from "../../art/index.js";
 import { IntroScreen, NamesScreen } from "../reveal/MirrorReveal.jsx";
-import { CoreTraitsScreen, SheetScreen, StingsScreen } from "./SheetScreens.jsx";
+import { CoreTraitsScreen, DramaScreen, StingsScreen } from "./SheetScreens.jsx";
 import { KnowsScreen } from "../reveal/Findings.jsx";
 import { RoomsScreen } from "../reveal/Rooms.jsx";
 import { CallsScreen } from "../reveal/Calls.jsx";
@@ -175,7 +175,7 @@ export function StoryScreen({ slide, ...props }) {
     case "intro": return <IntroScreen s={slide} stage={props.stage} active={props.active} reduced={props.reduced} phase={props.reveal} onStart={props.onAssemble} onDone={props.onAssembled} />;
     case "names": return <NamesScreen s={slide} stage={props.stage} active={props.active} reduced={props.reduced} wipe={props.wipe} onWiped={props.onWiped} sparkles={props.sparkles} />;
     case "read": return <Read s={slide} />;
-    case "map": return <SheetScreen s={slide} />;
+    case "map": return <DramaScreen s={slide} onArticle={props.onArticle} />;
     case "knows": return <KnowsScreen s={slide} />;
     case "rooms": return <RoomsScreen s={slide} />;
     case "calls": return <CallsScreen s={slide} onGuesses={props.onGuesses} />;

@@ -1,8 +1,10 @@
 // Display accuracy for the Evidence Article (LAUNCH-SPEC section 25 item 3; the reveal-accuracy rule, extended):
 // simulated players with known answer patterns play the real step machine, the real article renders on the server, and
-// every name, stat, trait, room, flip, two-sides cell, call and party slot is recomputed here from the player's own
-// profile and the library, without going through article-data.js. Every visible line is a library line or a library
-// frame; nothing quotes an answer, shows a percentage, a stray number, an em dash or a never-say word.
+// every name, drama stat, trait, room, flip, call and party slot is recomputed here from the player's own profile and
+// the library, without going through article-data.js. Every visible line is a library line or a library frame; nothing
+// quotes an answer, shows a percentage, a stray number (only the drama stat scores and Genii's calls count are
+// allowed), an em dash or a never-say word. The 2026-09-30 cuts (the lede, the character sheet, your two results side
+// by side, every strength has a flip side) stay cut.
 import test from "node:test";
 import assert from "node:assert/strict";
 import React from "react";
@@ -107,13 +109,14 @@ function inVoice(entry, field, w) {
 const FLIP = { We: "Me", Me: "We", Direct: "Soft", Soft: "Direct", Classic: "Own", Own: "Classic", Steady: "Venture", Venture: "Steady", Push: "Easy", Easy: "Push", Rules: "Context", Context: "Rules" };
 const esc = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-test("every article line, name, stat, trait, room, flip, two-sides cell, call, party slot, heist role, flag, bet and seed comes from the player's evidence", async () => {
+test("every article line, name, drama stat, trait, room, flip, call, party slot, heist role, flag, bet and seed comes from the player's evidence", async () => {
   const { resultView } = await load("/src/persona/views.js");
   const Session = await load("/src/persona/session.js");
   const { LIB, S } = await load("/src/persona/kit.js");
   const { STATS } = await load("/src/persona/stats.js");
   const { STORY_COPY, UI_COPY } = await load("/src/persona/stories/story-data.js");
   const { buildArticle, articleText } = await load("/src/persona/article/article-data.js");
+  const R = await load("/src/persona/rpg-stats.js");
   const { ArticlePage } = await load("/src/persona/article/ArticlePage.jsx");
   const axisMeta = Object.fromEntries(LIB.axes.map((a) => [a.id, a]));
   const tagLib = Object.fromEntries(LIB.tags.map((t) => [t.id, t]));
@@ -134,9 +137,10 @@ test("every article line, name, stat, trait, room, flip, two-sides cell, call, p
   const traced = (line) => libStrings.has(line) || frames.some((re) => re.test(line));
 
   const list = await players();
-  let flips = 0, cells = 0, clicks = 0, hits = 0, statCores = 0, tagBacks = 0, tagFlags = 0, statBets = 0;
+  let flips = 0, clicks = 0, hits = 0, statCores = 0, tagBacks = 0, tagFlags = 0, statBets = 0;
+  const tops = new Set();
+  const dumps = new Set();
   const roles = new Set();
-  const seenPairs = new Set();
   for (const { label, run, voice } of list) {
     const w = voice === "heart" ? "heart" : "fun";
     const { profile, sealed } = Session.resultFor(run);
@@ -155,26 +159,34 @@ test("every article line, name, stat, trait, room, flip, two-sides cell, call, p
     assert.equal(A.cover.lifeRow.name, life.name, `${label}: the day-to-day row`);
     assert.ok(text.includes(`${A.cover.title.kicker} ${rel.name} ${A.cover.title.line}`), `${label}: title and line on the cover`);
     assert.ok(text.includes(life.name), `${label}: the day-to-day name on the page`);
-    assert.equal(A.cover.people.read, inVoice(rel, "read", w), `${label}: people read`);
-    assert.equal(A.cover.life.desc, inVoice(life, "desc", w), `${label}: life description`);
-
-    // 2. Stats: your end from the scored pole, pips and line from the score, the other end's line at the same band.
-    const rows = A.sheet.groups.flatMap((g) => g.rows);
-    assert.deepEqual(rows.map((r) => r.key), ["R1", "R2", "R3", "L1", "L2", "L3"]);
-    for (const r of rows) {
-      const a = P[r.key];
-      const meta = axisMeta[r.key];
-      assert.equal(r.flex, Boolean(a.flex), `${label}: ${r.key} flex`);
-      if (a.flex || a.unfinished) { assert.equal(r.otherLine, null, `${label}: ${r.key} no other end without a lean`); continue; }
-      const pole = a.pole > 0 ? meta.plus : meta.minus;
-      assert.equal(r.leadEnd, endName(r.key, pole), `${label}: ${r.key} end`);
-      assert.equal(r.pips, pipsFor(a), `${label}: ${r.key} pips`);
-      const sh = w === "heart" && meta.h && meta.h.sheet ? meta.h.sheet : meta.sheet;
-      assert.equal(r.note, sh[a.pole > 0 ? "plus" : "minus"][bandOf(r.pips)], `${label}: ${r.key} your line`);
-      assert.equal(r.otherEnd, endName(r.key, a.pole > 0 ? meta.minus : meta.plus), `${label}: ${r.key} other end`);
-      assert.equal(r.otherLine, sh[a.pole > 0 ? "minus" : "plus"][bandOf(r.pips)], `${label}: ${r.key} other end's line at the same level`);
-      if (r.know) assert.equal(r.know, inVoice(meta, a.pole > 0 ? "plusKnow" : "minusKnow", w), `${label}: ${r.key} what Genii knows`);
+    // The lede is merged into the cover: no restated read or description, no keyword chips.
+    for (const line of [inVoice(rel, "read", w), inVoice(life, "read", w), inVoice(rel, "desc", w), inVoice(life, "desc", w)]) {
+      if (line && line !== A.cover.title.line) assert.ok(!text.includes(line), `${label}: no restated read or description: ${line}`);
     }
+    assert.doesNotMatch(html, /ea-lede|ea-covertags/, `${label}: no lede and no cover chips`);
+
+    // 2. The drama stat block: all six recomputed from the profile, in order, scores 1 to 20; the top stat line and
+    //    the dump stat line (the lowest stat) in voice. The old character sheet never renders.
+    const six = R.dramaStats(profile);
+    assert.deepEqual(A.stats.all.map((x) => [x.abbr, x.score]), six.map((x) => [x.abbr, x.score]), `${label}: the stat block`);
+    const statsHtml = html.slice(html.indexOf('<section id="stats"'), html.indexOf("</section>", html.indexOf('<section id="stats"')));
+    for (const x of six) {
+      assert.ok(x.score >= 1 && x.score <= 20 && Number.isInteger(x.score), `${label}: ${x.id} in range`);
+      assert.ok(visible(statsHtml).includes(`${x.name}, ${x.score}`), `${label}: ${x.name} ${x.score} on the page`);
+    }
+    const hi = six.slice().sort((x, y) => y.score - x.score || y.raw - x.raw || x.order - y.order)[0];
+    const lo = six.slice().sort((x, y) => x.score - y.score || x.raw - y.raw || y.order - x.order)[0];
+    assert.equal(A.stats.top.id, hi.id, `${label}: top stat`);
+    assert.equal(A.stats.dump.id, lo.id, `${label}: dump stat`);
+    assert.equal(A.stats.top.line, inVoice(LIB.drama.stats[hi.id], "top", w), `${label}: top stat line`);
+    assert.equal(A.stats.dump.line, inVoice(LIB.drama.stats[lo.id], "dump", w), `${label}: dump stat line`);
+    assert.ok(text.includes(A.stats.top.line) && text.includes(A.stats.dump.line), `${label}: both lines on the page`);
+    tops.add(hi.id); dumps.add(lo.id);
+    assert.doesNotMatch(html, /class="ea-stat\b|ea-drawer|ea-pips/, `${label}: no character sheet`);
+    for (const n of ["Closeness", "Hard truths", "Traditions", "New things", "Pace"]) assert.ok(!text.includes(n), `${label}: ${n} retired`);
+    // The six leans behind the traits, the flip and part two (internal).
+    const rows = stories.slides.find((s) => s.id === "map").groups.flatMap((g) => g.rows);
+    const sheetOf = (meta) => (w === "heart" && meta.h && meta.h.sheet ? meta.h.sheet : meta.sheet);
 
     // 3. Core traits: the story's core, each with its source; the back of a tag card is that tag's own heart line,
     //    the back of a stat card is that stat end's own finding.
@@ -192,10 +204,10 @@ test("every article line, name, stat, trait, room, flip, two-sides cell, call, p
         assert.ok(!a.flex && !a.unfinished, `${label}: ${k.keyword} from a decided stat`);
         assert.ok(k.from.includes(endName(k.axis, a.pole > 0 ? axisMeta[k.axis].plus : axisMeta[k.axis].minus)), `${label}: ${k.keyword} names its stat end`);
         assert.equal(k.line, inVoice(axisMeta[k.axis], a.pole > 0 ? "plusKnow" : "minusKnow", w), `${label}: ${k.keyword} reads its stat end's finding`);
-        assert.ok(!rows.some((r) => r.note === k.line), `${label}: ${k.keyword} never repeats a sheet line`);
-        const row = rows.find((r) => r.key === k.axis);
-        if (k.back) assert.equal(k.back, row.otherLine, `${label}: ${k.keyword} turns over to the other end`);
-        if (k.back) assert.equal(k.backName, row.otherEnd);
+        const meta = axisMeta[k.axis];
+        const otherLine = sheetOf(meta)[a.pole > 0 ? "minus" : "plus"][bandOf(pipsFor(a))];
+        if (k.back) assert.equal(k.back, otherLine, `${label}: ${k.keyword} turns over to the other end`);
+        if (k.back) assert.equal(k.backName, endName(k.axis, a.pole > 0 ? meta.minus : meta.plus));
         statCores++;
       }
       assert.ok(text.includes(k.keyword), `${label}: ${k.keyword} on the page`);
@@ -227,25 +239,11 @@ test("every article line, name, stat, trait, room, flip, two-sides cell, call, p
       }
     }
 
-    // 5. Two sides at one table: every decided people end crossed with every decided life end, strongest first;
-    //    the first team cell and the first clash cell.
-    const decided = (ids) => ids.filter((ax) => !P[ax].flex && !P[ax].unfinished)
-      .map((ax, i) => ({ ax, i, pips: pipsFor(P[ax]), n: Math.abs(P[ax].norm) }))
-      .sort((x, y) => y.pips - x.pips || y.n - x.n || x.i - y.i);
-    const ppl = decided(["R1", "R2", "R3"]);
-    const lf = decided(["L1", "L2", "L3"]);
-    const pairs = [];
-    ppl.forEach((p, i) => lf.forEach((l, j) => pairs.push({ p, l, rank: i + j, i })));
-    pairs.sort((x, y) => x.rank - y.rank || x.i - y.i);
-    const want = {};
-    for (const { p, l } of pairs) {
-      const key = `${p.ax}${P[p.ax].pole > 0 ? "+" : "-"}|${l.ax}${P[l.ax].pole > 0 ? "+" : "-"}`;
-      const cell = LIB.crossover[key];
-      if (cell && !want[cell.type]) want[cell.type] = { key, line: w === "heart" ? cell.heart : cell.fun };
-    }
-    const got = A.sides ? A.sides.cells : [];
-    assert.deepEqual(got.map((c) => [c.type, c.key, c.line]), ["team", "clash"].filter((t) => want[t]).map((t) => [t, want[t].key, want[t].line]), `${label}: two-sides cells`);
-    for (const c of got) { assert.ok(text.includes(c.line), `${label}: ${c.type} cell on the page`); cells++; seenPairs.add(c.key); }
+    // 5. Cut on 2026-09-30: your two results side by side and every strength has a flip side.
+    assert.equal(A.sides, undefined, `${label}: no two-sides model`);
+    assert.equal(A.book, undefined, `${label}: no flip-sides model`);
+    assert.doesNotMatch(html, /id="(sides|book)"|ea-cell|ea-stings|ea-said/, `${label}: no two sides, no flip sides`);
+    for (const f of [LIB.article.sides.title, LIB.article.sides.intro, LIB.article.book.intro, LIB.article.sheet.title, LIB.article.sheet.intro]) assert.ok(!text.includes(f[w]), `${label}: cut frame "${f[w]}"`);
 
     // 6. The record: Genii's calls in play order, statuses and the one count straight from the sealed check.
     if (A.record) {
@@ -278,14 +276,13 @@ test("every article line, name, stat, trait, room, flip, two-sides cell, call, p
     const oppLife = life.code.split("·").map((p) => FLIP[p]).join("·");
     assert.equal(A.party.opposite.name, LIB.relationship.find((x) => x.code === oppCode).name, `${label}: opposite`);
     assert.equal(A.party.opposite.line, pairLine(oppCode, oppLife, w), `${label}: opposite line`);
-    assert.equal(A.party.me.line, A.cover.title.line, `${label}: your slot carries your line`);
+    assert.equal(A.party.me.line, undefined, `${label}: your slot does not repeat the cover line`);
 
     // 8. The bio: the title and up to three shareable core traits; never a sting or a private trait.
     const shareable = storyCore.filter((k) => !k.private).map((k) => k.keyword);
     assert.ok(A.bio.text.startsWith(`${rel.name}.`), `${label}: bio title`);
     for (const k of storyCore.filter((x) => x.private)) assert.ok(!A.bio.text.toLowerCase().includes(k.keyword.toLowerCase()), `${label}: private trait off the bio`);
     for (const k of shareable.slice(0, 3)) assert.ok(A.bio.text.toLowerCase().includes(k.toLowerCase()), `${label}: bio carries ${k}`);
-    for (const sting of A.book ? A.book.stings : []) assert.ok(!A.bio.text.includes(sting));
 
     // 8b. Part two, new sections (V2). Decided stats strongest first: most pips, then the lean, then sheet order.
     const strongest = (ids) => ids.filter((ax) => !P[ax].flex && !P[ax].unfinished)
@@ -358,19 +355,24 @@ test("every article line, name, stat, trait, room, flip, two-sides cell, call, p
     // The trait card's own label ("Based on", the cold-reader pick in LAUNCH-SPEC 26) names the card's source, not an analysis.
     body = body.split(A.traits.fromLabel).join(" ");
     assert.doesNotMatch(body, /(?<!keep(?:ing|s)? )\bscore\b|\b(analysis|result|profile|evidence|axis|based on|indicates)\b/i, `${label}: no system words ("keeping score" is an idiom)`);
-    // The one count, and the version label on the island seed ("Coming in MirrorMii 2.0").
-    const digits = body.replace(new RegExp(`\\b${A.record ? A.record.exact : "x"} of ${A.record ? A.record.called : "x"}\\b`), "").split("MirrorMii 2.0").join(" ");
-    assert.doesNotMatch(digits, /\d/, `${label}: no numbers but the calls count`);
+    // The one count, the drama stat scores (in the stat block only) and the version label on the island seed
+    // ("Coming in MirrorMii 2.0").
+    let digits = body.replace(new RegExp(`\\b${A.record ? A.record.exact : "x"} of ${A.record ? A.record.called : "x"}\\b`), "").split("MirrorMii 2.0").join(" ");
+    const block = visible(statsHtml);
+    digits = digits.split(block).join(" ");
+    let blockDigits = block;
+    for (const x of six) blockDigits = blockDigits.split(`, ${x.score}`).join(" ").split(` ${x.score} `).join(" ");
+    assert.doesNotMatch(blockDigits, /\d/, `${label}: the stat block shows only the scores`);
+    assert.doesNotMatch(digits, /\d/, `${label}: no numbers but the calls count and the stat scores`);
     for (const id of ["stats", "traits", "rooms", "heist", "party", "seed"]) assert.match(html, new RegExp(`id="${id}"`), `${label}: section ${id}`);
     assert.equal((html.match(/<h1\b/g) || []).length, 1, `${label}: one h1`);
 
     // 11. Reading time: about six minutes of visible words at most (V2 added part two; the cover says six minutes).
     const words = articleText(A).join(" ").split(/\s+/).length;
-    assert.ok(words >= 650 && words <= 1600, `${label}: ${words} words`);
+    assert.ok(words >= 450 && words <= 1400, `${label}: ${words} words`);
   }
   assert.ok(flips >= 1, `a room flip exercised (${flips})`);
-  assert.ok(cells >= list.length * 1.5, `two-sides cells exercised (${cells})`);
-  assert.ok(seenPairs.size >= 8, `several crossover cells exercised (${seenPairs.size})`);
+  assert.ok(tops.size >= 3 && dumps.size >= 3, `several top and dump stats exercised (${[...tops]}; ${[...dumps]})`);
   assert.ok(clicks >= 5 && hits >= 10 && statCores >= 10 && tagBacks >= 5, `party, calls and cards exercised (${clicks}, ${hits}, ${statCores}, ${tagBacks})`);
   assert.ok(roles.size >= 3 && tagFlags >= 10 && statBets >= 5, `heist roles, trait flags and stat bets exercised (${[...roles]}, ${tagFlags}, ${statBets})`);
 });
@@ -413,14 +415,15 @@ test("the article renders in both voices, with its tabs, one h1 and every sectio
     const run = completeRun(ADULT, leaning(LEANERS.demo), `artrender${voice}`, { voice, depth: "anything", rooms: ["love", "work", "family"] });
     const stories = resultView(run);
     const html = renderToStaticMarkup(React.createElement(ArticlePage, { stories, lib: LIB, onBack() {}, onChallenge() {}, onData() {}, onSave() {} }));
-    for (const id of ["stats", "rooms", "surprise", "traits", "book", "record", "sides", "heist", "flags", "bets", "party", "seed"]) {
+    for (const id of ["stats", "rooms", "surprise", "traits", "record", "heist", "flags", "bets", "party", "seed"]) {
       assert.match(html, new RegExp(`href="#article/${id}"`), `${voice}: tab ${id}`);
       assert.match(html, new RegExp(`<section id="${id}"`), `${voice}: section ${id}`);
     }
+    for (const id of ["book", "sides"]) assert.doesNotMatch(html, new RegExp(`#article/${id}"|<section id="${id}"`), `${voice}: ${id} is cut`);
     // V2: spot art from the article set, one sky band on the cover, no banner photos.
     assert.match(html, /assets\/article\/cover-band-/, `${voice}: the sky band on the cover`);
     assert.match(html, /assets\/article\/room-(phone|friends|love|money|work|home|play)-/, `${voice}: the room islets on the map`);
-    for (const art of ["stats-crystal", "insight-shard", "open-book", "record-quill", "heist-(planner|driver|inside|distraction)", "flags-pair", "bets-chips", "island-seed", "closing-mirror", "divider"]) {
+    for (const art of ["stats-crystal", "insight-shard", "record-quill", "heist-(planner|driver|inside|distraction)", "flags-pair", "bets-chips", "island-seed", "closing-mirror", "divider"]) {
       assert.match(html, new RegExp(`assets/article/${art}-`), `${voice}: spot art ${art}`);
     }
     assert.doesNotMatch(html, /assets\/island\/hero-|assets\/island\/mirror-inside-/, `${voice}: no banner photos`);
@@ -470,4 +473,20 @@ test("the V2 copy: flags, bets, heist lines and seeds in both voices, never-say 
     assert.ok(line.split(/\s+/).length <= 26, `${at} ${voice}: one line, not a paragraph`);
   }
   assert.ok(lines.length >= 380, `${lines.length} lines checked`);
+});
+
+// No squiggly type (Jerry, 2026-09-30): the Stories deck, its saved images and the article set upright type only
+// (Fraunces and Figtree, roman weights); no italic, no Fraunces WONK axis, no italic display token.
+test("upright type only in the Stories deck, its images and the article", async () => {
+  const fs = await import("node:fs");
+  const read = (p) => fs.readFileSync(fileURLToPath(new URL(`../src/${p}`, import.meta.url)), "utf8");
+  for (const p of ["persona/reveal/reveal.css", "persona/reveal/craft.css", "persona/stories/sheet-screens.css", "persona/article/article.css"]) {
+    const css = read(p).replace(/\/\*[\s\S]*?\*\//g, "");
+    assert.doesNotMatch(css, /italic|oblique|"WONK" 1|--font-display-italic/, `${p}: upright only`);
+  }
+  const img = read("persona/share-image.js");
+  assert.doesNotMatch(img, /italic: true|`italic /, "share images: upright only");
+  for (const p of ["persona/stories/SheetScreens.jsx", "persona/stories/StoryScreens.jsx", "persona/article/ArticleSections.jsx"]) {
+    assert.doesNotMatch(read(p), /<(i|em|q|cite)>\{/, `${p}: no italic elements around copy`);
+  }
 });

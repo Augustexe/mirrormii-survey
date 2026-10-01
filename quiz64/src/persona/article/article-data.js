@@ -1,16 +1,20 @@
 // The Evidence Article (LAUNCH-SPEC section 25 item 3, docs/ARTICLE-DESIGN.md): the long read that follows the Stories
 // deck. A pure projection, like story-data.js: the deck's own screens (already picked from the player's evidence) plus
 // library.json in, one article model out. Nothing here scores, quotes an answer or shows a number, except the one count
-// the deck already allows (Genii's calls). New lines come from library.json: `article` (frames that carry no claim of
-// their own) and `crossover` (the two-sides table, picked by the player's strongest stat ends).
+// the deck already allows (Genii's calls) and the drama stat scores (1 to 20). New lines come from library.json:
+// `article` (frames that carry no claim of their own) and `drama` (the top stat and dump stat lines).
+//
+// Cuts (Jerry, 2026-09-30, drama stats pass; every section says something new): the lede (the cover carries the
+// title and its one story line), the character sheet and its drawers (the drama stat block replaces it), your two
+// results side by side (the crossover table) and every strength has a flip side (green flag and red flag cover it).
 
 import { HALVES, STATS } from "../stats.js";
 import { oppositeOf, sheetLine, voiced } from "../stories/story-data.js";
 import { COMBO_LINES, comboLine } from "../combo-lines.js";
 
 // Part one follows the Stories deck in its own order (the same beats, deeper); part two is new.
-export const ARTICLE_TABS = Object.freeze(["stats", "rooms", "surprise", "traits", "book", "record", "sides", "heist", "flags", "bets", "party", "seed"]);
-export const PART_ONE = Object.freeze(["stats", "rooms", "surprise", "traits", "book", "record"]);
+export const ARTICLE_TABS = Object.freeze(["stats", "rooms", "surprise", "traits", "record", "heist", "flags", "bets", "party", "seed"]);
+export const PART_ONE = Object.freeze(["stats", "rooms", "surprise", "traits", "record"]);
 // Where each chapter's islet floats on the rooms map, in percent of the map (x, y of the islet's center), and how wide
 // it is. Love, work and home sit forward; the phone and play sit back. `lift` raises a pin above its islet (percent of
 // the map): money and home sit side by side, so home's pin stands higher and their labels never collide on a phone.
@@ -46,26 +50,6 @@ const byStrength = (rows) => rows.map((r, i) => ({ r, i }))
   .filter(({ r }) => !r.flex && !r.unfinished && r.leadEnd)
   .sort((a, b) => b.r.pips - a.r.pips || b.r.strength - a.r.strength || a.i - b.i)
   .map(({ r }) => r);
-
-// Your two sides at one table: every decided people end crossed with every decided life end, strongest pairs first;
-// the first team cell and the first clash cell are the two the page shows.
-export function twoSides(rows, lib, wording) {
-  const table = (lib && lib.crossover) || {};
-  const people = byStrength(rows.filter((r) => r.key[0] === "R"));
-  const life = byStrength(rows.filter((r) => r.key[0] === "L"));
-  const pairs = [];
-  people.forEach((p, i) => life.forEach((l, j) => pairs.push({ p, l, rank: i + j, i })));
-  pairs.sort((a, b) => a.rank - b.rank || a.i - b.i);
-  const out = {};
-  for (const { p, l } of pairs) {
-    const key = `${endKey(p)}|${endKey(l)}`;
-    const cell = table[key];
-    if (!cell || out[cell.type]) continue;
-    const line = wording === "heart" ? str(cell.heart) || str(cell.fun) : str(cell.fun);
-    if (line) out[cell.type] = { type: cell.type, key, a: p.leadEnd, aStat: p.stat, b: l.leadEnd, bStat: l.stat, line };
-  }
-  return out;
-}
 
 const FLIP = { We: "Me", Me: "We", Direct: "Soft", Soft: "Direct", Classic: "Own", Own: "Classic", Steady: "Venture", Venture: "Steady", Push: "Easy", Easy: "Push", Rules: "Context", Context: "Rules" };
 
@@ -134,51 +118,44 @@ export function buildArticle({ stories, lib }) {
     name: halves.people,
     line: (deckTitle && str(deckTitle.line)) || comboLine(COMBO_LINES, relL ? relL.code : "", lifeL ? lifeL.code : "", wording) || read.lines[0] || "",
   };
+  // The lede merged into the cover (2026-09-30): the title and its one story line, the day-to-day row, the dek. No
+  // restated read or description, and no keyword chips (the traits section right after shows them with their lines).
   const cover = {
     masthead: f("masthead"),
     readTime: f("readTime"),
     dek: f("cover.dek"),
-    keywordsLabel: f("cover.keywords"),
     title,
     lifeRow: { label: HALVES.life.kicker, name: halves.life },
-    // Kicker, name and the one plain defining line, as on every title card (LAUNCH-SPEC 26).
-    people: { label: HALVES.people.kicker, name: halves.people, define: names.people.define || "", read: read.lines[0] || names.people.read || "", desc: read.bodies[0] || "" },
-    life: { label: HALVES.life.kicker, name: halves.life, define: names.life.define || "", read: read.lines[1] || names.life.read || "", desc: read.bodies[1] || "" },
-    keywords: names.keywords || [],
   };
 
-  // ------------------------------------------------------------------ the character sheet, with the other end
+  // ------------------------------------------------------------------ the six leans (internal, never rendered as a sheet)
+  // The traits' backs, the rooms' flip, the heist role, the flags, the bets and the party still read the six axis
+  // leans; only their character sheet display is gone.
   const rows = map.groups.flatMap((g) => g.rows.map((r) => ({ ...r, group: g.label })));
   const findings = (by.knows && by.knows.findings) || [];
   const knowOf = (key) => (findings.find((x) => x.key === key && x.kind === "axis") || {}).line || null;
   const core = ((by.traits && by.traits.core) || []).map((k) => ({ ...k }));
-  const coreAxes = new Set(core.filter((k) => k.kind === "stat").map((k) => k.axis));
   const sheetRows = rows.map((r) => {
     const decided = !r.flex && !r.unfinished;
     const otherEnd = decided ? (r.side === "right" ? "minus" : "plus") : null;
     const band = r.band === "both" ? null : r.band;
-    const badge = r.badge === "signature" ? map.signature : r.badge === "wild" ? map.wild : null;
-    // What Genii knows goes in the drawer only for the signature and the wild card, and only when no core trait
-    // already carries it (the page never says the same line twice).
-    const know = decided && r.badge && !coreAxes.has(r.key) ? knowOf(r.key) : null;
     return {
       key: r.key, stat: r.stat, group: r.group, a: r.a, b: r.b, leadEnd: r.leadEnd, otherEnd: r.otherEnd, side: r.side, pos: r.pos,
       flex: r.flex, unfinished: r.unfinished, pips: r.pips, split: r.split, level: r.level, note: r.note, strength: r.strength,
-      badge: r.badge, badgeLabel: badge ? badge.label : null, badgeNote: badge ? badge.note : null,
       otherLine: decided && band ? sheetLine(axisMeta[r.key], otherEnd, band, wording) : null,
-      know,
     };
   });
-  const sheet = {
-    kicker: map.kicker, title: f("sheet.title"), intro: f("sheet.intro"), hint: f("sheet.hint"), key: f("sheet.key"),
-    yours: f("sheet.yours"), other: f("sheet.other"),
-    groups: map.groups.map((g) => ({ label: g.label, rows: sheetRows.filter((r) => r.group === g.label) })),
-    signature: map.signature, wild: map.wild,
+  // ------------------------------------------------------------------ the drama stat block
+  // All six from the deck's own numbers (rpg-stats.js via story-data), then the top stat line and the dump stat line.
+  const stats = {
+    kicker: map.kicker, title: f("stats.title"), intro: f("stats.intro"),
+    all: (map.stats || []).map((x) => ({ id: x.id, abbr: x.abbr, name: x.name, score: x.score, mark: map.top && x.id === map.top.id ? "top" : map.dump && x.id === map.dump.id ? "dump" : null })),
+    top: map.top ? { ...map.top, label: f("stats.top") } : null,
+    dump: map.dump ? { ...map.dump, label: f("stats.dump") } : null,
   };
 
   // ------------------------------------------------------------------ core traits, each with where it comes from
   const tags = (by.traits && by.traits.tags) || [];
-  const used = new Set();
   const traits = {
     title: f("core.title"), intro: f("core.intro"), fromLabel: f("core.from"), turn: f("core.turn"), turnBack: f("core.turnBack"), kept: f("core.kept"),
     position: (n, total) => f("core.position", { n: NUMBER_WORDS[n] || n, total: NUMBER_WORDS[total] || total }),
@@ -201,11 +178,9 @@ export function buildArticle({ stories, lib }) {
         backName = row ? row.otherEnd : k.keyword;
         backLabel = f("core.backStat");
       }
-      // A stat-backed card reads the stat end's finding, not the sheet line the character sheet already shows.
+      // A stat-backed card reads the stat end's finding, not its sheet line.
       const line = k.kind === "stat" ? knowOf(k.axis) || k.line : k.line;
       if (back && back === line) back = null;
-      if (back && k.kind === "tag") used.add(back);
-      used.add(line);
       return { key: k.key, kind: k.kind, keyword: k.keyword, from, line, back, backLabel, backName, chapter: k.chapter ?? null, axis: k.axis || null, private: Boolean(k.private) };
     }),
   };
@@ -232,25 +207,6 @@ export function buildArticle({ stories, lib }) {
     flip,
   } : null;
 
-  // ------------------------------------------------------------------ your two sides at one table
-  const cells = twoSides(sheetRows, L, wording);
-  const sides = cells.team || cells.clash ? {
-    title: f("sides.title"), intro: f("sides.intro", { people: halves.people, life: halves.life }),
-    people: halves.people, life: halves.life,
-    cells: [cells.team, cells.clash].filter(Boolean).map((c) => ({ ...c, label: f(`sides.${c.type}`) })),
-  } : null;
-
-  // ------------------------------------------------------------------ open book: the stings, then the heart lines
-  const st = by.stings;
-  const hearts = [
-    relL ? { from: halves.people, line: voiced(relL, "heart", wording) } : null,
-    lifeL ? { from: halves.life, line: voiced(lifeL, "heart", wording) } : null,
-  ].filter((h) => h && h.line && !used.has(h.line));
-  const book = st ? {
-    kicker: st.kicker, title: st.title, intro: f("book.intro"), stings: st.stings || [],
-    saidTitle: f("book.saidTitle"), saidIntro: f("book.saidIntro"), hearts,
-  } : null;
-
   // ------------------------------------------------------------------ the record: Genii's calls, in play order
   const c = by.calls;
   const record = c ? {
@@ -269,8 +225,9 @@ export function buildArticle({ stories, lib }) {
   const oppCodes = relCode && lifeCode ? [relCode, lifeCode].map((c) => c.split("·").map((p) => FLIP[p]).join("·")) : null;
   const party = {
     title: f("party.title"), you: f("party.you"), halves,
-    // Each slot is one title (a people archetype) with its pair's story line.
-    me: { name: halves.people, line: title.line },
+    // Each slot is one title (a people archetype); the other slots carry their pair's story line. Your own slot shows
+    // the name only: the cover already carries your line.
+    me: { name: halves.people },
     click: click ? { ...click, label: f("party.clickLabel"), diff: f("party.click", { stat: lower(click.stat), end: lower(click.end) }) } : null,
     opposite: opp ? { name: opp[0], line: comboLine(COMBO_LINES, oppCodes[0], oppCodes[1], wording) || "", a: opp[0], b: opp[1], label: f("party.oppositeLabel"), diff: f("party.opposite") } : null,
     challenge: share ? share.challenge : "", challengeSub: share ? share.sub : "",
@@ -350,12 +307,12 @@ export function buildArticle({ stories, lib }) {
   };
 
   const tabs = ARTICLE_TABS
-    .filter((id) => ({ surprise, rooms, book, record, sides, heist, flags, bets, seed }[id] !== null))
+    .filter((id) => ({ surprise, rooms, record, heist, flags, bets, seed }[id] !== null))
     .map((id) => ({ id, label: f(`tabs.${id}`) }));
 
   return {
     wording, voice: stories.voice, back: f("back"), readMore: f("readMore"), tabsLabel: f("tabs.label"), allSections: f("tabs.all"),
-    tabs, parts, cover, sheet, traits, surprise, rooms, sides, book, record, heist, flags, bets, party, bio, seed, closing,
+    tabs, parts, cover, stats, traits, surprise, rooms, record, heist, flags, bets, party, bio, seed, closing,
     tagLib, // for the owner-only mark on private traits
   };
 }
@@ -365,23 +322,22 @@ export function articleText(A) {
   const out = [];
   const add = (...xs) => xs.forEach((x) => { if (typeof x === "string" && x.trim()) out.push(x); });
   const c = A.cover;
-  add(c.masthead, c.readTime, c.dek, c.title.kicker, c.title.name, c.title.line, c.lifeRow.label, c.lifeRow.name, c.people.label, c.people.read, c.people.desc, c.life.label, c.life.read, c.life.desc, ...c.keywords);
+  add(c.masthead, c.readTime, c.dek, c.title.kicker, c.title.name, c.title.line, c.lifeRow.label, c.lifeRow.name);
   add(A.parts.one.label, A.parts.one.title, A.parts.one.intro, A.parts.two.label, A.parts.two.title, A.parts.two.intro);
-  add(A.sheet.title, A.sheet.intro, A.sheet.hint, A.sheet.key);
-  for (const g of A.sheet.groups) for (const r of g.rows) add(r.stat, r.leadEnd, r.level, r.note, r.otherLine, r.know, r.badgeLabel, r.badgeNote);
+  add(A.stats.title, A.stats.intro);
+  for (const x of A.stats.all) add(x.abbr, x.name);
+  for (const x of [A.stats.top, A.stats.dump]) if (x) add(x.label, x.name, x.line);
   add(A.traits.title, A.traits.intro);
   for (const k of A.traits.items) add(k.keyword, k.from, k.line, k.back);
   if (A.surprise) add(A.surprise.belief, A.surprise.behavior);
   if (A.rooms) { add(A.rooms.title, A.rooms.intro, A.rooms.quiet); for (const r of A.rooms.rows) add(r.room, r.line); if (A.rooms.flip) add(A.rooms.flip.title, A.rooms.flip.line); }
-  if (A.sides) { add(A.sides.title, A.sides.intro); for (const x of A.sides.cells) add(x.label, x.line); }
-  if (A.book) { add(A.book.title, A.book.intro, ...A.book.stings, A.book.saidTitle, A.book.saidIntro); for (const h of A.book.hearts) add(h.line); }
   if (A.record) { add(A.record.headline, A.record.intro, A.record.key); for (const r of A.record.rows) add(r.title, r.shown); }
   const h = A.heist;
   add(h.title, h.intro, h.yoursLabel, h.why, h.from, h.recruit); for (const r of h.roles) add(r.name, r.job);
   if (A.flags) add(A.flags.title, A.flags.intro, A.flags.green.label, A.flags.green.line, A.flags.green.from, A.flags.red.label, A.flags.red.line, A.flags.red.from);
   if (A.bets) { add(A.bets.title, A.bets.intro); for (const b of A.bets.items) add(b.stake, b.line, b.from); }
   const p = A.party;
-  add(p.title, p.me.name, p.me.line, p.click && p.click.label, p.click && p.click.name, p.click && p.click.line, p.click && p.click.diff, p.opposite && p.opposite.label, p.opposite && p.opposite.name, p.opposite && p.opposite.line, p.opposite && p.opposite.diff, p.challenge, p.challengeSub, A.bio.text);
+  add(p.title, p.me.name, p.click && p.click.label, p.click && p.click.name, p.click && p.click.line, p.click && p.click.diff, p.opposite && p.opposite.label, p.opposite && p.opposite.name, p.opposite && p.opposite.line, p.opposite && p.opposite.diff, p.challenge, p.challengeSub, A.bio.text);
   if (A.seed) add(A.seed.title, A.seed.soon, A.seed.intro, A.seed.label, A.seed.what, A.seed.howLabel, A.seed.how, A.seed.hook);
   add(A.closing.line, A.closing.app && A.closing.app.title, A.closing.app && A.closing.app.body);
   return out;

@@ -83,9 +83,10 @@ test("no bare internal pole name renders on the reveal, in either voice, for sev
         }
         checked++;
       }
-      // The map's stat names are all there.
+      // Story 4 shows the drama stats (2026-09-30): the old axis stat names are retired from the map.
       const map = text(slideHtml(html, "map"));
-      for (const s of Object.values(STATS)) assert.ok(map.includes(s.stat), `${voice}: ${s.stat} on the map`);
+      for (const s of Object.values(STATS)) if (s.stat !== "Rules") assert.ok(!map.includes(s.stat), `${voice}: ${s.stat} retired from the map`);
+      for (const b of view.slides.find((x) => x.id === "map").blocks) assert.ok(map.includes(b.name) && map.includes(b.abbr), `${voice}: ${b.name} on the map`);
       // What a saved image draws: map ends, findings, calls.
       for (const sl of view.slides.filter((s) => ["map", "knows", "calls", "rooms"].includes(s.id))) {
         const spec = printFor(sl);

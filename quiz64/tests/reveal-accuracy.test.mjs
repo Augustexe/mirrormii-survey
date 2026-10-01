@@ -89,6 +89,7 @@ function inVoice(entry, field, voice) {
 test("every reveal line, pole, trait, room and call comes from the player's own evidence", async () => {
   const { resultView, chapterOf } = await load("/src/persona/views.js");
   const { axisClarity, clarityLevel } = await load("/src/persona/stories/story-data.js");
+  const R = await load("/src/persona/rpg-stats.js");
   const Session = await load("/src/persona/session.js");
   const { LIB, KIT, S } = await load("/src/persona/kit.js");
   const axisMeta = Object.fromEntries(LIB.axes.map((a) => [a.id, a]));
@@ -106,6 +107,7 @@ test("every reveal line, pole, trait, room and call comes from the player's own 
   let sheetRows = 0;
   let wilds = 0;
   let coreCount = 0;
+  let surprisePicks = 0;
 
   for (const { label, run, voice } of list) {
     const { profile, result, sealed } = Session.resultFor(run);
@@ -177,6 +179,30 @@ test("every reveal line, pole, trait, room and call comes from the player's own 
       }
       wilds++;
     } else assert.ok(!flexes.length, `${label}: a flex is always the wild card`);
+
+    // 3b. The drama stats (2026-09-30): story 4 shows four blocks, the three highest of the six recomputed from this
+    //     profile (tests/drama-stats.test.mjs checks the formulas) and the most surprising one unless it is already
+    //     among them, else the fourth highest; each block reads its library line in voice, high at or above the middle,
+    //     low below it. The article's top and dump come from the same six.
+    const six = R.dramaStats(profile);
+    const order = six.slice().sort((x, y) => y.score - x.score || y.raw - x.raw || x.order - y.order);
+    const most = six.slice().sort((x, y) => y.surprise - x.surprise || x.order - y.order)[0];
+    const wantIds = [...order.slice(0, 3).map((x) => x.id), order.slice(0, 3).includes(most) ? order[3].id : most.id];
+    assert.deepEqual(by.map.blocks.map((b) => b.id), wantIds, `${label}: the four stat blocks`);
+    if (!order.slice(0, 3).includes(most)) { assert.equal(by.map.blocks[3].pick, "surprise", `${label}: the surprise pick`); surprisePicks++; }
+    for (const b of by.map.blocks) {
+      const st = six.find((x) => x.id === b.id);
+      assert.equal(b.score, st.score, `${label}: ${b.id} score`);
+      assert.ok(Number.isInteger(b.score) && b.score >= 1 && b.score <= 20, `${label}: ${b.id} in range`);
+      assert.equal(b.line, inVoice(LIB.drama.stats[b.id], b.score >= R.MID - 1 ? "high" : "low", voice), `${label}: ${b.id} line`);
+    }
+    assert.deepEqual(by.map.stats.map((x) => [x.id, x.score]), six.map((x) => [x.id, x.score]), `${label}: all six for the article`);
+    assert.equal(by.map.top.id, order[0].id, `${label}: top stat`);
+    const low = six.slice().sort((x, y) => x.score - y.score || x.raw - y.raw || y.order - x.order)[0];
+    assert.equal(by.map.dump.id, low.id, `${label}: dump stat is the lowest`);
+    assert.ok(six.every((x) => x.score >= by.map.dump.score), `${label}: nothing below the dump stat`);
+    assert.equal(by.map.top.line, inVoice(LIB.drama.stats[by.map.top.id], "top", voice));
+    assert.equal(by.map.dump.line, inVoice(LIB.drama.stats[by.map.dump.id], "dump", voice));
 
     // 4. What Genii knows best: every lean that came through (5 or 6), clearest first, each line the library's
     //    finding for the scored pole, each cue recomputed from the lean and the number of cards behind it.
@@ -337,7 +363,13 @@ test("every reveal line, pole, trait, room and call comes from the player's own 
     }
     for (const t of said) assert.ok(!text.includes(t), `${label}: no quoted answer: ${t}`);
     assert.doesNotMatch(text, /—|You'd say|Last time, you|energy\b|streak|gacha|lottery|jackpot|predict|clinically|diagnos/i, `${label}: voice rules`);
-    for (const id of ["knows", "rooms", "map", "traits", "stings"]) assert.doesNotMatch(visible(slideHtml(html, id)), /\d/, `${label}: no numbers on ${id}`);
+    for (const id of ["knows", "rooms", "traits", "stings"]) assert.doesNotMatch(visible(slideHtml(html, id)), /\d/, `${label}: no numbers on ${id}`);
+    // The drama stat scores are the only numbers on story 4.
+    let mapDigits = visible(slideHtml(html, "map"));
+    for (const b of by.map.blocks) mapDigits = mapDigits.split(String(b.score)).join(" ");
+    assert.doesNotMatch(mapDigits, /\d/, `${label}: no numbers on map but the stat scores`);
+    // The old axis stat names are retired from every screen.
+    for (const n of ["Closeness", "Hard truths", "Traditions", "New things", "Pace"]) assert.ok(!text.includes(n), `${label}: ${n} retired`);
     assert.doesNotMatch(text, /Only you see this/, `${label}: no hiding frame`);
   }
   assert.ok(seenArchetypes.size >= 5, `several archetype pairs covered (${[...seenArchetypes].join("; ")})`);
@@ -347,6 +379,7 @@ test("every reveal line, pole, trait, room and call comes from the player's own 
   assert.ok(splitInsights >= 1, "a split insight exercised");
   assert.ok(sheetRows >= 90 && wilds >= 5, `character sheet exercised (${sheetRows} stats, ${wilds} wild cards)`);
   assert.ok(coreCount >= list.length * 4, `core traits exercised (${coreCount})`);
+  assert.ok(surprisePicks >= 2, `the surprise pick exercised (${surprisePicks})`);
 });
 
 // Round 3 (LAUNCH-SPEC 24 item 1): no percentage anywhere a player looks: not on any screen of the reveal (visible text

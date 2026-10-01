@@ -151,7 +151,7 @@
      (package L2): on a short phone the last rows stay reachable, and nothing ever slides under Genii or the share
      icon; rows fade out over the box's top 8 px as they scroll away. At rest the layout is the same as before. The
      boxes take focus (tabIndex 0) so a keyboard can scroll them (axe scrollable-region-focusable). */
-  .rv-body:is(.rv-body--cs, .rv-body--knows, .rv-body--rooms, .rv-body--calls, .rv-body--core) {
+  .rv-body:is(.rv-body--ds, .rv-body--knows, .rv-body--rooms, .rv-body--calls, .rv-body--core) {
     inset: calc(var(--rv-top) - 6px) 0 0;
     padding-top: 8px;
     -webkit-mask-image: linear-gradient(180deg, transparent 0, black 8px);
@@ -161,7 +161,7 @@
     overscroll-behavior: contain;
     scrollbar-width: none;
   }
-  .rv-body:is(.rv-body--cs, .rv-body--knows, .rv-body--rooms, .rv-body--calls, .rv-body--core)::-webkit-scrollbar { display: none; }
+  .rv-body:is(.rv-body--ds, .rv-body--knows, .rv-body--rooms, .rv-body--calls, .rv-body--core)::-webkit-scrollbar { display: none; }
   .rv-body[tabindex]:focus-visible { outline: 3px solid var(--c-focus); outline-offset: -3px; }
   .rv-slide { position: absolute; inset: 0; }
   .rv-slide[hidden] { display: none; }
@@ -185,8 +185,8 @@
   }
   .rv-sub, .rv-opposite {
     margin: 0;
-    font: italic var(--type-genii-weight) var(--rv-genii) var(--font-display);
-    font-variation-settings: var(--font-display-italic);
+    font: var(--type-genii-weight) var(--rv-genii) var(--font-display);
+    font-variation-settings: var(--font-display-upright);
     color: var(--c-ink-2);
     text-wrap: balance;
     max-width: 30ch;
@@ -335,8 +335,8 @@
     padding: var(--s-2) var(--s-4);
     border-radius: var(--r-pill);
     border: 1px solid color-mix(in srgb, var(--n-ink) 22%, transparent);
-    font: italic var(--type-genii-weight) var(--rv-genii) var(--font-display);
-    font-variation-settings: var(--font-display-italic);
+    font: var(--type-genii-weight) var(--rv-genii) var(--font-display);
+    font-variation-settings: var(--font-display-upright);
     color: var(--n-ink-2);
   }
   .rv-slide.is-current .rv-intro[data-phase="orbit"] .rv-intro__sub { animation: rv-rise var(--d-base) var(--e-out) both, rv-breathe var(--d-loop-breath) var(--e-in-out) calc(var(--d-base) * 2) infinite alternate; }
@@ -435,8 +435,8 @@
   .rv-etch__line {
     margin: 0;
     max-inline-size: 15em;
-    font: italic 450 var(--etch-line, 19px) / 1.3 var(--font-display);
-    font-variation-settings: var(--font-display-italic);
+    font: 450 var(--etch-line, 19px) / 1.3 var(--font-display);
+    font-variation-settings: var(--font-display-upright);
     color: var(--n-ink);
     text-wrap: balance;
     text-shadow: 0 1px 14px color-mix(in srgb, var(--n-900) 95%, transparent);
@@ -694,8 +694,8 @@
   .rv-insight__turn { position: absolute; top: calc(54% + 18px); inset-inline: 0; perspective: 700px; }
   .rv-insight__behavior {
     display: block;
-    font: italic var(--type-quote-weight) var(--rv-quote) var(--font-display);
-    font-variation-settings: var(--font-display-italic);
+    font: var(--type-quote-weight) var(--rv-quote) var(--font-display);
+    font-variation-settings: var(--font-display-upright);
     color: var(--n-ink);
     text-wrap: balance;
     transform-origin: 50% -18px;
@@ -743,8 +743,8 @@
   }
   .rv-stings { display: grid; gap: var(--s-6); max-inline-size: 330px; margin: var(--s-2) 0 0; padding: 0; list-style: none; }
   .rv-stings li {
-    font: italic var(--type-quote-weight) var(--rv-quote) var(--font-display);
-    font-variation-settings: var(--font-display-italic);
+    font: var(--type-quote-weight) var(--rv-quote) var(--font-display);
+    font-variation-settings: var(--font-display-upright);
     color: var(--n-ink);
     text-wrap: pretty;
   }
@@ -805,7 +805,7 @@
   .rv-card__name strong { font: 600 var(--rv-title) var(--font-display); }
   .rv-card__tags { margin: var(--s-2) 0 0; padding: 0; list-style: none; display: grid; gap: 4px; font: 500 var(--rv-micro) var(--font-text); color: var(--n-ink-2); }
   .rv-card__tags b { color: var(--n-ink); }
-  .rv-card__invite { margin: var(--s-2) 0 0; font: italic 420 var(--rv-body) var(--font-display); color: var(--n-violet); }
+  .rv-card__invite { margin: var(--s-2) 0 0; font: 420 var(--rv-body) var(--font-display); color: var(--n-violet); }
   .rv-card[data-drawn="true"] .rv-card__text { inset: auto; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); padding: 0; }
   .rv-cardopts { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s-2); }
   .rv-seg { display: inline-flex; padding: 3px; border-radius: var(--r-pill); background: color-mix(in srgb, var(--c-ink) 7%, transparent); }
@@ -930,7 +930,7 @@
     text-shadow: 0 0 36px color-mix(in srgb, var(--n-ink) 60%, transparent), 0 2px 0 color-mix(in srgb, var(--n-900) 18%, transparent);
   }
   .rv-calls__score span { align-self: end; font: 600 30px / 32px var(--font-display); }
-  .rv-calls__score em { align-self: start; font: italic 420 17px / 22px var(--font-display); font-variation-settings: var(--font-display-italic); color: var(--n-ink); }
+  .rv-calls__score em { align-self: start; font: 420 17px / 22px var(--font-display); font-variation-settings: var(--font-display-upright); color: var(--n-ink); }
 
   .rv-calls { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; inline-size: 100%; max-inline-size: 390px; margin: 8px 0 0; padding: 0; list-style: none; text-align: left; perspective: 900px; }
   .rv-call { position: relative; min-inline-size: 0; }
@@ -1167,8 +1167,8 @@
   .rv-guesses__intro { margin: 0; color: var(--c-ink-2); font: 450 var(--rv-body) var(--font-text); }
   .rv-guesses__score { margin: 0; display: flex; align-items: baseline; flex-wrap: wrap; gap: var(--s-2); }
   .rv-guesses__score strong { font: var(--type-display-weight) 44px / 1 var(--font-display); font-variation-settings: var(--font-display-upright); color: var(--c-ink); }
-  .rv-guesses__score span { font: italic var(--type-genii-weight) var(--rv-genii) var(--font-display); font-variation-settings: var(--font-display-italic); color: var(--c-ink-2); }
-  .rv-guesses__score--none { font: italic var(--type-genii-weight) var(--rv-genii) var(--font-display); color: var(--c-ink-2); }
+  .rv-guesses__score span { font: var(--type-genii-weight) var(--rv-genii) var(--font-display); font-variation-settings: var(--font-display-upright); color: var(--c-ink-2); }
+  .rv-guesses__score--none { font: var(--type-genii-weight) var(--rv-genii) var(--font-display); color: var(--c-ink-2); }
   .rv-panes { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-2); margin: 0; padding: 0; list-style: none; }
   .rv-gpane { position: relative; }
   .rv-gpane__btn {
