@@ -1,4 +1,0 @@
-import {readFile,mkdir,writeFile} from 'node:fs/promises';import {Script} from 'node:vm';import path from 'node:path';
-const destination=process.argv[2]||'dist';await mkdir(destination,{recursive:true});
-const parts=[];for(const file of ['data.js','engine.js','app.js']){let s=await readFile(new URL(file,import.meta.url),'utf8');s=s.replace(/^import .*?;\n/gm,'').replace(/^export /gm,'');parts.push(s);}
-const js=`(()=>{${parts.join('\n')}\n})();`;new Script(js);const css=await readFile(new URL('style.css',import.meta.url),'utf8');let html=await readFile(new URL('index.html',import.meta.url),'utf8');html=html.replace('<link rel="stylesheet" href="style.css">',()=>`<style>${css}</style>`).replace('<script type="module" src="app.js"></script>',()=>`<script>${js.replace(/<\/script/gi,'<\\/script')}</script>`);await writeFile(path.join(destination,'index.html'),html);console.log(path.resolve(destination,'index.html'));
