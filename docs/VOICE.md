@@ -77,6 +77,8 @@ This is where most cards go wrong.
 - 3 to 4 answers for most formats, 12 words or fewer each. Two-answer cards (this or that) only when both sides are sharp and legible.
 - Answers never all open with the same word, and never repeat a line from another card.
 
+**Enforced:** `check-bank.mjs` fails any scored card where two answers open with the same word or share a core move (split, pay, go, keep, yes, no, take, stay, send, text, call, wait, say, tell, ask, sign and more). Receipts lists are exempt.
+
 **Scoring note (why this does not break anything):** each answer still lands on one side of the card's sub-question. Two different moves can land on the same side through different traits. Balance comes from the card as a whole (about two answers per side), not from a +2 / +1 / -1 / -2 ladder.
 
 ## 6. Chapter guide: what each chapter is secretly about
@@ -143,6 +145,8 @@ No em dashes. No genie, lamp or wish (Genii is a slime who guesses and bets). Sa
 - Anything that doesn't clearly meet this page is flagged for Jerry instead of shipped.
 
 ## Changes
+
+- 2026-09-30: Same-move rule enforced in check-bank (55 cards rewritten under it, evidence locked; 0 cards fail).
 
 - 2026-09-30: Approved. Added Genii's angle per chapter (one narrator, different hat; no separate chapter voices). Chapter 4 renamed "Money and spending". Evidence stays formal and locked; only the words players read follow this page.
 
